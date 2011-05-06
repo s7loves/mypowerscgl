@@ -82,6 +82,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Scgl.Yxgl", "Ebada.Scgl.Yxgl\Ebada.Scgl.Yxgl.csproj", "{FE5D1D78-6555-4A60-9261-463127722D1E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{A9779A45-D41C-4C81-B341-EB929AE9BBC1}"
+	ProjectSection(SolutionItems) = preProject
+		文档\database\EbadaScgl.rar = 文档\database\EbadaScgl.rar
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
