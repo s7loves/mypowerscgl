@@ -1,0 +1,119 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Server.Host", "Ebada.Server.Host\Ebada.Server.Host.csproj", "{CA32AB79-619A-4658-BD07-64D7063F331E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{46A66D23-5698-4A91-8E65-6F09587A9CF3}"
+	ProjectSection(SolutionItems) = preProject
+		Library\Castle.Core.dll = Library\Castle.Core.dll
+		Library\Castle.DynamicProxy.dll = Library\Castle.DynamicProxy.dll
+		Library\Castle.DynamicProxy2.dll = Library\Castle.DynamicProxy2.dll
+		Library\Castle.Facilities.AutomaticTransactionManagement.dll = Library\Castle.Facilities.AutomaticTransactionManagement.dll
+		Library\Castle.Facilities.IBatisNetIntegration.dll = Library\Castle.Facilities.IBatisNetIntegration.dll
+		Library\Castle.MicroKernel.dll = Library\Castle.MicroKernel.dll
+		Library\Castle.Services.Transaction.dll = Library\Castle.Services.Transaction.dll
+		Library\Castle.Windsor.dll = Library\Castle.Windsor.dll
+		Library\DevExpress.Localization.v10.1.dll = Library\DevExpress.Localization.v10.1.dll
+		Library\Ebada.Client.Common.dll = Library\Ebada.Client.Common.dll
+		Library\Ebada.Client.dll = Library\Ebada.Client.dll
+		Library\Ebada.Client.Resource.dll = Library\Ebada.Client.Resource.dll
+		Library\Ebada.Components.dll = Library\Ebada.Components.dll
+		Library\Ebada.Core.dll = Library\Ebada.Core.dll
+		Library\Ebada.Platform.BLL.dll = Library\Ebada.Platform.BLL.dll
+		Library\Ebada.Platform.Model.dll = Library\Ebada.Platform.Model.dll
+		Library\Ebada.Platform.Server.dll = Library\Ebada.Platform.Server.dll
+		Library\Ebada.Server.dll = Library\Ebada.Server.dll
+		Library\Ebada.Transport.Model.dll = Library\Ebada.Transport.Model.dll
+		Library\Ebada.Transport.Server.dll = Library\Ebada.Transport.Server.dll
+		Library\Ebada.UI.dll = Library\Ebada.UI.dll
+		Library\Ebada.Win32.dll = Library\Ebada.Win32.dll
+		Library\Ebada.WorkFlow.Common.dll = Library\Ebada.WorkFlow.Common.dll
+		Library\IBatisNet.Common.dll = Library\IBatisNet.Common.dll
+		Library\IBatisNet.Common.Logging.Log4Net.dll = Library\IBatisNet.Common.Logging.Log4Net.dll
+		Library\IBatisNet.DataAccess.dll = Library\IBatisNet.DataAccess.dll
+		Library\IBatisNet.DataMapper.dll = Library\IBatisNet.DataMapper.dll
+		Library\log4net.config = Library\log4net.config
+		Library\log4net.dll = Library\log4net.dll
+		Library\Microsoft.Office.Interop.Excel.dll = Library\Microsoft.Office.Interop.Excel.dll
+		Library\Microsoft.Vbe.Interop.dll = Library\Microsoft.Vbe.Interop.dll
+		Library\office.dll = Library\office.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0引用", "0引用", "{C9D639EC-E301-4D45-899B-DEC9D9AC4016}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "output", "output", "{BC0CEF1A-20FD-49B4-8611-9BD8D4F168B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{DA3E73D7-981C-4B5F-AF58-B822377BCE07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{5CCF8EB7-B56A-4CD0-ACE8-D38278BAD58B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{E5EC9BEA-5BCC-4237-A1DC-8E229CBEAEFC}"
+	ProjectSection(SolutionItems) = preProject
+		output\client\Config\ClientConfig.xml = output\client\Config\ClientConfig.xml
+		output\client\Config\RemotingTcpConfigClient.config = output\client\Config\RemotingTcpConfigClient.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{FF3DC5E6-32D4-49BE-9B76-7D5079B395CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ibatis", "ibatis", "{A2487F78-4862-4224-9C4B-90455531A102}"
+	ProjectSection(SolutionItems) = preProject
+		output\Server\config\ibatis\properties.config = output\Server\config\ibatis\properties.config
+		output\Server\config\ibatis\SqlMap.config = output\Server\config\ibatis\SqlMap.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "remoting", "remoting", "{D94F6475-E950-479D-9092-E6392630AE2E}"
+	ProjectSection(SolutionItems) = preProject
+		output\Server\config\remoting\RemotingTcpConfig.config = output\Server\config\remoting\RemotingTcpConfig.config
+		output\Server\config\remoting\ServerConfig.xml = output\Server\config\remoting\ServerConfig.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{265E2ED8-B3D7-4AFC-971A-CFC28821CA67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Modules.Demo", "Ebada.Modules.Demo\Ebada.Modules.Demo.csproj", "{F7CEAF24-AA97-46C3-A18B-B74AA5772BAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "服务器", "服务器", "{AD009B7E-3820-4811-BF13-AAF81F3C3256}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "示例", "示例", "{0654A3BC-E54C-4C51-877C-338EE1CFF1B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.SCGL", "Ebada.SCGL\Ebada.SCGL.csproj", "{FC57F2A1-D0A0-43F5-AEAB-344E92014BAE}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA32AB79-619A-4658-BD07-64D7063F331E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA32AB79-619A-4658-BD07-64D7063F331E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA32AB79-619A-4658-BD07-64D7063F331E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA32AB79-619A-4658-BD07-64D7063F331E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7CEAF24-AA97-46C3-A18B-B74AA5772BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7CEAF24-AA97-46C3-A18B-B74AA5772BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7CEAF24-AA97-46C3-A18B-B74AA5772BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CEAF24-AA97-46C3-A18B-B74AA5772BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC57F2A1-D0A0-43F5-AEAB-344E92014BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC57F2A1-D0A0-43F5-AEAB-344E92014BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC57F2A1-D0A0-43F5-AEAB-344E92014BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC57F2A1-D0A0-43F5-AEAB-344E92014BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA32AB79-619A-4658-BD07-64D7063F331E} = {AD009B7E-3820-4811-BF13-AAF81F3C3256}
+		{46A66D23-5698-4A91-8E65-6F09587A9CF3} = {C9D639EC-E301-4D45-899B-DEC9D9AC4016}
+		{BC0CEF1A-20FD-49B4-8611-9BD8D4F168B9} = {C9D639EC-E301-4D45-899B-DEC9D9AC4016}
+		{265E2ED8-B3D7-4AFC-971A-CFC28821CA67} = {C9D639EC-E301-4D45-899B-DEC9D9AC4016}
+		{DA3E73D7-981C-4B5F-AF58-B822377BCE07} = {BC0CEF1A-20FD-49B4-8611-9BD8D4F168B9}
+		{5CCF8EB7-B56A-4CD0-ACE8-D38278BAD58B} = {BC0CEF1A-20FD-49B4-8611-9BD8D4F168B9}
+		{E5EC9BEA-5BCC-4237-A1DC-8E229CBEAEFC} = {DA3E73D7-981C-4B5F-AF58-B822377BCE07}
+		{FF3DC5E6-32D4-49BE-9B76-7D5079B395CC} = {5CCF8EB7-B56A-4CD0-ACE8-D38278BAD58B}
+		{A2487F78-4862-4224-9C4B-90455531A102} = {FF3DC5E6-32D4-49BE-9B76-7D5079B395CC}
+		{D94F6475-E950-479D-9092-E6392630AE2E} = {FF3DC5E6-32D4-49BE-9B76-7D5079B395CC}
+		{F7CEAF24-AA97-46C3-A18B-B74AA5772BAF} = {0654A3BC-E54C-4C51-877C-338EE1CFF1B6}
+	EndGlobalSection
+EndGlobal
