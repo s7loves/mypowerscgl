@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <containers>
+    <!--平台服务容器配置-->
+    <container name ="PlatformServer">
+      <configuration>
+        <facilities>
+          <!--扩展对象块remoting配置-->
+          <facility id="remote.facility" type="Castle.Facilities.Remoting.RemotingFacility, Castle.MicroKernel"
+				      remotingConfigurationFile ="./config/remoting/RemotingTcpConfig.config"
+                      isServer="true"
+		              registryUri="kernel.rem" >
+          </facility>
+          <!--扩展对象块ibatis配置-->
+          <facility id="ibatis" type="Castle.Facilities.IBatisNetIntegration.IBatisNetFacility, Castle.Facilities.IBatisNetIntegration" >
+            <sqlMap id="sqlServerSqlMap" config="./config/ibatis/SqlMap.config" />
+          </facility>
+          <!--扩展对象块自动事物配置-->
+          <facility id="transaction" type="Castle.Facilities.AutomaticTransactionManagement.TransactionFacility, Castle.Facilities.AutomaticTransactionManagement" />
+
+        </facilities>
+        <!--<include uri="..\..\Ebada.PlatformBll.xml" />-->
+        <!--服务块配置-->
+        <components>
+          <!--调试服务-->
+          <component
+			      id="remote.math"
+			      service="Ebada.Components.IRemoteMath, Ebada.Components"
+			      type="Ebada.Components.RemoteMath, Ebada.Components"
+			      remoteserver="component" lifestyle="transient">
+          </component>
+          <!--数据访问基础服务-->
+          <component
+			      id="IBaseSqlMapDao"
+			      service="Ebada.Components.IBaseSqlMapDao, Ebada.Components"
+			      type="Ebada.Components.BaseSqlMapDao, Ebada.Components"
+			      remoteserver="component" lifestyle="transient">
+          </component>
+         
+        </components>
+        </configuration>
+      </container>
+    
+    </containers>
+</configuration>
