@@ -9,9 +9,6 @@ namespace Ebada.SCGL {
             DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup2 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup3 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup4 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup5 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup6 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
@@ -26,26 +23,10 @@ namespace Ebada.SCGL {
             this.iSaveAs = new DevExpress.XtraBars.BarButtonItem();
             this.iExit = new DevExpress.XtraBars.BarButtonItem();
             this.iFind = new DevExpress.XtraBars.BarButtonItem();
-            this.iFont = new DevExpress.XtraBars.BarButtonItem();
-            this.gddFont = new DevExpress.XtraBars.Ribbon.GalleryDropDown(this.components);
-            this.iBullets = new DevExpress.XtraBars.BarButtonItem();
-            this.iProtected = new DevExpress.XtraBars.BarButtonItem();
             this.iWeb = new DevExpress.XtraBars.BarButtonItem();
             this.iAbout = new DevExpress.XtraBars.BarButtonItem();
-            this.iBold = new DevExpress.XtraBars.BarButtonItem();
-            this.iItalic = new DevExpress.XtraBars.BarButtonItem();
-            this.iUnderline = new DevExpress.XtraBars.BarButtonItem();
-            this.iAlignLeft = new DevExpress.XtraBars.BarButtonItem();
-            this.iCenter = new DevExpress.XtraBars.BarButtonItem();
-            this.iAlignRight = new DevExpress.XtraBars.BarButtonItem();
             this.iFontColor = new DevExpress.XtraBars.BarButtonItem();
-            this.siPosition = new DevExpress.XtraBars.BarButtonItem();
             this.siModified = new DevExpress.XtraBars.BarButtonItem();
-            this.siDocName = new DevExpress.XtraBars.BarStaticItem();
-            this.bgFontStyle = new DevExpress.XtraBars.BarButtonGroup();
-            this.bgAlign = new DevExpress.XtraBars.BarButtonGroup();
-            this.bgFont = new DevExpress.XtraBars.BarButtonGroup();
-            this.bgBullets = new DevExpress.XtraBars.BarButtonGroup();
             this.sbiPaste = new DevExpress.XtraBars.BarSubItem();
             this.iPasteSpecial = new DevExpress.XtraBars.BarButtonItem();
             this.sbiFind = new DevExpress.XtraBars.BarSubItem();
@@ -53,30 +34,23 @@ namespace Ebada.SCGL {
             this.iTemplate = new DevExpress.XtraBars.BarButtonItem();
             this.iPaintStyle = new DevExpress.XtraBars.BarSubItem();
             this.rgbiSkins = new DevExpress.XtraBars.RibbonGalleryBarItem();
-            this.beiFontSize = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.rgbiFont = new DevExpress.XtraBars.RibbonGalleryBarItem();
-            this.bbiFontColorPopup = new DevExpress.XtraBars.BarButtonItem();
-            this.rgbiFontColor = new DevExpress.XtraBars.RibbonGalleryBarItem();
-            this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barEditItem2 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
-            this.biStyle = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.btProgress = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.btnLogin = new DevExpress.XtraBars.BarButtonItem();
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
-            this.ribbonPageCategory1 = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.riicStyle = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
+            this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
@@ -94,14 +68,13 @@ namespace Ebada.SCGL {
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gddFont)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riicStyle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -152,25 +125,10 @@ namespace Ebada.SCGL {
             this.iSaveAs,
             this.iExit,
             this.iFind,
-            this.iFont,
-            this.iBullets,
-            this.iProtected,
             this.iWeb,
             this.iAbout,
-            this.iBold,
-            this.iItalic,
-            this.iUnderline,
-            this.iAlignLeft,
-            this.iCenter,
-            this.iAlignRight,
             this.iFontColor,
-            this.siPosition,
             this.siModified,
-            this.siDocName,
-            this.bgFontStyle,
-            this.bgAlign,
-            this.bgFont,
-            this.bgBullets,
             this.sbiPaste,
             this.sbiFind,
             this.iPasteSpecial,
@@ -178,25 +136,16 @@ namespace Ebada.SCGL {
             this.iTemplate,
             this.iPaintStyle,
             this.rgbiSkins,
-            this.beiFontSize,
-            this.rgbiFont,
-            this.bbiFontColorPopup,
-            this.rgbiFontColor,
-            this.barEditItem1,
             this.barButtonItem1,
             this.barEditItem2,
-            this.biStyle,
             this.btProgress,
             this.barStaticItem1,
             this.btnLogin});
             this.ribbonControl1.LargeImages = this.imageCollection1;
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 131;
+            this.ribbonControl1.MaxItemId = 132;
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
-            this.ribbonPageCategory1});
             this.ribbonControl1.PageCategoryAlignment = DevExpress.XtraBars.Ribbon.RibbonPageCategoryAlignment.Right;
-            this.ribbonControl1.PageHeaderItemLinks.Add(this.biStyle);
             this.ribbonControl1.PageHeaderItemLinks.Add(this.iAbout);
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -267,66 +216,6 @@ namespace Ebada.SCGL {
             this.iFind.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F));
             this.iFind.Name = "iFind";
             // 
-            // iFont
-            // 
-            this.iFont.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
-            this.iFont.Caption = "&Font...";
-            this.iFont.CategoryGuid = new System.Guid("d3052f28-4b3e-4bae-b581-b3bb1c432258");
-            this.iFont.Description = "Changes the font and character spacing formats of the selected text.";
-            this.iFont.DropDownControl = this.gddFont;
-            this.iFont.Hint = "Font Dialog";
-            this.iFont.Id = 17;
-            this.iFont.ImageIndex = 4;
-            this.iFont.Name = "iFont";
-            this.iFont.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
-            // 
-            // gddFont
-            // 
-            // 
-            // 
-            // 
-            this.gddFont.Gallery.Appearance.ItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gddFont.Gallery.Appearance.ItemCaption.Options.UseFont = true;
-            this.gddFont.Gallery.Appearance.ItemCaption.Options.UseTextOptions = true;
-            this.gddFont.Gallery.Appearance.ItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.gddFont.Gallery.Appearance.ItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gddFont.Gallery.Appearance.ItemDescription.Options.UseTextOptions = true;
-            this.gddFont.Gallery.Appearance.ItemDescription.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.gddFont.Gallery.Appearance.ItemDescription.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gddFont.Gallery.ColumnCount = 1;
-            this.gddFont.Gallery.FixedImageSize = false;
-            galleryItemGroup1.Caption = "Main";
-            this.gddFont.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup1});
-            this.gddFont.Gallery.ItemImageLocation = DevExpress.Utils.Locations.Left;
-            this.gddFont.Gallery.RowCount = 6;
-            this.gddFont.Gallery.ShowGroupCaption = false;
-            this.gddFont.Gallery.ShowItemText = true;
-            this.gddFont.Gallery.SizeMode = DevExpress.XtraBars.Ribbon.GallerySizeMode.Vertical;
-            this.gddFont.Name = "gddFont";
-            this.gddFont.Ribbon = this.ribbonControl1;
-            // 
-            // iBullets
-            // 
-            this.iBullets.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
-            this.iBullets.Caption = "&Bullets";
-            this.iBullets.CategoryGuid = new System.Guid("d3052f28-4b3e-4bae-b581-b3bb1c432258");
-            this.iBullets.Description = "Adds bullets to or removes bullets from selected paragraphs.";
-            this.iBullets.Hint = "Bullets";
-            this.iBullets.Id = 18;
-            this.iBullets.ImageIndex = 0;
-            this.iBullets.Name = "iBullets";
-            // 
-            // iProtected
-            // 
-            this.iProtected.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
-            this.iProtected.Caption = "P&rotected";
-            this.iProtected.CategoryGuid = new System.Guid("d3052f28-4b3e-4bae-b581-b3bb1c432258");
-            this.iProtected.Description = "Protects the selected text.";
-            this.iProtected.Hint = "Protects the selected text";
-            this.iProtected.Id = 19;
-            this.iProtected.Name = "iProtected";
-            // 
             // iWeb
             // 
             this.iWeb.Caption = "&Developer Express on the Web";
@@ -349,84 +238,6 @@ namespace Ebada.SCGL {
             this.iAbout.Name = "iAbout";
             this.iAbout.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
-            // iBold
-            // 
-            this.iBold.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
-            this.iBold.Caption = "&Bold";
-            this.iBold.CategoryGuid = new System.Guid("d3052f28-4b3e-4bae-b581-b3bb1c432258");
-            this.iBold.Description = "Makes selected text and numbers bold. If the selection is already bold, clicking " +
-                "button removes bold formatting.";
-            this.iBold.Hint = "Bold";
-            this.iBold.Id = 24;
-            this.iBold.ImageIndex = 15;
-            this.iBold.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B));
-            this.iBold.Name = "iBold";
-            // 
-            // iItalic
-            // 
-            this.iItalic.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
-            this.iItalic.Caption = "&Italic";
-            this.iItalic.CategoryGuid = new System.Guid("d3052f28-4b3e-4bae-b581-b3bb1c432258");
-            this.iItalic.Description = "Makes selected text and numbers italic. If the selection is already italic, click" +
-                "ing button removes italic formatting.";
-            this.iItalic.Hint = "Italic";
-            this.iItalic.Id = 25;
-            this.iItalic.ImageIndex = 16;
-            this.iItalic.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I));
-            this.iItalic.Name = "iItalic";
-            // 
-            // iUnderline
-            // 
-            this.iUnderline.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
-            this.iUnderline.Caption = "&Underline";
-            this.iUnderline.CategoryGuid = new System.Guid("d3052f28-4b3e-4bae-b581-b3bb1c432258");
-            this.iUnderline.Description = "Underlines selected text and numbers. If the selection is already underlined, cli" +
-                "cking button removes underlining.";
-            this.iUnderline.Hint = "Underline";
-            this.iUnderline.Id = 26;
-            this.iUnderline.ImageIndex = 17;
-            this.iUnderline.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U));
-            this.iUnderline.Name = "iUnderline";
-            // 
-            // iAlignLeft
-            // 
-            this.iAlignLeft.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
-            this.iAlignLeft.Caption = "Align &Left";
-            this.iAlignLeft.CategoryGuid = new System.Guid("d3052f28-4b3e-4bae-b581-b3bb1c432258");
-            this.iAlignLeft.Description = "Aligns the selected text to the left.";
-            this.iAlignLeft.GroupIndex = 1;
-            this.iAlignLeft.Hint = "Align Left";
-            this.iAlignLeft.Id = 27;
-            this.iAlignLeft.ImageIndex = 18;
-            this.iAlignLeft.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L));
-            this.iAlignLeft.Name = "iAlignLeft";
-            // 
-            // iCenter
-            // 
-            this.iCenter.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
-            this.iCenter.Caption = "&Center";
-            this.iCenter.CategoryGuid = new System.Guid("d3052f28-4b3e-4bae-b581-b3bb1c432258");
-            this.iCenter.Description = "Centers the selected text.";
-            this.iCenter.GroupIndex = 1;
-            this.iCenter.Hint = "Center";
-            this.iCenter.Id = 28;
-            this.iCenter.ImageIndex = 19;
-            this.iCenter.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E));
-            this.iCenter.Name = "iCenter";
-            // 
-            // iAlignRight
-            // 
-            this.iAlignRight.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
-            this.iAlignRight.Caption = "Align &Right";
-            this.iAlignRight.CategoryGuid = new System.Guid("d3052f28-4b3e-4bae-b581-b3bb1c432258");
-            this.iAlignRight.Description = "Aligns the selected text to the right.";
-            this.iAlignRight.GroupIndex = 1;
-            this.iAlignRight.Hint = "Align Right";
-            this.iAlignRight.Id = 29;
-            this.iAlignRight.ImageIndex = 20;
-            this.iAlignRight.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R));
-            this.iAlignRight.Name = "iAlignRight";
-            // 
             // iFontColor
             // 
             this.iFontColor.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
@@ -438,69 +249,12 @@ namespace Ebada.SCGL {
             this.iFontColor.ImageIndex = 5;
             this.iFontColor.Name = "iFontColor";
             // 
-            // siPosition
-            // 
-            this.siPosition.CategoryGuid = new System.Guid("77795bb7-9bc5-4dd2-a297-cc758682e23d");
-            this.siPosition.Id = 0;
-            this.siPosition.Name = "siPosition";
-            // 
             // siModified
             // 
             this.siModified.CategoryGuid = new System.Guid("77795bb7-9bc5-4dd2-a297-cc758682e23d");
             this.siModified.Id = 1;
             this.siModified.ImageIndex = 27;
             this.siModified.Name = "siModified";
-            // 
-            // siDocName
-            // 
-            this.siDocName.CategoryGuid = new System.Guid("77795bb7-9bc5-4dd2-a297-cc758682e23d");
-            this.siDocName.Id = 2;
-            this.siDocName.Name = "siDocName";
-            this.siDocName.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
-            // bgFontStyle
-            // 
-            this.bgFontStyle.Caption = "FontStyle";
-            this.bgFontStyle.Id = 0;
-            this.bgFontStyle.ItemLinks.Add(this.iBold);
-            this.bgFontStyle.ItemLinks.Add(this.iItalic);
-            this.bgFontStyle.ItemLinks.Add(this.iUnderline);
-            this.bgFontStyle.ItemLinks.Add(this.iBold);
-            this.bgFontStyle.ItemLinks.Add(this.iItalic);
-            this.bgFontStyle.ItemLinks.Add(this.iUnderline);
-            this.bgFontStyle.Name = "bgFontStyle";
-            // 
-            // bgAlign
-            // 
-            this.bgAlign.Caption = "Align";
-            this.bgAlign.Id = 0;
-            this.bgAlign.ItemLinks.Add(this.iAlignLeft);
-            this.bgAlign.ItemLinks.Add(this.iCenter);
-            this.bgAlign.ItemLinks.Add(this.iAlignRight);
-            this.bgAlign.ItemLinks.Add(this.iAlignLeft);
-            this.bgAlign.ItemLinks.Add(this.iCenter);
-            this.bgAlign.ItemLinks.Add(this.iAlignRight);
-            this.bgAlign.Name = "bgAlign";
-            // 
-            // bgFont
-            // 
-            this.bgFont.Caption = "Font";
-            this.bgFont.Id = 0;
-            this.bgFont.ItemLinks.Add(this.iFont);
-            this.bgFont.ItemLinks.Add(this.iFontColor);
-            this.bgFont.ItemLinks.Add(this.iFont);
-            this.bgFont.ItemLinks.Add(this.iFontColor);
-            this.bgFont.Name = "bgFont";
-            // 
-            // bgBullets
-            // 
-            this.bgBullets.Caption = "Bullets";
-            this.bgBullets.Id = 1;
-            this.bgBullets.ItemLinks.Add(this.iBullets);
-            this.bgBullets.ItemLinks.Add(this.iProtected);
-            this.bgBullets.ItemLinks.Add(this.iBullets);
-            this.bgBullets.ItemLinks.Add(this.iProtected);
-            this.bgBullets.Name = "bgBullets";
             // 
             // sbiPaste
             // 
@@ -586,13 +340,13 @@ namespace Ebada.SCGL {
             this.rgbiSkins.Gallery.Appearance.ItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.rgbiSkins.Gallery.ColumnCount = 4;
             this.rgbiSkins.Gallery.FixedHoverImageSize = false;
-            galleryItemGroup2.Caption = "Main Skins";
-            galleryItemGroup3.Caption = "Office Skins";
-            galleryItemGroup4.Caption = "Bonus Skins";
+            galleryItemGroup1.Caption = "Main Skins";
+            galleryItemGroup2.Caption = "Office Skins";
+            galleryItemGroup3.Caption = "Bonus Skins";
             this.rgbiSkins.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
+            galleryItemGroup1,
             galleryItemGroup2,
-            galleryItemGroup3,
-            galleryItemGroup4});
+            galleryItemGroup3});
             this.rgbiSkins.Gallery.ImageSize = new System.Drawing.Size(32, 17);
             this.rgbiSkins.Gallery.ItemImageLocation = DevExpress.Utils.Locations.Top;
             this.rgbiSkins.Gallery.RowCount = 4;
@@ -600,91 +354,6 @@ namespace Ebada.SCGL {
             this.rgbiSkins.Gallery.ItemClick += new DevExpress.XtraBars.Ribbon.GalleryItemClickEventHandler(this.rgbiSkins_Gallery_ItemClick);
             this.rgbiSkins.Id = 13;
             this.rgbiSkins.Name = "rgbiSkins";
-            // 
-            // beiFontSize
-            // 
-            this.beiFontSize.Caption = "Font Size";
-            this.beiFontSize.Edit = this.repositoryItemSpinEdit1;
-            this.beiFontSize.Hint = "Font Size";
-            this.beiFontSize.Id = 27;
-            this.beiFontSize.Name = "beiFontSize";
-            // 
-            // repositoryItemSpinEdit1
-            // 
-            this.repositoryItemSpinEdit1.AutoHeight = false;
-            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemSpinEdit1.IsFloatValue = false;
-            this.repositoryItemSpinEdit1.LookAndFeel.SkinName = "Black";
-            this.repositoryItemSpinEdit1.Mask.EditMask = "N00";
-            this.repositoryItemSpinEdit1.MaxValue = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.repositoryItemSpinEdit1.MinValue = new decimal(new int[] {
-            6,
-            0,
-            0,
-            0});
-            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
-            this.repositoryItemSpinEdit1.UseParentBackground = true;
-            // 
-            // rgbiFont
-            // 
-            this.rgbiFont.Caption = "Font";
-            // 
-            // 
-            // 
-            this.rgbiFont.Gallery.AllowHoverImages = true;
-            galleryItemGroup5.Caption = "Main";
-            this.rgbiFont.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup5});
-            this.rgbiFont.GalleryDropDown = this.gddFont;
-            this.rgbiFont.Id = 29;
-            this.rgbiFont.Name = "rgbiFont";
-            // 
-            // bbiFontColorPopup
-            // 
-            this.bbiFontColorPopup.ActAsDropDown = true;
-            this.bbiFontColorPopup.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
-            this.bbiFontColorPopup.Caption = "Font Color";
-            this.bbiFontColorPopup.Description = "Formats the selected text with the color you click";
-            this.bbiFontColorPopup.DropDownControl = this.popupControlContainer1;
-            this.bbiFontColorPopup.Hint = "Formats the selected text with the color you click";
-            this.bbiFontColorPopup.Id = 36;
-            this.bbiFontColorPopup.Name = "bbiFontColorPopup";
-            // 
-            // rgbiFontColor
-            // 
-            this.rgbiFontColor.Caption = "Color";
-            // 
-            // 
-            // 
-            this.rgbiFontColor.Gallery.ColumnCount = 10;
-            galleryItemGroup6.Caption = "Main";
-            this.rgbiFontColor.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup6});
-            this.rgbiFontColor.Gallery.ImageSize = new System.Drawing.Size(10, 7);
-            this.rgbiFontColor.Id = 37;
-            this.rgbiFontColor.Name = "rgbiFontColor";
-            // 
-            // barEditItem1
-            // 
-            this.barEditItem1.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.barEditItem1.CanOpenEdit = false;
-            this.barEditItem1.Edit = this.repositoryItemPictureEdit1;
-            this.barEditItem1.Id = 94;
-            this.barEditItem1.Name = "barEditItem1";
-            this.barEditItem1.Width = 130;
-            // 
-            // repositoryItemPictureEdit1
-            // 
-            this.repositoryItemPictureEdit1.AllowFocused = false;
-            this.repositoryItemPictureEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.repositoryItemPictureEdit1.LookAndFeel.SkinName = "Black";
-            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
-            this.repositoryItemPictureEdit1.UseParentBackground = true;
             // 
             // barButtonItem1
             // 
@@ -710,22 +379,6 @@ namespace Ebada.SCGL {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
             this.repositoryItemImageComboBox1.UseParentBackground = true;
-            // 
-            // biStyle
-            // 
-            this.biStyle.Caption = "Office";
-            this.biStyle.Edit = this.repositoryItemImageComboBox2;
-            this.biStyle.Id = 126;
-            this.biStyle.Name = "biStyle";
-            this.biStyle.EditValueChanged += new System.EventHandler(this.biStyle_EditValueChanged);
-            // 
-            // repositoryItemImageComboBox2
-            // 
-            this.repositoryItemImageComboBox2.AutoHeight = false;
-            this.repositoryItemImageComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemImageComboBox2.Name = "repositoryItemImageComboBox2";
-            this.repositoryItemImageComboBox2.UseParentBackground = true;
             // 
             // btProgress
             // 
@@ -760,11 +413,6 @@ namespace Ebada.SCGL {
             this.imageCollection1.ImageSize = new System.Drawing.Size(32, 32);
             this.imageCollection1.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection1.ImageStream")));
             this.imageCollection1.Images.SetKeyName(10, "login.png");
-            // 
-            // ribbonPageCategory1
-            // 
-            this.ribbonPageCategory1.Name = "ribbonPageCategory1";
-            this.ribbonPageCategory1.Text = "Selection";
             // 
             // ribbonPage1
             // 
@@ -812,6 +460,35 @@ namespace Ebada.SCGL {
             this.ribbonPageGroup11.ShowCaptionButton = false;
             this.ribbonPageGroup11.Text = "皮肤";
             // 
+            // repositoryItemSpinEdit1
+            // 
+            this.repositoryItemSpinEdit1.AutoHeight = false;
+            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemSpinEdit1.IsFloatValue = false;
+            this.repositoryItemSpinEdit1.LookAndFeel.SkinName = "Black";
+            this.repositoryItemSpinEdit1.Mask.EditMask = "N00";
+            this.repositoryItemSpinEdit1.MaxValue = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.repositoryItemSpinEdit1.MinValue = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
+            this.repositoryItemSpinEdit1.UseParentBackground = true;
+            // 
+            // repositoryItemPictureEdit1
+            // 
+            this.repositoryItemPictureEdit1.AllowFocused = false;
+            this.repositoryItemPictureEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.repositoryItemPictureEdit1.LookAndFeel.SkinName = "Black";
+            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
+            this.repositoryItemPictureEdit1.UseParentBackground = true;
+            // 
             // riicStyle
             // 
             this.riicStyle.Appearance.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -822,6 +499,14 @@ namespace Ebada.SCGL {
             this.riicStyle.LookAndFeel.SkinName = "Black";
             this.riicStyle.Name = "riicStyle";
             this.riicStyle.UseParentBackground = true;
+            // 
+            // repositoryItemImageComboBox2
+            // 
+            this.repositoryItemImageComboBox2.AutoHeight = false;
+            this.repositoryItemImageComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemImageComboBox2.Name = "repositoryItemImageComboBox2";
+            this.repositoryItemImageComboBox2.UseParentBackground = true;
             // 
             // ribbonStatusBar1
             // 
@@ -891,7 +576,7 @@ namespace Ebada.SCGL {
             this.dockPanel1.Controls.Add(this.dockPanel1_Container);
             this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPanel1.ID = new System.Guid("739862c0-c00c-4f1f-be22-d37df9ecfa30");
-            this.dockPanel1.Location = new System.Drawing.Point(-200, 0);
+            this.dockPanel1.Location = new System.Drawing.Point(0, 0);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 200);
             this.dockPanel1.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Left;
@@ -934,21 +619,20 @@ namespace Ebada.SCGL {
             this.Ribbon = this.ribbonControl1;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.StatusBar = this.ribbonStatusBar1;
-            this.Text = "Ebada物流企业管理平台";
+            this.Text = "企业管理平台";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.popupControlContainer1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pmAppMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gddFont)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riicStyle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
@@ -976,26 +660,10 @@ namespace Ebada.SCGL {
         private BarButtonItem iSaveAs;
         private BarButtonItem iExit;
         private BarButtonItem iFind;
-        private BarButtonItem iFont;
-        private DevExpress.XtraBars.Ribbon.GalleryDropDown gddFont;
-        private BarButtonItem iBullets;
-        private BarButtonItem iProtected;
         private BarButtonItem iWeb;
         private BarButtonItem iAbout;
-        private BarButtonItem iBold;
-        private BarButtonItem iItalic;
-        private BarButtonItem iUnderline;
-        private BarButtonItem iAlignLeft;
-        private BarButtonItem iCenter;
-        private BarButtonItem iAlignRight;
         private BarButtonItem iFontColor;
-        private BarButtonItem siPosition;
         private BarButtonItem siModified;
-        private BarStaticItem siDocName;
-        private BarButtonGroup bgFontStyle;
-        private BarButtonGroup bgAlign;
-        private BarButtonGroup bgFont;
-        private BarButtonGroup bgBullets;
         private BarSubItem sbiPaste;
         private BarButtonItem iPasteSpecial;
         private BarSubItem sbiFind;
@@ -1003,15 +671,9 @@ namespace Ebada.SCGL {
         private BarButtonItem iTemplate;
         private BarSubItem iPaintStyle;
         private RibbonGalleryBarItem rgbiSkins;
-        private BarEditItem beiFontSize;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
-        private RibbonGalleryBarItem rgbiFont;
-        private BarButtonItem bbiFontColorPopup;
-        private RibbonGalleryBarItem rgbiFontColor;
-        private BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox riicStyle;
-        private DevExpress.XtraBars.Ribbon.RibbonPageCategory ribbonPageCategory1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
@@ -1023,7 +685,6 @@ namespace Ebada.SCGL {
         private BarButtonItem barButtonItem1;
         private BarEditItem barEditItem2;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
-        private BarEditItem biStyle;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox2;
         private BarAndDockingController barAndDockingController1;
         private DevExpress.XtraBars.Docking.DockPanel dockPanel1;

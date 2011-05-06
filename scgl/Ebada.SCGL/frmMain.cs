@@ -1,5 +1,5 @@
 /**********************************************
-系统:Ebada物流企业ERP
+系统:企业ERP
 模块:系统模块
 作者:Rabbit
 创建时间:2011-2-24
@@ -30,10 +30,11 @@ using DevExpress.XtraNavBar;
 using System.Collections.Generic;
 using Ebada.Core;
 using Ebada.UI.Base;
+using Ebada.Modules.Demo;
+using Ebada.Client;
 
 namespace Ebada.SCGL {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm {
-        System.Timers.Timer timer2;
         public frmMain() {
             InitializeComponent();
             InitSkinGallery();
@@ -52,8 +53,7 @@ namespace Ebada.SCGL {
                 item.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(OnPaintStyleClick);
                 iPaintStyle.ItemLinks.Add(item);
             }
-            timer2 = new System.Timers.Timer(); timer2.Enabled = false;
-            timer2.Elapsed += new System.Timers.ElapsedEventHandler(timer2_Elapsed);
+            
             this.btnLogin.ItemClick += new ItemClickEventHandler(btnLogin_ItemClick);
         }
 
@@ -65,17 +65,16 @@ namespace Ebada.SCGL {
             BeginInvoke(new MethodInvoker(initNavBar)); 
         }
         void InitEditors() {
+            //ribbonControl1.Minimized = true;
             riicStyle.Items.Add(new ImageComboBoxItem("Office 2007", RibbonControlStyle.Office2007, -1));
             riicStyle.Items.Add(new ImageComboBoxItem("Office 2010", RibbonControlStyle.Office2010, -1));
-            biStyle.EditValue = ribbonControl1.RibbonStyle;
+            //biStyle.EditValue = ribbonControl1.RibbonStyle;
         }
         void idNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            //frmSingle fs = new frmSingle();
-            //fs.MdiParent = this;
-            //fs.Show();
+            this.showControl(new sample1.MudleTreeManager());
         }
         private void iExit_ItemClick(object sender, ItemClickEventArgs e) {
-            if(MainHelper.ShowAskMessageBox("是否确认退出系统平台？")== DialogResult.OK)
+            if(MsgBox.ShowAskMessageBox("是否确认退出系统平台？")== DialogResult.OK)
             this.Close();
         }
 
@@ -89,7 +88,7 @@ namespace Ebada.SCGL {
                 ((BarCheckItem)link.Item).Checked = link.Item.Caption == defaultLookAndFeel1.LookAndFeel.ActiveSkinName;
         }
         private void biStyle_EditValueChanged(object sender, EventArgs e) {
-            ribbonControl1.RibbonStyle = (RibbonControlStyle)biStyle.EditValue;
+            //ribbonControl1.RibbonStyle = (RibbonControlStyle)biStyle.EditValue;
         }
 
         void InitSkinGallery() {
@@ -154,30 +153,40 @@ namespace Ebada.SCGL {
 
             DataRow row = sender as DataRow;
             mModule obj = ConvertHelper.RowToObject<mModule>(row);
+            OpenModule(obj);
+        }
+        public void OpenModule(mModule obj)
+        {
             //检查模块是否已经打开
-            if (openFormList.ContainsKey(obj.Modu_ID)) {
+            if (openFormList.ContainsKey(obj.Modu_ID))
+            {
                 openFormList[obj.Modu_ID].Activate();
                 BeginInvoke(new MethodInvoker(endProgress));
                 return;
             }
             object instance = null;//模块接口
             this.Cursor = Cursors.WaitCursor;
-            try {
+            try
+            {
                 object result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
-                if (result is UserControl) {
+                if (result is UserControl)
+                {
                     instance = showControl(result as UserControl);
                 }
-                if (instance is FormBase) {
-                    FormBase fb =instance as FormBase;
+                if (instance is FormBase)
+                {
+                    FormBase fb = instance as FormBase;
                     openFormList.Add(obj.Modu_ID, instance as FormBase);
                     ((FormBase)instance).Text = obj.ModuName;
                     ((FormBase)instance).FormClosed += frmMain_ChildFormClosed;
                     ((FormBase)instance).Tag = obj.Modu_ID;
-                    
+
                 }
                 this.Cursor = Cursors.Default;
-                
-            } catch (Exception err) {
+
+            }
+            catch (Exception err)
+            {
                 this.Cursor = Cursors.Default;
                 BeginInvoke(new MethodInvoker(endProgress));
                 MainHelper.ShowException(err);
@@ -217,6 +226,7 @@ namespace Ebada.SCGL {
             navBarControl1.Groups.Clear();
 
             IList list = getUserModules();
+            if (list.Count == 0) return;
             DataTable dt = ConvertHelper.ToDataTable(list);
             DataRow[] rows = dt.Select("parentid='0'", "Sequence");
             foreach (DataRow row in rows) {
@@ -249,10 +259,8 @@ namespace Ebada.SCGL {
             btProgress.EditValue = 10;
             btProgress.Visibility = BarItemVisibility.Always;
             progress = 0;
-            timer2.Start();
         }
         void endProgress() {
-            timer2.Stop();
             btProgress.EditValue = 100;
 
             //btProgress.Visibility = BarItemVisibility.Never;
@@ -321,8 +329,8 @@ namespace Ebada.SCGL {
         int progress = 0;
         int step = 20;
         void dotimer() {
-            btProgress.EditValue = (progress += step);
-            btProgress.Refresh(); Application.DoEvents();
+            //btProgress.EditValue = (progress += step);
+            //btProgress.Refresh(); Application.DoEvents();
         }
         void timer2_Elapsed(object sender, System.Timers.ElapsedEventArgs e) {
             BeginInvoke(new MethodInvoker(dotimer));
