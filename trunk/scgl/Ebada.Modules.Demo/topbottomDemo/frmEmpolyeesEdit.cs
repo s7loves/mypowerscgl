@@ -94,8 +94,8 @@ namespace Ebada.Modules.Demo
         private void InitComboBoxData()
         {
             this.m_PostDic.Clear();
-            this.m_PostDic.Add(MainHelper.GetSqlMap<mPost>().GetList<mPost>(null));
-            this.SetComboBoxData(this.cltPost, "PostSName", "Post_ID", "请选择", "岗位名称", this.m_PostDic);
+            //this.m_PostDic.Add(MainHelper.GetSqlMap<mPost>().GetList<mPost>(null));
+            //this.SetComboBoxData(this.cltPost, "PostSName", "Post_ID", "请选择", "岗位名称", this.m_PostDic);
 
             if (null != this.m_PostID && this.m_PostID.Trim().Length > 0)
                 this.cltPost.Properties.KeyValue = this.m_PostID;
@@ -125,9 +125,9 @@ namespace Ebada.Modules.Demo
 
         void btnPostDic_Click(object sender, EventArgs e)
         {
-            FrmDictionary frmPostDic = new FrmDictionary("");
+            //FrmDictionary frmPostDic = new FrmDictionary("");
 
-            if (frmPostDic.ShowDialog() == DialogResult.OK)
+            //if (frmPostDic.ShowDialog() == DialogResult.OK)
             {
                 //PositionDictionary postDic = frmPostDic.NowPostDic;
                 //this.cltPost.Properties.KeyValue = postDic.Post_ID;

@@ -32,7 +32,7 @@ namespace Ebada.Modules.Demo {
         public UCGridView() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<Empolyees>(gridControl1, gridView1, barManager1,new PopupFormGridEdit());
+            gridViewOperation = new GridViewOperation<Empolyees>(gridControl1, gridView1, barManager1, new frmEmpolyeesEdit());
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
         }
