@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F7CEAF24-AA97-46C3-A18B-B74AA5772BAF}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -205,55 +205,72 @@
   <ItemGroup>
     <EmbeddedResource Include="FindDemo\UCGridView.resx">
       <DependentUpon>UCGridView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FindDemo\UCGridViewFind.resx">
       <DependentUpon>UCGridViewFind.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GridViewDemo\UC2.resx">
       <DependentUpon>UC2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="leftRightDemo\frmOrg2Edit.resx">
       <DependentUpon>frmOrg2Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="leftRightDemo\UCLeft.resx">
       <DependentUpon>UCLeft.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="leftRightDemo\UCM2.resx">
       <DependentUpon>UCM2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="leftRightDemo\UCRight.resx">
       <DependentUpon>UCRight.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="modelCheck\frmModelCheck.resx">
       <DependentUpon>frmModelCheck.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MudleTreeManager.resx">
       <DependentUpon>MudleTreeManager.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="topbottomDemo\frmEmpolyeesEdit.resx">
       <DependentUpon>frmEmpolyeesEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="topbottomDemo\frmOrgEdit.resx">
       <DependentUpon>frmOrgEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="topbottomDemo\UCBottom.resx">
       <DependentUpon>UCBottom.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="topbottomDemo\UCBottomFind.resx">
       <DependentUpon>UCBottomFind.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="topbottomDemo\UCM1.resx">
       <DependentUpon>UCM1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="topbottomDemo\UCTop.resx">
       <DependentUpon>UCTop.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TreeListDemo\UCmModuleTree.resx">
       <DependentUpon>UCmModuleTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TreeListDemo\UCOrgTree.resx">
       <DependentUpon>UCOrgTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
