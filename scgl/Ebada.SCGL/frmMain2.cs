@@ -9,6 +9,7 @@ using DevExpress.XtraBars;
 using Ebada.Client.Platform;
 using Ebada.UI.Base;
 using Ebada.Platform.Model;
+using System.Collections;
 
 namespace Ebada.SCGL
 {
@@ -20,6 +21,7 @@ namespace Ebada.SCGL
             InitSkins();
             ucModulBar1.RefreshData("");
             ucModulBar1.PlatForm = this;
+            InitMenu("");
         }
         #region Skins
         string skinMask = "Office 2010";
@@ -127,7 +129,38 @@ namespace Ebada.SCGL
             return dlg;
         }
         #endregion
+        #region 加载菜单
+        internal void InitMenu(string userid)
+        {
+            bar2.Reset();
+            InitSkins();
 
+            IList list = (IList)MainHelper.PlatformSqlMap.GetList<mModule>("");
+            DataTable dt = Ebada.Core.ConvertHelper.ToDataTable(list);
+            DataRow[] rows = dt.Select("parentid='0'", "Sequence");
+            createMenu(bar2, rows, dt); return;
+            
+        }
+        void createMenu(BarLinksHolder bc, DataRow[] rows, DataTable dt)
+        {
+            foreach (DataRow row in rows)
+            {
+                DataRow[] progs = dt.Select("parentid='" + row["Modu_ID"] + "'", "Sequence");
+                if (progs.Length > 0)
+                {
+                    BarSubItem sub1 = new BarSubItem(barManager1,row["ModuName"].ToString());
+                    createMenu(sub1, progs, dt);
+                    bc.AddItem(sub1);
+                }
+                else
+                {
+                    BarButtonItem bt = new BarButtonItem(barManager1,row["ModuName"].ToString());
+                    bt.Tag = row;
+                    bc.AddItem(bt);
+                }
+            }
+        }
+        #endregion
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.showControl(new sample1.MudleTreeManager());
@@ -135,7 +168,7 @@ namespace Ebada.SCGL
 
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ucModulBar1.RefreshData("");
+            ucModulBar1.RefreshData(""); InitMenu("");
         }
 
     }
