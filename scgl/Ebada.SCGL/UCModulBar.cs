@@ -16,7 +16,7 @@ namespace Ebada.SCGL
         {
             InitializeComponent();
         }
-        public frmMain PlatForm = null;
+        public frmMain2 PlatForm = null;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);

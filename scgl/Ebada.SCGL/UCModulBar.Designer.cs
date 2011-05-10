@@ -43,6 +43,9 @@
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.AutoChangeParent = false;
             this.treeList1.OptionsBehavior.Editable = false;
+            this.treeList1.OptionsLayout.AddNewColumns = false;
+            this.treeList1.OptionsMenu.EnableColumnMenu = false;
+            this.treeList1.OptionsMenu.EnableFooterMenu = false;
             this.treeList1.OptionsSelection.InvertSelection = true;
             this.treeList1.OptionsView.ShowColumns = false;
             this.treeList1.OptionsView.ShowHorzLines = false;
@@ -55,9 +58,11 @@
             // 
             this.colModuName.Caption = "treeListColumn1";
             this.colModuName.FieldName = "ModuName";
+            this.colModuName.MinWidth = 100;
             this.colModuName.Name = "colModuName";
             this.colModuName.Visible = true;
             this.colModuName.VisibleIndex = 0;
+            this.colModuName.Width = 300;
             // 
             // UCModulBar
             // 
