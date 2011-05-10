@@ -73,10 +73,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Ebada.Model.Document, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ebada.Model.Document.dll</HintPath>
-    </Reference>
     <Reference Include="Ebada.Platform.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.Platform.Model.dll</HintPath>
