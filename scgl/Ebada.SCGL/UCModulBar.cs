@@ -24,6 +24,7 @@ namespace Ebada.SCGL
         public void RefreshData(string filter)
         {
             treeList1.BeginInit();
+            treeList1.Nodes.Clear();
             treeList1.DataSource = null;
             treeList1.DataSource = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(filter);
             treeList1.EndInit();
