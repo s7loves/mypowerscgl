@@ -77,10 +77,10 @@
             this.treeList1.DataSource = this.bindingSource1;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.KeyFieldName = "Modu_ID";
-            this.treeList1.Location = new System.Drawing.Point(0, 26);
+            this.treeList1.Location = new System.Drawing.Point(0, 25);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.DragNodes = true;
-            this.treeList1.Size = new System.Drawing.Size(589, 393);
+            this.treeList1.Size = new System.Drawing.Size(589, 394);
             this.treeList1.TabIndex = 0;
             // 
             // colModuName
@@ -197,6 +197,7 @@
             this.btAdd.Description = "增加同级模块";
             this.btAdd.Id = 0;
             this.btAdd.ImageIndex = 6;
+            this.btAdd.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N));
             this.btAdd.Name = "btAdd";
             // 
             // btAdd2
@@ -205,6 +206,7 @@
             this.btAdd2.Description = "增加下级模块";
             this.btAdd2.Id = 1;
             this.btAdd2.ImageIndex = 0;
+            this.btAdd2.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M));
             this.btAdd2.Name = "btAdd2";
             this.btAdd2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAdd2_ItemClick);
             // 
@@ -253,7 +255,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(589, 26);
+            this.barDockControlTop.Size = new System.Drawing.Size(589, 25);
             // 
             // barDockControlBottom
             // 
@@ -264,14 +266,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 393);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 394);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(589, 26);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 393);
+            this.barDockControlRight.Location = new System.Drawing.Point(589, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 394);
             // 
             // imageCollection2
             // 
