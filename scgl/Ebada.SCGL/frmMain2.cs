@@ -18,13 +18,16 @@ namespace Ebada.SCGL
         public frmMain2()
         {
             InitializeComponent();
-            InitSkins();
+            
             ucModulBar1.RefreshData("");
             ucModulBar1.PlatForm = this;
+            iPaintStyle = new BarSubItem(barManager1, "皮肤");
             InitMenu("");
+            InitSkins();
         }
         #region Skins
         string skinMask = "Office 2010";
+        BarSubItem iPaintStyle;
         void InitSkins()
         {
             barManager1.ForceInitialize();
@@ -133,13 +136,16 @@ namespace Ebada.SCGL
         internal void InitMenu(string userid)
         {
             bar2.Reset();
-            InitSkins();
-
+            
             IList list = (IList)MainHelper.PlatformSqlMap.GetList<mModule>("");
             DataTable dt = Ebada.Core.ConvertHelper.ToDataTable(list);
             DataRow[] rows = dt.Select("parentid='0'", "Sequence");
-            createMenu(bar2, rows, dt); return;
-            
+            createMenu(bar2, rows, dt);
+            //BarSubItem iPaintStyle = new BarSubItem(barManager1, "皮肤");
+            //iPaintStyle.Name = "iPaintStyle";
+            bar2.AddItem(iPaintStyle);
+
+            //InitSkins();
         }
         void createMenu(BarLinksHolder bc, DataRow[] rows, DataTable dt)
         {
@@ -155,11 +161,18 @@ namespace Ebada.SCGL
                 else
                 {
                     BarButtonItem bt = new BarButtonItem(barManager1,row["ModuName"].ToString());
-                    bt.Tag = row;
+                    bt.ItemClick += new ItemClickEventHandler(bt_ItemClick);
+                    bt.Tag = Ebada.Core.ConvertHelper.RowToObject<mModule>(row);
                     bc.AddItem(bt);
                 }
             }
         }
+
+        void bt_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenModule(e.Item.Tag as mModule);
+        }
+
         #endregion
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
