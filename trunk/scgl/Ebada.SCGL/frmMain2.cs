@@ -165,7 +165,11 @@ namespace Ebada.SCGL
         {
             this.showControl(new sample1.MudleTreeManager());
         }
-
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            ucModulBar1.SetImage();
+        }
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
             ucModulBar1.RefreshData(""); InitMenu("");
