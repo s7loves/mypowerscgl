@@ -32,6 +32,7 @@
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.iPaintStyle = new DevExpress.XtraBars.BarSubItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -46,13 +47,14 @@
             this.ucModulBar1 = new Ebada.SCGL.UCModulBar();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -94,6 +96,13 @@
             this.barButtonItem1.Name = "barButtonItem1";
             this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "刷新模块";
+            this.barButtonItem2.Id = 3;
+            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
             // bar2
             // 
             this.bar2.BarName = "Main menu";
@@ -132,25 +141,25 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(525, 49);
+            this.barDockControlTop.Size = new System.Drawing.Size(525, 43);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 350);
-            this.barDockControlBottom.Size = new System.Drawing.Size(525, 23);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 351);
+            this.barDockControlBottom.Size = new System.Drawing.Size(525, 22);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 49);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 301);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 43);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 308);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(525, 49);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 301);
+            this.barDockControlRight.Location = new System.Drawing.Point(525, 43);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 308);
             // 
             // dockManager1
             // 
@@ -170,10 +179,10 @@
             this.dockPanel1.Controls.Add(this.dockPanel1_Container);
             this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
             this.dockPanel1.ID = new System.Guid("fb50d88c-b887-4278-a904-2871e4d01c1c");
-            this.dockPanel1.Location = new System.Drawing.Point(319, 49);
+            this.dockPanel1.Location = new System.Drawing.Point(319, 43);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.OriginalSize = new System.Drawing.Size(206, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(206, 301);
+            this.dockPanel1.Size = new System.Drawing.Size(206, 308);
             this.dockPanel1.Text = "功能导航";
             // 
             // dockPanel1_Container
@@ -181,7 +190,7 @@
             this.dockPanel1_Container.Controls.Add(this.ucModulBar1);
             this.dockPanel1_Container.Location = new System.Drawing.Point(3, 24);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(200, 274);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(200, 281);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // ucModulBar1
@@ -189,7 +198,7 @@
             this.ucModulBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucModulBar1.Location = new System.Drawing.Point(0, 0);
             this.ucModulBar1.Name = "ucModulBar1";
-            this.ucModulBar1.Size = new System.Drawing.Size(200, 274);
+            this.ucModulBar1.Size = new System.Drawing.Size(200, 281);
             this.ucModulBar1.TabIndex = 0;
             // 
             // defaultLookAndFeel1
@@ -201,18 +210,22 @@
             this.xtraTabbedMdiManager1.Controller = this.barAndDockingController1;
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
-            // barButtonItem2
+            // pictureBox1
             // 
-            this.barButtonItem2.Caption = "刷新模块";
-            this.barButtonItem2.Id = 3;
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::Ebada.SCGL.Properties.Resources.生产管理系统top;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 43);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(319, 120);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // frmMain2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(525, 373);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -228,6 +241,7 @@
             this.dockPanel1.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -252,5 +266,6 @@
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
