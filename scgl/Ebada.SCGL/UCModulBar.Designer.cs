@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCModulBar));
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.colModuName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
             this.SuspendLayout();
             // 
             // treeList1
@@ -38,6 +42,7 @@
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.colModuName});
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeList1.ImageIndexFieldName = "IconName";
             this.treeList1.KeyFieldName = "Modu_ID";
             this.treeList1.Location = new System.Drawing.Point(0, 0);
             this.treeList1.Name = "treeList1";
@@ -49,7 +54,9 @@
             this.treeList1.OptionsSelection.InvertSelection = true;
             this.treeList1.OptionsView.ShowColumns = false;
             this.treeList1.OptionsView.ShowHorzLines = false;
+            this.treeList1.OptionsView.ShowIndicator = false;
             this.treeList1.OptionsView.ShowVertLines = false;
+            this.treeList1.SelectImageList = this.imageCollection1;
             this.treeList1.Size = new System.Drawing.Size(193, 216);
             this.treeList1.TabIndex = 0;
             this.treeList1.DoubleClick += new System.EventHandler(this.treeList1_DoubleClick);
@@ -64,6 +71,12 @@
             this.colModuName.VisibleIndex = 0;
             this.colModuName.Width = 300;
             // 
+            // imageCollection1
+            // 
+            this.imageCollection1.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection1.ImageStream")));
+            this.imageCollection1.Images.SetKeyName(0, "folder1.ico");
+            this.imageCollection1.Images.SetKeyName(1, "doc.ico");
+            // 
             // UCModulBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -72,6 +85,7 @@
             this.Name = "UCModulBar";
             this.Size = new System.Drawing.Size(193, 216);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -80,5 +94,6 @@
 
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colModuName;
+        private DevExpress.Utils.ImageCollection imageCollection1;
     }
 }
