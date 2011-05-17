@@ -68,6 +68,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "remoting", "remoting", "{D9
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{265E2ED8-B3D7-4AFC-971A-CFC28821CA67}"
+	ProjectSection(SolutionItems) = preProject
+		文档\createTable.sql = 文档\createTable.sql
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Modules.Demo", "Ebada.Modules.Demo\Ebada.Modules.Demo.csproj", "{F7CEAF24-AA97-46C3-A18B-B74AA5772BAF}"
 EndProject
