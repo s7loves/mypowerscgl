@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_dyxl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_dyxl"  type="Ebada.Scgl.Model.PS_dyxl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_dyxl_AllColumns" class="PS_dyxl">
+        <result property="byqID" column="byqID" />
+        <result property="dyxlID" column="dyxlID" />
+        <result property="dyxlCode" column="dyxlCode" />
+        <result property="dyxlName" column="dyxlName" />
+        <result property="Remark" column="Remark" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_dyxlList" resultMap="PS_dyxl_AllColumns" parameterClass="string">
+        SELECT 
+         [byqID],
+         [dyxlID],
+         [dyxlCode],
+         [dyxlName],
+         [Remark]
+          FROM PS_dyxl
+          $value$
+   </select>
+   
+   <select id="SelectPS_dyxlByHash" parameterClass="Hashtable">
+         SELECT 
+         [byqID],
+         [dyxlID],
+         [dyxlCode],
+         [dyxlName],
+         [Remark]
+          FROM PS_dyxl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="byqID">[byqID]='$byqID$'</isNotNull>
+       <isNotNull prepend="AND" property="dyxlID">[dyxlID]='$dyxlID$'</isNotNull>
+       <isNotNull prepend="AND" property="dyxlCode">[dyxlCode]='$dyxlCode$'</isNotNull>
+       <isNotNull prepend="AND" property="dyxlName">[dyxlName]='$dyxlName$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_dyxlByKey" resultMap="PS_dyxl_AllColumns" parameterClass="PS_dyxl">
+         SELECT 
+         [byqID],
+         [dyxlID],
+         [dyxlCode],
+         [dyxlName],
+         [Remark]
+         FROM PS_dyxl
+         WHERE 
+           dyxlID = #dyxlID#
+
+   </select>
+ 
+   <delete id="DeletePS_dyxl" parameterClass="PS_dyxl">
+        DELETE FROM 
+         PS_dyxl
+           WHERE
+         dyxlID = #dyxlID#
+
+   </delete>
+   
+   <delete id="DeletePS_dyxlByWhere" parameterClass="string">
+     delete from PS_dyxl $value$
+   </delete>
+   
+   <delete id="DeletePS_dyxlByKey" parameterClass="string">
+        DELETE FROM 
+         PS_dyxl
+           WHERE
+         dyxlID = #dyxlID#
+    
+   </delete>
+   
+   <update id="UpdatePS_dyxl" parameterClass="PS_dyxl" resultClass="int">
+          UPDATE PS_dyxl
+           SET
+             [byqID]=#byqID#,
+             [dyxlCode]=#dyxlCode#,
+             [dyxlName]=#dyxlName#,
+             [Remark]=#Remark#
+            WHERE 
+              dyxlID = #dyxlID#
+
+   </update>
+  
+   <insert id="InsertPS_dyxl" parameterClass="PS_dyxl">
+        INSERT INTO PS_dyxl
+         (
+         [byqID],
+         [dyxlID],
+         [dyxlCode],
+         [dyxlName],
+         [Remark]
+         )
+       VALUES
+         (
+         #byqID#,
+         #dyxlID#,
+         #dyxlCode#,
+         #dyxlName#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetPS_dyxlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_dyxl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="byqID">[byqID]='$byqID$'</isNotNull>
+       <isNotNull prepend="AND" property="dyxlID">[dyxlID]='$dyxlID$'</isNotNull>
+       <isNotNull prepend="AND" property="dyxlCode">[dyxlCode]='$dyxlCode$'</isNotNull>
+       <isNotNull prepend="AND" property="dyxlName">[dyxlName]='$dyxlName$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_dyxlRowCount" parameterClass="string">
+    select count(*) from PS_dyxl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

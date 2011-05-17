@@ -14,11 +14,11 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Ebada.Client.Platform;
-using Ebada.Platform.Model;
 using DevExpress.XtraGrid.Columns;
 using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
+using Ebada.Scgl.Model;
 
 namespace Ebada.Modules.Demo {
     /// <summary>

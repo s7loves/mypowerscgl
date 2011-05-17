@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_tq" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_tq"  type="Ebada.Scgl.Model.PS_tq,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_tq_AllColumns" class="PS_tq">
+        <result property="gtID" column="gtID" />
+        <result property="tqID" column="tqID" />
+        <result property="tqCode" column="tqCode" />
+        <result property="tqName" column="tqName" />
+        <result property="Remark" column="Remark" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_tqList" resultMap="PS_tq_AllColumns" parameterClass="string">
+        SELECT 
+         [gtID],
+         [tqID],
+         [tqCode],
+         [tqName],
+         [Remark]
+          FROM PS_tq
+          $value$
+   </select>
+   
+   <select id="SelectPS_tqByHash" parameterClass="Hashtable">
+         SELECT 
+         [gtID],
+         [tqID],
+         [tqCode],
+         [tqName],
+         [Remark]
+          FROM PS_tq
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+       <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
+       <isNotNull prepend="AND" property="tqCode">[tqCode]='$tqCode$'</isNotNull>
+       <isNotNull prepend="AND" property="tqName">[tqName]='$tqName$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_tqByKey" resultMap="PS_tq_AllColumns" parameterClass="PS_tq">
+         SELECT 
+         [gtID],
+         [tqID],
+         [tqCode],
+         [tqName],
+         [Remark]
+         FROM PS_tq
+         WHERE 
+           tqID = #tqID#
+
+   </select>
+ 
+   <delete id="DeletePS_tq" parameterClass="PS_tq">
+        DELETE FROM 
+         PS_tq
+           WHERE
+         tqID = #tqID#
+
+   </delete>
+   
+   <delete id="DeletePS_tqByWhere" parameterClass="string">
+     delete from PS_tq $value$
+   </delete>
+   
+   <delete id="DeletePS_tqByKey" parameterClass="string">
+        DELETE FROM 
+         PS_tq
+           WHERE
+         tqID = #tqID#
+    
+   </delete>
+   
+   <update id="UpdatePS_tq" parameterClass="PS_tq" resultClass="int">
+          UPDATE PS_tq
+           SET
+             [gtID]=#gtID#,
+             [tqCode]=#tqCode#,
+             [tqName]=#tqName#,
+             [Remark]=#Remark#
+            WHERE 
+              tqID = #tqID#
+
+   </update>
+  
+   <insert id="InsertPS_tq" parameterClass="PS_tq">
+        INSERT INTO PS_tq
+         (
+         [gtID],
+         [tqID],
+         [tqCode],
+         [tqName],
+         [Remark]
+         )
+       VALUES
+         (
+         #gtID#,
+         #tqID#,
+         #tqCode#,
+         #tqName#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetPS_tqRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_tq
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+       <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
+       <isNotNull prepend="AND" property="tqCode">[tqCode]='$tqCode$'</isNotNull>
+       <isNotNull prepend="AND" property="tqName">[tqName]='$tqName$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_tqRowCount" parameterClass="string">
+    select count(*) from PS_tq $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

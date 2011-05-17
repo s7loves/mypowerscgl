@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="mModulFun" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="mModulFun"  type="Ebada.Scgl.Model.mModulFun,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="mModulFun_AllColumns" class="mModulFun">
+        <result property="FunID" column="FunID" />
+        <result property="Modu_ID" column="Modu_ID" />
+        <result property="FunCode" column="FunCode" />
+        <result property="FunName" column="FunName" />
+        <result property="Remark" column="Remark" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectmModulFunList" resultMap="mModulFun_AllColumns" parameterClass="string">
+        SELECT 
+         [FunID],
+         [Modu_ID],
+         [FunCode],
+         [FunName],
+         [Remark]
+          FROM mModulFun
+          $value$
+   </select>
+   
+   <select id="SelectmModulFunByHash" parameterClass="Hashtable">
+         SELECT 
+         [FunID],
+         [Modu_ID],
+         [FunCode],
+         [FunName],
+         [Remark]
+          FROM mModulFun
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="FunID">[FunID]='$FunID$'</isNotNull>
+       <isNotNull prepend="AND" property="Modu_ID">[Modu_ID]='$Modu_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="FunCode">[FunCode]='$FunCode$'</isNotNull>
+       <isNotNull prepend="AND" property="FunName">[FunName]='$FunName$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectmModulFunByKey" resultMap="mModulFun_AllColumns" parameterClass="mModulFun">
+         SELECT 
+         [FunID],
+         [Modu_ID],
+         [FunCode],
+         [FunName],
+         [Remark]
+         FROM mModulFun
+         WHERE 
+           FunID = #FunID#
+
+   </select>
+ 
+   <delete id="DeletemModulFun" parameterClass="mModulFun">
+        DELETE FROM 
+         mModulFun
+           WHERE
+         FunID = #FunID#
+
+   </delete>
+   
+   <delete id="DeletemModulFunByWhere" parameterClass="string">
+     delete from mModulFun $value$
+   </delete>
+   
+   <delete id="DeletemModulFunByKey" parameterClass="string">
+        DELETE FROM 
+         mModulFun
+           WHERE
+         FunID = #FunID#
+    
+   </delete>
+   
+   <update id="UpdatemModulFun" parameterClass="mModulFun" resultClass="int">
+          UPDATE mModulFun
+           SET
+             [Modu_ID]=#Modu_ID#,
+             [FunCode]=#FunCode#,
+             [FunName]=#FunName#,
+             [Remark]=#Remark#
+            WHERE 
+              FunID = #FunID#
+
+   </update>
+  
+   <insert id="InsertmModulFun" parameterClass="mModulFun">
+        INSERT INTO mModulFun
+         (
+         [FunID],
+         [Modu_ID],
+         [FunCode],
+         [FunName],
+         [Remark]
+         )
+       VALUES
+         (
+         #FunID#,
+         #Modu_ID#,
+         #FunCode#,
+         #FunName#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetmModulFunRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM mModulFun
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="FunID">[FunID]='$FunID$'</isNotNull>
+       <isNotNull prepend="AND" property="Modu_ID">[Modu_ID]='$Modu_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="FunCode">[FunCode]='$FunCode$'</isNotNull>
+       <isNotNull prepend="AND" property="FunName">[FunName]='$FunName$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetmModulFunRowCount" parameterClass="string">
+    select count(*) from mModulFun $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

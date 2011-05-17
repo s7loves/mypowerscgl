@@ -24,7 +24,6 @@ using DevExpress.LookAndFeel;
 using DevExpress.XtraBars;
 using System.Threading;
 using Ebada.Client.Platform;
-using Ebada.Platform.Model;
 using System.Reflection;
 using DevExpress.XtraNavBar;
 using System.Collections.Generic;
@@ -32,6 +31,7 @@ using Ebada.Core;
 using Ebada.UI.Base;
 using Ebada.Modules.Demo;
 using Ebada.Client;
+using Ebada.Scgl.Model;
 
 namespace Ebada.SCGL {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm {
@@ -356,14 +356,14 @@ namespace Ebada.SCGL {
 
         void InitFunction(string userID)
         {
-            IList<VUserFunction> list = MainHelper.PlatformSqlMap.GetList<VUserFunction>(string.Format(" Where Empolyee_ID = '{0}'", userID));
-            List<string> m_StrList = new List<string>();
+            //IList<VUserFunction> list = MainHelper.PlatformSqlMap.GetList<VUserFunction>(string.Format(" Where Empolyee_ID = '{0}'", userID));
+            //List<string> m_StrList = new List<string>();
 
-            foreach(VUserFunction info in list)
-            {
-                m_StrList.Add(info.ModuTypes + "_" + info.FunctionName);
-            }
-            FormBase.UserFunction = m_StrList;
+            //foreach(VUserFunction info in list)
+            //{
+            //    m_StrList.Add(info.ModuTypes + "_" + info.FunctionName);
+            //}
+            //FormBase.UserFunction = m_StrList;
         }
     }
 }

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="mUser" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="mUser"  type="Ebada.Scgl.Model.mUser,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="mUser_AllColumns" class="mUser">
+        <result property="UserID" column="UserID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="UserCode" column="UserCode" />
+        <result property="UserName" column="UserName" />
+        <result property="Sex" column="Sex" />
+        <result property="Birthday" column="Birthday" />
+        <result property="LoginID" column="LoginID" />
+        <result property="Password" column="Password" />
+        <result property="Alias" column="Alias" />
+        <result property="Valid" column="Valid" />
+        <result property="Type" column="Type" />
+        <result property="Tel" column="Tel" />
+        <result property="Mail" column="Mail" />
+        <result property="C1" column="C1" />
+        <result property="C2" column="C2" />
+        <result property="C3" column="C3" />
+        <result property="C4" column="C4" />
+        <result property="C5" column="C5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectmUserList" resultMap="mUser_AllColumns" parameterClass="string">
+        SELECT 
+         [UserID],
+         [OrgCode],
+         [OrgName],
+         [UserCode],
+         [UserName],
+         [Sex],
+         [Birthday],
+         [LoginID],
+         [Password],
+         [Alias],
+         [Valid],
+         [Type],
+         [Tel],
+         [Mail],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+          FROM mUser
+          $value$
+   </select>
+   
+   <select id="SelectmUserByHash" parameterClass="Hashtable">
+         SELECT 
+         [UserID],
+         [OrgCode],
+         [OrgName],
+         [UserCode],
+         [UserName],
+         [Sex],
+         [Birthday],
+         [LoginID],
+         [Password],
+         [Alias],
+         [Valid],
+         [Type],
+         [Tel],
+         [Mail],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+          FROM mUser
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="UserCode">[UserCode]='$UserCode$'</isNotNull>
+       <isNotNull prepend="AND" property="UserName">[UserName]='$UserName$'</isNotNull>
+       <isNotNull prepend="AND" property="Sex">[Sex]='$Sex$'</isNotNull>
+       <isNotNull prepend="AND" property="Birthday">[Birthday]='$Birthday$'</isNotNull>
+       <isNotNull prepend="AND" property="LoginID">[LoginID]='$LoginID$'</isNotNull>
+       <isNotNull prepend="AND" property="Password">[Password]='$Password$'</isNotNull>
+       <isNotNull prepend="AND" property="Alias">[Alias]='$Alias$'</isNotNull>
+       <isNotNull prepend="AND" property="Valid">[Valid]='$Valid$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="Tel">[Tel]='$Tel$'</isNotNull>
+       <isNotNull prepend="AND" property="Mail">[Mail]='$Mail$'</isNotNull>
+       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectmUserByKey" resultMap="mUser_AllColumns" parameterClass="mUser">
+         SELECT 
+         [UserID],
+         [OrgCode],
+         [OrgName],
+         [UserCode],
+         [UserName],
+         [Sex],
+         [Birthday],
+         [LoginID],
+         [Password],
+         [Alias],
+         [Valid],
+         [Type],
+         [Tel],
+         [Mail],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+         FROM mUser
+         WHERE 
+           UserID = #UserID#
+
+   </select>
+ 
+   <delete id="DeletemUser" parameterClass="mUser">
+        DELETE FROM 
+         mUser
+           WHERE
+         UserID = #UserID#
+
+   </delete>
+   
+   <delete id="DeletemUserByWhere" parameterClass="string">
+     delete from mUser $value$
+   </delete>
+   
+   <delete id="DeletemUserByKey" parameterClass="string">
+        DELETE FROM 
+         mUser
+           WHERE
+         UserID = #UserID#
+    
+   </delete>
+   
+   <update id="UpdatemUser" parameterClass="mUser" resultClass="int">
+          UPDATE mUser
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [UserCode]=#UserCode#,
+             [UserName]=#UserName#,
+             [Sex]=#Sex#,
+             [Birthday]=#Birthday#,
+             [LoginID]=#LoginID#,
+             [Password]=#Password#,
+             [Alias]=#Alias#,
+             [Valid]=#Valid#,
+             [Type]=#Type#,
+             [Tel]=#Tel#,
+             [Mail]=#Mail#,
+             [C1]=#C1#,
+             [C2]=#C2#,
+             [C3]=#C3#,
+             [C4]=#C4#,
+             [C5]=#C5#
+            WHERE 
+              UserID = #UserID#
+
+   </update>
+  
+   <insert id="InsertmUser" parameterClass="mUser">
+        INSERT INTO mUser
+         (
+         [UserID],
+         [OrgCode],
+         [OrgName],
+         [UserCode],
+         [UserName],
+         [Sex],
+         [Birthday],
+         [LoginID],
+         [Password],
+         [Alias],
+         [Valid],
+         [Type],
+         [Tel],
+         [Mail],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+         )
+       VALUES
+         (
+         #UserID#,
+         #OrgCode#,
+         #OrgName#,
+         #UserCode#,
+         #UserName#,
+         #Sex#,
+         #Birthday#,
+         #LoginID#,
+         #Password#,
+         #Alias#,
+         #Valid#,
+         #Type#,
+         #Tel#,
+         #Mail#,
+         #C1#,
+         #C2#,
+         #C3#,
+         #C4#,
+         #C5#
+         )
+
+   </insert>
+   
+   <select id="GetmUserRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM mUser
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="UserCode">[UserCode]='$UserCode$'</isNotNull>
+       <isNotNull prepend="AND" property="UserName">[UserName]='$UserName$'</isNotNull>
+       <isNotNull prepend="AND" property="Sex">[Sex]='$Sex$'</isNotNull>
+       <isNotNull prepend="AND" property="Birthday">[Birthday]='$Birthday$'</isNotNull>
+       <isNotNull prepend="AND" property="LoginID">[LoginID]='$LoginID$'</isNotNull>
+       <isNotNull prepend="AND" property="Password">[Password]='$Password$'</isNotNull>
+       <isNotNull prepend="AND" property="Alias">[Alias]='$Alias$'</isNotNull>
+       <isNotNull prepend="AND" property="Valid">[Valid]='$Valid$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="Tel">[Tel]='$Tel$'</isNotNull>
+       <isNotNull prepend="AND" property="Mail">[Mail]='$Mail$'</isNotNull>
+       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetmUserRowCount" parameterClass="string">
+    select count(*) from mUser $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

@@ -8,10 +8,10 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Ebada.Components;
 using Ebada.Client;
-using Ebada.Platform.Model;
 using DevExpress.XtraTreeList.Nodes;
 using Ebada.Client.Platform;
 using Ebada.Core;
+using Ebada.Scgl.Model;
 
 namespace sample1 {
     public partial class MudleTreeManager : DevExpress.XtraEditors.XtraUserControl {

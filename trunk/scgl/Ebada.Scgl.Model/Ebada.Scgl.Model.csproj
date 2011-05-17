@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C2A8BD1A-52FA-4A05-8581-72C39C795C9C}</ProjectGuid>
+    <ProjectGuid>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ebada.Maps</RootNamespace>
-    <AssemblyName>Ebada.Maps</AssemblyName>
+    <RootNamespace>Ebada.Scgl.Model</RootNamespace>
+    <AssemblyName>Ebada.Scgl.Model</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\output\server\</OutputPath>
+    <OutputPath>..\output\Server\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\output\server\</OutputPath>
+    <OutputPath>..\output\Server\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -36,34 +36,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Empolyees.cs" />
+    <Compile Include="mModule.cs" />
+    <Compile Include="mModulFun.cs" />
+    <Compile Include="mOrg.cs" />
+    <Compile Include="mRole.cs" />
+    <Compile Include="mUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mModule.xml" />
-    <EmbeddedResource Include="mModulFun.xml" />
-    <EmbeddedResource Include="mOrg.xml" />
-    <EmbeddedResource Include="mRole.xml" />
-    <EmbeddedResource Include="mUser.xml" />
-    <EmbeddedResource Include="PS_dyxl.xml" />
-    <EmbeddedResource Include="PS_gt.xml" />
-    <EmbeddedResource Include="PS_gtsb.xml" />
-    <EmbeddedResource Include="PS_tq.xml" />
-    <EmbeddedResource Include="PS_tqbyq.xml" />
-    <EmbeddedResource Include="PS_tqsb.xml" />
-    <EmbeddedResource Include="PS_xl.xml" />
-    <EmbeddedResource Include="rRoleModul.xml" />
-    <EmbeddedResource Include="rUserRole.xml" />
-    <EmbeddedResource Include="ViewGds.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Empolyees.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="flow\" />
-    <Folder Include="gis\" />
-    <Folder Include="pdsb\" />
-    <Folder Include="pdyx\" />
-    <Folder Include="sys\" />
+    <Compile Include="PS_dyxl.cs" />
+    <Compile Include="PS_gt.cs" />
+    <Compile Include="PS_gtsb.cs" />
+    <Compile Include="PS_tq.cs" />
+    <Compile Include="PS_tqbyq.cs" />
+    <Compile Include="PS_tqsb.cs" />
+    <Compile Include="PS_xl.cs" />
+    <Compile Include="rRoleModul.cs" />
+    <Compile Include="rUserRole.cs" />
+    <Compile Include="ViewGds.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

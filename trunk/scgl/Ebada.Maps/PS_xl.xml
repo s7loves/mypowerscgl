@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_xl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_xl"  type="Ebada.Scgl.Model.PS_xl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_xl_AllColumns" class="PS_xl">
+        <result property="LineID" column="LineID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="LineType" column="LineType" />
+        <result property="LineCode" column="LineCode" />
+        <result property="LineName" column="LineName" />
+        <result property="LineNamePath" column="LineNamePath" />
+        <result property="LineVol" column="LineVol" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="LineGtbegin" column="LineGtbegin" />
+        <result property="LineGtend" column="LineGtend" />
+        <result property="WireType" column="WireType" />
+        <result property="WireLength" column="WireLength" />
+        <result property="TotalLength" column="TotalLength" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_xlList" resultMap="PS_xl_AllColumns" parameterClass="string">
+        SELECT 
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength]
+          FROM PS_xl
+          $value$
+   </select>
+   
+   <select id="SelectPS_xlByHash" parameterClass="Hashtable">
+         SELECT 
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength]
+          FROM PS_xl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineType">[LineType]='$LineType$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineNamePath">[LineNamePath]='$LineNamePath$'</isNotNull>
+       <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineGtbegin">[LineGtbegin]='$LineGtbegin$'</isNotNull>
+       <isNotNull prepend="AND" property="LineGtend">[LineGtend]='$LineGtend$'</isNotNull>
+       <isNotNull prepend="AND" property="WireType">[WireType]='$WireType$'</isNotNull>
+       <isNotNull prepend="AND" property="WireLength">[WireLength]='$WireLength$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalLength">[TotalLength]='$TotalLength$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_xlByKey" resultMap="PS_xl_AllColumns" parameterClass="PS_xl">
+         SELECT 
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength]
+         FROM PS_xl
+         WHERE 
+           LineID = #LineID#
+
+   </select>
+ 
+   <delete id="DeletePS_xl" parameterClass="PS_xl">
+        DELETE FROM 
+         PS_xl
+           WHERE
+         LineID = #LineID#
+
+   </delete>
+   
+   <delete id="DeletePS_xlByWhere" parameterClass="string">
+     delete from PS_xl $value$
+   </delete>
+   
+   <delete id="DeletePS_xlByKey" parameterClass="string">
+        DELETE FROM 
+         PS_xl
+           WHERE
+         LineID = #LineID#
+    
+   </delete>
+   
+   <update id="UpdatePS_xl" parameterClass="PS_xl" resultClass="int">
+          UPDATE PS_xl
+           SET
+             [ParentID]=#ParentID#,
+             [LineType]=#LineType#,
+             [LineCode]=#LineCode#,
+             [LineName]=#LineName#,
+             [LineNamePath]=#LineNamePath#,
+             [LineVol]=#LineVol#,
+             [OrgCode]=#OrgCode#,
+             [LineGtbegin]=#LineGtbegin#,
+             [LineGtend]=#LineGtend#,
+             [WireType]=#WireType#,
+             [WireLength]=#WireLength#,
+             [TotalLength]=#TotalLength#
+            WHERE 
+              LineID = #LineID#
+
+   </update>
+  
+   <insert id="InsertPS_xl" parameterClass="PS_xl">
+        INSERT INTO PS_xl
+         (
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength]
+         )
+       VALUES
+         (
+         #LineID#,
+         #ParentID#,
+         #LineType#,
+         #LineCode#,
+         #LineName#,
+         #LineNamePath#,
+         #LineVol#,
+         #OrgCode#,
+         #LineGtbegin#,
+         #LineGtend#,
+         #WireType#,
+         #WireLength#,
+         #TotalLength#
+         )
+
+   </insert>
+   
+   <select id="GetPS_xlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_xl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineType">[LineType]='$LineType$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineNamePath">[LineNamePath]='$LineNamePath$'</isNotNull>
+       <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineGtbegin">[LineGtbegin]='$LineGtbegin$'</isNotNull>
+       <isNotNull prepend="AND" property="LineGtend">[LineGtend]='$LineGtend$'</isNotNull>
+       <isNotNull prepend="AND" property="WireType">[WireType]='$WireType$'</isNotNull>
+       <isNotNull prepend="AND" property="WireLength">[WireLength]='$WireLength$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalLength">[TotalLength]='$TotalLength$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_xlRowCount" parameterClass="string">
+    select count(*) from PS_xl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

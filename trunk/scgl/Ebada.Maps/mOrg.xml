@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="mOrg" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="mOrg"  type="Ebada.Scgl.Model.mOrg,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="mOrg_AllColumns" class="mOrg">
+        <result property="OrgID" column="OrgID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="OrgType" column="OrgType" />
+        <result property="PSafeTime" column="PSafeTime" />
+        <result property="DSafeTime" column="DSafeTime" />
+        <result property="Remark" column="Remark" />
+        <result property="C1" column="C1" />
+        <result property="C2" column="C2" />
+        <result property="C3" column="C3" />
+        <result property="C4" column="C4" />
+        <result property="C5" column="C5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectmOrgList" resultMap="mOrg_AllColumns" parameterClass="string">
+        SELECT 
+         [OrgID],
+         [OrgCode],
+         [OrgName],
+         [OrgType],
+         [PSafeTime],
+         [DSafeTime],
+         [Remark],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+          FROM mOrg
+          $value$
+   </select>
+   
+   <select id="SelectmOrgByHash" parameterClass="Hashtable">
+         SELECT 
+         [OrgID],
+         [OrgCode],
+         [OrgName],
+         [OrgType],
+         [PSafeTime],
+         [DSafeTime],
+         [Remark],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+          FROM mOrg
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgType">[OrgType]='$OrgType$'</isNotNull>
+       <isNotNull prepend="AND" property="PSafeTime">[PSafeTime]='$PSafeTime$'</isNotNull>
+       <isNotNull prepend="AND" property="DSafeTime">[DSafeTime]='$DSafeTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectmOrgByKey" resultMap="mOrg_AllColumns" parameterClass="mOrg">
+         SELECT 
+         [OrgID],
+         [OrgCode],
+         [OrgName],
+         [OrgType],
+         [PSafeTime],
+         [DSafeTime],
+         [Remark],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+         FROM mOrg
+         WHERE 
+           OrgID = #OrgID#
+
+   </select>
+ 
+   <delete id="DeletemOrg" parameterClass="mOrg">
+        DELETE FROM 
+         mOrg
+           WHERE
+         OrgID = #OrgID#
+
+   </delete>
+   
+   <delete id="DeletemOrgByWhere" parameterClass="string">
+     delete from mOrg $value$
+   </delete>
+   
+   <delete id="DeletemOrgByKey" parameterClass="string">
+        DELETE FROM 
+         mOrg
+           WHERE
+         OrgID = #OrgID#
+    
+   </delete>
+   
+   <update id="UpdatemOrg" parameterClass="mOrg" resultClass="int">
+          UPDATE mOrg
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [OrgType]=#OrgType#,
+             [PSafeTime]=#PSafeTime#,
+             [DSafeTime]=#DSafeTime#,
+             [Remark]=#Remark#,
+             [C1]=#C1#,
+             [C2]=#C2#,
+             [C3]=#C3#,
+             [C4]=#C4#,
+             [C5]=#C5#
+            WHERE 
+              OrgID = #OrgID#
+
+   </update>
+  
+   <insert id="InsertmOrg" parameterClass="mOrg">
+        INSERT INTO mOrg
+         (
+         [OrgID],
+         [OrgCode],
+         [OrgName],
+         [OrgType],
+         [PSafeTime],
+         [DSafeTime],
+         [Remark],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+         )
+       VALUES
+         (
+         #OrgID#,
+         #OrgCode#,
+         #OrgName#,
+         #OrgType#,
+         #PSafeTime#,
+         #DSafeTime#,
+         #Remark#,
+         #C1#,
+         #C2#,
+         #C3#,
+         #C4#,
+         #C5#
+         )
+
+   </insert>
+   
+   <select id="GetmOrgRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM mOrg
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgType">[OrgType]='$OrgType$'</isNotNull>
+       <isNotNull prepend="AND" property="PSafeTime">[PSafeTime]='$PSafeTime$'</isNotNull>
+       <isNotNull prepend="AND" property="DSafeTime">[DSafeTime]='$DSafeTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetmOrgRowCount" parameterClass="string">
+    select count(*) from mOrg $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
