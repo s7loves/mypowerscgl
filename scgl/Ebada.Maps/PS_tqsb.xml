@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_tqsb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_tqsb"  type="Ebada.Scgl.Model.PS_tqsb,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_tqsb_AllColumns" class="PS_tqsb">
+        <result property="tqID" column="tqID" />
+        <result property="sbID" column="sbID" />
+        <result property="sbCode" column="sbCode" />
+        <result property="sbType" column="sbType" />
+        <result property="sbModle" column="sbModle" />
+        <result property="sbName" column="sbName" />
+        <result property="sbNumber" column="sbNumber" />
+        <result property="C1" column="C1" />
+        <result property="C2" column="C2" />
+        <result property="C3" column="C3" />
+        <result property="C4" column="C4" />
+        <result property="C5" column="C5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_tqsbList" resultMap="PS_tqsb_AllColumns" parameterClass="string">
+        SELECT 
+         [tqID],
+         [sbID],
+         [sbCode],
+         [sbType],
+         [sbModle],
+         [sbName],
+         [sbNumber],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+          FROM PS_tqsb
+          $value$
+   </select>
+   
+   <select id="SelectPS_tqsbByHash" parameterClass="Hashtable">
+         SELECT 
+         [tqID],
+         [sbID],
+         [sbCode],
+         [sbType],
+         [sbModle],
+         [sbName],
+         [sbNumber],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+          FROM PS_tqsb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbType">[sbType]='$sbType$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+       <isNotNull prepend="AND" property="sbNumber">[sbNumber]='$sbNumber$'</isNotNull>
+       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_tqsbByKey" resultMap="PS_tqsb_AllColumns" parameterClass="PS_tqsb">
+         SELECT 
+         [tqID],
+         [sbID],
+         [sbCode],
+         [sbType],
+         [sbModle],
+         [sbName],
+         [sbNumber],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+         FROM PS_tqsb
+         WHERE 
+           sbID = #sbID#
+
+   </select>
+ 
+   <delete id="DeletePS_tqsb" parameterClass="PS_tqsb">
+        DELETE FROM 
+         PS_tqsb
+           WHERE
+         sbID = #sbID#
+
+   </delete>
+   
+   <delete id="DeletePS_tqsbByWhere" parameterClass="string">
+     delete from PS_tqsb $value$
+   </delete>
+   
+   <delete id="DeletePS_tqsbByKey" parameterClass="string">
+        DELETE FROM 
+         PS_tqsb
+           WHERE
+         sbID = #sbID#
+    
+   </delete>
+   
+   <update id="UpdatePS_tqsb" parameterClass="PS_tqsb" resultClass="int">
+          UPDATE PS_tqsb
+           SET
+             [tqID]=#tqID#,
+             [sbCode]=#sbCode#,
+             [sbType]=#sbType#,
+             [sbModle]=#sbModle#,
+             [sbName]=#sbName#,
+             [sbNumber]=#sbNumber#,
+             [C1]=#C1#,
+             [C2]=#C2#,
+             [C3]=#C3#,
+             [C4]=#C4#,
+             [C5]=#C5#
+            WHERE 
+              sbID = #sbID#
+
+   </update>
+  
+   <insert id="InsertPS_tqsb" parameterClass="PS_tqsb">
+        INSERT INTO PS_tqsb
+         (
+         [tqID],
+         [sbID],
+         [sbCode],
+         [sbType],
+         [sbModle],
+         [sbName],
+         [sbNumber],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+         )
+       VALUES
+         (
+         #tqID#,
+         #sbID#,
+         #sbCode#,
+         #sbType#,
+         #sbModle#,
+         #sbName#,
+         #sbNumber#,
+         #C1#,
+         #C2#,
+         #C3#,
+         #C4#,
+         #C5#
+         )
+
+   </insert>
+   
+   <select id="GetPS_tqsbRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_tqsb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbType">[sbType]='$sbType$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+       <isNotNull prepend="AND" property="sbNumber">[sbNumber]='$sbNumber$'</isNotNull>
+       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_tqsbRowCount" parameterClass="string">
+    select count(*) from PS_tqsb $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

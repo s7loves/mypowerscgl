@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="mModule" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="mModule"  type="Ebada.Scgl.Model.mModule,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="mModule_AllColumns" class="mModule">
+        <result property="Modu_ID" column="Modu_ID" />
+        <result property="ModuTypes" column="ModuTypes" />
+        <result property="ModuName" column="ModuName" />
+        <result property="AssemblyFileName" column="AssemblyFileName" />
+        <result property="Sequence" column="Sequence" />
+        <result property="IsCores" column="IsCores" />
+        <result property="Description" column="Description" />
+        <result property="ParentID" column="ParentID" />
+        <result property="MethodName" column="MethodName" />
+        <result property="IconName" column="IconName" />
+        <result property="ActivityFlag" column="ActivityFlag" />
+        <result property="visiableFlag" column="visiableFlag" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectmModuleList" resultMap="mModule_AllColumns" parameterClass="string">
+        SELECT 
+         [Modu_ID],
+         [ModuTypes],
+         [ModuName],
+         [AssemblyFileName],
+         [Sequence],
+         [IsCores],
+         [Description],
+         [ParentID],
+         [MethodName],
+         [IconName],
+         [ActivityFlag],
+         [visiableFlag]
+          FROM mModule
+          $value$
+   </select>
+   
+   <select id="SelectmModuleByHash" parameterClass="Hashtable">
+         SELECT 
+         [Modu_ID],
+         [ModuTypes],
+         [ModuName],
+         [AssemblyFileName],
+         [Sequence],
+         [IsCores],
+         [Description],
+         [ParentID],
+         [MethodName],
+         [IconName],
+         [ActivityFlag],
+         [visiableFlag]
+          FROM mModule
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="Modu_ID">[Modu_ID]='$Modu_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ModuTypes">[ModuTypes]='$ModuTypes$'</isNotNull>
+       <isNotNull prepend="AND" property="ModuName">[ModuName]='$ModuName$'</isNotNull>
+       <isNotNull prepend="AND" property="AssemblyFileName">[AssemblyFileName]='$AssemblyFileName$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="IsCores">[IsCores]='$IsCores$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="MethodName">[MethodName]='$MethodName$'</isNotNull>
+       <isNotNull prepend="AND" property="IconName">[IconName]='$IconName$'</isNotNull>
+       <isNotNull prepend="AND" property="ActivityFlag">[ActivityFlag]='$ActivityFlag$'</isNotNull>
+       <isNotNull prepend="AND" property="visiableFlag">[visiableFlag]='$visiableFlag$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectmModuleByKey" resultMap="mModule_AllColumns" parameterClass="mModule">
+         SELECT 
+         [Modu_ID],
+         [ModuTypes],
+         [ModuName],
+         [AssemblyFileName],
+         [Sequence],
+         [IsCores],
+         [Description],
+         [ParentID],
+         [MethodName],
+         [IconName],
+         [ActivityFlag],
+         [visiableFlag]
+         FROM mModule
+         WHERE 
+           Modu_ID = #Modu_ID#
+
+   </select>
+ 
+   <delete id="DeletemModule" parameterClass="mModule">
+        DELETE FROM 
+         mModule
+           WHERE
+         Modu_ID = #Modu_ID#
+
+   </delete>
+   
+   <delete id="DeletemModuleByWhere" parameterClass="string">
+     delete from mModule $value$
+   </delete>
+   
+   <delete id="DeletemModuleByKey" parameterClass="string">
+        DELETE FROM 
+         mModule
+           WHERE
+         Modu_ID = #Modu_ID#
+    
+   </delete>
+   
+   <update id="UpdatemModule" parameterClass="mModule" resultClass="int">
+          UPDATE mModule
+           SET
+             [ModuTypes]=#ModuTypes#,
+             [ModuName]=#ModuName#,
+             [AssemblyFileName]=#AssemblyFileName#,
+             [Sequence]=#Sequence#,
+             [IsCores]=#IsCores#,
+             [Description]=#Description#,
+             [ParentID]=#ParentID#,
+             [MethodName]=#MethodName#,
+             [IconName]=#IconName#,
+             [ActivityFlag]=#ActivityFlag#,
+             [visiableFlag]=#visiableFlag#
+            WHERE 
+              Modu_ID = #Modu_ID#
+
+   </update>
+  
+   <insert id="InsertmModule" parameterClass="mModule">
+        INSERT INTO mModule
+         (
+         [Modu_ID],
+         [ModuTypes],
+         [ModuName],
+         [AssemblyFileName],
+         [Sequence],
+         [IsCores],
+         [Description],
+         [ParentID],
+         [MethodName],
+         [IconName],
+         [ActivityFlag],
+         [visiableFlag]
+         )
+       VALUES
+         (
+         #Modu_ID#,
+         #ModuTypes#,
+         #ModuName#,
+         #AssemblyFileName#,
+         #Sequence#,
+         #IsCores#,
+         #Description#,
+         #ParentID#,
+         #MethodName#,
+         #IconName#,
+         #ActivityFlag#,
+         #visiableFlag#
+         )
+
+   </insert>
+   
+   <select id="GetmModuleRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM mModule
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="Modu_ID">[Modu_ID]='$Modu_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ModuTypes">[ModuTypes]='$ModuTypes$'</isNotNull>
+       <isNotNull prepend="AND" property="ModuName">[ModuName]='$ModuName$'</isNotNull>
+       <isNotNull prepend="AND" property="AssemblyFileName">[AssemblyFileName]='$AssemblyFileName$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="IsCores">[IsCores]='$IsCores$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="MethodName">[MethodName]='$MethodName$'</isNotNull>
+       <isNotNull prepend="AND" property="IconName">[IconName]='$IconName$'</isNotNull>
+       <isNotNull prepend="AND" property="ActivityFlag">[ActivityFlag]='$ActivityFlag$'</isNotNull>
+       <isNotNull prepend="AND" property="visiableFlag">[visiableFlag]='$visiableFlag$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetmModuleRowCount" parameterClass="string">
+    select count(*) from mModule $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="rRoleModul" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="rRoleModul"  type="Ebada.Scgl.Model.rRoleModul,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="rRoleModul_AllColumns" class="rRoleModul">
+        <result property="FunID" column="FunID" />
+        <result property="RoleID" column="RoleID" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectrRoleModulList" resultMap="rRoleModul_AllColumns" parameterClass="string">
+        SELECT 
+         [FunID],
+         [RoleID]
+          FROM rRoleModul
+          $value$
+   </select>
+   
+   <select id="SelectrRoleModulByHash" parameterClass="Hashtable">
+         SELECT 
+         [FunID],
+         [RoleID]
+          FROM rRoleModul
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="FunID">[FunID]='$FunID$'</isNotNull>
+       <isNotNull prepend="AND" property="RoleID">[RoleID]='$RoleID$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectrRoleModulByKey" resultMap="rRoleModul_AllColumns" parameterClass="rRoleModul">
+         SELECT 
+         [FunID],
+         [RoleID]
+         FROM rRoleModul
+         WHERE 
+           FunID = #FunID#
+         and RoleID = #RoleID#
+
+   </select>
+ 
+   <delete id="DeleterRoleModul" parameterClass="rRoleModul">
+        DELETE FROM 
+         rRoleModul
+           WHERE
+         FunID = #FunID#
+         and RoleID = #RoleID#
+
+   </delete>
+   
+   <delete id="DeleterRoleModulByWhere" parameterClass="string">
+     delete from rRoleModul $value$
+   </delete>
+   
+   <delete id="DeleterRoleModulByKey" parameterClass="string">
+        DELETE FROM 
+         rRoleModul
+           WHERE
+         FunID = #FunID#
+         and RoleID = #RoleID#
+    
+   </delete>
+   
+   <update id="UpdaterRoleModul" parameterClass="rRoleModul" resultClass="int">
+          UPDATE rRoleModul
+           SET
+
+            WHERE 
+              FunID = #FunID#
+         and RoleID = #RoleID#
+
+   </update>
+  
+   <insert id="InsertrRoleModul" parameterClass="rRoleModul">
+        INSERT INTO rRoleModul
+         (
+         [FunID],
+         [RoleID]
+         )
+       VALUES
+         (
+         #FunID#,
+         #RoleID#
+         )
+
+   </insert>
+   
+   <select id="GetrRoleModulRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM rRoleModul
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="FunID">[FunID]='$FunID$'</isNotNull>
+       <isNotNull prepend="AND" property="RoleID">[RoleID]='$RoleID$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetrRoleModulRowCount" parameterClass="string">
+    select count(*) from rRoleModul $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

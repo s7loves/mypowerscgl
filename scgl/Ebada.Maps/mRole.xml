@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="mRole" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="mRole"  type="Ebada.Scgl.Model.mRole,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="mRole_AllColumns" class="mRole">
+        <result property="RoleID" column="RoleID" />
+        <result property="RoleCode" column="RoleCode" />
+        <result property="RoleName" column="RoleName" />
+        <result property="RoleType" column="RoleType" />
+        <result property="C1" column="C1" />
+        <result property="C2" column="C2" />
+        <result property="C3" column="C3" />
+        <result property="C4" column="C4" />
+        <result property="C5" column="C5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectmRoleList" resultMap="mRole_AllColumns" parameterClass="string">
+        SELECT 
+         [RoleID],
+         [RoleCode],
+         [RoleName],
+         [RoleType],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+          FROM mRole
+          $value$
+   </select>
+   
+   <select id="SelectmRoleByHash" parameterClass="Hashtable">
+         SELECT 
+         [RoleID],
+         [RoleCode],
+         [RoleName],
+         [RoleType],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+          FROM mRole
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="RoleID">[RoleID]='$RoleID$'</isNotNull>
+       <isNotNull prepend="AND" property="RoleCode">[RoleCode]='$RoleCode$'</isNotNull>
+       <isNotNull prepend="AND" property="RoleName">[RoleName]='$RoleName$'</isNotNull>
+       <isNotNull prepend="AND" property="RoleType">[RoleType]='$RoleType$'</isNotNull>
+       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectmRoleByKey" resultMap="mRole_AllColumns" parameterClass="mRole">
+         SELECT 
+         [RoleID],
+         [RoleCode],
+         [RoleName],
+         [RoleType],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+         FROM mRole
+         WHERE 
+           RoleID = #RoleID#
+
+   </select>
+ 
+   <delete id="DeletemRole" parameterClass="mRole">
+        DELETE FROM 
+         mRole
+           WHERE
+         RoleID = #RoleID#
+
+   </delete>
+   
+   <delete id="DeletemRoleByWhere" parameterClass="string">
+     delete from mRole $value$
+   </delete>
+   
+   <delete id="DeletemRoleByKey" parameterClass="string">
+        DELETE FROM 
+         mRole
+           WHERE
+         RoleID = #RoleID#
+    
+   </delete>
+   
+   <update id="UpdatemRole" parameterClass="mRole" resultClass="int">
+          UPDATE mRole
+           SET
+             [RoleCode]=#RoleCode#,
+             [RoleName]=#RoleName#,
+             [RoleType]=#RoleType#,
+             [C1]=#C1#,
+             [C2]=#C2#,
+             [C3]=#C3#,
+             [C4]=#C4#,
+             [C5]=#C5#
+            WHERE 
+              RoleID = #RoleID#
+
+   </update>
+  
+   <insert id="InsertmRole" parameterClass="mRole">
+        INSERT INTO mRole
+         (
+         [RoleID],
+         [RoleCode],
+         [RoleName],
+         [RoleType],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+         )
+       VALUES
+         (
+         #RoleID#,
+         #RoleCode#,
+         #RoleName#,
+         #RoleType#,
+         #C1#,
+         #C2#,
+         #C3#,
+         #C4#,
+         #C5#
+         )
+
+   </insert>
+   
+   <select id="GetmRoleRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM mRole
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="RoleID">[RoleID]='$RoleID$'</isNotNull>
+       <isNotNull prepend="AND" property="RoleCode">[RoleCode]='$RoleCode$'</isNotNull>
+       <isNotNull prepend="AND" property="RoleName">[RoleName]='$RoleName$'</isNotNull>
+       <isNotNull prepend="AND" property="RoleType">[RoleType]='$RoleType$'</isNotNull>
+       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetmRoleRowCount" parameterClass="string">
+    select count(*) from mRole $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

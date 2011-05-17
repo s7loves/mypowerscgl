@@ -8,8 +8,8 @@ using System.Windows.Forms;
 using DevExpress.XtraBars;
 using Ebada.Client.Platform;
 using Ebada.UI.Base;
-using Ebada.Platform.Model;
 using System.Collections;
+using Ebada.Scgl.Model;
 
 namespace Ebada.SCGL
 {

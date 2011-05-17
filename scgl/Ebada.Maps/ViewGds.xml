@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="ViewGds" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="ViewGds"  type="Ebada.Scgl.Model.ViewGds,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="ViewGds_AllColumns" class="ViewGds">
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="PSafeTime" column="PSafeTime" />
+        <result property="DSafeTime" column="DSafeTime" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectViewGdsList" resultMap="ViewGds_AllColumns" parameterClass="string">
+        SELECT 
+         [OrgCode],
+         [OrgName],
+         [PSafeTime],
+         [DSafeTime]
+          FROM ViewGds
+          $value$
+   </select>
+   <select id="GetViewGdsRowCount" parameterClass="string">
+    select count(*) from ViewGds $value$
+   </select>
+  
+   <insert id="InsertViewGds" parameterClass="ViewGds">
+        INSERT INTO ViewGds
+         (
+         [OrgCode],
+         [OrgName],
+         [PSafeTime],
+         [DSafeTime]
+         )
+       VALUES
+         (
+         #OrgCode#,
+         #OrgName#,
+         #PSafeTime#,
+         #DSafeTime#
+         )
+
+   </insert>
+   <update id="UpdateViewGds" parameterClass="ViewGds" resultClass="int">
+          UPDATE ViewGds
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [PSafeTime]=#PSafeTime#,
+             [DSafeTime]=#DSafeTime#
+   </update>
+   <delete id="DeleteViewGds" parameterClass="ViewGds">
+        DELETE FROM 
+         ViewGds
+
+   </delete>
+  </statements>
+</sqlMap>
+ 

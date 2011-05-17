@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_tqbyq" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_tqbyq"  type="Ebada.Scgl.Model.PS_tqbyq,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_tqbyq_AllColumns" class="PS_tqbyq">
+        <result property="tqID" column="tqID" />
+        <result property="byqID" column="byqID" />
+        <result property="byqCode" column="byqCode" />
+        <result property="byqName" column="byqName" />
+        <result property="byqModle" column="byqModle" />
+        <result property="byqOwner" column="byqOwner" />
+        <result property="byqVol" column="byqVol" />
+        <result property="byqPhase" column="byqPhase" />
+        <result property="byqCapcity" column="byqCapcity" />
+        <result property="byqLineGroup" column="byqLineGroup" />
+        <result property="byqFactory" column="byqFactory" />
+        <result property="byqNumber" column="byqNumber" />
+        <result property="byqMadeDate" column="byqMadeDate" />
+        <result property="byqCycle" column="byqCycle" />
+        <result property="byqVolOne" column="byqVolOne" />
+        <result property="byqVolTwo" column="byqVolTwo" />
+        <result property="byqCurrentOne" column="byqCurrentOne" />
+        <result property="byqCurrentTwo" column="byqCurrentTwo" />
+        <result property="byqInstallDate" column="byqInstallDate" />
+        <result property="byqInstallAdress" column="byqInstallAdress" />
+        <result property="byqState" column="byqState" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_tqbyqList" resultMap="PS_tqbyq_AllColumns" parameterClass="string">
+        SELECT 
+         [tqID],
+         [byqID],
+         [byqCode],
+         [byqName],
+         [byqModle],
+         [byqOwner],
+         [byqVol],
+         [byqPhase],
+         [byqCapcity],
+         [byqLineGroup],
+         [byqFactory],
+         [byqNumber],
+         [byqMadeDate],
+         [byqCycle],
+         [byqVolOne],
+         [byqVolTwo],
+         [byqCurrentOne],
+         [byqCurrentTwo],
+         [byqInstallDate],
+         [byqInstallAdress],
+         [byqState]
+          FROM PS_tqbyq
+          $value$
+   </select>
+   
+   <select id="SelectPS_tqbyqByHash" parameterClass="Hashtable">
+         SELECT 
+         [tqID],
+         [byqID],
+         [byqCode],
+         [byqName],
+         [byqModle],
+         [byqOwner],
+         [byqVol],
+         [byqPhase],
+         [byqCapcity],
+         [byqLineGroup],
+         [byqFactory],
+         [byqNumber],
+         [byqMadeDate],
+         [byqCycle],
+         [byqVolOne],
+         [byqVolTwo],
+         [byqCurrentOne],
+         [byqCurrentTwo],
+         [byqInstallDate],
+         [byqInstallAdress],
+         [byqState]
+          FROM PS_tqbyq
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
+       <isNotNull prepend="AND" property="byqID">[byqID]='$byqID$'</isNotNull>
+       <isNotNull prepend="AND" property="byqCode">[byqCode]='$byqCode$'</isNotNull>
+       <isNotNull prepend="AND" property="byqName">[byqName]='$byqName$'</isNotNull>
+       <isNotNull prepend="AND" property="byqModle">[byqModle]='$byqModle$'</isNotNull>
+       <isNotNull prepend="AND" property="byqOwner">[byqOwner]='$byqOwner$'</isNotNull>
+       <isNotNull prepend="AND" property="byqVol">[byqVol]='$byqVol$'</isNotNull>
+       <isNotNull prepend="AND" property="byqPhase">[byqPhase]='$byqPhase$'</isNotNull>
+       <isNotNull prepend="AND" property="byqCapcity">[byqCapcity]='$byqCapcity$'</isNotNull>
+       <isNotNull prepend="AND" property="byqLineGroup">[byqLineGroup]='$byqLineGroup$'</isNotNull>
+       <isNotNull prepend="AND" property="byqFactory">[byqFactory]='$byqFactory$'</isNotNull>
+       <isNotNull prepend="AND" property="byqNumber">[byqNumber]='$byqNumber$'</isNotNull>
+       <isNotNull prepend="AND" property="byqMadeDate">[byqMadeDate]='$byqMadeDate$'</isNotNull>
+       <isNotNull prepend="AND" property="byqCycle">[byqCycle]='$byqCycle$'</isNotNull>
+       <isNotNull prepend="AND" property="byqVolOne">[byqVolOne]='$byqVolOne$'</isNotNull>
+       <isNotNull prepend="AND" property="byqVolTwo">[byqVolTwo]='$byqVolTwo$'</isNotNull>
+       <isNotNull prepend="AND" property="byqCurrentOne">[byqCurrentOne]='$byqCurrentOne$'</isNotNull>
+       <isNotNull prepend="AND" property="byqCurrentTwo">[byqCurrentTwo]='$byqCurrentTwo$'</isNotNull>
+       <isNotNull prepend="AND" property="byqInstallDate">[byqInstallDate]='$byqInstallDate$'</isNotNull>
+       <isNotNull prepend="AND" property="byqInstallAdress">[byqInstallAdress]='$byqInstallAdress$'</isNotNull>
+       <isNotNull prepend="AND" property="byqState">[byqState]='$byqState$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_tqbyqByKey" resultMap="PS_tqbyq_AllColumns" parameterClass="PS_tqbyq">
+         SELECT 
+         [tqID],
+         [byqID],
+         [byqCode],
+         [byqName],
+         [byqModle],
+         [byqOwner],
+         [byqVol],
+         [byqPhase],
+         [byqCapcity],
+         [byqLineGroup],
+         [byqFactory],
+         [byqNumber],
+         [byqMadeDate],
+         [byqCycle],
+         [byqVolOne],
+         [byqVolTwo],
+         [byqCurrentOne],
+         [byqCurrentTwo],
+         [byqInstallDate],
+         [byqInstallAdress],
+         [byqState]
+         FROM PS_tqbyq
+         WHERE 
+           byqID = #byqID#
+
+   </select>
+ 
+   <delete id="DeletePS_tqbyq" parameterClass="PS_tqbyq">
+        DELETE FROM 
+         PS_tqbyq
+           WHERE
+         byqID = #byqID#
+
+   </delete>
+   
+   <delete id="DeletePS_tqbyqByWhere" parameterClass="string">
+     delete from PS_tqbyq $value$
+   </delete>
+   
+   <delete id="DeletePS_tqbyqByKey" parameterClass="string">
+        DELETE FROM 
+         PS_tqbyq
+           WHERE
+         byqID = #byqID#
+    
+   </delete>
+   
+   <update id="UpdatePS_tqbyq" parameterClass="PS_tqbyq" resultClass="int">
+          UPDATE PS_tqbyq
+           SET
+             [tqID]=#tqID#,
+             [byqCode]=#byqCode#,
+             [byqName]=#byqName#,
+             [byqModle]=#byqModle#,
+             [byqOwner]=#byqOwner#,
+             [byqVol]=#byqVol#,
+             [byqPhase]=#byqPhase#,
+             [byqCapcity]=#byqCapcity#,
+             [byqLineGroup]=#byqLineGroup#,
+             [byqFactory]=#byqFactory#,
+             [byqNumber]=#byqNumber#,
+             [byqMadeDate]=#byqMadeDate#,
+             [byqCycle]=#byqCycle#,
+             [byqVolOne]=#byqVolOne#,
+             [byqVolTwo]=#byqVolTwo#,
+             [byqCurrentOne]=#byqCurrentOne#,
+             [byqCurrentTwo]=#byqCurrentTwo#,
+             [byqInstallDate]=#byqInstallDate#,
+             [byqInstallAdress]=#byqInstallAdress#,
+             [byqState]=#byqState#
+            WHERE 
+              byqID = #byqID#
+
+   </update>
+  
+   <insert id="InsertPS_tqbyq" parameterClass="PS_tqbyq">
+        INSERT INTO PS_tqbyq
+         (
+         [tqID],
+         [byqID],
+         [byqCode],
+         [byqName],
+         [byqModle],
+         [byqOwner],
+         [byqVol],
+         [byqPhase],
+         [byqCapcity],
+         [byqLineGroup],
+         [byqFactory],
+         [byqNumber],
+         [byqMadeDate],
+         [byqCycle],
+         [byqVolOne],
+         [byqVolTwo],
+         [byqCurrentOne],
+         [byqCurrentTwo],
+         [byqInstallDate],
+         [byqInstallAdress],
+         [byqState]
+         )
+       VALUES
+         (
+         #tqID#,
+         #byqID#,
+         #byqCode#,
+         #byqName#,
+         #byqModle#,
+         #byqOwner#,
+         #byqVol#,
+         #byqPhase#,
+         #byqCapcity#,
+         #byqLineGroup#,
+         #byqFactory#,
+         #byqNumber#,
+         #byqMadeDate#,
+         #byqCycle#,
+         #byqVolOne#,
+         #byqVolTwo#,
+         #byqCurrentOne#,
+         #byqCurrentTwo#,
+         #byqInstallDate#,
+         #byqInstallAdress#,
+         #byqState#
+         )
+
+   </insert>
+   
+   <select id="GetPS_tqbyqRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_tqbyq
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
+       <isNotNull prepend="AND" property="byqID">[byqID]='$byqID$'</isNotNull>
+       <isNotNull prepend="AND" property="byqCode">[byqCode]='$byqCode$'</isNotNull>
+       <isNotNull prepend="AND" property="byqName">[byqName]='$byqName$'</isNotNull>
+       <isNotNull prepend="AND" property="byqModle">[byqModle]='$byqModle$'</isNotNull>
+       <isNotNull prepend="AND" property="byqOwner">[byqOwner]='$byqOwner$'</isNotNull>
+       <isNotNull prepend="AND" property="byqVol">[byqVol]='$byqVol$'</isNotNull>
+       <isNotNull prepend="AND" property="byqPhase">[byqPhase]='$byqPhase$'</isNotNull>
+       <isNotNull prepend="AND" property="byqCapcity">[byqCapcity]='$byqCapcity$'</isNotNull>
+       <isNotNull prepend="AND" property="byqLineGroup">[byqLineGroup]='$byqLineGroup$'</isNotNull>
+       <isNotNull prepend="AND" property="byqFactory">[byqFactory]='$byqFactory$'</isNotNull>
+       <isNotNull prepend="AND" property="byqNumber">[byqNumber]='$byqNumber$'</isNotNull>
+       <isNotNull prepend="AND" property="byqMadeDate">[byqMadeDate]='$byqMadeDate$'</isNotNull>
+       <isNotNull prepend="AND" property="byqCycle">[byqCycle]='$byqCycle$'</isNotNull>
+       <isNotNull prepend="AND" property="byqVolOne">[byqVolOne]='$byqVolOne$'</isNotNull>
+       <isNotNull prepend="AND" property="byqVolTwo">[byqVolTwo]='$byqVolTwo$'</isNotNull>
+       <isNotNull prepend="AND" property="byqCurrentOne">[byqCurrentOne]='$byqCurrentOne$'</isNotNull>
+       <isNotNull prepend="AND" property="byqCurrentTwo">[byqCurrentTwo]='$byqCurrentTwo$'</isNotNull>
+       <isNotNull prepend="AND" property="byqInstallDate">[byqInstallDate]='$byqInstallDate$'</isNotNull>
+       <isNotNull prepend="AND" property="byqInstallAdress">[byqInstallAdress]='$byqInstallAdress$'</isNotNull>
+       <isNotNull prepend="AND" property="byqState">[byqState]='$byqState$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_tqbyqRowCount" parameterClass="string">
+    select count(*) from PS_tqbyq $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

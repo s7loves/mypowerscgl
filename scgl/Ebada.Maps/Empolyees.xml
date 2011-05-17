@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Empolyees" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="Empolyees"  type="Ebada.Scgl.Model.Empolyees,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="Empolyees_AllColumns" class="Empolyees">
+        <result property="Empolyee_ID" column="Empolyee_ID" />
+        <result property="Org_ID" column="Org_ID" />
+        <result property="Empolyee_Name" column="Empolyee_Name" />
+        <result property="alias" column="alias" />
+        <result property="Fax" column="Fax" />
+        <result property="Email" column="Email" />
+        <result property="Tel" column="Tel" />
+        <result property="User_ID" column="User_ID" />
+        <result property="Password" column="Password" />
+        <result property="Remark" column="Remark" />
+        <result property="Enabled" column="Enabled" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectEmpolyeesList" resultMap="Empolyees_AllColumns" parameterClass="string">
+        SELECT 
+         [Empolyee_ID],
+         [Org_ID],
+         [Empolyee_Name],
+         [alias],
+         [Fax],
+         [Email],
+         [Tel],
+         [User_ID],
+         [Password],
+         [Remark],
+         [Enabled],
+         [RowVersion]
+          FROM Empolyees
+          $value$
+   </select>
+   
+   <select id="SelectEmpolyeesByHash" parameterClass="Hashtable">
+         SELECT 
+         [Empolyee_ID],
+         [Org_ID],
+         [Empolyee_Name],
+         [alias],
+         [Fax],
+         [Email],
+         [Tel],
+         [User_ID],
+         [Password],
+         [Remark],
+         [Enabled],
+         [RowVersion]
+          FROM Empolyees
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="Empolyee_ID">[Empolyee_ID]='$Empolyee_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Org_ID">[Org_ID]='$Org_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Empolyee_Name">[Empolyee_Name]='$Empolyee_Name$'</isNotNull>
+       <isNotNull prepend="AND" property="alias">[alias]='$alias$'</isNotNull>
+       <isNotNull prepend="AND" property="Fax">[Fax]='$Fax$'</isNotNull>
+       <isNotNull prepend="AND" property="Email">[Email]='$Email$'</isNotNull>
+       <isNotNull prepend="AND" property="Tel">[Tel]='$Tel$'</isNotNull>
+       <isNotNull prepend="AND" property="User_ID">[User_ID]='$User_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Password">[Password]='$Password$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="Enabled">[Enabled]='$Enabled$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectEmpolyeesByKey" resultMap="Empolyees_AllColumns" parameterClass="Empolyees">
+         SELECT 
+         [Empolyee_ID],
+         [Org_ID],
+         [Empolyee_Name],
+         [alias],
+         [Fax],
+         [Email],
+         [Tel],
+         [User_ID],
+         [Password],
+         [Remark],
+         [Enabled],
+         [RowVersion]
+         FROM Empolyees
+         WHERE 
+           Empolyee_ID = #Empolyee_ID#
+
+   </select>
+ 
+   <delete id="DeleteEmpolyees" parameterClass="Empolyees">
+        DELETE FROM 
+         Empolyees
+           WHERE
+         Empolyee_ID = #Empolyee_ID#
+
+   </delete>
+   
+   <delete id="DeleteEmpolyeesByWhere" parameterClass="string">
+     delete from Empolyees $value$
+   </delete>
+   
+   <delete id="DeleteEmpolyeesByKey" parameterClass="string">
+        DELETE FROM 
+         Empolyees
+           WHERE
+         Empolyee_ID = #Empolyee_ID#
+    
+   </delete>
+   
+   <update id="UpdateEmpolyees" parameterClass="Empolyees" resultClass="int">
+          UPDATE Empolyees
+           SET
+             [Org_ID]=#Org_ID#,
+             [Empolyee_Name]=#Empolyee_Name#,
+             [alias]=#alias#,
+             [Fax]=#Fax#,
+             [Email]=#Email#,
+             [Tel]=#Tel#,
+             [User_ID]=#User_ID#,
+             [Password]=#Password#,
+             [Remark]=#Remark#,
+             [Enabled]=#Enabled#
+            WHERE 
+              Empolyee_ID = #Empolyee_ID#
+
+   </update>
+  
+   <insert id="InsertEmpolyees" parameterClass="Empolyees">
+        INSERT INTO Empolyees
+         (
+         [Empolyee_ID],
+         [Org_ID],
+         [Empolyee_Name],
+         [alias],
+         [Fax],
+         [Email],
+         [Tel],
+         [User_ID],
+         [Password],
+         [Remark],
+         [Enabled]
+         )
+       VALUES
+         (
+         #Empolyee_ID#,
+         #Org_ID#,
+         #Empolyee_Name#,
+         #alias#,
+         #Fax#,
+         #Email#,
+         #Tel#,
+         #User_ID#,
+         #Password#,
+         #Remark#,
+         #Enabled#
+         )
+
+   </insert>
+   
+   <select id="GetEmpolyeesRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM Empolyees
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="Empolyee_ID">[Empolyee_ID]='$Empolyee_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Org_ID">[Org_ID]='$Org_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Empolyee_Name">[Empolyee_Name]='$Empolyee_Name$'</isNotNull>
+       <isNotNull prepend="AND" property="alias">[alias]='$alias$'</isNotNull>
+       <isNotNull prepend="AND" property="Fax">[Fax]='$Fax$'</isNotNull>
+       <isNotNull prepend="AND" property="Email">[Email]='$Email$'</isNotNull>
+       <isNotNull prepend="AND" property="Tel">[Tel]='$Tel$'</isNotNull>
+       <isNotNull prepend="AND" property="User_ID">[User_ID]='$User_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Password">[Password]='$Password$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="Enabled">[Enabled]='$Enabled$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetEmpolyeesRowCount" parameterClass="string">
+    select count(*) from Empolyees $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
