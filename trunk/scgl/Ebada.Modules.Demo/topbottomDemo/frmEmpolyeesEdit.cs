@@ -6,18 +6,18 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using Ebada.Platform.Model;
 using Ebada.Client.Platform.Dictionary;
 using Ebada.UI.Base;
 using Ebada.Client;
 using Ebada.Client.Platform;
 using Ebada.Core;
+using Ebada.Scgl.Model;
 
 namespace Ebada.Modules.Demo
 {
     public partial class frmEmpolyeesEdit : FormBase, IPopupFormEdit
     {
-        SortableSearchableBindingList<mPost> m_PostDic = new SortableSearchableBindingList<mPost>();
+        SortableSearchableBindingList<Ebada.Platform.Model.mPost> m_PostDic = new SortableSearchableBindingList<Ebada.Platform.Model.mPost>();
         private string m_PostID = string.Empty;
 
         public string PostID
@@ -43,7 +43,7 @@ namespace Ebada.Modules.Demo
 
         Empolyees GetEmpolyeesData()
         {
-            Empolyees empolyees = this.m_Empolyees;
+            Ebada.Scgl.Model.Empolyees empolyees = this.m_Empolyees;
             empolyees.User_ID = this.txtUser_ID.Text;
             empolyees.Password = this.txtPassword.Text;
             empolyees.Tel = this.txtTel.Text;
@@ -110,7 +110,7 @@ namespace Ebada.Modules.Demo
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, SortableSearchableBindingList<mPost> post)
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, SortableSearchableBindingList<Ebada.Platform.Model.mPost> post)
         {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
