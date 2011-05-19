@@ -37,6 +37,7 @@
             this.MethodName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colSequence = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colDescription = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -53,7 +54,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageCollection2 = new DevExpress.Utils.ImageCollection(this.components);
             this.mModuleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -75,10 +75,10 @@
             this.treeList1.DataSource = this.bindingSource1;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.KeyFieldName = "Modu_ID";
-            this.treeList1.Location = new System.Drawing.Point(0, 25);
+            this.treeList1.Location = new System.Drawing.Point(0, 26);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.DragNodes = true;
-            this.treeList1.Size = new System.Drawing.Size(589, 394);
+            this.treeList1.Size = new System.Drawing.Size(589, 393);
             this.treeList1.TabIndex = 0;
             // 
             // colModuName
@@ -135,6 +135,14 @@
             this.colDescription.VisibleIndex = 4;
             this.colDescription.Width = 62;
             // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.Caption = "图标Index";
+            this.treeListColumn1.FieldName = "IconName";
+            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.Visible = true;
+            this.treeListColumn1.VisibleIndex = 6;
+            // 
             // barManager1
             // 
             this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
@@ -179,6 +187,7 @@
             this.btAdd.ImageIndex = 6;
             this.btAdd.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N));
             this.btAdd.Name = "btAdd";
+            this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // btAdd2
             // 
@@ -188,6 +197,7 @@
             this.btAdd2.ImageIndex = 0;
             this.btAdd2.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M));
             this.btAdd2.Name = "btAdd2";
+            this.btAdd2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btAdd2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAdd2_ItemClick);
             // 
             // btEdit
@@ -196,6 +206,7 @@
             this.btEdit.Id = 2;
             this.btEdit.ImageIndex = 27;
             this.btEdit.Name = "btEdit";
+            this.btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btEdit_ItemClick);
             // 
             // btDelete
@@ -204,6 +215,7 @@
             this.btDelete.Id = 3;
             this.btDelete.ImageIndex = 13;
             this.btDelete.Name = "btDelete";
+            this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDelete_ItemClick);
             // 
             // barButtonItem1
@@ -235,7 +247,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(589, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(589, 26);
             // 
             // barDockControlBottom
             // 
@@ -246,14 +258,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 394);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 393);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(589, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 394);
+            this.barDockControlRight.Location = new System.Drawing.Point(589, 26);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 393);
             // 
             // imageCollection2
             // 
@@ -262,14 +274,6 @@
             // mModuleBindingSource
             // 
             this.mModuleBindingSource.DataSource = typeof(Ebada.Platform.Model.mModule);
-            // 
-            // treeListColumn1
-            // 
-            this.treeListColumn1.Caption = "图标Index";
-            this.treeListColumn1.FieldName = "IconName";
-            this.treeListColumn1.Name = "treeListColumn1";
-            this.treeListColumn1.Visible = true;
-            this.treeListColumn1.VisibleIndex = 6;
             // 
             // MudleTreeManager
             // 
