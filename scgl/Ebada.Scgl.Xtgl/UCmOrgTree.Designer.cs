@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCmOrgTree));
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.typeCBox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.typeLookUp = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
@@ -48,6 +50,8 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,9 +66,28 @@
             this.treeList1.OptionsBehavior.DragNodes = true;
             this.treeList1.OptionsBehavior.Editable = false;
             this.treeList1.OptionsBehavior.EnableFiltering = true;
-            this.treeList1.ParentFieldName = "C1";
+            this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.typeCBox,
+            this.typeLookUp});
             this.treeList1.Size = new System.Drawing.Size(549, 326);
             this.treeList1.TabIndex = 0;
+            // 
+            // typeCBox
+            // 
+            this.typeCBox.AutoHeight = false;
+            this.typeCBox.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.typeCBox.Name = "typeCBox";
+            // 
+            // typeLookUp
+            // 
+            this.typeLookUp.AutoHeight = false;
+            this.typeLookUp.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.typeLookUp.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name3", "Name3", 61, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name4", "Name4", 48, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.typeLookUp.Name = "typeLookUp";
             // 
             // barManager1
             // 
@@ -160,6 +183,7 @@
             this.btFind.ImageIndex = 5;
             this.btFind.Name = "btFind";
             this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btFind.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btExport
             // 
@@ -245,6 +269,8 @@
             this.Name = "UCmOrgTree";
             this.Size = new System.Drawing.Size(549, 374);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
 
@@ -269,5 +295,7 @@
         private DevExpress.XtraBars.BarButtonItem btExport;
         private System.Windows.Forms.ImageList imageList1;
         private DevExpress.XtraBars.BarButtonItem btFind;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox typeCBox;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit typeLookUp;
     }
 }
