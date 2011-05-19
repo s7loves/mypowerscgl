@@ -1,8 +1,15 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     2011-5-17 20:58:26                           */
+/* Created on:     2011-5-19 16:33:22                           */
 /*==============================================================*/
 
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.PJ_gzrjnr') and o.name = 'FK_PJ_GZRJN_REFERENCE_PJ_GZRJ')
+alter table dbo.PJ_gzrjnr
+   drop constraint FK_PJ_GZRJN_REFERENCE_PJ_GZRJ
+go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
@@ -62,6 +69,13 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.mOrg') and o.name = 'FK_MORG_REFERENCE_MORG')
+alter table dbo.mOrg
+   drop constraint FK_MORG_REFERENCE_MORG
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('dbo.mUser') and o.name = 'FK_MUSER_REFERENCE_MORG')
 alter table dbo.mUser
    drop constraint FK_MUSER_REFERENCE_MORG
@@ -100,6 +114,27 @@ if exists (select 1
            where  id = object_id('dbo.ViewGds')
             and   type = 'V')
    drop view dbo.ViewGds
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.PJ_dyk')
+            and   type = 'U')
+   drop table dbo.PJ_dyk
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.PJ_gzrj')
+            and   type = 'U')
+   drop table dbo.PJ_gzrj
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.PJ_gzrjnr')
+            and   type = 'U')
+   drop table dbo.PJ_gzrjnr
 go
 
 if exists (select 1
@@ -236,6 +271,91 @@ if exists (select 1
            where  id = object_id('dbo.rUserRole')
             and   type = 'U')
    drop table dbo.rUserRole
+go
+
+/*==============================================================*/
+/* Table: PJ_dyk                                                */
+/*==============================================================*/
+create table dbo.PJ_dyk (
+   记录ID                 nvarchar(50)         not null,
+   对象                   nvarchar(50)         null,
+   属性                   nvarchar(50)         null,
+   短语编号                 nvarchar(50)         null,
+   短语内容                 nvarchar(2000)       null,
+   constraint PK_PJ_DYK primary key (记录ID)
+)
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '维护记录相关的短语库，为了提高录入效率',
+   'user', 'dbo', 'table', 'PJ_dyk'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '记录ID',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', '记录ID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '对象',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', '对象'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '短语编号',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', '短语编号'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '短语内容',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', '短语内容'
+go
+
+/*==============================================================*/
+/* Table: PJ_gzrj                                               */
+/*==============================================================*/
+create table dbo.PJ_gzrj (
+   记录ID                 nvarchar(50)         not null,
+   供电所代码                nvarchar(50)         null,
+   供电所名称                nvarchar(50)         null,
+   日期                   datetime             null,
+   星期                   nvarchar(50)         null,
+   天气                   nvarchar(50)         null,
+   缺勤情况                 nvarchar(500)        null,
+   人身安全天数               int                  null,
+   设备安全天数               int                  null,
+   记事                   nvarchar(500)        null,
+   评语                   nvarchar(500)        null,
+   签字                   nvarchar(50)         null,
+   签字日期                 datetime             null,
+   constraint PK_PJ_GZRJ primary key (记录ID)
+)
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '工作日记',
+   'user', 'dbo', 'table', 'PJ_gzrj'
+go
+
+/*==============================================================*/
+/* Table: PJ_gzrjnr                                             */
+/*==============================================================*/
+create table dbo.PJ_gzrjnr (
+   gznrID               nvarchar(50)         not null,
+   gzrjID               nvarchar(50)         null,
+   fssj                 datetime             null,
+   seq                  int                  null,
+   gznr                 nvarchar(500)        null,
+   fzr                  nvarchar(50)         null,
+   cjry                 nvarchar(200)        null,
+   ParentID             nvarchar(50)         null,
+   constraint PK_PJ_GZRJNR primary key (gznrID)
+)
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '工作内容',
+   'user', 'dbo', 'table', 'PJ_gzrjnr'
 go
 
 /*==============================================================*/
@@ -854,6 +974,7 @@ go
 /*==============================================================*/
 create table dbo.mOrg (
    OrgID                nvarchar(50)         not null,
+   ParentID             nvarchar(50)         null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
    OrgType              nvarchar(50)         null,
@@ -875,8 +996,13 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 execute sp_addextendedproperty 'MS_Description', 
-   'bmID',
+   '部门ID',
    'user', 'dbo', 'table', 'mOrg', 'column', 'OrgID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   'ParentID',
+   'user', 'dbo', 'table', 'mOrg', 'column', 'ParentID'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -1173,6 +1299,12 @@ create view dbo.ViewGds as
 select OrgCode,OrgName,PSafeTime,DSafeTime from mOrg where OrgType='1'
 go
 
+alter table dbo.PJ_gzrjnr
+   add constraint FK_PJ_GZRJN_REFERENCE_PJ_GZRJ foreign key (gzrjID)
+      references dbo.PJ_gzrj (记录ID)
+         on delete cascade
+go
+
 alter table dbo.PS_dyxl
    add constraint FK_PS_DYXL_REFERENCE_PS_TQBYQ foreign key (byqID)
       references dbo.PS_tqbyq (byqID)
@@ -1218,6 +1350,11 @@ alter table dbo.mModulFun
    add constraint FK_MMODULFU_REFERENCE_MMODULE foreign key (Modu_ID)
       references dbo.mModule (Modu_ID)
          on update cascade on delete cascade
+go
+
+alter table dbo.mOrg
+   add constraint FK_MORG_REFERENCE_MORG foreign key (ParentID)
+      references dbo.mOrg (OrgID)
 go
 
 alter table dbo.mUser
