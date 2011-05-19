@@ -6,6 +6,7 @@
   <resultMaps>
       <resultMap id="mOrg_AllColumns" class="mOrg">
         <result property="OrgID" column="OrgID" />
+        <result property="ParentID" column="ParentID" />
         <result property="OrgCode" column="OrgCode" />
         <result property="OrgName" column="OrgName" />
         <result property="OrgType" column="OrgType" />
@@ -24,6 +25,7 @@
    <select id="SelectmOrgList" resultMap="mOrg_AllColumns" parameterClass="string">
         SELECT 
          [OrgID],
+         [ParentID],
          [OrgCode],
          [OrgName],
          [OrgType],
@@ -42,6 +44,7 @@
    <select id="SelectmOrgByHash" parameterClass="Hashtable">
          SELECT 
          [OrgID],
+         [ParentID],
          [OrgCode],
          [OrgName],
          [OrgType],
@@ -56,6 +59,7 @@
           FROM mOrg
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="OrgType">[OrgType]='$OrgType$'</isNotNull>
@@ -72,6 +76,7 @@
    <select id="SelectmOrgByKey" resultMap="mOrg_AllColumns" parameterClass="mOrg">
          SELECT 
          [OrgID],
+         [ParentID],
          [OrgCode],
          [OrgName],
          [OrgType],
@@ -112,6 +117,7 @@
    <update id="UpdatemOrg" parameterClass="mOrg" resultClass="int">
           UPDATE mOrg
            SET
+             [ParentID]=#ParentID#,
              [OrgCode]=#OrgCode#,
              [OrgName]=#OrgName#,
              [OrgType]=#OrgType#,
@@ -132,6 +138,7 @@
         INSERT INTO mOrg
          (
          [OrgID],
+         [ParentID],
          [OrgCode],
          [OrgName],
          [OrgType],
@@ -147,6 +154,7 @@
        VALUES
          (
          #OrgID#,
+         #ParentID#,
          #OrgCode#,
          #OrgName#,
          #OrgType#,
@@ -167,6 +175,7 @@
           FROM mOrg
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="OrgType">[OrgType]='$OrgType$'</isNotNull>
