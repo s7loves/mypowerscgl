@@ -2,8 +2,8 @@
 系统:企业ERP
 模块:示例
 作者:Rabbit
-创建时间:2011-2-22
-最后一次修改:2011-2-28
+创建时间:2011-5-18
+最后一次修改:2011-5-19
 ***********************************************/
 using System;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ using DevExpress.XtraTreeList.Nodes;
 using Ebada.Client.Platform;
 using DevExpress.XtraTreeList;
 using Ebada.Scgl.Model;
+using DevExpress.XtraEditors.Controls;
 
 namespace Ebada.Scgl.Xtgl
 {
@@ -45,6 +46,7 @@ namespace Ebada.Scgl.Xtgl
             treeViewOperator.AfterEdit +=treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete +=treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
+            Init();
         }
 
         void treeViewOperator_AfterDelete(mOrg newobj) {
@@ -68,18 +70,26 @@ namespace Ebada.Scgl.Xtgl
         }
 
         void treeViewOperator_CreatingObject(mOrg newobj) {
-            
+            newobj.OrgType = "0";
         }
         protected override void OnLoad(EventArgs e) {
-            base.OnLoad(e); 
+            base.OnLoad(e);
             
         }
-       
+        public void Init() {
+
+
+            treeList1.Columns["OrgType"].ColumnEdit = DicTypeHelper.OrgTypeDic;
+            if (this.Site == null)
+                InitData();
+            
+        }
         /// <summary>
         /// 初始化数据
         /// </summary>
         public void InitData() {
-            treeViewOperator.RefreshData("order by c1,Sequence");    
+            treeViewOperator.RefreshData("order by parentid,orgcode");    
         }
+        
     }
 }
