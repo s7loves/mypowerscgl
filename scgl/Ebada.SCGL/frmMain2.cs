@@ -135,7 +135,7 @@ namespace Ebada.SCGL
         #region 加载菜单
         internal void InitMenu(string userid)
         {
-            bar2.Reset();
+            bar2.ItemLinks.Clear();
             
             IList list = (IList)MainHelper.PlatformSqlMap.GetList<mModule>("");
             DataTable dt = Ebada.Core.ConvertHelper.ToDataTable(list);
@@ -176,7 +176,7 @@ namespace Ebada.SCGL
         #endregion
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.showControl(new sample1.MudleTreeManager());
+            this.showControl(new sample1.MudleTreeManager()).Text="模块登记";
         }
         protected override void OnShown(EventArgs e)
         {
