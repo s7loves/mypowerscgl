@@ -20,19 +20,48 @@ using Ebada.Client.Platform;
 using DevExpress.XtraTreeList;
 using Ebada.Scgl.Model;
 using DevExpress.XtraEditors.Controls;
+using Ebada.Scgl.Core;
+using DevExpress.XtraTreeList.Columns;
 
-namespace Ebada.Scgl.Xtgl
-{
+namespace Ebada.Scgl.Xtgl {
     /// <summary>
     /// 组织机构
     /// </summary>
     public partial class UCmOrgTree : DevExpress.XtraEditors.XtraUserControl {
 
         TreeViewOperation<mOrg> treeViewOperator;
-
+        [Browsable(false)]
         public TreeViewOperation<mOrg> TreeViewOperator {
             get { return treeViewOperator; }
             set { treeViewOperator = value; }
+        }
+        private IViewOperation<mUser> childView;
+        /// <summary>
+        /// 获取和设置子表的数据操作接口
+        /// </summary>
+        [Browsable(false)]
+        public IViewOperation<mUser> ChildView {
+            get { return childView; }
+            set {
+                childView = value;
+                if (value != null) {
+                    bar1.Visible = false;
+                    bar3.Visible = false;
+                    foreach (TreeListColumn tc in treeList1.Columns) {
+                        tc.Visible = false;
+                    }
+                    treeList1.Columns["OrgName"].Visible = true;
+                    
+                    treeList1.AllowDrop = false;
+                    mOrg org = new mOrg();
+                    org.OrgName = "绥化市郊局";
+                    org.OrgID = "0"; org.ParentID = "-";
+                    TreeViewOperator.BindingList.Add(org);
+                    treeList1.ParentFieldName = "";
+                    treeList1.ParentFieldName = "ParentID";
+                    //treeList1.KeyFieldName = "OrgID";
+                }
+            }
         }
         public event SendDataEventHandler<mOrg> FocusedNodeChanged;
         public event SendDataEventHandler<mOrg> AfterAdd;
@@ -40,11 +69,11 @@ namespace Ebada.Scgl.Xtgl
         public event SendDataEventHandler<mOrg> AfterDelete;
         public UCmOrgTree() {
             InitializeComponent();
-            treeViewOperator = new TreeViewOperation<mOrg>(treeList1,barManager1);
+            treeViewOperator = new TreeViewOperation<mOrg>(treeList1, barManager1);
             treeViewOperator.CreatingObjectEvent += treeViewOperator_CreatingObject;
             treeViewOperator.AfterAdd += treeViewOperator_AfterAdd;
-            treeViewOperator.AfterEdit +=treeViewOperator_AfterEdit;
-            treeViewOperator.AfterDelete +=treeViewOperator_AfterDelete;
+            treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
+            treeViewOperator.AfterDelete += treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
             Init();
         }
@@ -66,7 +95,7 @@ namespace Ebada.Scgl.Xtgl
 
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             if (FocusedNodeChanged != null)
-                FocusedNodeChanged(treeList1,treeList1.GetDataRecordByNode(e.Node) as mOrg);
+                FocusedNodeChanged(treeList1, treeList1.GetDataRecordByNode(e.Node) as mOrg);
         }
 
         void treeViewOperator_CreatingObject(mOrg newobj) {
@@ -74,7 +103,7 @@ namespace Ebada.Scgl.Xtgl
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            
+
         }
         public void Init() {
 
@@ -82,14 +111,14 @@ namespace Ebada.Scgl.Xtgl
             treeList1.Columns["OrgType"].ColumnEdit = DicTypeHelper.OrgTypeDic;
             if (this.Site == null)
                 InitData();
-            
+
         }
         /// <summary>
         /// 初始化数据
         /// </summary>
         public void InitData() {
-            treeViewOperator.RefreshData("order by parentid,orgcode");    
+            treeViewOperator.RefreshData("order by parentid,orgcode");
         }
-        
+
     }
 }
