@@ -1,6 +1,6 @@
 ﻿/**********************************************
 系统:企业ERP
-模块:示例
+模块:组织机构
 作者:Rabbit
 创建时间:2011-5-18
 最后一次修改:2011-5-19
@@ -24,7 +24,7 @@ using DevExpress.XtraEditors.Controls;
 namespace Ebada.Scgl.Xtgl
 {
     /// <summary>
-    /// TreeList数据操作示例
+    /// 组织机构
     /// </summary>
     public partial class UCmOrgTree : DevExpress.XtraEditors.XtraUserControl {
 
