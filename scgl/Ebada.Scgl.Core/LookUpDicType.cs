@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors.Controls;
-namespace Ebada.Scgl.Xtgl {
+namespace Ebada.Scgl.Core {
     public class LookUpDicType:RepositoryItemLookUpEdit {
         public LookUpDicType(IList<DicType> datasource) {
             this.Columns.Add(new LookUpColumnInfo("Key","", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default));

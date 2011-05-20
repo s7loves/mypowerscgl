@@ -1,10 +1,10 @@
 /**********************************************
 这是代码自动生成的，如果重新生成，所做的改动将会丢失
-系统:Ebada物流企业ERP
+系统:Ebada农电局生产管理
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-17 22:06:06
+生成时间:2011-5-20 11:26:47
 ***********************************************/
 
 using System;
@@ -26,10 +26,11 @@ namespace Ebada.Scgl.Model
         private string _orgname=String.Empty; 
         private string _usercode=String.Empty; 
         private string _username=String.Empty; 
+        private string _postname=String.Empty; 
         private string _sex=String.Empty; 
         private DateTime _birthday=new DateTime(1900,1,1); 
         private string _loginid=String.Empty; 
-        private byte[] _password=new byte[]{}; 
+        private string _password=String.Empty; 
         private string _alias=String.Empty; 
         private bool _valid=false; 
         private string _type=String.Empty; 
@@ -72,7 +73,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：部门编号
         /// 字段信息：[OrgCode],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("部门编号")]
         public string OrgCode
         {
@@ -153,6 +153,27 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
+        /// 属性名称：PostName
+        /// 属性描述：岗位
+        /// 字段信息：[PostName],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("岗位")]
+        public string PostName
+        {
+            get { return _postname; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[岗位]长度不能大于50!");
+                if (_postname as object == null || !_postname.Equals(value))
+                {
+                    _postname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
         /// 属性名称：Sex
         /// 属性描述：姓别
         /// 字段信息：[Sex],nvarchar
@@ -215,14 +236,17 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：Password
         /// 属性描述：登录口令
-        /// 字段信息：[Password],varbinary
+        /// 字段信息：[Password],nvarchar
         /// </summary>
         [DisplayNameAttribute("登录口令")]
-        public byte[] Password
+        public string Password
         {
             get { return _password; }
             set
             {			
+                if(value==null)return;
+                if( value.ToString().Length > 150)
+                throw new Exception("[登录口令]长度不能大于150!");
                 if (_password as object == null || !_password.Equals(value))
                 {
                     _password = value;
@@ -337,6 +361,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义
         /// 字段信息：[C1],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("未定义")]
         public string C1
         {
@@ -358,6 +383,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义2
         /// 字段信息：[C2],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("未定义2")]
         public string C2
         {
@@ -379,6 +405,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义3
         /// 字段信息：[C3],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("未定义3")]
         public string C3
         {
@@ -400,6 +427,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义4
         /// 字段信息：[C4],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("未定义4")]
         public string C4
         {
@@ -421,6 +449,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义5
         /// 字段信息：[C5],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("未定义5")]
         public string C5
         {

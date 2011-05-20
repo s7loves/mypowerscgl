@@ -10,6 +10,7 @@ using Ebada.Client.Platform;
 using Ebada.UI.Base;
 using System.Collections;
 using Ebada.Scgl.Model;
+using Ebada.Client;
 
 namespace Ebada.SCGL
 {
@@ -104,7 +105,7 @@ namespace Ebada.SCGL
             catch (Exception err)
             {
                 this.Cursor = Cursors.Default;
-                MainHelper.ShowException(err);
+                MsgBox.ShowException(err);
             }
         }
         /// <summary>
