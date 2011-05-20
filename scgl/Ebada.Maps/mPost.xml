@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="mPost" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="mPost"  type="Ebada.Scgl.Model.mPost,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="mPost_AllColumns" class="mPost">
+        <result property="PostID" column="PostID" />
+        <result property="PostCode" column="PostCode" />
+        <result property="PostName" column="PostName" />
+        <result property="PostType" column="PostType" />
+        <result property="ParentID" column="ParentID" />
+        <result property="Remark" column="Remark" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectmPostList" resultMap="mPost_AllColumns" parameterClass="string">
+        SELECT 
+         [PostID],
+         [PostCode],
+         [PostName],
+         [PostType],
+         [ParentID],
+         [Remark]
+          FROM mPost
+          $value$
+   </select>
+   
+   <select id="SelectmPostByHash" parameterClass="Hashtable">
+         SELECT 
+         [PostID],
+         [PostCode],
+         [PostName],
+         [PostType],
+         [ParentID],
+         [Remark]
+          FROM mPost
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="PostID">[PostID]='$PostID$'</isNotNull>
+       <isNotNull prepend="AND" property="PostCode">[PostCode]='$PostCode$'</isNotNull>
+       <isNotNull prepend="AND" property="PostName">[PostName]='$PostName$'</isNotNull>
+       <isNotNull prepend="AND" property="PostType">[PostType]='$PostType$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectmPostByKey" resultMap="mPost_AllColumns" parameterClass="mPost">
+         SELECT 
+         [PostID],
+         [PostCode],
+         [PostName],
+         [PostType],
+         [ParentID],
+         [Remark]
+         FROM mPost
+         WHERE 
+           PostID = #PostID#
+
+   </select>
+ 
+   <delete id="DeletemPost" parameterClass="mPost">
+        DELETE FROM 
+         mPost
+           WHERE
+         PostID = #PostID#
+
+   </delete>
+   
+   <delete id="DeletemPostByWhere" parameterClass="string">
+     delete from mPost $value$
+   </delete>
+   
+   <delete id="DeletemPostByKey" parameterClass="string">
+        DELETE FROM 
+         mPost
+           WHERE
+         PostID = #PostID#
+    
+   </delete>
+   
+   <update id="UpdatemPost" parameterClass="mPost" resultClass="int">
+          UPDATE mPost
+           SET
+             [PostCode]=#PostCode#,
+             [PostName]=#PostName#,
+             [PostType]=#PostType#,
+             [ParentID]=#ParentID#,
+             [Remark]=#Remark#
+            WHERE 
+              PostID = #PostID#
+
+   </update>
+  
+   <insert id="InsertmPost" parameterClass="mPost">
+        INSERT INTO mPost
+         (
+         [PostID],
+         [PostCode],
+         [PostName],
+         [PostType],
+         [ParentID],
+         [Remark]
+         )
+       VALUES
+         (
+         #PostID#,
+         #PostCode#,
+         #PostName#,
+         #PostType#,
+         #ParentID#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetmPostRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM mPost
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="PostID">[PostID]='$PostID$'</isNotNull>
+       <isNotNull prepend="AND" property="PostCode">[PostCode]='$PostCode$'</isNotNull>
+       <isNotNull prepend="AND" property="PostName">[PostName]='$PostName$'</isNotNull>
+       <isNotNull prepend="AND" property="PostType">[PostType]='$PostType$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetmPostRowCount" parameterClass="string">
+    select count(*) from mPost $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

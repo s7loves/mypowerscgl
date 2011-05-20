@@ -9,6 +9,7 @@
         <result property="ParentID" column="ParentID" />
         <result property="OrgCode" column="OrgCode" />
         <result property="OrgName" column="OrgName" />
+        <result property="OrgCode2" column="OrgCode2" />
         <result property="OrgType" column="OrgType" />
         <result property="PSafeTime" column="PSafeTime" />
         <result property="DSafeTime" column="DSafeTime" />
@@ -28,6 +29,7 @@
          [ParentID],
          [OrgCode],
          [OrgName],
+         [OrgCode2],
          [OrgType],
          [PSafeTime],
          [DSafeTime],
@@ -47,6 +49,7 @@
          [ParentID],
          [OrgCode],
          [OrgName],
+         [OrgCode2],
          [OrgType],
          [PSafeTime],
          [DSafeTime],
@@ -62,6 +65,7 @@
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
        <isNotNull prepend="AND" property="OrgType">[OrgType]='$OrgType$'</isNotNull>
        <isNotNull prepend="AND" property="PSafeTime">[PSafeTime]='$PSafeTime$'</isNotNull>
        <isNotNull prepend="AND" property="DSafeTime">[DSafeTime]='$DSafeTime$'</isNotNull>
@@ -79,6 +83,7 @@
          [ParentID],
          [OrgCode],
          [OrgName],
+         [OrgCode2],
          [OrgType],
          [PSafeTime],
          [DSafeTime],
@@ -120,6 +125,7 @@
              [ParentID]=#ParentID#,
              [OrgCode]=#OrgCode#,
              [OrgName]=#OrgName#,
+             [OrgCode2]=#OrgCode2#,
              [OrgType]=#OrgType#,
              [PSafeTime]=#PSafeTime#,
              [DSafeTime]=#DSafeTime#,
@@ -141,6 +147,7 @@
          [ParentID],
          [OrgCode],
          [OrgName],
+         [OrgCode2],
          [OrgType],
          [PSafeTime],
          [DSafeTime],
@@ -157,6 +164,7 @@
          #ParentID#,
          #OrgCode#,
          #OrgName#,
+         #OrgCode2#,
          #OrgType#,
          #PSafeTime#,
          #DSafeTime#,
@@ -178,6 +186,7 @@
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
        <isNotNull prepend="AND" property="OrgType">[OrgType]='$OrgType$'</isNotNull>
        <isNotNull prepend="AND" property="PSafeTime">[PSafeTime]='$PSafeTime$'</isNotNull>
        <isNotNull prepend="AND" property="DSafeTime">[DSafeTime]='$DSafeTime$'</isNotNull>

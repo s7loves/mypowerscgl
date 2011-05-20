@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-19 8:31:18
+生成时间:2011-5-20 9:00:50
 ***********************************************/
 
 using System;
@@ -25,6 +25,7 @@ namespace Ebada.Scgl.Model
         private string _parentid=String.Empty; 
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
+        private string _orgcode2=String.Empty; 
         private string _orgtype=String.Empty; 
         private DateTime _psafetime=new DateTime(1900,1,1); 
         private DateTime _dsafetime=new DateTime(1900,1,1); 
@@ -63,11 +64,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：ParentID
-        /// 属性描述：ParentID
+        /// 属性描述：上级部门
         /// 字段信息：[ParentID],nvarchar
         /// </summary>
-        [Browsable(false)]
-        [DisplayNameAttribute("ParentID")]
+        [DisplayNameAttribute("上级部门")]
         public string ParentID
         {
             get { return _parentid; }
@@ -75,7 +75,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[ParentID]长度不能大于50!");
+                throw new Exception("[上级部门]长度不能大于50!");
                 if (_parentid as object == null || !_parentid.Equals(value))
                 {
                     _parentid = value;
@@ -88,6 +88,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：部门编号
         /// 字段信息：[OrgCode],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("部门编号")]
         public string OrgCode
         {
@@ -121,6 +122,27 @@ namespace Ebada.Scgl.Model
                 if (_orgname as object == null || !_orgname.Equals(value))
                 {
                     _orgname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：OrgCode2
+        /// 属性描述：部门原编号
+        /// 字段信息：[OrgCode2],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("部门原编号")]
+        public string OrgCode2
+        {
+            get { return _orgcode2; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[部门原编号]长度不能大于50!");
+                if (_orgcode2 as object == null || !_orgcode2.Equals(value))
+                {
+                    _orgcode2 = value;
                 }
             }			 
         }
@@ -208,7 +230,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义
         /// 字段信息：[C1],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("未定义")]
         public string C1
         {
@@ -230,7 +251,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义2
         /// 字段信息：[C2],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("未定义2")]
         public string C2
         {
@@ -252,7 +272,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义3
         /// 字段信息：[C3],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("未定义3")]
         public string C3
         {
@@ -274,7 +293,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义4
         /// 字段信息：[C4],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("未定义4")]
         public string C4
         {
@@ -296,7 +314,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义5
         /// 字段信息：[C5],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("未定义5")]
         public string C5
         {
