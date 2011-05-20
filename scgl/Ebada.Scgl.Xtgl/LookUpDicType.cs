@@ -46,7 +46,7 @@ namespace Ebada.Scgl.Xtgl {
             get {
                 if (orgtype == null) {
                     IList<DicType> list = new List<DicType>();
-                    list.Add(new DicType("0", "部门"));
+                    list.Add(new DicType("0", "机构"));
                     list.Add(new DicType("1", "供电所"));
                     list.Add(new DicType("2", "变电所"));
                     LookUpDicType ri = new LookUpDicType(list);

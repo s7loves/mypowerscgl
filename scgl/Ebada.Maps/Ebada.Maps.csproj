@@ -59,7 +59,7 @@
     <EmbeddedResource Include="Empolyees.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="mPost.xml" />
+    <EmbeddedResource Include="mPost.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="flow\" />

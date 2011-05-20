@@ -88,7 +88,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：部门编号
         /// 字段信息：[OrgCode],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("部门编号")]
         public string OrgCode
         {
@@ -230,6 +229,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义
         /// 字段信息：[C1],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("未定义")]
         public string C1
         {
@@ -251,6 +251,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义2
         /// 字段信息：[C2],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("未定义2")]
         public string C2
         {
@@ -272,6 +273,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义3
         /// 字段信息：[C3],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("未定义3")]
         public string C3
         {
@@ -293,6 +295,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义4
         /// 字段信息：[C4],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("未定义4")]
         public string C4
         {
@@ -314,6 +317,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：未定义5
         /// 字段信息：[C5],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("未定义5")]
         public string C5
         {
