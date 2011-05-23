@@ -1,10 +1,10 @@
 /**********************************************
 这是代码自动生成的，如果重新生成，所做的改动将会丢失
-系统:企业ERP
+系统:Ebada农电局生产管理
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-17 22:06:07
+生成时间:2011-5-23 22:06:38
 ***********************************************/
 
 using System;
@@ -29,11 +29,18 @@ namespace Ebada.Scgl.Model
         private string _linenamepath=String.Empty; 
         private string _linevol=String.Empty; 
         private string _orgcode=String.Empty; 
+        private string _orgcode2=String.Empty; 
+        private string _owner=("局属"); 
+        private string _contractor=String.Empty; 
+        private string _runstate=("运行"); 
+        private DateTime _indate=new DateTime(1900,1,1); 
         private string _linegtbegin=String.Empty; 
         private string _linegtend=String.Empty; 
         private string _wiretype=String.Empty; 
         private int _wirelength=0; 
-        private int _totallength=0;   
+        private int _totallength=0; 
+        private decimal _theoryloss=0; 
+        private decimal _actualloss=0;   
         #endregion
   
   
@@ -84,7 +91,7 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：LineType
-        /// 属性描述：线路级别,0干线/1支线/2分线
+        /// 属性描述：线路级别,1干线/2支线/3分线
         /// 字段信息：[LineType],nvarchar
         /// </summary>
         [DisplayNameAttribute("线路级别")]
@@ -108,7 +115,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：线路编号
         /// 字段信息：[LineCode],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("线路编号")]
         public string LineCode
         {
@@ -190,11 +196,11 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：OrgCode
-        /// 属性描述：所在单位
+        /// 属性描述：所属供电所
         /// 字段信息：[OrgCode],nvarchar
         /// </summary>
         [Browsable(false)]
-        [DisplayNameAttribute("所在单位")]
+        [DisplayNameAttribute("所属供电所")]
         public string OrgCode
         {
             get { return _orgcode; }
@@ -202,10 +208,112 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[所在单位]长度不能大于50!");
+                throw new Exception("[所属供电所]长度不能大于50!");
                 if (_orgcode as object == null || !_orgcode.Equals(value))
                 {
                     _orgcode = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：OrgCode2
+        /// 属性描述：配出变电所
+        /// 字段信息：[OrgCode2],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("配出变电所")]
+        public string OrgCode2
+        {
+            get { return _orgcode2; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[配出变电所]长度不能大于50!");
+                if (_orgcode2 as object == null || !_orgcode2.Equals(value))
+                {
+                    _orgcode2 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：Owner
+        /// 属性描述：产权
+        /// 字段信息：[Owner],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("产权")]
+        public string Owner
+        {
+            get { return _owner; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[产权]长度不能大于50!");
+                if (_owner as object == null || !_owner.Equals(value))
+                {
+                    _owner = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：Contractor
+        /// 属性描述：承包人
+        /// 字段信息：[Contractor],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("承包人")]
+        public string Contractor
+        {
+            get { return _contractor; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[承包人]长度不能大于50!");
+                if (_contractor as object == null || !_contractor.Equals(value))
+                {
+                    _contractor = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：RunState
+        /// 属性描述：运行状态
+        /// 字段信息：[RunState],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("运行状态")]
+        public string RunState
+        {
+            get { return _runstate; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[运行状态]长度不能大于50!");
+                if (_runstate as object == null || !_runstate.Equals(value))
+                {
+                    _runstate = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：InDate
+        /// 属性描述：投运日期
+        /// 字段信息：[InDate],datetime
+        /// </summary>
+        [DisplayNameAttribute("投运日期")]
+        public DateTime InDate
+        {
+            get { return _indate; }
+            set
+            {			
+                if (_indate as object == null || !_indate.Equals(value))
+                {
+                    _indate = value;
                 }
             }			 
         }
@@ -305,6 +413,42 @@ namespace Ebada.Scgl.Model
                 if (_totallength as object == null || !_totallength.Equals(value))
                 {
                     _totallength = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：TheoryLoss
+        /// 属性描述：理论线损
+        /// 字段信息：[TheoryLoss],decimal
+        /// </summary>
+        [DisplayNameAttribute("理论线损")]
+        public decimal TheoryLoss
+        {
+            get { return _theoryloss; }
+            set
+            {			
+                if (_theoryloss as object == null || !_theoryloss.Equals(value))
+                {
+                    _theoryloss = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ActualLoss
+        /// 属性描述：实际线损
+        /// 字段信息：[ActualLoss],decimal
+        /// </summary>
+        [DisplayNameAttribute("实际线损")]
+        public decimal ActualLoss
+        {
+            get { return _actualloss; }
+            set
+            {			
+                if (_actualloss as object == null || !_actualloss.Equals(value))
+                {
+                    _actualloss = value;
                 }
             }			 
         }

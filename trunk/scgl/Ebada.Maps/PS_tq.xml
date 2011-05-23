@@ -10,6 +10,19 @@
         <result property="tqCode" column="tqCode" />
         <result property="tqName" column="tqName" />
         <result property="Remark" column="Remark" />
+        <result property="Adress" column="Adress" />
+        <result property="xlCode" column="xlCode" />
+        <result property="xlCode2" column="xlCode2" />
+        <result property="Owner" column="Owner" />
+        <result property="cby" column="cby" />
+        <result property="cfy" column="cfy" />
+        <result property="Contractor" column="Contractor" />
+        <result property="Lowlossrate" column="Lowlossrate" />
+        <result property="Class" column="Class" />
+        <result property="tclr" column="tclr" />
+        <result property="hclr" column="hclr" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="InDate" column="InDate" />
       </resultMap>
   </resultMaps>
 
@@ -20,7 +33,20 @@
          [tqID],
          [tqCode],
          [tqName],
-         [Remark]
+         [Remark],
+         [Adress],
+         [xlCode],
+         [xlCode2],
+         [Owner],
+         [cby],
+         [cfy],
+         [Contractor],
+         [Lowlossrate],
+         [Class],
+         [tclr],
+         [hclr],
+         [OrgCode],
+         [InDate]
           FROM PS_tq
           $value$
    </select>
@@ -31,7 +57,20 @@
          [tqID],
          [tqCode],
          [tqName],
-         [Remark]
+         [Remark],
+         [Adress],
+         [xlCode],
+         [xlCode2],
+         [Owner],
+         [cby],
+         [cfy],
+         [Contractor],
+         [Lowlossrate],
+         [Class],
+         [tclr],
+         [hclr],
+         [OrgCode],
+         [InDate]
           FROM PS_tq
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
@@ -39,6 +78,19 @@
        <isNotNull prepend="AND" property="tqCode">[tqCode]='$tqCode$'</isNotNull>
        <isNotNull prepend="AND" property="tqName">[tqName]='$tqName$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="Adress">[Adress]='$Adress$'</isNotNull>
+       <isNotNull prepend="AND" property="xlCode">[xlCode]='$xlCode$'</isNotNull>
+       <isNotNull prepend="AND" property="xlCode2">[xlCode2]='$xlCode2$'</isNotNull>
+       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
+       <isNotNull prepend="AND" property="cby">[cby]='$cby$'</isNotNull>
+       <isNotNull prepend="AND" property="cfy">[cfy]='$cfy$'</isNotNull>
+       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
+       <isNotNull prepend="AND" property="Lowlossrate">[Lowlossrate]='$Lowlossrate$'</isNotNull>
+       <isNotNull prepend="AND" property="Class">[Class]='$Class$'</isNotNull>
+       <isNotNull prepend="AND" property="tclr">[tclr]='$tclr$'</isNotNull>
+       <isNotNull prepend="AND" property="hclr">[hclr]='$hclr$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_tqByKey" resultMap="PS_tq_AllColumns" parameterClass="PS_tq">
@@ -47,7 +99,20 @@
          [tqID],
          [tqCode],
          [tqName],
-         [Remark]
+         [Remark],
+         [Adress],
+         [xlCode],
+         [xlCode2],
+         [Owner],
+         [cby],
+         [cfy],
+         [Contractor],
+         [Lowlossrate],
+         [Class],
+         [tclr],
+         [hclr],
+         [OrgCode],
+         [InDate]
          FROM PS_tq
          WHERE 
            tqID = #tqID#
@@ -80,7 +145,20 @@
              [gtID]=#gtID#,
              [tqCode]=#tqCode#,
              [tqName]=#tqName#,
-             [Remark]=#Remark#
+             [Remark]=#Remark#,
+             [Adress]=#Adress#,
+             [xlCode]=#xlCode#,
+             [xlCode2]=#xlCode2#,
+             [Owner]=#Owner#,
+             [cby]=#cby#,
+             [cfy]=#cfy#,
+             [Contractor]=#Contractor#,
+             [Lowlossrate]=#Lowlossrate#,
+             [Class]=#Class#,
+             [tclr]=#tclr#,
+             [hclr]=#hclr#,
+             [OrgCode]=#OrgCode#,
+             [InDate]=#InDate#
             WHERE 
               tqID = #tqID#
 
@@ -93,7 +171,20 @@
          [tqID],
          [tqCode],
          [tqName],
-         [Remark]
+         [Remark],
+         [Adress],
+         [xlCode],
+         [xlCode2],
+         [Owner],
+         [cby],
+         [cfy],
+         [Contractor],
+         [Lowlossrate],
+         [Class],
+         [tclr],
+         [hclr],
+         [OrgCode],
+         [InDate]
          )
        VALUES
          (
@@ -101,7 +192,20 @@
          #tqID#,
          #tqCode#,
          #tqName#,
-         #Remark#
+         #Remark#,
+         #Adress#,
+         #xlCode#,
+         #xlCode2#,
+         #Owner#,
+         #cby#,
+         #cfy#,
+         #Contractor#,
+         #Lowlossrate#,
+         #Class#,
+         #tclr#,
+         #hclr#,
+         #OrgCode#,
+         #InDate#
          )
 
    </insert>
@@ -115,6 +219,19 @@
        <isNotNull prepend="AND" property="tqCode">[tqCode]='$tqCode$'</isNotNull>
        <isNotNull prepend="AND" property="tqName">[tqName]='$tqName$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="Adress">[Adress]='$Adress$'</isNotNull>
+       <isNotNull prepend="AND" property="xlCode">[xlCode]='$xlCode$'</isNotNull>
+       <isNotNull prepend="AND" property="xlCode2">[xlCode2]='$xlCode2$'</isNotNull>
+       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
+       <isNotNull prepend="AND" property="cby">[cby]='$cby$'</isNotNull>
+       <isNotNull prepend="AND" property="cfy">[cfy]='$cfy$'</isNotNull>
+       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
+       <isNotNull prepend="AND" property="Lowlossrate">[Lowlossrate]='$Lowlossrate$'</isNotNull>
+       <isNotNull prepend="AND" property="Class">[Class]='$Class$'</isNotNull>
+       <isNotNull prepend="AND" property="tclr">[tclr]='$tclr$'</isNotNull>
+       <isNotNull prepend="AND" property="hclr">[hclr]='$hclr$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
      </dynamic>
 
    </select>
