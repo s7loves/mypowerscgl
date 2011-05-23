@@ -18,6 +18,13 @@
         <result property="WireType" column="WireType" />
         <result property="WireLength" column="WireLength" />
         <result property="TotalLength" column="TotalLength" />
+        <result property="Owner" column="Owner" />
+        <result property="OrgCode2" column="OrgCode2" />
+        <result property="InDate" column="InDate" />
+        <result property="RunState" column="RunState" />
+        <result property="Contractor" column="Contractor" />
+        <result property="TheoryLoss" column="TheoryLoss" />
+        <result property="ActualLoss" column="ActualLoss" />
       </resultMap>
   </resultMaps>
 
@@ -36,7 +43,14 @@
          [LineGtend],
          [WireType],
          [WireLength],
-         [TotalLength]
+         [TotalLength],
+         [Owner],
+         [OrgCode2],
+         [InDate],
+         [RunState],
+         [Contractor],
+         [TheoryLoss],
+         [ActualLoss]
           FROM PS_xl
           $value$
    </select>
@@ -55,7 +69,14 @@
          [LineGtend],
          [WireType],
          [WireLength],
-         [TotalLength]
+         [TotalLength],
+         [Owner],
+         [OrgCode2],
+         [InDate],
+         [RunState],
+         [Contractor],
+         [TheoryLoss],
+         [ActualLoss]
           FROM PS_xl
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
@@ -71,6 +92,13 @@
        <isNotNull prepend="AND" property="WireType">[WireType]='$WireType$'</isNotNull>
        <isNotNull prepend="AND" property="WireLength">[WireLength]='$WireLength$'</isNotNull>
        <isNotNull prepend="AND" property="TotalLength">[TotalLength]='$TotalLength$'</isNotNull>
+       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+       <isNotNull prepend="AND" property="RunState">[RunState]='$RunState$'</isNotNull>
+       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
+       <isNotNull prepend="AND" property="TheoryLoss">[TheoryLoss]='$TheoryLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="ActualLoss">[ActualLoss]='$ActualLoss$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_xlByKey" resultMap="PS_xl_AllColumns" parameterClass="PS_xl">
@@ -87,7 +115,14 @@
          [LineGtend],
          [WireType],
          [WireLength],
-         [TotalLength]
+         [TotalLength],
+         [Owner],
+         [OrgCode2],
+         [InDate],
+         [RunState],
+         [Contractor],
+         [TheoryLoss],
+         [ActualLoss]
          FROM PS_xl
          WHERE 
            LineID = #LineID#
@@ -128,7 +163,14 @@
              [LineGtend]=#LineGtend#,
              [WireType]=#WireType#,
              [WireLength]=#WireLength#,
-             [TotalLength]=#TotalLength#
+             [TotalLength]=#TotalLength#,
+             [Owner]=#Owner#,
+             [OrgCode2]=#OrgCode2#,
+             [InDate]=#InDate#,
+             [RunState]=#RunState#,
+             [Contractor]=#Contractor#,
+             [TheoryLoss]=#TheoryLoss#,
+             [ActualLoss]=#ActualLoss#
             WHERE 
               LineID = #LineID#
 
@@ -149,7 +191,14 @@
          [LineGtend],
          [WireType],
          [WireLength],
-         [TotalLength]
+         [TotalLength],
+         [Owner],
+         [OrgCode2],
+         [InDate],
+         [RunState],
+         [Contractor],
+         [TheoryLoss],
+         [ActualLoss]
          )
        VALUES
          (
@@ -165,7 +214,14 @@
          #LineGtend#,
          #WireType#,
          #WireLength#,
-         #TotalLength#
+         #TotalLength#,
+         #Owner#,
+         #OrgCode2#,
+         #InDate#,
+         #RunState#,
+         #Contractor#,
+         #TheoryLoss#,
+         #ActualLoss#
          )
 
    </insert>
@@ -187,6 +243,13 @@
        <isNotNull prepend="AND" property="WireType">[WireType]='$WireType$'</isNotNull>
        <isNotNull prepend="AND" property="WireLength">[WireLength]='$WireLength$'</isNotNull>
        <isNotNull prepend="AND" property="TotalLength">[TotalLength]='$TotalLength$'</isNotNull>
+       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+       <isNotNull prepend="AND" property="RunState">[RunState]='$RunState$'</isNotNull>
+       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
+       <isNotNull prepend="AND" property="TheoryLoss">[TheoryLoss]='$TheoryLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="ActualLoss">[ActualLoss]='$ActualLoss$'</isNotNull>
      </dynamic>
 
    </select>
