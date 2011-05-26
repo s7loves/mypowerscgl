@@ -10,6 +10,7 @@
         <result property="byqCode" column="byqCode" />
         <result property="byqName" column="byqName" />
         <result property="byqModle" column="byqModle" />
+        <result property="omniseal" column="omniseal" />
         <result property="byqOwner" column="byqOwner" />
         <result property="byqVol" column="byqVol" />
         <result property="byqPhase" column="byqPhase" />
@@ -26,6 +27,7 @@
         <result property="byqInstallDate" column="byqInstallDate" />
         <result property="byqInstallAdress" column="byqInstallAdress" />
         <result property="byqState" column="byqState" />
+        <result property="InDate" column="InDate" />
       </resultMap>
   </resultMaps>
 
@@ -37,6 +39,7 @@
          [byqCode],
          [byqName],
          [byqModle],
+         [omniseal],
          [byqOwner],
          [byqVol],
          [byqPhase],
@@ -52,7 +55,8 @@
          [byqCurrentTwo],
          [byqInstallDate],
          [byqInstallAdress],
-         [byqState]
+         [byqState],
+         [InDate]
           FROM PS_tqbyq
           $value$
    </select>
@@ -64,6 +68,7 @@
          [byqCode],
          [byqName],
          [byqModle],
+         [omniseal],
          [byqOwner],
          [byqVol],
          [byqPhase],
@@ -79,7 +84,8 @@
          [byqCurrentTwo],
          [byqInstallDate],
          [byqInstallAdress],
-         [byqState]
+         [byqState],
+         [InDate]
           FROM PS_tqbyq
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
@@ -87,6 +93,7 @@
        <isNotNull prepend="AND" property="byqCode">[byqCode]='$byqCode$'</isNotNull>
        <isNotNull prepend="AND" property="byqName">[byqName]='$byqName$'</isNotNull>
        <isNotNull prepend="AND" property="byqModle">[byqModle]='$byqModle$'</isNotNull>
+       <isNotNull prepend="AND" property="omniseal">[omniseal]='$omniseal$'</isNotNull>
        <isNotNull prepend="AND" property="byqOwner">[byqOwner]='$byqOwner$'</isNotNull>
        <isNotNull prepend="AND" property="byqVol">[byqVol]='$byqVol$'</isNotNull>
        <isNotNull prepend="AND" property="byqPhase">[byqPhase]='$byqPhase$'</isNotNull>
@@ -103,6 +110,7 @@
        <isNotNull prepend="AND" property="byqInstallDate">[byqInstallDate]='$byqInstallDate$'</isNotNull>
        <isNotNull prepend="AND" property="byqInstallAdress">[byqInstallAdress]='$byqInstallAdress$'</isNotNull>
        <isNotNull prepend="AND" property="byqState">[byqState]='$byqState$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_tqbyqByKey" resultMap="PS_tqbyq_AllColumns" parameterClass="PS_tqbyq">
@@ -112,6 +120,7 @@
          [byqCode],
          [byqName],
          [byqModle],
+         [omniseal],
          [byqOwner],
          [byqVol],
          [byqPhase],
@@ -127,7 +136,8 @@
          [byqCurrentTwo],
          [byqInstallDate],
          [byqInstallAdress],
-         [byqState]
+         [byqState],
+         [InDate]
          FROM PS_tqbyq
          WHERE 
            byqID = #byqID#
@@ -161,6 +171,7 @@
              [byqCode]=#byqCode#,
              [byqName]=#byqName#,
              [byqModle]=#byqModle#,
+             [omniseal]=#omniseal#,
              [byqOwner]=#byqOwner#,
              [byqVol]=#byqVol#,
              [byqPhase]=#byqPhase#,
@@ -176,7 +187,8 @@
              [byqCurrentTwo]=#byqCurrentTwo#,
              [byqInstallDate]=#byqInstallDate#,
              [byqInstallAdress]=#byqInstallAdress#,
-             [byqState]=#byqState#
+             [byqState]=#byqState#,
+             [InDate]=#InDate#
             WHERE 
               byqID = #byqID#
 
@@ -190,6 +202,7 @@
          [byqCode],
          [byqName],
          [byqModle],
+         [omniseal],
          [byqOwner],
          [byqVol],
          [byqPhase],
@@ -205,7 +218,8 @@
          [byqCurrentTwo],
          [byqInstallDate],
          [byqInstallAdress],
-         [byqState]
+         [byqState],
+         [InDate]
          )
        VALUES
          (
@@ -214,6 +228,7 @@
          #byqCode#,
          #byqName#,
          #byqModle#,
+         #omniseal#,
          #byqOwner#,
          #byqVol#,
          #byqPhase#,
@@ -229,7 +244,8 @@
          #byqCurrentTwo#,
          #byqInstallDate#,
          #byqInstallAdress#,
-         #byqState#
+         #byqState#,
+         #InDate#
          )
 
    </insert>
@@ -243,6 +259,7 @@
        <isNotNull prepend="AND" property="byqCode">[byqCode]='$byqCode$'</isNotNull>
        <isNotNull prepend="AND" property="byqName">[byqName]='$byqName$'</isNotNull>
        <isNotNull prepend="AND" property="byqModle">[byqModle]='$byqModle$'</isNotNull>
+       <isNotNull prepend="AND" property="omniseal">[omniseal]='$omniseal$'</isNotNull>
        <isNotNull prepend="AND" property="byqOwner">[byqOwner]='$byqOwner$'</isNotNull>
        <isNotNull prepend="AND" property="byqVol">[byqVol]='$byqVol$'</isNotNull>
        <isNotNull prepend="AND" property="byqPhase">[byqPhase]='$byqPhase$'</isNotNull>
@@ -259,6 +276,7 @@
        <isNotNull prepend="AND" property="byqInstallDate">[byqInstallDate]='$byqInstallDate$'</isNotNull>
        <isNotNull prepend="AND" property="byqInstallAdress">[byqInstallAdress]='$byqInstallAdress$'</isNotNull>
        <isNotNull prepend="AND" property="byqState">[byqState]='$byqState$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
      </dynamic>
 
    </select>

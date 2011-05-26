@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_02aqhd" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_02aqhd"  type="Ebada.Scgl.Model.PJ_02aqhd,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_02aqhd_AllColumns" class="PJ_02aqhd">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="zcr" column="zcr" />
+        <result property="kssj" column="kssj" />
+        <result property="jssj" column="jssj" />
+        <result property="cjry" column="cjry" />
+        <result property="qxry" column="qxry" />
+        <result property="hdnr" column="hdnr" />
+        <result property="hdxj" column="hdxj" />
+        <result property="py" column="py" />
+        <result property="qz" column="qz" />
+        <result property="qzrq" column="qzrq" />
+        <result property="gznrID" column="gznrID" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_02aqhdList" resultMap="PJ_02aqhd_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [zcr],
+         [kssj],
+         [jssj],
+         [cjry],
+         [qxry],
+         [hdnr],
+         [hdxj],
+         [py],
+         [qz],
+         [qzrq],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_02aqhd
+          $value$
+   </select>
+   
+   <select id="SelectPJ_02aqhdByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [zcr],
+         [kssj],
+         [jssj],
+         [cjry],
+         [qxry],
+         [hdnr],
+         [hdxj],
+         [py],
+         [qz],
+         [qzrq],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_02aqhd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
+       <isNotNull prepend="AND" property="kssj">[kssj]='$kssj$'</isNotNull>
+       <isNotNull prepend="AND" property="jssj">[jssj]='$jssj$'</isNotNull>
+       <isNotNull prepend="AND" property="cjry">[cjry]='$cjry$'</isNotNull>
+       <isNotNull prepend="AND" property="qxry">[qxry]='$qxry$'</isNotNull>
+       <isNotNull prepend="AND" property="hdnr">[hdnr]='$hdnr$'</isNotNull>
+       <isNotNull prepend="AND" property="hdxj">[hdxj]='$hdxj$'</isNotNull>
+       <isNotNull prepend="AND" property="py">[py]='$py$'</isNotNull>
+       <isNotNull prepend="AND" property="qz">[qz]='$qz$'</isNotNull>
+       <isNotNull prepend="AND" property="qzrq">[qzrq]='$qzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_02aqhdByKey" resultMap="PJ_02aqhd_AllColumns" parameterClass="PJ_02aqhd">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [zcr],
+         [kssj],
+         [jssj],
+         [cjry],
+         [qxry],
+         [hdnr],
+         [hdxj],
+         [py],
+         [qz],
+         [qzrq],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+         FROM PJ_02aqhd
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_02aqhd" parameterClass="PJ_02aqhd">
+        DELETE FROM 
+         PJ_02aqhd
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_02aqhdByWhere" parameterClass="string">
+     delete from PJ_02aqhd $value$
+   </delete>
+   
+   <delete id="DeletePJ_02aqhdByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_02aqhd
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_02aqhd" parameterClass="PJ_02aqhd" resultClass="int">
+          UPDATE PJ_02aqhd
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [zcr]=#zcr#,
+             [kssj]=#kssj#,
+             [jssj]=#jssj#,
+             [cjry]=#cjry#,
+             [qxry]=#qxry#,
+             [hdnr]=#hdnr#,
+             [hdxj]=#hdxj#,
+             [py]=#py#,
+             [qz]=#qz#,
+             [qzrq]=#qzrq#,
+             [gznrID]=#gznrID#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_02aqhd" parameterClass="PJ_02aqhd">
+        INSERT INTO PJ_02aqhd
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [zcr],
+         [kssj],
+         [jssj],
+         [cjry],
+         [qxry],
+         [hdnr],
+         [hdxj],
+         [py],
+         [qz],
+         [qzrq],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #zcr#,
+         #kssj#,
+         #jssj#,
+         #cjry#,
+         #qxry#,
+         #hdnr#,
+         #hdxj#,
+         #py#,
+         #qz#,
+         #qzrq#,
+         #gznrID#,
+         #CreateMan#,
+         #CreateDate#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_02aqhdRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_02aqhd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
+       <isNotNull prepend="AND" property="kssj">[kssj]='$kssj$'</isNotNull>
+       <isNotNull prepend="AND" property="jssj">[jssj]='$jssj$'</isNotNull>
+       <isNotNull prepend="AND" property="cjry">[cjry]='$cjry$'</isNotNull>
+       <isNotNull prepend="AND" property="qxry">[qxry]='$qxry$'</isNotNull>
+       <isNotNull prepend="AND" property="hdnr">[hdnr]='$hdnr$'</isNotNull>
+       <isNotNull prepend="AND" property="hdxj">[hdxj]='$hdxj$'</isNotNull>
+       <isNotNull prepend="AND" property="py">[py]='$py$'</isNotNull>
+       <isNotNull prepend="AND" property="qz">[qz]='$qz$'</isNotNull>
+       <isNotNull prepend="AND" property="qzrq">[qzrq]='$qzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_02aqhdRowCount" parameterClass="string">
+    select count(*) from PJ_02aqhd $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

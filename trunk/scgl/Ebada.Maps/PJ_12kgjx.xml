@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_12kgjx" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_12kgjx"  type="Ebada.Scgl.Model.PJ_12kgjx,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_12kgjx_AllColumns" class="PJ_12kgjx">
+        <result property="ID" column="ID" />
+        <result property="kgID" column="kgID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="jxsj" column="jxsj" />
+        <result property="jxnr" column="jxnr" />
+        <result property="fzr" column="fzr" />
+        <result property="Remark" column="Remark" />
+        <result property="gznrID" column="gznrID" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_12kgjxList" resultMap="PJ_12kgjx_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [jxsj],
+         [jxnr],
+         [fzr],
+         [Remark],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_12kgjx
+          $value$
+   </select>
+   
+   <select id="SelectPJ_12kgjxByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [jxsj],
+         [jxnr],
+         [fzr],
+         [Remark],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_12kgjx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="kgID">[kgID]='$kgID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="jxsj">[jxsj]='$jxsj$'</isNotNull>
+       <isNotNull prepend="AND" property="jxnr">[jxnr]='$jxnr$'</isNotNull>
+       <isNotNull prepend="AND" property="fzr">[fzr]='$fzr$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_12kgjxByKey" resultMap="PJ_12kgjx_AllColumns" parameterClass="PJ_12kgjx">
+         SELECT 
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [jxsj],
+         [jxnr],
+         [fzr],
+         [Remark],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+         FROM PJ_12kgjx
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_12kgjx" parameterClass="PJ_12kgjx">
+        DELETE FROM 
+         PJ_12kgjx
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_12kgjxByWhere" parameterClass="string">
+     delete from PJ_12kgjx $value$
+   </delete>
+   
+   <delete id="DeletePJ_12kgjxByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_12kgjx
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_12kgjx" parameterClass="PJ_12kgjx" resultClass="int">
+          UPDATE PJ_12kgjx
+           SET
+             [kgID]=#kgID#,
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [jxsj]=#jxsj#,
+             [jxnr]=#jxnr#,
+             [fzr]=#fzr#,
+             [Remark]=#Remark#,
+             [gznrID]=#gznrID#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_12kgjx" parameterClass="PJ_12kgjx">
+        INSERT INTO PJ_12kgjx
+         (
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [jxsj],
+         [jxnr],
+         [fzr],
+         [Remark],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+         )
+       VALUES
+         (
+         #ID#,
+         #kgID#,
+         #OrgCode#,
+         #OrgName#,
+         #jxsj#,
+         #jxnr#,
+         #fzr#,
+         #Remark#,
+         #gznrID#,
+         #CreateMan#,
+         #CreateDate#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_12kgjxRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_12kgjx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="kgID">[kgID]='$kgID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="jxsj">[jxsj]='$jxsj$'</isNotNull>
+       <isNotNull prepend="AND" property="jxnr">[jxnr]='$jxnr$'</isNotNull>
+       <isNotNull prepend="AND" property="fzr">[fzr]='$fzr$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_12kgjxRowCount" parameterClass="string">
+    select count(*) from PJ_12kgjx $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

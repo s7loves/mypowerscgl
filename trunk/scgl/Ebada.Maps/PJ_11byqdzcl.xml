@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_11byqdzcl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_11byqdzcl"  type="Ebada.Scgl.Model.PJ_11byqdzcl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_11byqdzcl_AllColumns" class="PJ_11byqdzcl">
+        <result property="ID" column="ID" />
+        <result property="byqID" column="byqID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="clrq" column="clrq" />
+        <result property="one2one" column="one2one" />
+        <result property="one2d" column="one2d" />
+        <result property="two2d" column="two2d" />
+        <result property="gznrID" column="gznrID" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_11byqdzclList" resultMap="PJ_11byqdzcl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [byqID],
+         [OrgCode],
+         [OrgName],
+         [clrq],
+         [one2one],
+         [one2d],
+         [two2d],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_11byqdzcl
+          $value$
+   </select>
+   
+   <select id="SelectPJ_11byqdzclByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [byqID],
+         [OrgCode],
+         [OrgName],
+         [clrq],
+         [one2one],
+         [one2d],
+         [two2d],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_11byqdzcl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="byqID">[byqID]='$byqID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="clrq">[clrq]='$clrq$'</isNotNull>
+       <isNotNull prepend="AND" property="one2one">[one2one]='$one2one$'</isNotNull>
+       <isNotNull prepend="AND" property="one2d">[one2d]='$one2d$'</isNotNull>
+       <isNotNull prepend="AND" property="two2d">[two2d]='$two2d$'</isNotNull>
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_11byqdzclByKey" resultMap="PJ_11byqdzcl_AllColumns" parameterClass="PJ_11byqdzcl">
+         SELECT 
+         [ID],
+         [byqID],
+         [OrgCode],
+         [OrgName],
+         [clrq],
+         [one2one],
+         [one2d],
+         [two2d],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+         FROM PJ_11byqdzcl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_11byqdzcl" parameterClass="PJ_11byqdzcl">
+        DELETE FROM 
+         PJ_11byqdzcl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_11byqdzclByWhere" parameterClass="string">
+     delete from PJ_11byqdzcl $value$
+   </delete>
+   
+   <delete id="DeletePJ_11byqdzclByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_11byqdzcl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_11byqdzcl" parameterClass="PJ_11byqdzcl" resultClass="int">
+          UPDATE PJ_11byqdzcl
+           SET
+             [byqID]=#byqID#,
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [clrq]=#clrq#,
+             [one2one]=#one2one#,
+             [one2d]=#one2d#,
+             [two2d]=#two2d#,
+             [gznrID]=#gznrID#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_11byqdzcl" parameterClass="PJ_11byqdzcl">
+        INSERT INTO PJ_11byqdzcl
+         (
+         [ID],
+         [byqID],
+         [OrgCode],
+         [OrgName],
+         [clrq],
+         [one2one],
+         [one2d],
+         [two2d],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+         )
+       VALUES
+         (
+         #ID#,
+         #byqID#,
+         #OrgCode#,
+         #OrgName#,
+         #clrq#,
+         #one2one#,
+         #one2d#,
+         #two2d#,
+         #gznrID#,
+         #CreateMan#,
+         #CreateDate#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_11byqdzclRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_11byqdzcl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="byqID">[byqID]='$byqID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="clrq">[clrq]='$clrq$'</isNotNull>
+       <isNotNull prepend="AND" property="one2one">[one2one]='$one2one$'</isNotNull>
+       <isNotNull prepend="AND" property="one2d">[one2d]='$one2d$'</isNotNull>
+       <isNotNull prepend="AND" property="two2d">[two2d]='$two2d$'</isNotNull>
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_11byqdzclRowCount" parameterClass="string">
+    select count(*) from PJ_11byqdzcl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

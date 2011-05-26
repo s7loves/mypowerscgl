@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_dyk" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_dyk"  type="Ebada.Scgl.Model.PJ_dyk,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_dyk_AllColumns" class="PJ_dyk">
+        <result property="ID" column="ID" />
+        <result property="dx" column="dx" />
+        <result property="sx" column="sx" />
+        <result property="bh" column="bh" />
+        <result property="nr" column="nr" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_dykList" resultMap="PJ_dyk_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [dx],
+         [sx],
+         [bh],
+         [nr]
+          FROM PJ_dyk
+          $value$
+   </select>
+   
+   <select id="SelectPJ_dykByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [dx],
+         [sx],
+         [bh],
+         [nr]
+          FROM PJ_dyk
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="dx">[dx]='$dx$'</isNotNull>
+       <isNotNull prepend="AND" property="sx">[sx]='$sx$'</isNotNull>
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="nr">[nr]='$nr$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_dykByKey" resultMap="PJ_dyk_AllColumns" parameterClass="PJ_dyk">
+         SELECT 
+         [ID],
+         [dx],
+         [sx],
+         [bh],
+         [nr]
+         FROM PJ_dyk
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_dyk" parameterClass="PJ_dyk">
+        DELETE FROM 
+         PJ_dyk
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_dykByWhere" parameterClass="string">
+     delete from PJ_dyk $value$
+   </delete>
+   
+   <delete id="DeletePJ_dykByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_dyk
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_dyk" parameterClass="PJ_dyk" resultClass="int">
+          UPDATE PJ_dyk
+           SET
+             [dx]=#dx#,
+             [sx]=#sx#,
+             [bh]=#bh#,
+             [nr]=#nr#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_dyk" parameterClass="PJ_dyk">
+        INSERT INTO PJ_dyk
+         (
+         [ID],
+         [dx],
+         [sx],
+         [bh],
+         [nr]
+         )
+       VALUES
+         (
+         #ID#,
+         #dx#,
+         #sx#,
+         #bh#,
+         #nr#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_dykRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_dyk
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="dx">[dx]='$dx$'</isNotNull>
+       <isNotNull prepend="AND" property="sx">[sx]='$sx$'</isNotNull>
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="nr">[nr]='$nr$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_dykRowCount" parameterClass="string">
+    select count(*) from PJ_dyk $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

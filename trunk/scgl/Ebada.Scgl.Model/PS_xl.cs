@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-23 22:06:38
+生成时间:2011-5-26 20:54:00
 ***********************************************/
 
 using System;
@@ -115,6 +115,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：线路编号
         /// 字段信息：[LineCode],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("线路编号")]
         public string LineCode
         {

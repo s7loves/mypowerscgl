@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_gzrj" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_gzrj"  type="Ebada.Scgl.Model.PJ_gzrj,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_gzrj_AllColumns" class="PJ_gzrj">
+        <result property="记录ID" column="记录ID" />
+        <result property="供电所代码" column="供电所代码" />
+        <result property="供电所名称" column="供电所名称" />
+        <result property="日期" column="日期" />
+        <result property="星期" column="星期" />
+        <result property="天气" column="天气" />
+        <result property="缺勤情况" column="缺勤情况" />
+        <result property="人身安全天数" column="人身安全天数" />
+        <result property="设备安全天数" column="设备安全天数" />
+        <result property="记事" column="记事" />
+        <result property="评语" column="评语" />
+        <result property="签字" column="签字" />
+        <result property="签字日期" column="签字日期" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_gzrjList" resultMap="PJ_gzrj_AllColumns" parameterClass="string">
+        SELECT 
+         [记录ID],
+         [供电所代码],
+         [供电所名称],
+         [日期],
+         [星期],
+         [天气],
+         [缺勤情况],
+         [人身安全天数],
+         [设备安全天数],
+         [记事],
+         [评语],
+         [签字],
+         [签字日期]
+          FROM PJ_gzrj
+          $value$
+   </select>
+   
+   <select id="SelectPJ_gzrjByHash" parameterClass="Hashtable">
+         SELECT 
+         [记录ID],
+         [供电所代码],
+         [供电所名称],
+         [日期],
+         [星期],
+         [天气],
+         [缺勤情况],
+         [人身安全天数],
+         [设备安全天数],
+         [记事],
+         [评语],
+         [签字],
+         [签字日期]
+          FROM PJ_gzrj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="记录ID">[记录ID]='$记录ID$'</isNotNull>
+       <isNotNull prepend="AND" property="供电所代码">[供电所代码]='$供电所代码$'</isNotNull>
+       <isNotNull prepend="AND" property="供电所名称">[供电所名称]='$供电所名称$'</isNotNull>
+       <isNotNull prepend="AND" property="日期">[日期]='$日期$'</isNotNull>
+       <isNotNull prepend="AND" property="星期">[星期]='$星期$'</isNotNull>
+       <isNotNull prepend="AND" property="天气">[天气]='$天气$'</isNotNull>
+       <isNotNull prepend="AND" property="缺勤情况">[缺勤情况]='$缺勤情况$'</isNotNull>
+       <isNotNull prepend="AND" property="人身安全天数">[人身安全天数]='$人身安全天数$'</isNotNull>
+       <isNotNull prepend="AND" property="设备安全天数">[设备安全天数]='$设备安全天数$'</isNotNull>
+       <isNotNull prepend="AND" property="记事">[记事]='$记事$'</isNotNull>
+       <isNotNull prepend="AND" property="评语">[评语]='$评语$'</isNotNull>
+       <isNotNull prepend="AND" property="签字">[签字]='$签字$'</isNotNull>
+       <isNotNull prepend="AND" property="签字日期">[签字日期]='$签字日期$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_gzrjByKey" resultMap="PJ_gzrj_AllColumns" parameterClass="PJ_gzrj">
+         SELECT 
+         [记录ID],
+         [供电所代码],
+         [供电所名称],
+         [日期],
+         [星期],
+         [天气],
+         [缺勤情况],
+         [人身安全天数],
+         [设备安全天数],
+         [记事],
+         [评语],
+         [签字],
+         [签字日期]
+         FROM PJ_gzrj
+         WHERE 
+           记录ID = #记录ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_gzrj" parameterClass="PJ_gzrj">
+        DELETE FROM 
+         PJ_gzrj
+           WHERE
+         记录ID = #记录ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_gzrjByWhere" parameterClass="string">
+     delete from PJ_gzrj $value$
+   </delete>
+   
+   <delete id="DeletePJ_gzrjByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_gzrj
+           WHERE
+         记录ID = #记录ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_gzrj" parameterClass="PJ_gzrj" resultClass="int">
+          UPDATE PJ_gzrj
+           SET
+             [供电所代码]=#供电所代码#,
+             [供电所名称]=#供电所名称#,
+             [日期]=#日期#,
+             [星期]=#星期#,
+             [天气]=#天气#,
+             [缺勤情况]=#缺勤情况#,
+             [人身安全天数]=#人身安全天数#,
+             [设备安全天数]=#设备安全天数#,
+             [记事]=#记事#,
+             [评语]=#评语#,
+             [签字]=#签字#,
+             [签字日期]=#签字日期#
+            WHERE 
+              记录ID = #记录ID#
+
+   </update>
+  
+   <insert id="InsertPJ_gzrj" parameterClass="PJ_gzrj">
+        INSERT INTO PJ_gzrj
+         (
+         [记录ID],
+         [供电所代码],
+         [供电所名称],
+         [日期],
+         [星期],
+         [天气],
+         [缺勤情况],
+         [人身安全天数],
+         [设备安全天数],
+         [记事],
+         [评语],
+         [签字],
+         [签字日期]
+         )
+       VALUES
+         (
+         #记录ID#,
+         #供电所代码#,
+         #供电所名称#,
+         #日期#,
+         #星期#,
+         #天气#,
+         #缺勤情况#,
+         #人身安全天数#,
+         #设备安全天数#,
+         #记事#,
+         #评语#,
+         #签字#,
+         #签字日期#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_gzrjRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_gzrj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="记录ID">[记录ID]='$记录ID$'</isNotNull>
+       <isNotNull prepend="AND" property="供电所代码">[供电所代码]='$供电所代码$'</isNotNull>
+       <isNotNull prepend="AND" property="供电所名称">[供电所名称]='$供电所名称$'</isNotNull>
+       <isNotNull prepend="AND" property="日期">[日期]='$日期$'</isNotNull>
+       <isNotNull prepend="AND" property="星期">[星期]='$星期$'</isNotNull>
+       <isNotNull prepend="AND" property="天气">[天气]='$天气$'</isNotNull>
+       <isNotNull prepend="AND" property="缺勤情况">[缺勤情况]='$缺勤情况$'</isNotNull>
+       <isNotNull prepend="AND" property="人身安全天数">[人身安全天数]='$人身安全天数$'</isNotNull>
+       <isNotNull prepend="AND" property="设备安全天数">[设备安全天数]='$设备安全天数$'</isNotNull>
+       <isNotNull prepend="AND" property="记事">[记事]='$记事$'</isNotNull>
+       <isNotNull prepend="AND" property="评语">[评语]='$评语$'</isNotNull>
+       <isNotNull prepend="AND" property="签字">[签字]='$签字$'</isNotNull>
+       <isNotNull prepend="AND" property="签字日期">[签字日期]='$签字日期$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_gzrjRowCount" parameterClass="string">
+    select count(*) from PJ_gzrj $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

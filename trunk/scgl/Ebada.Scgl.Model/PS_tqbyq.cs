@@ -1,10 +1,10 @@
 /**********************************************
 这是代码自动生成的，如果重新生成，所做的改动将会丢失
-系统:企业ERP
+系统:Ebada农电局生产管理
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-17 22:06:07
+生成时间:2011-5-26 20:54:00
 ***********************************************/
 
 using System;
@@ -26,6 +26,7 @@ namespace Ebada.Scgl.Model
         private string _byqcode=String.Empty; 
         private string _byqname=String.Empty; 
         private string _byqmodle=String.Empty; 
+        private bool _omniseal=false; 
         private string _byqowner=String.Empty; 
         private string _byqvol=String.Empty; 
         private string _byqphase=String.Empty; 
@@ -41,7 +42,8 @@ namespace Ebada.Scgl.Model
         private decimal _byqcurrenttwo=0; 
         private DateTime _byqinstalldate=new DateTime(1900,1,1); 
         private string _byqinstalladress=String.Empty; 
-        private string _byqstate=String.Empty;   
+        private string _byqstate=String.Empty; 
+        private DateTime _indate=new DateTime(1900,1,1);   
         #endregion
   
   
@@ -71,11 +73,11 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：byqID
-        /// 属性描述：变台ID
+        /// 属性描述：变压器ID
         /// 字段信息：[byqID],nvarchar
         /// </summary>
         [Browsable(false)]
-        [DisplayNameAttribute("变台ID")]
+        [DisplayNameAttribute("变压器ID")]
         public string byqID
         {
             get { return _byqid; }
@@ -83,7 +85,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[变台ID]长度不能大于50!");
+                throw new Exception("[变压器ID]长度不能大于50!");
                 if (_byqid as object == null || !_byqid.Equals(value))
                 {
                     _byqid = value;
@@ -150,6 +152,24 @@ namespace Ebada.Scgl.Model
                 if (_byqmodle as object == null || !_byqmodle.Equals(value))
                 {
                     _byqmodle = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：omniseal
+        /// 属性描述：全密封
+        /// 字段信息：[omniseal],bit
+        /// </summary>
+        [DisplayNameAttribute("全密封")]
+        public bool omniseal
+        {
+            get { return _omniseal; }
+            set
+            {			
+                if (_omniseal as object == null || !_omniseal.Equals(value))
+                {
+                    _omniseal = value;
                 }
             }			 
         }
@@ -465,6 +485,24 @@ namespace Ebada.Scgl.Model
                 if (_byqstate as object == null || !_byqstate.Equals(value))
                 {
                     _byqstate = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：InDate
+        /// 属性描述：投运日期
+        /// 字段信息：[InDate],datetime
+        /// </summary>
+        [DisplayNameAttribute("投运日期")]
+        public DateTime InDate
+        {
+            get { return _indate; }
+            set
+            {			
+                if (_indate as object == null || !_indate.Equals(value))
+                {
+                    _indate = value;
                 }
             }			 
         }
