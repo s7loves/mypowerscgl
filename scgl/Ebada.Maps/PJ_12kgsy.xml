@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_12kgsy" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_12kgsy"  type="Ebada.Scgl.Model.PJ_12kgsy,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_12kgsy_AllColumns" class="PJ_12kgsy">
+        <result property="ID" column="ID" />
+        <result property="kgID" column="kgID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="azrq" column="azrq" />
+        <result property="azdd" column="azdd" />
+        <result property="gtbh" column="gtbh" />
+        <result property="A_BCO" column="A_BCO" />
+        <result property="B_CAO" column="B_CAO" />
+        <result property="C_ABO" column="C_ABO" />
+        <result property="A_BCO2" column="A_BCO2" />
+        <result property="B_CAO2" column="B_CAO2" />
+        <result property="C_ABO2" column="C_ABO2" />
+        <result property="dy" column="dy" />
+        <result property="dysj" column="dysj" />
+        <result property="dl" column="dl" />
+        <result property="dlsj" column="dlsj" />
+        <result property="dzA" column="dzA" />
+        <result property="dzB" column="dzB" />
+        <result property="dzC" column="dzC" />
+        <result property="tqjc" column="tqjc" />
+        <result property="wgjc" column="wgjc" />
+        <result property="syjl" column="syjl" />
+        <result property="syz" column="syz" />
+        <result property="gznrID" column="gznrID" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_12kgsyList" resultMap="PJ_12kgsy_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [azrq],
+         [azdd],
+         [gtbh],
+         [A_BCO],
+         [B_CAO],
+         [C_ABO],
+         [A_BCO2],
+         [B_CAO2],
+         [C_ABO2],
+         [dy],
+         [dysj],
+         [dl],
+         [dlsj],
+         [dzA],
+         [dzB],
+         [dzC],
+         [tqjc],
+         [wgjc],
+         [syjl],
+         [syz],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_12kgsy
+          $value$
+   </select>
+   
+   <select id="SelectPJ_12kgsyByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [azrq],
+         [azdd],
+         [gtbh],
+         [A_BCO],
+         [B_CAO],
+         [C_ABO],
+         [A_BCO2],
+         [B_CAO2],
+         [C_ABO2],
+         [dy],
+         [dysj],
+         [dl],
+         [dlsj],
+         [dzA],
+         [dzB],
+         [dzC],
+         [tqjc],
+         [wgjc],
+         [syjl],
+         [syz],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_12kgsy
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="kgID">[kgID]='$kgID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="azrq">[azrq]='$azrq$'</isNotNull>
+       <isNotNull prepend="AND" property="azdd">[azdd]='$azdd$'</isNotNull>
+       <isNotNull prepend="AND" property="gtbh">[gtbh]='$gtbh$'</isNotNull>
+       <isNotNull prepend="AND" property="A_BCO">[A_BCO]='$A_BCO$'</isNotNull>
+       <isNotNull prepend="AND" property="B_CAO">[B_CAO]='$B_CAO$'</isNotNull>
+       <isNotNull prepend="AND" property="C_ABO">[C_ABO]='$C_ABO$'</isNotNull>
+       <isNotNull prepend="AND" property="A_BCO2">[A_BCO2]='$A_BCO2$'</isNotNull>
+       <isNotNull prepend="AND" property="B_CAO2">[B_CAO2]='$B_CAO2$'</isNotNull>
+       <isNotNull prepend="AND" property="C_ABO2">[C_ABO2]='$C_ABO2$'</isNotNull>
+       <isNotNull prepend="AND" property="dy">[dy]='$dy$'</isNotNull>
+       <isNotNull prepend="AND" property="dysj">[dysj]='$dysj$'</isNotNull>
+       <isNotNull prepend="AND" property="dl">[dl]='$dl$'</isNotNull>
+       <isNotNull prepend="AND" property="dlsj">[dlsj]='$dlsj$'</isNotNull>
+       <isNotNull prepend="AND" property="dzA">[dzA]='$dzA$'</isNotNull>
+       <isNotNull prepend="AND" property="dzB">[dzB]='$dzB$'</isNotNull>
+       <isNotNull prepend="AND" property="dzC">[dzC]='$dzC$'</isNotNull>
+       <isNotNull prepend="AND" property="tqjc">[tqjc]='$tqjc$'</isNotNull>
+       <isNotNull prepend="AND" property="wgjc">[wgjc]='$wgjc$'</isNotNull>
+       <isNotNull prepend="AND" property="syjl">[syjl]='$syjl$'</isNotNull>
+       <isNotNull prepend="AND" property="syz">[syz]='$syz$'</isNotNull>
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_12kgsyByKey" resultMap="PJ_12kgsy_AllColumns" parameterClass="PJ_12kgsy">
+         SELECT 
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [azrq],
+         [azdd],
+         [gtbh],
+         [A_BCO],
+         [B_CAO],
+         [C_ABO],
+         [A_BCO2],
+         [B_CAO2],
+         [C_ABO2],
+         [dy],
+         [dysj],
+         [dl],
+         [dlsj],
+         [dzA],
+         [dzB],
+         [dzC],
+         [tqjc],
+         [wgjc],
+         [syjl],
+         [syz],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+         FROM PJ_12kgsy
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_12kgsy" parameterClass="PJ_12kgsy">
+        DELETE FROM 
+         PJ_12kgsy
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_12kgsyByWhere" parameterClass="string">
+     delete from PJ_12kgsy $value$
+   </delete>
+   
+   <delete id="DeletePJ_12kgsyByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_12kgsy
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_12kgsy" parameterClass="PJ_12kgsy" resultClass="int">
+          UPDATE PJ_12kgsy
+           SET
+             [kgID]=#kgID#,
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [azrq]=#azrq#,
+             [azdd]=#azdd#,
+             [gtbh]=#gtbh#,
+             [A_BCO]=#A_BCO#,
+             [B_CAO]=#B_CAO#,
+             [C_ABO]=#C_ABO#,
+             [A_BCO2]=#A_BCO2#,
+             [B_CAO2]=#B_CAO2#,
+             [C_ABO2]=#C_ABO2#,
+             [dy]=#dy#,
+             [dysj]=#dysj#,
+             [dl]=#dl#,
+             [dlsj]=#dlsj#,
+             [dzA]=#dzA#,
+             [dzB]=#dzB#,
+             [dzC]=#dzC#,
+             [tqjc]=#tqjc#,
+             [wgjc]=#wgjc#,
+             [syjl]=#syjl#,
+             [syz]=#syz#,
+             [gznrID]=#gznrID#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_12kgsy" parameterClass="PJ_12kgsy">
+        INSERT INTO PJ_12kgsy
+         (
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [azrq],
+         [azdd],
+         [gtbh],
+         [A_BCO],
+         [B_CAO],
+         [C_ABO],
+         [A_BCO2],
+         [B_CAO2],
+         [C_ABO2],
+         [dy],
+         [dysj],
+         [dl],
+         [dlsj],
+         [dzA],
+         [dzB],
+         [dzC],
+         [tqjc],
+         [wgjc],
+         [syjl],
+         [syz],
+         [gznrID],
+         [CreateMan],
+         [CreateDate]
+         )
+       VALUES
+         (
+         #ID#,
+         #kgID#,
+         #OrgCode#,
+         #OrgName#,
+         #azrq#,
+         #azdd#,
+         #gtbh#,
+         #A_BCO#,
+         #B_CAO#,
+         #C_ABO#,
+         #A_BCO2#,
+         #B_CAO2#,
+         #C_ABO2#,
+         #dy#,
+         #dysj#,
+         #dl#,
+         #dlsj#,
+         #dzA#,
+         #dzB#,
+         #dzC#,
+         #tqjc#,
+         #wgjc#,
+         #syjl#,
+         #syz#,
+         #gznrID#,
+         #CreateMan#,
+         #CreateDate#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_12kgsyRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_12kgsy
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="kgID">[kgID]='$kgID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="azrq">[azrq]='$azrq$'</isNotNull>
+       <isNotNull prepend="AND" property="azdd">[azdd]='$azdd$'</isNotNull>
+       <isNotNull prepend="AND" property="gtbh">[gtbh]='$gtbh$'</isNotNull>
+       <isNotNull prepend="AND" property="A_BCO">[A_BCO]='$A_BCO$'</isNotNull>
+       <isNotNull prepend="AND" property="B_CAO">[B_CAO]='$B_CAO$'</isNotNull>
+       <isNotNull prepend="AND" property="C_ABO">[C_ABO]='$C_ABO$'</isNotNull>
+       <isNotNull prepend="AND" property="A_BCO2">[A_BCO2]='$A_BCO2$'</isNotNull>
+       <isNotNull prepend="AND" property="B_CAO2">[B_CAO2]='$B_CAO2$'</isNotNull>
+       <isNotNull prepend="AND" property="C_ABO2">[C_ABO2]='$C_ABO2$'</isNotNull>
+       <isNotNull prepend="AND" property="dy">[dy]='$dy$'</isNotNull>
+       <isNotNull prepend="AND" property="dysj">[dysj]='$dysj$'</isNotNull>
+       <isNotNull prepend="AND" property="dl">[dl]='$dl$'</isNotNull>
+       <isNotNull prepend="AND" property="dlsj">[dlsj]='$dlsj$'</isNotNull>
+       <isNotNull prepend="AND" property="dzA">[dzA]='$dzA$'</isNotNull>
+       <isNotNull prepend="AND" property="dzB">[dzB]='$dzB$'</isNotNull>
+       <isNotNull prepend="AND" property="dzC">[dzC]='$dzC$'</isNotNull>
+       <isNotNull prepend="AND" property="tqjc">[tqjc]='$tqjc$'</isNotNull>
+       <isNotNull prepend="AND" property="wgjc">[wgjc]='$wgjc$'</isNotNull>
+       <isNotNull prepend="AND" property="syjl">[syjl]='$syjl$'</isNotNull>
+       <isNotNull prepend="AND" property="syz">[syz]='$syz$'</isNotNull>
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_12kgsyRowCount" parameterClass="string">
+    select count(*) from PJ_12kgsy $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

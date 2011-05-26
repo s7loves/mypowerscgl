@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_gjyb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_gjyb"  type="Ebada.Scgl.Model.PS_gjyb,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_gjyb_AllColumns" class="PS_gjyb">
+        <result property="sbID" column="sbID" />
+        <result property="OrgID" column="OrgID" />
+        <result property="sbCode" column="sbCode" />
+        <result property="sbName" column="sbName" />
+        <result property="jdgg" column="jdgg" />
+        <result property="dw" column="dw" />
+        <result property="sl" column="sl" />
+        <result property="cj" column="cj" />
+        <result property="lqsj" column="lqsj" />
+        <result property="Remark" column="Remark" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_gjybList" resultMap="PS_gjyb_AllColumns" parameterClass="string">
+        SELECT 
+         [sbID],
+         [OrgID],
+         [sbCode],
+         [sbName],
+         [jdgg],
+         [dw],
+         [sl],
+         [cj],
+         [lqsj],
+         [Remark]
+          FROM PS_gjyb
+          $value$
+   </select>
+   
+   <select id="SelectPS_gjybByHash" parameterClass="Hashtable">
+         SELECT 
+         [sbID],
+         [OrgID],
+         [sbCode],
+         [sbName],
+         [jdgg],
+         [dw],
+         [sl],
+         [cj],
+         [lqsj],
+         [Remark]
+          FROM PS_gjyb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+       <isNotNull prepend="AND" property="jdgg">[jdgg]='$jdgg$'</isNotNull>
+       <isNotNull prepend="AND" property="dw">[dw]='$dw$'</isNotNull>
+       <isNotNull prepend="AND" property="sl">[sl]='$sl$'</isNotNull>
+       <isNotNull prepend="AND" property="cj">[cj]='$cj$'</isNotNull>
+       <isNotNull prepend="AND" property="lqsj">[lqsj]='$lqsj$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_gjybByKey" resultMap="PS_gjyb_AllColumns" parameterClass="PS_gjyb">
+         SELECT 
+         [sbID],
+         [OrgID],
+         [sbCode],
+         [sbName],
+         [jdgg],
+         [dw],
+         [sl],
+         [cj],
+         [lqsj],
+         [Remark]
+         FROM PS_gjyb
+         WHERE 
+           sbID = #sbID#
+
+   </select>
+ 
+   <delete id="DeletePS_gjyb" parameterClass="PS_gjyb">
+        DELETE FROM 
+         PS_gjyb
+           WHERE
+         sbID = #sbID#
+
+   </delete>
+   
+   <delete id="DeletePS_gjybByWhere" parameterClass="string">
+     delete from PS_gjyb $value$
+   </delete>
+   
+   <delete id="DeletePS_gjybByKey" parameterClass="string">
+        DELETE FROM 
+         PS_gjyb
+           WHERE
+         sbID = #sbID#
+    
+   </delete>
+   
+   <update id="UpdatePS_gjyb" parameterClass="PS_gjyb" resultClass="int">
+          UPDATE PS_gjyb
+           SET
+             [OrgID]=#OrgID#,
+             [sbCode]=#sbCode#,
+             [sbName]=#sbName#,
+             [jdgg]=#jdgg#,
+             [dw]=#dw#,
+             [sl]=#sl#,
+             [cj]=#cj#,
+             [lqsj]=#lqsj#,
+             [Remark]=#Remark#
+            WHERE 
+              sbID = #sbID#
+
+   </update>
+  
+   <insert id="InsertPS_gjyb" parameterClass="PS_gjyb">
+        INSERT INTO PS_gjyb
+         (
+         [sbID],
+         [OrgID],
+         [sbCode],
+         [sbName],
+         [jdgg],
+         [dw],
+         [sl],
+         [cj],
+         [lqsj],
+         [Remark]
+         )
+       VALUES
+         (
+         #sbID#,
+         #OrgID#,
+         #sbCode#,
+         #sbName#,
+         #jdgg#,
+         #dw#,
+         #sl#,
+         #cj#,
+         #lqsj#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetPS_gjybRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_gjyb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+       <isNotNull prepend="AND" property="jdgg">[jdgg]='$jdgg$'</isNotNull>
+       <isNotNull prepend="AND" property="dw">[dw]='$dw$'</isNotNull>
+       <isNotNull prepend="AND" property="sl">[sl]='$sl$'</isNotNull>
+       <isNotNull prepend="AND" property="cj">[cj]='$cj$'</isNotNull>
+       <isNotNull prepend="AND" property="lqsj">[lqsj]='$lqsj$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_gjybRowCount" parameterClass="string">
+    select count(*) from PS_gjyb $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

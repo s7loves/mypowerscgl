@@ -13,16 +13,16 @@
         <result property="LineNamePath" column="LineNamePath" />
         <result property="LineVol" column="LineVol" />
         <result property="OrgCode" column="OrgCode" />
+        <result property="OrgCode2" column="OrgCode2" />
+        <result property="Owner" column="Owner" />
+        <result property="Contractor" column="Contractor" />
+        <result property="RunState" column="RunState" />
+        <result property="InDate" column="InDate" />
         <result property="LineGtbegin" column="LineGtbegin" />
         <result property="LineGtend" column="LineGtend" />
         <result property="WireType" column="WireType" />
         <result property="WireLength" column="WireLength" />
         <result property="TotalLength" column="TotalLength" />
-        <result property="Owner" column="Owner" />
-        <result property="OrgCode2" column="OrgCode2" />
-        <result property="InDate" column="InDate" />
-        <result property="RunState" column="RunState" />
-        <result property="Contractor" column="Contractor" />
         <result property="TheoryLoss" column="TheoryLoss" />
         <result property="ActualLoss" column="ActualLoss" />
       </resultMap>
@@ -39,16 +39,16 @@
          [LineNamePath],
          [LineVol],
          [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
          [LineGtbegin],
          [LineGtend],
          [WireType],
          [WireLength],
          [TotalLength],
-         [Owner],
-         [OrgCode2],
-         [InDate],
-         [RunState],
-         [Contractor],
          [TheoryLoss],
          [ActualLoss]
           FROM PS_xl
@@ -65,16 +65,16 @@
          [LineNamePath],
          [LineVol],
          [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
          [LineGtbegin],
          [LineGtend],
          [WireType],
          [WireLength],
          [TotalLength],
-         [Owner],
-         [OrgCode2],
-         [InDate],
-         [RunState],
-         [Contractor],
          [TheoryLoss],
          [ActualLoss]
           FROM PS_xl
@@ -87,16 +87,16 @@
        <isNotNull prepend="AND" property="LineNamePath">[LineNamePath]='$LineNamePath$'</isNotNull>
        <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
+       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
+       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
+       <isNotNull prepend="AND" property="RunState">[RunState]='$RunState$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
        <isNotNull prepend="AND" property="LineGtbegin">[LineGtbegin]='$LineGtbegin$'</isNotNull>
        <isNotNull prepend="AND" property="LineGtend">[LineGtend]='$LineGtend$'</isNotNull>
        <isNotNull prepend="AND" property="WireType">[WireType]='$WireType$'</isNotNull>
        <isNotNull prepend="AND" property="WireLength">[WireLength]='$WireLength$'</isNotNull>
        <isNotNull prepend="AND" property="TotalLength">[TotalLength]='$TotalLength$'</isNotNull>
-       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
-       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
-       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
-       <isNotNull prepend="AND" property="RunState">[RunState]='$RunState$'</isNotNull>
-       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
        <isNotNull prepend="AND" property="TheoryLoss">[TheoryLoss]='$TheoryLoss$'</isNotNull>
        <isNotNull prepend="AND" property="ActualLoss">[ActualLoss]='$ActualLoss$'</isNotNull>
      </dynamic>
@@ -111,16 +111,16 @@
          [LineNamePath],
          [LineVol],
          [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
          [LineGtbegin],
          [LineGtend],
          [WireType],
          [WireLength],
          [TotalLength],
-         [Owner],
-         [OrgCode2],
-         [InDate],
-         [RunState],
-         [Contractor],
          [TheoryLoss],
          [ActualLoss]
          FROM PS_xl
@@ -159,16 +159,16 @@
              [LineNamePath]=#LineNamePath#,
              [LineVol]=#LineVol#,
              [OrgCode]=#OrgCode#,
+             [OrgCode2]=#OrgCode2#,
+             [Owner]=#Owner#,
+             [Contractor]=#Contractor#,
+             [RunState]=#RunState#,
+             [InDate]=#InDate#,
              [LineGtbegin]=#LineGtbegin#,
              [LineGtend]=#LineGtend#,
              [WireType]=#WireType#,
              [WireLength]=#WireLength#,
              [TotalLength]=#TotalLength#,
-             [Owner]=#Owner#,
-             [OrgCode2]=#OrgCode2#,
-             [InDate]=#InDate#,
-             [RunState]=#RunState#,
-             [Contractor]=#Contractor#,
              [TheoryLoss]=#TheoryLoss#,
              [ActualLoss]=#ActualLoss#
             WHERE 
@@ -187,16 +187,16 @@
          [LineNamePath],
          [LineVol],
          [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
          [LineGtbegin],
          [LineGtend],
          [WireType],
          [WireLength],
          [TotalLength],
-         [Owner],
-         [OrgCode2],
-         [InDate],
-         [RunState],
-         [Contractor],
          [TheoryLoss],
          [ActualLoss]
          )
@@ -210,16 +210,16 @@
          #LineNamePath#,
          #LineVol#,
          #OrgCode#,
+         #OrgCode2#,
+         #Owner#,
+         #Contractor#,
+         #RunState#,
+         #InDate#,
          #LineGtbegin#,
          #LineGtend#,
          #WireType#,
          #WireLength#,
          #TotalLength#,
-         #Owner#,
-         #OrgCode2#,
-         #InDate#,
-         #RunState#,
-         #Contractor#,
          #TheoryLoss#,
          #ActualLoss#
          )
@@ -238,16 +238,16 @@
        <isNotNull prepend="AND" property="LineNamePath">[LineNamePath]='$LineNamePath$'</isNotNull>
        <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
+       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
+       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
+       <isNotNull prepend="AND" property="RunState">[RunState]='$RunState$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
        <isNotNull prepend="AND" property="LineGtbegin">[LineGtbegin]='$LineGtbegin$'</isNotNull>
        <isNotNull prepend="AND" property="LineGtend">[LineGtend]='$LineGtend$'</isNotNull>
        <isNotNull prepend="AND" property="WireType">[WireType]='$WireType$'</isNotNull>
        <isNotNull prepend="AND" property="WireLength">[WireLength]='$WireLength$'</isNotNull>
        <isNotNull prepend="AND" property="TotalLength">[TotalLength]='$TotalLength$'</isNotNull>
-       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
-       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
-       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
-       <isNotNull prepend="AND" property="RunState">[RunState]='$RunState$'</isNotNull>
-       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
        <isNotNull prepend="AND" property="TheoryLoss">[TheoryLoss]='$TheoryLoss$'</isNotNull>
        <isNotNull prepend="AND" property="ActualLoss">[ActualLoss]='$ActualLoss$'</isNotNull>
      </dynamic>

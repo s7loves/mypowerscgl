@@ -8,6 +8,7 @@
         <result property="gtID" column="gtID" />
         <result property="LineCode" column="LineCode" />
         <result property="gtCode" column="gtCode" />
+        <result property="gth" column="gth" />
         <result property="gtType" column="gtType" />
         <result property="gtModle" column="gtModle" />
         <result property="gtHeight" column="gtHeight" />
@@ -26,6 +27,7 @@
          [gtID],
          [LineCode],
          [gtCode],
+         [gth],
          [gtType],
          [gtModle],
          [gtHeight],
@@ -44,6 +46,7 @@
          [gtID],
          [LineCode],
          [gtCode],
+         [gth],
          [gtType],
          [gtModle],
          [gtHeight],
@@ -58,6 +61,7 @@
        <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
        <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
        <isNotNull prepend="AND" property="gtCode">[gtCode]='$gtCode$'</isNotNull>
+       <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
        <isNotNull prepend="AND" property="gtType">[gtType]='$gtType$'</isNotNull>
        <isNotNull prepend="AND" property="gtModle">[gtModle]='$gtModle$'</isNotNull>
        <isNotNull prepend="AND" property="gtHeight">[gtHeight]='$gtHeight$'</isNotNull>
@@ -74,6 +78,7 @@
          [gtID],
          [LineCode],
          [gtCode],
+         [gth],
          [gtType],
          [gtModle],
          [gtHeight],
@@ -114,6 +119,7 @@
            SET
              [LineCode]=#LineCode#,
              [gtCode]=#gtCode#,
+             [gth]=#gth#,
              [gtType]=#gtType#,
              [gtModle]=#gtModle#,
              [gtHeight]=#gtHeight#,
@@ -134,6 +140,7 @@
          [gtID],
          [LineCode],
          [gtCode],
+         [gth],
          [gtType],
          [gtModle],
          [gtHeight],
@@ -149,6 +156,7 @@
          #gtID#,
          #LineCode#,
          #gtCode#,
+         #gth#,
          #gtType#,
          #gtModle#,
          #gtHeight#,
@@ -169,6 +177,7 @@
        <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
        <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
        <isNotNull prepend="AND" property="gtCode">[gtCode]='$gtCode$'</isNotNull>
+       <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
        <isNotNull prepend="AND" property="gtType">[gtType]='$gtType$'</isNotNull>
        <isNotNull prepend="AND" property="gtModle">[gtModle]='$gtModle$'</isNotNull>
        <isNotNull prepend="AND" property="gtHeight">[gtHeight]='$gtHeight$'</isNotNull>

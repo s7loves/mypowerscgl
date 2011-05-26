@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C2A8BD1A-52FA-4A05-8581-72C39C795C9C}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -60,6 +60,36 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mPost.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PJ_01gzrj.xml" />
+    <EmbeddedResource Include="PJ_02aqhd.xml" />
+    <EmbeddedResource Include="PJ_03yxfx.xml" />
+    <EmbeddedResource Include="PJ_04sgzayc.xml" />
+    <EmbeddedResource Include="PJ_05jcky.xml" />
+    <EmbeddedResource Include="PJ_05jckyjl.xml" />
+    <EmbeddedResource Include="PJ_06sbxs.xml" />
+    <EmbeddedResource Include="PJ_07jdzz.xml" />
+    <EmbeddedResource Include="PJ_07jdzzjl.xml" />
+    <EmbeddedResource Include="PJ_08sbtdjx.xml" />
+    <EmbeddedResource Include="PJ_09pxjl.xml" />
+    <EmbeddedResource Include="PJ_11byqbd.xml" />
+    <EmbeddedResource Include="PJ_11byqdydl.xml" />
+    <EmbeddedResource Include="PJ_11byqdzcl.xml" />
+    <EmbeddedResource Include="PJ_12kgbd.xml" />
+    <EmbeddedResource Include="PJ_12kgjx.xml" />
+    <EmbeddedResource Include="PJ_12kgsy.xml" />
+    <EmbeddedResource Include="PJ_13dlbhjl.xml" />
+    <EmbeddedResource Include="PJ_14aqgjsy.xml" />
+    <EmbeddedResource Include="PJ_18gysbpj.xml" />
+    <EmbeddedResource Include="PJ_21gzbxdh.xml" />
+    <EmbeddedResource Include="PJ_dyk.xml" />
+    <EmbeddedResource Include="PJ_gzrj.xml" />
+    <EmbeddedResource Include="PJ_gzrjnr.xml" />
+    <EmbeddedResource Include="PS_aqgj.xml" />
+    <EmbeddedResource Include="PS_gjyb.xml" />
+    <EmbeddedResource Include="PS_kg.xml" />
+    <EmbeddedResource Include="PS_tqdlbh.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="flow\" />

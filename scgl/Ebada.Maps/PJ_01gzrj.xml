@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_01gzrj" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_01gzrj"  type="Ebada.Scgl.Model.PJ_01gzrj,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_01gzrj_AllColumns" class="PJ_01gzrj">
+        <result property="gzrjID" column="gzrjID" />
+        <result property="GdsCode" column="GdsCode" />
+        <result property="GdsName" column="GdsName" />
+        <result property="rq" column="rq" />
+        <result property="xq" column="xq" />
+        <result property="tq" column="tq" />
+        <result property="qqry" column="qqry" />
+        <result property="rsaqts" column="rsaqts" />
+        <result property="sbaqts" column="sbaqts" />
+        <result property="js" column="js" />
+        <result property="py" column="py" />
+        <result property="qz" column="qz" />
+        <result property="qzrq" column="qzrq" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_01gzrjList" resultMap="PJ_01gzrj_AllColumns" parameterClass="string">
+        SELECT 
+         [gzrjID],
+         [GdsCode],
+         [GdsName],
+         [rq],
+         [xq],
+         [tq],
+         [qqry],
+         [rsaqts],
+         [sbaqts],
+         [js],
+         [py],
+         [qz],
+         [qzrq],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_01gzrj
+          $value$
+   </select>
+   
+   <select id="SelectPJ_01gzrjByHash" parameterClass="Hashtable">
+         SELECT 
+         [gzrjID],
+         [GdsCode],
+         [GdsName],
+         [rq],
+         [xq],
+         [tq],
+         [qqry],
+         [rsaqts],
+         [sbaqts],
+         [js],
+         [py],
+         [qz],
+         [qzrq],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_01gzrj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="GdsCode">[GdsCode]='$GdsCode$'</isNotNull>
+       <isNotNull prepend="AND" property="GdsName">[GdsName]='$GdsName$'</isNotNull>
+       <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
+       <isNotNull prepend="AND" property="xq">[xq]='$xq$'</isNotNull>
+       <isNotNull prepend="AND" property="tq">[tq]='$tq$'</isNotNull>
+       <isNotNull prepend="AND" property="qqry">[qqry]='$qqry$'</isNotNull>
+       <isNotNull prepend="AND" property="rsaqts">[rsaqts]='$rsaqts$'</isNotNull>
+       <isNotNull prepend="AND" property="sbaqts">[sbaqts]='$sbaqts$'</isNotNull>
+       <isNotNull prepend="AND" property="js">[js]='$js$'</isNotNull>
+       <isNotNull prepend="AND" property="py">[py]='$py$'</isNotNull>
+       <isNotNull prepend="AND" property="qz">[qz]='$qz$'</isNotNull>
+       <isNotNull prepend="AND" property="qzrq">[qzrq]='$qzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_01gzrjByKey" resultMap="PJ_01gzrj_AllColumns" parameterClass="PJ_01gzrj">
+         SELECT 
+         [gzrjID],
+         [GdsCode],
+         [GdsName],
+         [rq],
+         [xq],
+         [tq],
+         [qqry],
+         [rsaqts],
+         [sbaqts],
+         [js],
+         [py],
+         [qz],
+         [qzrq],
+         [CreateMan],
+         [CreateDate]
+         FROM PJ_01gzrj
+         WHERE 
+           gzrjID = #gzrjID#
+
+   </select>
+ 
+   <delete id="DeletePJ_01gzrj" parameterClass="PJ_01gzrj">
+        DELETE FROM 
+         PJ_01gzrj
+           WHERE
+         gzrjID = #gzrjID#
+
+   </delete>
+   
+   <delete id="DeletePJ_01gzrjByWhere" parameterClass="string">
+     delete from PJ_01gzrj $value$
+   </delete>
+   
+   <delete id="DeletePJ_01gzrjByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_01gzrj
+           WHERE
+         gzrjID = #gzrjID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_01gzrj" parameterClass="PJ_01gzrj" resultClass="int">
+          UPDATE PJ_01gzrj
+           SET
+             [GdsCode]=#GdsCode#,
+             [GdsName]=#GdsName#,
+             [rq]=#rq#,
+             [xq]=#xq#,
+             [tq]=#tq#,
+             [qqry]=#qqry#,
+             [rsaqts]=#rsaqts#,
+             [sbaqts]=#sbaqts#,
+             [js]=#js#,
+             [py]=#py#,
+             [qz]=#qz#,
+             [qzrq]=#qzrq#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#
+            WHERE 
+              gzrjID = #gzrjID#
+
+   </update>
+  
+   <insert id="InsertPJ_01gzrj" parameterClass="PJ_01gzrj">
+        INSERT INTO PJ_01gzrj
+         (
+         [gzrjID],
+         [GdsCode],
+         [GdsName],
+         [rq],
+         [xq],
+         [tq],
+         [qqry],
+         [rsaqts],
+         [sbaqts],
+         [js],
+         [py],
+         [qz],
+         [qzrq],
+         [CreateMan],
+         [CreateDate]
+         )
+       VALUES
+         (
+         #gzrjID#,
+         #GdsCode#,
+         #GdsName#,
+         #rq#,
+         #xq#,
+         #tq#,
+         #qqry#,
+         #rsaqts#,
+         #sbaqts#,
+         #js#,
+         #py#,
+         #qz#,
+         #qzrq#,
+         #CreateMan#,
+         #CreateDate#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_01gzrjRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_01gzrj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="GdsCode">[GdsCode]='$GdsCode$'</isNotNull>
+       <isNotNull prepend="AND" property="GdsName">[GdsName]='$GdsName$'</isNotNull>
+       <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
+       <isNotNull prepend="AND" property="xq">[xq]='$xq$'</isNotNull>
+       <isNotNull prepend="AND" property="tq">[tq]='$tq$'</isNotNull>
+       <isNotNull prepend="AND" property="qqry">[qqry]='$qqry$'</isNotNull>
+       <isNotNull prepend="AND" property="rsaqts">[rsaqts]='$rsaqts$'</isNotNull>
+       <isNotNull prepend="AND" property="sbaqts">[sbaqts]='$sbaqts$'</isNotNull>
+       <isNotNull prepend="AND" property="js">[js]='$js$'</isNotNull>
+       <isNotNull prepend="AND" property="py">[py]='$py$'</isNotNull>
+       <isNotNull prepend="AND" property="qz">[qz]='$qz$'</isNotNull>
+       <isNotNull prepend="AND" property="qzrq">[qzrq]='$qzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_01gzrjRowCount" parameterClass="string">
+    select count(*) from PJ_01gzrj $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

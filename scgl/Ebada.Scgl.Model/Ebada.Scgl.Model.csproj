@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -43,12 +43,39 @@
     <Compile Include="mPost.cs" />
     <Compile Include="mRole.cs" />
     <Compile Include="mUser.cs" />
+    <Compile Include="PJ_01gzrj.cs" />
+    <Compile Include="PJ_02aqhd.cs" />
+    <Compile Include="PJ_03yxfx.cs" />
+    <Compile Include="PJ_04sgzayc.cs" />
+    <Compile Include="PJ_05jcky.cs" />
+    <Compile Include="PJ_05jckyjl.cs" />
+    <Compile Include="PJ_06sbxs.cs" />
+    <Compile Include="PJ_07jdzz.cs" />
+    <Compile Include="PJ_07jdzzjl.cs" />
+    <Compile Include="PJ_08sbtdjx.cs" />
+    <Compile Include="PJ_09pxjl.cs" />
+    <Compile Include="PJ_11byqbd.cs" />
+    <Compile Include="PJ_11byqdydl.cs" />
+    <Compile Include="PJ_11byqdzcl.cs" />
+    <Compile Include="PJ_12kgbd.cs" />
+    <Compile Include="PJ_12kgjx.cs" />
+    <Compile Include="PJ_12kgsy.cs" />
+    <Compile Include="PJ_13dlbhjl.cs" />
+    <Compile Include="PJ_14aqgjsy.cs" />
+    <Compile Include="PJ_18gysbpj.cs" />
+    <Compile Include="PJ_21gzbxdh.cs" />
+    <Compile Include="PJ_dyk.cs" />
+    <Compile Include="PJ_gzrjnr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PS_aqgj.cs" />
     <Compile Include="PS_dyxl.cs" />
+    <Compile Include="PS_gjyb.cs" />
     <Compile Include="PS_gt.cs" />
     <Compile Include="PS_gtsb.cs" />
+    <Compile Include="PS_kg.cs" />
     <Compile Include="PS_tq.cs" />
     <Compile Include="PS_tqbyq.cs" />
+    <Compile Include="PS_tqdlbh.cs" />
     <Compile Include="PS_tqsb.cs" />
     <Compile Include="PS_xl.cs" />
     <Compile Include="rRoleModul.cs" />

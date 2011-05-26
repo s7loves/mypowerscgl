@@ -1,10 +1,10 @@
 /**********************************************
 这是代码自动生成的，如果重新生成，所做的改动将会丢失
-系统:企业ERP
+系统:Ebada农电局生产管理
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-17 22:06:07
+生成时间:2011-5-26 20:54:00
 ***********************************************/
 
 using System;
@@ -24,6 +24,7 @@ namespace Ebada.Scgl.Model
         private string _gtid=Newid(); 
         private string _linecode=String.Empty; 
         private string _gtcode=String.Empty; 
+        private string _gth=String.Empty; 
         private string _gttype=String.Empty; 
         private string _gtmodle=String.Empty; 
         private decimal _gtheight=0; 
@@ -84,7 +85,7 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：gtCode
-        /// 属性描述：杆塔编号
+        /// 属性描述：杆塔编号,线路编号+杆塔号
         /// 字段信息：[gtCode],nvarchar
         /// </summary>
         [DisplayNameAttribute("杆塔编号")]
@@ -99,6 +100,27 @@ namespace Ebada.Scgl.Model
                 if (_gtcode as object == null || !_gtcode.Equals(value))
                 {
                     _gtcode = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：gth
+        /// 属性描述：杆塔号
+        /// 字段信息：[gth],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("杆塔号")]
+        public string gth
+        {
+            get { return _gth; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 10)
+                throw new Exception("[杆塔号]长度不能大于10!");
+                if (_gth as object == null || !_gth.Equals(value))
+                {
+                    _gth = value;
                 }
             }			 
         }

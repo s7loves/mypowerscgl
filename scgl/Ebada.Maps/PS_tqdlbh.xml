@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_tqdlbh" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_tqdlbh"  type="Ebada.Scgl.Model.PS_tqdlbh,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_tqdlbh_AllColumns" class="PS_tqdlbh">
+        <result property="tqID" column="tqID" />
+        <result property="sbID" column="sbID" />
+        <result property="tqName" column="tqName" />
+        <result property="InstallAdress" column="InstallAdress" />
+        <result property="sbCode" column="sbCode" />
+        <result property="sbModle" column="sbModle" />
+        <result property="sbName" column="sbName" />
+        <result property="Factory" column="Factory" />
+        <result property="Number" column="Number" />
+        <result property="MadeDate" column="MadeDate" />
+        <result property="dzdl" column="dzdl" />
+        <result property="dzsj" column="dzsj" />
+        <result property="glr" column="glr" />
+        <result property="InstallDate" column="InstallDate" />
+        <result property="State" column="State" />
+        <result property="InDate" column="InDate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_tqdlbhList" resultMap="PS_tqdlbh_AllColumns" parameterClass="string">
+        SELECT 
+         [tqID],
+         [sbID],
+         [tqName],
+         [InstallAdress],
+         [sbCode],
+         [sbModle],
+         [sbName],
+         [Factory],
+         [Number],
+         [MadeDate],
+         [dzdl],
+         [dzsj],
+         [glr],
+         [InstallDate],
+         [State],
+         [InDate]
+          FROM PS_tqdlbh
+          $value$
+   </select>
+   
+   <select id="SelectPS_tqdlbhByHash" parameterClass="Hashtable">
+         SELECT 
+         [tqID],
+         [sbID],
+         [tqName],
+         [InstallAdress],
+         [sbCode],
+         [sbModle],
+         [sbName],
+         [Factory],
+         [Number],
+         [MadeDate],
+         [dzdl],
+         [dzsj],
+         [glr],
+         [InstallDate],
+         [State],
+         [InDate]
+          FROM PS_tqdlbh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="tqName">[tqName]='$tqName$'</isNotNull>
+       <isNotNull prepend="AND" property="InstallAdress">[InstallAdress]='$InstallAdress$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+       <isNotNull prepend="AND" property="Factory">[Factory]='$Factory$'</isNotNull>
+       <isNotNull prepend="AND" property="Number">[Number]='$Number$'</isNotNull>
+       <isNotNull prepend="AND" property="MadeDate">[MadeDate]='$MadeDate$'</isNotNull>
+       <isNotNull prepend="AND" property="dzdl">[dzdl]='$dzdl$'</isNotNull>
+       <isNotNull prepend="AND" property="dzsj">[dzsj]='$dzsj$'</isNotNull>
+       <isNotNull prepend="AND" property="glr">[glr]='$glr$'</isNotNull>
+       <isNotNull prepend="AND" property="InstallDate">[InstallDate]='$InstallDate$'</isNotNull>
+       <isNotNull prepend="AND" property="State">[State]='$State$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_tqdlbhByKey" resultMap="PS_tqdlbh_AllColumns" parameterClass="PS_tqdlbh">
+         SELECT 
+         [tqID],
+         [sbID],
+         [tqName],
+         [InstallAdress],
+         [sbCode],
+         [sbModle],
+         [sbName],
+         [Factory],
+         [Number],
+         [MadeDate],
+         [dzdl],
+         [dzsj],
+         [glr],
+         [InstallDate],
+         [State],
+         [InDate]
+         FROM PS_tqdlbh
+         WHERE 
+           sbID = #sbID#
+
+   </select>
+ 
+   <delete id="DeletePS_tqdlbh" parameterClass="PS_tqdlbh">
+        DELETE FROM 
+         PS_tqdlbh
+           WHERE
+         sbID = #sbID#
+
+   </delete>
+   
+   <delete id="DeletePS_tqdlbhByWhere" parameterClass="string">
+     delete from PS_tqdlbh $value$
+   </delete>
+   
+   <delete id="DeletePS_tqdlbhByKey" parameterClass="string">
+        DELETE FROM 
+         PS_tqdlbh
+           WHERE
+         sbID = #sbID#
+    
+   </delete>
+   
+   <update id="UpdatePS_tqdlbh" parameterClass="PS_tqdlbh" resultClass="int">
+          UPDATE PS_tqdlbh
+           SET
+             [tqID]=#tqID#,
+             [tqName]=#tqName#,
+             [InstallAdress]=#InstallAdress#,
+             [sbCode]=#sbCode#,
+             [sbModle]=#sbModle#,
+             [sbName]=#sbName#,
+             [Factory]=#Factory#,
+             [Number]=#Number#,
+             [MadeDate]=#MadeDate#,
+             [dzdl]=#dzdl#,
+             [dzsj]=#dzsj#,
+             [glr]=#glr#,
+             [InstallDate]=#InstallDate#,
+             [State]=#State#,
+             [InDate]=#InDate#
+            WHERE 
+              sbID = #sbID#
+
+   </update>
+  
+   <insert id="InsertPS_tqdlbh" parameterClass="PS_tqdlbh">
+        INSERT INTO PS_tqdlbh
+         (
+         [tqID],
+         [sbID],
+         [tqName],
+         [InstallAdress],
+         [sbCode],
+         [sbModle],
+         [sbName],
+         [Factory],
+         [Number],
+         [MadeDate],
+         [dzdl],
+         [dzsj],
+         [glr],
+         [InstallDate],
+         [State],
+         [InDate]
+         )
+       VALUES
+         (
+         #tqID#,
+         #sbID#,
+         #tqName#,
+         #InstallAdress#,
+         #sbCode#,
+         #sbModle#,
+         #sbName#,
+         #Factory#,
+         #Number#,
+         #MadeDate#,
+         #dzdl#,
+         #dzsj#,
+         #glr#,
+         #InstallDate#,
+         #State#,
+         #InDate#
+         )
+
+   </insert>
+   
+   <select id="GetPS_tqdlbhRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_tqdlbh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="tqName">[tqName]='$tqName$'</isNotNull>
+       <isNotNull prepend="AND" property="InstallAdress">[InstallAdress]='$InstallAdress$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+       <isNotNull prepend="AND" property="Factory">[Factory]='$Factory$'</isNotNull>
+       <isNotNull prepend="AND" property="Number">[Number]='$Number$'</isNotNull>
+       <isNotNull prepend="AND" property="MadeDate">[MadeDate]='$MadeDate$'</isNotNull>
+       <isNotNull prepend="AND" property="dzdl">[dzdl]='$dzdl$'</isNotNull>
+       <isNotNull prepend="AND" property="dzsj">[dzsj]='$dzsj$'</isNotNull>
+       <isNotNull prepend="AND" property="glr">[glr]='$glr$'</isNotNull>
+       <isNotNull prepend="AND" property="InstallDate">[InstallDate]='$InstallDate$'</isNotNull>
+       <isNotNull prepend="AND" property="State">[State]='$State$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_tqdlbhRowCount" parameterClass="string">
+    select count(*) from PS_tqdlbh $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

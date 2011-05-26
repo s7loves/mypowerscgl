@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_kg" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_kg"  type="Ebada.Scgl.Model.PS_kg,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_kg_AllColumns" class="PS_kg">
+        <result property="gtID" column="gtID" />
+        <result property="kgID" column="kgID" />
+        <result property="kgCode" column="kgCode" />
+        <result property="kgName" column="kgName" />
+        <result property="kgModle" column="kgModle" />
+        <result property="kgVol" column="kgVol" />
+        <result property="kgPhase" column="kgPhase" />
+        <result property="kgCapcity" column="kgCapcity" />
+        <result property="kgLineGroup" column="kgLineGroup" />
+        <result property="kgFactory" column="kgFactory" />
+        <result property="kgNumber" column="kgNumber" />
+        <result property="kgMadeDate" column="kgMadeDate" />
+        <result property="kgCloseVol" column="kgCloseVol" />
+        <result property="kgOpenEle" column="kgOpenEle" />
+        <result property="kgInstallDate" column="kgInstallDate" />
+        <result property="kgInstallAdress" column="kgInstallAdress" />
+        <result property="kgState" column="kgState" />
+        <result property="InDate" column="InDate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_kgList" resultMap="PS_kg_AllColumns" parameterClass="string">
+        SELECT 
+         [gtID],
+         [kgID],
+         [kgCode],
+         [kgName],
+         [kgModle],
+         [kgVol],
+         [kgPhase],
+         [kgCapcity],
+         [kgLineGroup],
+         [kgFactory],
+         [kgNumber],
+         [kgMadeDate],
+         [kgCloseVol],
+         [kgOpenEle],
+         [kgInstallDate],
+         [kgInstallAdress],
+         [kgState],
+         [InDate]
+          FROM PS_kg
+          $value$
+   </select>
+   
+   <select id="SelectPS_kgByHash" parameterClass="Hashtable">
+         SELECT 
+         [gtID],
+         [kgID],
+         [kgCode],
+         [kgName],
+         [kgModle],
+         [kgVol],
+         [kgPhase],
+         [kgCapcity],
+         [kgLineGroup],
+         [kgFactory],
+         [kgNumber],
+         [kgMadeDate],
+         [kgCloseVol],
+         [kgOpenEle],
+         [kgInstallDate],
+         [kgInstallAdress],
+         [kgState],
+         [InDate]
+          FROM PS_kg
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+       <isNotNull prepend="AND" property="kgID">[kgID]='$kgID$'</isNotNull>
+       <isNotNull prepend="AND" property="kgCode">[kgCode]='$kgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="kgName">[kgName]='$kgName$'</isNotNull>
+       <isNotNull prepend="AND" property="kgModle">[kgModle]='$kgModle$'</isNotNull>
+       <isNotNull prepend="AND" property="kgVol">[kgVol]='$kgVol$'</isNotNull>
+       <isNotNull prepend="AND" property="kgPhase">[kgPhase]='$kgPhase$'</isNotNull>
+       <isNotNull prepend="AND" property="kgCapcity">[kgCapcity]='$kgCapcity$'</isNotNull>
+       <isNotNull prepend="AND" property="kgLineGroup">[kgLineGroup]='$kgLineGroup$'</isNotNull>
+       <isNotNull prepend="AND" property="kgFactory">[kgFactory]='$kgFactory$'</isNotNull>
+       <isNotNull prepend="AND" property="kgNumber">[kgNumber]='$kgNumber$'</isNotNull>
+       <isNotNull prepend="AND" property="kgMadeDate">[kgMadeDate]='$kgMadeDate$'</isNotNull>
+       <isNotNull prepend="AND" property="kgCloseVol">[kgCloseVol]='$kgCloseVol$'</isNotNull>
+       <isNotNull prepend="AND" property="kgOpenEle">[kgOpenEle]='$kgOpenEle$'</isNotNull>
+       <isNotNull prepend="AND" property="kgInstallDate">[kgInstallDate]='$kgInstallDate$'</isNotNull>
+       <isNotNull prepend="AND" property="kgInstallAdress">[kgInstallAdress]='$kgInstallAdress$'</isNotNull>
+       <isNotNull prepend="AND" property="kgState">[kgState]='$kgState$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_kgByKey" resultMap="PS_kg_AllColumns" parameterClass="PS_kg">
+         SELECT 
+         [gtID],
+         [kgID],
+         [kgCode],
+         [kgName],
+         [kgModle],
+         [kgVol],
+         [kgPhase],
+         [kgCapcity],
+         [kgLineGroup],
+         [kgFactory],
+         [kgNumber],
+         [kgMadeDate],
+         [kgCloseVol],
+         [kgOpenEle],
+         [kgInstallDate],
+         [kgInstallAdress],
+         [kgState],
+         [InDate]
+         FROM PS_kg
+         WHERE 
+           kgID = #kgID#
+
+   </select>
+ 
+   <delete id="DeletePS_kg" parameterClass="PS_kg">
+        DELETE FROM 
+         PS_kg
+           WHERE
+         kgID = #kgID#
+
+   </delete>
+   
+   <delete id="DeletePS_kgByWhere" parameterClass="string">
+     delete from PS_kg $value$
+   </delete>
+   
+   <delete id="DeletePS_kgByKey" parameterClass="string">
+        DELETE FROM 
+         PS_kg
+           WHERE
+         kgID = #kgID#
+    
+   </delete>
+   
+   <update id="UpdatePS_kg" parameterClass="PS_kg" resultClass="int">
+          UPDATE PS_kg
+           SET
+             [gtID]=#gtID#,
+             [kgCode]=#kgCode#,
+             [kgName]=#kgName#,
+             [kgModle]=#kgModle#,
+             [kgVol]=#kgVol#,
+             [kgPhase]=#kgPhase#,
+             [kgCapcity]=#kgCapcity#,
+             [kgLineGroup]=#kgLineGroup#,
+             [kgFactory]=#kgFactory#,
+             [kgNumber]=#kgNumber#,
+             [kgMadeDate]=#kgMadeDate#,
+             [kgCloseVol]=#kgCloseVol#,
+             [kgOpenEle]=#kgOpenEle#,
+             [kgInstallDate]=#kgInstallDate#,
+             [kgInstallAdress]=#kgInstallAdress#,
+             [kgState]=#kgState#,
+             [InDate]=#InDate#
+            WHERE 
+              kgID = #kgID#
+
+   </update>
+  
+   <insert id="InsertPS_kg" parameterClass="PS_kg">
+        INSERT INTO PS_kg
+         (
+         [gtID],
+         [kgID],
+         [kgCode],
+         [kgName],
+         [kgModle],
+         [kgVol],
+         [kgPhase],
+         [kgCapcity],
+         [kgLineGroup],
+         [kgFactory],
+         [kgNumber],
+         [kgMadeDate],
+         [kgCloseVol],
+         [kgOpenEle],
+         [kgInstallDate],
+         [kgInstallAdress],
+         [kgState],
+         [InDate]
+         )
+       VALUES
+         (
+         #gtID#,
+         #kgID#,
+         #kgCode#,
+         #kgName#,
+         #kgModle#,
+         #kgVol#,
+         #kgPhase#,
+         #kgCapcity#,
+         #kgLineGroup#,
+         #kgFactory#,
+         #kgNumber#,
+         #kgMadeDate#,
+         #kgCloseVol#,
+         #kgOpenEle#,
+         #kgInstallDate#,
+         #kgInstallAdress#,
+         #kgState#,
+         #InDate#
+         )
+
+   </insert>
+   
+   <select id="GetPS_kgRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_kg
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+       <isNotNull prepend="AND" property="kgID">[kgID]='$kgID$'</isNotNull>
+       <isNotNull prepend="AND" property="kgCode">[kgCode]='$kgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="kgName">[kgName]='$kgName$'</isNotNull>
+       <isNotNull prepend="AND" property="kgModle">[kgModle]='$kgModle$'</isNotNull>
+       <isNotNull prepend="AND" property="kgVol">[kgVol]='$kgVol$'</isNotNull>
+       <isNotNull prepend="AND" property="kgPhase">[kgPhase]='$kgPhase$'</isNotNull>
+       <isNotNull prepend="AND" property="kgCapcity">[kgCapcity]='$kgCapcity$'</isNotNull>
+       <isNotNull prepend="AND" property="kgLineGroup">[kgLineGroup]='$kgLineGroup$'</isNotNull>
+       <isNotNull prepend="AND" property="kgFactory">[kgFactory]='$kgFactory$'</isNotNull>
+       <isNotNull prepend="AND" property="kgNumber">[kgNumber]='$kgNumber$'</isNotNull>
+       <isNotNull prepend="AND" property="kgMadeDate">[kgMadeDate]='$kgMadeDate$'</isNotNull>
+       <isNotNull prepend="AND" property="kgCloseVol">[kgCloseVol]='$kgCloseVol$'</isNotNull>
+       <isNotNull prepend="AND" property="kgOpenEle">[kgOpenEle]='$kgOpenEle$'</isNotNull>
+       <isNotNull prepend="AND" property="kgInstallDate">[kgInstallDate]='$kgInstallDate$'</isNotNull>
+       <isNotNull prepend="AND" property="kgInstallAdress">[kgInstallAdress]='$kgInstallAdress$'</isNotNull>
+       <isNotNull prepend="AND" property="kgState">[kgState]='$kgState$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_kgRowCount" parameterClass="string">
+    select count(*) from PS_kg $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

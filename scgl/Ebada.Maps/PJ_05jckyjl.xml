@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_05jckyjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_05jckyjl"  type="Ebada.Scgl.Model.PJ_05jckyjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_05jckyjl_AllColumns" class="PJ_05jckyjl">
+        <result property="ID" column="ID" />
+        <result property="jckyID" column="jckyID" />
+        <result property="clrq" column="clrq" />
+        <result property="scz" column="scz" />
+        <result property="qw" column="qw" />
+        <result property="clrqz" column="clrqz" />
+        <result property="jr" column="jr" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="gzrjID" column="gzrjID" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_05jckyjlList" resultMap="PJ_05jckyjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [jckyID],
+         [clrq],
+         [scz],
+         [qw],
+         [clrqz],
+         [jr],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID]
+          FROM PJ_05jckyjl
+          $value$
+   </select>
+   
+   <select id="SelectPJ_05jckyjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [jckyID],
+         [clrq],
+         [scz],
+         [qw],
+         [clrqz],
+         [jr],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID]
+          FROM PJ_05jckyjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="jckyID">[jckyID]='$jckyID$'</isNotNull>
+       <isNotNull prepend="AND" property="clrq">[clrq]='$clrq$'</isNotNull>
+       <isNotNull prepend="AND" property="scz">[scz]='$scz$'</isNotNull>
+       <isNotNull prepend="AND" property="qw">[qw]='$qw$'</isNotNull>
+       <isNotNull prepend="AND" property="clrqz">[clrqz]='$clrqz$'</isNotNull>
+       <isNotNull prepend="AND" property="jr">[jr]='$jr$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_05jckyjlByKey" resultMap="PJ_05jckyjl_AllColumns" parameterClass="PJ_05jckyjl">
+         SELECT 
+         [ID],
+         [jckyID],
+         [clrq],
+         [scz],
+         [qw],
+         [clrqz],
+         [jr],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID]
+         FROM PJ_05jckyjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_05jckyjl" parameterClass="PJ_05jckyjl">
+        DELETE FROM 
+         PJ_05jckyjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_05jckyjlByWhere" parameterClass="string">
+     delete from PJ_05jckyjl $value$
+   </delete>
+   
+   <delete id="DeletePJ_05jckyjlByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_05jckyjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_05jckyjl" parameterClass="PJ_05jckyjl" resultClass="int">
+          UPDATE PJ_05jckyjl
+           SET
+             [jckyID]=#jckyID#,
+             [clrq]=#clrq#,
+             [scz]=#scz#,
+             [qw]=#qw#,
+             [clrqz]=#clrqz#,
+             [jr]=#jr#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [gzrjID]=#gzrjID#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_05jckyjl" parameterClass="PJ_05jckyjl">
+        INSERT INTO PJ_05jckyjl
+         (
+         [ID],
+         [jckyID],
+         [clrq],
+         [scz],
+         [qw],
+         [clrqz],
+         [jr],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID]
+         )
+       VALUES
+         (
+         #ID#,
+         #jckyID#,
+         #clrq#,
+         #scz#,
+         #qw#,
+         #clrqz#,
+         #jr#,
+         #CreateMan#,
+         #CreateDate#,
+         #gzrjID#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_05jckyjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_05jckyjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="jckyID">[jckyID]='$jckyID$'</isNotNull>
+       <isNotNull prepend="AND" property="clrq">[clrq]='$clrq$'</isNotNull>
+       <isNotNull prepend="AND" property="scz">[scz]='$scz$'</isNotNull>
+       <isNotNull prepend="AND" property="qw">[qw]='$qw$'</isNotNull>
+       <isNotNull prepend="AND" property="clrqz">[clrqz]='$clrqz$'</isNotNull>
+       <isNotNull prepend="AND" property="jr">[jr]='$jr$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_05jckyjlRowCount" parameterClass="string">
+    select count(*) from PJ_05jckyjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
