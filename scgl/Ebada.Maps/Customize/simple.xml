@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="simple" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  </alias>
+  <resultMaps>
+      
+  </resultMaps>
+
+  <statements>
+   <select id="Select" resultClass="Hashtable" parameterClass="string">       
+     $value$
+   </select>  
+   
+   <delete id="Delete" parameterClass="string" resultClass="int">
+     $value$
+   </delete>  
+   
+   <update id="Update" parameterClass="string" resultClass="int">
+    $value$
+   </update>
+    <statement id="AnySql" parameterClass="string" resultClass="Hashtable">
+    $value$
+   </statement>
+  </statements>
+</sqlMap>
+ 
