@@ -21,6 +21,7 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
+
         private string _orgid=Newid(); 
         private string _parentid=String.Empty; 
         private string _orgcode=String.Empty; 
