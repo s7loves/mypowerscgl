@@ -101,6 +101,16 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCPJ_gzrjM.resx">
+      <DependentUpon>UCPJ_gzrjM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPJ_gzrj.resx">
+      <DependentUpon>UCPJ_gzrj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPJ_gzrjnr.resx">
+      <DependentUpon>UCPJ_gzrjnr.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -114,6 +124,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="UCPJ_gzrjM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPJ_gzrjM.Designer.cs">
+      <DependentUpon>UCPJ_gzrjM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPJ_gzrj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPJ_gzrj.Designer.cs">
+      <DependentUpon>UCPJ_gzrj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPJ_gzrjnr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPJ_gzrjnr.Designer.cs">
+      <DependentUpon>UCPJ_gzrjnr.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
+      <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
+      <Name>Ebada.Scgl.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
