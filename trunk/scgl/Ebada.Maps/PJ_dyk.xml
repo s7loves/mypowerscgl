@@ -6,10 +6,15 @@
   <resultMaps>
       <resultMap id="PJ_dyk_AllColumns" class="PJ_dyk">
         <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
         <result property="dx" column="dx" />
         <result property="sx" column="sx" />
         <result property="bh" column="bh" />
+        <result property="zjm" column="zjm" />
         <result property="nr" column="nr" />
+        <result property="nr2" column="nr2" />
+        <result property="nr3" column="nr3" />
+        <result property="nr4" column="nr4" />
       </resultMap>
   </resultMaps>
 
@@ -17,10 +22,15 @@
    <select id="SelectPJ_dykList" resultMap="PJ_dyk_AllColumns" parameterClass="string">
         SELECT 
          [ID],
+         [ParentID],
          [dx],
          [sx],
          [bh],
-         [nr]
+         [zjm],
+         [nr],
+         [nr2],
+         [nr3],
+         [nr4]
           FROM PJ_dyk
           $value$
    </select>
@@ -28,26 +38,41 @@
    <select id="SelectPJ_dykByHash" parameterClass="Hashtable">
          SELECT 
          [ID],
+         [ParentID],
          [dx],
          [sx],
          [bh],
-         [nr]
+         [zjm],
+         [nr],
+         [nr2],
+         [nr3],
+         [nr4]
           FROM PJ_dyk
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="dx">[dx]='$dx$'</isNotNull>
        <isNotNull prepend="AND" property="sx">[sx]='$sx$'</isNotNull>
        <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="zjm">[zjm]='$zjm$'</isNotNull>
        <isNotNull prepend="AND" property="nr">[nr]='$nr$'</isNotNull>
+       <isNotNull prepend="AND" property="nr2">[nr2]='$nr2$'</isNotNull>
+       <isNotNull prepend="AND" property="nr3">[nr3]='$nr3$'</isNotNull>
+       <isNotNull prepend="AND" property="nr4">[nr4]='$nr4$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_dykByKey" resultMap="PJ_dyk_AllColumns" parameterClass="PJ_dyk">
          SELECT 
          [ID],
+         [ParentID],
          [dx],
          [sx],
          [bh],
-         [nr]
+         [zjm],
+         [nr],
+         [nr2],
+         [nr3],
+         [nr4]
          FROM PJ_dyk
          WHERE 
            ID = #ID#
@@ -77,10 +102,15 @@
    <update id="UpdatePJ_dyk" parameterClass="PJ_dyk" resultClass="int">
           UPDATE PJ_dyk
            SET
+             [ParentID]=#ParentID#,
              [dx]=#dx#,
              [sx]=#sx#,
              [bh]=#bh#,
-             [nr]=#nr#
+             [zjm]=#zjm#,
+             [nr]=#nr#,
+             [nr2]=#nr2#,
+             [nr3]=#nr3#,
+             [nr4]=#nr4#
             WHERE 
               ID = #ID#
 
@@ -90,18 +120,28 @@
         INSERT INTO PJ_dyk
          (
          [ID],
+         [ParentID],
          [dx],
          [sx],
          [bh],
-         [nr]
+         [zjm],
+         [nr],
+         [nr2],
+         [nr3],
+         [nr4]
          )
        VALUES
          (
          #ID#,
+         #ParentID#,
          #dx#,
          #sx#,
          #bh#,
-         #nr#
+         #zjm#,
+         #nr#,
+         #nr2#,
+         #nr3#,
+         #nr4#
          )
 
    </insert>
@@ -111,10 +151,15 @@
           FROM PJ_dyk
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="dx">[dx]='$dx$'</isNotNull>
        <isNotNull prepend="AND" property="sx">[sx]='$sx$'</isNotNull>
        <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="zjm">[zjm]='$zjm$'</isNotNull>
        <isNotNull prepend="AND" property="nr">[nr]='$nr$'</isNotNull>
+       <isNotNull prepend="AND" property="nr2">[nr2]='$nr2$'</isNotNull>
+       <isNotNull prepend="AND" property="nr3">[nr3]='$nr3$'</isNotNull>
+       <isNotNull prepend="AND" property="nr4">[nr4]='$nr4$'</isNotNull>
      </dynamic>
 
    </select>

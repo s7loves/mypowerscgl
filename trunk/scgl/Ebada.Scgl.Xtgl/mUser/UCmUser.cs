@@ -78,6 +78,7 @@ namespace Ebada.Scgl.Xtgl {
         /// 父表ID
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string ParentID {
             get { return parentID; }
             set {

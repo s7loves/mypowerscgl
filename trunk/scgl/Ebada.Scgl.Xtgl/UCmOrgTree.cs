@@ -75,7 +75,7 @@ namespace Ebada.Scgl.Xtgl {
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete += treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
-            Init();
+            
         }
 
         void treeViewOperator_AfterDelete(mOrg newobj) {
@@ -103,7 +103,7 @@ namespace Ebada.Scgl.Xtgl {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-
+            Init();
         }
         public void Init() {
 

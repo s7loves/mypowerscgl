@@ -110,6 +110,12 @@
     <Compile Include="mUser\UCmUser.Designer.cs">
       <DependentUpon>UCmUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPJ_dykM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPJ_dykM.Designer.cs">
+      <DependentUpon>UCPJ_dykM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UCmOrgGds.cs">
       <SubType>UserControl</SubType>
@@ -129,6 +135,12 @@
     <Compile Include="UCmOrgBds.Designer.cs">
       <DependentUpon>UCmOrgBds.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPJ_dyk.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPJ_dyk.Designer.cs">
+      <DependentUpon>UCPJ_dyk.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mUser\UCmOrgUser.resx">
@@ -137,6 +149,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="mUser\UCmUser.resx">
       <DependentUpon>UCmUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPJ_dykM.resx">
+      <DependentUpon>UCPJ_dykM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -150,6 +166,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCmOrgBds.resx">
       <DependentUpon>UCmOrgBds.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPJ_dyk.resx">
+      <DependentUpon>UCPJ_dyk.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
