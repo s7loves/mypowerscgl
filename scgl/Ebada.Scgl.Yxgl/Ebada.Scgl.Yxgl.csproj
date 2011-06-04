@@ -107,6 +107,12 @@
     <Compile Include="01工作日记\frmgzrjnrEdit.Designer.cs">
       <DependentUpon>frmgzrjnrEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="02安全活动\UCPJ_02aqhd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="02安全活动\UCPJ_02aqhd.Designer.cs">
+      <DependentUpon>UCPJ_02aqhd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="01工作日记\frmgzrjEdit.resx">
       <DependentUpon>frmgzrjEdit.cs</DependentUpon>
@@ -114,6 +120,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="01工作日记\frmgzrjnrEdit.resx">
       <DependentUpon>frmgzrjnrEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="02安全活动\UCPJ_02aqhd.resx">
+      <DependentUpon>UCPJ_02aqhd.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -132,6 +142,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="01工作日记\UCPJ_gzrjnr.resx">
       <DependentUpon>UCPJ_gzrjnr.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="03运行分析\UCPJ_03yxfx.resx">
+      <DependentUpon>UCPJ_03yxfx.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -165,6 +179,12 @@
     <Compile Include="01工作日记\UCPJ_gzrjnr.Designer.cs">
       <DependentUpon>UCPJ_gzrjnr.cs</DependentUpon>
     </Compile>
+    <Compile Include="03运行分析\UCPJ_03yxfx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="03运行分析\UCPJ_03yxfx.Designer.cs">
+      <DependentUpon>UCPJ_03yxfx.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ebada.Scgl.Core\Ebada.Scgl.Core.csproj">
@@ -175,9 +195,6 @@
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="02运行分析\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
