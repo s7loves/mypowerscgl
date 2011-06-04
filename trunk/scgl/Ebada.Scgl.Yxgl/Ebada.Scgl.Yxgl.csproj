@@ -102,15 +102,15 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCPJ_gzrjM.resx">
+    <EmbeddedResource Include="01工作日记\UCPJ_gzrjM.resx">
       <DependentUpon>UCPJ_gzrjM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCPJ_gzrj.resx">
+    <EmbeddedResource Include="01工作日记\UCPJ_gzrj.resx">
       <DependentUpon>UCPJ_gzrj.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCPJ_gzrjnr.resx">
+    <EmbeddedResource Include="01工作日记\UCPJ_gzrjnr.resx">
       <DependentUpon>UCPJ_gzrjnr.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -127,22 +127,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="UCPJ_gzrjM.cs">
+    <Compile Include="01工作日记\UCPJ_gzrjM.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCPJ_gzrjM.Designer.cs">
+    <Compile Include="01工作日记\UCPJ_gzrjM.Designer.cs">
       <DependentUpon>UCPJ_gzrjM.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCPJ_gzrj.cs">
+    <Compile Include="01工作日记\UCPJ_gzrj.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCPJ_gzrj.Designer.cs">
+    <Compile Include="01工作日记\UCPJ_gzrj.Designer.cs">
       <DependentUpon>UCPJ_gzrj.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCPJ_gzrjnr.cs">
+    <Compile Include="01工作日记\UCPJ_gzrjnr.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCPJ_gzrjnr.Designer.cs">
+    <Compile Include="01工作日记\UCPJ_gzrjnr.Designer.cs">
       <DependentUpon>UCPJ_gzrjnr.cs</DependentUpon>
     </Compile>
   </ItemGroup>
