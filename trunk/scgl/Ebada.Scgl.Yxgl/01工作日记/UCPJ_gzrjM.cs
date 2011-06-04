@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Yxgl {
         /// </summary>
         public UCPJ_gzrjM() {
             InitializeComponent();
-            //接收TreeList行焦点改变事件
+            //接收行焦点改变事件
             ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<PJ_01gzrj>(ucTop_FocusedRowChanged);
         }
 
@@ -37,11 +37,6 @@ namespace Ebada.Scgl.Yxgl {
 
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-           // ucBottom.ParentID = "0";
-           // ucBottom.InitColumns();
-           // ucTop.InitColumns();
-           // ucTop.InitData();
-           //ucTop.ChildView = ucBottom.GridViewOperation;
         }
 
     }
