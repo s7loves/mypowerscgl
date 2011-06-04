@@ -148,6 +148,10 @@
       <DependentUpon>UCPJ_03yxfx.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="04事故障碍异常\UCPJ_04sgzayc.resx">
+      <DependentUpon>UCPJ_04sgzayc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -184,6 +188,12 @@
     </Compile>
     <Compile Include="03运行分析\UCPJ_03yxfx.Designer.cs">
       <DependentUpon>UCPJ_03yxfx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="04事故障碍异常\UCPJ_04sgzayc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="04事故障碍异常\UCPJ_04sgzayc.Designer.cs">
+      <DependentUpon>UCPJ_04sgzayc.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
