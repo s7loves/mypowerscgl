@@ -8,14 +8,14 @@
         <result property="ID" column="ID" />
         <result property="OrgCode" column="OrgCode" />
         <result property="OrgName" column="OrgName" />
-        <result property="zcr" column="zcr" />
-        <result property="rq" column="rq" />
-        <result property="cjry" column="cjry" />
-        <result property="zt" column="zt" />
-        <result property="jy" column="jy" />
-        <result property="jr" column="jr" />
-        <result property="py" column="py" />
-        <result property="qz" column="qz" />
+        <result property="tdsj" column="tdsj" />
+        <result property="sdsj" column="sdsj" />
+        <result property="gtdsj" column="gtdsj" />
+        <result property="ssdl" column="ssdl" />
+        <result property="clqk" column="clqk" />
+        <result property="yyfx" column="yyfx" />
+        <result property="fzdc" column="fzdc" />
+        <result property="zxr" column="zxr" />
         <result property="CreateMan" column="CreateMan" />
         <result property="CreateDate" column="CreateDate" />
         <result property="gznrID" column="gznrID" />
@@ -28,14 +28,14 @@
          [ID],
          [OrgCode],
          [OrgName],
-         [zcr],
-         [rq],
-         [cjry],
-         [zt],
-         [jy],
-         [jr],
-         [py],
-         [qz],
+         [tdsj],
+         [sdsj],
+         [gtdsj],
+         [ssdl],
+         [clqk],
+         [yyfx],
+         [fzdc],
+         [zxr],
          [CreateMan],
          [CreateDate],
          [gznrID]
@@ -48,14 +48,14 @@
          [ID],
          [OrgCode],
          [OrgName],
-         [zcr],
-         [rq],
-         [cjry],
-         [zt],
-         [jy],
-         [jr],
-         [py],
-         [qz],
+         [tdsj],
+         [sdsj],
+         [gtdsj],
+         [ssdl],
+         [clqk],
+         [yyfx],
+         [fzdc],
+         [zxr],
          [CreateMan],
          [CreateDate],
          [gznrID]
@@ -64,14 +64,14 @@
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
-       <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
-       <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
-       <isNotNull prepend="AND" property="cjry">[cjry]='$cjry$'</isNotNull>
-       <isNotNull prepend="AND" property="zt">[zt]='$zt$'</isNotNull>
-       <isNotNull prepend="AND" property="jy">[jy]='$jy$'</isNotNull>
-       <isNotNull prepend="AND" property="jr">[jr]='$jr$'</isNotNull>
-       <isNotNull prepend="AND" property="py">[py]='$py$'</isNotNull>
-       <isNotNull prepend="AND" property="qz">[qz]='$qz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdsj">[tdsj]='$tdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="sdsj">[sdsj]='$sdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="gtdsj">[gtdsj]='$gtdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="ssdl">[ssdl]='$ssdl$'</isNotNull>
+       <isNotNull prepend="AND" property="clqk">[clqk]='$clqk$'</isNotNull>
+       <isNotNull prepend="AND" property="yyfx">[yyfx]='$yyfx$'</isNotNull>
+       <isNotNull prepend="AND" property="fzdc">[fzdc]='$fzdc$'</isNotNull>
+       <isNotNull prepend="AND" property="zxr">[zxr]='$zxr$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
@@ -82,14 +82,14 @@
          [ID],
          [OrgCode],
          [OrgName],
-         [zcr],
-         [rq],
-         [cjry],
-         [zt],
-         [jy],
-         [jr],
-         [py],
-         [qz],
+         [tdsj],
+         [sdsj],
+         [gtdsj],
+         [ssdl],
+         [clqk],
+         [yyfx],
+         [fzdc],
+         [zxr],
          [CreateMan],
          [CreateDate],
          [gznrID]
@@ -124,14 +124,14 @@
            SET
              [OrgCode]=#OrgCode#,
              [OrgName]=#OrgName#,
-             [zcr]=#zcr#,
-             [rq]=#rq#,
-             [cjry]=#cjry#,
-             [zt]=#zt#,
-             [jy]=#jy#,
-             [jr]=#jr#,
-             [py]=#py#,
-             [qz]=#qz#,
+             [tdsj]=#tdsj#,
+             [sdsj]=#sdsj#,
+             [gtdsj]=#gtdsj#,
+             [ssdl]=#ssdl#,
+             [clqk]=#clqk#,
+             [yyfx]=#yyfx#,
+             [fzdc]=#fzdc#,
+             [zxr]=#zxr#,
              [CreateMan]=#CreateMan#,
              [CreateDate]=#CreateDate#,
              [gznrID]=#gznrID#
@@ -146,14 +146,14 @@
          [ID],
          [OrgCode],
          [OrgName],
-         [zcr],
-         [rq],
-         [cjry],
-         [zt],
-         [jy],
-         [jr],
-         [py],
-         [qz],
+         [tdsj],
+         [sdsj],
+         [gtdsj],
+         [ssdl],
+         [clqk],
+         [yyfx],
+         [fzdc],
+         [zxr],
          [CreateMan],
          [CreateDate],
          [gznrID]
@@ -163,14 +163,14 @@
          #ID#,
          #OrgCode#,
          #OrgName#,
-         #zcr#,
-         #rq#,
-         #cjry#,
-         #zt#,
-         #jy#,
-         #jr#,
-         #py#,
-         #qz#,
+         #tdsj#,
+         #sdsj#,
+         #gtdsj#,
+         #ssdl#,
+         #clqk#,
+         #yyfx#,
+         #fzdc#,
+         #zxr#,
          #CreateMan#,
          #CreateDate#,
          #gznrID#
@@ -185,14 +185,14 @@
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
-       <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
-       <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
-       <isNotNull prepend="AND" property="cjry">[cjry]='$cjry$'</isNotNull>
-       <isNotNull prepend="AND" property="zt">[zt]='$zt$'</isNotNull>
-       <isNotNull prepend="AND" property="jy">[jy]='$jy$'</isNotNull>
-       <isNotNull prepend="AND" property="jr">[jr]='$jr$'</isNotNull>
-       <isNotNull prepend="AND" property="py">[py]='$py$'</isNotNull>
-       <isNotNull prepend="AND" property="qz">[qz]='$qz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdsj">[tdsj]='$tdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="sdsj">[sdsj]='$sdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="gtdsj">[gtdsj]='$gtdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="ssdl">[ssdl]='$ssdl$'</isNotNull>
+       <isNotNull prepend="AND" property="clqk">[clqk]='$clqk$'</isNotNull>
+       <isNotNull prepend="AND" property="yyfx">[yyfx]='$yyfx$'</isNotNull>
+       <isNotNull prepend="AND" property="fzdc">[fzdc]='$fzdc$'</isNotNull>
+       <isNotNull prepend="AND" property="zxr">[zxr]='$zxr$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
