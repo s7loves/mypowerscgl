@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:53:58
+生成时间:2011-6-4 20:13:15
 ***********************************************/
 
 using System;
@@ -24,14 +24,14 @@ namespace Ebada.Scgl.Model
         private string _id=Newid(); 
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
-        private string _zcr=String.Empty; 
-        private DateTime _rq=new DateTime(1900,1,1); 
-        private string _cjry=String.Empty; 
-        private string _zt=String.Empty; 
-        private string _jy=String.Empty; 
-        private string _jr=String.Empty; 
-        private string _py=String.Empty; 
-        private string _qz=String.Empty; 
+        private string _tdsj=String.Empty; 
+        private DateTime _sdsj=new DateTime(1900,1,1); 
+        private string _gtdsj=String.Empty; 
+        private string _ssdl=String.Empty; 
+        private string _clqk=String.Empty; 
+        private string _yyfx=String.Empty; 
+        private string _fzdc=String.Empty; 
+        private string _zxr=String.Empty; 
         private string _createman=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
         private string _gznrid=String.Empty;   
@@ -105,166 +105,166 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：zcr
+        /// 属性名称：tdsj
         /// 属性描述：停电时间
-        /// 字段信息：[zcr],nvarchar
+        /// 字段信息：[tdsj],nvarchar
         /// </summary>
         [DisplayNameAttribute("停电时间")]
-        public string zcr
+        public string tdsj
         {
-            get { return _zcr; }
+            get { return _tdsj; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
                 throw new Exception("[停电时间]长度不能大于50!");
-                if (_zcr as object == null || !_zcr.Equals(value))
+                if (_tdsj as object == null || !_tdsj.Equals(value))
                 {
-                    _zcr = value;
+                    _tdsj = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：rq
+        /// 属性名称：sdsj
         /// 属性描述：送电时间
-        /// 字段信息：[rq],datetime
+        /// 字段信息：[sdsj],datetime
         /// </summary>
         [DisplayNameAttribute("送电时间")]
-        public DateTime rq
+        public DateTime sdsj
         {
-            get { return _rq; }
+            get { return _sdsj; }
             set
             {			
-                if (_rq as object == null || !_rq.Equals(value))
+                if (_sdsj as object == null || !_sdsj.Equals(value))
                 {
-                    _rq = value;
+                    _sdsj = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：cjry
+        /// 属性名称：gtdsj
         /// 属性描述：共停电时间（时分）
-        /// 字段信息：[cjry],nvarchar
+        /// 字段信息：[gtdsj],nvarchar
         /// </summary>
         [DisplayNameAttribute("共停电时间（时分）")]
-        public string cjry
+        public string gtdsj
         {
-            get { return _cjry; }
+            get { return _gtdsj; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 500)
                 throw new Exception("[共停电时间（时分）]长度不能大于500!");
-                if (_cjry as object == null || !_cjry.Equals(value))
+                if (_gtdsj as object == null || !_gtdsj.Equals(value))
                 {
-                    _cjry = value;
+                    _gtdsj = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：zt
+        /// 属性名称：ssdl
         /// 属性描述：损失电量
-        /// 字段信息：[zt],nvarchar
+        /// 字段信息：[ssdl],nvarchar
         /// </summary>
         [DisplayNameAttribute("损失电量")]
-        public string zt
+        public string ssdl
         {
-            get { return _zt; }
+            get { return _ssdl; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 500)
                 throw new Exception("[损失电量]长度不能大于500!");
-                if (_zt as object == null || !_zt.Equals(value))
+                if (_ssdl as object == null || !_ssdl.Equals(value))
                 {
-                    _zt = value;
+                    _ssdl = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：jy
+        /// 属性名称：clqk
         /// 属性描述：事故情况及处理经过
-        /// 字段信息：[jy],nvarchar
+        /// 字段信息：[clqk],nvarchar
         /// </summary>
         [DisplayNameAttribute("事故情况及处理经过")]
-        public string jy
+        public string clqk
         {
-            get { return _jy; }
+            get { return _clqk; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 4000)
                 throw new Exception("[事故情况及处理经过]长度不能大于4000!");
-                if (_jy as object == null || !_jy.Equals(value))
+                if (_clqk as object == null || !_clqk.Equals(value))
                 {
-                    _jy = value;
+                    _clqk = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：jr
+        /// 属性名称：yyfx
         /// 属性描述：主要原因分析
-        /// 字段信息：[jr],nvarchar
+        /// 字段信息：[yyfx],nvarchar
         /// </summary>
         [DisplayNameAttribute("主要原因分析")]
-        public string jr
+        public string yyfx
         {
-            get { return _jr; }
+            get { return _yyfx; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 4000)
                 throw new Exception("[主要原因分析]长度不能大于4000!");
-                if (_jr as object == null || !_jr.Equals(value))
+                if (_yyfx as object == null || !_yyfx.Equals(value))
                 {
-                    _jr = value;
+                    _yyfx = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：py
+        /// 属性名称：fzdc
         /// 属性描述：今后防止对策
-        /// 字段信息：[py],nvarchar
+        /// 字段信息：[fzdc],nvarchar
         /// </summary>
         [DisplayNameAttribute("今后防止对策")]
-        public string py
+        public string fzdc
         {
-            get { return _py; }
+            get { return _fzdc; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 500)
                 throw new Exception("[今后防止对策]长度不能大于500!");
-                if (_py as object == null || !_py.Equals(value))
+                if (_fzdc as object == null || !_fzdc.Equals(value))
                 {
-                    _py = value;
+                    _fzdc = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：qz
+        /// 属性名称：zxr
         /// 属性描述：防止对策执行人
-        /// 字段信息：[qz],nvarchar
+        /// 字段信息：[zxr],nvarchar
         /// </summary>
         [DisplayNameAttribute("防止对策执行人")]
-        public string qz
+        public string zxr
         {
-            get { return _qz; }
+            get { return _zxr; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
                 throw new Exception("[防止对策执行人]长度不能大于50!");
-                if (_qz as object == null || !_qz.Equals(value))
+                if (_zxr as object == null || !_zxr.Equals(value))
                 {
-                    _qz = value;
+                    _zxr = value;
                 }
             }			 
         }

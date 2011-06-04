@@ -107,12 +107,14 @@
     <Compile Include="01工作日记\frmgzrjnrEdit.Designer.cs">
       <DependentUpon>frmgzrjnrEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="IExport.cs" />
     <Compile Include="02安全活动\UCPJ_02aqhd.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="02安全活动\UCPJ_02aqhd.Designer.cs">
       <DependentUpon>UCPJ_02aqhd.cs</DependentUpon>
     </Compile>
+    <Compile Include="02安全活动\Export02.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="01工作日记\frmgzrjEdit.resx">
       <DependentUpon>frmgzrjEdit.cs</DependentUpon>

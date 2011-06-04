@@ -185,5 +185,9 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
         }
+
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            Export02.ExportExcel();
+        }
     }
 }
