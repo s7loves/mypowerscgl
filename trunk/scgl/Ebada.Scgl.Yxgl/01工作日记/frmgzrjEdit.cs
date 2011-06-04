@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Yxgl
             this.textEdit1.DataBindings.Add("EditValue", rowData, "rq");
             this.textEdit2.DataBindings.Add("EditValue", rowData, "xq");
             this.textEdit3.DataBindings.Add("EditValue", rowData, "tq");
-
+            //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
            // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
