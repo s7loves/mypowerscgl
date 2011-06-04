@@ -162,7 +162,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by rq desc");
+                    RefreshData(" where OrgCode='" + value + "' order by id desc");
                 }
             }
         }
