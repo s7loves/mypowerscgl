@@ -26,12 +26,13 @@ namespace Ebada.Scgl.Yxgl {
         public UCPJ_gzrjM() {
             InitializeComponent();
             //接收TreeList行焦点改变事件
-            //ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<PJ_dyk>(ucTop_FocusedRowChanged);
+            ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<PJ_01gzrj>(ucTop_FocusedRowChanged);
         }
 
-        void ucTop_FocusedRowChanged(object sender, PJ_dyk obj) {
-            //ucBottom.ParentObj = obj;
-            splitCC1.Panel2.Text = "内容所在类别：" + (obj != null ? obj.dx : "");
+        void ucTop_FocusedRowChanged(object sender, PJ_01gzrj obj)
+        {
+            ucBottom.ParentObj = obj;
+            splitCC1.Panel2.Text = "内容日期：" + (obj != null ? obj.rq.ToShortDateString() : "");
         }
 
         protected override void OnLoad(EventArgs e) {

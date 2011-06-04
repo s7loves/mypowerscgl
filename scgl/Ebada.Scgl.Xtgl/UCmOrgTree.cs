@@ -69,7 +69,7 @@ namespace Ebada.Scgl.Xtgl {
         public event SendDataEventHandler<mOrg> AfterDelete;
         public UCmOrgTree() {
             InitializeComponent();
-            treeViewOperator = new TreeViewOperation<mOrg>(treeList1, barManager1);
+            treeViewOperator = new TreeViewOperation<mOrg>(treeList1, barManager1,new frmOrgEdit());
             treeViewOperator.CreatingObjectEvent += treeViewOperator_CreatingObject;
             treeViewOperator.AfterAdd += treeViewOperator_AfterAdd;
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
