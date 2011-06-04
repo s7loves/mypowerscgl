@@ -116,6 +116,8 @@ namespace Ebada.Scgl.Yxgl {
         void gridViewOperation_CreatingObjectEvent(PJ_gzrjnr newobj) {
             if (parentID == null) return;
             newobj.gzrjID = parentID;
+            newobj.CreateDate = DateTime.Now;
+            newobj.fssj = DateTime.Now;
         }
         /// <summary>
         /// 父表ID

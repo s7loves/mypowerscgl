@@ -24,8 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.splitCC1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.ucpJ_01gzrj1 = new Ebada.Scgl.Yxgl.UCPJ_01gzrj();
-            this.ucpJ_gzrjnr1 = new Ebada.Scgl.Yxgl.UCPJ_gzrjnr();
+            this.ucTop = new Ebada.Scgl.Yxgl.UCPJ_01gzrj();
+            this.ucBottom = new Ebada.Scgl.Yxgl.UCPJ_gzrjnr();
             ((System.ComponentModel.ISupportInitialize)(this.splitCC1)).BeginInit();
             this.splitCC1.SuspendLayout();
             this.SuspendLayout();
@@ -38,11 +38,11 @@
             this.splitCC1.Name = "splitCC1";
             this.splitCC1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitCC1.Panel1.CaptionLocation = DevExpress.Utils.Locations.Top;
-            this.splitCC1.Panel1.Controls.Add(this.ucpJ_01gzrj1);
+            this.splitCC1.Panel1.Controls.Add(this.ucTop);
             this.splitCC1.Panel1.ShowCaption = true;
             this.splitCC1.Panel1.Text = "工作日记";
             this.splitCC1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.splitCC1.Panel2.Controls.Add(this.ucpJ_gzrjnr1);
+            this.splitCC1.Panel2.Controls.Add(this.ucBottom);
             this.splitCC1.Panel2.ShowCaption = true;
             this.splitCC1.Panel2.Text = "工作内容";
             this.splitCC1.ShowCaption = true;
@@ -51,23 +51,23 @@
             this.splitCC1.TabIndex = 0;
             this.splitCC1.Text = "splitContainerControl1";
             // 
-            // ucpJ_01gzrj1
+            // ucTop
             // 
-            this.ucpJ_01gzrj1.ChildView = null;
-            this.ucpJ_01gzrj1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucpJ_01gzrj1.Location = new System.Drawing.Point(0, 0);
-            this.ucpJ_01gzrj1.Name = "ucpJ_01gzrj1";
-            this.ucpJ_01gzrj1.Size = new System.Drawing.Size(551, 240);
-            this.ucpJ_01gzrj1.TabIndex = 0;
+            this.ucTop.ChildView = null;
+            this.ucTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTop.Location = new System.Drawing.Point(0, 0);
+            this.ucTop.Name = "ucTop";
+            this.ucTop.Size = new System.Drawing.Size(551, 240);
+            this.ucTop.TabIndex = 0;
             // 
-            // ucpJ_gzrjnr1
+            // ucBottom
             // 
-            this.ucpJ_gzrjnr1.ChildView = null;
-            this.ucpJ_gzrjnr1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucpJ_gzrjnr1.Location = new System.Drawing.Point(0, 0);
-            this.ucpJ_gzrjnr1.Name = "ucpJ_gzrjnr1";
-            this.ucpJ_gzrjnr1.Size = new System.Drawing.Size(551, 164);
-            this.ucpJ_gzrjnr1.TabIndex = 0;
+            this.ucBottom.ChildView = null;
+            this.ucBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBottom.Location = new System.Drawing.Point(0, 0);
+            this.ucBottom.Name = "ucBottom";
+            this.ucBottom.Size = new System.Drawing.Size(551, 164);
+            this.ucBottom.TabIndex = 0;
             // 
             // UCPJ_gzrjM
             // 
@@ -85,8 +85,8 @@
         #endregion
 
         public DevExpress.XtraEditors.SplitContainerControl splitCC1;
-        private UCPJ_01gzrj ucpJ_01gzrj1;
-        private UCPJ_gzrjnr ucpJ_gzrjnr1;
+        private UCPJ_01gzrj ucTop;
+        private UCPJ_gzrjnr ucBottom;
 
     }
 }
