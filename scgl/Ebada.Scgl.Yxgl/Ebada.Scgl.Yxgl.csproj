@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="01工作日记\Export01.cs" />
     <Compile Include="01工作日记\frmgzrjEdit.cs">
       <SubType>Form</SubType>
     </Compile>
