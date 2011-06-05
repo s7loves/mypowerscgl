@@ -34,17 +34,15 @@ namespace Ebada.Scgl.Core {
         /// <returns></returns>
         public static ICollection GetQqyy() {
 
-            IList list = new ArrayList();
+            ICollection list = new ArrayList();
             string key ="qqyy";
             if (mCache.ContainsKey(key)) {
-                list =mCache[key] as IList;
+                list =mCache[key];
             }else{
-                string[] yys = new string[] { "公出", "事假", "外出", "病假", "休假" };
-                foreach (string str in yys) {
-                    list.Add(str);
-                }
+                list = new string[] { "公出", "事假", "外出", "病假", "休假" };
+
                 mCache.Add(key, list);
-            }
+            } 
             return list;
         }
         /// <summary>
@@ -53,15 +51,13 @@ namespace Ebada.Scgl.Core {
         /// <returns></returns>
         public static ICollection GetTQ() {
 
-            IList list = new ArrayList();
+            ICollection list = new ArrayList();
             string key = "tq";
             if (mCache.ContainsKey(key)) {
-                list = mCache[key] as IList;
+                list = mCache[key];
             } else {
-                string[] yys = new string[] { "晴", "阴", "多云", "雨", "雪" };
-                foreach (string str in yys) {
-                    list.Add(str);
-                }
+                list = new string[] { "晴", "阴", "多云", "雨", "雪" };
+                
                 mCache.Add(key, list);
             }
             return list;
