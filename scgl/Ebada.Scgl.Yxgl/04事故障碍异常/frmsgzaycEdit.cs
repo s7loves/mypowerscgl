@@ -24,12 +24,12 @@ namespace Ebada.Scgl.Yxgl
         void dataBind() {
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "tdsj");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "sdsj");
-            this.textEdit1.DataBindings.Add("EditValue", rowData, "cjry");
-            this.spinEdit1.DataBindings.Add("EditValue", rowData, "zt");
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "jy");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "jr");
-            this.memoEdit4.DataBindings.Add("EditValue", rowData, "py");
-            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "qz");
+            this.textEdit1.DataBindings.Add("EditValue", rowData, "gtdsj");
+            this.spinEdit1.DataBindings.Add("EditValue", rowData, "ssdl");
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "clqk");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "yyfx");
+            this.memoEdit4.DataBindings.Add("EditValue", rowData, "fzdc");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "zxr");
 
         }
         #region IPopupFormEdit Members
