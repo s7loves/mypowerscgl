@@ -21,7 +21,8 @@ namespace Ebada.Scgl.Core {
                 list = mCache[key];
             } else {
                 list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select UserName from mUser where orgcode='" + gdsID + "'");
-                mCache.Add(key, list);
+                if(mUseCache)
+                    mCache.Add(key, list);
             }
 
 
