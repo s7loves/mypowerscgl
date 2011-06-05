@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Xtgl {
         }
 
         void ucLeft1_FocusedNodeChanged(object sender, Ebada.Scgl.Model.mOrg obj) {
-            ucRight1.ParentID = obj != null ? obj.OrgCode : null;
+            ucRight1.ParentObj = obj;
             splitCC1.Panel2.Text = "职员所在机构：" + (obj != null ? obj.OrgName : "");
         }
 

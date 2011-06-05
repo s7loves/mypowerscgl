@@ -16,28 +16,54 @@ using System.Collections;
 namespace Ebada.Scgl.Yxgl
 {
     public partial class frmgzrjEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_01gzrj> m_CityDic = new SortableSearchableBindingList<PJ_01gzrj>();
+        //SortableSearchableBindingList<PJ_01gzrj> m_CityDic = new SortableSearchableBindingList<PJ_01gzrj>();
 
         public frmgzrjEdit() {
             InitializeComponent();
         }
         void dataBind() {
-
-
             this.textEdit1.DataBindings.Add("EditValue", rowData, "rq");
             this.textEdit2.DataBindings.Add("EditValue", rowData, "xq");
-            this.textEdit3.DataBindings.Add("EditValue", rowData, "tq");
-            //
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
+            this.cBoxTq.DataBindings.Add("EditValue", rowData, "tq");
+            this.textEdit4.DataBindings.Add("EditValue", rowData, "rsaqts");
+            this.textEdit5.DataBindings.Add("EditValue", rowData, "sbaqts");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "js");
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "py");
+            this.textEdit7.DataBindings.Add("EditValue", rowData, "qz");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "qzrq"); 
 
+        }
+        void setqqry() {
+            string str = rowData.qqry;
+            string[] mans = str.Split(new char[1]{';'},10, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < 10; i++) {
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = "";
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).EditValue ="";
+            }
+            for(int i=0;i<mans.Length;i++) {
+                string[] ry = mans[i].Split(':');
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = ry[0];
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).EditValue = ry[1];
+            }
+        }
+        void getqqry() {
+            string str = "";
+            string ry = "";
+            string yy = "";
+            for (int i = 0; i < 10; i++) {
+                ry = ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue.ToString();
+                yy = ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).EditValue.ToString();
+                if (!string.IsNullOrEmpty(ry.Trim()))
+                    str += ry + ":" + yy + ";";
+            }
+            rowData.qqry = str;
         }
         #region IPopupFormEdit Members
         private PJ_01gzrj rowData = null;
 
         public object RowData {
             get {
+                getqqry();
                 return rowData;
             }
             set {
@@ -49,22 +75,21 @@ namespace Ebada.Scgl.Yxgl
                 } else {
                     ConvertHelper.CopyTo<PJ_01gzrj>(value as PJ_01gzrj, rowData);
                 }
+                setqqry();
             }
         }
 
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_01gzrj>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.GdsCode);//获取供电所人员列表
+            ICollection yyList = ComboBoxHelper.GetQqyy();//获取缺勤原因列表
+            for (int i = 0; i < 10; i++) {
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).Properties.Items.AddRange(yyList);
+            }
 
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+            this.cBoxTq.Properties.Items.AddRange(ComboBoxHelper.GetTQ());//设置天气列表
         }
 
         /// <summary>
