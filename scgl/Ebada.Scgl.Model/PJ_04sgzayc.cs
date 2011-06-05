@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-4 20:13:15
+生成时间:2011-6-5 15:28:55
 ***********************************************/
 
 using System;
@@ -24,7 +24,7 @@ namespace Ebada.Scgl.Model
         private string _id=Newid(); 
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
-        private string _tdsj=String.Empty; 
+        private DateTime _tdsj=new DateTime(1900,1,1); 
         private DateTime _sdsj=new DateTime(1900,1,1); 
         private string _gtdsj=String.Empty; 
         private string _ssdl=String.Empty; 
@@ -107,17 +107,14 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：tdsj
         /// 属性描述：停电时间
-        /// 字段信息：[tdsj],nvarchar
+        /// 字段信息：[tdsj],datetime
         /// </summary>
         [DisplayNameAttribute("停电时间")]
-        public string tdsj
+        public DateTime tdsj
         {
             get { return _tdsj; }
             set
             {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[停电时间]长度不能大于50!");
                 if (_tdsj as object == null || !_tdsj.Equals(value))
                 {
                     _tdsj = value;
