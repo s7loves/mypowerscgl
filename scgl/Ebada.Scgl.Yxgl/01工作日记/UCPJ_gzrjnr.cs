@@ -33,6 +33,7 @@ namespace Ebada.Scgl.Yxgl {
         private PJ_01gzrj parentObj;
         public UCPJ_gzrjnr() {
             InitializeComponent();
+            bar3.Visible = false;
             initImageList();
             gridViewOperation = new GridViewOperation<PJ_gzrjnr>(gridControl1, gridView1, barManager1,new frmgzrjnrEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_gzrjnr>(gridViewOperation_BeforeAdd);

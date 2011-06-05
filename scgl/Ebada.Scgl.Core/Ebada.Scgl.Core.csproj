@@ -93,6 +93,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComboBoxHelper.cs" />
+    <Compile Include="ListCacheHelper.cs" />
     <Compile Include="LookUpDicType.cs">
       <SubType>Component</SubType>
     </Compile>

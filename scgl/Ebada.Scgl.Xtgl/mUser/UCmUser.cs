@@ -27,6 +27,7 @@ namespace Ebada.Scgl.Xtgl {
         
         public event SendDataEventHandler<mUser> FocusedRowChanged;
         private string parentID;
+        private mOrg parentObj;
         public UCmUser() {
             InitializeComponent();
             initImageList();
@@ -73,6 +74,7 @@ namespace Ebada.Scgl.Xtgl {
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(mUser newobj) {
             newobj.OrgCode = parentID;
+            newobj.OrgName = parentObj.OrgName;
         }
         /// <summary>
         /// 父表ID
@@ -91,10 +93,24 @@ namespace Ebada.Scgl.Xtgl {
                     parentID = value;
 
                     if (!string.IsNullOrEmpty(parentID)) {
-                        str = string.Format("where OrgCode='{0}'", parentID);
+                        str = string.Format("where Orgcode='{0}'", parentID);
                     }
                 }
                 gridViewOperation.RefreshData(str);
+            }
+        }
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public mOrg ParentObj {
+            get { return parentObj; }
+            set {
+
+                parentObj = value;
+                if (value == null) {
+                    parentID = null;
+                } else {
+                    ParentID = value.OrgID;
+                }
             }
         }
     }

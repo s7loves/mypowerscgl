@@ -10,6 +10,9 @@
    <select id="Select" resultClass="Hashtable" parameterClass="string">       
      $value$
    </select>  
+   <select id="SelectOneStr" resultClass="string" parameterClass="string">       
+     $value$
+   </select>  
    
    <delete id="Delete" parameterClass="string" resultClass="int">
      $value$

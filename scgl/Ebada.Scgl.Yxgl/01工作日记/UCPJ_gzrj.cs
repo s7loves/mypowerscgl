@@ -38,6 +38,7 @@ namespace Ebada.Scgl.Yxgl
         public UCPJ_01gzrj()
         {
             InitializeComponent();
+            bar3.Visible = false;
             initImageList();
             gridViewOperation = new GridViewOperation<PJ_01gzrj>(gridControl1, gridView1, barManager1,new frmgzrjEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_01gzrj>(gridViewOperation_BeforeAdd);
@@ -158,6 +159,9 @@ namespace Ebada.Scgl.Yxgl
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
             newobj.rq = DateTime.Now.Date;
+            newobj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+            newobj.rsaqts = (DateTime.Today - parentObj.PSafeTime.Date).Days;
+            newobj.sbaqts = (DateTime.Today - parentObj.DSafeTime.Date).Days;
         }
         /// <summary>
         /// 父表ID
