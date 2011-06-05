@@ -22,21 +22,14 @@ namespace Ebada.Scgl.Yxgl
             InitializeComponent();
         }
         void dataBind() {
-
-
-            this.dateEdit2.DataBindings.Add("EditValue", rowData, "zcr");
-            this.dateEdit3.DataBindings.Add("EditValue", rowData, "rq");
-            this.dateEdit4.DataBindings.Add("EditValue", rowData, "cjry");
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "zt");
+            this.dateEdit2.DataBindings.Add("EditValue", rowData, "tdsj");
+            this.dateEdit3.DataBindings.Add("EditValue", rowData, "sdsj");
+            this.textEdit1.DataBindings.Add("EditValue", rowData, "cjry");
+            this.spinEdit1.DataBindings.Add("EditValue", rowData, "zt");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "jy");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "jr");
             this.memoEdit4.DataBindings.Add("EditValue", rowData, "py");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "qz");
-            
-            //
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
