@@ -16,7 +16,7 @@ using System.Collections;
 namespace Ebada.Scgl.Yxgl
 {
     public partial class frmsgzaycEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<UCPJ_04sgzayc> m_CityDic = new SortableSearchableBindingList<UCPJ_04sgzayc>();
+        SortableSearchableBindingList<PJ_04sgzayc> m_CityDic = new SortableSearchableBindingList<PJ_04sgzayc>();
 
         public frmsgzaycEdit() {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace Ebada.Scgl.Yxgl
 
         }
         #region IPopupFormEdit Members
-        private UCPJ_04sgzayc rowData = null;
+        private PJ_04sgzayc rowData = null;
 
         public object RowData {
             get {
@@ -49,11 +49,11 @@ namespace Ebada.Scgl.Yxgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as UCPJ_04sgzayc;
+                    this.rowData = value as PJ_04sgzayc;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<UCPJ_04sgzayc>(value as UCPJ_04sgzayc, rowData);
+                    ConvertHelper.CopyTo<PJ_04sgzayc>(value as PJ_04sgzayc, rowData);
                 }
             }
         }
