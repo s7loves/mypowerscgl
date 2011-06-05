@@ -126,6 +126,12 @@
     <Compile Include="04事故障碍异常\frmsgzaycEdit.Designer.cs">
       <DependentUpon>frmsgzaycEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzzjl .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzzjl .Designer.cs">
+      <DependentUpon>UCPJ_07jdzzjl .cs</DependentUpon>
+    </Compile>
     <Compile Include="IExport.cs" />
     <Compile Include="02安全活动\UCPJ_02aqhd.cs">
       <SubType>UserControl</SubType>
@@ -159,6 +165,10 @@
       <DependentUpon>frmsgzaycEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="07接地装置检测\UCPJ_07jdzzjl .resx">
+      <DependentUpon>UCPJ_07jdzzjl .cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -183,6 +193,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="04事故障碍异常\UCPJ_04sgzayc.resx">
       <DependentUpon>UCPJ_04sgzayc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="06设备巡视及缺陷消除\UCPJ_06sbxs.resx">
+      <DependentUpon>UCPJ_06sbxs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="07接地装置检测\UCPJ_07jdzz.resx">
+      <DependentUpon>UCPJ_07jdzz.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="08设备停电检修\UCPJ_08sbtdjx.resx">
+      <DependentUpon>UCPJ_08sbtdjx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="09培训记录\UCPJ_09pxjl.resx">
+      <DependentUpon>UCPJ_09pxjl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -236,6 +262,30 @@
     </Compile>
     <Compile Include="04事故障碍异常\UCPJ_04sgzayc.Designer.cs">
       <DependentUpon>UCPJ_04sgzayc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\UCPJ_06sbxs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\UCPJ_06sbxs.Designer.cs">
+      <DependentUpon>UCPJ_06sbxs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzz.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzz.Designer.cs">
+      <DependentUpon>UCPJ_07jdzz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="08设备停电检修\UCPJ_08sbtdjx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="08设备停电检修\UCPJ_08sbtdjx.Designer.cs">
+      <DependentUpon>UCPJ_08sbtdjx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="09培训记录\UCPJ_09pxjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="09培训记录\UCPJ_09pxjl.Designer.cs">
+      <DependentUpon>UCPJ_09pxjl.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
