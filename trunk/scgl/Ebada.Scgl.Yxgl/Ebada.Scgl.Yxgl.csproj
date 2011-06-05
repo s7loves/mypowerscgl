@@ -108,6 +108,24 @@
     <Compile Include="01工作日记\frmgzrjnrEdit.Designer.cs">
       <DependentUpon>frmgzrjnrEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="02安全活动\frmaqhdEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="02安全活动\frmaqhdEdit.Designer.cs">
+      <DependentUpon>frmaqhdEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="03运行分析\frmyxfxEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="03运行分析\frmyxfxEdit.Designer.cs">
+      <DependentUpon>frmyxfxEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="04事故障碍异常\frmsgzaycEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="04事故障碍异常\frmsgzaycEdit.Designer.cs">
+      <DependentUpon>frmsgzaycEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="IExport.cs" />
     <Compile Include="02安全活动\UCPJ_02aqhd.cs">
       <SubType>UserControl</SubType>
@@ -125,8 +143,20 @@
       <DependentUpon>frmgzrjnrEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="02安全活动\frmaqhdEdit.resx">
+      <DependentUpon>frmaqhdEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="02安全活动\UCPJ_02aqhd.resx">
       <DependentUpon>UCPJ_02aqhd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="03运行分析\frmyxfxEdit.resx">
+      <DependentUpon>frmyxfxEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="04事故障碍异常\frmsgzaycEdit.resx">
+      <DependentUpon>frmsgzaycEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -163,7 +193,7 @@
     <None Include="00记录模板\02安全活动记录.xls" />
     <None Include="00记录模板\03运行分析记录.xls" />
     <None Include="00记录模板\04事故障碍异常运行记录.xls" />
-    <None Include="00记录模板\05交叉跨越及对地离测量记录.xls" />
+    <None Include="00记录模板\05交叉跨越及对地距离测量记录.xls" />
     <None Include="00记录模板\06设备巡视及缺陷消除记录.xls" />
     <None Include="00记录模板\07接地装置检测记录.xls" />
     <None Include="00记录模板\08设备停电检修记录.xls" />
@@ -217,6 +247,9 @@
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="05交叉跨越及对地距离测量\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
