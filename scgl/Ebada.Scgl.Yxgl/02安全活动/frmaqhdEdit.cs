@@ -34,10 +34,6 @@ namespace Ebada.Scgl.Yxgl
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "py");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "qz");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "qzrq");
-            //
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
@@ -62,16 +58,7 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<UCPJ_02aqhd>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+            //填充下拉列表数据
         }
 
         /// <summary>
