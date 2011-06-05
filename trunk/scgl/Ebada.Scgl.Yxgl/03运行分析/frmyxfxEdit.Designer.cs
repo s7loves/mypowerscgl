@@ -34,6 +34,7 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.memoEdit4 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.memoEdit5 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -56,8 +57,10 @@
             this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateEdit4 = new DevExpress.XtraEditors.DateEdit();
+            this.dateEdit3 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.memoEdit3 = new DevExpress.XtraEditors.MemoEdit();
@@ -67,14 +70,12 @@
             this.comboBoxEdit6 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.dateEdit3 = new DevExpress.XtraEditors.DateEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.memoEdit5 = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit4.Properties)).BeginInit();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit5.Properties)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -98,13 +99,12 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit4.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties.VistaTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit5.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -116,7 +116,6 @@
             this.btnCancel.Size = new System.Drawing.Size(52, 23);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "取消";
-            this.btnCancel.UseWaitCursor = true;
             // 
             // btnOK
             // 
@@ -127,7 +126,6 @@
             this.btnOK.Size = new System.Drawing.Size(49, 23);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
-            this.btnOK.UseWaitCursor = true;
             // 
             // groupControlOrg
             // 
@@ -144,7 +142,6 @@
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.Size = new System.Drawing.Size(594, 583);
             this.groupControlOrg.TabIndex = 9;
-            this.groupControlOrg.UseWaitCursor = true;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
             // groupBox7
@@ -156,7 +153,6 @@
             this.groupBox7.TabIndex = 11;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "工作评语";
-            this.groupBox7.UseWaitCursor = true;
             // 
             // memoEdit4
             // 
@@ -164,7 +160,6 @@
             this.memoEdit4.Name = "memoEdit4";
             this.memoEdit4.Size = new System.Drawing.Size(151, 162);
             this.memoEdit4.TabIndex = 0;
-            this.memoEdit4.UseWaitCursor = true;
             // 
             // groupBox6
             // 
@@ -175,7 +170,13 @@
             this.groupBox6.TabIndex = 10;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "运行分析主题";
-            this.groupBox6.UseWaitCursor = true;
+            // 
+            // memoEdit5
+            // 
+            this.memoEdit5.Location = new System.Drawing.Point(7, 15);
+            this.memoEdit5.Name = "memoEdit5";
+            this.memoEdit5.Size = new System.Drawing.Size(151, 125);
+            this.memoEdit5.TabIndex = 0;
             // 
             // groupBox4
             // 
@@ -186,7 +187,6 @@
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "结论及对策";
-            this.groupBox4.UseWaitCursor = true;
             // 
             // memoEdit2
             // 
@@ -194,7 +194,6 @@
             this.memoEdit2.Name = "memoEdit2";
             this.memoEdit2.Size = new System.Drawing.Size(151, 260);
             this.memoEdit2.TabIndex = 0;
-            this.memoEdit2.UseWaitCursor = true;
             // 
             // groupBox3
             // 
@@ -205,7 +204,6 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "纪要内容";
-            this.groupBox3.UseWaitCursor = true;
             // 
             // memoEdit1
             // 
@@ -214,7 +212,6 @@
             this.memoEdit1.Name = "memoEdit1";
             this.memoEdit1.Size = new System.Drawing.Size(380, 206);
             this.memoEdit1.TabIndex = 0;
-            this.memoEdit1.UseWaitCursor = true;
             // 
             // groupBox2
             // 
@@ -239,7 +236,6 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "出席人员情况";
-            this.groupBox2.UseWaitCursor = true;
             // 
             // comboBoxEdit17
             // 
@@ -249,7 +245,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit17.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit17.TabIndex = 0;
-            this.comboBoxEdit17.UseWaitCursor = true;
             // 
             // comboBoxEdit12
             // 
@@ -259,7 +254,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit12.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit12.TabIndex = 0;
-            this.comboBoxEdit12.UseWaitCursor = true;
             // 
             // comboBoxEdit7
             // 
@@ -269,7 +263,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit7.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit7.TabIndex = 0;
-            this.comboBoxEdit7.UseWaitCursor = true;
             // 
             // comboBoxEdit16
             // 
@@ -279,7 +272,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit16.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit16.TabIndex = 0;
-            this.comboBoxEdit16.UseWaitCursor = true;
             // 
             // comboBoxEdit11
             // 
@@ -289,7 +281,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit11.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit11.TabIndex = 0;
-            this.comboBoxEdit11.UseWaitCursor = true;
             // 
             // comboBoxEdit5
             // 
@@ -299,7 +290,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit5.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit5.TabIndex = 0;
-            this.comboBoxEdit5.UseWaitCursor = true;
             // 
             // comboBoxEdit15
             // 
@@ -309,7 +299,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit15.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit15.TabIndex = 0;
-            this.comboBoxEdit15.UseWaitCursor = true;
             // 
             // comboBoxEdit10
             // 
@@ -319,7 +308,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit10.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit10.TabIndex = 0;
-            this.comboBoxEdit10.UseWaitCursor = true;
             // 
             // comboBoxEdit4
             // 
@@ -329,7 +317,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit4.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit4.TabIndex = 0;
-            this.comboBoxEdit4.UseWaitCursor = true;
             // 
             // comboBoxEdit14
             // 
@@ -339,7 +326,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit14.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit14.TabIndex = 0;
-            this.comboBoxEdit14.UseWaitCursor = true;
             // 
             // comboBoxEdit9
             // 
@@ -349,7 +335,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit9.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit9.TabIndex = 0;
-            this.comboBoxEdit9.UseWaitCursor = true;
             // 
             // comboBoxEdit3
             // 
@@ -359,7 +344,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit3.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit3.TabIndex = 0;
-            this.comboBoxEdit3.UseWaitCursor = true;
             // 
             // comboBoxEdit13
             // 
@@ -369,7 +353,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit13.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit13.TabIndex = 0;
-            this.comboBoxEdit13.UseWaitCursor = true;
             // 
             // comboBoxEdit8
             // 
@@ -379,7 +362,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit8.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit8.TabIndex = 0;
-            this.comboBoxEdit8.UseWaitCursor = true;
             // 
             // comboBoxEdit2
             // 
@@ -389,7 +371,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit2.Size = new System.Drawing.Size(74, 21);
             this.comboBoxEdit2.TabIndex = 0;
-            this.comboBoxEdit2.UseWaitCursor = true;
             // 
             // groupBox1
             // 
@@ -408,7 +389,6 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "运行分析信息";
-            this.groupBox1.UseWaitCursor = true;
             // 
             // dateEdit4
             // 
@@ -421,7 +401,18 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit4.Size = new System.Drawing.Size(132, 21);
             this.dateEdit4.TabIndex = 12;
-            this.dateEdit4.UseWaitCursor = true;
+            // 
+            // dateEdit3
+            // 
+            this.dateEdit3.EditValue = null;
+            this.dateEdit3.Location = new System.Drawing.Point(91, 31);
+            this.dateEdit3.Name = "dateEdit3";
+            this.dateEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit3.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.dateEdit3.Size = new System.Drawing.Size(132, 21);
+            this.dateEdit3.TabIndex = 12;
             // 
             // labelControl2
             // 
@@ -430,7 +421,6 @@
             this.labelControl2.Size = new System.Drawing.Size(60, 14);
             this.labelControl2.TabIndex = 11;
             this.labelControl2.Text = "签   字   人";
-            this.labelControl2.UseWaitCursor = true;
             // 
             // labelControl6
             // 
@@ -439,7 +429,15 @@
             this.labelControl6.Size = new System.Drawing.Size(60, 14);
             this.labelControl6.TabIndex = 11;
             this.labelControl6.Text = "签 字 时 间";
-            this.labelControl6.UseWaitCursor = true;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(12, 31);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(72, 14);
+            this.labelControl5.TabIndex = 11;
+            this.labelControl5.Text = "运行分析日期";
+            this.labelControl5.Click += new System.EventHandler(this.labelControl5_Click);
             // 
             // labelControl1
             // 
@@ -448,7 +446,6 @@
             this.labelControl1.Size = new System.Drawing.Size(60, 14);
             this.labelControl1.TabIndex = 11;
             this.labelControl1.Text = "主   持   人";
-            this.labelControl1.UseWaitCursor = true;
             // 
             // groupBox5
             // 
@@ -461,7 +458,6 @@
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "groupBox4";
-            this.groupBox5.UseWaitCursor = true;
             // 
             // memoEdit3
             // 
@@ -469,7 +465,6 @@
             this.memoEdit3.Name = "memoEdit3";
             this.memoEdit3.Size = new System.Drawing.Size(138, 248);
             this.memoEdit3.TabIndex = 0;
-            this.memoEdit3.UseWaitCursor = true;
             // 
             // labelControl4
             // 
@@ -478,7 +473,6 @@
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 8;
             this.labelControl4.Text = "签字日期";
-            this.labelControl4.UseWaitCursor = true;
             // 
             // labelControl10
             // 
@@ -487,7 +481,6 @@
             this.labelControl10.Size = new System.Drawing.Size(28, 14);
             this.labelControl10.TabIndex = 9;
             this.labelControl10.Text = "签字 ";
-            this.labelControl10.UseWaitCursor = true;
             // 
             // comboBoxEdit1
             // 
@@ -497,7 +490,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit1.Size = new System.Drawing.Size(132, 21);
             this.comboBoxEdit1.TabIndex = 6;
-            this.comboBoxEdit1.UseWaitCursor = true;
             // 
             // comboBoxEdit6
             // 
@@ -507,7 +499,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit6.Size = new System.Drawing.Size(132, 21);
             this.comboBoxEdit6.TabIndex = 6;
-            this.comboBoxEdit6.UseWaitCursor = true;
             // 
             // bar1
             // 
@@ -525,37 +516,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // dateEdit3
-            // 
-            this.dateEdit3.EditValue = null;
-            this.dateEdit3.Location = new System.Drawing.Point(91, 31);
-            this.dateEdit3.Name = "dateEdit3";
-            this.dateEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit3.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateEdit3.Size = new System.Drawing.Size(132, 21);
-            this.dateEdit3.TabIndex = 12;
-            this.dateEdit3.UseWaitCursor = true;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Location = new System.Drawing.Point(12, 31);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(72, 14);
-            this.labelControl5.TabIndex = 11;
-            this.labelControl5.Text = "运行分析日期";
-            this.labelControl5.UseWaitCursor = true;
-            this.labelControl5.Click += new System.EventHandler(this.labelControl5_Click);
-            // 
-            // memoEdit5
-            // 
-            this.memoEdit5.Location = new System.Drawing.Point(7, 15);
-            this.memoEdit5.Name = "memoEdit5";
-            this.memoEdit5.Size = new System.Drawing.Size(151, 125);
-            this.memoEdit5.TabIndex = 0;
-            this.memoEdit5.UseWaitCursor = true;
-            // 
             // frmyxfxEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -567,12 +527,12 @@
             this.Name = "frmyxfxEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "运行分析记录";
-            this.UseWaitCursor = true;
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit4.Properties)).EndInit();
             this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit5.Properties)).EndInit();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -597,14 +557,13 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit4.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties.VistaTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit5.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
