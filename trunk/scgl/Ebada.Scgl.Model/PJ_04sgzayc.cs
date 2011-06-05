@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-5 15:28:55
+生成时间:2011-6-5 15:48:59
 ***********************************************/
 
 using System;
@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Model
         private DateTime _tdsj=new DateTime(1900,1,1); 
         private DateTime _sdsj=new DateTime(1900,1,1); 
         private string _gtdsj=String.Empty; 
-        private string _ssdl=String.Empty; 
+        private decimal _ssdl=0; 
         private string _clqk=String.Empty; 
         private string _yyfx=String.Empty; 
         private string _fzdc=String.Empty; 
@@ -152,8 +152,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 500)
-                throw new Exception("[共停电时间（时分）]长度不能大于500!");
+                if( value.ToString().Length > 50)
+                throw new Exception("[共停电时间（时分）]长度不能大于50!");
                 if (_gtdsj as object == null || !_gtdsj.Equals(value))
                 {
                     _gtdsj = value;
@@ -164,17 +164,14 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：ssdl
         /// 属性描述：损失电量
-        /// 字段信息：[ssdl],nvarchar
+        /// 字段信息：[ssdl],decimal
         /// </summary>
         [DisplayNameAttribute("损失电量")]
-        public string ssdl
+        public decimal ssdl
         {
             get { return _ssdl; }
             set
             {			
-                if(value==null)return;
-                if( value.ToString().Length > 500)
-                throw new Exception("[损失电量]长度不能大于500!");
                 if (_ssdl as object == null || !_ssdl.Equals(value))
                 {
                     _ssdl = value;
