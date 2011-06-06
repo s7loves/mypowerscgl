@@ -27,17 +27,14 @@ namespace Ebada.Scgl.Yxgl
             string jksign = "@";
             int row = 1;
             int col = 1;
-            //每行显示纪要长度
+            //每行显示文字长度
             int zc = 36;
-
-          
 
             //时间
             ex.SetCellValue(obj.rq.Year.ToString(), 4, 5);
             ex.SetCellValue(obj.rq.Month.ToString(), 4, 7);
             ex.SetCellValue(obj.rq.Day.ToString(), 4, 9);
 
-        
             //出席人员
             string[] ary = obj.cjry.Split('@');
             int n = ary.Length % 5;
