@@ -123,20 +123,22 @@ namespace Ebada.Scgl.Yxgl {
         public static void ExportExcel2(PJ_02aqhd obj) 
         {
             ExcelAccess ex = new ExcelAccess();
-             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                string fname = "";
-                saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    fname = saveFileDialog1.FileName;
-                    ex.MyFileName = fname;
-                    ex.CreateExcel();
-                    ex.CreateWorkSheet("活动记录");
-                   
-                    ex.Save();
-                }
-            
-                ex.Open(fname);
+            // SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            // string fname = "";
+            // saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
+            // if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            // {
+            //     fname = saveFileDialog1.FileName;
+            //     ex.MyFileName = fname;
+            //     ex.CreateExcel();
+            //     ex.MyFileName = fname;
+            //     ex.CreateWorkSheet("活动记录");
+            //     ex.Save();
+            // }
+
+            // ex.Open(fname);
+                ex.CreateExcel();
+                ex.CreateWorkSheet("活动记录");
                 ex.ActiveSheet("活动记录");
             //ex.Open("");
             //ex.SetCellValue("", row, col);
@@ -152,7 +154,7 @@ namespace Ebada.Scgl.Yxgl {
             string fixstart = "开始";
             string fixend = "结束";
             string fixtime = "时间";
-            string fixcxry = "出席人员";
+            string fixcxry = "出席\r\n人员";
             string fixqxry = "缺席人员";
             string fixhdnr = "活动内容：";
             string fixxj = "活动小结： ";
@@ -219,30 +221,56 @@ namespace Ebada.Scgl.Yxgl {
             }
             ex.SetCellValue(fixcxry, row + 4, col);
             ex.UnitCells(row + 4, col, row + 4 + m - 1, col);
+            ex.AlignmentCells(row + 4, col, row + 4, col, ExcelStyle.ExcelHAlign.居中, ExcelStyle.ExcelVAlign.居中);
+            for (int k = 0; k < m; k++)
+            {
+                for (int l = 4; l < 13; l++)
+                {
+
+                    ex.UnitCells(row + 4 + k, col + l, row + 4 + k, col + l + 1);
+                    l++;
+                }
+            }
             for (int i = 0; i < ary.Length; i++)
             {
-                ex.SetCellValue(ary[i], row + 4 + i / 8, col + 1 + i % 8);
+                int tempcol = col + 1 + i % 8;
+                if (i % 8>3)
+                {
+                    tempcol = col + 4 + (i % 8-3) * 2;
+                }
+                ex.SetCellValue(ary[i], row + 4 + i / 8, tempcol);
             }
             //缺席人员
             string[] ary2 = obj.qxry.Split('@');
             ex.SetCellValue(fixqxry, row + 4 + m, col);
             ex.UnitCells(row + 4 + m, col, row + 4 + m, col + 1);
+            for (int o = 4; o < 13; o++)
+            {
+
+                ex.UnitCells(row + 4 + m, col + o, row + 4 + m, col + o + 1);
+                o++;
+            }
             for (int j = 0; j < ary2.Length; j++)
             {
-                if (j<=7)
+                int tempcol = col + 2 + j % 7;
+                if (j > 2 && j < 7)
                 {
-                    ex.SetCellValue(ary2[j], row + 4 + m, col + 2 + j % 7);
+                    tempcol = col + 4 + (j % 7 - 2) * 2;
+                }
+                if (j<7)
+                {
+                    ex.SetCellValue(ary2[j], row + 4 + m, tempcol);
                 }
                 else//缺席人员大于七个时
                 {
-                    string tempstr = ex.ReadCellValue(row + 4 + m, row + 13);
-                    tempstr = "/" + ary2[j];
-                    ex.SetCellValue(tempstr, row + 4 + m, col + 13);
+                    string tempstr = ex.ReadCellValue(row + 4 + m, col + 12);
+                    tempstr = tempstr+"/" + ary2[j];
+                    ex.SetCellValue(tempstr, row + 4 + m, col + 12);
                 }
                
             }
             //活动内容
-            ex.SetCellValue(fixhd + obj.hdnr, row + 4 + m + 1, col);
+            ex.SetCellValue(fixhdnr + obj.hdnr, row + 4 + m + 1, col);
             ex.UnitCells(row + 4 + m + 1, col, row + 4 + m + 1, col + 13);
             ex.RowAutoFit(row + 4 + m + 1);
             //活动小结
@@ -256,8 +284,9 @@ namespace Ebada.Scgl.Yxgl {
             //签字
             ex.SetCellValue(fixqz, row + 4 + m + 4, col);
             ex.SetCellValue(obj.qz, row + 4 + m + 4, col+1);
-            ex.UnitCells(row + 4 + m + 4, col + 1, row + 4 + m + 4, col + 7);
-            ex.SetCellValue(obj.qzrq.Year.ToString(), row + 4 + m + 4, col + 8);
+            ex.UnitCells(row + 4 + m + 4, col + 1, row + 4 + m + 4, col + 6);
+            ex.UnitCells(row + 4 + m + 4, col + 7, row + 4 + m + 4, col + 8);
+            ex.SetCellValue(obj.qzrq.Year.ToString(), row + 4 + m + 4, col + 7);
             ex.SetCellValue("年", row + 4 + m + 4, col + 9);
             ex.SetCellValue(obj.qzrq.Month.ToString(), row + 4 + m + 4, col + 10);
             ex.SetCellValue("月", row + 4 + m + 4, col + 11);
@@ -283,13 +312,13 @@ namespace Ebada.Scgl.Yxgl {
                     {
                         if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.Yes)
                             return;
-                        System.Diagnostics.Process.Start(fname);
+                        System.Diagnostics.Process.Start(ex.MyFileName);
                     }
                     else
                     {
                         MsgBox.ShowWarningMessageBox("导出失败！");
                     }
-                
+                    ex.DisPoseExcel();
             //string[] ary3 = obj.fyjyjl.Split('@');
         }
     }
