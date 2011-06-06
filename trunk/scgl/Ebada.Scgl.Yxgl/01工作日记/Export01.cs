@@ -62,6 +62,12 @@ namespace Ebada.Scgl.Yxgl {
                 ex.AlignmentCells(row + 1, col, row + 1, col, ExcelStyle.ExcelHAlign.居中, ExcelStyle.ExcelVAlign.居中);
                 ex.SetFontNameSize(row + 1, col, row + 1, col, "宋体", 24);
                 ex.SetFontStyle(row + 1, col, row + 1, col, true,false,ExcelStyle.UnderlineStyle.无下划线);
+                //日期
+                ex.SetCellValue(jl.rq.Year + "年" + jl.rq.Month + "月" + jl.rq.Day+"日", row + 2, col + 1);
+                ex.UnitCells(row + 2, col+1, row + 2, col+7);
+                ex.AlignmentCells(row + 2, col+1, row+2, col+7, ExcelStyle.ExcelHAlign.靠左, ExcelStyle.ExcelVAlign.居中);
+                ex.SetCellValue(jl.xq, row + 2, col + 9);
+                ex.UnitCells(row + 2, col+10, row + 2, col + 12);
                 //缺勤情况
                 ex.SetCellValue(strqqqk, row + 3, col);
                 ex.UnitCells(row + 3, col, row + 6, col);
@@ -171,7 +177,7 @@ namespace Ebada.Scgl.Yxgl {
                 ex.SetFontStyle(row + 11 + list.Count, col, row + 11 + list.Count, col + 14, true, false, ExcelStyle.UnderlineStyle.无下划线);
                 if (ex.Save())
                 {
-                    if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") == DialogResult.Yes)
+                    if (MessageBox.Show("导出成功，是否打开该文档？","提示",MessageBoxButtons.YesNo,MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         ex.Open(fname);
                     }
