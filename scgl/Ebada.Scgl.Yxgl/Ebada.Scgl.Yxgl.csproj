@@ -305,6 +305,7 @@
     <Compile Include="09培训记录\UCPJ_09pxjl.Designer.cs">
       <DependentUpon>UCPJ_09pxjl.cs</DependentUpon>
     </Compile>
+    <Compile Include="03运行分析\Export03.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ebada.Scgl.Core\Ebada.Scgl.Core.csproj">
