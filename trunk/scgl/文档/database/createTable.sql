@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     2011-6-2 17:04:18                            */
+/* Created on:     2011-6-5 16:29:53                            */
 /*==============================================================*/
 
 
@@ -663,6 +663,7 @@ create table dbo.PJ_02aqhd (
    qxry                 nvarchar(150)        null,
    hdnr                 nvarchar(4000)       null,
    hdxj                 nvarchar(4000)       null,
+   fyjyjl               nvarchar(4000)       null,
    py                   nvarchar(500)        null,
    qz                   nvarchar(50)         null,
    qzrq                 datetime             null,
@@ -726,6 +727,11 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '活动小结',
    'user', 'dbo', 'table', 'PJ_02aqhd', 'column', 'hdxj'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '发言简要记录',
+   'user', 'dbo', 'table', 'PJ_02aqhd', 'column', 'fyjyjl'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -868,14 +874,14 @@ create table dbo.PJ_04sgzayc (
    ID                   nvarchar(50)         not null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
-   zcr                  nvarchar(50)         null,
-   rq                   datetime             null,
-   cjry                 nvarchar(500)        null,
-   zt                   nvarchar(500)        null,
-   jy                   nvarchar(4000)       null,
-   jr                   nvarchar(4000)       null,
-   py                   nvarchar(500)        null,
-   qz                   nvarchar(50)         null,
+   tdsj                 datetime             null,
+   sdsj                 datetime             null,
+   gtdsj                nvarchar(50)         null,
+   ssdl                 decimal(8,0)         null,
+   clqk                 nvarchar(4000)       null,
+   yyfx                 nvarchar(4000)       null,
+   fzdc                 nvarchar(500)        null,
+   zxr                  nvarchar(50)         null,
    CreateMan            nvarchar(10)         null,
    CreateDate           datetime             null,
    gznrID               nvarchar(50)         null,
@@ -905,42 +911,42 @@ go
 
 execute sp_addextendedproperty 'MS_Description', 
    '停电时间',
-   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'zcr'
+   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'tdsj'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
    '送电时间',
-   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'rq'
+   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'sdsj'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
    '共停电时间（时分）',
-   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'cjry'
+   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'gtdsj'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
    '损失电量',
-   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'zt'
+   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'ssdl'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
    '事故情况及处理经过',
-   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'jy'
+   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'clqk'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
    '主要原因分析',
-   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'jr'
+   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'yyfx'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
    '今后防止对策',
-   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'py'
+   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'fzdc'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
    '防止对策执行人',
-   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'qz'
+   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'zxr'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
