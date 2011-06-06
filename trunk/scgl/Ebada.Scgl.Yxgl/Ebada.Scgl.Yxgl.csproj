@@ -215,15 +215,33 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="00记录模板\01工作日志.xls" />
-    <None Include="00记录模板\02安全活动记录.xls" />
-    <None Include="00记录模板\03运行分析记录.xls" />
-    <None Include="00记录模板\04事故障碍异常运行记录.xls" />
-    <None Include="00记录模板\05交叉跨越及对地距离测量记录.xls" />
-    <None Include="00记录模板\06设备巡视及缺陷消除记录.xls" />
-    <None Include="00记录模板\07接地装置检测记录.xls" />
-    <None Include="00记录模板\08设备停电检修记录.xls" />
-    <None Include="00记录模板\09培训记录.xls" />
+    <None Include="00记录模板\01工作日志.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\02安全活动记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\03运行分析记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\04事故障碍异常运行记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\05交叉跨越及对地距离测量记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\06设备巡视及缺陷消除记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\07接地装置检测记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\08设备停电检修记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\09培训记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
