@@ -184,5 +184,17 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
         }
+
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle >= 0)
+            {
+                Export03.ExportExcel(gridView1.GetFocusedRow() as PJ_03yxfx);
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }
