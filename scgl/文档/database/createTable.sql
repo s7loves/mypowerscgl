@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     2011-6-5 16:29:53                            */
+/* Created on:     2011-6-7 21:56:56                            */
 /*==============================================================*/
 
 
@@ -373,6 +373,20 @@ if exists (select 1
            where  id = object_id('dbo.PS_aqgj')
             and   type = 'U')
    drop table dbo.PS_aqgj
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.PS_byqxh')
+            and   type = 'U')
+   drop table dbo.PS_byqxh
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.PS_dxxh')
+            and   type = 'U')
+   drop table dbo.PS_dxxh
 go
 
 if exists (select 1
@@ -2618,10 +2632,15 @@ go
 /*==============================================================*/
 create table dbo.PJ_dyk (
    ID                   nvarchar(50)         not null,
+   ParentID             nvarchar(50)         null,
    dx                   nvarchar(50)         null,
    sx                   nvarchar(50)         null,
    bh                   nvarchar(50)         null,
+   zjm                  nvarchar(50)         null,
+   nr4                  nvarchar(2000)       null,
    nr                   nvarchar(2000)       null,
+   nr2                  nvarchar(2000)       null,
+   nr3                  nvarchar(2000)       null,
    constraint PK_PJ_DYK primary key (ID)
 )
 go
@@ -2652,8 +2671,28 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 execute sp_addextendedproperty 'MS_Description', 
+   '助记码',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'zjm'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '短语内容',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr4'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
    '短语内容',
    'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '短语内容',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr2'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '短语内容',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr3'
 go
 
 /*==============================================================*/
@@ -2800,6 +2839,104 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '设备型号',
    'user', 'dbo', 'table', 'PS_aqgj', 'column', 'sbModle'
+go
+
+/*==============================================================*/
+/* Table: PS_byqxh                                              */
+/*==============================================================*/
+create table dbo.PS_byqxh (
+   ID                   nvarchar(50)         not null,
+   byqModle             nvarchar(50)         null,
+   byqVol               nvarchar(50)         null,
+   byqCapcity           int                  null,
+   Loss1                decimal(8,2)         null,
+   Loss2                decimal(8,2)         null,
+   Ratedcurrent         decimal(8,2)         null,
+   constraint PK_PS_BYQXH primary key (ID)
+)
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '变压器型号',
+   'user', 'dbo', 'table', 'PS_byqxh'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   'ID',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'ID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '变压器型号',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'byqModle'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '电压等级',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'byqVol'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '容量',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'byqCapcity'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '短路损耗',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'Loss1'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '开路损耗',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'Loss2'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '额定电流',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'Ratedcurrent'
+go
+
+/*==============================================================*/
+/* Table: PS_dxxh                                               */
+/*==============================================================*/
+create table dbo.PS_dxxh (
+   ID                   nvarchar(50)         not null,
+   LineVol              nvarchar(50)         null,
+   WireType             nvarchar(50)         null,
+   WireLength           int                  null,
+   TotalLength          int                  null,
+   constraint PK_PS_DXXH primary key (ID)
+)
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '导线型号',
+   'user', 'dbo', 'table', 'PS_dxxh'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   'ID',
+   'user', 'dbo', 'table', 'PS_dxxh', 'column', 'ID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '电压等级',
+   'user', 'dbo', 'table', 'PS_dxxh', 'column', 'LineVol'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '导线型号',
+   'user', 'dbo', 'table', 'PS_dxxh', 'column', 'WireType'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '线路长度',
+   'user', 'dbo', 'table', 'PS_dxxh', 'column', 'WireLength'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '总长度',
+   'user', 'dbo', 'table', 'PS_dxxh', 'column', 'TotalLength'
 go
 
 /*==============================================================*/
