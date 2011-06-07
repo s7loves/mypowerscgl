@@ -114,6 +114,7 @@
     <Compile Include="02安全活动\frmaqhdEdit.Designer.cs">
       <DependentUpon>frmaqhdEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="03运行分析\Export03.cs" />
     <Compile Include="03运行分析\frmyxfxEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +126,36 @@
     </Compile>
     <Compile Include="04事故障碍异常\frmsgzaycEdit.Designer.cs">
       <DependentUpon>frmsgzaycEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\frmjckyEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\frmjckyEdit.Designer.cs">
+      <DependentUpon>frmjckyEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\frmjckyjlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\frmjckyjlEdit.Designer.cs">
+      <DependentUpon>frmjckyjlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jcky.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jcky.Designer.cs">
+      <DependentUpon>UCPJ_05jcky.cs</DependentUpon>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyjl.Designer.cs">
+      <DependentUpon>UCPJ_05jckyjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
+      <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
     </Compile>
     <Compile Include="07接地装置检测\UCPJ_07jdzzjl .cs">
       <SubType>UserControl</SubType>
@@ -163,6 +194,26 @@
     </EmbeddedResource>
     <EmbeddedResource Include="04事故障碍异常\frmsgzaycEdit.resx">
       <DependentUpon>frmsgzaycEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="05交叉跨越及对地距离测量\frmjckyEdit.resx">
+      <DependentUpon>frmjckyEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="05交叉跨越及对地距离测量\frmjckyjlEdit.resx">
+      <DependentUpon>frmjckyjlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jcky.resx">
+      <DependentUpon>UCPJ_05jcky.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jckyjl.resx">
+      <DependentUpon>UCPJ_05jckyjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.resx">
+      <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="07接地装置检测\UCPJ_07jdzzjl .resx">
@@ -270,6 +321,7 @@
       <DependentUpon>UCPJ_gzrjnr.cs</DependentUpon>
     </Compile>
     <Compile Include="03运行分析\UCPJ_03yxfx.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="03运行分析\UCPJ_03yxfx.Designer.cs">
       <DependentUpon>UCPJ_03yxfx.cs</DependentUpon>
@@ -314,9 +366,6 @@
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="05交叉跨越及对地距离测量\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
