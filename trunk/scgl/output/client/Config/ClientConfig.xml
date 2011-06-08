@@ -33,7 +33,11 @@
 			      type="Ebada.Components.RemoteMath, Ebada.Components"
 			      remoteclient="component">
           </component>--><!--type="Ebada.Platform.BLL.mModuleBLL, Ebada.Platform.BLL"-->
-          
+          <component
+			      id="ICoreManager"
+			      service="Ebada.Core.ICoreManager, Ebada.Core"
+			      type="Ebada.Components.RemoteMath, Ebada.Components"
+			      remoteclient="component"/>
         </components>
       </configuration>
     </container>

@@ -36,7 +36,12 @@ namespace Ebada.Scgl.Xtgl {
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<mUser>(gridViewOperation_BeforeAdd);
             gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<mUser>(gridViewOperation_BeforeInsert);
             initColumns();
+        }
+
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<mUser> e) {
+            e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
         }
         /// <summary>
         /// 设置隐藏列

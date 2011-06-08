@@ -36,7 +36,12 @@
 			      type="Ebada.Components.BaseSqlMapDao, Ebada.Components"
 			      remoteserver="component" lifestyle="transient">
           </component>
-         
+          <component
+             id="ICoreManager"
+             service="Ebada.Core.ICoreManager, Ebada.Core"
+             type="Ebada.Platform.Server.CoreManager, Ebada.Platform.Server"
+             remoteserver="component" lifestyle="thread">
+          </component>
         </components>
         </configuration>
       </container>

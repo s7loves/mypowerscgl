@@ -36,7 +36,9 @@ namespace Ebada.SCGL
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain2());
+            //frmLogin dlg = new frmLogin();
+            //if (dlg.ShowDialog() == DialogResult.OK)
+                Application.Run(new frmMain2());
         }
     }
 }
