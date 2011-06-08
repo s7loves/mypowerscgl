@@ -136,10 +136,16 @@
             // 
             // comboBoxEdit7
             // 
+            this.comboBoxEdit7.EditValue = "二级";
             this.comboBoxEdit7.Location = new System.Drawing.Point(353, 81);
             this.comboBoxEdit7.Name = "comboBoxEdit7";
             this.comboBoxEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit7.Properties.Items.AddRange(new object[] {
+            "一级",
+            "二级",
+            "三级",
+            "四级"});
             this.comboBoxEdit7.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit7.TabIndex = 2;
             // 
