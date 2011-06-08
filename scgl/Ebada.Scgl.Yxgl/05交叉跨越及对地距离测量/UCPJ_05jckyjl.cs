@@ -92,7 +92,7 @@ namespace Ebada.Scgl.Yxgl {
 
             //需要隐藏列时在这写代码
 
-            hideColumn("jckyID");
+            gridView1.Columns[7].Visible = false;
             //hideColumn("ParentID");
         }
         /// <summary>
