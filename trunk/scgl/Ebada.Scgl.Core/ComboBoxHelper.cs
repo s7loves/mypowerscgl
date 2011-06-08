@@ -29,6 +29,31 @@ namespace Ebada.Scgl.Core {
             return list;
         }
         /// <summary>
+        /// 获取供电所线路名称
+        /// </summary>
+        /// <param name="gdsID"></param>
+        /// <returns></returns>
+        public static ICollection GetGdsxl(string gdsID)
+        {
+            string key = "all" + gdsID;
+
+            ICollection list = null;
+
+            if (mUseCache && mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + gdsID + "'or OrgCode2='" + gdsID + "'");
+                if (mUseCache)
+                    mCache.Add(key, list);
+            }
+
+
+            return list;
+        }
+        /// <summary>
         /// 获取缺勤人员列表
         /// </summary>
         /// <returns></returns>
@@ -58,6 +83,27 @@ namespace Ebada.Scgl.Core {
             } else {
                 list = new string[] { "晴", "阴", "多云", "雨", "雪" };
                 
+                mCache.Add(key, list);
+            }
+            return list;
+        }
+        /// <summary>
+        /// 停电性质
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetTDXZ()
+        {
+
+            ICollection list = new ArrayList();
+            string key = "tdxz";
+            if (mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = new string[] { "临时停电", "计划停电", "事故停电" };
+
                 mCache.Add(key, list);
             }
             return list;
