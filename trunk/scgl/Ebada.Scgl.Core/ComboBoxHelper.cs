@@ -88,6 +88,48 @@ namespace Ebada.Scgl.Core {
             return list;
         }
         /// <summary>
+        /// 被跨越物名称
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetKYName()
+        {
+
+            ICollection list = new ArrayList();
+            string key = "ky";
+            if (mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = new string[] { "铁路", "公路", "村路", "通信线", "广播线", "建筑物", "树木", "电力线路", "河流" };
+
+                mCache.Add(key, list);
+            }
+            return list;
+        }
+        /// <summary>
+        /// 所属单位
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetSSDW()
+        {
+
+            ICollection list = new ArrayList();
+            string key = "ssdw";
+            if (mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = new string[] { "铁路局", "公路处", "乡政府", "镇政府", "广电局", "联通公司", "移动公司" };
+
+                mCache.Add(key, list);
+            }
+            return list;
+        }
+        /// <summary>
         /// 停电性质
         /// </summary>
         /// <returns></returns>
