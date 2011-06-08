@@ -183,6 +183,10 @@ namespace Ebada.SCGL
         {
             base.OnShown(e);
             ucModulBar1.SetImage();
+            frmLogin dlg = new frmLogin();
+            if (dlg.ShowDialog() == DialogResult.OK) {
+
+            }
         }
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {

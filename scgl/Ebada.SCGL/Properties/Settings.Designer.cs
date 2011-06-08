@@ -22,5 +22,29 @@ namespace Ebada.SCGL.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool RememberLoginName {
+            get {
+                return ((bool)(this["RememberLoginName"]));
+            }
+            set {
+                this["RememberLoginName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LoginName {
+            get {
+                return ((string)(this["LoginName"]));
+            }
+            set {
+                this["LoginName"] = value;
+            }
+        }
     }
 }
