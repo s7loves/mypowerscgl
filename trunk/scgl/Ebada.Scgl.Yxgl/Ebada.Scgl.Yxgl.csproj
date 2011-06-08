@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -175,6 +175,12 @@
     <Compile Include="07接地装置检测\frm07JDZZJlEdit.Designer.cs">
       <DependentUpon>frm07JDZZJlEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzzM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzzM.Designer.cs">
+      <DependentUpon>UCPJ_07jdzzM.cs</DependentUpon>
+    </Compile>
     <Compile Include="07接地装置检测\UCPJ_07jdzzjl .cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -248,12 +254,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="06设备巡视及缺陷消除\frm06sbxsEdit.resx">
       <DependentUpon>frm06sbxsEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="07接地装置检测\frm07JDZZEdit.resx">
       <DependentUpon>frm07JDZZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="07接地装置检测\frm07JDZZJlEdit.resx">
       <DependentUpon>frm07JDZZJlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="07接地装置检测\UCPJ_07jdzzM.resx">
+      <DependentUpon>UCPJ_07jdzzM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="07接地装置检测\UCPJ_07jdzzjl .resx">
       <DependentUpon>UCPJ_07jdzzjl .cs</DependentUpon>
@@ -261,9 +274,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="08设备停电检修\frm08SBTDJXEdit.resx">
       <DependentUpon>frm08SBTDJXEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="09培训记录\frm09pxjlEdit.resx">
       <DependentUpon>frm09pxjlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
