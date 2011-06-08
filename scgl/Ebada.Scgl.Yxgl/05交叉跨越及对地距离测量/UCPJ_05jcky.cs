@@ -40,7 +40,7 @@ namespace Ebada.Scgl.Yxgl
             InitializeComponent();
             bar3.Visible = false;
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_05jcky>(gridControl1, gridView1, barManager1,new frmgzrjEdit());
+            gridViewOperation = new GridViewOperation<PJ_05jcky>(gridControl1, gridView1, barManager1, new frmjckyEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_05jcky>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_05jcky>(gridViewOperation_BeforeDelete);
@@ -128,7 +128,7 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("GdsCode");
+            //hideColumn("GdsCode");
         }
         /// <summary>
         /// 刷新数据
@@ -159,24 +159,6 @@ namespace Ebada.Scgl.Yxgl
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
         }
-        /// <summary>
-        /// 父表ID
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        //[DesignTimeVisible(false)]
-        public string ParentID
-        {
-            get { return parentID; }
-            set
-            {
-                parentID = value;
-                if (!string.IsNullOrEmpty(value))
-                {
-                    RefreshData(" where gdscode='" + value + "' order by rq desc");
-                }
-            }
-        }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public mOrg ParentObj
@@ -196,7 +178,21 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
         }
-
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        //[DesignTimeVisible(false)]
+        public string ParentID
+        {
+            get { return parentID; }
+            set
+            {
+                parentID = value;
+                if (!string.IsNullOrEmpty(value))
+                {
+                    RefreshData(" where OrgCode='" + value + "' order by CreateDate desc");
+                }
+            }
+        }
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (gridView1.FocusedRowHandle != -1)
