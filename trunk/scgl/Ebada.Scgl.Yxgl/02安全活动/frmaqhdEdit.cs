@@ -56,6 +56,36 @@ namespace Ebada.Scgl.Yxgl
         }
 
         #endregion
+        void setqqry()
+        {
+            string str = rowData.qxry;
+            string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 28; i <= 32; i++)
+            {
+                ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + i]).EditValue = "";
+               
+            }
+            for (int i = 0; i < mans.Length; i++)
+            {
+                string[] ry = mans[i].Split(':');
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = ry[0];
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).EditValue = ry[1];
+            }
+        }
+        void getqqry()
+        {
+            string str = "";
+            string ry = "";
+            string yy = "";
+            for (int i = 28; i <=32; i++)
+            {
+                ry = ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + (i + 1)]).EditValue.ToString();
+                yy = ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + (i + 11)]).EditValue.ToString();
+                if (!string.IsNullOrEmpty(ry.Trim()))
+                    str += ry + ":" + yy + ";";
+            }
+            rowData.qxry = str;
+        }
 
         private void InitComboBoxData() {
             //填充下拉列表数据
