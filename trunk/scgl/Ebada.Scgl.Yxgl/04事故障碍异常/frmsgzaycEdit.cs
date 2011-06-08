@@ -55,6 +55,12 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitComboBoxData() {
             //填充下拉列表数据
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            if (ryList.Count>0)
+            {
+                this.comboBoxEdit6.Properties.Items.AddRange(ryList);
+            }
+            
         }
 
         /// <summary>

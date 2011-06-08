@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_04sgzayc>(gridControl1, gridView1, barManager1,new frmsgzaycEdit());
+            gridViewOperation = new GridViewOperation<PJ_04sgzayc>(gridControl1, gridView1, barManager1, new frmsgzaycEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_04sgzayc>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_04sgzayc>(gridViewOperation_BeforeDelete);
