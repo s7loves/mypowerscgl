@@ -127,6 +127,7 @@
     <Compile Include="04事故障碍异常\frmsgzaycEdit.Designer.cs">
       <DependentUpon>frmsgzaycEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\Export05.cs" />
     <Compile Include="05交叉跨越及对地距离测量\frmjckyEdit.cs">
       <SubType>Form</SubType>
     </Compile>
