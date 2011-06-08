@@ -34,12 +34,12 @@ namespace Ebada.Scgl.Yxgl
         public event SendDataEventHandler<PJ_07jdzzjl> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
-        private mOrg parentObj;
+        private PJ_07jdzz parentObj;
         public UCPJ_07jdzzjl()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_07jdzzjl>(gridControl1, gridView1, barManager1,new frmsgzaycEdit());
+            gridViewOperation = new GridViewOperation<PJ_07jdzzjl>(gridControl1, gridView1, barManager1, new frm07JDZZJlEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_07jdzzjl>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_07jdzzjl>(gridViewOperation_BeforeDelete);
@@ -63,27 +63,10 @@ namespace Ebada.Scgl.Yxgl
             InitColumns();//初始列
             //InitData();//初始数据
             if (this.Site != null) return;
-            btGdsList.Edit = DicTypeHelper.GdsDic;
-            btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
+
 
         }
 
-        void btGdsList_EditValueChanged(object sender, EventArgs e)
-        {
-            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
-            if (list.Count > 0)
-                org = list[0];
-            
-            if (org != null)
-            {
-                ParentObj = org;
-                if (SelectGdsChanged != null)
-                    SelectGdsChanged(this, org);
-            }
-            
-
-        }
         private void initImageList()
         {
             ImageList imagelist = new ImageList();
@@ -115,7 +98,7 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("OrgCode");
+            //hideColumn("OrgCode");
         }
         /// <summary>
         /// 刷新数据
@@ -158,13 +141,13 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where jdzzID='" + value + "' order by CreateDate desc");
                 }
             }
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public mOrg ParentObj
+        public PJ_07jdzz ParentObj
         {
             get { return parentObj; }
             set
@@ -177,7 +160,7 @@ namespace Ebada.Scgl.Yxgl
                 }
                 else
                 {
-                    ParentID = value.OrgID;
+                    ParentID = value.jdzzID;
                 }
             }
         }

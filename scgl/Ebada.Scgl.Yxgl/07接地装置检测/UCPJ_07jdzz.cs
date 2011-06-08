@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_07jdzz>(gridControl1, gridView1, barManager1,new frmsgzaycEdit());
+            gridViewOperation = new GridViewOperation<PJ_07jdzz>(gridControl1, gridView1, barManager1, new frm07JDZZEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_07jdzz>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_07jdzz>(gridViewOperation_BeforeDelete);
@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where OrgCode='" + value + "' order by CreateDate desc");
                 }
             }
         }
