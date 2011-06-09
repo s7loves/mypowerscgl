@@ -182,10 +182,11 @@ namespace Ebada.SCGL
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
+            MainHelper.MainForm = this;
             ucModulBar1.SetImage();
             frmLogin dlg = new frmLogin();
             if (dlg.ShowDialog() == DialogResult.OK) {
-
+                barStaticItem2.Caption = "操作员：" + MainHelper.UserBaseX.Empolyee_Name;
             }
         }
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
