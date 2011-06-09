@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -200,6 +200,113 @@
     <Compile Include="09培训记录\frm09pxjlEdit.Designer.cs">
       <DependentUpon>frm09pxjlEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="10配电变压器汇总表\Export10.cs" />
+    <Compile Include="11配电变压器卡片\Export11.cs" />
+    <Compile Include="11配电变压器卡片\frm11byqbdEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frm11byqbdEdit.Designer.cs">
+      <DependentUpon>frm11byqbdEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frm11byqdydlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frm11byqdydlEdit.Designer.cs">
+      <DependentUpon>frm11byqdydlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frm11byqdzclEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frm11byqdzclEdit.Designer.cs">
+      <DependentUpon>frm11byqdzclEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\Export12.cs" />
+    <Compile Include="12线路开关卡片\frm12kgbdEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\frm12kgbdEdit.Designer.cs">
+      <DependentUpon>frm12kgbdEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\frm12kgjxEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\frm12kgjxEdit.Designer.cs">
+      <DependentUpon>frm12kgjxEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\frm12kgsyEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\frm12kgsyEdit.Designer.cs">
+      <DependentUpon>frm12kgsyEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\frmkgEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\frmkgEdit.Designer.cs">
+      <DependentUpon>frmkgEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="13剩余电流动作保护器测试\Export13.cs" />
+    <Compile Include="13剩余电流动作保护器测试\frm13dlbhjlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="13剩余电流动作保护器测试\frm13dlbhjlEdit.Designer.cs">
+      <DependentUpon>frm13dlbhjlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="13剩余电流动作保护器测试\frmtqdlbhEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="13剩余电流动作保护器测试\frmtqdlbhEdit.Designer.cs">
+      <DependentUpon>frmtqdlbhEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14电力安全工具试验\Export14.cs" />
+    <Compile Include="14电力安全工具试验\frm14aqgjsyEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="14电力安全工具试验\frm14aqgjsyEdit.Designer.cs">
+      <DependentUpon>frm14aqgjsyEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14电力安全工具试验\frmaqgjEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="14电力安全工具试验\frmaqgjEdit.Designer.cs">
+      <DependentUpon>frmaqgjEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="15工具仪表台账\Export15.cs" />
+    <Compile Include="16工具仪表台帐\frm16gjybEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="16工具仪表台帐\frm16gjybEdit.Designer.cs">
+      <DependentUpon>frm16gjybEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="16工具仪表台帐\UCPS_gjyb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="16工具仪表台帐\UCPS_gjyb.Designer.cs">
+      <DependentUpon>UCPS_gjyb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="16高压配电线路条图汇总表\Export16.cs" />
+    <Compile Include="17高压配电线路条图\Export17.cs" />
+    <Compile Include="18高压配电线路设备评级表\Export18.cs" />
+    <Compile Include="18高压配电线路设备评级表\frm18gysbpjEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="18高压配电线路设备评级表\frm18gysbpjEdit.Designer.cs">
+      <DependentUpon>frm18gysbpjEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="19高压配电设备完好率汇总表\Export19.cs" />
+    <Compile Include="20低压设备完好率及台区网络图\Export20.cs" />
+    <Compile Include="21电力故障电话接听记录\Export21.cs" />
+    <Compile Include="21电力故障电话接听记录\frm21gzbxdhEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="21电力故障电话接听记录\frm21gzbxdhEdit.Designer.cs">
+      <DependentUpon>frm21gzbxdhEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="22报修服务修理票实例\Export22.cs" />
+    <Compile Include="23配电线路产权维护范围协议书\Export23.cs" />
+    <Compile Include="24设备变更通知书\Export24.cs" />
+    <Compile Include="25双%28自备%29电源协议书\Export25.cs" />
+    <Compile Include="26电力线路防护通知书\Export26.cs" />
     <Compile Include="IExport.cs" />
     <Compile Include="02安全活动\UCPJ_02aqhd.cs">
       <SubType>UserControl</SubType>
@@ -280,6 +387,51 @@
     <EmbeddedResource Include="09培训记录\frm09pxjlEdit.resx">
       <DependentUpon>frm09pxjlEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\frm11byqbdEdit.resx">
+      <DependentUpon>frm11byqbdEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\frm11byqdydlEdit.resx">
+      <DependentUpon>frm11byqdydlEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\frm11byqdzclEdit.resx">
+      <DependentUpon>frm11byqdzclEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\frm12kgbdEdit.resx">
+      <DependentUpon>frm12kgbdEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\frm12kgjxEdit.resx">
+      <DependentUpon>frm12kgjxEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\frm12kgsyEdit.resx">
+      <DependentUpon>frm12kgsyEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\frmkgEdit.resx">
+      <DependentUpon>frmkgEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="13剩余电流动作保护器测试\frm13dlbhjlEdit.resx">
+      <DependentUpon>frm13dlbhjlEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="13剩余电流动作保护器测试\frmtqdlbhEdit.resx">
+      <DependentUpon>frmtqdlbhEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14电力安全工具试验\frm14aqgjsyEdit.resx">
+      <DependentUpon>frm14aqgjsyEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14电力安全工具试验\frmaqgjEdit.resx">
+      <DependentUpon>frmaqgjEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="16工具仪表台帐\frm16gjybEdit.resx">
+      <DependentUpon>frm16gjybEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="16工具仪表台帐\UCPS_gjyb.resx">
+      <DependentUpon>UCPS_gjyb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="18高压配电线路设备评级表\frm18gysbpjEdit.resx">
+      <DependentUpon>frm18gysbpjEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="21电力故障电话接听记录\frm21gzbxdhEdit.resx">
+      <DependentUpon>frm21gzbxdhEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
