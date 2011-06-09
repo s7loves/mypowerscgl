@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_gjyb>(gridControl1, gridView1, barManager1,new frmsgzaycEdit());
+            gridViewOperation = new GridViewOperation<PS_gjyb>(gridControl1, gridView1, barManager1, new frm16gjybEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_gjyb>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_gjyb>(gridViewOperation_BeforeDelete);
@@ -63,7 +63,7 @@ namespace Ebada.Scgl.Yxgl
             InitColumns();//初始列
             //InitData();//初始数据
             if (this.Site != null) return;
-            btGdsList.Edit = DicTypeHelper.GdsDic;
+            btGdsList.Edit = DicTypeHelper.OrgDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
 
         }
@@ -97,7 +97,7 @@ namespace Ebada.Scgl.Yxgl
         }
         private void hideColumn(string colname)
         {
-            gridView1.Columns[colname].Visible = false;
+            //gridView1.Columns[colname].Visible = false;
         }
         /// <summary>
         /// 初始化数据
@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("OrgCode");
+            hideColumn("OrgID");
         }
         /// <summary>
         /// 刷新数据
@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where OrgID='" + value + "' order by sbID desc");
                 }
             }
         }
