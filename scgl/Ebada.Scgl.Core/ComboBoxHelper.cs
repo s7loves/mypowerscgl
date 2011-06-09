@@ -130,6 +130,27 @@ namespace Ebada.Scgl.Core {
             return list;
         }
         /// <summary>
+        /// 规定距离
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetGDJL()
+        {
+
+            ICollection list = new ArrayList();
+            string key = "gdjl";
+            if (mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = new string[] {"7.5", "7", "6","5.5", "5", "4", "3","2.5", "2", "1", "0.8", "0.75", "0.5", "0.6", "0.3" };
+
+                mCache.Add(key, list);
+            }
+            return list;
+        }
+        /// <summary>
         /// 停电性质
         /// </summary>
         /// <returns></returns>
