@@ -163,6 +163,7 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
         }
+
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public mOrg ParentObj
