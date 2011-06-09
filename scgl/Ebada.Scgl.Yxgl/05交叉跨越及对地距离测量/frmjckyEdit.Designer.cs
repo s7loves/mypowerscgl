@@ -210,7 +210,6 @@
             this.labelControl1.Size = new System.Drawing.Size(24, 14);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "线路";
-            this.labelControl1.UseWaitCursor = true;
             // 
             // labelControl2
             // 
@@ -219,7 +218,6 @@
             this.labelControl2.Size = new System.Drawing.Size(24, 14);
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "杆塔";
-            this.labelControl2.UseWaitCursor = true;
             // 
             // labelControl3
             // 
@@ -228,7 +226,6 @@
             this.labelControl3.Size = new System.Drawing.Size(72, 14);
             this.labelControl3.TabIndex = 1;
             this.labelControl3.Text = "交叉跨越位置";
-            this.labelControl3.UseWaitCursor = true;
             // 
             // labelControl4
             // 
@@ -237,7 +234,6 @@
             this.labelControl4.Size = new System.Drawing.Size(52, 14);
             this.labelControl4.TabIndex = 1;
             this.labelControl4.Text = "跨越杆号 ";
-            this.labelControl4.UseWaitCursor = true;
             // 
             // labelControl8
             // 
@@ -246,7 +242,6 @@
             this.labelControl8.Size = new System.Drawing.Size(84, 14);
             this.labelControl8.TabIndex = 1;
             this.labelControl8.Text = "规定距离不小于";
-            this.labelControl8.UseWaitCursor = true;
             // 
             // labelControl7
             // 
@@ -255,7 +250,6 @@
             this.labelControl7.Size = new System.Drawing.Size(28, 14);
             this.labelControl7.TabIndex = 1;
             this.labelControl7.Text = "级别 ";
-            this.labelControl7.UseWaitCursor = true;
             // 
             // labelControl6
             // 
@@ -264,7 +258,6 @@
             this.labelControl6.Size = new System.Drawing.Size(48, 14);
             this.labelControl6.TabIndex = 1;
             this.labelControl6.Text = "所属单位";
-            this.labelControl6.UseWaitCursor = true;
             // 
             // labelControl5
             // 
@@ -273,7 +266,6 @@
             this.labelControl5.Size = new System.Drawing.Size(76, 14);
             this.labelControl5.TabIndex = 1;
             this.labelControl5.Text = "被跨越物名称 ";
-            this.labelControl5.UseWaitCursor = true;
             // 
             // bar1
             // 

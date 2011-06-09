@@ -13,84 +13,38 @@ namespace Ebada.Scgl.Yxgl {
         //ExcelAccess
         public static void ExportExcel(PJ_05jcky jl) {
 
-          /* ExcelAccess ex = new ExcelAccess();
+           ExcelAccess ex = new ExcelAccess();
              SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-             string fname = Application.StartupPath + "\\00记录模板\\01工作日志.xls";
+             string fname = Application.StartupPath + "\\00记录模板\\05交叉跨越及对地距离测量记录.xls";
              ex.Open(fname);
                 int row = 1;
                 int col = 1;
-                int row_nr = 9;
-                //日期
-                ex.SetCellValue(jl.rq.Year.ToString(), row + 3, col + 1);
-                ex.SetCellValue(jl.rq.Month.ToString(), row + 3, col + 3);
-                ex.SetCellValue(jl.rq.Day.ToString(), row + 3, col + 5);
-                ex.SetCellValue(jl.xq.Replace("星期",""), row + 3, col + 10);
-                //姓名、原因
-                string[] rr = new string[10];
-                string[] yy = new string[10];
-                string[] rr2 = jl.qqry.Split(";".ToCharArray());
-                for (int i = 0; i < rr2.Length-1; i++)
-                {
-                    rr[i] = rr2[i].Split(":".ToCharArray())[0];
-                    yy[i] = rr2[i].Split(":".ToCharArray())[1];
-                }
-                for (int i = rr2.Length - 1; i < rr.Length; i++)
-                {
-                    rr[i] = "";
-                    yy[i] = "";
-                }
-                ex.SetCellValue(rr[0], row + 4, col + 2);
-                ex.SetCellValue(rr[1], row + 4, col + 4);
-                ex.SetCellValue(rr[2], row + 4, col + 6);
-                ex.SetCellValue(rr[3], row + 4, col + 8);
-                ex.SetCellValue(rr[4], row + 4, col + 10);
-                ex.SetCellValue(rr[5], row + 6, col + 2);
-                ex.SetCellValue(rr[6], row + 6, col + 4);
-                ex.SetCellValue(rr[7], row + 6, col + 6);
-                ex.SetCellValue(rr[8], row + 6, col + 8);
-                ex.SetCellValue(rr[9], row + 6, col + 10);
-                ex.SetCellValue(yy[0], row + 5, col + 2);
-                ex.SetCellValue(yy[1], row + 5, col + 4);
-                ex.SetCellValue(yy[2], row + 5, col + 6);
-                ex.SetCellValue(yy[3], row + 5, col + 8);
-                ex.SetCellValue(yy[4], row + 5, col + 10);
-                ex.SetCellValue(yy[5], row + 7, col + 2);
-                ex.SetCellValue(yy[6], row + 7, col + 4);
-                ex.SetCellValue(yy[7], row + 7, col + 6);
-                ex.SetCellValue(yy[8], row + 7, col + 8);
-                ex.SetCellValue(yy[9], row + 7, col + 10);
- 
-                //人身,设备
-                ex.SetCellValue(jl.rsaqts.ToString(), row + 5, col + 13);
-                ex.SetCellValue(jl.sbaqts.ToString(), row + 7, col + 13);
-                //工作内容
-                IList<PJ_gzrjnr> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_gzrjnr>(" where gzrjID='" + jl.gzrjID + "' order by seq");
+                //
+                ex.SetCellValue(jl.LineID, row + 3, col);
+                ex.SetCellValue(jl.gtID, row + 3, col + 3);
+
+                //交叉跨越行
+                ex.SetCellValue(jl.kygh, row + 6, col);
+                ex.SetCellValue(jl.gdjl.ToString(), row + 6, col + 3);
+                ex.SetCellValue(jl.kymc, row + 6, col + 4);
+                ex.SetCellValue(jl.ssdw, row + 6, col + 5);
+                ex.SetCellValue(jl.jb, row + 6, col + 7);
+                //测量记录
+                IList<PJ_05jckyjl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_05jckyjl>(" where jckyID='" + jl.jckyID + "' order by CreateDate");
                 for (int i = 0; i < list.Count;i++ )
                 {
-                    PJ_gzrjnr obj = list[i];
-                    ex.SetCellValue(obj.seq.ToString(), row + 9+i, col);
-                    ex.SetCellValue(obj.gznr, row + 9+i, col+1);
-                    ex.SetCellValue(obj.fzr, row + 9+i, col+8);
-                    ex.SetCellValue(obj.cjry, row + 9+i, col+11);
+                    PJ_05jckyjl obj = list[i];
+                    ex.SetCellValue(obj.clrq.Year.ToString(), row + 10 + i, col);
+                    ex.SetCellValue(obj.clrq.Month.ToString(), row + 10 + i, col+1);
+                    ex.SetCellValue(obj.clrq.Day.ToString(), row + 10 + i, col+2);
+                    ex.SetCellValue(obj.scz.ToString(), row + 10 + i, col + 3);
+                    ex.SetCellValue(obj.qw, row + 10 + i, col + 4);
+                    ex.SetCellValue(obj.clrqz, row + 10 + i, col + 5);
+                    ex.SetCellValue(obj.jr, row + 10 + i, col + 7);
                 }
-                for (int i = list.Count; i < 10; i++)
-                {
-                    ex.SetCellValue((i+1).ToString(), row + 9 + i, col);
-                }
-                //记事
-                ex.SetCellValue("记事：" + jl.js, row + 9 + row_nr, col);
-                ex.RowAutoFit(row + 9 + row_nr);
-                //领导评语
-                ex.SetCellValue("领导检查评语：" + jl.py, row + 12 + row_nr, col);
-                ex.RowAutoFit(row + 12 + row_nr);
-                //签字、时间
-                ex.SetCellValue(jl.qz, row + 14 + row_nr, col + 2);
-                ex.SetCellValue(jl.qzrq.Year.ToString(), row + 14 + row_nr, col + 6);
-                ex.SetCellValue(jl.qzrq.Month.ToString(), row + 14 + row_nr, col + 9);
-                ex.SetCellValue(jl.qzrq.Day.ToString(), row + 14 + row_nr, col + 11);
                 
                 ex.ShowExcel();
-                */
+                
         }
             
     }
