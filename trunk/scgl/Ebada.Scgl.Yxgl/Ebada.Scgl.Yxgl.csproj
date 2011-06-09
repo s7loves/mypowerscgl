@@ -258,6 +258,24 @@
     <Compile Include="13剩余电流动作保护器测试\frmtqdlbhEdit.Designer.cs">
       <DependentUpon>frmtqdlbhEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbh.Designer.cs">
+      <DependentUpon>UCPJ_13dlbh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbhjl .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbhjl .Designer.cs">
+      <DependentUpon>UCPJ_13dlbhjl .cs</DependentUpon>
+    </Compile>
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbhM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbhM.Designer.cs">
+      <DependentUpon>UCPJ_13dlbhM.cs</DependentUpon>
+    </Compile>
     <Compile Include="14电力安全工具试验\Export14.cs" />
     <Compile Include="14电力安全工具试验\frm14aqgjsyEdit.cs">
       <SubType>Form</SubType>
@@ -422,6 +440,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="13剩余电流动作保护器测试\frmtqdlbhEdit.resx">
       <DependentUpon>frmtqdlbhEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="13剩余电流动作保护器测试\UCPJ_13dlbh.resx">
+      <DependentUpon>UCPJ_13dlbh.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="13剩余电流动作保护器测试\UCPJ_13dlbhjl .resx">
+      <DependentUpon>UCPJ_13dlbhjl .cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="13剩余电流动作保护器测试\UCPJ_13dlbhM.resx">
+      <DependentUpon>UCPJ_13dlbhM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="14电力安全工具试验\frm14aqgjsyEdit.resx">
