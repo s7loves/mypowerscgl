@@ -27,11 +27,11 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "zcr");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "kssj");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "jssj");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "cjry");
-            this.comboBoxEdit28.DataBindings.Add("EditValue", rowData, "qxry");
+            //this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "cjry");
+            //this.comboBoxEdit28.DataBindings.Add("EditValue", rowData, "qxry");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "hdnr");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "hdxj");
-            this.memoEdit3.DataBindings.Add("EditValue", rowData, "py");
+            this.memoEdit4.DataBindings.Add("EditValue", rowData, "py");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "qz");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "qzrq");
 
@@ -41,7 +41,10 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
+                getqqry();
+                getcqry();
                 return rowData;
+              
             }
             set {
                 if (value == null) return;
@@ -52,6 +55,8 @@ namespace Ebada.Scgl.Yxgl
                 } else {
                     ConvertHelper.CopyTo<PJ_02aqhd>(value as PJ_02aqhd, rowData);
                 }
+                setqqry();
+                setcqry();
             }
         }
 
@@ -67,27 +72,88 @@ namespace Ebada.Scgl.Yxgl
             }
             for (int i = 0; i < mans.Length; i++)
             {
-                string[] ry = mans[i].Split(':');
-                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = ry[0];
-                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).EditValue = ry[1];
+               
+                ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + (i+28)]).EditValue = mans[i];
+               
             }
         }
         void getqqry()
         {
             string str = "";
-            string ry = "";
             string yy = "";
             for (int i = 28; i <=32; i++)
             {
-                ry = ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + (i + 1)]).EditValue.ToString();
-                yy = ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + (i + 11)]).EditValue.ToString();
-                if (!string.IsNullOrEmpty(ry.Trim()))
-                    str += ry + ":" + yy + ";";
+               
+                yy = ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + i]).EditValue.ToString();
+                if (!string.IsNullOrEmpty(yy.Trim()))
+                    str +=  yy + ";";
             }
             rowData.qxry = str;
         }
+        void setcqry()
+        {
+            string str = rowData.cjry;
+            string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 2; i <= 27; i++)
+            {
+                if (i != 6)
+                {
+                    ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = "";
+                }
+              
+
+            }
+            int m=0;
+            for (int i = 0; i < mans.Length; i++)
+            {
+                if (i>=5)
+                {
+                    m = i + 2;
+                }
+                else
+                {
+                    m = i + 1;
+                }
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (m+1)]).EditValue = mans[i];
+
+            }
+        }
+        void getcqry()
+        {
+            string str = "";
+            string yy = "";
+            for (int i = 2; i <= 27; i++)
+            {
+                if (i!=6)
+                {
+                    yy = ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue.ToString();
+                    if (!string.IsNullOrEmpty(yy.Trim()))
+                        str += yy + ";";
+                }
+             
+            }
+            rowData.cjry = str;
+        }
+
 
         private void InitComboBoxData() {
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            
+            for (int i = 1; i < 27; i++)
+            {
+                if (i!=5)
+                {
+                    ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+
+                }
+  
+            }
+            for (int i = 27; i <32; i++)
+            {
+              
+                ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+
+            }
             //填充下拉列表数据
         }
 

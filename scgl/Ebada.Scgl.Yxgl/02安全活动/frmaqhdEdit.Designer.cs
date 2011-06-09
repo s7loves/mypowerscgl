@@ -656,9 +656,9 @@
             // 
             // memoEdit3
             // 
-            this.memoEdit3.Location = new System.Drawing.Point(6, 17);
+            this.memoEdit3.Location = new System.Drawing.Point(88, 226);
             this.memoEdit3.Name = "memoEdit3";
-            this.memoEdit3.Size = new System.Drawing.Size(138, 248);
+            this.memoEdit3.Size = new System.Drawing.Size(218, 133);
             this.memoEdit3.TabIndex = 0;
             // 
             // labelControl4

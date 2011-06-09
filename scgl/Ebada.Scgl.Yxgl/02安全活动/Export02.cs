@@ -23,7 +23,7 @@ namespace Ebada.Scgl.Yxgl {
             //每行显示文字长度
             int zc = 36;
             //与会人员之间的间隔符号
-            string jksign = "@";
+            char[] jksign = new char[1] { ';' };
             int row = 1;
             int col = 1;
 
@@ -54,7 +54,7 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(obj.kssj.Minute.ToString(), row + 3, col + 12);
            
             //出席人员
-            string[] ary = obj.cjry.Split('@');
+            string[] ary = obj.cjry.Split(jksign);
             int m = ary.Length / 8;
             int n = ary.Length % 8;
             if (n > 0) {
@@ -74,7 +74,7 @@ namespace Ebada.Scgl.Yxgl {
                 ex.SetCellValue(ary[i], row + 4 + i / 8, tempcol);
             }
             //缺席人员
-            string[] ary2 = obj.qxry.Split('@');
+            string[] ary2 = obj.qxry.Split(jksign);
         
             for (int j = 0; j < ary2.Length; j++)
             {
@@ -85,13 +85,13 @@ namespace Ebada.Scgl.Yxgl {
                 }
                 if (j < 7)
                 {
-                    ex.SetCellValue(ary2[j], row + 4 + m, tempcol);
+                    ex.SetCellValue(ary2[j], row + 7, tempcol);
                 }
                 else//缺席人员大于七个时
                 {
-                    string tempstr = ex.ReadCellValue(row + 4 + m, col + 12);
+                    string tempstr = ex.ReadCellValue(row + 7, col + 12);
                     tempstr = tempstr + "/" + ary2[j];
-                    ex.SetCellValue(tempstr, row + 4 + m, col + 12);
+                    ex.SetCellValue(tempstr, row + 7, col + 12);
                 }
 
             }
