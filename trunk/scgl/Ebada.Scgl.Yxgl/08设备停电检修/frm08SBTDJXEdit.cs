@@ -71,11 +71,11 @@ namespace Ebada.Scgl.Yxgl
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
 
-            ICollection xlList = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电所人员列表
-            if (xlList.Count > 0)
-            {
+            ICollection xlList = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电所线路列表
+            //if (xlList.Count > 0)
+            //{
                 this.comboBoxEdit1.Properties.Items.AddRange(xlList);
-            }
+            //}
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
             if (ryList.Count > 0)
             {
