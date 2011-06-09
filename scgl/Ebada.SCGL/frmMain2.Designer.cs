@@ -48,6 +48,8 @@
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -73,10 +75,12 @@
             this.barManager1.Images = this.imageCollection1;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barButtonItem1,
-            this.barButtonItem2});
+            this.barButtonItem2,
+            this.barStaticItem1,
+            this.barStaticItem2});
             this.barManager1.LargeImages = this.imageCollection1;
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 4;
+            this.barManager1.MaxItemId = 6;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -126,6 +130,9 @@
             this.bar3.DockCol = 0;
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem2)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
@@ -144,20 +151,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 351);
-            this.barDockControlBottom.Size = new System.Drawing.Size(525, 22);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 347);
+            this.barDockControlBottom.Size = new System.Drawing.Size(525, 26);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 67);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 284);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 280);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(525, 67);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 284);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 280);
             // 
             // dockManager1
             // 
@@ -180,7 +187,7 @@
             this.dockPanel1.Location = new System.Drawing.Point(319, 67);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.OriginalSize = new System.Drawing.Size(206, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(206, 284);
+            this.dockPanel1.Size = new System.Drawing.Size(206, 280);
             this.dockPanel1.Text = "功能导航";
             // 
             // dockPanel1_Container
@@ -188,7 +195,7 @@
             this.dockPanel1_Container.Controls.Add(this.ucModulBar1);
             this.dockPanel1_Container.Location = new System.Drawing.Point(3, 24);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(200, 257);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(200, 253);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // ucModulBar1
@@ -196,7 +203,7 @@
             this.ucModulBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucModulBar1.Location = new System.Drawing.Point(0, 0);
             this.ucModulBar1.Name = "ucModulBar1";
-            this.ucModulBar1.Size = new System.Drawing.Size(200, 257);
+            this.ucModulBar1.Size = new System.Drawing.Size(200, 253);
             this.ucModulBar1.TabIndex = 0;
             // 
             // imageCollection1
@@ -213,6 +220,19 @@
             // 
             this.xtraTabbedMdiManager1.Controller = this.barAndDockingController1;
             this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Id = 4;
+            this.barStaticItem1.Name = "barStaticItem1";
+            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // barStaticItem2
+            // 
+            this.barStaticItem2.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barStaticItem2.Id = 5;
+            this.barStaticItem2.Name = "barStaticItem2";
+            this.barStaticItem2.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // frmMain2
             // 
@@ -259,5 +279,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.Utils.ImageCollection imageCollection1;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem2;
     }
 }
