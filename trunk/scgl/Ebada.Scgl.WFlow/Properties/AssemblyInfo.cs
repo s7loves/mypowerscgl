@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Ebada.Scgl.WFlow")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("tonli")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Ebada.Scgl.WFlow")]
-[assembly: AssemblyCopyright("Copyright © tonli 2011")]
+[assembly: AssemblyCopyright("Copyright ©  2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
