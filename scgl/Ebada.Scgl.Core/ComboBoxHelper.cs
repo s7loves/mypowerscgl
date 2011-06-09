@@ -192,5 +192,26 @@ namespace Ebada.Scgl.Core {
             }
             return list;
         }
+        /// <summary>
+        /// 土质
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetTZ()
+        {
+
+            ICollection list = new ArrayList();
+            string key = "tz";
+            if (mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = new string[] { "黑土", "粘土", "黄土", "沙土"};
+
+                mCache.Add(key, list);
+            }
+            return list;
+        }
     }
 }
