@@ -54,22 +54,17 @@ namespace Ebada.Scgl.Yxgl
                 } else {
                     ConvertHelper.CopyTo<PJ_07jdzzjl>(value as PJ_07jdzzjl, rowData);
                 }
+                if (rowData.jr == "")
+                {
+                    rowData.clrq = DateTime.Now;
+                }
             }
         }
 
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_07jdzzjl>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+            this.comboBoxEdit1.Properties.Items.AddRange(ComboBoxHelper.GetTQ());//天气
         }
 
         /// <summary>
@@ -141,6 +136,19 @@ namespace Ebada.Scgl.Yxgl
         private void labelControl5_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+
+            if (comboBoxEdit6.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("结论不能为空。");
+                comboBoxEdit6.Focus();
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
