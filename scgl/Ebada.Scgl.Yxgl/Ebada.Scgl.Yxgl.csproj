@@ -506,6 +506,22 @@
     <None Include="00记录模板\09培训记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\10配电变压器汇总表.xls" />
+    <None Include="00记录模板\11配电变压器卡片.xls" />
+    <None Include="00记录模板\12线路开关卡片.xls" />
+    <None Include="00记录模板\13剩余电流动作保护器测试记录.xls" />
+    <None Include="00记录模板\14电力安全工具试验记录.xls" />
+    <None Include="00记录模板\15工具仪表台账.xls" />
+    <None Include="00记录模板\16高压配电线路条图汇总表.xls" />
+    <None Include="00记录模板\17线路条图.xls" />
+    <None Include="00记录模板\18双河所设备评级表.xls" />
+    <None Include="00记录模板\19高压配电设备完好率汇总表.xls" />
+    <None Include="00记录模板\20低压设备完好率及台区网络图.xls" />
+    <None Include="00记录模板\21电力故障电话接听记录.xls" />
+    <None Include="00记录模板\22报修服务修理票实例.xls" />
+    <None Include="00记录模板\23配电线路产权维护范围协议书.xls" />
+    <None Include="00记录模板\24设备变更通知书.xls" />
+    <None Include="00记录模板\26防护通知书.xls" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
