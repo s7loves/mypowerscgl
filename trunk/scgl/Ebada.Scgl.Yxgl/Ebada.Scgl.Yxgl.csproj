@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -272,16 +272,16 @@
       <DependentUpon>frmaqgjEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="15工具仪表台账\Export15.cs" />
-    <Compile Include="16工具仪表台帐\frm16gjybEdit.cs">
+    <Compile Include="15工具仪表台账\frm16gjybEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="16工具仪表台帐\frm16gjybEdit.Designer.cs">
+    <Compile Include="15工具仪表台账\frm16gjybEdit.designer.cs">
       <DependentUpon>frm16gjybEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="16工具仪表台帐\UCPS_gjyb.cs">
+    <Compile Include="15工具仪表台账\UCPS_gjyb.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="16工具仪表台帐\UCPS_gjyb.Designer.cs">
+    <Compile Include="15工具仪表台账\UCPS_gjyb.designer.cs">
       <DependentUpon>UCPS_gjyb.cs</DependentUpon>
     </Compile>
     <Compile Include="16高压配电线路条图汇总表\Export16.cs" />
@@ -421,10 +421,10 @@
     <EmbeddedResource Include="14电力安全工具试验\frmaqgjEdit.resx">
       <DependentUpon>frmaqgjEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="16工具仪表台帐\frm16gjybEdit.resx">
+    <EmbeddedResource Include="15工具仪表台账\frm16gjybEdit.resx">
       <DependentUpon>frm16gjybEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="16工具仪表台帐\UCPS_gjyb.resx">
+    <EmbeddedResource Include="15工具仪表台账\UCPS_gjyb.resx">
       <DependentUpon>UCPS_gjyb.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="18高压配电线路设备评级表\frm18gysbpjEdit.resx">
