@@ -390,48 +390,63 @@
     </EmbeddedResource>
     <EmbeddedResource Include="11配电变压器卡片\frm11byqbdEdit.resx">
       <DependentUpon>frm11byqbdEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="11配电变压器卡片\frm11byqdydlEdit.resx">
       <DependentUpon>frm11byqdydlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="11配电变压器卡片\frm11byqdzclEdit.resx">
       <DependentUpon>frm11byqdzclEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="12线路开关卡片\frm12kgbdEdit.resx">
       <DependentUpon>frm12kgbdEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="12线路开关卡片\frm12kgjxEdit.resx">
       <DependentUpon>frm12kgjxEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="12线路开关卡片\frm12kgsyEdit.resx">
       <DependentUpon>frm12kgsyEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="12线路开关卡片\frmkgEdit.resx">
       <DependentUpon>frmkgEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="13剩余电流动作保护器测试\frm13dlbhjlEdit.resx">
       <DependentUpon>frm13dlbhjlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="13剩余电流动作保护器测试\frmtqdlbhEdit.resx">
       <DependentUpon>frmtqdlbhEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="14电力安全工具试验\frm14aqgjsyEdit.resx">
       <DependentUpon>frm14aqgjsyEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="14电力安全工具试验\frmaqgjEdit.resx">
       <DependentUpon>frmaqgjEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="15工具仪表台账\frm16gjybEdit.resx">
       <DependentUpon>frm16gjybEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="15工具仪表台账\UCPS_gjyb.resx">
       <DependentUpon>UCPS_gjyb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="18高压配电线路设备评级表\frm18gysbpjEdit.resx">
       <DependentUpon>frm18gysbpjEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="21电力故障电话接听记录\frm21gzbxdhEdit.resx">
       <DependentUpon>frm21gzbxdhEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
