@@ -164,6 +164,7 @@
     <Compile Include="06设备巡视及缺陷消除\frm06sbxsEdit.Designer.cs">
       <DependentUpon>frm06sbxsEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="07接地装置检测\Export07.cs" />
     <Compile Include="07接地装置检测\frm07JDZZEdit.cs">
       <SubType>Form</SubType>
     </Compile>

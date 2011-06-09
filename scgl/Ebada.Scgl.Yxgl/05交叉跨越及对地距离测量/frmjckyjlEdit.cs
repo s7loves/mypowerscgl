@@ -101,6 +101,7 @@ namespace Ebada.Scgl.Yxgl
             if (comboBoxEdit2.Text == "")
             {
                 MsgBox.ShowTipMessageBox("结论不能为空。");
+                comboBoxEdit2.Focus();
                 return;
             }
             this.DialogResult = DialogResult.OK;
