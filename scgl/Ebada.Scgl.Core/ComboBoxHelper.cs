@@ -171,5 +171,26 @@ namespace Ebada.Scgl.Core {
             }
             return list;
         }
+        /// <summary>
+        /// 设备类型
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetSBLX()
+        {
+
+            ICollection list = new ArrayList();
+            string key = "sblx";
+            if (mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = new string[] { "变压器", "断路器", "电缆与架空线接头", "立瓶", "线路", "接户线" };
+
+                mCache.Add(key, list);
+            }
+            return list;
+        }
     }
 }
