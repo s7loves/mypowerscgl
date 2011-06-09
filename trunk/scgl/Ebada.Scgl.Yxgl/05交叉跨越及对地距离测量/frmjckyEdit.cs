@@ -56,16 +56,8 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<UCPJ_05jcky>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-            
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+            this.comboBoxEdit5.Properties.Items.AddRange(ComboBoxHelper.GetKYName());//被跨越物
+            this.comboBoxEdit6.Properties.Items.AddRange(ComboBoxHelper.GetSSDW());//所属单位
         }
 
         /// <summary>
