@@ -31,13 +31,20 @@ namespace Ebada.Scgl.Xtgl {
         public UCmUser() {
             InitializeComponent();
             initImageList();
-            
-            gridViewOperation = new GridViewOperation<mUser>(gridControl1, gridView1, barManager1);
+
+            gridViewOperation = new GridViewOperation<mUser>(gridControl1, gridView1, barManager1, new frmmUserEdit());
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<mUser>(gridViewOperation_BeforeAdd);
             gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<mUser>(gridViewOperation_BeforeInsert);
+            gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<mUser>(gridViewOperation_BeforeUpdate);
             initColumns();
+        }
+
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<mUser> e) {
+            if (e.Value.Password.Length <= 12) {
+                e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
+            }
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<mUser> e) {
@@ -49,6 +56,12 @@ namespace Ebada.Scgl.Xtgl {
         void initColumns() {
             gridView1.Columns["OrgCode"].Visible = true;
             gridView1.Columns["OrgName"].Visible = false;
+            gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
+            repositoryItemTextEdit1.EditValueChanged += new EventHandler(repositoryItemTextEdit1_EditValueChanged);
+        }
+
+        void repositoryItemTextEdit1_EditValueChanged(object sender, EventArgs e) {
+            
         }
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<mUser> e) {
             if (string.IsNullOrEmpty(parentID)) {
@@ -80,6 +93,7 @@ namespace Ebada.Scgl.Xtgl {
         void gridViewOperation_CreatingObjectEvent(mUser newobj) {
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
+            newobj.Valid = true;
         }
         /// <summary>
         /// 父表ID

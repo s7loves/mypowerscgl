@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BDBE45E2-0DB8-4C7C-8177-0F1FBB5831C8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -104,6 +104,12 @@
     <Compile Include="frmOrgEdit.Designer.cs">
       <DependentUpon>frmOrgEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="mUser\frmmUserEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mUser\frmmUserEdit.Designer.cs">
+      <DependentUpon>frmmUserEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="mUser\UCmOrgUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     <EmbeddedResource Include="frmOrgEdit.resx">
       <DependentUpon>frmOrgEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mUser\frmmUserEdit.resx">
+      <DependentUpon>frmmUserEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mUser\UCmOrgUser.resx">
       <DependentUpon>UCmOrgUser.cs</DependentUpon>
