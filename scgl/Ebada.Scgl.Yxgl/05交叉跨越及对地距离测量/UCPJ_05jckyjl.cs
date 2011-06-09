@@ -92,8 +92,8 @@ namespace Ebada.Scgl.Yxgl {
 
             //需要隐藏列时在这写代码
 
-            gridView1.Columns[7].Visible = false;
-            //hideColumn("ParentID");
+            //gridView1.Columns[7].Visible = false;
+            hideColumn("gzrjID");
         }
         /// <summary>
         /// 刷新数据

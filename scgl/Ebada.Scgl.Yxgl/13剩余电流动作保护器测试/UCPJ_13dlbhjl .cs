@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Yxgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPJ_07jdzzjl : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPJ_13dlbhjl : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_07jdzzjl> gridViewOperation;
 
@@ -35,7 +35,7 @@ namespace Ebada.Scgl.Yxgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private PJ_07jdzz parentObj;
-        public UCPJ_07jdzzjl()
+        public UCPJ_13dlbhjl()
         {
             InitializeComponent();
             initImageList();
