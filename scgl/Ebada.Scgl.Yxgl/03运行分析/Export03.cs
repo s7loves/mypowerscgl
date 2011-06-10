@@ -36,7 +36,7 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.rq.Day.ToString(), 4, 9);
 
             //出席人员
-            string[] ary = obj.cjry.Split('@');
+            string[] ary = obj.cjry.Split(';');
             int n = ary.Length % 5;
             for (int i = 0; i < ary.Length; i++)
             {
