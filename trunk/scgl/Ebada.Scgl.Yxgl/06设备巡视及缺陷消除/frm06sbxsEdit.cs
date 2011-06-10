@@ -27,10 +27,10 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineName");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "xlqd");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "xssj");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "xsr");
+            //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "xsr");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "qxlb");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr");
-            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xcr");
+            //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xcr");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "xcrq");
             
             //
@@ -60,17 +60,23 @@ namespace Ebada.Scgl.Yxgl
 
         #endregion
 
-        private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_06sbxs>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
+        private void InitComboBoxData() 
+        {
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            
+            comboBoxEdit3.Properties.Items.AddRange(ryList);
+            comboBoxEdit5.Properties.Items.AddRange(ryList);
+            comboBoxEdit6.Properties.Items.AddRange(ryList);
+            comboBoxEdit7.Properties.Items.AddRange(ryList);
 
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+              ICollection linelist = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电线路名称
+            //线路名称
+              comboBoxEdit1.Properties.Items.AddRange(linelist);
+            //巡视区段
+            //comboBoxEdit2.Properties.Items.AddRange(ryList);
+            ICollection qxlist = ComboBoxHelper.GetQxlb();//获取缺陷类别
+            //缺陷类别GetQxlb
+            comboBoxEdit4.Properties.Items.AddRange(qxlist);
         }
 
         /// <summary>

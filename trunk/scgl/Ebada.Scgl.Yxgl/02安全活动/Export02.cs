@@ -21,7 +21,7 @@ namespace Ebada.Scgl.Yxgl {
 
             ex.Open(fname);
             //每行显示文字长度
-            int zc = 36;
+            int zc = 60;
             //与会人员之间的间隔符号
             char[] jksign = new char[1] { ';' };
             int row = 1;
@@ -98,74 +98,28 @@ namespace Ebada.Scgl.Yxgl {
             //活动内容
            
             string hdstr = "活动内容：" + obj.hdnr;
-
-            for (int r = 0; r < 8; r++)
+            List<string > hdlist = Ecommon.ResultStrList(hdstr, zc);
+            for (int r = 0; r < hdlist.Count; r++)
             {
-                string tempstr = "";
-                int startnum = r * zc;
-                int endnum = (r + 1) * zc;
-                bool ISempty = false;
-                if (startnum >= hdstr.Length)
-                {
-                    ISempty = true;
-                }
-                else if (endnum >= hdstr.Length)
-                {
-                    endnum = hdstr.Length;
-                }
-                if (!ISempty)
-                {
-                    tempstr = hdstr.Substring(startnum, endnum - startnum);
-                }
-                ex.SetCellValue(tempstr, 10 + r, 1);
+                ex.SetCellValue(hdlist[r], 10 + r, 1);
             }
+           
           
             //活动小结
             string hdxjstr = "活动小结：" + obj.hdxj;
-
-            for (int s = 0; s < 8; s++)
+            List<string> hdxlist = Ecommon.ResultStrList(hdxjstr, zc);
+            for (int s = 0; s < hdxlist.Count; s++)
             {
-                string tempstr = "";
-                int startnum = s * zc;
-                int endnum = (s + 1) * zc;
-                bool ISempty = false;
-                if (startnum >= hdxjstr.Length)
-                {
-                    ISempty = true;
-                }
-                else if (endnum >= hdxjstr.Length)
-                {
-                    endnum = hdxjstr.Length;
-                }
-                if (!ISempty)
-                {
-                    tempstr = hdxjstr.Substring(startnum, endnum - startnum);
-                }
-                ex.SetCellValue(tempstr, 18 + s, 1);
+
+                ex.SetCellValue(hdxlist[s], 18 + s, 1);
             }
            
             //领导评语
             string ldpystr = "领导检查评语：" + obj.py;
-
-            for (int t = 0; t < 2; t++)
+            List<string> ldpylist = Ecommon.ResultStrList(ldpystr, zc);
+            for (int t = 0; t < ldpylist.Count; t++)
             {
-                string tempstr = "";
-                int startnum = t * zc;
-                int endnum = (t + 1) * zc;
-                bool ISempty = false;
-                if (startnum >= ldpystr.Length)
-                {
-                    ISempty = true;
-                }
-                else if (endnum >= ldpystr.Length)
-                {
-                    endnum = ldpystr.Length;
-                }
-                if (!ISempty)
-                {
-                    tempstr = ldpystr.Substring(startnum, endnum - startnum);
-                }
-                ex.SetCellValue(tempstr, 23 + t, 1);
+                ex.SetCellValue(ldpylist[t], 23 + t, 1);
             }
           
             //签字
