@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_22" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_22"  type="Ebada.Scgl.Model.PJ_22,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_22_AllColumns" class="PJ_22">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="ph" column="ph" />
+        <result property="bxsj" column="bxsj" />
+        <result property="bxdd" column="bxdd" />
+        <result property="xlfzr" column="xlfzr" />
+        <result property="xlry" column="xlry" />
+        <result property="zbslr" column="zbslr" />
+        <result property="bggzqc" column="bggzqc" />
+        <result property="bgfs" column="bgfs" />
+        <result property="bxrxm" column="bxrxm" />
+        <result property="lxdh" column="lxdh" />
+        <result property="sjgzqc" column="sjgzqc" />
+        <result property="sycl" column="sycl" />
+        <result property="dsj" column="dsj" />
+        <result property="wsj" column="wsj" />
+        <result property="jhry" column="jhry" />
+        <result property="czry" column="czry" />
+        <result property="yhqm" column="yhqm" />
+        <result property="tdsj" column="tdsj" />
+        <result property="sdsj" column="sdsj" />
+        <result property="tdxl" column="tdxl" />
+        <result property="czxm" column="czxm" />
+        <result property="ddsb" column="ddsb" />
+        <result property="wxd" column="wxd" />
+        <result property="cljg" column="cljg" />
+        <result property="Remark" column="Remark" />
+        <result property="gzrjID" column="gzrjID" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_22List" resultMap="PJ_22_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [ph],
+         [bxsj],
+         [bxdd],
+         [xlfzr],
+         [xlry],
+         [zbslr],
+         [bggzqc],
+         [bgfs],
+         [bxrxm],
+         [lxdh],
+         [sjgzqc],
+         [sycl],
+         [dsj],
+         [wsj],
+         [jhry],
+         [czry],
+         [yhqm],
+         [tdsj],
+         [sdsj],
+         [tdxl],
+         [czxm],
+         [ddsb],
+         [wxd],
+         [cljg],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_22
+          $value$
+   </select>
+   
+   <select id="SelectPJ_22ByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [ph],
+         [bxsj],
+         [bxdd],
+         [xlfzr],
+         [xlry],
+         [zbslr],
+         [bggzqc],
+         [bgfs],
+         [bxrxm],
+         [lxdh],
+         [sjgzqc],
+         [sycl],
+         [dsj],
+         [wsj],
+         [jhry],
+         [czry],
+         [yhqm],
+         [tdsj],
+         [sdsj],
+         [tdxl],
+         [czxm],
+         [ddsb],
+         [wxd],
+         [cljg],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate]
+          FROM PJ_22
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="ph">[ph]='$ph$'</isNotNull>
+       <isNotNull prepend="AND" property="bxsj">[bxsj]='$bxsj$'</isNotNull>
+       <isNotNull prepend="AND" property="bxdd">[bxdd]='$bxdd$'</isNotNull>
+       <isNotNull prepend="AND" property="xlfzr">[xlfzr]='$xlfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="xlry">[xlry]='$xlry$'</isNotNull>
+       <isNotNull prepend="AND" property="zbslr">[zbslr]='$zbslr$'</isNotNull>
+       <isNotNull prepend="AND" property="bggzqc">[bggzqc]='$bggzqc$'</isNotNull>
+       <isNotNull prepend="AND" property="bgfs">[bgfs]='$bgfs$'</isNotNull>
+       <isNotNull prepend="AND" property="bxrxm">[bxrxm]='$bxrxm$'</isNotNull>
+       <isNotNull prepend="AND" property="lxdh">[lxdh]='$lxdh$'</isNotNull>
+       <isNotNull prepend="AND" property="sjgzqc">[sjgzqc]='$sjgzqc$'</isNotNull>
+       <isNotNull prepend="AND" property="sycl">[sycl]='$sycl$'</isNotNull>
+       <isNotNull prepend="AND" property="dsj">[dsj]='$dsj$'</isNotNull>
+       <isNotNull prepend="AND" property="wsj">[wsj]='$wsj$'</isNotNull>
+       <isNotNull prepend="AND" property="jhry">[jhry]='$jhry$'</isNotNull>
+       <isNotNull prepend="AND" property="czry">[czry]='$czry$'</isNotNull>
+       <isNotNull prepend="AND" property="yhqm">[yhqm]='$yhqm$'</isNotNull>
+       <isNotNull prepend="AND" property="tdsj">[tdsj]='$tdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="sdsj">[sdsj]='$sdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="tdxl">[tdxl]='$tdxl$'</isNotNull>
+       <isNotNull prepend="AND" property="czxm">[czxm]='$czxm$'</isNotNull>
+       <isNotNull prepend="AND" property="ddsb">[ddsb]='$ddsb$'</isNotNull>
+       <isNotNull prepend="AND" property="wxd">[wxd]='$wxd$'</isNotNull>
+       <isNotNull prepend="AND" property="cljg">[cljg]='$cljg$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_22ByKey" resultMap="PJ_22_AllColumns" parameterClass="PJ_22">
+         SELECT 
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [ph],
+         [bxsj],
+         [bxdd],
+         [xlfzr],
+         [xlry],
+         [zbslr],
+         [bggzqc],
+         [bgfs],
+         [bxrxm],
+         [lxdh],
+         [sjgzqc],
+         [sycl],
+         [dsj],
+         [wsj],
+         [jhry],
+         [czry],
+         [yhqm],
+         [tdsj],
+         [sdsj],
+         [tdxl],
+         [czxm],
+         [ddsb],
+         [wxd],
+         [cljg],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate]
+         FROM PJ_22
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_22" parameterClass="PJ_22">
+        DELETE FROM 
+         PJ_22
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_22ByWhere" parameterClass="string">
+     delete from PJ_22 $value$
+   </delete>
+   
+   <delete id="DeletePJ_22ByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_22
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_22" parameterClass="PJ_22" resultClass="int">
+          UPDATE PJ_22
+           SET
+             [ParentID]=#ParentID#,
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [ph]=#ph#,
+             [bxsj]=#bxsj#,
+             [bxdd]=#bxdd#,
+             [xlfzr]=#xlfzr#,
+             [xlry]=#xlry#,
+             [zbslr]=#zbslr#,
+             [bggzqc]=#bggzqc#,
+             [bgfs]=#bgfs#,
+             [bxrxm]=#bxrxm#,
+             [lxdh]=#lxdh#,
+             [sjgzqc]=#sjgzqc#,
+             [sycl]=#sycl#,
+             [dsj]=#dsj#,
+             [wsj]=#wsj#,
+             [jhry]=#jhry#,
+             [czry]=#czry#,
+             [yhqm]=#yhqm#,
+             [tdsj]=#tdsj#,
+             [sdsj]=#sdsj#,
+             [tdxl]=#tdxl#,
+             [czxm]=#czxm#,
+             [ddsb]=#ddsb#,
+             [wxd]=#wxd#,
+             [cljg]=#cljg#,
+             [Remark]=#Remark#,
+             [gzrjID]=#gzrjID#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_22" parameterClass="PJ_22">
+        INSERT INTO PJ_22
+         (
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [ph],
+         [bxsj],
+         [bxdd],
+         [xlfzr],
+         [xlry],
+         [zbslr],
+         [bggzqc],
+         [bgfs],
+         [bxrxm],
+         [lxdh],
+         [sjgzqc],
+         [sycl],
+         [dsj],
+         [wsj],
+         [jhry],
+         [czry],
+         [yhqm],
+         [tdsj],
+         [sdsj],
+         [tdxl],
+         [czxm],
+         [ddsb],
+         [wxd],
+         [cljg],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #OrgCode#,
+         #OrgName#,
+         #ph#,
+         #bxsj#,
+         #bxdd#,
+         #xlfzr#,
+         #xlry#,
+         #zbslr#,
+         #bggzqc#,
+         #bgfs#,
+         #bxrxm#,
+         #lxdh#,
+         #sjgzqc#,
+         #sycl#,
+         #dsj#,
+         #wsj#,
+         #jhry#,
+         #czry#,
+         #yhqm#,
+         #tdsj#,
+         #sdsj#,
+         #tdxl#,
+         #czxm#,
+         #ddsb#,
+         #wxd#,
+         #cljg#,
+         #Remark#,
+         #gzrjID#,
+         #CreateMan#,
+         #CreateDate#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_22RowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_22
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="ph">[ph]='$ph$'</isNotNull>
+       <isNotNull prepend="AND" property="bxsj">[bxsj]='$bxsj$'</isNotNull>
+       <isNotNull prepend="AND" property="bxdd">[bxdd]='$bxdd$'</isNotNull>
+       <isNotNull prepend="AND" property="xlfzr">[xlfzr]='$xlfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="xlry">[xlry]='$xlry$'</isNotNull>
+       <isNotNull prepend="AND" property="zbslr">[zbslr]='$zbslr$'</isNotNull>
+       <isNotNull prepend="AND" property="bggzqc">[bggzqc]='$bggzqc$'</isNotNull>
+       <isNotNull prepend="AND" property="bgfs">[bgfs]='$bgfs$'</isNotNull>
+       <isNotNull prepend="AND" property="bxrxm">[bxrxm]='$bxrxm$'</isNotNull>
+       <isNotNull prepend="AND" property="lxdh">[lxdh]='$lxdh$'</isNotNull>
+       <isNotNull prepend="AND" property="sjgzqc">[sjgzqc]='$sjgzqc$'</isNotNull>
+       <isNotNull prepend="AND" property="sycl">[sycl]='$sycl$'</isNotNull>
+       <isNotNull prepend="AND" property="dsj">[dsj]='$dsj$'</isNotNull>
+       <isNotNull prepend="AND" property="wsj">[wsj]='$wsj$'</isNotNull>
+       <isNotNull prepend="AND" property="jhry">[jhry]='$jhry$'</isNotNull>
+       <isNotNull prepend="AND" property="czry">[czry]='$czry$'</isNotNull>
+       <isNotNull prepend="AND" property="yhqm">[yhqm]='$yhqm$'</isNotNull>
+       <isNotNull prepend="AND" property="tdsj">[tdsj]='$tdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="sdsj">[sdsj]='$sdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="tdxl">[tdxl]='$tdxl$'</isNotNull>
+       <isNotNull prepend="AND" property="czxm">[czxm]='$czxm$'</isNotNull>
+       <isNotNull prepend="AND" property="ddsb">[ddsb]='$ddsb$'</isNotNull>
+       <isNotNull prepend="AND" property="wxd">[wxd]='$wxd$'</isNotNull>
+       <isNotNull prepend="AND" property="cljg">[cljg]='$cljg$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_22RowCount" parameterClass="string">
+    select count(*) from PJ_22 $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
