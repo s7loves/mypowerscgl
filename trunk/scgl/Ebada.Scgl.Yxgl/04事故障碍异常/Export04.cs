@@ -1,0 +1,132 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Ebada.Client;
+using Ebada.Scgl.Model;
+using System.Windows.Forms;
+namespace Ebada.Scgl.Yxgl
+{
+    /// <summary>
+    /// 使用ExcelAccess生成Excel文档
+    /// 文档
+    /// </summary>
+    public class Export04
+    {
+        /// <summary>
+        /// 文档格式预定义好的，只填写内容
+        /// </summary>
+        /// <param name="obj"></param>
+        public static void ExportExcel(PJ_04sgzayc obj)
+        {
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\04事故障碍异常运行记录.xls";
+
+            ex.Open(fname);
+            //与会人员之间的间隔符号
+            string jksign = "@";
+            int row = 1;
+            int col = 1;
+            //每行显示文字长度
+            int zc = 31;
+
+            //发生时间
+            //停电时间
+            ex.SetCellValue(obj.tdsj.Month.ToString(), 6, 5);
+            ex.SetCellValue(obj.tdsj.Day.ToString(), 6, 7);
+            ex.SetCellValue(obj.tdsj.Hour.ToString(), 6, 9);
+            ex.SetCellValue(obj.tdsj.Minute.ToString(), 6, 11);
+            //送电时间
+            ex.SetCellValue(obj.sdsj.Month.ToString(), 7, 5);
+            ex.SetCellValue(obj.sdsj.Day.ToString(), 7, 7);
+            ex.SetCellValue(obj.sdsj.Hour.ToString(), 7, 9);
+            ex.SetCellValue(obj.sdsj.Minute.ToString(), 7, 11);
+            //时间间隔
+            int data1 = (obj.tdsj - obj.sdsj).Days;
+            int hour1 = (obj.tdsj - obj.sdsj).Hours+data1*24;
+            int min1 = (obj.tdsj - obj.sdsj).Minutes;
+            ex.SetCellValue(hour1.ToString(),7, 17);
+            ex.SetCellValue(min1.ToString(),7, 19);
+            ex.SetCellValue(obj.ssdl.ToString(),8, 6);
+            //ex.SetCellValue(obj.rq.Month.ToString(), 4, 7);
+            //ex.SetCellValue(obj.rq.Day.ToString(), 4, 9);
+
+            //事故障碍异常
+            string sgzyc = "三、事故、障碍、异常运行情况及处理经过：" + obj.clqk;
+            for (int i = 0; i < 4; i++)
+            {
+                string tempstr = "";
+                int startnum = i * zc;
+                int endnum = (i + 1) * zc;
+                bool ISempty = false;
+                if (startnum >= sgzyc.Length)
+                {
+                    ISempty = true;
+                }
+                else if (endnum >= sgzyc.Length)
+                {
+                    endnum = sgzyc.Length;
+                }
+                if (!ISempty)
+                {
+                    tempstr = sgzyc.Substring(startnum, endnum - startnum);
+                }
+                ex.SetCellValue(tempstr, 9 + i, 1);
+            }
+            //主要原因分析
+            string zyyuy = "四、主要原因分析："+obj.yyfx;
+            for (int i = 0; i < 5; i++)
+            {
+                string tempstr = "";
+                int startnum = i * zc;
+                int endnum = (i + 1) * zc;
+                bool ISempty = false;
+                if (startnum >= zyyuy.Length)
+                {
+                    ISempty = true;
+                }
+                else if (endnum >= zyyuy.Length)
+                {
+                    endnum = zyyuy.Length;
+                }
+                if (!ISempty)
+                {
+                    tempstr = zyyuy.Substring(startnum, endnum - startnum);
+                }
+                ex.SetCellValue(tempstr, 13+ i, 1);
+            }
+            //今后放置对策
+            string fzdc = "五、今后防止对策：" + obj.fzdc;
+            for (int i = 0; i < 5; i++)
+            {
+                string tempstr = "";
+                int startnum = i * zc;
+                int endnum = (i + 1) * zc;
+                bool ISempty = false;
+                if (startnum >= fzdc.Length)
+                {
+                    ISempty = true;
+                }
+                else if (endnum >= fzdc.Length)
+                {
+                    endnum = fzdc.Length;
+                }
+                if (!ISempty)
+                {
+                    tempstr = fzdc.Substring(startnum, endnum - startnum);
+                }
+                ex.SetCellValue(tempstr, 18 + i, 1);
+            }
+            //防治对策执行人
+            ex.SetCellValue(obj.zxr, 23, 8);
+            //记录填写人
+            ex.SetCellValue(obj.CreateMan, 24,8);
+            ex.SetCellValue(obj.CreateDate.Month.ToString(), 24, 16);
+            ex.SetCellValue(obj.CreateDate.Day.ToString(), 24, 18);
+
+           
+            ex.ShowExcel();
+
+        }
+    }
+}
