@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_20" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_20"  type="Ebada.Scgl.Model.PJ_20,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_20_AllColumns" class="PJ_20">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="tqCode" column="tqCode" />
+        <result property="tqName" column="tqName" />
+        <result property="Remark" column="Remark" />
+        <result property="gzrjID" column="gzrjID" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="BigData" column="BigData" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_20List" resultMap="PJ_20_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [tqCode],
+         [tqName],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate],
+         [BigData]
+          FROM PJ_20
+          $value$
+   </select>
+   
+   <select id="SelectPJ_20ByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [tqCode],
+         [tqName],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate],
+         [BigData]
+          FROM PJ_20
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="tqCode">[tqCode]='$tqCode$'</isNotNull>
+       <isNotNull prepend="AND" property="tqName">[tqName]='$tqName$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_20ByKey" resultMap="PJ_20_AllColumns" parameterClass="PJ_20">
+         SELECT 
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [tqCode],
+         [tqName],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate],
+         [BigData]
+         FROM PJ_20
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_20" parameterClass="PJ_20">
+        DELETE FROM 
+         PJ_20
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_20ByWhere" parameterClass="string">
+     delete from PJ_20 $value$
+   </delete>
+   
+   <delete id="DeletePJ_20ByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_20
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_20" parameterClass="PJ_20" resultClass="int">
+          UPDATE PJ_20
+           SET
+             [ParentID]=#ParentID#,
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [tqCode]=#tqCode#,
+             [tqName]=#tqName#,
+             [Remark]=#Remark#,
+             [gzrjID]=#gzrjID#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [BigData]=#BigData#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_20" parameterClass="PJ_20">
+        INSERT INTO PJ_20
+         (
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [tqCode],
+         [tqName],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate],
+         [BigData]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #OrgCode#,
+         #OrgName#,
+         #tqCode#,
+         #tqName#,
+         #Remark#,
+         #gzrjID#,
+         #CreateMan#,
+         #CreateDate#,
+         #BigData#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_20RowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_20
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="tqCode">[tqCode]='$tqCode$'</isNotNull>
+       <isNotNull prepend="AND" property="tqName">[tqName]='$tqName$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_20RowCount" parameterClass="string">
+    select count(*) from PJ_20 $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

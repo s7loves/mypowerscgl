@@ -95,6 +95,17 @@
     <EmbeddedResource Include="Customize\simple.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_16.xml" />
+    <EmbeddedResource Include="PJ_17.xml" />
+    <EmbeddedResource Include="PJ_19.xml" />
+    <EmbeddedResource Include="PJ_20.xml" />
+    <EmbeddedResource Include="PJ_22.xml" />
+    <EmbeddedResource Include="PJ_23.xml" />
+    <EmbeddedResource Include="PJ_24.xml" />
+    <EmbeddedResource Include="PJ_25.xml" />
+    <EmbeddedResource Include="PJ_26.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
