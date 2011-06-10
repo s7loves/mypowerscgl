@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     2011-6-10 14:15:26                           */
+/* Created on:     2011-6-10 15:18:27                           */
 /*==============================================================*/
 
 
@@ -609,15 +609,6 @@ if exists (select 1
    drop table dbo.rUserRole
 go
 
-execute sp_revokedbaccess dbo
-go
-
-/*==============================================================*/
-/* User: dbo                                                    */
-/*==============================================================*/
-execute sp_grantdbaccess dbo
-go
-
 /*==============================================================*/
 /* Table: PJ_01gzrj                                             */
 /*==============================================================*/
@@ -946,6 +937,7 @@ create table dbo.PJ_04sgzayc (
    ID                   nvarchar(50)         not null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
+   fsdd                 nvarchar(150)        null,
    tdsj                 datetime             null,
    sdsj                 datetime             null,
    gtdsj                nvarchar(50)         null,
@@ -979,6 +971,11 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '供电所名称',
    'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'OrgName'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '发生地点',
+   'user', 'dbo', 'table', 'PJ_04sgzayc', 'column', 'fsdd'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
