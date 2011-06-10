@@ -327,6 +327,8 @@
     <Compile Include="24设备变更通知书\Export24.cs" />
     <Compile Include="25双%28自备%29电源协议书\Export25.cs" />
     <Compile Include="26电力线路防护通知书\Export26.cs" />
+    <Compile Include="Ecommon.cs" />
+    <Compile Include="06设备巡视及缺陷消除\Export06.cs" />
     <Compile Include="IExport.cs" />
     <Compile Include="02安全活动\UCPJ_02aqhd.cs">
       <SubType>UserControl</SubType>
