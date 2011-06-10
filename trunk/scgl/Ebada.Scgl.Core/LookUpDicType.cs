@@ -113,5 +113,23 @@ namespace Ebada.Scgl.Core {
                 return DicTypeHelper.bdsDic;
             }
         }
+        static RepositoryItem orgDic;
+        public static RepositoryItem OrgDic
+        {
+            get
+            {
+                if (orgDic == null)
+                {
+                    IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (mOrg gds in list)
+                    {
+                        dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                    }
+                    orgDic = new LookUpDicType(dic);
+                }
+                return DicTypeHelper.orgDic;
+            }
+        }
     }
 }
