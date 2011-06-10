@@ -121,6 +121,7 @@
     <Compile Include="03运行分析\frmyxfxEdit.Designer.cs">
       <DependentUpon>frmyxfxEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="04事故障碍异常\Export04.cs" />
     <Compile Include="04事故障碍异常\frmsgzaycEdit.cs">
       <SubType>Form</SubType>
     </Compile>
