@@ -213,5 +213,26 @@ namespace Ebada.Scgl.Core {
             }
             return list;
         }
+        /// <summary>
+        /// 获取缺陷类别列表
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetQxlb()
+        {
+
+            ICollection list = new ArrayList();
+            string key = "qxlb";
+            if (mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = new string[] { "一般缺陷", "特殊缺陷"};
+
+                mCache.Add(key, list);
+            }
+            return list;
+        }
     }
 }
