@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-5 15:48:59
+生成时间:2011-6-10 15:13:49
 ***********************************************/
 
 using System;
@@ -24,6 +24,7 @@ namespace Ebada.Scgl.Model
         private string _id=Newid(); 
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
+        private string _fsdd=String.Empty; 
         private DateTime _tdsj=new DateTime(1900,1,1); 
         private DateTime _sdsj=new DateTime(1900,1,1); 
         private string _gtdsj=String.Empty; 
@@ -100,6 +101,27 @@ namespace Ebada.Scgl.Model
                 if (_orgname as object == null || !_orgname.Equals(value))
                 {
                     _orgname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：fsdd
+        /// 属性描述：发生地点
+        /// 字段信息：[fsdd],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("发生地点")]
+        public string fsdd
+        {
+            get { return _fsdd; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 150)
+                throw new Exception("[发生地点]长度不能大于150!");
+                if (_fsdd as object == null || !_fsdd.Equals(value))
+                {
+                    _fsdd = value;
                 }
             }			 
         }
