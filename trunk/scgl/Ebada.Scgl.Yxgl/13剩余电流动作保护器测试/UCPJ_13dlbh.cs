@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_tqdlbh>(gridControl1, gridView1, barManager1, new frm07JDZZEdit());
+            gridViewOperation = new GridViewOperation<PS_tqdlbh>(gridControl1, gridView1, barManager1, new frmtqdlbhEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_tqdlbh>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tqdlbh>(gridViewOperation_BeforeDelete);
@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("OrgCode");
+            //hideColumn("OrgCode");
         }
         /// <summary>
         /// 刷新数据
@@ -141,7 +141,7 @@ namespace Ebada.Scgl.Yxgl
         void gridViewOperation_CreatingObjectEvent(PS_tqdlbh newobj)
         {
             if (parentID == null) return;
-            newobj.tqID = parentID;
+            newobj.tqID = ParentObj.OrgID;
             //newobj.OrgName = parentObj.OrgName;
             //newobj.CreateDate = DateTime.Now;
             //newobj.CreateMan = MainHelper.LoginName;
@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by CreateDate desc");
+                    RefreshData(" where tqID='" + value + "' order by sbCode ");
                 }
             }
         }
