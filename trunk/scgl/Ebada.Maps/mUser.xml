@@ -10,6 +10,7 @@
         <result property="OrgName" column="OrgName" />
         <result property="UserCode" column="UserCode" />
         <result property="UserName" column="UserName" />
+        <result property="PostName" column="PostName" />
         <result property="Sex" column="Sex" />
         <result property="Birthday" column="Birthday" />
         <result property="LoginID" column="LoginID" />
@@ -35,6 +36,7 @@
          [OrgName],
          [UserCode],
          [UserName],
+         [PostName],
          [Sex],
          [Birthday],
          [LoginID],
@@ -60,6 +62,7 @@
          [OrgName],
          [UserCode],
          [UserName],
+         [PostName],
          [Sex],
          [Birthday],
          [LoginID],
@@ -81,6 +84,7 @@
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="UserCode">[UserCode]='$UserCode$'</isNotNull>
        <isNotNull prepend="AND" property="UserName">[UserName]='$UserName$'</isNotNull>
+       <isNotNull prepend="AND" property="PostName">[PostName]='$PostName$'</isNotNull>
        <isNotNull prepend="AND" property="Sex">[Sex]='$Sex$'</isNotNull>
        <isNotNull prepend="AND" property="Birthday">[Birthday]='$Birthday$'</isNotNull>
        <isNotNull prepend="AND" property="LoginID">[LoginID]='$LoginID$'</isNotNull>
@@ -104,6 +108,7 @@
          [OrgName],
          [UserCode],
          [UserName],
+         [PostName],
          [Sex],
          [Birthday],
          [LoginID],
@@ -151,6 +156,7 @@
              [OrgName]=#OrgName#,
              [UserCode]=#UserCode#,
              [UserName]=#UserName#,
+             [PostName]=#PostName#,
              [Sex]=#Sex#,
              [Birthday]=#Birthday#,
              [LoginID]=#LoginID#,
@@ -170,13 +176,6 @@
 
    </update>
   
-   <update id="UpdateUserPassword" parameterClass="mUser" resultClass="int">
-          UPDATE mUser
-           SET            
-             [Password]=#Password#
-            WHERE 
-              UserID = #UserID#
-   </update>
    <insert id="InsertmUser" parameterClass="mUser">
         INSERT INTO mUser
          (
@@ -185,6 +184,7 @@
          [OrgName],
          [UserCode],
          [UserName],
+         [PostName],
          [Sex],
          [Birthday],
          [LoginID],
@@ -207,6 +207,7 @@
          #OrgName#,
          #UserCode#,
          #UserName#,
+         #PostName#,
          #Sex#,
          #Birthday#,
          #LoginID#,
@@ -234,6 +235,7 @@
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="UserCode">[UserCode]='$UserCode$'</isNotNull>
        <isNotNull prepend="AND" property="UserName">[UserName]='$UserName$'</isNotNull>
+       <isNotNull prepend="AND" property="PostName">[PostName]='$PostName$'</isNotNull>
        <isNotNull prepend="AND" property="Sex">[Sex]='$Sex$'</isNotNull>
        <isNotNull prepend="AND" property="Birthday">[Birthday]='$Birthday$'</isNotNull>
        <isNotNull prepend="AND" property="LoginID">[LoginID]='$LoginID$'</isNotNull>

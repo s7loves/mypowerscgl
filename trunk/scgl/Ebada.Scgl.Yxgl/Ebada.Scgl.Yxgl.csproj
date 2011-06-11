@@ -530,9 +530,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="16高压配电线路条图汇总表\frm16Edit.resx">
       <DependentUpon>frm16Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="17高压配电线路条图\frm17Edit.resx">
       <DependentUpon>frm17Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="18高压配电线路设备评级表\frm18gysbpjEdit.resx">
       <DependentUpon>frm18gysbpjEdit.cs</DependentUpon>
@@ -540,9 +542,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="19高压配电设备完好率汇总表\frm19Edit.resx">
       <DependentUpon>frm19Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="20低压设备完好率及台区网络图\frm20Edit.resx">
       <DependentUpon>frm20Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="21电力故障电话接听记录\frm21gzbxdhEdit.resx">
       <DependentUpon>frm21gzbxdhEdit.cs</DependentUpon>
@@ -550,18 +554,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="22报修服务修理票实例\frm22Edit.resx">
       <DependentUpon>frm22Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="23配电线路产权维护范围协议书\frm23Edit.resx">
       <DependentUpon>frm23Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="24设备变更通知书\frm24Edit.resx">
       <DependentUpon>frm24Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="25双%28自备%29电源协议书\frm25Edit.resx">
       <DependentUpon>frm25Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="26电力线路防护通知书\frm26Edit.resx">
       <DependentUpon>frm26Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
