@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_13dlbhjl>(gridControl1, gridView1, barManager1, new frm07JDZZJlEdit());
+            gridViewOperation = new GridViewOperation<PJ_13dlbhjl>(gridControl1, gridView1, barManager1, new frm13dlbhjlEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_13dlbhjl>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_13dlbhjl>(gridViewOperation_BeforeDelete);
@@ -98,7 +98,7 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
             //gridView1.Columns[9].Visible = false;
-            hideColumn("gzrjID");
+            //hideColumn("gzrjID");
         }
         /// <summary>
         /// 刷新数据
@@ -141,7 +141,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where jdzzID='" + value + "' order by CreateDate desc");
+                    RefreshData(" where sbID='" + value + "' order by CreateDate desc");
                 }
             }
         }

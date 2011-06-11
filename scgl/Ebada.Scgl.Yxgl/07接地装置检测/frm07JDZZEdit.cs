@@ -32,10 +32,6 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "jddz");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "tz");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "trdzr");
-            
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
