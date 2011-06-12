@@ -9,6 +9,7 @@
         <result property="OrgCode" column="OrgCode" />
         <result property="OrgName" column="OrgName" />
         <result property="rq" column="rq" />
+        <result property="hydd" column="hydd" />
         <result property="xxss" column="xxss" />
         <result property="cjrs" column="cjrs" />
         <result property="zcr" column="zcr" />
@@ -31,6 +32,7 @@
          [OrgCode],
          [OrgName],
          [rq],
+         [hydd],
          [xxss],
          [cjrs],
          [zcr],
@@ -53,6 +55,7 @@
          [OrgCode],
          [OrgName],
          [rq],
+         [hydd],
          [xxss],
          [cjrs],
          [zcr],
@@ -71,6 +74,7 @@
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
+       <isNotNull prepend="AND" property="hydd">[hydd]='$hydd$'</isNotNull>
        <isNotNull prepend="AND" property="xxss">[xxss]='$xxss$'</isNotNull>
        <isNotNull prepend="AND" property="cjrs">[cjrs]='$cjrs$'</isNotNull>
        <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
@@ -91,6 +95,7 @@
          [OrgCode],
          [OrgName],
          [rq],
+         [hydd],
          [xxss],
          [cjrs],
          [zcr],
@@ -135,6 +140,7 @@
              [OrgCode]=#OrgCode#,
              [OrgName]=#OrgName#,
              [rq]=#rq#,
+             [hydd]=#hydd#,
              [xxss]=#xxss#,
              [cjrs]=#cjrs#,
              [zcr]=#zcr#,
@@ -159,6 +165,7 @@
          [OrgCode],
          [OrgName],
          [rq],
+         [hydd],
          [xxss],
          [cjrs],
          [zcr],
@@ -178,6 +185,7 @@
          #OrgCode#,
          #OrgName#,
          #rq#,
+         #hydd#,
          #xxss#,
          #cjrs#,
          #zcr#,
@@ -202,6 +210,7 @@
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
+       <isNotNull prepend="AND" property="hydd">[hydd]='$hydd$'</isNotNull>
        <isNotNull prepend="AND" property="xxss">[xxss]='$xxss$'</isNotNull>
        <isNotNull prepend="AND" property="cjrs">[cjrs]='$cjrs$'</isNotNull>
        <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>

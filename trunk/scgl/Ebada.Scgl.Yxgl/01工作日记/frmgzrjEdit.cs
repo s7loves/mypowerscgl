@@ -105,5 +105,9 @@ namespace Ebada.Scgl.Yxgl {
         private void groupControlOrg_Paint(object sender, PaintEventArgs e) {
 
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e) {
+            SelectorHelper.SelectDyk("PJ_01gzrj","js");
+        }
     }
 }

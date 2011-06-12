@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:53:59
+生成时间:2011-6-12 21:48:36
 ***********************************************/
 
 using System;
@@ -25,6 +25,7 @@ namespace Ebada.Scgl.Model
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
         private DateTime _rq=new DateTime(1900,1,1); 
+        private string _hydd=String.Empty; 
         private string _xxss=String.Empty; 
         private string _cjrs=String.Empty; 
         private string _zcr=String.Empty; 
@@ -120,6 +121,27 @@ namespace Ebada.Scgl.Model
                 if (_rq as object == null || !_rq.Equals(value))
                 {
                     _rq = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：hydd
+        /// 属性描述：会议地点
+        /// 字段信息：[hydd],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("会议地点")]
+        public string hydd
+        {
+            get { return _hydd; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[会议地点]长度不能大于50!");
+                if (_hydd as object == null || !_hydd.Equals(value))
+                {
+                    _hydd = value;
                 }
             }			 
         }

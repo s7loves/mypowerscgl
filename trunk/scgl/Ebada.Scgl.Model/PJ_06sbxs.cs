@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:53:59
+生成时间:2011-6-12 21:48:36
 ***********************************************/
 
 using System;
@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Model
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
         private string _lineid=String.Empty; 
-        private DateTime _linename=new DateTime(1900,1,1); 
+        private string _linename=String.Empty; 
         private string _xlqd=String.Empty; 
         private DateTime _xssj=new DateTime(1900,1,1); 
         private string _xsr=String.Empty; 
@@ -129,14 +129,17 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：LineName
         /// 属性描述：线路名称
-        /// 字段信息：[LineName],datetime
+        /// 字段信息：[LineName],nvarchar
         /// </summary>
         [DisplayNameAttribute("线路名称")]
-        public DateTime LineName
+        public string LineName
         {
             get { return _linename; }
             set
             {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[线路名称]长度不能大于50!");
                 if (_linename as object == null || !_linename.Equals(value))
                 {
                     _linename = value;
