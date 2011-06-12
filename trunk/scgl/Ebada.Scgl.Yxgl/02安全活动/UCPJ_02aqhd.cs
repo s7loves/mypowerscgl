@@ -191,10 +191,7 @@ namespace Ebada.Scgl.Yxgl
             {
                 Export02.ExportExcel(gridView1.GetFocusedRow() as PJ_02aqhd);
             }
-            else
-            {
-                return;
-            }
+           
            
         }
     }
