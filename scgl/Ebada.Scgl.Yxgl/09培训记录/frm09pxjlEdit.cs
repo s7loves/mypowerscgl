@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Yxgl
 
 
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "rq");
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "xxss");
+            //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "xxss");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "cjrs");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "jcr");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "zjr");
@@ -46,6 +46,7 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
+                getxxss();
                 return rowData;
             }
             set {
@@ -57,22 +58,63 @@ namespace Ebada.Scgl.Yxgl
                 } else {
                     ConvertHelper.CopyTo<PJ_09pxjl>(value as PJ_09pxjl, rowData);
                 }
+                setxxss();
             }
         }
 
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_09pxjl>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            comboBoxEdit3.Properties.Items.AddRange(ryList);
+            comboBoxEdit4.Properties.Items.AddRange(ryList);
+            comboBoxEdit5.Properties.Items.AddRange(ryList);
+            for (int i = 1; i < 24; i++)
+            {
+                comboBoxEdit1.Properties.Items.Add(i);
+            }
+            for (int j = 1; j < 60; j++)
+            {
+                comboBoxEdit6.Properties.Items.Add(j);
+            }
+            for (int k = 1; k <= ryList.Count; k++)
+            {
+                comboBoxEdit2.Properties.Items.Add(k);
 
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+            }
+         
+        }
+        void setxxss()
+        {
+            string str = rowData.xxss;
+            string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
+           
+            int m = 0;
+            comboBoxEdit1.EditValue = "";
+            comboBoxEdit6.EditValue = "";
+            if (mans.Length>=1)
+            {
+                comboBoxEdit1.EditValue = mans[0];
+            }
+            if (mans.Length >= 2)
+            {
+                comboBoxEdit6.EditValue = mans[1];
+            }
+            
+        }
+        void getxxss()
+        {
+            string str = "";
+            string yy1 = "";
+            yy1 = comboBoxEdit1.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy1 + ";";
+            string yy2 = "";
+            yy2 = comboBoxEdit6.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy2.Trim()))
+                str += yy2 + ";";
+          
+            rowData.xxss = str;
         }
 
         /// <summary>
