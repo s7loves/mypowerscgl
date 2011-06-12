@@ -373,6 +373,12 @@
     <Compile Include="24设备变更通知书\frm24Edit.Designer.cs">
       <DependentUpon>frm24Edit.cs</DependentUpon>
     </Compile>
+    <Compile Include="24设备变更通知书\UCPJ_24.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="24设备变更通知书\UCPJ_24.Designer.cs">
+      <DependentUpon>UCPJ_24.cs</DependentUpon>
+    </Compile>
     <Compile Include="25双%28自备%29电源协议书\Export25.cs" />
     <Compile Include="25双%28自备%29电源协议书\frm25Edit.cs">
       <SubType>Form</SubType>
@@ -572,6 +578,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="24设备变更通知书\frm24Edit.resx">
       <DependentUpon>frm24Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="24设备变更通知书\UCPJ_24.resx">
+      <DependentUpon>UCPJ_24.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="25双%28自备%29电源协议书\frm25Edit.resx">
