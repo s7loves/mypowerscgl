@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Yxgl
 
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "dd");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sj");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "sj");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "nr");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "Remark");
 
@@ -46,7 +46,13 @@ namespace Ebada.Scgl.Yxgl
                 } else {
                     ConvertHelper.CopyTo<PJ_24>(value as PJ_24, rowData);
                 }
+                if (rowData.dd=="")
+                {
+                    rowData.sj = DateTime.Now.ToString("yyyy-MM-dd");
+                    
+                }
             }
+            
         }
 
         #endregion
@@ -76,44 +82,25 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+      
 
         private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void labelControl4_Click(object sender, EventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
-
+            if (comboBoxEdit1.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("变动地点不能为空。");
+                comboBoxEdit1.Focus();
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }
