@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     2011-6-10 15:18:27                           */
+/* Created on:     2011-6-12 21:31:19                           */
 /*==============================================================*/
 
 
@@ -1205,7 +1205,7 @@ create table dbo.PJ_06sbxs (
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
    LineID               nvarchar(50)         null,
-   LineName             datetime             null,
+   LineName             nvarchar(50)         null,
    xlqd                 nvarchar(50)         null,
    xssj                 datetime             null,
    xsr                  nvarchar(50)         null,
@@ -1593,6 +1593,7 @@ create table dbo.PJ_09pxjl (
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
    rq                   datetime             null,
+   hydd                 nvarchar(50)         null,
    xxss                 nvarchar(50)         null,
    cjrs                 nvarchar(50)         null,
    zcr                  nvarchar(50)         null,
@@ -1632,6 +1633,11 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '日期',
    'user', 'dbo', 'table', 'PJ_09pxjl', 'column', 'rq'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '会议地点',
+   'user', 'dbo', 'table', 'PJ_09pxjl', 'column', 'hydd'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -3272,7 +3278,7 @@ create table dbo.PJ_24 (
    ParentID             nvarchar(50)         null,
    sj                   nvarchar(250)        null,
    dd                   nvarchar(50)         null,
-   nr                   datetime             null,
+   nr                   nvarchar(500)        null,
    Remark               nvarchar(50)         null,
    gzrjID               nvarchar(50)         null,
    CreateMan            nvarchar(10)         null,
