@@ -44,6 +44,8 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
+                getxsr();
+                getxcr();
                 return rowData;
             }
             set {
@@ -55,6 +57,8 @@ namespace Ebada.Scgl.Yxgl
                 } else {
                     ConvertHelper.CopyTo<PJ_06sbxs>(value as PJ_06sbxs, rowData);
                 }
+                setxsr();
+                setxcr();
             }
         }
 
@@ -99,7 +103,59 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
-
+        void setxsr()
+        {
+            string str = rowData.xsr;
+            string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
+            if (mans.Length>=1)
+            {
+                comboBoxEdit3.EditValue = mans[0];
+            }
+            if (mans.Length>=2)
+            {
+                comboBoxEdit6.EditValue = mans[1];
+            }
+        }
+        void getxsr()
+        {
+            string str = "";
+            string yy1 = "";
+            yy1 = comboBoxEdit3.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy1 + ";";
+            string yy2 = "";
+            yy1 = comboBoxEdit6.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy2 + ";";
+            rowData.xsr = str;
+        }
+        void setxcr()
+        {
+            string str = rowData.xcr;
+            string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
+            if (mans.Length >= 1)
+            {
+                comboBoxEdit5.EditValue = mans[0];
+            }
+            if (mans.Length >= 2)
+            {
+                comboBoxEdit7.EditValue = mans[1];
+            }
+        }
+        void getxcr()
+        {
+            string str = "";
+            string yy1 = "";
+            yy1 = comboBoxEdit5.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy1 + ";";
+            string yy2 = "";
+            yy1 = comboBoxEdit7.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy2 + ";";
+            rowData.xcr = str;
+        }
+       
         private void textEdit1_EditValueChanged(object sender, EventArgs e)
         {
 
