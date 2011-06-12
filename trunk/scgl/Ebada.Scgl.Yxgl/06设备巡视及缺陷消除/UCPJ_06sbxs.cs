@@ -182,5 +182,22 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
         }
+
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frm06sbxsLine frm = new frm06sbxsLine();
+            frm.orgcode = btGdsList.EditValue.ToString();
+            if (frm.ShowDialog()==DialogResult.OK)
+            {
+
+                IList<PJ_06sbxs> pj06list = new List<PJ_06sbxs>();
+                pj06list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxs>(" where LineName='" + frm.linename + "'");
+                Export06.ExportExcel(pj06list);
+            }
+            
+            
+            
+           
+        }
     }
 }
