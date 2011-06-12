@@ -67,7 +67,7 @@ namespace Ebada.Scgl.Core {
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             gridViewOperation.FindShowType = ShowType.Inside;
-            //InitColumns();//初始列
+            InitColumns();//初始列
             //InitData();//初始数据
         }
         private void initImageList() {
@@ -101,12 +101,12 @@ namespace Ebada.Scgl.Core {
             hideColumn("ParentID");
             hideColumn("dx");
             hideColumn("sx");
-            //if (parentID == "") {
-            //    hideColumn("nr");
-            //    hideColumn("nr2");
-            //    hideColumn("nr3");
-            //    hideColumn("nr4");
-            //}
+
+            gridView1.Columns["nr"].Width = 200;
+            gridView1.Columns["nr2"].Width = 200;
+            gridView1.Columns["nr3"].Width = 200;
+            gridView1.Columns["nr4"].Width = 200;
+
             
         }
         /// <summary>
