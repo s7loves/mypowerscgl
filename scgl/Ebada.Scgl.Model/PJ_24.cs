@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-10 14:57:59
+生成时间:2011-6-12 21:48:36
 ***********************************************/
 
 using System;
@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Model
         private string _parentid=String.Empty; 
         private string _sj=String.Empty; 
         private string _dd=String.Empty; 
-        private DateTime _nr=new DateTime(1900,1,1); 
+        private string _nr=String.Empty; 
         private string _remark=String.Empty; 
         private string _gzrjid=String.Empty; 
         private string _createman=String.Empty; 
@@ -124,14 +124,17 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：nr
         /// 属性描述：变动内容
-        /// 字段信息：[nr],datetime
+        /// 字段信息：[nr],nvarchar
         /// </summary>
         [DisplayNameAttribute("变动内容")]
-        public DateTime nr
+        public string nr
         {
             get { return _nr; }
             set
             {			
+                if(value==null)return;
+                if( value.ToString().Length > 500)
+                throw new Exception("[变动内容]长度不能大于500!");
                 if (_nr as object == null || !_nr.Equals(value))
                 {
                     _nr = value;
