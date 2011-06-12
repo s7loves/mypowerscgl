@@ -28,6 +28,20 @@ namespace Ebada.Scgl.Core {
 
             return list;
         }
+        public static ICollection GetTables() {
+            string key = "tables";
+
+            ICollection list = null;
+
+            if (mUseCache && mCache.ContainsKey(key)) {
+                list = mCache[key];
+            } else {
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "Select   [name]   From   SysObjects   Where   xType='U' order by [name]");
+                if(mUseCache)
+                    mCache.Add(key, list);
+            }
+            return list;
+        }
         /// <summary>
         /// 获取供电所线路名称
         /// </summary>
