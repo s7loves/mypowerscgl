@@ -202,6 +202,7 @@
     <Compile Include="08设备停电检修\frm08SBTDJXEdit.Designer.cs">
       <DependentUpon>frm08SBTDJXEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="09培训记录\Export09.cs" />
     <Compile Include="09培训记录\frm09pxjlEdit.cs">
       <SubType>Form</SubType>
     </Compile>
