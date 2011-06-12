@@ -65,12 +65,12 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Location = new System.Drawing.Point(334, 357);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(49, 23);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // groupControlOrg
             // 
@@ -82,7 +82,6 @@
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.Size = new System.Drawing.Size(499, 406);
             this.groupControlOrg.TabIndex = 9;
-            this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
             // groupBox1
             // 
@@ -100,7 +99,6 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设备变更通知书";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // memoEdit2
             // 
@@ -152,16 +150,14 @@
             this.labelControl1.Size = new System.Drawing.Size(48, 14);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "变动内容";
-            this.labelControl1.Click += new System.EventHandler(this.labelControl2_Click);
             // 
             // labelControl9
             // 
             this.labelControl9.Location = new System.Drawing.Point(29, 182);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(48, 14);
+            this.labelControl9.Size = new System.Drawing.Size(28, 14);
             this.labelControl9.TabIndex = 2;
-            this.labelControl9.Text = "备      注";
-            this.labelControl9.Click += new System.EventHandler(this.labelControl2_Click);
+            this.labelControl9.Text = "备 注";
             // 
             // labelControl2
             // 
@@ -170,7 +166,6 @@
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "变动时间";
-            this.labelControl2.Click += new System.EventHandler(this.labelControl2_Click);
             // 
             // bar1
             // 
@@ -224,7 +219,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.DateEdit dateEdit1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
+        
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.MemoEdit memoEdit1;
