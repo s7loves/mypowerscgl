@@ -122,6 +122,12 @@
     <Compile Include="mUser\UCmUser.Designer.cs">
       <DependentUpon>UCmUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCmRole.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCmRole.Designer.cs">
+      <DependentUpon>UCmRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCPJ_dykM.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -169,6 +175,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="mUser\UCmUser.resx">
       <DependentUpon>UCmUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCmRole.resx">
+      <DependentUpon>UCmRole.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UCPJ_dykM.resx">
