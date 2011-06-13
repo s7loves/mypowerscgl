@@ -56,10 +56,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{FF3DC5E6-32D4-49BE-9B76-7D5079B395CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ibatis", "ibatis", "{A2487F78-4862-4224-9C4B-90455531A102}"
-	ProjectSection(SolutionItems) = preProject
-		output\Server\config\ibatis\properties.config = output\Server\config\ibatis\properties.config
-		output\Server\config\ibatis\SqlMap.config = output\Server\config\ibatis\SqlMap.config
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "remoting", "remoting", "{D94F6475-E950-479D-9092-E6392630AE2E}"
 	ProjectSection(SolutionItems) = preProject
@@ -100,10 +96,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Scgl.WFlow", "Ebada.Scgl.WFlow\Ebada.Scgl.WFlow.csproj", "{DB517AF8-551D-4C08-83BE-69D803C89173}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -184,5 +176,9 @@ Global
 		{BDBE45E2-0DB8-4C7C-8177-0F1FBB5831C8} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{F20882E3-3C19-4EE9-914E-2C181DA37F98} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{DB517AF8-551D-4C08-83BE-69D803C89173} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
