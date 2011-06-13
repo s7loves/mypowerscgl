@@ -107,7 +107,10 @@ namespace Ebada.Scgl.Yxgl {
         }
 
         private void simpleButton1_Click(object sender, EventArgs e) {
-            SelectorHelper.SelectDyk("PJ_01gzrj","js");
+            PJ_dyk dy= SelectorHelper.SelectDyk("PJ_01gzrj","js");
+            if (dy != null) {
+                rowData.js = dy.nr;
+            }
         }
     }
 }

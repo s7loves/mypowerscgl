@@ -22,7 +22,7 @@ namespace Ebada.Scgl.Core {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;
                 if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
 
-
+                    dyk = dlg.ucpJ_dykSelector1.GetSelectedRow();
                 }
             }
 
