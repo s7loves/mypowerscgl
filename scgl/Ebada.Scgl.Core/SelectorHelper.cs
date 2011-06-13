@@ -10,6 +10,8 @@ namespace Ebada.Scgl.Core {
     public class SelectorHelper {
         /// <summary>
         /// 显示短语库选择器
+        /// 1001		PJ_01gzrj	js		工作日记\记事				
+        /// 1002		PJ_02aqhd	hdnr		02安全活动\活动内容				
         /// </summary>
         /// <param name="dx">记录表对象名，如PJ_01gzrj</param>
         /// <param name="sx">属性名</param>
