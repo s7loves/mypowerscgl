@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Yxgl {
             int row = 7;
             int col = 1;
             int len1 = 3;
-            ex.SetCellValue(objlist[0].LineName.ToString(), 4, 4);
+            ex.SetCellValue(objlist[0].LineName, 4, 4);
             ex.SetCellValue(objlist[0].xlqd, 4, 8);
             for (int i = 0; i < objlist.Count; i++)
             {

@@ -58,7 +58,7 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(obj.zcr, 6, 3);
             ex.SetCellValue(obj.zjr, 6, 9);
             //会议地点
-            //ex.SetCellValue(obj., 6, 14);
+            ex.SetCellValue(obj.hydd, 6, 14);
 
             //题目
             string timustr = "题目：" + obj.tm;
