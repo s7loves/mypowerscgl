@@ -196,6 +196,7 @@
     <Compile Include="07接地装置检测\UCPJ_07jdzzjl .Designer.cs">
       <DependentUpon>UCPJ_07jdzzjl .cs</DependentUpon>
     </Compile>
+    <Compile Include="08设备停电检修\Export08.cs" />
     <Compile Include="08设备停电检修\frm08SBTDJXEdit.cs">
       <SubType>Form</SubType>
     </Compile>
