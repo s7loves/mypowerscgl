@@ -77,8 +77,12 @@ namespace Ebada.Scgl.Yxgl
             //InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
+            
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
-
+            if (MainHelper.UserOrg != null&& MainHelper.UserOrg.OrgType=="1") {//如果是供电所人员，则锁定
+                btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
+                btGdsList.Edit.ReadOnly = true;
+            }
         }
 
         void btGdsList_EditValueChanged(object sender, EventArgs e)
@@ -94,8 +98,6 @@ namespace Ebada.Scgl.Yxgl
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
-            
-
         }
         private void initImageList()
         {

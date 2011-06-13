@@ -186,7 +186,7 @@ namespace Ebada.SCGL
             ucModulBar1.SetImage();
             frmLogin dlg = new frmLogin();
             if (dlg.ShowDialog() == DialogResult.OK) {
-                barStaticItem2.Caption = "操作员：" + MainHelper.UserBaseX.Empolyee_Name;
+                barStaticItem2.Caption = "操作员：" + MainHelper.User.UserName;
             }
         }
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
