@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     2011-6-12 21:31:19                           */
+/* Created on:     2011-6-13 17:28:26                           */
 /*==============================================================*/
 
 
@@ -607,6 +607,15 @@ if exists (select 1
            where  id = object_id('dbo.rUserRole')
             and   type = 'U')
    drop table dbo.rUserRole
+go
+
+execute sp_revokedbaccess dbo
+go
+
+/*==============================================================*/
+/* User: dbo                                                    */
+/*==============================================================*/
+execute sp_grantdbaccess dbo
 go
 
 /*==============================================================*/
@@ -1495,11 +1504,11 @@ create table dbo.PJ_08sbtdjx (
    ID                   nvarchar(50)         not null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
-   rq                   nvarchar(50)         null,
-   LineName             datetime             null,
+   rq                   datetime             null,
+   LineName             nvarchar(50)         null,
    jxnr                 nvarchar(50)         null,
    tdsj                 datetime             null,
-   sdsj                 nvarchar(50)         null,
+   sdsj                 datetime             null,
    tdxz                 nvarchar(500)        null,
    gzfzr                nvarchar(50)         null,
    CreateMan            nvarchar(10)         null,
@@ -2914,7 +2923,7 @@ create table dbo.PJ_21gzbxdh (
    ID                   nvarchar(50)         not null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
-   rq                   nvarchar(50)         null,
+   rq                   datetime             null,
    lxfs                 nvarchar(50)         null,
    yhdz                 nvarchar(50)         null,
    gzjk                 nvarchar(50)         null,
@@ -3001,7 +3010,7 @@ create table dbo.PJ_22 (
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
    ph                   nvarchar(50)         null,
-   bxsj                 nvarchar(50)         null,
+   bxsj                 datetime             null,
    bxdd                 nvarchar(50)         null,
    xlfzr                nvarchar(50)         null,
    xlry                 nvarchar(50)         null,
