@@ -25,10 +25,10 @@ namespace Ebada.Scgl.Model
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
         private string _rq=String.Empty; 
-        private DateTime _linename=new DateTime(1900,1,1); 
+        private string _linename=String.Empty; 
         private string _jxnr=String.Empty; 
-        private DateTime _tdsj=new DateTime(1900,1,1); 
-        private string _sdsj=String.Empty; 
+        private DateTime _tdsj=new DateTime(1900,1,1);
+        private DateTime _sdsj = new DateTime(1900, 1, 1); 
         private string _tdxz=String.Empty; 
         private string _gzfzr=String.Empty; 
         private string _createman=String.Empty; 
@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+     
         /// <summary>
         /// 属性名称：OrgCode
         /// 属性描述：供电所代码
@@ -131,11 +131,14 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[LineName],datetime
         /// </summary>
         [DisplayNameAttribute("线路名称")]
-        public DateTime LineName
+        public string LineName
         {
-            get { return _linename; }
+            get { return _jxnr; }
             set
-            {			
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[检修内容]长度不能大于50!");
                 if (_linename as object == null || !_linename.Equals(value))
                 {
                     _linename = value;
@@ -188,14 +191,11 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[sdsj],nvarchar
         /// </summary>
         [DisplayNameAttribute("送电时间")]
-        public string sdsj
+        public DateTime sdsj
         {
             get { return _sdsj; }
             set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[送电时间]长度不能大于50!");
+            {
                 if (_sdsj as object == null || !_sdsj.Equals(value))
                 {
                     _sdsj = value;
