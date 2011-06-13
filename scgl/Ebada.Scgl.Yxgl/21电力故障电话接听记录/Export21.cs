@@ -35,9 +35,9 @@ namespace Ebada.Scgl.Yxgl {
             for (int i = 0; i < objlist.Count;i++ )
             {
                 ex.SetCellValue(objlist[i].rq.Month.ToString(), rowcount + i, 1);
-                ex.SetCellValue(objlist[i].rq.Days.ToString(), rowcount + i, 2);
-                ex.SetCellValue(objlist[i].rq.Hours.ToString(), rowcount + i, 3);
-                ex.SetCellValue(objlist[i].rq.Minutes.ToString(), rowcount + i, 4);
+                ex.SetCellValue(objlist[i].rq.Day.ToString(), rowcount + i, 2);
+                ex.SetCellValue(objlist[i].rq.Hour.ToString(), rowcount + i, 3);
+                ex.SetCellValue(objlist[i].rq.Minute.ToString(), rowcount + i, 4);
                 ex.SetCellValue(objlist[i].lxfs, rowcount + i, 5);
                 ex.SetCellValue(objlist[i].yhdz, rowcount + i, 6);
                 ex.SetCellValue(objlist[i].gzjk, rowcount + i, 7);
