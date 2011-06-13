@@ -353,6 +353,12 @@
     <Compile Include="21电力故障电话接听记录\frm21gzbxdhEdit.Designer.cs">
       <DependentUpon>frm21gzbxdhEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="21电力故障电话接听记录\UCPJ_21gzbxdh .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="21电力故障电话接听记录\UCPJ_21gzbxdh .Designer.cs">
+      <DependentUpon>UCPJ_21gzbxdh .cs</DependentUpon>
+    </Compile>
     <Compile Include="22报修服务修理票实例\Export22.cs" />
     <Compile Include="22报修服务修理票实例\frm22Edit.cs">
       <SubType>Form</SubType>
@@ -567,6 +573,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="21电力故障电话接听记录\frm21gzbxdhEdit.resx">
       <DependentUpon>frm21gzbxdhEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="21电力故障电话接听记录\UCPJ_21gzbxdh .resx">
+      <DependentUpon>UCPJ_21gzbxdh .cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="22报修服务修理票实例\frm22Edit.resx">

@@ -25,11 +25,11 @@ namespace Ebada.Scgl.Yxgl
 
 
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "rq");
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "yhdz");
+            this.textEdit1.DataBindings.Add("EditValue", rowData, "yhdz");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "gzjk");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "djr");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "clr");
-            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "lxfs");
+            this.textEdit2.DataBindings.Add("EditValue", rowData, "lxfs");
             
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -69,6 +69,14 @@ namespace Ebada.Scgl.Yxgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
+
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            if (ryList.Count > 0)
+            {
+                this.comboBoxEdit3.Properties.Items.AddRange(ryList);
+                this.comboBoxEdit4.Properties.Items.AddRange(ryList);
+            }
+            
         }
 
         /// <summary>
