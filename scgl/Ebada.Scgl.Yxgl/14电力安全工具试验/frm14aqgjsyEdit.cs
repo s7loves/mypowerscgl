@@ -28,6 +28,7 @@ namespace Ebada.Scgl.Yxgl
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "xcsyrq");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "syr");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "ajqz");
+            //this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "ajqz");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "jr");
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
