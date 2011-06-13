@@ -48,7 +48,7 @@ namespace Ebada.Scgl.Yxgl
                 }
                 if (rowData.dd=="")
                 {
-                    rowData.sj = DateTime.Now.ToString("yyyy-MM-dd");
+                    rowData.sj = DateTime.Now;
                     
                 }
             }
@@ -96,6 +96,10 @@ namespace Ebada.Scgl.Yxgl
                 MsgBox.ShowTipMessageBox("变动地点不能为空。");
                 comboBoxEdit1.Focus();
                 return;
+            }
+            if (rowData.BigData == null)
+            {
+                rowData.BigData = new byte[0];
             }
             this.DialogResult = DialogResult.OK;
             this.Close();

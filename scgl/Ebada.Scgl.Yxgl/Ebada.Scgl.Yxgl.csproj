@@ -701,8 +701,12 @@
     <None Include="00记录模板\21电力故障电话接听记录.xls" />
     <None Include="00记录模板\22报修服务修理票实例.xls" />
     <None Include="00记录模板\23配电线路产权维护范围协议书.xls" />
-    <None Include="00记录模板\24设备变更通知书.xls" />
-    <None Include="00记录模板\26防护通知书.xls" />
+    <None Include="00记录模板\24设备变更通知书.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\26防护通知书.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

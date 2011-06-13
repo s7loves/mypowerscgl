@@ -14,15 +14,24 @@ namespace Ebada.Scgl.Yxgl {
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(object obj) {
+        public static void ExportExcel(PJ_24 jl)
+        {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\10.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\24设备变更通知书.xls";
 
             ex.Open(fname);
-            //此处写填充内容代码
+            int row = 1;
+            int col = 1;
+            //
+            ex.SetCellValue(jl.sj.Year.ToString(), row + 8, col);
+            ex.SetCellValue(jl.sj.Month.ToString(), row + 8, col+2);
+            ex.SetCellValue(jl.sj.Day.ToString(), row + 8, col+4);
+            ex.SetCellValue(jl.dd, row + 5, col+6);
+            ex.SetCellValue(jl.nr, row + 5, col + 7);
+            ex.SetCellValue(jl.Remark, row + 5, col + 10);
 
-           ex.ShowExcel();
+            ex.ShowExcel();
         }
       
     }
