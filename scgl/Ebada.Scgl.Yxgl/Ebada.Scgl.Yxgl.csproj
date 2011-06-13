@@ -299,6 +299,18 @@
     <Compile Include="14电力安全工具试验\frmaqgjEdit.Designer.cs">
       <DependentUpon>frmaqgjEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_14aqgj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_14aqgj.Designer.cs">
+      <DependentUpon>UCPJ_14aqgj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_aqgjsy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_aqgjsy.Designer.cs">
+      <DependentUpon>UCPJ_aqgjsy.cs</DependentUpon>
+    </Compile>
     <Compile Include="15工具仪表台账\Export15.cs" />
     <Compile Include="15工具仪表台账\frm16gjybEdit.cs">
       <SubType>Form</SubType>
@@ -548,6 +560,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="14电力安全工具试验\frmaqgjEdit.resx">
       <DependentUpon>frmaqgjEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14电力安全工具试验\UCPJ_14aqgj.resx">
+      <DependentUpon>UCPJ_14aqgj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14电力安全工具试验\UCPJ_aqgjsy.resx">
+      <DependentUpon>UCPJ_aqgjsy.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="15工具仪表台账\frm16gjybEdit.resx">
