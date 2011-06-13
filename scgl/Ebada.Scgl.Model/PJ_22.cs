@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-10 14:57:59
+生成时间:2011-6-13 16:45:22
 ***********************************************/
 
 using System;
@@ -26,7 +26,7 @@ namespace Ebada.Scgl.Model
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
         private string _ph=String.Empty; 
-        private string _bxsj=String.Empty; 
+        private DateTime _bxsj=new DateTime(1900,1,1); 
         private string _bxdd=String.Empty; 
         private string _xlfzr=String.Empty; 
         private string _xlry=String.Empty; 
@@ -167,17 +167,14 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：bxsj
         /// 属性描述：报修时期时间
-        /// 字段信息：[bxsj],nvarchar
+        /// 字段信息：[bxsj],datetime
         /// </summary>
         [DisplayNameAttribute("报修时期时间")]
-        public string bxsj
+        public DateTime bxsj
         {
             get { return _bxsj; }
             set
             {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[报修时期时间]长度不能大于50!");
                 if (_bxsj as object == null || !_bxsj.Equals(value))
                 {
                     _bxsj = value;
