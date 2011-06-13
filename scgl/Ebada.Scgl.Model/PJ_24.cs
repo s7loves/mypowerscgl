@@ -22,8 +22,8 @@ namespace Ebada.Scgl.Model
         
         #region Private 成员
         private string _id=Newid(); 
-        private string _parentid=String.Empty; 
-        private string _sj=String.Empty; 
+        private string _parentid=String.Empty;
+        private DateTime _sj = new DateTime(1900, 1, 1); 
         private string _dd=String.Empty; 
         private string _nr=String.Empty; 
         private string _remark=String.Empty; 
@@ -85,19 +85,17 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[sj],nvarchar
         /// </summary>
         [DisplayNameAttribute("变动时间")]
-        public string sj
+        public DateTime sj
         {
-            get { return _sj; }
+          
+		    get { return _sj; }
             set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 250)
-                throw new Exception("[变动时间]长度不能大于250!");
+            {
                 if (_sj as object == null || !_sj.Equals(value))
                 {
                     _sj = value;
                 }
-            }			 
+            }		
         }
   
         /// <summary>
