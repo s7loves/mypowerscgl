@@ -62,9 +62,6 @@ namespace Ebada.SCGL
                     MainHelper.Password = str;
                     
                     this.m_UserBase = MainHelper.ValidateLogin();
-                    MainHelper.UserBaseX.User_ID = this.m_UserBase.LoginName;
-                    MainHelper.UserBaseX.Empolyee_ID = this.m_UserBase.UserID;
-                    MainHelper.UserBaseX.Empolyee_Name = this.m_UserBase.RealName;
 
                     base.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }

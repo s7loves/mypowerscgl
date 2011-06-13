@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using Ebada.Client.Platform.Dictionary;
 using Ebada.UI.Base;
 using Ebada.Client;
 using Ebada.Client.Platform;
