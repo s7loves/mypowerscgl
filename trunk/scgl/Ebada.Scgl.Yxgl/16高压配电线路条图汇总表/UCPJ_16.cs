@@ -27,31 +27,31 @@ namespace Ebada.Scgl.Yxgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPS_gjyb : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPJ_16 : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PS_gjyb> gridViewOperation;
+        private GridViewOperation<PJ_16> gridViewOperation;
 
-        public event SendDataEventHandler<PS_gjyb> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_16> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-        public UCPS_gjyb()
+        public UCPJ_16()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_gjyb>(gridControl1, gridView1, barManager1, new frm16gjybEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_gjyb>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<PJ_16>(gridControl1, gridView1, barManager1, new frm16Edit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_16>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_gjyb>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_16>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
         
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_gjyb> e)
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_16> e)
         {
            
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_gjyb> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_16> e)
         {
             if (parentID == null)
                 e.Cancel = true;
@@ -93,7 +93,7 @@ namespace Ebada.Scgl.Yxgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PS_gjyb);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_16);
         }
         private void hideColumn(string colname)
         {
@@ -115,10 +115,10 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            //hideColumn("OrgCode");
-            //hideColumn("ParentID");
-            //hideColumn("gzrjID");
-
+            //hideColumn("OrgID");
+            hideColumn("OrgCode");
+            hideColumn("ParentID");
+            hideColumn("gzrjID");
         }
         /// <summary>
         /// 刷新数据
@@ -132,7 +132,7 @@ namespace Ebada.Scgl.Yxgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PS_gjyb> GridViewOperation
+        public GridViewOperation<PJ_16> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -141,13 +141,13 @@ namespace Ebada.Scgl.Yxgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PS_gjyb newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_16 newobj)
         {
             if (parentID == null) return;
-            newobj.OrgID = parentID;
-            //newobj.OrgName = parentObj.OrgName;
-            //newobj.CreateDate = DateTime.Now;
-            //newobj.CreateMan = MainHelper.LoginName;
+            newobj.OrgCode = parentID;
+            newobj.OrgName = parentObj.OrgName;
+            newobj.CreateDate = DateTime.Now;
+            newobj.CreateMan = MainHelper.LoginName;
         }
         /// <summary>
         /// 父表ID

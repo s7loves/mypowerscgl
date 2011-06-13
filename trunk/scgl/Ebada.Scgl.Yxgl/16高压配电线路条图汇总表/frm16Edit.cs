@@ -25,8 +25,8 @@ namespace Ebada.Scgl.Yxgl
 
 
            
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineName");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "Remark");
+            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineName");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             
            
             //
@@ -46,6 +46,7 @@ namespace Ebada.Scgl.Yxgl
                 if (value == null) return;
                 if (rowData == null) {
                     this.rowData = value as PJ_16;
+                   
                     this.InitComboBoxData();
                     dataBind();
                 } else {
@@ -67,6 +68,11 @@ namespace Ebada.Scgl.Yxgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
+
+            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode ='" + rowData.OrgCode + "'or OrgCode2='" + rowData.OrgCode + "'");
+            this.SetComboBoxData(this.lookUpEdit1, "LineID", "LineName", "请选择", "线路名称", list);
+            
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);
         }
 
         /// <summary>
@@ -78,7 +84,8 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_xl> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -128,6 +135,11 @@ namespace Ebada.Scgl.Yxgl
         private void comboBoxEdit4_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void lookUpEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            this.rowData.LineCode = this.lookUpEdit1.EditValue.ToString();
         }
     }
 }
