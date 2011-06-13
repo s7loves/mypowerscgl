@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:53:59
+生成时间:2011-6-13 16:45:21
 ***********************************************/
 
 using System;
@@ -24,11 +24,11 @@ namespace Ebada.Scgl.Model
         private string _id=Newid(); 
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
-        private string _rq=String.Empty; 
+        private DateTime _rq=new DateTime(1900,1,1); 
         private string _linename=String.Empty; 
         private string _jxnr=String.Empty; 
-        private DateTime _tdsj=new DateTime(1900,1,1);
-        private DateTime _sdsj = new DateTime(1900, 1, 1); 
+        private DateTime _tdsj=new DateTime(1900,1,1); 
+        private DateTime _sdsj=new DateTime(1900,1,1); 
         private string _tdxz=String.Empty; 
         private string _gzfzr=String.Empty; 
         private string _createman=String.Empty; 
@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-     
+  
         /// <summary>
         /// 属性名称：OrgCode
         /// 属性描述：供电所代码
@@ -107,17 +107,14 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：rq
         /// 属性描述：日期
-        /// 字段信息：[rq],nvarchar
+        /// 字段信息：[rq],datetime
         /// </summary>
         [DisplayNameAttribute("日期")]
-        public string rq
+        public DateTime rq
         {
             get { return _rq; }
             set
             {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[日期]长度不能大于50!");
                 if (_rq as object == null || !_rq.Equals(value))
                 {
                     _rq = value;
@@ -128,17 +125,17 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：LineName
         /// 属性描述：线路名称
-        /// 字段信息：[LineName],datetime
+        /// 字段信息：[LineName],nvarchar
         /// </summary>
         [DisplayNameAttribute("线路名称")]
         public string LineName
         {
-            get { return _jxnr; }
+            get { return _linename; }
             set
-            {
-                if (value == null) return;
-                if (value.ToString().Length > 50)
-                    throw new Exception("[检修内容]长度不能大于50!");
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[线路名称]长度不能大于50!");
                 if (_linename as object == null || !_linename.Equals(value))
                 {
                     _linename = value;
@@ -188,14 +185,14 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：sdsj
         /// 属性描述：送电时间
-        /// 字段信息：[sdsj],nvarchar
+        /// 字段信息：[sdsj],datetime
         /// </summary>
         [DisplayNameAttribute("送电时间")]
         public DateTime sdsj
         {
             get { return _sdsj; }
             set
-            {
+            {			
                 if (_sdsj as object == null || !_sdsj.Equals(value))
                 {
                     _sdsj = value;
