@@ -57,6 +57,11 @@ namespace Ebada.Scgl.Yxgl
                 } else {
                     ConvertHelper.CopyTo<PS_tqdlbh>(value as PS_tqdlbh, rowData);
                 }
+                if(rowData.sbCode==""){
+                    rowData.InstallDate = DateTime.Now;
+                    rowData.InDate = DateTime.Now;
+                    rowData.MadeDate = DateTime.Now;
+                }
             }
         }
 
@@ -125,6 +130,24 @@ namespace Ebada.Scgl.Yxgl
         private void labelControl13_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (comboBoxEdit5.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("台区名称不能为空。");
+                comboBoxEdit5.Focus();
+                return;
+            }
+            if (textEdit1.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("设备编号不能为空。");
+                textEdit1.Focus();
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
