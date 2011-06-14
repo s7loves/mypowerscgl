@@ -39,7 +39,6 @@
             this.splitCC1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitCC1.Panel1.CaptionLocation = DevExpress.Utils.Locations.Top;
             this.splitCC1.Panel1.Controls.Add(this.ucTop);
-            this.splitCC1.Panel1.ShowCaption = true;
             this.splitCC1.Panel1.Text = "工作日记";
             this.splitCC1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitCC1.Panel2.Controls.Add(this.ucBottom);
@@ -57,7 +56,7 @@
             this.ucTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucTop.Location = new System.Drawing.Point(0, 0);
             this.ucTop.Name = "ucTop";
-            this.ucTop.Size = new System.Drawing.Size(551, 240);
+            this.ucTop.Size = new System.Drawing.Size(551, 261);
             this.ucTop.TabIndex = 0;
             // 
             // ucBottom
@@ -66,7 +65,7 @@
             this.ucBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucBottom.Location = new System.Drawing.Point(0, 0);
             this.ucBottom.Name = "ucBottom";
-            this.ucBottom.Size = new System.Drawing.Size(551, 164);
+            this.ucBottom.Size = new System.Drawing.Size(551, 166);
             this.ucBottom.TabIndex = 0;
             // 
             // UCPJ_gzrjM
