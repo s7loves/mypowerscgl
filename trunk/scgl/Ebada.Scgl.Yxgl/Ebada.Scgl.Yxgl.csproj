@@ -398,6 +398,12 @@
     <Compile Include="23配电线路产权维护范围协议书\frm23Edit.Designer.cs">
       <DependentUpon>frm23Edit.cs</DependentUpon>
     </Compile>
+    <Compile Include="23配电线路产权维护范围协议书\UCPJ_23.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="23配电线路产权维护范围协议书\UCPJ_23.Designer.cs">
+      <DependentUpon>UCPJ_23.cs</DependentUpon>
+    </Compile>
     <Compile Include="24设备变更通知书\Export24.cs" />
     <Compile Include="24设备变更通知书\frm24Edit.cs">
       <SubType>Form</SubType>
@@ -632,6 +638,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="23配电线路产权维护范围协议书\frm23Edit.resx">
       <DependentUpon>frm23Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="23配电线路产权维护范围协议书\UCPJ_23.resx">
+      <DependentUpon>UCPJ_23.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="24设备变更通知书\frm24Edit.resx">
