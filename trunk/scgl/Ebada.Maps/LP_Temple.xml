@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LP_Temple" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="LP_Temple"  type="Ebada.Scgl.Model.LP_Temple,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="LP_Temple_AllColumns" class="LP_Temple">
+        <result property="LPID" column="LPID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="CtrlType" column="CtrlType" />
+        <result property="CtrlLocation" column="CtrlLocation" />
+        <result property="CtrlSize" column="CtrlSize" />
+        <result property="CellName" column="CellName" />
+        <result property="CellPos" column="CellPos" />
+        <result property="WordCount" column="WordCount" />
+        <result property="EventName" column="EventName" />
+        <result property="IsAutoExecute" column="IsAutoExecute" />
+        <result property="WorkflowPos" column="WorkflowPos" />
+        <result property="SqlSentence" column="SqlSentence" />
+        <result property="SqlColName" column="SqlColName" />
+        <result property="AffectLPID" column="AffectLPID" />
+        <result property="AffectEvent" column="AffectEvent" />
+        <result property="RelateLPID" column="RelateLPID" />
+        <result property="DocContent" column="DocContent" />
+        <result property="ImageAttachment" column="ImageAttachment" />
+        <result property="SignImg" column="SignImg" />
+        <result property="Kind" column="Kind" />
+        <result property="SortID" column="SortID" />
+        <result property="IsVisible" column="IsVisible" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectLP_TempleList" resultMap="LP_Temple_AllColumns" parameterClass="string">
+        SELECT 
+         [LPID],
+         [ParentID],
+         [CtrlType],
+         [CtrlLocation],
+         [CtrlSize],
+         [CellName],
+         [CellPos],
+         [WordCount],
+         [EventName],
+         [IsAutoExecute],
+         [WorkflowPos],
+         [SqlSentence],
+         [SqlColName],
+         [AffectLPID],
+         [AffectEvent],
+         [RelateLPID],
+         [DocContent],
+         [ImageAttachment],
+         [SignImg],
+         [Kind],
+         [SortID],
+         [IsVisible]
+          FROM LP_Temple
+          $value$
+   </select>
+   
+   <select id="SelectLP_TempleByHash" parameterClass="Hashtable">
+         SELECT 
+         [LPID],
+         [ParentID],
+         [CtrlType],
+         [CtrlLocation],
+         [CtrlSize],
+         [CellName],
+         [CellPos],
+         [WordCount],
+         [EventName],
+         [IsAutoExecute],
+         [WorkflowPos],
+         [SqlSentence],
+         [SqlColName],
+         [AffectLPID],
+         [AffectEvent],
+         [RelateLPID],
+         [DocContent],
+         [ImageAttachment],
+         [SignImg],
+         [Kind],
+         [SortID],
+         [IsVisible]
+          FROM LP_Temple
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LPID">[LPID]='$LPID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="CtrlType">[CtrlType]='$CtrlType$'</isNotNull>
+       <isNotNull prepend="AND" property="CtrlLocation">[CtrlLocation]='$CtrlLocation$'</isNotNull>
+       <isNotNull prepend="AND" property="CtrlSize">[CtrlSize]='$CtrlSize$'</isNotNull>
+       <isNotNull prepend="AND" property="CellName">[CellName]='$CellName$'</isNotNull>
+       <isNotNull prepend="AND" property="CellPos">[CellPos]='$CellPos$'</isNotNull>
+       <isNotNull prepend="AND" property="WordCount">[WordCount]='$WordCount$'</isNotNull>
+       <isNotNull prepend="AND" property="EventName">[EventName]='$EventName$'</isNotNull>
+       <isNotNull prepend="AND" property="IsAutoExecute">[IsAutoExecute]='$IsAutoExecute$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowPos">[WorkflowPos]='$WorkflowPos$'</isNotNull>
+       <isNotNull prepend="AND" property="SqlSentence">[SqlSentence]='$SqlSentence$'</isNotNull>
+       <isNotNull prepend="AND" property="SqlColName">[SqlColName]='$SqlColName$'</isNotNull>
+       <isNotNull prepend="AND" property="AffectLPID">[AffectLPID]='$AffectLPID$'</isNotNull>
+       <isNotNull prepend="AND" property="AffectEvent">[AffectEvent]='$AffectEvent$'</isNotNull>
+       <isNotNull prepend="AND" property="RelateLPID">[RelateLPID]='$RelateLPID$'</isNotNull>
+       <isNotNull prepend="AND" property="DocContent">[DocContent]='$DocContent$'</isNotNull>
+       <isNotNull prepend="AND" property="ImageAttachment">[ImageAttachment]='$ImageAttachment$'</isNotNull>
+       <isNotNull prepend="AND" property="SignImg">[SignImg]='$SignImg$'</isNotNull>
+       <isNotNull prepend="AND" property="Kind">[Kind]='$Kind$'</isNotNull>
+       <isNotNull prepend="AND" property="SortID">[SortID]='$SortID$'</isNotNull>
+       <isNotNull prepend="AND" property="IsVisible">[IsVisible]='$IsVisible$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectLP_TempleByKey" resultMap="LP_Temple_AllColumns" parameterClass="LP_Temple">
+         SELECT 
+         [LPID],
+         [ParentID],
+         [CtrlType],
+         [CtrlLocation],
+         [CtrlSize],
+         [CellName],
+         [CellPos],
+         [WordCount],
+         [EventName],
+         [IsAutoExecute],
+         [WorkflowPos],
+         [SqlSentence],
+         [SqlColName],
+         [AffectLPID],
+         [AffectEvent],
+         [RelateLPID],
+         [DocContent],
+         [ImageAttachment],
+         [SignImg],
+         [Kind],
+         [SortID],
+         [IsVisible]
+         FROM LP_Temple
+         WHERE 
+           LPID = #LPID#
+
+   </select>
+ 
+   <delete id="DeleteLP_Temple" parameterClass="LP_Temple">
+        DELETE FROM 
+         LP_Temple
+           WHERE
+         LPID = #LPID#
+
+   </delete>
+   
+   <delete id="DeleteLP_TempleByWhere" parameterClass="string">
+     delete from LP_Temple $value$
+   </delete>
+   
+   <delete id="DeleteLP_TempleByKey" parameterClass="string">
+        DELETE FROM 
+         LP_Temple
+           WHERE
+         LPID = #LPID#
+    
+   </delete>
+   
+   <update id="UpdateLP_Temple" parameterClass="LP_Temple" resultClass="int">
+          UPDATE LP_Temple
+           SET
+             [ParentID]=#ParentID#,
+             [CtrlType]=#CtrlType#,
+             [CtrlLocation]=#CtrlLocation#,
+             [CtrlSize]=#CtrlSize#,
+             [CellName]=#CellName#,
+             [CellPos]=#CellPos#,
+             [WordCount]=#WordCount#,
+             [EventName]=#EventName#,
+             [IsAutoExecute]=#IsAutoExecute#,
+             [WorkflowPos]=#WorkflowPos#,
+             [SqlSentence]=#SqlSentence#,
+             [SqlColName]=#SqlColName#,
+             [AffectLPID]=#AffectLPID#,
+             [AffectEvent]=#AffectEvent#,
+             [RelateLPID]=#RelateLPID#,
+             [DocContent]=#DocContent#,
+             [ImageAttachment]=#ImageAttachment#,
+             [SignImg]=#SignImg#,
+             [Kind]=#Kind#,
+             [SortID]=#SortID#,
+             [IsVisible]=#IsVisible#
+            WHERE 
+              LPID = #LPID#
+
+   </update>
+  
+   <insert id="InsertLP_Temple" parameterClass="LP_Temple">
+        INSERT INTO LP_Temple
+         (
+         [LPID],
+         [ParentID],
+         [CtrlType],
+         [CtrlLocation],
+         [CtrlSize],
+         [CellName],
+         [CellPos],
+         [WordCount],
+         [EventName],
+         [IsAutoExecute],
+         [WorkflowPos],
+         [SqlSentence],
+         [SqlColName],
+         [AffectLPID],
+         [AffectEvent],
+         [RelateLPID],
+         [DocContent],
+         [ImageAttachment],
+         [SignImg],
+         [Kind],
+         [SortID],
+         [IsVisible]
+         )
+       VALUES
+         (
+         #LPID#,
+         #ParentID#,
+         #CtrlType#,
+         #CtrlLocation#,
+         #CtrlSize#,
+         #CellName#,
+         #CellPos#,
+         #WordCount#,
+         #EventName#,
+         #IsAutoExecute#,
+         #WorkflowPos#,
+         #SqlSentence#,
+         #SqlColName#,
+         #AffectLPID#,
+         #AffectEvent#,
+         #RelateLPID#,
+         #DocContent#,
+         #ImageAttachment#,
+         #SignImg#,
+         #Kind#,
+         #SortID#,
+         #IsVisible#
+         )
+
+   </insert>
+   
+   <select id="GetLP_TempleRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM LP_Temple
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LPID">[LPID]='$LPID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="CtrlType">[CtrlType]='$CtrlType$'</isNotNull>
+       <isNotNull prepend="AND" property="CtrlLocation">[CtrlLocation]='$CtrlLocation$'</isNotNull>
+       <isNotNull prepend="AND" property="CtrlSize">[CtrlSize]='$CtrlSize$'</isNotNull>
+       <isNotNull prepend="AND" property="CellName">[CellName]='$CellName$'</isNotNull>
+       <isNotNull prepend="AND" property="CellPos">[CellPos]='$CellPos$'</isNotNull>
+       <isNotNull prepend="AND" property="WordCount">[WordCount]='$WordCount$'</isNotNull>
+       <isNotNull prepend="AND" property="EventName">[EventName]='$EventName$'</isNotNull>
+       <isNotNull prepend="AND" property="IsAutoExecute">[IsAutoExecute]='$IsAutoExecute$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowPos">[WorkflowPos]='$WorkflowPos$'</isNotNull>
+       <isNotNull prepend="AND" property="SqlSentence">[SqlSentence]='$SqlSentence$'</isNotNull>
+       <isNotNull prepend="AND" property="SqlColName">[SqlColName]='$SqlColName$'</isNotNull>
+       <isNotNull prepend="AND" property="AffectLPID">[AffectLPID]='$AffectLPID$'</isNotNull>
+       <isNotNull prepend="AND" property="AffectEvent">[AffectEvent]='$AffectEvent$'</isNotNull>
+       <isNotNull prepend="AND" property="RelateLPID">[RelateLPID]='$RelateLPID$'</isNotNull>
+       <isNotNull prepend="AND" property="DocContent">[DocContent]='$DocContent$'</isNotNull>
+       <isNotNull prepend="AND" property="ImageAttachment">[ImageAttachment]='$ImageAttachment$'</isNotNull>
+       <isNotNull prepend="AND" property="SignImg">[SignImg]='$SignImg$'</isNotNull>
+       <isNotNull prepend="AND" property="Kind">[Kind]='$Kind$'</isNotNull>
+       <isNotNull prepend="AND" property="SortID">[SortID]='$SortID$'</isNotNull>
+       <isNotNull prepend="AND" property="IsVisible">[IsVisible]='$IsVisible$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetLP_TempleRowCount" parameterClass="string">
+    select count(*) from LP_Temple $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
