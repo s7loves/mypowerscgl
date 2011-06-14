@@ -1,5 +1,5 @@
 ﻿namespace Ebada.Scgl.Yxgl {
-    partial class UCPJ_14aqgj {
+    partial class UCPJ_11byqdy {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -162,7 +162,6 @@
             this.btView.ImageIndex = 7;
             this.btView.Name = "btView";
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
             // btExport
@@ -257,7 +256,7 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UCPJ_14aqgj
+            // UCPJ_11byqdy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -266,7 +265,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCPJ_14aqgj";
+            this.Name = "UCPJ_11byqdy";
             this.Size = new System.Drawing.Size(536, 330);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
