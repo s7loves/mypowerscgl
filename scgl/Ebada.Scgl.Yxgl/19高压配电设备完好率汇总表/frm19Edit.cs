@@ -24,10 +24,10 @@ namespace Ebada.Scgl.Yxgl
         void dataBind() {
 
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "OrgName");
+           // this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "OrgName");
            // this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "LineCode");
             //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "LineName");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "Remark");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gzrjID");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "CreateMan");
            
