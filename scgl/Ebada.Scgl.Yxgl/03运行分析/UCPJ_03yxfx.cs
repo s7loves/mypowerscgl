@@ -189,7 +189,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (gridView1.FocusedRowHandle >= 0)
             {
-                //Export03.ExportExcel(gridView1.GetFocusedRow() as PJ_03yxfx);
+                Export03.ExportExcel(gridView1.GetFocusedRow() as PJ_03yxfx);
             }
             else
             {
