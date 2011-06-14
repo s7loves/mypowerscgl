@@ -24,7 +24,7 @@ namespace Ebada.Scgl.Yxgl {
             //此处写填充内容代码
             ex.SetCellValue(obj.sbName, 5, 1);
             ex.SetCellValue(obj.sbCode, 5, 4);
-            ex.SetCellValue(obj.syzq, 5, 5);
+            ex.SetCellValue(obj.syzq.ToString(), 5, 5);
             ex.SetCellValue(obj.syxm, 5, 8);
             for (int i = 0; i < objlist.Count; i++)
             {

@@ -106,9 +106,6 @@
     <EmbeddedResource Include="PJ_26.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LP_Temple.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
