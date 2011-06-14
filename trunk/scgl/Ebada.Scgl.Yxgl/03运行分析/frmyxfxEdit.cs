@@ -97,7 +97,14 @@ namespace Ebada.Scgl.Yxgl
             {
                 if (ryList.Count>0)
                 {
-                    ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+                    if (i<15)
+                    {
+                        ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+                    }
+                    if (i>=15)
+                    {
+                        ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+                    }
                 }
                 
                 //((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).Properties.Items.AddRange(yyList);
