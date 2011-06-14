@@ -106,7 +106,7 @@
     <EmbeddedResource Include="PJ_26.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LP_Temple.xml" />
+    <EmbeddedResource Include="LP_Temple.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="flow\" />
