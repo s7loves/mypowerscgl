@@ -33,13 +33,13 @@
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
-            this.btOK = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btOK = new DevExpress.XtraBars.BarButtonItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -147,14 +147,6 @@
             this.btClose.Name = "btClose";
             this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // btOK
-            // 
-            this.btOK.Caption = "确认";
-            this.btOK.Id = 14;
-            this.btOK.Name = "btOK";
-            this.btOK.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btOK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btOK_ItemClick);
-            // 
             // bar3
             // 
             this.bar3.BarName = "Status bar";
@@ -179,7 +171,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(479, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(479, 20);
             // 
             // barDockControlBottom
             // 
@@ -190,14 +182,22 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 265);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 20);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 269);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(479, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 265);
+            this.barDockControlRight.Location = new System.Drawing.Point(479, 20);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 269);
+            // 
+            // btOK
+            // 
+            this.btOK.Caption = "确认";
+            this.btOK.Id = 14;
+            this.btOK.Name = "btOK";
+            this.btOK.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btOK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btOK_ItemClick);
             // 
             // gridControl1
             // 
@@ -207,11 +207,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 20);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(479, 265);
+            this.gridControl1.Size = new System.Drawing.Size(479, 269);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
