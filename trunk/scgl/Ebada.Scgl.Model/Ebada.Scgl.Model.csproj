@@ -37,7 +37,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Empolyees.cs" />
-    <Compile Include="LP_Temple.cs" />
     <Compile Include="mModule.cs" />
     <Compile Include="mModulFun.cs" />
     <Compile Include="mOrg.cs" />

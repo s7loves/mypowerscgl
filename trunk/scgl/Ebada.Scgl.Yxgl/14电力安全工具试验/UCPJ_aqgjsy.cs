@@ -141,10 +141,10 @@ namespace Ebada.Scgl.Yxgl
         void gridViewOperation_CreatingObjectEvent(PS_aqgj newobj)
         {
             if (parentID == null) return;
-            newobj.OrgCode = parentID;
-            newobj.OrgName = parentObj.OrgName;
-            newobj.CreateDate = DateTime.Now;
-            newobj.CreateMan = MainHelper.LoginName;
+            //newobj.OrgCode = parentID;
+            //newobj.OrgName = parentObj.OrgName;
+            //newobj.CreateDate = DateTime.Now;
+            //newobj.CreateMan = MainHelper.LoginName;
         }
         /// <summary>
         /// 父表ID
