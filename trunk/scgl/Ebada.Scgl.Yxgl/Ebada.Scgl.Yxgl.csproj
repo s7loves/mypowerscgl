@@ -230,6 +230,24 @@
     <Compile Include="11配电变压器卡片\frm11byqdzclEdit.Designer.cs">
       <DependentUpon>frm11byqdzclEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqbd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqbd.Designer.cs">
+      <DependentUpon>UCPJ_11byqbd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqdy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqdy.Designer.cs">
+      <DependentUpon>UCPJ_11byqdy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqdzcl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqdzcl.Designer.cs">
+      <DependentUpon>UCPJ_11byqdzcl.cs</DependentUpon>
+    </Compile>
     <Compile Include="12线路开关卡片\Export12.cs" />
     <Compile Include="12线路开关卡片\frm12kgbdEdit.cs">
       <SubType>Form</SubType>
@@ -298,6 +316,12 @@
     </Compile>
     <Compile Include="14电力安全工具试验\frmaqgjEdit.Designer.cs">
       <DependentUpon>frmaqgjEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_14aqgjM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_14aqgjM.Designer.cs">
+      <DependentUpon>UCPJ_14aqgjM.cs</DependentUpon>
     </Compile>
     <Compile Include="14电力安全工具试验\UCPJ_14aqgj.cs">
       <SubType>UserControl</SubType>
@@ -536,6 +560,18 @@
       <DependentUpon>frm11byqdzclEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\UCPJ_11byqbd.resx">
+      <DependentUpon>UCPJ_11byqbd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\UCPJ_11byqdy.resx">
+      <DependentUpon>UCPJ_11byqdy.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\UCPJ_11byqdzcl.resx">
+      <DependentUpon>UCPJ_11byqdzcl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="12线路开关卡片\frm12kgbdEdit.resx">
       <DependentUpon>frm12kgbdEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -578,6 +614,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="14电力安全工具试验\frmaqgjEdit.resx">
       <DependentUpon>frmaqgjEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14电力安全工具试验\UCPJ_14aqgjM.resx">
+      <DependentUpon>UCPJ_14aqgjM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="14电力安全工具试验\UCPJ_14aqgj.resx">
