@@ -9,13 +9,17 @@ using DevExpress.XtraEditors;
 
 namespace Ebada.Scgl.Core {
     public partial class frmDykSelector : DevExpress.XtraEditors.XtraForm {
+        public MemoEdit TxtMemo;
         public frmDykSelector() {
             InitializeComponent();
         }
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
             if (this.Owner != null)
-                this.StartPosition = FormStartPosition.CenterParent;
+            {
+                this.StartPosition = FormStartPosition.WindowsDefaultLocation;
+            }
+            ucpJ_dykSelector1.TextMemo = TxtMemo;
         }
     }
 }
