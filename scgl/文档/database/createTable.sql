@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     2011-6-13 17:28:26                           */
+/* Created on:     2011-6-14 22:00:30                           */
 /*==============================================================*/
 
 
@@ -607,15 +607,6 @@ if exists (select 1
            where  id = object_id('dbo.rUserRole')
             and   type = 'U')
    drop table dbo.rUserRole
-go
-
-execute sp_revokedbaccess dbo
-go
-
-/*==============================================================*/
-/* User: dbo                                                    */
-/*==============================================================*/
-execute sp_grantdbaccess dbo
 go
 
 /*==============================================================*/
@@ -3491,15 +3482,15 @@ go
 /*==============================================================*/
 create table dbo.PJ_dyk (
    ID                   nvarchar(50)         not null,
-   ParentID             nvarchar(50)         null,
    dx                   nvarchar(50)         null,
    sx                   nvarchar(50)         null,
    bh                   nvarchar(50)         null,
    zjm                  nvarchar(50)         null,
-   nr4                  nvarchar(2000)       null,
    nr                   nvarchar(2000)       null,
    nr2                  nvarchar(2000)       null,
    nr3                  nvarchar(2000)       null,
+   nr4                  nvarchar(2000)       null,
+   ParentID             nvarchar(50)         null,
    constraint PK_PJ_DYK primary key (ID)
 )
 go
@@ -3512,11 +3503,6 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    'º«¬ºID',
    'user', 'dbo', 'table', 'PJ_dyk', 'column', 'ID'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   'ParentID',
-   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'ParentID'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -3541,11 +3527,6 @@ go
 
 execute sp_addextendedproperty 'MS_Description', 
    '∂Ã”Ôƒ⁄»›',
-   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr4'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '∂Ã”Ôƒ⁄»›',
    'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr'
 go
 
@@ -3557,6 +3538,16 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '∂Ã”Ôƒ⁄»›',
    'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr3'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '∂Ã”Ôƒ⁄»›',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr4'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   'ParentID',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'ParentID'
 go
 
 /*==============================================================*/
