@@ -27,7 +27,8 @@ namespace Ebada.Scgl.Core {
     /// </summary>
     public partial class UCPJ_dykSelector : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PJ_dyk> gridViewOperation;
-        
+        private MemoEdit txt;
+
         public event SendDataEventHandler<PJ_dyk> FocusedRowChanged;
         private string parentID="";
         private PJ_dyk parentObj;
@@ -55,6 +56,11 @@ namespace Ebada.Scgl.Core {
                     bar3.Visible = false;
                 }
             }
+        }
+        public MemoEdit TextMemo
+        {
+            get { return txt; }
+            set { txt = value; }
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_dyk> e) {
             if (childView != null && childView.BindingList.Count > 0) e.Cancel = true;
@@ -181,6 +187,11 @@ namespace Ebada.Scgl.Core {
         private void btOK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (GetSelectedRow() != null)
                 this.ParentForm.DialogResult = DialogResult.OK;
+        }
+
+        private void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            txt.Text=txt.Text+" "+gridView1.GetFocusedDisplayText();
         }
     }
 }
