@@ -107,7 +107,9 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.qzrq.Year.ToString(), 24, 5);
             ex.SetCellValue(obj.qzrq.Month.ToString(), 24, 9);
             ex.SetCellValue(obj.qzrq.Day.ToString(), 24, 11);
-
+            //ex.CopySheet(1,2);
+            //ex.CopySheet(1, 3);
+            //ex.CopySheet(2, 4);
             ex.ShowExcel();
 
         }
