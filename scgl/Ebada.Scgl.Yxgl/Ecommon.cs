@@ -46,6 +46,23 @@ namespace Ebada.Scgl.Yxgl
            
  
         }
+        /// <summary>
+        /// 返回list集合中的全部字符list
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static List<string> GetCollList(System.Collections.ArrayList list)
+        {
+            List<string> allList = new List<string>();
+            for (int i = 0; i < list.Count;i++ )
+            {
+                List<string> l = list[i] as List<string>;
+                for(int j=0;j<l.Count;j++){
+                    allList.Add(l[j]);
+                }
+            }
+            return allList;
+        }
 
         public static int GetPagecount(int sum, int rowcount)
         {
