@@ -22,9 +22,10 @@ namespace Ebada.Scgl.Yxgl
             InitializeComponent();
         }
         void dataBind() {
+            this.textEdit2.DataBindings.Add("EditValue", rowData, "fsdd"); 
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "tdsj");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "sdsj");
-            this.textEdit1.DataBindings.Add("EditValue", rowData, "gtdsj");
+            //this.textEdit1.DataBindings.Add("EditValue", rowData, "gtdsj");
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "ssdl");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "clqk");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "yyfx");
@@ -37,6 +38,7 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
+               // rowData.gtdsj = rowData.sdsj - rowData.tdsj;
                 return rowData;
             }
             set {
