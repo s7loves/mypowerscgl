@@ -29,7 +29,31 @@ namespace Ebada.Scgl.Yxgl
             int col = 1;
             //每行显示文字长度
             int zc = 60;
+            //获得创建的工作表个数
+            // int pagemax = 1;
+            List<string> listztstring = Ecommon.ResultStrList("主题：" + obj.zt, zc);
 
+            //if (pagemax < Ecommon.GetPagecount(listztstring.Count,2))
+            //{
+            //    pagemax = Ecommon.GetPagecount(listztstring.Count, 2);
+            //}
+
+            List<string> listjy = Ecommon.ResultStrList("纪要：" + obj.jy, zc);
+            //if (pagemax < Ecommon.GetPagecount(listjy.Count, 7))
+            //{
+            //    pagemax = Ecommon.GetPagecount(listjy.Count, 7);
+            //}
+            List<string> listjldc = Ecommon.ResultStrList("结论及对策：" + obj.jr, zc);
+            //if (pagemax < Ecommon.GetPagecount(listjldc.Count, 6))
+            //{
+            //    pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
+            //}
+            List<string> strcol = new List<string>();
+            Ecommon.addstring(listztstring, ref strcol);
+            Ecommon.addstring(listjy, ref strcol);
+            Ecommon.addstring(listjldc, ref strcol);
+            Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
+            ex.ActiveSheet(1);
             //时间
             ex.SetCellValue(obj.rq.Year.ToString(), 4, 5);
             ex.SetCellValue(obj.rq.Month.ToString(), 4, 7);
@@ -66,30 +90,7 @@ namespace Ebada.Scgl.Yxgl
             //将固定的写完再创建不固定的。
            
             
-            //获得创建的工作表个数
-           // int pagemax = 1;
-            List<string> listztstring = Ecommon.ResultStrList("主题：" + obj.zt, zc);
-          
-            //if (pagemax < Ecommon.GetPagecount(listztstring.Count,2))
-            //{
-            //    pagemax = Ecommon.GetPagecount(listztstring.Count, 2);
-            //}
-
-            List<string> listjy = Ecommon.ResultStrList("纪要：" + obj.jy, zc);
-            //if (pagemax < Ecommon.GetPagecount(listjy.Count, 7))
-            //{
-            //    pagemax = Ecommon.GetPagecount(listjy.Count, 7);
-            //}
-            List<string> listjldc = Ecommon.ResultStrList("结论及对策：" + obj.jr, zc);
-            //if (pagemax < Ecommon.GetPagecount(listjldc.Count, 6))
-            //{
-            //    pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
-            //}
-            List<string> strcol = new List<string>();
-            Ecommon.addstring(listztstring, ref strcol);
-            Ecommon.addstring(listjy, ref strcol);
-            Ecommon.addstring(listjldc, ref strcol);
-            Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
+           
             //添加变动内容
             //for (int j = 1; j <= pagemax;j++ )
             //{

@@ -29,6 +29,17 @@ namespace Ebada.Scgl.Yxgl
             int col = 1;
             //每行显示文字长度
             int zc = 60;
+            //要发生变化的部分
+            //List<string>[] bhcollect = new List<string>[3] { Ecommon.ResultStrList("三、事故、障碍、异常运行情况及处理经过：" + obj.clqk, zc), Ecommon.ResultStrList("四、主要原因分析：" + obj.yyfx, zc), Ecommon.ResultStrList("五、今后防止对策：" + obj.fzdc, zc) };
+            //int[] hs = new int[3] { 4, 5, 5 };
+            //int[] starow = new int[3] { 9, 13, 18 };
+            //Ecommon.CreatandWritesheet(ex, bhcollect, hs, starow);
+            List<string> strcol = new List<string>();
+            Ecommon.addstring(Ecommon.ResultStrList("三、事故、障碍、异常运行情况及处理经过：" + obj.clqk, zc), ref strcol);
+            Ecommon.addstring(Ecommon.ResultStrList("四、主要原因分析：" + obj.yyfx, zc), ref strcol);
+            Ecommon.addstring(Ecommon.ResultStrList("五、今后防止对策：" + obj.fzdc, zc), ref strcol);
+            Ecommon.CreatandWritesheet(ex, strcol, 14, 9, 1);
+            ex.ActiveSheet(1);
             //事故异常发生地点
             ex.SetCellValue(obj.fsdd, 5, 6);
             //发生时间
@@ -58,16 +69,7 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.CreateMan, 24, 8);
             ex.SetCellValue(obj.CreateDate.Month.ToString(), 24, 16);
             ex.SetCellValue(obj.CreateDate.Day.ToString(), 24, 18);
-            //要发生变化的部分
-            //List<string>[] bhcollect = new List<string>[3] { Ecommon.ResultStrList("三、事故、障碍、异常运行情况及处理经过：" + obj.clqk, zc), Ecommon.ResultStrList("四、主要原因分析：" + obj.yyfx, zc), Ecommon.ResultStrList("五、今后防止对策：" + obj.fzdc, zc) };
-            //int[] hs = new int[3] { 4, 5, 5 };
-            //int[] starow = new int[3] { 9, 13, 18 };
-            //Ecommon.CreatandWritesheet(ex, bhcollect, hs, starow);
-            List<string> strcol = new List<string>();
-            Ecommon.addstring(Ecommon.ResultStrList("三、事故、障碍、异常运行情况及处理经过：" + obj.clqk, zc), ref strcol);
-            Ecommon.addstring(Ecommon.ResultStrList("四、主要原因分析：" + obj.yyfx, zc), ref strcol);
-            Ecommon.addstring(Ecommon.ResultStrList("五、今后防止对策：" + obj.fzdc, zc), ref strcol);
-            Ecommon.CreatandWritesheet(ex, strcol, 14, 9, 1);
+           
             ////事故障碍异常
             //string sgzyc = "三、事故、障碍、异常运行情况及处理经过：" + obj.clqk;
             //for (int i = 0; i < 4; i++)
