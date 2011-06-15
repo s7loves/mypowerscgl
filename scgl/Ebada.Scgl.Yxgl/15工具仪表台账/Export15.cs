@@ -22,17 +22,6 @@ namespace Ebada.Scgl.Yxgl {
             ex.Open(fname);
             //此处写填充内容代码
             int rowcount = 6;
-            string gdsname = "";
-            //记录变电所
-            if (objlist.Count>0)
-            {
-                 IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + objlist[0].OrgID + "'");
-             
-            if (list.Count > 0)
-
-                gdsname = list[0].OrgName;
-            }
-            ex.SetCellValue(gdsname, 3, 2);
             //加页
             int pageindex = 1;
             if (pageindex < Ecommon.GetPagecount(objlist.Count, 18))
@@ -49,9 +38,9 @@ namespace Ebada.Scgl.Yxgl {
             ex.ShowExcel();
             for (int j = 1; j <= pageindex; j++)
             {
-               
-                    ex.ActiveSheet(j);
-              
+
+                ex.ActiveSheet(j);
+
                 int prepageindex = j - 1;
                 //主题
                 int starow = prepageindex * 18 + 1;
@@ -93,6 +82,19 @@ namespace Ebada.Scgl.Yxgl {
                     }
                 }
             }
+            ex.ActiveSheet(1);
+            string gdsname = "";
+            //记录变电所
+            if (objlist.Count>0)
+            {
+                 IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + objlist[0].OrgID + "'");
+             
+            if (list.Count > 0)
+
+                gdsname = list[0].OrgName;
+            }
+            ex.SetCellValue(gdsname, 3, 2);
+           
             //工具仪表信息
             //for (int i = 0; i < objlist.Count;i++ )
             //{
