@@ -29,7 +29,8 @@ namespace Ebada.Scgl.Yxgl
             int col = 1;
             //每行显示文字长度
             int zc = 31;
-
+            //事故异常发生地点
+            ex.SetCellValue(obj.fsdd, 5, 2);
             //发生时间
             //停电时间
             ex.SetCellValue(obj.tdsj.Month.ToString(), 6, 5);
@@ -47,82 +48,88 @@ namespace Ebada.Scgl.Yxgl
             int min1 = (obj.tdsj - obj.sdsj).Minutes;
             ex.SetCellValue(hour1.ToString(),7, 17);
             ex.SetCellValue(min1.ToString(),7, 19);
+            //损失电量
             ex.SetCellValue(obj.ssdl.ToString(),8, 6);
             //ex.SetCellValue(obj.rq.Month.ToString(), 4, 7);
             //ex.SetCellValue(obj.rq.Day.ToString(), 4, 9);
-
-            //事故障碍异常
-            string sgzyc = "三、事故、障碍、异常运行情况及处理经过：" + obj.clqk;
-            for (int i = 0; i < 4; i++)
-            {
-                string tempstr = "";
-                int startnum = i * zc;
-                int endnum = (i + 1) * zc;
-                bool ISempty = false;
-                if (startnum >= sgzyc.Length)
-                {
-                    ISempty = true;
-                }
-                else if (endnum >= sgzyc.Length)
-                {
-                    endnum = sgzyc.Length;
-                }
-                if (!ISempty)
-                {
-                    tempstr = sgzyc.Substring(startnum, endnum - startnum);
-                }
-                ex.SetCellValue(tempstr, 9 + i, 1);
-            }
-            //主要原因分析
-            string zyyuy = "四、主要原因分析："+obj.yyfx;
-            for (int i = 0; i < 5; i++)
-            {
-                string tempstr = "";
-                int startnum = i * zc;
-                int endnum = (i + 1) * zc;
-                bool ISempty = false;
-                if (startnum >= zyyuy.Length)
-                {
-                    ISempty = true;
-                }
-                else if (endnum >= zyyuy.Length)
-                {
-                    endnum = zyyuy.Length;
-                }
-                if (!ISempty)
-                {
-                    tempstr = zyyuy.Substring(startnum, endnum - startnum);
-                }
-                ex.SetCellValue(tempstr, 13+ i, 1);
-            }
-            //今后放置对策
-            string fzdc = "五、今后防止对策：" + obj.fzdc;
-            for (int i = 0; i < 5; i++)
-            {
-                string tempstr = "";
-                int startnum = i * zc;
-                int endnum = (i + 1) * zc;
-                bool ISempty = false;
-                if (startnum >= fzdc.Length)
-                {
-                    ISempty = true;
-                }
-                else if (endnum >= fzdc.Length)
-                {
-                    endnum = fzdc.Length;
-                }
-                if (!ISempty)
-                {
-                    tempstr = fzdc.Substring(startnum, endnum - startnum);
-                }
-                ex.SetCellValue(tempstr, 18 + i, 1);
-            }
             //防治对策执行人
             ex.SetCellValue(obj.zxr, 23, 8);
             //记录填写人
-            ex.SetCellValue(obj.CreateMan, 24,8);
+            ex.SetCellValue(obj.CreateMan, 24, 8);
             ex.SetCellValue(obj.CreateDate.Month.ToString(), 24, 16);
             ex.SetCellValue(obj.CreateDate.Day.ToString(), 24, 18);
+            //要发生变化的部分
+            List<string>[] bhcollect = new List<string>[3] { Ecommon.ResultStrList("三、事故、障碍、异常运行情况及处理经过：" + obj.clqk, zc), Ecommon.ResultStrList("四、主要原因分析：" + obj.yyfx, zc), Ecommon.ResultStrList("五、今后防止对策：" + obj.fzdc, zc) };
+            int[] hs = new int[3] { 4, 5, 5 };
+            int[] starow = new int[3] { 9, 13, 18 };
+            Ecommon.CreatandWritesheet(ex, bhcollect, hs, starow);
+            ////事故障碍异常
+            //string sgzyc = "三、事故、障碍、异常运行情况及处理经过：" + obj.clqk;
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    string tempstr = "";
+            //    int startnum = i * zc;
+            //    int endnum = (i + 1) * zc;
+            //    bool ISempty = false;
+            //    if (startnum >= sgzyc.Length)
+            //    {
+            //        ISempty = true;
+            //    }
+            //    else if (endnum >= sgzyc.Length)
+            //    {
+            //        endnum = sgzyc.Length;
+            //    }
+            //    if (!ISempty)
+            //    {
+            //        tempstr = sgzyc.Substring(startnum, endnum - startnum);
+            //    }
+            //    ex.SetCellValue(tempstr, 9 + i, 1);
+            //}
+            ////主要原因分析
+            //string zyyuy = "四、主要原因分析："+obj.yyfx;
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    string tempstr = "";
+            //    int startnum = i * zc;
+            //    int endnum = (i + 1) * zc;
+            //    bool ISempty = false;
+            //    if (startnum >= zyyuy.Length)
+            //    {
+            //        ISempty = true;
+            //    }
+            //    else if (endnum >= zyyuy.Length)
+            //    {
+            //        endnum = zyyuy.Length;
+            //    }
+            //    if (!ISempty)
+            //    {
+            //        tempstr = zyyuy.Substring(startnum, endnum - startnum);
+            //    }
+            //    ex.SetCellValue(tempstr, 13+ i, 1);
+            //}
+            ////今后放置对策
+            //string fzdc = "五、今后防止对策：" + obj.fzdc;
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    string tempstr = "";
+            //    int startnum = i * zc;
+            //    int endnum = (i + 1) * zc;
+            //    bool ISempty = false;
+            //    if (startnum >= fzdc.Length)
+            //    {
+            //        ISempty = true;
+            //    }
+            //    else if (endnum >= fzdc.Length)
+            //    {
+            //        endnum = fzdc.Length;
+            //    }
+            //    if (!ISempty)
+            //    {
+            //        tempstr = fzdc.Substring(startnum, endnum - startnum);
+            //    }
+            //    ex.SetCellValue(tempstr, 18 + i, 1);
+            //}
+           
 
            
             ex.ShowExcel();
