@@ -30,7 +30,7 @@ namespace Ebada.Scgl.Yxgl
             //每行显示文字长度
             int zc = 31;
             //事故异常发生地点
-            ex.SetCellValue(obj.fsdd, 5, 2);
+            ex.SetCellValue(obj.fsdd, 5, 6);
             //发生时间
             //停电时间
             ex.SetCellValue(obj.tdsj.Month.ToString(), 6, 5);
