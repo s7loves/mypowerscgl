@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Yxgl
             int row = 1;
             int col = 1;
             //每行显示文字长度
-            int zc = 30;
+            int zc = 60;
 
             //时间
             ex.SetCellValue(obj.rq.Year.ToString(), 4, 5);
@@ -88,9 +88,22 @@ namespace Ebada.Scgl.Yxgl
             {
                 if (j>1)
                 {
-                    ex.CopySheet(1, j + 1);
-                    ex.ActiveSheet(j + 1);
+                    ex.CopySheet(1, 1);
                 }
+            }
+            ex.ShowExcel();
+            for (int j = 1; j <= pagemax;j++ )
+            {
+
+                
+                    ex.ActiveSheet(j);
+                //if (j>1)
+                //{
+                //   // ex.CopySheet(1, j);
+                //    ex.ActiveSheet(j);
+                //}
+                //ex.ShowExcel();
+
                 int prepageindex = j - 1;
                 //主题
                 int starow = prepageindex * 2 + 1;
@@ -110,6 +123,8 @@ namespace Ebada.Scgl.Yxgl
                     }
                 }
                //纪要
+                starow = prepageindex * 7 + 1;
+               endrow = j * 7;
                 if (listjy.Count > endrow)
                 {
                     for (int i = 0; i < 7; i++)
@@ -125,11 +140,13 @@ namespace Ebada.Scgl.Yxgl
                     }
                 }
                 //结论及对策
+                starow = prepageindex * 6 + 1;
+                endrow = j * 6;
                 if (listjldc.Count > endrow)
                 {
                     for (int i = 0; i < 6; i++)
                     {
-                        ex.SetCellValue(listjy[starow - 1 + i], 18 + i, 1);
+                        ex.SetCellValue(listjldc[starow - 1 + i], 18 + i, 1);
                     }
                 }
                 else if (listjldc.Count <= endrow && listjldc.Count >= starow)
