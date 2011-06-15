@@ -23,18 +23,12 @@ namespace Ebada.Scgl.Yxgl
         }
         void dataBind() {
 
-
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "OrgName");
            // this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "LineCode");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "Remark");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "tqName");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gzrjID");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "CreateMan");
-           
-            //
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
@@ -59,16 +53,7 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_20>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
 
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
         }
 
         /// <summary>
@@ -92,44 +77,25 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
+        private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-
+            openFileDialog1.Filter = "Excel文件(*.xls)|*.xls|Word文件(*.doc)|*.doc";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                buttonEdit1.Text = openFileDialog1.FileName;
+                rowData.BigData = Ecommon.GetImageBate(openFileDialog1.FileName);
+            }
         }
 
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
+            if (buttonEdit1.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("文档内容不能为空。");
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
