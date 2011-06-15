@@ -123,6 +123,7 @@
     <Compile Include="UCPJ_dykSelector.Designer.cs">
       <DependentUpon>UCPJ_dykSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserRightHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
