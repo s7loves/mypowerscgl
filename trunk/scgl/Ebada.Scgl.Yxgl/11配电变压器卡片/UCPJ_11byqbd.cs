@@ -58,7 +58,11 @@ namespace Ebada.Scgl.Yxgl
             set 
             { 
                 _parentobj = value;
-                RefreshData("where byqID='" + value.byqID + "'");
+                if (ParentID!=null&&PSObj!=null)
+                {
+                    RefreshData(" where OrgCode='" + value + "'  and byqID='" + PSObj.byqID + "'  order by id desc");
+                }
+
             }
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_11byqbd> e)
@@ -178,9 +182,9 @@ namespace Ebada.Scgl.Yxgl
             set
             {
                 parentID = value;
-                if (!string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value) && PSObj!=null)
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where OrgCode='" + value + "'  and byqID='"+PSObj.byqID+"'  order by id desc");
                 }
             }
         }
