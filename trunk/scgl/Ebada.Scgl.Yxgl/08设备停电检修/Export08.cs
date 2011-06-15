@@ -37,13 +37,19 @@ namespace Ebada.Scgl.Yxgl {
             {
                 pageindex = Ecommon.GetPagecount(objlist.Count, 20);
             }
+            for (int j = 1; j <= pageindex; j++)
+            {
+                if (j > 1)
+                {
+                    ex.CopySheet(1, 1);
+                }
+            }
+            ex.ShowExcel();
             for (int j = 1; j <= pageindex;j++ )
             {
-                if (j>1)
-                {
-                    ex.CopySheet(1, j + 1);
-                    ex.ActiveSheet(j + 1);
-                }
+               
+                    ex.ActiveSheet(j);
+               
                 int prepageindex = j - 1;
                 //主题
                 int starow = prepageindex * 20 + 1;
