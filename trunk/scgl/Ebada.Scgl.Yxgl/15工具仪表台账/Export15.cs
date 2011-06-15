@@ -33,19 +33,73 @@ namespace Ebada.Scgl.Yxgl {
                 gdsname = list[0].OrgName;
             }
             ex.SetCellValue(gdsname, 3, 2);
-            //工具仪表信息
-            for (int i = 0; i < objlist.Count;i++ )
+            //加页
+            int pageindex = 1;
+            if (pageindex < Ecommon.GetPagecount(objlist.Count, 18))
             {
-                ex.SetCellValue((i+1).ToString(), rowcount + i, 1);
-                ex.SetCellValue(objlist[i].sbName, rowcount + i,2);
-                ex.SetCellValue(objlist[i].jdgg, rowcount + i,3);
-                ex.SetCellValue(objlist[i].dw, rowcount + i, 4);
-                ex.SetCellValue(objlist[i].sl.ToString(), rowcount + i, 5);
-                ex.SetCellValue(objlist[i].cj, rowcount + i, 6);
-                ex.SetCellValue(objlist[i].sbCode, rowcount + i, 7);
-                ex.SetCellValue(objlist[i].lqsj.Year.ToString(), rowcount + i, 8);
-                ex.SetCellValue(objlist[i].lqsj.Month.ToString(), rowcount + i, 9);
+                pageindex = Ecommon.GetPagecount(objlist.Count, 18);
             }
+            for (int j = 1; j <= pageindex; j++)
+            {
+                if (j > 1)
+                {
+                    ex.CopySheet(1, j + 1);
+                    ex.ActiveSheet(j + 1);
+                }
+                int prepageindex = j - 1;
+                //主题
+                int starow = prepageindex * 18 + 1;
+                int endrow = j * 18;
+                int bh = 0;
+                if (objlist.Count > endrow)
+                {
+                    for (int i = 0; i < 18; i++)
+                    {
+                        bh++;
+
+                        ex.SetCellValue((bh + 1).ToString(), rowcount + i, 1);
+                        ex.SetCellValue(objlist[starow - 1 + i].sbName, rowcount + i, 2);
+                        ex.SetCellValue(objlist[starow - 1 + i].jdgg, rowcount + i, 3);
+                        ex.SetCellValue(objlist[starow - 1 + i].dw, rowcount + i, 4);
+                        ex.SetCellValue(objlist[starow - 1 + i].sl.ToString(), rowcount + i, 5);
+                        ex.SetCellValue(objlist[starow - 1 + i].cj, rowcount + i, 6);
+                        ex.SetCellValue(objlist[starow - 1 + i].sbCode, rowcount + i, 7);
+                        ex.SetCellValue(objlist[starow - 1 + i].lqsj.Year.ToString(), rowcount + i, 8);
+                        ex.SetCellValue(objlist[starow - 1 + i].lqsj.Month.ToString(), rowcount + i, 9);
+
+                    }
+                }
+                else if (objlist.Count <= endrow && objlist.Count >= starow)
+                {
+                    for (int i = 0; i < objlist.Count - starow + 1; i++)
+                    {
+                        bh++;
+                        ex.SetCellValue((bh + 1).ToString(), rowcount + i, 1);
+                        ex.SetCellValue(objlist[starow - 1 + i].sbName, rowcount + i, 2);
+                        ex.SetCellValue(objlist[starow - 1 + i].jdgg, rowcount + i, 3);
+                        ex.SetCellValue(objlist[starow - 1 + i].dw, rowcount + i, 4);
+                        ex.SetCellValue(objlist[starow - 1 + i].sl.ToString(), rowcount + i, 5);
+                        ex.SetCellValue(objlist[starow - 1 + i].cj, rowcount + i, 6);
+                        ex.SetCellValue(objlist[starow - 1 + i].sbCode, rowcount + i, 7);
+                        ex.SetCellValue(objlist[starow - 1 + i].lqsj.Year.ToString(), rowcount + i, 8);
+                        ex.SetCellValue(objlist[starow - 1 + i].lqsj.Month.ToString(), rowcount + i, 9);
+
+                    }
+                }
+            }
+            //工具仪表信息
+            //for (int i = 0; i < objlist.Count;i++ )
+            //{
+            //    ex.SetCellValue((i+1).ToString(), rowcount + i, 1);
+            //    ex.SetCellValue(objlist[i].sbName, rowcount + i,2);
+            //    ex.SetCellValue(objlist[i].jdgg, rowcount + i,3);
+            //    ex.SetCellValue(objlist[i].dw, rowcount + i, 4);
+            //    ex.SetCellValue(objlist[i].sl.ToString(), rowcount + i, 5);
+            //    ex.SetCellValue(objlist[i].cj, rowcount + i, 6);
+            //    ex.SetCellValue(objlist[i].sbCode, rowcount + i, 7);
+            //    ex.SetCellValue(objlist[i].lqsj.Year.ToString(), rowcount + i, 8);
+            //    ex.SetCellValue(objlist[i].lqsj.Month.ToString(), rowcount + i, 9);
+            //}
            ex.ShowExcel();
         }
       
