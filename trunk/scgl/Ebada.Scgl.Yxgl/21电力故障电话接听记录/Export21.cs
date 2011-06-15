@@ -23,14 +23,6 @@ namespace Ebada.Scgl.Yxgl {
             ex.Open(fname);
             //此处写填充内容代码
             int rowcount = 7;
-             string orgname="";
-            if (objlist.Count>0)
-            {
-                orgname = objlist[0].OrgName;
-            }
-         
-            //变电所内容
-            ex.SetCellValue(orgname, 4, 5);
             //加页
             int pageindex = 1;
             if (pageindex < Ecommon.GetPagecount(objlist.Count, 19))
@@ -47,9 +39,9 @@ namespace Ebada.Scgl.Yxgl {
             ex.ShowExcel();
             for (int j = 1; j <= pageindex; j++)
             {
-               
-                    ex.ActiveSheet(j);
-              
+
+                ex.ActiveSheet(j);
+
                 int prepageindex = j - 1;
                 //主题
                 int starow = prepageindex * 19 + 1;
@@ -89,6 +81,16 @@ namespace Ebada.Scgl.Yxgl {
                     }
                 }
             }
+            ex.ActiveSheet(1);
+             string orgname="";
+            if (objlist.Count>0)
+            {
+                orgname = objlist[0].OrgName;
+            }
+         
+            //变电所内容
+            ex.SetCellValue(orgname, 4, 5);
+           
             //记录
             //for (int i = 0; i < objlist.Count;i++ )
             //{

@@ -23,17 +23,9 @@ namespace Ebada.Scgl.Yxgl {
             ex.Open(fname);
             //此处写填充内容代码
             int rowcount = 5;
-            string gdsname = "";
-            //记录变电所
-            if (objlist.Count>0)
-            {
-                
-
-                gdsname = objlist[0].OrgName;
-            }
-           //分页 将要变化的进行分页
+            //分页 将要变化的进行分页
             int pageindex = 1;
-            if (pageindex<Ecommon.GetPagecount(objlist.Count,20))
+            if (pageindex < Ecommon.GetPagecount(objlist.Count, 20))
             {
                 pageindex = Ecommon.GetPagecount(objlist.Count, 20);
             }
@@ -45,11 +37,11 @@ namespace Ebada.Scgl.Yxgl {
                 }
             }
             ex.ShowExcel();
-            for (int j = 1; j <= pageindex;j++ )
+            for (int j = 1; j <= pageindex; j++)
             {
-               
-                    ex.ActiveSheet(j);
-               
+
+                ex.ActiveSheet(j);
+
                 int prepageindex = j - 1;
                 //主题
                 int starow = prepageindex * 20 + 1;
@@ -68,7 +60,7 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(objlist[starow - 1 + i].sdsj.Minute.ToString(), rowcount + i, 13);
                         ex.SetCellValue(objlist[starow - 1 + i].tdxz, rowcount + i, 15);
                         ex.SetCellValue(objlist[starow - 1 + i].gzfzr, rowcount + i, 16);
-                        
+
                     }
                 }
                 else if (objlist.Count <= endrow && objlist.Count >= starow)
@@ -85,10 +77,20 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(objlist[starow - 1 + i].sdsj.Minute.ToString(), rowcount + i, 13);
                         ex.SetCellValue(objlist[starow - 1 + i].tdxz, rowcount + i, 15);
                         ex.SetCellValue(objlist[starow - 1 + i].gzfzr, rowcount + i, 16);
-                        
+
                     }
                 }
             }
+            ex.ActiveSheet(1);
+            string gdsname = "";
+            //记录变电所
+            if (objlist.Count>0)
+            {
+                
+
+                gdsname = objlist[0].OrgName;
+            }
+          
             //工具仪表信息
             //for (int i = 0; i < objlist.Count;i++ )
             //{
