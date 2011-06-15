@@ -68,6 +68,7 @@ namespace sample1 {
             mModule obj = new mModule();
             obj.Modu_ID = obj.CreateID();
             obj.ParentID = parentid;
+            obj.visiableFlag = true;
             if (parentid == "0")
                 obj.ModuName = "新系统";
             else

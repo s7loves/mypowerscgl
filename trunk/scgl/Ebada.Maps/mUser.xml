@@ -175,6 +175,13 @@
               UserID = #UserID#
 
    </update>
+   <update id="UpdateUserPassword" parameterClass="mUser" resultClass="int">
+          UPDATE mUser
+           SET             
+             [Password]=#Password#
+            WHERE 
+              UserID = #UserID#
+   </update>
   
    <insert id="InsertmUser" parameterClass="mUser">
         INSERT INTO mUser
