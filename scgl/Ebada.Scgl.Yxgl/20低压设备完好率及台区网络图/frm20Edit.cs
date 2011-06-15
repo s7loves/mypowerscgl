@@ -47,6 +47,14 @@ namespace Ebada.Scgl.Yxgl
                 } else {
                     ConvertHelper.CopyTo<PJ_20>(value as PJ_20, rowData);
                 }
+                if (rowData.BigData != null && rowData.BigData.Length > 1)
+                {
+                    buttonEdit1.Text = "有附件文档。";
+                }
+                else
+                {
+                    buttonEdit1.Text = "";
+                }
             }
         }
 

@@ -77,6 +77,9 @@ namespace Ebada.Scgl.Yxgl {
                 }
                 InitGdsRy();
                 setqqry();
+                if(rowData.js==""){
+                    rowData.qzrq = DateTime.Now;
+                }
             }
         }
 
