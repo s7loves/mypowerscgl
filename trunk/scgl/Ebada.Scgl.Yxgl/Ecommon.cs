@@ -115,7 +115,15 @@ namespace Ebada.Scgl.Yxgl
 
             }
         }
-        //行数依次往下排进行分页的
+        /// <summary>
+        ///创建工作表并将数据加入到工作表中
+        /// </summary>
+        /// <param name="ex">操作EXCEL表</param>
+        /// <param name="bdzlist">填入的数据</param>
+        ///  <param name="hs">一页对应的总行数</param>
+        ///  <param name="stawz">一页中填入的开始的位置</param>
+        ///  <param name="pageindex">一页填入的列位置</param>
+       
         public static void CreatandWritesheet(ExcelAccess ex,List<string> bdzlist,int hs,int star,int clm )
         {
             int pageindex = 1;
