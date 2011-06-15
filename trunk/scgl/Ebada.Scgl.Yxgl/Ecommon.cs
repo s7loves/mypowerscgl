@@ -115,7 +115,76 @@ namespace Ebada.Scgl.Yxgl
 
             }
         }
-       
+        //行数依次往下排进行分页的
+        public static void CreatandWritesheet(ExcelAccess ex,List<string> bdzlist,int hs,int star,int clm )
+        {
+            int pageindex = 1;
+            if (pageindex < Ecommon.GetPagecount(bdzlist.Count, hs))
+            {
+                pageindex = Ecommon.GetPagecount(bdzlist.Count, hs);
+            }
+            for (int j = 1; j <= pageindex; j++)
+            {
+                if (j > 1)
+                {
+                    ex.CopySheet(1, 1);
+                }
+            }
+            ex.ShowExcel();
+            for (int j = 1; j <= pageindex; j++)
+            {
+
+                ex.ActiveSheet(j);
+
+                int prepageindex = j - 1;
+                //主题
+                int starow = prepageindex * hs+ 1;
+                int endrow = j * hs;
+                if (bdzlist.Count > endrow)
+                {
+                    for (int i = 0; i < hs; i++)
+                    {
+
+                        ex.SetCellValue(bdzlist[starow - 1 + i], star + i, clm);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Month.ToString(), rowcount + i, 1);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Day.ToString(), rowcount + i, 2);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Hour.ToString(), rowcount + i, 3);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Minute.ToString(), rowcount + i, 4);
+                        //ex.SetCellValue(objlist[starow - 1 + i].lxfs, rowcount + i, 5);
+                        //ex.SetCellValue(objlist[starow - 1 + i].yhdz, rowcount + i, 6);
+                        //ex.SetCellValue(objlist[starow - 1 + i].gzjk, rowcount + i, 7);
+                        //ex.SetCellValue(objlist[starow - 1 + i].djr, rowcount + i, 8);
+                        //ex.SetCellValue(objlist[starow - 1 + i].clr, rowcount + i, 9);
+
+                    }
+                }
+                else if (bdzlist.Count <= endrow && bdzlist.Count >= starow)
+                {
+                    for (int i = 0; i < bdzlist.Count - starow + 1; i++)
+                    {
+                        ex.SetCellValue(bdzlist[starow - 1 + i], star + i, clm);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Month.ToString(), rowcount + i, 1);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Day.ToString(), rowcount + i, 2);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Hour.ToString(), rowcount + i, 3);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Minute.ToString(), rowcount + i, 4);
+                        //ex.SetCellValue(objlist[starow - 1 + i].lxfs, rowcount + i, 5);
+                        //ex.SetCellValue(objlist[starow - 1 + i].yhdz, rowcount + i, 6);
+                        //ex.SetCellValue(objlist[starow - 1 + i].gzjk, rowcount + i, 7);
+                        //ex.SetCellValue(objlist[starow - 1 + i].djr, rowcount + i, 8);
+                        //ex.SetCellValue(objlist[starow - 1 + i].clr, rowcount + i, 9);
+
+                    }
+                }
+            }
+        }
+       public static void addstring(List<string> jh ,ref List<string> strcol)
+       {
+           
+           for (int i = 0; i < jh.Count;i++ )
+           {
+               strcol.Add(jh[i]);
+           }
+       }
 
    }
 }
