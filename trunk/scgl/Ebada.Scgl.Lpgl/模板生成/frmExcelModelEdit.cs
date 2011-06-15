@@ -41,10 +41,10 @@ namespace Ebada.Scgl.Lpgl {
             this.textEdit3.DataBindings.Add("EditValue", rowData, "SqlSentence");
             //this.textEdit7.DataBindings.Add("EditValue", rowData, "SortID");
 
-            this.textEdit4.DataBindings.Add("EditValue", rowData, "SortID");
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "SqlColName");
+            this.textEdit4.DataBindings.Add("EditValue", rowData, "SortID");       
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "CtrlType");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "EventName");
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "EventName");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "SqlColName");
             this.lookUpEdit4.DataBindings.Add("EditValue", rowData, "RelateLPID");
             this.lookUpEdit5.DataBindings.Add("EditValue", rowData, "AffectLPID");
             this.textEdit8.DataBindings.Add("EditValue", rowData, "AffectEvent");

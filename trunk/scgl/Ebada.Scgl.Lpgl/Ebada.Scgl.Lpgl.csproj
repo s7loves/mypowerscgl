@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F20882E3-3C19-4EE9-914E-2C181DA37F98}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -154,6 +154,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="模板生成\frmExcelEdit.resx">
       <DependentUpon>frmExcelEdit.cs</DependentUpon>
     </EmbeddedResource>
