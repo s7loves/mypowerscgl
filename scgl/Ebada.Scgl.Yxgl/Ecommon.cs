@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Ebada.Client;
+using System.IO;
 namespace Ebada.Scgl.Yxgl
 {
     class Ecommon
@@ -208,6 +209,67 @@ namespace Ebada.Scgl.Yxgl
            for (int i = 0; i < jh.Count;i++ )
            {
                strcol.Add(jh[i]);
+           }
+       }
+
+       public static byte[] GetImageBate(string filepath)
+       {
+           System.IO.FileStream fs = new System.IO.FileStream(filepath, FileMode.Open, FileAccess.Read);
+           BinaryReader br = new BinaryReader(fs);
+
+           byte[] filebt = br.ReadBytes((int)fs.Length);
+           byte[] allbyte = new byte[filebt.Length + 10];
+           string[] str_name = filepath.Split("\\".ToCharArray());
+           string[] filename = str_name[str_name.Length - 1].Split(".".ToCharArray());
+           byte[] Excbyte = System.Text.Encoding.Default.GetBytes(filename[filename.Length - 1]);
+           string Exc = System.Text.Encoding.Default.GetString(Excbyte);
+           filebt.CopyTo(allbyte, 0);
+           Excbyte.CopyTo(allbyte, filebt.Length);
+           br.Close();
+           fs.Close();
+           return allbyte;
+       }
+       public static byte[] GetByte(byte[] img)
+       {
+           byte[] newbt = new byte[img.Length - 10];
+           for (int i = 0; i < newbt.Length; i++)
+           {
+               newbt[i] = img[i];
+           }
+           //img.CopyTo(newbt, 0);
+           return newbt;
+       }
+
+       public static void ViewImage(byte[] img, string filename)
+       {
+           BinaryWriter bw;
+           FileStream fs;
+           try
+           {
+               byte[] newbt = new byte[img.Length - 10];
+               for (int i = 0; i < newbt.Length; i++)
+               {
+                   newbt[i] = img[i];
+               }
+               byte[] _excbt = new byte[10];
+               for (int i = 0; i < 10; i++)
+               {
+                   _excbt[i] = img[img.Length - 10 + i];
+               }
+               string[] str = System.Text.Encoding.Default.GetString(_excbt).Split("\0".ToCharArray());
+               string Exc = str[0];
+
+               fs = new FileStream("C:\\" + filename + "." + Exc, FileMode.Create, FileAccess.Write);
+               bw = new BinaryWriter(fs);
+               bw.Write(newbt);
+               bw.Flush();
+               bw.Close();
+               fs.Close();
+               System.Diagnostics.Process.Start("C:\\" + filename + "." + Exc);
+           }
+           catch
+           {
+
            }
        }
 

@@ -407,6 +407,12 @@
     <Compile Include="20低压设备完好率及台区网络图\frm20Edit.Designer.cs">
       <DependentUpon>frm20Edit.cs</DependentUpon>
     </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\UCPJ_20.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\UCPJ_20.Designer.cs">
+      <DependentUpon>UCPJ_20.cs</DependentUpon>
+    </Compile>
     <Compile Include="21电力故障电话接听记录\Export21.cs" />
     <Compile Include="21电力故障电话接听记录\frm21gzbxdhEdit.cs">
       <SubType>Form</SubType>
@@ -682,6 +688,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="20低压设备完好率及台区网络图\frm20Edit.resx">
       <DependentUpon>frm20Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="20低压设备完好率及台区网络图\UCPJ_20.resx">
+      <DependentUpon>UCPJ_20.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="21电力故障电话接听记录\frm21gzbxdhEdit.resx">
