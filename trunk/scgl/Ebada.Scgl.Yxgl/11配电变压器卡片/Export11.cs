@@ -88,8 +88,9 @@ namespace Ebada.Scgl.Yxgl {
             
             for (int k = 0; k < pagecount; k++)
             {
-                //标题 
+               
                 ex.ActiveSheet(k + 1);
+                //标题 
                 ex.SetCellValue("配电变压器卡片(" + temptq.tqName + ")", 2, 1);
 
 

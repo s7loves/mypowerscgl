@@ -48,6 +48,87 @@ namespace Ebada.Scgl.Yxgl
  
         }
         /// <summary>
+        /// 根据给定条件截取字符串（可解决换页问题）
+        /// </summary>
+        /// <param name="fixstr">换页时的固定字符（如：“活动内容：”）</param>
+        /// <param name="inputString">内容字符(不要添加固定字符)</param>
+        /// <param name="len">截取长度</param>
+        /// <param name="onepagerows">每页显示行数</param>
+        /// <returns></returns>
+        public static List<string> ResultStrListByPage(string fixstr,string inputString, int len,int onepagerows)
+        {
+            fixstr = fixstr.Trim();
+            inputString = inputString.Trim();
+            bool mustbreak = false;
+            string firststr = fixstr + inputString;
+            List<string> RList = new List<string>();
+            ASCIIEncoding ascii = new ASCIIEncoding();
+            int fixlen = strleng(fixstr);
+            int tempLen = 0;
+            int coutrows = 0;
+            string tempString = "";
+            byte[] s = ascii.GetBytes(firststr);
+            
+            for (int i = 0; i < s.Length; i++)
+            {
+                if ((int)s[i] == 63)
+                {
+                    tempLen += 2;
+                }
+                else
+                {
+                    tempLen += 1;
+                }
+ 
+                    tempString += firststr.Substring(i, 1);
+                if (tempLen >= len && i <= (s.Length - 1))
+                {
+                    RList.Add(tempString);
+                    tempString = "";
+                    tempLen = 0;
+                    coutrows++;
+                }
+                else if (i == (s.Length - 1) && tempLen < len)
+                {
+                    RList.Add(tempString);
+                    coutrows++;
+                }
+                //换页
+                if (coutrows>=onepagerows)
+                {
+                    coutrows = 0;
+                    tempString = fixstr;
+                    tempLen = fixlen;
+                }
+            }
+            return RList;
+        }
+        /// <summary>
+        /// 返回字符串字符长度（中文字符长为2，非中文为1）
+        /// </summary>
+        /// <param name="inputstr">输入字符串</param>
+        /// <returns></returns>
+        public static int strleng(string inputstr)
+        {
+            ASCIIEncoding ascii = new ASCIIEncoding();
+            int tempLen = 0;
+            string tempString = "";
+            byte[] s = ascii.GetBytes(inputstr);
+            for (int i = 0; i < s.Length; i++)
+            {
+                if ((int)s[i] == 63)
+                {
+                    tempLen += 2;
+                }
+                else
+                {
+                    tempLen += 1;
+                }
+            }
+            return tempLen;
+        }
+
+        /// <summary>
         /// 返回list集合中的全部字符list
         /// </summary>
         /// <param name="list"></param>
