@@ -73,8 +73,16 @@ namespace Ebada.Scgl.Yxgl
         ///  <param name="stawz">每一个对应的要填写的位置</param>
         ///  <param name="pageindex">分的工作表的数目</param>
         /// <returns>返回List<string> </returns>
-        public static void CreatandWritesheet(ExcelAccess ex,List<string>[] bdzlist,int[] hs,int[] stawz,int pageindex )
+        public static void CreatandWritesheet(ExcelAccess ex,List<string>[] bdzlist,int[] hs,int[] stawz )
         {
+            int pageindex = 1;
+            for (int i = 0; i < bdzlist.Length;i++ )
+            {
+                if (pageindex < GetPagecount(bdzlist[i].Count,hs[i]))
+                {
+                    pageindex = GetPagecount(bdzlist[i].Count, hs[i]);
+                }
+            }
             for (int j = 1; j <= pageindex; j++)
             {
                 if (j > 1)
