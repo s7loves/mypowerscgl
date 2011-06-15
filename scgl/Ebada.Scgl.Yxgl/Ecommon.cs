@@ -87,7 +87,7 @@ namespace Ebada.Scgl.Yxgl
             {
                 if (j > 1)
                 {
-                    ex.CopySheet(1, j + 1);
+                    ex.CopySheet(0, j + 1);
                     ex.ActiveSheet(j + 1);
                 }
                 int prepageindex = j - 1;
