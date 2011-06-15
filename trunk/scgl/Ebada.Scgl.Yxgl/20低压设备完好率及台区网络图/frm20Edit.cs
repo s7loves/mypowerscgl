@@ -79,7 +79,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            openFileDialog1.Filter = "Excel文件(*.xls)|*.xls|Word文件(*.doc)|*.doc";
+            openFileDialog1.Filter = "Excel文件(*.xls)|*.xls";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 buttonEdit1.Text = openFileDialog1.FileName;

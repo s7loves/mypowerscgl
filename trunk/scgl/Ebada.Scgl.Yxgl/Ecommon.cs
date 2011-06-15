@@ -240,7 +240,7 @@ namespace Ebada.Scgl.Yxgl
            return newbt;
        }
 
-       public static void ViewImage(byte[] img, string filename)
+       public static void WriteDoc(byte[] img, ref string filename)
        {
            BinaryWriter bw;
            FileStream fs;
@@ -258,14 +258,15 @@ namespace Ebada.Scgl.Yxgl
                }
                string[] str = System.Text.Encoding.Default.GetString(_excbt).Split("\0".ToCharArray());
                string Exc = str[0];
-
+               
                fs = new FileStream("C:\\" + filename + "." + Exc, FileMode.Create, FileAccess.Write);
                bw = new BinaryWriter(fs);
                bw.Write(newbt);
                bw.Flush();
                bw.Close();
                fs.Close();
-               System.Diagnostics.Process.Start("C:\\" + filename + "." + Exc);
+               filename = "C:\\" + filename + "." + Exc;
+               //System.Diagnostics.Process.Start("C:\\" + filename + "." + Exc);
            }
            catch
            {
