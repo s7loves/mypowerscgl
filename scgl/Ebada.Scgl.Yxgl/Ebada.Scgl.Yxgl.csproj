@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -247,6 +247,18 @@
     </Compile>
     <Compile Include="11配电变压器卡片\UCPJ_11byqdzcl.Designer.cs">
       <DependentUpon>UCPJ_11byqdzcl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPS_byqM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPS_byqM.Designer.cs">
+      <DependentUpon>UCPS_byqM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPS_tqbyq.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPS_tqbyq.Designer.cs">
+      <DependentUpon>UCPS_tqbyq.cs</DependentUpon>
     </Compile>
     <Compile Include="12线路开关卡片\Export12.cs" />
     <Compile Include="12线路开关卡片\frm12kgbdEdit.cs">
@@ -570,6 +582,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="11配电变压器卡片\UCPJ_11byqdzcl.resx">
       <DependentUpon>UCPJ_11byqdzcl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\UCPS_byqM.resx">
+      <DependentUpon>UCPS_byqM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\UCPS_tqbyq.resx">
+      <DependentUpon>UCPS_tqbyq.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="12线路开关卡片\frm12kgbdEdit.resx">
