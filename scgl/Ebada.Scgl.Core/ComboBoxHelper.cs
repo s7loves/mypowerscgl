@@ -242,7 +242,20 @@ namespace Ebada.Scgl.Core {
             }
             else
             {
-                list = new string[] { "一般缺陷", "特殊缺陷"};
+                list = new string[] { "一般", "紧急","重大"};
+
+                mCache.Add(key, list);
+            }
+            return list;
+        }
+        public static ICollection GetModuFuns() {
+
+            ICollection list = new ArrayList();
+            string key = "baseFuns";
+            if (mCache.ContainsKey(key)) {
+                list = mCache[key];
+            } else {
+                list = new string[] { "btAdd", "btEdit", "btDelete", "btFind", "btExport", "btRefresh","btView" };
 
                 mCache.Add(key, list);
             }

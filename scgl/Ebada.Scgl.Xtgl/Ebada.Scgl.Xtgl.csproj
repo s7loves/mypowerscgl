@@ -104,6 +104,12 @@
     <Compile Include="frmOrgEdit.Designer.cs">
       <DependentUpon>frmOrgEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="mMudule\UCmModuleM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="mMudule\UCmModuleM.Designer.cs">
+      <DependentUpon>UCmModuleM.cs</DependentUpon>
+    </Compile>
     <Compile Include="mUser\frmmUserEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,12 @@
     </Compile>
     <Compile Include="UCmRole.Designer.cs">
       <DependentUpon>UCmRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mMudule\UCmModulFun.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="mMudule\UCmModulFun.Designer.cs">
+      <DependentUpon>UCmModulFun.cs</DependentUpon>
     </Compile>
     <Compile Include="UCPJ_dykM.cs">
       <SubType>UserControl</SubType>
@@ -159,10 +171,20 @@
     <Compile Include="UCPJ_dyk.Designer.cs">
       <DependentUpon>UCPJ_dyk.cs</DependentUpon>
     </Compile>
+    <Compile Include="mMudule\UCmModuleTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="mMudule\UCmModuleTree.Designer.cs">
+      <DependentUpon>UCmModuleTree.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmOrgEdit.resx">
       <DependentUpon>frmOrgEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mMudule\UCmModuleM.resx">
+      <DependentUpon>UCmModuleM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="mUser\frmmUserEdit.resx">
@@ -179,6 +201,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCmRole.resx">
       <DependentUpon>UCmRole.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mMudule\UCmModulFun.resx">
+      <DependentUpon>UCmModulFun.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UCPJ_dykM.resx">
@@ -200,6 +226,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCPJ_dyk.resx">
       <DependentUpon>UCPJ_dyk.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mMudule\UCmModuleTree.resx">
+      <DependentUpon>UCmModuleTree.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
