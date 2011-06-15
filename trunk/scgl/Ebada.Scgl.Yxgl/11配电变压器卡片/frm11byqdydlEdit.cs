@@ -44,7 +44,7 @@ namespace Ebada.Scgl.Yxgl
 
         }
         #region IPopupFormEdit Members
-        private PJ_01gzrj rowData = null;
+        private PJ_11byqdydl rowData = null;
 
         public object RowData {
             get {
@@ -53,11 +53,11 @@ namespace Ebada.Scgl.Yxgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_01gzrj;
+                    this.rowData = value as PJ_11byqdydl;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_01gzrj>(value as PJ_01gzrj, rowData);
+                    ConvertHelper.CopyTo<PJ_11byqdydl>(value as PJ_11byqdydl, rowData);
                 }
             }
         }
@@ -98,54 +98,6 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void frmgzrjEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl5_Click_1(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

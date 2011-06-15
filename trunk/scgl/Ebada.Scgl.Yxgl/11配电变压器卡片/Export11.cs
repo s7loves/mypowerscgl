@@ -49,9 +49,10 @@ namespace Ebada.Scgl.Yxgl {
             //复制空模版
             if (pagecount>1)
             {
-                for (int i = 0; i < pagecount; i++)
+                for (int i = 1; i < pagecount; i++)
                 {
-                    ex.CopySheet(1, i + 1);
+                    ex.CopySheet(1, i);
+                    ex.ReNameWorkSheet(i + 1, "Sheet" + (i + 1));
                 }
             }
 
@@ -72,12 +73,12 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(obj.byqMadeDate.Year.ToString(), row, 14);
             ex.SetCellValue(obj.byqMadeDate.Month.ToString(), row, 16);
             ex.SetCellValue(obj.byqMadeDate.Day.ToString(), row, 18);
-            ex.SetCellValue(obj.byqCurrentOne.ToString() + "KV", row, 23);
+            ex.SetCellValue(obj.byqCurrentOne.ToString(), row, 23);
 
             row += 2;//8
             ex.SetCellValue(obj.byqLineGroup, row, 4);
             ex.SetCellValue(obj.byqCycle, row, 14);
-            ex.SetCellValue(obj.byqCurrentTwo + "KV", row, 23);
+            ex.SetCellValue(obj.byqCurrentTwo.ToString(), row, 23);
 
             //活动页
 
@@ -88,9 +89,9 @@ namespace Ebada.Scgl.Yxgl {
             for (int k = 0; k < pagecount; k++)
             {
                 //标题 
+                ex.ActiveSheet(k + 1);
                 ex.SetCellValue("配电变压器卡片(" + temptq.tqName + ")", 2, 1);
 
-                ex.ActiveSheet(k + 1);
 
                 //变压器变动内容
                 row = 12;

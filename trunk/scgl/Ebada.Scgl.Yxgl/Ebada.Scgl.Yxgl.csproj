@@ -808,7 +808,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\10配电变压器汇总表.xls" />
-    <None Include="00记录模板\11配电变压器卡片.xls" />
+    <None Include="00记录模板\11配电变压器卡片.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\12线路开关卡片.xls" />
     <None Include="00记录模板\13剩余电流动作保护器测试记录.xls" />
     <None Include="00记录模板\14电力安全工具试验记录.xls" />

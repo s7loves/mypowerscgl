@@ -106,6 +106,7 @@
             this.btGdsList.Edit = this.repositoryItemLookUpEdit1;
             this.btGdsList.Id = 14;
             this.btGdsList.Name = "btGdsList";
+            this.btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btGdsList.EditValueChanged += new System.EventHandler(this.btGdsList_EditValueChanged);
             // 
             // repositoryItemLookUpEdit1

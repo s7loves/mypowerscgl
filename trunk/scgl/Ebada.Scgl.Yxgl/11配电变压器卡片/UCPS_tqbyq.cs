@@ -35,12 +35,12 @@ namespace Ebada.Scgl.Yxgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-        private PS_tqbyq _parentobj;
+        //private PS_tqbyq _parentobj;
         public UCPS_tqbyq()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_tqbyq>(gridControl1, gridView1, barManager1, new frm11byqdydlEdit());
+            gridViewOperation = new GridViewOperation<PS_tqbyq>(gridControl1, gridView1, barManager1);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_tqbyq>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tqbyq>(gridViewOperation_BeforeDelete);
@@ -50,17 +50,21 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_AfterAdd(PS_tqbyq obj)
         {
-            RefreshData("where byqID='" + PSObj.byqID + "'");
+            //RefreshData("where byqID='" + PSObj.byqID + "'");
         }
-        public PS_tqbyq PSObj
-        {
-            get { return _parentobj;}
-            set 
-            { 
-                _parentobj = value;
-                RefreshData("where byqID='" + value.byqID + "'");
-            }
-        }
+        //public PS_tqbyq PSObj
+        //{
+        //    get { return _parentobj;}
+        //    set 
+        //    { 
+        //        _parentobj = value;
+        //        if (value!=null)
+        //        {
+        //            RefreshData("where byqID='" + value.byqID + "'");
+        //        }
+               
+        //    }
+        //}
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_tqbyq> e)
         {
            
@@ -68,15 +72,15 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_tqbyq> e)
         {
-            if (parentID == null)
-                e.Cancel = true;
+            //if (parentID == null)
+            //    e.Cancel = true;
         }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
-            //InitColumns();//初始列
-            //InitData();//初始数据
+            InitColumns();//初始列
+            InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -130,7 +134,7 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("OrgCode");
+            //hideColumn("OrgCode");
         }
         /// <summary>
         /// 刷新数据
@@ -155,17 +159,17 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PS_tqbyq newobj)
         {
-            //if (parentID == null) return;
-            //newobj.OrgCode = parentID;
-            //newobj.OrgName = parentObj.OrgName;
-            //newobj.CreateDate = DateTime.Now;
-            //newobj.CreateMan = MainHelper.LoginName;
-            if (PSObj==null)
-            {
-                return;
-            }
-            newobj.byqID = PSObj.byqID;
-           
+            ////if (parentID == null) return;
+            ////newobj.OrgCode = parentID;
+            ////newobj.OrgName = parentObj.OrgName;
+            ////newobj.CreateDate = DateTime.Now;
+            ////newobj.CreateMan = MainHelper.LoginName;
+            //if (PSObj==null)
+            //{
+            //    return;
+            //}
+            //newobj.byqID = PSObj.byqID;
+            newobj.tqID = "123";
         }
         /// <summary>
         /// 父表ID
@@ -206,15 +210,10 @@ namespace Ebada.Scgl.Yxgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //if (PSObj!=null&&gridView1.RowCount>0)
-            //{
-            //     IList<PS_tqbyqdl> pjlist=new List<PS_tqbyqdl>();
-            //    for (int i = 0; i < gridView1.RowCount; i++)
-            //    {
-            //        pjlist.Add(gridView1.GetRow(i) as PS_tqbyqdl);
-            //    }
-            //    Export14.ExportExcel(PSObj, pjlist);
-            //}
+            if (gridView1.FocusedRowHandle >= 0)
+            {
+                Export11.ExportExcel(gridView1.GetFocusedRow() as PS_tqbyq);
+            }
            
            
         }

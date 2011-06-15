@@ -50,15 +50,19 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_AfterAdd(PJ_11byqdzcl obj)
         {
-            RefreshData("where byqID='" + PSObj.byqID + "'");
+            RefreshData(" where OrgCode='" + ParentID + "'  and byqID='" + PSObj.byqID + "'  order by id desc");
         }
         public PS_tqbyq PSObj
         {
-            get { return _parentobj;}
-            set 
-            { 
+            get { return _parentobj; }
+            set
+            {
                 _parentobj = value;
-                RefreshData("where byqID='" + value.byqID + "'");
+                if (ParentID != null && PSObj != null)
+                {
+                    RefreshData(" where OrgCode='" + ParentID + "'  and byqID='" + PSObj.byqID + "'  order by id desc");
+                }
+
             }
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_11byqdzcl> e)
@@ -75,8 +79,8 @@ namespace Ebada.Scgl.Yxgl
         {
             base.OnLoad(e);
 
-            //InitColumns();//初始列
-            //InitData();//初始数据
+            InitColumns();//初始列
+            InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -155,16 +159,15 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_11byqdzcl newobj)
         {
-            //if (parentID == null) return;
-            //newobj.OrgCode = parentID;
-            //newobj.OrgName = parentObj.OrgName;
-            //newobj.CreateDate = DateTime.Now;
-            //newobj.CreateMan = MainHelper.LoginName;
-            if (PSObj==null)
+            if (PSObj == null || parentID == null)
             {
                 return;
             }
             newobj.byqID = PSObj.byqID;
+            newobj.OrgCode = parentID;
+            newobj.OrgName = parentObj.OrgName;
+            newobj.CreateDate = DateTime.Now;
+            newobj.CreateMan = MainHelper.LoginName;
            
         }
         /// <summary>
@@ -178,9 +181,9 @@ namespace Ebada.Scgl.Yxgl
             set
             {
                 parentID = value;
-                if (!string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value) && PSObj != null)
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where OrgCode='" + value + "'  and byqID='" + PSObj.byqID + "'  order by id desc");
                 }
             }
         }

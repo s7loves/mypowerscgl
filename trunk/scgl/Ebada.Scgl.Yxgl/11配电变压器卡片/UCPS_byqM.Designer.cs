@@ -1,4 +1,4 @@
-﻿namespace Ebada.Scgl.Yxgl._11配电变压器卡片
+﻿namespace Ebada.Scgl.Yxgl
 {
     partial class UCPS_byqM
     {
@@ -92,7 +92,7 @@
             this.ucpS_tqbyq1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucpS_tqbyq1.Location = new System.Drawing.Point(0, 0);
             this.ucpS_tqbyq1.Name = "ucpS_tqbyq1";
-            this.ucpS_tqbyq1.PSObj = null;
+           
             this.ucpS_tqbyq1.Size = new System.Drawing.Size(510, 211);
             this.ucpS_tqbyq1.TabIndex = 0;
             // 
