@@ -27,6 +27,79 @@ namespace Ebada.Scgl.Yxgl {
             int row = 1;
             int col = 1;
 
+            //计算页码
+            int pagecount = 1;
+            //活动内容
+
+
+            string hdstr = "活动内容：";
+            List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.hdnr, zc, 8);
+            if (Ecommon.GetPagecount(hdlist.Count, 8) > pagecount)
+            {
+                pagecount = Ecommon.GetPagecount(hdlist.Count, 8);
+            }
+            //活动小结
+            string hdxjstr = "活动小结：";
+            List<string> hdxlist = Ecommon.ResultStrListByPage(hdxjstr, obj.hdxj, zc, 5);
+            if (Ecommon.GetPagecount(hdxlist.Count, 5) > pagecount)
+            {
+                pagecount = Ecommon.GetPagecount(hdxlist.Count, 5);
+            }
+            //领导评语
+            string ldpystr = "领导检查评语：";
+            List<string> ldpylist = Ecommon.ResultStrListByPage(ldpystr, obj.py, zc, 2);
+            if (Ecommon.GetPagecount(ldpylist.Count, 2) > pagecount)
+            {
+                pagecount = Ecommon.GetPagecount(ldpylist.Count, 2);
+            }
+            //复制空模版
+            if (pagecount > 1)
+            {
+                for (int i = 1; i < pagecount; i++)
+                {
+                    ex.CopySheet(1, i);
+                    ex.ReNameWorkSheet(i + 1, "Sheet" + (i + 1));
+                }
+            }
+
+            for (int p = 0; p < pagecount; p++)
+            {
+                ex.ActiveSheet(p + 1);
+
+                //活动内容
+                for (int i = 0; i < 8; i++)
+                {
+                    if (p * 8 + i>=hdlist.Count)
+                    {
+                        break;
+                    }
+                    string tempstr = hdlist[p * 8 + i];
+                    ex.SetCellValue(tempstr, 10 + i, 1);
+                }
+                //活动小结
+                for (int s = 0; s < 5; s++)
+                {
+                    if (p * 5 + s >= hdxlist.Count)
+                    {
+                        break;
+                    }
+                    string tempstr = hdxlist[p * 5 + s];
+                    ex.SetCellValue(tempstr, 18 + s, 1);
+                }
+                //领导评语
+                for (int t = 0; t < 2; t++)
+                {
+                    if (p * 2 + t >= ldpylist.Count)
+                    {
+                        break;
+                    }
+                    string tempstr = ldpylist[p * 2 + t];
+                    ex.SetCellValue(tempstr, 23 + t, 1);
+                }
+            }
+
+            ex.ActiveSheet(1);
+
             //主持人
             ex.SetCellValue(obj.zcr, 4, 2);
             
@@ -95,32 +168,7 @@ namespace Ebada.Scgl.Yxgl {
                 }
 
             }
-            //活动内容
            
-            string hdstr = "活动内容：" + obj.hdnr;
-            List<string > hdlist = Ecommon.ResultStrList(hdstr, zc);
-            for (int r = 0; r < hdlist.Count; r++)
-            {
-                ex.SetCellValue(hdlist[r], 10 + r, 1);
-            }
-           
-          
-            //活动小结
-            string hdxjstr = "活动小结：" + obj.hdxj;
-            List<string> hdxlist = Ecommon.ResultStrList(hdxjstr, zc);
-            for (int s = 0; s < hdxlist.Count; s++)
-            {
-
-                ex.SetCellValue(hdxlist[s], 18 + s, 1);
-            }
-           
-            //领导评语
-            string ldpystr = "领导检查评语：" + obj.py;
-            List<string> ldpylist = Ecommon.ResultStrList(ldpystr, zc);
-            for (int t = 0; t < ldpylist.Count; t++)
-            {
-                ex.SetCellValue(ldpylist[t], 23 + t, 1);
-            }
           
             //签字
             ex.SetCellValue("签字: ", 25, 1);

@@ -106,7 +106,7 @@ namespace Ebada.Scgl.Yxgl
             int m=0;
             for (int i = 0; i < mans.Length; i++)
             {
-                if (i>=5)
+                if (i>=4)
                 {
                     m = i + 2;
                 }
