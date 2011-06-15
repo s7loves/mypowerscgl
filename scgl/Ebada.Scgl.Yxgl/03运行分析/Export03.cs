@@ -64,100 +64,107 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.qzrq.Month.ToString(), 24, 9);
             ex.SetCellValue(obj.qzrq.Day.ToString(), 24, 11);
             //将固定的写完再创建不固定的。
+           
+            
             //获得创建的工作表个数
-            int pagemax = 1;
+           // int pagemax = 1;
             List<string> listztstring = Ecommon.ResultStrList("主题：" + obj.zt, zc);
           
-            if (pagemax < Ecommon.GetPagecount(listztstring.Count,2))
-            {
-                pagemax = Ecommon.GetPagecount(listztstring.Count, 2);
-            }
+            //if (pagemax < Ecommon.GetPagecount(listztstring.Count,2))
+            //{
+            //    pagemax = Ecommon.GetPagecount(listztstring.Count, 2);
+            //}
 
             List<string> listjy = Ecommon.ResultStrList("纪要：" + obj.jy, zc);
-            if (pagemax < Ecommon.GetPagecount(listjy.Count, 7))
-            {
-                pagemax = Ecommon.GetPagecount(listjy.Count, 7);
-            }
+            //if (pagemax < Ecommon.GetPagecount(listjy.Count, 7))
+            //{
+            //    pagemax = Ecommon.GetPagecount(listjy.Count, 7);
+            //}
             List<string> listjldc = Ecommon.ResultStrList("结论及对策：" + obj.jr, zc);
-            if (pagemax < Ecommon.GetPagecount(listjldc.Count, 6))
-            {
-                pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
-            }
+            //if (pagemax < Ecommon.GetPagecount(listjldc.Count, 6))
+            //{
+            //    pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
+            //}
+            List<string> strcol = new List<string>();
+            Ecommon.addstring(listztstring, ref strcol);
+            Ecommon.addstring(listjy, ref strcol);
+            Ecommon.addstring(listjldc, ref strcol);
+            Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
             //添加变动内容
-            for (int j = 1; j <= pagemax;j++ )
-            {
-                if (j>1)
-                {
-                    ex.CopySheet(1, 1);
-                }
-            }
-            ex.ShowExcel();
-            for (int j = 1; j <= pagemax;j++ )
-            {
+            //for (int j = 1; j <= pagemax;j++ )
+            //{
+            //    if (j>1)
+            //    {
+            //        ex.CopySheet(1, 1);
+            //    }
+            //}
+            //ex.ShowExcel();
+            //for (int j = 1; j <= pagemax;j++ )
+            //{
 
                 
-                    ex.ActiveSheet(j);
-                //if (j>1)
-                //{
-                //   // ex.CopySheet(1, j);
-                //    ex.ActiveSheet(j);
-                //}
-                //ex.ShowExcel();
+            //        ex.ActiveSheet(j);
+            //    //if (j>1)
+            //    //{
+            //    //   // ex.CopySheet(1, j);
+            //    //    ex.ActiveSheet(j);
+            //    //}
+            //    //ex.ShowExcel();
 
-                int prepageindex = j - 1;
-                //主题
-                int starow = prepageindex * 2 + 1;
-                int endrow = j * 2;
-                if (listztstring.Count>endrow)
-                {
-                    for (int i = 0; i < 2;i++ )
-                    {
-                        ex.SetCellValue(listztstring[starow - 1 + i], 9 + i, 1);
-                    }
-                }
-                else if (listztstring.Count<=endrow&&listztstring.Count>=starow)
-                {
-                    for (int i = 0; i < listztstring.Count - starow + 1;i++ )
-                    {
-                        ex.SetCellValue(listztstring[starow - 1 + i], 9 + i, 1);
-                    }
-                }
-               //纪要
-                starow = prepageindex * 7 + 1;
-               endrow = j * 7;
-                if (listjy.Count > endrow)
-                {
-                    for (int i = 0; i < 7; i++)
-                    {
-                        ex.SetCellValue(listjy[starow - 1 + i], 11 + i, 1);
-                    }
-                }
-                else if (listjy.Count <= endrow && listjy.Count >= starow)
-                {
-                    for (int i = 0; i < listjy.Count - starow + 1; i++)
-                    {
-                        ex.SetCellValue(listjy[starow - 1 + i], 11+ i, 1);
-                    }
-                }
-                //结论及对策
-                starow = prepageindex * 6 + 1;
-                endrow = j * 6;
-                if (listjldc.Count > endrow)
-                {
-                    for (int i = 0; i < 6; i++)
-                    {
-                        ex.SetCellValue(listjldc[starow - 1 + i], 18 + i, 1);
-                    }
-                }
-                else if (listjldc.Count <= endrow && listjldc.Count >= starow)
-                {
-                    for (int i = 0; i < listjldc.Count - starow + 1; i++)
-                    {
-                        ex.SetCellValue(listjldc[starow - 1 + i], 18 + i, 1);
-                    }
-                }
+            //    int prepageindex = j - 1;
+            //    //主题
+            //    int starow = prepageindex * 2 + 1;
+            //    int endrow = j * 2;
+            //    if (listztstring.Count>endrow)
+            //    {
+            //        for (int i = 0; i < 2;i++ )
+            //        {
+            //            ex.SetCellValue(listztstring[starow - 1 + i], 9 + i, 1);
+            //        }
+            //    }
+            //    else if (listztstring.Count<=endrow&&listztstring.Count>=starow)
+            //    {
+            //        for (int i = 0; i < listztstring.Count - starow + 1;i++ )
+            //        {
+            //            ex.SetCellValue(listztstring[starow - 1 + i], 9 + i, 1);
+            //        }
+            //    }
+            //   //纪要
+            //    starow = prepageindex * 7 + 1;
+            //   endrow = j * 7;
+            //    if (listjy.Count > endrow)
+            //    {
+            //        for (int i = 0; i < 7; i++)
+            //        {
+            //            ex.SetCellValue(listjy[starow - 1 + i], 11 + i, 1);
+            //        }
+            //    }
+            //    else if (listjy.Count <= endrow && listjy.Count >= starow)
+            //    {
+            //        for (int i = 0; i < listjy.Count - starow + 1; i++)
+            //        {
+            //            ex.SetCellValue(listjy[starow - 1 + i], 11+ i, 1);
+            //        }
+            //    }
+            //    //结论及对策
+            //    starow = prepageindex * 6 + 1;
+            //    endrow = j * 6;
+            //    if (listjldc.Count > endrow)
+            //    {
+            //        for (int i = 0; i < 6; i++)
+            //        {
+            //            ex.SetCellValue(listjldc[starow - 1 + i], 18 + i, 1);
+            //        }
+            //    }
+            //    else if (listjldc.Count <= endrow && listjldc.Count >= starow)
+            //    {
+            //        for (int i = 0; i < listjldc.Count - starow + 1; i++)
+            //        {
+            //            ex.SetCellValue(listjldc[starow - 1 + i], 18 + i, 1);
+            //        }
+            //    }
                 
-            }
+            //}
             ////主题：
            
             //ex.SetCellValue("主题: " + obj.zt, 9, 1);
