@@ -50,7 +50,7 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_AfterAdd(PJ_11byqbd obj)
         {
-            RefreshData("where byqID='" + PSObj.byqID + "'");
+            RefreshData(" where OrgCode='" + ParentID + "'  and byqID='" + PSObj.byqID + "'  order by id desc");
         }
         public PS_tqbyq PSObj
         {
@@ -60,7 +60,7 @@ namespace Ebada.Scgl.Yxgl
                 _parentobj = value;
                 if (ParentID!=null&&PSObj!=null)
                 {
-                    RefreshData(" where OrgCode='" + value + "'  and byqID='" + PSObj.byqID + "'  order by id desc");
+                    RefreshData(" where OrgCode='" + ParentID + "'  and byqID='" + PSObj.byqID + "'  order by id desc");
                 }
 
             }
@@ -159,16 +159,15 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_11byqbd newobj)
         {
-            //if (parentID == null) return;
-            //newobj.OrgCode = parentID;
-            //newobj.OrgName = parentObj.OrgName;
-            //newobj.CreateDate = DateTime.Now;
-            //newobj.CreateMan = MainHelper.LoginName;
-            if (PSObj==null)
+            if (PSObj == null || parentID == null)
             {
                 return;
             }
             newobj.byqID = PSObj.byqID;
+            newobj.OrgCode = parentID;
+            newobj.OrgName = parentObj.OrgName;
+            newobj.CreateDate = DateTime.Now;
+            newobj.CreateMan = MainHelper.LoginName;
            
         }
         /// <summary>
