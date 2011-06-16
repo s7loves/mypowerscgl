@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Yxgl
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "xcsyrq");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "syr");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "ajqz");
-            //this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "ajqz");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sjr");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "jr");
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Yxgl
             comboBoxEdit1.Properties.Items.Clear();
             comboBoxEdit3.Properties.Items.Clear();
             comboBoxEdit4.Properties.Items.Clear();
-            ICollection ryList = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电所人员列表
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
             comboBoxEdit1.Properties.Items.AddRange(ryList);
             comboBoxEdit3.Properties.Items.AddRange(ryList);
             comboBoxEdit4.Properties.Items.AddRange(ryList);

@@ -124,7 +124,7 @@ namespace Ebada.Scgl.Yxgl
             //需要隐藏列时在这写代码
 
             hideColumn("OrgCode");
-            hideColumn("gznrID");
+            hideColumn("gzrjID");
         }
         /// <summary>
         /// 刷新数据
@@ -154,7 +154,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
-            //newobj.rq = DateTime.Now;
+            newobj.rq = DateTime.Now;
             
            
         }

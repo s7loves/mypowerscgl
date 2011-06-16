@@ -158,7 +158,7 @@ namespace Ebada.Scgl.Yxgl
             if (!string.IsNullOrEmpty(yy1.Trim()))
                 str += yy1 + ";";
             string yy2 = "";
-            yy1 = comboBoxEdit7.EditValue.ToString();
+            yy2 = comboBoxEdit7.EditValue.ToString();
             if (!string.IsNullOrEmpty(yy1.Trim()))
                 str += yy2 + ";";
             rowData.xcr = str;

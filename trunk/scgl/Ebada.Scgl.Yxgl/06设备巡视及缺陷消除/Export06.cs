@@ -23,7 +23,7 @@ namespace Ebada.Scgl.Yxgl {
 
             ex.Open(fname);
             //每行显示文字长度
-            int zc = 15;
+            int zc = 20;
             //与会人员之间的间隔符号
             char[] jksign = new char[1] { ';' };
             int row = 7;
@@ -77,19 +77,19 @@ namespace Ebada.Scgl.Yxgl {
                     string[] ary = tempobj.xsr.Split(jksign);
                     if (ary.Length >= 1)
                     {
-                        ex.SetCellValue(ary[0], row + 3 + i * len1, 5);
+                        ex.SetCellValue(ary[0], row + 2 + i * len1, 5);
                     }
                     else
                     {
-                        ex.SetCellValue("", row + 3 + i * len1, 5);
+                        ex.SetCellValue("", row + 2 + i * len1, 5);
                     }
                     if (ary.Length >= 2)
                     {
-                        ex.SetCellValue(ary[1], row + 3 + i * len1, 6);
+                        ex.SetCellValue(ary[1], row + 2 + i * len1, 6);
                     }
                     else
                     {
-                        ex.SetCellValue("", row + 3 + i * len1, 6);
+                        ex.SetCellValue("", row + 2 + i * len1, 6);
                     }
                     //消除人
                     string[] ary2 = tempobj.xcr.Split(jksign);
@@ -110,9 +110,9 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue("", row + i * len1, 12);
                     }
                     //消除时间
-                    ex.SetCellValue(tempobj.xcrq.Year.ToString(), row + 3 + i * len1, 8);
-                    ex.SetCellValue(tempobj.xcrq.Month.ToString(), row + 3 + i * len1, 11);
-                    ex.SetCellValue(tempobj.xcrq.Day.ToString(), row + 3 + i * len1, 13);
+                    ex.SetCellValue(tempobj.xcrq.Year.ToString(), row + 2 + i * len1, 8);
+                    ex.SetCellValue(tempobj.xcrq.Month.ToString(), row + 2 + i * len1, 11);
+                    ex.SetCellValue(tempobj.xcrq.Day.ToString(), row + 2 + i * len1, 13);
 
                 }
 

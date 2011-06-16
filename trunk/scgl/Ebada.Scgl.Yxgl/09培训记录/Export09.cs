@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Yxgl {
                         break;
                     }
                     string tempstr = hdlist[p * 10 + r];
-                    ex.SetCellValue(tempstr, 12 + r, 1);
+                    ex.SetCellValue(tempstr, 11 + r, 1);
                 }
 
                 //领导评语

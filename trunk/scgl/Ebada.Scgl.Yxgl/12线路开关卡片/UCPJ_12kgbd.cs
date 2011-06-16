@@ -72,7 +72,7 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_12kgbd> e)
         {
-            if (parentID == null)
+            if (parentID == null||PSObj==null)
                 e.Cancel = true;
         }
         protected override void OnLoad(EventArgs e)
