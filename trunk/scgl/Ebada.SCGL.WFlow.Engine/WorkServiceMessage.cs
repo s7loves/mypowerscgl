@@ -100,7 +100,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_WorkServiceMessage workSer = new PS_WorkServiceMessage();
+                WF_WorkServiceMessage workSer = new WF_WorkServiceMessage();
  
                 workSer.MessageId=MessageId;
                 workSer.WorkflowId=WorkflowId;
@@ -118,7 +118,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 workSer.Users1=Users1;
                 workSer.Users2=Users2;
                 workSer.Users3 = Users3;
-                MainHelper.PlatformSqlMap.Create<PS_WorkServiceMessage>(workSer); 
+                MainHelper.PlatformSqlMap.Create<WF_WorkServiceMessage>(workSer); 
             }
             catch (Exception ex)
             {
@@ -139,7 +139,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
 
-                PS_WorkServiceMessage workSer = new PS_WorkServiceMessage();
+                WF_WorkServiceMessage workSer = new WF_WorkServiceMessage();
 
                 workSer.MessageId = MessageId;
                 workSer.WorkflowId = WorkflowId;
@@ -157,7 +157,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 workSer.Users1 = Users1;
                 workSer.Users2 = Users2;
                 workSer.Users3 = Users3;
-                MainHelper.PlatformSqlMap.Update <PS_WorkServiceMessage>(workSer); 
+                MainHelper.PlatformSqlMap.Update <WF_WorkServiceMessage>(workSer); 
                 
             }
             catch (Exception ex)
@@ -181,7 +181,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string sql = "where MessageId='"+messageid+"'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkServiceMessageList", messageid);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkServiceMessageList", messageid);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -234,9 +234,9 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@messageid", messageid);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteNonQuery(sqlItem);
-                PS_WorkServiceMessage workSer = new PS_WorkServiceMessage();
+                WF_WorkServiceMessage workSer = new WF_WorkServiceMessage();
                 workSer.MessageId = messageid;
-                return MainHelper.PlatformSqlMap.Delete<PS_WorkServiceMessage>(workSer); 
+                return MainHelper.PlatformSqlMap.Delete<WF_WorkServiceMessage>(workSer); 
             }
             catch (Exception ex)
             {
