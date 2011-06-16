@@ -60,8 +60,8 @@ namespace Ebada.Scgl.Yxgl
         {
             base.OnLoad(e);
 
-            //InitColumns();//初始列
-            //InitData();//初始数据
+            InitColumns();//初始列
+            InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -115,7 +115,8 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("OrgCode");
+            //hideColumn("OrgCode");
+            //hideColumn("gznrID");
         }
         /// <summary>
         /// 刷新数据

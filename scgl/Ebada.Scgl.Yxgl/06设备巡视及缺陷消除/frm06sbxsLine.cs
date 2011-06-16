@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Yxgl
         private void frm06sbxsLine_Load(object sender, EventArgs e)
         {
 
-            ICollection linelist = ComboBoxHelper.GetGdsRy(orgcode);//获取供电线路名称
+            ICollection linelist = ComboBoxHelper.GetGdsxl(orgcode);//获取供电线路名称
             //线路名称
             comboBoxEdit1.Properties.Items.AddRange(linelist);
         }

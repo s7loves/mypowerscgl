@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Yxgl
             base.OnLoad(e);
 
             InitColumns();//初始列
-            //InitData();//初始数据
+            InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -116,6 +116,8 @@ namespace Ebada.Scgl.Yxgl
             //需要隐藏列时在这写代码
 
             hideColumn("OrgCode");
+            hideColumn("LineID");
+            hideColumn("gznrID");
         }
         /// <summary>
         /// 刷新数据
@@ -145,6 +147,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
+            newobj.xssj = DateTime.Now;
         }
         /// <summary>
         /// 父表ID
