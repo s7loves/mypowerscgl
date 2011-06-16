@@ -211,6 +211,12 @@
       <DependentUpon>frm09pxjlEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="10配电变压器汇总表\Export10.cs" />
+    <Compile Include="10配电变压器汇总表\UCPJ_10.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="10配电变压器汇总表\UCPJ_10.Designer.cs">
+      <DependentUpon>UCPJ_10.cs</DependentUpon>
+    </Compile>
     <Compile Include="11配电变压器卡片\Export11.cs" />
     <Compile Include="11配电变压器卡片\frm11byqbdEdit.cs">
       <SubType>Form</SubType>
@@ -600,6 +606,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="09培训记录\frm09pxjlEdit.resx">
       <DependentUpon>frm09pxjlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="10配电变压器汇总表\UCPJ_10.resx">
+      <DependentUpon>UCPJ_10.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="11配电变压器卡片\frm11byqbdEdit.resx">
