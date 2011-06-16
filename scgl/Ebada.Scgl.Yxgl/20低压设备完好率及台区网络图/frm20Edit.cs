@@ -105,5 +105,10 @@ namespace Ebada.Scgl.Yxgl
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
