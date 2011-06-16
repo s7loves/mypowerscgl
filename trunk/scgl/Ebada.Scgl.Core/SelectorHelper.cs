@@ -27,12 +27,7 @@ namespace Ebada.Scgl.Core {
                 dlg.TxtMemo = txt;
                 dlg.Show();
             }
-            //    if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
 
-            //        dyk = dlg.ucpJ_dykSelector1.GetSelectedRow();
-            //    }
-            //}
-            //return dyk;
         }
         /// <summary>
         /// 多级短语时使用此方法
