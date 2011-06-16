@@ -66,16 +66,9 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PS_kg>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+           
+            IList<PS_gt> gtlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("");
+            SetComboBoxData(lookUpEdit1, "", "", "", "", gtlist);
         }
 
         /// <summary>
@@ -87,18 +80,37 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_gt> post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
-            comboBox.Properties.DisplayMember = displayMember;
-            comboBox.Properties.ValueMember = valueMember;
-            comboBox.Properties.NullText = nullTest;
+            comboBox.Properties.DisplayMember = "gtCode";
+            comboBox.Properties.ValueMember = "gtID";
+            comboBox.Properties.NullText = "无杆塔数据";
             comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gtID", "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gtCode", "杆塔编号",30),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineCode", "线路编号",40),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gth", "杆塔号",30),
+          });
         }
-
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            rowData.gtID = lookUpEdit1.EditValue.ToString();
+        }
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (rowData.gtID==""||rowData.gtID==null)
+            {
+                MessageBox.Show("请选择杆塔！");
+                return;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
+        }
         private void textEdit1_EditValueChanged(object sender, EventArgs e)
         {
 
@@ -153,5 +165,9 @@ namespace Ebada.Scgl.Yxgl
         {
 
         }
+
+      
+
+       
     }
 }
