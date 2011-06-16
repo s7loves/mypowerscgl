@@ -45,6 +45,12 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_20>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             repositoryItemLookUpEdit2.EditValueChanged += new EventHandler(repositoryItemLookUpEdit2_EditValueChanged);
+            repositoryItemLookUpEdit3.EditValueChanged += new EventHandler(repositoryItemLookUpEdit3_EditValueChanged);
+        }
+
+        void repositoryItemLookUpEdit3_EditValueChanged(object sender, EventArgs e)
+        {
+            //this.ParentID = barEditItem2.EditValue.ToString();
         }
 
         void repositoryItemLookUpEdit2_EditValueChanged(object sender, EventArgs e)
@@ -87,8 +93,7 @@ namespace Ebada.Scgl.Yxgl
                 ParentObj = org;
                 IList<PS_xl>xlList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='"+org.OrgCode+"'");
                 repositoryItemLookUpEdit2.DataSource = xlList;
-                //if (SelectGdsChanged != null)
-                //    SelectGdsChanged(this, org);
+              
             }
             
 
@@ -153,8 +158,11 @@ namespace Ebada.Scgl.Yxgl
             newobj.ParentID = parentID;
             newobj.OrgCode = parentObj.OrgCode;
             newobj.OrgName = parentObj.OrgName;
-            newobj.tqCode = barEditItem2.EditValue.ToString();
-            newobj.tqName = repositoryItemLookUpEdit3.GetDisplayText(barEditItem2.EditValue.ToString());
+            if (barEditItem2.EditValue != null)
+            {
+                newobj.tqCode = barEditItem2.EditValue.ToString();
+                newobj.tqName = repositoryItemLookUpEdit3.GetDisplayText(barEditItem2.EditValue.ToString());
+            }
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
         }
