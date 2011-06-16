@@ -1,10 +1,10 @@
 /**********************************************
 这是代码自动生成的，如果重新生成，所做的改动将会丢失
-系统:企业ERP
+系统:Ebada农电局生产管理
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-17 22:06:07
+生成时间:2011-6-16 10:26:02
 ***********************************************/
 
 using System;
@@ -21,35 +21,13 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
-        private string _funid=Newid(); 
-        private string _roleid=Newid();   
+        private string _roleid=Newid(); 
+        private string _modu_id=Newid();   
         #endregion
   
   
         #region Public 成员
    
-        /// <summary>
-        /// 属性名称：FunID
-        /// 属性描述：功能ID
-        /// 字段信息：[FunID],nvarchar
-        /// </summary>
-        [Browsable(false)]
-        [DisplayNameAttribute("功能ID")]
-        public string FunID
-        {
-            get { return _funid; }
-            set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[功能ID]长度不能大于50!");
-                if (_funid as object == null || !_funid.Equals(value))
-                {
-                    _funid = value;
-                }
-            }			 
-        }
-  
         /// <summary>
         /// 属性名称：RoleID
         /// 属性描述：角色ID
@@ -68,6 +46,28 @@ namespace Ebada.Scgl.Model
                 if (_roleid as object == null || !_roleid.Equals(value))
                 {
                     _roleid = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：Modu_ID
+        /// 属性描述：模块标识
+        /// 字段信息：[Modu_ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("模块标识")]
+        public string Modu_ID
+        {
+            get { return _modu_id; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[模块标识]长度不能大于50!");
+                if (_modu_id as object == null || !_modu_id.Equals(value))
+                {
+                    _modu_id = value;
                 }
             }			 
         }
