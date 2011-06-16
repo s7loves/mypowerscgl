@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkTaskLinkView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkTaskLinkView"  type="Ebada.Scgl.Model.WF_WorkTaskLinkView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_WorkTaskLinkView_AllColumns" class="WF_WorkTaskLinkView">
+        <result property="StartTaskId" column="StartTaskId" />
+        <result property="EndTaskId" column="EndTaskId" />
+        <result property="EndTaskTypeId" column="EndTaskTypeId" />
+        <result property="StartTaskTypeId" column="StartTaskTypeId" />
+        <result property="CommandName" column="CommandName" />
+        <result property="Condition" column="Condition" />
+        <result property="Description" column="Description" />
+        <result property="Priority" column="Priority" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkLinkId" column="WorkLinkId" />
+        <result property="endOperRule" column="endOperRule" />
+        <result property="endTaskCaption" column="endTaskCaption" />
+        <result property="startTaskCaption" column="startTaskCaption" />
+        <result property="startOperRule" column="startOperRule" />
+        <result property="endTaskTypeAndOr" column="endTaskTypeAndOr" />
+        <result property="startTaskTypeAndOr" column="startTaskTypeAndOr" />
+        <result property="endtaskX" column="endtaskX" />
+        <result property="endtaskY" column="endtaskY" />
+        <result property="starttaskX" column="starttaskX" />
+        <result property="starttaskY" column="starttaskY" />
+        <result property="BreakX" column="BreakX" />
+        <result property="BreakY" column="BreakY" />
+        <result property="IsJumpSelf" column="IsJumpSelf" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_WorkTaskLinkViewList" resultMap="WF_WorkTaskLinkView_AllColumns" parameterClass="string">
+        SELECT 
+         [StartTaskId],
+         [EndTaskId],
+         [EndTaskTypeId],
+         [StartTaskTypeId],
+         [CommandName],
+         [Condition],
+         [Description],
+         [Priority],
+         [WorkFlowId],
+         [WorkLinkId],
+         [endOperRule],
+         [endTaskCaption],
+         [startTaskCaption],
+         [startOperRule],
+         [endTaskTypeAndOr],
+         [startTaskTypeAndOr],
+         [endtaskX],
+         [endtaskY],
+         [starttaskX],
+         [starttaskY],
+         [BreakX],
+         [BreakY],
+         [IsJumpSelf]
+          FROM WF_WorkTaskLinkView
+          $value$
+   </select>
+   <select id="GetWF_WorkTaskLinkViewRowCount" parameterClass="string">
+    select count(*) from WF_WorkTaskLinkView $value$
+   </select>
+  
+   <insert id="InsertWF_WorkTaskLinkView" parameterClass="WF_WorkTaskLinkView">
+        INSERT INTO WF_WorkTaskLinkView
+         (
+         [StartTaskId],
+         [EndTaskId],
+         [EndTaskTypeId],
+         [StartTaskTypeId],
+         [CommandName],
+         [Condition],
+         [Description],
+         [Priority],
+         [WorkFlowId],
+         [WorkLinkId],
+         [endOperRule],
+         [endTaskCaption],
+         [startTaskCaption],
+         [startOperRule],
+         [endTaskTypeAndOr],
+         [startTaskTypeAndOr],
+         [endtaskX],
+         [endtaskY],
+         [starttaskX],
+         [starttaskY],
+         [BreakX],
+         [BreakY],
+         [IsJumpSelf]
+         )
+       VALUES
+         (
+         #StartTaskId#,
+         #EndTaskId#,
+         #EndTaskTypeId#,
+         #StartTaskTypeId#,
+         #CommandName#,
+         #Condition#,
+         #Description#,
+         #Priority#,
+         #WorkFlowId#,
+         #WorkLinkId#,
+         #endOperRule#,
+         #endTaskCaption#,
+         #startTaskCaption#,
+         #startOperRule#,
+         #endTaskTypeAndOr#,
+         #startTaskTypeAndOr#,
+         #endtaskX#,
+         #endtaskY#,
+         #starttaskX#,
+         #starttaskY#,
+         #BreakX#,
+         #BreakY#,
+         #IsJumpSelf#
+         )
+
+   </insert>
+   <update id="UpdateWF_WorkTaskLinkView" parameterClass="WF_WorkTaskLinkView" resultClass="int">
+          UPDATE WF_WorkTaskLinkView
+           SET
+             [StartTaskId]=#StartTaskId#,
+             [EndTaskId]=#EndTaskId#,
+             [EndTaskTypeId]=#EndTaskTypeId#,
+             [StartTaskTypeId]=#StartTaskTypeId#,
+             [CommandName]=#CommandName#,
+             [Condition]=#Condition#,
+             [Description]=#Description#,
+             [Priority]=#Priority#,
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkLinkId]=#WorkLinkId#,
+             [endOperRule]=#endOperRule#,
+             [endTaskCaption]=#endTaskCaption#,
+             [startTaskCaption]=#startTaskCaption#,
+             [startOperRule]=#startOperRule#,
+             [endTaskTypeAndOr]=#endTaskTypeAndOr#,
+             [startTaskTypeAndOr]=#startTaskTypeAndOr#,
+             [endtaskX]=#endtaskX#,
+             [endtaskY]=#endtaskY#,
+             [starttaskX]=#starttaskX#,
+             [starttaskY]=#starttaskY#,
+             [BreakX]=#BreakX#,
+             [BreakY]=#BreakY#,
+             [IsJumpSelf]=#IsJumpSelf#
+   </update>
+   <delete id="DeleteWF_WorkTaskLinkView" parameterClass="WF_WorkTaskLinkView">
+        DELETE FROM 
+         WF_WorkTaskLinkView
+
+   </delete>
+  </statements>
+</sqlMap>
+ 

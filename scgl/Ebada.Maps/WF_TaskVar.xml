@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_TaskVar" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_TaskVar"  type="Ebada.Scgl.Model.WF_TaskVar,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_TaskVar_AllColumns" class="WF_TaskVar">
+        <result property="TaskVarId" column="TaskVarId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="VarName" column="VarName" />
+        <result property="VarType" column="VarType" />
+        <result property="VarModule" column="VarModule" />
+        <result property="DataBaseName" column="DataBaseName" />
+        <result property="TableName" column="TableName" />
+        <result property="TableField" column="TableField" />
+        <result property="InitValue" column="InitValue" />
+        <result property="AccessType" column="AccessType" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_TaskVarList" resultMap="WF_TaskVar_AllColumns" parameterClass="string">
+        SELECT 
+         [TaskVarId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [VarName],
+         [VarType],
+         [VarModule],
+         [DataBaseName],
+         [TableName],
+         [TableField],
+         [InitValue],
+         [AccessType]
+          FROM WF_TaskVar
+          $value$
+   </select>
+   
+   <select id="SelectWF_TaskVarByHash" parameterClass="Hashtable">
+         SELECT 
+         [TaskVarId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [VarName],
+         [VarType],
+         [VarModule],
+         [DataBaseName],
+         [TableName],
+         [TableField],
+         [InitValue],
+         [AccessType]
+          FROM WF_TaskVar
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="TaskVarId">[TaskVarId]='$TaskVarId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="VarName">[VarName]='$VarName$'</isNotNull>
+       <isNotNull prepend="AND" property="VarType">[VarType]='$VarType$'</isNotNull>
+       <isNotNull prepend="AND" property="VarModule">[VarModule]='$VarModule$'</isNotNull>
+       <isNotNull prepend="AND" property="DataBaseName">[DataBaseName]='$DataBaseName$'</isNotNull>
+       <isNotNull prepend="AND" property="TableName">[TableName]='$TableName$'</isNotNull>
+       <isNotNull prepend="AND" property="TableField">[TableField]='$TableField$'</isNotNull>
+       <isNotNull prepend="AND" property="InitValue">[InitValue]='$InitValue$'</isNotNull>
+       <isNotNull prepend="AND" property="AccessType">[AccessType]='$AccessType$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_TaskVarByKey" resultMap="WF_TaskVar_AllColumns" parameterClass="WF_TaskVar">
+         SELECT 
+         [TaskVarId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [VarName],
+         [VarType],
+         [VarModule],
+         [DataBaseName],
+         [TableName],
+         [TableField],
+         [InitValue],
+         [AccessType]
+         FROM WF_TaskVar
+         WHERE 
+           TaskVarId = #TaskVarId#
+
+   </select>
+ 
+   <delete id="DeleteWF_TaskVar" parameterClass="WF_TaskVar" resultClass="int">
+        DELETE FROM 
+         WF_TaskVar
+           WHERE
+         TaskVarId = #TaskVarId#
+
+   </delete>
+    <update id="UpdateWF_TaskVarDeleteByValue" parameterClass="string" resultClass="int">
+      delete from WF_TaskVar $value$
+
+    </update>
+   <delete id="DeleteWF_TaskVarByWhere" parameterClass="string">
+     delete from WF_TaskVar $value$
+   </delete>
+   
+   <delete id="DeleteWF_TaskVarByKey" parameterClass="string" resultClass="int">
+        DELETE FROM 
+         WF_TaskVar
+           WHERE
+         TaskVarId = #TaskVarId#
+    
+   </delete>
+   
+   <update id="UpdateWF_TaskVar" parameterClass="WF_TaskVar" resultClass="int">
+          UPDATE WF_TaskVar
+           SET
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [VarName]=#VarName#,
+             [VarType]=#VarType#,
+             [VarModule]=#VarModule#,
+             [DataBaseName]=#DataBaseName#,
+             [TableName]=#TableName#,
+             [TableField]=#TableField#,
+             [InitValue]=#InitValue#,
+             [AccessType]=#AccessType#
+            WHERE 
+              TaskVarId = #TaskVarId#
+
+   </update>
+  
+   <insert id="InsertWF_TaskVar" parameterClass="WF_TaskVar">
+        INSERT INTO WF_TaskVar
+         (
+         [TaskVarId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [VarName],
+         [VarType],
+         [VarModule],
+         [DataBaseName],
+         [TableName],
+         [TableField],
+         [InitValue],
+         [AccessType]
+         )
+       VALUES
+         (
+         #TaskVarId#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #VarName#,
+         #VarType#,
+         #VarModule#,
+         #DataBaseName#,
+         #TableName#,
+         #TableField#,
+         #InitValue#,
+         #AccessType#
+         )
+
+   </insert>
+   
+   <select id="GetWF_TaskVarRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_TaskVar
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="TaskVarId">[TaskVarId]='$TaskVarId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="VarName">[VarName]='$VarName$'</isNotNull>
+       <isNotNull prepend="AND" property="VarType">[VarType]='$VarType$'</isNotNull>
+       <isNotNull prepend="AND" property="VarModule">[VarModule]='$VarModule$'</isNotNull>
+       <isNotNull prepend="AND" property="DataBaseName">[DataBaseName]='$DataBaseName$'</isNotNull>
+       <isNotNull prepend="AND" property="TableName">[TableName]='$TableName$'</isNotNull>
+       <isNotNull prepend="AND" property="TableField">[TableField]='$TableField$'</isNotNull>
+       <isNotNull prepend="AND" property="InitValue">[InitValue]='$InitValue$'</isNotNull>
+       <isNotNull prepend="AND" property="AccessType">[AccessType]='$AccessType$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_TaskVarRowCount" parameterClass="string">
+    select count(*) from WF_TaskVar $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

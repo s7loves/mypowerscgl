@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_OperatorInstance" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_OperatorInstance"  type="Ebada.Scgl.Model.WF_OperatorInstance,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_OperatorInstance_AllColumns" class="WF_OperatorInstance">
+        <result property="OperatorInsId" column="OperatorInsId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="WorkFlowInsId" column="WorkFlowInsId" />
+        <result property="WorkTaskInsId" column="WorkTaskInsId" />
+        <result property="UserId" column="UserId" />
+        <result property="OperType" column="OperType" />
+        <result property="OperRealtion" column="OperRealtion" />
+        <result property="OperContent" column="OperContent" />
+        <result property="OperContentText" column="OperContentText" />
+        <result property="OperStatus" column="OperStatus" />
+        <result property="OperDateTime" column="OperDateTime" />
+        <result property="ChangeOperator" column="ChangeOperator" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_OperatorInstanceList" resultMap="WF_OperatorInstance_AllColumns" parameterClass="string">
+        SELECT 
+         [OperatorInsId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [WorkFlowInsId],
+         [WorkTaskInsId],
+         [UserId],
+         [OperType],
+         [OperRealtion],
+         [OperContent],
+         [OperContentText],
+         [OperStatus],
+         [OperDateTime],
+         [ChangeOperator]
+          FROM WF_OperatorInstance
+          $value$
+   </select>
+   
+   <select id="SelectWF_OperatorInstanceByHash" parameterClass="Hashtable">
+         SELECT 
+         [OperatorInsId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [WorkFlowInsId],
+         [WorkTaskInsId],
+         [UserId],
+         [OperType],
+         [OperRealtion],
+         [OperContent],
+         [OperContentText],
+         [OperStatus],
+         [OperDateTime],
+         [ChangeOperator]
+          FROM WF_OperatorInstance
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="OperatorInsId">[OperatorInsId]='$OperatorInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserId">[UserId]='$UserId$'</isNotNull>
+       <isNotNull prepend="AND" property="OperType">[OperType]='$OperType$'</isNotNull>
+       <isNotNull prepend="AND" property="OperRealtion">[OperRealtion]='$OperRealtion$'</isNotNull>
+       <isNotNull prepend="AND" property="OperContent">[OperContent]='$OperContent$'</isNotNull>
+       <isNotNull prepend="AND" property="OperContentText">[OperContentText]='$OperContentText$'</isNotNull>
+       <isNotNull prepend="AND" property="OperStatus">[OperStatus]='$OperStatus$'</isNotNull>
+       <isNotNull prepend="AND" property="OperDateTime">[OperDateTime]='$OperDateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="ChangeOperator">[ChangeOperator]='$ChangeOperator$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_OperatorInstanceByKey" resultMap="WF_OperatorInstance_AllColumns" parameterClass="WF_OperatorInstance">
+         SELECT 
+         [OperatorInsId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [WorkFlowInsId],
+         [WorkTaskInsId],
+         [UserId],
+         [OperType],
+         [OperRealtion],
+         [OperContent],
+         [OperContentText],
+         [OperStatus],
+         [OperDateTime],
+         [ChangeOperator]
+         FROM WF_OperatorInstance
+         WHERE 
+           OperatorInsId = #OperatorInsId#
+
+   </select>
+ 
+   <delete id="DeleteWF_OperatorInstance" parameterClass="WF_OperatorInstance">
+        DELETE FROM 
+         WF_OperatorInstance
+           WHERE
+         OperatorInsId = #OperatorInsId#
+
+   </delete>
+   
+   <delete id="DeleteWF_OperatorInstanceByWhere" parameterClass="string">
+     delete from WF_OperatorInstance $value$
+   </delete>
+   
+   <delete id="DeleteWF_OperatorInstanceByKey" parameterClass="string">
+        DELETE FROM 
+         WF_OperatorInstance
+           WHERE
+         OperatorInsId = #OperatorInsId#
+    
+   </delete>
+<update id="UpdateWF_OperatorInstanceUserIdChangeOperatorOperStatusByOperatorInsId" parameterClass="WF_OperatorInstance" resultClass="int">
+  UPDATE WF_OperatorInstance
+  SET
+
+  [OperDateTime]=getdate(),
+  [ChangeOperator]=#ChangeOperator#,
+  [OperStatus]=#OperStatus#
+  WHERE
+  OperatorInsId = #OperatorInsId#
+  and (operstatus='3' or operstatus='2')
+
+</update>
+    <update id="UpdateWF_OperatorInstanceUserIdOperStatusByOperatorInsId" parameterClass="WF_OperatorInstance" resultClass="int">
+      UPDATE WF_OperatorInstance
+      SET
+
+      [UserId]=#UserId#,
+      [OperStatus]=#OperStatus#
+      WHERE
+      OperatorInsId = #OperatorInsId#
+      aand operstatus='3'
+    </update>
+    <update id="UpdateWF_OperatorInstanceOperStatusByOperatorInsId" parameterClass="WF_OperatorInstance" resultClass="int">
+      UPDATE WF_OperatorInstance
+      SET
+
+      [UserId]=#UserId#,
+      [OperStatus]=#OperStatus#
+      WHERE
+      OperatorInsId = #OperatorInsId#
+      and OperStatus='0'
+
+    </update>
+   <update id="UpdateWF_OperatorInstanceUserOverProByOperatorInsId" parameterClass="WF_OperatorInstance" resultClass="int">
+    UPDATE WF_OperatorInstance
+    SET
+
+    [UserId]=#UserId#,
+    [OperStatus]='1',
+    [OperDateTime]=getdate()
+
+    WHERE
+    OperatorInsId = #OperatorInsId#
+    </update>
+    <update id="UpdateWF_OperatorInstance" parameterClass="WF_OperatorInstance" resultClass="int">
+          UPDATE WF_OperatorInstance
+           SET
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [WorkFlowInsId]=#WorkFlowInsId#,
+             [WorkTaskInsId]=#WorkTaskInsId#,
+             [UserId]=#UserId#,
+             [OperType]=#OperType#,
+             [OperRealtion]=#OperRealtion#,
+             [OperContent]=#OperContent#,
+             [OperContentText]=#OperContentText#,
+             [OperStatus]=#OperStatus#,
+             [OperDateTime]=#OperDateTime#,
+             [ChangeOperator]=#ChangeOperator#
+            WHERE 
+              OperatorInsId = #OperatorInsId#
+
+   </update>
+  
+   <insert id="InsertWF_OperatorInstance" parameterClass="WF_OperatorInstance">
+        INSERT INTO WF_OperatorInstance
+         (
+         [OperatorInsId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [WorkFlowInsId],
+         [WorkTaskInsId],
+         [UserId],
+         [OperType],
+         [OperRealtion],
+         [OperContent],
+         [OperContentText],
+         [OperStatus],
+         [OperDateTime],
+         [ChangeOperator]
+         )
+       VALUES
+         (
+         #OperatorInsId#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #WorkFlowInsId#,
+         #WorkTaskInsId#,
+         #UserId#,
+         #OperType#,
+         #OperRealtion#,
+         #OperContent#,
+         #OperContentText#,
+         #OperStatus#,
+         #OperDateTime#,
+         #ChangeOperator#
+         )
+
+   </insert>
+   
+   <select id="GetWF_OperatorInstanceRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_OperatorInstance
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="OperatorInsId">[OperatorInsId]='$OperatorInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserId">[UserId]='$UserId$'</isNotNull>
+       <isNotNull prepend="AND" property="OperType">[OperType]='$OperType$'</isNotNull>
+       <isNotNull prepend="AND" property="OperRealtion">[OperRealtion]='$OperRealtion$'</isNotNull>
+       <isNotNull prepend="AND" property="OperContent">[OperContent]='$OperContent$'</isNotNull>
+       <isNotNull prepend="AND" property="OperContentText">[OperContentText]='$OperContentText$'</isNotNull>
+       <isNotNull prepend="AND" property="OperStatus">[OperStatus]='$OperStatus$'</isNotNull>
+       <isNotNull prepend="AND" property="OperDateTime">[OperDateTime]='$OperDateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="ChangeOperator">[ChangeOperator]='$ChangeOperator$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_OperatorInstanceRowCount" parameterClass="string">
+    select count(*) from WF_OperatorInstance $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

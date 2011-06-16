@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkTaskView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkTaskView"  type="Ebada.Scgl.Model.WF_WorkTaskView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_WorkTaskView_AllColumns" class="WF_WorkTaskView">
+        <result property="FlowCaption" column="FlowCaption" />
+        <result property="WFClassId" column="WFClassId" />
+        <result property="TaskTypeId" column="TaskTypeId" />
+        <result property="TaskCaption" column="TaskCaption" />
+        <result property="OperContent" column="OperContent" />
+        <result property="OperType" column="OperType" />
+        <result property="Status" column="Status" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="OperDisplay" column="OperDisplay" />
+        <result property="Caption" column="Caption" />
+        <result property="FatherId" column="FatherId" />
+        <result property="clLevel" column="clLevel" />
+        <result property="MgrUrl" column="MgrUrl" />
+        <result property="IsJumpSelf" column="IsJumpSelf" />
+        <result property="InorExclude" column="InorExclude" />
+        <result property="clMgrUrl" column="clMgrUrl" />
+      </resultMap>
+    <resultMap id="WF_WorkTaskView_WorkStartColumns" class="WF_WorkTaskView">
+      <result property="FlowCaption" column="FlowCaption" />
+      <result property="WFClassId" column="WFClassId" />
+      <result property="TaskCaption" column="TaskCaption" />
+      <result property="WorkFlowId" column="WorkFlowId" />
+      <result property="WorkTaskId" column="WorkTaskId" />
+      <result property="Caption" column="Caption" />
+      <result property="FatherId" column="FatherId" />
+      <result property="clLevel" column="clLevel" />
+      <result property="MgrUrl" column="MgrUrl" />
+      <result property="clMgrUrl" column="clMgrUrl" />
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="SelectWF_WorkTaskViewStartList" resultMap="WF_WorkTaskView_WorkStartColumns" parameterClass="string">
+      select * from
+      (
+      select  distinct  WFClassId,Caption,FatherId,WorkFlowId,FlowCaption,WorkTaskid,TaskCaption,cllevel,mgrurl,clmgrurl from WF_WorkTaskView  where
+      (
+      (OperContent IN (SELECT OperContent FROM WF_opercontentView where UserId= $value$) ) OR
+
+      (OperContent = 'ALL')
+      ) and TaskTypeId='1'and Status='1'
+      union
+      select distinct  WFClassId,Caption,FatherId,WorkFlowId,FlowCaption,WorkTaskid,TaskCaption,cllevel,mgrurl,clmgrurl  from WF_WorkTaskAccreditView
+      where AccreditToUserId=$value$ and AccreditStatus='1'and   TaskTypeId='1') a order by cllevel,Caption
+    </select>  
+   <select id="SelectWF_WorkTaskViewList" resultMap="WF_WorkTaskView_AllColumns" parameterClass="string">
+        SELECT 
+         [FlowCaption],
+         [WFClassId],
+         [TaskTypeId],
+         [TaskCaption],
+         [OperContent],
+         [OperType],
+         [Status],
+         [WorkFlowId],
+         [WorkTaskId],
+         [OperDisplay],
+         [Caption],
+         [FatherId],
+         [clLevel],
+         [MgrUrl],
+         [IsJumpSelf],
+         [InorExclude],
+         [clMgrUrl]
+          FROM WF_WorkTaskView
+          $value$
+   </select>
+   <select id="GetWF_WorkTaskViewRowCount" parameterClass="string">
+    select count(*) from WF_WorkTaskView $value$
+   </select>
+  
+   <insert id="InsertWF_WorkTaskView" parameterClass="WF_WorkTaskView">
+        INSERT INTO WF_WorkTaskView
+         (
+         [FlowCaption],
+         [WFClassId],
+         [TaskTypeId],
+         [TaskCaption],
+         [OperContent],
+         [OperType],
+         [Status],
+         [WorkFlowId],
+         [WorkTaskId],
+         [OperDisplay],
+         [Caption],
+         [FatherId],
+         [clLevel],
+         [MgrUrl],
+         [IsJumpSelf],
+         [InorExclude],
+         [clMgrUrl]
+         )
+       VALUES
+         (
+         #FlowCaption#,
+         #WFClassId#,
+         #TaskTypeId#,
+         #TaskCaption#,
+         #OperContent#,
+         #OperType#,
+         #Status#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #OperDisplay#,
+         #Caption#,
+         #FatherId#,
+         #clLevel#,
+         #MgrUrl#,
+         #IsJumpSelf#,
+         #InorExclude#,
+         #clMgrUrl#
+         )
+
+   </insert>
+   <update id="UpdateWF_WorkTaskView" parameterClass="WF_WorkTaskView" resultClass="int">
+          UPDATE WF_WorkTaskView
+           SET
+             [FlowCaption]=#FlowCaption#,
+             [WFClassId]=#WFClassId#,
+             [TaskTypeId]=#TaskTypeId#,
+             [TaskCaption]=#TaskCaption#,
+             [OperContent]=#OperContent#,
+             [OperType]=#OperType#,
+             [Status]=#Status#,
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [OperDisplay]=#OperDisplay#,
+             [Caption]=#Caption#,
+             [FatherId]=#FatherId#,
+             [clLevel]=#clLevel#,
+             [MgrUrl]=#MgrUrl#,
+             [IsJumpSelf]=#IsJumpSelf#,
+             [InorExclude]=#InorExclude#,
+             [clMgrUrl]=#clMgrUrl#
+   </update>
+   <delete id="DeleteWF_WorkTaskView" parameterClass="WF_WorkTaskView">
+        DELETE FROM 
+         WF_WorkTaskView
+
+   </delete>
+  </statements>
+</sqlMap>
+ 

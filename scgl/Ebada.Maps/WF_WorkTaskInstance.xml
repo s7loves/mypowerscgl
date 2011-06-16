@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkTaskInstance" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkTaskInstance"  type="Ebada.Scgl.Model.WF_WorkTaskInstance,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+    
+    <resultMap id="WF_WorkTaskInstance_AllColumns" class="WF_WorkTaskInstance">
+        <result property="WorkTaskInsId" column="WorkTaskInsId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="WorkFlowInsId" column="WorkFlowInsId" />
+        <result property="PreviousTaskId" column="PreviousTaskId" />
+        <result property="TaskInsCaption" column="TaskInsCaption" />
+        <result property="StartTime" column="StartTime" />
+        <result property="EndTime" column="EndTime" />
+        <result property="Status" column="Status" />
+        <result property="OperatedDes" column="OperatedDes" />
+        <result property="OperatorInsId" column="OperatorInsId" />
+        <result property="SuccessMsg" column="SuccessMsg" />
+        <result property="OutTimeed" column="OutTimeed" />
+        <result property="Reminded" column="Reminded" />
+        <result property="TaskInsDescription" column="TaskInsDescription" />
+      </resultMap>
+   
+  </resultMaps>
+  <!--输出output参数  必须设置为HashTable或者HashTable的父类接口--><!--
+  <parameterMap id="WorkTaskUpdateOutput" class="IDictionary">
+    <parameter property="ReturnValue" column="ReturnValue" direction="Output" />
+    <parameter property="OperatorInstanceId"/>
+    <parameter property="UserId"/>
+  </parameterMap>-->
+  <statements>
+   <select id="SelectWF_WorkTaskInstanceList" resultMap="WF_WorkTaskInstance_AllColumns" parameterClass="string">
+        SELECT 
+         [WorkTaskInsId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [WorkFlowInsId],
+         [PreviousTaskId],
+         [TaskInsCaption],
+         [StartTime],
+         [EndTime],
+         [Status],
+         [OperatedDes],
+         [OperatorInsId],
+         [SuccessMsg],
+         [OutTimeed],
+         [Reminded],
+         [TaskInsDescription]
+          FROM WF_WorkTaskInstance
+          $value$
+   </select>
+    <select id="SelectWF_WorkTaskInstanceSuccessMsgList" resultMap="WF_WorkTaskInstance_AllColumns" parameterClass="string">
+      SELECT
+      
+      *
+      
+      FROM WF_WorkTaskInstance
+      $value$
+    </select>
+   <select id="SelectWF_WorkTaskInstanceByHash" parameterClass="Hashtable">
+         SELECT 
+         [WorkTaskInsId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [WorkFlowInsId],
+         [PreviousTaskId],
+         [TaskInsCaption],
+         [StartTime],
+         [EndTime],
+         [Status],
+         [OperatedDes],
+         [OperatorInsId],
+         [SuccessMsg],
+         [OutTimeed],
+         [Reminded],
+         [TaskInsDescription]
+          FROM WF_WorkTaskInstance
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="PreviousTaskId">[PreviousTaskId]='$PreviousTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="TaskInsCaption">[TaskInsCaption]='$TaskInsCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="StartTime">[StartTime]='$StartTime$'</isNotNull>
+       <isNotNull prepend="AND" property="EndTime">[EndTime]='$EndTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
+       <isNotNull prepend="AND" property="OperatedDes">[OperatedDes]='$OperatedDes$'</isNotNull>
+       <isNotNull prepend="AND" property="OperatorInsId">[OperatorInsId]='$OperatorInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="SuccessMsg">[SuccessMsg]='$SuccessMsg$'</isNotNull>
+       <isNotNull prepend="AND" property="OutTimeed">[OutTimeed]='$OutTimeed$'</isNotNull>
+       <isNotNull prepend="AND" property="Reminded">[Reminded]='$Reminded$'</isNotNull>
+       <isNotNull prepend="AND" property="TaskInsDescription">[TaskInsDescription]='$TaskInsDescription$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_WorkTaskInstanceByKey" resultMap="WF_WorkTaskInstance_AllColumns" parameterClass="WF_WorkTaskInstance">
+         SELECT 
+         [WorkTaskInsId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [WorkFlowInsId],
+         [PreviousTaskId],
+         [TaskInsCaption],
+         [StartTime],
+         [EndTime],
+         [Status],
+         [OperatedDes],
+         [OperatorInsId],
+         [SuccessMsg],
+         [OutTimeed],
+         [Reminded],
+         [TaskInsDescription]
+         FROM WF_WorkTaskInstance
+         WHERE 
+           WorkTaskInsId = #WorkTaskInsId#
+
+   </select>
+ 
+   <delete id="DeleteWF_WorkTaskInstance" parameterClass="WF_WorkTaskInstance">
+        DELETE FROM 
+         WF_WorkTaskInstance
+           WHERE
+         WorkTaskInsId = #WorkTaskInsId#
+
+   </delete>
+   
+   <delete id="DeleteWF_WorkTaskInstanceByWhere" parameterClass="string">
+     delete from WF_WorkTaskInstance $value$
+   </delete>
+   
+   <delete id="DeleteWF_WorkTaskInstanceByKey" parameterClass="string">
+        DELETE FROM 
+         WF_WorkTaskInstance
+           WHERE
+         WorkTaskInsId = #WorkTaskInsId#
+    
+   </delete>
+    <update id="UpdateWF_WorkTaskInstanceOperatorInsStatusIdByWorkTaskInsId" parameterClass="WF_WorkTaskInstance" resultClass="int">
+      UPDATE WF_WorkTaskInstance
+      SET
+       [OperatorInsId]=#OperatorInsId#,Status='1'
+      WHERE
+      WorkTaskInsId = #WorkTaskInsId#
+    </update>
+    <update id="UpdateWF_WorkTaskInstanceOperatorInsIdByWorkTaskInsId" parameterClass="WF_WorkTaskInstance" resultClass="int">
+      UPDATE WF_WorkTaskInstance
+      SET
+        [OperatorInsId]=#OperatorInsId#,Status='2'
+      WHERE
+      WorkTaskInsId = #WorkTaskInsId#
+    </update>
+    <update id="UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId" parameterClass="WF_WorkTaskInstance" resultClass="int">
+      UPDATE WF_WorkTaskInstance
+      SET
+        [SuccessMsg]=#SuccessMsg#
+      WHERE
+      WorkTaskInsId = #WorkTaskInsId# 
+    </update>
+    <update id="UpdateWF_WorkTaskInstanceOverProByWorkTaskInsId" parameterClass="WF_WorkTaskInstance" resultClass="int">
+      UPDATE WF_WorkTaskInstance
+      SET
+       Status=#Status#,EndTime=getdate(),OperatedDes=isnull(OperatedDes,'')+#OperatedDes#
+      WHERE
+      WorkTaskInsId = #WorkTaskInsId# and Status !='3'
+
+    </update>
+   <update id="UpdateWF_WorkTaskInstance" parameterClass="WF_WorkTaskInstance" resultClass="int">
+          UPDATE WF_WorkTaskInstance
+           SET
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [WorkFlowInsId]=#WorkFlowInsId#,
+             [PreviousTaskId]=#PreviousTaskId#,
+             [TaskInsCaption]=#TaskInsCaption#,
+             [StartTime]=#StartTime#,
+             [EndTime]=#EndTime#,
+             [Status]=#Status#,
+             [OperatedDes]=#OperatedDes#,
+             [OperatorInsId]=#OperatorInsId#,
+             [SuccessMsg]=#SuccessMsg#,
+             [OutTimeed]=#OutTimeed#,
+             [Reminded]=#Reminded#,
+             [TaskInsDescription]=#TaskInsDescription#
+            WHERE 
+              WorkTaskInsId = #WorkTaskInsId#
+
+   </update>
+  
+   <insert id="InsertWF_WorkTaskInstance" parameterClass="WF_WorkTaskInstance">
+        INSERT INTO WF_WorkTaskInstance
+         (
+         [WorkTaskInsId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [WorkFlowInsId],
+         [PreviousTaskId],
+         [TaskInsCaption],
+         [StartTime],
+         [EndTime],
+         [Status],
+         [OperatedDes],
+         [OperatorInsId],
+         [SuccessMsg],
+         [OutTimeed],
+         [Reminded],
+         [TaskInsDescription]
+         )
+       VALUES
+         (
+         #WorkTaskInsId#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #WorkFlowInsId#,
+         #PreviousTaskId#,
+         #TaskInsCaption#,
+         #StartTime#,
+         #EndTime#,
+         #Status#,
+         #OperatedDes#,
+         #OperatorInsId#,
+         #SuccessMsg#,
+         #OutTimeed#,
+         #Reminded#,
+         #TaskInsDescription#
+         )
+
+   </insert>
+   
+   <select id="GetWF_WorkTaskInstanceRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_WorkTaskInstance
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="PreviousTaskId">[PreviousTaskId]='$PreviousTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="TaskInsCaption">[TaskInsCaption]='$TaskInsCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="StartTime">[StartTime]='$StartTime$'</isNotNull>
+       <isNotNull prepend="AND" property="EndTime">[EndTime]='$EndTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
+       <isNotNull prepend="AND" property="OperatedDes">[OperatedDes]='$OperatedDes$'</isNotNull>
+       <isNotNull prepend="AND" property="OperatorInsId">[OperatorInsId]='$OperatorInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="SuccessMsg">[SuccessMsg]='$SuccessMsg$'</isNotNull>
+       <isNotNull prepend="AND" property="OutTimeed">[OutTimeed]='$OutTimeed$'</isNotNull>
+       <isNotNull prepend="AND" property="Reminded">[Reminded]='$Reminded$'</isNotNull>
+       <isNotNull prepend="AND" property="TaskInsDescription">[TaskInsDescription]='$TaskInsDescription$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_WorkTaskInstanceRowCount" parameterClass="string">
+    select count(*) from WF_WorkTaskInstance $value$
+   </select>
+    <!--调用更新类型的存储过程--><!--
+    <procedure id="WorkTaskClaimPro" parameterMap="WorkTaskUpdateOutput" resultClass="int" >
+      WorkTaskClaimPro
+    </procedure>-->
+  </statements>
+</sqlMap>
+ 

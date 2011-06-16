@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkTaskInstanceView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkTaskInstanceView"  type="Ebada.Scgl.Model.WF_WorkTaskInstanceView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_WorkTaskInstanceView_AllColumns" class="WF_WorkTaskInstanceView">
+        <result property="Priority" column="Priority" />
+        <result property="WorkFlowNo" column="WorkFlowNo" />
+        <result property="taskStartTime" column="taskStartTime" />
+        <result property="TaskInsCaption" column="TaskInsCaption" />
+        <result property="FlowInsCaption" column="FlowInsCaption" />
+        <result property="OperContent" column="OperContent" />
+        <result property="FlowCaption" column="FlowCaption" />
+        <result property="TaskCaption" column="TaskCaption" />
+        <result property="UserId" column="UserId" />
+        <result property="OperatorInsId" column="OperatorInsId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="WorkFlowInsId" column="WorkFlowInsId" />
+        <result property="WorkTaskInsId" column="WorkTaskInsId" />
+        <result property="OperType" column="OperType" />
+        <result property="TaskTypeId" column="TaskTypeId" />
+        <result property="isSubWorkflow" column="isSubWorkflow" />
+        <result property="MainWorktaskId" column="MainWorktaskId" />
+        <result property="MainWorkflowInsId" column="MainWorkflowInsId" />
+        <result property="OperatedDes" column="OperatedDes" />
+        <result property="OperDateTime" column="OperDateTime" />
+        <result property="taskEndTime" column="taskEndTime" />
+        <result property="flowStartTime" column="flowStartTime" />
+        <result property="flowEndTime" column="flowEndTime" />
+        <result property="pOperatedDes" column="pOperatedDes" />
+        <result property="Description" column="Description" />
+        <result property="OperStatus" column="OperStatus" />
+        <result property="Status" column="Status" />
+        <result property="flStatus" column="flStatus" />
+        <result property="PreviousTaskId" column="PreviousTaskId" />
+        <result property="OperContentText" column="OperContentText" />
+        <result property="taskInsType" column="taskInsType" />
+        <result property="SuccessMsg" column="SuccessMsg" />
+        <result property="ChangeOperator" column="ChangeOperator" />
+        <result property="TaskInsDescription" column="TaskInsDescription" />
+      </resultMap>
+    <resultMap id="WF_WorkTaskInstanceView_TaskColumns" class="WF_WorkTaskInstanceView">
+      <result property="Priority" column="Priority" />
+      <result property="WorkFlowNo" column="WorkFlowNo" />
+      <result property="taskStartTime" column="taskStartTime" />
+      <result property="TaskInsCaption" column="TaskInsCaption" />
+      <result property="FlowInsCaption" column="FlowInsCaption" />
+      <result property="OperContent" column="OperContent" />
+      <result property="FlowCaption" column="FlowCaption" />
+      <result property="TaskCaption" column="TaskCaption" />
+      <result property="UserId" column="UserId" />
+      <result property="OperatorInsId" column="OperatorInsId" />
+      <result property="WorkFlowId" column="WorkFlowId" />
+      <result property="WorkTaskId" column="WorkTaskId" />
+      <result property="WorkFlowInsId" column="WorkFlowInsId" />
+      <result property="WorkTaskInsId" column="WorkTaskInsId" />
+      <result property="OperType" column="OperType" />
+      <result property="TaskTypeId" column="TaskTypeId" />
+      <result property="OperatedDes" column="OperatedDes" />
+      <result property="OperDateTime" column="OperDateTime" />
+      <result property="taskEndTime" column="taskEndTime" />
+      <result property="flowStartTime" column="flowStartTime" />
+      <result property="flowEndTime" column="flowEndTime" />
+      <result property="pOperatedDes" column="pOperatedDes" />
+      <result property="Description" column="Description" />
+      <result property="OperStatus" column="OperStatus" />
+      <result property="Status" column="Status" />
+      <result property="taskInsType" column="taskInsType" />
+      <result property="TaskInsDescription" column="TaskInsDescription" />
+    </resultMap>
+    <resultMap id="WF_WorkTaskInstanceView_HistoryColumns" class="WF_WorkTaskInstanceView">
+
+      <result property="WorkFlowId" column="WorkFlowId" />
+      <result property="WorkTaskId" column="WorkTaskId" />
+      <result property="WorkFlowInsId" column="WorkFlowInsId" />
+      <result property="WorkTaskInsId" column="WorkTaskInsId" />
+      <result property="OperatorInsId" column="OperatorInsId" />
+      <result property="FlowCaption" column="FlowCaption" />
+      <result property="TaskCaption" column="TaskCaption" />
+      <result property="OperatedDes" column="OperatedDes" />
+      <result property="taskEndTime" column="taskEndTime" />
+    </resultMap>
+
+    <resultMap id="WF_WorkTaskInstanceView_DistinctUserIdColumns" class="WF_WorkTaskInstanceView">
+
+      <result property="UserId" column="UserId" />
+    </resultMap>
+    <resultMap id="WF_WorkTaskInstanceView_DistinctColumns" class="WF_WorkTaskInstanceView">
+     
+      <result property="WorkFlowId" column="WorkFlowId" />
+      <result property="WorkTaskId" column="WorkTaskId" />
+      <result property="OperatedDes" column="OperatedDes" />
+      <result property="taskEndTime" column="taskEndTime" />
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="SelectWF_WorkFlowInstanceUserIdList" resultMap="WF_WorkTaskInstanceView_DistinctUserIdColumns" parameterClass="string">
+
+      $value$
+    </select>
+    <select id="SelectWF_WorkFlowInstanceHistoryList" resultMap="WF_WorkTaskInstanceView_HistoryColumns" parameterClass="string">
+     
+      $value$
+    </select>
+    <select id="SelectWF_WorkTaskInstanceViewListValue" resultMap="WF_WorkTaskInstanceView_TaskColumns" parameterClass="string">
+
+      $value$
+    </select>
+    <select id="SelectWF_WorkTaskInstanceViewListValue2" resultMap="WF_WorkTaskInstanceView_AllColumns" parameterClass="string">
+      
+      $value$
+    </select>
+    <select id="SelectWF_WorkTaskInstanceViewList" resultMap="WF_WorkTaskInstanceView_AllColumns" parameterClass="string">
+        SELECT 
+         [Priority],
+         [WorkFlowNo],
+         [taskStartTime],
+         [TaskInsCaption],
+         [FlowInsCaption],
+         [OperContent],
+         [FlowCaption],
+         [TaskCaption],
+         [UserId],
+         [OperatorInsId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [WorkFlowInsId],
+         [WorkTaskInsId],
+         [OperType],
+         [TaskTypeId],
+         [isSubWorkflow],
+         [MainWorktaskId],
+         [MainWorkflowInsId],
+         [OperatedDes],
+         [OperDateTime],
+         [taskEndTime],
+         [flowStartTime],
+         [flowEndTime],
+         [pOperatedDes],
+         [Description],
+         [OperStatus],
+         [Status],
+         [flStatus],
+         [PreviousTaskId],
+         [OperContentText],
+         [taskInsType],
+         [SuccessMsg],
+         [ChangeOperator],
+         [TaskInsDescription]
+          FROM WF_WorkTaskInstanceView
+          $value$
+   </select>
+    <select id="SelectWF_WorkTaskInstanceViewDistinctList" resultMap="WF_WorkTaskInstanceView_DistinctColumns" parameterClass="string">
+      SELECT
+      distinct
+
+      [WorkFlowId],
+      [WorkTaskId],
+      [OperatedDes],
+      [taskEndTime]
+
+      FROM WF_WorkTaskInstanceView
+      $value$
+    </select>
+   <select id="GetWF_WorkTaskInstanceViewRowCount" parameterClass="string">
+    select count(*) from WF_WorkTaskInstanceView $value$
+   </select>
+  
+   <insert id="InsertWF_WorkTaskInstanceView" parameterClass="WF_WorkTaskInstanceView">
+        INSERT INTO WF_WorkTaskInstanceView
+         (
+         [Priority],
+         [WorkFlowNo],
+         [taskStartTime],
+         [TaskInsCaption],
+         [FlowInsCaption],
+         [OperContent],
+         [FlowCaption],
+         [TaskCaption],
+         [UserId],
+         [OperatorInsId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [WorkFlowInsId],
+         [WorkTaskInsId],
+         [OperType],
+         [TaskTypeId],
+         [isSubWorkflow],
+         [MainWorktaskId],
+         [MainWorkflowInsId],
+         [OperatedDes],
+         [OperDateTime],
+         [taskEndTime],
+         [flowStartTime],
+         [flowEndTime],
+         [pOperatedDes],
+         [Description],
+         [OperStatus],
+         [Status],
+         [flStatus],
+         [PreviousTaskId],
+         [OperContentText],
+         [taskInsType],
+         [SuccessMsg],
+         [ChangeOperator],
+         [TaskInsDescription]
+         )
+       VALUES
+         (
+         #Priority#,
+         #WorkFlowNo#,
+         #taskStartTime#,
+         #TaskInsCaption#,
+         #FlowInsCaption#,
+         #OperContent#,
+         #FlowCaption#,
+         #TaskCaption#,
+         #UserId#,
+         #OperatorInsId#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #WorkFlowInsId#,
+         #WorkTaskInsId#,
+         #OperType#,
+         #TaskTypeId#,
+         #isSubWorkflow#,
+         #MainWorktaskId#,
+         #MainWorkflowInsId#,
+         #OperatedDes#,
+         #OperDateTime#,
+         #taskEndTime#,
+         #flowStartTime#,
+         #flowEndTime#,
+         #pOperatedDes#,
+         #Description#,
+         #OperStatus#,
+         #Status#,
+         #flStatus#,
+         #PreviousTaskId#,
+         #OperContentText#,
+         #taskInsType#,
+         #SuccessMsg#,
+         #ChangeOperator#,
+         #TaskInsDescription#
+         )
+
+   </insert>
+   <update id="UpdateWF_WorkTaskInstanceView" parameterClass="WF_WorkTaskInstanceView" resultClass="int">
+          UPDATE WF_WorkTaskInstanceView
+           SET
+             [Priority]=#Priority#,
+             [WorkFlowNo]=#WorkFlowNo#,
+             [taskStartTime]=#taskStartTime#,
+             [TaskInsCaption]=#TaskInsCaption#,
+             [FlowInsCaption]=#FlowInsCaption#,
+             [OperContent]=#OperContent#,
+             [FlowCaption]=#FlowCaption#,
+             [TaskCaption]=#TaskCaption#,
+             [UserId]=#UserId#,
+             [OperatorInsId]=#OperatorInsId#,
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [WorkFlowInsId]=#WorkFlowInsId#,
+             [WorkTaskInsId]=#WorkTaskInsId#,
+             [OperType]=#OperType#,
+             [TaskTypeId]=#TaskTypeId#,
+             [isSubWorkflow]=#isSubWorkflow#,
+             [MainWorktaskId]=#MainWorktaskId#,
+             [MainWorkflowInsId]=#MainWorkflowInsId#,
+             [OperatedDes]=#OperatedDes#,
+             [OperDateTime]=#OperDateTime#,
+             [taskEndTime]=#taskEndTime#,
+             [flowStartTime]=#flowStartTime#,
+             [flowEndTime]=#flowEndTime#,
+             [pOperatedDes]=#pOperatedDes#,
+             [Description]=#Description#,
+             [OperStatus]=#OperStatus#,
+             [Status]=#Status#,
+             [flStatus]=#flStatus#,
+             [PreviousTaskId]=#PreviousTaskId#,
+             [OperContentText]=#OperContentText#,
+             [taskInsType]=#taskInsType#,
+             [SuccessMsg]=#SuccessMsg#,
+             [ChangeOperator]=#ChangeOperator#,
+             [TaskInsDescription]=#TaskInsDescription#
+   </update>
+   <delete id="DeleteWF_WorkTaskInstanceView" parameterClass="WF_WorkTaskInstanceView">
+        DELETE FROM 
+         WF_WorkTaskInstanceView
+
+   </delete>
+  </statements>
+</sqlMap>
+ 

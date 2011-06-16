@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkTaskAccreditView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkTaskAccreditView"  type="Ebada.Scgl.Model.WF_WorkTaskAccreditView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_WorkTaskAccreditView_AllColumns" class="WF_WorkTaskAccreditView">
+        <result property="AccreditFromUserId" column="AccreditFromUserId" />
+        <result property="AccreditToUserId" column="AccreditToUserId" />
+        <result property="AccreditStatus" column="AccreditStatus" />
+        <result property="WFClassId" column="WFClassId" />
+        <result property="FlowCaption" column="FlowCaption" />
+        <result property="Caption" column="Caption" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="FatherId" column="FatherId" />
+        <result property="MgrUrl" column="MgrUrl" />
+        <result property="clLevel" column="clLevel" />
+        <result property="TaskCaption" column="TaskCaption" />
+        <result property="TaskTypeId" column="TaskTypeId" />
+        <result property="taskInsType" column="taskInsType" />
+        <result property="AUserId" column="AUserId" />
+        <result property="UserName" column="UserName" />
+        <result property="fromUserName" column="fromUserName" />
+        <result property="clMgrUrl" column="clMgrUrl" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_WorkTaskAccreditViewList" resultMap="WF_WorkTaskAccreditView_AllColumns" parameterClass="string">
+        SELECT 
+         [AccreditFromUserId],
+         [AccreditToUserId],
+         [AccreditStatus],
+         [WFClassId],
+         [FlowCaption],
+         [Caption],
+         [WorkFlowId],
+         [WorkTaskId],
+         [FatherId],
+         [MgrUrl],
+         [clLevel],
+         [TaskCaption],
+         [TaskTypeId],
+         [taskInsType],
+         [AUserId],
+         [UserName],
+         [fromUserName],
+         [clMgrUrl]
+          FROM WF_WorkTaskAccreditView
+          $value$
+   </select>
+   <select id="GetWF_WorkTaskAccreditViewRowCount" parameterClass="string">
+    select count(*) from WF_WorkTaskAccreditView $value$
+   </select>
+  
+   <insert id="InsertWF_WorkTaskAccreditView" parameterClass="WF_WorkTaskAccreditView">
+        INSERT INTO WF_WorkTaskAccreditView
+         (
+         [AccreditFromUserId],
+         [AccreditToUserId],
+         [AccreditStatus],
+         [WFClassId],
+         [FlowCaption],
+         [Caption],
+         [WorkFlowId],
+         [WorkTaskId],
+         [FatherId],
+         [MgrUrl],
+         [clLevel],
+         [TaskCaption],
+         [TaskTypeId],
+         [taskInsType],
+         [AUserId],
+         [UserName],
+         [fromUserName],
+         [clMgrUrl]
+         )
+       VALUES
+         (
+         #AccreditFromUserId#,
+         #AccreditToUserId#,
+         #AccreditStatus#,
+         #WFClassId#,
+         #FlowCaption#,
+         #Caption#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #FatherId#,
+         #MgrUrl#,
+         #clLevel#,
+         #TaskCaption#,
+         #TaskTypeId#,
+         #taskInsType#,
+         #AUserId#,
+         #UserName#,
+         #fromUserName#,
+         #clMgrUrl#
+         )
+
+   </insert>
+   <update id="UpdateWF_WorkTaskAccreditView" parameterClass="WF_WorkTaskAccreditView" resultClass="int">
+          UPDATE WF_WorkTaskAccreditView
+           SET
+             [AccreditFromUserId]=#AccreditFromUserId#,
+             [AccreditToUserId]=#AccreditToUserId#,
+             [AccreditStatus]=#AccreditStatus#,
+             [WFClassId]=#WFClassId#,
+             [FlowCaption]=#FlowCaption#,
+             [Caption]=#Caption#,
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [FatherId]=#FatherId#,
+             [MgrUrl]=#MgrUrl#,
+             [clLevel]=#clLevel#,
+             [TaskCaption]=#TaskCaption#,
+             [TaskTypeId]=#TaskTypeId#,
+             [taskInsType]=#taskInsType#,
+             [AUserId]=#AUserId#,
+             [UserName]=#UserName#,
+             [fromUserName]=#fromUserName#,
+             [clMgrUrl]=#clMgrUrl#
+   </update>
+   <delete id="DeleteWF_WorkTaskAccreditView" parameterClass="WF_WorkTaskAccreditView">
+        DELETE FROM 
+         WF_WorkTaskAccreditView
+
+   </delete>
+
+    <select id="SelectWF_WorkTaskAccreditViewListByAccreditToUserId" resultMap="WF_WorkTaskAccreditView_AllColumns" parameterClass="string">
+      select distinct flowcaption,taskcaption,workflowid
+      auserid,worktaskid,accreditfromuserid,accredittouserid,fromUserName
+      from WorkTaskAccreditView where accreditstatus='1' and AccreditToUserId=$value$
+      order by flowcaption,taskcaption;
+    </select>
+
+    <select id="SelectWF_WorkTaskAccreditViewListByAccreditFromUserId" resultMap="WF_WorkTaskAccreditView_AllColumns" parameterClass="string">
+      select distinct flowcaption,taskcaption,workflowid
+      auserid,worktaskid,accreditfromuserid,accredittouserid,fromUserName
+      from WorkTaskAccreditView where accreditstatus='1' and AccreditFromUserId=$value$
+      order by flowcaption,taskcaption;
+    </select>
+  
+</statements>
+</sqlMap>
+ 

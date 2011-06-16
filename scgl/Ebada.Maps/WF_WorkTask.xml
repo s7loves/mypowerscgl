@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkTask" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkTask"  type="Ebada.Scgl.Model.WF_WorkTask,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_WorkTask_AllColumns" class="WF_WorkTask">
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="TaskTypeId" column="TaskTypeId" />
+        <result property="TaskTypeAndOr" column="TaskTypeAndOr" />
+        <result property="TaskCaption" column="TaskCaption" />
+        <result property="iXPosition" column="iXPosition" />
+        <result property="iYPosition" column="iYPosition" />
+        <result property="Description" column="Description" />
+        <result property="Commands" column="Commands" />
+        <result property="OperRule" column="OperRule" />
+        <result property="IsJumpSelf" column="IsJumpSelf" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_WorkTaskList" resultMap="WF_WorkTask_AllColumns" parameterClass="string">
+        SELECT 
+         [WorkTaskId],
+         [WorkFlowId],
+         [TaskTypeId],
+         [TaskTypeAndOr],
+         [TaskCaption],
+         [iXPosition],
+         [iYPosition],
+         [Description],
+         [Commands],
+         [OperRule],
+         [IsJumpSelf]
+          FROM WF_WorkTask
+          $value$
+   </select>
+   
+   <select id="SelectWF_WorkTaskByHash" parameterClass="Hashtable">
+         SELECT 
+         [WorkTaskId],
+         [WorkFlowId],
+         [TaskTypeId],
+         [TaskTypeAndOr],
+         [TaskCaption],
+         [iXPosition],
+         [iYPosition],
+         [Description],
+         [Commands],
+         [OperRule],
+         [IsJumpSelf]
+          FROM WF_WorkTask
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="TaskTypeId">[TaskTypeId]='$TaskTypeId$'</isNotNull>
+       <isNotNull prepend="AND" property="TaskTypeAndOr">[TaskTypeAndOr]='$TaskTypeAndOr$'</isNotNull>
+       <isNotNull prepend="AND" property="TaskCaption">[TaskCaption]='$TaskCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="iXPosition">[iXPosition]='$iXPosition$'</isNotNull>
+       <isNotNull prepend="AND" property="iYPosition">[iYPosition]='$iYPosition$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="Commands">[Commands]='$Commands$'</isNotNull>
+       <isNotNull prepend="AND" property="OperRule">[OperRule]='$OperRule$'</isNotNull>
+       <isNotNull prepend="AND" property="IsJumpSelf">[IsJumpSelf]='$IsJumpSelf$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_WorkTaskByKey" resultMap="WF_WorkTask_AllColumns" parameterClass="WF_WorkTask">
+         SELECT 
+         [WorkTaskId],
+         [WorkFlowId],
+         [TaskTypeId],
+         [TaskTypeAndOr],
+         [TaskCaption],
+         [iXPosition],
+         [iYPosition],
+         [Description],
+         [Commands],
+         [OperRule],
+         [IsJumpSelf]
+         FROM WF_WorkTask
+         WHERE 
+           WorkTaskId = #WorkTaskId#
+
+   </select>
+ 
+   <delete id="DeleteWF_WorkTask" parameterClass="WF_WorkTask">
+        DELETE FROM 
+         WF_WorkTask
+           WHERE
+         WorkTaskId = #WorkTaskId#
+
+   </delete>
+   
+   <delete id="DeleteWF_WorkTaskByWhere" parameterClass="string">
+     delete from WF_WorkTask $value$
+   </delete>
+   
+   <delete id="DeleteWF_WorkTaskByKey" parameterClass="string">
+        DELETE FROM 
+         WF_WorkTask
+           WHERE
+         WorkTaskId = #WorkTaskId#
+    
+   </delete>
+   
+   <update id="UpdateWF_WorkTask" parameterClass="WF_WorkTask" resultClass="int">
+          UPDATE WF_WorkTask
+           SET
+             [WorkFlowId]=#WorkFlowId#,
+             [TaskTypeId]=#TaskTypeId#,
+             [TaskTypeAndOr]=#TaskTypeAndOr#,
+             [TaskCaption]=#TaskCaption#,
+             [iXPosition]=#iXPosition#,
+             [iYPosition]=#iYPosition#,
+             [Description]=#Description#,
+             [Commands]=#Commands#,
+             [OperRule]=#OperRule#,
+             [IsJumpSelf]=#IsJumpSelf#
+            WHERE 
+              WorkTaskId = #WorkTaskId#
+
+   </update>
+  
+   <insert id="InsertWF_WorkTask" parameterClass="WF_WorkTask">
+        INSERT INTO WF_WorkTask
+         (
+         [WorkTaskId],
+         [WorkFlowId],
+         [TaskTypeId],
+         [TaskTypeAndOr],
+         [TaskCaption],
+         [iXPosition],
+         [iYPosition],
+         [Description],
+         [Commands],
+         [OperRule],
+         [IsJumpSelf]
+         )
+       VALUES
+         (
+         #WorkTaskId#,
+         #WorkFlowId#,
+         #TaskTypeId#,
+         #TaskTypeAndOr#,
+         #TaskCaption#,
+         #iXPosition#,
+         #iYPosition#,
+         #Description#,
+         #Commands#,
+         #OperRule#,
+         #IsJumpSelf#
+         )
+
+   </insert>
+   
+   <select id="GetWF_WorkTaskRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_WorkTask
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="TaskTypeId">[TaskTypeId]='$TaskTypeId$'</isNotNull>
+       <isNotNull prepend="AND" property="TaskTypeAndOr">[TaskTypeAndOr]='$TaskTypeAndOr$'</isNotNull>
+       <isNotNull prepend="AND" property="TaskCaption">[TaskCaption]='$TaskCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="iXPosition">[iXPosition]='$iXPosition$'</isNotNull>
+       <isNotNull prepend="AND" property="iYPosition">[iYPosition]='$iYPosition$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="Commands">[Commands]='$Commands$'</isNotNull>
+       <isNotNull prepend="AND" property="OperRule">[OperRule]='$OperRule$'</isNotNull>
+       <isNotNull prepend="AND" property="IsJumpSelf">[IsJumpSelf]='$IsJumpSelf$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_WorkTaskRowCount" parameterClass="string">
+    select count(*) from WF_WorkTask $value$
+   </select>
+    <select id="SelectWF_WorkTaskByWhere" resultMap="WF_WorkTask_AllColumns" parameterClass="string">
+      SELECT
+      [WorkTaskId],
+      [WorkFlowId],
+      [TaskTypeId],
+      [TaskTypeAndOr],
+      [TaskCaption],
+      [iXPosition],
+      [iYPosition],
+      [Description],
+      [Commands],
+      [OperRule],
+      [IsJumpSelf]
+      FROM WF_WorkTask
+      $value$
+
+    </select>
+  </statements>
+</sqlMap>
+ 

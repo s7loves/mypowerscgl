@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_OperContentView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_OperContentView"  type="Ebada.Scgl.Model.WF_OperContentView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_OperContentView_AllColumns" class="WF_OperContentView">
+        <result property="operContent" column="operContent" />
+        <result property="UserId" column="UserId" />
+        <result property="operContentType" column="operContentType" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_OperContentViewList" resultMap="WF_OperContentView_AllColumns" parameterClass="string">
+        SELECT 
+         [operContent],
+         [UserId],
+         [operContentType]
+          FROM WF_OperContentView
+          $value$
+   </select>
+   <select id="GetWF_OperContentViewRowCount" parameterClass="string">
+    select count(*) from WF_OperContentView $value$
+   </select>
+  
+   <insert id="InsertWF_OperContentView" parameterClass="WF_OperContentView">
+        INSERT INTO WF_OperContentView
+         (
+         [operContent],
+         [UserId],
+         [operContentType]
+         )
+       VALUES
+         (
+         #operContent#,
+         #UserId#,
+         #operContentType#
+         )
+
+   </insert>
+   <update id="UpdateWF_OperContentView" parameterClass="WF_OperContentView" resultClass="int">
+          UPDATE WF_OperContentView
+           SET
+             [operContent]=#operContent#,
+             [UserId]=#UserId#,
+             [operContentType]=#operContentType#
+   </update>
+   <delete id="DeleteWF_OperContentView" parameterClass="WF_OperContentView">
+        DELETE FROM 
+         WF_OperContentView
+
+   </delete>
+  </statements>
+</sqlMap>
+ 

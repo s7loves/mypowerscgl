@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkFlowEvent" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkFlowEvent"  type="Ebada.Scgl.Model.WF_WorkFlowEvent,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_WorkFlowEvent_AllColumns" class="WF_WorkFlowEvent">
+        <result property="Guid" column="Guid" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="Remark" column="Remark" />
+        <result property="OtSms" column="OtSms" />
+        <result property="OtMsg" column="OtMsg" />
+        <result property="OtEmail" column="OtEmail" />
+        <result property="RmSms" column="RmSms" />
+        <result property="RmMsg" column="RmMsg" />
+        <result property="RmEmail" column="RmEmail" />
+        <result property="OtToUsers" column="OtToUsers" />
+        <result property="RmToUsers" column="RmToUsers" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_WorkFlowEventList" resultMap="WF_WorkFlowEvent_AllColumns" parameterClass="string">
+        SELECT 
+         [Guid],
+         [WorkFlowId],
+         [WorkTaskId],
+         [Remark],
+         [OtSms],
+         [OtMsg],
+         [OtEmail],
+         [RmSms],
+         [RmMsg],
+         [RmEmail],
+         [OtToUsers],
+         [RmToUsers]
+          FROM WF_WorkFlowEvent
+          $value$
+   </select>
+   
+   <select id="SelectWF_WorkFlowEventByHash" parameterClass="Hashtable">
+         SELECT 
+         [Guid],
+         [WorkFlowId],
+         [WorkTaskId],
+         [Remark],
+         [OtSms],
+         [OtMsg],
+         [OtEmail],
+         [RmSms],
+         [RmMsg],
+         [RmEmail],
+         [OtToUsers],
+         [RmToUsers]
+          FROM WF_WorkFlowEvent
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="Guid">[Guid]='$Guid$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="OtSms">[OtSms]='$OtSms$'</isNotNull>
+       <isNotNull prepend="AND" property="OtMsg">[OtMsg]='$OtMsg$'</isNotNull>
+       <isNotNull prepend="AND" property="OtEmail">[OtEmail]='$OtEmail$'</isNotNull>
+       <isNotNull prepend="AND" property="RmSms">[RmSms]='$RmSms$'</isNotNull>
+       <isNotNull prepend="AND" property="RmMsg">[RmMsg]='$RmMsg$'</isNotNull>
+       <isNotNull prepend="AND" property="RmEmail">[RmEmail]='$RmEmail$'</isNotNull>
+       <isNotNull prepend="AND" property="OtToUsers">[OtToUsers]='$OtToUsers$'</isNotNull>
+       <isNotNull prepend="AND" property="RmToUsers">[RmToUsers]='$RmToUsers$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_WorkFlowEventByKey" resultMap="WF_WorkFlowEvent_AllColumns" parameterClass="WF_WorkFlowEvent">
+         SELECT 
+         [Guid],
+         [WorkFlowId],
+         [WorkTaskId],
+         [Remark],
+         [OtSms],
+         [OtMsg],
+         [OtEmail],
+         [RmSms],
+         [RmMsg],
+         [RmEmail],
+         [OtToUsers],
+         [RmToUsers]
+         FROM WF_WorkFlowEvent
+         WHERE 
+           Guid = #Guid#
+
+   </select>
+ 
+   <delete id="DeleteWF_WorkFlowEvent" parameterClass="WF_WorkFlowEvent">
+        DELETE FROM 
+         WF_WorkFlowEvent
+           WHERE
+         Guid = #Guid#
+
+   </delete>
+   
+   <delete id="DeleteWF_WorkFlowEventByWhere" parameterClass="string">
+     delete from WF_WorkFlowEvent $value$
+   </delete>
+   
+   <delete id="DeleteWF_WorkFlowEventByKey" parameterClass="string">
+        DELETE FROM 
+         WF_WorkFlowEvent
+           WHERE
+         Guid = #Guid#
+    
+   </delete>
+   
+   <update id="UpdateWF_WorkFlowEvent" parameterClass="WF_WorkFlowEvent" resultClass="int">
+          UPDATE WF_WorkFlowEvent
+           SET
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [Remark]=#Remark#,
+             [OtSms]=#OtSms#,
+             [OtMsg]=#OtMsg#,
+             [OtEmail]=#OtEmail#,
+             [RmSms]=#RmSms#,
+             [RmMsg]=#RmMsg#,
+             [RmEmail]=#RmEmail#,
+             [OtToUsers]=#OtToUsers#,
+             [RmToUsers]=#RmToUsers#
+            WHERE 
+              Guid = #Guid#
+
+   </update>
+  
+   <insert id="InsertWF_WorkFlowEvent" parameterClass="WF_WorkFlowEvent">
+        INSERT INTO WF_WorkFlowEvent
+         (
+         [Guid],
+         [WorkFlowId],
+         [WorkTaskId],
+         [Remark],
+         [OtSms],
+         [OtMsg],
+         [OtEmail],
+         [RmSms],
+         [RmMsg],
+         [RmEmail],
+         [OtToUsers],
+         [RmToUsers]
+         )
+       VALUES
+         (
+         #Guid#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #Remark#,
+         #OtSms#,
+         #OtMsg#,
+         #OtEmail#,
+         #RmSms#,
+         #RmMsg#,
+         #RmEmail#,
+         #OtToUsers#,
+         #RmToUsers#
+         )
+
+   </insert>
+   
+   <select id="GetWF_WorkFlowEventRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_WorkFlowEvent
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="Guid">[Guid]='$Guid$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="OtSms">[OtSms]='$OtSms$'</isNotNull>
+       <isNotNull prepend="AND" property="OtMsg">[OtMsg]='$OtMsg$'</isNotNull>
+       <isNotNull prepend="AND" property="OtEmail">[OtEmail]='$OtEmail$'</isNotNull>
+       <isNotNull prepend="AND" property="RmSms">[RmSms]='$RmSms$'</isNotNull>
+       <isNotNull prepend="AND" property="RmMsg">[RmMsg]='$RmMsg$'</isNotNull>
+       <isNotNull prepend="AND" property="RmEmail">[RmEmail]='$RmEmail$'</isNotNull>
+       <isNotNull prepend="AND" property="OtToUsers">[OtToUsers]='$OtToUsers$'</isNotNull>
+       <isNotNull prepend="AND" property="RmToUsers">[RmToUsers]='$RmToUsers$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_WorkFlowEventRowCount" parameterClass="string">
+    select count(*) from WF_WorkFlowEvent $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
