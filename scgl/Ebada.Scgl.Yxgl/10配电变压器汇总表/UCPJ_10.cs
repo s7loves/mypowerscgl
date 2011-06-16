@@ -77,9 +77,11 @@ namespace Ebada.Scgl.Yxgl
             
             if (org != null)
             {
-                ParentObj = org;
-                if (SelectGdsChanged != null)
-                    SelectGdsChanged(this, org);
+                IList<PS_tqbyq> blist= Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("SelectPS_tqbyqByGDS","'"+org.OrgCode+"'");
+                gridControl1.DataSource = blist;
+                //ParentObj = org;
+                //if (SelectGdsChanged != null)
+                //    SelectGdsChanged(this, org);
             }
             
 
@@ -114,8 +116,8 @@ namespace Ebada.Scgl.Yxgl
         {
 
             //需要隐藏列时在这写代码
-            hideColumn("ParentID");
-            hideColumn("gzrjID");
+            //hideColumn("ParentID");
+            //hideColumn("gzrjID");
         }
         /// <summary>
         /// 刷新数据
