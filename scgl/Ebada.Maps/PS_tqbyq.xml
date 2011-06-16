@@ -284,6 +284,12 @@
    <select id="GetPS_tqbyqRowCount" parameterClass="string">
     select count(*) from PS_tqbyq $value$
    </select>
+    <select id="GetPS_tqbyqbyqCapcity" parameterClass="string">
+      select sum(byqCapcity) from PS_tqbyq $value$
+    </select>
+    <select id="GetPS_tqbyqbyqCapcitybywhere" parameterClass="string">
+      select sum(byqCapcity) from PS_tqbyq where tqID in(select tqID from ps_tq where $value$) 
+    </select>
   </statements>
 </sqlMap>
  
