@@ -186,5 +186,10 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
         }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
     }
 }
