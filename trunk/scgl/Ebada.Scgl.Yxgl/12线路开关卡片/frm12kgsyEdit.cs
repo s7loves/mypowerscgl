@@ -30,7 +30,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "A_BCO");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "A_BCO2");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "dzA");
-            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "xq");
+            //this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "xq");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "C_ABO");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "C_ABO2");
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "dzC");
@@ -75,16 +75,14 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_12kgsy>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            comboBoxEdit17.Properties.Items.Clear();
+            comboBoxEdit17.Properties.Items.AddRange(ryList);
 
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+             ICollection tqList = ComboBoxHelper.GetTQ();//天气
+            comboBoxEdit13.Properties.Items.Clear();
+            comboBoxEdit13.Properties.Items.AddRange(tqList);
+            
         }
 
         /// <summary>

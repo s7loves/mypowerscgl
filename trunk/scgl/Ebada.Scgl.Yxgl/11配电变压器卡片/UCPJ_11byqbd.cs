@@ -168,6 +168,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
+            newobj.azrq = DateTime.Now;
            
         }
         /// <summary>

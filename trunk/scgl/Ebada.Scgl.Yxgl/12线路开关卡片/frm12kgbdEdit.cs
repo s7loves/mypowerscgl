@@ -59,6 +59,9 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
+            comboBoxEdit1.Properties.Items.Clear();
+            ICollection ryList = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电所人员列表
+            comboBoxEdit1.Properties.Items.AddRange(ryList);
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_12kgbd>(" WHERE Citylevel = '2'"));
           /*  IList<DicType> list = new List<DicType>();

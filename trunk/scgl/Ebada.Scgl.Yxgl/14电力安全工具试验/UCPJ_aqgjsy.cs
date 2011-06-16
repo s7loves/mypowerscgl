@@ -165,6 +165,7 @@ namespace Ebada.Scgl.Yxgl
                 return;
             }
             newobj.sbID = PSObj.sbID;
+            newobj.rq = DateTime.Now;
            
         }
         /// <summary>
