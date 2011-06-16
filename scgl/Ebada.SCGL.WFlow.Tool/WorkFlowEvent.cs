@@ -111,7 +111,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_WorkFlowEvent wfEvent = new PS_WorkFlowEvent();
+                WF_WorkFlowEvent wfEvent = new WF_WorkFlowEvent();
                 wfEvent.Guid= Guid;
                 wfEvent.WorkFlowId= WorkFlowId;
                 wfEvent.WorkTaskId= WorkTaskId;
@@ -124,7 +124,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 wfEvent.RmEmail= RmEmail ;
                 wfEvent.OtToUsers= OtToUsers;
                 wfEvent.RmToUsers= RmToUsers;
-                MainHelper.PlatformSqlMap.Create<PS_WorkFlowEvent>(wfEvent); 
+                MainHelper.PlatformSqlMap.Create<WF_WorkFlowEvent>(wfEvent); 
             }
             catch (Exception ex)
             {
@@ -146,7 +146,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@worktaskid", worktaskid);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkFlowEventList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkFlowEventList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -171,7 +171,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@workFlowId", workFlowId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkFlowEventList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkFlowEventList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -221,7 +221,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@worktaskid", worktaskid);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteNonQuery(sqlItem);
-                return MainHelper.PlatformSqlMap.DeleteByWhere<PS_WorkFlowEvent>(tmpSql);
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowEvent>(tmpSql);
             }
             catch (Exception ex)
             {

@@ -96,7 +96,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_WorkOutTime wfOut = new PS_WorkOutTime();
+                WF_WorkOutTime wfOut = new WF_WorkOutTime();
                 wfOut.Guid=Guid;
                 wfOut.WorkFlowId=WorkFlowId;
                 wfOut.WorkTaskId=WorkTaskId;
@@ -111,7 +111,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 wfOut.Hours2=Hours2;
                 wfOut.Minutes2=Minutes2 ;
                 wfOut.Done=Done;
-                MainHelper.PlatformSqlMap.Create<PS_WorkOutTime>(wfOut);
+                MainHelper.PlatformSqlMap.Create<WF_WorkOutTime>(wfOut);
             }
             catch (Exception ex)
             {
@@ -132,7 +132,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
 
-                PS_WorkOutTime wfOut = new PS_WorkOutTime();
+                WF_WorkOutTime wfOut = new WF_WorkOutTime();
                 wfOut.Guid = Guid;
                 wfOut.WorkFlowId = WorkFlowId;
                 wfOut.WorkTaskId = WorkTaskId;
@@ -147,7 +147,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 wfOut.Hours2 = Hours2;
                 wfOut.Minutes2 = Minutes2;
                 wfOut.Done = Done;
-                MainHelper.PlatformSqlMap.Update<PS_WorkOutTime>(wfOut);
+                MainHelper.PlatformSqlMap.Update<WF_WorkOutTime>(wfOut);
             }
             catch (Exception ex)
             {
@@ -169,7 +169,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@workTaskId", workTaskId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = (IList)MainHelper.PlatformSqlMap.GetList("SelectPS_WorkOutTimeList", sqlStr);
+                IList li = (IList)MainHelper.PlatformSqlMap.GetList("SelectWF_WorkOutTimeList", sqlStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -194,7 +194,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@workFlowId", workFlowId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = (IList)MainHelper.PlatformSqlMap.GetList("SelectPS_WorkOutTimeList", sqlStr);
+                IList li = (IList)MainHelper.PlatformSqlMap.GetList("SelectWF_WorkOutTimeList", sqlStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -245,7 +245,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@workTaskId", workTaskId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteNonQuery(sqlItem);
-                return MainHelper.PlatformSqlMap.DeleteByWhere<PS_WorkOutTime>(sqlStr);
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkOutTime>(sqlStr);
             }
             catch (Exception ex)
             {

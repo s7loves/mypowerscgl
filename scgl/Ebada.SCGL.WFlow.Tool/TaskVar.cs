@@ -46,7 +46,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@TaskVarId", TaskVarId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_TaskVarList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TaskVarList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -132,7 +132,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_TaskVar tv = new PS_TaskVar();
+                WF_TaskVar tv = new WF_TaskVar();
                 tv.TaskVarId=this.TaskVarId;
                 tv.WorkFlowId=this.WorkFlowId;
                 tv.WorkTaskId=this.WorkTaskId;
@@ -144,10 +144,10 @@ namespace Ebada.SCGL.WFlow.Tool
                 tv.TableField=this.TableField;
                 tv.InitValue=this.InitValue;
                 tv.AccessType = this.AccessType;
-                if(MainHelper.PlatformSqlMap.GetOneByKey <PS_TaskVar>(tv)==null)
-                MainHelper.PlatformSqlMap.Create<PS_TaskVar>(tv);
+                if(MainHelper.PlatformSqlMap.GetOneByKey <WF_TaskVar>(tv)==null)
+                MainHelper.PlatformSqlMap.Create<WF_TaskVar>(tv);
                 else
-                    MainHelper.PlatformSqlMap.Update<PS_TaskVar>(tv);
+                    MainHelper.PlatformSqlMap.Update<WF_TaskVar>(tv);
             }
             catch (Exception ex)
             {
@@ -169,7 +169,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_TaskVar tv = new PS_TaskVar();
+                WF_TaskVar tv = new WF_TaskVar();
                 tv.TaskVarId = this.TaskVarId;
                 tv.WorkFlowId = this.WorkFlowId;
                 tv.WorkTaskId = this.WorkTaskId;
@@ -181,7 +181,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 tv.TableField = this.TableField;
                 tv.InitValue = this.InitValue;
                 tv.AccessType = this.AccessType;
-                MainHelper.PlatformSqlMap.Update<PS_TaskVar>(tv);
+                MainHelper.PlatformSqlMap.Update<WF_TaskVar>(tv);
             }
             catch (Exception ex)
             {
@@ -204,7 +204,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@TaskVarId", TaskVarId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteNonQuery(sqlItem);
-                return MainHelper.PlatformSqlMap.DeleteByWhere<PS_TaskVar>(tmpSql);
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_TaskVar>(tmpSql);
                
             }
             catch (Exception ex)
@@ -227,7 +227,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@workflowId", workflowId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_TaskVarList", tmpSql);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TaskVarList", tmpSql);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -257,7 +257,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@WorkTaskId", taskId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_TaskVarList", tmpSql);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TaskVarList", tmpSql);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -287,7 +287,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@VarName", varName);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_TaskVarList", tmpSql);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TaskVarList", tmpSql);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -316,7 +316,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@workflowId", workflowId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_TaskVarList", tmpSql);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TaskVarList", tmpSql);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -339,7 +339,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //sqlItem.CommandText = tmpSql;
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.RecordExists(sqlItem);
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_TaskVarList", tmpSql);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TaskVarList", tmpSql);
             if (li.Count > 0) return true;
             return false; 
 

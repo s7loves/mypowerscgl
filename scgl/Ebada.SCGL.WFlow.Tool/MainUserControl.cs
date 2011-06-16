@@ -54,7 +54,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return  agent.ExecuteNonQuery(sqlItem);
                 string tmpStr = " where  MainUserCtrlId='" + mainUserCtrlId + "'";
-                return MainHelper.PlatformSqlMap.DeleteByWhere<PS_MainUserControl>(tmpStr); 
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_MainUserControl>(tmpStr); 
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string tmpStr = " where  MainUserCtrlId='" + mainUserCtrlId + "' order by CtrlOrderNbr";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_UserControlsViewList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_UserControlsViewList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -105,7 +105,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string tmpStr = "  order by mucCaption";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_UserControlsViewList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_UserControlsViewList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -181,11 +181,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_MainUserControl muc = new PS_MainUserControl();
+                WF_MainUserControl muc = new WF_MainUserControl();
                 muc.MainUserCtrlId= MainUserCtrlId;
                 muc.mucCaption= mucCaption;
                 muc.mucDescription = mucDescription;
-                MainHelper.PlatformSqlMap.Create<PS_MainUserControl>(muc); 
+                MainHelper.PlatformSqlMap.Create<WF_MainUserControl>(muc); 
 
             }
             catch (Exception ex)
@@ -207,11 +207,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_MainUserControl muc = new PS_MainUserControl();
+                WF_MainUserControl muc = new WF_MainUserControl();
                 muc.MainUserCtrlId = MainUserCtrlId;
                 muc.mucCaption = mucCaption;
                 muc.mucDescription = mucDescription;
-                MainHelper.PlatformSqlMap.Update<PS_MainUserControl>(muc); 
+                MainHelper.PlatformSqlMap.Update<WF_MainUserControl>(muc); 
             }
             catch (Exception ex)
             {
@@ -234,7 +234,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string tmpStr = " where   MainUserCtrlId='" + mainUserControlId + "'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_MainUserControlList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_MainUserControlList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -265,7 +265,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //return agent.ExecuteDataTable(sqlItem);
 
                 string tmpStr = " where   mucCaption like '%" + mainUserCtrlCaption + "%'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_MainUserControlList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_MainUserControlList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -300,12 +300,12 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@ctrlState", ctrlState);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlItem);
-                PS_UserControlsLink ucl = new PS_UserControlsLink();
+                WF_UserControlsLink ucl = new WF_UserControlsLink();
                 ucl.MainUserCtrlId= mainUserCtrlId;
                 ucl.UserControlId= userContrlsId;
                 ucl.CtrlOrderNbr= ctrlOrderNbr;
                 ucl.CtrlState = ctrlState;
-                MainHelper.PlatformSqlMap.Create<PS_UserControlsLink>(ucl); 
+                MainHelper.PlatformSqlMap.Create<WF_UserControlsLink>(ucl); 
 
 
                
@@ -333,7 +333,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlItem);
                 string tmpSql = " where mainUserCtrlId='" + mainUserCtrlId + "'and userContrlsId='" + userContrlsId + "'";
-                 MainHelper.PlatformSqlMap.DeleteByWhere<PS_UserControlsLink>(tmpSql); 
+                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_UserControlsLink>(tmpSql); 
 
             }
             catch (Exception ex)
@@ -356,7 +356,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlItem);
                 string tmpSql = " where mainUserCtrlId='" + mainUserCtrlId + "'";
-                MainHelper.PlatformSqlMap.DeleteByWhere<PS_UserControlsLink>(tmpSql); 
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_UserControlsLink>(tmpSql); 
 
             }
             catch (Exception ex)
@@ -376,7 +376,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
 
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_UserControlsLinkleftJoinWorkTaskControlsByWorkFlowID", workFlowId);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_UserControlsLinkleftJoinWorkTaskControlsByWorkFlowID", workFlowId);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -403,7 +403,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@workFlowId", workFlowId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_MainUserControlJoinWorkTaskControlsByWorkFlowID", workFlowId);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_MainUserControlJoinWorkTaskControlsByWorkFlowID", workFlowId);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -430,7 +430,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@workFlowId", workFlowId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_UserControlsJoinPS_WorkTaskControlsByWorkFlowID", workFlowId);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_UserControlsJoinWF_WorkTaskControlsByWorkFlowID", workFlowId);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -453,7 +453,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where  taskControlId='" + taskControlId + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorktaskControlsList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorktaskControlsList", tmpStr);
             if (li.Count > 0) return true;
             return false; 
         }
@@ -466,7 +466,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where  MainUserCtrlId='" + mainUserCtrlId + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_MainUserControlList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_MainUserControlList", tmpStr);
             if (li.Count > 0) return true;
             return false; 
 
@@ -480,7 +480,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where  UserControlId='" + userCtrlId + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_UserControlsList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_UserControlsList", tmpStr);
             if (li.Count > 0) return true;
             return false; 
 
@@ -494,7 +494,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where  mucLinkId='" + ctrlLinkId + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_UserControlsLinkList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_UserControlsLinkList", tmpStr);
             if (li.Count > 0) return true;
             return false; 
 

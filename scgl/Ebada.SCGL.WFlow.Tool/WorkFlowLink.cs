@@ -128,7 +128,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 throw new Exception("LinkExist方法错误，linkId 不能为空！");
             string tmpStr = " where WorkLinkId='" + linkId + "'";
             bool isfimd = false;
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkLinkList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkLinkList", tmpStr);
             if (li.Count > 0) isfimd = true;
             return isfimd;
         }
@@ -160,7 +160,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     xx = xx.Substring(0, xx.Length - 1);
                     yy = yy.Substring(0, yy.Length - 1);
                 }
-                PS_WorkLink wl = new PS_WorkLink();
+                WF_WorkLink wl = new WF_WorkLink();
                 wl.WorkLinkId=this.LinkId;
                 wl.WorkFlowId=this.WorkflowId;
                 wl.StartTaskId=StartTaskId;
@@ -172,7 +172,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (CommandName == "")
                 {
                     string tmpStr = " where  WorkFlowId='" + WorkflowId + "' and WorkTaskId='"+StartTaskId+"'";
-                    IList<PS_WorkTaskCommands> li = MainHelper.PlatformSqlMap.GetList<PS_WorkTaskCommands>("SelectPS_WorkTaskCommandsList", tmpStr);
+                    IList<WF_WorkTaskCommands> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", tmpStr);
                     if (li.Count > 0)
                     {
                         CommandName = li[0].CommandName  ;//默认提交
@@ -185,7 +185,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 wl.CommandName = this.CommandName;
                 wl.Priority = this.Priority;
-                MainHelper.PlatformSqlMap.Create<PS_WorkLink>(wl);
+                MainHelper.PlatformSqlMap.Create<WF_WorkLink>(wl);
             }
             catch (Exception ex)
             {
@@ -220,7 +220,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     xx = xx.Substring(0, xx.Length - 1);
                     yy = yy.Substring(0, yy.Length - 1);
                 }
-                PS_WorkLink wl = new PS_WorkLink();
+                WF_WorkLink wl = new WF_WorkLink();
                 wl.WorkLinkId = this.LinkId;
                 wl.WorkFlowId = this.WorkflowId;
                 wl.StartTaskId = StartTaskId;
@@ -233,7 +233,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (CommandName == "")
                 {
                     string tmpStr = " where  WorkFlowId='" + WorkflowId + "' and WorkTaskId='" + StartTaskId + "'";
-                    IList<PS_WorkTaskCommands> li = MainHelper.PlatformSqlMap.GetList<PS_WorkTaskCommands>("SelectPS_WorkTaskCommandsList", tmpStr);
+                    IList<WF_WorkTaskCommands> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", tmpStr);
                     if (li.Count > 0)
                     {
                         CommandName = li[0].CommandName;//默认提交
@@ -246,7 +246,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 wl.CommandName = this.CommandName;
                 wl.Priority = this.Priority;
-                MainHelper.PlatformSqlMap.Update <PS_WorkLink>(wl);
+                MainHelper.PlatformSqlMap.Update <WF_WorkLink>(wl);
             }
             catch (Exception ex)
             {
@@ -265,7 +265,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 string tmpSql = "where WorkFlowId='" + workflowId + "' and WorkLinkId='" + workLinkId + "'";
 
-                return MainHelper.PlatformSqlMap.DeleteByWhere<PS_WorkLink>(tmpSql);
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkLink>(tmpSql);
             }
             catch (Exception ex)
             {
@@ -283,7 +283,7 @@ namespace Ebada.SCGL.WFlow.Tool
             try
             {
                 string tmpStr = "where WorkFlowId='" + workflowId +"'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskLinkViewList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskLinkViewList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();

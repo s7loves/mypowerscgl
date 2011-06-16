@@ -36,7 +36,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@commandId", commandId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskCommandsList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskCommandsList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -116,13 +116,13 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_WorkTaskCommands wtc = new PS_WorkTaskCommands();
+                WF_WorkTaskCommands wtc = new WF_WorkTaskCommands();
                 wtc.CommandId=this.CommandId;
                 wtc.WorkFlowId= this.WorkFlowId;
                 wtc.WorkTaskId=this.WorkTaskId;
                 wtc.CommandName=this.CommandName;
                 wtc.Description=this.Description;
-                MainHelper.PlatformSqlMap.Create<PS_WorkTaskCommands>(wtc); 
+                MainHelper.PlatformSqlMap.Create<WF_WorkTaskCommands>(wtc); 
             }
             catch (Exception ex)
             {
@@ -144,13 +144,13 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_WorkTaskCommands wtc = new PS_WorkTaskCommands();
+                WF_WorkTaskCommands wtc = new WF_WorkTaskCommands();
                 wtc.CommandId = this.CommandId;
                 wtc.WorkFlowId = this.WorkFlowId;
                 wtc.WorkTaskId = this.WorkTaskId;
                 wtc.CommandName = this.CommandName;
                 wtc.Description = this.Description;
-                MainHelper.PlatformSqlMap.Update<PS_WorkTaskCommands>(wtc); 
+                MainHelper.PlatformSqlMap.Update<WF_WorkTaskCommands>(wtc); 
             }
             catch (Exception ex)
             {
@@ -173,7 +173,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@commandId", commandId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteNonQuery(sqlItem);
-                return MainHelper.PlatformSqlMap.DeleteByWhere<PS_WorkTaskCommands>(sqlStr);
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskCommands>(sqlStr);
 
             }
             catch (Exception ex)
@@ -191,7 +191,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@workFlowId", workFlowId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskCommandsList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskCommandsList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -215,7 +215,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //sqlItem.CommandText = tmpSql;
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.RecordExists(sqlItem);
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskCommandsList", tmpSql);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskCommandsList", tmpSql);
             if (li.Count > 0) return true;
             return false ; 
 
