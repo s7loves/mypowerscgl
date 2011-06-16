@@ -193,10 +193,10 @@ CREATE TABLE [dbo].[WF_WorkFlow](
 	[WFClassId] [varchar](50) NULL,
 	[Version] [varchar](50) NULL,
 	[Status] [char](1) NULL,
-	[CreateUserId] [varchar](10) NULL,
+	[CreateUserId] [varchar](50) NULL,
 	[CreateDateTime] [datetime] NULL,
 	[IsSignOut] [varchar](50) NULL,
-	[SignOutUserId] [varchar](10) NULL,
+	[SignOutUserId] [varchar](50) NULL,
 	[WorkCalendarId] [varchar](50) NULL,
 	[Description] [varchar](512) NULL,
 	[MgrUrl] [varchar](512) NULL,
@@ -400,8 +400,8 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[WF
 BEGIN
 CREATE TABLE [dbo].[WF_AccreditUser](
 	[AUserId] [varchar](50) NOT NULL,
-	[AccreditFromUserId] [varchar](10) NULL,
-	[AccreditToUserId] [varchar](10) NULL,
+	[AccreditFromUserId] [varchar](50) NULL,
+	[AccreditToUserId] [varchar](50) NULL,
 	[AccreditDateTime] [datetime] NULL,
 	[AccreditStatus] [char](1) NULL,
 	[AcWorkflowId] [varchar](50) NULL,
