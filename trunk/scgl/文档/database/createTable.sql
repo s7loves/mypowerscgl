@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     2011-6-14 22:00:30                           */
+/* Created on:     2011-6-16 14:56:43                           */
 /*==============================================================*/
 
 
@@ -1495,11 +1495,11 @@ create table dbo.PJ_08sbtdjx (
    ID                   nvarchar(50)         not null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
-   rq                   datetime             null,
-   LineName             nvarchar(50)         null,
+   rq                   nvarchar(50)         null,
+   LineName             datetime             null,
    jxnr                 nvarchar(50)         null,
    tdsj                 datetime             null,
-   sdsj                 datetime             null,
+   sdsj                 nvarchar(50)         null,
    tdxz                 nvarchar(500)        null,
    gzfzr                nvarchar(50)         null,
    CreateMan            nvarchar(10)         null,
@@ -2425,6 +2425,7 @@ create table dbo.PJ_14aqgjsy (
    OrgName              nvarchar(50)         null,
    rq                   datetime             null,
    jr                   nvarchar(250)        null,
+   sjr                  nvarchar(10)         null,
    syr                  nvarchar(10)         null,
    ajqz                 nvarchar(50)         null,
    xcsyrq               datetime             null,
@@ -2468,6 +2469,11 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '结 论',
    'user', 'dbo', 'table', 'PJ_14aqgjsy', 'column', 'jr'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '送检人',
+   'user', 'dbo', 'table', 'PJ_14aqgjsy', 'column', 'sjr'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -2914,7 +2920,7 @@ create table dbo.PJ_21gzbxdh (
    ID                   nvarchar(50)         not null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
-   rq                   datetime             null,
+   rq                   nvarchar(50)         null,
    lxfs                 nvarchar(50)         null,
    yhdz                 nvarchar(50)         null,
    gzjk                 nvarchar(50)         null,
@@ -3063,7 +3069,7 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 execute sp_addextendedproperty 'MS_Description', 
-   '报修时期时间',
+   '报修时间',
    'user', 'dbo', 'table', 'PJ_22', 'column', 'bxsj'
 go
 
@@ -3482,15 +3488,15 @@ go
 /*==============================================================*/
 create table dbo.PJ_dyk (
    ID                   nvarchar(50)         not null,
+   ParentID             nvarchar(50)         null,
    dx                   nvarchar(50)         null,
    sx                   nvarchar(50)         null,
    bh                   nvarchar(50)         null,
    zjm                  nvarchar(50)         null,
+   nr4                  nvarchar(2000)       null,
    nr                   nvarchar(2000)       null,
    nr2                  nvarchar(2000)       null,
    nr3                  nvarchar(2000)       null,
-   nr4                  nvarchar(2000)       null,
-   ParentID             nvarchar(50)         null,
    constraint PK_PJ_DYK primary key (ID)
 )
 go
@@ -3503,6 +3509,11 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '记录ID',
    'user', 'dbo', 'table', 'PJ_dyk', 'column', 'ID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   'ParentID',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'ParentID'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -3527,6 +3538,11 @@ go
 
 execute sp_addextendedproperty 'MS_Description', 
    '短语内容',
+   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr4'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '短语内容',
    'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr'
 go
 
@@ -3538,16 +3554,6 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '短语内容',
    'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr3'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '短语内容',
-   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'nr4'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   'ParentID',
-   'user', 'dbo', 'table', 'PJ_dyk', 'column', 'ParentID'
 go
 
 /*==============================================================*/
