@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     2011-6-16 14:56:43                           */
+/* Created on:     2011-6-16 15:42:42                           */
 /*==============================================================*/
 
 
@@ -174,9 +174,16 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('dbo.rRoleModul') and o.name = 'FK_RROLEMOD_REFERENCE_MMODULFU')
-alter table dbo.rRoleModul
-   drop constraint FK_RROLEMOD_REFERENCE_MMODULFU
+   where r.fkeyid = object_id('dbo.rRoleFun') and o.name = 'FK_RROLEFUN_REFERENCE_MMODULFU')
+alter table dbo.rRoleFun
+   drop constraint FK_RROLEFUN_REFERENCE_MMODULFU
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.rRoleFun') and o.name = 'FK_RROLEFUN_REFERENCE_MROLE')
+alter table dbo.rRoleFun
+   drop constraint FK_RROLEFUN_REFERENCE_MROLE
 go
 
 if exists (select 1
@@ -184,6 +191,13 @@ if exists (select 1
    where r.fkeyid = object_id('dbo.rRoleModul') and o.name = 'FK_RROLEMOD_REFERENCE_MROLE')
 alter table dbo.rRoleModul
    drop constraint FK_RROLEMOD_REFERENCE_MROLE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.rRoleModul') and o.name = 'FK_RROLEMOD_REFERENCE_MMODULE')
+alter table dbo.rRoleModul
+   drop constraint FK_RROLEMOD_REFERENCE_MMODULE
 go
 
 if exists (select 1
@@ -593,6 +607,13 @@ if exists (select 1
            where  id = object_id('dbo.mUser')
             and   type = 'U')
    drop table dbo.mUser
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.rRoleFun')
+            and   type = 'U')
+   drop table dbo.rRoleFun
 go
 
 if exists (select 1
@@ -1495,11 +1516,11 @@ create table dbo.PJ_08sbtdjx (
    ID                   nvarchar(50)         not null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
-   rq                   nvarchar(50)         null,
-   LineName             datetime             null,
+   rq                   datetime             null,
+   LineName             nvarchar(50)         null,
    jxnr                 nvarchar(50)         null,
    tdsj                 datetime             null,
-   sdsj                 nvarchar(50)         null,
+   sdsj                 datetime             null,
    tdxz                 nvarchar(500)        null,
    gzfzr                nvarchar(50)         null,
    CreateMan            nvarchar(10)         null,
@@ -2920,7 +2941,7 @@ create table dbo.PJ_21gzbxdh (
    ID                   nvarchar(50)         not null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
-   rq                   nvarchar(50)         null,
+   rq                   datetime             null,
    lxfs                 nvarchar(50)         null,
    yhdz                 nvarchar(50)         null,
    gzjk                 nvarchar(50)         null,
@@ -3069,7 +3090,7 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 execute sp_addextendedproperty 'MS_Description', 
-   '报修时间',
+   '报修时期时间',
    'user', 'dbo', 'table', 'PJ_22', 'column', 'bxsj'
 go
 
@@ -4611,6 +4632,7 @@ create table dbo.PS_xl (
    WireType             nvarchar(50)         null,
    WireLength           int                  null,
    TotalLength          int                  null,
+   gdbj                 int                  null,
    TheoryLoss           decimal(8,5)         null,
    ActualLoss           decimal(8,5)         null,
    constraint PK_PS_XL primary key (LineID)
@@ -4713,6 +4735,11 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 execute sp_addextendedproperty 'MS_Description', 
+   '供电半径',
+   'user', 'dbo', 'table', 'PS_xl', 'column', 'gdbj'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
    '理论线损',
    'user', 'dbo', 'table', 'PS_xl', 'column', 'TheoryLoss'
 go
@@ -4793,18 +4820,20 @@ go
 /* Table: mModule                                               */
 /*==============================================================*/
 create table dbo.mModule (
-   Modu_ID              nvarchar(50)         collate Chinese_PRC_CI_AS not null,
-   ModuTypes            nvarchar(250)        collate Chinese_PRC_CI_AS null,
    ModuName             nvarchar(100)        collate Chinese_PRC_CI_AS null,
+   ModuTypes            nvarchar(250)        collate Chinese_PRC_CI_AS null,
    AssemblyFileName     nvarchar(200)        collate Chinese_PRC_CI_AS null,
    Sequence             int                  null constraint DF__mModule__Sequenc__45BE5BA9 default (0),
+   MethodName           nvarchar(50)         collate Chinese_PRC_CI_AS null,
+   MethodParam          nvarchar(250)        null,
+   IconName             nvarchar(50)         collate Chinese_PRC_CI_AS null,
+   visiableFlag         bit                  null,
+   ActivityFlag         bit                  null,
    IsCores              nvarchar(50)         collate Chinese_PRC_CI_AS null constraint DF__mModule__IsCores__46B27FE2 default (0),
    Description          nvarchar(500)        collate Chinese_PRC_CI_AS null constraint DF__mModule__Descrip__47A6A41B default rtrim(''),
+   Modu_ID              nvarchar(50)         collate Chinese_PRC_CI_AS not null,
    ParentID             nvarchar(50)         collate Chinese_PRC_CI_AS null,
-   MethodName           nvarchar(50)         collate Chinese_PRC_CI_AS null,
-   IconName             nvarchar(50)         collate Chinese_PRC_CI_AS null,
-   ActivityFlag         bit                  null,
-   visiableFlag         bit                  null,
+   Rights               nvarchar(150)        null,
    constraint PK_mModule primary key nonclustered (Modu_ID)
          WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 )
@@ -4817,18 +4846,13 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 execute sp_addextendedproperty 'MS_Description', 
-   '模块标识',
-   'user', 'dbo', 'table', 'mModule', 'column', 'Modu_ID'
+   '模块名称',
+   'user', 'dbo', 'table', 'mModule', 'column', 'ModuName'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
    '模块类型',
    'user', 'dbo', 'table', 'mModule', 'column', 'ModuTypes'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '模块名称',
-   'user', 'dbo', 'table', 'mModule', 'column', 'ModuName'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -4842,7 +4866,32 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 execute sp_addextendedproperty 'MS_Description', 
-   '是否为核心',
+   '方法',
+   'user', 'dbo', 'table', 'mModule', 'column', 'MethodName'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '参数',
+   'user', 'dbo', 'table', 'mModule', 'column', 'MethodParam'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '图标',
+   'user', 'dbo', 'table', 'mModule', 'column', 'IconName'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '显示',
+   'user', 'dbo', 'table', 'mModule', 'column', 'visiableFlag'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '流程',
+   'user', 'dbo', 'table', 'mModule', 'column', 'ActivityFlag'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '系统',
    'user', 'dbo', 'table', 'mModule', 'column', 'IsCores'
 go
 
@@ -4852,28 +4901,18 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 execute sp_addextendedproperty 'MS_Description', 
+   '模块标识',
+   'user', 'dbo', 'table', 'mModule', 'column', 'Modu_ID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
    'ParentID',
    'user', 'dbo', 'table', 'mModule', 'column', 'ParentID'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
-   '方法',
-   'user', 'dbo', 'table', 'mModule', 'column', 'MethodName'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '图标',
-   'user', 'dbo', 'table', 'mModule', 'column', 'IconName'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '作业标记',
-   'user', 'dbo', 'table', 'mModule', 'column', 'ActivityFlag'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '是否显示',
-   'user', 'dbo', 'table', 'mModule', 'column', 'visiableFlag'
+   '权限',
+   'user', 'dbo', 'table', 'mModule', 'column', 'Rights'
 go
 
 /*==============================================================*/
@@ -5231,28 +5270,59 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
-/* Table: rRoleModul                                            */
+/* Table: rRoleFun                                              */
 /*==============================================================*/
-create table dbo.rRoleModul (
+create table dbo.rRoleFun (
    FunID                nvarchar(50)         not null,
    RoleID               nvarchar(50)         not null,
-   constraint PK_RROLEMODUL primary key (FunID, RoleID)
+   constraint PK_RROLEFUN primary key (FunID, RoleID)
 )
 go
 
 execute sp_addextendedproperty 'MS_Description', 
-   '角色权限',
-   'user', 'dbo', 'table', 'rRoleModul'
+   '角色操作权限',
+   'user', 'dbo', 'table', 'rRoleFun'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
    '功能ID',
-   'user', 'dbo', 'table', 'rRoleModul', 'column', 'FunID'
+   'user', 'dbo', 'table', 'rRoleFun', 'column', 'FunID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '角色ID',
+   'user', 'dbo', 'table', 'rRoleFun', 'column', 'RoleID'
+go
+
+/*==============================================================*/
+/* Table: rRoleModul                                            */
+/*==============================================================*/
+create table dbo.rRoleModul (
+   RoleID               nvarchar(50)         not null,
+   Modu_ID              nvarchar(50)         not null,
+   "Right"              nvarchar(150)        null,
+   constraint PK_RROLEMODUL primary key (RoleID, Modu_ID)
+)
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '角色模块',
+   'user', 'dbo', 'table', 'rRoleModul'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
    '角色ID',
    'user', 'dbo', 'table', 'rRoleModul', 'column', 'RoleID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '模块标识',
+   'user', 'dbo', 'table', 'rRoleModul', 'column', 'Modu_ID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '权限',
+   'user', 'dbo', 'table', 'rRoleModul', 'column', 'Right'
 go
 
 /*==============================================================*/
@@ -5427,16 +5497,28 @@ alter table dbo.mUser
       references dbo.mOrg (OrgCode)
 go
 
-alter table dbo.rRoleModul
-   add constraint FK_RROLEMOD_REFERENCE_MMODULFU foreign key (FunID)
+alter table dbo.rRoleFun
+   add constraint FK_RROLEFUN_REFERENCE_MMODULFU foreign key (FunID)
       references dbo.mModulFun (FunID)
+         on update cascade on delete cascade
+go
+
+alter table dbo.rRoleFun
+   add constraint FK_RROLEFUN_REFERENCE_MROLE foreign key (RoleID)
+      references dbo.mRole (RoleID)
          on update cascade on delete cascade
 go
 
 alter table dbo.rRoleModul
    add constraint FK_RROLEMOD_REFERENCE_MROLE foreign key (RoleID)
       references dbo.mRole (RoleID)
-         on update cascade on delete cascade
+         on delete cascade
+go
+
+alter table dbo.rRoleModul
+   add constraint FK_RROLEMOD_REFERENCE_MMODULE foreign key (Modu_ID)
+      references dbo.mModule (Modu_ID)
+         on delete cascade
 go
 
 alter table dbo.rUserRole
