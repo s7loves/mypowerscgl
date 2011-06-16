@@ -109,43 +109,41 @@
     <EmbeddedResource Include="LP_Temple.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PS_AccreditUser.xml" />
-    <EmbeddedResource Include="PS_FrmworkParamer.xml" />
-    <EmbeddedResource Include="PS_MainUserControl.xml" />
-    <EmbeddedResource Include="PS_Operator.xml" />
-    <EmbeddedResource Include="PS_OperatorInstance.xml" />
-    <EmbeddedResource Include="PS_OperContentView.xml" />
-    <EmbeddedResource Include="PS_SubWorkFlow.xml" />
-    <EmbeddedResource Include="PS_TaskVar.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="PS_UserControls.xml" />
-    <EmbeddedResource Include="PS_UserControlsLink.xml" />
-    <EmbeddedResource Include="PS_UserControlsView.xml" />
-    <EmbeddedResource Include="PS_UserRoleView.xml" />
-    <EmbeddedResource Include="PS_WorkFlow.xml" />
-    <EmbeddedResource Include="PS_WorkflowAbnormal.xml" />
-    <EmbeddedResource Include="PS_WorkFlowClass.xml" />
-    <EmbeddedResource Include="PS_WorkFlowEvent.xml" />
-    <EmbeddedResource Include="PS_WorkFlowInstance.xml" />
-    <EmbeddedResource Include="PS_WorkLink.xml" />
-    <EmbeddedResource Include="PS_WorkOutTime.xml" />
-    <EmbeddedResource Include="PS_WorkServiceMessage.xml" />
-    <EmbeddedResource Include="PS_WorkTask.xml" />
-    <EmbeddedResource Include="PS_WorkTaskAccreditView.xml" />
-    <EmbeddedResource Include="PS_WorkTaskCommands.xml" />
-    <EmbeddedResource Include="PS_WorkTaskControls.xml" />
-    <EmbeddedResource Include="PS_WorkTaskControlsView.xml" />
-    <EmbeddedResource Include="PS_WorkTaskInsAccreditView.xml" />
-    <EmbeddedResource Include="PS_WorkTaskInsNextOper.xml" />
-    <EmbeddedResource Include="PS_WorkTaskInstance.xml" />
-    <EmbeddedResource Include="PS_WorkTaskInstanceView.xml" />
-    <EmbeddedResource Include="PS_WorkTaskLinkView.xml" />
-    <EmbeddedResource Include="PS_WorkTaskPower.xml" />
-    <EmbeddedResource Include="PS_WorkTaskView.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="WFModul.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WF_AccreditUser.xml" />
+    <EmbeddedResource Include="WF_FrmworkParamer.xml" />
+    <EmbeddedResource Include="WF_MainUserControl.xml" />
+    <EmbeddedResource Include="WF_Operator.xml" />
+    <EmbeddedResource Include="WF_OperatorInstance.xml" />
+    <EmbeddedResource Include="WF_OperContentView.xml" />
+    <EmbeddedResource Include="WF_SubWorkFlow.xml" />
+    <EmbeddedResource Include="WF_TaskVar.xml" />
+    <EmbeddedResource Include="WF_UserControls.xml" />
+    <EmbeddedResource Include="WF_UserControlsLink.xml" />
+    <EmbeddedResource Include="WF_UserControlsView.xml" />
+    <EmbeddedResource Include="WF_UserRoleView.xml" />
+    <EmbeddedResource Include="WF_WorkFlow.xml" />
+    <EmbeddedResource Include="WF_WorkflowAbnormal.xml" />
+    <EmbeddedResource Include="WF_WorkFlowClass.xml" />
+    <EmbeddedResource Include="WF_WorkFlowEvent.xml" />
+    <EmbeddedResource Include="WF_WorkFlowInstance.xml" />
+    <EmbeddedResource Include="WF_WorkLink.xml" />
+    <EmbeddedResource Include="WF_WorkOutTime.xml" />
+    <EmbeddedResource Include="WF_WorkServiceMessage.xml" />
+    <EmbeddedResource Include="WF_WorkTask.xml" />
+    <EmbeddedResource Include="WF_WorkTaskAccreditView.xml" />
+    <EmbeddedResource Include="WF_WorkTaskCommands.xml" />
+    <EmbeddedResource Include="WF_WorkTaskControls.xml" />
+    <EmbeddedResource Include="WF_WorkTaskControlsView.xml" />
+    <EmbeddedResource Include="WF_WorkTaskInsAccreditView.xml" />
+    <EmbeddedResource Include="WF_WorkTaskInsNextOper.xml" />
+    <EmbeddedResource Include="WF_WorkTaskInstance.xml" />
+    <EmbeddedResource Include="WF_WorkTaskInstanceView.xml" />
+    <EmbeddedResource Include="WF_WorkTaskLinkView.xml" />
+    <EmbeddedResource Include="WF_WorkTaskPower.xml" />
+    <EmbeddedResource Include="WF_WorkTaskView.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="flow\" />
