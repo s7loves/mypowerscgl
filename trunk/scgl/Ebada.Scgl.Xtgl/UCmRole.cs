@@ -126,5 +126,9 @@ namespace Ebada.Scgl.Xtgl {
                 }
             }
         }
+
+        private void btRight_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+
+        }
     }
 }
