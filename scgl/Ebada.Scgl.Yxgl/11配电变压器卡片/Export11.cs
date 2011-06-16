@@ -18,6 +18,7 @@ namespace Ebada.Scgl.Yxgl {
       
         public static void ExportExcel(PS_tqbyq obj)
         {
+            //lgm
             //页数
             int pagecount =1;
             ExcelAccess ex = new ExcelAccess();
