@@ -5,18 +5,12 @@
   </alias>
   <resultMaps>
       <resultMap id="PJ_18gysbpj_AllColumns" class="PJ_18gysbpj">
-        <result property="ID" column="ID" />
+        <result property="PJ_ID" column="PJ_ID" />
         <result property="OrgCode" column="OrgCode" />
         <result property="OrgName" column="OrgName" />
         <result property="rq" column="rq" />
-        <result property="xh" column="xh" />
-        <result property="sbdy" column="sbdy" />
-        <result property="one" column="one" />
-        <result property="two" column="two" />
-        <result property="three" column="three" />
-        <result property="whl" column="whl" />
-        <result property="qxnr" column="qxnr" />
-        <result property="fzdw" column="fzdw" />
+        <result property="fzr" column="fzr" />
+        <result property="zbr" column="zbr" />
         <result property="gzrjID" column="gzrjID" />
         <result property="CreateMan" column="CreateMan" />
         <result property="CreateDate" column="CreateDate" />
@@ -26,18 +20,12 @@
   <statements>
    <select id="SelectPJ_18gysbpjList" resultMap="PJ_18gysbpj_AllColumns" parameterClass="string">
         SELECT 
-         [ID],
+         [PJ_ID],
          [OrgCode],
          [OrgName],
          [rq],
-         [xh],
-         [sbdy],
-         [one],
-         [two],
-         [three],
-         [whl],
-         [qxnr],
-         [fzdw],
+         [fzr],
+         [zbr],
          [gzrjID],
          [CreateMan],
          [CreateDate]
@@ -47,35 +35,23 @@
    
    <select id="SelectPJ_18gysbpjByHash" parameterClass="Hashtable">
          SELECT 
-         [ID],
+         [PJ_ID],
          [OrgCode],
          [OrgName],
          [rq],
-         [xh],
-         [sbdy],
-         [one],
-         [two],
-         [three],
-         [whl],
-         [qxnr],
-         [fzdw],
+         [fzr],
+         [zbr],
          [gzrjID],
          [CreateMan],
          [CreateDate]
           FROM PJ_18gysbpj
      <dynamic prepend="WHERE">
-       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="PJ_ID">[PJ_ID]='$PJ_ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
-       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
-       <isNotNull prepend="AND" property="sbdy">[sbdy]='$sbdy$'</isNotNull>
-       <isNotNull prepend="AND" property="one">[one]='$one$'</isNotNull>
-       <isNotNull prepend="AND" property="two">[two]='$two$'</isNotNull>
-       <isNotNull prepend="AND" property="three">[three]='$three$'</isNotNull>
-       <isNotNull prepend="AND" property="whl">[whl]='$whl$'</isNotNull>
-       <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
-       <isNotNull prepend="AND" property="fzdw">[fzdw]='$fzdw$'</isNotNull>
+       <isNotNull prepend="AND" property="fzr">[fzr]='$fzr$'</isNotNull>
+       <isNotNull prepend="AND" property="zbr">[zbr]='$zbr$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
@@ -83,24 +59,18 @@
    </select>
    <select id="SelectPJ_18gysbpjByKey" resultMap="PJ_18gysbpj_AllColumns" parameterClass="PJ_18gysbpj">
          SELECT 
-         [ID],
+         [PJ_ID],
          [OrgCode],
          [OrgName],
          [rq],
-         [xh],
-         [sbdy],
-         [one],
-         [two],
-         [three],
-         [whl],
-         [qxnr],
-         [fzdw],
+         [fzr],
+         [zbr],
          [gzrjID],
          [CreateMan],
          [CreateDate]
          FROM PJ_18gysbpj
          WHERE 
-           ID = #ID#
+           PJ_ID = #PJ_ID#
 
    </select>
  
@@ -108,7 +78,7 @@
         DELETE FROM 
          PJ_18gysbpj
            WHERE
-         ID = #ID#
+         PJ_ID = #PJ_ID#
 
    </delete>
    
@@ -120,7 +90,7 @@
         DELETE FROM 
          PJ_18gysbpj
            WHERE
-         ID = #ID#
+         PJ_ID = #PJ_ID#
     
    </delete>
    
@@ -130,55 +100,37 @@
              [OrgCode]=#OrgCode#,
              [OrgName]=#OrgName#,
              [rq]=#rq#,
-             [xh]=#xh#,
-             [sbdy]=#sbdy#,
-             [one]=#one#,
-             [two]=#two#,
-             [three]=#three#,
-             [whl]=#whl#,
-             [qxnr]=#qxnr#,
-             [fzdw]=#fzdw#,
+             [fzr]=#fzr#,
+             [zbr]=#zbr#,
              [gzrjID]=#gzrjID#,
              [CreateMan]=#CreateMan#,
              [CreateDate]=#CreateDate#
             WHERE 
-              ID = #ID#
+              PJ_ID = #PJ_ID#
 
    </update>
   
    <insert id="InsertPJ_18gysbpj" parameterClass="PJ_18gysbpj">
         INSERT INTO PJ_18gysbpj
          (
-         [ID],
+         [PJ_ID],
          [OrgCode],
          [OrgName],
          [rq],
-         [xh],
-         [sbdy],
-         [one],
-         [two],
-         [three],
-         [whl],
-         [qxnr],
-         [fzdw],
+         [fzr],
+         [zbr],
          [gzrjID],
          [CreateMan],
          [CreateDate]
          )
        VALUES
          (
-         #ID#,
+         #PJ_ID#,
          #OrgCode#,
          #OrgName#,
          #rq#,
-         #xh#,
-         #sbdy#,
-         #one#,
-         #two#,
-         #three#,
-         #whl#,
-         #qxnr#,
-         #fzdw#,
+         #fzr#,
+         #zbr#,
          #gzrjID#,
          #CreateMan#,
          #CreateDate#
@@ -190,18 +142,12 @@
          SELECT Count(*) 
           FROM PJ_18gysbpj
      <dynamic prepend="WHERE">
-       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="PJ_ID">[PJ_ID]='$PJ_ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
-       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
-       <isNotNull prepend="AND" property="sbdy">[sbdy]='$sbdy$'</isNotNull>
-       <isNotNull prepend="AND" property="one">[one]='$one$'</isNotNull>
-       <isNotNull prepend="AND" property="two">[two]='$two$'</isNotNull>
-       <isNotNull prepend="AND" property="three">[three]='$three$'</isNotNull>
-       <isNotNull prepend="AND" property="whl">[whl]='$whl$'</isNotNull>
-       <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
-       <isNotNull prepend="AND" property="fzdw">[fzdw]='$fzdw$'</isNotNull>
+       <isNotNull prepend="AND" property="fzr">[fzr]='$fzr$'</isNotNull>
+       <isNotNull prepend="AND" property="zbr">[zbr]='$zbr$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
