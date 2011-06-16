@@ -11,6 +11,7 @@
         <result property="OrgName" column="OrgName" />
         <result property="rq" column="rq" />
         <result property="jr" column="jr" />
+        <result property="sjr" column="sjr" />
         <result property="syr" column="syr" />
         <result property="ajqz" column="ajqz" />
         <result property="xcsyrq" column="xcsyrq" />
@@ -29,6 +30,7 @@
          [OrgName],
          [rq],
          [jr],
+         [sjr],
          [syr],
          [ajqz],
          [xcsyrq],
@@ -47,6 +49,7 @@
          [OrgName],
          [rq],
          [jr],
+         [sjr],
          [syr],
          [ajqz],
          [xcsyrq],
@@ -61,6 +64,7 @@
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
        <isNotNull prepend="AND" property="jr">[jr]='$jr$'</isNotNull>
+       <isNotNull prepend="AND" property="sjr">[sjr]='$sjr$'</isNotNull>
        <isNotNull prepend="AND" property="syr">[syr]='$syr$'</isNotNull>
        <isNotNull prepend="AND" property="ajqz">[ajqz]='$ajqz$'</isNotNull>
        <isNotNull prepend="AND" property="xcsyrq">[xcsyrq]='$xcsyrq$'</isNotNull>
@@ -77,6 +81,7 @@
          [OrgName],
          [rq],
          [jr],
+         [sjr],
          [syr],
          [ajqz],
          [xcsyrq],
@@ -117,6 +122,7 @@
              [OrgName]=#OrgName#,
              [rq]=#rq#,
              [jr]=#jr#,
+             [sjr]=#sjr#,
              [syr]=#syr#,
              [ajqz]=#ajqz#,
              [xcsyrq]=#xcsyrq#,
@@ -137,6 +143,7 @@
          [OrgName],
          [rq],
          [jr],
+         [sjr],
          [syr],
          [ajqz],
          [xcsyrq],
@@ -152,6 +159,7 @@
          #OrgName#,
          #rq#,
          #jr#,
+         #sjr#,
          #syr#,
          #ajqz#,
          #xcsyrq#,
@@ -172,6 +180,7 @@
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
        <isNotNull prepend="AND" property="jr">[jr]='$jr$'</isNotNull>
+       <isNotNull prepend="AND" property="sjr">[sjr]='$sjr$'</isNotNull>
        <isNotNull prepend="AND" property="syr">[syr]='$syr$'</isNotNull>
        <isNotNull prepend="AND" property="ajqz">[ajqz]='$ajqz$'</isNotNull>
        <isNotNull prepend="AND" property="xcsyrq">[xcsyrq]='$xcsyrq$'</isNotNull>
