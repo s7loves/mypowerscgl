@@ -81,6 +81,8 @@ namespace Ebada.Scgl.Xtgl {
             ImageList imagelist = new ImageList();
             imagelist.ImageStream = (Ebada.Client.Resource.UCGridToolbar.UCGridToolbarImageList);
             barManager1.Images = imagelist;
+            btRight.Glyph = Ebada.Scgl.Core.Properties.Resources.rights;
+            btUser.Glyph = Ebada.Scgl.Core.Properties.Resources.user;
         }
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
@@ -128,7 +130,11 @@ namespace Ebada.Scgl.Xtgl {
         }
 
         private void btRight_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-
+            if (gridView1.GetFocusedRow() != null) {
+                mRole role = gridView1.GetFocusedRow() as mRole;
+                frmRoleModul dlg = new frmRoleModul(role.RoleID,role.RoleName);
+                dlg.ShowDialog();
+            }
         }
     }
 }

@@ -5,38 +5,38 @@
   </alias>
   <resultMaps>
       <resultMap id="rRoleModul_AllColumns" class="rRoleModul">
-        <result property="FunID" column="FunID" />
         <result property="RoleID" column="RoleID" />
+        <result property="Modu_ID" column="Modu_ID" />
       </resultMap>
   </resultMaps>
 
   <statements>
    <select id="SelectrRoleModulList" resultMap="rRoleModul_AllColumns" parameterClass="string">
         SELECT 
-         [FunID],
-         [RoleID]
+         [RoleID],
+         [Modu_ID]
           FROM rRoleModul
           $value$
    </select>
    
    <select id="SelectrRoleModulByHash" parameterClass="Hashtable">
          SELECT 
-         [FunID],
-         [RoleID]
+         [RoleID],
+         [Modu_ID]
           FROM rRoleModul
      <dynamic prepend="WHERE">
-       <isNotNull prepend="AND" property="FunID">[FunID]='$FunID$'</isNotNull>
        <isNotNull prepend="AND" property="RoleID">[RoleID]='$RoleID$'</isNotNull>
+       <isNotNull prepend="AND" property="Modu_ID">[Modu_ID]='$Modu_ID$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectrRoleModulByKey" resultMap="rRoleModul_AllColumns" parameterClass="rRoleModul">
          SELECT 
-         [FunID],
-         [RoleID]
+         [RoleID],
+         [Modu_ID]
          FROM rRoleModul
          WHERE 
-           FunID = #FunID#
-         and RoleID = #RoleID#
+           RoleID = #RoleID#
+         and Modu_ID = #Modu_ID#
 
    </select>
  
@@ -44,8 +44,8 @@
         DELETE FROM 
          rRoleModul
            WHERE
-         FunID = #FunID#
-         and RoleID = #RoleID#
+         RoleID = #RoleID#
+         and Modu_ID = #Modu_ID#
 
    </delete>
    
@@ -57,8 +57,8 @@
         DELETE FROM 
          rRoleModul
            WHERE
-         FunID = #FunID#
-         and RoleID = #RoleID#
+         RoleID = #RoleID#
+         and Modu_ID = #Modu_ID#
     
    </delete>
    
@@ -67,21 +67,21 @@
            SET
 
             WHERE 
-              FunID = #FunID#
-         and RoleID = #RoleID#
+              RoleID = #RoleID#
+         and Modu_ID = #Modu_ID#
 
    </update>
   
    <insert id="InsertrRoleModul" parameterClass="rRoleModul">
         INSERT INTO rRoleModul
          (
-         [FunID],
-         [RoleID]
+         [RoleID],
+         [Modu_ID]
          )
        VALUES
          (
-         #FunID#,
-         #RoleID#
+         #RoleID#,
+         #Modu_ID#
          )
 
    </insert>
@@ -90,8 +90,8 @@
          SELECT Count(*) 
           FROM rRoleModul
      <dynamic prepend="WHERE">
-       <isNotNull prepend="AND" property="FunID">[FunID]='$FunID$'</isNotNull>
        <isNotNull prepend="AND" property="RoleID">[RoleID]='$RoleID$'</isNotNull>
+       <isNotNull prepend="AND" property="Modu_ID">[Modu_ID]='$Modu_ID$'</isNotNull>
      </dynamic>
 
    </select>
