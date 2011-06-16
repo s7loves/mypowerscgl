@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A3173743-90E7-4A97-867E-80353C694D91}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -112,18 +112,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddCommandsFm.resx">
       <DependentUpon>AddCommandsFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AddWorkFlowFM.resx">
       <DependentUpon>AddWorkFlowFM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseForm_Single.resx">
       <DependentUpon>BaseForm_Single.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="fmLinkConfig.resx">
       <DependentUpon>fmLinkConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="OperatorFm.resx">
       <DependentUpon>OperatorFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -132,60 +137,79 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectArchFm.resx">
       <DependentUpon>SelectArchFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectClassFm.resx">
       <DependentUpon>SelectClassFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectGroupFm.resx">
       <DependentUpon>SelectGroupFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectMainUserCtrlFm.resx">
       <DependentUpon>SelectMainUserCtrlFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectTaskOperUserFm.resx">
       <DependentUpon>SelectTaskOperUserFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectUserFm.resx">
       <DependentUpon>SelectUserFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectVarFm.resx">
       <DependentUpon>SelectVarFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectWorkflowFm.resx">
       <DependentUpon>SelectWorkflowFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskAlterFm.resx">
       <DependentUpon>TaskAlterFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskExpressFm.resx">
       <DependentUpon>TaskExpressFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskJudgeFm.resx">
       <DependentUpon>TaskJudgeFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskStartFm.resx">
       <DependentUpon>TaskStartFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskSubFm.resx">
       <DependentUpon>TaskSubFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskVarFm.resx">
       <DependentUpon>TaskVarFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskViewFm.resx">
       <DependentUpon>TaskViewFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkFlowClassFM.resx">
       <DependentUpon>WorkFlowClassFM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkflowExportFm.resx">
       <DependentUpon>WorkflowExportFm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkFlowIdeFM.resx">
       <DependentUpon>WorkFlowIdeFM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkPlace.resx">
       <DependentUpon>WorkPlace.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

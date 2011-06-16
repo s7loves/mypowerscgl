@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{890818B2-EE50-4CB2-9C85-BAA60730CAAB}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -157,27 +157,35 @@
   <ItemGroup>
     <EmbeddedResource Include="frmdyxlEdit.resx">
       <DependentUpon>frmdyxlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmgtEdit.resx">
       <DependentUpon>frmgtEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmgtsbEdit.resx">
       <DependentUpon>frmgtsbEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmkgEdit.resx">
       <DependentUpon>frmkgEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmtqbyqEdit.resx">
       <DependentUpon>frmtqbyqEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmtqEdit.resx">
       <DependentUpon>frmtqEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmtqsbEdit.resx">
       <DependentUpon>frmtqsbEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmxlEdit.resx">
       <DependentUpon>frmxlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UCPS_xlTree.resx">
