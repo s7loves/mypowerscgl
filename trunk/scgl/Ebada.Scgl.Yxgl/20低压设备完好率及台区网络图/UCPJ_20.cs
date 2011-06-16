@@ -44,6 +44,13 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_20>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            repositoryItemLookUpEdit2.EditValueChanged += new EventHandler(repositoryItemLookUpEdit2_EditValueChanged);
+        }
+
+        void repositoryItemLookUpEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(" where xlCode='" + barEditItem1.EditValue+ "'");
+            repositoryItemLookUpEdit3.DataSource = xlList;
         }
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_20> e)
@@ -146,6 +153,8 @@ namespace Ebada.Scgl.Yxgl
             newobj.ParentID = parentID;
             newobj.OrgCode = parentObj.OrgCode;
             newobj.OrgName = parentObj.OrgName;
+            newobj.tqCode = barEditItem2.EditValue.ToString();
+            newobj.tqName = repositoryItemLookUpEdit3.GetDisplayText(barEditItem2.EditValue.ToString());
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
         }

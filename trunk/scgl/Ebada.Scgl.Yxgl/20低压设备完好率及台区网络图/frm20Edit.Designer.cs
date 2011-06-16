@@ -121,6 +121,7 @@
             // 
             // comboBoxEdit2
             // 
+            this.comboBoxEdit2.Enabled = false;
             this.comboBoxEdit2.Location = new System.Drawing.Point(256, 39);
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
