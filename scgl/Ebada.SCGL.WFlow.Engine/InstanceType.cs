@@ -245,7 +245,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.ExecuteScalar(sqlItem);
             string tmpStr = " where WorkFlowInsId='" + workFlowInstanceId + "' and tasktypeid='1'";
-            IList<PS_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<PS_WorkTaskInstanceView>("SelectPS_WorkTaskInstanceViewList", tmpStr);
+            IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", tmpStr);
 
             if (li.Count > 0) return li[0].UserId ;
             return ""; 
@@ -268,7 +268,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //return agent.ExecuteDataTable(sqlItem);
             string tmpStr = " select distinct UserId from WorkTaskInstanceView where WorkFlowInsId='" + workFlowInstanceId + "' and status='3' and "+
                          " worktaskId='"+worktaskId+"'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkFlowInstanceUserIdList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkFlowInstanceUserIdList", tmpStr);
             if (li.Count == 0)
             {
                 DataTable dt = new DataTable();

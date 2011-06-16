@@ -681,7 +681,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return  agent.ExecuteDataTable(sqlItem);
                 string tmpStr = " where  CommandName='" + commandName + "' and starttaskid='" + workTaskId + "' and WorkFlowId='" + workFlowId + "'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskLinkViewList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskLinkViewList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -716,7 +716,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string tmpStr = " where  EndTaskId='" + workTaskId + "' and WorkFlowId=" + workFlowId + "'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskLinkViewList", workFlowId);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskLinkViewList", workFlowId);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -752,7 +752,7 @@ namespace Ebada.SCGL.WFlow.Engine
                     //sqlItem.AppendParameter("@WorkFlowId", workFlowInstanceId);
                     //ClientDBAgent agent = new ClientDBAgent();
                     string tmpStr = " where  WorkFlowInsId='" + workFlowInstanceId + "' and WorkTaskId='" + judgeTaskId + "'";
-                    IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskInstanceList", tmpStr);
+                    IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceList", tmpStr);
                     if (li.Count == 0)
                     {
                         result = false;
@@ -789,7 +789,7 @@ namespace Ebada.SCGL.WFlow.Engine
 
                     //}
                     string tmpStr = " where  WorkFlowInsId='" + workFlowInstanceId + "' and WorkTaskId='" + judgeTaskId + "'";
-                    IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskInstanceList", tmpStr);
+                    IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceList", tmpStr);
                     if (li.Count == 0)
                     {
                         result = false;
@@ -831,7 +831,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //DataTable dt = agent.ExecuteDataTable(sqlItem);
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where  WorkTaskInsId='" + worktaskInsId + "' and Status='3'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskInstanceList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceList", tmpStr);
             if (li.Count == 0)
             {
                 return false;

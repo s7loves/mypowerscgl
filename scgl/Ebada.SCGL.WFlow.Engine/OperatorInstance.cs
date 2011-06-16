@@ -115,7 +115,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where WorkflowInsId='" + WorkflowId + "' and worktaskId='" + WorktaskId
                + "' and operContent='" + OperContent + "' and operstatus='" + 0 + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_OperatorInstanceList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_OperatorInstanceList", tmpStr);
             if (li.Count > 0) return true;
             return false;
 
@@ -138,7 +138,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where WorkFlowId='" + WorkflowId + "' and WorkTaskId='" + WorktaskId
                + "' and operContent='" + OperContent + "' and InorExclude='" + 0 + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_OperatorList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_OperatorList", tmpStr);
             if (li.Count > 0) return true;
             return false;
 
@@ -156,7 +156,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_OperatorInstance operInsta = new PS_OperatorInstance();
+                WF_OperatorInstance operInsta = new WF_OperatorInstance();
                 operInsta.OperatorInsId=this.OperatorInsId;
                 operInsta.WorkFlowId=this.WorkflowId;
                 operInsta.WorkTaskId=this.WorktaskId;
@@ -168,7 +168,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 operInsta.OperContent=this.OperContent;
                 operInsta.OperContentText=this.OperContentText;
                 operInsta.OperStatus = this.OperStatus;
-                MainHelper.PlatformSqlMap.Create<PS_OperatorInstance>(operInsta); 
+                MainHelper.PlatformSqlMap.Create<WF_OperatorInstance>(operInsta); 
 
                // DebugHF.WriteErrorLog("Create处理者实例OperContent=" + OperContent + ",OperatorInsId=" + OperatorInsId, WorkflowInsId);
 
@@ -195,7 +195,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string tmpStr = "where OperatorInsId='" + operatorInsId + "'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskInstanceViewList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -222,12 +222,12 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@operatorInsId", operatorInsId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlItem);
-                PS_OperatorInstance operInsta = new PS_OperatorInstance();
+                WF_OperatorInstance operInsta = new WF_OperatorInstance();
                 operInsta.OperatorInsId =operatorInsId;
 
                 operInsta.UserId = userId;
 
-                MainHelper.PlatformSqlMap.Update("UpdatePS_OperatorInstanceUserOverProByOperatorInsId",operInsta); 
+                MainHelper.PlatformSqlMap.Update("UpdateWF_OperatorInstanceUserOverProByOperatorInsId",operInsta); 
             }
             catch (Exception ex)
             {

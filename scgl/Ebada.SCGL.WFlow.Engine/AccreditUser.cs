@@ -80,13 +80,13 @@ namespace Ebada.SCGL.WFlow.Engine
                     //setParameter();//设定参数
                     //ClientDBAgent agent = new ClientDBAgent();
                     //agent.ExecuteNonQuery(sqlDataItem);
-                    PS_AccreditUser accuser = new PS_AccreditUser();
+                    WF_AccreditUser accuser = new WF_AccreditUser();
                     accuser.AUserId = AUserId;
                     accuser.AccreditFromUserId = AccreditFromUserId;
                     accuser.AccreditToUserId = AccreditToUserId;
                     accuser.AcWorkflowId = AcWorkflowId;
                     accuser.AcWorktaskId = AcWorktaskId;
-                    MainHelper.PlatformSqlMap.Create<PS_AccreditUser>(accuser); 
+                    MainHelper.PlatformSqlMap.Create<WF_AccreditUser>(accuser); 
                 }
                
             }
@@ -110,7 +110,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where AccreditFromUserId='" + AccreditFromUserId + "' and AccreditToUserId='" + AccreditToUserId
                 + "' and AcWorkflowId='" + AcWorkflowId + "' and AccreditStatus='1'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_AccreditUserList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_AccreditUserList", tmpStr);
             if (li.Count > 0) return true;
             return false;
 
@@ -139,7 +139,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where (OperContent IN (SELECT OperContent FROM opercontentView where UserId='" + userId + "'  or OperContent='ALL' ) and workflowId='" + workflowId
                + "' and worktaskId='" + worktaskId + "' )";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskViewList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskViewList", tmpStr);
             if (li.Count > 0) return true;
             return false;
 
@@ -162,13 +162,13 @@ namespace Ebada.SCGL.WFlow.Engine
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_AccreditUser accuser = new PS_AccreditUser();
+                WF_AccreditUser accuser = new WF_AccreditUser();
                 accuser.AUserId = AUserId;
                 accuser.AccreditFromUserId = AccreditFromUserId;
                 accuser.AccreditToUserId = AccreditToUserId;
                 accuser.AcWorkflowId = AcWorkflowId;
                 accuser.AcWorktaskId = AcWorktaskId;
-                MainHelper.PlatformSqlMap.Update<PS_AccreditUser>(accuser); 
+                MainHelper.PlatformSqlMap.Update<WF_AccreditUser>(accuser); 
             }
             catch (Exception ex)
             {
@@ -191,7 +191,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string tmpStr = "where AUserId='" + auserid + "'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_AccreditUserList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_AccreditUserList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -221,7 +221,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //sqlItem.AppendParameter("@userId", userId);
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.ExecuteDataTable(sqlItem);
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskAccreditViewListByAccreditFromUserId", userId);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskAccreditViewListByAccreditFromUserId", userId);
             if (li.Count == 0)
             {
                 DataTable dt = new DataTable();
@@ -246,7 +246,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //sqlItem.AppendParameter("@userId", userId);
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.ExecuteDataTable(sqlItem);
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskAccreditViewListByAccreditToUserId", userId);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskAccreditViewListByAccreditToUserId", userId);
             if (li.Count == 0)
             {
                 DataTable dt = new DataTable();
@@ -264,7 +264,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //sqlItem.AppendParameter("@auserid", AuserId);
             //ClientDBAgent agent = new ClientDBAgent();
             //agent.ExecuteDataTable(sqlItem);
-            MainHelper.PlatformSqlMap.Update("UpdatePS_AccreditUserAccreditStatusByAUserId", AuserId); 
+            MainHelper.PlatformSqlMap.Update("UpdateWF_AccreditUserAccreditStatusByAUserId", AuserId); 
         }
         public void GetAccreditUserInfo(string auserid)
         {
@@ -295,9 +295,9 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@auserid", aUserid);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteNonQuery(sqlItem);
-                PS_AccreditUser accuser = new PS_AccreditUser();
+                WF_AccreditUser accuser = new WF_AccreditUser();
                 accuser.AUserId = aUserid;
-                return MainHelper.PlatformSqlMap.Delete<PS_AccreditUser>(accuser); 
+                return MainHelper.PlatformSqlMap.Delete<WF_AccreditUser>(accuser); 
             }
             catch (Exception ex)
             {

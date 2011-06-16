@@ -23,7 +23,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.ExecuteDataTable(sqlItem);
             string tmpStr = "where RoleId ='" + RoleId + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectmPS_UserRoleViewList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectmWF_UserRoleViewList", tmpStr);
             if (li.Count == 0)
             {
                 DataTable dt = new DataTable();

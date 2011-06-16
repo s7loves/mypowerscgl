@@ -111,7 +111,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_WorkTaskInstance worktastIns = new PS_WorkTaskInstance();
+                WF_WorkTaskInstance worktastIns = new WF_WorkTaskInstance();
                 worktastIns.WorkTaskInsId=this.WorktaskInsId;
                 worktastIns.WorkFlowId =this.WorkflowId;
                 worktastIns.WorkTaskId =this.WorktaskId;
@@ -119,7 +119,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 worktastIns.PreviousTaskId=this.PreviousTaskId;
                 worktastIns.TaskInsCaption=this.TaskInsCaption;
                 worktastIns.Status = this.Status;
-                MainHelper.PlatformSqlMap.Create<PS_WorkTaskInstance>(worktastIns); 
+                MainHelper.PlatformSqlMap.Create<WF_WorkTaskInstance>(worktastIns); 
 
                 //DebugHF.WriteErrorLog("Create任务实例TaskInsCaption=" + TaskInsCaption + ",WorktaskInsId= " + WorktaskInsId, WorkflowInsId);
               
@@ -139,7 +139,7 @@ namespace Ebada.SCGL.WFlow.Engine
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where WorkTaskInsId='" + worktaskInsId + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskInstanceList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceList", tmpStr);
             if (li.Count > 0) return true;
             return false;
         }
@@ -157,11 +157,11 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@worktaskInsId", worktaskInsId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlItem);
-                PS_WorkTaskInstance worktastIns = new PS_WorkTaskInstance();
+                WF_WorkTaskInstance worktastIns = new WF_WorkTaskInstance();
                 worktastIns.WorkTaskInsId = worktaskInsId;
                 worktastIns.OperatedDes = operatedDes;
                 worktastIns.Status ="3";
-                MainHelper.PlatformSqlMap.Update("UpdatePS_WorkTaskInstanceOverProByWorkTaskInsId", worktastIns); 
+                MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceOverProByWorkTaskInsId", worktastIns); 
             }
             catch (Exception ex)
             {
@@ -182,11 +182,11 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@worktaskInsId", worktaskInsId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlItem);
-                PS_WorkTaskInstance worktastIns = new PS_WorkTaskInstance();
+                WF_WorkTaskInstance worktastIns = new WF_WorkTaskInstance();
                 worktastIns.WorkTaskInsId = worktaskInsId;
                 worktastIns.SuccessMsg = successMsg;
 
-                MainHelper.PlatformSqlMap.Update("UpdatePS_WorkTaskInstanceSuccessMsgByWorkTaskInsId", worktastIns); 
+                MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId", worktastIns); 
 
             }
             catch (Exception ex)
@@ -210,7 +210,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //DataTable dt= agent.ExecuteDataTable(sqlItem);
                 string sql = "where previoustaskid='" + worktaskInsId + "' and operstatus='0' order by opertype";
                  DataTable dt=null;
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskInstanceViewList", sql);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewList", sql);
                 if (li.Count == 0)
                 {
                      dt = new DataTable();
@@ -252,7 +252,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //DataTable dt = agent.ExecuteDataTable(sqlItem);
                 string sql = "where WorkTaskId='" + worktaskId + "' and status=3 and workflowInsId='" + workflowInsId+"' order by taskendtime";
                 DataTable dt = null;
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskInstanceViewDistinctList", sql);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewDistinctList", sql);
                 if (li.Count == 0)
                 {
                     dt = new DataTable();
@@ -291,7 +291,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //return  agent.ExecuteScalar(sqlItem);
                 string sql = "where worktaskInsId='" + worktaskInsId + "'";
                
-                IList<PS_WorkTaskInstance> li = MainHelper.PlatformSqlMap.GetList<PS_WorkTaskInstance>("SelectPS_WorkTaskInstanceSuccessMsgList", sql);
+                IList<WF_WorkTaskInstance> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstance>("SelectWF_WorkTaskInstanceSuccessMsgList", sql);
                 if (li.Count == 0)
                 {
                     return "";
@@ -331,27 +331,27 @@ namespace Ebada.SCGL.WFlow.Engine
                 //}
                 string sql = "where OperatorInsId='" + operatorInsId + "'";
 
-                IList<PS_OperatorInstance> li = MainHelper.PlatformSqlMap.GetList<PS_OperatorInstance>("SelectPS_OperatorInstanceList", sql);
+                IList<WF_OperatorInstance> li = MainHelper.PlatformSqlMap.GetList<WF_OperatorInstance>("SelectWF_OperatorInstanceList", sql);
 
                 if (li.Count > 0)
                 {
                     for (int i = 0; i < li.Count; i++)
                     {
                         //sql = "where WorkTaskInsId='" + li[i].WorkTaskInsId + "'and Status='1'";
-                        PS_WorkTaskInstance worktaskins = new PS_WorkTaskInstance();
+                        WF_WorkTaskInstance worktaskins = new WF_WorkTaskInstance();
 
                         worktaskins.Status = "2";
                         worktaskins.OperatorInsId = operatorInsId;
                         worktaskins.WorkTaskInsId = li[i].WorkTaskInsId;
-                        MainHelper.PlatformSqlMap.Update("UpdatePS_WorkTaskInstanceOperatorInsIdByWorkTaskInsId", worktaskins);
+                        MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceOperatorInsIdByWorkTaskInsId", worktaskins);
 
                     }
                 }
-                PS_OperatorInstance operIns = new PS_OperatorInstance();
+                WF_OperatorInstance operIns = new WF_OperatorInstance();
                 operIns.OperatorInsId = operatorInsId;
                 operIns.OperStatus = "3";
                 operIns.UserId = userId;
-                MainHelper.PlatformSqlMap.Update("UpdatePS_OperatorInstanceOperStatusByOperatorInsId", operIns);
+                MainHelper.PlatformSqlMap.Update("UpdateWF_OperatorInstanceOperStatusByOperatorInsId", operIns);
                 return WorkFlowConst.SuccessCode;
 
             }
@@ -393,27 +393,27 @@ namespace Ebada.SCGL.WFlow.Engine
                 //}
                 string sql = "where OperatorInsId='" + operatorInsId + "'";
 
-                IList<PS_OperatorInstance> li = MainHelper.PlatformSqlMap.GetList<PS_OperatorInstance>("SelectPS_OperatorInstanceList", sql);
+                IList<WF_OperatorInstance> li = MainHelper.PlatformSqlMap.GetList<WF_OperatorInstance>("SelectWF_OperatorInstanceList", sql);
 
                 if (li.Count > 0)
                 {
                     for (int i = 0; i < li.Count; i++)
                     {
                         //sql = "where WorkTaskInsId='" + li[i].WorkTaskInsId + "'and Status='1'";
-                        PS_WorkTaskInstance worktaskins = new PS_WorkTaskInstance();
+                        WF_WorkTaskInstance worktaskins = new WF_WorkTaskInstance();
 
                         worktaskins.Status = "1";
                         worktaskins.OperatorInsId = null;
                         worktaskins.WorkTaskInsId = li[i].WorkTaskInsId;
-                        MainHelper.PlatformSqlMap.Update("UpdatePS_WorkTaskInstanceOperatorInsStatusIdByWorkTaskInsId", worktaskins);
+                        MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceOperatorInsStatusIdByWorkTaskInsId", worktaskins);
 
                     }
                 }
-                PS_OperatorInstance operIns = new PS_OperatorInstance();
+                WF_OperatorInstance operIns = new WF_OperatorInstance();
                 operIns.OperatorInsId = operatorInsId;
                 operIns.OperStatus = "0";
                 operIns.UserId = null;
-                MainHelper.PlatformSqlMap.Update("UpdatePS_OperatorInstanceUserIdOperStatusByOperatorInsId", operIns);
+                MainHelper.PlatformSqlMap.Update("UpdateWF_OperatorInstanceUserIdOperStatusByOperatorInsId", operIns);
                 return WorkFlowConst.SuccessCode;
             }
             catch (Exception ex)
@@ -452,13 +452,13 @@ namespace Ebada.SCGL.WFlow.Engine
              {
                  return WorkFlowConst.TaskAssignErrorCode;
              }
-             PS_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<PS_OperatorInstance>(operatorInsId);
+             WF_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
              string sql = "where OperatorInsId='" + operatorInsId + "' and operstatus='3'";
 
-             IList<PS_OperatorInstance> li = MainHelper.PlatformSqlMap.GetList<PS_OperatorInstance>("SelectPS_OperatorInstanceList", sql);
+             IList<WF_OperatorInstance> li = MainHelper.PlatformSqlMap.GetList<WF_OperatorInstance>("SelectWF_OperatorInstanceList", sql);
              if (li.Count > 0)
              {
-                 PS_OperatorInstance newoperins = new PS_OperatorInstance();
+                 WF_OperatorInstance newoperins = new WF_OperatorInstance();
                  newoperins.OperatorInsId = Guid.NewGuid().ToString();
                  newoperins.WorkFlowId = li[0].WorkFlowId;
                  newoperins.WorkTaskId = li[0].WorkTaskId;
@@ -470,10 +470,10 @@ namespace Ebada.SCGL.WFlow.Engine
                  newoperins.OperStatus = "0";
                  newoperins.ChangeOperator = userId;
                  newoperins.OperRealtion = li[0].OperRealtion;
-                 MainHelper.PlatformSqlMap.Create<PS_OperatorInstance>(newoperins);
+                 MainHelper.PlatformSqlMap.Create<WF_OperatorInstance>(newoperins);
              }
              sql = "where WorkTaskInsId='" + operins.WorkTaskInsId  + "' and Status='2'";
-             IList<PS_WorkTaskInstance> li2 = MainHelper.PlatformSqlMap.GetList<PS_WorkTaskInstance>("SelectPS_WorkTaskInstanceList", sql);
+             IList<WF_WorkTaskInstance> li2 = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstance>("SelectWF_WorkTaskInstanceList", sql);
              for (int i = 0; i <li2.Count; i++)
              {
                  li2[i].Status = "1";
@@ -481,13 +481,13 @@ namespace Ebada.SCGL.WFlow.Engine
                  if (li2[i].OperatedDes==null) li2[i].OperatedDes = "";
                  li2[i].OperatedDes = li2[i].OperatedDes + "指派[" + touser.UserName+"]处理,";
                  li2[i].TaskInsDescription = "由" + fromuser .UserName+ "指派";
-                 MainHelper.PlatformSqlMap.Update<PS_OperatorInstance>(li2[i]);
+                 MainHelper.PlatformSqlMap.Update<WF_OperatorInstance>(li2[i]);
              }
-             PS_OperatorInstance operIns = new PS_OperatorInstance();
+             WF_OperatorInstance operIns = new WF_OperatorInstance();
              operIns.ChangeOperator = assignUserId;
              operIns.OperStatus = "2";
              operIns.OperatorInsId = operatorInsId;
-             MainHelper.PlatformSqlMap.Update("UpdatePS_OperatorInstanceUserIdOperStatusByOperatorInsId", operIns);
+             MainHelper.PlatformSqlMap.Update("UpdateWF_OperatorInstanceUserIdOperStatusByOperatorInsId", operIns);
              return WorkFlowConst.SuccessCode;
             }
             catch (Exception ex)
@@ -517,19 +517,19 @@ namespace Ebada.SCGL.WFlow.Engine
                 //    return WorkFlowConst.TaskAssignErrorCode;
                 //}
                  mUser fromuser = MainHelper.PlatformSqlMap.GetOneByKey<mUser>(userId);
-                PS_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<PS_OperatorInstance>(operatorInsId);
-                PS_WorkTaskInstance workins = MainHelper.PlatformSqlMap.GetOneByKey<PS_WorkTaskInstance>(operins.WorkTaskInsId);
+                WF_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
+                WF_WorkTaskInstance workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
                 SetWorkTaskInstanceOver(userId, operins.WorkTaskInsId);
                 OperatorInstance.SetOperatorInstanceOver(userId, operatorInsId);
-                PS_WorkTaskInstance workins2 = new PS_WorkTaskInstance();
+                WF_WorkTaskInstance workins2 = new WF_WorkTaskInstance();
                 workins2.SuccessMsg = "退回至提交人!";
                 workins2.WorkTaskInsId = operins.WorkTaskInsId;
-                MainHelper.PlatformSqlMap.Update("UpdatePS_WorkTaskInstanceSuccessMsgByWorkTaskInsId", workins2); 
-                workins2 = new PS_WorkTaskInstance();
+                MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId", workins2); 
+                workins2 = new WF_WorkTaskInstance();
                 workins2.Status = "2";
                 workins2.OperatedDes = ",但被["+fromuser.UserName+"]退回,";
                 workins2.WorkTaskInsId = workins.PreviousTaskId ;
-                MainHelper.PlatformSqlMap.Update("UpdatePS_WorkTaskInstanceSuccessMsgByWorkTaskInsId", workins2);
+                MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId", workins2);
                 return WorkFlowConst.SuccessCode;
             }
             catch (Exception ex)
@@ -555,7 +555,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string sql = " where WorkTaskInsId='" + worktaskInsId + "'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskInstanceViewList", sql);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewList", sql);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -593,7 +593,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 string tmpStr = "where workflowId='" + workflowId + "' and worktaskId='" + worktaskId + "'"+
                  " and workflowInsId='" + workflowInsId + "' and worktaskInsId='" + worktaskInsId + "'";
 
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskInsNextOperList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInsNextOperList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
