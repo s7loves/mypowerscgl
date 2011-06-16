@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Sbgl
             this.spinEdit4.DataBindings.Add("EditValue", rowData, "ActualLoss");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineType");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "LineCode");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "LineName");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "LineName");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "LineNamePath");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "LineVol");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "OrgCode");
@@ -42,11 +42,6 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "LineGtbegin");
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "LineGtend");
             this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "WireType");
-            //this.textEdit1.DataBindings.Add("EditValue", rowData, "tq");
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
-
         }
         #region IPopupFormEdit Members
         private PS_xl rowData = null;
@@ -70,16 +65,6 @@ namespace Ebada.Scgl.Sbgl
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PS_xl>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
         }
 
         /// <summary>

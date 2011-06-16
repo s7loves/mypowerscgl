@@ -42,7 +42,7 @@ namespace Ebada.Scgl.Sbgl {
         public event SendDataEventHandler<PS_xl> AfterDelete;
         public UCPS_xlTree() {
             InitializeComponent();
-            treeViewOperator = new TreeViewOperation<PS_xl>(treeList1, barManager1);
+            treeViewOperator = new TreeViewOperation<PS_xl>(treeList1, barManager1,new frmxlEdit());
             treeViewOperator.CreatingObjectEvent += treeViewOperator_CreatingObject;
             treeViewOperator.AfterAdd += treeViewOperator_AfterAdd;
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
