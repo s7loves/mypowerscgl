@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkflowAbnormal" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkflowAbnormal"  type="Ebada.Scgl.Model.WF_WorkflowAbnormal,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_WorkflowAbnormal_AllColumns" class="WF_WorkflowAbnormal">
+        <result property="AbnormalId" column="AbnormalId" />
+        <result property="WorkflowInsId" column="WorkflowInsId" />
+        <result property="UserId" column="UserId" />
+        <result property="AbnormalMsg" column="AbnormalMsg" />
+        <result property="AbnormalTime" column="AbnormalTime" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_WorkflowAbnormalList" resultMap="WF_WorkflowAbnormal_AllColumns" parameterClass="string">
+        SELECT 
+         [AbnormalId],
+         [WorkflowInsId],
+         [UserId],
+         [AbnormalMsg],
+         [AbnormalTime]
+          FROM WF_WorkflowAbnormal
+          $value$
+   </select>
+   
+   <select id="SelectWF_WorkflowAbnormalByHash" parameterClass="Hashtable">
+         SELECT 
+         [AbnormalId],
+         [WorkflowInsId],
+         [UserId],
+         [AbnormalMsg],
+         [AbnormalTime]
+          FROM WF_WorkflowAbnormal
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="AbnormalId">[AbnormalId]='$AbnormalId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowInsId">[WorkflowInsId]='$WorkflowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserId">[UserId]='$UserId$'</isNotNull>
+       <isNotNull prepend="AND" property="AbnormalMsg">[AbnormalMsg]='$AbnormalMsg$'</isNotNull>
+       <isNotNull prepend="AND" property="AbnormalTime">[AbnormalTime]='$AbnormalTime$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_WorkflowAbnormalByKey" resultMap="WF_WorkflowAbnormal_AllColumns" parameterClass="WF_WorkflowAbnormal">
+         SELECT 
+         [AbnormalId],
+         [WorkflowInsId],
+         [UserId],
+         [AbnormalMsg],
+         [AbnormalTime]
+         FROM WF_WorkflowAbnormal
+         WHERE 
+           AbnormalId = #AbnormalId#
+
+   </select>
+ 
+   <delete id="DeleteWF_WorkflowAbnormal" parameterClass="WF_WorkflowAbnormal">
+        DELETE FROM 
+         WF_WorkflowAbnormal
+           WHERE
+         AbnormalId = #AbnormalId#
+
+   </delete>
+   
+   <delete id="DeleteWF_WorkflowAbnormalByWhere" parameterClass="string">
+     delete from WF_WorkflowAbnormal $value$
+   </delete>
+   
+   <delete id="DeleteWF_WorkflowAbnormalByKey" parameterClass="string">
+        DELETE FROM 
+         WF_WorkflowAbnormal
+           WHERE
+         AbnormalId = #AbnormalId#
+    
+   </delete>
+   
+   <update id="UpdateWF_WorkflowAbnormal" parameterClass="WF_WorkflowAbnormal" resultClass="int">
+          UPDATE WF_WorkflowAbnormal
+           SET
+             [WorkflowInsId]=#WorkflowInsId#,
+             [UserId]=#UserId#,
+             [AbnormalMsg]=#AbnormalMsg#,
+             [AbnormalTime]=#AbnormalTime#
+            WHERE 
+              AbnormalId = #AbnormalId#
+
+   </update>
+  
+   <insert id="InsertWF_WorkflowAbnormal" parameterClass="WF_WorkflowAbnormal">
+        INSERT INTO WF_WorkflowAbnormal
+         (
+         [AbnormalId],
+         [WorkflowInsId],
+         [UserId],
+         [AbnormalMsg],
+         [AbnormalTime]
+         )
+       VALUES
+         (
+         #AbnormalId#,
+         #WorkflowInsId#,
+         #UserId#,
+         #AbnormalMsg#,
+         #AbnormalTime#
+         )
+
+   </insert>
+   
+   <select id="GetWF_WorkflowAbnormalRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_WorkflowAbnormal
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="AbnormalId">[AbnormalId]='$AbnormalId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowInsId">[WorkflowInsId]='$WorkflowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserId">[UserId]='$UserId$'</isNotNull>
+       <isNotNull prepend="AND" property="AbnormalMsg">[AbnormalMsg]='$AbnormalMsg$'</isNotNull>
+       <isNotNull prepend="AND" property="AbnormalTime">[AbnormalTime]='$AbnormalTime$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_WorkflowAbnormalRowCount" parameterClass="string">
+    select count(*) from WF_WorkflowAbnormal $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

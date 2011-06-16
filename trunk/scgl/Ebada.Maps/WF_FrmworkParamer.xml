@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_FrmworkParamer" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_FrmworkParamer"  type="Ebada.Scgl.Model.WF_FrmworkParamer,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_FrmworkParamer_AllColumns" class="WF_FrmworkParamer">
+        <result property="DBId" column="DBId" />
+        <result property="FlagCode" column="FlagCode" />
+        <result property="FlagText" column="FlagText" />
+        <result property="FlagValue" column="FlagValue" />
+        <result property="Memo" column="Memo" />
+        <result property="CreateTime" column="CreateTime" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_FrmworkParamerList" resultMap="WF_FrmworkParamer_AllColumns" parameterClass="string">
+        SELECT 
+         [DBId],
+         [FlagCode],
+         [FlagText],
+         [FlagValue],
+         [Memo],
+         [CreateTime]
+          FROM WF_FrmworkParamer
+          $value$
+   </select>
+   
+   <select id="SelectWF_FrmworkParamerByHash" parameterClass="Hashtable">
+         SELECT 
+         [DBId],
+         [FlagCode],
+         [FlagText],
+         [FlagValue],
+         [Memo],
+         [CreateTime]
+          FROM WF_FrmworkParamer
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="DBId">[DBId]='$DBId$'</isNotNull>
+       <isNotNull prepend="AND" property="FlagCode">[FlagCode]='$FlagCode$'</isNotNull>
+       <isNotNull prepend="AND" property="FlagText">[FlagText]='$FlagText$'</isNotNull>
+       <isNotNull prepend="AND" property="FlagValue">[FlagValue]='$FlagValue$'</isNotNull>
+       <isNotNull prepend="AND" property="Memo">[Memo]='$Memo$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_FrmworkParamerByKey" resultMap="WF_FrmworkParamer_AllColumns" parameterClass="WF_FrmworkParamer">
+         SELECT 
+         [DBId],
+         [FlagCode],
+         [FlagText],
+         [FlagValue],
+         [Memo],
+         [CreateTime]
+         FROM WF_FrmworkParamer
+         WHERE 
+           DBId = #DBId#
+
+   </select>
+ 
+   <delete id="DeleteWF_FrmworkParamer" parameterClass="WF_FrmworkParamer">
+        DELETE FROM 
+         WF_FrmworkParamer
+           WHERE
+         DBId = #DBId#
+
+   </delete>
+   
+   <delete id="DeleteWF_FrmworkParamerByWhere" parameterClass="string">
+     delete from WF_FrmworkParamer $value$
+   </delete>
+   
+   <delete id="DeleteWF_FrmworkParamerByKey" parameterClass="string">
+        DELETE FROM 
+         WF_FrmworkParamer
+           WHERE
+         DBId = #DBId#
+    
+   </delete>
+   
+   <update id="UpdateWF_FrmworkParamer" parameterClass="WF_FrmworkParamer" resultClass="int">
+          UPDATE WF_FrmworkParamer
+           SET
+             [FlagCode]=#FlagCode#,
+             [FlagText]=#FlagText#,
+             [FlagValue]=#FlagValue#,
+             [Memo]=#Memo#,
+             [CreateTime]=#CreateTime#
+            WHERE 
+              DBId = #DBId#
+
+   </update>
+  
+   <insert id="InsertWF_FrmworkParamer" parameterClass="WF_FrmworkParamer">
+        INSERT INTO WF_FrmworkParamer
+         (
+         [DBId],
+         [FlagCode],
+         [FlagText],
+         [FlagValue],
+         [Memo],
+         [CreateTime]
+         )
+       VALUES
+         (
+         #DBId#,
+         #FlagCode#,
+         #FlagText#,
+         #FlagValue#,
+         #Memo#,
+         #CreateTime#
+         )
+
+   </insert>
+   
+   <select id="GetWF_FrmworkParamerRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_FrmworkParamer
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="DBId">[DBId]='$DBId$'</isNotNull>
+       <isNotNull prepend="AND" property="FlagCode">[FlagCode]='$FlagCode$'</isNotNull>
+       <isNotNull prepend="AND" property="FlagText">[FlagText]='$FlagText$'</isNotNull>
+       <isNotNull prepend="AND" property="FlagValue">[FlagValue]='$FlagValue$'</isNotNull>
+       <isNotNull prepend="AND" property="Memo">[Memo]='$Memo$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_FrmworkParamerRowCount" parameterClass="string">
+    select count(*) from WF_FrmworkParamer $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

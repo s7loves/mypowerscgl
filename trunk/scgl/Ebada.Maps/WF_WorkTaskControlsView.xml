@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkTaskControlsView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkTaskControlsView"  type="Ebada.Scgl.Model.WF_WorkTaskControlsView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_WorkTaskControlsView_AllColumns" class="WF_WorkTaskControlsView">
+        <result property="WorktaskId" column="WorktaskId" />
+        <result property="TaskCaption" column="TaskCaption" />
+        <result property="ucPath" column="ucPath" />
+        <result property="ucCaption" column="ucCaption" />
+        <result property="MainUserCtrlId" column="MainUserCtrlId" />
+        <result property="mucCaption" column="mucCaption" />
+        <result property="UserControlId" column="UserControlId" />
+        <result property="CtrlOrderNbr" column="CtrlOrderNbr" />
+        <result property="CtrlState" column="CtrlState" />
+        <result property="ucID" column="ucID" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_WorkTaskControlsViewList" resultMap="WF_WorkTaskControlsView_AllColumns" parameterClass="string">
+        SELECT 
+         [WorktaskId],
+         [TaskCaption],
+         [ucPath],
+         [ucCaption],
+         [MainUserCtrlId],
+         [mucCaption],
+         [UserControlId],
+         [CtrlOrderNbr],
+         [CtrlState],
+         [ucID]
+          FROM WF_WorkTaskControlsView
+          $value$
+   </select>
+   <select id="GetWF_WorkTaskControlsViewRowCount" parameterClass="string">
+    select count(*) from WF_WorkTaskControlsView $value$
+   </select>
+  
+   <insert id="InsertWF_WorkTaskControlsView" parameterClass="WF_WorkTaskControlsView">
+        INSERT INTO WF_WorkTaskControlsView
+         (
+         [WorktaskId],
+         [TaskCaption],
+         [ucPath],
+         [ucCaption],
+         [MainUserCtrlId],
+         [mucCaption],
+         [UserControlId],
+         [CtrlOrderNbr],
+         [CtrlState],
+         [ucID]
+         )
+       VALUES
+         (
+         #WorktaskId#,
+         #TaskCaption#,
+         #ucPath#,
+         #ucCaption#,
+         #MainUserCtrlId#,
+         #mucCaption#,
+         #UserControlId#,
+         #CtrlOrderNbr#,
+         #CtrlState#,
+         #ucID#
+         )
+
+   </insert>
+   <update id="UpdateWF_WorkTaskControlsView" parameterClass="WF_WorkTaskControlsView" resultClass="int">
+          UPDATE WF_WorkTaskControlsView
+           SET
+             [WorktaskId]=#WorktaskId#,
+             [TaskCaption]=#TaskCaption#,
+             [ucPath]=#ucPath#,
+             [ucCaption]=#ucCaption#,
+             [MainUserCtrlId]=#MainUserCtrlId#,
+             [mucCaption]=#mucCaption#,
+             [UserControlId]=#UserControlId#,
+             [CtrlOrderNbr]=#CtrlOrderNbr#,
+             [CtrlState]=#CtrlState#,
+             [ucID]=#ucID#
+   </update>
+   <delete id="DeleteWF_WorkTaskControlsView" parameterClass="WF_WorkTaskControlsView">
+        DELETE FROM 
+         WF_WorkTaskControlsView
+
+   </delete>
+  </statements>
+</sqlMap>
+ 

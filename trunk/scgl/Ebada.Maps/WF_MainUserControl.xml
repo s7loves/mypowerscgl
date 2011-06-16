@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_MainUserControl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_MainUserControl"  type="Ebada.Scgl.Model.WF_MainUserControl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_MainUserControl_AllColumns" class="WF_MainUserControl">
+        <result property="MainUserCtrlId" column="MainUserCtrlId" />
+        <result property="mucCaption" column="mucCaption" />
+        <result property="mucDescription" column="mucDescription" />
+        <result property="mucType" column="mucType" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_MainUserControlList" resultMap="WF_MainUserControl_AllColumns" parameterClass="string">
+        SELECT 
+         [MainUserCtrlId],
+         [mucCaption],
+         [mucDescription],
+         [mucType]
+          FROM WF_MainUserControl
+          $value$
+   </select>
+   
+   <select id="SelectWF_MainUserControlByHash" parameterClass="Hashtable">
+         SELECT 
+         [MainUserCtrlId],
+         [mucCaption],
+         [mucDescription],
+         [mucType]
+          FROM WF_MainUserControl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="MainUserCtrlId">[MainUserCtrlId]='$MainUserCtrlId$'</isNotNull>
+       <isNotNull prepend="AND" property="mucCaption">[mucCaption]='$mucCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="mucDescription">[mucDescription]='$mucDescription$'</isNotNull>
+       <isNotNull prepend="AND" property="mucType">[mucType]='$mucType$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_MainUserControlByKey" resultMap="WF_MainUserControl_AllColumns" parameterClass="WF_MainUserControl">
+         SELECT 
+         [MainUserCtrlId],
+         [mucCaption],
+         [mucDescription],
+         [mucType]
+         FROM WF_MainUserControl
+         WHERE 
+           MainUserCtrlId = #MainUserCtrlId#
+
+   </select>
+ 
+   <delete id="DeleteWF_MainUserControl" parameterClass="WF_MainUserControl">
+        DELETE FROM 
+         WF_MainUserControl
+           WHERE
+         MainUserCtrlId = #MainUserCtrlId#
+
+   </delete>
+   
+   <delete id="DeleteWF_MainUserControlByWhere" parameterClass="string">
+     delete from WF_MainUserControl $value$
+   </delete>
+   
+   <delete id="DeleteWF_MainUserControlByKey" parameterClass="string">
+        DELETE FROM 
+         WF_MainUserControl
+           WHERE
+         MainUserCtrlId = #MainUserCtrlId#
+    
+   </delete>
+   
+   <update id="UpdateWF_MainUserControl" parameterClass="WF_MainUserControl" resultClass="int">
+          UPDATE WF_MainUserControl
+           SET
+             [mucCaption]=#mucCaption#,
+             [mucDescription]=#mucDescription#,
+             [mucType]=#mucType#
+            WHERE 
+              MainUserCtrlId = #MainUserCtrlId#
+
+   </update>
+  
+   <insert id="InsertWF_MainUserControl" parameterClass="WF_MainUserControl">
+        INSERT INTO WF_MainUserControl
+         (
+         [MainUserCtrlId],
+         [mucCaption],
+         [mucDescription],
+         [mucType]
+         )
+       VALUES
+         (
+         #MainUserCtrlId#,
+         #mucCaption#,
+         #mucDescription#,
+         #mucType#
+         )
+
+   </insert>
+   
+   <select id="GetWF_MainUserControlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_MainUserControl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="MainUserCtrlId">[MainUserCtrlId]='$MainUserCtrlId$'</isNotNull>
+       <isNotNull prepend="AND" property="mucCaption">[mucCaption]='$mucCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="mucDescription">[mucDescription]='$mucDescription$'</isNotNull>
+       <isNotNull prepend="AND" property="mucType">[mucType]='$mucType$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_MainUserControlRowCount" parameterClass="string">
+    select count(*) from WF_MainUserControl $value$
+   </select>
+    <select id="SelectWF_MainUserControlJoinWorkTaskControlsByWorkFlowID" resultMap="WF_MainUserControl_AllColumns" parameterClass="string">
+      select distinct mc.* from WF_UserControlsLink ul left join WF_WorkTaskControls wc on wc.usercontrolId=ul.mainuserctrlid
+      left join WF_MainUserControl mc on mc.mainuserctrlid=wc.usercontrolId
+      where wc.workflowid=#value#
+
+    </select>
+  </statements>
+</sqlMap>
+

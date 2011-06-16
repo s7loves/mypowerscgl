@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_UserControlsView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_UserControlsView"  type="Ebada.Scgl.Model.WF_UserControlsView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_UserControlsView_AllColumns" class="WF_UserControlsView">
+        <result property="UserControlId" column="UserControlId" />
+        <result property="MainUserCtrlId" column="MainUserCtrlId" />
+        <result property="mucCaption" column="mucCaption" />
+        <result property="ucCaption" column="ucCaption" />
+        <result property="ucPath" column="ucPath" />
+        <result property="mucDescription" column="mucDescription" />
+        <result property="ucDescription" column="ucDescription" />
+        <result property="CtrlOrderNbr" column="CtrlOrderNbr" />
+        <result property="CtrlState" column="CtrlState" />
+        <result property="ucID" column="ucID" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_UserControlsViewList" resultMap="WF_UserControlsView_AllColumns" parameterClass="string">
+        SELECT 
+         [UserControlId],
+         [MainUserCtrlId],
+         [mucCaption],
+         [ucCaption],
+         [ucPath],
+         [mucDescription],
+         [ucDescription],
+         [CtrlOrderNbr],
+         [CtrlState],
+         [ucID]
+          FROM WF_UserControlsView
+          $value$
+   </select>
+   <select id="GetWF_UserControlsViewRowCount" parameterClass="string">
+    select count(*) from WF_UserControlsView $value$
+   </select>
+  
+   <insert id="InsertWF_UserControlsView" parameterClass="WF_UserControlsView">
+        INSERT INTO WF_UserControlsView
+         (
+         [UserControlId],
+         [MainUserCtrlId],
+         [mucCaption],
+         [ucCaption],
+         [ucPath],
+         [mucDescription],
+         [ucDescription],
+         [CtrlOrderNbr],
+         [CtrlState],
+         [ucID]
+         )
+       VALUES
+         (
+         #UserControlId#,
+         #MainUserCtrlId#,
+         #mucCaption#,
+         #ucCaption#,
+         #ucPath#,
+         #mucDescription#,
+         #ucDescription#,
+         #CtrlOrderNbr#,
+         #CtrlState#,
+         #ucID#
+         )
+
+   </insert>
+   <update id="UpdateWF_UserControlsView" parameterClass="WF_UserControlsView" resultClass="int">
+          UPDATE WF_UserControlsView
+           SET
+             [UserControlId]=#UserControlId#,
+             [MainUserCtrlId]=#MainUserCtrlId#,
+             [mucCaption]=#mucCaption#,
+             [ucCaption]=#ucCaption#,
+             [ucPath]=#ucPath#,
+             [mucDescription]=#mucDescription#,
+             [ucDescription]=#ucDescription#,
+             [CtrlOrderNbr]=#CtrlOrderNbr#,
+             [CtrlState]=#CtrlState#,
+             [ucID]=#ucID#
+   </update>
+   <delete id="DeleteWF_UserControlsView" parameterClass="WF_UserControlsView">
+        DELETE FROM 
+         WF_UserControlsView
+
+   </delete>
+  </statements>
+</sqlMap>
+ 

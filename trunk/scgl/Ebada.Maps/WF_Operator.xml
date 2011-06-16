@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_Operator" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_Operator"  type="Ebada.Scgl.Model.WF_Operator,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_Operator_AllColumns" class="WF_Operator">
+        <result property="OperatorId" column="OperatorId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="NextType" column="NextType" />
+        <result property="OperType" column="OperType" />
+        <result property="OperContent" column="OperContent" />
+        <result property="Relation" column="Relation" />
+        <result property="Description" column="Description" />
+        <result property="InorExclude" column="InorExclude" />
+        <result property="OperDisplay" column="OperDisplay" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_OperatorList" resultMap="WF_Operator_AllColumns" parameterClass="string">
+        SELECT 
+         [OperatorId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [NextType],
+         [OperType],
+         [OperContent],
+         [Relation],
+         [Description],
+         [InorExclude],
+         [OperDisplay]
+          FROM WF_Operator
+          $value$
+   </select>
+   
+   <select id="SelectWF_OperatorByHash" parameterClass="Hashtable">
+         SELECT 
+         [OperatorId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [NextType],
+         [OperType],
+         [OperContent],
+         [Relation],
+         [Description],
+         [InorExclude],
+         [OperDisplay]
+          FROM WF_Operator
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="OperatorId">[OperatorId]='$OperatorId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="NextType">[NextType]='$NextType$'</isNotNull>
+       <isNotNull prepend="AND" property="OperType">[OperType]='$OperType$'</isNotNull>
+       <isNotNull prepend="AND" property="OperContent">[OperContent]='$OperContent$'</isNotNull>
+       <isNotNull prepend="AND" property="Relation">[Relation]='$Relation$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="InorExclude">[InorExclude]='$InorExclude$'</isNotNull>
+       <isNotNull prepend="AND" property="OperDisplay">[OperDisplay]='$OperDisplay$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_OperatorByKey" resultMap="WF_Operator_AllColumns" parameterClass="WF_Operator">
+         SELECT 
+         [OperatorId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [NextType],
+         [OperType],
+         [OperContent],
+         [Relation],
+         [Description],
+         [InorExclude],
+         [OperDisplay]
+         FROM WF_Operator
+         WHERE 
+           OperatorId = #OperatorId#
+
+   </select>
+ 
+   <delete id="DeleteWF_Operator" parameterClass="WF_Operator">
+        DELETE FROM 
+         WF_Operator
+           WHERE
+         OperatorId = #OperatorId#
+
+   </delete>
+   
+   <delete id="DeleteWF_OperatorByWhere" parameterClass="string">
+     delete from WF_Operator $value$
+   </delete>
+   
+   <delete id="DeleteWF_OperatorByKey" parameterClass="string">
+        DELETE FROM 
+         WF_Operator
+           WHERE
+         OperatorId = #OperatorId#
+    
+   </delete>
+   
+   <update id="UpdateWF_Operator" parameterClass="WF_Operator" resultClass="int">
+          UPDATE WF_Operator
+           SET
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [NextType]=#NextType#,
+             [OperType]=#OperType#,
+             [OperContent]=#OperContent#,
+             [Relation]=#Relation#,
+             [Description]=#Description#,
+             [InorExclude]=#InorExclude#,
+             [OperDisplay]=#OperDisplay#
+            WHERE 
+              OperatorId = #OperatorId#
+
+   </update>
+  
+   <insert id="InsertWF_Operator" parameterClass="WF_Operator">
+        INSERT INTO WF_Operator
+         (
+         [OperatorId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [NextType],
+         [OperType],
+         [OperContent],
+         [Relation],
+         [Description],
+         [InorExclude],
+         [OperDisplay]
+         )
+       VALUES
+         (
+         #OperatorId#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #NextType#,
+         #OperType#,
+         #OperContent#,
+         #Relation#,
+         #Description#,
+         #InorExclude#,
+         #OperDisplay#
+         )
+
+   </insert>
+   
+   <select id="GetWF_OperatorRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_Operator
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="OperatorId">[OperatorId]='$OperatorId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="NextType">[NextType]='$NextType$'</isNotNull>
+       <isNotNull prepend="AND" property="OperType">[OperType]='$OperType$'</isNotNull>
+       <isNotNull prepend="AND" property="OperContent">[OperContent]='$OperContent$'</isNotNull>
+       <isNotNull prepend="AND" property="Relation">[Relation]='$Relation$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="InorExclude">[InorExclude]='$InorExclude$'</isNotNull>
+       <isNotNull prepend="AND" property="OperDisplay">[OperDisplay]='$OperDisplay$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_OperatorRowCount" parameterClass="string">
+    select count(*) from WF_Operator $value$
+   </select>
+    <select id="SelectWF_OperatorByWhere" resultMap="WF_Operator_AllColumns" parameterClass="string">
+      SELECT
+      *
+      FROM WF_Operator
+      
+      $value$
+
+    </select>
+  </statements>
+</sqlMap>
+ 

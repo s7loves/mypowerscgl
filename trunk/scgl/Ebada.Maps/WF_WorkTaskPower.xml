@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkTaskPower" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkTaskPower"  type="Ebada.Scgl.Model.WF_WorkTaskPower,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_WorkTaskPower_AllColumns" class="WF_WorkTaskPower">
+        <result property="Powerid" column="Powerid" />
+        <result property="PowerName" column="PowerName" />
+        <result property="Status" column="Status" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_WorkTaskPowerList" resultMap="WF_WorkTaskPower_AllColumns" parameterClass="string">
+        SELECT 
+         [Powerid],
+         [PowerName],
+         [Status],
+         [WorkFlowId],
+         [WorkTaskId]
+          FROM WF_WorkTaskPower
+          $value$
+   </select>
+   
+   <select id="SelectWF_WorkTaskPowerByHash" parameterClass="Hashtable">
+         SELECT 
+         [Powerid],
+         [PowerName],
+         [Status],
+         [WorkFlowId],
+         [WorkTaskId]
+          FROM WF_WorkTaskPower
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="Powerid">[Powerid]='$Powerid$'</isNotNull>
+       <isNotNull prepend="AND" property="PowerName">[PowerName]='$PowerName$'</isNotNull>
+       <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_WorkTaskPowerByKey" resultMap="WF_WorkTaskPower_AllColumns" parameterClass="WF_WorkTaskPower">
+         SELECT 
+         [Powerid],
+         [PowerName],
+         [Status],
+         [WorkFlowId],
+         [WorkTaskId]
+         FROM WF_WorkTaskPower
+         WHERE 
+           Powerid = #Powerid#
+
+   </select>
+ 
+   <delete id="DeleteWF_WorkTaskPower" parameterClass="WF_WorkTaskPower">
+        DELETE FROM 
+         WF_WorkTaskPower
+           WHERE
+         Powerid = #Powerid#
+
+   </delete>
+   
+   <delete id="DeleteWF_WorkTaskPowerByWhere" parameterClass="string">
+     delete from WF_WorkTaskPower $value$
+   </delete>
+   
+   <delete id="DeleteWF_WorkTaskPowerByKey" parameterClass="string">
+        DELETE FROM 
+         WF_WorkTaskPower
+           WHERE
+         Powerid = #Powerid#
+    
+   </delete>
+   
+   <update id="UpdateWF_WorkTaskPower" parameterClass="WF_WorkTaskPower" resultClass="int">
+          UPDATE WF_WorkTaskPower
+           SET
+             [PowerName]=#PowerName#,
+             [Status]=#Status#,
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#
+            WHERE 
+              Powerid = #Powerid#
+
+   </update>
+  
+   <insert id="InsertWF_WorkTaskPower" parameterClass="WF_WorkTaskPower">
+        INSERT INTO WF_WorkTaskPower
+         (
+         [Powerid],
+         [PowerName],
+         [Status],
+         [WorkFlowId],
+         [WorkTaskId]
+         )
+       VALUES
+         (
+         #Powerid#,
+         #PowerName#,
+         #Status#,
+         #WorkFlowId#,
+         #WorkTaskId#
+         )
+
+   </insert>
+   
+   <select id="GetWF_WorkTaskPowerRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_WorkTaskPower
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="Powerid">[Powerid]='$Powerid$'</isNotNull>
+       <isNotNull prepend="AND" property="PowerName">[PowerName]='$PowerName$'</isNotNull>
+       <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_WorkTaskPowerRowCount" parameterClass="string">
+    select count(*) from WF_WorkTaskPower $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

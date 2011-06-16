@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_UserRoleView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_UserRoleView"  type="Ebada.Scgl.Model.WF_UserRoleView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_UserRoleView_AllColumns" class="WF_UserRoleView">
+        <result property="RoleID" column="RoleID" />
+        <result property="UserID" column="UserID" />
+        <result property="UserName" column="UserName" />
+        <result property="Sex" column="Sex" />
+        <result property="Password" column="Password" />
+        <result property="OrgName" column="OrgName" />
+        <result property="Mail" column="Mail" />
+        <result property="Tel" column="Tel" />
+        <result property="PostName" column="PostName" />
+        <result property="RoleName" column="RoleName" />
+        <result property="RoleType" column="RoleType" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_UserRoleViewList" resultMap="WF_UserRoleView_AllColumns" parameterClass="string">
+        SELECT 
+         [RoleID],
+         [UserID],
+         [UserName],
+         [Sex],
+         [Password],
+         [OrgName],
+         [Mail],
+         [Tel],
+         [PostName],
+         [RoleName],
+         [RoleType]
+          FROM WF_UserRoleView
+          $value$
+   </select>
+   <select id="GetWF_UserRoleViewRowCount" parameterClass="string">
+    select count(*) from WF_UserRoleView $value$
+   </select>
+  
+   <insert id="InsertWF_UserRoleView" parameterClass="WF_UserRoleView">
+        INSERT INTO WF_UserRoleView
+         (
+         [RoleID],
+         [UserID],
+         [UserName],
+         [Sex],
+         [Password],
+         [OrgName],
+         [Mail],
+         [Tel],
+         [PostName],
+         [RoleName],
+         [RoleType]
+         )
+       VALUES
+         (
+         #RoleID#,
+         #UserID#,
+         #UserName#,
+         #Sex#,
+         #Password#,
+         #OrgName#,
+         #Mail#,
+         #Tel#,
+         #PostName#,
+         #RoleName#,
+         #RoleType#
+         )
+
+   </insert>
+   <update id="UpdateWF_UserRoleView" parameterClass="WF_UserRoleView" resultClass="int">
+          UPDATE WF_UserRoleView
+           SET
+             [RoleID]=#RoleID#,
+             [UserID]=#UserID#,
+             [UserName]=#UserName#,
+             [Sex]=#Sex#,
+             [Password]=#Password#,
+             [OrgName]=#OrgName#,
+             [Mail]=#Mail#,
+             [Tel]=#Tel#,
+             [PostName]=#PostName#,
+             [RoleName]=#RoleName#,
+             [RoleType]=#RoleType#
+   </update>
+   <delete id="DeleteWF_UserRoleView" parameterClass="WF_UserRoleView">
+        DELETE FROM 
+         WF_UserRoleView
+
+   </delete>
+  </statements>
+</sqlMap>
+ 
