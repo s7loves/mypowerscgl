@@ -47,11 +47,11 @@ namespace Ebada.Scgl.Yxgl {
                     //
                     ex.SetCellValue(tempobj.jr, 8 + i, 4);
                     //送检人
-                    //ex.SetCellValue(tempobj.sjr, 8 + i, 5);
+                    ex.SetCellValue(tempobj.sjr, 8 + i, 5);
                     //实验人
                     ex.SetCellValue(tempobj.syr, 8 + i, 6);
                     //安监签字
-                    ex.SetCellValue(tempobj.ajqz, 8 + i, 4);
+                    ex.SetCellValue(tempobj.ajqz, 8 + i, 7);
                     // 下次实验日期
                     ex.SetCellValue(tempobj.xcsyrq.Year.ToString(), 8 + i, 8);
                     ex.SetCellValue(tempobj.xcsyrq.Month.ToString(), 8 + i, 9);

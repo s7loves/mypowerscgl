@@ -77,7 +77,7 @@ namespace Ebada.Scgl.Yxgl {
                 //实验记录
                 for (int j = 0; j < 3; j++)
                 {
-                    if (p*3+j>pjsylist.Count)
+                    if (p*3+j>=pjsylist.Count)
                     {
                         break;
                     }

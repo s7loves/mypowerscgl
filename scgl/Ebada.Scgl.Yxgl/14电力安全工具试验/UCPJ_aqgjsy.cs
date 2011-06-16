@@ -50,7 +50,7 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_AfterAdd(PJ_14aqgjsy obj)
         {
-            RefreshData("where sbID='" + PSObj.sbID + "'");
+            RefreshData(" where OrgCode='" + parentID + "' and sbID='" + PSObj.sbID + "' order by id desc");
         }
         public PS_aqgj PSObj
         {
@@ -58,7 +58,12 @@ namespace Ebada.Scgl.Yxgl
             set 
             { 
                 _parentobj = value;
-                RefreshData("where sbID='" + value.sbID + "'");
+                if (parentID!=null&&PSObj!=null)
+                {
+                    RefreshData(" where OrgCode='" + parentID + "' and sbID='" + PSObj.sbID + "' order by id desc");
+
+                }
+               
             }
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_14aqgjsy> e)
@@ -68,7 +73,7 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_14aqgjsy> e)
         {
-            if (parentID == null)
+            if (parentID == null||PSObj==null)
                 e.Cancel = true;
         }
         protected override void OnLoad(EventArgs e)
@@ -178,9 +183,9 @@ namespace Ebada.Scgl.Yxgl
             set
             {
                 parentID = value;
-                if (!string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value)&&PSObj!=null)
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where OrgCode='" + value + "' and sbID='" + PSObj.sbID + "' order by id desc");
                 }
             }
         }

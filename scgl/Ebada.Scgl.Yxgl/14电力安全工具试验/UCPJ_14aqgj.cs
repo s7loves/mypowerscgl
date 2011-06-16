@@ -115,8 +115,8 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            //hideColumn("OrgCode");
-            //hideColumn("gznrID");
+            //hideColumn("OrgID");
+            
         }
         /// <summary>
         /// 刷新数据
@@ -142,6 +142,7 @@ namespace Ebada.Scgl.Yxgl
         void gridViewOperation_CreatingObjectEvent(PS_aqgj newobj)
         {
             if (parentID == null) return;
+             newobj.OrgID = parentID;
             //newobj.OrgCode = parentID;
             //newobj.OrgName = parentObj.OrgName;
             //newobj.CreateDate = DateTime.Now;
@@ -160,7 +161,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where OrgID='" + value + "' order by sbID desc");
                 }
             }
         }

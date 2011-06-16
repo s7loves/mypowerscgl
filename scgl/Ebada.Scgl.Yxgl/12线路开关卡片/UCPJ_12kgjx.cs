@@ -72,7 +72,7 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_12kgjx> e)
         {
-            if (parentID == null)
+            if (parentID == null || PSObj == null)
                 e.Cancel = true;
         }
         protected override void OnLoad(EventArgs e)
@@ -169,6 +169,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
+            newobj.jxsj = DateTime.Now;
             
            
         }

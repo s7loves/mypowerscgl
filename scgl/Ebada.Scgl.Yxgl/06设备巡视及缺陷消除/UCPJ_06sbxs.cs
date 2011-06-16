@@ -117,7 +117,7 @@ namespace Ebada.Scgl.Yxgl
 
             hideColumn("OrgCode");
             hideColumn("LineID");
-            hideColumn("gznrID");
+            hideColumn("gzrjID");
         }
         /// <summary>
         /// 刷新数据
