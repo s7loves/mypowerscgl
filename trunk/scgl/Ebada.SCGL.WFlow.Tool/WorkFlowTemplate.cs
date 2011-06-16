@@ -113,14 +113,14 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_WorkFlow wf = new PS_WorkFlow();
+                WF_WorkFlow wf = new WF_WorkFlow();
                 wf.WorkFlowId= WorkFlowId;
                 wf.WFClassId= WorkFlowClassId;
                 wf.FlowCaption= WorkFlowCaption;
                 wf.Description= Description;
                 wf.Status= Status;
                 wf.MgrUrl= MgrUrl;
-                MainHelper.PlatformSqlMap.Create<PS_WorkFlow>(wf);
+                MainHelper.PlatformSqlMap.Create<WF_WorkFlow>(wf);
 			}
             catch (Exception ex)
             {
@@ -141,14 +141,14 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_WorkFlow wf = new PS_WorkFlow();
+                WF_WorkFlow wf = new WF_WorkFlow();
                 wf.WorkFlowId = WorkFlowId;
                 wf.WFClassId = WorkFlowClassId;
                 wf.FlowCaption = WorkFlowCaption;
                 wf.Description = Description;
                 wf.Status = Status;
                 wf.MgrUrl = MgrUrl;
-                MainHelper.PlatformSqlMap.Update<PS_WorkFlow>(wf);
+                MainHelper.PlatformSqlMap.Update<WF_WorkFlow>(wf);
 			}
 			catch(Exception ex)
 			{
@@ -162,9 +162,9 @@ namespace Ebada.SCGL.WFlow.Tool
                 throw new Exception("DeleteWorkFlow方法错误，workflowId 不能为空！");
             try
             {
-                PS_WorkFlow wf = new PS_WorkFlow();
+                WF_WorkFlow wf = new WF_WorkFlow();
                 wf.WorkFlowId = workflowId;
-                return MainHelper.PlatformSqlMap.DeleteByKey<PS_WorkFlow>(wf);
+                return MainHelper.PlatformSqlMap.DeleteByKey<WF_WorkFlow>(wf);
             }
             catch (Exception ex)
             {
@@ -183,7 +183,7 @@ namespace Ebada.SCGL.WFlow.Tool
             try
             {
                 string tmpStr = " where WorkFlowId='" + workflowId + "'";
-                IList list = (IList)MainHelper.PlatformSqlMap.GetList<PS_WorkFlow>("SelectPS_WorkFlowList", tmpStr);
+                IList list = (IList)MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", tmpStr);
                 if (list.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -202,7 +202,7 @@ namespace Ebada.SCGL.WFlow.Tool
             try
             {
                 string tmpStr = " where WorkFlowId='" + workflowId + "'";
-                IList list = (IList)MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskControlsList", tmpStr);
+                IList list = (IList)MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskControlsList", tmpStr);
 
                 return ConvertHelper.ToDataTable(list);
             }
@@ -241,7 +241,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //return agent.ExecuteDataTable(sqlItem);
                 //string str = "select * from ( select  distinct  WFClassId,Caption,FatherId,WorkFlowId,FlowCaption,WorkTaskid,TaskCaption,cllevel,mgrurl,clmgrurl from WorkTaskView  where ((OperContent IN (SELECT OperContent FROM opercontentView where UserId='"+userId+"') ) OR (OperContent = 'ALL')) and TaskTypeId='1'and Status='1' union select distinct  WFClassId,Caption,FatherId,WorkFlowId,FlowCaption,WorkTaskid,TaskCaption,cllevel,mgrurl,clmgrurl  from WorkTaskAccreditView  where AccreditToUserId=@UserId and AccreditStatus='1'and   TaskTypeId='1') a order by cllevel,Caption";
                 string tmpStr = " '" + userId + "'";
-                IList list = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkTaskViewStartList", tmpStr);
+                IList list = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskViewStartList", tmpStr);
                 if (list.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -267,7 +267,7 @@ namespace Ebada.SCGL.WFlow.Tool
             try
             {
 
-                IList list = (IList)MainHelper.PlatformSqlMap.GetList("SelectPS_WorkFlowList", tmpStr);
+                IList list = (IList)MainHelper.PlatformSqlMap.GetList("SelectWF_WorkFlowList", tmpStr);
 
                 return ConvertHelper.ToDataTable(list);
                
@@ -281,7 +281,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             string tmpSql = " where workflowId='"+workFlowid+"'";
 
-            IList list = (IList)MainHelper.PlatformSqlMap.GetList("SelectPS_WorkFlowList", tmpSql);
+            IList list = (IList)MainHelper.PlatformSqlMap.GetList("SelectWF_WorkFlowList", tmpSql);
 
             if (list.Count > 0) return true;
             return false;
@@ -296,10 +296,10 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                PS_WorkFlow wf = new PS_WorkFlow();
+                WF_WorkFlow wf = new WF_WorkFlow();
                 wf.WorkFlowId=workflowId;
                 wf.Status=status;
-                return MainHelper.PlatformSqlMap.Update<PS_WorkFlow>(wf);
+                return MainHelper.PlatformSqlMap.Update<WF_WorkFlow>(wf);
 
             }
             catch (Exception ex)
@@ -317,10 +317,10 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                PS_WorkFlow wf = new PS_WorkFlow();
+                WF_WorkFlow wf = new WF_WorkFlow();
                 wf.WorkFlowId = workflowId;
                 wf.WFClassId= wfclassid;
-                return MainHelper.PlatformSqlMap.Update<PS_WorkFlow>(wf);
+                return MainHelper.PlatformSqlMap.Update<WF_WorkFlow>(wf);
 
             }
             catch (Exception ex)

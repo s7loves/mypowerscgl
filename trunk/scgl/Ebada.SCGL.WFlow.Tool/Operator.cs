@@ -45,7 +45,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@OperatorId",  operId );
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_OperatorList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_OperatorList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -127,7 +127,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_Operator op = new PS_Operator();
+                WF_Operator op = new WF_Operator();
                 op.OperatorId=this.OperatorId;
                 op.WorkFlowId=this.WorkFlowId;
                 op.WorkTaskId=this.WorkTaskId;
@@ -137,7 +137,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 op.Description=this.Description;
                 op.InorExclude = this.InorExclude;
                 op.OperDisplay = this.OperDisplay;
-                MainHelper.PlatformSqlMap.Create<PS_Operator>(op); 
+                MainHelper.PlatformSqlMap.Create<WF_Operator>(op); 
 
             }
             catch (Exception ex)
@@ -160,7 +160,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_Operator op = new PS_Operator();
+                WF_Operator op = new WF_Operator();
                 op.OperatorId = this.OperatorId;
                 op.WorkFlowId = this.WorkFlowId;
                 op.WorkTaskId = this.WorkTaskId;
@@ -170,7 +170,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 op.Description = this.Description;
                 op.InorExclude = this.InorExclude;
                 op.OperDisplay = this.OperDisplay;
-                MainHelper.PlatformSqlMap.Update<PS_Operator>(op); 
+                MainHelper.PlatformSqlMap.Update<WF_Operator>(op); 
             }
             catch (Exception ex)
             {
@@ -192,7 +192,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.CommandText = sqlStr;
                 //sqlItem.AppendParameter("@OperatorId", OperatorId);
                 //ClientDBAgent agent = new ClientDBAgent();
-                return MainHelper.PlatformSqlMap.DeleteByWhere<PS_Operator>(sqlStr); 
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_Operator>(sqlStr); 
             }
             catch (Exception ex)
             {
@@ -214,7 +214,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.AppendParameter("@OperatorId", operatorId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteScalar(sqlItem);
-                IList<PS_Operator> li = MainHelper.PlatformSqlMap.GetList<PS_Operator>("SelectPS_OperatorList", tmpStr);
+                IList<WF_Operator> li = MainHelper.PlatformSqlMap.GetList<WF_Operator>("SelectWF_OperatorList", tmpStr);
                 if (li.Count >0) return li[0].OperContent ;
                 return "";
             }
@@ -239,7 +239,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteScalar(sqlItem);
                 string tmpStr = " where OperatorId='" + OperatorId + "'";
-                IList<PS_Operator> li = MainHelper.PlatformSqlMap.GetList<PS_Operator>("SelectPS_OperatorList", tmpStr);
+                IList<WF_Operator> li = MainHelper.PlatformSqlMap.GetList<WF_Operator>("SelectWF_OperatorList", tmpStr);
                 if (li.Count > 0) return li[0].Relation.ToString();
                 return "";
 
@@ -260,7 +260,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string tmpStr = " where  workflowId='" + workFlowid + "'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_OperatorList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_OperatorList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -284,7 +284,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //return agent.RecordExists(sqlItem);
 
             string tmpStr = " where  OperatorId='" + operatorId + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_OperatorList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_OperatorList", tmpStr);
             if (li.Count > 0) return true;
             return false; 
         }

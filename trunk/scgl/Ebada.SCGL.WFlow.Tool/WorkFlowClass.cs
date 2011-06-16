@@ -64,7 +64,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //sqlItem.CommandText = tmpSql;
                 //sqlItem.AppendParameter("@WFClassId", workflowClassId);
                 //ClientDBAgent agent = new ClientDBAgent();
-                return MainHelper.PlatformSqlMap.DeleteByWhere<PS_WorkFlowClass>(tmpSql);
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowClass>(tmpSql);
 
             }
             catch (Exception ex)
@@ -82,7 +82,7 @@ namespace Ebada.SCGL.WFlow.Tool
             try
             {
                 string tmpStr = "where  FatherId='" + fatherClassId + "'";//有效的树信息
-                IList li = (IList)MainHelper.PlatformSqlMap.GetList<PS_WorkFlowClass>("SelectPS_WorkFlowClassList", tmpStr);
+                IList li = (IList)MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -107,7 +107,7 @@ namespace Ebada.SCGL.WFlow.Tool
             try
             {
                 string tmpStr = " where WFClassId='"+classId+"'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_WorkFlowList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkFlowList", tmpStr);
                 if (li.Count  == 0)
                 {
                     DataTable dt = new DataTable();
@@ -212,7 +212,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_WorkFlowClass wf = new PS_WorkFlowClass();
+                WF_WorkFlowClass wf = new WF_WorkFlowClass();
                 
                 wf.WFClassId=WorkflowClassId;
                 wf.Caption=WorkflowClassCaption;
@@ -220,7 +220,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 wf.Description=Description;
                 wf.clLevel= clLevel;
                 wf.clMgrUrl= MgrUrl;
-                MainHelper.PlatformSqlMap.Create<PS_WorkFlowClass>(wf);
+                MainHelper.PlatformSqlMap.Create<WF_WorkFlowClass>(wf);
             }
             catch (Exception ex)
             {
@@ -241,7 +241,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_WorkFlowClass wf = new PS_WorkFlowClass();
+                WF_WorkFlowClass wf = new WF_WorkFlowClass();
 
                 wf.WFClassId = WorkflowClassId;
                 wf.Caption = WorkflowClassCaption;
@@ -249,7 +249,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 wf.Description = Description;
                 wf.clLevel = clLevel;
                 wf.clMgrUrl = MgrUrl;
-                MainHelper.PlatformSqlMap.Update <PS_WorkFlowClass>(wf);
+                MainHelper.PlatformSqlMap.Update <WF_WorkFlowClass>(wf);
             }
             catch (Exception ex)
             {

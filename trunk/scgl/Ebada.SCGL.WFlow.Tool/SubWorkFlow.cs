@@ -114,7 +114,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_SubWorkFlow swf = new PS_SubWorkFlow();
+                WF_SubWorkFlow swf = new WF_SubWorkFlow();
                 swf.subId= SubId;
                 swf.WorkflowId= WorkflowId;
                 swf.WorkTaskId= WorkTaskId;
@@ -122,7 +122,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 swf.subStartTaskId= SubStartTaskId;
                 swf.subWorkflowCaption= SubWorkflowCaption;
                 swf.Description = Description;
-                MainHelper.PlatformSqlMap.Create<PS_SubWorkFlow>(swf); 
+                MainHelper.PlatformSqlMap.Create<WF_SubWorkFlow>(swf); 
 			}
             catch (Exception ex)
             {
@@ -143,7 +143,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                PS_SubWorkFlow swf = new PS_SubWorkFlow();
+                WF_SubWorkFlow swf = new WF_SubWorkFlow();
                 swf.subId = SubId;
                 swf.WorkflowId = WorkflowId;
                 swf.WorkTaskId = WorkTaskId;
@@ -151,7 +151,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 swf.subStartTaskId = SubStartTaskId;
                 swf.subWorkflowCaption = SubWorkflowCaption;
                 swf.Description = Description;
-                MainHelper.PlatformSqlMap.Update<PS_SubWorkFlow>(swf); 
+                MainHelper.PlatformSqlMap.Update<WF_SubWorkFlow>(swf); 
 			}
 			catch(Exception ex)
 			{
@@ -172,7 +172,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteNonQuery(sqlItem);
                 string tmpStr = " where  WorkFlowId='" + workflowId + "' and WorkTaskId='" + taskId + "'";
-                return MainHelper.PlatformSqlMap.DeleteByWhere<PS_SubWorkFlow>(tmpStr); 
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_SubWorkFlow>(tmpStr); 
             }
             catch (Exception ex)
             {
@@ -199,7 +199,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string tmpStr = " where   WorkFlowId='" + workflowId + "' and WorkTaskId='" + taskId + "'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_SubWorkFlowList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_SubWorkFlowList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -230,7 +230,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
                 string tmpStr = " where   WorkFlowId='" + workflowId + "'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_SubWorkFlowList", tmpStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_SubWorkFlowList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
@@ -260,7 +260,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //ClientDBAgent agent = new ClientDBAgent();
             //return agent.RecordExists(sqlItem);
             string tmpStr = " where   WorkFlowId='" + workflowId + "' and WorkTaskId='" + taskId + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_SubWorkFlowList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_SubWorkFlowList", tmpStr);
             if (li.Count > 0) return true;
             return false; 
 
@@ -280,7 +280,7 @@ namespace Ebada.SCGL.WFlow.Tool
         //    ClientDBAgent agent = new ClientDBAgent();
         //    return agent.RecordExists(sqlItem);
             string tmpStr = " where   subId='" + subId  + "'";
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectPS_SubWorkFlowList", tmpStr);
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_SubWorkFlowList", tmpStr);
             if (li.Count > 0) return true;
             return false; 
         }
