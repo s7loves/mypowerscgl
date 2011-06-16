@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-16 17:04:05
+生成时间:2011-6-16 21:40:42
 ***********************************************/
 
 using System;
@@ -21,18 +21,12 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
-        private string _id=Newid(); 
+        private string _pj_id=Newid(); 
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
         private DateTime _rq=new DateTime(1900,1,1); 
-        private int _xh=0; 
-        private string _sbdy=String.Empty; 
-        private int _one=0; 
-        private int _two=0; 
-        private int _three=0; 
-        private decimal _whl=0; 
-        private string _qxnr=String.Empty; 
-        private string _fzdw=String.Empty; 
+        private string _fzr=String.Empty; 
+        private string _zbr=String.Empty; 
         private string _gzrjid=String.Empty; 
         private string _createman=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1);   
@@ -42,23 +36,23 @@ namespace Ebada.Scgl.Model
         #region Public 成员
    
         /// <summary>
-        /// 属性名称：ID
+        /// 属性名称：PJ_ID
         /// 属性描述：记录ID
-        /// 字段信息：[ID],nvarchar
+        /// 字段信息：[PJ_ID],nvarchar
         /// </summary>
         [Browsable(false)]
         [DisplayNameAttribute("记录ID")]
-        public string ID
+        public string PJ_ID
         {
-            get { return _id; }
+            get { return _pj_id; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
                 throw new Exception("[记录ID]长度不能大于50!");
-                if (_id as object == null || !_id.Equals(value))
+                if (_pj_id as object == null || !_pj_id.Equals(value))
                 {
-                    _id = value;
+                    _pj_id = value;
                 }
             }			 
         }
@@ -107,10 +101,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：rq
-        /// 属性描述：日期
+        /// 属性描述：报出日期
         /// 字段信息：[rq],datetime
         /// </summary>
-        [DisplayNameAttribute("日期")]
+        [DisplayNameAttribute("报出日期")]
         public DateTime rq
         {
             get { return _rq; }
@@ -124,154 +118,43 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：xh
-        /// 属性描述：序号
-        /// 字段信息：[xh],int
+        /// 属性名称：fzr
+        /// 属性描述：负责人
+        /// 字段信息：[fzr],nvarchar
         /// </summary>
-        [DisplayNameAttribute("序号")]
-        public int xh
+        [DisplayNameAttribute("负责人")]
+        public string fzr
         {
-            get { return _xh; }
-            set
-            {			
-                if (_xh as object == null || !_xh.Equals(value))
-                {
-                    _xh = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：sbdy
-        /// 属性描述：设备单元名称
-        /// 字段信息：[sbdy],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("设备单元名称")]
-        public string sbdy
-        {
-            get { return _sbdy; }
+            get { return _fzr; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[设备单元名称]长度不能大于50!");
-                if (_sbdy as object == null || !_sbdy.Equals(value))
+                throw new Exception("[负责人]长度不能大于50!");
+                if (_fzr as object == null || !_fzr.Equals(value))
                 {
-                    _sbdy = value;
+                    _fzr = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：one
-        /// 属性描述：一类数量
-        /// 字段信息：[one],int
+        /// 属性名称：zbr
+        /// 属性描述：制表人
+        /// 字段信息：[zbr],nvarchar
         /// </summary>
-        [DisplayNameAttribute("一类数量")]
-        public int one
+        [DisplayNameAttribute("制表人")]
+        public string zbr
         {
-            get { return _one; }
-            set
-            {			
-                if (_one as object == null || !_one.Equals(value))
-                {
-                    _one = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：two
-        /// 属性描述：二类数量
-        /// 字段信息：[two],int
-        /// </summary>
-        [DisplayNameAttribute("二类数量")]
-        public int two
-        {
-            get { return _two; }
-            set
-            {			
-                if (_two as object == null || !_two.Equals(value))
-                {
-                    _two = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：three
-        /// 属性描述：三类数量
-        /// 字段信息：[three],int
-        /// </summary>
-        [DisplayNameAttribute("三类数量")]
-        public int three
-        {
-            get { return _three; }
-            set
-            {			
-                if (_three as object == null || !_three.Equals(value))
-                {
-                    _three = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：whl
-        /// 属性描述：完好率
-        /// 字段信息：[whl],decimal
-        /// </summary>
-        [DisplayNameAttribute("完好率")]
-        public decimal whl
-        {
-            get { return _whl; }
-            set
-            {			
-                if (_whl as object == null || !_whl.Equals(value))
-                {
-                    _whl = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：qxnr
-        /// 属性描述：缺陷内容
-        /// 字段信息：[qxnr],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("缺陷内容")]
-        public string qxnr
-        {
-            get { return _qxnr; }
-            set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 250)
-                throw new Exception("[缺陷内容]长度不能大于250!");
-                if (_qxnr as object == null || !_qxnr.Equals(value))
-                {
-                    _qxnr = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：fzdw
-        /// 属性描述：负责单位
-        /// 字段信息：[fzdw],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("负责单位")]
-        public string fzdw
-        {
-            get { return _fzdw; }
+            get { return _zbr; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[负责单位]长度不能大于50!");
-                if (_fzdw as object == null || !_fzdw.Equals(value))
+                throw new Exception("[制表人]长度不能大于50!");
+                if (_zbr as object == null || !_zbr.Equals(value))
                 {
-                    _fzdw = value;
+                    _zbr = value;
                 }
             }			 
         }
