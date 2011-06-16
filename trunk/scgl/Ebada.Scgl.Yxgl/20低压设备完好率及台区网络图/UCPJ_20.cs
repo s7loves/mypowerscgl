@@ -78,8 +78,10 @@ namespace Ebada.Scgl.Yxgl
             if (org != null)
             {
                 ParentObj = org;
-                if (SelectGdsChanged != null)
-                    SelectGdsChanged(this, org);
+                IList<PS_xl>xlList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='"+org.OrgCode+"'");
+                repositoryItemLookUpEdit2.DataSource = xlList;
+                //if (SelectGdsChanged != null)
+                //    SelectGdsChanged(this, org);
             }
             
 
