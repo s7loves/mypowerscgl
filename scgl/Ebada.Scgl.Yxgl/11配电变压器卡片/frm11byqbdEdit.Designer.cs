@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
-            this.bar1 = new DevExpress.XtraBars.Bar();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateEdit3 = new DevExpress.XtraEditors.DateEdit();
             this.comboBoxEdit3 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -42,6 +42,8 @@
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit4 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.bar1 = new DevExpress.XtraBars.Bar();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -85,22 +87,6 @@
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
-            // bar1
-            // 
-            this.bar1.BarName = "Tools";
-            this.bar1.DockCol = 0;
-            this.bar1.DockRow = 0;
-            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar1.OptionsBar.AllowQuickCustomization = false;
-            this.bar1.OptionsBar.UseWholeRow = true;
-            this.bar1.Text = "Tools";
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dateEdit3);
@@ -135,7 +121,7 @@
             this.comboBoxEdit3.Location = new System.Drawing.Point(365, 50);
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.comboBoxEdit3.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit3.TabIndex = 17;
             // 
@@ -180,7 +166,7 @@
             this.comboBoxEdit4.Location = new System.Drawing.Point(126, 50);
             this.comboBoxEdit4.Name = "comboBoxEdit4";
             this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit4.TabIndex = 14;
             // 
@@ -191,6 +177,22 @@
             this.labelControl9.Size = new System.Drawing.Size(48, 14);
             this.labelControl9.TabIndex = 13;
             this.labelControl9.Text = "撤除原因";
+            // 
+            // bar1
+            // 
+            this.bar1.BarName = "Tools";
+            this.bar1.DockCol = 0;
+            this.bar1.DockRow = 0;
+            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.OptionsBar.AllowQuickCustomization = false;
+            this.bar1.OptionsBar.UseWholeRow = true;
+            this.bar1.Text = "Tools";
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
             // frm11byqbdEdit
             // 

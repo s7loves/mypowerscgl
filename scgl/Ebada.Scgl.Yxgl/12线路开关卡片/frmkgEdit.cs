@@ -86,7 +86,7 @@ namespace Ebada.Scgl.Yxgl
             comboBox.Properties.DataSource = post;
             comboBox.Properties.DisplayMember = "gtCode";
             comboBox.Properties.ValueMember = "gtID";
-            comboBox.Properties.NullText = "无杆塔数据";
+            comboBox.Properties.NullText = "选择杆塔";
             comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gtID", "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gtCode", "杆塔编号",30),
