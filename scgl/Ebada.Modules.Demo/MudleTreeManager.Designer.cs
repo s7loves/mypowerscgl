@@ -54,6 +54,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageCollection2 = new DevExpress.Utils.ImageCollection(this.components);
             this.mModuleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -71,7 +72,8 @@
             this.MethodName,
             this.colSequence,
             this.colDescription,
-            this.treeListColumn1});
+            this.treeListColumn1,
+            this.treeListColumn2});
             this.treeList1.DataSource = this.bindingSource1;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.KeyFieldName = "Modu_ID";
@@ -88,7 +90,7 @@
             this.colModuName.Name = "colModuName";
             this.colModuName.Visible = true;
             this.colModuName.VisibleIndex = 0;
-            this.colModuName.Width = 100;
+            this.colModuName.Width = 200;
             // 
             // colModuTypes
             // 
@@ -97,7 +99,7 @@
             this.colModuTypes.Name = "colModuTypes";
             this.colModuTypes.Visible = true;
             this.colModuTypes.VisibleIndex = 1;
-            this.colModuTypes.Width = 100;
+            this.colModuTypes.Width = 150;
             // 
             // colAssemblyFileName
             // 
@@ -275,6 +277,14 @@
             // 
             this.mModuleBindingSource.DataSource = typeof(Ebada.Platform.Model.mModule);
             // 
+            // treeListColumn2
+            // 
+            this.treeListColumn2.Caption = "显示";
+            this.treeListColumn2.FieldName = "visiableFlag";
+            this.treeListColumn2.Name = "treeListColumn2";
+            this.treeListColumn2.Visible = true;
+            this.treeListColumn2.VisibleIndex = 7;
+            // 
             // MudleTreeManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -321,5 +331,6 @@
         private DevExpress.XtraBars.BarButtonItem btRefresh;
         private DevExpress.XtraTreeList.Columns.TreeListColumn MethodName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
     }
 }

@@ -152,7 +152,7 @@ namespace Ebada.SCGL
         {
             foreach (DataRow row in rows)
             {
-                DataRow[] progs = dt.Select("parentid='" + row["Modu_ID"] + "'", "Sequence");
+                DataRow[] progs = dt.Select("parentid='" + row["Modu_ID"] + "' and visiableflag=1", "Sequence");
                 if (progs.Length > 0)
                 {
                     BarSubItem sub1 = new BarSubItem(barManager1,row["ModuName"].ToString());
