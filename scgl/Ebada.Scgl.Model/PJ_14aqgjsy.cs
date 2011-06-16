@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:53:59
+生成时间:2011-6-16 14:34:00
 ***********************************************/
 
 using System;
@@ -27,6 +27,7 @@ namespace Ebada.Scgl.Model
         private string _orgname=String.Empty; 
         private DateTime _rq=new DateTime(1900,1,1); 
         private string _jr=String.Empty; 
+        private string _sjr=String.Empty; 
         private string _syr=String.Empty; 
         private string _ajqz=String.Empty; 
         private DateTime _xcsyrq=new DateTime(1900,1,1); 
@@ -159,6 +160,27 @@ namespace Ebada.Scgl.Model
                 if (_jr as object == null || !_jr.Equals(value))
                 {
                     _jr = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：sjr
+        /// 属性描述：送检人
+        /// 字段信息：[sjr],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("送检人")]
+        public string sjr
+        {
+            get { return _sjr; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 10)
+                throw new Exception("[送检人]长度不能大于10!");
+                if (_sjr as object == null || !_sjr.Equals(value))
+                {
+                    _sjr = value;
                 }
             }			 
         }
