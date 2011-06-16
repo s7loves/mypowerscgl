@@ -60,6 +60,35 @@
           FROM PS_tqbyq
           $value$
    </select>
+    <select id="SelectPS_tqbyqByGDS" resultMap="PS_tqbyq_AllColumns" parameterClass="string">
+      SELECT
+      d.[tqID],
+      d.[byqID],
+      d.[byqCode],
+      d.[byqName],
+      d.[byqModle],
+      d.[omniseal],
+      d.[byqOwner],
+      d.[byqVol],
+      d.[byqPhase],
+      d.[byqCapcity],
+      d.[byqLineGroup],
+      d.[byqFactory],
+      d.[byqNumber],
+      d.[byqMadeDate],
+      d.[byqCycle],
+      d.[byqVolOne],
+      d.[byqVolTwo],
+      d.[byqCurrentOne],
+      d.[byqCurrentTwo],
+      d.[byqInstallDate],
+      d.[byqInstallAdress],
+      d.[byqState],
+      d.[InDate]
+      FROM
+      dbo.mOrg a, dbo.PS_xl b, dbo.PS_tq c,dbo.PS_tqbyq d
+      where a.OrgCode=b.OrgCode and b.LineCode=c.xlCode and c.tqID=d.tqID and a.OrgCode=$value$
+    </select>
    
    <select id="SelectPS_tqbyqByHash" parameterClass="Hashtable">
          SELECT 
