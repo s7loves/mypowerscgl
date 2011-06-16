@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:53:59
+生成时间:2011-6-16 17:04:05
 ***********************************************/
 
 using System;
@@ -24,7 +24,7 @@ namespace Ebada.Scgl.Model
         private string _id=Newid(); 
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
-        private string _rq=String.Empty; 
+        private DateTime _rq=new DateTime(1900,1,1); 
         private int _xh=0; 
         private string _sbdy=String.Empty; 
         private int _one=0; 
@@ -108,17 +108,14 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：rq
         /// 属性描述：日期
-        /// 字段信息：[rq],nvarchar
+        /// 字段信息：[rq],datetime
         /// </summary>
         [DisplayNameAttribute("日期")]
-        public string rq
+        public DateTime rq
         {
             get { return _rq; }
             set
             {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[日期]长度不能大于50!");
                 if (_rq as object == null || !_rq.Equals(value))
                 {
                     _rq = value;
