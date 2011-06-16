@@ -31,6 +31,9 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lookUpEdit5 = new DevExpress.XtraEditors.LookUpEdit();
@@ -55,16 +58,13 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit6 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.textEdit7 = new DevExpress.XtraEditors.SpinEdit();
-            this.textEdit6 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit7 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -79,11 +79,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -129,7 +129,6 @@
             this.groupBox1.Controls.Add(this.labelControl14);
             this.groupBox1.Controls.Add(this.labelControl16);
             this.groupBox1.Controls.Add(this.labelControl17);
-            this.groupBox1.Controls.Add(this.textEdit7);
             this.groupBox1.Controls.Add(this.comboBoxEdit2);
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
             this.groupBox1.Controls.Add(this.lookUpEdit5);
@@ -156,12 +155,43 @@
             this.groupBox1.Controls.Add(this.labelControl5);
             this.groupBox1.Controls.Add(this.textEdit6);
             this.groupBox1.Controls.Add(this.textEdit5);
+            this.groupBox1.Controls.Add(this.textEdit7);
             this.groupBox1.Location = new System.Drawing.Point(16, 39);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(498, 286);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单元格信息";
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Location = new System.Drawing.Point(249, 165);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(48, 14);
+            this.labelControl14.TabIndex = 24;
+            this.labelControl14.Text = "签名图片";
+            this.labelControl14.UseWaitCursor = true;
+            this.labelControl14.Visible = false;
+            // 
+            // labelControl16
+            // 
+            this.labelControl16.Location = new System.Drawing.Point(249, 138);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(48, 14);
+            this.labelControl16.TabIndex = 23;
+            this.labelControl16.Text = "模板附图";
+            this.labelControl16.UseWaitCursor = true;
+            this.labelControl16.Visible = false;
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Location = new System.Drawing.Point(249, 111);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(48, 14);
+            this.labelControl17.TabIndex = 22;
+            this.labelControl17.Text = "模板内容";
+            this.labelControl17.UseWaitCursor = true;
+            this.labelControl17.Visible = false;
             // 
             // comboBoxEdit2
             // 
@@ -290,7 +320,7 @@
             // 
             this.textEdit1.Location = new System.Drawing.Point(113, 30);
             this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Mask.EditMask = "[a-zA-Z]{1,2}\\d{1,3}";
+            this.textEdit1.Properties.Mask.EditMask = "([a-zA-Z]{1,2}\\d{1,3}[|])+";
             this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.textEdit1.Size = new System.Drawing.Size(100, 21);
             this.textEdit1.TabIndex = 4;
@@ -385,6 +415,40 @@
             this.labelControl5.Text = "控件位置";
             this.labelControl5.UseWaitCursor = true;
             // 
+            // textEdit6
+            // 
+            this.textEdit6.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.textEdit6.Location = new System.Drawing.Point(113, 135);
+            this.textEdit6.Name = "textEdit6";
+            this.textEdit6.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.textEdit6.Properties.Mask.EditMask = "\\d{1,3},\\d{1,3}";
+            this.textEdit6.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.textEdit6.Properties.Mask.ShowPlaceHolders = false;
+            this.textEdit6.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.textEdit6.Size = new System.Drawing.Size(100, 21);
+            this.textEdit6.TabIndex = 20;
+            // 
+            // textEdit5
+            // 
+            this.textEdit5.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.textEdit5.Location = new System.Drawing.Point(113, 161);
+            this.textEdit5.Name = "textEdit5";
+            this.textEdit5.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.textEdit5.Properties.Mask.EditMask = "\\d{1,3},\\d{1,3}";
+            this.textEdit5.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.textEdit5.Properties.Mask.ShowPlaceHolders = false;
+            this.textEdit5.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.textEdit5.Size = new System.Drawing.Size(100, 21);
+            this.textEdit5.TabIndex = 21;
+            // 
             // dateEdit1
             // 
             this.dateEdit1.EditValue = null;
@@ -426,83 +490,15 @@
             // 
             // textEdit7
             // 
-            this.textEdit7.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+            this.textEdit7.EditValue = "";
             this.textEdit7.Location = new System.Drawing.Point(113, 81);
             this.textEdit7.Name = "textEdit7";
-            this.textEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
             this.textEdit7.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.textEdit7.Properties.Mask.EditMask = "n0";
+            this.textEdit7.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.textEdit7.Properties.Mask.EditMask = "([0-9]+[|])+";
+            this.textEdit7.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.textEdit7.Size = new System.Drawing.Size(100, 21);
             this.textEdit7.TabIndex = 19;
-            // 
-            // textEdit6
-            // 
-            this.textEdit6.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.textEdit6.Location = new System.Drawing.Point(113, 135);
-            this.textEdit6.Name = "textEdit6";
-            this.textEdit6.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-            this.textEdit6.Properties.Mask.EditMask = "\\d{1,3},\\d{1,3}";
-            this.textEdit6.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.textEdit6.Properties.Mask.ShowPlaceHolders = false;
-            this.textEdit6.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.textEdit6.Size = new System.Drawing.Size(100, 21);
-            this.textEdit6.TabIndex = 20;
-            // 
-            // textEdit5
-            // 
-            this.textEdit5.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.textEdit5.Location = new System.Drawing.Point(113, 161);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-            this.textEdit5.Properties.Mask.EditMask = "\\d{1,3},\\d{1,3}";
-            this.textEdit5.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.textEdit5.Properties.Mask.ShowPlaceHolders = false;
-            this.textEdit5.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.textEdit5.Size = new System.Drawing.Size(100, 21);
-            this.textEdit5.TabIndex = 21;
-            // 
-            // labelControl14
-            // 
-            this.labelControl14.Location = new System.Drawing.Point(249, 165);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(48, 14);
-            this.labelControl14.TabIndex = 24;
-            this.labelControl14.Text = "签名图片";
-            this.labelControl14.UseWaitCursor = true;
-            this.labelControl14.Visible = false;
-            // 
-            // labelControl16
-            // 
-            this.labelControl16.Location = new System.Drawing.Point(249, 138);
-            this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(48, 14);
-            this.labelControl16.TabIndex = 23;
-            this.labelControl16.Text = "模板附图";
-            this.labelControl16.UseWaitCursor = true;
-            this.labelControl16.Visible = false;
-            // 
-            // labelControl17
-            // 
-            this.labelControl17.Location = new System.Drawing.Point(249, 111);
-            this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(48, 14);
-            this.labelControl17.TabIndex = 22;
-            this.labelControl17.Text = "模板内容";
-            this.labelControl17.UseWaitCursor = true;
-            this.labelControl17.Visible = false;
             // 
             // frmExcelModelEdit
             // 
@@ -531,11 +527,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -574,12 +570,12 @@
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit4;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
-        private DevExpress.XtraEditors.SpinEdit textEdit7;
         private DevExpress.XtraEditors.TextEdit textEdit6;
         private DevExpress.XtraEditors.TextEdit textEdit5;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl labelControl16;
         private DevExpress.XtraEditors.LabelControl labelControl17;
+        private DevExpress.XtraEditors.TextEdit textEdit7;
 
     }
 }

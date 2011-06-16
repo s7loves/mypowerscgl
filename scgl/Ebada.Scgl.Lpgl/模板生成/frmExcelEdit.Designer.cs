@@ -144,7 +144,7 @@
             this.MinimizeBox = false;
             this.Name = "frmExcelEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "编辑业务单位";
+            this.Text = "编辑模板";
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupControlOrg.PerformLayout();
