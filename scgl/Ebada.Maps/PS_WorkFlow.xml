@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_WorkFlow" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_WorkFlow"  type="Ebada.Scgl.Model.PS_WorkFlow,Ebada.Scgl.Model" />
+ 
+    </alias>
+  <resultMaps>
+      <resultMap id="PS_WorkFlow_AllColumns" class="PS_WorkFlow">
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="FlowCaption" column="FlowCaption" />
+        <result property="WFClassId" column="WFClassId" />
+        <result property="Version" column="Version" />
+        <result property="Status" column="Status" />
+        <result property="CreateUserId" column="CreateUserId" />
+        <result property="CreateDateTime" column="CreateDateTime" />
+        <result property="IsSignOut" column="IsSignOut" />
+        <result property="SignOutUserId" column="SignOutUserId" />
+        <result property="WorkCalendarId" column="WorkCalendarId" />
+        <result property="Description" column="Description" />
+        <result property="MgrUrl" column="MgrUrl" />
+      </resultMap>
+    <resultMap id="TableName_AllColumns" class="PS_WorkFlow">
+      <result property="Name" column="Name" />
+    </resultMap>
+    
+     
+  </resultMaps>
+
+  <statements>
+   
+   <select id="SelectPS_WorkFlowList" resultMap="PS_WorkFlow_AllColumns" parameterClass="string">
+        SELECT 
+         [WorkFlowId],
+         [FlowCaption],
+         [WFClassId],
+         [Version],
+         [Status],
+         [CreateUserId],
+         [CreateDateTime],
+         [IsSignOut],
+         [SignOutUserId],
+         [WorkCalendarId],
+         [Description],
+         [MgrUrl]
+          FROM PS_WorkFlow
+          $value$
+   </select>
+   
+   <select id="SelectPS_WorkFlowByHash" parameterClass="Hashtable">
+         SELECT 
+         [WorkFlowId],
+         [FlowCaption],
+         [WFClassId],
+         [Version],
+         [Status],
+         [CreateUserId],
+         [CreateDateTime],
+         [IsSignOut],
+         [SignOutUserId],
+         [WorkCalendarId],
+         [Description],
+         [MgrUrl]
+          FROM PS_WorkFlow
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="FlowCaption">[FlowCaption]='$FlowCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="WFClassId">[WFClassId]='$WFClassId$'</isNotNull>
+       <isNotNull prepend="AND" property="Version">[Version]='$Version$'</isNotNull>
+       <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateUserId">[CreateUserId]='$CreateUserId$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDateTime">[CreateDateTime]='$CreateDateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="IsSignOut">[IsSignOut]='$IsSignOut$'</isNotNull>
+       <isNotNull prepend="AND" property="SignOutUserId">[SignOutUserId]='$SignOutUserId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkCalendarId">[WorkCalendarId]='$WorkCalendarId$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="MgrUrl">[MgrUrl]='$MgrUrl$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_WorkFlowByKey" resultMap="PS_WorkFlow_AllColumns" parameterClass="PS_WorkFlow">
+         SELECT 
+         [WorkFlowId],
+         [FlowCaption],
+         [WFClassId],
+         [Version],
+         [Status],
+         [CreateUserId],
+         [CreateDateTime],
+         [IsSignOut],
+         [SignOutUserId],
+         [WorkCalendarId],
+         [Description],
+         [MgrUrl]
+         FROM PS_WorkFlow
+         WHERE 
+           WorkFlowId = #WorkFlowId#
+
+   </select>
+ 
+   <delete id="DeletePS_WorkFlow" parameterClass="PS_WorkFlow">
+        DELETE FROM 
+         PS_WorkFlow
+           WHERE
+         WorkFlowId = #WorkFlowId#
+
+   </delete>
+   
+   <delete id="DeletePS_WorkFlowByWhere" parameterClass="string">
+     delete from PS_WorkFlow $value$
+   </delete>
+   
+   <delete id="DeletePS_WorkFlowByKey" parameterClass="string">
+        DELETE FROM 
+         PS_WorkFlow
+           WHERE
+         WorkFlowId = #WorkFlowId#
+    
+   </delete>
+   
+   <update id="UpdatePS_WorkFlow" parameterClass="PS_WorkFlow" resultClass="int">
+          UPDATE PS_WorkFlow
+           SET
+             [FlowCaption]=#FlowCaption#,
+             [WFClassId]=#WFClassId#,
+             [Version]=#Version#,
+             [Status]=#Status#,
+             [CreateUserId]=#CreateUserId#,
+             [CreateDateTime]=#CreateDateTime#,
+             [IsSignOut]=#IsSignOut#,
+             [SignOutUserId]=#SignOutUserId#,
+             [WorkCalendarId]=#WorkCalendarId#,
+             [Description]=#Description#,
+             [MgrUrl]=#MgrUrl#
+            WHERE 
+              WorkFlowId = #WorkFlowId#
+
+   </update>
+  
+   <insert id="InsertPS_WorkFlow" parameterClass="PS_WorkFlow">
+        INSERT INTO PS_WorkFlow
+         (
+         [WorkFlowId],
+         [FlowCaption],
+         [WFClassId],
+         [Version],
+         [Status],
+         [CreateUserId],
+         [CreateDateTime],
+         [IsSignOut],
+         [SignOutUserId],
+         [WorkCalendarId],
+         [Description],
+         [MgrUrl]
+         )
+       VALUES
+         (
+         #WorkFlowId#,
+         #FlowCaption#,
+         #WFClassId#,
+         #Version#,
+         #Status#,
+         #CreateUserId#,
+         #CreateDateTime#,
+         #IsSignOut#,
+         #SignOutUserId#,
+         #WorkCalendarId#,
+         #Description#,
+         #MgrUrl#
+         )
+
+   </insert>
+   
+   <select id="GetPS_WorkFlowRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_WorkFlow
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="FlowCaption">[FlowCaption]='$FlowCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="WFClassId">[WFClassId]='$WFClassId$'</isNotNull>
+       <isNotNull prepend="AND" property="Version">[Version]='$Version$'</isNotNull>
+       <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateUserId">[CreateUserId]='$CreateUserId$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDateTime">[CreateDateTime]='$CreateDateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="IsSignOut">[IsSignOut]='$IsSignOut$'</isNotNull>
+       <isNotNull prepend="AND" property="SignOutUserId">[SignOutUserId]='$SignOutUserId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkCalendarId">[WorkCalendarId]='$WorkCalendarId$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="MgrUrl">[MgrUrl]='$MgrUrl$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_WorkFlowRowCount" parameterClass="string">
+    select count(*) from PS_WorkFlow $value$
+   </select>
+    <select id="GetTableName"  resultMap="TableName_AllColumns" parameterClass="string">
+      select    [name]   from  sysobjects $value$
+    </select>
+    <select id="GetTableColumns"  resultMap="TableName_AllColumns" parameterClass="string">
+      Select name from syscolumns Where ID=OBJECT_ID( '$value$')
+    </select>
+    <select id="GetTableName2"  resultMap="TableName_AllColumns" parameterClass="string">
+        $value$
+    </select>
+  </statements>
+</sqlMap>
+ 

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_WorkTaskInsNextOper" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_WorkTaskInsNextOper"  type="Ebada.Scgl.Model.PS_WorkTaskInsNextOper,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_WorkTaskInsNextOper_AllColumns" class="PS_WorkTaskInsNextOper">
+        <result property="NextOperId" column="NextOperId" />
+        <result property="UserId" column="UserId" />
+        <result property="UserName" column="UserName" />
+        <result property="WorkflowId" column="WorkflowId" />
+        <result property="WorktaskId" column="WorktaskId" />
+        <result property="WorkflowInsId" column="WorkflowInsId" />
+        <result property="WorktaskInsId" column="WorktaskInsId" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_WorkTaskInsNextOperList" resultMap="PS_WorkTaskInsNextOper_AllColumns" parameterClass="string">
+        SELECT 
+         [NextOperId],
+         [UserId],
+         [UserName],
+         [WorkflowId],
+         [WorktaskId],
+         [WorkflowInsId],
+         [WorktaskInsId]
+          FROM PS_WorkTaskInsNextOper
+          $value$
+   </select>
+   
+   <select id="SelectPS_WorkTaskInsNextOperByHash" parameterClass="Hashtable">
+         SELECT 
+         [NextOperId],
+         [UserId],
+         [UserName],
+         [WorkflowId],
+         [WorktaskId],
+         [WorkflowInsId],
+         [WorktaskInsId]
+          FROM PS_WorkTaskInsNextOper
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="NextOperId">[NextOperId]='$NextOperId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserId">[UserId]='$UserId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserName">[UserName]='$UserName$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowInsId">[WorkflowInsId]='$WorkflowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskInsId">[WorktaskInsId]='$WorktaskInsId$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_WorkTaskInsNextOperByKey" resultMap="PS_WorkTaskInsNextOper_AllColumns" parameterClass="PS_WorkTaskInsNextOper">
+         SELECT 
+         [NextOperId],
+         [UserId],
+         [UserName],
+         [WorkflowId],
+         [WorktaskId],
+         [WorkflowInsId],
+         [WorktaskInsId]
+         FROM PS_WorkTaskInsNextOper
+         WHERE 
+           NextOperId = #NextOperId#
+
+   </select>
+ 
+   <delete id="DeletePS_WorkTaskInsNextOper" parameterClass="PS_WorkTaskInsNextOper">
+        DELETE FROM 
+         PS_WorkTaskInsNextOper
+           WHERE
+         NextOperId = #NextOperId#
+
+   </delete>
+   
+   <delete id="DeletePS_WorkTaskInsNextOperByWhere" parameterClass="string">
+     delete from PS_WorkTaskInsNextOper $value$
+   </delete>
+   
+   <delete id="DeletePS_WorkTaskInsNextOperByKey" parameterClass="string">
+        DELETE FROM 
+         PS_WorkTaskInsNextOper
+           WHERE
+         NextOperId = #NextOperId#
+    
+   </delete>
+   
+   <update id="UpdatePS_WorkTaskInsNextOper" parameterClass="PS_WorkTaskInsNextOper" resultClass="int">
+          UPDATE PS_WorkTaskInsNextOper
+           SET
+             [UserId]=#UserId#,
+             [UserName]=#UserName#,
+             [WorkflowId]=#WorkflowId#,
+             [WorktaskId]=#WorktaskId#,
+             [WorkflowInsId]=#WorkflowInsId#,
+             [WorktaskInsId]=#WorktaskInsId#
+            WHERE 
+              NextOperId = #NextOperId#
+
+   </update>
+  
+   <insert id="InsertPS_WorkTaskInsNextOper" parameterClass="PS_WorkTaskInsNextOper">
+        INSERT INTO PS_WorkTaskInsNextOper
+         (
+         [NextOperId],
+         [UserId],
+         [UserName],
+         [WorkflowId],
+         [WorktaskId],
+         [WorkflowInsId],
+         [WorktaskInsId]
+         )
+       VALUES
+         (
+         #NextOperId#,
+         #UserId#,
+         #UserName#,
+         #WorkflowId#,
+         #WorktaskId#,
+         #WorkflowInsId#,
+         #WorktaskInsId#
+         )
+
+   </insert>
+   
+   <select id="GetPS_WorkTaskInsNextOperRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_WorkTaskInsNextOper
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="NextOperId">[NextOperId]='$NextOperId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserId">[UserId]='$UserId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserName">[UserName]='$UserName$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowInsId">[WorkflowInsId]='$WorkflowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskInsId">[WorktaskInsId]='$WorktaskInsId$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_WorkTaskInsNextOperRowCount" parameterClass="string">
+    select count(*) from PS_WorkTaskInsNextOper $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

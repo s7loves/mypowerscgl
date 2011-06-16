@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_UserControlsLink" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_UserControlsLink"  type="Ebada.Scgl.Model.PS_UserControlsLink,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_UserControlsLink_AllColumns" class="PS_UserControlsLink">
+        <result property="mucLinkId" column="mucLinkId" />
+        <result property="UserControlId" column="UserControlId" />
+        <result property="MainUserCtrlId" column="MainUserCtrlId" />
+        <result property="CtrlOrderNbr" column="CtrlOrderNbr" />
+        <result property="CtrlState" column="CtrlState" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_UserControlsLinkList" resultMap="PS_UserControlsLink_AllColumns" parameterClass="string">
+        SELECT 
+         [mucLinkId],
+         [UserControlId],
+         [MainUserCtrlId],
+         [CtrlOrderNbr],
+         [CtrlState]
+          FROM PS_UserControlsLink
+          $value$
+   </select>
+   
+   <select id="SelectPS_UserControlsLinkByHash" parameterClass="Hashtable">
+         SELECT 
+         [mucLinkId],
+         [UserControlId],
+         [MainUserCtrlId],
+         [CtrlOrderNbr],
+         [CtrlState]
+          FROM PS_UserControlsLink
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="mucLinkId">[mucLinkId]='$mucLinkId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserControlId">[UserControlId]='$UserControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="MainUserCtrlId">[MainUserCtrlId]='$MainUserCtrlId$'</isNotNull>
+       <isNotNull prepend="AND" property="CtrlOrderNbr">[CtrlOrderNbr]='$CtrlOrderNbr$'</isNotNull>
+       <isNotNull prepend="AND" property="CtrlState">[CtrlState]='$CtrlState$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_UserControlsLinkByKey" resultMap="PS_UserControlsLink_AllColumns" parameterClass="PS_UserControlsLink">
+         SELECT 
+         [mucLinkId],
+         [UserControlId],
+         [MainUserCtrlId],
+         [CtrlOrderNbr],
+         [CtrlState]
+         FROM PS_UserControlsLink
+         WHERE 
+           mucLinkId = #mucLinkId#
+
+   </select>
+ 
+   <delete id="DeletePS_UserControlsLink" parameterClass="PS_UserControlsLink">
+        DELETE FROM 
+         PS_UserControlsLink
+           WHERE
+         mucLinkId = #mucLinkId#
+
+   </delete>
+   
+   <delete id="DeletePS_UserControlsLinkByWhere" parameterClass="string">
+     delete from PS_UserControlsLink $value$
+   </delete>
+   
+   <delete id="DeletePS_UserControlsLinkByKey" parameterClass="string">
+        DELETE FROM 
+         PS_UserControlsLink
+           WHERE
+         mucLinkId = #mucLinkId#
+    
+   </delete>
+   
+   <update id="UpdatePS_UserControlsLink" parameterClass="PS_UserControlsLink" resultClass="int">
+          UPDATE PS_UserControlsLink
+           SET
+             [UserControlId]=#UserControlId#,
+             [MainUserCtrlId]=#MainUserCtrlId#,
+             [CtrlOrderNbr]=#CtrlOrderNbr#,
+             [CtrlState]=#CtrlState#
+            WHERE 
+              mucLinkId = #mucLinkId#
+
+   </update>
+  
+   <insert id="InsertPS_UserControlsLink" parameterClass="PS_UserControlsLink">
+        INSERT INTO PS_UserControlsLink
+         (
+         [mucLinkId],
+         [UserControlId],
+         [MainUserCtrlId],
+         [CtrlOrderNbr],
+         [CtrlState]
+         )
+       VALUES
+         (
+         #mucLinkId#,
+         #UserControlId#,
+         #MainUserCtrlId#,
+         #CtrlOrderNbr#,
+         #CtrlState#
+         )
+
+   </insert>
+   
+   <select id="GetPS_UserControlsLinkRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_UserControlsLink
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="mucLinkId">[mucLinkId]='$mucLinkId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserControlId">[UserControlId]='$UserControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="MainUserCtrlId">[MainUserCtrlId]='$MainUserCtrlId$'</isNotNull>
+       <isNotNull prepend="AND" property="CtrlOrderNbr">[CtrlOrderNbr]='$CtrlOrderNbr$'</isNotNull>
+       <isNotNull prepend="AND" property="CtrlState">[CtrlState]='$CtrlState$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_UserControlsLinkRowCount" parameterClass="string">
+    select count(*) from PS_UserControlsLink $value$
+   </select>
+    <select id="SelectPS_UserControlsLinkleftJoinWorkTaskControlsByWorkFlowID" resultMap="PS_UserControlsLink_AllColumns" parameterClass="string">
+      select distinct ul.* from PS_UserControlsLink ul left join PS_WorkTaskControls wc
+      on wc.usercontrolId=ul.mainuserctrlid where wc.workflowid=#value#
+
+    </select>
+  </statements>
+</sqlMap>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_WorkTaskCommands" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_WorkTaskCommands"  type="Ebada.Scgl.Model.PS_WorkTaskCommands,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_WorkTaskCommands_AllColumns" class="PS_WorkTaskCommands">
+        <result property="CommandId" column="CommandId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="CommandName" column="CommandName" />
+        <result property="Description" column="Description" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_WorkTaskCommandsList" resultMap="PS_WorkTaskCommands_AllColumns" parameterClass="string">
+        SELECT 
+         [CommandId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [CommandName],
+         [Description]
+          FROM PS_WorkTaskCommands
+          $value$
+   </select>
+   
+   <select id="SelectPS_WorkTaskCommandsByHash" parameterClass="Hashtable">
+         SELECT 
+         [CommandId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [CommandName],
+         [Description]
+          FROM PS_WorkTaskCommands
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="CommandId">[CommandId]='$CommandId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="CommandName">[CommandName]='$CommandName$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_WorkTaskCommandsByKey" resultMap="PS_WorkTaskCommands_AllColumns" parameterClass="PS_WorkTaskCommands">
+         SELECT 
+         [CommandId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [CommandName],
+         [Description]
+         FROM PS_WorkTaskCommands
+         WHERE 
+           CommandId = #CommandId#
+
+   </select>
+ 
+   <delete id="DeletePS_WorkTaskCommands" parameterClass="PS_WorkTaskCommands">
+        DELETE FROM 
+         PS_WorkTaskCommands
+           WHERE
+         CommandId = #CommandId#
+
+   </delete>
+   
+   <delete id="DeletePS_WorkTaskCommandsByWhere" parameterClass="string">
+     delete from PS_WorkTaskCommands $value$
+   </delete>
+   
+   <delete id="DeletePS_WorkTaskCommandsByKey" parameterClass="string">
+        DELETE FROM 
+         PS_WorkTaskCommands
+           WHERE
+         CommandId = #CommandId#
+    
+   </delete>
+   
+   <update id="UpdatePS_WorkTaskCommands" parameterClass="PS_WorkTaskCommands" resultClass="int">
+          UPDATE PS_WorkTaskCommands
+           SET
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [CommandName]=#CommandName#,
+             [Description]=#Description#
+            WHERE 
+              CommandId = #CommandId#
+
+   </update>
+  
+   <insert id="InsertPS_WorkTaskCommands" parameterClass="PS_WorkTaskCommands">
+        INSERT INTO PS_WorkTaskCommands
+         (
+         [CommandId],
+         [WorkFlowId],
+         [WorkTaskId],
+         [CommandName],
+         [Description]
+         )
+       VALUES
+         (
+         #CommandId#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #CommandName#,
+         #Description#
+         )
+
+   </insert>
+   
+   <select id="GetPS_WorkTaskCommandsRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_WorkTaskCommands
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="CommandId">[CommandId]='$CommandId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="CommandName">[CommandName]='$CommandName$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_WorkTaskCommandsRowCount" parameterClass="string">
+    select count(*) from PS_WorkTaskCommands $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

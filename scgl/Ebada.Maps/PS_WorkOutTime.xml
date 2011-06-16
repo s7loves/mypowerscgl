@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_WorkOutTime" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_WorkOutTime"  type="Ebada.Scgl.Model.PS_WorkOutTime,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_WorkOutTime_AllColumns" class="PS_WorkOutTime">
+        <result property="Guid" column="Guid" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="Name" column="Name" />
+        <result property="Days" column="Days" />
+        <result property="Hours" column="Hours" />
+        <result property="Minutes" column="Minutes" />
+        <result property="Days1" column="Days1" />
+        <result property="Hours1" column="Hours1" />
+        <result property="Minutes1" column="Minutes1" />
+        <result property="Days2" column="Days2" />
+        <result property="Hours2" column="Hours2" />
+        <result property="Minutes2" column="Minutes2" />
+        <result property="Done" column="Done" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_WorkOutTimeList" resultMap="PS_WorkOutTime_AllColumns" parameterClass="string">
+        SELECT 
+         [Guid],
+         [WorkFlowId],
+         [WorkTaskId],
+         [Name],
+         [Days],
+         [Hours],
+         [Minutes],
+         [Days1],
+         [Hours1],
+         [Minutes1],
+         [Days2],
+         [Hours2],
+         [Minutes2],
+         [Done]
+          FROM PS_WorkOutTime
+          $value$
+   </select>
+   
+   <select id="SelectPS_WorkOutTimeByHash" parameterClass="Hashtable">
+         SELECT 
+         [Guid],
+         [WorkFlowId],
+         [WorkTaskId],
+         [Name],
+         [Days],
+         [Hours],
+         [Minutes],
+         [Days1],
+         [Hours1],
+         [Minutes1],
+         [Days2],
+         [Hours2],
+         [Minutes2],
+         [Done]
+          FROM PS_WorkOutTime
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="Guid">[Guid]='$Guid$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="Name">[Name]='$Name$'</isNotNull>
+       <isNotNull prepend="AND" property="Days">[Days]='$Days$'</isNotNull>
+       <isNotNull prepend="AND" property="Hours">[Hours]='$Hours$'</isNotNull>
+       <isNotNull prepend="AND" property="Minutes">[Minutes]='$Minutes$'</isNotNull>
+       <isNotNull prepend="AND" property="Days1">[Days1]='$Days1$'</isNotNull>
+       <isNotNull prepend="AND" property="Hours1">[Hours1]='$Hours1$'</isNotNull>
+       <isNotNull prepend="AND" property="Minutes1">[Minutes1]='$Minutes1$'</isNotNull>
+       <isNotNull prepend="AND" property="Days2">[Days2]='$Days2$'</isNotNull>
+       <isNotNull prepend="AND" property="Hours2">[Hours2]='$Hours2$'</isNotNull>
+       <isNotNull prepend="AND" property="Minutes2">[Minutes2]='$Minutes2$'</isNotNull>
+       <isNotNull prepend="AND" property="Done">[Done]='$Done$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_WorkOutTimeByKey" resultMap="PS_WorkOutTime_AllColumns" parameterClass="PS_WorkOutTime">
+         SELECT 
+         [Guid],
+         [WorkFlowId],
+         [WorkTaskId],
+         [Name],
+         [Days],
+         [Hours],
+         [Minutes],
+         [Days1],
+         [Hours1],
+         [Minutes1],
+         [Days2],
+         [Hours2],
+         [Minutes2],
+         [Done]
+         FROM PS_WorkOutTime
+         WHERE 
+           Guid = #Guid#
+
+   </select>
+ 
+   <delete id="DeletePS_WorkOutTime" parameterClass="PS_WorkOutTime">
+        DELETE FROM 
+         PS_WorkOutTime
+           WHERE
+         Guid = #Guid#
+
+   </delete>
+   
+   <delete id="DeletePS_WorkOutTimeByWhere" parameterClass="string">
+     delete from PS_WorkOutTime $value$
+   </delete>
+   
+   <delete id="DeletePS_WorkOutTimeByKey" parameterClass="string">
+        DELETE FROM 
+         PS_WorkOutTime
+           WHERE
+         Guid = #Guid#
+    
+   </delete>
+   
+   <update id="UpdatePS_WorkOutTime" parameterClass="PS_WorkOutTime" resultClass="int">
+          UPDATE PS_WorkOutTime
+           SET
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [Name]=#Name#,
+             [Days]=#Days#,
+             [Hours]=#Hours#,
+             [Minutes]=#Minutes#,
+             [Days1]=#Days1#,
+             [Hours1]=#Hours1#,
+             [Minutes1]=#Minutes1#,
+             [Days2]=#Days2#,
+             [Hours2]=#Hours2#,
+             [Minutes2]=#Minutes2#,
+             [Done]=#Done#
+            WHERE 
+              Guid = #Guid#
+
+   </update>
+  
+   <insert id="InsertPS_WorkOutTime" parameterClass="PS_WorkOutTime">
+        INSERT INTO PS_WorkOutTime
+         (
+         [Guid],
+         [WorkFlowId],
+         [WorkTaskId],
+         [Name],
+         [Days],
+         [Hours],
+         [Minutes],
+         [Days1],
+         [Hours1],
+         [Minutes1],
+         [Days2],
+         [Hours2],
+         [Minutes2],
+         [Done]
+         )
+       VALUES
+         (
+         #Guid#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #Name#,
+         #Days#,
+         #Hours#,
+         #Minutes#,
+         #Days1#,
+         #Hours1#,
+         #Minutes1#,
+         #Days2#,
+         #Hours2#,
+         #Minutes2#,
+         #Done#
+         )
+
+   </insert>
+   
+   <select id="GetPS_WorkOutTimeRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_WorkOutTime
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="Guid">[Guid]='$Guid$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="Name">[Name]='$Name$'</isNotNull>
+       <isNotNull prepend="AND" property="Days">[Days]='$Days$'</isNotNull>
+       <isNotNull prepend="AND" property="Hours">[Hours]='$Hours$'</isNotNull>
+       <isNotNull prepend="AND" property="Minutes">[Minutes]='$Minutes$'</isNotNull>
+       <isNotNull prepend="AND" property="Days1">[Days1]='$Days1$'</isNotNull>
+       <isNotNull prepend="AND" property="Hours1">[Hours1]='$Hours1$'</isNotNull>
+       <isNotNull prepend="AND" property="Minutes1">[Minutes1]='$Minutes1$'</isNotNull>
+       <isNotNull prepend="AND" property="Days2">[Days2]='$Days2$'</isNotNull>
+       <isNotNull prepend="AND" property="Hours2">[Hours2]='$Hours2$'</isNotNull>
+       <isNotNull prepend="AND" property="Minutes2">[Minutes2]='$Minutes2$'</isNotNull>
+       <isNotNull prepend="AND" property="Done">[Done]='$Done$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_WorkOutTimeRowCount" parameterClass="string">
+    select count(*) from PS_WorkOutTime $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

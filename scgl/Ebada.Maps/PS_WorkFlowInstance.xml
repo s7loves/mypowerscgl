@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_WorkFlowInstance" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_WorkFlowInstance"  type="Ebada.Scgl.Model.PS_WorkFlowInstance,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_WorkFlowInstance_AllColumns" class="PS_WorkFlowInstance">
+        <result property="WorkFlowInsId" column="WorkFlowInsId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkFlowNo" column="WorkFlowNo" />
+        <result property="FlowInsCaption" column="FlowInsCaption" />
+        <result property="Description" column="Description" />
+        <result property="Priority" column="Priority" />
+        <result property="Status" column="Status" />
+        <result property="NowTaskId" column="NowTaskId" />
+        <result property="StartTime" column="StartTime" />
+        <result property="EndTime" column="EndTime" />
+        <result property="SuspendTime" column="SuspendTime" />
+        <result property="SuspendStaus" column="SuspendStaus" />
+        <result property="SuspendTotalSeconds" column="SuspendTotalSeconds" />
+        <result property="isSubWorkflow" column="isSubWorkflow" />
+        <result property="MainWorkflowInsId" column="MainWorkflowInsId" />
+        <result property="MainWorktaskInsId" column="MainWorktaskInsId" />
+        <result property="MainWorktaskId" column="MainWorktaskId" />
+        <result property="MainWorkflowId" column="MainWorkflowId" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_WorkFlowInstanceList" resultMap="PS_WorkFlowInstance_AllColumns" parameterClass="string">
+        SELECT 
+         [WorkFlowInsId],
+         [WorkFlowId],
+         [WorkFlowNo],
+         [FlowInsCaption],
+         [Description],
+         [Priority],
+         [Status],
+         [NowTaskId],
+         [StartTime],
+         [EndTime],
+         [SuspendTime],
+         [SuspendStaus],
+         [SuspendTotalSeconds],
+         [isSubWorkflow],
+         [MainWorkflowInsId],
+         [MainWorktaskInsId],
+         [MainWorktaskId],
+         [MainWorkflowId]
+          FROM PS_WorkFlowInstance
+          $value$
+   </select>
+   
+   <select id="SelectPS_WorkFlowInstanceByHash" parameterClass="Hashtable">
+         SELECT 
+         [WorkFlowInsId],
+         [WorkFlowId],
+         [WorkFlowNo],
+         [FlowInsCaption],
+         [Description],
+         [Priority],
+         [Status],
+         [NowTaskId],
+         [StartTime],
+         [EndTime],
+         [SuspendTime],
+         [SuspendStaus],
+         [SuspendTotalSeconds],
+         [isSubWorkflow],
+         [MainWorkflowInsId],
+         [MainWorktaskInsId],
+         [MainWorktaskId],
+         [MainWorkflowId]
+          FROM PS_WorkFlowInstance
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowNo">[WorkFlowNo]='$WorkFlowNo$'</isNotNull>
+       <isNotNull prepend="AND" property="FlowInsCaption">[FlowInsCaption]='$FlowInsCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="Priority">[Priority]='$Priority$'</isNotNull>
+       <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
+       <isNotNull prepend="AND" property="NowTaskId">[NowTaskId]='$NowTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="StartTime">[StartTime]='$StartTime$'</isNotNull>
+       <isNotNull prepend="AND" property="EndTime">[EndTime]='$EndTime$'</isNotNull>
+       <isNotNull prepend="AND" property="SuspendTime">[SuspendTime]='$SuspendTime$'</isNotNull>
+       <isNotNull prepend="AND" property="SuspendStaus">[SuspendStaus]='$SuspendStaus$'</isNotNull>
+       <isNotNull prepend="AND" property="SuspendTotalSeconds">[SuspendTotalSeconds]='$SuspendTotalSeconds$'</isNotNull>
+       <isNotNull prepend="AND" property="isSubWorkflow">[isSubWorkflow]='$isSubWorkflow$'</isNotNull>
+       <isNotNull prepend="AND" property="MainWorkflowInsId">[MainWorkflowInsId]='$MainWorkflowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="MainWorktaskInsId">[MainWorktaskInsId]='$MainWorktaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="MainWorktaskId">[MainWorktaskId]='$MainWorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="MainWorkflowId">[MainWorkflowId]='$MainWorkflowId$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_WorkFlowInstanceByKey" resultMap="PS_WorkFlowInstance_AllColumns" parameterClass="PS_WorkFlowInstance">
+         SELECT 
+         [WorkFlowInsId],
+         [WorkFlowId],
+         [WorkFlowNo],
+         [FlowInsCaption],
+         [Description],
+         [Priority],
+         [Status],
+         [NowTaskId],
+         [StartTime],
+         [EndTime],
+         [SuspendTime],
+         [SuspendStaus],
+         [SuspendTotalSeconds],
+         [isSubWorkflow],
+         [MainWorkflowInsId],
+         [MainWorktaskInsId],
+         [MainWorktaskId],
+         [MainWorkflowId]
+         FROM PS_WorkFlowInstance
+         WHERE 
+           WorkFlowInsId = #WorkFlowInsId#
+
+   </select>
+ 
+   <delete id="DeletePS_WorkFlowInstance" parameterClass="PS_WorkFlowInstance">
+        DELETE FROM 
+         PS_WorkFlowInstance
+           WHERE
+         WorkFlowInsId = #WorkFlowInsId#
+
+   </delete>
+   
+   <delete id="DeletePS_WorkFlowInstanceByWhere" parameterClass="string">
+     delete from PS_WorkFlowInstance $value$
+   </delete>
+   
+   <delete id="DeletePS_WorkFlowInstanceByKey" parameterClass="string">
+        DELETE FROM 
+         PS_WorkFlowInstance
+           WHERE
+         WorkFlowInsId = #WorkFlowInsId#
+    
+   </delete>
+    <update id="UpdatePS_WorkFlowInstanceValue" parameterClass="string" resultClass="int">
+
+      $value$
+    </update>
+   <update id="UpdatePS_WorkFlowInstance" parameterClass="PS_WorkFlowInstance" resultClass="int">
+          UPDATE PS_WorkFlowInstance
+           SET
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkFlowNo]=#WorkFlowNo#,
+             [FlowInsCaption]=#FlowInsCaption#,
+             [Description]=#Description#,
+             [Priority]=#Priority#,
+             [Status]=#Status#,
+             [NowTaskId]=#NowTaskId#,
+             [StartTime]=#StartTime#,
+             [EndTime]=#EndTime#,
+             [SuspendTime]=#SuspendTime#,
+             [SuspendStaus]=#SuspendStaus#,
+             [SuspendTotalSeconds]=#SuspendTotalSeconds#,
+             [isSubWorkflow]=#isSubWorkflow#,
+             [MainWorkflowInsId]=#MainWorkflowInsId#,
+             [MainWorktaskInsId]=#MainWorktaskInsId#,
+             [MainWorktaskId]=#MainWorktaskId#,
+             [MainWorkflowId]=#MainWorkflowId#
+            WHERE 
+              WorkFlowInsId = #WorkFlowInsId#
+
+   </update>
+  
+   <insert id="InsertPS_WorkFlowInstance" parameterClass="PS_WorkFlowInstance">
+        INSERT INTO PS_WorkFlowInstance
+         (
+         [WorkFlowInsId],
+         [WorkFlowId],
+         [WorkFlowNo],
+         [FlowInsCaption],
+         [Description],
+         [Priority],
+         [Status],
+         [NowTaskId],
+         [StartTime],
+         [EndTime],
+         [SuspendTime],
+         [SuspendStaus],
+         [SuspendTotalSeconds],
+         [isSubWorkflow],
+         [MainWorkflowInsId],
+         [MainWorktaskInsId],
+         [MainWorktaskId],
+         [MainWorkflowId]
+         )
+       VALUES
+         (
+         #WorkFlowInsId#,
+         #WorkFlowId#,
+         #WorkFlowNo#,
+         #FlowInsCaption#,
+         #Description#,
+         #Priority#,
+         #Status#,
+         #NowTaskId#,
+         #StartTime#,
+         #EndTime#,
+         #SuspendTime#,
+         #SuspendStaus#,
+         #SuspendTotalSeconds#,
+         #isSubWorkflow#,
+         #MainWorkflowInsId#,
+         #MainWorktaskInsId#,
+         #MainWorktaskId#,
+         #MainWorkflowId#
+         )
+
+   </insert>
+   
+   <select id="GetPS_WorkFlowInstanceRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_WorkFlowInstance
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowNo">[WorkFlowNo]='$WorkFlowNo$'</isNotNull>
+       <isNotNull prepend="AND" property="FlowInsCaption">[FlowInsCaption]='$FlowInsCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="Priority">[Priority]='$Priority$'</isNotNull>
+       <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
+       <isNotNull prepend="AND" property="NowTaskId">[NowTaskId]='$NowTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="StartTime">[StartTime]='$StartTime$'</isNotNull>
+       <isNotNull prepend="AND" property="EndTime">[EndTime]='$EndTime$'</isNotNull>
+       <isNotNull prepend="AND" property="SuspendTime">[SuspendTime]='$SuspendTime$'</isNotNull>
+       <isNotNull prepend="AND" property="SuspendStaus">[SuspendStaus]='$SuspendStaus$'</isNotNull>
+       <isNotNull prepend="AND" property="SuspendTotalSeconds">[SuspendTotalSeconds]='$SuspendTotalSeconds$'</isNotNull>
+       <isNotNull prepend="AND" property="isSubWorkflow">[isSubWorkflow]='$isSubWorkflow$'</isNotNull>
+       <isNotNull prepend="AND" property="MainWorkflowInsId">[MainWorkflowInsId]='$MainWorkflowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="MainWorktaskInsId">[MainWorktaskInsId]='$MainWorktaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="MainWorktaskId">[MainWorktaskId]='$MainWorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="MainWorkflowId">[MainWorkflowId]='$MainWorkflowId$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_WorkFlowInstanceRowCount" parameterClass="string">
+    select count(*) from PS_WorkFlowInstance $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

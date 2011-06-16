@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_WorkTaskControls" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_WorkTaskControls"  type="Ebada.Scgl.Model.PS_WorkTaskControls,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_WorkTaskControls_AllColumns" class="PS_WorkTaskControls">
+        <result property="taskControlId" column="taskControlId" />
+        <result property="WorkflowId" column="WorkflowId" />
+        <result property="UserControlId" column="UserControlId" />
+        <result property="WorktaskId" column="WorktaskId" />
+        <result property="ControlType" column="ControlType" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_WorkTaskControlsList" resultMap="PS_WorkTaskControls_AllColumns" parameterClass="string">
+        SELECT 
+         [taskControlId],
+         [WorkflowId],
+         [UserControlId],
+         [WorktaskId],
+         [ControlType]
+          FROM PS_WorkTaskControls
+          $value$
+   </select>
+   
+   <select id="SelectPS_WorkTaskControlsByHash" parameterClass="Hashtable">
+         SELECT 
+         [taskControlId],
+         [WorkflowId],
+         [UserControlId],
+         [WorktaskId],
+         [ControlType]
+          FROM PS_WorkTaskControls
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="taskControlId">[taskControlId]='$taskControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserControlId">[UserControlId]='$UserControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="ControlType">[ControlType]='$ControlType$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_WorkTaskControlsByKey" resultMap="PS_WorkTaskControls_AllColumns" parameterClass="PS_WorkTaskControls">
+         SELECT 
+         [taskControlId],
+         [WorkflowId],
+         [UserControlId],
+         [WorktaskId],
+         [ControlType]
+         FROM PS_WorkTaskControls
+         WHERE 
+           taskControlId = #taskControlId#
+
+   </select>
+ 
+   <delete id="DeletePS_WorkTaskControls" parameterClass="PS_WorkTaskControls">
+        DELETE FROM 
+         PS_WorkTaskControls
+           WHERE
+         taskControlId = #taskControlId#
+
+   </delete>
+   
+   <delete id="DeletePS_WorkTaskControlsByWhere" parameterClass="string">
+     delete from PS_WorkTaskControls $value$
+   </delete>
+   
+   <delete id="DeletePS_WorkTaskControlsByKey" parameterClass="string">
+        DELETE FROM 
+         PS_WorkTaskControls
+           WHERE
+         taskControlId = #taskControlId#
+    
+   </delete>
+   
+   <update id="UpdatePS_WorkTaskControls" parameterClass="PS_WorkTaskControls" resultClass="int">
+          UPDATE PS_WorkTaskControls
+           SET
+             [WorkflowId]=#WorkflowId#,
+             [UserControlId]=#UserControlId#,
+             [WorktaskId]=#WorktaskId#,
+             [ControlType]=#ControlType#
+            WHERE 
+              taskControlId = #taskControlId#
+
+   </update>
+  
+   <insert id="InsertPS_WorkTaskControls" parameterClass="PS_WorkTaskControls">
+        INSERT INTO PS_WorkTaskControls
+         (
+         [taskControlId],
+         [WorkflowId],
+         [UserControlId],
+         [WorktaskId],
+         [ControlType]
+         )
+       VALUES
+         (
+         #taskControlId#,
+         #WorkflowId#,
+         #UserControlId#,
+         #WorktaskId#,
+         #ControlType#
+         )
+
+   </insert>
+   
+   <select id="GetPS_WorkTaskControlsRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_WorkTaskControls
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="taskControlId">[taskControlId]='$taskControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserControlId">[UserControlId]='$UserControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="ControlType">[ControlType]='$ControlType$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_WorkTaskControlsRowCount" parameterClass="string">
+    select count(*) from PS_WorkTaskControls $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

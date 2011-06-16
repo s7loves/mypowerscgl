@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_WorkLink" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_WorkLink"  type="Ebada.Scgl.Model.PS_WorkLink,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_WorkLink_AllColumns" class="PS_WorkLink">
+        <result property="WorkLinkId" column="WorkLinkId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="StartTaskId" column="StartTaskId" />
+        <result property="EndTaskId" column="EndTaskId" />
+        <result property="Condition" column="Condition" />
+        <result property="Description" column="Description" />
+        <result property="BreakX" column="BreakX" />
+        <result property="BreakY" column="BreakY" />
+        <result property="CommandName" column="CommandName" />
+        <result property="Priority" column="Priority" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_WorkLinkList" resultMap="PS_WorkLink_AllColumns" parameterClass="string">
+        SELECT 
+         [WorkLinkId],
+         [WorkFlowId],
+         [StartTaskId],
+         [EndTaskId],
+         [Condition],
+         [Description],
+         [BreakX],
+         [BreakY],
+         [CommandName],
+         [Priority]
+          FROM PS_WorkLink
+          $value$
+   </select>
+   
+   <select id="SelectPS_WorkLinkByHash" parameterClass="Hashtable">
+         SELECT 
+         [WorkLinkId],
+         [WorkFlowId],
+         [StartTaskId],
+         [EndTaskId],
+         [Condition],
+         [Description],
+         [BreakX],
+         [BreakY],
+         [CommandName],
+         [Priority]
+          FROM PS_WorkLink
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="WorkLinkId">[WorkLinkId]='$WorkLinkId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="StartTaskId">[StartTaskId]='$StartTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="EndTaskId">[EndTaskId]='$EndTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="Condition">[Condition]='$Condition$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="BreakX">[BreakX]='$BreakX$'</isNotNull>
+       <isNotNull prepend="AND" property="BreakY">[BreakY]='$BreakY$'</isNotNull>
+       <isNotNull prepend="AND" property="CommandName">[CommandName]='$CommandName$'</isNotNull>
+       <isNotNull prepend="AND" property="Priority">[Priority]='$Priority$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_WorkLinkByKey" resultMap="PS_WorkLink_AllColumns" parameterClass="PS_WorkLink">
+         SELECT 
+         [WorkLinkId],
+         [WorkFlowId],
+         [StartTaskId],
+         [EndTaskId],
+         [Condition],
+         [Description],
+         [BreakX],
+         [BreakY],
+         [CommandName],
+         [Priority]
+         FROM PS_WorkLink
+         WHERE 
+           WorkLinkId = #WorkLinkId#
+
+   </select>
+ 
+   <delete id="DeletePS_WorkLink" parameterClass="PS_WorkLink">
+        DELETE FROM 
+         PS_WorkLink
+           WHERE
+         WorkLinkId = #WorkLinkId#
+
+   </delete>
+   
+   <delete id="DeletePS_WorkLinkByWhere" parameterClass="string">
+     delete from PS_WorkLink $value$
+   </delete>
+   
+   <delete id="DeletePS_WorkLinkByKey" parameterClass="string">
+        DELETE FROM 
+         PS_WorkLink
+           WHERE
+         WorkLinkId = #WorkLinkId#
+    
+   </delete>
+   
+   <update id="UpdatePS_WorkLink" parameterClass="PS_WorkLink" resultClass="int">
+          UPDATE PS_WorkLink
+           SET
+             [WorkFlowId]=#WorkFlowId#,
+             [StartTaskId]=#StartTaskId#,
+             [EndTaskId]=#EndTaskId#,
+             [Condition]=#Condition#,
+             [Description]=#Description#,
+             [BreakX]=#BreakX#,
+             [BreakY]=#BreakY#,
+             [CommandName]=#CommandName#,
+             [Priority]=#Priority#
+            WHERE 
+              WorkLinkId = #WorkLinkId#
+
+   </update>
+  
+   <insert id="InsertPS_WorkLink" parameterClass="PS_WorkLink">
+        INSERT INTO PS_WorkLink
+         (
+         [WorkLinkId],
+         [WorkFlowId],
+         [StartTaskId],
+         [EndTaskId],
+         [Condition],
+         [Description],
+         [BreakX],
+         [BreakY],
+         [CommandName],
+         [Priority]
+         )
+       VALUES
+         (
+         #WorkLinkId#,
+         #WorkFlowId#,
+         #StartTaskId#,
+         #EndTaskId#,
+         #Condition#,
+         #Description#,
+         #BreakX#,
+         #BreakY#,
+         #CommandName#,
+         #Priority#
+         )
+
+   </insert>
+   
+   <select id="GetPS_WorkLinkRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_WorkLink
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="WorkLinkId">[WorkLinkId]='$WorkLinkId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="StartTaskId">[StartTaskId]='$StartTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="EndTaskId">[EndTaskId]='$EndTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="Condition">[Condition]='$Condition$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="BreakX">[BreakX]='$BreakX$'</isNotNull>
+       <isNotNull prepend="AND" property="BreakY">[BreakY]='$BreakY$'</isNotNull>
+       <isNotNull prepend="AND" property="CommandName">[CommandName]='$CommandName$'</isNotNull>
+       <isNotNull prepend="AND" property="Priority">[Priority]='$Priority$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_WorkLinkRowCount" parameterClass="string">
+    select count(*) from PS_WorkLink $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
