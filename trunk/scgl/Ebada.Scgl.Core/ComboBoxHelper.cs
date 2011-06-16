@@ -59,7 +59,7 @@ namespace Ebada.Scgl.Core {
             }
             else
             {
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + gdsID + "'or OrgCode2='" + gdsID + "'");
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + gdsID + "'or OrgCode2='" + gdsID + "'and LineType='1'");
                 if (mUseCache)
                     mCache.Add(key, list);
             }
