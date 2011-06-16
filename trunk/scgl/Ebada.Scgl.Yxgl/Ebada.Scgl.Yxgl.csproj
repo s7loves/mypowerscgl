@@ -285,6 +285,36 @@
     <Compile Include="12线路开关卡片\frmkgEdit.Designer.cs">
       <DependentUpon>frmkgEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgbd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgbd.Designer.cs">
+      <DependentUpon>UCPJ_12kgbd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPS_kgM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPS_kgM.Designer.cs">
+      <DependentUpon>UCPS_kgM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPS_kg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPS_kg.Designer.cs">
+      <DependentUpon>UCPS_kg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgjx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgjx.Designer.cs">
+      <DependentUpon>UCPJ_12kgjx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgsy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgsy.Designer.cs">
+      <DependentUpon>UCPJ_12kgsy.cs</DependentUpon>
+    </Compile>
     <Compile Include="13剩余电流动作保护器测试\Export13.cs" />
     <Compile Include="13剩余电流动作保护器测试\frm13dlbhjlEdit.cs">
       <SubType>Form</SubType>
@@ -618,6 +648,26 @@
     </EmbeddedResource>
     <EmbeddedResource Include="12线路开关卡片\frmkgEdit.resx">
       <DependentUpon>frmkgEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPJ_12kgbd.resx">
+      <DependentUpon>UCPJ_12kgbd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPS_kgM.resx">
+      <DependentUpon>UCPS_kgM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPS_kg.resx">
+      <DependentUpon>UCPS_kg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPJ_12kgjx.resx">
+      <DependentUpon>UCPJ_12kgjx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPJ_12kgsy.resx">
+      <DependentUpon>UCPJ_12kgsy.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="13剩余电流动作保护器测试\frm13dlbhjlEdit.resx">
