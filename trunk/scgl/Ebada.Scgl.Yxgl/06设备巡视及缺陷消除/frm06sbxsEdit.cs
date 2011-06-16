@@ -24,7 +24,7 @@ namespace Ebada.Scgl.Yxgl
         void dataBind() {
 
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineName");
+            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineID");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "xlqd");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "xssj");
             //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "xsr");
@@ -73,9 +73,12 @@ namespace Ebada.Scgl.Yxgl
             comboBoxEdit6.Properties.Items.AddRange(ryList);
             comboBoxEdit7.Properties.Items.AddRange(ryList);
 
-              ICollection linelist = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电线路名称
-            //线路名称
-              comboBoxEdit1.Properties.Items.AddRange(linelist);
+            //ICollection linelist = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电线路名称
+            ////线路名称
+              //comboBoxEdit1.Properties.Items.AddRange(linelist);
+              IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'");
+              SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
+            
             //巡视区段
             //comboBoxEdit2.Properties.Items.AddRange(ryList);
             ICollection qxlist = ComboBoxHelper.GetQxlb();//获取缺陷类别
@@ -92,7 +95,8 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_xl> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -106,6 +110,8 @@ namespace Ebada.Scgl.Yxgl
         void setxsr()
         {
             string str = rowData.xsr;
+            comboBoxEdit3.EditValue = "";
+            comboBoxEdit6.EditValue = "";
             string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
             if (mans.Length>=1)
             {
@@ -124,7 +130,7 @@ namespace Ebada.Scgl.Yxgl
             if (!string.IsNullOrEmpty(yy1.Trim()))
                 str += yy1 + ";";
             string yy2 = "";
-            yy1 = comboBoxEdit6.EditValue.ToString();
+            yy2 = comboBoxEdit6.EditValue.ToString();
             if (!string.IsNullOrEmpty(yy1.Trim()))
                 str += yy2 + ";";
             rowData.xsr = str;
@@ -132,6 +138,8 @@ namespace Ebada.Scgl.Yxgl
         void setxcr()
         {
             string str = rowData.xcr;
+            comboBoxEdit5.EditValue = "";
+            comboBoxEdit7.EditValue = "";
             string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
             if (mans.Length >= 1)
             {
@@ -155,45 +163,17 @@ namespace Ebada.Scgl.Yxgl
                 str += yy2 + ";";
             rowData.xcr = str;
         }
+
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lookUpEdit1.EditValue != null || lookUpEdit1.EditValue.ToString()!="")
+            {
+                rowData.LineID = lookUpEdit1.EditValue.ToString();
+                rowData.LineName = lookUpEdit1.Text;
+            }
+            
+        }
        
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void frm06sbxsEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
     }
 }

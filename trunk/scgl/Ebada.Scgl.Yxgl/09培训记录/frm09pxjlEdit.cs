@@ -27,14 +27,14 @@ namespace Ebada.Scgl.Yxgl
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "rq");
             //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "xxss");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "cjrs");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "jcr");
-            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "zjr");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "zjr");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "zcr");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "tm");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "nr");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "py");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "qz");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "qzrq");
-           
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "hydd");
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -43,7 +43,7 @@ namespace Ebada.Scgl.Yxgl
         }
         #region IPopupFormEdit Members
         private PJ_09pxjl rowData = null;
-
+        
         public object RowData {
             get {
                 getxxss();
@@ -88,7 +88,8 @@ namespace Ebada.Scgl.Yxgl
         {
             string str = rowData.xxss;
             string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
-           
+            comboBoxEdit1.EditValue = "";
+            comboBoxEdit6.EditValue = "";
             int m = 0;
             comboBoxEdit1.EditValue = "";
             comboBoxEdit6.EditValue = "";
