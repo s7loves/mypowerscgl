@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_WorkTaskInsAccreditView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_WorkTaskInsAccreditView"  type="Ebada.Scgl.Model.PS_WorkTaskInsAccreditView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_WorkTaskInsAccreditView_AllColumns" class="PS_WorkTaskInsAccreditView">
+        <result property="AccreditFromUserId" column="AccreditFromUserId" />
+        <result property="AccreditToUserId" column="AccreditToUserId" />
+        <result property="AccreditStatus" column="AccreditStatus" />
+        <result property="WFClassId" column="WFClassId" />
+        <result property="FlowCaption" column="FlowCaption" />
+        <result property="Caption" column="Caption" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="FatherId" column="FatherId" />
+        <result property="MgrUrl" column="MgrUrl" />
+        <result property="clLevel" column="clLevel" />
+        <result property="TaskCaption" column="TaskCaption" />
+        <result property="TaskTypeId" column="TaskTypeId" />
+        <result property="Priority" column="Priority" />
+        <result property="WorkFlowNo" column="WorkFlowNo" />
+        <result property="taskStartTime" column="taskStartTime" />
+        <result property="FlowInsCaption" column="FlowInsCaption" />
+        <result property="TaskInsCaption" column="TaskInsCaption" />
+        <result property="WorkFlowInsId" column="WorkFlowInsId" />
+        <result property="WorkTaskInsId" column="WorkTaskInsId" />
+        <result property="OperatedDes" column="OperatedDes" />
+        <result property="pOperatedDes" column="pOperatedDes" />
+        <result property="OperatorInsId" column="OperatorInsId" />
+        <result property="OperType" column="OperType" />
+        <result property="UserId" column="UserId" />
+        <result property="OperContent" column="OperContent" />
+        <result property="OperDateTime" column="OperDateTime" />
+        <result property="taskEndTime" column="taskEndTime" />
+        <result property="flowStartTime" column="flowStartTime" />
+        <result property="flowEndTime" column="flowEndTime" />
+        <result property="Description" column="Description" />
+        <result property="OperStatus" column="OperStatus" />
+        <result property="taskInsType" column="taskInsType" />
+        <result property="AUserId" column="AUserId" />
+        <result property="UserName" column="UserName" />
+        <result property="Status" column="Status" />
+        <result property="fromUserName" column="fromUserName" />
+        <result property="TaskInsDescription" column="TaskInsDescription" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_WorkTaskInsAccreditViewList" resultMap="PS_WorkTaskInsAccreditView_AllColumns" parameterClass="string">
+        SELECT 
+         [AccreditFromUserId],
+         [AccreditToUserId],
+         [AccreditStatus],
+         [WFClassId],
+         [FlowCaption],
+         [Caption],
+         [WorkFlowId],
+         [WorkTaskId],
+         [FatherId],
+         [MgrUrl],
+         [clLevel],
+         [TaskCaption],
+         [TaskTypeId],
+         [Priority],
+         [WorkFlowNo],
+         [taskStartTime],
+         [FlowInsCaption],
+         [TaskInsCaption],
+         [WorkFlowInsId],
+         [WorkTaskInsId],
+         [OperatedDes],
+         [pOperatedDes],
+         [OperatorInsId],
+         [OperType],
+         [UserId],
+         [OperContent],
+         [OperDateTime],
+         [taskEndTime],
+         [flowStartTime],
+         [flowEndTime],
+         [Description],
+         [OperStatus],
+         [taskInsType],
+         [AUserId],
+         [UserName],
+         [Status],
+         [fromUserName],
+         [TaskInsDescription]
+          FROM PS_WorkTaskInsAccreditView
+          $value$
+   </select>
+   <select id="GetPS_WorkTaskInsAccreditViewRowCount" parameterClass="string">
+    select count(*) from PS_WorkTaskInsAccreditView $value$
+   </select>
+  
+   <insert id="InsertPS_WorkTaskInsAccreditView" parameterClass="PS_WorkTaskInsAccreditView">
+        INSERT INTO PS_WorkTaskInsAccreditView
+         (
+         [AccreditFromUserId],
+         [AccreditToUserId],
+         [AccreditStatus],
+         [WFClassId],
+         [FlowCaption],
+         [Caption],
+         [WorkFlowId],
+         [WorkTaskId],
+         [FatherId],
+         [MgrUrl],
+         [clLevel],
+         [TaskCaption],
+         [TaskTypeId],
+         [Priority],
+         [WorkFlowNo],
+         [taskStartTime],
+         [FlowInsCaption],
+         [TaskInsCaption],
+         [WorkFlowInsId],
+         [WorkTaskInsId],
+         [OperatedDes],
+         [pOperatedDes],
+         [OperatorInsId],
+         [OperType],
+         [UserId],
+         [OperContent],
+         [OperDateTime],
+         [taskEndTime],
+         [flowStartTime],
+         [flowEndTime],
+         [Description],
+         [OperStatus],
+         [taskInsType],
+         [AUserId],
+         [UserName],
+         [Status],
+         [fromUserName],
+         [TaskInsDescription]
+         )
+       VALUES
+         (
+         #AccreditFromUserId#,
+         #AccreditToUserId#,
+         #AccreditStatus#,
+         #WFClassId#,
+         #FlowCaption#,
+         #Caption#,
+         #WorkFlowId#,
+         #WorkTaskId#,
+         #FatherId#,
+         #MgrUrl#,
+         #clLevel#,
+         #TaskCaption#,
+         #TaskTypeId#,
+         #Priority#,
+         #WorkFlowNo#,
+         #taskStartTime#,
+         #FlowInsCaption#,
+         #TaskInsCaption#,
+         #WorkFlowInsId#,
+         #WorkTaskInsId#,
+         #OperatedDes#,
+         #pOperatedDes#,
+         #OperatorInsId#,
+         #OperType#,
+         #UserId#,
+         #OperContent#,
+         #OperDateTime#,
+         #taskEndTime#,
+         #flowStartTime#,
+         #flowEndTime#,
+         #Description#,
+         #OperStatus#,
+         #taskInsType#,
+         #AUserId#,
+         #UserName#,
+         #Status#,
+         #fromUserName#,
+         #TaskInsDescription#
+         )
+
+   </insert>
+   <update id="UpdatePS_WorkTaskInsAccreditView" parameterClass="PS_WorkTaskInsAccreditView" resultClass="int">
+          UPDATE PS_WorkTaskInsAccreditView
+           SET
+             [AccreditFromUserId]=#AccreditFromUserId#,
+             [AccreditToUserId]=#AccreditToUserId#,
+             [AccreditStatus]=#AccreditStatus#,
+             [WFClassId]=#WFClassId#,
+             [FlowCaption]=#FlowCaption#,
+             [Caption]=#Caption#,
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [FatherId]=#FatherId#,
+             [MgrUrl]=#MgrUrl#,
+             [clLevel]=#clLevel#,
+             [TaskCaption]=#TaskCaption#,
+             [TaskTypeId]=#TaskTypeId#,
+             [Priority]=#Priority#,
+             [WorkFlowNo]=#WorkFlowNo#,
+             [taskStartTime]=#taskStartTime#,
+             [FlowInsCaption]=#FlowInsCaption#,
+             [TaskInsCaption]=#TaskInsCaption#,
+             [WorkFlowInsId]=#WorkFlowInsId#,
+             [WorkTaskInsId]=#WorkTaskInsId#,
+             [OperatedDes]=#OperatedDes#,
+             [pOperatedDes]=#pOperatedDes#,
+             [OperatorInsId]=#OperatorInsId#,
+             [OperType]=#OperType#,
+             [UserId]=#UserId#,
+             [OperContent]=#OperContent#,
+             [OperDateTime]=#OperDateTime#,
+             [taskEndTime]=#taskEndTime#,
+             [flowStartTime]=#flowStartTime#,
+             [flowEndTime]=#flowEndTime#,
+             [Description]=#Description#,
+             [OperStatus]=#OperStatus#,
+             [taskInsType]=#taskInsType#,
+             [AUserId]=#AUserId#,
+             [UserName]=#UserName#,
+             [Status]=#Status#,
+             [fromUserName]=#fromUserName#,
+             [TaskInsDescription]=#TaskInsDescription#
+   </update>
+   <delete id="DeletePS_WorkTaskInsAccreditView" parameterClass="PS_WorkTaskInsAccreditView">
+        DELETE FROM 
+         PS_WorkTaskInsAccreditView
+
+   </delete>
+  </statements>
+</sqlMap>
+ 

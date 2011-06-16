@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_OperContentView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_OperContentView"  type="Ebada.Scgl.Model.PS_OperContentView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_OperContentView_AllColumns" class="PS_OperContentView">
+        <result property="operContent" column="operContent" />
+        <result property="UserId" column="UserId" />
+        <result property="operContentType" column="operContentType" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_OperContentViewList" resultMap="PS_OperContentView_AllColumns" parameterClass="string">
+        SELECT 
+         [operContent],
+         [UserId],
+         [operContentType]
+          FROM PS_OperContentView
+          $value$
+   </select>
+   <select id="GetPS_OperContentViewRowCount" parameterClass="string">
+    select count(*) from PS_OperContentView $value$
+   </select>
+  
+   <insert id="InsertPS_OperContentView" parameterClass="PS_OperContentView">
+        INSERT INTO PS_OperContentView
+         (
+         [operContent],
+         [UserId],
+         [operContentType]
+         )
+       VALUES
+         (
+         #operContent#,
+         #UserId#,
+         #operContentType#
+         )
+
+   </insert>
+   <update id="UpdatePS_OperContentView" parameterClass="PS_OperContentView" resultClass="int">
+          UPDATE PS_OperContentView
+           SET
+             [operContent]=#operContent#,
+             [UserId]=#UserId#,
+             [operContentType]=#operContentType#
+   </update>
+   <delete id="DeletePS_OperContentView" parameterClass="PS_OperContentView">
+        DELETE FROM 
+         PS_OperContentView
+
+   </delete>
+  </statements>
+</sqlMap>
+ 

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_UserControls" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_UserControls"  type="Ebada.Scgl.Model.PS_UserControls,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_UserControls_AllColumns" class="PS_UserControls">
+        <result property="UserControlId" column="UserControlId" />
+        <result property="ucCaption" column="ucCaption" />
+        <result property="ucPath" column="ucPath" />
+        <result property="ucID" column="ucID" />
+        <result property="ucDescription" column="ucDescription" />
+        <result property="ucType" column="ucType" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_UserControlsList" resultMap="PS_UserControls_AllColumns" parameterClass="string">
+        SELECT 
+         [UserControlId],
+         [ucCaption],
+         [ucPath],
+         [ucID],
+         [ucDescription],
+         [ucType]
+          FROM PS_UserControls
+          $value$
+   </select>
+   
+   <select id="SelectPS_UserControlsByHash" parameterClass="Hashtable">
+         SELECT 
+         [UserControlId],
+         [ucCaption],
+         [ucPath],
+         [ucID],
+         [ucDescription],
+         [ucType]
+          FROM PS_UserControls
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="UserControlId">[UserControlId]='$UserControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="ucCaption">[ucCaption]='$ucCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="ucPath">[ucPath]='$ucPath$'</isNotNull>
+       <isNotNull prepend="AND" property="ucID">[ucID]='$ucID$'</isNotNull>
+       <isNotNull prepend="AND" property="ucDescription">[ucDescription]='$ucDescription$'</isNotNull>
+       <isNotNull prepend="AND" property="ucType">[ucType]='$ucType$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_UserControlsByKey" resultMap="PS_UserControls_AllColumns" parameterClass="PS_UserControls">
+         SELECT 
+         [UserControlId],
+         [ucCaption],
+         [ucPath],
+         [ucID],
+         [ucDescription],
+         [ucType]
+         FROM PS_UserControls
+         WHERE 
+           UserControlId = #UserControlId#
+
+   </select>
+ 
+   <delete id="DeletePS_UserControls" parameterClass="PS_UserControls">
+        DELETE FROM 
+         PS_UserControls
+           WHERE
+         UserControlId = #UserControlId#
+
+   </delete>
+   
+   <delete id="DeletePS_UserControlsByWhere" parameterClass="string">
+     delete from PS_UserControls $value$
+   </delete>
+   
+   <delete id="DeletePS_UserControlsByKey" parameterClass="string">
+        DELETE FROM 
+         PS_UserControls
+           WHERE
+         UserControlId = #UserControlId#
+    
+   </delete>
+   
+   <update id="UpdatePS_UserControls" parameterClass="PS_UserControls" resultClass="int">
+          UPDATE PS_UserControls
+           SET
+             [ucCaption]=#ucCaption#,
+             [ucPath]=#ucPath#,
+             [ucID]=#ucID#,
+             [ucDescription]=#ucDescription#,
+             [ucType]=#ucType#
+            WHERE 
+              UserControlId = #UserControlId#
+
+   </update>
+  
+   <insert id="InsertPS_UserControls" parameterClass="PS_UserControls">
+        INSERT INTO PS_UserControls
+         (
+         [UserControlId],
+         [ucCaption],
+         [ucPath],
+         [ucID],
+         [ucDescription],
+         [ucType]
+         )
+       VALUES
+         (
+         #UserControlId#,
+         #ucCaption#,
+         #ucPath#,
+         #ucID#,
+         #ucDescription#,
+         #ucType#
+         )
+
+   </insert>
+   
+   <select id="GetPS_UserControlsRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_UserControls
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="UserControlId">[UserControlId]='$UserControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="ucCaption">[ucCaption]='$ucCaption$'</isNotNull>
+       <isNotNull prepend="AND" property="ucPath">[ucPath]='$ucPath$'</isNotNull>
+       <isNotNull prepend="AND" property="ucID">[ucID]='$ucID$'</isNotNull>
+       <isNotNull prepend="AND" property="ucDescription">[ucDescription]='$ucDescription$'</isNotNull>
+       <isNotNull prepend="AND" property="ucType">[ucType]='$ucType$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_UserControlsRowCount" parameterClass="string">
+    select count(*) from PS_UserControls $value$
+   </select>
+    <select id="SelectPS_UserControlsJoinPS_WorkTaskControlsByWorkFlowID" resultMap="PS_UserControls_AllColumns" parameterClass="string">
+
+      select distinct cl.* from PS_UserControlsLink ul left join PS_WorkTaskControls wc on wc.usercontrolId=ul.mainuserctrlid
+      left join PS_UserControls cl on ul.usercontrolId=cl.usercontrolId
+      where wc.workflowid=#value#
+    </select>
+  </statements>
+  
+</sqlMap>

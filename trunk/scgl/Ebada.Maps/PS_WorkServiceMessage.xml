@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_WorkServiceMessage" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_WorkServiceMessage"  type="Ebada.Scgl.Model.PS_WorkServiceMessage,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_WorkServiceMessage_AllColumns" class="PS_WorkServiceMessage">
+        <result property="MessageId" column="MessageId" />
+        <result property="WorkflowId" column="WorkflowId" />
+        <result property="WorktaskId" column="WorktaskId" />
+        <result property="WorkflowInsId" column="WorkflowInsId" />
+        <result property="WorktaskInsId" column="WorktaskInsId" />
+        <result property="Content" column="Content" />
+        <result property="SendTime1" column="SendTime1" />
+        <result property="SendTime2" column="SendTime2" />
+        <result property="SendTime3" column="SendTime3" />
+        <result property="DoneFlag1" column="DoneFlag1" />
+        <result property="DoneFlag2" column="DoneFlag2" />
+        <result property="DoneFlag3" column="DoneFlag3" />
+        <result property="MsgType" column="MsgType" />
+        <result property="Users1" column="Users1" />
+        <result property="Users2" column="Users2" />
+        <result property="Users3" column="Users3" />
+        <result property="CreateTime" column="CreateTime" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_WorkServiceMessageList" resultMap="PS_WorkServiceMessage_AllColumns" parameterClass="string">
+        SELECT 
+         [MessageId],
+         [WorkflowId],
+         [WorktaskId],
+         [WorkflowInsId],
+         [WorktaskInsId],
+         [Content],
+         [SendTime1],
+         [SendTime2],
+         [SendTime3],
+         [DoneFlag1],
+         [DoneFlag2],
+         [DoneFlag3],
+         [MsgType],
+         [Users1],
+         [Users2],
+         [Users3],
+         [CreateTime]
+          FROM PS_WorkServiceMessage
+          $value$
+   </select>
+   
+   <select id="SelectPS_WorkServiceMessageByHash" parameterClass="Hashtable">
+         SELECT 
+         [MessageId],
+         [WorkflowId],
+         [WorktaskId],
+         [WorkflowInsId],
+         [WorktaskInsId],
+         [Content],
+         [SendTime1],
+         [SendTime2],
+         [SendTime3],
+         [DoneFlag1],
+         [DoneFlag2],
+         [DoneFlag3],
+         [MsgType],
+         [Users1],
+         [Users2],
+         [Users3],
+         [CreateTime]
+          FROM PS_WorkServiceMessage
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="MessageId">[MessageId]='$MessageId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowInsId">[WorkflowInsId]='$WorkflowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskInsId">[WorktaskInsId]='$WorktaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="Content">[Content]='$Content$'</isNotNull>
+       <isNotNull prepend="AND" property="SendTime1">[SendTime1]='$SendTime1$'</isNotNull>
+       <isNotNull prepend="AND" property="SendTime2">[SendTime2]='$SendTime2$'</isNotNull>
+       <isNotNull prepend="AND" property="SendTime3">[SendTime3]='$SendTime3$'</isNotNull>
+       <isNotNull prepend="AND" property="DoneFlag1">[DoneFlag1]='$DoneFlag1$'</isNotNull>
+       <isNotNull prepend="AND" property="DoneFlag2">[DoneFlag2]='$DoneFlag2$'</isNotNull>
+       <isNotNull prepend="AND" property="DoneFlag3">[DoneFlag3]='$DoneFlag3$'</isNotNull>
+       <isNotNull prepend="AND" property="MsgType">[MsgType]='$MsgType$'</isNotNull>
+       <isNotNull prepend="AND" property="Users1">[Users1]='$Users1$'</isNotNull>
+       <isNotNull prepend="AND" property="Users2">[Users2]='$Users2$'</isNotNull>
+       <isNotNull prepend="AND" property="Users3">[Users3]='$Users3$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_WorkServiceMessageByKey" resultMap="PS_WorkServiceMessage_AllColumns" parameterClass="PS_WorkServiceMessage">
+         SELECT 
+         [MessageId],
+         [WorkflowId],
+         [WorktaskId],
+         [WorkflowInsId],
+         [WorktaskInsId],
+         [Content],
+         [SendTime1],
+         [SendTime2],
+         [SendTime3],
+         [DoneFlag1],
+         [DoneFlag2],
+         [DoneFlag3],
+         [MsgType],
+         [Users1],
+         [Users2],
+         [Users3],
+         [CreateTime]
+         FROM PS_WorkServiceMessage
+         WHERE 
+           MessageId = #MessageId#
+
+   </select>
+ 
+   <delete id="DeletePS_WorkServiceMessage" parameterClass="PS_WorkServiceMessage">
+        DELETE FROM 
+         PS_WorkServiceMessage
+           WHERE
+         MessageId = #MessageId#
+
+   </delete>
+   
+   <delete id="DeletePS_WorkServiceMessageByWhere" parameterClass="string">
+     delete from PS_WorkServiceMessage $value$
+   </delete>
+   
+   <delete id="DeletePS_WorkServiceMessageByKey" parameterClass="string">
+        DELETE FROM 
+         PS_WorkServiceMessage
+           WHERE
+         MessageId = #MessageId#
+    
+   </delete>
+   
+   <update id="UpdatePS_WorkServiceMessage" parameterClass="PS_WorkServiceMessage" resultClass="int">
+          UPDATE PS_WorkServiceMessage
+           SET
+             [WorkflowId]=#WorkflowId#,
+             [WorktaskId]=#WorktaskId#,
+             [WorkflowInsId]=#WorkflowInsId#,
+             [WorktaskInsId]=#WorktaskInsId#,
+             [Content]=#Content#,
+             [SendTime1]=#SendTime1#,
+             [SendTime2]=#SendTime2#,
+             [SendTime3]=#SendTime3#,
+             [DoneFlag1]=#DoneFlag1#,
+             [DoneFlag2]=#DoneFlag2#,
+             [DoneFlag3]=#DoneFlag3#,
+             [MsgType]=#MsgType#,
+             [Users1]=#Users1#,
+             [Users2]=#Users2#,
+             [Users3]=#Users3#,
+             [CreateTime]=#CreateTime#
+            WHERE 
+              MessageId = #MessageId#
+
+   </update>
+  
+   <insert id="InsertPS_WorkServiceMessage" parameterClass="PS_WorkServiceMessage">
+        INSERT INTO PS_WorkServiceMessage
+         (
+         [MessageId],
+         [WorkflowId],
+         [WorktaskId],
+         [WorkflowInsId],
+         [WorktaskInsId],
+         [Content],
+         [SendTime1],
+         [SendTime2],
+         [SendTime3],
+         [DoneFlag1],
+         [DoneFlag2],
+         [DoneFlag3],
+         [MsgType],
+         [Users1],
+         [Users2],
+         [Users3],
+         [CreateTime]
+         )
+       VALUES
+         (
+         #MessageId#,
+         #WorkflowId#,
+         #WorktaskId#,
+         #WorkflowInsId#,
+         #WorktaskInsId#,
+         #Content#,
+         #SendTime1#,
+         #SendTime2#,
+         #SendTime3#,
+         #DoneFlag1#,
+         #DoneFlag2#,
+         #DoneFlag3#,
+         #MsgType#,
+         #Users1#,
+         #Users2#,
+         #Users3#,
+         #CreateTime#
+         )
+
+   </insert>
+   
+   <select id="GetPS_WorkServiceMessageRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_WorkServiceMessage
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="MessageId">[MessageId]='$MessageId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowInsId">[WorkflowInsId]='$WorkflowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskInsId">[WorktaskInsId]='$WorktaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="Content">[Content]='$Content$'</isNotNull>
+       <isNotNull prepend="AND" property="SendTime1">[SendTime1]='$SendTime1$'</isNotNull>
+       <isNotNull prepend="AND" property="SendTime2">[SendTime2]='$SendTime2$'</isNotNull>
+       <isNotNull prepend="AND" property="SendTime3">[SendTime3]='$SendTime3$'</isNotNull>
+       <isNotNull prepend="AND" property="DoneFlag1">[DoneFlag1]='$DoneFlag1$'</isNotNull>
+       <isNotNull prepend="AND" property="DoneFlag2">[DoneFlag2]='$DoneFlag2$'</isNotNull>
+       <isNotNull prepend="AND" property="DoneFlag3">[DoneFlag3]='$DoneFlag3$'</isNotNull>
+       <isNotNull prepend="AND" property="MsgType">[MsgType]='$MsgType$'</isNotNull>
+       <isNotNull prepend="AND" property="Users1">[Users1]='$Users1$'</isNotNull>
+       <isNotNull prepend="AND" property="Users2">[Users2]='$Users2$'</isNotNull>
+       <isNotNull prepend="AND" property="Users3">[Users3]='$Users3$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_WorkServiceMessageRowCount" parameterClass="string">
+    select count(*) from PS_WorkServiceMessage $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

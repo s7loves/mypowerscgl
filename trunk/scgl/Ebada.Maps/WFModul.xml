@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WFModul" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WFModul"  type="Ebada.Scgl.Model.WFModul,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WFModul_AllColumns" class="WFModul">
+        <result property="SelfCode" column="SelfCode" />
+        <result property="FatherCode" column="FatherCode" />
+        <result property="Caption" column="Caption" />
+        <result property="Memo" column="Memo" />
+        <result property="NodeType" column="NodeType" />
+        <result property="Leverl" column="Leverl" />
+        <result property="FullPosition" column="FullPosition" />
+        <result property="IsVisable" column="IsVisable" />
+        <result property="DllFileName" column="DllFileName" />
+        <result property="DllClassName" column="DllClassName" />
+        <result property="DllMethodName" column="DllMethodName" />
+        <result property="FormName" column="FormName" />
+        <result property="BlankWindows" column="BlankWindows" />
+        <result property="MouseIsClick" column="MouseIsClick" />
+        <result property="ImageIndex" column="ImageIndex" />
+        <result property="SDIWindows" column="SDIWindows" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWFModulList" resultMap="WFModul_AllColumns" parameterClass="string">
+        SELECT 
+         [SelfCode],
+         [FatherCode],
+         [Caption],
+         [Memo],
+         [NodeType],
+         [Leverl],
+         [FullPosition],
+         [IsVisable],
+         [DllFileName],
+         [DllClassName],
+         [DllMethodName],
+         [FormName],
+         [BlankWindows],
+         [MouseIsClick],
+         [ImageIndex],
+         [SDIWindows]
+          FROM WFModul
+          $value$
+   </select>
+   
+   <select id="SelectWFModulByHash" parameterClass="Hashtable">
+         SELECT 
+         [SelfCode],
+         [FatherCode],
+         [Caption],
+         [Memo],
+         [NodeType],
+         [Leverl],
+         [FullPosition],
+         [IsVisable],
+         [DllFileName],
+         [DllClassName],
+         [DllMethodName],
+         [FormName],
+         [BlankWindows],
+         [MouseIsClick],
+         [ImageIndex],
+         [SDIWindows]
+          FROM WFModul
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="SelfCode">[SelfCode]='$SelfCode$'</isNotNull>
+       <isNotNull prepend="AND" property="FatherCode">[FatherCode]='$FatherCode$'</isNotNull>
+       <isNotNull prepend="AND" property="Caption">[Caption]='$Caption$'</isNotNull>
+       <isNotNull prepend="AND" property="Memo">[Memo]='$Memo$'</isNotNull>
+       <isNotNull prepend="AND" property="NodeType">[NodeType]='$NodeType$'</isNotNull>
+       <isNotNull prepend="AND" property="Leverl">[Leverl]='$Leverl$'</isNotNull>
+       <isNotNull prepend="AND" property="FullPosition">[FullPosition]='$FullPosition$'</isNotNull>
+       <isNotNull prepend="AND" property="IsVisable">[IsVisable]='$IsVisable$'</isNotNull>
+       <isNotNull prepend="AND" property="DllFileName">[DllFileName]='$DllFileName$'</isNotNull>
+       <isNotNull prepend="AND" property="DllClassName">[DllClassName]='$DllClassName$'</isNotNull>
+       <isNotNull prepend="AND" property="DllMethodName">[DllMethodName]='$DllMethodName$'</isNotNull>
+       <isNotNull prepend="AND" property="FormName">[FormName]='$FormName$'</isNotNull>
+       <isNotNull prepend="AND" property="BlankWindows">[BlankWindows]='$BlankWindows$'</isNotNull>
+       <isNotNull prepend="AND" property="MouseIsClick">[MouseIsClick]='$MouseIsClick$'</isNotNull>
+       <isNotNull prepend="AND" property="ImageIndex">[ImageIndex]='$ImageIndex$'</isNotNull>
+       <isNotNull prepend="AND" property="SDIWindows">[SDIWindows]='$SDIWindows$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWFModulByKey" resultMap="WFModul_AllColumns" parameterClass="WFModul">
+         SELECT 
+         [SelfCode],
+         [FatherCode],
+         [Caption],
+         [Memo],
+         [NodeType],
+         [Leverl],
+         [FullPosition],
+         [IsVisable],
+         [DllFileName],
+         [DllClassName],
+         [DllMethodName],
+         [FormName],
+         [BlankWindows],
+         [MouseIsClick],
+         [ImageIndex],
+         [SDIWindows]
+         FROM WFModul
+         WHERE 
+           SelfCode = #SelfCode#
+
+   </select>
+ 
+   <delete id="DeleteWFModul" parameterClass="WFModul">
+        DELETE FROM 
+         WFModul
+           WHERE
+         SelfCode = #SelfCode#
+
+   </delete>
+   
+   <delete id="DeleteWFModulByWhere" parameterClass="string">
+     delete from WFModul $value$
+   </delete>
+   
+   <delete id="DeleteWFModulByKey" parameterClass="string">
+        DELETE FROM 
+         WFModul
+           WHERE
+         SelfCode = #SelfCode#
+    
+   </delete>
+   
+   <update id="UpdateWFModul" parameterClass="WFModul" resultClass="int">
+          UPDATE WFModul
+           SET
+             [FatherCode]=#FatherCode#,
+             [Caption]=#Caption#,
+             [Memo]=#Memo#,
+             [NodeType]=#NodeType#,
+             [Leverl]=#Leverl#,
+             [FullPosition]=#FullPosition#,
+             [IsVisable]=#IsVisable#,
+             [DllFileName]=#DllFileName#,
+             [DllClassName]=#DllClassName#,
+             [DllMethodName]=#DllMethodName#,
+             [FormName]=#FormName#,
+             [BlankWindows]=#BlankWindows#,
+             [MouseIsClick]=#MouseIsClick#,
+             [ImageIndex]=#ImageIndex#,
+             [SDIWindows]=#SDIWindows#
+            WHERE 
+              SelfCode = #SelfCode#
+
+   </update>
+  
+   <insert id="InsertWFModul" parameterClass="WFModul">
+        INSERT INTO WFModul
+         (
+         [SelfCode],
+         [FatherCode],
+         [Caption],
+         [Memo],
+         [NodeType],
+         [Leverl],
+         [FullPosition],
+         [IsVisable],
+         [DllFileName],
+         [DllClassName],
+         [DllMethodName],
+         [FormName],
+         [BlankWindows],
+         [MouseIsClick],
+         [ImageIndex],
+         [SDIWindows]
+         )
+       VALUES
+         (
+         #SelfCode#,
+         #FatherCode#,
+         #Caption#,
+         #Memo#,
+         #NodeType#,
+         #Leverl#,
+         #FullPosition#,
+         #IsVisable#,
+         #DllFileName#,
+         #DllClassName#,
+         #DllMethodName#,
+         #FormName#,
+         #BlankWindows#,
+         #MouseIsClick#,
+         #ImageIndex#,
+         #SDIWindows#
+         )
+
+   </insert>
+   
+   <select id="GetWFModulRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WFModul
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="SelfCode">[SelfCode]='$SelfCode$'</isNotNull>
+       <isNotNull prepend="AND" property="FatherCode">[FatherCode]='$FatherCode$'</isNotNull>
+       <isNotNull prepend="AND" property="Caption">[Caption]='$Caption$'</isNotNull>
+       <isNotNull prepend="AND" property="Memo">[Memo]='$Memo$'</isNotNull>
+       <isNotNull prepend="AND" property="NodeType">[NodeType]='$NodeType$'</isNotNull>
+       <isNotNull prepend="AND" property="Leverl">[Leverl]='$Leverl$'</isNotNull>
+       <isNotNull prepend="AND" property="FullPosition">[FullPosition]='$FullPosition$'</isNotNull>
+       <isNotNull prepend="AND" property="IsVisable">[IsVisable]='$IsVisable$'</isNotNull>
+       <isNotNull prepend="AND" property="DllFileName">[DllFileName]='$DllFileName$'</isNotNull>
+       <isNotNull prepend="AND" property="DllClassName">[DllClassName]='$DllClassName$'</isNotNull>
+       <isNotNull prepend="AND" property="DllMethodName">[DllMethodName]='$DllMethodName$'</isNotNull>
+       <isNotNull prepend="AND" property="FormName">[FormName]='$FormName$'</isNotNull>
+       <isNotNull prepend="AND" property="BlankWindows">[BlankWindows]='$BlankWindows$'</isNotNull>
+       <isNotNull prepend="AND" property="MouseIsClick">[MouseIsClick]='$MouseIsClick$'</isNotNull>
+       <isNotNull prepend="AND" property="ImageIndex">[ImageIndex]='$ImageIndex$'</isNotNull>
+       <isNotNull prepend="AND" property="SDIWindows">[SDIWindows]='$SDIWindows$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWFModulRowCount" parameterClass="string">
+    select count(*) from WFModul $value$
+   </select>
+
+    <select id="SelectWFModulByWhere" resultMap="WFModul_AllColumns" parameterClass="string">
+      SELECT
+      [SelfCode],
+      [FatherCode],
+      [Caption],
+      [Memo],
+      [NodeType],
+      [Leverl],
+      [FullPosition],
+      [IsVisable],
+      [DllFileName],
+      [DllClassName],
+      [DllMethodName],
+      [FormName],
+      [BlankWindows],
+      [MouseIsClick],
+      [ImageIndex],
+      [SDIWindows]
+      FROM WFModul
+      
+      $FullPosition$
+
+    </select>
+   
+  </statements>
+</sqlMap>
+ 
