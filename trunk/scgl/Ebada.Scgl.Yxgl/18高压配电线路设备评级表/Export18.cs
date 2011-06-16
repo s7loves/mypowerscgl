@@ -43,14 +43,14 @@ namespace Ebada.Scgl.Yxgl {
                         break;
                     }
                     PJ_18gysbpj tempobj = objlist[i];
-                    //ex.SetCellValue((p * 29 + i).ToString(), 7 + i, 2);
+                    //ex.SetCellValue((p * 29 + i).ToString(), 7 + i, 1);
                     //ex.SetCellValue(tempobj.sbdy, 7 + i, 2);
-                    //ex.SetCellValue(tempobj.one.ToString(), 7 + i, 3);
-                    //ex.SetCellValue(tempobj.two.ToString(), 7 + i, 4);
-                    //ex.SetCellValue(tempobj.three.ToString(), 7 + i, 5);
-                    //ex.SetCellValue(tempobj.whl * 100 + "%", 7 + i, 6);
-                    //ex.SetCellValue(tempobj.qxnr, 7 + i, 7);
-                    //ex.SetCellValue(tempobj.fzdw, 7 + i, 8);
+                    //ex.SetCellValue(tempobj.ToString(), 7 + i, 5);
+                    //ex.SetCellValue(tempobj.two.ToString(), 7 + i, 6);
+                    //ex.SetCellValue(tempobj.three.ToString(), 7 + i, 9);
+                    //ex.SetCellValue(tempobj.whl + "%", 7 + i, 12);
+                    //ex.SetCellValue(tempobj.qxnr, 7 + i, 13);
+                    //ex.SetCellValue(tempobj.fzdw, 7 + i, 14);
 
                 }
             }
