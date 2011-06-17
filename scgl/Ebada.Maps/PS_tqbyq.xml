@@ -111,7 +111,9 @@
       sum(case  when d.byqModle='S9' then 1 else 0 end) as "Col5",
       sum(case  when d.byqModle='S9' then d.byqCapcity else 0 end) as "Col6",
       sum(case  when d.byqModle='S11' then 1 else 0 end) as "Col7",
-      sum(case  when d.byqModle='S11' then d.byqCapcity else 0 end) as "Col8"
+      sum(case  when d.byqModle='S11' then d.byqCapcity else 0 end) as "Col8",
+      0 as "Col9",
+      0 as "Col10"
       FROM
       dbo.mOrg a, dbo.PS_xl b, dbo.PS_tq c,dbo.PS_tqbyq d
       where a.OrgCode=b.OrgCode and b.LineCode=c.xlCode and c.tqID=d.tqID and a.OrgCode=$value$
