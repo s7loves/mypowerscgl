@@ -196,6 +196,7 @@ namespace Ebada.Scgl.Yxgl
                     PS_gjyb _pj = gridView1.GetRow(i) as PS_gjyb;
                     pjlist.Add(_pj);
 
+
                 }
                 Export15.ExportExcel(pjlist);
             }
