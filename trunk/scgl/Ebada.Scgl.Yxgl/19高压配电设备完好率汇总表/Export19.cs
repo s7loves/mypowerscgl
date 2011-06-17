@@ -240,6 +240,31 @@ namespace Ebada.Scgl.Yxgl {
                 }
             }
             ex.ActiveSheet(1);
+            //合计
+            //配电线路
+            ex.SetCellValue(xlsum.ToString(), 8, 2);
+            ex.SetCellValue(xl1.ToString(), 8, 3);
+            ex.SetCellValue(xl2.ToString(), 8, 4);
+            ex.SetCellValue(xl3.ToString(), 8, 5);
+            ex.SetCellValue("100%",8,6);
+            //配电变压器
+            ex.SetCellValue(pdbysum.ToString() + "/" + pdbyts.ToString(), 8, 7);
+            ex.SetCellValue(pdby1.ToString() + "/" + pdbyts1.ToString(), 8, 8);
+            ex.SetCellValue(pdby2.ToString() + "/" + pdbyts2.ToString(), 8, 9);
+            ex.SetCellValue(pdby3.ToString() + "/" + pdbyts3.ToString(), 8,10);
+            ex.SetCellValue("100%", 8, 11);
+            //变台边亭
+            ex.SetCellValue(pdssum.ToString() + "/" + pdstssum.ToString(), 8, 12);
+            ex.SetCellValue(pds1.ToString() + "/" + pdsts1.ToString(), 8, 13);
+            ex.SetCellValue(pds2.ToString() + "/" + pdsts2.ToString(), 8, 14);
+            ex.SetCellValue(pds3.ToString() + "/" + pdsts3.ToString(), 8, 15);
+            ex.SetCellValue("100%", 8, 16);
+            //开关
+            ex.SetCellValue(zskgsum.ToString(), 8, 17);
+            ex.SetCellValue(zskg1.ToString(), 8, 18);
+            ex.SetCellValue(zskg2.ToString(), 8, 19);
+            ex.SetCellValue(zskg3.ToString(), 8, 20);
+            ex.SetCellValue("100%", 8, 21);
             //在此处得到合计的内容
            ex.ShowExcel();
         }
