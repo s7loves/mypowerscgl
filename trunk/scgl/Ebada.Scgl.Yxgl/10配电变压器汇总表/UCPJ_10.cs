@@ -70,6 +70,7 @@ namespace Ebada.Scgl.Yxgl
 
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
+            parentID = btGdsList.EditValue.ToString();
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
             mOrg org=null;
             if (list.Count > 0)
@@ -186,7 +187,7 @@ namespace Ebada.Scgl.Yxgl
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle>=0)
             {
-                Export10.ExportExcel(gridView1.GetFocusedRow() as PS_tqbyq);
+                Export10.ExportExcel(parentID);
             }
            
            
