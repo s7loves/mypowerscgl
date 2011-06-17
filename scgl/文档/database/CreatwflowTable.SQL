@@ -300,10 +300,10 @@ GO
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[WF_WorkLink]') AND type in (N'U'))
 BEGIN
 CREATE TABLE [dbo].[WF_WorkLink](
-	[WorkLinkId] [varchar](36) NOT NULL,
-	[WorkFlowId] [varchar](36) NOT NULL,
-	[StartTaskId] [varchar](36) NOT NULL,
-	[EndTaskId] [varchar](36) NOT NULL,
+	[WorkLinkId] [varchar](50) NOT NULL,
+	[WorkFlowId] [varchar](50) NOT NULL,
+	[StartTaskId] [varchar](50) NOT NULL,
+	[EndTaskId] [varchar](50) NOT NULL,
 	[Condition] [varchar](1024) NOT NULL,
 	[Description] [varchar](512) NULL,
 	[BreakX] [varchar](512) NULL,
