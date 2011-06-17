@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**********************************************
+系统:企业ERP
+模块:启动模块
+作者:Rabbit
+创建时间:2011-6-16
+最后一次修改:2011-6-17
+***********************************************/
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
