@@ -185,5 +185,24 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
         }
+
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.RowCount > 0)
+            {
+                IList<PS_gjyb> pjlist = new List<PS_gjyb>();
+                for (int i = 0; i < gridView1.RowCount; i++)
+                {
+                    PS_gjyb _pj = gridView1.GetRow(i) as PS_gjyb;
+                    pjlist.Add(_pj);
+
+                }
+                Export15.ExportExcel(pjlist);
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }
