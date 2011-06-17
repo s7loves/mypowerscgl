@@ -2,6 +2,7 @@
 <sqlMap namespace="PS_tqbyq" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
   <typeAlias alias="PS_tqbyq"  type="Ebada.Scgl.Model.PS_tqbyq,Ebada.Scgl.Model" />
+    <typeAlias alias="PS_sheetTemp"  type="Ebada.Scgl.Model.PS_sheetTemp,Ebada.Scgl.Model" />
   </alias>
   <resultMaps>
       <resultMap id="PS_tqbyq_AllColumns" class="PS_tqbyq">
@@ -29,6 +30,18 @@
         <result property="byqState" column="byqState" />
         <result property="InDate" column="InDate" />
       </resultMap>
+    <resultMap id="PS_SheetTemp_AllColumns" class="PS_sheetTemp">
+      <result property="Col1" column="Col1" />
+      <result property="Col2" column="Col2" />
+      <result property="Col3" column="Col3" />
+      <result property="Col4" column="Col4" />
+      <result property="Col5" column="Col5" />
+      <result property="Col6" column="Col6" />
+      <result property="Col7" column="Col7" />
+      <result property="Col8" column="Col8" />
+      <result property="Col9" column="Col9" />
+      <result property="Col10" column="Col10" />
+    </resultMap>
   </resultMaps>
 
   <statements>
@@ -89,7 +102,20 @@
       dbo.mOrg a, dbo.PS_xl b, dbo.PS_tq c,dbo.PS_tqbyq d
       where a.OrgCode=b.OrgCode and b.LineCode=c.xlCode and c.tqID=d.tqID and a.OrgCode=$value$
     </select>
-   
+    <select id="SelectPS_tqbyqByGDSView" resultMap="PS_SheetTemp_AllColumns" parameterClass="string">
+      SELECT
+      sum(case  when d.byqModle='SJ' then 1 else 0 end) as "Col1",
+      sum(case  when d.byqModle='SJ' then d.byqCapcity else 0 end) as "Col2",
+      sum(case  when d.byqModle='S7' then 1 else 0 end) as "Col3",
+      sum(case  when d.byqModle='S7' then d.byqCapcity else 0 end) as "Col4",
+      sum(case  when d.byqModle='S9' then 1 else 0 end) as "Col5",
+      sum(case  when d.byqModle='S9' then d.byqCapcity else 0 end) as "Col6",
+      sum(case  when d.byqModle='S11' then 1 else 0 end) as "Col7",
+      sum(case  when d.byqModle='S11' then d.byqCapcity else 0 end) as "Col8"
+      FROM
+      dbo.mOrg a, dbo.PS_xl b, dbo.PS_tq c,dbo.PS_tqbyq d
+      where a.OrgCode=b.OrgCode and b.LineCode=c.xlCode and c.tqID=d.tqID and a.OrgCode=$value$
+    </select>
    <select id="SelectPS_tqbyqByHash" parameterClass="Hashtable">
          SELECT 
          [tqID],
