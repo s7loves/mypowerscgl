@@ -194,7 +194,6 @@
     <None Include="Resources\ok1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dykdata.txt" />
     <None Include="Resources\lc.gif" />
     <None Include="Resources\person2.gif" />
   </ItemGroup>
