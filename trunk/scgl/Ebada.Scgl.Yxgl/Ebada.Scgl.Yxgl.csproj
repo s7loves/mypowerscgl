@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -1005,6 +1005,10 @@
     <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ebada.SCGL.WFlow.Tool\Ebada.SCGL.WFlow.Tool.csproj">
+      <Project>{A3173743-90E7-4A97-867E-80353C694D91}</Project>
+      <Name>Ebada.SCGL.WFlow.Tool</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
