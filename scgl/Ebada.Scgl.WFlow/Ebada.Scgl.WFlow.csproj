@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{DB517AF8-551D-4C08-83BE-69D803C89173}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -31,12 +31,52 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Client, Version=1.0.4183.18202, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Client.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Client.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Client.Resource, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Client.Resource.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Components, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Scgl.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordWorkTask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
+      <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
+      <Name>Ebada.Scgl.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ebada.SCGL.WFlow.Tool\Ebada.SCGL.WFlow.Tool.csproj">
+      <Project>{A3173743-90E7-4A97-867E-80353C694D91}</Project>
+      <Name>Ebada.SCGL.WFlow.Tool</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
