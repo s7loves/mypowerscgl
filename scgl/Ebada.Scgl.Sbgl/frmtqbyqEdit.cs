@@ -45,11 +45,7 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
             //this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "byqState");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "InDate");
-            
-            //
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
+
 
         }
         #region IPopupFormEdit Members
@@ -68,22 +64,19 @@ namespace Ebada.Scgl.Sbgl
                 } else {
                     ConvertHelper.CopyTo<PS_tqbyq>(value as PS_tqbyq, rowData);
                 }
+                if (rowData.byqCode == "")
+                {
+                    rowData.byqInstallDate = DateTime.Now;
+                    rowData.byqMadeDate = DateTime.Now;
+                    rowData.InDate = DateTime.Now;
+                }
             }
         }
 
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
 
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
         }
 
         /// <summary>
@@ -106,65 +99,6 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
-
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit8_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateEdit3_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit16_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+    
     }
 }
