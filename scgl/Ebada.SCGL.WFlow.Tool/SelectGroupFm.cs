@@ -21,8 +21,8 @@ namespace Ebada.SCGL.WFlow.Tool
         private void InitializeUIData()
         {
             lvGroup.Columns.Add("角色名称", 100, HorizontalAlignment.Left);
-            lvGroup.Columns.Add("groupId", 0, HorizontalAlignment.Left);
-            lvGroup.Columns.Add("描述", 200, HorizontalAlignment.Left);
+            lvGroup.Columns.Add("RoleID", 0, HorizontalAlignment.Left);
+            //lvGroup.Columns.Add("描述", 200, HorizontalAlignment.Left);
 
         }
 
@@ -49,25 +49,25 @@ namespace Ebada.SCGL.WFlow.Tool
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string strSQL = "where  1=1 ";
-            if (tbxGroupName.Text.Length == 0)
-            {
-                MsgBox.ShowWarningMessageBox ("请输入角色名称!");
-                tbxGroupName.Focus();
-                return;
+            //if (tbxGroupName.Text.Length == 0)
+            //{
+            //    MsgBox.ShowWarningMessageBox ("请输入角色名称!");
+            //    tbxGroupName.Focus();
+            //    return;
 
-            }
+            //}
             lvGroup.Clear();
             InitializeUIData();
             DataTable dtSearch = null;
             if (tbxGroupName.Text != "")
                 strSQL = strSQL + " and RoleName like '%" + tbxGroupName.Text + "%'";
-            dtSearch = RoleGroupData.GetGroupTableByName(strSQL);
+            dtSearch = RoleGroupData.GetRoleGroupTableByName(strSQL);
 
             foreach (DataRow dr in dtSearch.Rows)
             {
-                ListViewItem lvi1 = new ListViewItem(dr["GroupName"].ToString(), 0);
-                lvi1.SubItems.Add(dr["GroupId"].ToString());
-                lvi1.SubItems.Add(dr["GroupDes"].ToString());
+                ListViewItem lvi1 = new ListViewItem(dr["RoleName"].ToString(), 0);
+                lvi1.SubItems.Add(dr["RoleID"].ToString());
+                //lvi1.SubItems.Add(dr["RoleType"].ToString());
                 lvGroup.Items.Add(lvi1);
 
             }
