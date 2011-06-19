@@ -59,12 +59,19 @@ namespace Ebada.Scgl.Sbgl
                 } else {
                     ConvertHelper.CopyTo<PS_xl>(value as PS_xl, rowData);
                 }
+                if(rowData.LineType==""){
+                    rowData.InDate = DateTime.Now;
+                }
             }
         }
 
         #endregion
 
         private void InitComboBoxData() {
+            IList<ViewGds> list = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+            comboBoxEdit7.Properties.DataSource = list;
+            IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mOrg>(" where Orgtype='2'");
+            comboBoxEdit8.Properties.DataSource = list2;
         }
 
         /// <summary>
