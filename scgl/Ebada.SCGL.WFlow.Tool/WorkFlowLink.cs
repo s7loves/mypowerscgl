@@ -220,7 +220,8 @@ namespace Ebada.SCGL.WFlow.Tool
                     xx = xx.Substring(0, xx.Length - 1);
                     yy = yy.Substring(0, yy.Length - 1);
                 }
-                WF_WorkLink wl = new WF_WorkLink();
+                WF_WorkLink wl = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkLink>(LinkId);
+
                 wl.WorkLinkId = this.LinkId;
                 wl.WorkFlowId = this.WorkflowId;
                 wl.StartTaskId = StartTaskId;

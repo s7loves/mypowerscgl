@@ -160,7 +160,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                WF_Operator op = new WF_Operator();
+                WF_Operator op = MainHelper.PlatformSqlMap.GetOneByKey<WF_Operator>(OperatorId);
                 op.OperatorId = this.OperatorId;
                 op.WorkFlowId = this.WorkFlowId;
                 op.WorkTaskId = this.WorkTaskId;

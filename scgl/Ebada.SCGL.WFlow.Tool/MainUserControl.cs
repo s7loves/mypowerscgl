@@ -207,7 +207,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                WF_MainUserControl muc = new WF_MainUserControl();
+                WF_MainUserControl muc = MainHelper.PlatformSqlMap.GetOneByKey<WF_MainUserControl>(MainUserCtrlId);
                 muc.MainUserCtrlId = MainUserCtrlId;
                 muc.mucCaption = mucCaption;
                 muc.mucDescription = mucDescription;

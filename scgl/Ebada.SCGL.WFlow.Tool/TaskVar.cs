@@ -132,7 +132,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                WF_TaskVar tv = new WF_TaskVar();
+                WF_TaskVar tv = MainHelper.PlatformSqlMap.GetOneByKey<WF_TaskVar>(TaskVarId);
                 tv.TaskVarId=this.TaskVarId;
                 tv.WorkFlowId=this.WorkFlowId;
                 tv.WorkTaskId=this.WorkTaskId;
@@ -169,7 +169,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                WF_TaskVar tv = new WF_TaskVar();
+                WF_TaskVar tv = MainHelper.PlatformSqlMap.GetOneByKey<WF_TaskVar>(TaskVarId);
                 tv.TaskVarId = this.TaskVarId;
                 tv.WorkFlowId = this.WorkFlowId;
                 tv.WorkTaskId = this.WorkTaskId;

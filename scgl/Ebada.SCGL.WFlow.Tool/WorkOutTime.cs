@@ -132,7 +132,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
 
-                WF_WorkOutTime wfOut = new WF_WorkOutTime();
+                WF_WorkOutTime wfOut = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkOutTime>(Guid);
                 wfOut.Guid = Guid;
                 wfOut.WorkFlowId = WorkFlowId;
                 wfOut.WorkTaskId = WorkTaskId;

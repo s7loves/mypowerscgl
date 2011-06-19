@@ -141,7 +141,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                WF_WorkFlow wf = new WF_WorkFlow();
+                WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(WorkFlowId);
                 wf.WorkFlowId = WorkFlowId;
                 wf.WFClassId = WorkFlowClassId;
                 wf.FlowCaption = WorkFlowCaption;
@@ -296,8 +296,8 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                WF_WorkFlow wf = new WF_WorkFlow();
-                wf.WorkFlowId=workflowId;
+                WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(workflowId);
+                //wf.WorkFlowId=workflowId;
                 wf.Status=status;
                 return MainHelper.PlatformSqlMap.Update<WF_WorkFlow>(wf);
 
@@ -317,7 +317,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                WF_WorkFlow wf = new WF_WorkFlow();
+                WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(workflowId);
                 wf.WorkFlowId = workflowId;
                 wf.WFClassId= wfclassid;
                 return MainHelper.PlatformSqlMap.Update<WF_WorkFlow>(wf);

@@ -241,7 +241,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
-                WF_WorkFlowClass wf = new WF_WorkFlowClass();
+                WF_WorkFlowClass wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowClass>(WorkflowClassId);
 
                 wf.WFClassId = WorkflowClassId;
                 wf.Caption = WorkflowClassCaption;
