@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WFP_RecordWorkTaskIns" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WFP_RecordWorkTaskIns"  type="Ebada.Scgl.Model.WFP_RecordWorkTaskIns,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WFP_RecordWorkTaskIns_AllColumns" class="WFP_RecordWorkTaskIns">
+        <result property="ID" column="ID" />
+        <result property="RecordID" column="RecordID" />
+        <result property="workflowId" column="workflowId" />
+        <result property="workflowInsId" column="workflowInsId" />
+        <result property="worktaskId" column="worktaskId" />
+        <result property="worktaskInsId" column="worktaskInsId" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWFP_RecordWorkTaskInsList" resultMap="WFP_RecordWorkTaskIns_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [RecordID],
+         [workflowId],
+         [workflowInsId],
+         [worktaskId],
+         [worktaskInsId]
+          FROM WFP_RecordWorkTaskIns
+          $value$
+   </select>
+   
+   <select id="SelectWFP_RecordWorkTaskInsByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [RecordID],
+         [workflowId],
+         [workflowInsId],
+         [worktaskId],
+         [worktaskInsId]
+          FROM WFP_RecordWorkTaskIns
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
+       <isNotNull prepend="AND" property="workflowId">[workflowId]='$workflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="workflowInsId">[workflowInsId]='$workflowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="worktaskId">[worktaskId]='$worktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="worktaskInsId">[worktaskInsId]='$worktaskInsId$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWFP_RecordWorkTaskInsByKey" resultMap="WFP_RecordWorkTaskIns_AllColumns" parameterClass="WFP_RecordWorkTaskIns">
+         SELECT 
+         [ID],
+         [RecordID],
+         [workflowId],
+         [workflowInsId],
+         [worktaskId],
+         [worktaskInsId]
+         FROM WFP_RecordWorkTaskIns
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteWFP_RecordWorkTaskIns" parameterClass="WFP_RecordWorkTaskIns">
+        DELETE FROM 
+         WFP_RecordWorkTaskIns
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteWFP_RecordWorkTaskInsByWhere" parameterClass="string">
+     delete from WFP_RecordWorkTaskIns $value$
+   </delete>
+   
+   <delete id="DeleteWFP_RecordWorkTaskInsByKey" parameterClass="string">
+        DELETE FROM 
+         WFP_RecordWorkTaskIns
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateWFP_RecordWorkTaskIns" parameterClass="WFP_RecordWorkTaskIns" resultClass="int">
+          UPDATE WFP_RecordWorkTaskIns
+           SET
+             [RecordID]=#RecordID#,
+             [workflowId]=#workflowId#,
+             [workflowInsId]=#workflowInsId#,
+             [worktaskId]=#worktaskId#,
+             [worktaskInsId]=#worktaskInsId#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertWFP_RecordWorkTaskIns" parameterClass="WFP_RecordWorkTaskIns">
+        INSERT INTO WFP_RecordWorkTaskIns
+         (
+         [ID],
+         [RecordID],
+         [workflowId],
+         [workflowInsId],
+         [worktaskId],
+         [worktaskInsId]
+         )
+       VALUES
+         (
+         #ID#,
+         #RecordID#,
+         #workflowId#,
+         #workflowInsId#,
+         #worktaskId#,
+         #worktaskInsId#
+         )
+
+   </insert>
+   
+   <select id="GetWFP_RecordWorkTaskInsRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WFP_RecordWorkTaskIns
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
+       <isNotNull prepend="AND" property="workflowId">[workflowId]='$workflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="workflowInsId">[workflowInsId]='$workflowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="worktaskId">[worktaskId]='$worktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="worktaskInsId">[worktaskInsId]='$worktaskInsId$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWFP_RecordWorkTaskInsRowCount" parameterClass="string">
+    select count(*) from WFP_RecordWorkTaskIns $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
