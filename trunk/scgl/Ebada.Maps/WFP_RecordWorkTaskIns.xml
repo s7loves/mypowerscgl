@@ -7,10 +7,10 @@
       <resultMap id="WFP_RecordWorkTaskIns_AllColumns" class="WFP_RecordWorkTaskIns">
         <result property="ID" column="ID" />
         <result property="RecordID" column="RecordID" />
-        <result property="workflowId" column="workflowId" />
-        <result property="workflowInsId" column="workflowInsId" />
-        <result property="worktaskId" column="worktaskId" />
-        <result property="worktaskInsId" column="worktaskInsId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkFlowInsId" column="WorkFlowInsId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="WorkTaskInsId" column="WorkTaskInsId" />
       </resultMap>
   </resultMaps>
 
@@ -19,10 +19,10 @@
         SELECT 
          [ID],
          [RecordID],
-         [workflowId],
-         [workflowInsId],
-         [worktaskId],
-         [worktaskInsId]
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId]
           FROM WFP_RecordWorkTaskIns
           $value$
    </select>
@@ -31,28 +31,28 @@
          SELECT 
          [ID],
          [RecordID],
-         [workflowId],
-         [workflowInsId],
-         [worktaskId],
-         [worktaskInsId]
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId]
           FROM WFP_RecordWorkTaskIns
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
-       <isNotNull prepend="AND" property="workflowId">[workflowId]='$workflowId$'</isNotNull>
-       <isNotNull prepend="AND" property="workflowInsId">[workflowInsId]='$workflowInsId$'</isNotNull>
-       <isNotNull prepend="AND" property="worktaskId">[worktaskId]='$worktaskId$'</isNotNull>
-       <isNotNull prepend="AND" property="worktaskInsId">[worktaskInsId]='$worktaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectWFP_RecordWorkTaskInsByKey" resultMap="WFP_RecordWorkTaskIns_AllColumns" parameterClass="WFP_RecordWorkTaskIns">
          SELECT 
          [ID],
          [RecordID],
-         [workflowId],
-         [workflowInsId],
-         [worktaskId],
-         [worktaskInsId]
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId]
          FROM WFP_RecordWorkTaskIns
          WHERE 
            ID = #ID#
@@ -83,10 +83,10 @@
           UPDATE WFP_RecordWorkTaskIns
            SET
              [RecordID]=#RecordID#,
-             [workflowId]=#workflowId#,
-             [workflowInsId]=#workflowInsId#,
-             [worktaskId]=#worktaskId#,
-             [worktaskInsId]=#worktaskInsId#
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkFlowInsId]=#WorkFlowInsId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [WorkTaskInsId]=#WorkTaskInsId#
             WHERE 
               ID = #ID#
 
@@ -97,19 +97,19 @@
          (
          [ID],
          [RecordID],
-         [workflowId],
-         [workflowInsId],
-         [worktaskId],
-         [worktaskInsId]
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId]
          )
        VALUES
          (
          #ID#,
          #RecordID#,
-         #workflowId#,
-         #workflowInsId#,
-         #worktaskId#,
-         #worktaskInsId#
+         #WorkFlowId#,
+         #WorkFlowInsId#,
+         #WorkTaskId#,
+         #WorkTaskInsId#
          )
 
    </insert>
@@ -120,10 +120,10 @@
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
-       <isNotNull prepend="AND" property="workflowId">[workflowId]='$workflowId$'</isNotNull>
-       <isNotNull prepend="AND" property="workflowInsId">[workflowInsId]='$workflowInsId$'</isNotNull>
-       <isNotNull prepend="AND" property="worktaskId">[worktaskId]='$worktaskId$'</isNotNull>
-       <isNotNull prepend="AND" property="worktaskInsId">[worktaskInsId]='$worktaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
      </dynamic>
 
    </select>
