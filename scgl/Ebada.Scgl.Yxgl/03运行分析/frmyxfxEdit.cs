@@ -241,7 +241,7 @@ namespace Ebada.Scgl.Yxgl
             {
 
                 MainHelper.PlatformSqlMap.Update <PJ_03yxfx>(rowData);
-                MsgBox.ShowTipMessageBox(RecordWorkTask.RunDQFXRecord(rowData.ID));
+                //MsgBox.ShowTipMessageBox(RecordWorkTask.RunDQFXRecord(rowData.ID));
 
             }
 
