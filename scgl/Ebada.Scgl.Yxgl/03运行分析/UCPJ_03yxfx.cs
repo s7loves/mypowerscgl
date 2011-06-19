@@ -21,7 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
-using Ebada.SCGL.WFlow.Tool;
+using Ebada.Scgl.WFlow;
 
 namespace Ebada.Scgl.Yxgl
 {
@@ -203,14 +203,8 @@ namespace Ebada.Scgl.Yxgl
         private void btAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (MainHelper.UserOrg == null) return;
-            if (MainHelper.UserOrg.OrgCode != "010")
-            {
-                if (WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "供电所定期分析").Rows.Count == 0) return;
-            }
-            else
-            {
-                if (WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "局定期分析").Rows.Count == 0) return;
-            }
+
+            if (! RecordWorkTask.HaveDQFXRole()) return;
             frmyxfxEdit fm = new frmyxfxEdit();
             PJ_03yxfx fx = new PJ_03yxfx();
             fx.OrgCode = MainHelper.UserOrg.OrgCode;
