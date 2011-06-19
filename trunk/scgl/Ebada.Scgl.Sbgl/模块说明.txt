@@ -1,6 +1,7 @@
-﻿序号    模块名           窗体名
+﻿序号    模块名				窗体名
 
-1       线路管理         UCPS_xlTree
-2       杆塔管理		 UCPS_GT
-3       台区管理         UCPS_TQ
-4       台区设备管理     UCPS_TQSB
+1       线路管理			UCPS_xlTree
+2       杆塔管理			UCPS_GT
+3       台区管理			UCPS_TQ
+4       台区设备管理		UCPS_TQSB
+5       台区变压器管理      UCPS_TQBYQ
