@@ -84,6 +84,28 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
+        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (comboBoxEdit1.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("杆塔编号不能为空。");
+                comboBoxEdit1.Focus();
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void frmgtEdit_Load(object sender, EventArgs e)
+        {
+
+        }
+
        
     }
 }

@@ -119,12 +119,12 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Location = new System.Drawing.Point(353, 339);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(49, 23);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // groupControlOrg
             // 
@@ -136,7 +136,6 @@
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.Size = new System.Drawing.Size(525, 378);
             this.groupControlOrg.TabIndex = 9;
-           
             // 
             // groupBox2
             // 
@@ -315,7 +314,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit13.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit13.TabIndex = 13;
-           
             // 
             // comboBoxEdit12
             // 
@@ -325,7 +323,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit12.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit12.TabIndex = 13;
-          
             // 
             // comboBoxEdit11
             // 
@@ -335,7 +332,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit11.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit11.TabIndex = 13;
-           
             // 
             // comboBoxEdit10
             // 
@@ -345,7 +341,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit10.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit10.TabIndex = 13;
-           
             // 
             // comboBoxEdit9
             // 
@@ -355,7 +350,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit9.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit9.TabIndex = 13;
-           
             // 
             // comboBoxEdit8
             // 
@@ -365,7 +359,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit8.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit8.TabIndex = 13;
-           
             // 
             // comboBoxEdit7
             // 
@@ -375,7 +368,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit7.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit7.TabIndex = 13;
-           
             // 
             // comboBoxEdit5
             // 
@@ -385,7 +377,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit5.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit5.TabIndex = 13;
-           
             // 
             // comboBoxEdit4
             // 
@@ -395,7 +386,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit4.TabIndex = 13;
-           
             // 
             // comboBoxEdit3
             // 
@@ -414,7 +404,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit2.TabIndex = 13;
-           
             // 
             // comboBoxEdit1
             // 
@@ -432,7 +421,6 @@
             this.labelControl16.Size = new System.Drawing.Size(24, 14);
             this.labelControl16.TabIndex = 12;
             this.labelControl16.Text = "周波";
-         
             // 
             // labelControl17
             // 
@@ -441,7 +429,6 @@
             this.labelControl17.Size = new System.Drawing.Size(48, 14);
             this.labelControl17.TabIndex = 12;
             this.labelControl17.Text = "制造日期";
-          
             // 
             // labelControl18
             // 
@@ -450,7 +437,6 @@
             this.labelControl18.Size = new System.Drawing.Size(36, 14);
             this.labelControl18.TabIndex = 12;
             this.labelControl18.Text = "制造号";
-          
             // 
             // labelControl19
             // 
@@ -459,7 +445,6 @@
             this.labelControl19.Size = new System.Drawing.Size(24, 14);
             this.labelControl19.TabIndex = 12;
             this.labelControl19.Text = "所属";
-          
             // 
             // labelControl20
             // 
@@ -468,7 +453,6 @@
             this.labelControl20.Size = new System.Drawing.Size(36, 14);
             this.labelControl20.TabIndex = 12;
             this.labelControl20.Text = "全密封";
-           
             // 
             // labelControl21
             // 
@@ -477,7 +461,6 @@
             this.labelControl21.Size = new System.Drawing.Size(60, 14);
             this.labelControl21.TabIndex = 12;
             this.labelControl21.Text = "变压器型号";
-          
             // 
             // labelControl22
             // 
@@ -486,7 +469,6 @@
             this.labelControl22.Size = new System.Drawing.Size(60, 14);
             this.labelControl22.TabIndex = 8;
             this.labelControl22.Text = "变压器名称";
-           
             // 
             // labelControl23
             // 
@@ -511,7 +493,6 @@
             this.labelControl25.Size = new System.Drawing.Size(60, 14);
             this.labelControl25.TabIndex = 2;
             this.labelControl25.Text = "变压器编号";
-          
             // 
             // labelControl26
             // 
@@ -584,7 +565,6 @@
             this.labelControl28.Size = new System.Drawing.Size(48, 14);
             this.labelControl28.TabIndex = 2;
             this.labelControl28.Text = "一次电压";
-           
             // 
             // labelControl29
             // 
@@ -629,7 +609,6 @@
             this.Name = "frmtqbyqEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "台区变压器";
-          
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -660,6 +639,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
+
              }
 
         #endregion

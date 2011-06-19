@@ -95,5 +95,17 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (comboBoxEdit2.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("线路编号不能为空。");
+                comboBoxEdit2.Focus();
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
     }
 }
