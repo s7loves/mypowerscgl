@@ -38,13 +38,26 @@
   </resultMaps>
 
   <statements>
+    <select id="SelectWF_WorkTaskViewStartListByFlowCaptionAndUserId" resultMap="WF_WorkTaskView_WorkStartColumns" parameterClass="WF_WorkTaskView">
+      select * from
+      (
+      select  distinct  WFClassId,Caption,FatherId,WorkFlowId,FlowCaption,WorkTaskid,TaskCaption,cllevel,mgrurl,clmgrurl from WF_WorkTaskView  where
+      (
+      (OperContent IN (SELECT OperContent FROM WF_opercontentView where UserId= $WorkFlowId$) ) OR
+      (OperContent IN (SELECT RoleID FROM rUserRole where UserId=#WorkFlowId#) ) OR
+      (OperContent = 'ALL')
+      ) and TaskTypeId='1'and Status='1' and (FlowCaption=#FlowCaption# )
+      union
+      select distinct  WFClassId,Caption,FatherId,WorkFlowId,FlowCaption,WorkTaskid,TaskCaption,cllevel,mgrurl,clmgrurl  from WF_WorkTaskAccreditView
+      where AccreditToUserId=$WorkFlowId$ and AccreditStatus='1'and   TaskTypeId='1') a order by cllevel,Caption
+    </select>
     <select id="SelectWF_WorkTaskViewStartList" resultMap="WF_WorkTaskView_WorkStartColumns" parameterClass="string">
       select * from
       (
       select  distinct  WFClassId,Caption,FatherId,WorkFlowId,FlowCaption,WorkTaskid,TaskCaption,cllevel,mgrurl,clmgrurl from WF_WorkTaskView  where
       (
       (OperContent IN (SELECT OperContent FROM WF_opercontentView where UserId= $value$) ) OR
-
+      (OperContent IN (SELECT RoleID FROM rUserRole where UserId= $value$) ) OR
       (OperContent = 'ALL')
       ) and TaskTypeId='1'and Status='1'
       union

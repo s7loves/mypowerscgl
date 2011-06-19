@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="rRoleFun.xml" />
+    <EmbeddedResource Include="WFP_RecordWorkTaskIns.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="flow\" />
