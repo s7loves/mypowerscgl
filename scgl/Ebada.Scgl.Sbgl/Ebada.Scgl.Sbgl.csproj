@@ -165,6 +165,12 @@
     <Compile Include="UCPS_TQ.Designer.cs">
       <DependentUpon>UCPS_TQ.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPS_TQSB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_TQSB.Designer.cs">
+      <DependentUpon>UCPS_TQSB.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmdyxlEdit.resx">
@@ -210,6 +216,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCPS_TQ.resx">
       <DependentUpon>UCPS_TQ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_TQSB.resx">
+      <DependentUpon>UCPS_TQSB.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
