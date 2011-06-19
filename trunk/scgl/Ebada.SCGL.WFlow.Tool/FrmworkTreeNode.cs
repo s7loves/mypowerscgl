@@ -342,7 +342,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 throw new Exception("ModifyNodeInfo方法错误，Nodeid 不能为空！");
             try
             {
-                WFModul wf = new WFModul();
+                WFModul wf = MainHelper.PlatformSqlMap.GetOneByKey<WFModul>(NodeId);
                 wf.SelfCode = this.NodeId;
                 wf.FatherCode = this.FatherId;
                 wf.SelfCode = this.Text;
