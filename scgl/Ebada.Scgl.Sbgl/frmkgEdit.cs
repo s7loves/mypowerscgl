@@ -92,5 +92,17 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (comboBoxEdit13.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("开关编号不能为空。");
+                comboBoxEdit13.Focus();
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
     }
 }

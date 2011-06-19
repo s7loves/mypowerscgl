@@ -99,6 +99,18 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (comboBoxEdit1.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("变压器编号不能为空。");
+                comboBoxEdit1.Focus();
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     
     }
 }

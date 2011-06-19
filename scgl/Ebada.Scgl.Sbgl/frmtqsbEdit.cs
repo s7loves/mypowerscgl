@@ -83,5 +83,22 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (comboBoxEdit1.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("设备编号不能为空。");
+                comboBoxEdit1.Focus();
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
