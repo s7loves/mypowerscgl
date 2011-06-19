@@ -64,10 +64,10 @@ BEGIN
 CREATE TABLE [dbo].[WFP_RecordWorkTaskIns](
 	[ID] [varchar](50) COLLATE Chinese_PRC_CI_AS NOT NULL,
 	[RecordID] [varchar](50) COLLATE Chinese_PRC_CI_AS NULL,
-	[workflowId] [varchar](50) COLLATE Chinese_PRC_CI_AS NULL,
-	[workflowInsId] [varchar](50) COLLATE Chinese_PRC_CI_AS NULL,
-	[worktaskId] [varchar](50) COLLATE Chinese_PRC_CI_AS NULL,
-	[worktaskInsId] [varchar](50) COLLATE Chinese_PRC_CI_AS NULL,
+	[WorkFlowId] [varchar](50) COLLATE Chinese_PRC_CI_AS NULL,
+	[WorkFlowInsId] [varchar](50) COLLATE Chinese_PRC_CI_AS NULL,
+	[WorkTaskId] [varchar](50) COLLATE Chinese_PRC_CI_AS NULL,
+	[WorkTaskInsId] [varchar](50) COLLATE Chinese_PRC_CI_AS NULL,
  CONSTRAINT [PK_WFP_RecordWorkTaskIns] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
