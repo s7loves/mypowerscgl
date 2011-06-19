@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Ebada.Client;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -47,27 +48,29 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //if (tbxGroupName.Text.Length == 0)
-            //{
-            //    WorkDialog.InformationDlg("请输入角色名称!", "请输入查询条件");
-            //    tbxGroupName.Focus();
-            //    return;
+            string strSQL = "where  1=1 ";
+            if (tbxGroupName.Text.Length == 0)
+            {
+                MsgBox.ShowWarningMessageBox ("请输入角色名称!");
+                tbxGroupName.Focus();
+                return;
 
-            //}
-            //lvGroup.Clear();
-            //InitializeUIData();
-            //DataTable dtSearch = null;
+            }
+            lvGroup.Clear();
+            InitializeUIData();
+            DataTable dtSearch = null;
+            if (tbxGroupName.Text != "")
+                strSQL = strSQL + " and RoleName like '%" + tbxGroupName.Text + "%'";
+            dtSearch = RoleGroupData.GetGroupTableByName(strSQL);
 
-            //dtSearch = GroupData.GetGroupTableByName(tbxGroupName.Text);
+            foreach (DataRow dr in dtSearch.Rows)
+            {
+                ListViewItem lvi1 = new ListViewItem(dr["GroupName"].ToString(), 0);
+                lvi1.SubItems.Add(dr["GroupId"].ToString());
+                lvi1.SubItems.Add(dr["GroupDes"].ToString());
+                lvGroup.Items.Add(lvi1);
 
-            //foreach (DataRow dr in dtSearch.Rows)
-            //{
-            //    ListViewItem lvi1 = new ListViewItem(dr["GroupName"].ToString(), 0);
-            //    lvi1.SubItems.Add(dr["GroupId"].ToString());
-            //    lvi1.SubItems.Add(dr["GroupDes"].ToString());
-            //    lvGroup.Items.Add(lvi1);
-
-            //}
+            }
 
         }
         
