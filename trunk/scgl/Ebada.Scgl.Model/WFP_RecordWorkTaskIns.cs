@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-19 19:29:12
+生成时间:2011-6-20 7:29:18
 ***********************************************/
 
 using System;
@@ -76,12 +76,12 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：workflowId
+        /// 属性名称：WorkFlowId
         /// 属性描述：
-        /// 字段信息：[workflowId],varchar
+        /// 字段信息：[WorkFlowId],varchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string workflowId
+        public string WorkFlowId
         {
             get { return _workflowid; }
             set
@@ -97,12 +97,12 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：workflowInsId
+        /// 属性名称：WorkFlowInsId
         /// 属性描述：
-        /// 字段信息：[workflowInsId],varchar
+        /// 字段信息：[WorkFlowInsId],varchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string workflowInsId
+        public string WorkFlowInsId
         {
             get { return _workflowinsid; }
             set
@@ -118,12 +118,12 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：worktaskId
+        /// 属性名称：WorkTaskId
         /// 属性描述：
-        /// 字段信息：[worktaskId],varchar
+        /// 字段信息：[WorkTaskId],varchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string worktaskId
+        public string WorkTaskId
         {
             get { return _worktaskid; }
             set
@@ -139,12 +139,12 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：worktaskInsId
+        /// 属性名称：WorkTaskInsId
         /// 属性描述：
-        /// 字段信息：[worktaskInsId],varchar
+        /// 字段信息：[WorkTaskInsId],varchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string worktaskInsId
+        public string WorkTaskInsId
         {
             get { return _worktaskinsid; }
             set
