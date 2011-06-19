@@ -5,3 +5,6 @@
 3       台区管理			UCPS_TQ
 4       台区设备管理		UCPS_TQSB
 5       台区变压器管理      UCPS_TQBYQ
+6       剩余电流动作保护器  UCPS_TQDLBH
+7       杆塔设备			UCPS_GTSB
+8       线路开关			UCPS_KG
