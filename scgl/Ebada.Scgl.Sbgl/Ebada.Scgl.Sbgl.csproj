@@ -159,6 +159,12 @@
     <Compile Include="UCPS_xlTree.Designer.cs">
       <DependentUpon>UCPS_xlTree.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPS_TQ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_TQ.Designer.cs">
+      <DependentUpon>UCPS_TQ.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmdyxlEdit.resx">
@@ -202,6 +208,10 @@
       <DependentUpon>UCPS_xlTree.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_TQ.resx">
+      <DependentUpon>UCPS_TQ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ebada.Scgl.Core\Ebada.Scgl.Core.csproj">
@@ -212,6 +222,9 @@
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="模块说明.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
