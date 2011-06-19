@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using Ebada.Scgl.WFlow;
 namespace Ebada.Scgl.Yxgl
 {
     public partial class frmyxfxEdit : FormBase, IPopupFormEdit {
@@ -86,8 +87,71 @@ namespace Ebada.Scgl.Yxgl
             }
         }
 
-        #endregion
+        private int  recordStatus = -1;//记录流程
 
+        public int RecordStatus
+        {
+            get
+            {
+                
+                return recordStatus;
+            }
+            set
+            {
+               
+                
+                   recordStatus=value;
+                   IniControlStatus();
+                
+            }
+        }
+        #endregion
+        private void IniControlStatus()
+        {
+            switch (recordStatus)
+            {
+                case 0:
+                    groupBox1.Enabled = true;
+                    groupBox2.Enabled = true;
+                    groupBox3.Enabled = true;
+                    groupBox4.Enabled = true;
+                    groupBox5.Enabled = true;
+                    groupBox6.Enabled = true;
+
+                    dateEdit4.Enabled = false;
+                    comboBoxEdit17.Enabled = false;
+                    groupBox7.Enabled = false;
+                    break;
+                case 1:
+
+                    groupBox1.Enabled = false;
+                    groupBox2.Enabled = false;
+                    groupBox3.Enabled = false;
+                    groupBox4.Enabled = false;
+                    groupBox5.Enabled = false;
+                    groupBox6.Enabled = false;
+
+                    dateEdit4.Enabled = false;
+                    comboBoxEdit17.Enabled = false;
+                    groupBox7.Enabled = true;
+                    break;
+                case 2:
+
+                    groupBox1.Enabled = false;
+                    groupBox2.Enabled = false;
+                    groupBox3.Enabled = false;
+                    groupBox4.Enabled = false;
+                    groupBox5.Enabled = false;
+                    groupBox6.Enabled = false;
+
+                    dateEdit4.Enabled = true;
+                    comboBoxEdit17.Enabled = true;
+                    groupBox7.Enabled =  false;
+
+                    break;
+            }
+        
+        }
         private void InitComboBoxData() {
 
             //填充下拉列表数据
@@ -163,6 +227,25 @@ namespace Ebada.Scgl.Yxgl
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (recordStatus == 0)
+            {
+                MainHelper.PlatformSqlMap.Create<PJ_03yxfx>(rowData);
+                MsgBox.ShowTipMessageBox (  RecordWorkTask.RunNewDQFXRecord(rowData.ID ));
+
+            }
+            else
+            {
+
+                MainHelper.PlatformSqlMap.Update <PJ_03yxfx>(rowData);
+                MsgBox.ShowTipMessageBox(RecordWorkTask.RunDQFXRecord(rowData.ID));
+
+            }
+
+        
         }
     }
 }
