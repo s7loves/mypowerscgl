@@ -595,6 +595,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
 
                 WF_WorkTaskControls wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(userCtrlId);
+                if (wt == null) return;
                 wt.UserControlId= userCtrlId;
                 wt.WorkflowId=workflowid;
                 wt.WorktaskId = worktaskId;

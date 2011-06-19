@@ -225,6 +225,39 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
         /// <summary>
+        /// 获得指定名称有权限启动的流程
+        /// </summary>
+        /// <param name="FatherClassId">父分类Id</param>
+        /// <returns>子分类table</returns>
+        public static DataTable GetSelectedNameWorkFlows(string userId, string FlowCaption)
+        {
+            try
+            {
+                //SqlDataItem sqlItem = new SqlDataItem();
+                //sqlItem.CommandText = "WorkTaskSelectStartPro";
+                //sqlItem.CommandType = CommandType.StoredProcedure.ToString();
+                //sqlItem.AppendParameter("@UserId", userId);
+                //ClientDBAgent agent = new ClientDBAgent();
+                //return agent.ExecuteDataTable(sqlItem);
+                //string str = "select * from ( select  distinct  WFClassId,Caption,FatherId,WorkFlowId,FlowCaption,WorkTaskid,TaskCaption,cllevel,mgrurl,clmgrurl from WorkTaskView  where ((OperContent IN (SELECT OperContent FROM opercontentView where UserId='"+userId+"') ) OR (OperContent = 'ALL')) and TaskTypeId='1'and Status='1' union select distinct  WFClassId,Caption,FatherId,WorkFlowId,FlowCaption,WorkTaskid,TaskCaption,cllevel,mgrurl,clmgrurl  from WorkTaskAccreditView  where AccreditToUserId=@UserId and AccreditStatus='1'and   TaskTypeId='1') a order by cllevel,Caption";
+                WF_WorkTaskView wf = new WF_WorkTaskView();
+                wf.WorkFlowId = userId;
+                wf.FlowCaption = FlowCaption;
+                IList list = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskViewStartListByFlowCaptionAndUserId", wf);
+                if (list.Count == 0)
+                {
+                    DataTable dt = new DataTable();
+                    return dt;
+
+                }
+                return ConvertHelper.ToDataTable(list);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /// <summary>
         /// 获得有权限启动的流程
         /// </summary>
         /// <param name="FatherClassId">父分类Id</param>
