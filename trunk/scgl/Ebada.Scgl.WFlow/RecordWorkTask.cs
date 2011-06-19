@@ -6,6 +6,7 @@ using System.Data;
 using Ebada.SCGL.WFlow.Tool;
 using Ebada.SCGL.WFlow.Engine;
 using Ebada.Scgl.Model;
+using System.Collections;
 
 namespace Ebada.Scgl.WFlow
 {
@@ -62,14 +63,45 @@ namespace Ebada.Scgl.WFlow
 
             WFP_RecordWorkTaskIns wpfrecord = new WFP_RecordWorkTaskIns();
             wpfrecord.RecordID = recordID;
-            wpfrecord.workflowId = wfruntime.WorkFlowId;
-            wpfrecord.workflowInsId = wfruntime.WorkFlowInstanceId;
-            wpfrecord.worktaskId = wfruntime.WorkTaskId;
-            wpfrecord.worktaskInsId = wfruntime.WorkTaskInstanceId;
+            wpfrecord.WorkFlowId  = wfruntime.WorkFlowId;
+            wpfrecord.WorkFlowInsId  = wfruntime.WorkFlowInstanceId;
+            wpfrecord.WorkTaskId  = wfruntime.WorkTaskId;
+            wpfrecord.WorkTaskInsId  = wfruntime.WorkTaskInstanceId;
             MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
 
             wfruntime.Start();
-            return toollips(wpfrecord.worktaskInsId);
+            return toollips(wpfrecord.WorkTaskInsId);
+        }
+        /// <summary>
+        /// 更新运行定期分析流程
+        /// </summary>
+        /// <returns></returns>
+        public static string RunDQFXRecord(string recordID)
+        {
+            //IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
+            //if (wf.Count == 0) return "Error";
+            //WorkFlowRuntime wfruntime = new WorkFlowRuntime();
+            //wfruntime.UserId = MainHelper.User.UserID;
+            //wfruntime.WorkFlowId = wf[0].WorkFlowId;
+            //wfruntime.WorkTaskId = wf[0].WorkTaskId;
+            //wfruntime.WorkFlowInstanceId = wf[0].WorkFlowInsId ;
+            //wfruntime.WorkTaskInstanceId = wf[0].WorkTaskInsId ;
+            //wfruntime.WorkFlowNo = WorkFlowInstance.GetWorkflowNO();
+            //wfruntime.CommandName = "提交";
+            //wfruntime.WorkflowInsCaption = wf[0].w;
+            //wfruntime.IsDraft = false;//保存并执行流程流转
+
+            //WFP_RecordWorkTaskIns wpfrecord = new WFP_RecordWorkTaskIns();
+            //wpfrecord.RecordID = recordID;
+            //wpfrecord.WorkFlowId  = wfruntime.WorkFlowId;
+            //wpfrecord.WorkFlowInsId  = wfruntime.WorkFlowInstanceId;
+            //wpfrecord.WorkTaskId  = wfruntime.WorkTaskId;
+            //wpfrecord.WorkTaskInsId  = wfruntime.WorkTaskInstanceId;
+            //MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
+
+            //wfruntime.Start();
+            //return toollips(wpfrecord.WorkTaskInsId);
+            return "";
         }
         public static string toollips(string workTaskInsId)
         {
