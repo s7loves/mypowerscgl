@@ -15,30 +15,35 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Sbgl
 {
-    public partial class frmgtsbEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PS_gtsb> m_CityDic = new SortableSearchableBindingList<PS_gtsb>();
+    public partial class frmtqdlbhEdit : FormBase, IPopupFormEdit {
+        SortableSearchableBindingList<PS_tqdlbh> m_CityDic = new SortableSearchableBindingList<PS_tqdlbh>();
 
-        public frmgtsbEdit() {
+        public frmtqdlbhEdit()
+        {
             InitializeComponent();
         }
         void dataBind() {
 
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbCode");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sbType");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sbModle");
-            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbName");
-            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "C1");
-            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "C2");
-            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "C3");
-            this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "C4");
-            this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "C5");
-
-            this.spinEdit2.DataBindings.Add("EditValue", rowData, "sbNumber");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sbModle");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sbName");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "tqName");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "InstallAdress");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "Factory");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "Number");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "MadeDate");
+            this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "dzdl");
+            this.dateEdit2.DataBindings.Add("EditValue", rowData, "dzsj");
+            this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "glr");
+            this.dateEdit3.DataBindings.Add("EditValue", rowData, "InstallDate");
+            this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "State");
+            this.dateEdit4.DataBindings.Add("EditValue", rowData, "InDate");
+           
 
         }
         #region IPopupFormEdit Members
-        private PS_gtsb rowData = null;
+        private PS_tqdlbh rowData = null;
 
         public object RowData {
             get {
@@ -47,11 +52,17 @@ namespace Ebada.Scgl.Sbgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PS_gtsb;
+                    this.rowData = value as PS_tqdlbh;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PS_gtsb>(value as PS_gtsb, rowData);
+                    ConvertHelper.CopyTo<PS_tqdlbh>(value as PS_tqdlbh, rowData);
+                }
+                if(rowData.sbCode==""){
+                    rowData.InstallDate = DateTime.Now;
+                    rowData.MadeDate = DateTime.Now;
+                    rowData.InDate = DateTime.Now;
+                    rowData.dzsj = DateTime.Now.ToString("yyyy-MM-dd");
                 }
             }
         }
@@ -59,7 +70,7 @@ namespace Ebada.Scgl.Sbgl
         #endregion
 
         private void InitComboBoxData() {
-
+ 
         }
 
         /// <summary>
@@ -82,6 +93,7 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
-    
+      
+     
     }
 }

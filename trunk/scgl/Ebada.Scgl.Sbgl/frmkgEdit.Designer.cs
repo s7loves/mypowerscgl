@@ -117,7 +117,7 @@
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.Size = new System.Drawing.Size(749, 305);
             this.groupControlOrg.TabIndex = 9;
-            this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
+            
             // 
             // groupBox2
             // 
@@ -169,7 +169,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit3.Size = new System.Drawing.Size(100, 21);
             this.dateEdit3.TabIndex = 15;
-            this.dateEdit3.EditValueChanged += new System.EventHandler(this.dateEdit3_EditValueChanged);
+           
             // 
             // dateEdit2
             // 
@@ -235,7 +235,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit2.TabIndex = 13;
-            this.comboBoxEdit2.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit8_SelectedIndexChanged);
+           
             // 
             // comboBoxEdit12
             // 
@@ -245,7 +245,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit12.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit12.TabIndex = 13;
-            this.comboBoxEdit12.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit16_SelectedIndexChanged);
+          
             // 
             // comboBoxEdit11
             // 
@@ -317,7 +317,7 @@
             this.labelControl16.Size = new System.Drawing.Size(48, 14);
             this.labelControl16.TabIndex = 12;
             this.labelControl16.Text = "投运日期";
-            this.labelControl16.Click += new System.EventHandler(this.labelControl4_Click_1);
+           
             // 
             // labelControl17
             // 
@@ -326,7 +326,7 @@
             this.labelControl17.Size = new System.Drawing.Size(36, 14);
             this.labelControl17.TabIndex = 12;
             this.labelControl17.Text = "制造号";
-            this.labelControl17.Click += new System.EventHandler(this.labelControl4_Click_1);
+            
             // 
             // labelControl18
             // 
@@ -335,7 +335,7 @@
             this.labelControl18.Size = new System.Drawing.Size(48, 14);
             this.labelControl18.TabIndex = 12;
             this.labelControl18.Text = "重合装置";
-            this.labelControl18.Click += new System.EventHandler(this.labelControl4_Click_1);
+           
             // 
             // labelControl19
             // 
@@ -344,7 +344,7 @@
             this.labelControl19.Size = new System.Drawing.Size(24, 14);
             this.labelControl19.TabIndex = 12;
             this.labelControl19.Text = "容量";
-            this.labelControl19.Click += new System.EventHandler(this.labelControl4_Click_1);
+           
             // 
             // labelControl20
             // 
@@ -353,7 +353,7 @@
             this.labelControl20.Size = new System.Drawing.Size(48, 14);
             this.labelControl20.TabIndex = 12;
             this.labelControl20.Text = "遮断容量";
-            this.labelControl20.Click += new System.EventHandler(this.labelControl4_Click_1);
+           
             // 
             // labelControl21
             // 
@@ -362,7 +362,7 @@
             this.labelControl21.Size = new System.Drawing.Size(48, 14);
             this.labelControl21.TabIndex = 12;
             this.labelControl21.Text = "电压等级";
-            this.labelControl21.Click += new System.EventHandler(this.labelControl4_Click_1);
+            
             // 
             // labelControl22
             // 
@@ -371,7 +371,7 @@
             this.labelControl22.Size = new System.Drawing.Size(48, 14);
             this.labelControl22.TabIndex = 8;
             this.labelControl22.Text = "开关型号";
-            this.labelControl22.Click += new System.EventHandler(this.labelControl7_Click);
+           
             // 
             // labelControl23
             // 
@@ -396,7 +396,7 @@
             this.labelControl25.Size = new System.Drawing.Size(52, 14);
             this.labelControl25.TabIndex = 2;
             this.labelControl25.Text = "开关名称 ";
-            this.labelControl25.Click += new System.EventHandler(this.labelControl2_Click);
+          
             // 
             // labelControl26
             // 
@@ -421,7 +421,7 @@
             this.labelControl28.Size = new System.Drawing.Size(48, 14);
             this.labelControl28.TabIndex = 2;
             this.labelControl28.Text = "安装地点";
-            this.labelControl28.Click += new System.EventHandler(this.labelControl13_Click);
+            
             // 
             // labelControl29
             // 
@@ -466,7 +466,7 @@
             this.Name = "frmkgEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "线路开关";
-            this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
+            
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

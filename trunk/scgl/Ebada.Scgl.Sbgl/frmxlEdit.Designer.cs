@@ -124,7 +124,7 @@
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.Size = new System.Drawing.Size(708, 440);
             this.groupControlOrg.TabIndex = 9;
-            this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
+          
             // 
             // groupBox1
             // 
@@ -170,7 +170,7 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "线路\\干支分";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            
             // 
             // spinEdit4
             // 
@@ -340,7 +340,7 @@
             this.labelControl16.Size = new System.Drawing.Size(48, 14);
             this.labelControl16.TabIndex = 12;
             this.labelControl16.Text = "运行状态";
-            this.labelControl16.Click += new System.EventHandler(this.labelControl4_Click_1);
+           
             // 
             // labelControl1
             // 
@@ -349,7 +349,7 @@
             this.labelControl1.Size = new System.Drawing.Size(52, 14);
             this.labelControl1.TabIndex = 12;
             this.labelControl1.Text = "线路名称 ";
-            this.labelControl1.Click += new System.EventHandler(this.labelControl4_Click_1);
+            
             // 
             // labelControl14
             // 
@@ -358,7 +358,7 @@
             this.labelControl14.Size = new System.Drawing.Size(36, 14);
             this.labelControl14.TabIndex = 8;
             this.labelControl14.Text = "承包人";
-            this.labelControl14.Click += new System.EventHandler(this.labelControl7_Click);
+           
             // 
             // dateEdit1
             // 
@@ -387,7 +387,7 @@
             this.labelControl7.Size = new System.Drawing.Size(48, 14);
             this.labelControl7.TabIndex = 8;
             this.labelControl7.Text = "线路编号";
-            this.labelControl7.Click += new System.EventHandler(this.labelControl7_Click);
+            
             // 
             // labelControl19
             // 
@@ -412,7 +412,7 @@
             this.labelControl11.Size = new System.Drawing.Size(52, 14);
             this.labelControl11.TabIndex = 2;
             this.labelControl11.Text = "产       权";
-            this.labelControl11.Click += new System.EventHandler(this.labelControl2_Click);
+            
             // 
             // labelControl5
             // 
@@ -421,7 +421,7 @@
             this.labelControl5.Size = new System.Drawing.Size(48, 14);
             this.labelControl5.TabIndex = 7;
             this.labelControl5.Text = "线路路径";
-            this.labelControl5.Click += new System.EventHandler(this.labelControl5_Click);
+            
             // 
             // labelControl10
             // 
@@ -438,7 +438,7 @@
             this.labelControl2.Size = new System.Drawing.Size(155, 14);
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "线路级别,1干线/2支线/3分线";
-            this.labelControl2.Click += new System.EventHandler(this.labelControl2_Click);
+          
             // 
             // labelControl21
             // 
@@ -495,7 +495,7 @@
             this.labelControl3.Size = new System.Drawing.Size(60, 14);
             this.labelControl3.TabIndex = 2;
             this.labelControl3.Text = "配出变电所";
-            this.labelControl3.Click += new System.EventHandler(this.labelControl3_Click);
+           
             // 
             // bar1
             // 
@@ -554,7 +554,7 @@
             this.Name = "frmxlEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "线路\\干支分";
-            this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
+           
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
