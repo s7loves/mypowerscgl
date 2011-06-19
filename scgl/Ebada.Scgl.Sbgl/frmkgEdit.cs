@@ -22,7 +22,7 @@ namespace Ebada.Scgl.Sbgl
             InitializeComponent();
         }
         void dataBind() {
-
+            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "kgCode");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "kgMadeDate");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "kgInstallDate");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "InDate");
@@ -56,6 +56,11 @@ namespace Ebada.Scgl.Sbgl
                     dataBind();
                 } else {
                     ConvertHelper.CopyTo<PS_kg>(value as PS_kg, rowData);
+                }
+                if(rowData.kgCode==""){
+                    rowData.InDate = DateTime.Now;
+                    rowData.kgInstallDate = DateTime.Now;
+                    rowData.kgMadeDate = DateTime.Now;
                 }
             }
         }

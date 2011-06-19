@@ -74,6 +74,9 @@ namespace Ebada.Scgl.Sbgl
                 } else {
                     ConvertHelper.CopyTo<PS_tq>(value as PS_tq, rowData);
                 }
+                if(rowData.tqCode==""){
+                    rowData.InDate = DateTime.Now;
+                }
             }
         }
 
