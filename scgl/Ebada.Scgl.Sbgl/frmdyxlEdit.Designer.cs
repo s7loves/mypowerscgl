@@ -80,7 +80,7 @@
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.Size = new System.Drawing.Size(505, 338);
             this.groupControlOrg.TabIndex = 9;
-            this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
+           
             // 
             // groupBox2
             // 
@@ -94,7 +94,7 @@
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "台区设备";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            
             // 
             // comboBoxEdit2
             // 
@@ -104,7 +104,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit2.TabIndex = 13;
-            this.comboBoxEdit2.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit8_SelectedIndexChanged);
+            
             // 
             // comboBoxEdit1
             // 
@@ -122,7 +122,7 @@
             this.labelControl22.Size = new System.Drawing.Size(48, 14);
             this.labelControl22.TabIndex = 8;
             this.labelControl22.Text = "线路名称";
-            this.labelControl22.Click += new System.EventHandler(this.labelControl7_Click);
+           
             // 
             // labelControl25
             // 
@@ -131,7 +131,7 @@
             this.labelControl25.Size = new System.Drawing.Size(52, 14);
             this.labelControl25.TabIndex = 2;
             this.labelControl25.Text = "线路编号 ";
-            this.labelControl25.Click += new System.EventHandler(this.labelControl2_Click);
+            
             // 
             // bar1
             // 
@@ -177,7 +177,7 @@
             this.Name = "frmdyxlEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "台区设备";
-            this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
+            
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
