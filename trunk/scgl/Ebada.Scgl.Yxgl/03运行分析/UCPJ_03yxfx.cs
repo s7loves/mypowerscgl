@@ -211,7 +211,7 @@ namespace Ebada.Scgl.Yxgl
             fx.rq = DateTime.Now;
             fm.RowData = fx;
             fm.RecordStatus = 0;
-            fm.Show();
+            fm.ShowDialog();
         }
     }
 }
