@@ -209,7 +209,8 @@ namespace Ebada.Scgl.Yxgl
             PJ_03yxfx fx = new PJ_03yxfx();
             fx.OrgCode = MainHelper.UserOrg.OrgCode;
             fx.rq = DateTime.Now;
-            fm.RowData = fx; 
+            fm.RowData = fx;
+            fm.RecordStatus = 0;
             fm.Show();
         }
     }
