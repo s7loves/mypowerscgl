@@ -58,6 +58,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateEdit4 = new DevExpress.XtraEditors.DateEdit();
             this.dateEdit3 = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -67,6 +68,7 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit16 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.comboBoxEdit18 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit17 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
@@ -104,8 +106,13 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit16.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit18.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit17.Properties)).BeginInit();
             this.SuspendLayout();
+            // 
+            // m_DefaultLookAndFeel
+            // 
+            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
             // 
             // btnCancel
             // 
@@ -378,12 +385,14 @@
             // 
             this.groupBox1.Controls.Add(this.dateEdit4);
             this.groupBox1.Controls.Add(this.dateEdit3);
+            this.groupBox1.Controls.Add(this.labelControl3);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Controls.Add(this.labelControl6);
             this.groupBox1.Controls.Add(this.labelControl5);
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.comboBoxEdit16);
+            this.groupBox1.Controls.Add(this.comboBoxEdit18);
             this.groupBox1.Controls.Add(this.comboBoxEdit17);
             this.groupBox1.Location = new System.Drawing.Point(9, 136);
             this.groupBox1.Name = "groupBox1";
@@ -415,6 +424,14 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit3.Size = new System.Drawing.Size(132, 21);
             this.dateEdit3.TabIndex = 12;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(12, 128);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(72, 14);
+            this.labelControl3.TabIndex = 11;
+            this.labelControl3.Text = "运行分析地点";
             // 
             // labelControl2
             // 
@@ -493,6 +510,15 @@
             this.comboBoxEdit16.Size = new System.Drawing.Size(132, 21);
             this.comboBoxEdit16.TabIndex = 6;
             // 
+            // comboBoxEdit18
+            // 
+            this.comboBoxEdit18.Location = new System.Drawing.Point(91, 125);
+            this.comboBoxEdit18.Name = "comboBoxEdit18";
+            this.comboBoxEdit18.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit18.Size = new System.Drawing.Size(132, 21);
+            this.comboBoxEdit18.TabIndex = 6;
+            // 
             // comboBoxEdit17
             // 
             this.comboBoxEdit17.Location = new System.Drawing.Point(91, 101);
@@ -565,6 +591,7 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit16.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit18.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit17.Properties)).EndInit();
             this.ResumeLayout(false);
 
@@ -614,6 +641,8 @@
         private DevExpress.XtraEditors.DateEdit dateEdit3;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.MemoEdit memoEdit5;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit18;
 
     }
 }
