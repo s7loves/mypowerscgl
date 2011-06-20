@@ -81,9 +81,9 @@ namespace Ebada.Scgl.Yxgl
             {
                 this.comboBoxEdit3.Properties.Items.AddRange(ryList);
             }
-            ICollection tdxz = ComboBoxHelper.GetTDXZ();
+            //ICollection tdxz = ComboBoxHelper.GetTDXZ();
 
-            this.comboBoxEdit4.Properties.Items.AddRange(tdxz);
+            //this.comboBoxEdit4.Properties.Items.AddRange(tdxz);
         }
 
         /// <summary>
@@ -145,6 +145,30 @@ namespace Ebada.Scgl.Yxgl
         private void labelControl5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("08设备停电检修记录", "检修内容", memoEdit1);
+        }
+
+        private void comboBoxEdit4_Properties_Click(object sender, EventArgs e)
+        {
+            frmDykSelector dlg = new frmDykSelector();
+            PJ_dyk dyk = null;
+            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='08设备停电检修记录' and sx='停电性质' and parentid=''");
+            if (parentObj != null)
+            {
+                dlg.ucpJ_dykSelector1.ParentObj = parentObj;
+               // dlg.TxtMemo = txt;
+                if (dlg.ShowDialog()==DialogResult.OK)
+                {
+                    comboBoxEdit4.Text = dlg.ucpJ_dykSelector1.GetSelectedRow() .nr;
+                }
+                
+                
+            }
+            
         }
     }
 }
