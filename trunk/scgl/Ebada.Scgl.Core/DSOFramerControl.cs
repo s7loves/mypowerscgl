@@ -238,7 +238,8 @@ namespace Ebada.Scgl.Core {
         #region 私有方法
         private string GetTempFileName() {
             //生成一个唯一的临时文件名
-            return TempPath + "\\~" + Guid.NewGuid().ToString() + ".doc";
+           // return TempPath + "\\~" + Guid.NewGuid().ToString() + ".xls";
+            return TempPath +"24工作簿"+ ".xls";
         }
         #endregion
 
