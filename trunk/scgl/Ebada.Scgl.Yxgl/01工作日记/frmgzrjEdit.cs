@@ -110,7 +110,7 @@ namespace Ebada.Scgl.Yxgl {
         }
 
         private void simpleButton1_Click(object sender, EventArgs e) {
-           SelectorHelper.SelectDyk("PJ_01gzrj", "js", memoEdit1);
+            SelectorHelper.SelectDyk("01工作日记", "记事", memoEdit1);
         }
     }
 }
