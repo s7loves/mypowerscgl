@@ -107,6 +107,11 @@ namespace Ebada.Scgl.Yxgl
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
             //RefreshData("");
+            if (MainHelper.UserOrg != null)
+            {
+                string strSQL = "where ParentID='" + MainHelper.UserOrg.OrgCode + "' order by ID desc";
+                RefreshData(strSQL);
+            }
         }
         /// <summary>
         /// 初始化列,
