@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:53:58
+生成时间:2011-6-20 20:39:37
 ***********************************************/
 
 using System;
@@ -27,10 +27,12 @@ namespace Ebada.Scgl.Model
         private string _zcr=String.Empty; 
         private DateTime _kssj=new DateTime(1900,1,1); 
         private DateTime _jssj=new DateTime(1900,1,1); 
+        private string _hydd=String.Empty; 
         private string _cjry=String.Empty; 
         private string _qxry=String.Empty; 
         private string _hdnr=String.Empty; 
         private string _hdxj=String.Empty; 
+        private string _fyjyjl=String.Empty; 
         private string _py=String.Empty; 
         private string _qz=String.Empty; 
         private DateTime _qzrq=new DateTime(1900,1,1); 
@@ -164,6 +166,27 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
+        /// 属性名称：hydd
+        /// 属性描述：会议地点
+        /// 字段信息：[hydd],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("会议地点")]
+        public string hydd
+        {
+            get { return _hydd; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[会议地点]长度不能大于50!");
+                if (_hydd as object == null || !_hydd.Equals(value))
+                {
+                    _hydd = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
         /// 属性名称：cjry
         /// 属性描述：参加人员
         /// 字段信息：[cjry],nvarchar
@@ -243,6 +266,27 @@ namespace Ebada.Scgl.Model
                 if (_hdxj as object == null || !_hdxj.Equals(value))
                 {
                     _hdxj = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：fyjyjl
+        /// 属性描述：发言简要记录
+        /// 字段信息：[fyjyjl],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("发言简要记录")]
+        public string fyjyjl
+        {
+            get { return _fyjyjl; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 4000)
+                throw new Exception("[发言简要记录]长度不能大于4000!");
+                if (_fyjyjl as object == null || !_fyjyjl.Equals(value))
+                {
+                    _fyjyjl = value;
                 }
             }			 
         }

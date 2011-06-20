@@ -11,10 +11,12 @@
         <result property="zcr" column="zcr" />
         <result property="kssj" column="kssj" />
         <result property="jssj" column="jssj" />
+        <result property="hydd" column="hydd" />
         <result property="cjry" column="cjry" />
         <result property="qxry" column="qxry" />
         <result property="hdnr" column="hdnr" />
         <result property="hdxj" column="hdxj" />
+        <result property="fyjyjl" column="fyjyjl" />
         <result property="py" column="py" />
         <result property="qz" column="qz" />
         <result property="qzrq" column="qzrq" />
@@ -33,10 +35,12 @@
          [zcr],
          [kssj],
          [jssj],
+         [hydd],
          [cjry],
          [qxry],
          [hdnr],
          [hdxj],
+         [fyjyjl],
          [py],
          [qz],
          [qzrq],
@@ -55,10 +59,12 @@
          [zcr],
          [kssj],
          [jssj],
+         [hydd],
          [cjry],
          [qxry],
          [hdnr],
          [hdxj],
+         [fyjyjl],
          [py],
          [qz],
          [qzrq],
@@ -73,10 +79,12 @@
        <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
        <isNotNull prepend="AND" property="kssj">[kssj]='$kssj$'</isNotNull>
        <isNotNull prepend="AND" property="jssj">[jssj]='$jssj$'</isNotNull>
+       <isNotNull prepend="AND" property="hydd">[hydd]='$hydd$'</isNotNull>
        <isNotNull prepend="AND" property="cjry">[cjry]='$cjry$'</isNotNull>
        <isNotNull prepend="AND" property="qxry">[qxry]='$qxry$'</isNotNull>
        <isNotNull prepend="AND" property="hdnr">[hdnr]='$hdnr$'</isNotNull>
        <isNotNull prepend="AND" property="hdxj">[hdxj]='$hdxj$'</isNotNull>
+       <isNotNull prepend="AND" property="fyjyjl">[fyjyjl]='$fyjyjl$'</isNotNull>
        <isNotNull prepend="AND" property="py">[py]='$py$'</isNotNull>
        <isNotNull prepend="AND" property="qz">[qz]='$qz$'</isNotNull>
        <isNotNull prepend="AND" property="qzrq">[qzrq]='$qzrq$'</isNotNull>
@@ -93,10 +101,12 @@
          [zcr],
          [kssj],
          [jssj],
+         [hydd],
          [cjry],
          [qxry],
          [hdnr],
          [hdxj],
+         [fyjyjl],
          [py],
          [qz],
          [qzrq],
@@ -137,10 +147,12 @@
              [zcr]=#zcr#,
              [kssj]=#kssj#,
              [jssj]=#jssj#,
+             [hydd]=#hydd#,
              [cjry]=#cjry#,
              [qxry]=#qxry#,
              [hdnr]=#hdnr#,
              [hdxj]=#hdxj#,
+             [fyjyjl]=#fyjyjl#,
              [py]=#py#,
              [qz]=#qz#,
              [qzrq]=#qzrq#,
@@ -161,10 +173,12 @@
          [zcr],
          [kssj],
          [jssj],
+         [hydd],
          [cjry],
          [qxry],
          [hdnr],
          [hdxj],
+         [fyjyjl],
          [py],
          [qz],
          [qzrq],
@@ -180,10 +194,12 @@
          #zcr#,
          #kssj#,
          #jssj#,
+         #hydd#,
          #cjry#,
          #qxry#,
          #hdnr#,
          #hdxj#,
+         #fyjyjl#,
          #py#,
          #qz#,
          #qzrq#,
@@ -204,10 +220,12 @@
        <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
        <isNotNull prepend="AND" property="kssj">[kssj]='$kssj$'</isNotNull>
        <isNotNull prepend="AND" property="jssj">[jssj]='$jssj$'</isNotNull>
+       <isNotNull prepend="AND" property="hydd">[hydd]='$hydd$'</isNotNull>
        <isNotNull prepend="AND" property="cjry">[cjry]='$cjry$'</isNotNull>
        <isNotNull prepend="AND" property="qxry">[qxry]='$qxry$'</isNotNull>
        <isNotNull prepend="AND" property="hdnr">[hdnr]='$hdnr$'</isNotNull>
        <isNotNull prepend="AND" property="hdxj">[hdxj]='$hdxj$'</isNotNull>
+       <isNotNull prepend="AND" property="fyjyjl">[fyjyjl]='$fyjyjl$'</isNotNull>
        <isNotNull prepend="AND" property="py">[py]='$py$'</isNotNull>
        <isNotNull prepend="AND" property="qz">[qz]='$qz$'</isNotNull>
        <isNotNull prepend="AND" property="qzrq">[qzrq]='$qzrq$'</isNotNull>

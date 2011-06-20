@@ -8,8 +8,10 @@
         <result property="ID" column="ID" />
         <result property="OrgCode" column="OrgCode" />
         <result property="OrgName" column="OrgName" />
+        <result property="type" column="type" />
         <result property="zcr" column="zcr" />
         <result property="rq" column="rq" />
+        <result property="hydd" column="hydd" />
         <result property="cjry" column="cjry" />
         <result property="zt" column="zt" />
         <result property="jy" column="jy" />
@@ -29,8 +31,10 @@
          [ID],
          [OrgCode],
          [OrgName],
+         [type],
          [zcr],
          [rq],
+         [hydd],
          [cjry],
          [zt],
          [jy],
@@ -50,8 +54,10 @@
          [ID],
          [OrgCode],
          [OrgName],
+         [type],
          [zcr],
          [rq],
+         [hydd],
          [cjry],
          [zt],
          [jy],
@@ -67,8 +73,10 @@
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
        <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
        <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
+       <isNotNull prepend="AND" property="hydd">[hydd]='$hydd$'</isNotNull>
        <isNotNull prepend="AND" property="cjry">[cjry]='$cjry$'</isNotNull>
        <isNotNull prepend="AND" property="zt">[zt]='$zt$'</isNotNull>
        <isNotNull prepend="AND" property="jy">[jy]='$jy$'</isNotNull>
@@ -86,8 +94,10 @@
          [ID],
          [OrgCode],
          [OrgName],
+         [type],
          [zcr],
          [rq],
+         [hydd],
          [cjry],
          [zt],
          [jy],
@@ -129,8 +139,10 @@
            SET
              [OrgCode]=#OrgCode#,
              [OrgName]=#OrgName#,
+             [type]=#type#,
              [zcr]=#zcr#,
              [rq]=#rq#,
+             [hydd]=#hydd#,
              [cjry]=#cjry#,
              [zt]=#zt#,
              [jy]=#jy#,
@@ -152,8 +164,10 @@
          [ID],
          [OrgCode],
          [OrgName],
+         [type],
          [zcr],
          [rq],
+         [hydd],
          [cjry],
          [zt],
          [jy],
@@ -170,8 +184,10 @@
          #ID#,
          #OrgCode#,
          #OrgName#,
+         #type#,
          #zcr#,
          #rq#,
+         #hydd#,
          #cjry#,
          #zt#,
          #jy#,
@@ -193,8 +209,10 @@
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
        <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
        <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
+       <isNotNull prepend="AND" property="hydd">[hydd]='$hydd$'</isNotNull>
        <isNotNull prepend="AND" property="cjry">[cjry]='$cjry$'</isNotNull>
        <isNotNull prepend="AND" property="zt">[zt]='$zt$'</isNotNull>
        <isNotNull prepend="AND" property="jy">[jy]='$jy$'</isNotNull>
