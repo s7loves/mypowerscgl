@@ -116,10 +116,10 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            //hideColumn("OrgID");
-            //hideColumn("OrgCode");
-            //hideColumn("ParentID");
-            //hideColumn("gzrjID");
+
+            hideColumn("ParentID");
+            hideColumn("gzrjID");
+            hideColumn("BigData");
         }
         /// <summary>
         /// 刷新数据
@@ -144,8 +144,8 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_26 newobj)
         {
-           // if (parentID == null) return;
-            //newobj.OrgCode = parentID;
+           if (parentID == null) return;
+            newobj.ParentID = parentID;
             //newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
@@ -163,7 +163,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgID='" + value + "' order by sbID desc");
+                    RefreshData(" where ParentID ='" + value + "' order by ID desc");
                 }
             }
         }
@@ -189,7 +189,43 @@ namespace Ebada.Scgl.Yxgl
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (gridView1.FocusedRowHandle > -1)
+            {
+                frm26Template frm = new frm26Template();
+                frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_26;
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    Client.ClientHelper.PlatformSqlMap.Update<PJ_26>(frm.pjobject);
+                   MessageBox.Show("保存成功");
+                }
+            }
+            
+        }
 
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle > -1)
+            {
+               PJ_26 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_26;
+               if (OBJECT.BigData!=null)
+                {
+                    if (OBJECT.BigData.Length!=0)
+                   {
+                       DSOFramerControl ds1 = new DSOFramerControl();
+                       ds1.FileData = OBJECT.BigData;
+                       ds1.FileOpen(ds1.FileName);
+                   }
+                    else
+                    {
+                        Export26.ExportExcel(OBJECT);
+                    }
+                 
+                }
+               else
+               {
+                   Export26.ExportExcel(OBJECT);
+               }
+            }
         }
     }
 }
