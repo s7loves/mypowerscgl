@@ -201,6 +201,12 @@
     <Compile Include="UCPS_KG.Designer.cs">
       <DependentUpon>UCPS_KG.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPS_DYXL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_DYXL.Designer.cs">
+      <DependentUpon>UCPS_DYXL.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmdyxlEdit.resx">
@@ -270,6 +276,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCPS_KG.resx">
       <DependentUpon>UCPS_KG.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_DYXL.resx">
+      <DependentUpon>UCPS_DYXL.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
