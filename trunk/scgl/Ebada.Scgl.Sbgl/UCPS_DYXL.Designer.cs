@@ -215,8 +215,10 @@
             this.repositoryItemLookUpEdit5.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("byqID", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("byqName", "变压器名称")});
+            this.repositoryItemLookUpEdit5.DisplayMember = "byqName";
             this.repositoryItemLookUpEdit5.Name = "repositoryItemLookUpEdit5";
             this.repositoryItemLookUpEdit5.NullText = "选择变压器";
+            this.repositoryItemLookUpEdit5.ValueMember = "byqID";
             // 
             // btAdd
             // 
