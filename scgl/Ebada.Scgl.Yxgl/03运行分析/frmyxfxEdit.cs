@@ -21,6 +21,7 @@ namespace Ebada.Scgl.Yxgl
 
         public frmyxfxEdit() {
             InitializeComponent();
+            IniControlStatus();
         }
         void dataBind() {
 
