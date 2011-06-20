@@ -53,8 +53,9 @@ namespace Ebada.Scgl.Lpgl
         public event SendDataEventHandler<LP_Temple> AfterEdit;
         public event SendDataEventHandler<LP_Temple> AfterDelete;
         public UCmExcelTree() {
-            InitializeComponent();
-            treeViewOperator = new TreeViewOperation<LP_Temple>(treeList1, barManager1,new frmExcelEdit());
+            InitializeComponent();           
+            treeViewOperator = new TreeViewOperation<LP_Temple>(treeList1, barManager1);
+            
             treeViewOperator.CreatingObjectEvent += treeViewOperator_CreatingObject;
             treeViewOperator.AfterAdd += treeViewOperator_AfterAdd;
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
@@ -77,7 +78,7 @@ namespace Ebada.Scgl.Lpgl
             if (AfterAdd != null)
                 AfterAdd(treeList1, newobj);
         }
-
+        
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             if (FocusedNodeChanged != null)
                 FocusedNodeChanged(treeList1, treeList1.GetDataRecordByNode(e.Node) as LP_Temple);

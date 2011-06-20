@@ -81,6 +81,7 @@ namespace Ebada.Scgl.Lpgl {
             list.Add(new DicType("DevExpress.XtraEditors.ComboBoxEdit,DevExpress.XtraEditors,Version=10.1.7.0,Culture=neutral,PublicKeyToken=b88d1754d700e49a", "DevExpress.XtraEditors.ComboBoxEdit"));
             list.Add(new DicType("DevExpress.XtraEditors.DateEdit,DevExpress.XtraEditors,Version=10.1.7.0,Culture=neutral,PublicKeyToken=b88d1754d700e49a", "DevExpress.XtraEditors.DateEdit"));
             list.Add(new DicType("DevExpress.XtraEditors.MemoEdit,DevExpress.XtraEditors,Version=10.1.7.0,Culture=neutral,PublicKeyToken=b88d1754d700e49a", "DevExpress.XtraEditors.MemoEdit"));
+            list.Add(new DicType("uc_gridcontrol", "uc_gridcontrol"));
             //list.Add(new DicType("xlqxp", "抢修票"));停电操作票
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);
 

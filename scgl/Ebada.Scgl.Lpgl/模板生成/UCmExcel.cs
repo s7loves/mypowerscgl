@@ -49,7 +49,7 @@ namespace Ebada.Scgl.Lpgl {
             //if (e.Value.Password.Length <= 12) {
             //    e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
             //} 
-            byte[] bt = new byte[] { };
+            byte[] bt = new byte[0];
             if (e.Value.DocContent == null)
             {
                 e.Value.DocContent = bt;
@@ -113,7 +113,7 @@ namespace Ebada.Scgl.Lpgl {
             //newobj.Valid = true;          
             newobj.ParentID = parentID;
             newobj.Kind = ParentObj.Kind;
-            byte[] bt = new byte[]{};
+            byte[] bt = new byte[0];
             newobj.DocContent = bt;
             newobj.ImageAttachment = bt;
             newobj.SignImg = bt;
@@ -156,6 +156,16 @@ namespace Ebada.Scgl.Lpgl {
                     strParentID = value.LPID;
                 }
             }
+        }
+
+        private void btAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }

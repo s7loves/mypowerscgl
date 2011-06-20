@@ -25,23 +25,32 @@ namespace Ebada.Scgl.Lpgl
            
             this.textEdit2.DataBindings.Add("EditValue", rowData, "CellName");
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "Kind");
+            //this.dsoFramerWordControl1.DataBindings.Add("FileDataGzip", rowData, "DocContent");
+            this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
+            byte[] bt = new byte[0];
+            rowData.ImageAttachment = bt;
+            rowData.SignImg = bt;
 
         }
         #region IPopupFormEdit Members
         private LP_Temple rowData = null;
 
         public object RowData {
-            get {
+            get { 
+                byte[] bt = new byte[0];
+                rowData.ImageAttachment = bt;
+                rowData.SignImg = bt;             
                 return rowData;
             }
             set {
                 if (value == null) return;
-                if (rowData == null) {
-                    this.rowData = value as LP_Temple;
-                    this.InitComboBoxData();
+                if (rowData == null) {                    
+                    this.rowData = value as LP_Temple;               
+                    this.InitComboBoxData();                    
                     dataBind();
-                } else {
-                    ConvertHelper.CopyTo<LP_Temple>(value as LP_Temple, rowData);
+                } else {                
+                    ConvertHelper.CopyTo<LP_Temple>(value as LP_Temple, rowData);              
+                    this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
                 }
             }
         }
@@ -84,9 +93,28 @@ namespace Ebada.Scgl.Lpgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
+        private void frmExcelEdit_FormClosed(object sender, FormClosedEventArgs e)
+        {   
+            this.dsoFramerWordControl1.FileClose();
+            base.Close();
+        }
+
+        private void frmExcelEdit_Load(object sender, EventArgs e)
         {
 
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            this.dsoFramerWordControl1.FileSave();            
+            rowData.DocContent = this.dsoFramerWordControl1.FileDataGzip;          
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {       
+            this.dsoFramerWordControl1.FileClose();
+        }
+
+       
     }
 }
