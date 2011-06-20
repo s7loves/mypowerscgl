@@ -203,6 +203,54 @@ namespace Ebada.SCGL.WFlow.Engine
                 throw ex;
             }
         }
+        /**/
+        /// <summary>
+        /// 指定的未认领的任务
+        /// </summary>
+        /// <param name="userId">用户Id</param>
+        /// <param name="WorkFlowId">流程Id</param>
+        /// <param name="WorkFlowInstanceId">流程实例Id</param>
+        /// <returns>指定的未认领的任务列表</returns>
+        public static DataTable SelectedWorkflowClaimingTask(string userId, string WorkFlowId, string WorkFlowInstanceId, int topsize)
+        {
+            try
+            {
+                //SqlDataItem sqlItem = new SqlDataItem();
+                //sqlItem.CommandText = "WorkTaskSelectClaimPro";
+                //sqlItem.CommandType = CommandType.StoredProcedure.ToString();
+                //sqlItem.AppendParameter("@userId", userId);
+                //sqlItem.AppendParameter("@topsize", topsize,typeof(int));
+                //ClientDBAgent agent = new ClientDBAgent();
+                //return agent.ExecuteDataTable(sqlItem);
+                string filedstr = "Priority,WorkFlowNo,taskStartTime,TaskInsCaption,FlowInsCaption,OperContent,Status,FlowCaption," +
+                         "TaskCaption,UserId,WorkFlowId,WorkTaskId,WorkFlowInsId,WorkTaskInsId,OperType,TaskTypeId,operatorInsId," +
+                          "OperatedDes,OperDateTime,taskEndTime,flowStartTime,flowEndTime,pOperatedDes,Description,OperStatus,taskInsType,TaskInsDescription";
+
+
+                string sqlstr = "select top " + topsize + " * from (";
+                sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
+                sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') ) OR ";
+                sqlstr = sqlstr + " (OperContent = 'ALL')) and  (OperStatus='0') and ";
+                sqlstr = sqlstr + " (Status='1') and (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "') ";
+                sqlstr = sqlstr + "union  ";
+                sqlstr = sqlstr + " select " + filedstr + " from WF_WorkTaskInsAccreditView where ";
+                sqlstr = sqlstr + " AccreditToUserId='" + userId + "' and AccreditStatus='1'and status='1'  ";
+                sqlstr = sqlstr + " ) a ";
+                sqlstr = sqlstr + "  order by taskStartTime desc ";
+                Console.WriteLine(sqlstr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewListValue", sqlstr);
+                if (li.Count == 0)
+                {
+                    DataTable dt = new DataTable();
+                    return dt;
+                }
+                return ConvertHelper.ToDataTable(li);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         /**//// <summary>
         /// 未认领的任务
         /// </summary>
