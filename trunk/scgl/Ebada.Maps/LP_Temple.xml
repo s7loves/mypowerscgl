@@ -27,6 +27,7 @@
         <result property="Kind" column="Kind" />
         <result property="SortID" column="SortID" />
         <result property="IsVisible" column="IsVisible" />
+        <result property="ColumnName" column="ColumnName" />
       </resultMap>
   </resultMaps>
 
@@ -54,7 +55,8 @@
          [SignImg],
          [Kind],
          [SortID],
-         [IsVisible]
+         [IsVisible],
+         [ColumnName]
           FROM LP_Temple
           $value$
    </select>
@@ -82,7 +84,8 @@
          [SignImg],
          [Kind],
          [SortID],
-         [IsVisible]
+         [IsVisible],
+         [ColumnName]
           FROM LP_Temple
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="LPID">[LPID]='$LPID$'</isNotNull>
@@ -107,6 +110,7 @@
        <isNotNull prepend="AND" property="Kind">[Kind]='$Kind$'</isNotNull>
        <isNotNull prepend="AND" property="SortID">[SortID]='$SortID$'</isNotNull>
        <isNotNull prepend="AND" property="IsVisible">[IsVisible]='$IsVisible$'</isNotNull>
+       <isNotNull prepend="AND" property="ColumnName">[ColumnName]='$ColumnName$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectLP_TempleByKey" resultMap="LP_Temple_AllColumns" parameterClass="LP_Temple">
@@ -132,7 +136,8 @@
          [SignImg],
          [Kind],
          [SortID],
-         [IsVisible]
+         [IsVisible],
+         [ColumnName]
          FROM LP_Temple
          WHERE 
            LPID = #LPID#
@@ -182,7 +187,8 @@
              [SignImg]=#SignImg#,
              [Kind]=#Kind#,
              [SortID]=#SortID#,
-             [IsVisible]=#IsVisible#
+             [IsVisible]=#IsVisible#,
+             [ColumnName]=#ColumnName#
             WHERE 
               LPID = #LPID#
 
@@ -212,7 +218,8 @@
          [SignImg],
          [Kind],
          [SortID],
-         [IsVisible]
+         [IsVisible],
+         [ColumnName]
          )
        VALUES
          (
@@ -237,7 +244,8 @@
          #SignImg#,
          #Kind#,
          #SortID#,
-         #IsVisible#
+         #IsVisible#,
+         #ColumnName#
          )
 
    </insert>
@@ -268,6 +276,7 @@
        <isNotNull prepend="AND" property="Kind">[Kind]='$Kind$'</isNotNull>
        <isNotNull prepend="AND" property="SortID">[SortID]='$SortID$'</isNotNull>
        <isNotNull prepend="AND" property="IsVisible">[IsVisible]='$IsVisible$'</isNotNull>
+       <isNotNull prepend="AND" property="ColumnName">[ColumnName]='$ColumnName$'</isNotNull>
      </dynamic>
 
    </select>
