@@ -32,7 +32,7 @@
             this.ucpJ_dykSelector1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucpJ_dykSelector1.Location = new System.Drawing.Point(0, 0);
             this.ucpJ_dykSelector1.Name = "ucpJ_dykSelector1";
-            this.ucpJ_dykSelector1.Size = new System.Drawing.Size(592, 271);
+            this.ucpJ_dykSelector1.Size = new System.Drawing.Size(752, 385);
             this.ucpJ_dykSelector1.TabIndex = 0;
             this.ucpJ_dykSelector1.TextMemo = null;
             // 
@@ -40,10 +40,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 271);
+            this.ClientSize = new System.Drawing.Size(752, 385);
             this.Controls.Add(this.ucpJ_dykSelector1);
             this.Location = new System.Drawing.Point(200, 100);
             this.Name = "frmDykSelector";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "短语库";
             this.ResumeLayout(false);
 

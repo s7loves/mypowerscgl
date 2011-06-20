@@ -18,13 +18,14 @@ namespace Ebada.Scgl.Core {
         public static void SelectDyk(string dx,string sx,MemoEdit txt) {
             //2011.06.20 rabbit edit 
             frmDykSelector dlg = new frmDykSelector();
-            PJ_dyk dyk = null;
             PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid=''", dx, sx));
             if (parentObj != null)
             {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;
+                
                 if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                    txt.EditValue += dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
+                    txt.Properties.EditValueChangedFiringMode= DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+                       txt.EditValue = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
                 }
             }
 
