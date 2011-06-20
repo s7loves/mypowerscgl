@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011/6/12 12:02:18
+生成时间:2011/6/18 9:55:47
 ***********************************************/
 
 using System;
@@ -42,7 +42,8 @@ namespace Ebada.Scgl.Model
         private byte[] _signimg=new byte[]{}; 
         private string _kind=String.Empty; 
         private int _sortid=0; 
-        private int _isvisible=0;   
+        private int _isvisible=0; 
+        private string _columnname=String.Empty;   
         #endregion
   
   
@@ -489,6 +490,27 @@ namespace Ebada.Scgl.Model
                 if (_isvisible as object == null || !_isvisible.Equals(value))
                 {
                     _isvisible = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ColumnName
+        /// 属性描述：excel中表格的列名，用|线分开，如：工作地点|工作内容
+        /// 字段信息：[ColumnName],varchar
+        /// </summary>
+        [DisplayNameAttribute("excel中表格的列名，用|线分开，如：工作地点|工作内容")]
+        public string ColumnName
+        {
+            get { return _columnname; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[excel中表格的列名，用|线分开，如：工作地点|工作内容]长度不能大于50!");
+                if (_columnname as object == null || !_columnname.Equals(value))
+                {
+                    _columnname = value;
                 }
             }			 
         }
