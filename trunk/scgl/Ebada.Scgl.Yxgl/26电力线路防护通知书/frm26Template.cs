@@ -44,10 +44,19 @@ namespace Ebada.Scgl.Yxgl
         {
             if (pjobject!=null)
             {
-                dsoFramerControl1.FileSave(filename, true);
-               //dsoFramerControl1.FileName = filename;
-               pjobject.BigData = dsoFramerControl1.FileData;
-               Client.ClientHelper.PlatformSqlMap.Update<PJ_26>(pjobject);
+                try
+                {
+                    // dsoFramerControl1.FileSave(filename, true);
+                    //dsoFramerControl1.FileName = filename;
+                   dsoFramerControl1.FileSave();
+                    pjobject.BigData = dsoFramerControl1.FileData;
+                    Client.ClientHelper.PlatformSqlMap.Update<PJ_26>(pjobject);
+                }
+                catch (System.Exception ex)
+                {
+                    dsoFramerControl1.Dispose();
+                }
+             
 
             }
         }
@@ -65,7 +74,8 @@ namespace Ebada.Scgl.Yxgl
                 try
                 {
                     dsoFramerControl1.FileSave(saveFileDialog1.FileName, true);
-                    dsoFramerControl1.Dispose();
+                    //dsoFramerControl1.Dispose();
+
                     //dsoExcelControl1.AxFramerControl.Save(fname,true,null,null);
                     // dsoExcelControl1.FileSaveAs(out fname);
                     //if (MsgBox.Show("导出成功!") != DialogResult.Yes)
@@ -138,7 +148,15 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
+            dsoFramerControl1.Dispose();
             this.Close();
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            pjobject.BigData = dsoFramerControl1.FileData;
+            dsoFramerControl1.Dispose();
+            this.DialogResult = DialogResult.OK;
         }
 
     }
