@@ -72,6 +72,7 @@
             this.comboBoxEdit17 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -206,6 +207,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.simpleButton1);
             this.groupBox3.Controls.Add(this.memoEdit1);
             this.groupBox3.Location = new System.Drawing.Point(9, 288);
             this.groupBox3.Name = "groupBox3";
@@ -546,6 +548,17 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Location = new System.Drawing.Point(60, -4);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(34, 23);
+            this.simpleButton1.TabIndex = 2;
+            this.simpleButton1.Text = "…";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // frmyxfxEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -645,6 +658,7 @@
         private DevExpress.XtraEditors.MemoEdit memoEdit5;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit18;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
 
     }
 }

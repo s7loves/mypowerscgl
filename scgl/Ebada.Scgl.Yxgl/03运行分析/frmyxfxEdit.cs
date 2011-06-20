@@ -331,5 +331,10 @@ namespace Ebada.Scgl.Yxgl
 
         
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("03运行分析记录", "分析记录内容", memoEdit1);
+        }
     }
 }
