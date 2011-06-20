@@ -10,22 +10,22 @@ namespace Ebada.Scgl.Core {
     /// </summary>
     public class SelectorHelper {
         /// <summary>
-        /// 显示短语库选择器
-        /// 1001		PJ_01gzrj	js		工作日记\记事				
-        /// 1002		PJ_02aqhd	hdnr		02安全活动\活动内容				
+        /// 显示短语库选择器		
         /// </summary>
-        /// <param name="dx">记录表对象名，如PJ_01gzrj</param>
-        /// <param name="sx">属性名</param>
+        /// <param name="dx">记录表中文名,要和短语库对上，否则没有记录</param>
+        /// <param name="sx">属性中文名</param>
         /// <returns></returns>
         public static void SelectDyk(string dx,string sx,MemoEdit txt) {
+            //2011.06.20 rabbit edit 
             frmDykSelector dlg = new frmDykSelector();
             PJ_dyk dyk = null;
             PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid=''", dx, sx));
             if (parentObj != null)
             {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;
-                dlg.TxtMemo = txt;
-                dlg.Show();
+                if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                    txt.EditValue += dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
+                }
             }
 
         }
