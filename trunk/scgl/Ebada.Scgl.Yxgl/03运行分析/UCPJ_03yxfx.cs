@@ -215,6 +215,7 @@ namespace Ebada.Scgl.Yxgl
             fm.RowData = fx;
             fm.RecordStatus = 0;
             fm.ShowDialog();
+            InitData();
         }
 
         private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
