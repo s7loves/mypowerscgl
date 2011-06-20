@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Yxgl
           this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "zcr");
           this.dateEdit3.DataBindings.Add("EditValue", rowData, "rq");
           this.dateEdit4.DataBindings.Add("EditValue", rowData, "qzrq");
-          this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "cjry");
+          //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "cjry");
           this.memoEdit5.DataBindings.Add("EditValue", rowData, "zt");
           this.memoEdit1.DataBindings.Add("EditValue", rowData, "jy");
           this.memoEdit2.DataBindings.Add("EditValue", rowData, "jr");
@@ -87,22 +87,41 @@ namespace Ebada.Scgl.Yxgl
             }
         }
 
-        private int  recordStatus = -1;//记录流程
+        private DataTable  WorkFlowData = null;//实例流程信息
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+
+                return WorkFlowData;
+            }
+            set
+            {
+
+
+                WorkFlowData = value;
+                   
+                
+            }
+        }
+       
+        private int recordStatus = -1;//记录流程
 
         public int RecordStatus
         {
             get
             {
-                
+
                 return recordStatus;
             }
             set
             {
-               
-                
-                   recordStatus=value;
-                   IniControlStatus();
-                
+
+
+                recordStatus = value;
+                IniControlStatus();
+
             }
         }
         #endregion
@@ -137,6 +156,21 @@ namespace Ebada.Scgl.Yxgl
                     break;
                 case 2:
 
+                    groupBox1.Enabled = true;
+                    groupBox2.Enabled = false;
+                    groupBox3.Enabled = false;
+                    groupBox4.Enabled = false;
+                    groupBox5.Enabled = false;
+                    groupBox6.Enabled = false;
+                    dateEdit3.Enabled = false;
+                    comboBoxEdit16.Enabled = false;
+                    comboBoxEdit18.Enabled = false;
+
+                    dateEdit4.Enabled = true;
+                    comboBoxEdit17.Enabled = true;
+                    groupBox7.Enabled =  false;
+                    break;
+                default :
                     groupBox1.Enabled = false;
                     groupBox2.Enabled = false;
                     groupBox3.Enabled = false;
@@ -144,10 +178,9 @@ namespace Ebada.Scgl.Yxgl
                     groupBox5.Enabled = false;
                     groupBox6.Enabled = false;
 
-                    dateEdit4.Enabled = true;
-                    comboBoxEdit17.Enabled = true;
-                    groupBox7.Enabled =  false;
-
+                    dateEdit4.Enabled = false;
+                    comboBoxEdit17.Enabled = false;
+                    groupBox7.Enabled = false;
                     break;
             }
         
@@ -233,15 +266,65 @@ namespace Ebada.Scgl.Yxgl
         {
             if (recordStatus == 0)
             {
-                MainHelper.PlatformSqlMap.Create<PJ_03yxfx>(rowData);
-                MsgBox.ShowTipMessageBox (  RecordWorkTask.RunNewDQFXRecord(rowData.ID ));
+
+                 PJ_gzrjnr gzr = new PJ_gzrjnr();
+                 PJ_03yxfx yxfx = RowData as PJ_03yxfx;
+                rowData.gznrID =gzr.gznrID ;
+                gzr.ParentID = yxfx.ID;
+                yxfx.CreateDate = DateTime.Now;
+                yxfx.CreateMan = MainHelper.User.UserName; 
+                IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
+                if (gzrj01.Count > 0)
+                {
+                    gzr.gzrjID = gzrj01[0].gzrjID;
+                    IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
+                    gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
+                    //gzr.gznr ="运行分析";
+                    gzr.fzr = yxfx.zcr;
+                    gzr.fssj = yxfx.rq;
+                    string[] ss = yxfx.cjry.Split(';');
+                    if (ss.Length >= 2)
+                    {
+
+                        gzr.cjry = ss[0] + "、" + ss[1];
+                        if (ss.Length > 2) gzr.cjry = gzr.cjry + "等";
+                        gzr.cjry = gzr.cjry + ss.Length + "人";
+                    }
+                    else
+                    {
+                        gzr.cjry = ss[0];
+                    }
+
+                    
+                }
+                //else
+                //    return;
+                string strmes = RecordWorkTask.RunNewDQFXRecord(rowData.ID);
+               
+                if (strmes.IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                else
+                    MsgBox.ShowTipMessageBox(strmes);
+                if (gzrj01.Count > 0)
+                    MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
+                MainHelper.PlatformSqlMap.Create<PJ_03yxfx>(yxfx);
 
             }
             else
             {
-
-                MainHelper.PlatformSqlMap.Update <PJ_03yxfx>(rowData);
-                //MsgBox.ShowTipMessageBox(RecordWorkTask.RunDQFXRecord(rowData.ID));
+                string strmes = RecordWorkTask.RunDQFXRecord(rowData.ID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+                if (strmes.IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                else
+                    MsgBox.ShowTipMessageBox(strmes);
+                MainHelper.PlatformSqlMap.Update<PJ_03yxfx>(RowData);
+               
 
             }
 
