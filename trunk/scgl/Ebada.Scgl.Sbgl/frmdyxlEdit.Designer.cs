@@ -109,29 +109,29 @@
             this.groupBox2.Size = new System.Drawing.Size(471, 75);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "台区设备";
+            this.groupBox2.Text = "低压线路";
             // 
             // comboBoxEdit2
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(363, 37);
+            this.comboBoxEdit2.Location = new System.Drawing.Point(315, 34);
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit2.Size = new System.Drawing.Size(150, 21);
             this.comboBoxEdit2.TabIndex = 13;
             // 
             // comboBoxEdit1
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(121, 37);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(80, 34);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit1.Size = new System.Drawing.Size(150, 21);
             this.comboBoxEdit1.TabIndex = 13;
             // 
             // labelControl22
             // 
-            this.labelControl22.Location = new System.Drawing.Point(268, 37);
+            this.labelControl22.Location = new System.Drawing.Point(252, 37);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(48, 14);
             this.labelControl22.TabIndex = 8;
@@ -171,7 +171,7 @@
             this.MinimizeBox = false;
             this.Name = "frmdyxlEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "台区设备";
+            this.Text = "低压线路";
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
