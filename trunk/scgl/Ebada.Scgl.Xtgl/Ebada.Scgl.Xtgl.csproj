@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4AC2C3FB-8BAF-43E4-B9C3-CE2BF093D9FC}</ProjectGuid>
+    <ProjectGuid>{BDBE45E2-0DB8-4C7C-8177-0F1FBB5831C8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ebada.Scgl.Xsfx</RootNamespace>
-    <AssemblyName>Ebada.Scgl.Xsfx</AssemblyName>
+    <RootNamespace>Ebada.Scgl.Xtgl</RootNamespace>
+    <AssemblyName>Ebada.Scgl.Xtgl</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\output\client\</OutputPath>
+    <OutputPath>..\output\Client\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -98,38 +98,168 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="mLine\UCmLineLoss.cs">
+    <Compile Include="frmdykEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmdykEdit.Designer.cs">
+      <DependentUpon>frmdykEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrgEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrgEdit.Designer.cs">
+      <DependentUpon>frmOrgEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mMudule\frmRoleModul.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mMudule\frmRoleModul.Designer.cs">
+      <DependentUpon>frmRoleModul.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mMudule\UCmModuleM.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="mLine\UCmLineLoss.Designer.cs">
-      <DependentUpon>UCmLineLoss.cs</DependentUpon>
+    <Compile Include="mMudule\UCmModuleM.Designer.cs">
+      <DependentUpon>UCmModuleM.cs</DependentUpon>
     </Compile>
-    <Compile Include="mLine\UCmLine.cs">
+    <Compile Include="mMudule\UCmRoleModulTree.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="mLine\UCmLine.Designer.cs">
-      <DependentUpon>UCmLine.cs</DependentUpon>
+    <Compile Include="mMudule\UCmRoleModulTree.Designer.cs">
+      <DependentUpon>UCmRoleModulTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mUser\frmmUserEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mUser\frmmUserEdit.Designer.cs">
+      <DependentUpon>frmmUserEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mUser\UCmOrgUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="mUser\UCmOrgUser.Designer.cs">
+      <DependentUpon>UCmOrgUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mUser\UCmUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="mUser\UCmUser.Designer.cs">
+      <DependentUpon>UCmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCmRole.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCmRole.Designer.cs">
+      <DependentUpon>UCmRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mMudule\UCmModulFun.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="mMudule\UCmModulFun.Designer.cs">
+      <DependentUpon>UCmModulFun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPJ_dykM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPJ_dykM.Designer.cs">
+      <DependentUpon>UCPJ_dykM.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UCmLineTree.cs">
+    <Compile Include="UCmOrgGds.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCmLineTree.Designer.cs">
-      <DependentUpon>UCmLineTree.cs</DependentUpon>
+    <Compile Include="UCmOrgGds.Designer.cs">
+      <DependentUpon>UCmOrgGds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCmOrgTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCmOrgTree.Designer.cs">
+      <DependentUpon>UCmOrgTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCmOrgBds.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCmOrgBds.Designer.cs">
+      <DependentUpon>UCmOrgBds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPJ_dyk.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPJ_dyk.Designer.cs">
+      <DependentUpon>UCPJ_dyk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mMudule\UCmModuleTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="mMudule\UCmModuleTree.Designer.cs">
+      <DependentUpon>UCmModuleTree.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mLine\UCmLineLoss.resx">
-      <DependentUpon>UCmLineLoss.cs</DependentUpon>
+    <EmbeddedResource Include="frmdykEdit.resx">
+      <DependentUpon>frmdykEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="mLine\UCmLine.resx">
-      <DependentUpon>UCmLine.cs</DependentUpon>
+    <EmbeddedResource Include="frmOrgEdit.resx">
+      <DependentUpon>frmOrgEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mMudule\frmRoleModul.resx">
+      <DependentUpon>frmRoleModul.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mMudule\UCmModuleM.resx">
+      <DependentUpon>UCmModuleM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mMudule\UCmRoleModulTree.resx">
+      <DependentUpon>UCmRoleModulTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mUser\frmmUserEdit.resx">
+      <DependentUpon>frmmUserEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mUser\UCmOrgUser.resx">
+      <DependentUpon>UCmOrgUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mUser\UCmUser.resx">
+      <DependentUpon>UCmUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCmRole.resx">
+      <DependentUpon>UCmRole.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mMudule\UCmModulFun.resx">
+      <DependentUpon>UCmModulFun.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPJ_dykM.resx">
+      <DependentUpon>UCPJ_dykM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="UCmLineTree.resx">
-      <DependentUpon>UCmLineTree.cs</DependentUpon>
+    <EmbeddedResource Include="UCmOrgGds.resx">
+      <DependentUpon>UCmOrgGds.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCmOrgTree.resx">
+      <DependentUpon>UCmOrgTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCmOrgBds.resx">
+      <DependentUpon>UCmOrgBds.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPJ_dyk.resx">
+      <DependentUpon>UCPJ_dyk.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mMudule\UCmModuleTree.resx">
+      <DependentUpon>UCmModuleTree.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

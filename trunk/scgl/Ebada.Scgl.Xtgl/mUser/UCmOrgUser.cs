@@ -15,30 +15,29 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Ebada.Scgl.Model;
 
-namespace Ebada.Scgl.Xsfx {
+namespace Ebada.Scgl.Xtgl {
     /// <summary>
     /// 机构职员维护
     /// </summary>
-    public partial class UCmLineLoss : DevExpress.XtraEditors.XtraUserControl {
+    public partial class UCmOrgUser : DevExpress.XtraEditors.XtraUserControl {
         /// <summary>
         /// 左TreeList右GridView，
         /// </summary>
-        public UCmLineLoss() {
+        public UCmOrgUser() {
             InitializeComponent();
             //接收TreeList行焦点改变事件
-            ucLeft1.FocusedNodeChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_xl>(ucLeft1_FocusedNodeChanged);
-           
+            ucLeft1.FocusedNodeChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.mOrg>(ucLeft1_FocusedNodeChanged);
+            ucLeft1.ChildView = ucRight1.GridViewOperation;
         }
 
-        void ucLeft1_FocusedNodeChanged(object sender, Ebada.Scgl.Model.PS_xl obj)
-        {
+        void ucLeft1_FocusedNodeChanged(object sender, Ebada.Scgl.Model.mOrg obj) {
             ucRight1.ParentObj = obj;
-            splitCC1.Panel2.Text = obj != null ? obj.LineName : "";
+            splitCC1.Panel2.Text = "职员所在机构：" + (obj != null ? obj.OrgName : "");
         }
 
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            ucLeft1.InitData();
+            //ucLeft1.InitData();
             
         }
 

@@ -1,5 +1,5 @@
-﻿namespace Ebada.Scgl.Xsfx {
-    partial class UCmLineLoss {
+﻿namespace Ebada.Scgl.Xtgl {
+    partial class UCmOrgUser {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -24,8 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.splitCC1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.ucLeft1 = new Ebada.Scgl.Xsfx.UCmLineTree();
-            this.ucRight1 = new Ebada.Scgl.Xsfx.UCmLine();
+            this.ucLeft1 = new Ebada.Scgl.Xtgl.UCmOrgTree();
+            this.ucRight1 = new Ebada.Scgl.Xtgl.UCmUser();
             ((System.ComponentModel.ISupportInitialize)(this.splitCC1)).BeginInit();
             this.splitCC1.SuspendLayout();
             this.SuspendLayout();
@@ -39,11 +39,11 @@
             this.splitCC1.Panel1.CaptionLocation = DevExpress.Utils.Locations.Top;
             this.splitCC1.Panel1.Controls.Add(this.ucLeft1);
             this.splitCC1.Panel1.ShowCaption = true;
-            this.splitCC1.Panel1.Text = "线路";
+            this.splitCC1.Panel1.Text = "机构";
             this.splitCC1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitCC1.Panel2.Controls.Add(this.ucRight1);
             this.splitCC1.Panel2.ShowCaption = true;
-            this.splitCC1.Panel2.Text = "线路信息";
+            this.splitCC1.Panel2.Text = "职员";
             this.splitCC1.ShowCaption = true;
             this.splitCC1.Size = new System.Drawing.Size(555, 349);
             this.splitCC1.SplitterPosition = 206;
@@ -52,7 +52,7 @@
             // 
             // ucLeft1
             // 
-           
+            this.ucLeft1.ChildView = null;
             this.ucLeft1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucLeft1.Location = new System.Drawing.Point(0, 0);
             this.ucLeft1.Name = "ucLeft1";
@@ -67,12 +67,12 @@
             this.ucRight1.Size = new System.Drawing.Size(339, 324);
             this.ucRight1.TabIndex = 0;
             // 
-            // UCmLineLoss
+            // UCmOrgUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitCC1);
-            this.Name = "UCmLineLoss";
+            this.Name = "UCmOrgUser";
             this.Size = new System.Drawing.Size(555, 349);
             ((System.ComponentModel.ISupportInitialize)(this.splitCC1)).EndInit();
             this.splitCC1.ResumeLayout(false);
@@ -83,8 +83,8 @@
         #endregion
 
         public DevExpress.XtraEditors.SplitContainerControl splitCC1;
-        private UCmLineTree ucLeft1;
-        private UCmLine ucRight1;
+        private UCmOrgTree ucLeft1;
+        private UCmUser ucRight1;
 
     }
 }
