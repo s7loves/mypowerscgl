@@ -61,7 +61,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ibatis", "ibatis", "{A2487F78-4862-4224-9C4B-90455531A102}"
 	ProjectSection(SolutionItems) = preProject
 		output\Server\config\ibatis\properties.config = output\Server\config\ibatis\properties.config
-		output\Server\config\ibatis\SqlMap.config = output\Server\config\ibatis\SqlMap.config
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "remoting", "remoting", "{D94F6475-E950-479D-9092-E6392630AE2E}"
@@ -112,11 +111,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.SCGL.WFlow.Tool", "Eb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.App", "Ebada.App\Ebada.App.csproj", "{26CB22CC-452F-4B6D-8FF6-E004154886B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Scgl.Xsfx", "Ebada.Scgl.Xsfx\Ebada.Scgl.Xsfx.csproj", "{4AC2C3FB-8BAF-43E4-B9C3-CE2BF093D9FC}"
+EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -190,6 +187,10 @@ Global
 		{26CB22CC-452F-4B6D-8FF6-E004154886B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26CB22CC-452F-4B6D-8FF6-E004154886B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26CB22CC-452F-4B6D-8FF6-E004154886B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AC2C3FB-8BAF-43E4-B9C3-CE2BF093D9FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AC2C3FB-8BAF-43E4-B9C3-CE2BF093D9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AC2C3FB-8BAF-43E4-B9C3-CE2BF093D9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AC2C3FB-8BAF-43E4-B9C3-CE2BF093D9FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -222,5 +223,10 @@ Global
 		{2146DCDE-CECA-47B8-B8FD-1E6D216648B7} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{A3173743-90E7-4A97-867E-80353C694D91} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{26CB22CC-452F-4B6D-8FF6-E004154886B9} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
+		{4AC2C3FB-8BAF-43E4-B9C3-CE2BF093D9FC} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
