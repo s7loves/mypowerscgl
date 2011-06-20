@@ -8,3 +8,4 @@
 6       剩余电流动作保护器  UCPS_TQDLBH
 7       杆塔设备			UCPS_GTSB
 8       线路开关			UCPS_KG
+9       低压线路			UCPS_DYXL
