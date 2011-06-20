@@ -213,7 +213,15 @@ namespace Ebada.Scgl.Yxgl
                    {
                        DSOFramerControl ds1 = new DSOFramerControl();
                        ds1.FileData = OBJECT.BigData;
-                       ds1.FileOpen(ds1.FileName);
+                      // ds1.FileOpen(ds1.FileName);
+                       ExcelAccess ex = new ExcelAccess();
+                     
+                       string fname = ds1.FileName;
+
+                       ex.Open(fname);
+                       //此处写填充内容代码
+
+                       ex.ShowExcel();
                    }
                     else
                     {
@@ -225,6 +233,40 @@ namespace Ebada.Scgl.Yxgl
                {
                    Export26.ExportExcel(OBJECT);
                }
+            }
+        }
+
+        private void btView_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle > -1)
+            {
+                PJ_26 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_26;
+                if (OBJECT.BigData != null)
+                {
+                    if (OBJECT.BigData.Length != 0)
+                    {
+                        DSOFramerControl ds1 = new DSOFramerControl();
+                        ds1.FileData = OBJECT.BigData;
+                        // ds1.FileOpen(ds1.FileName);
+                        ExcelAccess ex = new ExcelAccess();
+
+                        string fname = ds1.FileName;
+
+                        ex.Open(fname);
+                        //此处写填充内容代码
+
+                        ex.ShowExcel();
+                    }
+                    else
+                    {
+                        Export26.ExportExcel(OBJECT);
+                    }
+
+                }
+                else
+                {
+                    Export26.ExportExcel(OBJECT);
+                }
             }
         }
     }
