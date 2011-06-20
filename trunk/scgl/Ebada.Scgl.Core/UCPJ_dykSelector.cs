@@ -191,7 +191,8 @@ namespace Ebada.Scgl.Core {
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
         {
-            txt.Text=txt.Text+" "+gridView1.GetFocusedDisplayText();
+            if (GetSelectedRow() != null)
+                this.ParentForm.DialogResult = DialogResult.OK;
         }
     }
 }
