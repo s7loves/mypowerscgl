@@ -20,50 +20,51 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 
-namespace Ebada.Scgl.Xsfx {
+namespace Ebada.Scgl.Xtgl {
 
-    public partial class UCmLine : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<PS_xl> gridViewOperation;
+    public partial class UCmUser : DevExpress.XtraEditors.XtraUserControl {
+        private GridViewOperation<mUser> gridViewOperation;
         
-        public event SendDataEventHandler<PS_xl> FocusedRowChanged;
+        public event SendDataEventHandler<mUser> FocusedRowChanged;
         private string parentID;
-        private PS_xl parentObj;
-        public UCmLine() {
+        private mOrg parentObj;
+        public UCmUser() {
             InitializeComponent();
             initImageList();
 
-            gridViewOperation = new GridViewOperation<PS_xl>(gridControl1, gridView1, barManager1);
-            gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            //gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_xl>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<mUser>(gridControl1, gridView1, barManager1, new frmmUserEdit());
+            gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<mUser>(gridViewOperation_BeforeAdd);
             gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<mUser>(gridViewOperation_BeforeInsert);
+            gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<mUser>(gridViewOperation_BeforeUpdate);
             initColumns();
+        }
+
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<mUser> e) {
+            if (e.Value.Password.Length <= 12) {
+                e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
+            }
+        }
+
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<mUser> e) {
+            e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
         }
         /// <summary>
         /// 设置隐藏列
         /// </summary>
-        void initColumns() { 
-            //foreach (GridColumn gc in gridView1.Columns)
-            //{
-            //    gc.Visible = false;
-            //}
-            //gridView1.Columns["LineID"].Visible = false;
-            //gridView1.Columns["LineCode"].Visible = true;
-            gridView1.Columns["ParentID"].Visible = false;
-
-            gridView1.Columns["LineNamePath"].Visible = false;
-            //gridView1.Columns["OrgCode"].Visible = true;
-            //gridView1.Columns["OrgCode2"].Visible = true;
-            //gridView1.Columns["RunState"].Visible = true;
-
-            //gridView1.Columns["WireType"].Visible = true;
-            //gridView1.Columns["WireLength"].Visible = true;
-            //gridView1.Columns["TotalLength"].Visible = true;
-            //gridView1.Columns["TheoryLoss"].Visible = true;
-            //gridView1.Columns["ActualLoss"].Visible = true;
+        void initColumns() {
+            gridView1.Columns["OrgCode"].Visible = true;
+            gridView1.Columns["OrgName"].Visible = false;
+            gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
+            repositoryItemTextEdit1.EditValueChanged += new EventHandler(repositoryItemTextEdit1_EditValueChanged);
         }
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_xl> e) {
-            if (string.IsNullOrEmpty(parentID))
-            {
+
+        void repositoryItemTextEdit1_EditValueChanged(object sender, EventArgs e) {
+            
+        }
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<mUser> e) {
+            if (string.IsNullOrEmpty(parentID)) {
                 e.Cancel = true;
                 MsgBox.ShowWarningMessageBox("请先选择机构后增加职员！");
             }
@@ -75,13 +76,13 @@ namespace Ebada.Scgl.Xsfx {
         }
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PS_xl);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as mUser);
         }
         /// <summary>
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PS_xl> GridViewOperation {
+        public GridViewOperation<mUser> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -89,8 +90,10 @@ namespace Ebada.Scgl.Xsfx {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PS_xl newobj) {
-
+        void gridViewOperation_CreatingObjectEvent(mUser newobj) {
+            newobj.OrgCode = parentID;
+            newobj.OrgName = parentObj.OrgName;
+            newobj.Valid = true;
         }
         /// <summary>
         /// 父表ID
@@ -109,7 +112,7 @@ namespace Ebada.Scgl.Xsfx {
                     parentID = value;
 
                     if (!string.IsNullOrEmpty(parentID)) {
-                        str = string.Format("where LineID='{0}'", parentID);
+                        str = string.Format("where Orgcode='{0}'", parentID);
                     }
                 }
                 gridViewOperation.RefreshData(str);
@@ -117,8 +120,7 @@ namespace Ebada.Scgl.Xsfx {
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public PS_xl ParentObj
-        {
+        public mOrg ParentObj {
             get { return parentObj; }
             set {
 
@@ -126,7 +128,7 @@ namespace Ebada.Scgl.Xsfx {
                 if (value == null) {
                     parentID = null;
                 } else {
-                    ParentID = value.LineID;
+                    ParentID = value.OrgID;
                 }
             }
         }
