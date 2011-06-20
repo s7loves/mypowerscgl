@@ -22,6 +22,7 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Scgl.WFlow;
+using System.Collections;
 
 namespace Ebada.Scgl.Yxgl
 {
@@ -62,7 +63,7 @@ namespace Ebada.Scgl.Yxgl
             base.OnLoad(e);
 
             InitColumns();//初始列
-            //InitData();//初始数据
+            InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -107,7 +108,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
-            string strSQL = "OrgCode='" + MainHelper.UserOrg.OrgCode + "' order by id desc";
+            string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' order by id desc";
             RefreshData(strSQL);
         }
         /// <summary>
@@ -199,19 +200,52 @@ namespace Ebada.Scgl.Yxgl
                 return;
             }
         }
-
+        
         private void btAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (MainHelper.UserOrg == null) return;
 
-            if (! RecordWorkTask.HaveDQFXRole()) return;
+            if (!RecordWorkTask.HaveRewNewDQFXRole()) return;
             frmyxfxEdit fm = new frmyxfxEdit();
             PJ_03yxfx fx = new PJ_03yxfx();
             fx.OrgCode = MainHelper.UserOrg.OrgCode;
+            fx.OrgName = MainHelper.UserOrg.OrgName;
+
             fx.rq = DateTime.Now;
             fm.RowData = fx;
             fm.RecordStatus = 0;
             fm.ShowDialog();
+        }
+
+        private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MainHelper.UserOrg == null) return;
+            if (gridView1.FocusedRowHandle >= 0)
+            {
+                PJ_03yxfx yxfx=gridView1.GetFocusedRow() as PJ_03yxfx;
+                if (!RecordWorkTask.HaveRunDQFXRole(yxfx.ID)) return;
+                DataTable dt = RecordWorkTask.GetDQFXRecord(yxfx.ID);
+                frmyxfxEdit fm = new frmyxfxEdit();
+                switch (dt.Rows[0]["TaskInsCaption"].ToString())
+                {
+                    case "领导检查":
+                        fm.RecordStatus = 1;
+                        break;
+                    case "检查人检查":
+                        fm.RecordStatus = 2;
+                        break;
+
+                }
+                fm.RecordWorkFlowData = dt;
+                fm.RowData = yxfx;
+                
+                fm.ShowDialog();
+                InitData();
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

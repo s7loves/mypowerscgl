@@ -15,10 +15,10 @@ namespace Ebada.Scgl.WFlow
 
         
         /// <summary>
-        /// 获得用户是否可以启动运行定期分析权限
+        /// 获得当前用户是否可以新建运行定期分析记录权限
         /// </summary>
         /// <returns></returns>
-        public static  bool HaveDQFXRole()
+        public static  bool HaveRewNewDQFXRole()
         {
             if (MainHelper.UserOrg.OrgName.IndexOf("供电所") > -1)
             {
@@ -32,6 +32,34 @@ namespace Ebada.Scgl.WFlow
             }
             else
                 return false;
+        }
+        /// <summary>
+        /// 获得当前用户是否可以运行当前定期分析记录权限
+        /// </summary>
+        /// <returns></returns>
+        public static bool HaveRunDQFXRole(string recordID)
+        {
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
+            if (wf.Count == 0) return false;
+            DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(MainHelper.User.UserID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+                return false;
+        }
+        /// <summary>
+        /// 获得当前用户可以运行当前记录的流程信息
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable GetDQFXRecord(string recordID)
+        {
+            DataTable dtnull = new DataTable();
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
+            if (wf.Count == 0) return dtnull;
+            DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(MainHelper.User.UserID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
+           
+            return dt;
         }
         /// <summary>
         /// 生成运行定期分析流程
@@ -66,21 +94,30 @@ namespace Ebada.Scgl.WFlow
             wpfrecord.WorkFlowId  = wfruntime.WorkFlowId;
             wpfrecord.WorkFlowInsId  = wfruntime.WorkFlowInstanceId;
             wpfrecord.WorkTaskId  = wfruntime.WorkTaskId;
-            wpfrecord.WorkTaskInsId  = wfruntime.WorkTaskInstanceId;
+            wpfrecord.WorkTaskInsId = wfruntime.WorkTaskInstanceId;
+            wfruntime.Start();
+            string strmes = toollips(wpfrecord.WorkTaskInsId);
+            if ( strmes.IndexOf("未提交至任何人")== -1)
+              
             MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
 
-            wfruntime.Start();
-            return toollips(wpfrecord.WorkTaskInsId);
+
+            return strmes;
         }
         /// <summary>
         /// 更新运行定期分析流程
         /// </summary>
         /// <returns></returns>
-        public static string RunDQFXRecord(string recordID)
+        public static string RunDQFXRecord(string recordID, string OperatorInsId,string WorkTaskInsId, string command)
         {
             //IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             //if (wf.Count == 0) return "Error";
-            //WorkFlowRuntime wfruntime = new WorkFlowRuntime();
+            //DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(MainHelper.User.UserID,wf[0].WorkFlowId,wf[0].WorkFlowInsId ,999);
+           
+            WorkFlowRuntime wfruntime = new WorkFlowRuntime();
+            //wfruntime.RunSuccess += new WorkFlowRuntime.RunSuccessEventHandler(wfruntime_RunSuccess);
+            //wfruntime.RunFail += new WorkFlowRuntime.RunFailEventHandler(wfruntime_RunFail);
+            wfruntime.Run(MainHelper.User.UserID, OperatorInsId, command);
             //wfruntime.UserId = MainHelper.User.UserID;
             //wfruntime.WorkFlowId = wf[0].WorkFlowId;
             //wfruntime.WorkTaskId = wf[0].WorkTaskId;
@@ -100,8 +137,8 @@ namespace Ebada.Scgl.WFlow
             //MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
 
             //wfruntime.Start();
-            //return toollips(wpfrecord.WorkTaskInsId);
-            return "";
+            return toollips(WorkTaskInsId);
+            //return "";
         }
         public static string toollips(string workTaskInsId)
         {
