@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Yxgl
             base.OnLoad(e);
 
             InitColumns();//初始列
-            //InitData();//初始数据
+            InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -106,6 +106,11 @@ namespace Ebada.Scgl.Yxgl
         {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
+            if (MainHelper.UserOrg != null)
+            {
+                string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' order by id desc";
+                RefreshData(strSQL);
+            }
         }
         /// <summary>
         /// 初始化列,
