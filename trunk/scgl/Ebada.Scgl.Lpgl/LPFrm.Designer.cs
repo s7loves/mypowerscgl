@@ -32,7 +32,7 @@
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.dsoFramerWordControl1 = new TONLI.dsoframers.DSOFramerWordControl();
+            this.dsoFramerWordControl1 = new Ebada.Scgl.Core.DSOFramerControl();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -100,6 +100,6 @@
         private DevExpress.XtraBars.Docking.DockManager dockManager1;
         private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
-        private TONLI.dsoframers.DSOFramerWordControl dsoFramerWordControl1;
+        private new Ebada.Scgl.Core.DSOFramerControl dsoFramerWordControl1;
     }
 }

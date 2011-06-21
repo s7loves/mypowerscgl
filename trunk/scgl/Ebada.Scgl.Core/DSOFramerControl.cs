@@ -9,6 +9,7 @@ using System.IO;
 using Office = Microsoft.Office.Core;
 using Word = Microsoft.Office.Interop.Excel;
 using System.Diagnostics;
+using Ebada.Client;
 
 namespace Ebada.Scgl.Core {
    
@@ -28,6 +29,7 @@ namespace Ebada.Scgl.Core {
         public DSOFramerControl() {
             
             InitializeComponent();
+            myExcel = new ExcelAccess();
             desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             tempPath = Path.GetTempPath();
             this.axFramerControl1.set_EnableFileCommand(DSOFramer.dsoFileCommandType.dsoFilePrintPreview, false);
@@ -38,6 +40,17 @@ namespace Ebada.Scgl.Core {
         }       
 
         #region 公共属性
+        ExcelAccess myExcel;
+        public ExcelAccess MyExcel {
+            get {
+                if (MyWorkbook != null) {
+                    myExcel.MyWorkBook = MyWorkbook;
+                    return myExcel;
+                } else {
+                    return null;
+                }            
+            }
+        }
         [Browsable(false)]
         [DesignerSerializationVisibility(0)]
         public bool IsReadOnly {
@@ -95,7 +108,11 @@ namespace Ebada.Scgl.Core {
                 return buff;
             }
             set {
-                if (value == null || value.Length == 0) return;
+                if (value == null || value.Length == 0) {
+                    FileNew("");
+                    return;
+
+                }
                 string file2 = GetTempFileName();
 
                 using (FileStream fs =File.Create(file2)) {
@@ -143,7 +160,10 @@ namespace Ebada.Scgl.Core {
                 return buff;
             }
             set {
-                if (value == null || value.Length == 0) return;
+                if (value == null || value.Length == 0) {
+                    FileNew("");
+                    return;
+                }
                 string gzFile = GetTempFileName() + ".gz";
                 //创建文件
                 using (FileStream fs = File.Create(gzFile)) {
@@ -186,13 +206,15 @@ namespace Ebada.Scgl.Core {
         #region axFramerControl1 事件
 
         void axFramerControl1_OnDocumentClosed(object sender, EventArgs e) {
-
-            if (isTempFile && File.Exists(fileName)) {
-                File.Delete(fileName);
-            }
-            fileName = string.Empty;
-            isTempFile = false;
-            isModified = false;
+           
+                if (isTempFile && File.Exists(fileName)) {
+                     try {File.Delete(fileName);} catch { }
+                }
+            
+                fileName = string.Empty;
+                isTempFile = false;
+                isModified = false;
+            
         }
 
         void axFramerControl1_OnDocumentOpened(object sender, AxDSOFramer._DFramerCtlEvents_OnDocumentOpenedEvent e) {
@@ -241,17 +263,34 @@ namespace Ebada.Scgl.Core {
            // return TempPath + "\\~" + Guid.NewGuid().ToString() + ".xls";
             return TempPath +"24工作簿"+ ".xls";
         }
+        private void Close() {
+            if (MyWorkbook != null) {
+                MyWorkbook.Close(false, missing, missing);
+                MyWorkbook.Application.Quit();
+            }
+        }
         #endregion
+        public Word.Workbook MyWorkbook {
+            get {
+                Word.Workbook wb = null;
+                try {
+                    wb = axFramerControl1.ActiveDocument as Word.Workbook;
+                } catch { }
 
+                return wb;
+            }
+        }
         /// <summary>
         /// 新建文件
         /// </summary>
         /// <param name="type">"Excel.Sheet"</param>
         public void FileNew(string offictype) {
+            
             try {
                 this.axFramerControl1.CreateNew(offictype);
             } catch {
                 this.axFramerControl1.CreateNew("Excel.Sheet");
+                this.axFramerControl1.Activate();
             }
         }
         /// <summary>
@@ -278,9 +317,9 @@ namespace Ebada.Scgl.Core {
         /// </summary>
         /// <param name="fileName"></param>
         public void FileOpen(string filename) {
-
+            
             axFramerControl1.Open(filename, IsReadOnly, null, null, null);
-           
+            this.axFramerControl1.Activate();
         }
         /// <summary>
         /// 文档发生变化是发生

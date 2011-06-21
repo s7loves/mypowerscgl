@@ -26,7 +26,6 @@ namespace Ebada.Scgl.Lpgl
             this.textEdit2.DataBindings.Add("EditValue", rowData, "CellName");
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "Kind");
             //this.dsoFramerWordControl1.DataBindings.Add("FileDataGzip", rowData, "DocContent");
-            this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
             byte[] bt = new byte[0];
             rowData.ImageAttachment = bt;
             rowData.SignImg = bt;
@@ -36,8 +35,8 @@ namespace Ebada.Scgl.Lpgl
         private LP_Temple rowData = null;
 
         public object RowData {
-            get { 
-                byte[] bt = new byte[0];
+            get {
+                byte[] bt = this.dsoFramerWordControl1.FileDataGzip;
                 rowData.ImageAttachment = bt;
                 rowData.SignImg = bt;             
                 return rowData;
@@ -50,13 +49,16 @@ namespace Ebada.Scgl.Lpgl
                     dataBind();
                 } else {                
                     ConvertHelper.CopyTo<LP_Temple>(value as LP_Temple, rowData);              
-                    this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
+                    
                 }
             }
         }
 
         #endregion
-
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+            this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
+        }
         private void InitComboBoxData() {
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<LP_Temple>(" WHERE Citylevel = '2'"));
