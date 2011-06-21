@@ -31,6 +31,7 @@ namespace Ebada.Scgl.Yxgl
     public partial class UCPJ_17 : DevExpress.XtraEditors.XtraUserControl {
 
         TreeViewOperation<PS_xl> treeViewOperator;
+        private string parentID = "";
         [Browsable(false)]
         public TreeViewOperation<PS_xl> TreeViewOperator {
             get { return treeViewOperator; }
@@ -49,7 +50,14 @@ namespace Ebada.Scgl.Yxgl
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete += treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
+            btGDS.EditValueChanged += new EventHandler(btGDS_EditValueChanged);
             Init();
+        }
+
+        void btGDS_EditValueChanged(object sender, EventArgs e)
+        {
+            parentID = btGDS.EditValue.ToString();
+            InitData();
         }
 
         void treeViewOperator_AfterDelete(PS_xl newobj) {
@@ -94,6 +102,7 @@ namespace Ebada.Scgl.Yxgl
             treeList1.Columns["OrgCode2"].ColumnEdit = DicTypeHelper.BdsDic;
             treeList1.Columns["Owner"].ColumnEdit = DicTypeHelper.OwnerDic;
             treeList1.Columns["RunState"].ColumnEdit = DicTypeHelper.RunState;
+            btGDS.Edit = DicTypeHelper.GdsDic;
             if (this.Site == null)
                 InitData();
 
@@ -102,7 +111,7 @@ namespace Ebada.Scgl.Yxgl
         /// 初始化数据
         /// </summary>
         public void InitData() {
-            treeViewOperator.RefreshData("order by linetype,linecode");
+            treeViewOperator.RefreshData(" where OrgCode='" + parentID + "' order by linetype,linecode");
         }
 
     }

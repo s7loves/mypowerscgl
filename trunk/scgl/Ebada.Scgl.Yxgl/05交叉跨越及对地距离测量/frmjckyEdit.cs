@@ -17,6 +17,14 @@ namespace Ebada.Scgl.Yxgl
 {
     public partial class frmjckyEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_05jcky> m_CityDic = new SortableSearchableBindingList<PJ_05jcky>();
+        private string parentID = "";
+
+        public string ParentID
+        {
+            get { return parentID; }
+            set { parentID = value; }
+        }
+
 
         public frmjckyEdit() {
             InitializeComponent();
@@ -86,7 +94,8 @@ namespace Ebada.Scgl.Yxgl
             }
             this.comboBoxEdit7.Properties.Items.AddRange(yylist4);
 
-
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
+            comboBoxEdit1.Properties.DataSource = xlList;
 
         }
 
