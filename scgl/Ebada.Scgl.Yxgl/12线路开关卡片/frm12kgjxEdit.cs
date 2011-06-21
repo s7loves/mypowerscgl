@@ -59,6 +59,9 @@ namespace Ebada.Scgl.Yxgl
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
             comboBoxEdit2.Properties.Items.Clear();
             comboBoxEdit2.Properties.Items.AddRange(ryList);
+
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "检  修  内  容", comboBoxEdit1.Properties);
+
         }
 
         /// <summary>
@@ -82,49 +85,7 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

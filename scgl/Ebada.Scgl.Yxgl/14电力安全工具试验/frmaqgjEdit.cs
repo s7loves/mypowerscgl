@@ -26,8 +26,8 @@ namespace Ebada.Scgl.Yxgl
 
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "syrq");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "syrq2");
-            this.textEdit1.DataBindings.Add("EditValue", rowData, "sbCode");
-            this.spinEdit1.DataBindings.Add("EditValue", rowData, "syzq");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sbCode");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "syzq");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbModle");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sbType");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "syxm");
@@ -61,17 +61,13 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PS_aqgj>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
+            ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "工具名称", comboBoxEdit5.Properties);
+            ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "编 号", comboBoxEdit3.Properties);
+            ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试 验 周 期", comboBoxEdit7.Properties);
+            ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试验项目", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "结 论", comboBoxEdit7.Properties);
 
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
-        }
+                  }
 
         /// <summary>
         /// 

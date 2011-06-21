@@ -68,9 +68,9 @@ namespace Ebada.Scgl.Yxgl
         {
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
             
-            comboBoxEdit3.Properties.Items.AddRange(ryList);
+            //comboBoxEdit3.Properties.Items.AddRange(ryList);
             comboBoxEdit5.Properties.Items.AddRange(ryList);
-            comboBoxEdit6.Properties.Items.AddRange(ryList);
+            //comboBoxEdit6.Properties.Items.AddRange(ryList);
             comboBoxEdit7.Properties.Items.AddRange(ryList);
 
             //ICollection linelist = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电线路名称
@@ -80,10 +80,15 @@ namespace Ebada.Scgl.Yxgl
               SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
             
             //巡视区段
-            //comboBoxEdit2.Properties.Items.AddRange(ryList);
-            ICollection qxlist = ComboBoxHelper.GetQxlb();//获取缺陷类别
+              ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视区段", comboBoxEdit2.Properties);
+            
+            //ICollection qxlist = ComboBoxHelper.GetQxlb();//获取缺陷类别
             //缺陷类别GetQxlb
-            comboBoxEdit4.Properties.Items.AddRange(qxlist);
+              ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
+
+              ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视人", comboBoxEdit3.Properties);
+
+            //comboBoxEdit4.Properties.Items.AddRange(qxlist);
         }
 
         /// <summary>
@@ -173,6 +178,18 @@ namespace Ebada.Scgl.Yxgl
             }
             
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("06设备巡视及缺陷消除记录", "缺陷内容", memoEdit1);
+
+        }
+
+      
+
+      
+              
+         
        
        
     }
