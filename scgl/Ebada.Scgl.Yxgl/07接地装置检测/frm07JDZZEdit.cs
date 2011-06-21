@@ -57,51 +57,12 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitComboBoxData() {
 
-            IList<PJ_dyk> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "07接地装置检测记录", "设备名称"));
-            object[] yylist = new object[list.Count];
-            for (int i = 0; i < list.Count; i++)
-            {
-                yylist[i] = list[i].nr;
-            }
-            this.comboBoxEdit4.Properties.Items.AddRange(yylist);
-            IList<PJ_dyk> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "07接地装置检测记录", "变压器型号"));
-            object[] yylist2 = new object[list2.Count];
-            for (int i = 0; i < list2.Count; i++)
-            {
-                yylist2[i] = list2[i].nr;
-            }
-            this.comboBoxEdit5.Properties.Items.AddRange(yylist2);
-            IList<PJ_dyk> list3 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "07接地装置检测记录", "变压器规格"));
-            object[] yylist3 = new object[list3.Count];
-            for (int i = 0; i < list3.Count; i++)
-            {
-                yylist3[i] = list3[i].nr;
-            }
-            this.comboBoxEdit9.Properties.Items.AddRange(yylist3);
-            IList<PJ_dyk> list4 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "07接地装置检测记录", "接地电阻"));
-            object[] yylist4 = new object[list4.Count];
-            for (int i = 0; i < list4.Count; i++)
-            {
-                yylist4[i] = list4[i].nr;
-            }
-            this.comboBoxEdit6.Properties.Items.AddRange(yylist4);
-            IList<PJ_dyk> list5 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "07接地装置检测记录", "土质"));
-            object[] yylist5 = new object[list5.Count];
-            for (int i = 0; i < list5.Count; i++)
-            {
-                yylist5[i] = list5[i].nr;
-            }
-            this.comboBoxEdit7.Properties.Items.AddRange(yylist5);
-            IList<PJ_dyk> list6 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "07接地装置检测记录", "土壤电阻率"));
-            object[] yylist6 = new object[list6.Count];
-            for (int i = 0; i < list6.Count; i++)
-            {
-                yylist6[i] = list6[i].nr;
-            }
-            this.comboBoxEdit8.Properties.Items.AddRange(yylist6);
-
-
-
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "设备名称", comboBoxEdit4);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "变压器型号", comboBoxEdit5);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "变压器规格", comboBoxEdit9);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "接地电阻", comboBoxEdit6);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土质", comboBoxEdit7);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8);
         }
 
         /// <summary>

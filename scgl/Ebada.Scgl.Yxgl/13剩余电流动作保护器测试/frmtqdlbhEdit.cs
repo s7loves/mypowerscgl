@@ -76,34 +76,10 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            IList<PJ_dyk> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "额定漏电动作电流"));
-            object[] yylist = new object[list.Count];
-            for (int i = 0; i < list.Count; i++)
-            {
-                yylist[i] = list[i].nr;
-            }
-            this.comboBoxEdit4.Properties.Items.AddRange(yylist);
-            IList<PJ_dyk> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "型   号"));
-            object[] yylist2 = new object[list2.Count];
-            for (int i = 0; i < list2.Count; i++)
-            {
-                yylist2[i] = list2[i].nr;
-            }
-            this.comboBoxEdit2.Properties.Items.AddRange(yylist2);
-            IList<PJ_dyk> list3 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "制造厂名"));
-            object[] yylist3 = new object[list3.Count];
-            for (int i = 0; i < list3.Count; i++)
-            {
-                yylist3[i] = list3[i].nr;
-            }
-            this.comboBoxEdit9.Properties.Items.AddRange(yylist3);
-            IList<PJ_dyk> list4 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "额定漏电动作时间"));
-            object[] yylist4 = new object[list4.Count];
-            for (int i = 0; i < list4.Count; i++)
-            {
-                yylist4[i] = list4[i].nr;
-            }
-            this.comboBoxEdit7.Properties.Items.AddRange(yylist4);
+            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "额定漏电动作电流", comboBoxEdit4);
+            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "型   号", comboBoxEdit2);
+            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "制造厂名", comboBoxEdit9);
+            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "额定漏电动作时间", comboBoxEdit7);
 
             IList<PS_tq> listtq = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>("where xlCode='" + lineCode + "'");
             comboBoxEdit5.Properties.DataSource = listtq;
