@@ -65,34 +65,10 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitComboBoxData() {
          
-            IList<PJ_dyk> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "05交叉跨越及对地距离测量记录", "规 定 距 离 不小于(m)"));
-            object[] yylist = new object[list.Count];
-            for (int i = 0; i < list.Count; i++)
-            {
-                yylist[i] = list[i].nr;
-            }
-            this.spinEdit1.Properties.Items.AddRange(yylist);
-            IList<PJ_dyk> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "05交叉跨越及对地距离测量记录", "被跨越物名称"));
-            object[] yylist2 = new object[list2.Count];
-            for (int i = 0; i < list2.Count; i++)
-            {
-                yylist2[i] = list2[i].nr;
-            }
-            this.comboBoxEdit5.Properties.Items.AddRange(yylist2);
-            IList<PJ_dyk> list3 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "05交叉跨越及对地距离测量记录", "所属单位"));
-            object[] yylist3 = new object[list3.Count];
-            for (int i = 0; i < list3.Count; i++)
-            {
-                yylist3[i] = list3[i].nr;
-            }
-            this.comboBoxEdit6.Properties.Items.AddRange(yylist3);
-            IList<PJ_dyk> list4 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "05交叉跨越及对地距离测量记录", "级别"));
-            object[] yylist4 = new object[list4.Count];
-            for (int i = 0; i < list4.Count; i++)
-            {
-                yylist4[i] = list4[i].nr;
-            }
-            this.comboBoxEdit7.Properties.Items.AddRange(yylist4);
+            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "规 定 距 离 不小于(m)",spinEdit1);
+            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "被跨越物名称", comboBoxEdit5);
+            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "所属单位", comboBoxEdit6);
+            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "级别", comboBoxEdit7);
 
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
             comboBoxEdit1.Properties.DataSource = xlList;

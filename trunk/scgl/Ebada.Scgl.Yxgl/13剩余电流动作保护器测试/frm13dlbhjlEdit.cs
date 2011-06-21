@@ -53,27 +53,9 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            IList<PJ_dyk> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "动作电流（mA）"));
-            object[] yylist = new object[list.Count];
-            for (int i = 0; i < list.Count; i++)
-            {
-                yylist[i] = list[i].nr;
-            }
-            this.comboBoxEdit1.Properties.Items.AddRange(yylist);
-            IList<PJ_dyk> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "动作时间（S）"));
-            object[] yylist2 = new object[list2.Count];
-            for (int i = 0; i < list2.Count; i++)
-            {
-                yylist2[i] = list2[i].nr;
-            }
-            this.comboBoxEdit4.Properties.Items.AddRange(yylist2);
-            IList<PJ_dyk> list3 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "运行情况"));
-            object[] yylist3 = new object[list3.Count];
-            for (int i = 0; i < list3.Count; i++)
-            {
-                yylist3[i] = list3[i].nr;
-            }
-            this.comboBoxEdit2.Properties.Items.AddRange(yylist3);
+            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "动作电流（mA）", comboBoxEdit1);
+            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "动作时间（S）", comboBoxEdit4);
+            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "运行情况", comboBoxEdit2);
         }
 
         /// <summary>

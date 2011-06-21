@@ -35,13 +35,15 @@
             this.typeLookUp = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
+            this.btGDS = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd2 = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
-            this.btExport = new DevExpress.XtraBars.BarButtonItem();
+            this.btExport0 = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -49,8 +51,6 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btGDS = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).BeginInit();
@@ -63,7 +63,7 @@
             this.treeList1.AllowDrop = true;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.KeyFieldName = "LineID";
-            this.treeList1.Location = new System.Drawing.Point(0, 26);
+            this.treeList1.Location = new System.Drawing.Point(0, 25);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.treeList1.OptionsBehavior.DragNodes = true;
@@ -72,7 +72,7 @@
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.typeCBox,
             this.typeLookUp});
-            this.treeList1.Size = new System.Drawing.Size(664, 326);
+            this.treeList1.Size = new System.Drawing.Size(664, 327);
             this.treeList1.TabIndex = 0;
             // 
             // typeCBox
@@ -110,7 +110,7 @@
             this.btDelete,
             this.btRefresh,
             this.btClose,
-            this.btExport,
+            this.btExport0,
             this.btFind,
             this.btGDS});
             this.barManager1.MaxItemId = 11;
@@ -132,13 +132,27 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExport0, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
             this.bar1.OptionsBar.DisableCustomization = true;
             this.bar1.OptionsBar.DrawDragBorder = false;
             this.bar1.Text = "Tools";
+            // 
+            // btGDS
+            // 
+            this.btGDS.Caption = "barEditItem1";
+            this.btGDS.Edit = this.repositoryItemLookUpEdit1;
+            this.btGDS.Id = 10;
+            this.btGDS.Name = "btGDS";
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             // 
             // btAdd
             // 
@@ -197,13 +211,14 @@
             this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btFind.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
-            // btExport
+            // btExport0
             // 
-            this.btExport.Caption = "导出";
-            this.btExport.Id = 8;
-            this.btExport.ImageIndex = 7;
-            this.btExport.Name = "btExport";
-            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btExport0.Caption = "导出";
+            this.btExport0.Id = 8;
+            this.btExport0.ImageIndex = 7;
+            this.btExport0.Name = "btExport0";
+            this.btExport0.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btExport0.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btExport_ItemClick);
             // 
             // btClose
             // 
@@ -230,7 +245,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(664, 26);
+            this.barDockControlTop.Size = new System.Drawing.Size(664, 25);
             // 
             // barDockControlBottom
             // 
@@ -241,14 +256,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 326);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 327);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(664, 26);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
+            this.barDockControlRight.Location = new System.Drawing.Point(664, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 327);
             // 
             // imageList1
             // 
@@ -268,20 +283,6 @@
             this.imageList1.Images.SetKeyName(11, "exit1.png");
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
-            // 
-            // btGDS
-            // 
-            this.btGDS.Caption = "barEditItem1";
-            this.btGDS.Edit = this.repositoryItemLookUpEdit1;
-            this.btGDS.Id = 10;
-            this.btGDS.Name = "btGDS";
-            // 
-            // repositoryItemLookUpEdit1
-            // 
-            this.repositoryItemLookUpEdit1.AutoHeight = false;
-            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             // 
             // UCPJ_17
             // 
@@ -319,7 +320,7 @@
         private DevExpress.XtraBars.BarButtonItem btDelete;
         private DevExpress.XtraBars.BarButtonItem btRefresh;
         private DevExpress.XtraBars.BarButtonItem btClose;
-        private DevExpress.XtraBars.BarButtonItem btExport;
+        private DevExpress.XtraBars.BarButtonItem btExport0;
         private System.Windows.Forms.ImageList imageList1;
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox typeCBox;

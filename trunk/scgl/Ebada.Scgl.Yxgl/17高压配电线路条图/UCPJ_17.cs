@@ -114,5 +114,13 @@ namespace Ebada.Scgl.Yxgl
             treeViewOperator.RefreshData(" where OrgCode='" + parentID + "' order by linetype,linecode");
         }
 
+        private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (treeList1.FocusedNode!=null)
+            {
+                Export17.ExportExcel(treeList1.FocusedNode);
+            }
+        }
+
     }
 }
