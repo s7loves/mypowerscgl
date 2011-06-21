@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections;
+using DevExpress.XtraEditors.Repository;
 
 namespace Ebada.Scgl.Core {
     public class ComboBoxHelper {
@@ -241,11 +242,21 @@ namespace Ebada.Scgl.Core {
             if (mCache.ContainsKey(key)) {
                 list = mCache[key];
             } else {
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'",dx,sx));
-                if(list.Count>0)
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
+                if (list.Count > 0)
                     mCache.Add(key, list);
             }
             return list;
+        }
+        /// <summary>
+        /// 获取短语库属性列表填充下拉列表框
+        /// </summary>
+        /// <param name="dx">对象中文名</param>
+        /// <param name="sx">属性中文名</param>
+        /// <param name="cBox">列表对象</param>
+        public static void FillCBoxByDyk(string dx, string sx, RepositoryItemComboBox cBox) {
+            cBox.Items.Clear();
+            cBox.Items.AddRange(GetDykList(dx, sx));
         }
     }
 }
