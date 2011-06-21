@@ -34,7 +34,7 @@ namespace Ebada.Scgl.Xtgl {
         public UCPJ_dyk() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_dyk>(gridControl1, gridView1, barManager1);
+            gridViewOperation = new GridViewOperation<PJ_dyk>(gridControl1, gridView1, barManager1,new frmdykEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_dyk>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_dyk>(gridViewOperation_BeforeDelete);
@@ -52,6 +52,7 @@ namespace Ebada.Scgl.Xtgl {
                 if (value != null) {
                     gridView1.Columns["bh"].Caption = "引用编号";
                     gridView1.Columns["zjm"].Caption = "备注";
+                    gridViewOperation.EditForm = new PopupFormGridEdit();
                     bar3.Visible = false;
                 }
             }
