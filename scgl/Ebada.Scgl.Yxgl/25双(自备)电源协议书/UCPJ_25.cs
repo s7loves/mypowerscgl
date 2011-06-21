@@ -27,39 +27,31 @@ namespace Ebada.Scgl.Yxgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPJ_18gysbpj : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPJ_25 : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_18gysbpj> gridViewOperation;
+        private GridViewOperation<PJ_25> gridViewOperation;
 
-        public event SendDataEventHandler<PJ_18gysbpj> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_25> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-      
-        public UCPJ_18gysbpj()
+        public UCPJ_25()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_18gysbpj>(gridControl1, gridView1, barManager1,new frm18gysbpjEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_18gysbpj>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<PJ_25>(gridControl1, gridView1, barManager1, new frm26Edit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_25>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_18gysbpj>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_25>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
-            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_18gysbpj>(gridViewOperation_AfterAdd);
         }
-
-        void gridViewOperation_AfterAdd(PJ_18gysbpj obj)
-        {
-            RefreshData(" where OrgCode='" + parentID + "' order by id desc");
-          
-        }
-      
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_18gysbpj> e)
+        
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_25> e)
         {
            
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_18gysbpj> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_25> e)
         {
             if (parentID == null)
                 e.Cancel = true;
@@ -101,7 +93,7 @@ namespace Ebada.Scgl.Yxgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_18gysbpj);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_25);
         }
         private void hideColumn(string colname)
         {
@@ -114,6 +106,12 @@ namespace Ebada.Scgl.Yxgl
         {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
+            //RefreshData("");
+            if (MainHelper.UserOrg != null)
+            {
+                string strSQL = "where ParentID='" + MainHelper.UserOrg.OrgCode + "' order by ID desc";
+                RefreshData(strSQL);
+            }
         }
         /// <summary>
         /// 初始化列,
@@ -123,8 +121,10 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("OrgCode");
+
+            hideColumn("ParentID");
             hideColumn("gzrjID");
+            hideColumn("BigData");
         }
         /// <summary>
         /// 刷新数据
@@ -138,7 +138,7 @@ namespace Ebada.Scgl.Yxgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_18gysbpj> GridViewOperation
+        public GridViewOperation<PJ_25> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -147,16 +147,13 @@ namespace Ebada.Scgl.Yxgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_18gysbpj newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_25 newobj)
         {
-            if (parentID == null) return;
-            newobj.OrgCode = parentID;
-            newobj.OrgName = parentObj.OrgName;
+           if (parentID == null) return;
+            newobj.ParentID = parentID;
+            //newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
-            
-            
-           
         }
         /// <summary>
         /// 父表ID
@@ -171,7 +168,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where ParentID ='" + value + "' order by ID desc");
                 }
             }
         }
@@ -195,19 +192,87 @@ namespace Ebada.Scgl.Yxgl
             }
         }
 
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle > -1)
+            {
+                frm25Template frm = new frm25Template();
+                frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_25;
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    Client.ClientHelper.PlatformSqlMap.Update<PJ_25>(frm.pjobject);
+                   MessageBox.Show("保存成功");
+                }
+            }
+            
+        }
+
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //if (gridView1.RowCount>0)
-            //{
-            //     IList<PJ_18gysbpj> pjlist=new List<PJ_18gysbpj>();
-            //    for (int i = 0; i < gridView1.RowCount; i++)
-            //    {
-            //        pjlist.Add(gridView1.GetRow(i) as PJ_18gysbpj);
-            //    }
-            //   Export18.ExportExcel(pjlist);
-            //}
-           
-           
+            if (gridView1.FocusedRowHandle > -1)
+            {
+               PJ_25 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_25;
+               if (OBJECT.BigData!=null)
+                {
+                    if (OBJECT.BigData.Length!=0)
+                   {
+                       DSOFramerControl ds1 = new DSOFramerControl();
+                       ds1.FileData = OBJECT.BigData;
+                      // ds1.FileOpen(ds1.FileName);
+                       ExcelAccess ex = new ExcelAccess();
+                     
+                       string fname = ds1.FileName;
+
+                       ex.Open(fname);
+                       //此处写填充内容代码
+
+                       ex.ShowExcel();
+                   }
+                    else
+                    {
+                        Export25.ExportExcel(OBJECT);
+                    }
+                 
+                }
+               else
+               {
+                   Export25.ExportExcel(OBJECT);
+               }
+            }
+        }
+
+        private void btView_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle > -1)
+            {
+                PJ_25 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_25;
+                if (OBJECT.BigData != null)
+                {
+                    if (OBJECT.BigData.Length != 0)
+                    {
+                        DSOFramerControl ds1 = new DSOFramerControl();
+                        ds1.FileData = OBJECT.BigData;
+                        // ds1.FileOpen(ds1.FileName);
+                        ExcelAccess ex = new ExcelAccess();
+
+                        string fname = ds1.FileName;
+
+                        ex.Open(fname);
+                        //此处写填充内容代码
+
+                        ex.ShowExcel();
+                    }
+                    else
+                    {
+                        Export25.ExportExcel(OBJECT);
+                    }
+
+                }
+                else
+                {
+                    Export25.ExportExcel(OBJECT);
+                }
+            }
         }
     }
 }

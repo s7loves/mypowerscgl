@@ -14,7 +14,7 @@ namespace Ebada.Scgl.Yxgl {
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(object obj) {
+        public static void ExportExcel(PJ_25 obj) {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\10.xls";
