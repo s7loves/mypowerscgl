@@ -157,9 +157,6 @@
             this.comboBoxEdit6.Name = "comboBoxEdit6";
             this.comboBoxEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit6.Properties.Items.AddRange(new object[] {
-            "合格",
-            "不合格"});
             this.comboBoxEdit6.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit6.TabIndex = 15;
             // 
@@ -178,9 +175,6 @@
             this.comboBoxEdit4.Name = "comboBoxEdit4";
             this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit4.Properties.Items.AddRange(new object[] {
-            "正常",
-            "不正常"});
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit4.TabIndex = 13;
             // 
@@ -247,6 +241,7 @@
             // 
             // comboBoxEdit1
             // 
+            this.comboBoxEdit1.EditValue = "晴";
             this.comboBoxEdit1.Location = new System.Drawing.Point(199, 41);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
