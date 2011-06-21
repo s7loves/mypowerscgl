@@ -150,6 +150,7 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("08设备停电检修记录", "检修内容", memoEdit1);
+            memoEdit1.Focus();
         }
 
         private void comboBoxEdit4_Properties_Click(object sender, EventArgs e)

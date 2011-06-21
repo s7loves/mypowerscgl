@@ -27,9 +27,9 @@ namespace Ebada.Scgl.Yxgl
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "sdsj");
             //this.textEdit1.DataBindings.Add("EditValue", rowData, "gtdsj");
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "ssdl");
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "clqk");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "yyfx");
-            this.memoEdit4.DataBindings.Add("EditValue", rowData, "fzdc");
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "clqk",false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "yyfx", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memoEdit4.DataBindings.Add("EditValue", rowData, "fzdc", false, DataSourceUpdateMode.OnPropertyChanged);
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "zxr");
 
         }
@@ -98,7 +98,8 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("04事故异常运行记录", "异常运行内容", memoEdit2);
+            SelectorHelper.SelectDyk("04事故异常运行记录", "异常运行内容", memoEdit2,memoEdit1,memoEdit4);
+            //memoEdit2.Focus();,
         }
     }
 }
