@@ -141,7 +141,6 @@
             this.btAdd.ImageIndex = 6;
             this.btAdd.Name = "btAdd";
             this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-         
             // 
             // btAdd2
             // 
@@ -159,7 +158,7 @@
             this.btEdit.Id = 2;
             this.btEdit.ImageIndex = 1;
             this.btEdit.Name = "btEdit";
-            this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;  
+            this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // btDelete
             // 

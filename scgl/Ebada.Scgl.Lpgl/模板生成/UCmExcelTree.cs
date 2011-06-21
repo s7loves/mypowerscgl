@@ -54,7 +54,7 @@ namespace Ebada.Scgl.Lpgl
         public event SendDataEventHandler<LP_Temple> AfterDelete;
         public UCmExcelTree() {
             InitializeComponent();           
-            treeViewOperator = new TreeViewOperation<LP_Temple>(treeList1, barManager1);
+            treeViewOperator = new TreeViewOperation<LP_Temple>(treeList1, barManager1,new frmExcelEdit());
             
             treeViewOperator.CreatingObjectEvent += treeViewOperator_CreatingObject;
             treeViewOperator.AfterAdd += treeViewOperator_AfterAdd;
