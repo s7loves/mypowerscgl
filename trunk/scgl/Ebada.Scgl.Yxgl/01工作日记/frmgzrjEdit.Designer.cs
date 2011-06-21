@@ -79,6 +79,7 @@
             this.comboBoxEdit17 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -172,6 +173,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.simpleButton2);
             this.groupBox4.Controls.Add(this.memoEdit2);
             this.groupBox4.Controls.Add(this.dateEdit1);
             this.groupBox4.Controls.Add(this.labelControl9);
@@ -620,6 +622,17 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(42, 23);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(34, 23);
+            this.simpleButton2.TabIndex = 11;
+            this.simpleButton2.Text = "…";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // frmgzrjEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -729,6 +742,7 @@
         private DevExpress.XtraEditors.MemoEdit memoEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
 
     }
 }

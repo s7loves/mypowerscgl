@@ -48,6 +48,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -62,6 +63,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.SuspendLayout();
+            // 
+            // m_DefaultLookAndFeel
+            // 
+            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
             // 
             // btnCancel
             // 
@@ -116,8 +121,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.simpleButton2);
             this.groupBox2.Controls.Add(this.memoEdit1);
-            this.groupBox2.Location = new System.Drawing.Point(28, 120);
+            this.groupBox2.Location = new System.Drawing.Point(28, 122);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(383, 212);
             this.groupBox2.TabIndex = 8;
@@ -126,9 +132,9 @@
             // 
             // memoEdit1
             // 
-            this.memoEdit1.Location = new System.Drawing.Point(6, 21);
+            this.memoEdit1.Location = new System.Drawing.Point(6, 29);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(364, 173);
+            this.memoEdit1.Size = new System.Drawing.Size(364, 165);
             this.memoEdit1.TabIndex = 0;
             // 
             // groupBox1
@@ -251,6 +257,17 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(102, 0);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(34, 23);
+            this.simpleButton2.TabIndex = 12;
+            this.simpleButton2.Text = "…";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // frmgzrjnrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -303,6 +320,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.MemoEdit memoEdit2;
         private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
 
     }
 }
