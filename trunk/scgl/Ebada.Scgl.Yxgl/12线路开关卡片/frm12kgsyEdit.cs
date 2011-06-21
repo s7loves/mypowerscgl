@@ -79,10 +79,34 @@ namespace Ebada.Scgl.Yxgl
             comboBoxEdit17.Properties.Items.Clear();
             comboBoxEdit17.Properties.Items.AddRange(ryList);
 
-             ICollection tqList = ComboBoxHelper.GetTQ();//天气
-            comboBoxEdit13.Properties.Items.Clear();
-            comboBoxEdit13.Properties.Items.AddRange(tqList);
-            
+            // ICollection tqList = ComboBoxHelper.GetTQ();//天气
+            //comboBoxEdit13.Properties.Items.Clear();
+            //comboBoxEdit13.Properties.Items.AddRange(tqList);
+
+
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "天       气", comboBoxEdit13.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "温度(℃)", comboBoxEdit20.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "耐压前", comboBoxEdit3.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "耐压前", comboBoxEdit10.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "耐压前", comboBoxEdit7.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "耐压后", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "耐压后", comboBoxEdit8.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "耐压后", comboBoxEdit11.Properties);
+
+
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "时间(min)", comboBoxEdit1.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "时间(S)", comboBoxEdit15.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "A相(Ω)", comboBoxEdit5.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "B相(Ω)", comboBoxEdit12.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "C相(Ω)", comboBoxEdit9.Properties);
+            //同期检查情况
+
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "同期检查情况", comboBoxEdit18.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "外观检查情况", comboBoxEdit19.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "实 验 结 论", comboBoxEdit16.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "实 验 结 论", comboBoxEdit16.Properties);
+
+
         }
 
         /// <summary>

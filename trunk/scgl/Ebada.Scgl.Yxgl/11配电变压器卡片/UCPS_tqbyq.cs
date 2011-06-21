@@ -40,7 +40,7 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_tqbyq>(gridControl1, gridView1, barManager1);
+            gridViewOperation = new GridViewOperation<PS_tqbyq>(gridControl1, gridView1, barManager1,new frmtqbyqEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_tqbyq>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tqbyq>(gridViewOperation_BeforeDelete);
@@ -169,7 +169,7 @@ namespace Ebada.Scgl.Yxgl
             //    return;
             //}
             //newobj.byqID = PSObj.byqID;
-            newobj.tqID = "123";
+          
         }
         /// <summary>
         /// 父表ID

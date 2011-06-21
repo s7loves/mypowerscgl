@@ -82,6 +82,7 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit2.Properties.Items.Add(k);
 
             }
+            ComboBoxHelper.FillCBoxByDyk("09培训记录", "地点", comboBoxEdit7.Properties);
          
         }
         void setxxss()
@@ -161,6 +162,12 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit5_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("09培训记录内容", "记录内容", memoEdit2);
 
         }
     }
