@@ -33,13 +33,14 @@ namespace Ebada.Scgl.Yxgl
 
         public event SendDataEventHandler<PS_tqdlbh> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
+        frmtqdlbhEdit frm = new frmtqdlbhEdit();
         private string parentID = null;
-        private mOrg parentObj;
+        private PS_xl parentObj;
         public UCPJ_13dlbh()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_tqdlbh>(gridControl1, gridView1, barManager1, new frmtqdlbhEdit());
+            gridViewOperation = new GridViewOperation<PS_tqdlbh>(gridControl1, gridView1, barManager1, frm);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_tqdlbh>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tqdlbh>(gridViewOperation_BeforeDelete);
@@ -65,7 +66,27 @@ namespace Ebada.Scgl.Yxgl
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
+            btXL.EditValueChanged += new EventHandler(btXLList_EditValueChanged);
 
+        }
+
+        void btXLList_EditValueChanged(object sender, EventArgs e)
+        {
+            if (btXL.EditValue == null) return;
+            parentID = btXL.EditValue.ToString();
+            
+            if (parentID != "")
+            {
+                IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where LineCode='" + parentID + "'");
+                frm.LineCode = parentID;
+                PS_xl xl = null;
+                if (list.Count > 0)
+                {
+                    xl = list[0];
+                    ParentObj = xl;
+                }
+            }
+         
         }
 
         void btGdsList_EditValueChanged(object sender, EventArgs e)
@@ -74,12 +95,11 @@ namespace Ebada.Scgl.Yxgl
             mOrg org=null;
             if (list.Count > 0)
                 org = list[0];
-            
+
             if (org != null)
             {
-                ParentObj = org;
-                if (SelectGdsChanged != null)
-                    SelectGdsChanged(this, org);
+                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
+                repositoryItemLookUpEdit3.DataSource = xlList;
             }
             
 
@@ -141,7 +161,7 @@ namespace Ebada.Scgl.Yxgl
         void gridViewOperation_CreatingObjectEvent(PS_tqdlbh newobj)
         {
             if (parentID == null) return;
-            newobj.tqID = ParentObj.OrgID;
+            //newobj.tqID = ParentObj.OrgID;
             //newobj.OrgName = parentObj.OrgName;
             //newobj.CreateDate = DateTime.Now;
             //newobj.CreateMan = MainHelper.LoginName;
@@ -165,7 +185,7 @@ namespace Ebada.Scgl.Yxgl
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public mOrg ParentObj
+        public PS_xl ParentObj
         {
             get { return parentObj; }
             set
@@ -178,7 +198,7 @@ namespace Ebada.Scgl.Yxgl
                 }
                 else
                 {
-                    ParentID = value.OrgID;
+                    ParentID = value.LineCode;
                 }
             }
         }
