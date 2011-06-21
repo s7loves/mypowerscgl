@@ -86,9 +86,14 @@ namespace Ebada.Scgl.Yxgl {
         #endregion
 
         private void InitComboBoxData() {
-            ICollection yyList = ComboBoxHelper.GetQqyy();//获取缺勤原因列表
+            IList<PJ_dyk> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "01工作日记", "原因"));
+            object[] yylist=new object[list.Count];
+            for (int i = 0; i < list.Count;i++ )
+            {
+                yylist[i] = list[i].nr;
+            }
             for (int i = 0; i < 10; i++) {
-                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).Properties.Items.AddRange(yyList);
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).Properties.Items.AddRange(yylist);
             }
 
             this.cBoxTq.Properties.Items.AddRange(ComboBoxHelper.GetTQ());//设置天气列表
@@ -111,6 +116,11 @@ namespace Ebada.Scgl.Yxgl {
 
         private void simpleButton1_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("01工作日记", "记事", memoEdit1);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("01工作日记", "领导检查评语", memoEdit2);
         }
     }
 }
