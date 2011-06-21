@@ -21,14 +21,11 @@ namespace Ebada.Scgl.Core {
             PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid=''", dx, sx));
             if (parentObj != null)
             {
-                dlg.ucpJ_dykSelector1.ParentObj = parentObj;
-                
+                dlg.ucpJ_dykSelector1.ParentObj = parentObj;                
                 if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                    txt.Properties.EditValueChangedFiringMode= DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-                       txt.EditValue = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
+                    txt.EditValue = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
                 }
             }
-
         }
         /// <summary>
         /// 多级短语时使用此方法
