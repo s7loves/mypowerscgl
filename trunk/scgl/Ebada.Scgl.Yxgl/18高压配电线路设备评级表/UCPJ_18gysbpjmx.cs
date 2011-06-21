@@ -27,39 +27,39 @@ namespace Ebada.Scgl.Yxgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPJ_18gysbpj : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPJ_18gysbpjmx : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_18gysbpj> gridViewOperation;
+        private GridViewOperation<PJ_18gysbpjmx> gridViewOperation;
 
-        public event SendDataEventHandler<PJ_18gysbpj> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_18gysbpjmx> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-      
-        public UCPJ_18gysbpj()
+        private PJ_18gysbpj _parentobj;
+        public UCPJ_18gysbpjmx()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_18gysbpj>(gridControl1, gridView1, barManager1,new frm18gysbpjEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_18gysbpj>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<PJ_18gysbpjmx>(gridControl1, gridView1, barManager1,new frm18gysbpjmxEdit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_18gysbpjmx>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_18gysbpj>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_18gysbpjmx>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
-            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_18gysbpj>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_18gysbpjmx>(gridViewOperation_AfterAdd);
         }
 
-        void gridViewOperation_AfterAdd(PJ_18gysbpj obj)
+        void gridViewOperation_AfterAdd(PJ_18gysbpjmx obj)
         {
-            RefreshData(" where OrgCode='" + parentID + "' order by id desc");
+            RefreshData(" where PJ_ID='" + PSObj.PJ_ID + "' order by id desc");
           
         }
       
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_18gysbpj> e)
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_18gysbpjmx> e)
         {
            
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_18gysbpj> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_18gysbpjmx> e)
         {
             if (parentID == null)
                 e.Cancel = true;
@@ -68,8 +68,8 @@ namespace Ebada.Scgl.Yxgl
         {
             base.OnLoad(e);
 
-            InitColumns();//初始列
-            InitData();//初始数据
+            //InitColumns();//初始列
+            //InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -78,19 +78,32 @@ namespace Ebada.Scgl.Yxgl
 
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
-            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
-            if (list.Count > 0)
-                org = list[0];
+            //IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
+            //mOrg org=null;
+            //if (list.Count > 0)
+            //    org = list[0];
             
-            if (org != null)
-            {
-                ParentObj = org;
-                if (SelectGdsChanged != null)
-                    SelectGdsChanged(this, org);
-            }
+            //if (org != null)
+            //{
+            //    ParentObj = org;
+            //    if (SelectGdsChanged != null)
+            //        SelectGdsChanged(this, org);
+            //}
             
 
+        }
+        public PJ_18gysbpj PSObj
+        {
+            get { return _parentobj; }
+            set
+            {
+                _parentobj = value;
+                if (PSObj != null)
+                {
+                    RefreshData(" where PJ_ID='" + value.PJ_ID + "'  order by id desc");
+                }
+
+            }
         }
         private void initImageList()
         {
@@ -101,7 +114,7 @@ namespace Ebada.Scgl.Yxgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_18gysbpj);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_18gysbpjmx);
         }
         private void hideColumn(string colname)
         {
@@ -123,7 +136,7 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("OrgCode");
+            //hideColumn("OrgCode");
             hideColumn("gzrjID");
         }
         /// <summary>
@@ -138,7 +151,7 @@ namespace Ebada.Scgl.Yxgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_18gysbpj> GridViewOperation
+        public GridViewOperation<PJ_18gysbpjmx> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -147,62 +160,24 @@ namespace Ebada.Scgl.Yxgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_18gysbpj newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_18gysbpjmx newobj)
         {
-            if (parentID == null) return;
-            newobj.OrgCode = parentID;
-            newobj.OrgName = parentObj.OrgName;
+            if (PSObj == null) return;
+            //newobj.OrgCode = parentID;
+            //newobj.OrgName = parentObj.OrgName;
+            newobj.PJ_ID = PSObj.PJ_ID;
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
-            
-            
-           
         }
-        /// <summary>
-        /// 父表ID
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ParentID
-        {
-            get { return parentID; }
-            set
-            {
-                parentID = value;
-                if (!string.IsNullOrEmpty(value))
-                {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
-                }
-            }
-        }
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public mOrg ParentObj
-        {
-            get { return parentObj; }
-            set
-            {
-
-                parentObj = value;
-                if (value == null)
-                {
-                    parentID = null;
-                }
-                else
-                {
-                    ParentID = value.OrgID;
-                }
-            }
-        }
-
+      
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //if (gridView1.RowCount>0)
             //{
-            //     IList<PJ_18gysbpj> pjlist=new List<PJ_18gysbpj>();
+            //     IList<PJ_18gysbpjmx> pjlist=new List<PJ_18gysbpjmx>();
             //    for (int i = 0; i < gridView1.RowCount; i++)
             //    {
-            //        pjlist.Add(gridView1.GetRow(i) as PJ_18gysbpj);
+            //        pjlist.Add(gridView1.GetRow(i) as PJ_18gysbpjmx);
             //    }
             //   Export18.ExportExcel(pjlist);
             //}

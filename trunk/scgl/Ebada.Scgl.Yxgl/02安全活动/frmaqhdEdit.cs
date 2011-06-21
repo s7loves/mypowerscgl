@@ -190,5 +190,10 @@ namespace Ebada.Scgl.Yxgl
         {
 
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("02安全活动记录簿", "安全活动内容", memoEdit1);
+        }
     }
 }

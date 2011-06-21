@@ -15,20 +15,26 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Yxgl
 {
-    public partial class frm25Edit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_25> m_CityDic = new SortableSearchableBindingList<PJ_25>();
+    public partial class frm18gysbpjmxEdit : FormBase, IPopupFormEdit {
+        SortableSearchableBindingList<PJ_18gysbpjmx> m_CityDic = new SortableSearchableBindingList<PJ_18gysbpjmx>();
 
-        public frm25Edit() {
+        public frm18gysbpjmxEdit() {
             InitializeComponent();
         }
         void dataBind() {
 
-
-
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "cqdw");
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "qdrq");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
-
+            PJ_18gysbpjmx temp = new PJ_18gysbpjmx();
+         
+            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "rq");
+            //this.dateEdit2.DataBindings.Add("EditValue", rowData, "CreateDate");
+            this.spinEdit1.DataBindings.Add("EditValue", rowData, "xh");
+            this.spinEdit2.DataBindings.Add("EditValue", rowData, "one");
+            this.spinEdit3.DataBindings.Add("EditValue", rowData, "two");
+            this.spinEdit4.DataBindings.Add("EditValue", rowData, "three");
+            this.spinEdit5.DataBindings.Add("EditValue", rowData, "whl");
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbdy");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "fzdw");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr");
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -36,7 +42,7 @@ namespace Ebada.Scgl.Yxgl
 
         }
         #region IPopupFormEdit Members
-        private PJ_25 rowData = null;
+        private PJ_18gysbpjmx rowData = null;
 
         public object RowData {
             get {
@@ -45,11 +51,11 @@ namespace Ebada.Scgl.Yxgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_25;
+                    this.rowData = value as PJ_18gysbpjmx;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_25>(value as PJ_25, rowData);
+                    ConvertHelper.CopyTo<PJ_18gysbpjmx>(value as PJ_18gysbpjmx, rowData);
                 }
             }
         }
@@ -58,7 +64,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitComboBoxData() {
             //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_25>(" WHERE Citylevel = '2'"));
+            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_18gysbpjmx>(" WHERE Citylevel = '2'"));
           /*  IList<DicType> list = new List<DicType>();
             list.Add(new DicType("0", "机构"));
             list.Add(new DicType("1", "供电所"));
@@ -129,7 +135,5 @@ namespace Ebada.Scgl.Yxgl
         {
 
         }
-
-      
     }
 }

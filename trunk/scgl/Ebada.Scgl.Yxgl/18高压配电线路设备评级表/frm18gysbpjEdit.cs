@@ -23,22 +23,16 @@ namespace Ebada.Scgl.Yxgl
         }
         void dataBind() {
 
-
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "rq");
+            PJ_18gysbpj temp = new PJ_18gysbpj();
+         
+           this.dateEdit1.DataBindings.Add("EditValue", rowData, "rq");
             //this.dateEdit2.DataBindings.Add("EditValue", rowData, "CreateDate");
-            this.spinEdit1.DataBindings.Add("EditValue", rowData, "xh");
-            this.spinEdit2.DataBindings.Add("EditValue", rowData, "one");
-            this.spinEdit3.DataBindings.Add("EditValue", rowData, "two");
-            this.spinEdit4.DataBindings.Add("EditValue", rowData, "three");
-            this.spinEdit5.DataBindings.Add("EditValue", rowData, "whl");
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbdy");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "fzdw");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr");
-            //
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
-
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "fzr");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "zbr");
+          
+      
+        
+                
         }
         #region IPopupFormEdit Members
         private PJ_18gysbpj rowData = null;
@@ -62,16 +56,11 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_18gysbpj>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+            comboBoxEdit1.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.Clear();
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            comboBoxEdit1.Properties.Items.AddRange(ryList);
+            comboBoxEdit3.Properties.Items.AddRange(ryList);
         }
 
         /// <summary>
@@ -95,44 +84,5 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
