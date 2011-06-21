@@ -154,6 +154,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+            dsoFramerControl1.FileSave();
             pjobject.BigData = dsoFramerControl1.FileData;
             dsoFramerControl1.Dispose();
             this.DialogResult = DialogResult.OK;
