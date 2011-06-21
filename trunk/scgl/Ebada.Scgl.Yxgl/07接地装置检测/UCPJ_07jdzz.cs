@@ -33,13 +33,14 @@ namespace Ebada.Scgl.Yxgl
 
         public event SendDataEventHandler<PJ_07jdzz> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
+        frm07JDZZEdit frm = new frm07JDZZEdit();
         private string parentID = null;
         private mOrg parentObj;
         public UCPJ_07jdzz()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_07jdzz>(gridControl1, gridView1, barManager1, new frm07JDZZEdit());
+            gridViewOperation = new GridViewOperation<PJ_07jdzz>(gridControl1, gridView1, barManager1, frm);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_07jdzz>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_07jdzz>(gridViewOperation_BeforeDelete);
@@ -77,6 +78,7 @@ namespace Ebada.Scgl.Yxgl
             
             if (org != null)
             {
+                frm.ParentID = org.OrgCode;
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
