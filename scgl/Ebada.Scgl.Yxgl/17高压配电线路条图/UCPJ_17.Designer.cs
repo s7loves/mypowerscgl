@@ -49,10 +49,13 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btGDS = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // treeList1
@@ -69,7 +72,7 @@
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.typeCBox,
             this.typeLookUp});
-            this.treeList1.Size = new System.Drawing.Size(549, 326);
+            this.treeList1.Size = new System.Drawing.Size(664, 326);
             this.treeList1.TabIndex = 0;
             // 
             // typeCBox
@@ -108,8 +111,11 @@
             this.btRefresh,
             this.btClose,
             this.btExport,
-            this.btFind});
-            this.barManager1.MaxItemId = 10;
+            this.btFind,
+            this.btGDS});
+            this.barManager1.MaxItemId = 11;
+            this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEdit1});
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -119,6 +125,7 @@
             this.bar1.DockRow = 0;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGDS, "", false, true, true, 114),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd2),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit, true),
@@ -223,13 +230,13 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(549, 26);
+            this.barDockControlTop.Size = new System.Drawing.Size(664, 26);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 352);
-            this.barDockControlBottom.Size = new System.Drawing.Size(549, 22);
+            this.barDockControlBottom.Size = new System.Drawing.Size(664, 22);
             // 
             // barDockControlLeft
             // 
@@ -240,7 +247,7 @@
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(549, 26);
+            this.barDockControlRight.Location = new System.Drawing.Point(664, 26);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
             // 
             // imageList1
@@ -262,6 +269,20 @@
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
             // 
+            // btGDS
+            // 
+            this.btGDS.Caption = "barEditItem1";
+            this.btGDS.Edit = this.repositoryItemLookUpEdit1;
+            this.btGDS.Id = 10;
+            this.btGDS.Name = "btGDS";
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            // 
             // UCPJ_17
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -272,11 +293,12 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "UCPJ_17";
-            this.Size = new System.Drawing.Size(549, 374);
+            this.Size = new System.Drawing.Size(664, 374);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -302,5 +324,7 @@
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox typeCBox;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit typeLookUp;
+        private DevExpress.XtraBars.BarEditItem btGDS;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
     }
 }

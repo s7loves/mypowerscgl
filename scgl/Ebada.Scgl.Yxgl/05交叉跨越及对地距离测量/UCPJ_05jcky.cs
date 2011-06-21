@@ -34,13 +34,14 @@ namespace Ebada.Scgl.Yxgl
         public event SendDataEventHandler<PJ_05jcky> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
+        frmjckyEdit frm = new frmjckyEdit();
         private mOrg parentObj;
         public UCPJ_05jcky()
         {
             InitializeComponent();
             bar3.Visible = false;
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_05jcky>(gridControl1, gridView1, barManager1, new frmjckyEdit());
+            gridViewOperation = new GridViewOperation<PJ_05jcky>(gridControl1, gridView1, barManager1, frm);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_05jcky>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_05jcky>(gridViewOperation_BeforeDelete);
@@ -90,6 +91,7 @@ namespace Ebada.Scgl.Yxgl
             
             if (org != null)
             {
+                frm.ParentID = org.OrgCode;
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
@@ -128,7 +130,8 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            //hideColumn("GdsCode");
+            hideColumn("LineID");
+            hideColumn("gtID");
         }
         /// <summary>
         /// 刷新数据
