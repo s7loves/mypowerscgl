@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F20882E3-3C19-4EE9-914E-2C181DA37F98}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -120,12 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DSOFramerWordControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DSOFramerWordControl.Designer.cs">
-      <DependentUpon>DSOFramerWordControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="模板生成\frmExcelEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,7 +132,6 @@
     <Compile Include="模板生成\frmExcelModelEdit.Designer.cs">
       <DependentUpon>frmExcelModelEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="GZipHelper.cs" />
     <Compile Include="LPFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,10 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="DSOFramerWordControl.resx">
-      <DependentUpon>DSOFramerWordControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="模板生成\frmExcelEdit.resx">
       <DependentUpon>frmExcelEdit.cs</DependentUpon>
       <SubType>Designer</SubType>

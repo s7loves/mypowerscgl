@@ -40,7 +40,7 @@
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
-            this.dsoFramerWordControl1 = new TONLI.dsoframers.DSOFramerWordControl();
+            this.dsoFramerWordControl1 = new Ebada.Scgl.Core.DSOFramerControl();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -205,7 +205,7 @@
         private DevExpress.XtraEditors.TextEdit textEdit2;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnOK;
-        private TONLI.dsoframers.DSOFramerWordControl dsoFramerWordControl1;
+        private new Ebada.Scgl.Core.DSOFramerControl dsoFramerWordControl1;
 
     }
 }
