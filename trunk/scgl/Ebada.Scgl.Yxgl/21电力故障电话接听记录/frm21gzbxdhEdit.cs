@@ -76,6 +76,7 @@ namespace Ebada.Scgl.Yxgl
                 this.comboBoxEdit3.Properties.Items.AddRange(ryList);
                 this.comboBoxEdit4.Properties.Items.AddRange(ryList);
             }
+            ComboBoxHelper.FillCBoxByDyk("21电力故障电话接听记录", "故障简况", comboBoxEdit6.Properties);
             
         }
 
@@ -137,20 +138,20 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit6_Properties_Click(object sender, EventArgs e)
         {
-            frmDykSelector dlg = new frmDykSelector();
-            PJ_dyk dyk = null;
-            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='21电力故障电话接听记录' and sx='故障简况' and parentid=''");
-            if (parentObj != null)
-            {
-                dlg.ucpJ_dykSelector1.ParentObj = parentObj;
-                // dlg.TxtMemo = txt;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    comboBoxEdit6.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
-                }
+            //frmDykSelector dlg = new frmDykSelector();
+            //PJ_dyk dyk = null;
+            //PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='21电力故障电话接听记录' and sx='故障简况' and parentid=''");
+            //if (parentObj != null)
+            //{
+            //    dlg.ucpJ_dykSelector1.ParentObj = parentObj;
+            //    // dlg.TxtMemo = txt;
+            //    if (dlg.ShowDialog() == DialogResult.OK)
+            //    {
+            //        comboBoxEdit6.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
+            //    }
 
 
-            }
+            //}
         }
     }
 }
