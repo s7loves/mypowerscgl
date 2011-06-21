@@ -129,5 +129,11 @@ namespace Ebada.Scgl.Yxgl
         {
 
         }
+
+        private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            comboBoxEdit2.Properties.DataSource = list;
+        }
     }
 }
