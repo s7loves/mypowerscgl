@@ -57,7 +57,13 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-
+            IList<PJ_dyk> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "05交叉跨越及对地距离测量记录", "结论"));
+            object[] yylist = new object[list.Count];
+            for (int i = 0; i < list.Count; i++)
+            {
+                yylist[i] = list[i].nr;
+            }
+            this.comboBoxEdit2.Properties.Items.AddRange(yylist);
         }
 
         /// <summary>
