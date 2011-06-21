@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "gzfzr");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "sdsj");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "tdsj");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "jxnr");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "jxnr", false, DataSourceUpdateMode.OnPropertyChanged);
            
             
 
@@ -150,7 +150,7 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("08设备停电检修记录", "检修内容", memoEdit1);
-            memoEdit1.Focus();
+            //memoEdit1.Focus();
         }
 
         private void comboBoxEdit4_Properties_Click(object sender, EventArgs e)
