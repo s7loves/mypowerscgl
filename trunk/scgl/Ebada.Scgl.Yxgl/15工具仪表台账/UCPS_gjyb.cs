@@ -108,7 +108,7 @@ namespace Ebada.Scgl.Yxgl
             //需要初始化数据时在这写代码
             if (MainHelper.UserOrg != null)
             {
-                string strSQL = "where OrgID='" + MainHelper.UserOrg.OrgCode + "' order by SBid desc";
+                string strSQL = "where OrgID='" + MainHelper.UserOrg.OrgCode + "' order by sbID desc";
                 RefreshData(strSQL);
             }
         }
@@ -120,8 +120,8 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("sbID");
-            hideColumn("OrgID");
+            //hideColumn("sbID");
+            //hideColumn("OrgID");
             //hideColumn("gzrjID");
 
         }

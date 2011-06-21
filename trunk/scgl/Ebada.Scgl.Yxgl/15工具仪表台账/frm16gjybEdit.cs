@@ -70,6 +70,9 @@ namespace Ebada.Scgl.Yxgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
+            ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "名称",comboBoxEdit1.Properties);
+            ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "制 造 厂 家",comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "编  号",comboBoxEdit5.Properties);
         }
 
         /// <summary>
@@ -135,56 +138,56 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit1_Properties_Click(object sender, EventArgs e)
         {
-            frmDykSelector dlg = new frmDykSelector();
-            PJ_dyk dyk = null;
-            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='15工具仪表台账' and sx='名称' and parentid=''");
-            if (parentObj != null)
-            {
-                dlg.ucpJ_dykSelector1.ParentObj = parentObj;
-                // dlg.TxtMemo = txt;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    comboBoxEdit1.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
-                }
+            //frmDykSelector dlg = new frmDykSelector();
+            //PJ_dyk dyk = null;
+            //PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='15工具仪表台账' and sx='名称' and parentid=''");
+            //if (parentObj != null)
+            //{
+            //    dlg.ucpJ_dykSelector1.ParentObj = parentObj;
+            //    // dlg.TxtMemo = txt;
+            //    if (dlg.ShowDialog() == DialogResult.OK)
+            //    {
+            //        comboBoxEdit1.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
+            //    }
 
 
-            }
+            //}
         }
 
         private void comboBoxEdit4_Properties_Click(object sender, EventArgs e)
         {
-            frmDykSelector dlg = new frmDykSelector();
-            PJ_dyk dyk = null;
-            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='15工具仪表台账' and sx='制 造 厂 家' and parentid=''");
-            if (parentObj != null)
-            {
-                dlg.ucpJ_dykSelector1.ParentObj = parentObj;
-                // dlg.TxtMemo = txt;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    comboBoxEdit4.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
-                }
+            //frmDykSelector dlg = new frmDykSelector();
+            //PJ_dyk dyk = null;
+            //PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='15工具仪表台账' and sx='制 造 厂 家' and parentid=''");
+            //if (parentObj != null)
+            //{
+            //    dlg.ucpJ_dykSelector1.ParentObj = parentObj;
+            //    // dlg.TxtMemo = txt;
+            //    if (dlg.ShowDialog() == DialogResult.OK)
+            //    {
+            //        comboBoxEdit4.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
+            //    }
 
 
-            }
+            //}
         }
 
         private void comboBoxEdit5_Properties_Click(object sender, EventArgs e)
         {
-            frmDykSelector dlg = new frmDykSelector();
-            PJ_dyk dyk = null;
-            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='15工具仪表台账' and sx='编  号' and parentid=''");
-            if (parentObj != null)
-            {
-                dlg.ucpJ_dykSelector1.ParentObj = parentObj;
-                // dlg.TxtMemo = txt;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    comboBoxEdit4.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
-                }
+            //frmDykSelector dlg = new frmDykSelector();
+            //PJ_dyk dyk = null;
+            //PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='15工具仪表台账' and sx='编  号' and parentid=''");
+            //if (parentObj != null)
+            //{
+            //    dlg.ucpJ_dykSelector1.ParentObj = parentObj;
+            //    // dlg.TxtMemo = txt;
+            //    if (dlg.ShowDialog() == DialogResult.OK)
+            //    {
+            //        comboBoxEdit4.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
+            //    }
 
 
-            }
+            //}
         }
     }
 }
