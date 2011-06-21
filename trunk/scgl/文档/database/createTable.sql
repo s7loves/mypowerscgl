@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     2011-6-16 15:42:42                           */
+/* Created on:     2011-6-21 9:27:26                            */
 /*==============================================================*/
 
 
@@ -72,6 +72,13 @@ if exists (select 1
    where r.fkeyid = object_id('dbo.PJ_14aqgjsy') and o.name = 'FK_PJ_14AQG_REFERENCE_PS_AQGJ')
 alter table dbo.PJ_14aqgjsy
    drop constraint FK_PJ_14AQG_REFERENCE_PS_AQGJ
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.PJ_18gysbpjmx') and o.name = 'FK_PJ_18GYS_REFERENCE_PJ_18GYS')
+alter table dbo.PJ_18gysbpjmx
+   drop constraint FK_PJ_18GYS_REFERENCE_PJ_18GYS
 go
 
 if exists (select 1
@@ -377,6 +384,13 @@ go
 
 if exists (select 1
             from  sysobjects
+           where  id = object_id('dbo.PJ_18gysbpjmx')
+            and   type = 'U')
+   drop table dbo.PJ_18gysbpjmx
+go
+
+if exists (select 1
+            from  sysobjects
            where  id = object_id('dbo.PJ_19')
             and   type = 'U')
    drop table dbo.PJ_19
@@ -450,6 +464,20 @@ if exists (select 1
            where  id = object_id('dbo.PS_aqgj')
             and   type = 'U')
    drop table dbo.PS_aqgj
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.PS_byqxh')
+            and   type = 'U')
+   drop table dbo.PS_byqxh
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.PS_dxxh')
+            and   type = 'U')
+   drop table dbo.PS_dxxh
 go
 
 if exists (select 1
@@ -743,6 +771,7 @@ create table dbo.PJ_02aqhd (
    zcr                  nvarchar(50)         null,
    kssj                 datetime             null,
    jssj                 datetime             null,
+   hydd                 nvarchar(50)         null,
    cjry                 nvarchar(500)        null,
    qxry                 nvarchar(150)        null,
    hdnr                 nvarchar(4000)       null,
@@ -791,6 +820,11 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '结束时间',
    'user', 'dbo', 'table', 'PJ_02aqhd', 'column', 'jssj'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '会议地点',
+   'user', 'dbo', 'table', 'PJ_02aqhd', 'column', 'hydd'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -855,8 +889,10 @@ create table dbo.PJ_03yxfx (
    ID                   nvarchar(50)         not null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
+   type                 nvarchar(50)         null,
    zcr                  nvarchar(50)         null,
    rq                   datetime             null,
+   hydd                 nvarchar(50)         null,
    cjry                 nvarchar(500)        null,
    zt                   nvarchar(500)        null,
    jy                   nvarchar(4000)       null,
@@ -892,6 +928,11 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 execute sp_addextendedproperty 'MS_Description', 
+   '会议类型,定期,专题',
+   'user', 'dbo', 'table', 'PJ_03yxfx', 'column', 'type'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
    '主持人',
    'user', 'dbo', 'table', 'PJ_03yxfx', 'column', 'zcr'
 go
@@ -899,6 +940,11 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '日期',
    'user', 'dbo', 'table', 'PJ_03yxfx', 'column', 'rq'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '会议地点',
+   'user', 'dbo', 'table', 'PJ_03yxfx', 'column', 'hydd'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -2689,22 +2735,16 @@ go
 /* Table: PJ_18gysbpj                                           */
 /*==============================================================*/
 create table dbo.PJ_18gysbpj (
-   ID                   nvarchar(50)         not null,
+   PJ_ID                nvarchar(50)         not null,
    OrgCode              nvarchar(50)         null,
    OrgName              nvarchar(50)         null,
-   rq                   nvarchar(50)         null,
-   xh                   int                  null,
-   sbdy                 nvarchar(50)         null,
-   one                  int                  null,
-   two                  int                  null,
-   three                int                  null,
-   whl                  decimal(8,2)         null,
-   qxnr                 nvarchar(250)        null,
-   fzdw                 nvarchar(50)         null,
+   rq                   datetime             null,
+   fzr                  nvarchar(50)         null,
+   zbr                  nvarchar(50)         null,
    gzrjID               nvarchar(50)         null,
    CreateMan            nvarchar(10)         null,
    CreateDate           datetime             null,
-   constraint PK_PJ_18GYSBPJ primary key (ID)
+   constraint PK_PJ_18GYSBPJ primary key (PJ_ID)
 )
 go
 
@@ -2715,7 +2755,7 @@ go
 
 execute sp_addextendedproperty 'MS_Description', 
    '记录ID',
-   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'ID'
+   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'PJ_ID'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -2729,48 +2769,18 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 execute sp_addextendedproperty 'MS_Description', 
-   '日期',
+   '报出日期',
    'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'rq'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
-   '序号',
-   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'xh'
+   '负责人',
+   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'fzr'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
-   '设备单元名称',
-   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'sbdy'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '一类数量',
-   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'one'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '二类数量',
-   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'two'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '三类数量',
-   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'three'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '完好率',
-   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'whl'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '缺陷内容',
-   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'qxnr'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '负责单位',
-   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'fzdw'
+   '制表人',
+   'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'zbr'
 go
 
 execute sp_addextendedproperty 'MS_Description', 
@@ -2786,6 +2796,91 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '填写日期',
    'user', 'dbo', 'table', 'PJ_18gysbpj', 'column', 'CreateDate'
+go
+
+/*==============================================================*/
+/* Table: PJ_18gysbpjmx                                         */
+/*==============================================================*/
+create table dbo.PJ_18gysbpjmx (
+   ID                   nvarchar(50)         not null,
+   PJ_ID                nvarchar(50)         null,
+   xh                   int                  null,
+   sbdy                 nvarchar(50)         null,
+   one                  int                  null,
+   two                  int                  null,
+   three                int                  null,
+   whl                  decimal(8,2)         null,
+   qxnr                 nvarchar(250)        null,
+   fzdw                 nvarchar(50)         null,
+   CreateMan            nvarchar(10)         null,
+   CreateDate           datetime             null,
+   constraint PK_PJ_18GYSBPJMX primary key (ID)
+)
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '18高压配电设备评级明细表',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '记录ID',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'ID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '记录ID',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'PJ_ID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '序号',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'xh'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '设备单元名称',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'sbdy'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '一类数量',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'one'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '二类数量',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'two'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '三类数量',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'three'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '完好率',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'whl'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '缺陷内容',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'qxnr'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '负责单位',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'fzdw'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '填写人',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'CreateMan'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '填写日期',
+   'user', 'dbo', 'table', 'PJ_18gysbpjmx', 'column', 'CreateDate'
 go
 
 /*==============================================================*/
@@ -3721,6 +3816,104 @@ go
 execute sp_addextendedproperty 'MS_Description', 
    '设备型号',
    'user', 'dbo', 'table', 'PS_aqgj', 'column', 'sbModle'
+go
+
+/*==============================================================*/
+/* Table: PS_byqxh                                              */
+/*==============================================================*/
+create table dbo.PS_byqxh (
+   ID                   nvarchar(50)         not null,
+   byqModle             nvarchar(50)         null,
+   byqVol               nvarchar(50)         null,
+   byqCapcity           int                  null,
+   Loss1                decimal(8,2)         null,
+   Loss2                decimal(8,2)         null,
+   Ratedcurrent         decimal(8,2)         null,
+   constraint PK_PS_BYQXH primary key (ID)
+)
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '变压器型号',
+   'user', 'dbo', 'table', 'PS_byqxh'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   'ID',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'ID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '变压器型号',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'byqModle'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '电压等级',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'byqVol'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '容量',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'byqCapcity'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '短路损耗',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'Loss1'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '开路损耗',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'Loss2'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '额定电流',
+   'user', 'dbo', 'table', 'PS_byqxh', 'column', 'Ratedcurrent'
+go
+
+/*==============================================================*/
+/* Table: PS_dxxh                                               */
+/*==============================================================*/
+create table dbo.PS_dxxh (
+   ID                   nvarchar(50)         not null,
+   dydj                 nvarchar(50)         null,
+   dxxh                 nvarchar(50)         null,
+   dwdz                 decimal(8,2)         null,
+   jmj                  decimal(8,2)         null,
+   constraint PK_PS_DXXH primary key (ID)
+)
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '导线型号',
+   'user', 'dbo', 'table', 'PS_dxxh'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   'ID',
+   'user', 'dbo', 'table', 'PS_dxxh', 'column', 'ID'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '电压等级',
+   'user', 'dbo', 'table', 'PS_dxxh', 'column', 'dydj'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '导线型号',
+   'user', 'dbo', 'table', 'PS_dxxh', 'column', 'dxxh'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '单位电阻',
+   'user', 'dbo', 'table', 'PS_dxxh', 'column', 'dwdz'
+go
+
+execute sp_addextendedproperty 'MS_Description', 
+   '载面积',
+   'user', 'dbo', 'table', 'PS_dxxh', 'column', 'jmj'
 go
 
 /*==============================================================*/
@@ -5412,6 +5605,12 @@ go
 alter table dbo.PJ_14aqgjsy
    add constraint FK_PJ_14AQG_REFERENCE_PS_AQGJ foreign key (sbID)
       references dbo.PS_aqgj (sbID)
+         on update cascade on delete cascade
+go
+
+alter table dbo.PJ_18gysbpjmx
+   add constraint FK_PJ_18GYS_REFERENCE_PJ_18GYS foreign key (PJ_ID)
+      references dbo.PJ_18gysbpj (PJ_ID)
          on update cascade on delete cascade
 go
 
