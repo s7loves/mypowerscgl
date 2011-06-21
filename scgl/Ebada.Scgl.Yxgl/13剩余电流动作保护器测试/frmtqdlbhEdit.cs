@@ -21,6 +21,14 @@ namespace Ebada.Scgl.Yxgl
         public frmtqdlbhEdit() {
             InitializeComponent();
         }
+        private string lineCode = "";
+
+        public string LineCode
+        {
+            get { return lineCode; }
+            set { lineCode = value; }
+        }
+
         void dataBind() {
 
 
@@ -34,7 +42,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sbModle");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "glr");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dzdl");
-            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "tqName");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "tqID");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "InstallAdress");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "dzsj");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "sbName");
@@ -68,6 +76,37 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
+            IList<PJ_dyk> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "额定漏电动作电流"));
+            object[] yylist = new object[list.Count];
+            for (int i = 0; i < list.Count; i++)
+            {
+                yylist[i] = list[i].nr;
+            }
+            this.comboBoxEdit4.Properties.Items.AddRange(yylist);
+            IList<PJ_dyk> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "型   号"));
+            object[] yylist2 = new object[list2.Count];
+            for (int i = 0; i < list2.Count; i++)
+            {
+                yylist2[i] = list2[i].nr;
+            }
+            this.comboBoxEdit2.Properties.Items.AddRange(yylist2);
+            IList<PJ_dyk> list3 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "制造厂名"));
+            object[] yylist3 = new object[list3.Count];
+            for (int i = 0; i < list3.Count; i++)
+            {
+                yylist3[i] = list3[i].nr;
+            }
+            this.comboBoxEdit9.Properties.Items.AddRange(yylist3);
+            IList<PJ_dyk> list4 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "13剩余电流动作保护器测试记录", "额定漏电动作时间"));
+            object[] yylist4 = new object[list4.Count];
+            for (int i = 0; i < list4.Count; i++)
+            {
+                yylist4[i] = list4[i].nr;
+            }
+            this.comboBoxEdit7.Properties.Items.AddRange(yylist4);
+
+            IList<PS_tq> listtq = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>("where xlCode='" + lineCode + "'");
+            comboBoxEdit5.Properties.DataSource = listtq;
 
         }
 
@@ -92,46 +131,9 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
+      
 
-        }
-
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl13_Click(object sender, EventArgs e)
-        {
-
-        }
-
+     
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (comboBoxEdit5.Text == "")
@@ -146,6 +148,7 @@ namespace Ebada.Scgl.Yxgl
                 textEdit1.Focus();
                 return;
             }
+            rowData.tqName = comboBoxEdit5.Text;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
