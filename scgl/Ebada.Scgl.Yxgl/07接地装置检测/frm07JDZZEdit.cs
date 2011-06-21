@@ -17,21 +17,36 @@ namespace Ebada.Scgl.Yxgl
 {
     public partial class frm07JDZZEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_07jdzz> m_CityDic = new SortableSearchableBindingList<PJ_07jdzz>();
+        private string parentID = "";
 
+        public string ParentID
+        {
+            get { return parentID; }
+            set { parentID = value; }
+        }
         public frm07JDZZEdit() {
             InitializeComponent();
         }
         void dataBind() {
 
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineName");
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineID");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "gth");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "gzwz");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbmc");
-            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xhgg");
+            //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xhgg");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "jddz");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "tz");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "trdzr");
+            if (rowData.xhgg != "")
+            {
+                string[] str=rowData.xhgg.Split("|".ToCharArray());
+                if (str.Length > 1)
+                {
+                    comboBoxEdit5.Text = str[0];
+                    comboBoxEdit9.Text = str[1];
+                }
+            }
 
         }
         #region IPopupFormEdit Members
@@ -63,6 +78,9 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "接地电阻", comboBoxEdit6);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土质", comboBoxEdit7);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8);
+
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
+            comboBoxEdit1.Properties.DataSource = xlList;
         }
 
         /// <summary>
@@ -86,44 +104,44 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
+     
 
+        private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            comboBoxEdit2.Properties.DataSource = list;
         }
 
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void frm07JDZZEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl5_Click(object sender, EventArgs e)
-        {
-
+            if (comboBoxEdit1.Text=="")
+            {
+                MsgBox.ShowTipMessageBox("线路名称不能为空。");
+                comboBoxEdit1.Focus();
+                return;
+            }
+            if (comboBoxEdit4.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("保护设备名称不能为空。");
+                comboBoxEdit4.Focus();
+                return;
+            }
+            if (comboBoxEdit5.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("保护设备型号不能为空。");
+                comboBoxEdit5.Focus();
+                return;
+            }
+            if (comboBoxEdit9.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("保护设备规格不能为空。");
+                comboBoxEdit9.Focus();
+                return;
+            }
+            rowData.LineName = comboBoxEdit1.Text;
+            rowData.xhgg = comboBoxEdit5.Text + "|" + comboBoxEdit9.Text;
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
