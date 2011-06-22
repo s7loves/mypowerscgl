@@ -107,7 +107,7 @@ namespace Ebada.Scgl.Lpgl
                 InitContorl();
             //currRecord = rowData;
             if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
-            {
+            {              
                 this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;                
             }
             else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0)
@@ -239,7 +239,7 @@ namespace Ebada.Scgl.Lpgl
                     }
                     else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
                     {
-                        (ctrl as DevExpress.XtraEditors.DateEdit).DateTime = Convert.ToDateTime("");
+                        (ctrl as DevExpress.XtraEditors.DateEdit).DateTime = System.DateTime.Now;
                     }
                     else
                         ctrl.Text = "";
