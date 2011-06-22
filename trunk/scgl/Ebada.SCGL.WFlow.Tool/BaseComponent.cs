@@ -254,7 +254,9 @@ namespace Ebada.SCGL.WFlow.Tool
             Y=LocalPoint.Y;
             TaskName="启动节点"+orderId.ToString();
             TaskType=1;
-            icon = new Icon("启动节点.ico");
+
+            icon = Icon.FromHandle(new Bitmap( Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.启动节点.ico"))).GetHicon());
+            
             bounds=new Rectangle(LocalPoint,icon.Size);
         
 
@@ -275,7 +277,7 @@ namespace Ebada.SCGL.WFlow.Tool
             Y=LocalPoint.Y;
             TaskName="交互节点"+orderId.ToString();
             TaskType=3;
-            icon = new Icon("交互节点.ico");
+            icon = Icon.FromHandle(new Bitmap(Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.交互节点.ico"))).GetHicon());
             bounds=new Rectangle(LocalPoint,icon.Size);
             
         }    
@@ -295,8 +297,8 @@ namespace Ebada.SCGL.WFlow.Tool
             X=LocalPoint.X;
             Y=LocalPoint.Y;
             TaskName = "控制节点" + orderId.ToString();
-            TaskType=4;
-            icon = new Icon("控制节点.ico");
+            TaskType = 4;
+            icon = Icon.FromHandle(new Bitmap(Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.控制节点.ico"))).GetHicon());
             bounds=new Rectangle(LocalPoint,icon.Size);    
         }
         
@@ -314,7 +316,7 @@ namespace Ebada.SCGL.WFlow.Tool
             Y=LocalPoint.Y;
             TaskName="子流程节点"+orderId.ToString();
             TaskType=6;
-            icon = new Icon("子流程节点.ico");
+            icon = Icon.FromHandle(new Bitmap(Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.子流程节点.ico"))).GetHicon());
             bounds=new Rectangle(LocalPoint,icon.Size);
         
         }    
@@ -336,7 +338,7 @@ namespace Ebada.SCGL.WFlow.Tool
             Y=LocalPoint.Y;
             TaskName="自动节点"+orderId.ToString();
             TaskType=6;
-            icon = new Icon("自连线.ico");
+            icon = Icon.FromHandle(new Bitmap(Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.自连线.ico"))).GetHicon());
             bounds=new Rectangle(LocalPoint,icon.Size);
         
         }    
@@ -371,7 +373,7 @@ namespace Ebada.SCGL.WFlow.Tool
             Y=LocalPoint.Y;
             TaskName="查看节点"+orderId.ToString();
             TaskType=5;
-            icon = new Icon("查看节点.ico");
+            icon = Icon.FromHandle(new Bitmap(Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.查看节点.ico"))).GetHicon());
             bounds=new Rectangle(localPoint,icon.Size);            
         }        
 
@@ -388,8 +390,8 @@ namespace Ebada.SCGL.WFlow.Tool
             X=LocalPoint.X;
             Y=LocalPoint.Y;
             TaskName="结束节点"+orderId.ToString();
-            TaskType=2;
-            icon = new Icon("终止节点.ico");
+            TaskType = 2;
+            icon = Icon.FromHandle(new Bitmap(Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.终止节点.ico"))).GetHicon());
             bounds=new Rectangle(localPoint,icon.Size);
 
         }        
