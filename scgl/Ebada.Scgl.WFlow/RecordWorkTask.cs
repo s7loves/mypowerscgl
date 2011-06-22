@@ -28,29 +28,37 @@ namespace Ebada.Scgl.WFlow
     
  
         /// <summary>
-        /// 获得当前用户是否可以新建运行定期分析记录权限
+        /// 获得当前用户是否可以新建运行分析记录权限
         /// </summary>
-        /// <returns></returns>
-        public static  bool HaveRewNewDQFXRole()
+        /// <param name="recordIkind">运行分析记录种类</param>
+        /// <returns>bool true有权限 false 无权限</returns>
+        public static bool HaveRewNewYXFXRole(string recordIkind)
         {
             if (MainHelper.UserOrg.OrgName.IndexOf("供电所") > -1)
             {
+                if (recordIkind=="定期分析")
                 return WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "供电所定期分析").Rows.Count > 0 ? true : false;
+                else if (recordIkind == "专题分析")
+                    return WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "供电所专题分析").Rows.Count > 0 ? true : false;
 
+                return false;
             }
             else if (MainHelper.UserOrg.OrgName.IndexOf("局") > -1)
             {
+                if (recordIkind == "定期分析")
                 return WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "局定期分析").Rows.Count > 0 ? true : false;
-
+                else if (recordIkind == "专题分析")
+                    return WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "局专题分析").Rows.Count > 0 ? true : false;
+                return false;
             }
             else
                 return false;
         }
         /// <summary>
-        /// 获得当前用户是否可以运行当前定期分析记录权限
+        /// 获得当前用户是否可以运行当前分析记录权限
         /// </summary>
         /// <returns></returns>
-        public static bool HaveRunDQFXRole(string recordID)
+        public static bool HaveRunYXFXRole(string recordID)
         {
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             if (wf.Count == 0) return false;
@@ -65,7 +73,7 @@ namespace Ebada.Scgl.WFlow
         /// 获得当前用户可以运行当前记录的流程信息
         /// </summary>
         /// <returns></returns>
-        public static DataTable GetDQFXRecord(string recordID)
+        public static DataTable GetYXFXRecord(string recordID)
         {
             DataTable dtnull = new DataTable();
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
@@ -92,21 +100,39 @@ namespace Ebada.Scgl.WFlow
             //byte[] _ImageBytes = _ImageMem.GetBuffer();
             return objBitmap;
         }
-        /// <summary>
-        /// 生成运行定期分析流程
-        /// </summary>
-        /// <returns></returns>
-        public static string RunNewDQFXRecord(string recordID)
+       /// <summary>
+        /// 创建运行分析流程
+       /// </summary>
+       /// <param name="recordID">记录ID</param>
+        /// <param name="recordIkind">运行分析记录种类</param>
+       /// <returns>流程创建结果</returns>
+        public static string RunNewYXFXRecord(string recordID, string recordIkind)
         {
             DataTable dt = null;
             if (MainHelper.UserOrg.OrgName.IndexOf("供电所") > -1)
             {
-                dt= WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "供电所定期分析");
+                if (recordIkind == "定期分析")
+                {
+                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "供电所定期分析");
+                }
+                else if (recordIkind == "专题分析")
+                {
+                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "供电所专题分析");
+                }
+
                 
             }
             else if (MainHelper.UserOrg.OrgName.IndexOf("局") > -1)
             {
-                dt= WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "局定期分析");
+                if (recordIkind == "定期分析")
+                {
+                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "局定期分析");
+                }
+                else if (recordIkind == "专题分析")
+                {
+                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "局专题分析");
+                }
+
 
             }
             WorkFlowRuntime wfruntime = new WorkFlowRuntime();
@@ -116,7 +142,15 @@ namespace Ebada.Scgl.WFlow
             wfruntime.WorkFlowInstanceId = Guid.NewGuid().ToString();
             wfruntime.WorkTaskInstanceId = Guid.NewGuid().ToString();
             wfruntime.WorkFlowNo = WorkFlowInstance.GetWorkflowNO();
-            wfruntime.CommandName = "提交";
+            DataTable taskCommand = WorkFlowTask.GetTaskCommands(wfruntime.WorkFlowId, wfruntime.WorkTaskId);
+            if (taskCommand.Rows.Count > 0)
+            {
+                wfruntime.CommandName = taskCommand.Rows[0]["CommandName"].ToString();
+            }
+            else
+            {
+                wfruntime.CommandName = "提交";
+            }
             wfruntime.WorkflowInsCaption = dt.Rows[0]["FlowCaption"].ToString();
             wfruntime.IsDraft = false;//保存并执行流程流转
 
@@ -136,38 +170,35 @@ namespace Ebada.Scgl.WFlow
             return strmes;
         }
         /// <summary>
-        /// 更新运行定期分析流程
+        /// 删除指定记录相关的记录
+        /// </summary>
+        /// <param name="recordID">记录ID</param>
+        public static void DeleteRecord(string recordID)
+        {
+            MainHelper.PlatformSqlMap.DeleteByWhere<PJ_gzrjnr>(" where ParentID='" + recordID + "'");
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
+            if (wf.Count == 0) return ;
+            {
+                MainHelper.PlatformSqlMap.Delete<WFP_RecordWorkTaskIns>(wf[0]);
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where WorkFlowInsId='" + wf[0].WorkFlowInsId  + "'");
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskInstance>(" where WorkFlowInsId='" + wf[0].WorkFlowInsId + "'");
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowInstance>(" where WorkFlowInsId='" + wf[0].WorkFlowInsId + "'");
+            }
+            
+            //return "";
+        }
+        /// <summary>
+        /// 更新运行分析流程
         /// </summary>
         /// <returns></returns>
         public static string RunDQFXRecord(string recordID, string OperatorInsId,string WorkTaskInsId, string command)
         {
-            //IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
-            //if (wf.Count == 0) return "Error";
-            //DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(MainHelper.User.UserID,wf[0].WorkFlowId,wf[0].WorkFlowInsId ,999);
            
             WorkFlowRuntime wfruntime = new WorkFlowRuntime();
             //wfruntime.RunSuccess += new WorkFlowRuntime.RunSuccessEventHandler(wfruntime_RunSuccess);
             //wfruntime.RunFail += new WorkFlowRuntime.RunFailEventHandler(wfruntime_RunFail);
             wfruntime.Run(MainHelper.User.UserID, OperatorInsId, command);
-            //wfruntime.UserId = MainHelper.User.UserID;
-            //wfruntime.WorkFlowId = wf[0].WorkFlowId;
-            //wfruntime.WorkTaskId = wf[0].WorkTaskId;
-            //wfruntime.WorkFlowInstanceId = wf[0].WorkFlowInsId ;
-            //wfruntime.WorkTaskInstanceId = wf[0].WorkTaskInsId ;
-            //wfruntime.WorkFlowNo = WorkFlowInstance.GetWorkflowNO();
-            //wfruntime.CommandName = "提交";
-            //wfruntime.WorkflowInsCaption = wf[0].w;
-            //wfruntime.IsDraft = false;//保存并执行流程流转
-
-            //WFP_RecordWorkTaskIns wpfrecord = new WFP_RecordWorkTaskIns();
-            //wpfrecord.RecordID = recordID;
-            //wpfrecord.WorkFlowId  = wfruntime.WorkFlowId;
-            //wpfrecord.WorkFlowInsId  = wfruntime.WorkFlowInstanceId;
-            //wpfrecord.WorkTaskId  = wfruntime.WorkTaskId;
-            //wpfrecord.WorkTaskInsId  = wfruntime.WorkTaskInstanceId;
-            //MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
-
-            //wfruntime.Start();
+            
             return Toollips(WorkTaskInsId);
             //return "";
         }
