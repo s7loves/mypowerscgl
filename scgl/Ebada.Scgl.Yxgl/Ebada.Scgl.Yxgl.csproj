@@ -129,6 +129,10 @@
     <Compile Include="03运行分析\frmyxfxEdit.Designer.cs">
       <DependentUpon>frmyxfxEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="03运行分析\UCPJ_03YXFXForm.cs" />
+    <Compile Include="03运行分析\UCPJ_03YXFXForm.Designer.cs">
+      <DependentUpon>UCPJ_03YXFXForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="04事故障碍异常\Export04.cs" />
     <Compile Include="04事故障碍异常\frmsgzaycEdit.cs">
       <SubType>Form</SubType>
@@ -607,6 +611,9 @@
     <EmbeddedResource Include="03运行分析\frmyxfxEdit.resx">
       <DependentUpon>frmyxfxEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="03运行分析\UCPJ_03YXFXForm.resx">
+      <DependentUpon>UCPJ_03YXFXForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="04事故障碍异常\frmsgzaycEdit.resx">
       <DependentUpon>frmsgzaycEdit.cs</DependentUpon>

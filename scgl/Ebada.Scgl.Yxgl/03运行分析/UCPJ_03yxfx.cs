@@ -23,7 +23,8 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Scgl.WFlow;
 using System.Collections;
-
+using Ebada.Core;
+using DevExpress.XtraEditors.Repository;
 namespace Ebada.Scgl.Yxgl
 {
     /// <summary>
@@ -36,6 +37,19 @@ namespace Ebada.Scgl.Yxgl
         public event SendDataEventHandler<PJ_03yxfx> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
+        private DataTable gridtable = null;
+        private GridColumn picview ;
+        private string  recordIkind;
+        public string   RecordIkind
+        {
+            get { return recordIkind; }
+            set
+            {
+                recordIkind = value;
+                
+            }
+        }
+        private   RepositoryItemImageEdit   imageEdit1 ;
         private mOrg parentObj;
         public UCPJ_03yxfx()
         {
@@ -47,7 +61,7 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_03yxfx>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
-        
+       
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_03yxfx> e)
         {
            
@@ -101,6 +115,7 @@ namespace Ebada.Scgl.Yxgl
         {
             gridView1.Columns[colname].Visible = false;
         }
+   
         /// <summary>
         /// 初始化数据
         /// </summary>
@@ -122,9 +137,47 @@ namespace Ebada.Scgl.Yxgl
         {
 
             //需要隐藏列时在这写代码
-
+            for (int i = 0; i < gridView1.Columns.Count; i++)
+            {
+                gridView1.Columns[i].Caption = AttributeHelper.GetDisplayName(typeof(PJ_03yxfx), gridView1.Columns[i].FieldName);
+               
+            }
             hideColumn("OrgCode");
             hideColumn("gznrID");
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            if (picview == null)
+            {
+                imageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
+                ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).BeginInit();
+                // 
+                // imageEdit1
+                // 
+                this.imageEdit1.AutoHeight = false;
+                this.imageEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+                this.imageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+                    new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+                this.imageEdit1.Name = "imageEdit1";
+                this.imageEdit1.PopupFormSize = new System.Drawing.Size(1200, 600); ;
+                ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).EndInit();
+
+                picview = new DevExpress.XtraGrid.Columns.GridColumn();
+                picview.Caption = "流程图";
+                picview.Visible = true;
+                //picview.MaxWidth = 300;
+                //picview.MinWidth = 300;
+                gridControl1.RepositoryItems.Add(imageEdit1);
+
+                picview.ColumnEdit = imageEdit1;
+                //DevExpress.XtraEditors.Repository.RepositoryItem
+
+                this.picview.VisibleIndex = 2;
+                picview.FieldName = "Image";
+                gridView1.Columns.Add(picview);
+                ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+                ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            }
+           
         }
         /// <summary>
         /// 刷新数据
@@ -132,7 +185,29 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
-            gridViewOperation.RefreshData(slqwhere);
+            //gridViewOperation.RefreshData(slqwhere);
+            if (gridtable != null) gridtable.Rows.Clear();
+          
+            IList<PJ_03yxfx> li = MainHelper.PlatformSqlMap.GetList<PJ_03yxfx>("SelectPJ_03yxfxList", slqwhere);
+            if (li.Count != 0)
+            {
+                gridtable = ConvertHelper.ToDataTable((IList)li);
+
+            }
+            else
+            {
+                if (gridtable == null) gridtable = new DataTable();
+            }
+           
+            if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(Bitmap));
+            int i = 0;
+            for ( i = 0; i < gridtable.Rows.Count; i++)
+            {
+
+                gridtable.Rows[i]["Image"] = RecordWorkTask.WorkFlowBitmap(gridtable.Rows[i]["ID"].ToString(), imageEdit1.PopupFormSize);
+            }
+           
+            gridControl1.DataSource = gridtable; 
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -162,6 +237,7 @@ namespace Ebada.Scgl.Yxgl
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         //[DesignTimeVisible(false)]
+
         public string ParentID
         {
             get { return parentID; }
@@ -212,12 +288,12 @@ namespace Ebada.Scgl.Yxgl
 
             if (!RecordWorkTask.HaveRewNewDQFXRole()) return;
             frmyxfxEdit fm = new frmyxfxEdit();
-            PJ_03yxfx fx = new PJ_03yxfx();
-            fx.OrgCode = MainHelper.UserOrg.OrgCode;
-            fx.OrgName = MainHelper.UserOrg.OrgName;
-
-            fx.rq = DateTime.Now;
-            fm.RowData = fx;
+            PJ_03yxfx yxfx = new PJ_03yxfx();
+            yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
+            yxfx.OrgName = MainHelper.UserOrg.OrgName;
+            yxfx.type = recordIkind;
+            yxfx.rq = DateTime.Now;
+            fm.RowData = yxfx;
             fm.RecordStatus = 0;
             fm.ShowDialog();
             InitData();
@@ -228,9 +304,9 @@ namespace Ebada.Scgl.Yxgl
             if (MainHelper.UserOrg == null) return;
             if (gridView1.FocusedRowHandle >= 0)
             {
-                PJ_03yxfx yxfx=gridView1.GetFocusedRow() as PJ_03yxfx;
-                if (!RecordWorkTask.HaveRunDQFXRole(yxfx.ID)) return;
-                DataTable dt = RecordWorkTask.GetDQFXRecord(yxfx.ID);
+                DataRow yxfx = gridView1.GetDataRow(gridView1.FocusedRowHandle) ;
+                if (!RecordWorkTask.HaveRunDQFXRole(yxfx["ID"].ToString())) return;
+                DataTable dt = RecordWorkTask.GetDQFXRecord(yxfx["ID"].ToString());
                 frmyxfxEdit fm = new frmyxfxEdit();
                 switch (dt.Rows[0]["TaskInsCaption"].ToString())
                 {
@@ -253,5 +329,14 @@ namespace Ebada.Scgl.Yxgl
                 return;
             }
         }
+
+        private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (gridView1.FocusedColumn.FieldName != "Image")
+                e.Cancel = true;
+        }
+
+     
+        
     }
 }

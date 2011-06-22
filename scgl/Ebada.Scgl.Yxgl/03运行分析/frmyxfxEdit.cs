@@ -280,26 +280,26 @@ namespace Ebada.Scgl.Yxgl
                     gzr.gzrjID = gzrj01[0].gzrjID;
                     IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
                     gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
-                    //gzr.gznr ="运行分析";
+                    gzr.gznr = yxfx.hydd + "运行分析-" + yxfx.type ;
                     gzr.fzr = yxfx.zcr;
                     gzr.fssj = yxfx.rq;
                     string[] ss = yxfx.cjry.Split(';');
-                    if (ss.Length >= 2)
+                    if (ss.Length >=1)
                     {
 
-                        gzr.cjry = ss[0] + "、" + ss[1];
+                        gzr.cjry = gzr.fzr + "、" + ss[0];
                         if (ss.Length > 2) gzr.cjry = gzr.cjry + "等";
                         gzr.cjry = gzr.cjry + ss.Length + "人";
                     }
                     else
                     {
-                        gzr.cjry = ss[0];
+                        gzr.cjry = gzr.fzr;
                     }
 
                     
                 }
-                //else
-                //    return;
+                else
+                    return;
                 string strmes = RecordWorkTask.RunNewDQFXRecord(rowData.ID);
                
                 if (strmes.IndexOf("未提交至任何人") > -1)
