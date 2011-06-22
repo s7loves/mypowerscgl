@@ -109,6 +109,10 @@ namespace Ebada.Scgl.Lpgl
         public void InitData() {
             treeViewOperator.RefreshData("where parentid = '0' order by cellname");
         }
-
+        public bool BarManagerVisible
+        {            
+            get { return bar1.Visible; }
+            set { bar1.Visible = value; }
+        }
     }
 }

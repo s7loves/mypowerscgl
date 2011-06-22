@@ -26,6 +26,7 @@ namespace Ebada.Scgl.Lpgl {
         public UcmModelUI() {
             InitializeComponent();
             //接收TreeList行焦点改变事件
+            ucLeft1.BarManagerVisible = false;
             ucLeft1.FocusedNodeChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.LP_Temple>(ucLeft1_FocusedNodeChanged);
             //ucLeft1.ChildView = ucRight1.GridViewOperation;
         }
