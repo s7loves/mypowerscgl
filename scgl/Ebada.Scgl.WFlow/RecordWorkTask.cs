@@ -7,13 +7,26 @@ using Ebada.SCGL.WFlow.Tool;
 using Ebada.SCGL.WFlow.Engine;
 using Ebada.Scgl.Model;
 using System.Collections;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace Ebada.Scgl.WFlow
 {
+    public class AttributeHelper
+    {
+        public static string GetDisplayName(Type modelType, string propertyDisplayName)
+        {
+            return (System.ComponentModel.TypeDescriptor.GetProperties(modelType)[propertyDisplayName].Attributes[typeof(System.ComponentModel.DisplayNameAttribute)] as System.ComponentModel.DisplayNameAttribute).DisplayName;
+        }
+    }
     public class RecordWorkTask
     {
 
-        
+    
+    
+ 
         /// <summary>
         /// 获得当前用户是否可以新建运行定期分析记录权限
         /// </summary>
@@ -62,6 +75,24 @@ namespace Ebada.Scgl.WFlow
             return dt;
         }
         /// <summary>
+        /// 获得流程图片（Bitmap）
+        /// </summary>
+        /// <param name="recordID">记录ID</param>
+        /// <param name="sz">图片大小</param>
+        /// <returns>Bitmap</returns>
+        public static Bitmap WorkFlowBitmap(string recordID,Size sz)
+        {
+            Bitmap objBitmap = new Bitmap(sz.Width, sz.Height );
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
+            if (wf.Count == 0) return null;
+            objBitmap=WorkFlowInstance.WorkFlowBitmap(wf[0].WorkFlowId, wf[0].WorkFlowInsId, sz);
+            //System.IO.MemoryStream _ImageMem = new System.IO.MemoryStream();
+            //objBitmap.Save(recordID + ".jpg", ImageFormat.Jpeg);
+            //objBitmap.Save(_ImageMem, ImageFormat.Bmp);
+            //byte[] _ImageBytes = _ImageMem.GetBuffer();
+            return objBitmap;
+        }
+        /// <summary>
         /// 生成运行定期分析流程
         /// </summary>
         /// <returns></returns>
@@ -96,7 +127,7 @@ namespace Ebada.Scgl.WFlow
             wpfrecord.WorkTaskId  = wfruntime.WorkTaskId;
             wpfrecord.WorkTaskInsId = wfruntime.WorkTaskInstanceId;
             wfruntime.Start();
-            string strmes = toollips(wpfrecord.WorkTaskInsId);
+            string strmes = Toollips(wpfrecord.WorkTaskInsId);
             if ( strmes.IndexOf("未提交至任何人")== -1)
               
             MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
@@ -137,10 +168,15 @@ namespace Ebada.Scgl.WFlow
             //MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
 
             //wfruntime.Start();
-            return toollips(WorkTaskInsId);
+            return Toollips(WorkTaskInsId);
             //return "";
         }
-        public static string toollips(string workTaskInsId)
+        /// <summary>
+        /// 返回任务实例的操作结果
+        /// </summary>
+        /// <param name="workTaskInsId">任务实例ID</param>
+        /// <returns>操作结果</returns>
+        public static string Toollips(string workTaskInsId)
         {
             string title = "";
             string TaskToWhoMsg = "";
@@ -165,6 +201,6 @@ namespace Ebada.Scgl.WFlow
 
             return TaskToWhoMsg = "成功提交至:" + TaskToWhoMsg + "。你已完成该任务处理,可以关闭该窗口。";
         }
-
+     
     }
 }
