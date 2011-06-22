@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -938,82 +938,84 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="00记录模板\01工作日志.xls">
+    <Content Include="00记录模板\01工作日志.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\02安全活动记录.xls">
+    </Content>
+    <Content Include="00记录模板\02安全活动记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\03运行分析记录.xls">
+    </Content>
+    <Content Include="00记录模板\03运行分析记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\04事故障碍异常运行记录.xls">
+    </Content>
+    <Content Include="00记录模板\04事故障碍异常运行记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\05交叉跨越及对地距离测量记录.xls">
+    </Content>
+    <Content Include="00记录模板\05交叉跨越及对地距离测量记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\06设备巡视及缺陷消除记录.xls">
+    </Content>
+    <Content Include="00记录模板\06设备巡视及缺陷消除记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\07接地装置检测记录.xls">
+    </Content>
+    <Content Include="00记录模板\07接地装置检测记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\08设备停电检修记录.xls">
+    </Content>
+    <Content Include="00记录模板\08设备停电检修记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\09培训记录.xls">
+    </Content>
+    <Content Include="00记录模板\09培训记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\10配电变压器汇总表.xls">
+    </Content>
+    <Content Include="00记录模板\10配电变压器汇总表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\11配电变压器卡片.xls">
+    </Content>
+    <Content Include="00记录模板\11配电变压器卡片.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\12线路开关卡片.xls">
+    </Content>
+    <Content Include="00记录模板\12线路开关卡片.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\13剩余电流动作保护器测试记录.xls">
+    </Content>
+    <Content Include="00记录模板\13剩余电流动作保护器测试记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\14电力安全工具试验记录.xls">
+    </Content>
+    <Content Include="00记录模板\14电力安全工具试验记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\15工具仪表台账.xls">
+    </Content>
+    <Content Include="00记录模板\15工具仪表台账.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\16高压配电线路条图汇总表.xls">
+    </Content>
+    <Content Include="00记录模板\16高压配电线路条图汇总表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\17线路条图.xls">
+    </Content>
+    <Content Include="00记录模板\17线路条图.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\18双河所设备评级表.xls">
+    </Content>
+    <Content Include="00记录模板\18双河所设备评级表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\19高压配电设备完好率汇总表.xls">
+    </Content>
+    <Content Include="00记录模板\19高压配电设备完好率汇总表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\20低压设备完好率及台区网络图.xls">
+    </Content>
+    <Content Include="00记录模板\20低压设备完好率及台区网络图.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\21电力故障电话接听记录.xls">
+    </Content>
+    <Content Include="00记录模板\21电力故障电话接听记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\22报修服务修理票实例.xls">
+    </Content>
+    <Content Include="00记录模板\22报修服务修理票实例.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\23配电线路产权维护范围协议书.xls">
+    </Content>
+    <Content Include="00记录模板\23配电线路产权维护范围协议书.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\24设备变更通知书.xls">
+    </Content>
+    <Content Include="00记录模板\24设备变更通知书.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\25双自备电源协议书.xls" />
-    <None Include="00记录模板\26防护通知书.xls">
+    </Content>
+    <Content Include="00记录模板\25双自备电源协议书.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <Content Include="00记录模板\26防护通知书.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
