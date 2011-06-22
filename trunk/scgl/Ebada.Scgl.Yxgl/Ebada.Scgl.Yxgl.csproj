@@ -1095,7 +1095,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="疑问或错误.txt" />
+    <None Include="疑问或错误.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
