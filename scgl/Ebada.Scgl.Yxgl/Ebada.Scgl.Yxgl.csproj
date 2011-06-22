@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -519,6 +519,12 @@
     <Compile Include="22报修服务修理票实例\frm22Edit.Designer.cs">
       <DependentUpon>frm22Edit.cs</DependentUpon>
     </Compile>
+    <Compile Include="22报修服务修理票实例\UCPJ_22.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="22报修服务修理票实例\UCPJ_22.Designer.cs">
+      <DependentUpon>UCPJ_22.cs</DependentUpon>
+    </Compile>
     <Compile Include="23配电线路产权维护范围协议书\Export23.cs" />
     <Compile Include="23配电线路产权维护范围协议书\frm23Edit.cs">
       <SubType>Form</SubType>
@@ -616,6 +622,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="03运行分析\UCPJ_03YXFXForm.resx">
       <DependentUpon>UCPJ_03YXFXForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="04事故障碍异常\frmsgzaycEdit.resx">
       <DependentUpon>frmsgzaycEdit.cs</DependentUpon>
@@ -859,6 +866,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="22报修服务修理票实例\frm22Edit.resx">
       <DependentUpon>frm22Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="22报修服务修理票实例\UCPJ_22.resx">
+      <DependentUpon>UCPJ_22.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="23配电线路产权维护范围协议书\frm23Edit.resx">
