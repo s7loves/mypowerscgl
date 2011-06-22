@@ -227,8 +227,9 @@ namespace Ebada.SCGL.WFlow.Tool
         /// <summary>
         /// 获得指定名称有权限启动的流程
         /// </summary>
-        /// <param name="FatherClassId">父分类Id</param>
-        /// <returns>子分类table</returns>
+        /// <param name="userId">用户ID</param>
+        /// <param name="FlowCaption">流程ID</param>
+        /// <returns></returns>
         public static DataTable GetSelectedNameWorkFlows(string userId, string FlowCaption)
         {
             try
@@ -257,11 +258,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 throw ex;
             }
         }
-        /// <summary>
-        /// 获得有权限启动的流程
-        /// </summary>
-        /// <param name="FatherClassId">父分类Id</param>
-        /// <returns>子分类table</returns>
+       /// <summary>
+        /// 获得用户有权限启动的流程
+       /// </summary>
+        /// <param name="userId">用户ID</param>
+       /// <returns></returns>
         public static DataTable GetAllowsStartWorkFlows(string userId)
         {
             try

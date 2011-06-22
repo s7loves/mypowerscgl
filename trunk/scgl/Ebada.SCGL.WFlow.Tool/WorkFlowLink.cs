@@ -169,7 +169,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 wl.BreakY=yy;
                 wl.Description=this.Des;
                 wl.Condition=this.Condition;
-                if (CommandName == "")
+                //if (CommandName == "")
                 {
                     string tmpStr = " where  WorkFlowId='" + WorkflowId + "' and WorkTaskId='"+StartTaskId+"'";
                     IList<WF_WorkTaskCommands> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", tmpStr);
@@ -180,7 +180,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     else
                     {
-                        CommandName = "";//默认提交
+                        CommandName = "提交";//默认提交
                     }
                 }
                 wl.CommandName = this.CommandName;
@@ -231,7 +231,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 wl.Description = this.Des;
                 wl.Condition = this.Condition;
                 //if (CommandName == "") CommandName = "提交";//默认提交
-                if (CommandName == "")
+                //if (CommandName == "")
                 {
                     string tmpStr = " where  WorkFlowId='" + WorkflowId + "' and WorkTaskId='" + StartTaskId + "'";
                     IList<WF_WorkTaskCommands> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", tmpStr);
@@ -242,7 +242,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     else
                     {
-                        CommandName = "";//默认提交
+                        CommandName = "提交";//默认提交
                     }
                 }
                 wl.CommandName = this.CommandName;
