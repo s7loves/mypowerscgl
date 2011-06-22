@@ -7,6 +7,9 @@ using Ebada.Client.Platform;
 using System.Collections;
 using Ebada.Core;
 using Ebada.SCGL.WFlow.Tool;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace Ebada.SCGL.WFlow.Engine
 {
@@ -715,6 +718,362 @@ namespace Ebada.SCGL.WFlow.Engine
             {
                 throw ex;
             }
+        }
+        /// <summary>
+        /// 返回流程实例的Bitmap
+        /// </summary>
+        /// <param name="workFlowId">流程ID</param>
+        /// <param name="workFlowInsId">流程实例ID</param>
+        /// <param name="sz">图片大下</param>
+        /// <returns></returns>
+
+        public static Bitmap WorkFlowBitmap(string workFlowId, string workFlowInsId, Size sz)
+        {
+            Bitmap objBitmap = new Bitmap(sz.Width , sz.Height );
+            Graphics objGraphics = Graphics.FromImage(objBitmap);
+            InitTaskMapData(workFlowId, workFlowInsId, objGraphics);
+            InitLinkMapData(workFlowId, workFlowInsId, objGraphics);
+            //objBitmap.Save(workFlowId + ".jpg", ImageFormat.Jpeg);
+
+            return objBitmap;
+        }
+        private static void InitTaskMapData(string workflowId, string workflowInsId, Graphics gc)
+        {
+            DataTable tasktable = WorkFlowTask.GetWorkTasks(workflowId);
+            string taskCaption = "";
+            int taskX;
+            int taskY;
+            string operType = "";
+            string taskId = "";
+            string currTaskId = "";
+            string taskDes = "";
+            bool isPass;//是否通过
+            bool isCurrent = false;//是否是当前节点
+            DataTable dtCurr = WorkFlowInstance.GetWorkflowInstance(workflowInsId);
+            if (dtCurr.Rows.Count > 0)
+            {
+                currTaskId = dtCurr.Rows[0]["NowTaskId"].ToString();//流程实例当前节点
+                gc.Clear(System.Drawing.Color.FromArgb(255, 253, 244));   // 改变背景颜色
+                foreach (DataRow dr in tasktable.Rows)
+                {
+                    taskId = dr["WorkTaskId"].ToString();
+                    taskCaption = dr["TaskCaption"].ToString();
+                    taskX = Convert.ToInt16(dr["iXPosition"]);
+                    taskY = Convert.ToInt16(dr["iYPosition"]) - 10;
+                    operType = dr["TaskTypeId"].ToString();
+                    isPass = WorkFlowHelper.isPassJudge(workflowId, workflowInsId, taskId, WorkConst.Command_And);
+                    if (currTaskId == taskId) isCurrent = true; else isCurrent = false;
+                    taskDes = WorkTaskInstance.GetTaskDoneWhoMsg(taskId, workflowInsId);
+                    drawTaskBitmap(gc, taskCaption, operType, taskX, taskY, isPass, isCurrent, taskDes);
+
+                }
+            }
+
+        }
+
+        private static void InitLinkMapData(string workflowId, string workflowInsId, Graphics gc)
+        {
+            DataTable linktable = WorkFlowLink.GetWorkLinks(workflowId);
+            string linkDes = "";
+            string startTaskId = "";
+            string endTaskId = "";
+            string linkBreakX;
+            string linkBreakY;
+            int starttaskX;
+            int starttaskY;
+            int endtaskX;
+            int endtaskY;
+            bool started;
+            bool ended;
+            bool fromStart;
+            bool isPass;//是否通过
+            Color linkColor;
+
+            foreach (DataRow dr in linktable.Rows)
+            {
+                linkBreakX = dr["BreakX"].ToString();
+                linkBreakY = dr["BreakY"].ToString();
+                startTaskId = dr["startTaskId"].ToString();//起端任务节点，由此来判断线的颜色。
+                endTaskId = dr["EndTaskId"].ToString();//末端任务节点，由此来判断线的颜色。
+                starttaskX = Convert.ToInt16(dr["starttaskX"]);
+                starttaskY = Convert.ToInt16(dr["starttaskY"]);
+                endtaskX = Convert.ToInt16(dr["endtaskX"]);
+                endtaskY = Convert.ToInt16(dr["endtaskY"]);
+                linkDes = dr["Description"].ToString();
+                started = WorkFlowHelper.isPassJudge(workflowId, workflowInsId, startTaskId, WorkConst.Command_And);
+                ended = WorkFlowHelper.isPassJudge(workflowId, workflowInsId, endTaskId, WorkConst.Command_And);
+                fromStart = isFromStartTask(workflowId, workflowInsId, startTaskId, endTaskId);
+                isPass = (started && ended && fromStart);
+                if (isPass) linkColor = Color.Red; else linkColor = Color.Green;
+                drawLinkBitMap(gc, linkBreakX, linkBreakY, starttaskX, starttaskY, endtaskX, endtaskY, linkColor, linkDes);
+            }
+
+        }
+        private static void drawTaskBitmap(Graphics gc, string taskCaption, string operType, int x, int y, bool isPass, bool isCurrent, string taskDes)
+        {
+            Rectangle bounds;
+            Bitmap taskBitmap = null;
+            Font font;
+            StringFormat alignVertically;
+            Point pt = new Point(0, 0);
+            Brush bcolor;
+            int Captionx;
+            string noPassflag = "灰";//表示灰色图片
+            pt.X = x;
+            pt.Y = y;
+            font = new Font("Arial", 8);
+            alignVertically = new StringFormat();
+            alignVertically.LineAlignment = StringAlignment.Center;//指定文本在布局矩形中居中对齐
+            if (isPass) noPassflag = ""; else noPassflag = "灰";
+            switch (operType)
+            {
+                case "1"://启动节点
+                    taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("启动节点.ico")));
+                    break;
+                case "2"://终止节点 
+                    taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("终止节点.ico")));
+                    break;
+                case "3"://交互节点 
+
+                    taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("交互节点.ico")));
+                    break;
+                case "4"://控制节点 
+                    taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("控制节点.ico")));
+                    break;
+                case "5"://查看节点 
+                    taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("查看节点.ico")));
+                    break;
+                case "6"://子流程节点 
+                    taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("子流程节点.ico")));
+                    break;
+                    break;
+            }
+            if (isCurrent)
+            {
+                bcolor = Brushes.Red;
+                taskCaption = "当前节点:" + taskCaption;
+            }
+            else bcolor = Brushes.Black;//当前节点
+            bounds = new Rectangle(pt, taskBitmap.Size);
+            gc.DrawImage(taskBitmap, bounds.Left, bounds.Top);
+
+            SizeF sizeF = gc.MeasureString(taskCaption, font);
+            Captionx = bounds.Left - ((int)sizeF.Width) / 2 + bounds.Width / 2;
+            gc.DrawString(taskCaption, font, bcolor, Captionx, bounds.Top + bounds.Height + 20, alignVertically);
+            bcolor = Brushes.RoyalBlue;
+            gc.DrawString(taskDes, font, bcolor, Captionx, bounds.Top + bounds.Height + 35, alignVertically);
+        }
+        private static bool isFromStartTask(string workflowId, string workflowInsId, string startTaskId, string endTaskId)
+        {
+
+            DataTable dt1 = WorkFlowTask.GetTaskInstance(workflowId, workflowInsId, endTaskId);
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                string ptaskInsId = dt1.Rows[0]["PreviousTaskId"].ToString();//根据后端节点模板找到前一任务实例
+                DataTable dt2 = WorkTaskInstance.GetTaskInsTable(ptaskInsId);//根据前一任务实例找到任务模板
+                if (dt2 != null && dt2.Rows.Count > 0)
+                {
+                    string staskid = dt2.Rows[0]["WorktaskId"].ToString();
+                    if (staskid == startTaskId)
+                        return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        private static void drawLinkBitMap(Graphics gs, string linkBreakX, string linkBreakY,
+                              int starttaskX, int starttaskY, int endtaskX, int endtaskY, Color clr, string linkDes)
+        {
+            ArrayList breakPointX = new ArrayList();
+            ArrayList breakPointY = new ArrayList();
+
+            string[] BreakX;
+            string[] BreakY;
+            breakPointX.Add(starttaskX + 20);
+            breakPointY.Add(starttaskY + 10);
+
+            if (linkBreakX.ToString() != "")
+            {
+                if (linkBreakX.IndexOf(",") != -1)
+                {
+                    BreakX = linkBreakX.Split(",".ToCharArray());
+                    BreakY = linkBreakY.Split(",".ToCharArray());
+                    for (int i = 0; i < BreakX.Length; i++)
+                    {
+                        breakPointX.Add(BreakX[i]);
+                        breakPointY.Add(BreakY[i]);
+                    }
+                }
+                else
+                {
+                    breakPointX.Add(linkBreakX);
+                    breakPointY.Add(linkBreakY);
+                }
+            }
+            breakPointX.Add(endtaskX);
+            breakPointY.Add(endtaskY);
+            if (breakPointX.Count < 2)
+            {
+                for (int i = 0; i < breakPointX.Count; i++)
+                {
+                    if (Convert.ToInt16(breakPointX[i]) < Convert.ToInt16(breakPointX[i + 1]))
+                    {
+                        if (Convert.ToInt16(breakPointY[i]) > Convert.ToInt16(breakPointY[i + 1]))
+                        {
+                            breakPointX[i] = Convert.ToInt16(breakPointX[i]);
+                            breakPointY[i + 1] = Convert.ToInt16(breakPointY[i + 1]) + 10;
+                        }
+                        else
+                        {
+
+                            breakPointX[i] = Convert.ToInt16(breakPointX[i]);
+                            breakPointY[i] = Convert.ToInt16(breakPointY[i]) + 10;
+                        }
+
+                    }
+                    else
+                    {
+                        if (Convert.ToInt16(breakPointY[i]) > Convert.ToInt16(breakPointY[i + 1]))
+                        {
+                            breakPointX[i] = Convert.ToInt16(breakPointX[i]) - 10;
+                            breakPointX[i + 1] = Convert.ToInt16(breakPointX[i + 1]) + 10;
+                            breakPointY[i + 1] = Convert.ToInt16(breakPointY[i + 1]) + 10;
+                        }
+                        else
+                        {
+                            breakPointX[i] = Convert.ToInt16(breakPointX[i]) - 20;
+                            breakPointY[i] = Convert.ToInt16(breakPointY[i]);
+                            breakPointX[i + 1] = Convert.ToInt16(breakPointX[i + 1]) + 20;
+                            //breakPointY[i+1]=Convert.ToInt16(breakPointY[i+1])+10;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < breakPointX.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        if (Convert.ToInt16(breakPointX[i]) < Convert.ToInt16(breakPointX[i + 1]))
+                        {
+                            if (Convert.ToInt16(breakPointY[i]) > Convert.ToInt16(breakPointY[i + 1]))
+                            {
+                                breakPointX[i] = Convert.ToInt16(breakPointX[i]);
+                            }
+                            else
+                            {
+                                if (Convert.ToInt16(breakPointY[i]) < Convert.ToInt16(breakPointY[i + 1]))
+                                {
+                                    breakPointX[i] = Convert.ToInt16(breakPointX[i]);
+                                }
+                                else
+                                {
+                                    breakPointX[i] = Convert.ToInt16(breakPointX[i]) + 20;//20
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            if (Convert.ToInt16(breakPointY[i]) > Convert.ToInt16(breakPointY[i + 1]))
+                            {
+                                breakPointX[i] = Convert.ToInt16(breakPointX[i]);
+                            }
+                            else
+                            {
+                                if (Convert.ToInt16(breakPointY[i]) < Convert.ToInt16(breakPointY[i + 1]))
+                                {
+                                    breakPointX[i] = Convert.ToInt16(breakPointX[i]) - 20;
+
+                                    breakPointY[i] = Convert.ToInt16(breakPointY[i]);//20
+                                }
+                                else
+                                {
+                                    breakPointY[i] = Convert.ToInt16(breakPointY[i]);
+                                }
+                            }
+                        }
+                    }
+                    if (i == breakPointX.Count - 2)
+                    {
+                        if (Convert.ToInt16(breakPointX[i]) < Convert.ToInt16(breakPointX[i + 1]))
+                        {
+                            if (Convert.ToInt16(breakPointY[i]) > Convert.ToInt16(breakPointY[i + 1]))
+                            {
+                                breakPointY[i + 1] = Convert.ToInt16(breakPointY[i + 1]);
+                            }
+                            else
+                            {
+                                if (Convert.ToInt16(breakPointY[i]) < Convert.ToInt16(breakPointY[i + 1]))
+                                {
+                                    breakPointY[i + 1] = Convert.ToInt16(breakPointY[i + 1]);
+                                }
+                                else
+                                {
+                                    breakPointY[i + 1] = Convert.ToInt16(breakPointY[i + 1]);
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            if (Convert.ToInt16(breakPointY[i]) > Convert.ToInt16(breakPointY[i + 1]))
+                            {
+                                breakPointX[i + 1] = Convert.ToInt16(breakPointX[i + 1]);
+                                breakPointY[i + 1] = Convert.ToInt16(breakPointY[i + 1]);
+                            }
+                            else
+                            {
+                                if (Convert.ToInt16(breakPointY[i]) < Convert.ToInt16(breakPointY[i + 1]))
+                                {
+                                    breakPointX[i + 1] = Convert.ToInt16(breakPointX[i + 1]);
+                                }
+                                else
+                                {
+                                    breakPointX[i + 1] = Convert.ToInt16(breakPointX[i + 1]);//20
+                                    breakPointY[i + 1] = Convert.ToInt16(breakPointY[i + 1]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Pen pen = new Pen(clr, 1);
+
+            for (int i = 0; i < breakPointX.Count - 2; i++)
+            {
+                Point bp = new Point(Convert.ToInt16(breakPointX[i]), Convert.ToInt16(breakPointY[i]));
+                Point bp2 = new Point(Convert.ToInt16(breakPointX[i + 1]), Convert.ToInt16(breakPointY[i + 1]));
+                gs.DrawLine(pen, bp, bp2);
+            }
+            //画最后一条带箭头的  
+            if (breakPointX.Count >= 2)
+            {
+
+                int ittX = Convert.ToInt16(breakPointX[breakPointX.Count - 2]);
+                int ittY = Convert.ToInt16(breakPointY[breakPointX.Count - 2]);
+                int itt2X = Convert.ToInt16(breakPointX[breakPointX.Count - 1]);
+                int itt2Y = Convert.ToInt16(breakPointY[breakPointX.Count - 1]);
+                Point tt = new Point(ittX, ittY);
+                Point tt2 = new Point(itt2X, itt2Y);
+                AdjustableArrowCap Arrow = new AdjustableArrowCap(3, 3);
+                pen.CustomEndCap = Arrow;
+                gs.DrawLine(pen, tt, tt2);
+                //			}
+
+                //画注释	
+                if (linkDes == "")
+                    return;
+                Font font = new Font("Arial", 8);
+                StringFormat alignVertically = new StringFormat();
+                alignVertically.LineAlignment = StringAlignment.Center;//指定文本在布局矩形中居中对齐
+                SizeF sizeF = gs.MeasureString(linkDes, font);
+                int x = (Convert.ToInt16(breakPointX[0]) + Convert.ToInt16(breakPointX[1]) - (int)sizeF.Width) / 2;
+                int y = (Convert.ToInt16(breakPointY[0]) + Convert.ToInt16(breakPointY[1])) / 2;
+                gs.DrawString(linkDes, font, Brushes.Blue, x, y, alignVertically);
+            }
+
         }
         /**//// <summary>
         /// 获得流程流水号
