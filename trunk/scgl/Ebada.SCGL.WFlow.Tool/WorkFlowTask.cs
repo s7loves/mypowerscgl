@@ -157,7 +157,13 @@ namespace Ebada.SCGL.WFlow.Tool
                 //setParameter();//设定参数
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
+
                 WF_WorkTask wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(TaskId);
+                if (wf == null)
+                {
+                    InsertTask();
+                    return;
+                }
                 wf.WorkTaskId = this.TaskId;
                 wf.TaskCaption = this.TaskName;
                 wf.WorkFlowId = this.WorkFlowId;
