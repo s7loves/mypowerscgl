@@ -32,15 +32,19 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             this.SuspendLayout();
+            // 
+            // m_DefaultLookAndFeel
+            // 
+            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
             // 
             // btnCancel
             // 
@@ -86,6 +90,13 @@
             this.groupBox1.Text = "高压配电设备完好率汇总表";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // memoEdit1
+            // 
+            this.memoEdit1.Location = new System.Drawing.Point(43, 36);
+            this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Size = new System.Drawing.Size(118, 59);
+            this.memoEdit1.TabIndex = 8;
+            // 
             // labelControl5
             // 
             this.labelControl5.Location = new System.Drawing.Point(13, 38);
@@ -109,13 +120,6 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
-            // 
-            // memoEdit1
-            // 
-            this.memoEdit1.Location = new System.Drawing.Point(43, 36);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(118, 59);
-            this.memoEdit1.TabIndex = 8;
             // 
             // frm19Edit
             // 

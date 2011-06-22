@@ -34,11 +34,11 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.memoEdit4 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.memoEdit5 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBoxEdit15 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -182,6 +182,17 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "运行分析主题";
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Location = new System.Drawing.Point(86, 0);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(34, 15);
+            this.simpleButton1.TabIndex = 2;
+            this.simpleButton1.Text = "…";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // memoEdit5
             // 
             this.memoEdit5.Location = new System.Drawing.Point(7, 15);
@@ -215,17 +226,6 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "纪要内容";
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(86, 0);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(34, 15);
-            this.simpleButton1.TabIndex = 2;
-            this.simpleButton1.Text = "…";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // memoEdit1
             // 
