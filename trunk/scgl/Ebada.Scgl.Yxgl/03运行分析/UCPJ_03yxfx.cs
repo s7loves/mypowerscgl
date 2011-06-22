@@ -348,7 +348,7 @@ namespace Ebada.Scgl.Yxgl
              if (gridView1.FocusedRowHandle < 0) return;
              DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
                  //请求确认
-             if (MsgBox.ShowAskMessageBox(dr["zt"].ToString()) != DialogResult.OK )
+             if (MsgBox.ShowAskMessageBox("是否确认删除 【" + dr["zt"].ToString() + "】?") != DialogResult.OK)
                  {
                      return;
                  }
