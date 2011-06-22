@@ -129,7 +129,9 @@
     <Compile Include="03运行分析\frmyxfxEdit.Designer.cs">
       <DependentUpon>frmyxfxEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="03运行分析\UCPJ_03YXFXForm.cs" />
+    <Compile Include="03运行分析\UCPJ_03YXFXForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="03运行分析\UCPJ_03YXFXForm.Designer.cs">
       <DependentUpon>UCPJ_03YXFXForm.cs</DependentUpon>
     </Compile>
