@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <containers>
+    <container name ="PlatformServer">
+      <configuration>
+        <facilities>
+          <facility
+              id="remote.facility" name="PlatformServer"
+                  type="Castle.Facilities.Remoting.RemotingFacility, Castle.MicroKernel"
+                  remotingConfigurationFile="./Config/RemotingTcpConfigClient.config"
+                  isClient="true"
+                  remoteKernelUri="tcp://localhost:5100/kernel.rem"
+                  baseUri="tcp://localhost:5100" >
+          </facility>
+        </facilities>
+        <!--<include uri="../Ebada.PlatformBll.xml" />--><!--所有服务接口type为虚拟实例-->
+        <components><!--type="Ebada.Components.RemoteMath, Ebada.Components"-->
+          <!--<component id="mComputerBLL" type="Ebada.Platform.BLL.mComputerBLL,Ebada.Platform.BLL" />-->
+          <!--<component id="mModuleGroupBLL" type="Ebada.Platform.BLL.mModuleGroupBLL,Ebada.Platform.BLL" />-->
+          <component
+          id="remote.math"
+          service="Ebada.Components.IRemoteMath, Ebada.Components"
+          type="Ebada.Components.RemoteMath, Ebada.Components"
+          remoteclient="component"/><!--type="Ebada.Components.BaseSqlMapDao, Ebada.Components"-->
+          <component
+          id="IBaseSqlMapDao"
+            service="Ebada.Components.IBaseSqlMapDao, Ebada.Components"
+            type="Ebada.Components.RemoteMath, Ebada.Components"
+          remoteclient="component"/><!--type="Ebada.Platform.Core.CoreManager, Ebada.Platform.Core"-->
+          <!--<component
+			      id="ImModuleBLL"
+			      service="Ebada.Platform.BLL.ImModuleBLL, Ebada.Platform.BLL"
+			      type="Ebada.Components.RemoteMath, Ebada.Components"
+			      remoteclient="component">
+          </component>--><!--type="Ebada.Platform.BLL.mModuleBLL, Ebada.Platform.BLL"-->
+          <component
+			      id="ICoreManager"
+			      service="Ebada.Core.ICoreManager, Ebada.Core"
+			      type="Ebada.Components.RemoteMath, Ebada.Components"
+			      remoteclient="component"/>
+        </components>
+      </configuration>
+    </container>
+    
+  </containers>
+</configuration>
