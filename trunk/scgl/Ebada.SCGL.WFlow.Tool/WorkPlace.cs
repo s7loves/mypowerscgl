@@ -847,35 +847,35 @@ namespace Ebada.SCGL.WFlow.Tool
                 switch(bc.TaskType)
                 {
                     case 1:            
-                        bitmap=new Bitmap(Application.StartupPath+@"\images\启动节点.ico");
+                        bitmap=new Bitmap("启动节点.ico");
                         break;
                     case 2:
 
-                        bitmap=new Bitmap(Application.StartupPath+@"\images\终止节点.ico");
+                        bitmap=new Bitmap("终止节点.ico");
                         break;
                     case 3:            
                         
-                        bitmap=new Bitmap(Application.StartupPath+@"\images\交互节点.ico");
+                        bitmap=new Bitmap("交互节点.ico");
                         break;
                     case 4:
                             
                         
-                        bitmap=new Bitmap(Application.StartupPath+@"\images\判断节点.ico");
+                        bitmap=new Bitmap("判断节点.ico");
                         break;
                     case 5:
 
-                        bitmap=new Bitmap(Application.StartupPath+@"\images\查看节点.ico");
+                        bitmap=new Bitmap("查看节点.ico");
                         break;
                     case 6:
                         
-                        bitmap=new Bitmap(Application.StartupPath+@"\images\自动节点.ico");
+                        bitmap=new Bitmap("自动节点.ico");
                         break;                        
                     case 7:
 
-                        bitmap=new Bitmap(Application.StartupPath+@"\images\控制节点.ico");
+                        bitmap=new Bitmap("控制节点.ico");
                         break;
                     case 8:
-                        bitmap=new Bitmap(Application.StartupPath+@"\images\子流程节点.ico");
+                        bitmap=new Bitmap("子流程节点.ico");
                         break;                            
                 }                        
                 Point point=new Point (bc.X,bc.Y);                
