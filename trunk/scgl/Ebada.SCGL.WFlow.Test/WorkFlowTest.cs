@@ -383,12 +383,12 @@ namespace Ebada.SCGL.WFlow.Test
             WorkflowDes.Text = wt.WorkFlowCaption + FlowNo.Text;
             StartTaskCaption.Text = gridView3.GetDataRow(index)["TaskCaption"].ToString();
             initButton();
-            Bitmap objBitmap = new Bitmap(600, 600);
-            Graphics objGraphics = Graphics.FromImage(objBitmap);
-            InitTaskMapData(workFlowId, workFlowInsId, objGraphics);
-            InitLinkMapData(workFlowId, workFlowInsId, objGraphics);
-            objBitmap.Save(workFlowId + ".jpg", ImageFormat.Jpeg);
-            pictureBox1.Image = objBitmap;
+            //Bitmap objBitmap = new Bitmap(600, 600);
+            //Graphics objGraphics = Graphics.FromImage(objBitmap);
+            //InitTaskMapData(workFlowId, workFlowInsId, objGraphics);
+            //InitLinkMapData(workFlowId, workFlowInsId, objGraphics);
+            //objBitmap.Save(workFlowId + ".jpg", ImageFormat.Jpeg);
+            pictureBox1.Image = WorkFlowInstance.WorkFlowBitmap(workFlowId, workFlowInsId, new Size(600, 600));
             //tooltip.Text = toollips();
         }
         #region 动态加载任务命令按钮,退回,指派，动态指定下一任务处理人按钮
@@ -591,26 +591,26 @@ namespace Ebada.SCGL.WFlow.Test
         switch (operType)
         {
             case "1"://启动节点
-                taskBitmap = new Bitmap(Application.StartupPath+@"\images\启动节点.ico");
+                taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.启动节点.ico")));
                 break;
             case "2"://终止节点 
-                taskBitmap = new Bitmap(Application.StartupPath+@"\images\终止节点.ico");
+                taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.终止节点.ico")));
                 break;
             case "3"://交互节点 
 
-                taskBitmap = new Bitmap(Application.StartupPath+@"\images\交互节点.ico");
+                taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.交互节点.ico")));
                 break;
             case "4"://控制节点 
-                taskBitmap = new Bitmap(Application.StartupPath+@"\images\控制节点.ico");
+                taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.控制节点.ico")));
                 break;
             case "5"://查看节点 
-                taskBitmap = new Bitmap(Application.StartupPath+@"\images\查看节点.ico");
+                taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.查看节点.ico")));
                 break;
             case "6"://子流程节点 
-                taskBitmap = new Bitmap(Application.StartupPath+@"\images\子流程节点.ico");
+                taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.子流程节点.ico")));
                 break;
             default:
-                taskBitmap = new Bitmap(Application.StartupPath+@"\images\查看节点.ico");
+                taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.查看节点.ico")));
                 break;
         }
         if (isCurrent)
