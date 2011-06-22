@@ -1317,12 +1317,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_730136E637C0B4D1F873547755523360"
-        "OwnerKey" = "8:_60E6880EF69C4E82BFAAEF5D353DF559"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_731BEB788AF665B6A0560F234D6202D7"
         "OwnerKey" = "8:_5EEC88C561EA47CE9B651E8CB83ED2EB"
         "MsmSig" = "8:_UNDEFINED"
@@ -2962,12 +2956,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_730136E637C0B4D1F873547755523360"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_394CB879E0E14D54BD7A9966929E62FE"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4533,37 +4521,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_730136E637C0B4D1F873547755523360"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Interop.DSOFramer, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_730136E637C0B4D1F873547755523360"
-                    {
-                    "Name" = "8:Interop.DSOFramer.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Interop.DSOFramer.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_2ED5243492E64C8E9CC48B2A59AD2A77"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_731BEB788AF665B6A0560F234D6202D7"
             {
             "AssemblyRegister" = "3:1"
@@ -5616,7 +5573,7 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_847C502ED6ED41F7AA3CD9430F6BCE8B"
                     {
-                    "Name" = "8:绥化农电局生产管理系统"
+                    "Name" = "8:农电局生产管理系统"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -5644,14 +5601,14 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:农电生产管理系统"
         "ProductCode" = "8:{1BA41774-8D9D-4CD8-928D-37CACFA9E382}"
-        "PackageCode" = "8:{C7110F6C-4266-4E6A-B3B6-FED9605AACE8}"
+        "PackageCode" = "8:{B26D59CC-39E0-40F4-BC6B-90FB2CB69D15}"
         "UpgradeCode" = "8:{D538B1CD-F6EA-4C22-94E2-B1256BAA2733}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Ebada.com"
+        "Manufacturer" = "8:"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://10.166.137.29"
         "Title" = "8:农电生产管理系统 安装"
