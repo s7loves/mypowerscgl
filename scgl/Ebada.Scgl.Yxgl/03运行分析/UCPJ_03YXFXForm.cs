@@ -16,18 +16,20 @@ namespace Ebada.Scgl.Yxgl
         }
         public void UCPJ_03YXFXForm_DQFX()
         {
-            InitializeComponent();
+            //InitializeComponent();
             ucpJ_03yxfx1.RecordIkind = "定期分析";
-            ucpJ_03yxfx1.InitData();
+            //ucpJ_03yxfx1.InitColumns();
+            //ucpJ_03yxfx1.InitData();
             this.Show();
             
 
         }
         public void UCPJ_03YXFXForm_ZTFX()
         {
-            InitializeComponent();
+            //InitializeComponent();
             ucpJ_03yxfx1.RecordIkind = "专题分析";
-            ucpJ_03yxfx1.InitData();
+            //ucpJ_03yxfx1.InitColumns();
+            //ucpJ_03yxfx1.InitData();
             this.Show() ;
            
         }

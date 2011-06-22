@@ -36,7 +36,7 @@
             this.ucpJ_03yxfx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucpJ_03yxfx1.Location = new System.Drawing.Point(0, 0);
             this.ucpJ_03yxfx1.Name = "ucpJ_03yxfx1";
-            this.ucpJ_03yxfx1.RecordIkind = null;
+           
             this.ucpJ_03yxfx1.Size = new System.Drawing.Size(658, 266);
             this.ucpJ_03yxfx1.TabIndex = 0;
             // 

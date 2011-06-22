@@ -298,9 +298,9 @@ namespace Ebada.Scgl.Yxgl
 
                     
                 }
-                else
-                    return;
-                string strmes = RecordWorkTask.RunNewDQFXRecord(rowData.ID);
+                //else
+                //    return;
+                string strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, yxfx.type);
                
                 if (strmes.IndexOf("未提交至任何人") > -1)
                 {

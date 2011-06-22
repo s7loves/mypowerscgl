@@ -86,7 +86,7 @@ namespace Ebada.Scgl.Yxgl
 
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
-            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
+            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "' ");
             mOrg org=null;
             if (list.Count > 0)
                 org = list[0];
@@ -125,7 +125,7 @@ namespace Ebada.Scgl.Yxgl
             //需要初始化数据时在这写代码
             if (MainHelper.UserOrg!=null)
             {
-                string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' order by id desc";
+                string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' and type='"+recordIkind+"' order by id desc";
                 RefreshData(strSQL);
             }
             
@@ -246,7 +246,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where OrgCode='" + value + "' and type='" + recordIkind + "'  order by id desc");
                 }
             }
         }
@@ -286,7 +286,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (MainHelper.UserOrg == null) return;
 
-            if (!RecordWorkTask.HaveRewNewDQFXRole()) return;
+            if (!RecordWorkTask.HaveRewNewYXFXRole(recordIkind)) return;
             frmyxfxEdit fm = new frmyxfxEdit();
             PJ_03yxfx yxfx = new PJ_03yxfx();
             yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
@@ -304,9 +304,14 @@ namespace Ebada.Scgl.Yxgl
             if (MainHelper.UserOrg == null) return;
             if (gridView1.FocusedRowHandle >= 0)
             {
-                DataRow yxfx = gridView1.GetDataRow(gridView1.FocusedRowHandle) ;
-                if (!RecordWorkTask.HaveRunDQFXRole(yxfx["ID"].ToString())) return;
-                DataTable dt = RecordWorkTask.GetDQFXRecord(yxfx["ID"].ToString());
+                DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle) ;
+                PJ_03yxfx yxfx=new PJ_03yxfx ();
+                foreach (DataColumn dc in gridtable.Columns)
+                {
+                    if (dc.ColumnName != "Image") yxfx.GetType().GetProperty(dc.ColumnName).SetValue(yxfx, dr[dc.ColumnName], null);
+                }
+                if (!RecordWorkTask.HaveRunYXFXRole(yxfx.ID )) return;
+                DataTable dt = RecordWorkTask.GetYXFXRecord(yxfx.ID);
                 frmyxfxEdit fm = new frmyxfxEdit();
                 switch (dt.Rows[0]["TaskInsCaption"].ToString())
                 {
@@ -334,6 +339,37 @@ namespace Ebada.Scgl.Yxgl
         {
             if (gridView1.FocusedColumn.FieldName != "Image")
                 e.Cancel = true;
+        }
+
+        private void btReDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+             if (MainHelper.UserOrg == null) return;
+
+             if (gridView1.FocusedRowHandle < 0) return;
+             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+                 //请求确认
+             if (MsgBox.ShowAskMessageBox(dr["zt"].ToString()) != DialogResult.OK )
+                 {
+                     return;
+                 }
+
+             try {
+
+                 
+                 RecordWorkTask.DeleteRecord(dr["ID"].ToString ());
+                 MainHelper.PlatformSqlMap.DeleteByWhere <PJ_03yxfx>(" where id ='"+dr["ID"].ToString ()+"'");
+                 InitData();
+             }
+             catch(Exception ex )
+             {
+                 Console.WriteLine(ex.Message );
+             }
+             
+        }
+
+        private void btRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            InitData();
         }
 
      
