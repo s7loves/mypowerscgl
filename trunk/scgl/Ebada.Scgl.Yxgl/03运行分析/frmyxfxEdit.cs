@@ -35,6 +35,8 @@ namespace Ebada.Scgl.Yxgl
           this.memoEdit2.DataBindings.Add("EditValue", rowData, "jr", false, DataSourceUpdateMode.OnPropertyChanged);
           this.memoEdit4.DataBindings.Add("EditValue", rowData, "py");
           this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "qz");
+          this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "hydd");
+
 
         }
         void setqqry()
@@ -279,12 +281,17 @@ namespace Ebada.Scgl.Yxgl
                 {
                     gzr.gzrjID = gzrj01[0].gzrjID;
                     IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
-                    gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
-                    gzr.gznr = yxfx.hydd + "运行分析-" + yxfx.type ;
+                    if (gzrlist.Count > 0)
+                    {
+                        gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
+                    }
+                    else
+                        gzr.seq = 1;
+                    gzr.gznr = yxfx.hydd + "运行分析-" + yxfx.type;
                     gzr.fzr = yxfx.zcr;
                     gzr.fssj = yxfx.rq;
                     string[] ss = yxfx.cjry.Split(';');
-                    if (ss.Length >=1)
+                    if (ss.Length >= 1)
                     {
 
                         gzr.cjry = gzr.fzr + "、" + ss[0];
@@ -296,10 +303,13 @@ namespace Ebada.Scgl.Yxgl
                         gzr.cjry = gzr.fzr;
                     }
 
-                    
+
                 }
-                //else
-                //    return;
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("未填写今日工作日记");   
+                    return;
+                }
                 string strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, yxfx.type);
                
                 if (strmes.IndexOf("未提交至任何人") > -1)
