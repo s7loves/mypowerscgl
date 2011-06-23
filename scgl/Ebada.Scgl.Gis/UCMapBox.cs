@@ -65,6 +65,7 @@ namespace Ebada.Scgl.Gis {
             backbmp = null;
         }
         Point beginPoint = Point.Empty;
+        bool isdown = false;
         void DrawArea_MouseDown(object sender, MouseEventArgs e) {
             isdown = true;
             beginPoint = Control.MousePosition;
