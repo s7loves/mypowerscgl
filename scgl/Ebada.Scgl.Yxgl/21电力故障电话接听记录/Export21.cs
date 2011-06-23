@@ -41,7 +41,7 @@ namespace Ebada.Scgl.Yxgl {
             {
 
                 ex.ActiveSheet(j);
-
+                ex.ReNameWorkSheet(j, "Sheet" + (j));
                 int prepageindex = j - 1;
                 //主题
                 int starow = prepageindex * 19 + 1;

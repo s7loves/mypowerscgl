@@ -234,7 +234,8 @@ namespace Ebada.Scgl.Yxgl
             {
                 if (j > 1)
                 {
-                    ex.CopySheet(1, 1);
+                    ex.CopySheet(1,1);
+                    
                 }
             }
             ex.ShowExcel();
@@ -242,7 +243,7 @@ namespace Ebada.Scgl.Yxgl
             {
 
                 ex.ActiveSheet(j);
-
+                ex.ReNameWorkSheet(j, "Sheet" + (j));
                 int prepageindex = j - 1;
                 //主题
                 int starow = prepageindex * hs+ 1;
