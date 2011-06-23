@@ -48,7 +48,7 @@ namespace Ebada.App {
             }
 
             #endregion
-            if (!bHasError) {
+            //if (!bHasError) {
                 //                
                 try {
                     System.Diagnostics.Process.Start(Application.StartupPath + "\\Ebada.SCGL.exe");
@@ -56,7 +56,7 @@ namespace Ebada.App {
                     MessageBox.Show(ex.Message);
                 }
                 Application.Exit();
-            }
+            //}
         } 
         /// <summary>
         /// 弹出提示框

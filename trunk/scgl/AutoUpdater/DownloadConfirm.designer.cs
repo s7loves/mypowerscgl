@@ -62,18 +62,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(21, 34);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(125, 12);
+            this.label4.Size = new System.Drawing.Size(59, 12);
             this.label4.TabIndex = 0;
-            this.label4.Text = "From:  Remote server";
+            this.label4.Text = "更新地址:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(21, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 12);
+            this.label3.Size = new System.Drawing.Size(161, 12);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Name:  Ebada";
+            this.label3.Text = "系统名称: 农电生产管理系统";
             // 
             // btnCancel
             // 
