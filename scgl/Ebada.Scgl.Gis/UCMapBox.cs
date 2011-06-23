@@ -64,7 +64,6 @@ namespace Ebada.Scgl.Gis {
             beginPoint = Point.Empty;
             backbmp = null;
         }
-        bool isdown = false;
         Point beginPoint = Point.Empty;
         void DrawArea_MouseDown(object sender, MouseEventArgs e) {
             isdown = true;
@@ -78,12 +77,10 @@ namespace Ebada.Scgl.Gis {
         }
 
         System.Drawing.Image backbmp = null;
-        float curScale = 1;
-        int curLevel = -1;
-        float mapScale = 1;
+
         private void documentControl1_AfterPaintPage(object sender, TLVector.Core.PaintMapEventArgs e) {
 
-            (mapview as MapViewBase).ShowMapInfo = true;
+            //(mapview as MapViewBase).ShowMapInfo = true;
             int nScale = 0;
             float nn = 1;
             nScale = mapview.Getlevel(documentControl1.ScaleRatio);
@@ -143,11 +140,6 @@ namespace Ebada.Scgl.Gis {
                 string str1 = string.Format("{0}公里", mapview.GetMiles(nScale));
                 e.G.DrawString(str1, new Font("宋体", 10), Brushes.Black, 30, e.Bounds.Height - 40);
             }
-            //			string s = string.Format("{0}行{1}列", nRows, nCols);
-            //string s = string.Format("经{0}：纬{1}", longlat.Longitude, longlat.Latitude);
-            //			//显示中心点经纬度
-            //e.G.DrawString(s, new Font("宋体", 10), Brushes.Red, 20, 40);
-
            
         }
 
@@ -172,10 +164,6 @@ namespace Ebada.Scgl.Gis {
 
         private void 卫星ToolStripMenuItem_Click(object sender, EventArgs e) {
             (mapview as MapViewGoogle).SetTileType(2);
-            documentControl1.Refresh();
-        }
-        private void 卫星标注ToolStripMenuItem_Click(object sender, EventArgs e) {
-            (mapview as MapViewGoogle).SetTileType(4);
             documentControl1.Refresh();
         }
         private void 地形ToolStripMenuItem_Click(object sender, EventArgs e) {
