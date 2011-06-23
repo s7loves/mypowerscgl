@@ -20,10 +20,10 @@ namespace Ebada.SCGL
         {
             InitializeComponent();
             
-            ucModulBar1.RefreshData("");
+            //ucModulBar1.RefreshData("");
             ucModulBar1.PlatForm = this;
             iPaintStyle = new BarSubItem(barManager1, "皮肤");
-            InitMenu("");
+            //InitMenu("");
             InitSkins();
         }
         #region Skins
@@ -183,15 +183,58 @@ namespace Ebada.SCGL
         {
             base.OnShown(e);
             MainHelper.MainForm = this;
-            ucModulBar1.SetImage();
-            frmLogin dlg = new frmLogin();
-            if (dlg.ShowDialog() == DialogResult.OK) {
-                barStaticItem2.Caption = "操作员：" + MainHelper.User.UserName;
-            }
+            InitSkins();
+            btLogin_ItemClick(null, null);
         }
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
             ucModulBar1.RefreshData(""); InitMenu("");
+        }
+
+        private void btLogin_ItemClick(object sender, ItemClickEventArgs e) {
+            frmLogin dlg = new frmLogin();
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                barStaticItem2.Caption = string.Format("部门：{0}操作员：{1}" ,MainHelper.User.OrgName, MainHelper.User.UserName);
+                InitMenu(MainHelper.User.UserID);
+                ucModulBar1.RefreshData("");
+                ucModulBar1.SetImage();
+                if (MainHelper.User.LoginID == "rabbit") {
+                    barButtonItem1.Visibility = BarItemVisibility.Always;
+                    barButtonItem2.Visibility = BarItemVisibility.Always;
+                }
+                
+            } else {
+#if DEBUG
+                ucModulBar1.RefreshData("");
+                ucModulBar1.SetImage();
+#endif
+            }
+            barButtonItem3.Enabled = (dlg.DialogResult == DialogResult.OK);
+            
+        }
+
+        private void btClose_ItemClick(object sender, ItemClickEventArgs e) {
+            if (Client.MsgBox.ShowAskMessageBox("是否退出系统？") == DialogResult.OK) {
+                this.Close();
+            }
+        }
+
+        private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e) {
+            //锁屏
+            
+            Client.Platform.FormPasswordValidation dlg = new FormPasswordValidation();
+            dlg.Owner = this;
+            dlg.ShowInTaskbar = false;
+            while (true) {
+                if (dlg.ShowDialog() == DialogResult.OK) {
+                    break;
+                } else {
+                    if (Client.MsgBox.ShowAskMessageBox("是否退出系统？") == DialogResult.OK) {
+                        this.Close();
+                        break;
+                    }
+                }
+            }
         }
 
     }
