@@ -34,6 +34,8 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.btLogin = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -50,6 +52,7 @@
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -77,10 +80,13 @@
             this.barButtonItem1,
             this.barButtonItem2,
             this.barStaticItem1,
-            this.barStaticItem2});
+            this.barStaticItem2,
+            this.btLogin,
+            this.btClose,
+            this.barButtonItem3});
             this.barManager1.LargeImages = this.imageCollection1;
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 6;
+            this.barManager1.MaxItemId = 9;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -92,7 +98,10 @@
             this.bar1.FloatLocation = new System.Drawing.Point(43, 175);
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btLogin),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3)});
             this.bar1.Text = "Tools";
             // 
             // barButtonItem1
@@ -102,16 +111,36 @@
             this.barButtonItem1.ImageIndex = 3;
             this.barButtonItem1.Name = "barButtonItem1";
             this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // barButtonItem2
             // 
-            this.barButtonItem2.Caption = "刷新模块";
+            this.barButtonItem2.Caption = "刷新菜单";
             this.barButtonItem2.Id = 3;
             this.barButtonItem2.ImageIndex = 5;
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
+            // btLogin
+            // 
+            this.btLogin.Caption = "登录";
+            this.btLogin.Id = 6;
+            this.btLogin.ImageIndex = 11;
+            this.btLogin.Name = "btLogin";
+            this.btLogin.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btLogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btLogin_ItemClick);
+            // 
+            // btClose
+            // 
+            this.btClose.Caption = "退出";
+            this.btClose.Id = 7;
+            this.btClose.ImageIndex = 12;
+            this.btClose.Name = "btClose";
+            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btClose_ItemClick);
             // 
             // bar2
             // 
@@ -224,6 +253,9 @@
             this.imageCollection1.ImageSize = new System.Drawing.Size(32, 32);
             this.imageCollection1.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection1.ImageStream")));
             this.imageCollection1.Images.SetKeyName(10, "login.png");
+            this.imageCollection1.Images.SetKeyName(11, "login1.png");
+            this.imageCollection1.Images.SetKeyName(12, "close.png");
+            this.imageCollection1.Images.SetKeyName(13, "keyclose.png");
             // 
             // defaultLookAndFeel1
             // 
@@ -233,6 +265,15 @@
             // 
             this.xtraTabbedMdiManager1.Controller = this.barAndDockingController1;
             this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "锁屏";
+            this.barButtonItem3.Id = 8;
+            this.barButtonItem3.ImageIndex = 13;
+            this.barButtonItem3.Name = "barButtonItem3";
+            this.barButtonItem3.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
             // 
             // frmMain2
             // 
@@ -282,5 +323,8 @@
         private DevExpress.Utils.ImageCollection imageCollection1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem2;
+        private DevExpress.XtraBars.BarButtonItem btLogin;
+        private DevExpress.XtraBars.BarButtonItem btClose;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
     }
 }
