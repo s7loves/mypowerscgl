@@ -16,11 +16,12 @@ namespace EbadaAutoupdater
         #endregion
 
         #region The constructor of DownloadConfirm
-        public DownloadConfirm(List<DownloadFileInfo> downloadfileList)
+        public DownloadConfirm(List<DownloadFileInfo> downloadfileList,Config config)
         {
             InitializeComponent();
 
             downloadFileList = downloadfileList;
+            label4.Text += config.ServerUrl;
         }
         #endregion
 

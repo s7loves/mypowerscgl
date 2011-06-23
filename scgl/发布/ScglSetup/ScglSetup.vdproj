@@ -3430,7 +3430,7 @@
                 "Message" = "8:[VSDNETMSG]"
                 "Version" = "8:2.0.50727"
                 "AllowLaterVersions" = "11:FALSE"
-                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
+                "InstallUrl" = "8:http://www.microsoft.com/downloads/zh-cn/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5&displaylang=zh-cn"
                 }
             }
         }
@@ -5601,7 +5601,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:农电生产管理系统"
         "ProductCode" = "8:{1BA41774-8D9D-4CD8-928D-37CACFA9E382}"
-        "PackageCode" = "8:{2CED1AF5-C232-4AA9-9C0D-77D71E26ADE4}"
+        "PackageCode" = "8:{C34C8D2A-DBB5-40B2-A434-6B92475A9922}"
         "UpgradeCode" = "8:{D538B1CD-F6EA-4C22-94E2-B1256BAA2733}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"

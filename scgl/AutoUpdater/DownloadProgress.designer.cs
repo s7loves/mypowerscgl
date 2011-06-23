@@ -167,6 +167,7 @@
             this.label5.Size = new System.Drawing.Size(137, 12);
             this.label5.TabIndex = 0;
             this.label5.Text = "From:    Remote Server";
+            this.label5.Visible = false;
             // 
             // label7
             // 
@@ -176,6 +177,7 @@
             this.label7.Size = new System.Drawing.Size(101, 12);
             this.label7.TabIndex = 0;
             this.label7.Text = "Name:  Ebada.exe";
+            this.label7.Visible = false;
             // 
             // label6
             // 
