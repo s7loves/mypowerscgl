@@ -122,6 +122,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("ParentID");
             hideColumn("OrgCode");
             hideColumn("gznrID");
+            hideColumn("czxm");
         }
         /// <summary>
         /// 刷新数据
@@ -151,6 +152,23 @@ namespace Ebada.Scgl.Yxgl
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
+            newobj.ph = "18" + DateTime.Now.Year.ToString() + sws(gridView1.RowCount);
+        }
+        /// <summary>
+        /// 父表ID
+        /// </summary>
+        public string sws(int sum)
+        {
+            if (sum<10)
+            {
+                return "00" + sum.ToString();
+            }
+            if (sum >= 10 && sum < 100)
+            {
+                return "0" + sum.ToString();
+            }
+            else
+                return sum.ToString();
         }
         /// <summary>
         /// 父表ID

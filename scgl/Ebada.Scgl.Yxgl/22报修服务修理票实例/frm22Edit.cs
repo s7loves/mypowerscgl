@@ -24,9 +24,9 @@ namespace Ebada.Scgl.Yxgl
         void dataBind() {
 
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "OrgName");
+            //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "OrgName");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "ph");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "bxsj");
+            this.dateEdit5.DataBindings.Add("EditValue", rowData, "bxsj");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "bxdd");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xlfzr");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "xlry");
@@ -34,7 +34,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "bggzqc");
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "bgfs");
             this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "bxrxm");
-            this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "lxdh");
+            this.textEdit1.DataBindings.Add("EditValue", rowData, "lxdh");
             this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "sjgzqc");
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "sycl");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "dsj");
@@ -47,9 +47,9 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "tdxl");
             this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "czxm");
             this.comboBoxEdit19.DataBindings.Add("EditValue", rowData, "ddsb");
-            this.comboBoxEdit20.DataBindings.Add("EditValue", rowData, "wxd");
-            this.comboBoxEdit21.DataBindings.Add("EditValue", rowData, "cljg");
-            this.comboBoxEdit22.DataBindings.Add("EditValue", rowData, "Remark");
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "wxd",false,DataSourceUpdateMode.OnPropertyChanged);
+            this.memoEdit3.DataBindings.Add("EditValue", rowData, "cljg", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memoEdit4.DataBindings.Add("EditValue", rowData, "Remark");
         }
         #region IPopupFormEdit Members
         private PJ_22 rowData = null;
@@ -83,6 +83,22 @@ namespace Ebada.Scgl.Yxgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            if (ryList.Count > 0)
+            {
+                this.comboBoxEdit5.Properties.Items.AddRange(ryList);
+                this.comboBoxEdit6.Properties.Items.AddRange(ryList);
+                this.comboBoxEdit7.Properties.Items.AddRange(ryList);
+                this.comboBoxEdit10.Properties.Items.AddRange(ryList);
+                this.comboBoxEdit14.Properties.Items.AddRange(ryList);
+                this.comboBoxEdit15.Properties.Items.AddRange(ryList);
+
+            }
+            ComboBoxHelper.FillCBoxByDyk("22报修服务修理票实例", "报告故障情况", comboBoxEdit8.Properties);
+            ComboBoxHelper.FillCBoxByDyk("22报修服务修理票实例", "所有材料", comboBoxEdit13.Properties);
+            ComboBoxHelper.FillCBoxByDyk("22报修服务修理票实例", "停电线路名称及杆号：", comboBoxEdit17.Properties);
+            ComboBoxHelper.FillCBoxByDyk("22报修服务修理票实例", "实际故障情况", comboBoxEdit12.Properties);
+            
         }
 
         /// <summary>
@@ -144,6 +160,16 @@ namespace Ebada.Scgl.Yxgl
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("22报修服务修理票实例", "危险点及安全措施：", memoEdit2);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("22报修服务修理票实例", "故障处理经过和结果：", memoEdit3);
         }
     }
 }
