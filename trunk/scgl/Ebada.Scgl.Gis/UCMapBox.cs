@@ -36,7 +36,7 @@ namespace Ebada.Scgl.Gis {
             this.documentControl1.FullDrawMode = true;
             SvgDocument.BkImageLoad = true;
             this.documentControl1.BackColor = Color.BurlyWood;
-            this.documentControl1.DrawArea.MaxScale = 8;
+            this.documentControl1.DrawArea.MaxScale = 2;
             this.documentControl1.DrawArea.MinSacle = 8f / (float)Math.Pow(2, (18 - 7));
 
             this.documentControl1.DrawMode = DrawModeType.MemoryImage;
