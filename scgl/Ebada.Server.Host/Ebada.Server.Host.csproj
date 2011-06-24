@@ -88,6 +88,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\TONLI.MapCore.dll</HintPath>
     </Reference>
+    <Reference Include="TONLI.MapView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\TONLI.MapView.dll</HintPath>
+    </Reference>
+    <Reference Include="TONLI.MapView.Tables, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\TONLI.MapView.Tables.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
