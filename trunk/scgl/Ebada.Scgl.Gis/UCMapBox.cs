@@ -12,11 +12,16 @@ using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using DevExpress.XtraEditors;
-
+using Ebada.Client;
+using Ebada.Client.Platform;
 namespace Ebada.Scgl.Gis {
     public partial class UCMapBox : XtraUserControl {
         static UCMapBox() {
             TLVector.SpecialCursors.LoadCursors();//加载光标资源 
+	    try {
+                TONLI.MapView.DataHelper.IMapServer = ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>();
+                
+            } catch(Exception e){ MsgBox.ShowTipMessageBox("地图服务器连接失败！"+e.Message);}
         }
         public UCMapBox() {
             InitializeComponent();

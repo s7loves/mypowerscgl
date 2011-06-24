@@ -37,6 +37,7 @@ namespace Ebada.SCGL
         }
         private void setImages(TreeListNodes nodes)
         {
+	treeList1.BeginInit();
             foreach (TreeListNode node in nodes)
             {
                 if (node.Nodes.Count > 0)
@@ -49,6 +50,7 @@ namespace Ebada.SCGL
                     node.ImageIndex = 1;
                 }
             }
+	treeList1.EndInit();
         }
         private void treeList1_DoubleClick(object sender, EventArgs e)
         {
