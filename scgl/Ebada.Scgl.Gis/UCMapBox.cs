@@ -18,10 +18,10 @@ namespace Ebada.Scgl.Gis {
     public partial class UCMapBox : XtraUserControl {
         static UCMapBox() {
             TLVector.SpecialCursors.LoadCursors();//加载光标资源 
-	    try {
+            try {
                 TONLI.MapView.DataHelper.IMapServer = ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>();
-                
-            } catch(Exception e){ MsgBox.ShowTipMessageBox("地图服务器连接失败！"+e.Message);}
+
+            } catch (Exception e) { MsgBox.ShowTipMessageBox("地图服务器连接失败！" + e.Message); }
         }
         public UCMapBox() {
             InitializeComponent();
@@ -30,10 +30,14 @@ namespace Ebada.Scgl.Gis {
             bool showmapinfo = bool.Parse(ConfigurationManager.AppSettings["showmapinfo"]);
             int viewwidth = int.Parse(ConfigurationManager.AppSettings["mapview"]);
             string maptype = ConfigurationManager.AppSettings["maptype"];
-            
-                MapViewGoogle map = new TONLI.MapView.MapViewGoogle();
-                map.ShowMapInfo = showmapinfo;
-                mapview = map;
+
+            MapViewGoogle map = new TONLI.MapView.MapViewGoogle();
+            map.ShowMapInfo = showmapinfo;
+            mapview = map;
+            if (TONLI.MapView.DataHelper.IMapServer != null) {
+                map.OnDownCompleted += new DownCompleteEventHandler(map_OnDownCompleted);
+                map.IsDownMap = true;
+            }
             this.documentControl1.AfterPaintPage += new TLVector.DrawArea.PaintMapEventHandler(documentControl1_AfterPaintPage);
             this.documentControl1.DrawArea.ViewMargin = new Size(viewwidth, viewwidth);
             mapview.ZeroLongLat = new LongLat(jd, wd);
@@ -53,16 +57,21 @@ namespace Ebada.Scgl.Gis {
             Init();
             this.documentControl1.Operation = ToolOperation.Roam;
         }
+
+        void map_OnDownCompleted(ClassImage mapclass) {
+            if (mapclass.PicImage != null)
+                documentControl1.DrawArea.InvadateRect(mapclass.Bounds);
+        }
         public void Init() {
             documentControl1.NewFile();
-            
+
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             setLevel(8);
         }
-        void setLevel(int level) {           
-                documentControl1.ScaleRatio = 8f / (float)Math.Pow(2, (18 - level));
+        void setLevel(int level) {
+            documentControl1.ScaleRatio = 8f / (float)Math.Pow(2, (18 - level));
         }
         void DrawArea_MouseUp(object sender, MouseEventArgs e) {
             isdown = false;
@@ -90,7 +99,7 @@ namespace Ebada.Scgl.Gis {
             int nScale = 0;
             float nn = 1;
             nScale = mapview.Getlevel(documentControl1.ScaleRatio);
- 
+
             if (nScale == -1) return;
 
 
@@ -146,13 +155,13 @@ namespace Ebada.Scgl.Gis {
                 string str1 = string.Format("{0}公里", mapview.GetMiles(nScale));
                 e.G.DrawString(str1, new Font("宋体", 10), Brushes.Black, 30, e.Bounds.Height - 40);
             }
-           
+
         }
 
         private void DrawArea_OnBeforeRenderTo(object sender, TLVector.Core.PaintMapEventArgs e) {
-           
+
         }
-        
+
         private void documentControl1_MoveIn(object sender, TLVector.DrawArea.SvgElementSelectedEventArgs e) {
             //(e.SvgElement as IGraph).CanSelect=false;
             this.documentControl1.SetToolTip(((TLVector.Core.SvgElement)e.SvgElement).GetAttribute("info-name"));
