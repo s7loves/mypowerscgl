@@ -40,7 +40,13 @@
              id="ICoreManager"
              service="Ebada.Core.ICoreManager, Ebada.Core"
              type="Ebada.Platform.Server.CoreManager, Ebada.Platform.Server"
-             remoteserver="component" lifestyle="thread">
+             remoteserver="component" lifestyle="transient">
+          </component>
+	<component
+             id="IMapServer"
+             service="TONLI.MapCore.IMapServer, TONLI.MapCore"
+             type="TONLI.MapCore.MapServer, TONLI.MapCore"
+             remoteserver="component" lifestyle="transient">
           </component>
         </components>
         </configuration>

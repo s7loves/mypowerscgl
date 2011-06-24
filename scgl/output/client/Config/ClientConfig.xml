@@ -38,7 +38,14 @@
 			      service="Ebada.Core.ICoreManager, Ebada.Core"
 			      type="Ebada.Components.RemoteMath, Ebada.Components"
 			      remoteclient="component"/>
+          <component
+             id="IMapServer"
+             service="TONLI.MapCore.IMapServer, TONLI.MapCore"
+             type="TONLI.MapCore.MapServer, TONLI.MapCore"
+             remoteclient="component" lifestyle="transient">
+          </component>
         </components>
+	
       </configuration>
     </container>
     
