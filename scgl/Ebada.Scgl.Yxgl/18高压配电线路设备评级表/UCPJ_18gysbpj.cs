@@ -50,7 +50,7 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_AfterAdd(PJ_18gysbpj obj)
         {
-            RefreshData(" where OrgCode='" + parentID + "' order by id desc");
+            RefreshData(" where OrgCode='" + parentID + "'");
           
         }
       
@@ -171,7 +171,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where OrgCode='" + value + "'");
                 }
             }
         }
@@ -197,17 +197,10 @@ namespace Ebada.Scgl.Yxgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //if (gridView1.RowCount>0)
-            //{
-            //     IList<PJ_18gysbpj> pjlist=new List<PJ_18gysbpj>();
-            //    for (int i = 0; i < gridView1.RowCount; i++)
-            //    {
-            //        pjlist.Add(gridView1.GetRow(i) as PJ_18gysbpj);
-            //    }
-            //   Export18.ExportExcel(pjlist);
-            //}
-           
-           
+            if (gridView1.FocusedRowHandle >= 0)
+            {
+                Export18.ExportExcel(gridView1.GetFocusedRow() as PJ_18gysbpj);
+            }
         }
     }
 }

@@ -65,7 +65,7 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "编 号", comboBoxEdit3.Properties);
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试 验 周 期", comboBoxEdit7.Properties);
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试验项目", comboBoxEdit4.Properties);
-            ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "结 论", comboBoxEdit7.Properties);
+
 
                   }
 
