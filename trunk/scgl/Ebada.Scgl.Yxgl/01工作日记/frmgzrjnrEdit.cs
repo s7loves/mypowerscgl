@@ -27,13 +27,9 @@ namespace Ebada.Scgl.Yxgl
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "fssj");
             this.textEdit1.DataBindings.Add("EditValue", rowData, "seq");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "fzr");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "gznr");
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "cjry");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "gznr",false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "cjry",false, DataSourceUpdateMode.OnPropertyChanged);
 
-            //
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
@@ -58,16 +54,7 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_gzrjnr>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+            
         }
 
         /// <summary>
