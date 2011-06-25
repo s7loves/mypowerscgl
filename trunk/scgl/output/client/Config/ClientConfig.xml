@@ -42,7 +42,7 @@
              id="IMapServer"
              service="TONLI.MapCore.IMapServer, TONLI.MapCore"
              type="TONLI.MapCore.MapServer, TONLI.MapCore"
-             remoteclient="component" lifestyle="transient">
+             remoteclient="component">
           </component>
         </components>
 	
