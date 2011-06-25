@@ -34,19 +34,19 @@
 			      id="IBaseSqlMapDao"
 			      service="Ebada.Components.IBaseSqlMapDao, Ebada.Components"
 			      type="Ebada.Components.BaseSqlMapDao, Ebada.Components"
-			      remoteserver="component" lifestyle="transient">
+			      remoteserver="component">
           </component>
           <component
              id="ICoreManager"
              service="Ebada.Core.ICoreManager, Ebada.Core"
              type="Ebada.Platform.Server.CoreManager, Ebada.Platform.Server"
-             remoteserver="component" lifestyle="transient">
+             remoteserver="component">
           </component>
 	<component
              id="IMapServer"
              service="TONLI.MapCore.IMapServer, TONLI.MapCore"
              type="TONLI.MapCore.MapServer, TONLI.MapCore"
-             remoteserver="component" lifestyle="transient">
+             remoteserver="component">
           </component>
         </components>
         </configuration>
