@@ -52,7 +52,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{5CCF8E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{E5EC9BEA-5BCC-4237-A1DC-8E229CBEAEFC}"
 	ProjectSection(SolutionItems) = preProject
-		output\client\Config\ClientConfig.xml = output\client\Config\ClientConfig.xml
 		output\client\Config\RemotingTcpConfigClient.config = output\client\Config\RemotingTcpConfigClient.config
 	EndProjectSection
 EndProject
