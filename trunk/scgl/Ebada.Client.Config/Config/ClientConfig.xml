@@ -9,8 +9,8 @@
                   type="Castle.Facilities.Remoting.RemotingFacility, Castle.MicroKernel"
                   remotingConfigurationFile="./Config/RemotingTcpConfigClient.config"
                   isClient="true"
-                  remoteKernelUri="tcp://localhost:5100/kernel.rem"
-                  baseUri="tcp://localhost:5100" >
+                  remoteKernelUri="tcp://192.168.1.105:5100/kernel.rem"
+                  baseUri="tcp://192.168.1.105:5100" >
           </facility>
         </facilities>
         <!--<include uri="../Ebada.PlatformBll.xml" />--><!--所有服务接口type为虚拟实例-->
@@ -38,6 +38,12 @@
 			      service="Ebada.Core.ICoreManager, Ebada.Core"
 			      type="Ebada.Components.RemoteMath, Ebada.Components"
 			      remoteclient="component"/>
+          <component
+             id="IMapServer"
+             service="TONLI.MapCore.IMapServer, TONLI.MapCore"
+             type="TONLI.MapCore.MapServer, TONLI.MapCore"
+             remoteclient="component">
+          </component>
         </components>
       </configuration>
     </container>
