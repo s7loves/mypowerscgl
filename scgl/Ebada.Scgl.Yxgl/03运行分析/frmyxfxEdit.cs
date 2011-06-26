@@ -136,9 +136,9 @@ namespace Ebada.Scgl.Yxgl
                     groupBox1.Enabled = true;
                     groupBox2.Enabled = true;
                     groupBox3.Enabled = true;
-                    groupBox4.Enabled = true;
-                    groupBox5.Enabled = true;
-                    groupBox6.Enabled = true;
+                    //groupBox4.Enabled = true;
+                    //groupBox5.Enabled = true;
+                    //groupBox6.Enabled = true;
 
                     dateEdit4.Enabled = false;
                     comboBoxEdit17.Enabled = false;
@@ -149,9 +149,9 @@ namespace Ebada.Scgl.Yxgl
                     groupBox1.Enabled = false;
                     groupBox2.Enabled = false;
                     groupBox3.Enabled = false;
-                    groupBox4.Enabled = false;
-                    groupBox5.Enabled = false;
-                    groupBox6.Enabled = false;
+                    //groupBox4.Enabled = false;
+                    //groupBox5.Enabled = false;
+                    //groupBox6.Enabled = false;
 
                     dateEdit4.Enabled = false;
                     comboBoxEdit17.Enabled = false;
@@ -162,9 +162,9 @@ namespace Ebada.Scgl.Yxgl
                     groupBox1.Enabled = true;
                     groupBox2.Enabled = false;
                     groupBox3.Enabled = false;
-                    groupBox4.Enabled = false;
-                    groupBox5.Enabled = false;
-                    groupBox6.Enabled = false;
+                    //groupBox4.Enabled = false;
+                    //groupBox5.Enabled = false;
+                    //groupBox6.Enabled = false;
                     dateEdit3.Enabled = false;
                     comboBoxEdit16.Enabled = false;
                     comboBoxEdit18.Enabled = false;
@@ -177,9 +177,9 @@ namespace Ebada.Scgl.Yxgl
                     groupBox1.Enabled = false;
                     groupBox2.Enabled = false;
                     groupBox3.Enabled = false;
-                    groupBox4.Enabled = false;
-                    groupBox5.Enabled = false;
-                    groupBox6.Enabled = false;
+                    //groupBox4.Enabled = false;
+                    //groupBox5.Enabled = false;
+                    //groupBox6.Enabled = false;
 
                     dateEdit4.Enabled = false;
                     comboBoxEdit17.Enabled = false;
