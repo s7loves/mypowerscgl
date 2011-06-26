@@ -54,7 +54,11 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            
+            ICollection ryList = ComboBoxHelper.GetGdsRy(UCPJ_gzrjnr.GetGdsCode());//获取供电所人员列表
+            {
+                ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit1"]).Properties.Items.Clear();
+                ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit1"]).Properties.Items.AddRange(ryList);
+            }
         }
 
         /// <summary>

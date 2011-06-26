@@ -31,6 +31,7 @@ namespace Ebada.Scgl.Yxgl {
         public event SendDataEventHandler<PJ_gzrjnr> FocusedRowChanged;
         private string parentID=null;
         private PJ_01gzrj parentObj;
+        private static UCPJ_gzrjnr mInstance;
         public UCPJ_gzrjnr() {
             InitializeComponent();
             bar3.Visible = false;
@@ -40,7 +41,14 @@ namespace Ebada.Scgl.Yxgl {
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_gzrjnr>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
+            this.Disposed += new EventHandler(UCPJ_gzrjnr_Disposed);
+            mInstance = this;
         }
+
+        void UCPJ_gzrjnr_Disposed(object sender, EventArgs e) {
+            mInstance = null;
+        }
+        
         private IViewOperation<PJ_gzrjnr> childView;
         /// <summary>
         /// 获取和设置子表的数据操作接口
@@ -148,6 +156,10 @@ namespace Ebada.Scgl.Yxgl {
                     ParentID = value.gzrjID;
                 }
             }
+        }
+
+        internal static string GetGdsCode() {
+            return mInstance.ParentObj.GdsCode;
         }
     }
 }
