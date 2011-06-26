@@ -193,7 +193,7 @@ namespace Ebada.Scgl.Yxgl
             //填充下拉列表数据
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
            // ICollection yyList = ComboBoxHelper.GetQqyy();//获取缺勤原因列表
-            for (int i = 0; i < 17; i++)
+            for (int i = 0; i < 16; i++)
             {
                 if (ryList.Count>0)
                 {
@@ -206,11 +206,11 @@ namespace Ebada.Scgl.Yxgl
                         ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
                     }
                 }
-                
-                //((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).Properties.Items.AddRange(yyList);
-            }
 
-            //this.cBoxTq.Properties.Items.AddRange(ComboBoxHelper.GetTQ());//设置天气列表
+                
+            }
+            ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.AddRange(ryList);
+
         }
 
         /// <summary>

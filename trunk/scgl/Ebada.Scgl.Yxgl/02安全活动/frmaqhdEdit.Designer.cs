@@ -149,6 +149,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit5.Properties)).BeginInit();
             this.SuspendLayout();
             // 
+            // m_DefaultLookAndFeel
+            // 
+            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -708,7 +712,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.memoEdit1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(386, 179);
+            this.xtraTabPage1.Size = new System.Drawing.Size(388, 182);
             this.xtraTabPage1.Text = "活动内容";
             // 
             // memoEdit1
@@ -717,7 +721,7 @@
             this.memoEdit1.EditValue = "";
             this.memoEdit1.Location = new System.Drawing.Point(0, 0);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(386, 179);
+            this.memoEdit1.Size = new System.Drawing.Size(388, 182);
             this.memoEdit1.TabIndex = 0;
             // 
             // xtraTabPage2
@@ -739,7 +743,7 @@
             // 
             this.xtraTabPage3.Controls.Add(this.memoEdit5);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(386, 179);
+            this.xtraTabPage3.Size = new System.Drawing.Size(386, 180);
             this.xtraTabPage3.Text = "发言简要记录";
             // 
             // memoEdit5
@@ -747,7 +751,7 @@
             this.memoEdit5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit5.Location = new System.Drawing.Point(0, 0);
             this.memoEdit5.Name = "memoEdit5";
-            this.memoEdit5.Size = new System.Drawing.Size(386, 179);
+            this.memoEdit5.Size = new System.Drawing.Size(386, 180);
             this.memoEdit5.TabIndex = 0;
             // 
             // bar1

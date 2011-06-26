@@ -263,7 +263,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.memoEdit1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(388, 185);
+            this.xtraTabPage2.Size = new System.Drawing.Size(388, 240);
             this.xtraTabPage2.Text = "纪要内容";
             // 
             // memoEdit1
@@ -272,14 +272,14 @@
             this.memoEdit1.EditValue = "";
             this.memoEdit1.Location = new System.Drawing.Point(0, 0);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(388, 185);
+            this.memoEdit1.Size = new System.Drawing.Size(388, 240);
             this.memoEdit1.TabIndex = 0;
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.memoEdit2);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(388, 185);
+            this.xtraTabPage3.Size = new System.Drawing.Size(388, 240);
             this.xtraTabPage3.Text = "结论及对策";
             // 
             // memoEdit2
@@ -287,7 +287,7 @@
             this.memoEdit2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit2.Location = new System.Drawing.Point(0, 0);
             this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(388, 185);
+            this.memoEdit2.Size = new System.Drawing.Size(388, 240);
             this.memoEdit2.TabIndex = 0;
             // 
             // groupBox2
