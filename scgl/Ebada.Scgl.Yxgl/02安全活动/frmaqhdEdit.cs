@@ -156,7 +156,7 @@ namespace Ebada.Scgl.Yxgl
 
             }
             ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" +  1]).Properties.Items.AddRange(ryList);
-            ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" + 6]).Properties.Items.AddRange(ryList);
+            ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 6]).Properties.Items.AddRange(ryList);
 
             //填充下拉列表数据
         }
