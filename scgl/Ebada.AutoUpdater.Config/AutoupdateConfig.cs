@@ -14,5 +14,12 @@ namespace Ebada.AutoUpdater.Config
         {
             InitializeComponent();
         }
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new AutoupdateConfig());
+        }
     }
 }
