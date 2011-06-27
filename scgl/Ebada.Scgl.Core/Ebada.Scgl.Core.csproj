@@ -133,6 +133,7 @@
       <DependentUpon>frmOfficeEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="GZipHelper.cs" />
+    <Compile Include="LineLossHelper.cs" />
     <Compile Include="ListCacheHelper.cs" />
     <Compile Include="LookUpDicType.cs">
       <SubType>Component</SubType>
