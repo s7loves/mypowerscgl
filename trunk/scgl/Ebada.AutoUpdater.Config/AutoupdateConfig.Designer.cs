@@ -29,30 +29,104 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.DelRAR = new System.Windows.Forms.Button();
+            this.AddRAR = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.BuildXML = new System.Windows.Forms.Button();
+            this.Delbut = new System.Windows.Forms.Button();
+            this.Addbut = new System.Windows.Forms.Button();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.fileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.DelRAR);
+            this.panel1.Controls.Add(this.AddRAR);
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.BuildXML);
+            this.panel1.Controls.Add(this.Delbut);
+            this.panel1.Controls.Add(this.Addbut);
             this.panel1.Controls.Add(this.gridControl1);
             this.panel1.Location = new System.Drawing.Point(2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(502, 186);
+            this.panel1.Size = new System.Drawing.Size(644, 230);
             this.panel1.TabIndex = 0;
             // 
-            // openFileDialog1
+            // DelRAR
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.DelRAR.Location = new System.Drawing.Point(557, 128);
+            this.DelRAR.Name = "DelRAR";
+            this.DelRAR.Size = new System.Drawing.Size(84, 23);
+            this.DelRAR.TabIndex = 5;
+            this.DelRAR.Text = "后缀去RAR";
+            this.DelRAR.UseVisualStyleBackColor = true;
+            this.DelRAR.Visible = false;
+            // 
+            // AddRAR
+            // 
+            this.AddRAR.Location = new System.Drawing.Point(557, 99);
+            this.AddRAR.Name = "AddRAR";
+            this.AddRAR.Size = new System.Drawing.Size(84, 23);
+            this.AddRAR.TabIndex = 5;
+            this.AddRAR.Text = "后缀添加RAR";
+            this.AddRAR.UseVisualStyleBackColor = true;
+            this.AddRAR.Visible = false;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(280, 209);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(282, 16);
+            this.checkBox1.TabIndex = 4;
+            this.checkBox1.Text = "添加更新文件夹里所有文件(ScglUpdateService)";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // BuildXML
+            // 
+            this.BuildXML.Location = new System.Drawing.Point(557, 32);
+            this.BuildXML.Name = "BuildXML";
+            this.BuildXML.Size = new System.Drawing.Size(75, 23);
+            this.BuildXML.TabIndex = 3;
+            this.BuildXML.Text = "生成XML";
+            this.BuildXML.UseVisualStyleBackColor = true;
+            this.BuildXML.Click += new System.EventHandler(this.BuildXML_Click);
+            // 
+            // Delbut
+            // 
+            this.Delbut.Location = new System.Drawing.Point(557, 32);
+            this.Delbut.Name = "Delbut";
+            this.Delbut.Size = new System.Drawing.Size(75, 23);
+            this.Delbut.TabIndex = 2;
+            this.Delbut.Text = "删除文件";
+            this.Delbut.UseVisualStyleBackColor = true;
+            this.Delbut.Visible = false;
+            // 
+            // Addbut
+            // 
+            this.Addbut.Location = new System.Drawing.Point(557, 3);
+            this.Addbut.Name = "Addbut";
+            this.Addbut.Size = new System.Drawing.Size(75, 23);
+            this.Addbut.TabIndex = 1;
+            this.Addbut.Text = "增加文件";
+            this.Addbut.UseVisualStyleBackColor = true;
+            this.Addbut.Click += new System.EventHandler(this.Addbut_Click);
             // 
             // gridControl1
             // 
@@ -60,8 +134,9 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemCheckEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(400, 200);
+            this.repositoryItemCheckEdit1,
+            this.repositoryItemCheckEdit2});
+            this.gridControl1.Size = new System.Drawing.Size(548, 200);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -69,29 +144,45 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn5,
             this.gridColumn1,
             this.gridColumn2,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn6});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "选择文件";
+            this.gridColumn5.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.gridColumn5.FieldName = "HaveSelected";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 0;
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "文件名";
-            this.gridColumn1.ColumnEdit = this.repositoryItemCheckEdit1;
             this.gridColumn1.FieldName = "FileName";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.VisibleIndex = 1;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "版本号";
-            this.gridColumn2.FieldName = "version";
+            this.gridColumn2.FieldName = "Version";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.VisibleIndex = 2;
             // 
             // gridColumn3
             // 
@@ -99,25 +190,47 @@
             this.gridColumn3.FieldName = "Size";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.VisibleIndex = 3;
             // 
-            // repositoryItemCheckEdit1
+            // gridColumn4
             // 
-            this.repositoryItemCheckEdit1.AutoHeight = false;
-            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            this.gridColumn4.Caption = "是否需要重启";
+            this.gridColumn4.ColumnEdit = this.repositoryItemCheckEdit2;
+            this.gridColumn4.FieldName = "NeedRestart";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 4;
+            // 
+            // repositoryItemCheckEdit2
+            // 
+            this.repositoryItemCheckEdit2.AutoHeight = false;
+            this.repositoryItemCheckEdit2.Name = "repositoryItemCheckEdit2";
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "全文件名";
+            this.gridColumn6.FieldName = "FullFileName";
+            this.gridColumn6.Name = "gridColumn6";
+            // 
+            // fileDialog1
+            // 
+            this.fileDialog1.FileName = "openFileDialog1";
             // 
             // AutoupdateConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(505, 283);
+            this.ClientSize = new System.Drawing.Size(656, 237);
             this.Controls.Add(this.panel1);
             this.Name = "AutoupdateConfig";
             this.Text = "自动更新配置工具";
+            this.Load += new System.EventHandler(this.AutoupdateConfig_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -125,13 +238,23 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog fileDialog1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private System.Windows.Forms.Button Addbut;
+        private System.Windows.Forms.Button Delbut;
+        private System.Windows.Forms.Button BuildXML;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
+        private System.Windows.Forms.Button DelRAR;
+        private System.Windows.Forms.Button AddRAR;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }
 
