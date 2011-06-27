@@ -954,6 +954,18 @@
       <DependentUpon>UCPJ_09pxjl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="线损分析\UCmLine.resx">
+      <DependentUpon>UCmLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="线损分析\UCmLineLoss.resx">
+      <DependentUpon>UCmLineLoss.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="线损分析\UCmLineTree.resx">
+      <DependentUpon>UCmLineTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -1098,6 +1110,24 @@
     </Compile>
     <Compile Include="09培训记录\UCPJ_09pxjl.Designer.cs">
       <DependentUpon>UCPJ_09pxjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="线损分析\UCmLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="线损分析\UCmLine.designer.cs">
+      <DependentUpon>UCmLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="线损分析\UCmLineLoss.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="线损分析\UCmLineLoss.designer.cs">
+      <DependentUpon>UCmLineLoss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="线损分析\UCmLineTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="线损分析\UCmLineTree.designer.cs">
+      <DependentUpon>UCmLineTree.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
