@@ -116,11 +116,9 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ScglSetup", "发布\ScglSet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Client.Config", "Ebada.Client.Config\Ebada.Client.Config.csproj", "{B99C4113-F12D-4071-A64E-EAF2F09902AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.AutoUpdater.Config", "Ebada.AutoUpdater.Config\Ebada.AutoUpdater.Config.csproj", "{21244318-4997-4F52-8ED7-3293A026502A}"
+EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -200,6 +198,10 @@ Global
 		{B99C4113-F12D-4071-A64E-EAF2F09902AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B99C4113-F12D-4071-A64E-EAF2F09902AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B99C4113-F12D-4071-A64E-EAF2F09902AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21244318-4997-4F52-8ED7-3293A026502A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21244318-4997-4F52-8ED7-3293A026502A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21244318-4997-4F52-8ED7-3293A026502A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21244318-4997-4F52-8ED7-3293A026502A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -208,6 +210,7 @@ Global
 		{CA32AB79-619A-4658-BD07-64D7063F331E} = {AD009B7E-3820-4811-BF13-AAF81F3C3256}
 		{C2A8BD1A-52FA-4A05-8581-72C39C795C9C} = {AD009B7E-3820-4811-BF13-AAF81F3C3256}
 		{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25} = {AD009B7E-3820-4811-BF13-AAF81F3C3256}
+		{21244318-4997-4F52-8ED7-3293A026502A} = {AD009B7E-3820-4811-BF13-AAF81F3C3256}
 		{46A66D23-5698-4A91-8E65-6F09587A9CF3} = {C9D639EC-E301-4D45-899B-DEC9D9AC4016}
 		{BC0CEF1A-20FD-49B4-8611-9BD8D4F168B9} = {C9D639EC-E301-4D45-899B-DEC9D9AC4016}
 		{265E2ED8-B3D7-4AFC-971A-CFC28821CA67} = {C9D639EC-E301-4D45-899B-DEC9D9AC4016}
@@ -234,5 +237,9 @@ Global
 		{A3173743-90E7-4A97-867E-80353C694D91} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{26CB22CC-452F-4B6D-8FF6-E004154886B9} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{9BF99007-7252-4BCE-9187-F556D0DDB4A8} = {DF487866-3181-456A-9DC8-F47147407B0D}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
