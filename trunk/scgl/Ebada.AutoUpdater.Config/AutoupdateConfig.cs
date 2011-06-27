@@ -119,7 +119,7 @@ namespace Ebada.AutoUpdater.Config
 
         private void BuildXML_Click(object sender, EventArgs e)
         {
-            string filepath = System.Environment.CurrentDirectory + "\\ScglUpdateService\\AutoupdateService.xml";
+            string filepath = System.Environment.CurrentDirectory + "\\AutoupdateService.xml";
             string urlHead = "http://localhost/ScglUpdateService/";
             // 创建一个XmlTextReader类的对象并调用Read方法来读取文件 
             XmlTextWriter textWriter = new XmlTextWriter(filepath, System.Text.Encoding.UTF8);
