@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.fileCheckBox = new System.Windows.Forms.CheckBox();
             this.DelRAR = new System.Windows.Forms.Button();
             this.AddRAR = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -55,6 +59,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.fileCheckBox);
             this.panel1.Controls.Add(this.DelRAR);
             this.panel1.Controls.Add(this.AddRAR);
             this.panel1.Controls.Add(this.checkBox1);
@@ -62,35 +70,73 @@
             this.panel1.Controls.Add(this.Delbut);
             this.panel1.Controls.Add(this.Addbut);
             this.panel1.Controls.Add(this.gridControl1);
-            this.panel1.Location = new System.Drawing.Point(2, 2);
+            this.panel1.Location = new System.Drawing.Point(0, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(644, 230);
+            this.panel1.Size = new System.Drawing.Size(644, 260);
             this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "设置域名";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(68, 7);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(176, 21);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.Text = "localhost";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(250, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "设置";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // fileCheckBox
+            // 
+            this.fileCheckBox.AutoSize = true;
+            this.fileCheckBox.Location = new System.Drawing.Point(4, 239);
+            this.fileCheckBox.Name = "fileCheckBox";
+            this.fileCheckBox.Size = new System.Drawing.Size(48, 16);
+            this.fileCheckBox.TabIndex = 6;
+            this.fileCheckBox.Text = "全选";
+            this.fileCheckBox.UseVisualStyleBackColor = true;
+            this.fileCheckBox.CheckedChanged += new System.EventHandler(this.fileCheckBox_CheckedChanged);
             // 
             // DelRAR
             // 
-            this.DelRAR.Location = new System.Drawing.Point(557, 128);
+            this.DelRAR.Location = new System.Drawing.Point(557, 122);
             this.DelRAR.Name = "DelRAR";
             this.DelRAR.Size = new System.Drawing.Size(84, 23);
             this.DelRAR.TabIndex = 5;
             this.DelRAR.Text = "后缀去RAR";
             this.DelRAR.UseVisualStyleBackColor = true;
-            this.DelRAR.Visible = false;
+            this.DelRAR.Click += new System.EventHandler(this.DelRAR_Click);
             // 
             // AddRAR
             // 
-            this.AddRAR.Location = new System.Drawing.Point(557, 99);
+            this.AddRAR.Location = new System.Drawing.Point(557, 93);
             this.AddRAR.Name = "AddRAR";
             this.AddRAR.Size = new System.Drawing.Size(84, 23);
             this.AddRAR.TabIndex = 5;
             this.AddRAR.Text = "后缀添加RAR";
             this.AddRAR.UseVisualStyleBackColor = true;
-            this.AddRAR.Visible = false;
+            this.AddRAR.Click += new System.EventHandler(this.AddRAR_Click);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(280, 209);
+            this.checkBox1.Location = new System.Drawing.Point(281, 241);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(282, 16);
             this.checkBox1.TabIndex = 4;
@@ -100,7 +146,7 @@
             // 
             // BuildXML
             // 
-            this.BuildXML.Location = new System.Drawing.Point(557, 32);
+            this.BuildXML.Location = new System.Drawing.Point(558, 64);
             this.BuildXML.Name = "BuildXML";
             this.BuildXML.Size = new System.Drawing.Size(75, 23);
             this.BuildXML.TabIndex = 3;
@@ -110,7 +156,7 @@
             // 
             // Delbut
             // 
-            this.Delbut.Location = new System.Drawing.Point(557, 32);
+            this.Delbut.Location = new System.Drawing.Point(558, 64);
             this.Delbut.Name = "Delbut";
             this.Delbut.Size = new System.Drawing.Size(75, 23);
             this.Delbut.TabIndex = 2;
@@ -120,7 +166,7 @@
             // 
             // Addbut
             // 
-            this.Addbut.Location = new System.Drawing.Point(557, 3);
+            this.Addbut.Location = new System.Drawing.Point(558, 35);
             this.Addbut.Name = "Addbut";
             this.Addbut.Size = new System.Drawing.Size(75, 23);
             this.Addbut.TabIndex = 1;
@@ -130,7 +176,7 @@
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(3, 3);
+            this.gridControl1.Location = new System.Drawing.Point(4, 35);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -220,8 +266,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 237);
+            this.ClientSize = new System.Drawing.Size(656, 266);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "AutoupdateConfig";
             this.Text = "自动更新配置工具";
             this.Load += new System.EventHandler(this.AutoupdateConfig_Load);
@@ -255,6 +302,10 @@
         private System.Windows.Forms.Button DelRAR;
         private System.Windows.Forms.Button AddRAR;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private System.Windows.Forms.CheckBox fileCheckBox;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
