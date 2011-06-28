@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "sbCode");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "lqsj");
-            this.spinEdit1.DataBindings.Add("EditValue", rowData, "Remark");
+            this.spinEdit1.DataBindings.Add("EditValue", rowData, "sl");
             
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
