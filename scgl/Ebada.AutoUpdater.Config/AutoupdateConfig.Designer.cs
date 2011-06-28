@@ -205,9 +205,12 @@
             this.gridColumn5.Caption = "选择文件";
             this.gridColumn5.ColumnEdit = this.repositoryItemCheckEdit1;
             this.gridColumn5.FieldName = "HaveSelected";
+            this.gridColumn5.MaxWidth = 50;
+            this.gridColumn5.MinWidth = 50;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 0;
+            this.gridColumn5.Width = 50;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -226,6 +229,7 @@
             // 
             this.gridColumn2.Caption = "版本号";
             this.gridColumn2.FieldName = "Version";
+            this.gridColumn2.MaxWidth = 75;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 2;
@@ -234,6 +238,7 @@
             // 
             this.gridColumn3.Caption = "大小";
             this.gridColumn3.FieldName = "Size";
+            this.gridColumn3.MaxWidth = 75;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 3;
@@ -243,9 +248,12 @@
             this.gridColumn4.Caption = "是否需要重启";
             this.gridColumn4.ColumnEdit = this.repositoryItemCheckEdit2;
             this.gridColumn4.FieldName = "NeedRestart";
+            this.gridColumn4.MaxWidth = 50;
+            this.gridColumn4.MinWidth = 50;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 4;
+            this.gridColumn4.Width = 50;
             // 
             // repositoryItemCheckEdit2
             // 
