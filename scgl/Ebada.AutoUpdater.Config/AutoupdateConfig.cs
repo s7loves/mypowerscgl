@@ -139,7 +139,9 @@ namespace Ebada.AutoUpdater.Config
 
                     textWriter.WriteStartAttribute("url");
                     string strtemp=dr["FullFileName"].ToString().Replace(Environment.CurrentDirectory + "\\", "");
-                    filename=filename.Substring (0, filename.LastIndexOf('.')) + ".rar";
+                    //filename=filename.Substring (0, filename.LastIndexOf('.')) + ".rar";
+                    //textWriter.WriteValue(urlHead +strtemp.Substring(0, strtemp.LastIndexOf('\\')).Replace ("\\","/")+"/"+ filename);
+                    filename=filename+ ".rar";
                     textWriter.WriteValue(urlHead +strtemp.Substring(0, strtemp.LastIndexOf('\\')).Replace ("\\","/")+"/"+ filename);
                     textWriter.WriteEndAttribute();
 
@@ -213,8 +215,8 @@ namespace Ebada.AutoUpdater.Config
                     string strtemp = fullfilename + ".rar";
                     File.Move(fullfilename, strtemp);
                     dr["FullFileName"] = strtemp;
-                    strtemp =  dr["FileName"].ToString()+ ".rar";
-                    dr["FileName"] = strtemp;
+                    //strtemp =  dr["FileName"].ToString()+ ".rar";
+                    //dr["FileName"] = strtemp;
                 }
             }
         }
@@ -231,7 +233,7 @@ namespace Ebada.AutoUpdater.Config
                     File.Move(fullfilename, strtemp);
                     dr["FullFileName"] = strtemp;
                     strtemp = dr["FileName"].ToString();
-                    strtemp = strtemp.Substring(0, strtemp.LastIndexOf('.')) ;
+                    strtemp = strtemp.Substring(0, strtemp.LastIndexOf('.'));
                     dr["FileName"] = strtemp;
                 }
             }
