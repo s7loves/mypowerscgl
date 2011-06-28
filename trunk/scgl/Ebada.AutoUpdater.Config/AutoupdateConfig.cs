@@ -43,15 +43,22 @@ namespace Ebada.AutoUpdater.Config
             gridControl1.DataSource = dt; 
         }
         /// <summary>
-        /// 
+        /// 获取文件的版本
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">文件全路径</param>
+        /// <returns>文件的版本</returns>
         private string GetAssemblyVersion(string name)
         {
-            byte[] filedata = File.ReadAllBytes(name );
-            return Assembly.Load(filedata).GetName().Version.ToString();
-
+            try
+            {
+                byte[] filedata = File.ReadAllBytes(name);
+                return Assembly.Load(filedata).GetName().Version.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message ); 
+            }
+            return "";
         }
         private void AddFileToTable(FileInfo f)
         {
@@ -70,7 +77,7 @@ namespace Ebada.AutoUpdater.Config
         }
         private void FindFileAddTOTable(string dir, string filter)                           
             {     
-                        //在指定目录及子目录下查找文件,在listBox1中列出子目录及文件
+                 //在指定目录及子目录下查找文件
                  DirectoryInfo   Dir=new   DirectoryInfo(dir);
                  try
                     {
@@ -80,22 +87,9 @@ namespace Ebada.AutoUpdater.Config
                                 }
                                 foreach (FileInfo f in Dir.GetFiles(filter)) //查找文件
                                 {
-                                    //if (f.Name == "AutoupdateService.xml")
-                                    //{
-                                    //    continue ;
-                                    //}
+                                   
                                     AddFileToTable(f);
-                                    //if (f.Name.Split('.').Length < 2)
-                                    //{
-                                    //    f.Name.Replace(f.Name, f.Name + ".rar");
-                                    //}
-                                    //else
-                                    //{
-                                    //    if (f.Name.Split('.')[f.Name.Split('.').Length - 1] != ".rar")
-                                    //    {
-                                    //        f.Name.Replace(f.Name, f.Name + ".rar");
-                                    //    }
-                                    //}
+                                   
                                 }
                         }
 
@@ -119,22 +113,19 @@ namespace Ebada.AutoUpdater.Config
 
         private void BuildXML_Click(object sender, EventArgs e)
         {
-            string filepath = System.Environment.CurrentDirectory + "\\AutoupdateService.xml";
-            string urlHead = "http://localhost/ScglUpdateService/";
+            string xmlfilepath =Environment.CurrentDirectory + "\\AutoupdateService.xml";
+            string urlHead = "http://"+textBox1.Text+"/";
             // 创建一个XmlTextReader类的对象并调用Read方法来读取文件 
-            XmlTextWriter textWriter = new XmlTextWriter(filepath, System.Text.Encoding.UTF8);
+            XmlTextWriter textWriter = new XmlTextWriter(xmlfilepath, System.Text.Encoding.UTF8);
             textWriter.Formatting = Formatting.Indented;
             
             // 开始写过程，调用WriteStartDocument方法 
             textWriter.WriteStartDocument();
             // 写入注释
             textWriter.WriteComment("自动更新XML文件");
+            textWriter.WriteComment("<file path=\"Ebada.SCGL.exe\" url=\"http://10.166.137.29/ScglUpdateService/Ebada.SCGL.rar\" lastver=\"1.0.0.0\" size=\"0\" needRestart=\"false\"></file>");
             textWriter.WriteStartElement("updateFiles");
-              //dr["HaveSelected"] = true;
-              //                      dr["FileName"]=f.Name ;
-              //                      dr["Version"] =GetAssemblyVersion(f.FullName );
-              //                      dr["Size"]=f.Length ;
-              //                      dr["NeedRestart"]=false;
+
             foreach (DataRow dr in dt.Rows)
             {
                 string filename = dr["FileName"].ToString();
@@ -147,8 +138,9 @@ namespace Ebada.AutoUpdater.Config
                     textWriter.WriteEndAttribute();
 
                     textWriter.WriteStartAttribute("url");
+                    string strtemp=dr["FullFileName"].ToString().Replace(Environment.CurrentDirectory + "\\", "");
                     filename=filename.Substring (0, filename.LastIndexOf('.')) + ".rar";
-                    textWriter.WriteValue(urlHead + filename);
+                    textWriter.WriteValue(urlHead +strtemp.Substring(0, strtemp.LastIndexOf('\\')).Replace ("\\","/")+"/"+ filename);
                     textWriter.WriteEndAttribute();
 
                     textWriter.WriteStartAttribute("lastver");
@@ -174,6 +166,7 @@ namespace Ebada.AutoUpdater.Config
 
             // 关闭textWriter 
             textWriter.Close();
+            System.Diagnostics.Process.Start(xmlfilepath);
         }
 
         private void Addbut_Click(object sender, EventArgs e)
@@ -193,6 +186,56 @@ namespace Ebada.AutoUpdater.Config
                 }
             }
         }
-    
+
+        private void fileCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                dr["HaveSelected"] = fileCheckBox.Checked; 
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BuildXML_Click(sender,e);
+        }
+
+        private void AddRAR_Click(object sender, EventArgs e)
+        {
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                string fullfilename = dr["FullFileName"].ToString();
+                
+                if (dr["HaveSelected"].ToString().ToLower() == "true")
+                {
+                    string strtemp = fullfilename + ".rar";
+                    File.Move(fullfilename, strtemp);
+                    dr["FullFileName"] = strtemp;
+                    strtemp =  dr["FileName"].ToString()+ ".rar";
+                    dr["FileName"] = strtemp;
+                }
+            }
+        }
+
+        private void DelRAR_Click(object sender, EventArgs e)
+        {
+            foreach (DataRow dr in dt.Rows)
+            {
+                string fullfilename = dr["FullFileName"].ToString();
+
+                if (dr["HaveSelected"].ToString().ToLower() == "true" &&  fullfilename.Substring(fullfilename.LastIndexOf('.')).ToLower() ==".rar")
+                {
+                    string strtemp = fullfilename.Substring(0, fullfilename.LastIndexOf('.'));
+                    File.Move(fullfilename, strtemp);
+                    dr["FullFileName"] = strtemp;
+                    strtemp = dr["FileName"].ToString();
+                    strtemp = strtemp.Substring(0, strtemp.LastIndexOf('.')) ;
+                    dr["FileName"] = strtemp;
+                }
+            }
+        }
+      
     }
 }
