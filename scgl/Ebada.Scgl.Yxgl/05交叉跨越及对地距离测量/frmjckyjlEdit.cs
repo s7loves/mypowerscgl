@@ -58,6 +58,9 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitComboBoxData() {
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "结论", comboBoxEdit2);
+
+            PJ_05jcky pj= Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_05jcky>(rowData.jckyID);
+            this.comboBoxEdit1.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
         }
 
         /// <summary>
