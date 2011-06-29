@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Yxgl
 
 
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "rq");
-            this.textEdit1.DataBindings.Add("EditValue", rowData, "yhdz");
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "yhdz");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "gzjk");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "djr");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "clr");
@@ -75,6 +75,11 @@ namespace Ebada.Scgl.Yxgl
             {
                 this.comboBoxEdit3.Properties.Items.AddRange(ryList);
                 this.comboBoxEdit4.Properties.Items.AddRange(ryList);
+            }
+            ryList = ComboBoxHelper.Getbtq();
+            if (ryList.Count>0)
+            {
+                comboBoxEdit1.Properties.Items.AddRange(ryList);
             }
             ComboBoxHelper.FillCBoxByDyk("21电力故障电话接听记录", "故障简况", comboBoxEdit6.Properties);
             
