@@ -30,6 +30,31 @@ namespace Ebada.Scgl.Core {
 
             return list;
         }
+        /// <summary>
+        /// 获取供电所负责人 供电所所长或者是机关科室科长
+        /// </summary>
+        /// <param name="gdsID"></param>
+        /// <returns></returns>
+        public static ICollection GetGdsRyfzr(string gdsID)
+        {
+            string key = "all" + gdsID;
+
+            ICollection list = null;
+
+            if (mUseCache && mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select UserName from mUser where orgcode='" + gdsID + "'and PostName in('所长','主值班长','科长')");
+                if (mUseCache)
+                    mCache.Add(key, list);
+            }
+
+
+            return list;
+        }
         public static ICollection GetTables() {
             string key = "tables";
 
