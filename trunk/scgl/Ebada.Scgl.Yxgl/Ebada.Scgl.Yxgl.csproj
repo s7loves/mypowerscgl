@@ -1145,6 +1145,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="测试记录（20110629）.xls" />
     <None Include="疑问或错误.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

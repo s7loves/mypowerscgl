@@ -43,10 +43,11 @@ namespace Ebada.Scgl.Yxgl
             this.spinEdit4.DataBindings.Add("EditValue", rowData, "byqCurrentOne");
             this.spinEdit5.DataBindings.Add("EditValue", rowData, "byqCurrentTwo");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "byqInstallDate");
+             this.dateEdit2.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
             //this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "byqState");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "InDate");
-
+           
 
         }
         #region IPopupFormEdit Members
@@ -81,11 +82,13 @@ namespace Ebada.Scgl.Yxgl
 
             SetComboBoxData(lookUpEdit1, "tqName", "tqID", "选择台区", "", tqlist);
 
+
+
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "型号", comboBoxEdit3.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "制造厂", comboBoxEdit10.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "一次电压", spinEdit2.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "二次电压", spinEdit3.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "一  次  额定电流", spinEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", " 一  次  额定电流", spinEdit4.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", " 二  次  额定电流", spinEdit5.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "容量", spinEdit1.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "相别", comboBoxEdit8.Properties);
@@ -138,6 +141,16 @@ namespace Ebada.Scgl.Yxgl
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
             rowData.tqID = lookUpEdit1.EditValue.ToString();
+            //string constr = "where tqID='" + lookUpEdit1.EditValue.ToString() + "'";
+            //IList<PS_tqbyq> byqlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("SelectPS_tqbyqList", constr);
+            //comboBoxEdit1.Properties.Items.Clear();
+            //comboBoxEdit2.Properties.Items.Clear();
+
+            //for (int i = 0; i < byqlist.Count; i++)
+            //{
+            //    comboBoxEdit1.Properties.Items.Add(byqlist[i].byqCode);
+            //    comboBoxEdit2.Properties.Items.Add(byqlist[i].byqName);
+            //}
         }
     
     }
