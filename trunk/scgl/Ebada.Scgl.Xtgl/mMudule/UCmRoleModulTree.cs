@@ -22,6 +22,8 @@ using Ebada.Scgl.Model;
 using DevExpress.XtraEditors.Controls;
 using Ebada.Scgl.Core;
 using DevExpress.XtraTreeList.Columns;
+using System.Collections;
+using Ebada.Core;
 
 namespace Ebada.Scgl.Xtgl {
     /// <summary>
@@ -36,7 +38,8 @@ namespace Ebada.Scgl.Xtgl {
             get { return treeViewOperator; }
             set { treeViewOperator = value; }
         }
-        
+
+        private DataTable gridtable = null;
         public event SendDataEventHandler<mModule> FocusedNodeChanged;
         public event SendDataEventHandler<mModule> AfterAdd;
         public event SendDataEventHandler<mModule> AfterEdit;
@@ -88,7 +91,81 @@ namespace Ebada.Scgl.Xtgl {
         /// 初始化数据
         /// </summary>
         public void InitData() {
-            treeViewOperator.RefreshData("order by parentid,sequence");
+            //treeViewOperator.RefreshData("order by parentid,sequence");
+            RefreshData("order by parentid,sequence");
+
+        }
+        private void IniWFTData(string WFClassId)
+        { 
+                IList<WF_WorkFlow> wfli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", "where WFClassId='" + WFClassId+"'");
+                foreach (WF_WorkFlow wf in wfli)
+                {
+                    DataRow dr = gridtable.NewRow();
+                    dr["ParentID"] = WFClassId;
+                    dr["ModuName"] = wf.FlowCaption ;
+                    dr["Modu_ID"] = wf.WorkFlowId ;
+                    gridtable.Rows.Add(dr);
+
+                    IList<WF_WorkTask> wftli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where WorkFlowId='" + wf.WorkFlowId + "'");
+                    foreach (WF_WorkTask wft in wftli)
+                    {
+                        dr = gridtable.NewRow();
+                        dr["ParentID"] = wf.WorkFlowId ;
+                        dr["ModuName"] = wft.TaskCaption ;
+                        dr["Modu_ID"] = wft.WorkTaskId ;
+                        gridtable.Rows.Add(dr);
+                    
+                    }
+                }
+        }
+        private void ReWFData(string WFClassId)
+        {
+            IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where FatherId='" + WFClassId +"'");
+            foreach (WF_WorkFlowClass wfc in wfcli)
+            {
+                DataRow dr = gridtable.NewRow();
+                dr["ParentID"] = WFClassId;
+                dr["ModuName"] = wfc.Caption;
+                dr["Modu_ID"] = wfc.WFClassId;
+                gridtable.Rows.Add(dr);
+                IniWFTData(wfc.WFClassId);
+                ReWFData(wfc.WFClassId);
+            
+            }
+        }
+        private void IniWFData(string parentid)
+        {
+           
+            IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where clLevel='0'");
+            foreach (WF_WorkFlowClass wfc in wfcli)
+            {
+                DataRow dr = gridtable.NewRow();
+                dr["ParentID"] = parentid;
+                dr["ModuName"] = wfc.Caption;
+                dr["Modu_ID"] = wfc.WFClassId;
+                gridtable.Rows.Add(dr);
+                IniWFTData(wfc.WFClassId);
+                ReWFData(wfc.WFClassId);
+               
+                
+                
+            }
+
+        }
+        /// <summary>
+        /// 刷新数据
+        /// </summary>
+        /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
+        public void RefreshData(string slqwhere)
+        {
+            if (gridtable != null) gridtable.Rows.Clear();
+            IList<mModule> li = MainHelper.PlatformSqlMap.GetList<mModule>("SelectmModuleList", slqwhere);
+            if (li.Count != 0)
+            {
+                gridtable = ConvertHelper.ToDataTable((IList)li);
+                IniWFData( gridtable.Rows[0]["Modu_ID"].ToString());
+                treeList1.DataSource = gridtable;
+            }
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -115,6 +192,9 @@ namespace Ebada.Scgl.Xtgl {
                 function.Modu_ID = str;
                 list2.Add(function);
             }
+           
+
+            Console.WriteLine(list[8]); 
             SqlQueryObject item = new SqlQueryObject(SqlQueryType.Delete, "DeleterRoleModulByWhere", "where RoleID='" + this.m_RoleID + "'");
             SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Insert, list2.ToArray());
             try {
