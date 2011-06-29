@@ -243,6 +243,31 @@ namespace Ebada.Scgl.Core {
             }
             return list;
         }
+        /// <summary>
+        /// 获取台区
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection Getbtq()
+        {
+
+            string key = "all";
+
+            ICollection list = null;
+
+            if (mUseCache && mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select Adress  from PS_tq ");
+                if (mUseCache)
+                    mCache.Add(key, list);
+            }
+
+
+            return list;
+        }
         public static ICollection GetModuFuns() {
 
             ICollection list = new ArrayList();
@@ -256,6 +281,7 @@ namespace Ebada.Scgl.Core {
             }
             return list;
         }
+
         /// <summary>
         /// 获取短语库属性列表，可以用来填充下拉列表框
         /// </summary>
