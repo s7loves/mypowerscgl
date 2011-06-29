@@ -44,11 +44,10 @@ namespace Ebada.Scgl.Yxgl
             this.spinEdit5.DataBindings.Add("EditValue", rowData, "byqCurrentTwo");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "byqInstallDate");
              this.dateEdit2.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
-            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
+            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqState");
             //this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "byqState");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "InDate");
-           
-
+          
         }
         #region IPopupFormEdit Members
         private PS_tqbyq rowData = null;
