@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Yxgl
             //{
                 this.comboBoxEdit1.Properties.Items.AddRange(xlList);
             //}
-            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+                ICollection ryList = ComboBoxHelper.GetGdsRyfzr(rowData.OrgCode);//获取供电所人员列表
             if (ryList.Count > 0)
             {
                 this.comboBoxEdit3.Properties.Items.AddRange(ryList);
