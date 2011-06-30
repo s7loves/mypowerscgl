@@ -65,26 +65,6 @@ namespace Ebada.Scgl.Yxgl
             
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="comboBox"></param>
-        /// <param name="displayMember"></param>
-        /// <param name="valueMember"></param>
-        /// <param name="nullTest"></param>
-        /// <param name="cnStr"></param>
-        /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
-            comboBox.Properties.Columns.Clear();
-            comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            comboBox.Properties.DataSource = post;
-            comboBox.Properties.DisplayMember = displayMember;
-            comboBox.Properties.ValueMember = valueMember;
-            comboBox.Properties.NullText = nullTest;
-            comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
-        }
 
         private void textEdit1_EditValueChanged(object sender, EventArgs e)
         {
@@ -98,8 +78,11 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("04事故异常运行记录", "异常运行内容", memoEdit2, memoEdit1,memoEdit4);
-            //memoEdit2.Focus();,
+            PJ_dyk dyk = SelectorHelper.SelectDyk("04事故异常运行记录", "异常运行内容", memoEdit2, memoEdit1, memoEdit4);
+            if (dyk != null) {
+                rowData.yyfx = dyk.nr2;
+                rowData.fzdc = dyk.nr3;
+            }
         }
     }
 }
