@@ -102,6 +102,10 @@ namespace Ebada.Scgl.Yxgl
                 {
                     RefreshData(" where PJ_ID='" + value.PJ_ID + "'  order by id desc");
                 }
+                else
+                {
+                    RefreshData(" where PJ_ID='   ###@@@#'  order by id desc");
+                }
 
             }
         }
