@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Yxgl {
             this.textEdit5.DataBindings.Add("EditValue", rowData, "sbaqts");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "js",false, DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "py",false, DataSourceUpdateMode.OnPropertyChanged);
-            this.textEdit7.DataBindings.Add("EditValue", rowData, "qz");
+            this.comboBoxEdit21.DataBindings.Add("EditValue", rowData, "qz");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "qzrq");
 
         }
