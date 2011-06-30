@@ -97,11 +97,15 @@
    </select>
  
    <delete id="DeleteWF_WorkFlow" parameterClass="WF_WorkFlow">
-        DELETE FROM 
-         WF_WorkFlow
-           WHERE
-         WorkFlowId = #WorkFlowId#
+     DELETE FROM
+     WF_WorkFlow
+     WHERE
+     WorkFlowId = #WorkFlowId#
 
+     DELETE FROM
+     mModule
+     WHERE
+     Modu_ID = #WorkFlowId#
    </delete>
    
    <delete id="DeleteWF_WorkFlowByWhere" parameterClass="string">
@@ -109,11 +113,16 @@
    </delete>
    
    <delete id="DeleteWF_WorkFlowByKey" parameterClass="string">
-        DELETE FROM 
-         WF_WorkFlow
-           WHERE
-         WorkFlowId = #WorkFlowId#
-    
+     DELETE FROM
+     WF_WorkFlow
+     WHERE
+     WorkFlowId = #WorkFlowId#
+
+     DELETE FROM
+     mModule
+     WHERE
+     Modu_ID = #WorkFlowId#
+
    </delete>
    
    <update id="UpdateWF_WorkFlow" parameterClass="WF_WorkFlow" resultClass="int">

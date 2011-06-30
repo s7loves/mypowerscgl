@@ -92,64 +92,87 @@ namespace Ebada.Scgl.Xtgl {
         /// </summary>
         public void InitData() {
             //treeViewOperator.RefreshData("order by parentid,sequence");
-            RefreshData("order by parentid,sequence");
+            RefreshData("  order by parentid,sequence");
 
         }
-        private void IniWFTData(string WFClassId)
+        private void IniWFTData(string WFClassId,ref List<mModule> list2)
         { 
                 IList<WF_WorkFlow> wfli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", "where WFClassId='" + WFClassId+"'");
                 foreach (WF_WorkFlow wf in wfli)
                 {
-                    DataRow dr = gridtable.NewRow();
-                    dr["ParentID"] = WFClassId;
-                    dr["ModuName"] = wf.FlowCaption ;
-                    dr["Modu_ID"] = wf.WorkFlowId ;
-                    gridtable.Rows.Add(dr);
+                   
 
+                    mModule md = new mModule();
+                    md.Modu_ID = wf.WorkFlowId;
+                    md.ModuName = wf.FlowCaption;
+                    md.ModuTypes = "hide";
+                    md.ParentID = WFClassId;
+                    md.Description = "工作流";
+                    list2.Add(md); 
                     IList<WF_WorkTask> wftli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where WorkFlowId='" + wf.WorkFlowId + "'");
                     foreach (WF_WorkTask wft in wftli)
                     {
-                        dr = gridtable.NewRow();
-                        dr["ParentID"] = wf.WorkFlowId ;
-                        dr["ModuName"] = wft.TaskCaption ;
-                        dr["Modu_ID"] = wft.WorkTaskId ;
-                        gridtable.Rows.Add(dr);
+                        
+                         md = new mModule();
+                         md.Modu_ID = wft.WorkTaskId;
+                         md.ModuName = wft.TaskCaption;
+                         md.ParentID = wf.WorkFlowId;
+                         md.ModuTypes = "hide";
+                        md.Description = "工作流";
+                        list2.Add(md); 
                     
                     }
                 }
         }
-        private void ReWFData(string WFClassId)
+        private void ReWFData(string WFClassId,ref List<mModule> list2)
         {
             IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where FatherId='" + WFClassId +"'");
             foreach (WF_WorkFlowClass wfc in wfcli)
             {
-                DataRow dr = gridtable.NewRow();
-                dr["ParentID"] = WFClassId;
-                dr["ModuName"] = wfc.Caption;
-                dr["Modu_ID"] = wfc.WFClassId;
-                gridtable.Rows.Add(dr);
-                IniWFTData(wfc.WFClassId);
-                ReWFData(wfc.WFClassId);
-            
+                
+                IniWFTData(wfc.WFClassId, ref list2);
+                ReWFData(wfc.WFClassId, ref list2);
+
+                mModule md = new mModule();
+                md.Modu_ID = wfc.WFClassId;
+                md.ModuName = wfc.Caption;
+                md.ParentID = WFClassId;
+                md.ModuTypes = "hide";
+                md.Description = "工作流";
+                list2.Add(md); 
             }
         }
         private void IniWFData(string parentid)
         {
-           
+            List<mModule> list2 = new List<mModule>();
             IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where clLevel='0'");
             foreach (WF_WorkFlowClass wfc in wfcli)
             {
-                DataRow dr = gridtable.NewRow();
-                dr["ParentID"] = parentid;
-                dr["ModuName"] = wfc.Caption;
-                dr["Modu_ID"] = wfc.WFClassId;
-                gridtable.Rows.Add(dr);
-                IniWFTData(wfc.WFClassId);
-                ReWFData(wfc.WFClassId);
-               
-                
+
+                mModule md = new mModule();
+                md.Modu_ID = wfc.WFClassId;
+                md.ModuName = wfc.Caption;
+                md.ParentID = parentid;
+                md.ModuTypes = "hide";
+                md.Description = "工作流";
+                list2.Add(md); 
+                IniWFTData(wfc.WFClassId,ref list2);
+                ReWFData(wfc.WFClassId, ref list2);
                 
             }
+            SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, "InsertWFmModule", list2.ToArray());
+            try
+            {
+                List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+                list3.Add(obj3);
+                MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+            }
+            catch (Exception exception)
+            {
+                MainHelper.ShowWarningMessageBox(exception.Message);
+               
+            }
+          
 
         }
         /// <summary>
@@ -158,12 +181,15 @@ namespace Ebada.Scgl.Xtgl {
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
-            if (gridtable != null) gridtable.Rows.Clear();
+            if (gridtable != null)gridtable.Rows.Clear();
+            treeList1.Nodes.Clear();
+            mModule md = MainHelper.PlatformSqlMap.GetOne<mModule>(" where ModuName='工作流设置'");
+            if(md!=null)
+                IniWFData(md.Modu_ID );
             IList<mModule> li = MainHelper.PlatformSqlMap.GetList<mModule>("SelectmModuleList", slqwhere);
             if (li.Count != 0)
             {
                 gridtable = ConvertHelper.ToDataTable((IList)li);
-                IniWFData( gridtable.Rows[0]["Modu_ID"].ToString());
                 treeList1.DataSource = gridtable;
             }
         }
@@ -194,7 +220,7 @@ namespace Ebada.Scgl.Xtgl {
             }
            
 
-            Console.WriteLine(list[8]); 
+          
             SqlQueryObject item = new SqlQueryObject(SqlQueryType.Delete, "DeleterRoleModulByWhere", "where RoleID='" + this.m_RoleID + "'");
             SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Insert, list2.ToArray());
             try {

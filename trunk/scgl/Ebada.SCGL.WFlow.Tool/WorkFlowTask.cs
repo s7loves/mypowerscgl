@@ -191,11 +191,11 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                string tmpStr = "delete WF_WorkTask where workflowid='" + workflowId + "' and WorkTaskId='" + worktaskId + "'";
+                string tmpStr = "where workflowid='" + workflowId + "' and WorkTaskId='" + worktaskId + "'";
+               IList<WF_WorkTask> wt= MainHelper.PlatformSqlMap.GetList<WF_WorkTask>(tmpStr);
+               if (wt.Count < 0) return 0;
 
-
-
-                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTask>(tmpStr);
+                return MainHelper.PlatformSqlMap.DeleteByKey  <WF_WorkTask>(wt[0]);
             }
             catch (Exception ex)
             {
