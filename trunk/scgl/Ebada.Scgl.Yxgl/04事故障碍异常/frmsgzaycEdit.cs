@@ -98,7 +98,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("04事故异常运行记录", "异常运行内容", memoEdit2,memoEdit1,memoEdit4);
+            SelectorHelper.SelectDyk("04事故异常运行记录", "异常运行内容", memoEdit2, memoEdit1,memoEdit4);
             //memoEdit2.Focus();,
         }
     }
