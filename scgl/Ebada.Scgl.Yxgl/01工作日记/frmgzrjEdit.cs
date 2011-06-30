@@ -98,12 +98,18 @@ namespace Ebada.Scgl.Yxgl {
 
             this.cBoxTq.Properties.Items.AddRange(ComboBoxHelper.GetTQ());//设置天气列表
         }
+        string gdscode = "";
         private void InitGdsRy() {
+            if (gdscode == rowData.GdsCode) return;
+            gdscode = rowData.GdsCode;
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.GdsCode);//获取供电所人员列表
             for (int i = 0; i < 10; i++) {
                 ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.Clear();
                 ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+
             }
+            comboBoxEdit21.Properties.Items.Clear();
+            comboBoxEdit21.Properties.Items.AddRange(ryList);
         }
         
         private void textEdit1_EditValueChanged(object sender, EventArgs e) {
