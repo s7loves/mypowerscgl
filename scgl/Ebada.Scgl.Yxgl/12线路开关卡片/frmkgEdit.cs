@@ -37,6 +37,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "kgNumber");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "kgInstallAdress");
             this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "kgState");
+            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "kgCode");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "kgCapcity");
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -70,7 +71,7 @@ namespace Ebada.Scgl.Yxgl
             IList<PS_gt> gtlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("");
             SetComboBoxData(lookUpEdit1, "", "", "", "", gtlist);
 
-            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "型号", comboBoxEdit6.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "型号", comboBoxEdit2.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "容量", spinEdit2.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "重合装置", comboBoxEdit9.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "制造厂", comboBoxEdit5.Properties);
@@ -119,11 +120,16 @@ namespace Ebada.Scgl.Yxgl
                 MessageBox.Show("请选择杆塔！");
                 return;
             }
-            else
+            if (comboBoxEdit13.Text.Length==0)
             {
-                DialogResult = DialogResult.OK;
-                this.Close();
+                MessageBox.Show("编号不能为空！");
+                comboBoxEdit13.Focus();
+                return;
             }
+            DialogResult = DialogResult.OK;
+            this.Close();
+        
+
         }
         private void textEdit1_EditValueChanged(object sender, EventArgs e)
         {
