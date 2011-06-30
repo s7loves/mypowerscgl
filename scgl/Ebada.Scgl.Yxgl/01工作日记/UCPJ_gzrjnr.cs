@@ -127,6 +127,15 @@ namespace Ebada.Scgl.Yxgl {
             newobj.gzrjID = parentID;
             newobj.CreateDate = DateTime.Now;
             newobj.fssj = DateTime.Now;
+            newobj.seq = getSeq();
+        }
+
+        private int getSeq() {
+            int max = 0;
+            foreach (PJ_gzrjnr nr in gridViewOperation.BindingList) {
+                max = Math.Max(max, nr.seq);
+            }
+            return ++max;
         }
         /// <summary>
         /// 父表ID
