@@ -32,7 +32,7 @@ namespace Ebada.Scgl.Yxgl
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "hdnr", false, DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "hdxj", false, DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit4.DataBindings.Add("EditValue", rowData, "py");
-            this.memoEdit5.DataBindings.Add("EditValue", rowData, "fyjyjl");
+            this.memoEdit5.DataBindings.Add("EditValue", rowData, "fyjyjl", false, DataSourceUpdateMode.OnPropertyChanged);
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "qz");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "qzrq");
 
@@ -194,7 +194,8 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("02安全活动记录簿", "安全活动内容", memoEdit1,memoEdit2);
+            SelectorHelper.SelectDyk("02安全活动记录簿", "安全活动内容", memoEdit1,memoEdit2,memoEdit5);
+            memoEdit5.Update();
         }
     }
 }
