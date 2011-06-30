@@ -110,10 +110,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit18.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // m_DefaultLookAndFeel
-            // 
-            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
-            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -248,7 +244,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.memoEdit5);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(388, 239);
+            this.xtraTabPage1.Size = new System.Drawing.Size(386, 236);
             this.xtraTabPage1.Text = "运行分析主题";
             // 
             // memoEdit5
@@ -256,7 +252,7 @@
             this.memoEdit5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit5.Location = new System.Drawing.Point(0, 0);
             this.memoEdit5.Name = "memoEdit5";
-            this.memoEdit5.Size = new System.Drawing.Size(388, 239);
+            this.memoEdit5.Size = new System.Drawing.Size(386, 236);
             this.memoEdit5.TabIndex = 0;
             // 
             // xtraTabPage2

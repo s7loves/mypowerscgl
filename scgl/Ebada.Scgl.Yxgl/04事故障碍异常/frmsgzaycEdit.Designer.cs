@@ -74,10 +74,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // m_DefaultLookAndFeel
-            // 
-            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
-            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -150,7 +146,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.memoEdit2);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(465, 325);
+            this.xtraTabPage1.Size = new System.Drawing.Size(463, 322);
             this.xtraTabPage1.Text = "事故原因及处理经过";
             // 
             // memoEdit2
@@ -158,7 +154,7 @@
             this.memoEdit2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit2.Location = new System.Drawing.Point(0, 0);
             this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(465, 325);
+            this.memoEdit2.Size = new System.Drawing.Size(463, 322);
             this.memoEdit2.TabIndex = 0;
             // 
             // xtraTabPage2

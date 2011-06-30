@@ -58,6 +58,11 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
+           ICollection ryList = ComboBoxHelper.Getbtq();
+            if (ryList.Count > 0)
+            {
+                comboBoxEdit1.Properties.Items.AddRange(ryList);
+            }
 
         }
 
