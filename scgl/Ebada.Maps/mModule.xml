@@ -108,7 +108,41 @@
          Modu_ID = #Modu_ID#
     
    </delete>
-   
+    <update id="InsertWFmModule" parameterClass="mModule" resultClass="int">
+      IF not EXISTS(select * from mModule  where Modu_ID= #Modu_ID#)
+      BEGIN
+      INSERT INTO mModule
+      (
+      [Modu_ID],
+      [ModuTypes],
+      [ModuName],
+      [AssemblyFileName],
+      [Sequence],
+      [IsCores],
+      [Description],
+      [ParentID],
+      [MethodName],
+      [IconName],
+      [ActivityFlag],
+      [visiableFlag]
+      )
+      VALUES
+      (
+      #Modu_ID#,
+      #ModuTypes#,
+      #ModuName#,
+      #AssemblyFileName#,
+      #Sequence#,
+      #IsCores#,
+      #Description#,
+      #ParentID#,
+      #MethodName#,
+      #IconName#,
+      #ActivityFlag#,
+      #visiableFlag#
+      )
+      END
+    </update>
    <update id="UpdatemModule" parameterClass="mModule" resultClass="int">
           UPDATE mModule
            SET

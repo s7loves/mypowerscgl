@@ -85,11 +85,16 @@
    </select>
  
    <delete id="DeleteWF_WorkTask" parameterClass="WF_WorkTask">
-        DELETE FROM 
-         WF_WorkTask
-           WHERE
-         WorkTaskId = #WorkTaskId#
+     DELETE FROM
+     WF_WorkTask
+     WHERE
+     WorkTaskId = #WorkTaskId#
 
+
+     DELETE FROM
+     mModule
+     WHERE
+     Modu_ID = #WorkTaskId#
    </delete>
    
    <delete id="DeleteWF_WorkTaskByWhere" parameterClass="string">
@@ -97,11 +102,15 @@
    </delete>
    
    <delete id="DeleteWF_WorkTaskByKey" parameterClass="string">
-        DELETE FROM 
-         WF_WorkTask
-           WHERE
-         WorkTaskId = #WorkTaskId#
-    
+     DELETE FROM
+     WF_WorkTask
+     WHERE
+     WorkTaskId = #WorkTaskId#
+     
+     DELETE FROM
+     mModule
+     WHERE
+     Modu_ID = #WorkTaskId#
    </delete>
    
    <update id="UpdateWF_WorkTask" parameterClass="WF_WorkTask" resultClass="int">

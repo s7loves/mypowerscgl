@@ -58,13 +58,15 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                string tmpSql = " where WFClassId=@WFClassId";
+                //string tmpSql = " where WFClassId=@WFClassId";
                 
                 //SqlDataItem sqlItem = new SqlDataItem();
                 //sqlItem.CommandText = tmpSql;
                 //sqlItem.AppendParameter("@WFClassId", workflowClassId);
                 //ClientDBAgent agent = new ClientDBAgent();
-                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowClass>(tmpSql);
+                WF_WorkFlowClass wf = new WF_WorkFlowClass();
+                wf.WFClassId = workflowClassId;
+                return MainHelper.PlatformSqlMap.Delete <WF_WorkFlowClass>(wf);
 
             }
             catch (Exception ex)

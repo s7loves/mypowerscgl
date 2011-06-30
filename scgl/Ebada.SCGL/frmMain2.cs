@@ -138,7 +138,7 @@ namespace Ebada.SCGL
         {
             bar2.ItemLinks.Clear();
             
-            IList list = (IList)MainHelper.PlatformSqlMap.GetList<mModule>("");
+            IList list = (IList)MainHelper.PlatformSqlMap.GetList<mModule>("where ModuTypes != 'hide'");
             DataTable dt = Ebada.Core.ConvertHelper.ToDataTable(list);
             DataRow[] rows = dt.Select("parentid='0'", "Sequence");
             createMenu(bar2, rows, dt);
@@ -188,7 +188,7 @@ namespace Ebada.SCGL
         }
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ucModulBar1.RefreshData(""); InitMenu("");
+            ucModulBar1.RefreshData("where ModuTypes != 'hide'"); InitMenu("");
         }
 
         private void btLogin_ItemClick(object sender, ItemClickEventArgs e) {
@@ -196,7 +196,7 @@ namespace Ebada.SCGL
             if (dlg.ShowDialog() == DialogResult.OK) {
                 barStaticItem2.Caption = string.Format("部门：{0}操作员：{1}" ,MainHelper.User.OrgName, MainHelper.User.UserName);
                 InitMenu(MainHelper.User.UserID);
-                ucModulBar1.RefreshData("");
+                ucModulBar1.RefreshData("where ModuTypes != 'hide'");
                 ucModulBar1.SetImage();
                 if (MainHelper.User.LoginID == "rabbit") {
                     barButtonItem1.Visibility = BarItemVisibility.Always;
@@ -205,7 +205,7 @@ namespace Ebada.SCGL
                 
             } else {
 #if DEBUG
-                ucModulBar1.RefreshData("");
+                ucModulBar1.RefreshData("where ModuTypes != 'hide'");
                 ucModulBar1.SetImage();
 #endif
             }
