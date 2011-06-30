@@ -30,7 +30,8 @@ namespace Ebada.Scgl.Yxgl
     public partial class UCPJ_14aqgj : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PS_aqgj> gridViewOperation;
-
+        //记录当前安全工具的实验周期
+        public static int Syzq = 0;
         public event SendDataEventHandler<PS_aqgj> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
@@ -93,7 +94,11 @@ namespace Ebada.Scgl.Yxgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
+            {
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PS_aqgj);
+                // 更新实验周期
+                UCPJ_14aqgj.Syzq = (gridView1.GetFocusedRow() as PS_aqgj).syzq;
+            }
         }
         private void hideColumn(string colname)
         {

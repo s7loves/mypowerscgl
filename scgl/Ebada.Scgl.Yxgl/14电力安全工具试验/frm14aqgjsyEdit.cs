@@ -29,7 +29,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "syr");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "ajqz");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sjr");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "jr");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "jr", false, DataSourceUpdateMode.OnPropertyChanged);
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -130,7 +130,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void dateEdit1_EditValueChanged(object sender, EventArgs e)
         {
-
+            dateEdit2.EditValue = ((DateTime)dateEdit1.EditValue).AddYears(UCPJ_14aqgj.Syzq);
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
