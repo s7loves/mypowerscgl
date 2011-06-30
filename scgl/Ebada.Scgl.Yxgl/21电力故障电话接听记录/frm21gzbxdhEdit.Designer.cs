@@ -229,7 +229,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-<<<<<<< .mine
             // comboBoxEdit1
             // 
             this.comboBoxEdit1.Location = new System.Drawing.Point(365, 43);
@@ -240,7 +239,6 @@
             this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit1.TabIndex = 16;
             // 
-=======
             // comboBoxEdit1
             // 
             this.comboBoxEdit1.Location = new System.Drawing.Point(365, 46);
@@ -251,7 +249,6 @@
             this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit1.TabIndex = 16;
             // 
->>>>>>> .r605
             // frm21gzbxdhEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
