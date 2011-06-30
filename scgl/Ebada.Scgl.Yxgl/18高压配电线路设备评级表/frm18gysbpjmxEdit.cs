@@ -34,7 +34,7 @@ namespace Ebada.Scgl.Yxgl
             this.spinEdit5.DataBindings.Add("EditValue", rowData, "whl");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbdy");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "fzdw");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr", false, DataSourceUpdateMode.OnPropertyChanged);
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -133,6 +133,12 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("18高压配电设备评级表", "缺陷内容", memoEdit1);
 
         }
     }

@@ -131,6 +131,7 @@ namespace Ebada.Scgl.Yxgl
         private void dateEdit1_EditValueChanged(object sender, EventArgs e)
         {
             dateEdit2.EditValue = ((DateTime)dateEdit1.EditValue).AddYears(UCPJ_14aqgj.Syzq);
+            rowData.xcsyrq = (DateTime)dateEdit2.EditValue;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)

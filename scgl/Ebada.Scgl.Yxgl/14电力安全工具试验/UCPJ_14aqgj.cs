@@ -96,9 +96,13 @@ namespace Ebada.Scgl.Yxgl
             if (FocusedRowChanged != null)
             {
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PS_aqgj);
-                // 更新实验周期
-                UCPJ_14aqgj.Syzq = (gridView1.GetFocusedRow() as PS_aqgj).syzq;
-            }
+                if ( gridView1.GetFocusedRow() !=null)
+                {
+                    // 更新实验周期
+                    UCPJ_14aqgj.Syzq = (gridView1.GetFocusedRow() as PS_aqgj).syzq;
+     
+                }
+                 }
         }
         private void hideColumn(string colname)
         {
