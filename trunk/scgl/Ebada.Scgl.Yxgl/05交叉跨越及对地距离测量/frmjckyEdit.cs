@@ -111,5 +111,13 @@ namespace Ebada.Scgl.Yxgl
             IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
             comboBoxEdit2.Properties.DataSource = list;
         }
+
+        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            IList<PS_tq> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(" where gtID='" + comboBoxEdit2.EditValue.ToString() + "' order by tqName");
+            for(int i=0;i<list.Count;i++){
+                comboBoxEdit3.Properties.Items.Add(list[i].Adress);
+            }
+        }
     }
 }

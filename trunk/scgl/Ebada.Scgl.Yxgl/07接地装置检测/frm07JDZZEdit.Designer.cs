@@ -269,9 +269,10 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gth", "杆塔号")});
             this.comboBoxEdit2.Properties.DisplayMember = "gth";
             this.comboBoxEdit2.Properties.NullText = "";
-            this.comboBoxEdit2.Properties.ValueMember = "gth";
+            this.comboBoxEdit2.Properties.ValueMember = "gtID";
             this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit2.TabIndex = 14;
+            this.comboBoxEdit2.EditValueChanged += new System.EventHandler(this.comboBoxEdit2_EditValueChanged);
             // 
             // comboBoxEdit1
             // 
