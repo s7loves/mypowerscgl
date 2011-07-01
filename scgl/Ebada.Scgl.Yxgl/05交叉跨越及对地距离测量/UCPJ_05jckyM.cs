@@ -32,11 +32,13 @@ namespace Ebada.Scgl.Yxgl {
         void ucTop_FocusedRowChanged(object sender, PJ_05jcky obj)
         {
             ucBottom.ParentObj = obj;
-            splitCC1.Panel2.Text = "跨越物：" + (obj != null ? obj.kymc : "");
+            splitCC1.Panel2.Text = "测量记录：" + (obj != null ? obj.kymc : "");
         }
 
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
+            splitCC1.Panel1.Text = "交叉跨越物";
+            splitCC1.Panel2.Text = "测量记录";
         }
 
     }
