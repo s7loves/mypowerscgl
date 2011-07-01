@@ -114,21 +114,26 @@
    </delete>
    
    <update id="UpdateWF_WorkTask" parameterClass="WF_WorkTask" resultClass="int">
-          UPDATE WF_WorkTask
-           SET
-             [WorkFlowId]=#WorkFlowId#,
-             [TaskTypeId]=#TaskTypeId#,
-             [TaskTypeAndOr]=#TaskTypeAndOr#,
-             [TaskCaption]=#TaskCaption#,
-             [iXPosition]=#iXPosition#,
-             [iYPosition]=#iYPosition#,
-             [Description]=#Description#,
-             [Commands]=#Commands#,
-             [OperRule]=#OperRule#,
-             [IsJumpSelf]=#IsJumpSelf#
-            WHERE 
-              WorkTaskId = #WorkTaskId#
+     UPDATE WF_WorkTask
+     SET
+     [WorkFlowId]=#WorkFlowId#,
+     [TaskTypeId]=#TaskTypeId#,
+     [TaskTypeAndOr]=#TaskTypeAndOr#,
+     [TaskCaption]=#TaskCaption#,
+     [iXPosition]=#iXPosition#,
+     [iYPosition]=#iYPosition#,
+     [Description]=#Description#,
+     [Commands]=#Commands#,
+     [OperRule]=#OperRule#,
+     [IsJumpSelf]=#IsJumpSelf#
+     WHERE
+     WorkTaskId = #WorkTaskId#
 
+     UPDATE mModule
+     SET
+     [ModuName]=#TaskCaption#
+     WHERE
+     Modu_ID = #WorkTaskId#
    </update>
   
    <insert id="InsertWF_WorkTask" parameterClass="WF_WorkTask">

@@ -89,16 +89,23 @@
    </delete>
    
    <update id="UpdateWF_WorkFlowClass" parameterClass="WF_WorkFlowClass" resultClass="int">
-          UPDATE WF_WorkFlowClass
-           SET
-             [Caption]=#Caption#,
-             [FatherId]=#FatherId#,
-             [Description]=#Description#,
-             [clLevel]=#clLevel#,
-             [clMgrUrl]=#clMgrUrl#
-            WHERE 
-              WFClassId = #WFClassId#
+     UPDATE WF_WorkFlowClass
+     SET
+     [Caption]=#Caption#,
+     [FatherId]=#FatherId#,
+     [Description]=#Description#,
+     [clLevel]=#clLevel#,
+     [clMgrUrl]=#clMgrUrl#
+     WHERE
+     WFClassId = #WFClassId#
 
+
+
+     UPDATE mModule
+     SET
+     [ModuName]=#Caption#
+     WHERE
+     Modu_ID = #WFClassId#
    </update>
   
    <insert id="InsertWF_WorkFlowClass" parameterClass="WF_WorkFlowClass">
