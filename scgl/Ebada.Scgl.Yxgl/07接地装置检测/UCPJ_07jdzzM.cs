@@ -38,7 +38,10 @@ namespace Ebada.Scgl.Yxgl {
 
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
+            splitCC1.Panel1.Text = "接地装置";
+            splitCC1.Panel1.Text = "接地装置检测记录";
         }
+
 
     }
 }
