@@ -143,5 +143,14 @@ namespace Ebada.Scgl.Yxgl
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            IList<PS_tq> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(" where gtID='" + comboBoxEdit2.EditValue.ToString() + "' order by tqName");
+            for (int i = 0; i < list.Count; i++)
+            {
+                comboBoxEdit3.Properties.Items.Add(list[i].Adress);
+            }
+        }
     }
 }
