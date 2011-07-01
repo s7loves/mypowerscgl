@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "byqCode");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "byqName");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "byqModle");
-            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "omniseal");
+            this.checkEdit1.DataBindings.Add("EditValue", rowData, "omniseal");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "byqOwner");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "byqVol");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "byqPhase");
@@ -43,9 +43,8 @@ namespace Ebada.Scgl.Yxgl
             this.spinEdit4.DataBindings.Add("EditValue", rowData, "byqCurrentOne");
             this.spinEdit5.DataBindings.Add("EditValue", rowData, "byqCurrentTwo");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "byqInstallDate");
-             this.dateEdit2.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
+            this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqState");
-            //this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "byqState");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "InDate");
           
         }
@@ -54,6 +53,7 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
+                if (rowData.byqMadeDate.Year < 1900) rowData.byqMadeDate = DateTime.Parse("2000-01-01");
                 return rowData;
             }
             set {

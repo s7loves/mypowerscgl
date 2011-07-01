@@ -184,7 +184,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where left(byqcode,3)='" + value + "' order by byqcode ");
                 }
             }
         }

@@ -83,8 +83,8 @@ namespace Ebada.Scgl.Yxgl
             InitColumns();//初始列
             InitData();//初始数据
             if (this.Site != null) return;
-            btGdsList.Edit = DicTypeHelper.GdsDic;
-            btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
+            //btGdsList.Edit = DicTypeHelper.GdsDic;
+            //btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
 
         }
 
