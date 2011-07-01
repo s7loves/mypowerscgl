@@ -19,9 +19,15 @@ namespace Ebada.Scgl.Yxgl
 
         void ucpS_tqbyq1_FocusedRowChanged(object sender, Ebada.Scgl.Model.PS_tqbyq obj)
         {
+            splitCC1.Panel2.Text = "变压器：" + (obj != null ? obj.byqName : "");
+            ucpJ_11byqbd1.ParentObj = ucpS_tqbyq1.ParentObj;
             ucpJ_11byqbd1.PSObj = obj;
+            ucpJ_11byqdy1.ParentObj = ucpS_tqbyq1.ParentObj;
             ucpJ_11byqdy1.PSObj = obj;
+            ucpJ_11byqdzcl1.ParentObj = ucpS_tqbyq1.ParentObj;
             ucpJ_11byqdzcl1.PSObj = obj;
+
+
         }
     }
 }
