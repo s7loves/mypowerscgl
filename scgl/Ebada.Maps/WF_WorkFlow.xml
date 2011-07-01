@@ -126,22 +126,28 @@
    </delete>
    
    <update id="UpdateWF_WorkFlow" parameterClass="WF_WorkFlow" resultClass="int">
-          UPDATE WF_WorkFlow
-           SET
-             [FlowCaption]=#FlowCaption#,
-             [WFClassId]=#WFClassId#,
-             [Version]=#Version#,
-             [Status]=#Status#,
-             [CreateUserId]=#CreateUserId#,
-             [CreateDateTime]=#CreateDateTime#,
-             [IsSignOut]=#IsSignOut#,
-             [SignOutUserId]=#SignOutUserId#,
-             [WorkCalendarId]=#WorkCalendarId#,
-             [Description]=#Description#,
-             [MgrUrl]=#MgrUrl#
-            WHERE 
-              WorkFlowId = #WorkFlowId#
+     UPDATE WF_WorkFlow
+     SET
+     [FlowCaption]=#FlowCaption#,
+     [WFClassId]=#WFClassId#,
+     [Version]=#Version#,
+     [Status]=#Status#,
+     [CreateUserId]=#CreateUserId#,
+     [CreateDateTime]=#CreateDateTime#,
+     [IsSignOut]=#IsSignOut#,
+     [SignOutUserId]=#SignOutUserId#,
+     [WorkCalendarId]=#WorkCalendarId#,
+     [Description]=#Description#,
+     [MgrUrl]=#MgrUrl#
+     WHERE
+     WorkFlowId = #WorkFlowId#
 
+
+     UPDATE mModule
+     SET
+     [ModuName]=#FlowCaption#
+     WHERE
+     Modu_ID = #WorkFlowId#
    </update>
   
    <insert id="InsertWF_WorkFlow" parameterClass="WF_WorkFlow">
