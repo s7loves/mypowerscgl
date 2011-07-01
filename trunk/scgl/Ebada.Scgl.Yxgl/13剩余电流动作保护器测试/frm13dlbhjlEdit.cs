@@ -56,6 +56,10 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "动作电流（mA）", comboBoxEdit1);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "动作时间（S）", comboBoxEdit4);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "运行情况", comboBoxEdit2);
+            if (rowData.csr == "")
+            {
+                rowData.CreateDate = DateTime.Now;
+            }
         }
 
         /// <summary>
@@ -79,54 +83,20 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
-
+            if (comboBoxEdit3.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("测试人不能为空。");
+                comboBoxEdit3.Focus();
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
+    
 
-        }
-
-        private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl5_Click(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }
