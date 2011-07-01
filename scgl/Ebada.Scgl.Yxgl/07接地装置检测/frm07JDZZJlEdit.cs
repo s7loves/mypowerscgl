@@ -62,7 +62,8 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "天气", comboBoxEdit1);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "检查情况", comboBoxEdit4);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "结论", comboBoxEdit6);
-
+            PJ_07jdzz pj = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_07jdzz>(rowData.jdzzID);
+            this.comboBoxEdit2.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
         }
 
         /// <summary>
