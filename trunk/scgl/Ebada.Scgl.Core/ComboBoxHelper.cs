@@ -260,7 +260,7 @@ namespace Ebada.Scgl.Core {
             }
             else
             {
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct Adress  from PS_tq where Adress !=null");
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct Adress  from PS_tq where Adress is not null");
                 if (mUseCache)
                     mCache.Add(key, list);
             }
