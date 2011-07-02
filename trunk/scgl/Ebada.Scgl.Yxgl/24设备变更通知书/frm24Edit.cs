@@ -110,6 +110,12 @@ namespace Ebada.Scgl.Yxgl
             this.Close();
         }
 
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("24设备变更通知书", "变动内容及说明", memoEdit1);
+
+        }
+
       
     }
 }
