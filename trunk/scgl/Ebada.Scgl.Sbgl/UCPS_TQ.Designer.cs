@@ -162,8 +162,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEdit3.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gtID", "Name9", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gth", "杆塔号")});
-            this.repositoryItemLookUpEdit3.DisplayMember = "gth";
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gtCode", "杆塔号")});
+            this.repositoryItemLookUpEdit3.DisplayMember = "gtCode";
             this.repositoryItemLookUpEdit3.Name = "repositoryItemLookUpEdit3";
             this.repositoryItemLookUpEdit3.NullText = "请选择杆塔";
             this.repositoryItemLookUpEdit3.ValueMember = "gtID";

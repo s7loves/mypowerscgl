@@ -175,7 +175,7 @@
             this.groupBox2.Size = new System.Drawing.Size(223, 364);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "杆塔";
+            this.groupBox2.Text = "台区";
             // 
             // comboBoxEdit5
             // 
@@ -488,7 +488,7 @@
             this.MinimizeBox = false;
             this.Name = "frmtqEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "杆塔";
+            this.Text = "台区";
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
