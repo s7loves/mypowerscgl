@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Yxgl
                 this.comboBoxEdit3.Properties.Items.AddRange(ryList);
                 this.comboBoxEdit4.Properties.Items.AddRange(ryList);
             }
-            ryList = ComboBoxHelper.Getbtq();
+            ryList = ComboBoxHelper.Getbtq(rowData.OrgCode);
             if (ryList.Count > 0)
             {
                 comboBoxEdit1.Properties.Items.AddRange(ryList);
