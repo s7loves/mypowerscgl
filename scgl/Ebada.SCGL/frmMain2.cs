@@ -237,5 +237,16 @@ namespace Ebada.SCGL
             }
         }
 
+        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Desktop dt=new Desktop();
+            dt.PlatForm = this; 
+            this.showControl(dt).Text = "我的桌面";
+
+        }
+
+      
+       
+
     }
 }

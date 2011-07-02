@@ -45,6 +45,7 @@
     <Compile Include="mPost.cs" />
     <Compile Include="mRole.cs" />
     <Compile Include="mUser.cs" />
+    <Compile Include="mUserModule.cs" />
     <Compile Include="PJ_01gzrj.cs" />
     <Compile Include="PJ_02aqhd.cs" />
     <Compile Include="PJ_03yxfx.cs" />
