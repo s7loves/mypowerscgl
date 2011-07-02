@@ -179,7 +179,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where tqID='" + value + "' order by sbCode ");
+                    RefreshData(" where tqID in (select tqID  from PS_tq where xlCode ='" + value + "') order by sbCode ");
                 }
             }
         }
