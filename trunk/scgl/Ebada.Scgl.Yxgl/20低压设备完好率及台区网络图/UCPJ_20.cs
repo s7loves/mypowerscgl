@@ -44,8 +44,8 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_20>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
-            repositoryItemLookUpEdit2.EditValueChanged += new EventHandler(repositoryItemLookUpEdit2_EditValueChanged);
-            repositoryItemLookUpEdit3.EditValueChanged += new EventHandler(repositoryItemLookUpEdit3_EditValueChanged);
+            btXlList.EditValueChanged += new EventHandler(repositoryItemLookUpEdit2_EditValueChanged);
+            btTQList.EditValueChanged += new EventHandler(repositoryItemLookUpEdit3_EditValueChanged);
         }
 
         void repositoryItemLookUpEdit3_EditValueChanged(object sender, EventArgs e)
@@ -53,10 +53,13 @@ namespace Ebada.Scgl.Yxgl
             //this.ParentID = barEditItem2.EditValue.ToString();
         }
 
-        void repositoryItemLookUpEdit2_EditValueChanged(object sender, EventArgs e)
-        {
-            IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(" where xlCode='" + barEditItem1.EditValue+ "'");
+        void repositoryItemLookUpEdit2_EditValueChanged(object sender, EventArgs e) {
+            //
+            string linecode = btXlList.EditValue==null?"":btXlList.EditValue.ToString();
+            IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqcode,{0})='{1}'", linecode.Length, linecode));
             repositoryItemLookUpEdit3.DataSource = xlList;
+            RefreshData(string.Format("where left(tqcode,{0})='{1}'", linecode.Length, linecode));
+
         }
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_20> e)
@@ -81,22 +84,19 @@ namespace Ebada.Scgl.Yxgl
 
         }
 
-        void btGdsList_EditValueChanged(object sender, EventArgs e)
-        {
+        void btGdsList_EditValueChanged(object sender, EventArgs e) {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
+            mOrg org = null;
             if (list.Count > 0)
                 org = list[0];
-            
-            if (org != null)
-            {
-                ParentObj = org;
-                IList<PS_xl>xlList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='"+org.OrgCode+"'");
-                repositoryItemLookUpEdit2.DataSource = xlList;
-              
-            }
-            
 
+            if (org != null) {
+                ParentObj = org;
+                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
+                repositoryItemLookUpEdit2.DataSource = xlList;
+                if (SelectGdsChanged != null)
+                    SelectGdsChanged(this, org);
+            }
         }
         private void initImageList()
         {
@@ -158,10 +158,10 @@ namespace Ebada.Scgl.Yxgl
             newobj.ParentID = parentID;
             newobj.OrgCode = parentObj.OrgCode;
             newobj.OrgName = parentObj.OrgName;
-            if (barEditItem2.EditValue != null)
+            if (btTQList.EditValue != null)
             {
-                newobj.tqCode = barEditItem2.EditValue.ToString();
-                newobj.tqName = repositoryItemLookUpEdit3.GetDisplayText(barEditItem2.EditValue.ToString());
+                newobj.tqCode = btTQList.EditValue.ToString();
+                newobj.tqName = repositoryItemLookUpEdit3.GetDisplayText(btTQList.EditValue.ToString());
             }
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.LoginName;
