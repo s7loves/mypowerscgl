@@ -59,6 +59,7 @@ namespace Ebada.Scgl.Yxgl
             if (rowData.csr == "")
             {
                 rowData.CreateDate = DateTime.Now;
+                rowData.rq = DateTime.Now;
             }
            // PJ_13dlbhjl pj = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_05jcky>(rowData.jckyID);
             this.comboBoxEdit3.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(rowData.OrgCode));
