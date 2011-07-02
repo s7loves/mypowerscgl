@@ -133,6 +133,15 @@ namespace Ebada.Scgl.Sbgl
             //需要初始化数据时在这写代码
         }
         /// <summary>
+        /// 隐藏下选择列表
+        /// </summary>
+        public void HideList()
+        {
+            btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btGtList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+        }
+        /// <summary>
         /// 初始化列,
         /// </summary>
         public void InitColumns()
@@ -184,6 +193,11 @@ namespace Ebada.Scgl.Sbgl
                 if (!string.IsNullOrEmpty(value))
                 {
                     RefreshData(" where gtID='" + value + "' order by sbCode");
+                }
+                else
+                {
+                    string tempstr = " 235@$U#u#$";
+                    RefreshData(" where gtID='" + tempstr + "' order by sbCode");
                 }
             }
         }

@@ -68,6 +68,17 @@ namespace Ebada.Scgl.Sbgl
         #endregion
 
         private void InitComboBoxData() {
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "型号", comboBoxEdit2.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "容量", spinEdit2.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "重合装置", comboBoxEdit9.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "制造厂", comboBoxEdit5.Properties);
+         
+
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "电压", comboBoxEdit3.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "遮断容量", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "合闸线圈电压", comboBoxEdit7.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "跳闸电流", comboBoxEdit8.Properties);
+
  
         }
 

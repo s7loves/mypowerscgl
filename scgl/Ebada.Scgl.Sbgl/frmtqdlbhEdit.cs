@@ -70,6 +70,7 @@ namespace Ebada.Scgl.Sbgl
         #endregion
 
         private void InitComboBoxData() {
+
  
         }
 
