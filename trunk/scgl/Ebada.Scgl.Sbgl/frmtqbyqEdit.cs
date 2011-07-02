@@ -23,11 +23,10 @@ namespace Ebada.Scgl.Sbgl
         }
         void dataBind() {
 
-
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "byqCode");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "byqName");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "byqModle");
-            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "omniseal");
+            this.checkEdit1.DataBindings.Add("EditValue", rowData, "omniseal");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "byqOwner");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "byqVol");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "byqPhase");
@@ -42,8 +41,8 @@ namespace Ebada.Scgl.Sbgl
             this.spinEdit4.DataBindings.Add("EditValue", rowData, "byqCurrentOne");
             this.spinEdit5.DataBindings.Add("EditValue", rowData, "byqCurrentTwo");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "byqInstallDate");
-            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
-            //this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "byqState");
+            this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
+            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqState");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "InDate");
 
 
@@ -76,6 +75,19 @@ namespace Ebada.Scgl.Sbgl
         #endregion
 
         private void InitComboBoxData() {
+
+
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "型号", comboBoxEdit3.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "制造厂", comboBoxEdit10.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "一次电压", spinEdit2.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "二次电压", spinEdit3.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", " 一  次  额定电流", spinEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", " 二  次  额定电流", spinEdit5.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "容量", spinEdit1.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "相别", comboBoxEdit8.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "结线组别", comboBoxEdit9.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "周  波", comboBoxEdit12.Properties);
+   
 
         }
 

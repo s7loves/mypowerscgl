@@ -187,7 +187,21 @@ namespace Ebada.Scgl.Sbgl
                 {
                     RefreshData(" where gtID='" + value + "' order by tqName");
                 }
+                else
+                {
+                    string tempstr = " 235@$U#u#$";
+                    RefreshData(" where gtID='" + tempstr + "' order by tqName");
+                }
             }
+        }
+        /// <summary>
+        /// 隐藏下选择列表
+        /// </summary>
+        public void HideList()
+        {
+            btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btGtList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -218,5 +232,6 @@ namespace Ebada.Scgl.Sbgl
            
            
         }
+
     }
 }

@@ -143,6 +143,15 @@ namespace Ebada.Scgl.Sbgl
             //hideColumn("gzrjID");
         }
         /// <summary>
+        /// 隐藏选择列表
+        /// </summary>
+        public void HideList()
+        {
+            btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btGtList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+        }
+        /// <summary>
         /// 刷新数据
         /// </summary>
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
@@ -184,6 +193,11 @@ namespace Ebada.Scgl.Sbgl
                 if (!string.IsNullOrEmpty(value))
                 {
                     RefreshData(" where gtID='" + value + "' order by kgCode");
+                }
+                else
+                {
+                    string tempstr = " 235@$U#u#$";
+                    RefreshData(" where gtID='" + tempstr + "' order by kgCode");
                 }
             }
         }

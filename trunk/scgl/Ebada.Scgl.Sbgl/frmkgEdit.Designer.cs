@@ -245,6 +245,9 @@
             this.comboBoxEdit12.Name = "comboBoxEdit12";
             this.comboBoxEdit12.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit12.Properties.Items.AddRange(new object[] {
+            "运行",
+            "暂停"});
             this.comboBoxEdit12.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit12.TabIndex = 13;
             // 
