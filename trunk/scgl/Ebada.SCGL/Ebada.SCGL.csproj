@@ -111,6 +111,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Desktop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Desktop.Designer.cs">
+      <DependentUpon>Desktop.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Desktop.resx">
+      <DependentUpon>Desktop.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -153,6 +162,9 @@
       <DependentUpon>UCModulBar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UsualForm.resx">
+      <DependentUpon>UsualForm.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -174,6 +186,12 @@
     <Compile Include="UCModulBar.Designer.cs">
       <DependentUpon>UCModulBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsualForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsualForm.Designer.cs">
+      <DependentUpon>UsualForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ebada.Modules.Demo\Ebada.Modules.Demo.csproj">
@@ -184,12 +202,17 @@
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ebada.SCGL.WFlow.Engine\Ebada.SCGL.WFlow.Engine.csproj">
+      <Project>{2F733548-64BA-4727-96FC-B4467B7F3D3B}</Project>
+      <Name>Ebada.SCGL.WFlow.Engine</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\生产管理系统top.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="3d_software.ico" />
+    <None Include="Resources\设置副本.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
