@@ -250,7 +250,7 @@ namespace Ebada.Scgl.Core {
         public static ICollection Getbtq()
         {
 
-            string key = "all";
+            string key = "alltq";
 
             ICollection list = null;
 
@@ -260,7 +260,28 @@ namespace Ebada.Scgl.Core {
             }
             else
             {
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select Adress  from PS_tq ");
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select tqname  from PS_tq ");
+                if (mUseCache)
+                    mCache.Add(key, list);
+            }
+
+
+            return list;
+        }
+        /// <summary>
+        /// 获取台区
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection Getbtq(string gdscode) {
+
+            string key = "tq"+gdscode;
+
+            ICollection list = null;
+
+            if (mUseCache && mCache.ContainsKey(key)) {
+                list = mCache[key];
+            } else {
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select tqname  from PS_tq where left(tqcode,3)='"+gdscode+"'");
                 if (mUseCache)
                     mCache.Add(key, list);
             }
