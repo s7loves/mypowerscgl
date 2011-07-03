@@ -103,8 +103,8 @@
              [Remark]=#Remark#,
              [gzrjID]=#gzrjID#,
              [CreateMan]=#CreateMan#,
-             [CreateDate]=#CreateDate#
-            
+             [CreateDate]=#CreateDate#,
+             [BigData]=#BigData#
             WHERE 
               ID = #ID#
 
