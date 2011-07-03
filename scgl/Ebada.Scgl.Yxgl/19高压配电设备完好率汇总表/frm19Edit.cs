@@ -131,5 +131,26 @@ namespace Ebada.Scgl.Yxgl
         {
 
         }
+
+        private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            openFileDialog1.Filter = "Excel文件(*.xls)|*.xls";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                buttonEdit1.Text = openFileDialog1.FileName;
+                rowData.BigData = Ecommon.GetImageBate(openFileDialog1.FileName);
+            }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (buttonEdit1.Text == "")
+            {
+                MsgBox.ShowTipMessageBox("文档内容不能为空。");
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }
