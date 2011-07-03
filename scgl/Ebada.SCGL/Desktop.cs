@@ -28,13 +28,18 @@ namespace Ebada.SCGL
         public  void iniUsualCtrl()
         {
             UsuaslPanel.Controls.Clear();
-            int xstart = 0, ystart = 0, ispan = 30,jspan=10;
+            int xstart = 0, ystart = 10, ispan = 30,jspan=10,firstlincount=0;
+            Hashtable hs = new Hashtable();
             IList<mUserModule> mlist = MainHelper.PlatformSqlMap.GetList<mUserModule>("SelectmUserModuleList", "where UserID='" + MainHelper.User.UserID + "' order by SortID");
             foreach (mUserModule umodule in mlist)
             {
                 SimpleButton bt = new SimpleButton();
                 bt.Text = umodule.mMouleName;
-                bt.AutoSize = true;
+                labelWid.Visible = true;
+                labelWid.Text = bt.Text;
+                bt.Width = labelWid.Width + 20;
+               
+                labelWid.Visible = false;
                 bt.Tag = umodule;
                 bt.Click += new EventHandler(runButtonEvent);
                 if (xstart + bt.Width + ispan <= UsuaslPanel.Width)
@@ -42,15 +47,31 @@ namespace Ebada.SCGL
                     bt.Left = xstart + ispan;
                     bt.Top = ystart;
                     xstart = bt.Left + bt.Width;
+                     firstlincount++;
+                   
                 }
                 else
                 {
                     xstart = 0;
+                    firstlincount=1;
                     ystart = ystart + bt.Height + jspan;
                     bt.Left = xstart + ispan;
                     bt.Top = ystart;
                     xstart = bt.Left + bt.Width;
                 }
+                 if (ystart == 10)
+                    {
+                       
+                        hs.Add(firstlincount, bt.Width);
+                    }
+                    else if (ystart > 10)
+                    {
+                        if (Convert.ToInt32(hs[firstlincount]) > bt.Width)
+                        {
+                            bt.Width = Convert.ToInt32(hs[firstlincount]);
+                            xstart = bt.Left + bt.Width;
+                        }
+                    }
                 UsuaslPanel.Controls.Add(bt);
             }
            
@@ -58,8 +79,8 @@ namespace Ebada.SCGL
         }
         private void runButtonEvent(object sender, EventArgs e)
         {
-          
-            mUserModule um = (mUserModule)(sender as Button).Tag;
+
+            mUserModule um = (mUserModule)(sender as SimpleButton).Tag;
             mModule md = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(um.mMouleID);
             if (md != null)
             {
@@ -153,7 +174,7 @@ namespace Ebada.SCGL
 
         private void UsualCtrl_SizeChanged(object sender, EventArgs e)
         {
-            //iniUsualCtrl();
+            iniUsualCtrl();
         }
 
         private void pictureEdit1_Click(object sender, EventArgs e)
