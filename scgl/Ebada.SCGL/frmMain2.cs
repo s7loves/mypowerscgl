@@ -194,7 +194,7 @@ namespace Ebada.SCGL
         private void btLogin_ItemClick(object sender, ItemClickEventArgs e) {
             frmLogin dlg = new frmLogin();
             if (dlg.ShowDialog() == DialogResult.OK) {
-                barStaticItem2.Caption = string.Format("部门：{0}操作员：{1}" ,MainHelper.User.OrgName, MainHelper.User.UserName);
+                barStaticItem2.Caption = string.Format("部门：{0}  操作员：{1}" ,MainHelper.User.OrgName, MainHelper.User.UserName);
                 InitMenu(MainHelper.User.UserID);
                 ucModulBar1.RefreshData("where ModuTypes != 'hide'");
                 ucModulBar1.SetImage();
@@ -242,11 +242,6 @@ namespace Ebada.SCGL
             Desktop dt=new Desktop();
             dt.PlatForm = this; 
             this.showControl(dt).Text = "我的桌面";
-
-        }
-
-      
-       
-
+        } 
     }
 }
