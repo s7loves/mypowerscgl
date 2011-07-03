@@ -8,6 +8,9 @@ using System.Windows.Forms;
 using Ebada.Client.Platform;
 using Ebada.Scgl.Model;
 using Ebada.SCGL.WFlow.Engine;
+using System.Collections;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 
 namespace Ebada.SCGL
 {
@@ -19,6 +22,7 @@ namespace Ebada.SCGL
               
         }
         DataTable dt = null;
+        DataTable taskdt = null;
         public frmMain2 PlatForm = null;
       
         public  void iniUsualCtrl()
@@ -28,7 +32,7 @@ namespace Ebada.SCGL
             IList<mUserModule> mlist = MainHelper.PlatformSqlMap.GetList<mUserModule>("SelectmUserModuleList", "where UserID='" + MainHelper.User.UserID + "' order by SortID");
             foreach (mUserModule umodule in mlist)
             {
-                Button bt = new Button();
+                SimpleButton bt = new SimpleButton();
                 bt.Text = umodule.mMouleName;
                 bt.AutoSize = true;
                 bt.Tag = umodule;
@@ -63,29 +67,83 @@ namespace Ebada.SCGL
             }
             
         }
+        private void IniWorkFlowData(DataTable claimdt, int parentid)
+        {
+            Hashtable ht = new Hashtable();
+            Hashtable ht2 = new Hashtable();
+            DataRow dr=null;
+            foreach (DataRow tdr in claimdt.Rows)
+            {
+                if (ht.Contains(tdr["FlowCaption"]))
+                {
+                    ht[tdr["FlowCaption"]] = Convert.ToInt32(ht[tdr["FlowCaption"]]) + 1;
+                }
+                else
+                {
+                    ht.Add(tdr["FlowCaption"], 1);
+                    ht2.Add(tdr["FlowCaption"], tdr["WorkFlowId"]);
+                }
+            }
+            foreach (DictionaryEntry de in ht)
+            {
+                dr = dt.NewRow();
+                dr["name"] = de.Key.ToString() + "(" + de.Value.ToString() + ")";
+                dr["id"] = Guid.NewGuid().ToString();
+                dr["parentid"] = parentid;
+                WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(ht2[de.Key].ToString());
+                if (wf != null)
+                    dr["Modu_ID"] = wf.MgrUrl;
+                dt.Rows.Add(dr);
+
+            }
+
+        }
         private void Desktop_Load(object sender, EventArgs e)
         {
             string userId = MainHelper.User.UserID;
+            DataTable workTaskdt = WorkFlowInstance.WorkflowToDoWorkTasks(userId, 999);
             if (dt == null) dt = new DataTable();
             dt.Columns.Clear();
             dt.Rows.Clear();
+            dt.Columns.Clear();
             dt.Columns.Add("name", typeof(string));
+            dt.Columns.Add("id", typeof(string));
+            dt.Columns.Add("parentid", typeof(string));
+            dt.Columns.Add("Modu_ID", typeof(string));
+            dt.Columns.Add("WorkFlowId", typeof(string));
+            if (taskdt == null) taskdt = new DataTable();
+            taskdt.Columns.Clear();
+            taskdt.Columns.Add("FlowCaption", typeof(string));
+            taskdt.Columns.Add("TaskCaption", typeof(string));
+            taskdt.Columns.Add("taskStartTime", typeof(string));
+            taskdt.Columns.Add("WorkFlowId", typeof(string));
+            taskdt.Columns.Add("WorkTaskInsId", typeof(string));
+            taskdt.Columns.Add("WorkTaskId", typeof(string));
+            taskdt.Columns.Add("Modu_ID", typeof(string));
+            taskdt.Columns.Add("butt", typeof(string));
+
             DataRow dr = dt.NewRow();
-            dr["name"] = "未认领任务(" + WorkFlowInstance.GetClaimingTaskCount(userId) + ")";
+            dr["name"] = "我的任务(" + workTaskdt.Rows.Count + ")";
+            dr["id"] = 0;
             dt.Rows.Add(dr);
-            dr = dt.NewRow();
-            dr["name"] = "已认领任务(" + WorkFlowInstance.GetClaimedTaskCount(userId) + ")";
-            dt.Rows.Add(dr);
-            //dr = dt.NewRow();
-            //dr["name"] = "已完成任务(" + WorkFlowInstance.GetCompletedTaskCount(userId) + ")";
-            //dt.Rows.Add(dr);
-            //dr = dt.NewRow();
-            //dr["name"] = "异常终止的任务(" + WorkFlowInstance.GetAbnormalTaskCount(userId) + ")";
-            //dt.Rows.Add(dr);
-            //dr = dt.NewRow();
-            //dr["name"] = "我参与的任务(" + WorkFlowInstance.GetAllTaskCount(userId) + ")";
-            //dt.Rows.Add(dr);
-            gridControl1.DataSource = dt;
+            taskdt.Rows.Clear();
+            foreach (DataRow tdr in workTaskdt.Rows)
+            {
+
+                DataRow taskdr = taskdt.NewRow();
+                foreach (DataColumn  gc in taskdt.Columns)
+                {
+                    if (gc.ColumnName == "Modu_ID" || gc.ColumnName == "butt") continue;
+                    taskdr[gc.ColumnName] = tdr[gc.ColumnName];
+                }
+                WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(tdr["WorkFlowId"]);
+                taskdr["Modu_ID"] = wf.MgrUrl;
+                taskdr["butt"] = "进入";
+                taskdt.Rows.Add(taskdr);
+            }
+            IniWorkFlowData(workTaskdt, 0);
+            treeList1.DataSource = dt;
+            gridTalskCon.DataSource = taskdt;
             iniUsualCtrl();
         }
 
@@ -95,7 +153,7 @@ namespace Ebada.SCGL
 
         private void UsualCtrl_SizeChanged(object sender, EventArgs e)
         {
-            iniUsualCtrl();
+            //iniUsualCtrl();
         }
 
         private void pictureEdit1_Click(object sender, EventArgs e)
@@ -105,6 +163,27 @@ namespace Ebada.SCGL
             uf.Show ();
             //iniUsualCtrl();
         }
+
+        private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
+        {
+            int ihand = gridTalskView.FocusedRowHandle;
+            if (ihand < 0)
+                return;
+            DataRow dr = gridTalskView.GetDataRow(ihand);
+            mModule md = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(dr["Modu_ID"]);
+            if (md != null)
+            {
+                PlatForm.OpenModule(md);
+            }
+        }
+
+        private void gridTalskView_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (gridTalskView.FocusedColumn.FieldName != "butt")
+                e.Cancel = true;
+        }
+
+     
 
      
     }

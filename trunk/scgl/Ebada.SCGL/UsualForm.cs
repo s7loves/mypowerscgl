@@ -56,12 +56,12 @@ namespace Ebada.SCGL
                 
             }
             gridControl1.DataSource = udt;
-            for (int i = 0; i < udt.Rows.Count; i++)
-            {
+            //for (int i = 0; i < udt.Rows.Count; i++)
+            //{
 
-                TreeListNode td = treeList1.FindNodeByKeyID(udt.Rows[i]["mMouleID"]);
-                treeList1.Nodes.Remove(td);  
-            }
+            //    TreeListNode td = treeList1.FindNodeByKeyID(udt.Rows[i]["mMouleID"]);
+            //    treeList1.Nodes.Remove(td);  
+            //}
         }
 
         private void AddMoudle_Click(object sender, EventArgs e)
@@ -72,7 +72,12 @@ namespace Ebada.SCGL
              //if (hit.Node != null && hit.Column != null)
             try
              {
-                 mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(treeList1.FocusedNode["Modu_ID"]); 
+                 mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(treeList1.FocusedNode["Modu_ID"]);
+                
+                 if ((mUserModule)MainHelper.PlatformSqlMap.GetObject("SelectmUserModuleList", "where UserID='" + MainHelper.User.UserID + "' and mMouleID='" + obj.Modu_ID + "'") != null)
+                 {
+                     return;
+                 }
                  mUserModule um=new mUserModule ();
                  um.mMouleID =obj.Modu_ID ;
                  um.mMouleName =obj .ModuName ;
@@ -86,7 +91,7 @@ namespace Ebada.SCGL
                  dr["mMouleParentID"] = um.mMouleParentID;
                  dr["SortID"] = um.SortID;
                  udt.Rows.Add(dr);
-                 treeList1.Nodes.Remove(treeList1.FocusedNode);
+                 //treeList1.Nodes.Remove(treeList1.FocusedNode);
                  MainHelper.PlatformSqlMap.Create<mUserModule>(um);
                  desk.iniUsualCtrl();
 
@@ -106,14 +111,14 @@ namespace Ebada.SCGL
                 DataRow udr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
                 if (udr == null) return;
                 string umid = udr["ID"].ToString();
-                mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(udr["mMouleID"]);
-                mUserModule um = new mUserModule();
-                um.mMouleID = obj.Modu_ID;
-                DataRow dr = mdt.NewRow();
-                dr["Modu_ID"] = obj.Modu_ID ;
-                dr["ModuName"] = obj.ModuName;
-                dr["ParentID"] = obj.ParentID;
-                mdt.Rows.Add(dr);
+                //mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(udr["mMouleID"]);
+                //mUserModule um = new mUserModule();
+                //um.mMouleID = obj.Modu_ID;
+                //DataRow dr = mdt.NewRow();
+                //dr["Modu_ID"] = obj.Modu_ID ;
+                //dr["ModuName"] = obj.ModuName;
+                //dr["ParentID"] = obj.ParentID;
+                //mdt.Rows.Add(dr);
                 udt.Rows.Remove(udr);
                 MainHelper.PlatformSqlMap.DeleteByKey<mUserModule>(umid);
                 IList<mUserModule> il = MainHelper.PlatformSqlMap.GetList<mUserModule>("SelectmUserModuleList", "where UserID='" + MainHelper.User.UserID + "' order by SortID");

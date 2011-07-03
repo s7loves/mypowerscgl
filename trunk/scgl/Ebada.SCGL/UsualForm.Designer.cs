@@ -30,11 +30,8 @@
         {
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.RemoveMoudle = new System.Windows.Forms.Button();
             this.AddMoudle = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -42,24 +39,42 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeList1
             // 
+            this.treeList1.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.treeList1.Appearance.FocusedRow.Options.UseBorderColor = true;
+            this.treeList1.Appearance.FocusedRow.Options.UseFont = true;
+            this.treeList1.Appearance.FocusedRow.Options.UseForeColor = true;
+            this.treeList1.Appearance.HideSelectionRow.Options.UseBackColor = true;
+            this.treeList1.Appearance.HideSelectionRow.Options.UseForeColor = true;
+            this.treeList1.Appearance.SelectedRow.Options.UseBackColor = true;
+            this.treeList1.Appearance.SelectedRow.Options.UseBorderColor = true;
+            this.treeList1.Appearance.SelectedRow.Options.UseFont = true;
+            this.treeList1.Appearance.SelectedRow.Options.UseForeColor = true;
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumn1});
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.KeyFieldName = "Modu_ID";
-            this.treeList1.Location = new System.Drawing.Point(3, 17);
+            this.treeList1.Location = new System.Drawing.Point(2, 23);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.Editable = false;
-            this.treeList1.Size = new System.Drawing.Size(287, 337);
+            this.treeList1.OptionsSelection.InvertSelection = true;
+            this.treeList1.OptionsSelection.UseIndicatorForSelection = true;
+            this.treeList1.Size = new System.Drawing.Size(282, 371);
             this.treeList1.TabIndex = 0;
             // 
             // treeListColumn1
@@ -73,30 +88,9 @@
             this.treeListColumn1.VisibleIndex = 0;
             this.treeListColumn1.Width = 100;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.treeList1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(293, 357);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "功能列表";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.RemoveMoudle);
-            this.panel1.Controls.Add(this.AddMoudle);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(293, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(27, 357);
-            this.panel1.TabIndex = 2;
-            // 
             // RemoveMoudle
             // 
-            this.RemoveMoudle.Location = new System.Drawing.Point(0, 188);
+            this.RemoveMoudle.Location = new System.Drawing.Point(4, 209);
             this.RemoveMoudle.Name = "RemoveMoudle";
             this.RemoveMoudle.Size = new System.Drawing.Size(25, 23);
             this.RemoveMoudle.TabIndex = 0;
@@ -106,7 +100,7 @@
             // 
             // AddMoudle
             // 
-            this.AddMoudle.Location = new System.Drawing.Point(-1, 159);
+            this.AddMoudle.Location = new System.Drawing.Point(3, 167);
             this.AddMoudle.Name = "AddMoudle";
             this.AddMoudle.Size = new System.Drawing.Size(25, 23);
             this.AddMoudle.TabIndex = 0;
@@ -114,24 +108,13 @@
             this.AddMoudle.UseVisualStyleBackColor = true;
             this.AddMoudle.Click += new System.EventHandler(this.AddMoudle_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.gridControl1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(320, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(497, 357);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "常用功能";
-            // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 17);
+            this.gridControl1.Location = new System.Drawing.Point(2, 23);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(491, 337);
+            this.gridControl1.Size = new System.Drawing.Size(317, 371);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -186,23 +169,64 @@
             this.gridColumn5.FieldName = "SortID";
             this.gridColumn5.Name = "gridColumn5";
             // 
+            // groupControl1
+            // 
+            this.groupControl1.AppearanceCaption.Options.UseTextOptions = true;
+            this.groupControl1.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.groupControl1.Controls.Add(this.treeList1);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(286, 396);
+            this.groupControl1.TabIndex = 2;
+            this.groupControl1.Text = "模块列表";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.RemoveMoudle);
+            this.panelControl1.Controls.Add(this.AddMoudle);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelControl1.Location = new System.Drawing.Point(286, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(33, 396);
+            this.panelControl1.TabIndex = 2;
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.AppearanceCaption.Options.UseTextOptions = true;
+            this.groupControl2.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.groupControl2.Controls.Add(this.gridControl1);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(319, 0);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(321, 396);
+            this.groupControl2.TabIndex = 1;
+            this.groupControl2.Text = "常用功能";
+            // 
             // UsualForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(817, 357);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(640, 396);
+            this.Controls.Add(this.groupControl2);
+            this.Controls.Add(this.panelControl1);
+            this.Controls.Add(this.groupControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "UsualForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "常用功能快捷设置";
             this.Load += new System.EventHandler(this.UsualForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -210,9 +234,6 @@
         #endregion
 
         private DevExpress.XtraTreeList.TreeList treeList1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button RemoveMoudle;
         private System.Windows.Forms.Button AddMoudle;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
@@ -223,5 +244,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
     }
 }
