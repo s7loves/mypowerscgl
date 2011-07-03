@@ -112,6 +112,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SelectModuleFm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ñ¡ÔñÄ£¿é";
             this.Load += new System.EventHandler(this.SelectModuleFm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
