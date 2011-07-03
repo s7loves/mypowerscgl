@@ -124,6 +124,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("OrgCode");
             hideColumn("ParentID");
             hideColumn("gzrjID");
+            hideColumn("BigData");
         }
         /// <summary>
         /// 刷新数据
