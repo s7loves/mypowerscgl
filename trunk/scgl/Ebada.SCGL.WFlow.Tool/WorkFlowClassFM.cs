@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Ebada.Client.Platform;
+using Ebada.Scgl.Model;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -50,7 +52,14 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             this.tbxClassCaption.Text = nowTreeNode.Text;
             if (nowTreeNode.Parent != null)
-                this.tbxPath.Text = nowTreeNode.MgrUrl;
+            {
+                mModule md=MainHelper.PlatformSqlMap.GetOneByKey<mModule>(nowTreeNode.MgrUrl); 
+                if(md!=null)
+                {
+                    this.tbxPath.Text = md.ModuName ;
+                    this.tbxPath.Tag  = md.Modu_ID ;
+                }
+            }
             this.tbxFatherClassCaption.Text = nowTreeNode.Parent.Text;
             this.tbxDescription.Text = (nowTreeNode as WorkFlowClassTreeNode).Description;
             this.tbxCllevel.Text = nowTreeNode.Level.ToString();
@@ -73,7 +82,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 tmpNodeInfo.Description = tbxDescription.Text;
                 tmpNodeInfo.clLevel =Convert.ToInt16( tbxCllevel.Text);
                 tmpNodeInfo.InsertWorkflowClassNode();
-                tmpNodeInfo.MgrUrl = tbxPath.Text;
+                tmpNodeInfo.MgrUrl =  tbxPath.Tag.ToString ();
                 if (nowTreeNode.NodeType == WorkConst.WORKFLOW_CLASS)//点击的是分类节点
                 {
                     nowTreeNode.Nodes.Add(tmpNodeInfo);
@@ -85,7 +94,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 nowTreeNode.Text = tbxClassCaption.Text;
                 nowTreeNode.NodeType = WorkConst.WORKFLOW_CLASS;
-                nowTreeNode.MgrUrl = tbxPath.Text;
+                nowTreeNode.MgrUrl = tbxPath.Tag.ToString ();
                 (nowTreeNode as WorkFlowClassTreeNode).Description = tbxDescription.Text;
                 (nowTreeNode as WorkFlowClassTreeNode).clLevel =Convert.ToInt16( tbxCllevel.Text);
                 (nowTreeNode as WorkFlowClassTreeNode).UpdateWorkflowClassNode();
@@ -97,22 +106,34 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnBussWebPage_Click(object sender, EventArgs e)
         {
-            OpenFileDialog fdb = new OpenFileDialog();
+            SelectModuleFm smf = new SelectModuleFm();
+            smf.strmoduleid = "";
+            smf.strmodulename = "";
 
-            fdb.Filter = "aspx页面|*.aspx|html页面|*.html|所以文件|*.*";
-            fdb.FilterIndex = 1;
-            fdb.RestoreDirectory = false;
-            fdb.Multiselect = false;
-            string fileName = "";
-            string userControlPath = System.Configuration.ConfigurationSettings.AppSettings["ModulesPath"];//用户控件路径
-
-            if (DialogResult.OK == fdb.ShowDialog())
+            smf.ShowDialog();
+            if (smf.strmoduleid != "")
             {
-                fileName = fdb.FileName;
-                int index = fileName.ToUpper().IndexOf(userControlPath.ToUpper());
-
-                tbxPath.Text = fileName.Substring(index, fileName.Length - index);
+                tbxPath.Tag = smf.strmoduleid;
+                tbxPath.Text = smf.strmodulename;
             }
+
+           //OpenFileDialog fdb = new OpenFileDialog();
+
+            //fdb.Filter = "aspx页面|*.aspx|html页面|*.html|所以文件|*.*";
+            //fdb.FilterIndex = 1;
+            //fdb.RestoreDirectory = false;
+            //fdb.Multiselect = false;
+            //string fileName = "";
+            //string userControlPath = System.Configuration.ConfigurationSettings.AppSettings["ModulesPath"];//用户控件路径
+
+            //if (DialogResult.OK == fdb.ShowDialog())
+            //{
+            //    fileName = fdb.FileName;
+            //    int index = fileName.ToUpper().IndexOf(userControlPath.ToUpper());
+
+            //    tbxPath.Text = fileName.Substring(index, fileName.Length - index);
+            //}
+
         }
     }
 }

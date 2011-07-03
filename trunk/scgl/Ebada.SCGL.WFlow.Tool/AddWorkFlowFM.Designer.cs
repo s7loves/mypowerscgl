@@ -120,11 +120,11 @@ namespace Ebada.SCGL.WFlow.Tool
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 87);
+            this.label2.Location = new System.Drawing.Point(21, 87);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 122;
-            this.label2.Text = "URL:";
+            this.label2.Text = "Ñ¡ÔñÄ£¿é:";
             // 
             // tbxPath
             // 
@@ -139,7 +139,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnBussWebPage.Name = "btnBussWebPage";
             this.btnBussWebPage.Size = new System.Drawing.Size(41, 23);
             this.btnBussWebPage.TabIndex = 120;
-            this.btnBussWebPage.Text = "";
             this.btnBussWebPage.Click += new System.EventHandler(this.btnBussWebPage_Click);
             // 
             // cbxStatus

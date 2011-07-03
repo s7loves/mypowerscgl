@@ -29,6 +29,9 @@ namespace Ebada.SCGL.WFlow.Tool
         private void InitializeComponent()
         {
             this.grpBase = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbxPath = new System.Windows.Forms.TextBox();
+            this.btnBussWebPage = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tbxCllevel = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,9 +41,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbxDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbxPath = new System.Windows.Forms.TextBox();
-            this.btnBussWebPage = new System.Windows.Forms.Button();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.grpBase.SuspendLayout();
@@ -83,6 +83,30 @@ namespace Ebada.SCGL.WFlow.Tool
             this.grpBase.TabIndex = 15;
             this.grpBase.TabStop = false;
             this.grpBase.Text = "基本信息";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 102);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 12);
+            this.label5.TabIndex = 125;
+            this.label5.Text = "选择模块:";
+            // 
+            // tbxPath
+            // 
+            this.tbxPath.Location = new System.Drawing.Point(78, 99);
+            this.tbxPath.Name = "tbxPath";
+            this.tbxPath.Size = new System.Drawing.Size(242, 21);
+            this.tbxPath.TabIndex = 124;
+            // 
+            // btnBussWebPage
+            // 
+            this.btnBussWebPage.Location = new System.Drawing.Point(326, 99);
+            this.btnBussWebPage.Name = "btnBussWebPage";
+            this.btnBussWebPage.Size = new System.Drawing.Size(41, 23);
+            this.btnBussWebPage.TabIndex = 123;
+            this.btnBussWebPage.Click += new System.EventHandler(this.btnBussWebPage_Click);
             // 
             // label2
             // 
@@ -163,31 +187,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.label1.Size = new System.Drawing.Size(59, 12);
             this.label1.TabIndex = 6;
             this.label1.Text = "分类描述:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(42, 104);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 12);
-            this.label5.TabIndex = 125;
-            this.label5.Text = "URL:";
-            // 
-            // tbxPath
-            // 
-            this.tbxPath.Location = new System.Drawing.Point(77, 99);
-            this.tbxPath.Name = "tbxPath";
-            this.tbxPath.Size = new System.Drawing.Size(242, 21);
-            this.tbxPath.TabIndex = 124;
-            // 
-            // btnBussWebPage
-            // 
-            this.btnBussWebPage.Location = new System.Drawing.Point(325, 99);
-            this.btnBussWebPage.Name = "btnBussWebPage";
-            this.btnBussWebPage.Size = new System.Drawing.Size(41, 23);
-            this.btnBussWebPage.TabIndex = 123;
-            this.btnBussWebPage.Text = "";
-            this.btnBussWebPage.Click += new System.EventHandler(this.btnBussWebPage_Click);
             // 
             // fmWorkFlowClass
             // 
