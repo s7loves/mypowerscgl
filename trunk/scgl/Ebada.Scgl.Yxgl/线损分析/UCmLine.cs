@@ -130,5 +130,15 @@ namespace Ebada.Scgl.Yxgl{
                 }
             }
         }
+
+        private void barSelect_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DataRow xl = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            if (xl!=null)
+            {
+                object id = xl["LineID"];
+            }
+            
+        }
     }
 }

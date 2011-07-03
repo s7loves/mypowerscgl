@@ -15,6 +15,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraEditors;
 using System.IO;
 using Ebada.Core;
+using DevExpress.XtraRichEdit.API.Word;
 
 namespace Ebada.Scgl.Lpgl
 {
@@ -79,42 +80,43 @@ namespace Ebada.Scgl.Lpgl
             InitializeComponent();
         }
         void dataBind()
-        {
+        {        
             
         }
         private void LPFrm_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);
-            if (currRecord == null)
-            {
-                currRecord = new LP_Record();
-                currRecord.Kind = UCmLPRecord.GetParentKind();
-            }
-            Status = UCmLPRecord.Status;
-            if (Status == "edit")
-            {
-                currRecord = rowData;
-            }
-            kind = currRecord.Kind;
+            //InitializeComponent();
             InitIndex();
-
             if (parentTemple != null)
                 InitContorl();
-            //currRecord = rowData;
             if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
-            {              
-                this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;                
-            }
+                this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
             else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0)
             {
                 this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                 LoadContent();
             }
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            //InitializeComponent();
+            base.OnShown(e);
+
+            //InitIndex();
+
+            //if (parentTemple != null)
+            //    InitContorl();
+            ////currRecord = rowData;
+            //if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
+            //{              
+            //    this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;                
+            //}
+            //else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0)
+            //{
+            //    this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+            //    LoadContent();
+            //}
 
            // this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
         }
@@ -163,7 +165,8 @@ namespace Ebada.Scgl.Lpgl
                 dockPanel1.Controls.Add(ctrl);
             }
             InitEvent();
-            InitData();
+            InitData();         
+      
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
@@ -175,7 +178,7 @@ namespace Ebada.Scgl.Lpgl
 
         void btn_Submit_Click(object sender, EventArgs e)
         {
-
+            byte[] bt = new byte[0];
             switch (status)
             {
                 case "add":
@@ -184,21 +187,24 @@ namespace Ebada.Scgl.Lpgl
                     newRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
                     newRecord.Kind = kind;
                     newRecord.Content = GetContent();
+                  
+                    //currRecord.ImageAttachment = bt;
+                    //currRecord.SignImg = bt;
                     newRecord.CreateTime = DateTime.Now.ToString();
-                    //MainHelper.PlatformSqlMap.Create<LP_Record>(newRecord);
-                    rowData = newRecord;
+                    MainHelper.PlatformSqlMap.Create<LP_Record>(newRecord);
+                    rowData = null;
                     currRecord = null;
                     break;
                 case "edit":
                     currRecord.LastChangeTime = DateTime.Now.ToString();
                     dsoFramerWordControl1.FileSave();
                     currRecord.DocContent = this.dsoFramerWordControl1.FileDataGzip;
-                    byte[] bt = new byte[0];
-                    currRecord.ImageAttachment = bt;
-                    currRecord.SignImg = bt;
+                    //byte[] bt = new byte[0];
+                    //currRecord.ImageAttachment = bt;
+                    //currRecord.SignImg = bt;
                     currRecord.Content = GetContent();
-                    //MainHelper.PlatformSqlMap.Update("UpdateLP_Record",CurrRecord);
-                    rowData = currRecord;
+                    MainHelper.PlatformSqlMap.Update("UpdateLP_Record",CurrRecord);
+                    rowData = null;
                     currRecord = null;
                     break;
             }
@@ -292,6 +298,7 @@ namespace Ebada.Scgl.Lpgl
         {
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
             {
+                //UpdateRelateData(ctrl);
                 if (ctrl.Tag != null)
                     InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
             }
@@ -301,6 +308,10 @@ namespace Ebada.Scgl.Lpgl
         {
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
             string str = (sender as Control).Text;
+            if (dsoFramerWordControl1.MyExcel==null)
+            {
+                return;
+            }
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
@@ -308,13 +319,14 @@ namespace Ebada.Scgl.Lpgl
             if (lp.CtrlType.Contains("uc_gridcontrol"))
             { FillTable(ea, lp, (sender as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar)))); return; }
             else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
-            { FillTime(ea, lp, (sender as DateEdit).DateTime); return; }
+            { FillTime(ea, lp, (sender as DateEdit).DateTime); return; }            
             string[] arrCellpos = lp.CellPos.Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
-            List<int> arrCellCount = String2Int(arrtemp);
-            if (arrCellpos.Length == 1)
+            arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+            List<int> arrCellCount = String2Int(arrtemp);            
+            if (arrCellpos.Length == 1||string.IsNullOrEmpty(arrCellpos[1]))
                 ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-            else if(arrCellpos.Length>1)
+            else if(arrCellpos.Length>1&&(!string.IsNullOrEmpty(arrCellpos[1])))
             {
                 StringHelper help = new StringHelper();
                 int i = 0;
@@ -346,6 +358,10 @@ namespace Ebada.Scgl.Lpgl
             List<int> arrCellCount = String2Int(arrtemp);
             for (int i = 0; i < arrCol.Length; i++)
             {
+                if (string.IsNullOrEmpty(arrCol[i]))
+                {
+                    continue;
+                }
                 if(content[i]!=null)
                     FillMutilRowsT(ea, lp, content[i], arrCellCount[i], arrCol[i]);
             }
@@ -369,6 +385,7 @@ namespace Ebada.Scgl.Lpgl
         public void FillTime(ExcelAccess ea, LP_Temple lp,DateTime dt)
         {
             string[] arrCellPos = lp.CellPos.Split(pchar);
+            arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split(pchar);
             IList<string> strList=new List<string>();
             if (arrCellPos.Length == 5)
             { 
@@ -381,8 +398,13 @@ namespace Ebada.Scgl.Lpgl
             }
             else if (arrCellPos.Length == 3)
             {
-                strList.Add(dt.Year.ToString()); strList.Add(dt.Month.ToString());
-                strList.Add(dt.Day.ToString());
+               // strList.Add(dt.Year.ToString()); strList.Add(dt.Month.ToString());
+                strList.Add(dt.Day.ToString()); strList.Add(dt.Hour.ToString()); strList.Add(dt.Minute.ToString());
+            }
+            else if (arrCellPos.Length ==2)
+            {
+                strList.Add(dt.Hour.ToString());
+                strList.Add(dt.Minute.ToString());
             }
             else if (arrCellPos.Length == 1)
             {
@@ -409,6 +431,7 @@ namespace Ebada.Scgl.Lpgl
 
         public int[] GetCellPos(string cellpos)
         {
+            cellpos = cellpos.Replace("|", "");          
             return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
         }
 
@@ -416,7 +439,11 @@ namespace Ebada.Scgl.Lpgl
         {
             List<int> arrRst = new List<int>();
             for (int i = 0; i < temp.Length; i++)
-            {
+            {        
+                if (string.IsNullOrEmpty(temp[i]))
+                {
+                    temp[i] = "0";
+                }
                 arrRst.Add(int.Parse(temp[i]));
             }
             return arrRst;
@@ -439,8 +466,8 @@ namespace Ebada.Scgl.Lpgl
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();
                     if (sqlSentence == "")
                         break;
-                    ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-                    IList list = MainHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
+                    ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+                     IList list = ClientHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
                     for (int i = 0; i < list.Count; i++)
                     {
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i],null));
@@ -485,10 +512,14 @@ namespace Ebada.Scgl.Lpgl
             LP_Temple lp = (LP_Temple)ctrl.Tag;
             if (lp.AffectLPID != null && lp.AffectLPID != "")
             {
-                string[] arrLPID = lp.AffectLPID.Split(pchar);
+                string[] arrLPID = lp.AffectLPID.Split(pchar);                
                 string[] arrEvent = lp.AffectEvent.Split(pchar);
                 for (int i = 0; i < arrLPID.Length; i++)
-                {
+                {                   
+                    if (string.IsNullOrEmpty(arrLPID[i])||string.IsNullOrEmpty(arrEvent[i]))
+                    {
+                        continue;
+                    }
                     ctrl.GetType().GetEvent(arrEvent[i]).AddEventHandler(ctrl, new EventHandler(TriggerRelateEvent));
                 }
             }
@@ -500,7 +531,12 @@ namespace Ebada.Scgl.Lpgl
             string[] arrLPID = lp.AffectLPID.Split(pchar);
             foreach (string lpid in arrLPID)
             {
-                Control ctrl = FindCtrl(lpid);
+                IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + lpid + "' and parentid = '" + lp.ParentID + "'");
+                if (listLPID.Count<=0)
+                {
+                    continue;
+                }
+                Control ctrl = FindCtrl((listLPID[0] as LP_Temple).LPID);
                 if (ctrl != null)
                 {                    
                     UpdateRelateData(ctrl); 
@@ -515,14 +551,24 @@ namespace Ebada.Scgl.Lpgl
             string sqlSentence = lp.SqlSentence;
             foreach (string lpid in arrLPID)
             {
-                Control relateCtrl = FindCtrl(lpid);
+                if (string.IsNullOrEmpty(lpid))
+                {
+                    continue;
+                }
+                IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + lpid + "' and parentid = '" + lp.ParentID + "'");
+                if (listLPID.Count <= 0)
+                {
+                    continue;
+                }
+                Control relateCtrl = FindCtrl((listLPID[0] as LP_Temple).LPID);
                 if (relateCtrl != null)
                 {
-                    int pos = sqlSentence.IndexOf("@"+lpid);
+                    int pos = sqlSentence.IndexOf("@" + lpid);
                     if (pos != -1)
                     {
                         sqlSentence = sqlSentence.Remove(pos, ("@" + lpid).Length);
                         sqlSentence = sqlSentence.Insert(pos, relateCtrl.Text);
+                        ((LP_Temple)ctrl.Tag).SqlSentence = sqlSentence;
                     }
                 }
             }
@@ -541,8 +587,11 @@ namespace Ebada.Scgl.Lpgl
 
         private void frmLP_FormClosed(object sender, FormClosedEventArgs e)
         {
-            rowData = null;
+            base.Close();
             currRecord = null;
+            //rowData = null;
+            dockPanel1.ControlContainer.Controls.Clear();
+            templeList.Clear();
         }
     }
 }

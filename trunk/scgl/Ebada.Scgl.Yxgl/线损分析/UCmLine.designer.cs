@@ -41,9 +41,17 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.barManager2 = new DevExpress.XtraBars.BarManager(this.components);
+            this.bar2 = new DevExpress.XtraBars.Bar();
+            this.barSelect = new DevExpress.XtraBars.BarButtonItem();
+            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager2)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -96,6 +104,7 @@
             this.btAdd.ImageIndex = 6;
             this.btAdd.Name = "btAdd";
             this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btEdit
             // 
@@ -104,6 +113,7 @@
             this.btEdit.ImageIndex = 1;
             this.btEdit.Name = "btEdit";
             this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btDelete
             // 
@@ -112,6 +122,7 @@
             this.btDelete.ImageIndex = 12;
             this.btDelete.Name = "btDelete";
             this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btRefresh
             // 
@@ -168,8 +179,8 @@
             // barDockControlTop
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(479, 24);
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 23);
+            this.barDockControlTop.Size = new System.Drawing.Size(479, 23);
             // 
             // barDockControlBottom
             // 
@@ -180,14 +191,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 265);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 46);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 243);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(479, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 265);
+            this.barDockControlRight.Location = new System.Drawing.Point(479, 46);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 243);
             // 
             // gridControl1
             // 
@@ -197,11 +208,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 46);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(479, 265);
+            this.gridControl1.Size = new System.Drawing.Size(479, 243);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -220,7 +231,61 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UC2
+            // barManager2
+            // 
+            this.barManager2.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar2});
+            this.barManager2.DockControls.Add(this.barDockControl1);
+            this.barManager2.DockControls.Add(this.barDockControl2);
+            this.barManager2.DockControls.Add(this.barDockControl3);
+            this.barManager2.DockControls.Add(this.barDockControl4);
+            this.barManager2.Form = this;
+            this.barManager2.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barSelect});
+            this.barManager2.MaxItemId = 1;
+            // 
+            // bar2
+            // 
+            this.bar2.BarName = "Tools";
+            this.bar2.DockCol = 0;
+            this.bar2.DockRow = 0;
+            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSelect)});
+            this.bar2.Text = "Tools";
+            // 
+            // barSelect
+            // 
+            this.barSelect.Caption = "增加";
+            this.barSelect.Id = 0;
+            this.barSelect.Name = "barSelect";
+            this.barSelect.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSelect_ItemClick);
+            // 
+            // barDockControl1
+            // 
+            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
+            this.barDockControl1.Size = new System.Drawing.Size(479, 23);
+            // 
+            // barDockControl2
+            // 
+            this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControl2.Location = new System.Drawing.Point(0, 314);
+            this.barDockControl2.Size = new System.Drawing.Size(479, 0);
+            // 
+            // barDockControl3
+            // 
+            this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControl3.Location = new System.Drawing.Point(0, 23);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 291);
+            // 
+            // barDockControl4
+            // 
+            this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControl4.Location = new System.Drawing.Point(479, 23);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 291);
+            // 
+            // UCmLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -229,11 +294,16 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCLine";
+            this.Controls.Add(this.barDockControl3);
+            this.Controls.Add(this.barDockControl4);
+            this.Controls.Add(this.barDockControl2);
+            this.Controls.Add(this.barDockControl1);
+            this.Name = "UCmLine";
             this.Size = new System.Drawing.Size(479, 314);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -257,5 +327,12 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraBars.BarSubItem btExport;
+        private DevExpress.XtraBars.BarDockControl barDockControl3;
+        private DevExpress.XtraBars.BarDockControl barDockControl4;
+        private DevExpress.XtraBars.BarDockControl barDockControl2;
+        private DevExpress.XtraBars.BarDockControl barDockControl1;
+        private DevExpress.XtraBars.BarManager barManager2;
+        private DevExpress.XtraBars.Bar bar2;
+        private DevExpress.XtraBars.BarButtonItem barSelect;
     }
 }

@@ -48,16 +48,28 @@ namespace Ebada.Scgl.Lpgl {
             InitializeComponent();
             initImageList();
 
-            gridViewOperation = new GridViewOperation<LP_Record>(gridControl1, gridView1, barManager1,new frmLP());
+            gridViewOperation = new GridViewOperation<LP_Record>(gridControl1, gridView1, barManager1,new frmLP());            
             //gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeAdd);
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeEdit);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<LP_Record>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<LP_Record>(gridViewOperation_AfterEdit);
             //gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
             //gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeInsert);
             //gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeUpdate);
             initColumns();
+        }        
+
+        void gridViewOperation_AfterEdit(LP_Record obj)
+        {
+
         }
 
+        void gridViewOperation_AfterAdd(LP_Record obj)
+        {
+
+        }
+        
         void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<LP_Record> e)
         {
             Status = "edit";
@@ -163,6 +175,37 @@ namespace Ebada.Scgl.Lpgl {
                     }
                     gridViewOperation.RefreshData(str);
 
+            }
+        }
+        private void InitData()
+        {
+            string str = string.Format("where kind='{0}'", ParentObj.Kind);             
+            gridViewOperation.RefreshData(str);
+        }
+        private void btAddfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmLP frm = new frmLP();
+            frm.Status = "add";
+            frm.Kind = ParentObj.Kind;       
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                InitData();
+            }
+        }
+
+        private void btEditfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if ((gridView1.GetFocusedRow() as LP_Record) == null)
+            {
+                return;
+            }
+            frmLP frm = new frmLP();
+            frm.Status = "edit";
+            frm.Kind = ParentObj.Kind;
+            frm.CurrRecord = gridView1.GetFocusedRow() as LP_Record;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                InitData();
             }
         }
 
