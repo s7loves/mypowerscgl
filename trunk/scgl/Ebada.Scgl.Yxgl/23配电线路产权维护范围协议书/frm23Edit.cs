@@ -49,6 +49,7 @@ namespace Ebada.Scgl.Yxgl
                 if (value == null) return;
                 if (rowData == null) {
                     this.rowData = value as PJ_23;
+                    
                     this.InitComboBoxData();
                     dataBind();
                 } else {
