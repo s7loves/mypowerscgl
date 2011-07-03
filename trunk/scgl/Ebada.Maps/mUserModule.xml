@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="mUserModule" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="mUserModule"  type="Ebada.Scgl.Model.mUserModule,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="mUserModule_AllColumns" class="mUserModule">
+        <result property="ID" column="ID" />
+        <result property="UserID" column="UserID" />
+        <result property="mMouleID" column="mMouleID" />
+        <result property="SortID" column="SortID" />
+        <result property="mMouleName" column="mMouleName" />
+        <result property="mMouleParentID" column="mMouleParentID" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectmUserModuleList" resultMap="mUserModule_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [UserID],
+         [mMouleID],
+         [SortID],
+         [mMouleName],
+         [mMouleParentID]
+          FROM mUserModule
+          $value$
+   </select>
+   
+   <select id="SelectmUserModuleByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [UserID],
+         [mMouleID],
+         [SortID],
+         [mMouleName],
+         [mMouleParentID]
+          FROM mUserModule
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="mMouleID">[mMouleID]='$mMouleID$'</isNotNull>
+       <isNotNull prepend="AND" property="SortID">[SortID]='$SortID$'</isNotNull>
+       <isNotNull prepend="AND" property="mMouleName">[mMouleName]='$mMouleName$'</isNotNull>
+       <isNotNull prepend="AND" property="mMouleParentID">[mMouleParentID]='$mMouleParentID$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectmUserModuleByKey" resultMap="mUserModule_AllColumns" parameterClass="mUserModule">
+         SELECT 
+         [ID],
+         [UserID],
+         [mMouleID],
+         [SortID],
+         [mMouleName],
+         [mMouleParentID]
+         FROM mUserModule
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletemUserModule" parameterClass="mUserModule">
+        DELETE FROM 
+         mUserModule
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletemUserModuleByWhere" parameterClass="string">
+     delete from mUserModule $value$
+   </delete>
+   
+   <delete id="DeletemUserModuleByKey" parameterClass="string">
+        DELETE FROM 
+         mUserModule
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatemUserModule" parameterClass="mUserModule" resultClass="int">
+          UPDATE mUserModule
+           SET
+             [UserID]=#UserID#,
+             [mMouleID]=#mMouleID#,
+             [SortID]=#SortID#,
+             [mMouleName]=#mMouleName#,
+             [mMouleParentID]=#mMouleParentID#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertmUserModule" parameterClass="mUserModule">
+        INSERT INTO mUserModule
+         (
+         [ID],
+         [UserID],
+         [mMouleID],
+         [SortID],
+         [mMouleName],
+         [mMouleParentID]
+         )
+       VALUES
+         (
+         #ID#,
+         #UserID#,
+         #mMouleID#,
+         #SortID#,
+         #mMouleName#,
+         #mMouleParentID#
+         )
+
+   </insert>
+   
+   <select id="GetmUserModuleRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM mUserModule
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="mMouleID">[mMouleID]='$mMouleID$'</isNotNull>
+       <isNotNull prepend="AND" property="SortID">[SortID]='$SortID$'</isNotNull>
+       <isNotNull prepend="AND" property="mMouleName">[mMouleName]='$mMouleName$'</isNotNull>
+       <isNotNull prepend="AND" property="mMouleParentID">[mMouleParentID]='$mMouleParentID$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetmUserModuleRowCount" parameterClass="string">
+    select count(*) from mUserModule $value$
+   </select>
+    <select id="GetmUserModuleMaxSortID" parameterClass="string">
+      select max(SortID) from mUserModule $value$
+    </select>
+  </statements>
+</sqlMap>
+ 
