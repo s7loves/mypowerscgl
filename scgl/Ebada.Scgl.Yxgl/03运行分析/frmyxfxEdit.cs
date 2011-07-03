@@ -344,7 +344,13 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("03运行分析记录", "分析记录内容", memoEdit5,memoEdit1,memoEdit2);
+           PJ_dyk dyk= SelectorHelper.SelectDyk("03运行分析记录", "分析记录内容", memoEdit5,memoEdit1,memoEdit2);
+            if (dyk != null)
+            {
+                rowData.zt = dyk.nr;
+                rowData.jy = dyk.nr2;
+                rowData.jr = dyk.nr3;
+            }
             //memoEdit1.Focus();
         }
     }
