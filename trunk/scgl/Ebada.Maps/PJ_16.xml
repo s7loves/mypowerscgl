@@ -105,20 +105,20 @@
    </delete>
    
    <update id="UpdatePJ_16" parameterClass="PJ_16" resultClass="int">
-          UPDATE PJ_16
-           SET
-             [ParentID]=#ParentID#,
-             [OrgCode]=#OrgCode#,
-             [OrgName]=#OrgName#,
-             [LineCode]=#LineCode#,
-             [LineName]=#LineName#,
-             [Remark]=#Remark#,
-             [gzrjID]=#gzrjID#,
-             [CreateMan]=#CreateMan#,
-             [CreateDate]=#CreateDate#
-            
-            WHERE 
-              ID = #ID#
+     UPDATE PJ_16
+     SET
+     [ParentID]=#ParentID#,
+     [OrgCode]=#OrgCode#,
+     [OrgName]=#OrgName#,
+     [LineCode]=#LineCode#,
+     [LineName]=#LineName#,
+     [Remark]=#Remark#,
+     [gzrjID]=#gzrjID#,
+     [CreateMan]=#CreateMan#,
+     [CreateDate]=#CreateDate#,
+     [BigData]=#BigData#
+     WHERE
+     ID = #ID#
 
    </update>
   
