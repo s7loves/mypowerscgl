@@ -30,8 +30,6 @@
         {
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.RemoveMoudle = new System.Windows.Forms.Button();
-            this.AddMoudle = new System.Windows.Forms.Button();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -41,6 +39,8 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.RemoveMoudle = new DevExpress.XtraEditors.SimpleButton();
+            this.AddMoudle = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -76,6 +76,7 @@
             this.treeList1.OptionsSelection.UseIndicatorForSelection = true;
             this.treeList1.Size = new System.Drawing.Size(282, 371);
             this.treeList1.TabIndex = 0;
+            this.treeList1.DoubleClick += new System.EventHandler(this.treeList1_DoubleClick);
             // 
             // treeListColumn1
             // 
@@ -87,26 +88,6 @@
             this.treeListColumn1.Visible = true;
             this.treeListColumn1.VisibleIndex = 0;
             this.treeListColumn1.Width = 100;
-            // 
-            // RemoveMoudle
-            // 
-            this.RemoveMoudle.Location = new System.Drawing.Point(4, 209);
-            this.RemoveMoudle.Name = "RemoveMoudle";
-            this.RemoveMoudle.Size = new System.Drawing.Size(25, 23);
-            this.RemoveMoudle.TabIndex = 0;
-            this.RemoveMoudle.Text = "<<";
-            this.RemoveMoudle.UseVisualStyleBackColor = true;
-            this.RemoveMoudle.Click += new System.EventHandler(this.RemoveMoudle_Click);
-            // 
-            // AddMoudle
-            // 
-            this.AddMoudle.Location = new System.Drawing.Point(3, 167);
-            this.AddMoudle.Name = "AddMoudle";
-            this.AddMoudle.Size = new System.Drawing.Size(25, 23);
-            this.AddMoudle.TabIndex = 0;
-            this.AddMoudle.Text = ">>";
-            this.AddMoudle.UseVisualStyleBackColor = true;
-            this.AddMoudle.Click += new System.EventHandler(this.AddMoudle_Click);
             // 
             // gridControl1
             // 
@@ -133,6 +114,7 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn5, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // gridColumn1
             // 
@@ -191,6 +173,24 @@
             this.panelControl1.Size = new System.Drawing.Size(33, 396);
             this.panelControl1.TabIndex = 2;
             // 
+            // RemoveMoudle
+            // 
+            this.RemoveMoudle.Location = new System.Drawing.Point(1, 172);
+            this.RemoveMoudle.Name = "RemoveMoudle";
+            this.RemoveMoudle.Size = new System.Drawing.Size(28, 23);
+            this.RemoveMoudle.TabIndex = 1;
+            this.RemoveMoudle.Text = "<<";
+            this.RemoveMoudle.Click += new System.EventHandler(this.RemoveMoudle_Click);
+            // 
+            // AddMoudle
+            // 
+            this.AddMoudle.Location = new System.Drawing.Point(1, 133);
+            this.AddMoudle.Name = "AddMoudle";
+            this.AddMoudle.Size = new System.Drawing.Size(28, 23);
+            this.AddMoudle.TabIndex = 0;
+            this.AddMoudle.Text = ">>";
+            this.AddMoudle.Click += new System.EventHandler(this.AddMoudle_Click);
+            // 
             // groupControl2
             // 
             this.groupControl2.AppearanceCaption.Options.UseTextOptions = true;
@@ -234,8 +234,6 @@
         #endregion
 
         private DevExpress.XtraTreeList.TreeList treeList1;
-        private System.Windows.Forms.Button RemoveMoudle;
-        private System.Windows.Forms.Button AddMoudle;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -247,5 +245,7 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.SimpleButton AddMoudle;
+        private DevExpress.XtraEditors.SimpleButton RemoveMoudle;
     }
 }

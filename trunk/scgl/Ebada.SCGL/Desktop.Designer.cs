@@ -30,6 +30,7 @@
         {
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.UsualCtrl = new DevExpress.XtraEditors.GroupControl();
+            this.labelWid = new DevExpress.XtraEditors.LabelControl();
             this.UsuaslPanel = new System.Windows.Forms.Panel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
@@ -104,6 +105,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.UsualCtrl.AppearanceCaption.Options.UseTextOptions = true;
             this.UsualCtrl.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.UsualCtrl.Controls.Add(this.labelWid);
             this.UsualCtrl.Controls.Add(this.UsuaslPanel);
             this.UsualCtrl.Location = new System.Drawing.Point(23, 0);
             this.UsualCtrl.Name = "UsualCtrl";
@@ -111,6 +113,13 @@
             this.UsualCtrl.TabIndex = 1;
             this.UsualCtrl.Text = "快捷入口";
             this.UsualCtrl.SizeChanged += new System.EventHandler(this.UsualCtrl_SizeChanged);
+            // 
+            // labelWid
+            // 
+            this.labelWid.Location = new System.Drawing.Point(561, 50);
+            this.labelWid.Name = "labelWid";
+            this.labelWid.Size = new System.Drawing.Size(0, 14);
+            this.labelWid.TabIndex = 3;
             // 
             // UsuaslPanel
             // 
@@ -202,7 +211,7 @@
             this.xtraTabPage2.Controls.Add(this.groupControl2);
             this.xtraTabPage2.Controls.Add(this.groupControl4);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(684, 237);
+            this.xtraTabPage2.Size = new System.Drawing.Size(548, 235);
             this.xtraTabPage2.Text = "重要工作";
             // 
             // groupControl1
@@ -412,6 +421,7 @@
             this.Load += new System.EventHandler(this.Desktop_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UsualCtrl)).EndInit();
             this.UsualCtrl.ResumeLayout(false);
+            this.UsualCtrl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
@@ -475,5 +485,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private DevExpress.XtraEditors.LabelControl labelWid;
     }
 }

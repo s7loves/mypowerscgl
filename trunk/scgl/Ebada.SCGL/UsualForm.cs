@@ -91,6 +91,7 @@ namespace Ebada.SCGL
                  dr["mMouleParentID"] = um.mMouleParentID;
                  dr["SortID"] = um.SortID;
                  udt.Rows.Add(dr);
+                 treeList1.FocusedNode = treeList1.FocusedNode.NextVisibleNode;
                  //treeList1.Nodes.Remove(treeList1.FocusedNode);
                  MainHelper.PlatformSqlMap.Create<mUserModule>(um);
                  desk.iniUsualCtrl();
@@ -139,6 +140,16 @@ namespace Ebada.SCGL
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private void treeList1_DoubleClick(object sender, EventArgs e)
+        {
+            AddMoudle_Click(sender, e);
+        }
+
+        private void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            RemoveMoudle_Click(sender, e);
         }
     }
 }
