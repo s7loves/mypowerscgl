@@ -78,7 +78,7 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "接地电阻", comboBoxEdit6);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土质", comboBoxEdit7);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8);
-
+           
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
             comboBoxEdit1.Properties.DataSource = xlList;
         }
@@ -108,8 +108,10 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
-            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
-            comboBoxEdit2.Properties.DataSource = list;
+            ICollection list = new ArrayList();
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit1.EditValue.ToString()));
+            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            comboBoxEdit2.Properties.Items.AddRange(list) ;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -136,6 +138,18 @@ namespace Ebada.Scgl.Yxgl
             {
                 MsgBox.ShowTipMessageBox("保护设备规格不能为空。");
                 comboBoxEdit9.Focus();
+                return;
+            }
+            if (Convert.ToDouble(comboBoxEdit6.Text)<0)
+            {
+                MsgBox.ShowTipMessageBox("接地电阻不能为负。");
+                comboBoxEdit6.Focus();
+                return;
+            }
+            if (Convert.ToDouble(comboBoxEdit8.Text) < 0)
+            {
+                MsgBox.ShowTipMessageBox("土壤电阻率不能为负。");
+                comboBoxEdit8.Focus();
                 return;
             }
             rowData.LineName = comboBoxEdit1.Text;
