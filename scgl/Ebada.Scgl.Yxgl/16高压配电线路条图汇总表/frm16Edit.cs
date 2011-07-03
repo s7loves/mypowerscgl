@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Yxgl
 
 
            
-            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineName");
+            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineCode");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             
            
@@ -70,7 +70,7 @@ namespace Ebada.Scgl.Yxgl
             //    this.cltCity.Properties.KeyValue = cityCode;
 
             IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode ='" + rowData.OrgCode + "'or OrgCode2='" + rowData.OrgCode + "'");
-            this.SetComboBoxData(this.lookUpEdit1, "LineID", "LineName", "请选择", "线路名称", list);
+            this.SetComboBoxData(this.lookUpEdit1, "LineName", "LineID", "请选择", "线路名称", list);
             
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);
         }
@@ -139,7 +139,17 @@ namespace Ebada.Scgl.Yxgl
 
         private void lookUpEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            this.rowData.LineCode = this.lookUpEdit1.EditValue.ToString();
+            //this.rowData.LineName = this.lookUpEdit1.SelectedText;
+        }
+
+        private void lookUpEdit1_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            //this.rowData.LineName = this.lookUpEdit1.s;
+        }
+
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            this.rowData.LineName = this.lookUpEdit1.Text;
         }
     }
 }
