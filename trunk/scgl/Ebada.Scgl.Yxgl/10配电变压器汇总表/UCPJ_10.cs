@@ -185,10 +185,16 @@ namespace Ebada.Scgl.Yxgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (gridView1.FocusedRowHandle>=0)
+            if (gridView1.FocusedRowHandle >= 0)
             {
                 Export10.ExportExcel(parentID);
             }
+            else
+            {
+                MsgBox.ShowTipMessageBox("没有选中数据。");
+                return;
+            }
+
            
            
         }
