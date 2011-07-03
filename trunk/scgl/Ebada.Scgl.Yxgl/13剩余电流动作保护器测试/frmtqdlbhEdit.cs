@@ -60,6 +60,7 @@ namespace Ebada.Scgl.Yxgl
                 if (value == null) return;
                 if (rowData == null) {
                     this.rowData = value as PS_tqdlbh;
+                    rowData.sbCode = DateTime.Now.ToString("yyyymmddhhmmss");
                     this.InitComboBoxData();
                     dataBind();
                 } else {
