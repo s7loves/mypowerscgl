@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using DevExpress.XtraRichEdit.API.Word;
+using System.Collections;
 
 namespace Ebada.Scgl.Lpgl
 {
@@ -157,7 +159,26 @@ namespace Ebada.Scgl.Lpgl
                 }
             }
         }
-
+        public static string ReplaceEmpty(string[] arry)
+        {           
+            string strNew=null;
+            for (int i = 0; i < arry.Length;i++ )
+            {
+                if (!string.IsNullOrEmpty(arry[i]))
+                {
+                    if (string.IsNullOrEmpty(strNew))
+                    {
+                        strNew = arry[i];
+                    }
+                    else
+                    {
+                        strNew += "|" + arry[i];
+                    }
+                }                
+            }            
+            
+            return strNew;
+        }
         public int GetFristLen(string str, int end)
         {
             if (str.Length <= end)

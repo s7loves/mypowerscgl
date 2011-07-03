@@ -52,7 +52,6 @@
             // 
             // ucLeft1
             // 
-           
             this.ucLeft1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucLeft1.Location = new System.Drawing.Point(0, 0);
             this.ucLeft1.Name = "ucLeft1";
@@ -64,7 +63,7 @@
             this.ucRight1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucRight1.Location = new System.Drawing.Point(0, 0);
             this.ucRight1.Name = "ucRight1";
-            this.ucRight1.Size = new System.Drawing.Size(339, 324);
+            this.ucRight1.Size = new System.Drawing.Size(341, 324);
             this.ucRight1.TabIndex = 0;
             // 
             // UCmLineLoss

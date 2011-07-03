@@ -50,7 +50,7 @@ namespace Ebada.Scgl.Lpgl {
             this.textEdit8.DataBindings.Add("EditValue", rowData, "AffectEvent");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "Birthday");
             this.checkEdit1.DataBindings.Add("EditValue", rowData, "IsVisible");
-
+            this.textEdit9.DataBindings.Add("EditValue", rowData, "ColumnName");  
 
         }
         #region IPopupFormEdit Members
@@ -93,17 +93,17 @@ namespace Ebada.Scgl.Lpgl {
             ICollection col3 = Ebada.Scgl.Core.ComboBoxHelper.GetTables();
             comboBoxEdit2.Properties.Items.AddRange(col3);
 
-            IList<LP_Temple> listCellPos = ClientHelper.PlatformSqlMap.GetList<LP_Temple>(" WHERE parentid = '" + UCmExcel.GetParentID() + "'");
+            //IList<LP_Temple> listCellPos = ClientHelper.PlatformSqlMap.GetList<LP_Temple>(" WHERE parentid = '" + UCmExcel.GetParentID() + "'");
          
-            IList<DicType> list4 = new List<DicType>();
-            char []chSplit = new char[]{','};
-            foreach (LP_Temple lp in listCellPos)
-            {
-                list4.Add(new DicType(lp.LPID, lp.CellPos + "(" + (lp.CtrlType.Split(chSplit))[0] + ")"));                
-            }
+            //IList<DicType> list4 = new List<DicType>();
+            //char []chSplit = new char[]{','};
+            //foreach (LP_Temple lp in listCellPos)
+            //{
+            //    list4.Add(new DicType(lp.LPID, lp.CellPos + "(" + (lp.CtrlType.Split(chSplit))[0] + ")"));                
+            //}
 
-            this.SetComboBoxData(this.lookUpEdit4, "Value", "Key", "请选择", "影响此控件的控件", list4);
-            this.SetComboBoxData(this.lookUpEdit5, "Value", "Key", "请选择", "受此控件影响的控件", list4);   
+            //this.SetComboBoxData(this.lookUpEdit4, "Value", "Key", "请选择", "影响此控件的控件", list4);
+            //this.SetComboBoxData(this.lookUpEdit5, "Value", "Key", "请选择", "受此控件影响的控件", list4);   
         }
 
         /// <summary>

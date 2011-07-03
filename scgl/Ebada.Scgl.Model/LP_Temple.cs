@@ -353,7 +353,7 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
+                if( value.ToString().Length > 200)
                 throw new Exception("[关联触发事件，用|号分开，与AffectLPID对应，用于联动事件]长度不能大于50!");
                 if (_affectevent as object == null || !_affectevent.Equals(value))
                 {

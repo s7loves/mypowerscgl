@@ -65,8 +65,7 @@ namespace Ebada.Scgl.Lpgl
             IList<DicType> list = new List<DicType>();
             list.Add(new DicType("yzgzp", "一种工作票"));
             list.Add(new DicType("ezgzp", "二种工作票"));
-            list.Add(new DicType("tdczp", "停电操作票"));
-            list.Add(new DicType("sdczp", "送电操作票"));
+            list.Add(new DicType("dzczp", "操作票"));
             list.Add(new DicType("xlqxp", "抢修票"));
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);
 
