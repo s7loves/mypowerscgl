@@ -326,7 +326,7 @@ namespace Ebada.Scgl.Yxgl
             }
             else
             {
-                string strmes = RecordWorkTask.RunDQFXRecord(rowData.ID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+                string strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID   , WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
                 if (strmes.IndexOf("未提交至任何人") > -1)
                 {
                     MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
