@@ -109,6 +109,7 @@ namespace Ebada.Scgl.WFlow
         public static string RunNewYXFXRecord(string recordID, string recordIkind)
         {
             DataTable dt = null;
+            string command = "", workFlowId = "", workTaskId = "", flowCaption = "", workFlowInstanceId = "", workTaskInstanceId = "";
             if (MainHelper.UserOrg.OrgName.IndexOf("供电所") > -1)
             {
                 if (recordIkind == "定期分析")
@@ -135,36 +136,30 @@ namespace Ebada.Scgl.WFlow
 
 
             }
-            WorkFlowRuntime wfruntime = new WorkFlowRuntime();
-            wfruntime.UserId = MainHelper.User.UserID;
-            wfruntime.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
-            wfruntime.WorkTaskId = dt.Rows[0]["workTaskId"].ToString();
-            wfruntime.WorkFlowInstanceId = Guid.NewGuid().ToString();
-            wfruntime.WorkTaskInstanceId = Guid.NewGuid().ToString();
-            wfruntime.WorkFlowNo = WorkFlowInstance.GetWorkflowNO();
-            DataTable taskCommand = WorkFlowTask.GetTaskCommands(wfruntime.WorkFlowId, wfruntime.WorkTaskId);
+            workFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+            workTaskId = dt.Rows[0]["workTaskId"].ToString();
+            flowCaption=dt.Rows[0]["FlowCaption"].ToString();
+            workFlowInstanceId=Guid.NewGuid().ToString();
+            workTaskInstanceId = Guid.NewGuid().ToString();
+            DataTable taskCommand = WorkFlowTask.GetTaskCommands(workFlowId,workTaskId);
             if (taskCommand.Rows.Count > 0)
             {
-                wfruntime.CommandName = taskCommand.Rows[0]["CommandName"].ToString();
+                command = taskCommand.Rows[0]["CommandName"].ToString();
             }
             else
             {
-                wfruntime.CommandName = "提交";
+                command = "提交";
             }
-            wfruntime.WorkflowInsCaption = dt.Rows[0]["FlowCaption"].ToString();
-            wfruntime.IsDraft = false;//保存并执行流程流转
-
+            string strmes = CreatWorkFlow(MainHelper.User.UserID, workFlowId, workTaskId, workFlowInstanceId, workTaskInstanceId, flowCaption, command);
+           
             WFP_RecordWorkTaskIns wpfrecord = new WFP_RecordWorkTaskIns();
             wpfrecord.RecordID = recordID;
-            wpfrecord.WorkFlowId  = wfruntime.WorkFlowId;
-            wpfrecord.WorkFlowInsId  = wfruntime.WorkFlowInstanceId;
-            wpfrecord.WorkTaskId  = wfruntime.WorkTaskId;
-            wpfrecord.WorkTaskInsId = wfruntime.WorkTaskInstanceId;
-            wfruntime.Start();
-            string strmes = Toollips(wpfrecord.WorkTaskInsId);
-            if ( strmes.IndexOf("未提交至任何人")== -1)
-              
-            MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
+            wpfrecord.WorkFlowId = workFlowId;
+            wpfrecord.WorkFlowInsId  = workFlowInstanceId;
+            wpfrecord.WorkTaskId = workTaskId;
+            wpfrecord.WorkTaskInsId = workTaskInstanceId;
+          
+            if ( strmes.IndexOf("未提交至任何人")== -1) MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
 
 
             return strmes;
@@ -187,17 +182,52 @@ namespace Ebada.Scgl.WFlow
             
             //return "";
         }
+        
         /// <summary>
-        /// 更新运行分析流程
+        /// 创建流程
         /// </summary>
-        /// <returns></returns>
-        public static string RunDQFXRecord(string recordID, string OperatorInsId,string WorkTaskInsId, string command)
+        /// <param name="userID">用户ID</param>
+        /// <param name="WorkFlowId">流程ID</param>
+        /// <param name="workTaskId">任务ID</param>
+        /// <param name="workFlowInstanceId">流程实例ID</param>
+        /// <param name="WorkTaskInstanceId">任务实例ID</param>
+        /// <param name="FlowCaption">流程名称</param>
+        /// <param name="command">按钮命令名称</param>
+        /// <returns>返回流程执行结果</returns>
+        
+        public static string CreatWorkFlow(string userID, string WorkFlowId, string workTaskId, string workFlowInstanceId, string WorkTaskInstanceId, string FlowCaption, string command)
+        {
+
+            WorkFlowRuntime wfruntime = new WorkFlowRuntime();
+            wfruntime.UserId = userID;
+            wfruntime.WorkFlowId = WorkFlowId;
+            wfruntime.WorkTaskId = workTaskId;
+            wfruntime.WorkFlowInstanceId = workFlowInstanceId;
+            wfruntime.WorkTaskInstanceId = WorkTaskInstanceId;
+            wfruntime.WorkFlowNo = WorkFlowInstance.GetWorkflowNO();
+            wfruntime.CommandName = command;
+            wfruntime.WorkflowInsCaption = FlowCaption;
+            wfruntime.IsDraft = false;//保存并执行流程流转
+            wfruntime.Start();
+
+            return Toollips(wfruntime.WorkTaskInstanceId);
+            //return "";
+        }
+       /// <summary>
+        /// 执行流程
+       /// </summary>
+        /// <param name="userID">用户ID</param>
+       /// <param name="OperatorInsId">操作ID</param>
+       /// <param name="WorkTaskInsId">任务记录ID</param>
+       /// <param name="command">命令名称</param>
+       /// <returns>返回流程执行结果</returns>
+        public static string RunWorkFlow(string userID, string OperatorInsId, string WorkTaskInsId, string command)
         {
            
             WorkFlowRuntime wfruntime = new WorkFlowRuntime();
             //wfruntime.RunSuccess += new WorkFlowRuntime.RunSuccessEventHandler(wfruntime_RunSuccess);
             //wfruntime.RunFail += new WorkFlowRuntime.RunFailEventHandler(wfruntime_RunFail);
-            wfruntime.Run(MainHelper.User.UserID, OperatorInsId, command);
+            wfruntime.Run(userID, OperatorInsId, command);
             
             return Toollips(WorkTaskInsId);
             //return "";
