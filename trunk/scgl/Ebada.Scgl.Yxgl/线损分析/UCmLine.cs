@@ -131,14 +131,14 @@ namespace Ebada.Scgl.Yxgl{
             }
         }
 
-        private void barSelect_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btLineLoss_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DataRow xl = gridView1.GetDataRow(gridView1.FocusedRowHandle);
-            if (xl!=null)
+            PS_xl currentLine = gridView1.GetFocusedRow() as PS_xl;
+            if (currentLine!=null)
             {
-                object id = xl["LineID"];
+
             }
-            
         }
+
     }
 }
