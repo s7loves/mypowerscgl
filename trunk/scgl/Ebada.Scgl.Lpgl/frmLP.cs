@@ -283,6 +283,7 @@ namespace Ebada.Scgl.Lpgl
                     }
                     else
                         ctrl.Text = dict[lp.LPID];
+                    ContentChanged(ctrl);
                 }
             }
         }
