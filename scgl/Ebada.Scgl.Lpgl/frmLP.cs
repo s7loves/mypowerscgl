@@ -86,14 +86,18 @@ namespace Ebada.Scgl.Lpgl
         private void LPFrm_Load(object sender, EventArgs e)
         {
             //InitializeComponent();
-            InitIndex();
-            if (parentTemple != null)
-                InitContorl();
+            InitIndex();            
+                //InitContorl();
             if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
+            {
                 this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+                InitContorl();
+            }
             else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0)
             {
-                this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                if (parentTemple != null)
+                    InitContorl();
+                this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;                
                 LoadContent();
             }
         }
@@ -303,7 +307,52 @@ namespace Ebada.Scgl.Lpgl
                     InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
             }
         }
+        void ContentChanged(Control ctrl)
+        {
+            LP_Temple lp = (LP_Temple)ctrl.Tag;
+            string str = ctrl.Text;
+            if (dsoFramerWordControl1.MyExcel == null)
+            {
+                return;
+            }
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            ExcelAccess ea = new ExcelAccess();
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
+            if (lp.CtrlType.Contains("uc_gridcontrol"))
+            { FillTable(ea, lp, (ctrl as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar)))); return; }
+            else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
+            { FillTime(ea, lp, (ctrl as DateEdit).DateTime); return; }
+            string[] arrCellpos = lp.CellPos.Split(pchar);
+            string[] arrtemp = lp.WordCount.Split(pchar);
+            arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+            List<int> arrCellCount = String2Int(arrtemp);
+            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
+                ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+            else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
+            {
+                StringHelper help = new StringHelper();
+                int i = 0;
+                if (arrCellCount[0] != arrCellCount[1])
+                {
+                    if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
+                    {
+                        ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        return;
+                    }
+                    ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                        str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
+                        GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
 
+                    str = str.Substring(help.GetFristLen(str, arrCellCount[0]) >= str.IndexOf("\r\n") &&
+                        str.IndexOf("\r\n") != -1 ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
+                    i++;
+                }
+                str = help.GetPlitString(str, arrCellCount[1]);
+                FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
+
+            }
+        }
         void ctrl_Leave(object sender, EventArgs e)
         {
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
@@ -485,6 +534,7 @@ namespace Ebada.Scgl.Lpgl
                     ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[]{pchar},StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar));
                     break;
             }
+            ContentChanged(ctrl);
         }
 
         public int CalcWidth()
