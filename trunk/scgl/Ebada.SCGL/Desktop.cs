@@ -31,15 +31,16 @@ namespace Ebada.SCGL
             int xstart = 0, ystart = 10, ispan = 30,jspan=10,firstlincount=0;
             Hashtable hs = new Hashtable();
             IList<mUserModule> mlist = MainHelper.PlatformSqlMap.GetList<mUserModule>("SelectmUserModuleList", "where UserID='" + MainHelper.User.UserID + "' order by SortID");
+            labelWid.Visible = true;
             foreach (mUserModule umodule in mlist)
             {
                 SimpleButton bt = new SimpleButton();
                 bt.Text = umodule.mMouleName;
-                labelWid.Visible = true;
+                
                 labelWid.Text = bt.Text;
                 bt.Width = labelWid.Width + 20;
+                if (bt.Width < 100) bt.Width = 100;
                
-                labelWid.Visible = false;
                 bt.Tag = umodule;
                 bt.Click += new EventHandler(runButtonEvent);
                 if (xstart + bt.Width + ispan <= UsuaslPanel.Width)
@@ -74,7 +75,7 @@ namespace Ebada.SCGL
                     }
                 UsuaslPanel.Controls.Add(bt);
             }
-           
+            labelWid.Visible = false;
         
         }
         private void runButtonEvent(object sender, EventArgs e)
@@ -165,7 +166,7 @@ namespace Ebada.SCGL
             IniWorkFlowData(workTaskdt, 0);
             treeList1.DataSource = dt;
             gridTalskCon.DataSource = taskdt;
-            iniUsualCtrl();
+            //iniUsualCtrl();
         }
 
      
