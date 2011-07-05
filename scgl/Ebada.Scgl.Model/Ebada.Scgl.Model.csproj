@@ -93,6 +93,7 @@
     <Compile Include="PS_tqdlbh.cs" />
     <Compile Include="PS_tqsb.cs" />
     <Compile Include="PS_xl.cs" />
+    <Compile Include="PS_xlxsqd.cs" />
     <Compile Include="rRoleFun.cs" />
     <Compile Include="rRoleModul.cs" />
     <Compile Include="rUserRole.cs" />
