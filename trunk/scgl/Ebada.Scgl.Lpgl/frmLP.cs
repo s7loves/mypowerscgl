@@ -16,6 +16,7 @@ using DevExpress.XtraEditors;
 using System.IO;
 using Ebada.Core;
 using DevExpress.XtraRichEdit.API.Word;
+using Ebada.Scgl.WFlow;
 
 namespace Ebada.Scgl.Lpgl
 {
@@ -84,6 +85,24 @@ namespace Ebada.Scgl.Lpgl
         void dataBind()
         {        
             
+        }
+        private DataTable WorkFlowData = null;//实例流程信息
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+
+                return WorkFlowData;
+            }
+            set
+            {
+
+
+                WorkFlowData = value;
+
+
+            }
         }
         private void LPFrm_Load(object sender, EventArgs e)
         {
@@ -189,6 +208,7 @@ namespace Ebada.Scgl.Lpgl
         void btn_Submit_Click(object sender, EventArgs e)
         {
             byte[] bt = new byte[0];
+            string strmes = "";
             switch (status)
             {
                 case "add":
@@ -201,6 +221,15 @@ namespace Ebada.Scgl.Lpgl
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
                     newRecord.CreateTime = DateTime.Now.ToString();
+                    strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, kind);
+
+                    if (strmes.IndexOf("未提交至任何人") > -1)
+                    {
+                        MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                        return;
+                    }
+                    else
+                        MsgBox.ShowTipMessageBox(strmes);
                     MainHelper.PlatformSqlMap.Create<LP_Record>(newRecord);
                     rowData = null;
                     currRecord = null;
@@ -213,6 +242,15 @@ namespace Ebada.Scgl.Lpgl
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
                     currRecord.Content = GetContent();
+                  
+                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+                    if (strmes.IndexOf("未提交至任何人") > -1)
+                    {
+                        MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                        return;
+                    }
+                    else
+                        MsgBox.ShowTipMessageBox(strmes);
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record",CurrRecord);
                     rowData = null;
                     currRecord = null;
