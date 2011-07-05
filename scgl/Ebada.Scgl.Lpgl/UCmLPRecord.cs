@@ -19,6 +19,10 @@ using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
+using Ebada.Core;
+using System.Collections;
+using Ebada.Scgl.WFlow;
+using DevExpress.XtraEditors.Repository;
 
 namespace Ebada.Scgl.Lpgl {
 
@@ -44,6 +48,9 @@ namespace Ebada.Scgl.Lpgl {
         public event SendDataEventHandler<LP_Record> FocusedRowChanged;
         private string parentID;
         private LP_Temple parentObj;
+        private GridColumn picview;
+        private DataTable gridtable = null;
+        private RepositoryItemImageEdit imageEdit1;
         public UCmLPRecord() {
             InitializeComponent();
             initImageList();
@@ -58,13 +65,13 @@ namespace Ebada.Scgl.Lpgl {
             //gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeInsert);
             //gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeUpdate);
             initColumns();
-        }        
-
+        }
+     
+        
         void gridViewOperation_AfterEdit(LP_Record obj)
         {
 
         }
-
         void gridViewOperation_AfterAdd(LP_Record obj)
         {
 
@@ -92,6 +99,39 @@ namespace Ebada.Scgl.Lpgl {
             //gridView1.Columns["OrgName"].Visible = false;
             //gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
             //repositoryItemTextEdit1.EditValueChanged += new EventHandler(repositoryItemTextEdit1_EditValueChanged);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            if (picview == null)
+            {
+                imageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
+                ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).BeginInit();
+                // 
+                // imageEdit1
+                // 
+                this.imageEdit1.AutoHeight = false;
+                this.imageEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+                this.imageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+                    new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+                this.imageEdit1.Name = "imageEdit1";
+                this.imageEdit1.PopupFormSize = new System.Drawing.Size(1200, 600); ;
+                ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).EndInit();
+
+                picview = new DevExpress.XtraGrid.Columns.GridColumn();
+                picview.Caption = "流程图";
+                picview.Visible = true;
+                //picview.MaxWidth = 300;
+                //picview.MinWidth = 300;
+                gridControl1.RepositoryItems.Add(imageEdit1);
+
+                picview.ColumnEdit = imageEdit1;
+                //DevExpress.XtraEditors.Repository.RepositoryItem
+
+                this.picview.VisibleIndex = 2;
+                picview.FieldName = "Image";
+                gridView1.Columns.Add(picview);
+                ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+                ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            }
         }
 
         void repositoryItemTextEdit1_EditValueChanged(object sender, EventArgs e) {
@@ -151,7 +191,8 @@ namespace Ebada.Scgl.Lpgl {
                         str = string.Format("where kind='{0}'", parentID);
                     }
                 }
-                gridViewOperation.RefreshData(str);
+                //gridViewOperation.RefreshData(str);
+                InitData(parentID);
             }
         }
         [Browsable(false)]
@@ -173,14 +214,38 @@ namespace Ebada.Scgl.Lpgl {
                             str = string.Format("where kind='{0}'", value.Kind);
                         }
                     }
-                    gridViewOperation.RefreshData(str);
-
+                    //gridViewOperation.RefreshData(str);
+                    InitData(value.Kind);
             }
         }
-        private void InitData()
+        private void InitData(string kind)
         {
-            string str = string.Format("where kind='{0}'", ParentObj.Kind);             
-            gridViewOperation.RefreshData(str);
+            string str = string.Format("where kind='{0}'", kind);             
+            //gridViewOperation.RefreshData(str);
+
+
+            if (gridtable != null) gridtable.Rows.Clear();
+
+            IList<LP_Record> li = MainHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", str);
+            if (li.Count != 0)
+            {
+                gridtable = ConvertHelper.ToDataTable((IList)li);
+
+            }
+            else
+            {
+                if (gridtable == null) gridtable = new DataTable();
+            }
+
+            if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(Bitmap));
+            int i = 0;
+            for (i = 0; i < gridtable.Rows.Count; i++)
+            {
+
+                gridtable.Rows[i]["Image"] = RecordWorkTask.WorkFlowBitmap(gridtable.Rows[i]["ID"].ToString(), imageEdit1.PopupFormSize);
+            }
+
+            gridControl1.DataSource = gridtable; 
         }
         private void btAddfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -189,23 +254,68 @@ namespace Ebada.Scgl.Lpgl {
             frm.Kind = ParentObj.Kind;       
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                InitData();
+                InitData(ParentObj.Kind);
             }
         }
 
         private void btEditfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if ((gridView1.GetFocusedRow() as LP_Record) == null)
+            if (gridView1.FocusedRowHandle<0)
             {
                 return;
             }
             frmLP frm = new frmLP();
             frm.Status = "edit";
             frm.Kind = ParentObj.Kind;
-            frm.CurrRecord = gridView1.GetFocusedRow() as LP_Record;
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            LP_Record currRecord = new LP_Record();
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "") 
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+
+                }
+            }
+            frm.CurrRecord = currRecord;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                InitData();
+                InitData(ParentObj.Kind);
+            }
+        }
+
+        private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (gridView1.FocusedColumn.FieldName != "Image")
+                e.Cancel = true;
+        }
+
+        private void btDeletefrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MainHelper.UserOrg == null) return;
+
+            if (gridView1.FocusedRowHandle < 0) return;
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认删除 【" + dr["Number"].ToString() + "】?") != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+
+
+                RecordWorkTask.DeleteRecord(dr["ID"].ToString());
+                MainHelper.PlatformSqlMap.DeleteByWhere<LP_Record>(" where id ='" + dr["ID"].ToString() + "'");
+                InitData(parentObj.Kind);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 

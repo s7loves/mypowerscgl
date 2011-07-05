@@ -286,7 +286,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (MainHelper.UserOrg == null) return;
 
-            if (!RecordWorkTask.HaveRewNewYXFXRole(recordIkind)) return;
+            if (!RecordWorkTask.HaveRewNewYXFXRole(recordIkind, MainHelper.User.UserID)) return;
             frmyxfxEdit fm = new frmyxfxEdit();
             PJ_03yxfx yxfx = new PJ_03yxfx();
             yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
@@ -310,8 +310,8 @@ namespace Ebada.Scgl.Yxgl
                 {
                     if (dc.ColumnName != "Image") yxfx.GetType().GetProperty(dc.ColumnName).SetValue(yxfx, dr[dc.ColumnName], null);
                 }
-                if (!RecordWorkTask.HaveRunYXFXRole(yxfx.ID )) return;
-                DataTable dt = RecordWorkTask.GetYXFXRecord(yxfx.ID);
+                if (!RecordWorkTask.HaveRunRecordRole(yxfx.ID ,MainHelper.User.UserID   )) return;
+                DataTable dt = RecordWorkTask.GetRecordWorkFlowData(yxfx.ID);
                 frmyxfxEdit fm = new frmyxfxEdit();
                 switch (dt.Rows[0]["TaskInsCaption"].ToString())
                 {
