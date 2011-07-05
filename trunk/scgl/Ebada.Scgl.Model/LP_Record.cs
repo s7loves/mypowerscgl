@@ -87,8 +87,7 @@ namespace Ebada.Scgl.Model
    
         /// 字段信息：[Content],nvarchar
         /// </summary>
-        [DisplayNameAttribute("所有控件上的内容，格式：控件ID，控件内容|
-   ")]
+        [DisplayNameAttribute("所有控件上的内容，格式：控件ID，控件内容|")]
         public string Content
         {
             get { return _content; }
@@ -96,8 +95,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 1073741823)
-                throw new Exception("[所有控件上的内容，格式：控件ID，控件内容|
-   ]长度不能大于1073741823!");
+                throw new Exception("[所有控件上的内容，格式：控件ID，控件内容| ]长度不能大于1073741823!");
                 if (_content as object == null || !_content.Equals(value))
                 {
                     _content = value;
