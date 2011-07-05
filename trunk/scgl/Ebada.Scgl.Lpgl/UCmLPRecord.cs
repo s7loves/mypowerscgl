@@ -254,7 +254,8 @@ namespace Ebada.Scgl.Lpgl {
             if (!RecordWorkTask.HaveRewNewYXFXRole(ParentObj.Kind, MainHelper.User.UserID)) return;
             frmLP frm = new frmLP();
             frm.Status = "add";
-            frm.Kind = ParentObj.Kind;       
+            frm.Kind = ParentObj.Kind;
+            frm.ParentTemple = ParentObj;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 InitData(ParentObj.Kind);
@@ -270,7 +271,7 @@ namespace Ebada.Scgl.Lpgl {
            
             frmLP frm = new frmLP();
             frm.Status = "edit";
-
+            frm.ParentTemple = ParentObj;
             frm.Kind = ParentObj.Kind;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
