@@ -28,20 +28,20 @@ namespace Ebada.Scgl.WFlow
         /// <summary>
         /// 获得当前用户是否可以填写工作票的权限
         /// </summary>
-        /// <param name="recordIkind">工作票种类（01操作票、02一种工作票、03二种工作票、04抢修单）</param>
+        /// <param name="kind">工作票种类（dzczp操作票、yzgzp一种工作票、ezgzp二种工作票、xlqxp抢修单）</param>
         /// <param name="userID">用户ID</param>
         /// <returns>bool true有权限 false 无权限</returns>
-       
-        public static bool HaveRunNewGZPRole(string recordIkind, string userID)
+
+        public static bool HaveRunNewGZPRole(string kind, string userID)
         {
-            
-                if (recordIkind == "01")
+
+            if (kind == "dzczp")
                     return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票").Rows.Count > 0 ? true : false;
-                else if (recordIkind == "02")
+            else if (kind == "yzgzp")
                     return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第一种工作票").Rows.Count > 0 ? true : false;
-                else if (recordIkind == "03")
+            else if (kind == "ezgzp")
                     return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票").Rows.Count > 0 ? true : false;
-                else if (recordIkind == "04")
+            else if (kind == "xlqxp")
                     return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单").Rows.Count > 0 ? true : false;
                 
             return false;
@@ -54,22 +54,22 @@ namespace Ebada.Scgl.WFlow
         /// 创建工作票流程
         /// </summary>
         /// <param name="recordID">记录ID</param>
-        /// <param name="recordIkind">工作票种类（01操作票、02一种工作票、03二种工作票、04抢修单）</param>
+        /// <param name="kind">工作票种类（01操作票、02一种工作票、03二种工作票、04抢修单）</param>
         /// <param name="userID">用户ID</param>
         /// <returns>流程创建结果</returns>
-        public static string RunNewGZPRecord(string recordID, string recordIkind,string userID)
+        public static string RunNewGZPRecord(string recordID, string kind, string userID)
         {
             DataTable dt = null;
             string command = "", workFlowId = "", workTaskId = "", flowCaption = "", workFlowInstanceId = "", workTaskInstanceId = "";
-          
-            
-            if (recordIkind == "01")
+
+
+            if (kind == "dzczp")
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票");
-            else if (recordIkind == "02")
+            else if (kind == "yzgzp")
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第一种工作票");
-            else if (recordIkind == "03")
+            else if (kind == "ezgzp")
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票");
-            else if (recordIkind == "04")
+            else if (kind == "xlqxp")
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单");
                 
             workFlowId = dt.Rows[0]["WorkFlowId"].ToString();
