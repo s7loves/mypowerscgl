@@ -30,6 +30,8 @@ namespace Ebada.Scgl.Lpgl
         private string kind,status;
         private string plitchar = "|";
         private char pchar = '|';
+        private string strNumber = "";
+        private Control ctrlNumber = null;
 
         public string Kind
         {
@@ -167,6 +169,10 @@ namespace Ebada.Scgl.Lpgl
                 ctrl.Name = lp.LPID;
                 dockPanel1.Controls.Add(label);
                 dockPanel1.Controls.Add(ctrl);
+                if (lp.CellName == "编号")
+                {
+                    ctrlNumber = ctrl;
+                }
             }
             InitEvent();
             InitData();         
@@ -316,6 +322,7 @@ namespace Ebada.Scgl.Lpgl
             {
                 return;
             }
+
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
@@ -327,7 +334,7 @@ namespace Ebada.Scgl.Lpgl
             string[] arrCellpos = lp.CellPos.Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
-            List<int> arrCellCount = String2Int(arrtemp);
+            List<int> arrCellCount = String2Int(arrtemp);       
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
                 ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
             else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
@@ -338,7 +345,7 @@ namespace Ebada.Scgl.Lpgl
                 {
                     if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
                     {
-                        ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);                        
                         return;
                     }
                     ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
@@ -398,6 +405,42 @@ namespace Ebada.Scgl.Lpgl
                 str = help.GetPlitString(str, arrCellCount[1]);
                 FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
 
+            }
+            if (lp.CellName == "单位")
+            {
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + str + "'");
+                if (list.Count > 0)
+                {
+                    switch (kind)
+                    {
+                        case "yzgzp":
+                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                            break;
+                        case "ezgzp":
+                            strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                            break;
+                        case "dzczp":
+                            strNumber = "BJ" + System.DateTime.Now.Year.ToString();
+                            break;
+                        case "xlqxp":
+                            strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
+                            break;
+                        default:
+                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                            break;
+                    }
+                }
+                IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
+                if (kind == "yzgzp")
+                {
+                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                }
+                else
+                {
+                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                }
+                ctrlNumber.Text = strNumber;
+                ContentChanged(ctrlNumber);
             }
         }
 
@@ -511,6 +554,10 @@ namespace Ebada.Scgl.Lpgl
             switch (ctrltype)
             {
                 case "DevExpress.XtraEditors.TextEdit":
+                    if (lp.CellName == "编号")
+                    {
+                        ctrl.Text = strNumber;
+                    }
                     break;
                 case "DevExpress.XtraEditors.ComboBoxEdit":
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();
@@ -534,6 +581,41 @@ namespace Ebada.Scgl.Lpgl
                 case "uc_gridcontrol":
                     ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[]{pchar},StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar));
                     break;
+            }
+            if (lp.CellName == "单位")
+            {
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + ctrl.Text + "'");
+                if (list.Count > 0)
+                {
+                    switch (kind)
+                    {
+                        case "yzgzp":
+                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                            break;
+                        case "ezgzp":
+                            strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                            break;
+                        case "dzczp":
+                            strNumber = "BJ" + System.DateTime.Now.Year.ToString();
+                            break;
+                        case "xlqxp":
+                            strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
+                            break;
+                        default:
+                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                            break;
+                    }
+                }
+                IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
+                if (kind == "yzgzp")
+                {
+                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                }
+                else
+                {
+                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                }
+
             }
             ContentChanged(ctrl);
         }

@@ -240,7 +240,7 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：Status
-        /// 属性描述：
+        /// 属性描述：状态
         /// 字段信息：[Status],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
@@ -261,7 +261,7 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：Number
-        /// 属性描述：
+        /// 属性描述：编号
         /// 字段信息：[Number],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
