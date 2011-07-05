@@ -1334,6 +1334,10 @@ namespace Ebada.SCGL.WFlow.Tool
             else
                 if (rbtEveryUser.Checked)
                     NowTask.OperRule = "2";
+            if (cbxReturn.Checked)
+                NowTask.haveback = true;
+            else
+                NowTask.haveback = false;
             NowTask.SaveUpdateTask();
             WorkFlowTask.DeleteAllOperator(NowTask.TaskId);
             //保存处理者

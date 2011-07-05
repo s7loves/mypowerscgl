@@ -798,7 +798,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 MsgBox.ShowWarningMessageBox ("删除失败,流程分类下面有子分类或者流程不能删除!");
                 return;
             }
-            if (MsgBox.ShowAskMessageBox("是否删除分类[" + nowTreeNode.Text + "]?删除后不能回复。") == DialogResult.Yes)
+            if (MsgBox.ShowAskMessageBox("是否删除分类[" + nowTreeNode.Text + "]?删除后不能回复。") == DialogResult.OK)
            {
                WorkFlowClassTreeNode.DeleteSelectClassNode(nowTreeNodeId);
                nowTreeNode.Remove();
@@ -808,7 +808,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private void delWftoolStripMenuItem3_Click(object sender, EventArgs e)
         {
             if (DesignerHelper.IsPower(UserId, (sender as ToolStripMenuItem).Tag.ToString()) == false) return;
-            if (MsgBox.ShowAskMessageBox("是否删除流程[" + nowTreeNode.Text + "]? 删除后不能回复。") == DialogResult.Yes)
+            if (MsgBox.ShowAskMessageBox("是否删除流程[" + nowTreeNode.Text + "]? 删除后不能回复。") == DialogResult.OK)
             {
                 WorkFlowTreeNode.DeleteSelectWorkflowNode(nowTreeNodeId);
                 nowTreeNode.Remove();

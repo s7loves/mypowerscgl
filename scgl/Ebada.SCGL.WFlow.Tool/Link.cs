@@ -22,6 +22,7 @@ namespace Ebada.SCGL.WFlow.Tool
         public BaseComponent endTask;
         public string Condition = "";
         public string CommandName = "";
+        string strdes = "";
         public int Priority;
         /**//// <summary>
         /// 连接线起点
@@ -34,7 +35,12 @@ namespace Ebada.SCGL.WFlow.Tool
         /**//// <summary>
         /// 选定标志
         /// </summary>
-        public bool selected;    
+        public bool selected;
+        /**/
+        /// <summary>
+        /// 退回标志
+        /// </summary>
+        public bool haveback;    
         /**//// <summary>
         /// 锚点的x坐标，包括开始点和结束点，开始点索引号是0，结束点索引号是breakPointX.Count-1;
         /// </summary>            
@@ -63,7 +69,8 @@ namespace Ebada.SCGL.WFlow.Tool
             Des="";
             linkGuid = Guid.NewGuid().ToString();
             startTask = StartTask;
-            endTask = EndTask;            
+            endTask = EndTask;   
+            //haveback =endTask.haveback ;
             Point[] po=SelectingPoint(StartTask,EndTask);
             if(po!=null)
             {
@@ -166,99 +173,116 @@ namespace Ebada.SCGL.WFlow.Tool
         public Cursor GetCursor(Point thePoint)
         {
             return null;
-        }    
-        
+        }
+
         public void OnPaint(PaintEventArgs e)
         {//为了保证拖拽时,直线的画图位置仍然正确.在这里把开始点和终止点重新赋值
-            Point[] po=SelectingPoint(startTask,endTask);
-            if(po!=null)
-            {
-                this.startPoint=po[0];
-                this.endPoint=po[1];
-                if(this.startTask==this.endTask)//自连线
-                {    
-                    breakPointX[0]=startPoint.X;
-                    breakPointX[1]=startPoint.X-35;
-                    breakPointX[2]=startPoint.X-35;
-                    breakPointX[3]=startPoint.X+16;
-                    breakPointX[4]=startPoint.X+16;
 
-                    breakPointY[0]=startPoint.Y;
-                    breakPointY[1]=startPoint.Y;
-                    breakPointY[2]=startPoint.Y-35;
-                    breakPointY[3]=startPoint.Y-35;                
-                    breakPointY[4]=startPoint.Y-16;    
+            Point[] po = SelectingPoint(startTask, endTask);
+            if (po != null)
+            {
+                this.startPoint = po[0];
+                this.endPoint = po[1];
+                if (this.startTask == this.endTask)//自连线
+                {
+                    breakPointX[0] = startPoint.X;
+                    breakPointX[1] = startPoint.X - 35;
+                    breakPointX[2] = startPoint.X - 35;
+                    breakPointX[3] = startPoint.X + 16;
+                    breakPointX[4] = startPoint.X + 16;
+
+                    breakPointY[0] = startPoint.Y;
+                    breakPointY[1] = startPoint.Y;
+                    breakPointY[2] = startPoint.Y - 35;
+                    breakPointY[3] = startPoint.Y - 35;
+                    breakPointY[4] = startPoint.Y - 16;
                 }
                 else
-                {                        
-                    breakPointX[0]=startPoint.X;
-                    breakPointY[0]=startPoint.Y;
-                    breakPointY[this.breakPointY.Count-1]=endPoint.Y;        
-                    breakPointX[this.breakPointX.Count-1]=endPoint.X;            
+                {
+                    breakPointX[0] = startPoint.X;
+                    breakPointY[0] = startPoint.Y;
+                    breakPointY[this.breakPointY.Count - 1] = endPoint.Y;
+                    breakPointX[this.breakPointX.Count - 1] = endPoint.X;
                 }
             }
-            Pen pen;            
-            if(!selected)
+            Pen pen;
+            if (!selected)
             {//没有选中的话用green表示            
-                pen=new Pen(Color.Green,1);    
-                       
+                pen = new Pen(Color.Green, 1);
+
             }
             else
             {
-                pen=new Pen(Color.Red,1);                    
-                for(int i=1;i<this.breakPointX.Count-1;i++)//开始和终止点不会锚点
+                pen = new Pen(Color.Red, 1);
+                for (int i = 1; i < this.breakPointX.Count - 1; i++)//开始和终止点不会锚点
                 {
-                    Point bp=new Point (Convert.ToInt16(this.breakPointX[i]),Convert.ToInt16(this.breakPointY[i]));
-                    Rectangle rec=new Rectangle(bp.X-3,bp.Y-3,6,6);
-                    e.Graphics.DrawEllipse(pen,rec);
+                    Point bp = new Point(Convert.ToInt16(this.breakPointX[i]), Convert.ToInt16(this.breakPointY[i]));
+                    Rectangle rec = new Rectangle(bp.X - 3, bp.Y - 3, 6, 6);
+                    e.Graphics.DrawEllipse(pen, rec);
                     SolidBrush brush;
-                    if(i!=this.selectedAnchor)
+                    if (i != this.selectedAnchor)
                     {
                         brush = new SolidBrush(Color.Green);
-                        
+
                     }
                     else
                     {
-                        brush=new SolidBrush(Color.Red);
+                        brush = new SolidBrush(Color.Red);
                     }
-                    e.Graphics.FillEllipse(brush,rec);            
+                    e.Graphics.FillEllipse(brush, rec);
                 }
                 //this.selectedAnchor=-1;
             }
-            
-            for(int i=0;i<this.breakPointX.Count-2;i++)
+
+            for (int i = 0; i < this.breakPointX.Count - 2; i++)
             {
-                Point bp=new Point (Convert.ToInt16(this.breakPointX[i]),Convert.ToInt16(this.breakPointY[i]));
-                Point bp2=new Point (Convert.ToInt16(this.breakPointX[i+1]),Convert.ToInt16(this.breakPointY[i+1]));
-                e.Graphics.DrawLine(pen,bp,bp2);                            
+                Point bp = new Point(Convert.ToInt16(this.breakPointX[i]), Convert.ToInt16(this.breakPointY[i]));
+                Point bp2 = new Point(Convert.ToInt16(this.breakPointX[i + 1]), Convert.ToInt16(this.breakPointY[i + 1]));
+                e.Graphics.DrawLine(pen, bp, bp2);
             }
-                //画最后一条带箭头的 
-            if(this.breakPointX.Count >= 2)
+            //画最后一条带箭头的 
+            if (this.breakPointX.Count >= 2)
             {
 
-                int ittX = Convert.ToInt16(this.breakPointX[this.breakPointX.Count-2]);
-                int ittY = Convert.ToInt16(this.breakPointY[this.breakPointX.Count-2]);
-                int itt2X = Convert.ToInt16(this.breakPointX[this.breakPointX.Count-1]);
-                int itt2Y = Convert.ToInt16(this.breakPointY[this.breakPointX.Count-1]);
-                Point tt=new Point (ittX,ittY);
-                Point tt2=new Point (itt2X,itt2Y);
-                AdjustableArrowCap Arrow = new AdjustableArrowCap(3,3);
-                pen.CustomEndCap=Arrow;
-                e.Graphics.DrawLine(pen,tt,tt2);    
-              
+                int ittX = Convert.ToInt16(this.breakPointX[this.breakPointX.Count - 2]);
+                int ittY = Convert.ToInt16(this.breakPointY[this.breakPointX.Count - 2]);
+                int itt2X = Convert.ToInt16(this.breakPointX[this.breakPointX.Count - 1]);
+                int itt2Y = Convert.ToInt16(this.breakPointY[this.breakPointX.Count - 1]);
+                Point tt = new Point(ittX, ittY);
+                Point tt2 = new Point(itt2X, itt2Y);
+                AdjustableArrowCap Arrow = new AdjustableArrowCap(3, 3);
+                pen.CustomEndCap = Arrow;
+                if (endTask.haveback)
+                    pen.CustomStartCap = Arrow;
+                e.Graphics.DrawLine(pen, tt, tt2);
 
-            //画注释    
-            if(Des=="")        
-                return;
-            Font font=new Font("Arial",8);
-            StringFormat alignVertically=new StringFormat();
-            alignVertically.LineAlignment=StringAlignment.Center;//指定文本在布局矩形中居中对齐
-            SizeF sizeF=e.Graphics.MeasureString(Des,font);        
-            int x=(Convert.ToInt16(this.breakPointX[0])+Convert.ToInt16(breakPointX[1])-(int)sizeF.Width)/2;
-            int y=(Convert.ToInt16(breakPointY[0])+Convert.ToInt16(breakPointY[1]))/2;
-            e.Graphics.DrawString(Des, font, Brushes.Blue,x,y, alignVertically);     
+
+                //画注释    
+                if (Des == "" && !endTask.haveback)
+                    return;
+                Font font = new Font("Arial", 8);
+                StringFormat alignVertically = new StringFormat();
+                alignVertically.LineAlignment = StringAlignment.Center;//指定文本在布局矩形中居中对齐
+                SizeF sizeF = e.Graphics.MeasureString(Des, font);
+                if (endTask.haveback)
+                {
+                    
+                    sizeF = e.Graphics.MeasureString(Des + "/退回", font);
+                }
+                int x = (Convert.ToInt16(this.breakPointX[0]) + Convert.ToInt16(breakPointX[1]) - (int)sizeF.Width) / 2;
+                int y = (Convert.ToInt16(breakPointY[0]) + Convert.ToInt16(breakPointY[1])) / 2;
+                if (endTask.haveback)
+                {
+                    //if (Des.IndexOf("/退回") < 0)
+
+                    e.Graphics.DrawString(Des + "/退回", font, Brushes.Blue, x, y, alignVertically);
+                }
+                else
+                {
+                    e.Graphics.DrawString(Des, font, Brushes.Blue, x, y, alignVertically);
+                }
             }
-        }        
+        }
         public Point[] SelectingPoint(BaseComponent StartTask,BaseComponent EndTask)
         {
             if(StartTask==null||EndTask==null)

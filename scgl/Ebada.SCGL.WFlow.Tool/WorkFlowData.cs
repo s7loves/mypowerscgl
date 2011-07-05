@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Collections;
 using System.Drawing;
+using Ebada.Client.Platform;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -160,11 +161,19 @@ namespace Ebada.SCGL.WFlow.Tool
                         {
                             if (startTask == null && ((BaseComponent)TaskItems[j]).TaskId.Equals(dr["StartTaskId"].ToString()) == true)
                             {
-                                startTask = (BaseComponent)TaskItems[j];                        
+                                startTask = (BaseComponent)TaskItems[j];
+                                if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + startTask.TaskId + "' and WorkFlowId='" + startTask.WorkFlowId + "' and PowerName='ÍË»Ø'") != null)
+                                {
+                                    startTask.haveback =true ;
+                                }
                             }
                             if (endTask == null && ((BaseComponent)TaskItems[j]).TaskId.Equals(dr["EndTaskId"].ToString()) == true)
                             {
-                                endTask = (BaseComponent)TaskItems[j];                        
+                                endTask = (BaseComponent)TaskItems[j];
+                                if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + endTask.TaskId + "' and WorkFlowId='" + endTask.WorkFlowId + "' and PowerName='ÍË»Ø'") != null)
+                                {
+                                    endTask.haveback = true;
+                                }
                             }
                         }
                     }

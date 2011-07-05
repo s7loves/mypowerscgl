@@ -133,6 +133,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlDataItem);
                 WF_TaskVar tv = MainHelper.PlatformSqlMap.GetOneByKey<WF_TaskVar>(TaskVarId);
+                if (tv==null) tv = new WF_TaskVar();
                 tv.TaskVarId=this.TaskVarId;
                 tv.WorkFlowId=this.WorkFlowId;
                 tv.WorkTaskId=this.WorkTaskId;
@@ -221,7 +222,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                string tmpSql = " where workflowId ='" + workflowId + "' and AccessType='public'";
+                string tmpSql = " where workflowId ='" + workflowId + "' and AccessType='1'";
                 //SqlDataItem sqlItem = new SqlDataItem();
                 //sqlItem.CommandText = tmpSql;
                 //sqlItem.AppendParameter("@workflowId", workflowId);
@@ -251,7 +252,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                string tmpSql = " where WorkTaskId ='" + taskId + "' and AccessType='private'";
+                string tmpSql = " where WorkTaskId ='" + taskId + "' and AccessType='2'";
                 //SqlDataItem sqlItem = new SqlDataItem();
                 //sqlItem.CommandText = tmpSql;
                 //sqlItem.AppendParameter("@WorkTaskId", taskId);

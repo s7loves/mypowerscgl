@@ -446,7 +446,8 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 Pen pen=new Pen(Color.Green,1);
                 AdjustableArrowCap Arrow = new AdjustableArrowCap(3,3);
-                pen.CustomEndCap=Arrow;
+                pen.CustomEndCap = Arrow;
+               
                 e.Graphics.DrawLine(pen, startPoint, endPoint);                
             }
             //折线的画图在l中已经画了.不需要再加.因为直线已经生成了.不同于画直线的是:画直线是在鼠标释放时才生成的直线对象/                    
@@ -846,37 +847,33 @@ namespace Ebada.SCGL.WFlow.Tool
                 Bitmap bitmap=null;
                 switch(bc.TaskType)
                 {
-                    case 1:            
-                        bitmap=new Bitmap("启动节点.ico");
+                    case 1:
+                        bitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.启动节点.ico")));
                         break;
                     case 2:
 
-                        bitmap=new Bitmap("终止节点.ico");
+                        bitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.终止节点.ico")));
                         break;
-                    case 3:            
-                        
-                        bitmap=new Bitmap("交互节点.ico");
+                    case 3:
+
+                        bitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.交互节点.ico")));
                         break;
                     case 4:
-                            
-                        
-                        bitmap=new Bitmap("判断节点.ico");
+
+
+                        bitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.控制节点.ico")));
                         break;
                     case 5:
 
-                        bitmap=new Bitmap("查看节点.ico");
+                        bitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.查看节点.ico")));
                         break;
                     case 6:
                         
-                        bitmap=new Bitmap("自动节点.ico");
-                        break;                        
-                    case 7:
-
-                        bitmap=new Bitmap("控制节点.ico");
+                        bitmap=new  Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.子流程节点.ico")));
                         break;
-                    case 8:
-                        bitmap=new Bitmap("子流程节点.ico");
-                        break;                            
+                    default:
+                        bitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.查看节点.ico")));
+                        break;     
                 }                        
                 Point point=new Point (bc.X,bc.Y);                
                 e.Graphics.DrawImage(bitmap,point.X,point.Y,32,32);
@@ -912,9 +909,14 @@ namespace Ebada.SCGL.WFlow.Tool
                 Point tt2=new Point (Convert.ToInt16(line.breakPointX[line.breakPointX.Count-1]),Convert.ToInt16(line.breakPointY[line.breakPointX.Count-1]));
                 AdjustableArrowCap Arrow = new AdjustableArrowCap(3,3);
                 pen.CustomEndCap=Arrow;
-                e.Graphics.DrawLine(pen,tt,tt2);    
+
+                if (line.haveback)
+                    pen.CustomStartCap = Arrow;
+                e.Graphics.DrawLine(pen,tt,tt2);
+
+               
                 //画注释    
-                if(line.Des=="")        
+                if (line.Des == "" && !line.endTask.haveback)       
                     continue;
                 Font font=new Font("Arial",8);
                 StringFormat alignVertically=new StringFormat();
@@ -922,7 +924,17 @@ namespace Ebada.SCGL.WFlow.Tool
                 SizeF sizeF=e.Graphics.MeasureString(line.Des,font);        
                 int x=((int)line.breakPointX[0]+(int)line.breakPointX[1]-(int)sizeF.Width)/2;
                 int y=((int)line.breakPointY[0]+(int)line.breakPointY[1])/2;
-                e.Graphics.DrawString(line.Des, font, Brushes.Blue,x,y, alignVertically);     
+                if (line.endTask.haveback)
+                {
+                    //if (Des.IndexOf("/退回") < 0)
+                    e.Graphics.DrawString(line.Des + "/退回", font, Brushes.Blue, x, y, alignVertically);
+
+                }
+                else
+                {
+                    e.Graphics.DrawString(line.Des + "/退回", font, Brushes.Blue, x, y, alignVertically);
+                }
+                   
             }
 
         }
@@ -1092,7 +1104,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 myDll.DllClassName=tmpBaseComponent.DllClassName;
                 myDll.ObjArray=objArray;
                 myDll.CallSDIWindows();
-            
+                this.Invalidate();    
             }
             else//连线属性
                 if (SelectedLine.Count==1)

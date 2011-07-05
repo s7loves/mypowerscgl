@@ -90,7 +90,11 @@ namespace Ebada.SCGL.WFlow.Tool
         /// 处理者是本人时跳过处理
         /// </summary>
         public bool IsJumpSelf = false;
-        
+        /// <summary>
+        /// 退回标志
+        /// </summary>
+        public bool haveback; 
+
         public BaseComponent()
         {
             //
