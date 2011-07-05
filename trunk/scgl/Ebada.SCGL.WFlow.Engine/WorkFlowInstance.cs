@@ -799,7 +799,9 @@ namespace Ebada.SCGL.WFlow.Engine
                 starttaskY = Convert.ToInt16(dr["starttaskY"]);
                 endtaskX = Convert.ToInt16(dr["endtaskX"]);
                 endtaskY = Convert.ToInt16(dr["endtaskY"]);
-                linkDes = dr["Description"].ToString();
+                linkDes = dr["Description"].ToString() ;
+                if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + startTaskId + "'  and PowerName='ÍË»Ø'") != null)
+                    linkDes = dr["Description"].ToString() + "/ÍË»Ø";
                 started = WorkFlowHelper.isPassJudge(workflowId, workflowInsId, startTaskId, WorkConst.Command_And);
                 ended = WorkFlowHelper.isPassJudge(workflowId, workflowInsId, endTaskId, WorkConst.Command_And);
                 fromStart = isFromStartTask(workflowId, workflowInsId, startTaskId, endTaskId);
@@ -1059,6 +1061,8 @@ namespace Ebada.SCGL.WFlow.Engine
                 Point tt2 = new Point(itt2X, itt2Y);
                 AdjustableArrowCap Arrow = new AdjustableArrowCap(3, 3);
                 pen.CustomEndCap = Arrow;
+                if (linkDes.IndexOf("ÍË»Ø")>-1)
+                    pen.CustomStartCap  = Arrow;
                 gs.DrawLine(pen, tt, tt2);
                 //			}
 
