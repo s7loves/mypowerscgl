@@ -44,6 +44,12 @@ namespace Ebada.SCGL.WFlow.Tool
         {
 
         }
+
+        private void tvWorkClass_DoubleClick(object sender, EventArgs e)
+        {
+            workflowClassId = (tvWorkClass.SelectedNode as WorkFlowClassTreeNode).NodeId;
+            Close();
+        }
     }
 }
 

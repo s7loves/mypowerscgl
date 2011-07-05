@@ -71,6 +71,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tvWorkClass.Size = new System.Drawing.Size(321, 309);
             this.tvWorkClass.StateImageList = this.imgListSmall;
             this.tvWorkClass.TabIndex = 0;
+            this.tvWorkClass.DoubleClick += new System.EventHandler(this.tvWorkClass_DoubleClick);
             this.tvWorkClass.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvArch_AfterSelect);
             // 
             // imgListSmall

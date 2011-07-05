@@ -20,9 +20,9 @@ namespace Ebada.SCGL.WFlow.Tool
         /// </summary>
         private void InitializeUIData()
         {
-            lvGroup.Columns.Add("½ÇÉ«Ãû³Æ", 100, HorizontalAlignment.Left);
+            lvGroup.Columns.Add("½ÇÉ«Ãû³Æ", 200, HorizontalAlignment.Left);
             lvGroup.Columns.Add("RoleID", 0, HorizontalAlignment.Left);
-            //lvGroup.Columns.Add("ÃèÊö", 200, HorizontalAlignment.Left);
+            lvGroup.Columns.Add("ÃèÊö", 200, HorizontalAlignment.Left);
 
         }
 
@@ -67,7 +67,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 ListViewItem lvi1 = new ListViewItem(dr["RoleName"].ToString(), 0);
                 lvi1.SubItems.Add(dr["RoleID"].ToString());
-                //lvi1.SubItems.Add(dr["RoleType"].ToString());
+                lvi1.SubItems.Add(dr["RoleType"].ToString());
                 lvGroup.Items.Add(lvi1);
 
             }

@@ -24,45 +24,120 @@ namespace Ebada.Scgl.WFlow
     public class RecordWorkTask
     {
 
-    
-    
- 
+
+        /// <summary>
+        /// 获得当前用户是否可以填写工作票的权限
+        /// </summary>
+        /// <param name="recordIkind">工作票种类（01操作票、02一种工作票、03二种工作票、04抢修单）</param>
+        /// <param name="userID">用户ID</param>
+        /// <returns>bool true有权限 false 无权限</returns>
+       
+        public static bool HaveRewNewGZPRole(string recordIkind, string userID)
+        {
+            
+                if (recordIkind == "01")
+                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票").Rows.Count > 0 ? true : false;
+                else if (recordIkind == "02")
+                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第一种工作票").Rows.Count > 0 ? true : false;
+                else if (recordIkind == "03")
+                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票").Rows.Count > 0 ? true : false;
+                else if (recordIkind == "04")
+                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单").Rows.Count > 0 ? true : false;
+                
+            return false;
+           
+              
+        }
+        
+      
+        /// <summary>
+        /// 创建工作票流程
+        /// </summary>
+        /// <param name="recordID">记录ID</param>
+        /// <param name="recordIkind">运行分析记录种类</param>
+        /// <param name="userID">用户ID</param>
+        /// <returns>流程创建结果</returns>
+        public static string RunNewGZPRecord(string recordID, string recordIkind,string userID)
+        {
+            DataTable dt = null;
+            string command = "", workFlowId = "", workTaskId = "", flowCaption = "", workFlowInstanceId = "", workTaskInstanceId = "";
+          
+            
+            if (recordIkind == "01")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票");
+            else if (recordIkind == "02")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第一种工作票");
+            else if (recordIkind == "03")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票");
+            else if (recordIkind == "04")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单");
+                
+            workFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+            workTaskId = dt.Rows[0]["workTaskId"].ToString();
+            flowCaption = dt.Rows[0]["FlowCaption"].ToString();
+            workFlowInstanceId = Guid.NewGuid().ToString();
+            workTaskInstanceId = Guid.NewGuid().ToString();
+            DataTable taskCommand = WorkFlowTask.GetTaskCommands(workFlowId, workTaskId);
+            if (taskCommand.Rows.Count > 0)
+            {
+                command = taskCommand.Rows[0]["CommandName"].ToString();
+            }
+            else
+            {
+                command = "提交";
+            }
+            string strmes = CreatWorkFlow(userID, workFlowId, workTaskId, workFlowInstanceId, workTaskInstanceId, flowCaption, command);
+
+            WFP_RecordWorkTaskIns wpfrecord = new WFP_RecordWorkTaskIns();
+            wpfrecord.RecordID = recordID;
+            wpfrecord.WorkFlowId = workFlowId;
+            wpfrecord.WorkFlowInsId = workFlowInstanceId;
+            wpfrecord.WorkTaskId = workTaskId;
+            wpfrecord.WorkTaskInsId = workTaskInstanceId;
+
+            if (strmes.IndexOf("未提交至任何人") == -1) MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
+
+
+            return strmes;
+        }
         /// <summary>
         /// 获得当前用户是否可以新建运行分析记录权限
         /// </summary>
         /// <param name="recordIkind">运行分析记录种类</param>
         /// <returns>bool true有权限 false 无权限</returns>
-        public static bool HaveRewNewYXFXRole(string recordIkind)
+        public static bool HaveRewNewYXFXRole(string recordIkind, string userID)
         {
             if (MainHelper.UserOrg.OrgName.IndexOf("供电所") > -1)
             {
                 if (recordIkind=="定期分析")
-                return WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "供电所定期分析").Rows.Count > 0 ? true : false;
+                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "供电所定期分析").Rows.Count > 0 ? true : false;
                 else if (recordIkind == "专题分析")
-                    return WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "供电所专题分析").Rows.Count > 0 ? true : false;
+                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "供电所专题分析").Rows.Count > 0 ? true : false;
 
                 return false;
             }
             else if (MainHelper.UserOrg.OrgName.IndexOf("局") > -1)
             {
                 if (recordIkind == "定期分析")
-                return WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "局定期分析").Rows.Count > 0 ? true : false;
+                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "局定期分析").Rows.Count > 0 ? true : false;
                 else if (recordIkind == "专题分析")
-                    return WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "局专题分析").Rows.Count > 0 ? true : false;
+                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "局专题分析").Rows.Count > 0 ? true : false;
                 return false;
             }
             else
                 return false;
         }
-        /// <summary>
-        /// 获得当前用户是否可以运行当前分析记录权限
-        /// </summary>
-        /// <returns></returns>
-        public static bool HaveRunYXFXRole(string recordID)
+       
+     /// <summary>
+     /// 获得当前用户是否可以运行当前记录权限
+     /// </summary>
+        /// <param name="recordID">记录ID</param>
+        /// <returns>true:有权限反之无权限</returns>
+        public static bool HaveRunRecordRole(string recordID, string userID)
         {
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             if (wf.Count == 0) return false;
-            DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(MainHelper.User.UserID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
+            DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
             if (dt.Rows.Count > 0)
             {
                 return true;
@@ -72,8 +147,9 @@ namespace Ebada.Scgl.WFlow
         /// <summary>
         /// 获得当前用户可以运行当前记录的流程信息
         /// </summary>
-        /// <returns></returns>
-        public static DataTable GetYXFXRecord(string recordID)
+        /// <param name="recordID">记录ID</param>
+        /// <returns>返回指定记录的流程信息</returns>
+        public static DataTable GetRecordWorkFlowData(string recordID)
         {
             DataTable dtnull = new DataTable();
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
@@ -212,6 +288,22 @@ namespace Ebada.Scgl.WFlow
 
             return Toollips(wfruntime.WorkTaskInstanceId);
             //return "";
+        }
+        /// <summary>
+        /// 流程退回
+        /// </summary>
+        /// <param name="userID">用户ID</param>
+        /// <param name="OperatorInsId">操作ID</param>
+        /// <param name="WorkTaskInsId">任务记录ID</param>
+        /// <returns>返回流程执行结果</returns>
+        public static string RunWorkFlowBack(string userID, string OperatorInsId, string WorkTaskInsId)
+        {
+            WorkFlowRuntime wfruntime = new WorkFlowRuntime();
+            wfruntime.UserId = userID;
+            wfruntime.OperatorInstanceId = OperatorInsId;
+            wfruntime.TaskBack();
+
+            return Toollips(wfruntime.WorkTaskInstanceId);
         }
        /// <summary>
         /// 执行流程

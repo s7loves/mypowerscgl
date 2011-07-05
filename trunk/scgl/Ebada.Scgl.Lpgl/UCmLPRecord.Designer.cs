@@ -28,7 +28,7 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btAddfrm = new DevExpress.XtraBars.BarButtonItem();
             this.btEditfrm = new DevExpress.XtraBars.BarButtonItem();
-            this.btDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.btDeletefrm = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btExport = new DevExpress.XtraBars.BarSubItem();
@@ -61,7 +61,7 @@
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btAddfrm,
             this.btEditfrm,
-            this.btDelete,
+            this.btDeletefrm,
             this.btFind,
             this.btRefresh,
             this.btClose,
@@ -80,7 +80,7 @@
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddfrm),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEditfrm),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btDeletefrm),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
@@ -109,13 +109,14 @@
             this.btEditfrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btEditfrm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btEditfrm_ItemClick);
             // 
-            // btDelete
+            // btDeletefrm
             // 
-            this.btDelete.Caption = "删除";
-            this.btDelete.Id = 2;
-            this.btDelete.ImageIndex = 12;
-            this.btDelete.Name = "btDelete";
-            this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btDeletefrm.Caption = "删除";
+            this.btDeletefrm.Id = 2;
+            this.btDeletefrm.ImageIndex = 12;
+            this.btDeletefrm.Name = "btDeletefrm";
+            this.btDeletefrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btDeletefrm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDeletefrm_ItemClick);
             // 
             // btRefresh
             // 
@@ -218,13 +219,13 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
-            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
             this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
             // 
             // repositoryItemTextEdit1
             // 
@@ -264,7 +265,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem btAddfrm;
         private DevExpress.XtraBars.BarButtonItem btEditfrm;
-        private DevExpress.XtraBars.BarButtonItem btDelete;
+        private DevExpress.XtraBars.BarButtonItem btDeletefrm;
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraBars.BarButtonItem btRefresh;
         private DevExpress.XtraBars.BarButtonItem btClose;
