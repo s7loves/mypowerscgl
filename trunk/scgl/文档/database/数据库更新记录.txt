@@ -3,4 +3,4 @@
 2011.6.21 更新02、03记录加会议地点
 2011.6.21 增加表Lp_Temple,Lp_Record
 2011.7.2  增加表mUserModule
-2011.7.2  表Lp_Record增加字段Status
+2011.7.2  表Lp_Record增加字段Status、Number

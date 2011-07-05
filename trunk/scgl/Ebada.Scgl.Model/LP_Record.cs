@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-7-5 10:26:10
+生成时间:2011-7-5 11:13:48
 ***********************************************/
 
 using System;
@@ -31,7 +31,8 @@ namespace Ebada.Scgl.Model
         private int _sortid=0; 
         private string _createtime=String.Empty; 
         private string _lastchangetime=String.Empty; 
-        private string _status=String.Empty;   
+        private string _status=String.Empty; 
+        private string _number=String.Empty;   
         #endregion
   
   
@@ -86,7 +87,8 @@ namespace Ebada.Scgl.Model
    
         /// 字段信息：[Content],nvarchar
         /// </summary>
-        [DisplayNameAttribute("所有控件上的内容，格式：控件ID，控件内容|")]
+        [DisplayNameAttribute("所有控件上的内容，格式：控件ID，控件内容|
+   ")]
         public string Content
         {
             get { return _content; }
@@ -94,7 +96,8 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 1073741823)
-                throw new Exception("[所有控件上的内容，格式：控件ID，控件内容|]长度不能大于1073741823!");
+                throw new Exception("[所有控件上的内容，格式：控件ID，控件内容|
+   ]长度不能大于1073741823!");
                 if (_content as object == null || !_content.Equals(value))
                 {
                     _content = value;
@@ -254,6 +257,27 @@ namespace Ebada.Scgl.Model
                 if (_status as object == null || !_status.Equals(value))
                 {
                     _status = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：Number
+        /// 属性描述：
+        /// 字段信息：[Number],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("")]
+        public string Number
+        {
+            get { return _number; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[]长度不能大于50!");
+                if (_number as object == null || !_number.Equals(value))
+                {
+                    _number = value;
                 }
             }			 
         }
