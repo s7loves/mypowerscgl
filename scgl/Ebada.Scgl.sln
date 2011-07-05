@@ -120,6 +120,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.AutoUpdater.Config", "Ebada.AutoUpdater.Config\Ebada.AutoUpdater.Config.csproj", "{21244318-4997-4F52-8ED7-3293A026502A}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -238,9 +242,5 @@ Global
 		{A3173743-90E7-4A97-867E-80353C694D91} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{26CB22CC-452F-4B6D-8FF6-E004154886B9} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{9BF99007-7252-4BCE-9187-F556D0DDB4A8} = {DF487866-3181-456A-9DC8-F47147407B0D}
-	EndGlobalSection
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
