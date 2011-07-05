@@ -96,6 +96,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 tmpNodeInfo.NodeId = Guid.NewGuid().ToString();
                 tmpNodeInfo.NodeType = WorkConst.WORKFLOW_FLOW;
                 tmpNodeInfo.Text = tbxWorkflowCaption.Text;
+                if (tbxPath.Tag!=null)
                 tmpNodeInfo.MgrUrl = tbxPath.Tag.ToString();
                 if (cbxStatus.Checked) tmpNodeInfo.Status = "1";
                 else

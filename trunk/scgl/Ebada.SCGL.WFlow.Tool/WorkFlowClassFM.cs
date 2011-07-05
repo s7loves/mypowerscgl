@@ -82,6 +82,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 tmpNodeInfo.Description = tbxDescription.Text;
                 tmpNodeInfo.clLevel =Convert.ToInt16( tbxCllevel.Text);
                 tmpNodeInfo.InsertWorkflowClassNode();
+                if (tbxPath.Tag != null)
                 tmpNodeInfo.MgrUrl =  tbxPath.Tag.ToString ();
                 if (nowTreeNode.NodeType == WorkConst.WORKFLOW_CLASS)//点击的是分类节点
                 {
@@ -94,6 +95,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 nowTreeNode.Text = tbxClassCaption.Text;
                 nowTreeNode.NodeType = WorkConst.WORKFLOW_CLASS;
+                if (tbxPath.Tag != null)
                 nowTreeNode.MgrUrl = tbxPath.Tag.ToString ();
                 (nowTreeNode as WorkFlowClassTreeNode).Description = tbxDescription.Text;
                 (nowTreeNode as WorkFlowClassTreeNode).clLevel =Convert.ToInt16( tbxCllevel.Text);

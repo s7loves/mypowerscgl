@@ -221,7 +221,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     yy = yy.Substring(0, yy.Length - 1);
                 }
                 WF_WorkLink wl = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkLink>(LinkId);
-
+                if (wl == null) wl = new WF_WorkLink();
                 wl.WorkLinkId = this.LinkId;
                 wl.WorkFlowId = this.WorkflowId;
                 wl.StartTaskId = StartTaskId;
@@ -247,6 +247,9 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 wl.CommandName = this.CommandName;
                 wl.Priority = this.Priority;
+                if (MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkLink>(LinkId) == null)
+                    MainHelper.PlatformSqlMap.Create <WF_WorkLink>(wl);
+                else
                 MainHelper.PlatformSqlMap.Update <WF_WorkLink>(wl);
             }
             catch (Exception ex)
