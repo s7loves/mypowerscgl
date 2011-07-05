@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011/6/18 16:39:13
+生成时间:2011-7-5 10:26:10
 ***********************************************/
 
 using System;
@@ -30,7 +30,8 @@ namespace Ebada.Scgl.Model
         private byte[] _imageattachment=new byte[]{}; 
         private int _sortid=0; 
         private string _createtime=String.Empty; 
-        private string _lastchangetime=String.Empty;   
+        private string _lastchangetime=String.Empty; 
+        private string _status=String.Empty;   
         #endregion
   
   
@@ -232,6 +233,27 @@ namespace Ebada.Scgl.Model
                 if (_lastchangetime as object == null || !_lastchangetime.Equals(value))
                 {
                     _lastchangetime = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：Status
+        /// 属性描述：
+        /// 字段信息：[Status],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("")]
+        public string Status
+        {
+            get { return _status; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[]长度不能大于50!");
+                if (_status as object == null || !_status.Equals(value))
+                {
+                    _status = value;
                 }
             }			 
         }
