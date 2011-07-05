@@ -151,6 +151,7 @@
   <ItemGroup>
     <EmbeddedResource Include="LP_Record.xml" />
     <EmbeddedResource Include="mUserModule.xml" />
+    <EmbeddedResource Include="PS_sbcs.xml" />
     <Content Include="rRoleFun.xml" />
     <EmbeddedResource Include="WFP_RecordWorkTaskIns.xml" />
   </ItemGroup>
