@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_xlxsqd" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_xlxsqd"  type="Ebada.Scgl.Model.PS_xlxsqd,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_xlxsqd_AllColumns" class="PS_xlxsqd">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="LineID" column="LineID" />
+        <result property="LineName" column="LineName" />
+        <result property="xlqd" column="xlqd" />
+        <result property="xsr" column="xsr" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_xlxsqdList" resultMap="PS_xlxsqd_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [xlqd],
+         [xsr]
+          FROM PS_xlxsqd
+          $value$
+   </select>
+   
+   <select id="SelectPS_xlxsqdByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [xlqd],
+         [xsr]
+          FROM PS_xlxsqd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="xlqd">[xlqd]='$xlqd$'</isNotNull>
+       <isNotNull prepend="AND" property="xsr">[xsr]='$xsr$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_xlxsqdByKey" resultMap="PS_xlxsqd_AllColumns" parameterClass="PS_xlxsqd">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [xlqd],
+         [xsr]
+         FROM PS_xlxsqd
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePS_xlxsqd" parameterClass="PS_xlxsqd">
+        DELETE FROM 
+         PS_xlxsqd
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePS_xlxsqdByWhere" parameterClass="string">
+     delete from PS_xlxsqd $value$
+   </delete>
+   
+   <delete id="DeletePS_xlxsqdByKey" parameterClass="string">
+        DELETE FROM 
+         PS_xlxsqd
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePS_xlxsqd" parameterClass="PS_xlxsqd" resultClass="int">
+          UPDATE PS_xlxsqd
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [LineID]=#LineID#,
+             [LineName]=#LineName#,
+             [xlqd]=#xlqd#,
+             [xsr]=#xsr#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPS_xlxsqd" parameterClass="PS_xlxsqd">
+        INSERT INTO PS_xlxsqd
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [xlqd],
+         [xsr]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #LineID#,
+         #LineName#,
+         #xlqd#,
+         #xsr#
+         )
+
+   </insert>
+   
+   <select id="GetPS_xlxsqdRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_xlxsqd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="xlqd">[xlqd]='$xlqd$'</isNotNull>
+       <isNotNull prepend="AND" property="xsr">[xsr]='$xsr$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_xlxsqdRowCount" parameterClass="string">
+    select count(*) from PS_xlxsqd $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
