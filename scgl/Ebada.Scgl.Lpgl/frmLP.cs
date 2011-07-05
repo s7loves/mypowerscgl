@@ -34,8 +34,14 @@ namespace Ebada.Scgl.Lpgl
         private string strNumber = "";
         private Control ctrlNumber = null;
 
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set { parentTemple = value; }
+        }
         public string Kind
         {
+            get { return kind; }
             set { kind = value; }
         }
 
@@ -80,7 +86,7 @@ namespace Ebada.Scgl.Lpgl
         #endregion
         public frmLP()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
         void dataBind()
         {        
@@ -110,15 +116,15 @@ namespace Ebada.Scgl.Lpgl
             InitIndex();            
                 //InitContorl();
             if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
-            {
-                this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+            {              
+                this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;            
                 InitContorl();
             }
             else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0)
             {
                 if (parentTemple != null)
-                    InitContorl();
-                this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;                
+                    InitContorl();             
+                this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;               
                 LoadContent();
             }
         }
@@ -147,10 +153,10 @@ namespace Ebada.Scgl.Lpgl
         }
         public void InitIndex()
         {
-            templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID!='0' and Kind='" + kind + "' Order by SortID");
-            IList<LP_Temple> parentlist = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID='0' and Kind='" + kind + "'");
-            if (parentlist.Count > 0)
-                parentTemple = parentlist[0];
+            templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + parentTemple.LPID +"' and Kind='" + kind + "' Order by SortID");
+            //IList<LP_Temple> parentlist = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID='0' and Kind='" + kind + "'");
+            //if (parentlist.Count > 0)
+            //    parentTemple = parentlist[0];
            // dsoFramerWordControl1.
         }
 
@@ -232,7 +238,7 @@ namespace Ebada.Scgl.Lpgl
                         MsgBox.ShowTipMessageBox(strmes);
                     MainHelper.PlatformSqlMap.Create<LP_Record>(newRecord);
                     rowData = null;
-                    currRecord = null;
+                    currRecord = newRecord;
                     break;
                 case "edit":
                     currRecord.LastChangeTime = DateTime.Now.ToString();
@@ -252,8 +258,7 @@ namespace Ebada.Scgl.Lpgl
                     else
                         MsgBox.ShowTipMessageBox(strmes);
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record",CurrRecord);
-                    rowData = null;
-                    currRecord = null;
+                    rowData = null;                   
                     break;
             }
             this.DialogResult = DialogResult.OK;
@@ -372,12 +377,26 @@ namespace Ebada.Scgl.Lpgl
             string[] arrCellpos = lp.CellPos.Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+            arrtemp = StringHelper.ReplaceEmpty(arrtemp).Split(pchar);
             List<int> arrCellCount = String2Int(arrtemp);       
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
                 ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
             else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
             {
+
                 StringHelper help = new StringHelper();
+                if (lp.CellName == "编号")
+                {
+                    for (int j = 0; j < arrCellpos.Length; j++)
+                    {
+                        if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]))
+                        {
+                            string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
+                            ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);                            
+                        }
+                    }
+                    return;
+                }
                 int i = 0;
                 if (arrCellCount[0] != arrCellCount[1])
                 {
@@ -424,6 +443,18 @@ namespace Ebada.Scgl.Lpgl
             else if(arrCellpos.Length>1&&(!string.IsNullOrEmpty(arrCellpos[1])))
             {
                 StringHelper help = new StringHelper();
+                if (lp.CellName == "编号")
+                {
+                    for (int j = 0; j < arrCellpos.Length; j++)
+                    {
+                        if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]))
+                        {
+                            string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
+                            ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                        }
+                    }
+                    return;
+                }
                 int i = 0;
                 if (arrCellCount[0] != arrCellCount[1])
                 {
@@ -485,7 +516,9 @@ namespace Ebada.Scgl.Lpgl
         public void FillTable(ExcelAccess ea, LP_Temple lp, string[] content)
         {
             string[] arrCol = lp.CellPos.Split(pchar);
+            arrCol = StringHelper.ReplaceEmpty(arrCol).Split(pchar);
             string[] arrtemp=lp.WordCount.Split(pchar);
+            arrtemp = StringHelper.ReplaceEmpty(arrtemp).Split(pchar);
             List<int> arrCellCount = String2Int(arrtemp);
             for (int i = 0; i < arrCol.Length; i++)
             {
