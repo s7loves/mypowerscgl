@@ -15,6 +15,7 @@
         <result property="SortID" column="SortID" />
         <result property="CreateTime" column="CreateTime" />
         <result property="LastChangeTime" column="LastChangeTime" />
+        <result property="Status" column="Status" />
       </resultMap>
   </resultMaps>
 
@@ -30,7 +31,8 @@
          [ImageAttachment],
          [SortID],
          [CreateTime],
-         [LastChangeTime]
+         [LastChangeTime],
+         [Status]
           FROM LP_Record
           $value$
    </select>
@@ -46,7 +48,8 @@
          [ImageAttachment],
          [SortID],
          [CreateTime],
-         [LastChangeTime]
+         [LastChangeTime],
+         [Status]
           FROM LP_Record
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -59,6 +62,7 @@
        <isNotNull prepend="AND" property="SortID">[SortID]='$SortID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
        <isNotNull prepend="AND" property="LastChangeTime">[LastChangeTime]='$LastChangeTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectLP_RecordByKey" resultMap="LP_Record_AllColumns" parameterClass="LP_Record">
@@ -72,7 +76,8 @@
          [ImageAttachment],
          [SortID],
          [CreateTime],
-         [LastChangeTime]
+         [LastChangeTime],
+         [Status]
          FROM LP_Record
          WHERE 
            ID = #ID#
@@ -110,7 +115,8 @@
              [ImageAttachment]=#ImageAttachment#,
              [SortID]=#SortID#,
              [CreateTime]=#CreateTime#,
-             [LastChangeTime]=#LastChangeTime#
+             [LastChangeTime]=#LastChangeTime#,
+             [Status]=#Status#
             WHERE 
               ID = #ID#
 
@@ -128,7 +134,8 @@
          [ImageAttachment],
          [SortID],
          [CreateTime],
-         [LastChangeTime]
+         [LastChangeTime],
+         [Status]
          )
        VALUES
          (
@@ -141,7 +148,8 @@
          #ImageAttachment#,
          #SortID#,
          #CreateTime#,
-         #LastChangeTime#
+         #LastChangeTime#,
+         #Status#
          )
 
    </insert>
@@ -160,6 +168,7 @@
        <isNotNull prepend="AND" property="SortID">[SortID]='$SortID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
        <isNotNull prepend="AND" property="LastChangeTime">[LastChangeTime]='$LastChangeTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
      </dynamic>
 
    </select>
