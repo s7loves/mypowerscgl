@@ -243,7 +243,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：状态
         /// 字段信息：[Status],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("状态")]
         public string Status
         {
             get { return _status; }
@@ -264,7 +264,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：编号
         /// 字段信息：[Number],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("编号")]
         public string Number
         {
             get { return _number; }
