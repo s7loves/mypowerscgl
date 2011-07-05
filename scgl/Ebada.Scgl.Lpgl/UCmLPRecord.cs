@@ -249,6 +249,9 @@ namespace Ebada.Scgl.Lpgl {
         }
         private void btAddfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (MainHelper.UserOrg == null) return;
+
+            if (!RecordWorkTask.HaveRewNewYXFXRole(ParentObj.Kind, MainHelper.User.UserID)) return;
             frmLP frm = new frmLP();
             frm.Status = "add";
             frm.Kind = ParentObj.Kind;       
@@ -264,8 +267,10 @@ namespace Ebada.Scgl.Lpgl {
             {
                 return;
             }
+           
             frmLP frm = new frmLP();
             frm.Status = "edit";
+
             frm.Kind = ParentObj.Kind;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
@@ -281,6 +286,9 @@ namespace Ebada.Scgl.Lpgl {
                 }
             }
             frm.CurrRecord = currRecord;
+            if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID);
+            frm.RecordWorkFlowData = dt;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 InitData(ParentObj.Kind);
