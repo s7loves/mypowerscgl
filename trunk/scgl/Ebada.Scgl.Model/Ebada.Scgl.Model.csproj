@@ -87,6 +87,7 @@
     <Compile Include="PS_gt.cs" />
     <Compile Include="PS_gtsb.cs" />
     <Compile Include="PS_kg.cs" />
+    <Compile Include="PS_sbcs.cs" />
     <Compile Include="PS_tq.cs" />
     <Compile Include="PS_tqbyq.cs" />
     <Compile Include="PS_tqdlbh.cs" />
