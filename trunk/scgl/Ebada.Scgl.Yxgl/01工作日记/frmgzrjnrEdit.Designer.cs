@@ -34,6 +34,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
@@ -48,7 +49,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -130,10 +130,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "工作项目及地址";
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(102, 0);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(34, 23);
+            this.simpleButton2.TabIndex = 12;
+            this.simpleButton2.Text = "…";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // memoEdit1
             // 
             this.memoEdit1.Location = new System.Drawing.Point(6, 29);
             this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Properties.MaxLength = 500;
             this.memoEdit1.Size = new System.Drawing.Size(364, 165);
             this.memoEdit1.TabIndex = 0;
             // 
@@ -256,17 +268,6 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
-            // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(102, 0);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(34, 23);
-            this.simpleButton2.TabIndex = 12;
-            this.simpleButton2.Text = "…";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // frmgzrjnrEdit
             // 
