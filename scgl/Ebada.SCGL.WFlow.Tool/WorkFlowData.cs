@@ -162,7 +162,7 @@ namespace Ebada.SCGL.WFlow.Tool
                             if (startTask == null && ((BaseComponent)TaskItems[j]).TaskId.Equals(dr["StartTaskId"].ToString()) == true)
                             {
                                 startTask = (BaseComponent)TaskItems[j];
-                                if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + startTask.TaskId + "' and WorkFlowId='" + startTask.WorkFlowId + "' and PowerName='ÍË»Ø'") != null)
+                                if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + startTask.TaskId + "' and WorkFlowId='" + startTask.WorkFlowId + "' and PowerName='" + WorkConst.WorkTask_Return + "'") != null)
                                 {
                                     startTask.haveback =true ;
                                 }
@@ -170,7 +170,7 @@ namespace Ebada.SCGL.WFlow.Tool
                             if (endTask == null && ((BaseComponent)TaskItems[j]).TaskId.Equals(dr["EndTaskId"].ToString()) == true)
                             {
                                 endTask = (BaseComponent)TaskItems[j];
-                                if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + endTask.TaskId + "' and WorkFlowId='" + endTask.WorkFlowId + "' and PowerName='ÍË»Ø'") != null)
+                                if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + endTask.TaskId + "' and WorkFlowId='" + endTask.WorkFlowId + "' and PowerName='" + WorkConst.WorkTask_Return + "'") != null)
                                 {
                                     endTask.haveback = true;
                                 }

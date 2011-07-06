@@ -154,9 +154,10 @@
     <update id="UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId" parameterClass="WF_WorkTaskInstance" resultClass="int">
       UPDATE WF_WorkTaskInstance
       SET
-        [SuccessMsg]=#SuccessMsg#
+      [SuccessMsg]=#SuccessMsg#,
+      [OperatedDes]=#OperatedDes#
       WHERE
-      WorkTaskInsId = #WorkTaskInsId# 
+      WorkTaskInsId = #WorkTaskInsId#
     </update>
     <update id="UpdateWF_WorkTaskInstanceOverProByWorkTaskInsId" parameterClass="WF_WorkTaskInstance" resultClass="int">
       UPDATE WF_WorkTaskInstance
@@ -166,6 +167,11 @@
       WorkTaskInsId = #WorkTaskInsId# and Status !='3'
 
     </update>
+    <update id="UpdateWF_WorkTaskInstanceByValue" parameterClass="string" resultClass="int">
+
+      $value$
+    </update>
+    
    <update id="UpdateWF_WorkTaskInstance" parameterClass="WF_WorkTaskInstance" resultClass="int">
           UPDATE WF_WorkTaskInstance
            SET

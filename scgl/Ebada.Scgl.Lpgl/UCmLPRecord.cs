@@ -337,7 +337,55 @@ namespace Ebada.Scgl.Lpgl {
 
         private void barBack_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (gridView1.FocusedRowHandle < 0) return;
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认退回 【" + dr["Number"].ToString() + "】?") != DialogResult.OK)
+            {
+                return;
+            }
+            LP_Record currRecord = new LP_Record();
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
 
+                }
+            }
+
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
+           
+            if (dt.Rows.Count > 0)
+            {
+                if (!RecordWorkTask.HaveWorkFlowBackRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
+                {
+                    MsgBox.ShowWarningMessageBox("当前节点不能退回，退回失败!");
+                    return;
+                }
+                string strmes = RecordWorkTask.RunWorkFlowBack(MainHelper.User.UserID, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString());
+                if (strmes.IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                else
+                {
+
+                    currRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(dt.Rows[0]["WorkTaskInsId"].ToString());
+                    MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
+                    InitData(parentObj.Kind);
+                    MsgBox.ShowTipMessageBox(strmes);
+
+                }
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("退回失败!");
+            }
         }
 
     }
