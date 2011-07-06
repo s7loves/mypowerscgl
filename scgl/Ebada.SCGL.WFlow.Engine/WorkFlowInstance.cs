@@ -10,6 +10,7 @@ using Ebada.SCGL.WFlow.Tool;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace Ebada.SCGL.WFlow.Engine
 {
@@ -731,13 +732,33 @@ namespace Ebada.SCGL.WFlow.Engine
         {
             Bitmap objBitmap = new Bitmap(sz.Width , sz.Height );
             Graphics objGraphics = Graphics.FromImage(objBitmap);
-            InitTaskMapData(workFlowId, workFlowInsId, objGraphics);
-            InitLinkMapData(workFlowId, workFlowInsId, objGraphics);
+            
+            int yspan = 0,ystrt=0;
+            object obj=MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where workFlowId='" + workFlowId + "' and iYPosition in (select min(iYPosition) from WF_WorkTask where workFlowId='" + workFlowId + "')") ;
+            if (obj != null)
+            {
+                ystrt = ((WF_WorkTask)obj).iYPosition;
+            }
+            obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where workFlowId='" + workFlowId + "' and iYPosition in (select max(iYPosition) from WF_WorkTask where workFlowId='" + workFlowId + "')");
+            if (obj != null)
+            {
+                yspan = ((WF_WorkTask)obj).iYPosition - ystrt;
+            }
+
+            InitTaskMapData(workFlowId, workFlowInsId, objGraphics, sz.Height/2 - yspan - ystrt );
+            InitLinkMapData(workFlowId, workFlowInsId, objGraphics, sz.Height/2 - yspan - ystrt );
             //objBitmap.Save(workFlowId + ".jpg", ImageFormat.Jpeg);
 
             return objBitmap;
         }
-        private static void InitTaskMapData(string workflowId, string workflowInsId, Graphics gc)
+        /// <summary>
+        /// 初始化任务节点图片信息
+        /// </summary>
+        /// <param name="workflowId">流程模板ID</param>
+        /// <param name="workflowInsId">实例流程模板ID</param>
+        /// <param name="gc"></param>
+        /// <param name="yspan">图形偏移量，使图形在垂直方向居中</param>
+        private static void InitTaskMapData(string workflowId, string workflowInsId, Graphics gc,int yspan)
         {
             DataTable tasktable = WorkFlowTask.GetWorkTasks(workflowId);
             string taskCaption = "";
@@ -764,14 +785,20 @@ namespace Ebada.SCGL.WFlow.Engine
                     isPass = WorkFlowHelper.isPassJudge(workflowId, workflowInsId, taskId, WorkConst.Command_And);
                     if (currTaskId == taskId) isCurrent = true; else isCurrent = false;
                     taskDes = WorkTaskInstance.GetTaskDoneWhoMsg(taskId, workflowInsId);
-                    drawTaskBitmap(gc, taskCaption, operType, taskX, taskY, isPass, isCurrent, taskDes);
+                    drawTaskBitmap(gc, taskCaption, operType, taskX, taskY+yspan, isPass, isCurrent, taskDes);
 
                 }
             }
 
         }
-
-        private static void InitLinkMapData(string workflowId, string workflowInsId, Graphics gc)
+        /// <summary>
+        ///  初始化连线的图片信息
+        /// </summary>
+        /// <param name="workflowId">流程模板ID</param>
+        /// <param name="workflowInsId">实例流程模板ID</param>
+        /// <param name="gc"></param>
+        /// <param name="yspan">图形偏移量，使图形在垂直方向居中</param>
+        private static void InitLinkMapData(string workflowId, string workflowInsId, Graphics gc, int yspan)
         {
             DataTable linktable = WorkFlowLink.GetWorkLinks(workflowId);
             string linkDes = "";
@@ -800,14 +827,15 @@ namespace Ebada.SCGL.WFlow.Engine
                 endtaskX = Convert.ToInt16(dr["endtaskX"]);
                 endtaskY = Convert.ToInt16(dr["endtaskY"]);
                 linkDes = dr["Description"].ToString() ;
-                if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + startTaskId + "'  and PowerName='退回'") != null)
+                if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + endTaskId + "'  and PowerName='退回'") != null)
                     linkDes = dr["Description"].ToString() + "/退回";
                 started = WorkFlowHelper.isPassJudge(workflowId, workflowInsId, startTaskId, WorkConst.Command_And);
                 ended = WorkFlowHelper.isPassJudge(workflowId, workflowInsId, endTaskId, WorkConst.Command_And);
                 fromStart = isFromStartTask(workflowId, workflowInsId, startTaskId, endTaskId);
                 isPass = (started && ended && fromStart);
                 if (isPass) linkColor = Color.Red; else linkColor = Color.Green;
-                drawLinkBitMap(gc, linkBreakX, linkBreakY, starttaskX, starttaskY, endtaskX, endtaskY, linkColor, linkDes);
+
+                drawLinkBitMap(gc, linkBreakX, linkBreakY, starttaskX, starttaskY + yspan, endtaskX, endtaskY+ yspan, linkColor, linkDes);
             }
 
         }

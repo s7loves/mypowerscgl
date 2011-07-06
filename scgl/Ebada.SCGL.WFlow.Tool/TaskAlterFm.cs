@@ -1577,6 +1577,7 @@ namespace Ebada.SCGL.WFlow.Tool
             DialogResult dlr = tmpfmTaskVar.DialogResult;
             if (dlr == DialogResult.OK)
             {
+                if (tmpfmTaskVar.tbxVarName.Text.Trim().Length < 1) return;
                 if (varExists(tmpfmTaskVar.tbxVarName.Text))
                 {
                     MsgBox.ShowWarningMessageBox("变量" + tmpfmTaskVar.tbxVarName.Text + "已存在,不能填加!");
@@ -1628,6 +1629,10 @@ namespace Ebada.SCGL.WFlow.Tool
                 DialogResult dlr = tmpfmTaskVar.DialogResult;
                 if (dlr == DialogResult.OK)
                 {
+                    if (tmpfmTaskVar.tbxVarName.Text.Trim().Length == 0)
+                    {
+                        return;
+                    }
                     if (lvi1.Text!=tmpfmTaskVar.tbxVarName.Text&&varExists(tmpfmTaskVar.tbxVarName.Text))
                     {
                         MsgBox.ShowWarningMessageBox ("变量" + tmpfmTaskVar.tbxVarName.Text + "已存在,请使用其他名称!");

@@ -257,9 +257,12 @@ namespace Ebada.Scgl.Lpgl {
 
             if (!RecordWorkTask.HaveRunNewGZPRole(ParentObj.Kind, MainHelper.User.UserID)) return;
             frmLP frm = new frmLP();
+            LP_Record lpr = new LP_Record();
             frm.Status = "add";
             frm.Kind = ParentObj.Kind;
             frm.ParentTemple = ParentObj;
+            //frm.RowData = lpr;
+            //frm.CurrRecord = lpr;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 InitData(ParentObj.Kind);
@@ -330,6 +333,11 @@ namespace Ebada.Scgl.Lpgl {
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private void barBack_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
 
     }
