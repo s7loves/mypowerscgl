@@ -397,7 +397,45 @@ namespace Ebada.Scgl.Lpgl {
             {
                 return;
             }
+            LP_Record currRecord = new LP_Record();
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
 
+                }
+            }
+            if (currRecord.Status != "终结")
+            {
+                MsgBox.ShowTipMessageBox("当前节点不能变更负责人，变更负责人失败!");
+                return;
+            }
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
+            if (dt.Rows.Count > 0)
+            {
+                string strmes = RecordWorkTask.RunGZPWorkFlowChange(MainHelper.User.UserID, currRecord, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString());
+                if (strmes.IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                else
+                {
+
+
+                    InitData(parentObj.Kind);
+                    MsgBox.ShowTipMessageBox(strmes);
+
+                }
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("变更负责人失败!");
+            }
         }
 
         private void barSus_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

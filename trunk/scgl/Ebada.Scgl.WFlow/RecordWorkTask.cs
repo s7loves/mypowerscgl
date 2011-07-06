@@ -101,6 +101,55 @@ namespace Ebada.Scgl.WFlow
 
             return strmes;
         }
+
+        public static string RunGZPWorkFlowChange(string userID, LP_Record recordData, string operatorInsId, string workTaskInsId)
+        {
+            string nowtaskId = "",strsql ="";
+            WF_WorkTaskInstance workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workTaskInsId);
+            
+            WF_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
+            object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where TaskCaption='变更'");
+            if (obj != null)
+            {
+                nowtaskId = ((WF_WorkTask)obj).WorkTaskId;
+                workins.WorkTaskId = nowtaskId;
+                workins.StartTime = DateTime.Now;
+                workins.TaskInsCaption =((WF_WorkTask)obj).TaskCaption;
+
+                WF_Operator op = (WF_Operator)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorList", " where WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
+                if (op != null)
+                {
+                    operins.WorkTaskId = nowtaskId;
+                    operins.OperContent = op.OperContent;
+                    operins.OperContentText = op.OperDisplay;
+                    operins.UserId = userID;
+                    operins.OperDateTime = DateTime.Now;
+
+                    recordData.Status = "变更";
+
+                    MainHelper.PlatformSqlMap.Update<LP_Record>(recordData);
+                    MainHelper.PlatformSqlMap.Update<WF_WorkTaskInstance>(workins);
+                    MainHelper.PlatformSqlMap.Update<WF_OperatorInstance>(operins);
+
+                    strsql = "  update WF_WorkFlowInstance set nowtaskId='" + nowtaskId + "' where workflowInsid='" + workins.WorkFlowInsId + "'";
+                    MainHelper.PlatformSqlMap.Update("UpdateWF_WorkFlowInstanceValue", strsql);
+                }
+                else
+                {
+                    return "未提交至任何人,请检查流程模板和组织机构配置是否正确!";
+                }
+            }
+            else
+            {
+                return "未提交至任何人,请检查流程模板和组织机构配置是否正确!";
+            }
+
+
+
+
+            return "成功提交至:" + operins.OperContentText + "。你已完成该任务处理,可以关闭该窗口。";
+        }
+
         /// <summary>
         /// 获得当前用户是否可以新建运行分析记录权限
         /// </summary>
@@ -325,6 +374,8 @@ namespace Ebada.Scgl.WFlow
                 return true;
             return false ;
         }
+
+        
         /// <summary>
         /// 流程退回
         /// </summary>
