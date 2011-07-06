@@ -113,11 +113,12 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(10, 46);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 57);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 23);
+            this.label5.Size = new System.Drawing.Size(179, 12);
             this.label5.TabIndex = 9;
-            this.label5.Text = "表达式";
+            this.label5.Text = "表达式(语句规则按SQL语句规则)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbOperator

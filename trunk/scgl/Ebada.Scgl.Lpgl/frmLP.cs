@@ -227,8 +227,9 @@ namespace Ebada.Scgl.Lpgl
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
                     newRecord.CreateTime = DateTime.Now.ToString();
-                    strmes = RecordWorkTask.RunNewGZPRecord(rowData.ID, kind,MainHelper.User.UserID   );
 
+                    strmes = RecordWorkTask.RunNewGZPRecord(newRecord.ID, kind, MainHelper.User.UserID)[0];
+                    newRecord.Status = RecordWorkTask.RunNewGZPRecord(newRecord.ID, kind, MainHelper.User.UserID)[1];
                     if (strmes.IndexOf("未提交至任何人") > -1)
                     {
                         MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
@@ -236,6 +237,7 @@ namespace Ebada.Scgl.Lpgl
                     }
                     else
                         MsgBox.ShowTipMessageBox(strmes);
+                     
                     MainHelper.PlatformSqlMap.Create<LP_Record>(newRecord);
                     rowData = null;
                     currRecord = newRecord;
@@ -257,6 +259,7 @@ namespace Ebada.Scgl.Lpgl
                     }
                     else
                         MsgBox.ShowTipMessageBox(strmes);
+                    CurrRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString()); 
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record",CurrRecord);
                     rowData = null;                   
                     break;

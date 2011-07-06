@@ -6,6 +6,7 @@ using Ebada.SCGL.WFlow.Tool;
 using System.Collections;
 using Ebada.Client.Platform;
 using Ebada.Core;
+using Ebada.Scgl.Model;
 namespace Ebada.SCGL.WFlow.Engine
 {
     public  class  WorkFlowHelper
@@ -157,7 +158,7 @@ namespace Ebada.SCGL.WFlow.Engine
             string expressText = "";//解析前表达式
             int len = 0;//表达式长度
             char firstchar;
-            char secendchar;
+            char secondchar;
             char startVar = '2';//0开始取变量的，1 取变量结束，2空闲
             expressText = condition;//解析前表达式
             len = expressText.Length;
@@ -167,11 +168,11 @@ namespace Ebada.SCGL.WFlow.Engine
                 {
 
                     firstchar = expressText[i];
-                    if (i + 1 < len) { secendchar = expressText[i + 1]; }
-                    else secendchar = firstchar;
-                    if (firstchar == '<' && secendchar == '%') startVar = '0';
+                    if (i + 1 < len) { secondchar = expressText[i + 1]; }
+                    else secondchar = firstchar;
+                    if (firstchar == '<' && secondchar == '%') startVar = '0';
                     else
-                        if (firstchar == '%' && secendchar == '>') startVar = '1';
+                        if (firstchar == '%' && secondchar == '>') startVar = '1';
 
                     if (startVar == '0')
                     {
@@ -181,7 +182,7 @@ namespace Ebada.SCGL.WFlow.Engine
                         if (startVar == '1')
                         {
                             string varflag = "";
-                            varName = varName + firstchar + secendchar;
+                            varName = varName + firstchar + secondchar;
                             if (varName.Length >= 6)
                             {
                                 varflag = varName.Substring(2, 4);
@@ -217,7 +218,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.CommandText = sqlStr;
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.RecordExists(sqlItem);
-                string sql = "select '1' as Name where " + expressText; ;
+                string sql = "select '1' as Name from WF_WorkTaskView where " + expressText; 
                 IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", sql);
                 if (li.Count == 0) return false;
                 return true;
@@ -287,22 +288,24 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@workFlowInstanceId", workFlowInstanceId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //resultValue= agent.ExecuteScalar(sqlItem);
-                varSql = "select " + varFieldName + " as name from " + varTableName + " where WorkFlowId='" + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "'";
+                varSql = "select " + varFieldName + " as name from " + varTableName + " where id in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='" + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
 
-                DataTable dt2 = null;
+                //DataTable dt2 = null;
                 IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", varSql);
-                if (li.Count == 0)
+                if (li.Count > 0)
                 {
-                     dt2 = new DataTable();
-                    
+                     //dt2 = new DataTable();
+                    resultValue = ((WF_WorkFlow)li[0]).Name;
                 }
-                else
-                dt2 = ConvertHelper.ToDataTable(li);
-                dt2.Columns.Add(varFieldName, typeof(string));
-                for (int i = 0; i < dt2.Rows.Count; i++)
-                {
-                    dt2.Rows[i][varFieldName] = dt2.Rows[i]["name"];
-                }
+                //else
+                //dt2 = ConvertHelper.ToDataTable(li);
+                //if (!dt2.Columns.Contains(varFieldName))
+                //dt2.Columns.Add(varFieldName, typeof(string));
+                //for (int i = 0; i < dt2.Rows.Count; i++)
+                //{
+                //    dt2.Rows[i][varFieldName] = dt2.Rows[i]["name"];
+                //}
+                
             }
             else
                 if (varAccessType == WorkFlowConst.Access_WorkTask)//流程变量
@@ -322,17 +325,22 @@ namespace Ebada.SCGL.WFlow.Engine
 
                     DataTable dt2 = null;
                     IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", varSql);
-                    if (li.Count == 0)
+                    if (li.Count > 0)
                     {
-                        dt2 = new DataTable();
+                        //dt2 = new DataTable();
+                        resultValue = ((WF_WorkFlow)li[0]).Name;
+                    }
+                    //if (li.Count == 0)
+                    //{
+                    //    dt2 = new DataTable();
 
-                    }
-                    dt2.Columns.Add(varFieldName, typeof(string));
-                    dt2 = ConvertHelper.ToDataTable(li);
-                    for (int i = 0; i < dt2.Rows.Count; i++)
-                    {
-                        dt2.Rows[i][varFieldName] = dt2.Rows[i]["name"];
-                    }
+                    //}
+                    //dt2.Columns.Add(varFieldName, typeof(string));
+                    //dt2 = ConvertHelper.ToDataTable(li);
+                    //for (int i = 0; i < dt2.Rows.Count; i++)
+                    //{
+                    //    dt2.Rows[i][varFieldName] = dt2.Rows[i]["name"];
+                    //}
                 }
 
             if (string.IsNullOrEmpty(resultValue)) resultValue = varInitValue;

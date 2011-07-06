@@ -56,8 +56,8 @@ namespace Ebada.Scgl.WFlow
         /// <param name="recordID">记录ID</param>
         /// <param name="kind">工作票种类（01操作票、02一种工作票、03二种工作票、04抢修单）</param>
         /// <param name="userID">用户ID</param>
-        /// <returns>流程创建结果</returns>
-        public static string RunNewGZPRecord(string recordID, string kind, string userID)
+        /// <returns>流程创建信息二维数组，[0]流程创建结果 [1]运行后流程的任务节点名称</returns>
+        public static string[] RunNewGZPRecord(string recordID, string kind, string userID)
         {
             DataTable dt = null;
             string command = "", workFlowId = "", workTaskId = "", flowCaption = "", workFlowInstanceId = "", workTaskInstanceId = "";
@@ -86,17 +86,18 @@ namespace Ebada.Scgl.WFlow
             {
                 command = "提交";
             }
-            string strmes = CreatWorkFlow(userID, workFlowId, workTaskId, workFlowInstanceId, workTaskInstanceId, flowCaption, command);
-
+            string[] strmes=new  string[2] ;
+            strmes[0]= CreatWorkFlow(userID, workFlowId, workTaskId, workFlowInstanceId, workTaskInstanceId, flowCaption, command);
+            
             WFP_RecordWorkTaskIns wpfrecord = new WFP_RecordWorkTaskIns();
             wpfrecord.RecordID = recordID;
             wpfrecord.WorkFlowId = workFlowId;
             wpfrecord.WorkFlowInsId = workFlowInstanceId;
             wpfrecord.WorkTaskId = workTaskId;
             wpfrecord.WorkTaskInsId = workTaskInstanceId;
-
-            if (strmes.IndexOf("未提交至任何人") == -1) MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
-
+            if (strmes[0].IndexOf("未提交至任何人") == -1) MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
+            
+            strmes[1]=RecordWorkTask.GetWorkFlowTaskCaption (workTaskInstanceId);
 
             return strmes;
         }
@@ -290,8 +291,25 @@ namespace Ebada.Scgl.WFlow
             wfruntime.IsDraft = false;//保存并执行流程流转
             wfruntime.Start();
 
-            return Toollips(wfruntime.WorkTaskInstanceId);
+            return Toollips(WorkTaskInstanceId);
             //return "";
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="WorkTaskInsId"></param>
+        /// <returns></returns>
+        public static string GetWorkFlowTaskCaption( string WorkTaskInsId)
+        {
+            string sql = "where previoustaskid='" + WorkTaskInsId + "' and operstatus='0' order by opertype";
+
+            IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
+            if (li.Count > 0)
+            {
+                return li[0].TaskInsCaption;
+            }
+            else
+                return "";
         }
         /// <summary>
         /// 流程退回
@@ -307,7 +325,7 @@ namespace Ebada.Scgl.WFlow
             wfruntime.OperatorInstanceId = OperatorInsId;
             wfruntime.TaskBack();
 
-            return Toollips(wfruntime.WorkTaskInstanceId);
+            return Toollips(WorkTaskInsId);
         }
        /// <summary>
         /// 执行流程
@@ -324,7 +342,7 @@ namespace Ebada.Scgl.WFlow
             //wfruntime.RunSuccess += new WorkFlowRuntime.RunSuccessEventHandler(wfruntime_RunSuccess);
             //wfruntime.RunFail += new WorkFlowRuntime.RunFailEventHandler(wfruntime_RunFail);
             wfruntime.Run(userID, OperatorInsId, command);
-            
+
             return Toollips(WorkTaskInsId);
             //return "";
         }

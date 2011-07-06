@@ -42,6 +42,7 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.barBack = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -66,8 +67,9 @@
             this.btRefresh,
             this.btClose,
             this.bsItem1,
-            this.btExport});
-            this.barManager1.MaxItemId = 14;
+            this.btExport,
+            this.barBack});
+            this.barManager1.MaxItemId = 15;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -84,6 +86,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBack, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -174,7 +177,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(479, 23);
+            this.barDockControlTop.Size = new System.Drawing.Size(479, 24);
             // 
             // barDockControlBottom
             // 
@@ -185,14 +188,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 23);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 266);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 265);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(479, 23);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 266);
+            this.barDockControlRight.Location = new System.Drawing.Point(479, 24);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 265);
             // 
             // gridControl1
             // 
@@ -202,13 +205,13 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 23);
+            this.gridControl1.Location = new System.Drawing.Point(0, 24);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(479, 266);
+            this.gridControl1.Size = new System.Drawing.Size(479, 265);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -234,6 +237,14 @@
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             this.repositoryItemTextEdit1.NullText = "输入密码";
             this.repositoryItemTextEdit1.PasswordChar = '*';
+            // 
+            // barBack
+            // 
+            this.barBack.Caption = "退回";
+            this.barBack.Id = 14;
+            this.barBack.Name = "barBack";
+            this.barBack.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barBack.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBack_ItemClick);
             // 
             // UCmLPRecord
             // 
@@ -274,5 +285,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraBars.BarSubItem btExport;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraBars.BarButtonItem barBack;
     }
 }
