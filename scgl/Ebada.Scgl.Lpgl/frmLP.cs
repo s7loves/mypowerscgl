@@ -227,7 +227,7 @@ namespace Ebada.Scgl.Lpgl
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
                     newRecord.CreateTime = DateTime.Now.ToString();
-                    strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, kind);
+                    strmes = RecordWorkTask.RunNewGZPRecord(rowData.ID, kind,MainHelper.User.UserID   );
 
                     if (strmes.IndexOf("未提交至任何人") > -1)
                     {

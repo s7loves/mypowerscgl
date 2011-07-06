@@ -94,6 +94,10 @@ namespace Ebada.Scgl.Lpgl {
         /// 设置隐藏列
         /// </summary>
         void initColumns() {
+            for (int i = 0; i < gridView1.Columns.Count; i++)
+            {
+                gridView1.Columns[i].Caption = AttributeHelper.GetDisplayName(typeof(LP_Record), gridView1.Columns[i].FieldName);
+            }
             gridView1.Columns["ParentID"].Visible = false;
             //gridView1.Columns["ID"].Visible = false;
             //gridView1.Columns["OrgName"].Visible = false;
@@ -251,7 +255,7 @@ namespace Ebada.Scgl.Lpgl {
         {
             if (MainHelper.UserOrg == null) return;
 
-            if (!RecordWorkTask.HaveRewNewYXFXRole(ParentObj.Kind, MainHelper.User.UserID)) return;
+            if (!RecordWorkTask.HaveRunNewGZPRole(ParentObj.Kind, MainHelper.User.UserID)) return;
             frmLP frm = new frmLP();
             frm.Status = "add";
             frm.Kind = ParentObj.Kind;
@@ -288,7 +292,7 @@ namespace Ebada.Scgl.Lpgl {
             }
             frm.CurrRecord = currRecord;
             if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
-            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID);
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
             frm.RecordWorkFlowData = dt;
             if (frm.ShowDialog() == DialogResult.OK)
             {
