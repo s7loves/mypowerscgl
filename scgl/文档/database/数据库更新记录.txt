@@ -5,3 +5,4 @@
 2011.7.2  增加表mUserModule
 2011.7.2  表Lp_Record增加字段Status、Number
 2011.7.5  增加表PS_sbcs,PS_sbxsqd
+2011.7.6  增加PS_sbcs表的数据文件PS_sbcsInsert.sql
