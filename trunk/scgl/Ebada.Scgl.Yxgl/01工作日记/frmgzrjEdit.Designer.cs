@@ -35,6 +35,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
+            this.comboBoxEdit21 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
@@ -79,11 +80,11 @@
             this.comboBoxEdit17 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.comboBoxEdit21 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit21.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -117,7 +118,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit17.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit21.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -202,8 +202,18 @@
             // 
             this.memoEdit2.Location = new System.Drawing.Point(12, 50);
             this.memoEdit2.Name = "memoEdit2";
+            this.memoEdit2.Properties.MaxLength = 500;
             this.memoEdit2.Size = new System.Drawing.Size(137, 208);
             this.memoEdit2.TabIndex = 0;
+            // 
+            // comboBoxEdit21
+            // 
+            this.comboBoxEdit21.Location = new System.Drawing.Point(12, 291);
+            this.comboBoxEdit21.Name = "comboBoxEdit21";
+            this.comboBoxEdit21.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit21.Size = new System.Drawing.Size(137, 21);
+            this.comboBoxEdit21.TabIndex = 6;
             // 
             // dateEdit1
             // 
@@ -255,6 +265,7 @@
             // 
             this.memoEdit1.Location = new System.Drawing.Point(9, 20);
             this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Properties.MaxLength = 500;
             this.memoEdit1.Size = new System.Drawing.Size(364, 88);
             this.memoEdit1.TabIndex = 0;
             // 
@@ -625,15 +636,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // comboBoxEdit21
-            // 
-            this.comboBoxEdit21.Location = new System.Drawing.Point(12, 291);
-            this.comboBoxEdit21.Name = "comboBoxEdit21";
-            this.comboBoxEdit21.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit21.Size = new System.Drawing.Size(137, 21);
-            this.comboBoxEdit21.TabIndex = 6;
-            // 
             // frmgzrjEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -650,6 +652,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit21.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -685,7 +688,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit17.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit21.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
