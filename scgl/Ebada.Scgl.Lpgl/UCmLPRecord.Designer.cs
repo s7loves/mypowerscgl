@@ -32,6 +32,7 @@
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btExport = new DevExpress.XtraBars.BarSubItem();
+            this.barBack = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -42,7 +43,8 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.barBack = new DevExpress.XtraBars.BarButtonItem();
+            this.barChange = new DevExpress.XtraBars.BarButtonItem();
+            this.barSus = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -68,8 +70,10 @@
             this.btClose,
             this.bsItem1,
             this.btExport,
-            this.barBack});
-            this.barManager1.MaxItemId = 15;
+            this.barBack,
+            this.barChange,
+            this.barSus});
+            this.barManager1.MaxItemId = 17;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -87,6 +91,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barBack, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barChange, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSus, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -144,6 +150,14 @@
             this.btExport.ImageIndex = 7;
             this.btExport.Name = "btExport";
             this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barBack
+            // 
+            this.barBack.Caption = "退回";
+            this.barBack.Id = 14;
+            this.barBack.Name = "barBack";
+            this.barBack.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barBack.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBack_ItemClick);
             // 
             // btClose
             // 
@@ -238,13 +252,19 @@
             this.repositoryItemTextEdit1.NullText = "输入密码";
             this.repositoryItemTextEdit1.PasswordChar = '*';
             // 
-            // barBack
+            // barChange
             // 
-            this.barBack.Caption = "退回";
-            this.barBack.Id = 14;
-            this.barBack.Name = "barBack";
-            this.barBack.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barBack.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBack_ItemClick);
+            this.barChange.Caption = "变更";
+            this.barChange.Id = 15;
+            this.barChange.Name = "barChange";
+            this.barChange.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barChange_ItemClick);
+            // 
+            // barSus
+            // 
+            this.barSus.Caption = "延迟";
+            this.barSus.Id = 16;
+            this.barSus.Name = "barSus";
+            this.barSus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSus_ItemClick);
             // 
             // UCmLPRecord
             // 
@@ -286,5 +306,7 @@
         private DevExpress.XtraBars.BarSubItem btExport;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraBars.BarButtonItem barBack;
+        private DevExpress.XtraBars.BarButtonItem barChange;
+        private DevExpress.XtraBars.BarButtonItem barSus;
     }
 }
