@@ -147,6 +147,7 @@ namespace Ebada.Scgl.WFlow
             }
                 return false;
         }
+
         /// <summary>
         /// 获得当前用户可以运行当前记录的流程信息
         /// </summary>
@@ -311,12 +312,25 @@ namespace Ebada.Scgl.WFlow
             else
                 return "";
         }
+        
+        /// <summary>
+        /// 流程是否可以退回
+        /// </summary>
+        /// <param name="WorkTaskId">任务节点id</param>
+        /// <param name="WorkFlowId">流程ID</param>
+        /// <returns>true ，可以退回 反之不能</returns>
+        public static bool  HaveWorkFlowBackRole(string WorkTaskId, string WorkFlowId)
+        {
+            if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + WorkTaskId + "' and WorkFlowId='" + WorkFlowId+ "' and PowerName='"+WorkConst.WorkTask_Return+"'") != null)
+                return true;
+            return false ;
+        }
         /// <summary>
         /// 流程退回
         /// </summary>
         /// <param name="userID">用户ID</param>
         /// <param name="OperatorInsId">操作ID</param>
-        /// <param name="WorkTaskInsId">任务记录ID</param>
+        /// <param name="WorkTaskInsId">实例任务节点ID</param>
         /// <returns>返回流程执行结果</returns>
         public static string RunWorkFlowBack(string userID, string OperatorInsId, string WorkTaskInsId)
         {

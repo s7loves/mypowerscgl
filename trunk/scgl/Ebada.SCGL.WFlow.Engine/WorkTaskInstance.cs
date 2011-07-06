@@ -522,14 +522,44 @@ namespace Ebada.SCGL.WFlow.Engine
                 SetWorkTaskInstanceOver(userId, operins.WorkTaskInsId);
                 OperatorInstance.SetOperatorInstanceOver(userId, operatorInsId);
                 WF_WorkTaskInstance workins2 = new WF_WorkTaskInstance();
-                workins2.SuccessMsg = "退回至提交人!";
+                workins2.SuccessMsg = "退回至提交人(" + fromuser.UserName  + ")!";
                 workins2.WorkTaskInsId = operins.WorkTaskInsId;
-                MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId", workins2); 
-                workins2 = new WF_WorkTaskInstance();
-                workins2.Status = "2";
-                workins2.OperatedDes = ",但被["+fromuser.UserName+"]退回,";
-                workins2.WorkTaskInsId = workins.PreviousTaskId ;
+                workins2.OperatedDes = userId;
                 MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId", workins2);
+                WF_WorkTaskInstance preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
+                //创建一个任务实例
+                string newTaskId = Guid.NewGuid().ToString();//新任务处理者实例Id
+                WorkTaskInstance workTaskInstance = new WorkTaskInstance();
+                workTaskInstance.WorkflowId = preworkins.WorkFlowId ;
+                workTaskInstance.WorktaskId = preworkins.WorkTaskId ;
+                workTaskInstance.WorkflowInsId = preworkins.WorkFlowInsId ;
+                workTaskInstance.WorktaskInsId = newTaskId;
+                workTaskInstance.PreviousTaskId = workins.WorkTaskInsId ;
+                workTaskInstance.TaskInsCaption = preworkins.TaskInsCaption ;
+                workTaskInstance.Status = "1";
+                workTaskInstance.Create();
+
+
+                WF_OperatorInstance op = (WF_OperatorInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorInstanceList", " where WorkTaskInsId='" + workins.PreviousTaskId + "' ");
+                //创建处理人实例
+                OperatorInstance operatorInstance = new OperatorInstance();
+                operatorInstance.OperatorInsId = Guid.NewGuid().ToString();
+                operatorInstance.WorkflowId = operins.WorkFlowId ;
+                operatorInstance.WorktaskId = operins.WorkTaskId ;
+                operatorInstance.WorkflowInsId = workTaskInstance.WorkflowInsId;
+                operatorInstance.WorktaskInsId = workTaskInstance.WorktaskInsId;
+                operatorInstance.UserId = op.UserId ;
+                operatorInstance.OperRealtion = op.OperRealtion ;
+                operatorInstance.OperContent = op.OperContent;
+                operatorInstance.OperContentText = op.OperContentText;
+                operatorInstance.OperType = 3;//此处修改为指定处理人
+                operatorInstance.Create();
+
+                string strsql = "  update WF_WorkFlowInstance set nowtaskId='" + workTaskInstance.WorktaskId  + "' where workflowInsid='" + workTaskInstance.WorkflowInsId + "'";
+                MainHelper.PlatformSqlMap.Update("UpdateWF_WorkFlowInstanceValue", strsql);
+
+                //string sql = "update WF_WorkTaskInstance set EndTime=getdate(),status='2',OperatedDes=isnull(OperatedDes,'')+',但被[+" + fromuser.UserName + "+]退回,' where WorkTaskInsId='" + workins.PreviousTaskId + "' and Status=3";
+                //MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceByValue", sql);
                 return WorkFlowConst.SuccessCode;
             }
             catch (Exception ex)
