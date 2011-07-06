@@ -220,6 +220,7 @@
             // 
             this.memoEdit4.Location = new System.Drawing.Point(6, 19);
             this.memoEdit4.Name = "memoEdit4";
+            this.memoEdit4.Properties.MaxLength = 500;
             this.memoEdit4.Size = new System.Drawing.Size(151, 386);
             this.memoEdit4.TabIndex = 0;
             // 
@@ -728,7 +729,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.memoEdit2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(386, 180);
+            this.xtraTabPage2.Size = new System.Drawing.Size(388, 183);
             this.xtraTabPage2.Text = "活动小结";
             // 
             // memoEdit2
@@ -736,14 +737,14 @@
             this.memoEdit2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit2.Location = new System.Drawing.Point(0, 0);
             this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(386, 180);
+            this.memoEdit2.Size = new System.Drawing.Size(388, 183);
             this.memoEdit2.TabIndex = 0;
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.memoEdit5);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(386, 180);
+            this.xtraTabPage3.Size = new System.Drawing.Size(388, 183);
             this.xtraTabPage3.Text = "发言简要记录";
             // 
             // memoEdit5
@@ -751,7 +752,7 @@
             this.memoEdit5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit5.Location = new System.Drawing.Point(0, 0);
             this.memoEdit5.Name = "memoEdit5";
-            this.memoEdit5.Size = new System.Drawing.Size(386, 180);
+            this.memoEdit5.Size = new System.Drawing.Size(388, 183);
             this.memoEdit5.TabIndex = 0;
             // 
             // bar1
