@@ -32,8 +32,8 @@ namespace Ebada.Scgl.Sbgl
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "gtLon");
             this.spinEdit3.DataBindings.Add("EditValue", rowData, "gtLat");
             this.spinEdit4.DataBindings.Add("EditValue", rowData, "gtElev");
-            this.spinEdit5.DataBindings.Add("EditValue", rowData, "X54");
-            this.spinEdit6.DataBindings.Add("EditValue", rowData, "Y54");
+            //this.spinEdit5.DataBindings.Add("EditValue", rowData, "X54");
+            //this.spinEdit6.DataBindings.Add("EditValue", rowData, "Y54");
             this.spinEdit7.DataBindings.Add("EditValue", rowData, "gtSpan");
  
 
@@ -60,6 +60,8 @@ namespace Ebada.Scgl.Sbgl
         #endregion
 
         private void InitComboBoxData() {
+            ComboBoxHelper.FillCBoxByGttype(comboBoxEdit3);
+            pdsbModelHelper.FillCBoxByGt(comboBoxEdit4);
 
         }
 

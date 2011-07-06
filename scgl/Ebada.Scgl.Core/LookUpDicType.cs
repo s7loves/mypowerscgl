@@ -131,5 +131,22 @@ namespace Ebada.Scgl.Core {
                 return DicTypeHelper.orgDic;
             }
         }
+        static RepositoryItem sbcs2Dic;
+        /// <summary>
+        /// 获取设备小类列表
+        /// </summary>
+        public static RepositoryItem Pssbcs2Dic {
+            get {
+                if (orgDic == null) {
+                    IList<PS_sbcs> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (PS_sbcs obj in list) {
+                        dic.Add(new DicType(obj.bh, obj.mc));
+                    }
+                    orgDic = new LookUpDicType(dic);
+                }
+                return DicTypeHelper.orgDic;
+            }
+        }
     }
 }
