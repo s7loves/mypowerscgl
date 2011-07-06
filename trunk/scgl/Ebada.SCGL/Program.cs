@@ -38,7 +38,12 @@ namespace Ebada.SCGL
             //DevExpress.XtraWizard.Localization.WizardLocalizer.Active = new DevExpress.LocalizationCHS.DevExpressXtraWizardLocalizationCHS();
             //frmLogin dlg = new frmLogin(); 
             //if (dlg.ShowDialog() == DialogResult.OK)
+            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
                 Application.Run(new frmMain2());
+        }
+
+        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {
+            Client.MsgBox.ShowException(e.Exception);
         }
     }
 }
