@@ -182,7 +182,8 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@worktaskInsId", worktaskInsId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlItem);
-                WF_WorkTaskInstance worktastIns = new WF_WorkTaskInstance();
+                WF_WorkTaskInstance worktastIns = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(worktaskInsId);
+                 if(worktastIns==null) worktastIns= new WF_WorkTaskInstance();
                 worktastIns.WorkTaskInsId = worktaskInsId;
                 worktastIns.SuccessMsg = successMsg;
 
