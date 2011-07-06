@@ -311,7 +311,7 @@ namespace Ebada.Scgl.Yxgl
                     if (dc.ColumnName != "Image") yxfx.GetType().GetProperty(dc.ColumnName).SetValue(yxfx, dr[dc.ColumnName], null);
                 }
                 if (!RecordWorkTask.HaveRunRecordRole(yxfx.ID ,MainHelper.User.UserID   )) return;
-                DataTable dt = RecordWorkTask.GetRecordWorkFlowData(yxfx.ID);
+                DataTable dt = RecordWorkTask.GetRecordWorkFlowData(yxfx.ID, MainHelper.User.UserID);
                 frmyxfxEdit fm = new frmyxfxEdit();
                 switch (dt.Rows[0]["TaskInsCaption"].ToString())
                 {

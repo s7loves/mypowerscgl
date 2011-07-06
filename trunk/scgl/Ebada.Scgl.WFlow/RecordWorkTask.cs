@@ -104,6 +104,7 @@ namespace Ebada.Scgl.WFlow
         /// 获得当前用户是否可以新建运行分析记录权限
         /// </summary>
         /// <param name="recordIkind">运行分析记录种类</param>
+        /// <param name="userID">用户ID</param>
         /// <returns>bool true有权限 false 无权限</returns>
         public static bool HaveRewNewYXFXRole(string recordIkind, string userID)
         {
@@ -132,6 +133,7 @@ namespace Ebada.Scgl.WFlow
      /// 获得当前用户是否可以运行当前记录权限
      /// </summary>
         /// <param name="recordID">记录ID</param>
+        /// <param name="userID">用户ID</param>
         /// <returns>true:有权限反之无权限</returns>
         public static bool HaveRunRecordRole(string recordID, string userID)
         {
@@ -148,13 +150,14 @@ namespace Ebada.Scgl.WFlow
         /// 获得当前用户可以运行当前记录的流程信息
         /// </summary>
         /// <param name="recordID">记录ID</param>
+        /// <param name="userID">用户ID</param>
         /// <returns>返回指定记录的流程信息</returns>
-        public static DataTable GetRecordWorkFlowData(string recordID)
+        public static DataTable GetRecordWorkFlowData(string recordID, string userID)
         {
             DataTable dtnull = new DataTable();
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             if (wf.Count == 0) return dtnull;
-            DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(MainHelper.User.UserID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
+            DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
            
             return dt;
         }
@@ -181,8 +184,9 @@ namespace Ebada.Scgl.WFlow
        /// </summary>
        /// <param name="recordID">记录ID</param>
         /// <param name="recordIkind">运行分析记录种类</param>
+        /// <param name="userID">用户ID</param>
        /// <returns>流程创建结果</returns>
-        public static string RunNewYXFXRecord(string recordID, string recordIkind)
+        public static string RunNewYXFXRecord(string recordID, string recordIkind, string userID)
         {
             DataTable dt = null;
             string command = "", workFlowId = "", workTaskId = "", flowCaption = "", workFlowInstanceId = "", workTaskInstanceId = "";
@@ -190,11 +194,11 @@ namespace Ebada.Scgl.WFlow
             {
                 if (recordIkind == "定期分析")
                 {
-                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "供电所定期分析");
+                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "供电所定期分析");
                 }
                 else if (recordIkind == "专题分析")
                 {
-                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "供电所专题分析");
+                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "供电所专题分析");
                 }
 
                 
@@ -203,11 +207,11 @@ namespace Ebada.Scgl.WFlow
             {
                 if (recordIkind == "定期分析")
                 {
-                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "局定期分析");
+                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "局定期分析");
                 }
                 else if (recordIkind == "专题分析")
                 {
-                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(MainHelper.User.UserID, "局专题分析");
+                    dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "局专题分析");
                 }
 
 
@@ -226,7 +230,7 @@ namespace Ebada.Scgl.WFlow
             {
                 command = "提交";
             }
-            string strmes = CreatWorkFlow(MainHelper.User.UserID, workFlowId, workTaskId, workFlowInstanceId, workTaskInstanceId, flowCaption, command);
+            string strmes = CreatWorkFlow(userID, workFlowId, workTaskId, workFlowInstanceId, workTaskInstanceId, flowCaption, command);
            
             WFP_RecordWorkTaskIns wpfrecord = new WFP_RecordWorkTaskIns();
             wpfrecord.RecordID = recordID;
