@@ -33,8 +33,6 @@
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.spinEdit7 = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEdit6 = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEdit5 = new DevExpress.XtraEditors.SpinEdit();
             this.spinEdit4 = new DevExpress.XtraEditors.SpinEdit();
             this.spinEdit3 = new DevExpress.XtraEditors.SpinEdit();
             this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
@@ -52,16 +50,12 @@
             this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit7.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
@@ -106,8 +100,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.spinEdit7);
-            this.groupBox2.Controls.Add(this.spinEdit6);
-            this.groupBox2.Controls.Add(this.spinEdit5);
             this.groupBox2.Controls.Add(this.spinEdit4);
             this.groupBox2.Controls.Add(this.spinEdit3);
             this.groupBox2.Controls.Add(this.spinEdit1);
@@ -125,8 +117,6 @@
             this.groupBox2.Controls.Add(this.labelControl25);
             this.groupBox2.Controls.Add(this.labelControl26);
             this.groupBox2.Controls.Add(this.labelControl1);
-            this.groupBox2.Controls.Add(this.labelControl29);
-            this.groupBox2.Controls.Add(this.labelControl30);
             this.groupBox2.Location = new System.Drawing.Point(12, 38);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(431, 183);
@@ -141,40 +131,12 @@
             0,
             0,
             0});
-            this.spinEdit7.Location = new System.Drawing.Point(284, 146);
+            this.spinEdit7.Location = new System.Drawing.Point(284, 104);
             this.spinEdit7.Name = "spinEdit7";
             this.spinEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit7.Size = new System.Drawing.Size(100, 21);
             this.spinEdit7.TabIndex = 14;
-            // 
-            // spinEdit6
-            // 
-            this.spinEdit6.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEdit6.Location = new System.Drawing.Point(284, 123);
-            this.spinEdit6.Name = "spinEdit6";
-            this.spinEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit6.Size = new System.Drawing.Size(100, 21);
-            this.spinEdit6.TabIndex = 14;
-            // 
-            // spinEdit5
-            // 
-            this.spinEdit5.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEdit5.Location = new System.Drawing.Point(284, 100);
-            this.spinEdit5.Name = "spinEdit5";
-            this.spinEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit5.Size = new System.Drawing.Size(100, 21);
-            this.spinEdit5.TabIndex = 14;
             // 
             // spinEdit4
             // 
@@ -335,27 +297,11 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(250, 146);
+            this.labelControl1.Location = new System.Drawing.Point(250, 104);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(24, 14);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "档距";
-            // 
-            // labelControl29
-            // 
-            this.labelControl29.Location = new System.Drawing.Point(250, 123);
-            this.labelControl29.Name = "labelControl29";
-            this.labelControl29.Size = new System.Drawing.Size(31, 14);
-            this.labelControl29.TabIndex = 2;
-            this.labelControl29.Text = "纬度2";
-            // 
-            // labelControl30
-            // 
-            this.labelControl30.Location = new System.Drawing.Point(250, 100);
-            this.labelControl30.Name = "labelControl30";
-            this.labelControl30.Size = new System.Drawing.Size(31, 14);
-            this.labelControl30.TabIndex = 2;
-            this.labelControl30.Text = "经度2";
             // 
             // bar1
             // 
@@ -390,8 +336,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit7.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
@@ -425,12 +369,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl24;
         private DevExpress.XtraEditors.LabelControl labelControl25;
         private DevExpress.XtraEditors.LabelControl labelControl26;
-        private DevExpress.XtraEditors.LabelControl labelControl29;
-        private DevExpress.XtraEditors.LabelControl labelControl30;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SpinEdit spinEdit7;
-        private DevExpress.XtraEditors.SpinEdit spinEdit6;
-        private DevExpress.XtraEditors.SpinEdit spinEdit5;
         private DevExpress.XtraEditors.SpinEdit spinEdit4;
         private DevExpress.XtraEditors.SpinEdit spinEdit3;
         private DevExpress.XtraEditors.SpinEdit spinEdit1;

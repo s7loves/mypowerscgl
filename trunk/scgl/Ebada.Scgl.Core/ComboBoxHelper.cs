@@ -340,5 +340,41 @@ namespace Ebada.Scgl.Core {
         public static void FillCBoxByDyk(string dx, string sx, ComboBoxEdit cBox) {
             FillCBoxByDyk(dx, sx, cBox.Properties);
         }
+        #region 设备相关
+        public static void FillCBoxByGttype(ComboBoxEdit c) {
+            c.Properties.Items.Clear();
+            c.Properties.Items.AddRange(GetGtType());
+        }
+        /// <summary>
+        /// 获取杆塔分类
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetGtType() {
+
+            ICollection list = new ArrayList();
+            string key = "GtType";
+            if (mCache.ContainsKey(key)) {
+                list = mCache[key];
+            } else {
+                list = new string[] { "直线杆", "加强杆", "耐张杆", "转角杆", "终端杆", "分歧杆"};
+                mCache.Add(key, list);
+            }
+            return list;
+        }
+        public static ICollection GetsbxhList(string bh) {
+            ICollection list = new ArrayList();
+            string key = "sbxh"+bh;
+            bh = bh.Substring(0, 2) + "001";
+            if (mCache.ContainsKey(key)) {
+                list = mCache[key];
+            } else {
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select xh from ps_sbcs where  parentid ='{0}'", bh));
+                if (list.Count > 0)
+                    mCache.Add(key, list);
+            }
+            return list;
+        }
+       
+        #endregion
     }
 }
