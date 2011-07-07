@@ -189,8 +189,10 @@ namespace Ebada.Scgl.Xtgl {
             IList<mUser> li = MainHelper.PlatformSqlMap.GetList<mUser>("SelectmUserList", slqwhere);
             if (li.Count != 0)
             {
-                gridtable = ConvertHelper.ToDataTable((IList)li);
-                treeList1.DataSource = gridtable;
+                //gridtable = ConvertHelper.ToDataTable((IList)li);
+                this.treeList1.BeginUpdate();
+                treeList1.DataSource = li;
+                this.treeList1.EndUpdate();
             }
         }
         [Browsable(false)]
