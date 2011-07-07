@@ -134,11 +134,23 @@
     <Compile Include="mUser\frmmUserEdit.Designer.cs">
       <DependentUpon>frmmUserEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="mUser\frmUserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mUser\frmUserRole.Designer.cs">
+      <DependentUpon>frmUserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="mUser\UCmOrgUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="mUser\UCmOrgUser.Designer.cs">
       <DependentUpon>UCmOrgUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mUser\UCmUserRoleTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="mUser\UCmUserRoleTree.Designer.cs">
+      <DependentUpon>UCmUserRoleTree.cs</DependentUpon>
     </Compile>
     <Compile Include="mUser\UCmUser.cs">
       <SubType>UserControl</SubType>
@@ -221,8 +233,16 @@
       <DependentUpon>frmmUserEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="mUser\frmUserRole.resx">
+      <DependentUpon>frmUserRole.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="mUser\UCmOrgUser.resx">
       <DependentUpon>UCmOrgUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mUser\UCmUserRoleTree.resx">
+      <DependentUpon>UCmUserRoleTree.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="mUser\UCmUser.resx">
