@@ -29,24 +29,24 @@ namespace Ebada.Scgl.Xtgl {
     /// <summary>
     /// 组织机构
     /// </summary>
-    public partial class UCmRoleModulTree : DevExpress.XtraEditors.XtraUserControl {
+    public partial class UCmUserRoleTree : DevExpress.XtraEditors.XtraUserControl {
 
-        TreeViewOperation<mModule> treeViewOperator;
+        TreeViewOperation<mUser> treeViewOperator;
         string m_RoleID;
         [Browsable(false)]
-        public TreeViewOperation<mModule> TreeViewOperator {
+        public TreeViewOperation<mUser> TreeViewOperator {
             get { return treeViewOperator; }
             set { treeViewOperator = value; }
         }
 
         private DataTable gridtable = null;
-        public event SendDataEventHandler<mModule> FocusedNodeChanged;
-        public event SendDataEventHandler<mModule> AfterAdd;
-        public event SendDataEventHandler<mModule> AfterEdit;
-        public event SendDataEventHandler<mModule> AfterDelete;
-        public UCmRoleModulTree() {
+        public event SendDataEventHandler<mUser> FocusedNodeChanged;
+        public event SendDataEventHandler<mUser> AfterAdd;
+        public event SendDataEventHandler<mUser> AfterEdit;
+        public event SendDataEventHandler<mUser> AfterDelete;
+        public UCmUserRoleTree() {
             InitializeComponent();
-            treeViewOperator = new TreeViewOperation<mModule>(treeList1, barManager1);
+            treeViewOperator = new TreeViewOperation<mUser>(treeList1, barManager1);
             treeViewOperator.CreatingObjectEvent += treeViewOperator_CreatingObject;
             treeViewOperator.AfterAdd += treeViewOperator_AfterAdd;
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
@@ -55,36 +55,36 @@ namespace Ebada.Scgl.Xtgl {
             
         }
 
-        void treeViewOperator_AfterDelete(mModule newobj) {
+        void treeViewOperator_AfterDelete(mUser newobj) {
             if (AfterDelete != null)
                 AfterDelete(treeList1, newobj);
         }
 
-        void treeViewOperator_AfterEdit(mModule newobj) {
+        void treeViewOperator_AfterEdit(mUser newobj) {
             if (AfterAdd != null)
                 AfterEdit(treeList1, newobj);
         }
 
-        void treeViewOperator_AfterAdd(mModule newobj) {
+        void treeViewOperator_AfterAdd(mUser newobj) {
             if (AfterAdd != null)
                 AfterAdd(treeList1, newobj);
         }
 
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             if (FocusedNodeChanged != null)
-                FocusedNodeChanged(treeList1, treeList1.GetDataRecordByNode(e.Node) as mModule);
+                FocusedNodeChanged(treeList1, treeList1.GetDataRecordByNode(e.Node) as mUser);
         }
 
-        void treeViewOperator_CreatingObject(mModule newobj) {
-            newobj.visiableFlag = true;
+        void treeViewOperator_CreatingObject(mUser newobj) {
+            newobj.Valid= true;
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e); Init();
         }
         
         public void Init() {
-            this.treeList1.KeyFieldName = "Modu_ID";
-            this.treeList1.ParentFieldName = "ParentID";
+            this.treeList1.KeyFieldName = "UserID";
+            //this.treeList1.ParentFieldName = "ParentID";
 
         }
         /// <summary>
@@ -92,7 +92,7 @@ namespace Ebada.Scgl.Xtgl {
         /// </summary>
         public void InitData() {
             //treeViewOperator.RefreshData("order by parentid,sequence");
-            RefreshData("  order by parentid,sequence");
+            RefreshData("  order by LoginID");
 
         }
         private void IniWFTData(string WFClassId,ref List<mModule> list2)
@@ -124,57 +124,57 @@ namespace Ebada.Scgl.Xtgl {
                     }
                 }
         }
-        private void ReWFData(string WFClassId,ref List<mModule> list2)
-        {
-            IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where FatherId='" + WFClassId +"'");
-            foreach (WF_WorkFlowClass wfc in wfcli)
-            {
+        //private void ReWFData(string WFClassId,ref List<mUser> list2)
+        //{
+        //    IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where FatherId='" + WFClassId +"'");
+        //    foreach (WF_WorkFlowClass wfc in wfcli)
+        //    {
                 
-                IniWFTData(wfc.WFClassId, ref list2);
-                ReWFData(wfc.WFClassId, ref list2);
+        //        IniWFTData(wfc.WFClassId, ref list2);
+        //        ReWFData(wfc.WFClassId, ref list2);
 
-                mModule md = new mModule();
-                md.Modu_ID = wfc.WFClassId;
-                md.ModuName = wfc.Caption;
-                md.ParentID = WFClassId;
-                md.ModuTypes = "hide";
-                md.Description = "工作流";
-                list2.Add(md); 
-            }
-        }
-        private void IniWFData(string parentid)
-        {
-            List<mModule> list2 = new List<mModule>();
-            IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where clLevel='0'");
-            foreach (WF_WorkFlowClass wfc in wfcli)
-            {
+        //        mUser md = new mUser();
+        //        md.Modu_ID = wfc.WFClassId;
+        //        md.ModuName = wfc.Caption;
+        //        md.ParentID = WFClassId;
+        //        md.ModuTypes = "hide";
+        //        md.Description = "工作流";
+        //        list2.Add(md); 
+        //    }
+        //}
+        //private void IniWFData(string parentid)
+        //{
+        //    List<mUser> list2 = new List<mUser>();
+        //    IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where clLevel='0'");
+        //    foreach (WF_WorkFlowClass wfc in wfcli)
+        //    {
 
-                mModule md = new mModule();
-                md.Modu_ID = wfc.WFClassId;
-                md.ModuName = wfc.Caption;
-                md.ParentID = parentid;
-                md.ModuTypes = "hide";
-                md.Description = "工作流";
-                list2.Add(md); 
-                IniWFTData(wfc.WFClassId,ref list2);
-                ReWFData(wfc.WFClassId, ref list2);
-                
-            }
-            SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, "InsertWFmModule", list2.ToArray());
-            try
-            {
-                List<SqlQueryObject> list3 = new List<SqlQueryObject>();
-                list3.Add(obj3);
-                MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            }
-            catch (Exception exception)
-            {
-                MainHelper.ShowWarningMessageBox(exception.Message);
+        //        mUser md = new mUser();
+        //        md.Modu_ID = wfc.WFClassId;
+        //        md.ModuName = wfc.Caption;
+        //        md.ParentID = parentid;
+        //        md.ModuTypes = "hide";
+        //        md.Description = "工作流";
+        //        list2.Add(md);
+        //        IniWFTData(wfc.WFClassId, ref list2);
+        //        ReWFData(wfc.WFClassId, ref list2);
+
+        //    }
+        //    SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, "InsertWFmUser", list2.ToArray());
+        //    try
+        //    {
+        //        List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+        //        list3.Add(obj3);
+        //        MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        MainHelper.ShowWarningMessageBox(exception.Message);
                
-            }
+        //    }
           
 
-        }
+        //}
         /// <summary>
         /// 刷新数据
         /// </summary>
@@ -183,10 +183,10 @@ namespace Ebada.Scgl.Xtgl {
         {
             if (gridtable != null)gridtable.Rows.Clear();
             treeList1.Nodes.Clear();
-            mModule md = MainHelper.PlatformSqlMap.GetOne<mModule>(" where ModuName='工作流设置'");
-            if(md!=null)
-                IniWFData(md.Modu_ID );
-            IList<mModule> li = MainHelper.PlatformSqlMap.GetList<mModule>("SelectmModuleList", slqwhere);
+            //mUser md = MainHelper.PlatformSqlMap.GetOne<mUser>(" where ModuName='工作流设置'");
+            //if(md!=null)
+            //    IniWFData(md.Modu_ID );
+            IList<mUser> li = MainHelper.PlatformSqlMap.GetList<mUser>("SelectmUserList", slqwhere);
             if (li.Count != 0)
             {
                 gridtable = ConvertHelper.ToDataTable((IList)li);
@@ -210,47 +210,19 @@ namespace Ebada.Scgl.Xtgl {
         public bool Save() {
             bool flag = true;
             List<string> list = new List<string>();
-            List<rRoleModul> list2 = new List<rRoleModul>();
-            List<string> wflist1 = new List<string>();
-            List<WF_Operator> wflist2 = new List<WF_Operator>();
-
+            List<rUserRole> list2 = new List<rUserRole>();
             this.getCheckList(this.treeList1.Nodes, list);
             foreach (string str in list) {
-                rRoleModul function = new rRoleModul();
+                rUserRole function = new rUserRole();
                 function.RoleID = this.m_RoleID;
-                function.Modu_ID = str;
+                function.UserID = str;
                 list2.Add(function);
-                TreeListNode td = treeList1.FindNodeByKeyID(str);
-                if (td["Description"].ToString () == "工作流")
-                {
-                    WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(str);
-                    if (wt!= null)
-                    {
-                        mRole mrl = MainHelper.PlatformSqlMap.GetOneByKey<mRole>(RoleID);
-                        WF_Operator wfop = new WF_Operator();
-                        wfop.OperatorId = Guid.NewGuid().ToString(); 
-                        wfop.OperContent = RoleID; ;
-                        wfop.Description = mrl.RoleName;
-                        wfop.OperDisplay = mrl.RoleName;
-                        wfop.WorkFlowId = wt.WorkFlowId;
-                        wfop.WorkTaskId = wt.WorkTaskId;
-                        wfop.OperType = 5;
-                        wfop.InorExclude = true;
-                        wflist2.Add(wfop);
-                        
-                    }
-                    wflist1.Add(" where WorkTaskId='" + str + "' and OperContent='" + RoleID + "'");
-                }
             }
-           
 
-          
-            SqlQueryObject item = new SqlQueryObject(SqlQueryType.Delete, "DeleterRoleModulByWhere", "where RoleID='" + this.m_RoleID + "'");
+
+
+            SqlQueryObject item = new SqlQueryObject(SqlQueryType.Delete, "DeleterUserRoleByWhere", "where RoleID='" + this.m_RoleID + "'");
             
-
-            SqlQueryObject wfitem = new SqlQueryObject(SqlQueryType.Delete, "DeleteWF_OperatorByWhere", wflist1.ToArray ());
-            SqlQueryObject wfobj3 = new SqlQueryObject(SqlQueryType.Insert, wflist2.ToArray());
-
             try {
                 List<SqlQueryObject> list3 = new List<SqlQueryObject>();
                 list3.Add(item);
@@ -260,9 +232,6 @@ namespace Ebada.Scgl.Xtgl {
                     list3.Add(obj3);
                 }
                
-
-                list3.Add(wfitem);
-                list3.Add(wfobj3);
                 MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
             } catch (Exception exception) {
                 MainHelper.ShowWarningMessageBox(exception.Message);
@@ -273,9 +242,10 @@ namespace Ebada.Scgl.Xtgl {
 
        
 
-        private void SetChecked(TreeListNodes nodes, Dictionary<string, rRoleModul> dic) {
+        private void SetChecked(TreeListNodes nodes, Dictionary<string, rUserRole> dic) {
             foreach (TreeListNode node in nodes) {
-                if (dic.ContainsKey(node["Modu_ID"].ToString())) {
+                if (dic.ContainsKey(node["UserID"].ToString()))
+                {
                     node.Checked = true;
                 }
                 if (node.HasChildren) {
@@ -293,7 +263,7 @@ namespace Ebada.Scgl.Xtgl {
         private void getCheckList(TreeListNodes nodes, IList<string> list) {
             foreach (TreeListNode node in nodes) {
                 if (node.Checked) {
-                    list.Add(node["Modu_ID"].ToString());
+                    list.Add(node["UserID"].ToString());
                 }
                 if (node.HasChildren) {
                     this.getCheckList(node.Nodes, list);
@@ -302,11 +272,12 @@ namespace Ebada.Scgl.Xtgl {
         }
 
         private void InitChecked() {
-            IList<rRoleModul> list = MainHelper.PlatformSqlMap.GetList<rRoleModul>(string.Format(" WHERE RoleID = '{0}'", this.m_RoleID));
-            Dictionary<string, rRoleModul> dic = new Dictionary<string, rRoleModul>();
-            foreach (rRoleModul function in list) {
-                if (!dic.ContainsKey(function.Modu_ID)) {
-                    dic.Add(function.Modu_ID, function);
+            IList<rUserRole> list = MainHelper.PlatformSqlMap.GetList<rUserRole>(string.Format(" WHERE RoleID = '{0}'", this.m_RoleID));
+            Dictionary<string, rUserRole> dic = new Dictionary<string, rUserRole>();
+            foreach (rUserRole function in list)
+            {
+                if (!dic.ContainsKey(function.UserID)) {
+                    dic.Add(function.UserID, function);
                 }
             }
             this.treeList1.BeginUpdate();
