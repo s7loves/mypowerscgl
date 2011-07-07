@@ -759,7 +759,7 @@ namespace Ebada.SCGL.WFlow.Engine
                     //sqlItem.AppendParameter("@workTaskId", judgeTaskId);
                     //sqlItem.AppendParameter("@WorkFlowId", workFlowInstanceId);
                     //ClientDBAgent agent = new ClientDBAgent();
-                    string tmpStr = " where  WorkFlowInsId='" + workFlowInstanceId + "' and WorkTaskId='" + judgeTaskId + "'";
+                    string tmpStr = " where  WorkFlowInsId='" + workFlowInstanceId + "' and WorkTaskId='" + judgeTaskId + "' order by EndTime desc";
                     IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceList", tmpStr);
                     if (li.Count == 0)
                     {
@@ -767,13 +767,13 @@ namespace Ebada.SCGL.WFlow.Engine
                     }
                     else
                     {
-                        DataTable dt = ConvertHelper.ToDataTable(li);
-                         
-                        if (dt == null || dt.Rows.Count == 0) result = false;
-                        foreach (DataRow dr in dt.Rows)
+                        //DataTable dt = ConvertHelper.ToDataTable(li);
+                        if (((WF_WorkTaskInstance)li[0]).Status != "3") result = false; 
+                        //if (dt == null || dt.Rows.Count == 0) result = false;
+                        //foreach (DataRow dr in dt.Rows)
                         {
-                            if (dr["Status"].ToString() != "3")
-                            { result = false; break; }
+                            //if (dr["Status"].ToString() != "3")
+                            //{ result = false; break; }
 
                         }
                     }
@@ -804,15 +804,16 @@ namespace Ebada.SCGL.WFlow.Engine
                     }
                     else
                     {
-                        DataTable dt = ConvertHelper.ToDataTable(li);
+                        //DataTable dt = ConvertHelper.ToDataTable(li);
 
-                        if (dt == null || dt.Rows.Count == 0) result = false;
-                        foreach (DataRow dr in dt.Rows)
-                        {
-                            if (dr["Status"].ToString() != "3")
-                            { result = false; break; }
+                        //if (dt == null || dt.Rows.Count == 0) result = false;
+                        //foreach (DataRow dr in dt.Rows)
+                        //{
+                        //    if (dr["Status"].ToString() != "3")
+                        //    { result = false; break; }
 
-                        }
+                        //}
+                        if (((WF_WorkTaskInstance)li[0]).Status != "3") result = false; 
                     }
                 }
                 return result;

@@ -222,12 +222,17 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@operatorInsId", operatorInsId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //agent.ExecuteNonQuery(sqlItem);
-                WF_OperatorInstance operInsta = new WF_OperatorInstance();
+                WF_OperatorInstance operInsta = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
+                if (operInsta==null) operInsta = new WF_OperatorInstance();
                 operInsta.OperatorInsId =operatorInsId;
-
+                mUser fuser = MainHelper.PlatformSqlMap.GetOneByKey<mUser>(userId);
                 operInsta.UserId = userId;
-
-                MainHelper.PlatformSqlMap.Update("UpdateWF_OperatorInstanceUserOverProByOperatorInsId",operInsta); 
+                operInsta.OperContent = userId;
+                if (fuser != null) operInsta.OperContentText = fuser.UserName;
+                operInsta.OperStatus = "1";
+                operInsta.OperDateTime=DateTime.Now ; 
+                MainHelper.PlatformSqlMap.Update<WF_OperatorInstance>(operInsta); 
+                //MainHelper.PlatformSqlMap.Update<>("UpdateWF_OperatorInstanceUserOverProByOperatorInsId",operInsta); 
             }
             catch (Exception ex)
             {

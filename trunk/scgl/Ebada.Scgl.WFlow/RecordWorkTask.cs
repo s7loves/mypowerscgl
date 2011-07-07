@@ -116,7 +116,8 @@ namespace Ebada.Scgl.WFlow
                 workins.WorkTaskId = nowtaskId;
                 workins.StartTime = DateTime.Now;
                 workins.TaskInsCaption =((WF_WorkTask)obj).TaskCaption;
-
+                MainHelper.PlatformSqlMap.Delete <WF_WorkTaskInstance>(workins);
+                workins.WorkTaskInsId = Guid.NewGuid().ToString(); 
                 //WF_Operator op = (WF_Operator)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorList", " where WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
                 IList<WF_Operator> li = MainHelper.PlatformSqlMap.GetList<WF_Operator>("SelectWF_OperatorList", " where  WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
                 if (li.Count > 0)
@@ -130,6 +131,7 @@ namespace Ebada.Scgl.WFlow
                         operins.OperContent = op.OperContent;
                         operins.OperContentText = op.OperDisplay;
                         operins.OperDateTime = DateTime.Now;
+                        operins.WorkTaskInsId = workins.WorkTaskInsId; 
                         if (strtemp != "")
                         {
                             strtemp = strtemp + "," + op.OperDisplay;
@@ -139,16 +141,17 @@ namespace Ebada.Scgl.WFlow
                             strtemp = op.OperDisplay;
                         }
 
-                            recordData.Status = newWorkTaskCap;
+                            
                         MainHelper.PlatformSqlMap.Create <WF_OperatorInstance>(operins);
 
                         
                     }
+                    recordData.Status = newWorkTaskCap;
                     strsql = "  update WF_WorkFlowInstance set nowtaskId='" + nowtaskId + "' where workflowInsid='" + workins.WorkFlowInsId + "'";
                     MainHelper.PlatformSqlMap.Update("UpdateWF_WorkFlowInstanceValue", strsql);
-                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where WorkFlowInsId='" + operins.WorkFlowInsId + "' and WorkTaskInsId='" + operins.WorkTaskInsId + "'");
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where WorkFlowInsId='" + operins.WorkFlowInsId + "' and WorkTaskInsId='" + workTaskInsId + "' ");
                     MainHelper.PlatformSqlMap.Update<LP_Record>(recordData);
-                    MainHelper.PlatformSqlMap.Update<WF_WorkTaskInstance>(workins);
+                    MainHelper.PlatformSqlMap.Create <WF_WorkTaskInstance>(workins);
                 }
                 else
                 {
@@ -455,7 +458,7 @@ namespace Ebada.Scgl.WFlow
                 }
             }
 
-            return TaskToWhoMsg = "成功提交至:" + TaskToWhoMsg + "。你已完成该任务处理,可以关闭该窗口。";
+            return TaskToWhoMsg ="该任务执行结果："+ResultMsg +",成功提交至:" + TaskToWhoMsg + "。你已完成该任务处理,可以关闭该窗口。";
         }
      
     }
