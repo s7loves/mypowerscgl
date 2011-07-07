@@ -117,7 +117,7 @@ namespace Ebada.Scgl.Lpgl {
                 this.imageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
                     new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
                 this.imageEdit1.Name = "imageEdit1";
-                this.imageEdit1.PopupFormSize = new System.Drawing.Size(1200, 600); ;
+                this.imageEdit1.PopupFormSize = new System.Drawing.Size(1200, 600); 
                 ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).EndInit();
 
                 picview = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -384,7 +384,7 @@ namespace Ebada.Scgl.Lpgl {
             }
             else
             {
-                MsgBox.ShowTipMessageBox("退回失败!");
+                MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,退回失败!");
             }
         }
 
@@ -417,7 +417,7 @@ namespace Ebada.Scgl.Lpgl {
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
             if (dt.Rows.Count > 0)
             {
-                string strmes = RecordWorkTask.RunGZPWorkFlowChange(MainHelper.User.UserID, currRecord, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString());
+                string strmes = RecordWorkTask.RunGZPWorkFlowChange(MainHelper.User.UserID, currRecord, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString(),"变更");
                 if (strmes.IndexOf("未提交至任何人") > -1)
                 {
                     MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
@@ -434,13 +434,58 @@ namespace Ebada.Scgl.Lpgl {
             }
             else
             {
-                MsgBox.ShowTipMessageBox("变更负责人失败!");
+                MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,变更负责人失败!");
             }
         }
 
         private void barSus_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (gridView1.FocusedRowHandle < 0) return;
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认 【" + dr["Number"].ToString() + "】 延期?") != DialogResult.OK)
+            {
+                return;
+            }
+            LP_Record currRecord = new LP_Record();
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
 
+                }
+            }
+            if (currRecord.Status != "终结")
+            {
+                MsgBox.ShowTipMessageBox("当前节点不能延期，延期失败!");
+                return;
+            }
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
+            if (dt.Rows.Count > 0)
+            {
+                string strmes = RecordWorkTask.RunGZPWorkFlowChange(MainHelper.User.UserID, currRecord, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString(), "延期");
+                if (strmes.IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                else
+                {
+
+
+                    InitData(parentObj.Kind);
+                    MsgBox.ShowTipMessageBox(strmes);
+
+                }
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,延期失败!");
+            }
         }
 
     }

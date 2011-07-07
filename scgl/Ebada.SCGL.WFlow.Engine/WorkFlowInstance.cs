@@ -745,8 +745,10 @@ namespace Ebada.SCGL.WFlow.Engine
                 yspan = ((WF_WorkTask)obj).iYPosition - ystrt;
             }
 
-            InitTaskMapData(workFlowId, workFlowInsId, objGraphics, sz.Height/2 - yspan - ystrt );
-            InitLinkMapData(workFlowId, workFlowInsId, objGraphics, sz.Height/2 - yspan - ystrt );
+            //InitTaskMapData(workFlowId, workFlowInsId, objGraphics, sz.Height/2 - yspan - ystrt );
+            //InitLinkMapData(workFlowId, workFlowInsId, objGraphics, sz.Height/2 - yspan - ystrt );
+            InitTaskMapData(workFlowId, workFlowInsId, objGraphics, sz.Height * 3/5 - yspan - ystrt );
+            InitLinkMapData(workFlowId, workFlowInsId, objGraphics, sz.Height*3/5 - yspan - ystrt );
             //objBitmap.Save(workFlowId + ".jpg", ImageFormat.Jpeg);
 
             return objBitmap;
