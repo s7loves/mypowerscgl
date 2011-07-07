@@ -67,6 +67,12 @@
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit10 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit11 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit12 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -87,6 +93,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -129,6 +138,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelControl21);
+            this.groupBox1.Controls.Add(this.textEdit12);
+            this.groupBox1.Controls.Add(this.labelControl20);
+            this.groupBox1.Controls.Add(this.textEdit11);
+            this.groupBox1.Controls.Add(this.labelControl19);
+            this.groupBox1.Controls.Add(this.textEdit10);
             this.groupBox1.Controls.Add(this.textEdit9);
             this.groupBox1.Controls.Add(this.labelControl18);
             this.groupBox1.Controls.Add(this.labelControl14);
@@ -186,7 +201,7 @@
             // 
             // labelControl14
             // 
-            this.labelControl14.Location = new System.Drawing.Point(249, 165);
+            this.labelControl14.Location = new System.Drawing.Point(353, 244);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(48, 14);
             this.labelControl14.TabIndex = 24;
@@ -196,7 +211,7 @@
             // 
             // labelControl16
             // 
-            this.labelControl16.Location = new System.Drawing.Point(249, 185);
+            this.labelControl16.Location = new System.Drawing.Point(353, 264);
             this.labelControl16.Name = "labelControl16";
             this.labelControl16.Size = new System.Drawing.Size(48, 14);
             this.labelControl16.TabIndex = 23;
@@ -206,7 +221,7 @@
             // 
             // labelControl17
             // 
-            this.labelControl17.Location = new System.Drawing.Point(249, 185);
+            this.labelControl17.Location = new System.Drawing.Point(375, 264);
             this.labelControl17.Name = "labelControl17";
             this.labelControl17.Size = new System.Drawing.Size(48, 14);
             this.labelControl17.TabIndex = 22;
@@ -515,6 +530,60 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // labelControl19
+            // 
+            this.labelControl19.Location = new System.Drawing.Point(249, 135);
+            this.labelControl19.Name = "labelControl19";
+            this.labelControl19.Size = new System.Drawing.Size(24, 14);
+            this.labelControl19.TabIndex = 28;
+            this.labelControl19.Text = "状态";
+            this.labelControl19.UseWaitCursor = true;
+            // 
+            // textEdit10
+            // 
+            this.textEdit10.EditValue = "";
+            this.textEdit10.Location = new System.Drawing.Point(364, 135);
+            this.textEdit10.Name = "textEdit10";
+            this.textEdit10.Properties.MaxLength = 200;
+            this.textEdit10.Size = new System.Drawing.Size(100, 21);
+            this.textEdit10.TabIndex = 27;
+            // 
+            // labelControl20
+            // 
+            this.labelControl20.Location = new System.Drawing.Point(249, 161);
+            this.labelControl20.Name = "labelControl20";
+            this.labelControl20.Size = new System.Drawing.Size(67, 14);
+            this.labelControl20.TabIndex = 30;
+            this.labelControl20.Text = "combox集合";
+            this.labelControl20.UseWaitCursor = true;
+            // 
+            // textEdit11
+            // 
+            this.textEdit11.EditValue = "";
+            this.textEdit11.Location = new System.Drawing.Point(364, 161);
+            this.textEdit11.Name = "textEdit11";
+            this.textEdit11.Properties.MaxLength = 200;
+            this.textEdit11.Size = new System.Drawing.Size(100, 21);
+            this.textEdit11.TabIndex = 29;
+            // 
+            // labelControl21
+            // 
+            this.labelControl21.Location = new System.Drawing.Point(249, 190);
+            this.labelControl21.Name = "labelControl21";
+            this.labelControl21.Size = new System.Drawing.Size(52, 14);
+            this.labelControl21.TabIndex = 32;
+            this.labelControl21.Text = "Extra字段";
+            this.labelControl21.UseWaitCursor = true;
+            // 
+            // textEdit12
+            // 
+            this.textEdit12.EditValue = "";
+            this.textEdit12.Location = new System.Drawing.Point(364, 190);
+            this.textEdit12.Name = "textEdit12";
+            this.textEdit12.Properties.MaxLength = 200;
+            this.textEdit12.Size = new System.Drawing.Size(100, 21);
+            this.textEdit12.TabIndex = 31;
+            // 
             // frmExcelModelEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -548,6 +617,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -594,6 +666,12 @@
         private DevExpress.XtraEditors.LabelControl labelControl18;
         private DevExpress.XtraEditors.TextEdit lookUpEdit4;
         private DevExpress.XtraEditors.TextEdit lookUpEdit5;
+        private DevExpress.XtraEditors.LabelControl labelControl21;
+        private DevExpress.XtraEditors.TextEdit textEdit12;
+        private DevExpress.XtraEditors.LabelControl labelControl20;
+        private DevExpress.XtraEditors.TextEdit textEdit11;
+        private DevExpress.XtraEditors.LabelControl labelControl19;
+        private DevExpress.XtraEditors.TextEdit textEdit10;
 
     }
 }

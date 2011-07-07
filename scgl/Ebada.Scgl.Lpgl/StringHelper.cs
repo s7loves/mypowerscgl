@@ -161,7 +161,7 @@ namespace Ebada.Scgl.Lpgl
         }
         public static string ReplaceEmpty(string[] arry)
         {           
-            string strNew=null;
+            string strNew="";
             for (int i = 0; i < arry.Length;i++ )
             {
                 if (!string.IsNullOrEmpty(arry[i]))

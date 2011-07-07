@@ -153,7 +153,7 @@ namespace Ebada.Scgl.Lpgl
         }
         public void InitIndex()
         {
-            templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + parentTemple.LPID +"' and Kind='" + kind + "' Order by SortID");
+            templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + parentTemple.LPID +"' and Kind='" + kind + "'  and Status = '" + parentTemple.Status + "' Order by SortID");
             //IList<LP_Temple> parentlist = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID='0' and Kind='" + kind + "'");
             //if (parentlist.Count > 0)
             //    parentTemple = parentlist[0];
@@ -441,6 +441,7 @@ namespace Ebada.Scgl.Lpgl
             string[] arrCellpos = lp.CellPos.Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+            string[] extraWord = lp.ExtraWord.Split(pchar);  
             List<int> arrCellCount = String2Int(arrtemp);            
             if (arrCellpos.Length == 1||string.IsNullOrEmpty(arrCellpos[1]))
                 ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
@@ -538,7 +539,9 @@ namespace Ebada.Scgl.Lpgl
         public void FillMutilRows(ExcelAccess ea, int i, LP_Temple lp, string str, List<int> arrCellCount, string[] arrCellPos)
         {
             StringHelper help = new StringHelper();
-            str = help.GetPlitString(str, arrCellCount[1]);
+            str = help.GetPlitString(str, arrCellCount[1]);            
+            string[] extraWord = lp.ExtraWord.Split(pchar);          
+
             string[] arrRst = str.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             int j = 0;
             for (; i < arrCellPos.Length; i++)
@@ -554,6 +557,7 @@ namespace Ebada.Scgl.Lpgl
         {
             string[] arrCellPos = lp.CellPos.Split(pchar);
             arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split(pchar);
+            string[] extraWord = lp.ExtraWord.Split(pchar);         
             IList<string> strList=new List<string>();
             if (arrCellPos.Length == 5)
             { 
@@ -578,12 +582,24 @@ namespace Ebada.Scgl.Lpgl
             {
                 strList.Add(dt.ToString());
             }
-            int i = 0;
-            foreach (string str in strList)
+           // int i = 0;
+            for (int i = 0; i < strList.Count;i++ )
             {
-                ea.SetCellValue(str, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
-                i++;
+                if (extraWord.Length>i)
+                {
+                    ea.SetCellValue(strList[i] + extraWord[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                }
+                else
+                {
+                    ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                }
+                
             }
+            //foreach (string str in strList)
+            //{
+            //    ea.SetCellValue(str, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+            //    i++;
+            //}
         }
 
         public void FillMutilRowsT(ExcelAccess ea, LP_Temple lp, string str, int cellcount, string arrCellPos)
@@ -641,8 +657,14 @@ namespace Ebada.Scgl.Lpgl
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
                      IList list = ClientHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
                     for (int i = 0; i < list.Count; i++)
-                    {
+                    {                        
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i],null));
+                    }
+                    string[] comBoxItem = lp.ComBoxItem.Split(pchar);
+                    comBoxItem = StringHelper.ReplaceEmpty(comBoxItem).Split(pchar);
+                    for (int i = 0; i < comBoxItem.Length;i++ )
+                    {
+                        ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(comBoxItem[i]);
                     }
                     if (((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Count > 0)
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;

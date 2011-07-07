@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011/6/18 9:55:47
+生成时间:2011-7-7 21:51:32
 ***********************************************/
 
 using System;
@@ -43,7 +43,10 @@ namespace Ebada.Scgl.Model
         private string _kind=String.Empty; 
         private int _sortid=0; 
         private int _isvisible=0; 
-        private string _columnname=String.Empty;   
+        private string _columnname=String.Empty; 
+        private string _status=String.Empty; 
+        private string _comboxitem=String.Empty; 
+        private string _extraword=String.Empty;   
         #endregion
   
   
@@ -354,7 +357,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 200)
-                throw new Exception("[关联触发事件，用|号分开，与AffectLPID对应，用于联动事件]长度不能大于50!");
+                throw new Exception("[关联触发事件，用|号分开，与AffectLPID对应，用于联动事件]长度不能大于200!");
                 if (_affectevent as object == null || !_affectevent.Equals(value))
                 {
                     _affectevent = value;
@@ -511,6 +514,69 @@ namespace Ebada.Scgl.Model
                 if (_columnname as object == null || !_columnname.Equals(value))
                 {
                     _columnname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：Status
+        /// 属性描述：状态
+        /// 字段信息：[Status],varchar
+        /// </summary>
+        [DisplayNameAttribute("状态")]
+        public string Status
+        {
+            get { return _status; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 200)
+                throw new Exception("[状态]长度不能大于200!");
+                if (_status as object == null || !_status.Equals(value))
+                {
+                    _status = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ComBoxItem
+        /// 属性描述：combox集合
+        /// 字段信息：[ComBoxItem],varchar
+        /// </summary>
+        [DisplayNameAttribute("combox集合")]
+        public string ComBoxItem
+        {
+            get { return _comboxitem; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 200)
+                throw new Exception("[combox集合]长度不能大于200!");
+                if (_comboxitem as object == null || !_comboxitem.Equals(value))
+                {
+                    _comboxitem = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ExtraWord
+        /// 属性描述：额外字段
+        /// 字段信息：[ExtraWord],varchar
+        /// </summary>
+        [DisplayNameAttribute("额外字段")]
+        public string ExtraWord
+        {
+            get { return _extraword; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 200)
+                throw new Exception("[额外字段]长度不能大于200!");
+                if (_extraword as object == null || !_extraword.Equals(value))
+                {
+                    _extraword = value;
                 }
             }			 
         }

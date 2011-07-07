@@ -44,9 +44,10 @@ namespace Ebada.Scgl.Lpgl
         {
             m_ColName = arrCol;
             DataTable ds = new DataTable();
-            foreach (string column in arrCol)
+            for (int i = 0; i < arrCol.Length;i++ )
             {
-                ds.Columns.Add(column);
+                ds.Columns.Add(arrCol[i]);
+                ds.Columns[i].Caption = arrCol[i];
             }
             gridControl1.DataSource = ds;
             DevExpress.XtraGrid.Views.Grid.GridView grid = gridView1;
