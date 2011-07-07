@@ -520,14 +520,14 @@ namespace Ebada.SCGL.WFlow.Engine
                  mUser fromuser = MainHelper.PlatformSqlMap.GetOneByKey<mUser>(userId);
                 WF_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
                 WF_WorkTaskInstance workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
+                WF_WorkTaskInstance preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
                 SetWorkTaskInstanceOver(userId, operins.WorkTaskInsId);
                 OperatorInstance.SetOperatorInstanceOver(userId, operatorInsId);
                 WF_WorkTaskInstance workins2 = new WF_WorkTaskInstance();
-                workins2.SuccessMsg = "退回至提交人(" + workins.OperatedDes  + ")!";
+                workins2.SuccessMsg = "退回至提交人(" + preworkins.OperatedDes + ")!";
                 workins2.WorkTaskInsId = operins.WorkTaskInsId;
                 workins2.OperatedDes = fromuser.UserName ;
                 MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId", workins2);
-                WF_WorkTaskInstance preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
                 //创建一个任务实例
                 string newTaskId = Guid.NewGuid().ToString();//新任务处理者实例Id
                 WorkTaskInstance workTaskInstance = new WorkTaskInstance();
@@ -541,7 +541,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 workTaskInstance.Create();
 
 
-                WF_OperatorInstance op = (WF_OperatorInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorInstanceList", " where WorkTaskInsId='" + workins.PreviousTaskId + "' ");
+                WF_OperatorInstance op = (WF_OperatorInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorInstanceList", " where WorkTaskInsId='" + workins.PreviousTaskId + "' and OperStatus='1' ");
                 //创建处理人实例
                 OperatorInstance operatorInstance = new OperatorInstance();
                 operatorInstance.OperatorInsId = Guid.NewGuid().ToString();

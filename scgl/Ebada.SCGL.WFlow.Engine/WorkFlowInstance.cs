@@ -899,17 +899,20 @@ namespace Ebada.SCGL.WFlow.Engine
         {
 
             DataTable dt1 = WorkFlowTask.GetTaskInstance(workflowId, workflowInsId, endTaskId);
-            if (dt1 != null && dt1.Rows.Count > 0)
+            //if (dt1 != null && dt1.Rows.Count > 0)
+            foreach (DataRow dr in dt1.Rows )
             {
-                string ptaskInsId = dt1.Rows[0]["PreviousTaskId"].ToString();//根据后端节点模板找到前一任务实例
+                string ptaskInsId = dr["PreviousTaskId"].ToString();//根据后端节点模板找到前一任务实例
                 DataTable dt2 = WorkTaskInstance.GetTaskInsTable(ptaskInsId);//根据前一任务实例找到任务模板
-                if (dt2 != null && dt2.Rows.Count > 0)
+                //if (dt2 != null && dt2.Rows.Count > 0)
+
+                foreach (DataRow dr2 in dt2.Rows)
                 {
-                    string staskid = dt2.Rows[0]["WorktaskId"].ToString();
+                    string staskid = dr2["WorktaskId"].ToString();
                     if (staskid == startTaskId)
                         return true;
                 }
-                return false;
+                //return false;
             }
             return false;
         }
