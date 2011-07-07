@@ -211,22 +211,53 @@ namespace Ebada.Scgl.Xtgl {
             bool flag = true;
             List<string> list = new List<string>();
             List<rRoleModul> list2 = new List<rRoleModul>();
+            List<string> wflist1 = new List<string>();
+            List<WF_Operator> wflist2 = new List<WF_Operator>();
+
             this.getCheckList(this.treeList1.Nodes, list);
             foreach (string str in list) {
                 rRoleModul function = new rRoleModul();
                 function.RoleID = this.m_RoleID;
                 function.Modu_ID = str;
                 list2.Add(function);
+                TreeListNode td = treeList1.FindNodeByKeyID(str);
+                if (td["Description"].ToString () == "工作流")
+                {
+                    WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(str);
+                    if (wt!= null)
+                    {
+                        mRole mrl = MainHelper.PlatformSqlMap.GetOneByKey<mRole>(RoleID);
+                        WF_Operator wfop = new WF_Operator();
+                        wfop.OperatorId = Guid.NewGuid().ToString(); 
+                        wfop.OperContent = RoleID; ;
+                        wfop.Description = mrl.RoleName;
+                        wfop.OperDisplay = mrl.RoleName;
+                        wfop.WorkFlowId = wt.WorkFlowId;
+                        wfop.WorkTaskId = wt.WorkTaskId;
+                        wfop.OperType = 5;
+                        wfop.InorExclude = true;
+                        wflist2.Add(wfop);
+                        
+                    }
+                    wflist1.Add(" where WorkTaskId='" + str + "' and OperContent='" + RoleID + "'");
+                }
             }
            
 
           
             SqlQueryObject item = new SqlQueryObject(SqlQueryType.Delete, "DeleterRoleModulByWhere", "where RoleID='" + this.m_RoleID + "'");
             SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Insert, list2.ToArray());
+
+            SqlQueryObject wfitem = new SqlQueryObject(SqlQueryType.Delete, "DeleteWF_OperatorByWhere", wflist1.ToArray ());
+            SqlQueryObject wfobj3 = new SqlQueryObject(SqlQueryType.Insert, wflist2.ToArray());
+
             try {
                 List<SqlQueryObject> list3 = new List<SqlQueryObject>();
                 list3.Add(item);
                 list3.Add(obj3);
+
+                list3.Add(wfitem);
+                list3.Add(wfobj3);
                 MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
             } catch (Exception exception) {
                 MainHelper.ShowWarningMessageBox(exception.Message);

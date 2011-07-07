@@ -261,7 +261,7 @@
             // 
             // barSus
             // 
-            this.barSus.Caption = "延迟";
+            this.barSus.Caption = "延期";
             this.barSus.Id = 16;
             this.barSus.Name = "barSus";
             this.barSus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSus_ItemClick);

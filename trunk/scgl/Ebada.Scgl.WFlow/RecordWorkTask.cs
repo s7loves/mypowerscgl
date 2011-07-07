@@ -102,13 +102,14 @@ namespace Ebada.Scgl.WFlow
             return strmes;
         }
 
-        public static string RunGZPWorkFlowChange(string userID, LP_Record recordData, string operatorInsId, string workTaskInsId)
+        public static string RunGZPWorkFlowChange(string userID, LP_Record recordData, string operatorInsId, string workTaskInsId, string newWorkTaskCap)
         {
-            string nowtaskId = "",strsql ="";
+            string nowtaskId = "",strsql ="",strtemp="";
             WF_WorkTaskInstance workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workTaskInsId);
             
             WF_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
-            object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where TaskCaption='变更'");
+           
+            object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where TaskCaption='" + newWorkTaskCap + "'");
             if (obj != null)
             {
                 nowtaskId = ((WF_WorkTask)obj).WorkTaskId;
@@ -116,23 +117,38 @@ namespace Ebada.Scgl.WFlow
                 workins.StartTime = DateTime.Now;
                 workins.TaskInsCaption =((WF_WorkTask)obj).TaskCaption;
 
-                WF_Operator op = (WF_Operator)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorList", " where WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
-                if (op != null)
+                //WF_Operator op = (WF_Operator)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorList", " where WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
+                IList<WF_Operator> li = MainHelper.PlatformSqlMap.GetList<WF_Operator>("SelectWF_OperatorList", " where  WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
+                if (li.Count > 0)
                 {
-                    operins.WorkTaskId = nowtaskId;
-                    operins.OperContent = op.OperContent;
-                    operins.OperContentText = op.OperDisplay;
-                    operins.UserId = userID;
-                    operins.OperDateTime = DateTime.Now;
+                    foreach (WF_Operator op in li)
+                    {
 
-                    recordData.Status = "变更";
 
-                    MainHelper.PlatformSqlMap.Update<LP_Record>(recordData);
-                    MainHelper.PlatformSqlMap.Update<WF_WorkTaskInstance>(workins);
-                    MainHelper.PlatformSqlMap.Update<WF_OperatorInstance>(operins);
+                        operins.OperatorInsId = Guid.NewGuid().ToString(); 
+                        operins.WorkTaskId = nowtaskId;
+                        operins.OperContent = op.OperContent;
+                        operins.OperContentText = op.OperDisplay;
+                        operins.OperDateTime = DateTime.Now;
+                        if (strtemp != "")
+                        {
+                            strtemp = strtemp + "," + op.OperDisplay;
+                        }
+                        else
+                        {
+                            strtemp = op.OperDisplay;
+                        }
 
+                            recordData.Status = newWorkTaskCap;
+                        MainHelper.PlatformSqlMap.Create <WF_OperatorInstance>(operins);
+
+                        
+                    }
                     strsql = "  update WF_WorkFlowInstance set nowtaskId='" + nowtaskId + "' where workflowInsid='" + workins.WorkFlowInsId + "'";
                     MainHelper.PlatformSqlMap.Update("UpdateWF_WorkFlowInstanceValue", strsql);
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where WorkFlowInsId='" + operins.WorkFlowInsId + "' and WorkTaskInsId='" + operins.WorkTaskInsId + "'");
+                    MainHelper.PlatformSqlMap.Update<LP_Record>(recordData);
+                    MainHelper.PlatformSqlMap.Update<WF_WorkTaskInstance>(workins);
                 }
                 else
                 {
@@ -147,7 +163,7 @@ namespace Ebada.Scgl.WFlow
 
 
 
-            return "成功提交至:" + operins.OperContentText + "。你已完成该任务处理,可以关闭该窗口。";
+            return "成功提交至:" + strtemp + "。你已完成该任务处理,可以关闭该窗口。";
         }
 
         /// <summary>

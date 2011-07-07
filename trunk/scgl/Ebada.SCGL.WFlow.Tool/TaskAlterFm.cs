@@ -337,6 +337,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnDeleteOpr.Size = new System.Drawing.Size(80, 23);
             this.btnDeleteOpr.TabIndex = 120;
             this.btnDeleteOpr.Text = "删除";
+            this.btnDeleteOpr.Visible = false;
             this.btnDeleteOpr.Click += new System.EventHandler(this.btnDeleteOpr_Click);
             // 
             // btnModifyOpr
@@ -346,6 +347,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnModifyOpr.Size = new System.Drawing.Size(80, 23);
             this.btnModifyOpr.TabIndex = 119;
             this.btnModifyOpr.Text = "修改";
+            this.btnModifyOpr.Visible = false;
             this.btnModifyOpr.Click += new System.EventHandler(this.btnModifyOpr_Click);
             // 
             // btnAddOpr
@@ -355,6 +357,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnAddOpr.Size = new System.Drawing.Size(80, 23);
             this.btnAddOpr.TabIndex = 118;
             this.btnAddOpr.Text = "增加";
+            this.btnAddOpr.Visible = false;
             this.btnAddOpr.Click += new System.EventHandler(this.btnAddOpr_Click);
             // 
             // lvOper
@@ -426,6 +429,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.cbxJumpSelf.TabIndex = 111;
             this.cbxJumpSelf.Text = "处理者是提交人则跳过本处理";
             this.cbxJumpSelf.UseVisualStyleBackColor = true;
+            this.cbxJumpSelf.Visible = false;
             // 
             // checkBox1
             // 
@@ -749,7 +753,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(6, 14);
+            this.tabControl1.Location = new System.Drawing.Point(9, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(432, 396);
@@ -880,7 +884,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnSelectCtrls.Name = "btnSelectCtrls";
             this.btnSelectCtrls.Size = new System.Drawing.Size(41, 23);
             this.btnSelectCtrls.TabIndex = 117;
-            this.btnSelectCtrls.Text = "";
             this.btnSelectCtrls.Click += new System.EventHandler(this.btnSelectCtrls_Click);
             // 
             // label1

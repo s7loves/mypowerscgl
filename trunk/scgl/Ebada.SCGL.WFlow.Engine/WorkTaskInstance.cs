@@ -523,9 +523,9 @@ namespace Ebada.SCGL.WFlow.Engine
                 SetWorkTaskInstanceOver(userId, operins.WorkTaskInsId);
                 OperatorInstance.SetOperatorInstanceOver(userId, operatorInsId);
                 WF_WorkTaskInstance workins2 = new WF_WorkTaskInstance();
-                workins2.SuccessMsg = "退回至提交人(" + fromuser.UserName  + ")!";
+                workins2.SuccessMsg = "退回至提交人(" + workins.OperatedDes  + ")!";
                 workins2.WorkTaskInsId = operins.WorkTaskInsId;
-                workins2.OperatedDes = userId;
+                workins2.OperatedDes = fromuser.UserName ;
                 MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId", workins2);
                 WF_WorkTaskInstance preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
                 //创建一个任务实例

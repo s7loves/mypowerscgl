@@ -300,6 +300,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnDeleteOpr.Size = new System.Drawing.Size(80, 23);
             this.btnDeleteOpr.TabIndex = 101;
             this.btnDeleteOpr.Text = "É¾³ý";
+            this.btnDeleteOpr.Visible = false;
             this.btnDeleteOpr.Click += new System.EventHandler(this.btnDeleteOpr_Click);
             // 
             // btnModifyOpr
@@ -309,6 +310,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnModifyOpr.Size = new System.Drawing.Size(80, 23);
             this.btnModifyOpr.TabIndex = 100;
             this.btnModifyOpr.Text = "ÐÞ¸Ä";
+            this.btnModifyOpr.Visible = false;
             this.btnModifyOpr.Click += new System.EventHandler(this.btnModifyOpr_Click);
             // 
             // label1
@@ -361,6 +363,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnAddOpr.Size = new System.Drawing.Size(80, 23);
             this.btnAddOpr.TabIndex = 99;
             this.btnAddOpr.Text = "Ôö¼Ó";
+            this.btnAddOpr.Visible = false;
             this.btnAddOpr.Click += new System.EventHandler(this.btnAddOpr_Click);
             // 
             // btnSelectCtrls
@@ -369,7 +372,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnSelectCtrls.Name = "btnSelectCtrls";
             this.btnSelectCtrls.Size = new System.Drawing.Size(41, 23);
             this.btnSelectCtrls.TabIndex = 11;
-            this.btnSelectCtrls.Text = "";
             this.btnSelectCtrls.Click += new System.EventHandler(this.btnSelectCtrls_Click);
             // 
             // label4

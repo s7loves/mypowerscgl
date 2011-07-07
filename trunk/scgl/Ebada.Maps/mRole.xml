@@ -75,23 +75,27 @@
    </select>
  
    <delete id="DeletemRole" parameterClass="mRole">
-        DELETE FROM 
-         mRole
-           WHERE
-         RoleID = #RoleID#
-
+     DELETE FROM
+     mRole
+     WHERE
+     RoleID = #RoleID#
+     
+     delete from WF_Operator where OperContent = #RoleID#
    </delete>
    
    <delete id="DeletemRoleByWhere" parameterClass="string">
      delete from mRole $value$
+
+     delete from WF_Operator where OperContent in (select RoleID  from mRole $value$)
    </delete>
    
    <delete id="DeletemRoleByKey" parameterClass="string">
-        DELETE FROM 
-         mRole
-           WHERE
-         RoleID = #RoleID#
-    
+     DELETE FROM
+     mRole
+     WHERE
+     RoleID = #RoleID#
+
+     delete from WF_Operator where OperContent = #RoleID#
    </delete>
    
    <update id="UpdatemRole" parameterClass="mRole" resultClass="int">
