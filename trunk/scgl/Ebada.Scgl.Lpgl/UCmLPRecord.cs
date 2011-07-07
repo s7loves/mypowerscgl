@@ -23,6 +23,7 @@ using Ebada.Core;
 using System.Collections;
 using Ebada.Scgl.WFlow;
 using DevExpress.XtraEditors.Repository;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Lpgl {
 
@@ -239,8 +240,11 @@ namespace Ebada.Scgl.Lpgl {
             else
             {
                 if (gridtable == null) gridtable = new DataTable();
+            }         
+            foreach (DevExpress.XtraGrid.Columns.GridColumn gc in gridView1.Columns)
+            {
+                
             }
-
             if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(Bitmap));
             int i = 0;
             for (i = 0; i < gridtable.Rows.Count; i++)
@@ -261,6 +265,7 @@ namespace Ebada.Scgl.Lpgl {
             frm.Status = "add";
             frm.Kind = ParentObj.Kind;
             frm.ParentTemple = ParentObj;
+            ParentObj.Status = "填票";
             //frm.RowData = lpr;
             //frm.CurrRecord = lpr;
             if (frm.ShowDialog() == DialogResult.OK)

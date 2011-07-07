@@ -50,7 +50,10 @@ namespace Ebada.Scgl.Lpgl {
             this.textEdit8.DataBindings.Add("EditValue", rowData, "AffectEvent");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "Birthday");
             this.checkEdit1.DataBindings.Add("EditValue", rowData, "IsVisible");
-            this.textEdit9.DataBindings.Add("EditValue", rowData, "ColumnName");  
+            this.textEdit9.DataBindings.Add("EditValue", rowData, "ColumnName");
+            this.textEdit10.DataBindings.Add("EditValue", rowData, "Status");
+            this.textEdit11.DataBindings.Add("EditValue", rowData, "ComBoxItem");
+            this.textEdit12.DataBindings.Add("EditValue", rowData, "ExtraWord");
 
         }
         #region IPopupFormEdit Members
