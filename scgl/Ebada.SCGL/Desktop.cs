@@ -137,7 +137,7 @@ namespace Ebada.SCGL
                 DataRow taskdr = taskdt.NewRow();
                 foreach (DataColumn gc in taskdt.Columns)
                 {
-                    if (gc.ColumnName == "Modu_ID" || gc.ColumnName == "butt") continue;
+                    if (gc.ColumnName == "Modu_ID" || gc.ColumnName == "butt" || gc.ColumnName == "Image") continue;
                     taskdr[gc.ColumnName] = tdr[gc.ColumnName];
                 }
                 WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(tdr["WorkFlowId"]);
