@@ -223,6 +223,7 @@ namespace Ebada.Scgl.Lpgl
                     newRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
                     newRecord.Kind = kind;
                     newRecord.Content = GetContent();
+                    if (ctrlNumber!=null)
                     newRecord.Number = ctrlNumber.Text ; 
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
@@ -260,7 +261,15 @@ namespace Ebada.Scgl.Lpgl
                     }
                     else
                         MsgBox.ShowTipMessageBox(strmes);
-                    CurrRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString()); 
+                    strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+                    if (strmes == "结束节点1")
+                    {
+                        CurrRecord.Status = "存档";
+                    }
+                    else
+                    {
+                        CurrRecord.Status = strmes;
+                    }
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record",CurrRecord);
                     rowData = null;                   
                     break;

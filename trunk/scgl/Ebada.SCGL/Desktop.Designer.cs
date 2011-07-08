@@ -34,22 +34,27 @@
             this.UsuaslPanel = new System.Windows.Forms.Panel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.splitterControl2 = new DevExpress.XtraEditors.SplitterControl();
+            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.picFresh = new DevExpress.XtraEditors.PictureEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabControl2 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.newsTabPage = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
-            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.taskTabPage = new DevExpress.XtraTab.XtraTabPage();
             this.gridTalskCon = new DevExpress.XtraGrid.GridControl();
             this.gridTalskView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.imageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -67,21 +72,24 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
+            this.panelControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFresh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).BeginInit();
             this.xtraTabControl2.SuspendLayout();
-            this.xtraTabPage2.SuspendLayout();
+            this.newsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
-            this.xtraTabPage3.SuspendLayout();
+            this.taskTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTalskCon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTalskView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -146,44 +154,42 @@
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Location = new System.Drawing.Point(2, 2);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.xtraTabControl1);
+            this.splitContainerControl1.Panel1.Controls.Add(this.panelControl3);
+            this.splitContainerControl1.Panel1.Controls.Add(this.splitterControl2);
+            this.splitContainerControl1.Panel1.Controls.Add(this.panelControl4);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.xtraTabControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(730, 265);
-            this.splitContainerControl1.SplitterPosition = 169;
+            this.splitContainerControl1.SplitterPosition = 196;
             this.splitContainerControl1.TabIndex = 9;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
-            // xtraTabControl1
+            // panelControl3
             // 
-            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(169, 265);
-            this.xtraTabControl1.TabIndex = 6;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1});
-            // 
-            // xtraTabPage1
-            // 
-            this.xtraTabPage1.Controls.Add(this.treeList1);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(162, 235);
-            this.xtraTabPage1.Text = "个人工作平台";
+            this.panelControl3.Controls.Add(this.treeList1);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl3.Location = new System.Drawing.Point(0, 28);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(196, 237);
+            this.panelControl3.TabIndex = 7;
             // 
             // treeList1
             // 
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumn1});
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.Location = new System.Drawing.Point(0, 0);
+            this.treeList1.KeyFieldName = "id";
+            this.treeList1.Location = new System.Drawing.Point(2, 2);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.Editable = false;
             this.treeList1.OptionsView.ShowColumns = false;
-            this.treeList1.Size = new System.Drawing.Size(162, 235);
-            this.treeList1.TabIndex = 0;
+            this.treeList1.OptionsView.ShowIndicator = false;
+            this.treeList1.ParentFieldName = "parentid";
+            this.treeList1.Size = new System.Drawing.Size(192, 233);
+            this.treeList1.TabIndex = 2;
+            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
+            this.treeList1.DoubleClick += new System.EventHandler(this.treeList1_DoubleClick);
             // 
             // treeListColumn1
             // 
@@ -193,26 +199,68 @@
             this.treeListColumn1.Visible = true;
             this.treeListColumn1.VisibleIndex = 0;
             // 
+            // splitterControl2
+            // 
+            this.splitterControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitterControl2.Enabled = false;
+            this.splitterControl2.Location = new System.Drawing.Point(0, 22);
+            this.splitterControl2.Name = "splitterControl2";
+            this.splitterControl2.Size = new System.Drawing.Size(196, 6);
+            this.splitterControl2.TabIndex = 6;
+            this.splitterControl2.TabStop = false;
+            // 
+            // panelControl4
+            // 
+            this.panelControl4.Controls.Add(this.picFresh);
+            this.panelControl4.Controls.Add(this.labelControl1);
+            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl4.Location = new System.Drawing.Point(0, 0);
+            this.panelControl4.Name = "panelControl4";
+            this.panelControl4.Size = new System.Drawing.Size(196, 22);
+            this.panelControl4.TabIndex = 5;
+            // 
+            // picFresh
+            // 
+            this.picFresh.Dock = System.Windows.Forms.DockStyle.Right;
+            this.picFresh.EditValue = global::Ebada.SCGL.Properties.Resources.刷新;
+            this.picFresh.Location = new System.Drawing.Point(175, 2);
+            this.picFresh.Name = "picFresh";
+            this.picFresh.Size = new System.Drawing.Size(19, 18);
+            this.picFresh.TabIndex = 3;
+            this.picFresh.Click += new System.EventHandler(this.picFresh_Click);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8F);
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Appearance.Options.UseForeColor = true;
+            this.labelControl1.Location = new System.Drawing.Point(5, 3);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(72, 13);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "个人工作平台";
+            // 
             // xtraTabControl2
             // 
             this.xtraTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl2.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl2.Name = "xtraTabControl2";
-            this.xtraTabControl2.SelectedTabPage = this.xtraTabPage2;
-            this.xtraTabControl2.Size = new System.Drawing.Size(555, 265);
+            this.xtraTabControl2.SelectedTabPage = this.newsTabPage;
+            this.xtraTabControl2.Size = new System.Drawing.Size(528, 265);
             this.xtraTabControl2.TabIndex = 8;
             this.xtraTabControl2.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage2,
-            this.xtraTabPage3});
+            this.newsTabPage,
+            this.taskTabPage});
             // 
-            // xtraTabPage2
+            // newsTabPage
             // 
-            this.xtraTabPage2.Controls.Add(this.groupControl1);
-            this.xtraTabPage2.Controls.Add(this.groupControl2);
-            this.xtraTabPage2.Controls.Add(this.groupControl4);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(548, 235);
-            this.xtraTabPage2.Text = "重要工作";
+            this.newsTabPage.Controls.Add(this.groupControl1);
+            this.newsTabPage.Controls.Add(this.groupControl2);
+            this.newsTabPage.Controls.Add(this.groupControl4);
+            this.newsTabPage.Name = "newsTabPage";
+            this.newsTabPage.Size = new System.Drawing.Size(521, 235);
+            this.newsTabPage.Text = "重要工作";
             // 
             // groupControl1
             // 
@@ -222,7 +270,7 @@
             this.groupControl1.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.groupControl1.Location = new System.Drawing.Point(3, 94);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(678, 71);
+            this.groupControl1.Size = new System.Drawing.Size(651, 71);
             this.groupControl1.TabIndex = 6;
             this.groupControl1.Text = "单位计划";
             // 
@@ -235,7 +283,7 @@
             this.groupControl2.Controls.Add(this.groupControl3);
             this.groupControl2.Location = new System.Drawing.Point(3, 3);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(678, 85);
+            this.groupControl2.Size = new System.Drawing.Size(651, 85);
             this.groupControl2.TabIndex = 5;
             this.groupControl2.Text = "单位计划";
             // 
@@ -248,7 +296,7 @@
             this.groupControl3.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.groupControl3.Location = new System.Drawing.Point(0, 91);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(678, 71);
+            this.groupControl3.Size = new System.Drawing.Size(651, 71);
             this.groupControl3.TabIndex = 4;
             this.groupControl3.Text = "周期性任务提醒";
             // 
@@ -261,16 +309,16 @@
             this.groupControl4.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.groupControl4.Location = new System.Drawing.Point(3, 171);
             this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(678, 64);
+            this.groupControl4.Size = new System.Drawing.Size(651, 64);
             this.groupControl4.TabIndex = 5;
             this.groupControl4.Text = "安全公告板";
             // 
-            // xtraTabPage3
+            // taskTabPage
             // 
-            this.xtraTabPage3.Controls.Add(this.gridTalskCon);
-            this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(548, 235);
-            this.xtraTabPage3.Text = "我的任务";
+            this.taskTabPage.Controls.Add(this.gridTalskCon);
+            this.taskTabPage.Name = "taskTabPage";
+            this.taskTabPage.Size = new System.Drawing.Size(521, 235);
+            this.taskTabPage.Text = "我的任务";
             // 
             // gridTalskCon
             // 
@@ -279,8 +327,9 @@
             this.gridTalskCon.MainView = this.gridTalskView;
             this.gridTalskCon.Name = "gridTalskCon";
             this.gridTalskCon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemHyperLinkEdit1});
-            this.gridTalskCon.Size = new System.Drawing.Size(548, 235);
+            this.repositoryItemHyperLinkEdit1,
+            this.imageEdit1});
+            this.gridTalskCon.Size = new System.Drawing.Size(521, 235);
             this.gridTalskCon.TabIndex = 0;
             this.gridTalskCon.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridTalskView,
@@ -292,6 +341,7 @@
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
+            this.gridColumn10,
             this.gridColumn9,
             this.gridColumn4,
             this.gridColumn6,
@@ -327,6 +377,23 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "流程图";
+            this.gridColumn10.ColumnEdit = this.imageEdit1;
+            this.gridColumn10.FieldName = "Image";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 3;
+            // 
+            // imageEdit1
+            // 
+            this.imageEdit1.AutoHeight = false;
+            this.imageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.imageEdit1.Name = "imageEdit1";
+            this.imageEdit1.PopupFormSize = new System.Drawing.Size(1000, 600);
+            // 
             // gridColumn9
             // 
             this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
@@ -336,7 +403,7 @@
             this.gridColumn9.FieldName = "butt";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 3;
+            this.gridColumn9.VisibleIndex = 4;
             // 
             // repositoryItemHyperLinkEdit1
             // 
@@ -426,21 +493,25 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
+            this.panelControl4.ResumeLayout(false);
+            this.panelControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFresh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).EndInit();
             this.xtraTabControl2.ResumeLayout(false);
-            this.xtraTabPage2.ResumeLayout(false);
+            this.newsTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
-            this.xtraTabPage3.ResumeLayout(false);
+            this.taskTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridTalskCon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTalskView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
@@ -459,18 +530,14 @@
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private System.Windows.Forms.Panel panel1;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private System.Windows.Forms.Panel UsuaslPanel;
-        private DevExpress.XtraTreeList.TreeList treeList1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl2;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private DevExpress.XtraTab.XtraTabPage newsTabPage;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.GroupControl groupControl4;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        private DevExpress.XtraTab.XtraTabPage taskTabPage;
         private DevExpress.XtraGrid.GridControl gridTalskCon;
         private DevExpress.XtraGrid.Views.Grid.GridView gridTalskView;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
@@ -486,5 +553,14 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.LabelControl labelWid;
+        private DevExpress.XtraEditors.SplitterControl splitterControl2;
+        private DevExpress.XtraEditors.PanelControl panelControl4;
+        private DevExpress.XtraEditors.PictureEdit picFresh;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraTreeList.TreeList treeList1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit imageEdit1;
     }
 }

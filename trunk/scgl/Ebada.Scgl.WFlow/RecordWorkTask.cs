@@ -61,8 +61,7 @@ namespace Ebada.Scgl.WFlow
         {
             DataTable dt = null;
             string command = "", workFlowId = "", workTaskId = "", flowCaption = "", workFlowInstanceId = "", workTaskInstanceId = "";
-
-
+            string strtemp = "";
             if (kind == "dzczp")
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票");
             else if (kind == "yzgzp")
@@ -97,19 +96,29 @@ namespace Ebada.Scgl.WFlow
             wpfrecord.WorkTaskInsId = workTaskInstanceId;
             if (strmes[0].IndexOf("未提交至任何人") == -1) MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
             
-            strmes[1]=RecordWorkTask.GetWorkFlowTaskCaption (workTaskInstanceId);
-
+            strtemp=RecordWorkTask.GetWorkFlowTaskCaption (workTaskInstanceId);
+            if (strtemp == "结束节点1")
+            {
+                strmes[1] = "存档";
+            }
+            else
+            {
+                strmes[1] = strtemp;
+            }
             return strmes;
         }
 
         public static string RunGZPWorkFlowChange(string userID, LP_Record recordData, string operatorInsId, string workTaskInsId, string newWorkTaskCap)
         {
             string nowtaskId = "",strsql ="",strtemp="";
+            string str1 = "未提交至任何人,请检查流程模板和组织机构配置是否正确!";
+
             WF_WorkTaskInstance workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workTaskInsId);
             
             WF_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
-           
-            object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where TaskCaption='" + newWorkTaskCap + "'");
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordData.ID  + "'");
+            if (wf.Count == 0) return str1;
+            object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where TaskCaption='" + newWorkTaskCap + "' and WorkFlowId='" + wf[0].WorkFlowId + "'  ");
             if (obj != null)
             {
                 nowtaskId = ((WF_WorkTask)obj).WorkTaskId;
@@ -155,12 +164,12 @@ namespace Ebada.Scgl.WFlow
                 }
                 else
                 {
-                    return "未提交至任何人,请检查流程模板和组织机构配置是否正确!";
+                    return str1;
                 }
             }
             else
             {
-                return "未提交至任何人,请检查流程模板和组织机构配置是否正确!";
+                return str1;
             }
 
 
@@ -371,14 +380,23 @@ namespace Ebada.Scgl.WFlow
         public static string GetWorkFlowTaskCaption( string WorkTaskInsId)
         {
             string sql = "where previoustaskid='" + WorkTaskInsId + "' and operstatus='0' order by opertype";
-
+            
             IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
             if (li.Count > 0)
             {
                 return li[0].TaskInsCaption;
             }
             else
+            {
+                sql = "where previoustaskid='" + WorkTaskInsId + "' order by opertype";
+                li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
+                if (li.Count > 0)
+                {
+                    return li[0].TaskInsCaption;
+                }
+
                 return "";
+            }
         }
         
         /// <summary>
@@ -458,7 +476,7 @@ namespace Ebada.Scgl.WFlow
                 }
             }
 
-            return TaskToWhoMsg ="该任务执行结果："+ResultMsg +",成功提交至:" + TaskToWhoMsg + "。你已完成该任务处理,可以关闭该窗口。";
+            return TaskToWhoMsg ="成功提交至:" + TaskToWhoMsg + "。已完成该任务处理,可以关闭该窗口。";
         }
      
     }
