@@ -184,6 +184,8 @@
             // 
             // AddMoudle
             // 
+            this.AddMoudle.Appearance.Font = new System.Drawing.Font("Tahoma", 8F);
+            this.AddMoudle.Appearance.Options.UseFont = true;
             this.AddMoudle.Location = new System.Drawing.Point(1, 133);
             this.AddMoudle.Name = "AddMoudle";
             this.AddMoudle.Size = new System.Drawing.Size(28, 23);
@@ -211,7 +213,6 @@
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.groupControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UsualForm";

@@ -60,6 +60,13 @@ namespace Ebada.SCGL.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap 刷新 {
+            get {
+                object obj = ResourceManager.GetObject("刷新", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap 生产管理系统top {
             get {
                 object obj = ResourceManager.GetObject("生产管理系统top", resourceCulture);

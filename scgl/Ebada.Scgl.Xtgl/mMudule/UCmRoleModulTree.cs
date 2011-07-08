@@ -108,8 +108,8 @@ namespace Ebada.Scgl.Xtgl {
                     md.ModuTypes = "hide";
                     md.ParentID = WFClassId;
                     md.Description = "工作流";
-                    list2.Add(md); 
-                    IList<WF_WorkTask> wftli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where WorkFlowId='" + wf.WorkFlowId + "'");
+                    list2.Add(md);
+                    IList<WF_WorkTask> wftli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where WorkFlowId='" + wf.WorkFlowId + "' and  OperRule='1' order by TaskTypeId");
                     foreach (WF_WorkTask wft in wftli)
                     {
                         

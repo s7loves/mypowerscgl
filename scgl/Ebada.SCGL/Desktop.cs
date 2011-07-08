@@ -11,6 +11,7 @@ using Ebada.SCGL.WFlow.Engine;
 using System.Collections;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
+using Ebada.Scgl.WFlow;
 
 namespace Ebada.SCGL
 {
@@ -120,10 +121,43 @@ namespace Ebada.SCGL
             }
 
         }
+        public void refreshTreeData()
+        {
+            DataTable workTaskdt = WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999);
+            
+            treeList1.Nodes.Clear(); 
+            DataRow dr = dt.NewRow();
+            dr["name"] = "我的任务(" + workTaskdt.Rows.Count + ")";
+            dr["id"] = 0;
+            dt.Rows.Add(dr);
+            taskdt.Rows.Clear();
+            foreach (DataRow tdr in workTaskdt.Rows)
+            {
+
+                DataRow taskdr = taskdt.NewRow();
+                foreach (DataColumn gc in taskdt.Columns)
+                {
+                    if (gc.ColumnName == "Modu_ID" || gc.ColumnName == "butt") continue;
+                    taskdr[gc.ColumnName] = tdr[gc.ColumnName];
+                }
+                WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(tdr["WorkFlowId"]);
+                taskdr["Modu_ID"] = wf.MgrUrl;
+                taskdr["butt"] = "进入";
+                taskdr["Image"] = WorkFlowInstance.WorkFlowBitmap(tdr["WorkFlowId"].ToString(), tdr["WorkFlowInsId"].ToString(), imageEdit1.PopupFormSize);
+                taskdt.Rows.Add(taskdr);
+
+                
+              
+            }
+            IniWorkFlowData(workTaskdt, 0);
+            treeList1.DataSource = dt;
+            treeList1.ExpandAll();
+            gridTalskCon.DataSource = taskdt;
+        }
         private void Desktop_Load(object sender, EventArgs e)
         {
-            string userId = MainHelper.User.UserID;
-            DataTable workTaskdt = WorkFlowInstance.WorkflowToDoWorkTasks(userId, 999);
+            
+            
             if (dt == null) dt = new DataTable();
             dt.Columns.Clear();
             dt.Rows.Clear();
@@ -143,29 +177,8 @@ namespace Ebada.SCGL
             taskdt.Columns.Add("WorkTaskId", typeof(string));
             taskdt.Columns.Add("Modu_ID", typeof(string));
             taskdt.Columns.Add("butt", typeof(string));
-
-            DataRow dr = dt.NewRow();
-            dr["name"] = "我的任务(" + workTaskdt.Rows.Count + ")";
-            dr["id"] = 0;
-            dt.Rows.Add(dr);
-            taskdt.Rows.Clear();
-            foreach (DataRow tdr in workTaskdt.Rows)
-            {
-
-                DataRow taskdr = taskdt.NewRow();
-                foreach (DataColumn  gc in taskdt.Columns)
-                {
-                    if (gc.ColumnName == "Modu_ID" || gc.ColumnName == "butt") continue;
-                    taskdr[gc.ColumnName] = tdr[gc.ColumnName];
-                }
-                WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(tdr["WorkFlowId"]);
-                taskdr["Modu_ID"] = wf.MgrUrl;
-                taskdr["butt"] = "进入";
-                taskdt.Rows.Add(taskdr);
-            }
-            IniWorkFlowData(workTaskdt, 0);
-            treeList1.DataSource = dt;
-            gridTalskCon.DataSource = taskdt;
+            taskdt.Columns.Add("Image", typeof(Bitmap));
+            refreshTreeData();
             //iniUsualCtrl();
         }
 
@@ -201,8 +214,24 @@ namespace Ebada.SCGL
 
         private void gridTalskView_ShowingEditor(object sender, CancelEventArgs e)
         {
-            if (gridTalskView.FocusedColumn.FieldName != "butt")
+            if (gridTalskView.FocusedColumn.FieldName != "butt" && gridTalskView.FocusedColumn.FieldName != "Image")
                 e.Cancel = true;
+        }
+
+        private void picFresh_Click(object sender, EventArgs e)
+        {
+            refreshTreeData();
+
+        }
+
+        private void treeList1_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
+        {
+            xtraTabControl2.SelectedTabPage =taskTabPage ;
         }
 
      

@@ -397,11 +397,6 @@ namespace Ebada.Scgl.Lpgl {
         {
             if (gridView1.FocusedRowHandle < 0) return;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
-            //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认变更 【" + dr["Number"].ToString() + "】?") != DialogResult.OK)
-            {
-                return;
-            }
             LP_Record currRecord = new LP_Record();
             foreach (DataColumn dc in gridtable.Columns)
             {
@@ -414,6 +409,17 @@ namespace Ebada.Scgl.Lpgl {
 
                 }
             }
+            if (currRecord.Kind != "yzgzp")
+            {
+                MsgBox.ShowTipMessageBox("只有一种票可以变更负责人，变更负责人失败!");
+                return;
+            }
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认变更 【" + dr["Number"].ToString() + "】?") != DialogResult.OK)
+            {
+                return;
+            }
+           
             if (currRecord.Status != "终结")
             {
                 MsgBox.ShowTipMessageBox("当前节点不能变更负责人，变更负责人失败!");
@@ -425,7 +431,7 @@ namespace Ebada.Scgl.Lpgl {
                 string strmes = RecordWorkTask.RunGZPWorkFlowChange(MainHelper.User.UserID, currRecord, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString(),"变更");
                 if (strmes.IndexOf("未提交至任何人") > -1)
                 {
-                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    MsgBox.ShowTipMessageBox("更改失败,请检查流程模板和组织机构配置是否正确!");
                     return;
                 }
                 else

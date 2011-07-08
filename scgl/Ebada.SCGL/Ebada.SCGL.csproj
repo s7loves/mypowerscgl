@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC57F2A1-D0A0-43F5-AEAB-344E92014BAE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -208,12 +208,17 @@
       <Project>{2F733548-64BA-4727-96FC-B4467B7F3D3B}</Project>
       <Name>Ebada.SCGL.WFlow.Engine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ebada.Scgl.WFlow\Ebada.Scgl.WFlow.csproj">
+      <Project>{DB517AF8-551D-4C08-83BE-69D803C89173}</Project>
+      <Name>Ebada.Scgl.WFlow</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\生产管理系统top.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="3d_software.ico" />
+    <None Include="Resources\刷新2.png" />
     <None Include="Resources\设置副本.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
