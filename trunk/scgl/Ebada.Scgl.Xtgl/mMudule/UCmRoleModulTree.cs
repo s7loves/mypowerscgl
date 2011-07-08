@@ -211,7 +211,7 @@ namespace Ebada.Scgl.Xtgl {
             bool flag = true;
             List<string> list = new List<string>();
             List<rRoleModul> list2 = new List<rRoleModul>();
-            List<string> wflist1 = new List<string>();
+            //List<string> wflist1 = new List<string>();
             List<WF_Operator> wflist2 = new List<WF_Operator>();
 
             this.getCheckList(this.treeList1.Nodes, list);
@@ -239,17 +239,17 @@ namespace Ebada.Scgl.Xtgl {
                         wflist2.Add(wfop);
                         
                     }
-                    wflist1.Add(" where WorkTaskId='" + str + "' and OperContent='" + RoleID + "'");
+                    //wflist1.Add(" where WorkTaskId='" + str + "' and OperContent='" + RoleID + "'");
                 }
             }
            
 
           
             SqlQueryObject item = new SqlQueryObject(SqlQueryType.Delete, "DeleterRoleModulByWhere", "where RoleID='" + this.m_RoleID + "'");
-            
 
-            SqlQueryObject wfitem = new SqlQueryObject(SqlQueryType.Delete, "DeleteWF_OperatorByWhere", wflist1.ToArray ());
-            SqlQueryObject wfobj3 = new SqlQueryObject(SqlQueryType.Insert, wflist2.ToArray());
+
+            SqlQueryObject wfitem = new SqlQueryObject(SqlQueryType.Delete, "DeleteWF_OperatorByWhere", "where OperContent='" + this.m_RoleID + "'");
+           
 
             try {
                 List<SqlQueryObject> list3 = new List<SqlQueryObject>();
@@ -262,7 +262,11 @@ namespace Ebada.Scgl.Xtgl {
                
 
                 list3.Add(wfitem);
-                list3.Add(wfobj3);
+                if (wflist2.Count > 0)
+                {
+                    SqlQueryObject wfobj3 = new SqlQueryObject(SqlQueryType.Insert, wflist2.ToArray());
+                    list3.Add(wfobj3);
+                }
                 MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
             } catch (Exception exception) {
                 MainHelper.ShowWarningMessageBox(exception.Message);
