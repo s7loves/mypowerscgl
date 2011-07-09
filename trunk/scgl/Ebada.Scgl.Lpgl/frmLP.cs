@@ -31,6 +31,7 @@ namespace Ebada.Scgl.Lpgl
         private string kind,status;
         private string plitchar = "|";
         private char pchar = '|';
+        private char pcomboxchar = '，';
         private string strNumber = "";
         private Control ctrlNumber = null;
 
@@ -669,7 +670,7 @@ namespace Ebada.Scgl.Lpgl
                     {                        
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i],null));
                     }
-                    string[] comBoxItem = lp.ComBoxItem.Split(pchar);
+                    string[] comBoxItem = lp.ComBoxItem.Split(pcomboxchar);
                     comBoxItem = StringHelper.ReplaceEmpty(comBoxItem).Split(pchar);
                     for (int i = 0; i < comBoxItem.Length;i++ )
                     {
@@ -685,7 +686,7 @@ namespace Ebada.Scgl.Lpgl
                 case "DevExpress.XtraEditors.MemoEdit":
                     break;
                 case "uc_gridcontrol":
-                    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[]{pchar},StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar));
+                    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[]{pchar},StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar),lp.ComBoxItem.Split(pchar));
                     break;
             }
             if (lp.CellName == "单位")
@@ -751,7 +752,8 @@ namespace Ebada.Scgl.Lpgl
             LP_Temple lp = (LP_Temple)ctrl.Tag;
             if (lp.AffectLPID != null && lp.AffectLPID != "")
             {
-                string[] arrLPID = lp.AffectLPID.Split(pchar);                
+                string[] arrLPID = lp.AffectLPID.Split(pchar);
+                arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
                 string[] arrEvent = lp.AffectEvent.Split(pchar);
                 for (int i = 0; i < arrLPID.Length; i++)
                 {                   

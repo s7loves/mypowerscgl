@@ -31,6 +31,12 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit12 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit11 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit10 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit9 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
@@ -40,7 +46,6 @@
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit8 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
@@ -63,24 +68,21 @@
             this.textEdit7 = new DevExpress.XtraEditors.TextEdit();
             this.lookUpEdit4 = new DevExpress.XtraEditors.TextEdit();
             this.lookUpEdit5 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit8 = new DevExpress.XtraEditors.TextEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit10 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit11 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit12 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
@@ -91,11 +93,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -153,7 +153,6 @@
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
             this.groupBox1.Controls.Add(this.lookUpEdit1);
             this.groupBox1.Controls.Add(this.labelControl12);
-            this.groupBox1.Controls.Add(this.textEdit8);
             this.groupBox1.Controls.Add(this.labelControl11);
             this.groupBox1.Controls.Add(this.labelControl10);
             this.groupBox1.Controls.Add(this.checkEdit1);
@@ -176,12 +175,66 @@
             this.groupBox1.Controls.Add(this.textEdit7);
             this.groupBox1.Controls.Add(this.lookUpEdit4);
             this.groupBox1.Controls.Add(this.lookUpEdit5);
+            this.groupBox1.Controls.Add(this.textEdit8);
             this.groupBox1.Location = new System.Drawing.Point(16, 39);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(498, 286);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单元格信息";
+            // 
+            // labelControl21
+            // 
+            this.labelControl21.Location = new System.Drawing.Point(249, 190);
+            this.labelControl21.Name = "labelControl21";
+            this.labelControl21.Size = new System.Drawing.Size(52, 14);
+            this.labelControl21.TabIndex = 32;
+            this.labelControl21.Text = "Extra字段";
+            this.labelControl21.UseWaitCursor = true;
+            // 
+            // textEdit12
+            // 
+            this.textEdit12.EditValue = "";
+            this.textEdit12.Location = new System.Drawing.Point(364, 190);
+            this.textEdit12.Name = "textEdit12";
+            this.textEdit12.Properties.MaxLength = 200;
+            this.textEdit12.Size = new System.Drawing.Size(100, 21);
+            this.textEdit12.TabIndex = 31;
+            // 
+            // labelControl20
+            // 
+            this.labelControl20.Location = new System.Drawing.Point(249, 161);
+            this.labelControl20.Name = "labelControl20";
+            this.labelControl20.Size = new System.Drawing.Size(67, 14);
+            this.labelControl20.TabIndex = 30;
+            this.labelControl20.Text = "combox集合";
+            this.labelControl20.UseWaitCursor = true;
+            // 
+            // textEdit11
+            // 
+            this.textEdit11.EditValue = "";
+            this.textEdit11.Location = new System.Drawing.Point(364, 161);
+            this.textEdit11.Name = "textEdit11";
+            this.textEdit11.Size = new System.Drawing.Size(100, 21);
+            this.textEdit11.TabIndex = 29;
+            // 
+            // labelControl19
+            // 
+            this.labelControl19.Location = new System.Drawing.Point(249, 135);
+            this.labelControl19.Name = "labelControl19";
+            this.labelControl19.Size = new System.Drawing.Size(24, 14);
+            this.labelControl19.TabIndex = 28;
+            this.labelControl19.Text = "状态";
+            this.labelControl19.UseWaitCursor = true;
+            // 
+            // textEdit10
+            // 
+            this.textEdit10.EditValue = "";
+            this.textEdit10.Location = new System.Drawing.Point(364, 135);
+            this.textEdit10.Name = "textEdit10";
+            this.textEdit10.Properties.MaxLength = 200;
+            this.textEdit10.Size = new System.Drawing.Size(100, 21);
+            this.textEdit10.TabIndex = 27;
             // 
             // textEdit9
             // 
@@ -267,15 +320,6 @@
             this.labelControl12.TabIndex = 11;
             this.labelControl12.Text = "关联触发事件";
             this.labelControl12.UseWaitCursor = true;
-            // 
-            // textEdit8
-            // 
-            this.textEdit8.EditValue = "";
-            this.textEdit8.Location = new System.Drawing.Point(364, 84);
-            this.textEdit8.Name = "textEdit8";
-            this.textEdit8.Properties.MaxLength = 200;
-            this.textEdit8.Size = new System.Drawing.Size(100, 21);
-            this.textEdit8.TabIndex = 10;
             // 
             // labelControl11
             // 
@@ -491,6 +535,14 @@
             this.lookUpEdit5.Size = new System.Drawing.Size(100, 21);
             this.lookUpEdit5.TabIndex = 16;
             // 
+            // textEdit8
+            // 
+            this.textEdit8.EditValue = "";
+            this.textEdit8.Location = new System.Drawing.Point(364, 81);
+            this.textEdit8.Name = "textEdit8";
+            this.textEdit8.Size = new System.Drawing.Size(100, 21);
+            this.textEdit8.TabIndex = 10;
+            // 
             // dateEdit1
             // 
             this.dateEdit1.EditValue = null;
@@ -530,60 +582,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // labelControl19
-            // 
-            this.labelControl19.Location = new System.Drawing.Point(249, 135);
-            this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(24, 14);
-            this.labelControl19.TabIndex = 28;
-            this.labelControl19.Text = "状态";
-            this.labelControl19.UseWaitCursor = true;
-            // 
-            // textEdit10
-            // 
-            this.textEdit10.EditValue = "";
-            this.textEdit10.Location = new System.Drawing.Point(364, 135);
-            this.textEdit10.Name = "textEdit10";
-            this.textEdit10.Properties.MaxLength = 200;
-            this.textEdit10.Size = new System.Drawing.Size(100, 21);
-            this.textEdit10.TabIndex = 27;
-            // 
-            // labelControl20
-            // 
-            this.labelControl20.Location = new System.Drawing.Point(249, 161);
-            this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(67, 14);
-            this.labelControl20.TabIndex = 30;
-            this.labelControl20.Text = "combox集合";
-            this.labelControl20.UseWaitCursor = true;
-            // 
-            // textEdit11
-            // 
-            this.textEdit11.EditValue = "";
-            this.textEdit11.Location = new System.Drawing.Point(364, 161);
-            this.textEdit11.Name = "textEdit11";
-            this.textEdit11.Properties.MaxLength = 200;
-            this.textEdit11.Size = new System.Drawing.Size(100, 21);
-            this.textEdit11.TabIndex = 29;
-            // 
-            // labelControl21
-            // 
-            this.labelControl21.Location = new System.Drawing.Point(249, 190);
-            this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(52, 14);
-            this.labelControl21.TabIndex = 32;
-            this.labelControl21.Text = "Extra字段";
-            this.labelControl21.UseWaitCursor = true;
-            // 
-            // textEdit12
-            // 
-            this.textEdit12.EditValue = "";
-            this.textEdit12.Location = new System.Drawing.Point(364, 190);
-            this.textEdit12.Name = "textEdit12";
-            this.textEdit12.Properties.MaxLength = 200;
-            this.textEdit12.Size = new System.Drawing.Size(100, 21);
-            this.textEdit12.TabIndex = 31;
-            // 
             // frmExcelModelEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -600,11 +598,13 @@
             this.groupControlOrg.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
@@ -615,11 +615,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -651,7 +649,6 @@
         private DevExpress.XtraEditors.TextEdit textEdit4;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.TextEdit textEdit8;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
@@ -672,6 +669,7 @@
         private DevExpress.XtraEditors.TextEdit textEdit11;
         private DevExpress.XtraEditors.LabelControl labelControl19;
         private DevExpress.XtraEditors.TextEdit textEdit10;
+        private DevExpress.XtraEditors.TextEdit textEdit8;
 
     }
 }
