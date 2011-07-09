@@ -84,9 +84,11 @@
    </delete>
    
    <delete id="DeletemRoleByWhere" parameterClass="string">
+     delete from WF_Operator where OperContent in (select RoleID  from mRole $value$)
+     
      delete from mRole $value$
 
-     delete from WF_Operator where OperContent in (select RoleID  from mRole $value$)
+
    </delete>
    
    <delete id="DeletemRoleByKey" parameterClass="string">
@@ -99,19 +101,20 @@
    </delete>
    
    <update id="UpdatemRole" parameterClass="mRole" resultClass="int">
-          UPDATE mRole
-           SET
-             [RoleCode]=#RoleCode#,
-             [RoleName]=#RoleName#,
-             [RoleType]=#RoleType#,
-             [C1]=#C1#,
-             [C2]=#C2#,
-             [C3]=#C3#,
-             [C4]=#C4#,
-             [C5]=#C5#
-            WHERE 
-              RoleID = #RoleID#
+     UPDATE mRole
+     SET
+     [RoleCode]=#RoleCode#,
+     [RoleName]=#RoleName#,
+     [RoleType]=#RoleType#,
+     [C1]=#C1#,
+     [C2]=#C2#,
+     [C3]=#C3#,
+     [C4]=#C4#,
+     [C5]=#C5#
+     WHERE
+     RoleID = #RoleID#
 
+     UPDATE  WF_Operator set Description=(select RoleName  from mRole where RoleID = #RoleID#), OperDisplay=Description where OperContent = #RoleID#
    </update>
   
    <insert id="InsertmRole" parameterClass="mRole">

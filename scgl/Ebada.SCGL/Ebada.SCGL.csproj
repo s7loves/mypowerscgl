@@ -218,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="3d_software.ico" />
+    <Content Include="Resources\刷新.png" />
     <None Include="Resources\设置副本.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
