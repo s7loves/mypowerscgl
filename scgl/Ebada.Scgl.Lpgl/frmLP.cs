@@ -111,6 +111,25 @@ namespace Ebada.Scgl.Lpgl
 
             }
         }
+       /// <summary>
+        ///设置保护工作表
+       /// </summary>
+        private void LockExcel()
+        {
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
+            xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
+            
+        }
+        /// <summary>
+        /// 去保护工作表
+        /// </summary>
+        private void unLockExcel()
+        {
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
+            xx.Unprotect("MyPassword");
+        }
         private void LPFrm_Load(object sender, EventArgs e)
         {
             //InitializeComponent();
@@ -128,6 +147,8 @@ namespace Ebada.Scgl.Lpgl
                 this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;               
                 LoadContent();
             }
+            //保护工作表
+            LockExcel();
         }
 
         protected override void OnShown(EventArgs e)
@@ -434,6 +455,8 @@ namespace Ebada.Scgl.Lpgl
         }
         void ctrl_Leave(object sender, EventArgs e)
         {
+             
+            unLockExcel();
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
             string str = (sender as Control).Text;
             if (dsoFramerWordControl1.MyExcel==null)
@@ -488,7 +511,7 @@ namespace Ebada.Scgl.Lpgl
                 }
                 str = help.GetPlitString(str, arrCellCount[1]);
                 FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
-
+               
             }
             if (lp.CellName == "单位")
             {
@@ -526,6 +549,8 @@ namespace Ebada.Scgl.Lpgl
                 ctrlNumber.Text = strNumber;
                 ContentChanged(ctrlNumber);
             }
+
+            LockExcel();
         }
 
         public void FillTable(ExcelAccess ea, LP_Temple lp, string[] content)
