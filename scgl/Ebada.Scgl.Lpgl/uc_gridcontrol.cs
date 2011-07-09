@@ -13,6 +13,7 @@ namespace Ebada.Scgl.Lpgl
 {
     public partial class uc_gridcontrol : UserControl
     {
+        private char pcomboxitem = '，';
         private IList<DevExpress.XtraEditors.Repository.RepositoryItemComboBox> colctrllist;
         string[] m_ColName;
         public IList<DevExpress.XtraEditors.Repository.RepositoryItemComboBox> colCtrlList
@@ -64,14 +65,15 @@ namespace Ebada.Scgl.Lpgl
             }
         }
 
-        public void InitData(string[] sql,string[] sqlColName)
+        public void InitData(string[] sql,string[] sqlColName,string[] comBoxItem)
         {
-            if (sql.Length != 0)
+
+            int k = 0;
+            foreach (DevExpress.XtraEditors.Repository.RepositoryItemComboBox combox in colctrllist)
             {
-                int k = 0;
-                foreach (DevExpress.XtraEditors.Repository.RepositoryItemComboBox combox in colctrllist)
+                combox.Items.Clear();
+                if (sql.Length != 0)
                 {
-                    combox.Items.Clear();
                     if (sql[k] != "")
                     {
                         IList rstlist = MainHelper.PlatformSqlMap.GetList(SplitSQL(sql[k])[0], SplitSQL(sql[k])[1]);
@@ -80,9 +82,21 @@ namespace Ebada.Scgl.Lpgl
                             combox.Items.Add(rstlist[i].GetType().GetProperty(sqlColName[k]).GetValue(rstlist[i], null));
                         }
                     }
-                    k++;
                 }
+                if (comBoxItem.Length>k)
+                {
+                    string[] comItem = comBoxItem[k].Split(pcomboxitem);
+                    for (int i = 0; i < comItem.Length;i++ )
+                    {
+                        if (comItem[i]!="")
+                        {
+                            combox.Items.Add(comItem[i]);
+                        }
+                    }
+                }
+                k++;
             }
+           
         }
 
         public string[] SplitSQL(string sql)

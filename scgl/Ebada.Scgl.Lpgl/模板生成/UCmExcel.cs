@@ -158,14 +158,5 @@ namespace Ebada.Scgl.Lpgl {
             }
         }
 
-        private void btAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
     }
 }

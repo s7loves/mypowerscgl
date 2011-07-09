@@ -356,7 +356,7 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 200)
+                if( value.ToString().Length > 800)
                 throw new Exception("[关联触发事件，用|号分开，与AffectLPID对应，用于联动事件]长度不能大于200!");
                 if (_affectevent as object == null || !_affectevent.Equals(value))
                 {
@@ -551,8 +551,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 200)
-                throw new Exception("[combox集合]长度不能大于200!");
+                if( value.ToString().Length > 500)
+                throw new Exception("[combox集合]长度不能大于500!");
                 if (_comboxitem as object == null || !_comboxitem.Equals(value))
                 {
                     _comboxitem = value;
