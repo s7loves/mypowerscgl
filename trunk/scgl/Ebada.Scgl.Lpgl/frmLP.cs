@@ -661,20 +661,24 @@ namespace Ebada.Scgl.Lpgl
                     }
                     break;
                 case "DevExpress.XtraEditors.ComboBoxEdit":
-                    ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();
-                    if (sqlSentence == "")
-                        break;
+                    ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();     
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-                     IList list = ClientHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
-                    for (int i = 0; i < list.Count; i++)
-                    {                        
-                        ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i],null));
+                    if (sqlSentence!="")
+                    {
+                        IList list = ClientHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i], null));
+                        }
                     }
                     string[] comBoxItem = lp.ComBoxItem.Split(pcomboxchar);
                     comBoxItem = StringHelper.ReplaceEmpty(comBoxItem).Split(pchar);
                     for (int i = 0; i < comBoxItem.Length;i++ )
                     {
-                        ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(comBoxItem[i]);
+                        if (comBoxItem[i]!="")
+                        {
+                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(comBoxItem[i]);
+                        }                        
                     }
                     if (((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Count > 0)
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;
@@ -749,21 +753,29 @@ namespace Ebada.Scgl.Lpgl
 
         public void RelateEvent(Control ctrl)
         {
-            LP_Temple lp = (LP_Temple)ctrl.Tag;
-            if (lp.AffectLPID != null && lp.AffectLPID != "")
+            try
             {
-                string[] arrLPID = lp.AffectLPID.Split(pchar);
-                arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
-                string[] arrEvent = lp.AffectEvent.Split(pchar);
-                for (int i = 0; i < arrLPID.Length; i++)
-                {                   
-                    if (string.IsNullOrEmpty(arrLPID[i])||string.IsNullOrEmpty(arrEvent[i]))
+                LP_Temple lp = (LP_Temple)ctrl.Tag;
+                if (lp.AffectLPID != null && lp.AffectLPID != "")
+                {
+                    string[] arrLPID = lp.AffectLPID.Split(pchar);
+                    arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
+                    string[] arrEvent = lp.AffectEvent.Split(pchar);
+                    for (int i = 0; i < arrLPID.Length; i++)
                     {
-                        continue;
+                        if (string.IsNullOrEmpty(arrLPID[i]) || string.IsNullOrEmpty(arrEvent[i]))
+                        {
+                            continue;
+                        }
+                        ctrl.GetType().GetEvent(arrEvent[i]).AddEventHandler(ctrl, new EventHandler(TriggerRelateEvent));
                     }
-                    ctrl.GetType().GetEvent(arrEvent[i]).AddEventHandler(ctrl, new EventHandler(TriggerRelateEvent));
                 }
             }
+            catch (System.Exception e)
+            {
+            	
+            }
+
         }
 
         public void TriggerRelateEvent(object sender, EventArgs e)
