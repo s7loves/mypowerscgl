@@ -92,9 +92,9 @@ namespace Ebada.Scgl.Lpgl {
             comboBoxEdit1.Properties.Items.Add("table");
             comboBoxEdit1.Properties.Items.Add("enter");
 
-            comboBoxEdit2.Properties.Items.Clear();
-            ICollection col3 = Ebada.Scgl.Core.ComboBoxHelper.GetTables();
-            comboBoxEdit2.Properties.Items.AddRange(col3);
+            //comboBoxEdit2.Properties.Items.Clear();
+            //ICollection col3 = Ebada.Scgl.Core.ComboBoxHelper.GetTables();
+            //comboBoxEdit2.Properties.Items.AddRange(col3);
 
             //IList<LP_Temple> listCellPos = ClientHelper.PlatformSqlMap.GetList<LP_Temple>(" WHERE parentid = '" + UCmExcel.GetParentID() + "'");
          
