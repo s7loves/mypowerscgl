@@ -175,7 +175,7 @@ namespace Ebada.Scgl.Lpgl
         }
         public void InitIndex()
         {
-            templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + parentTemple.LPID +"' and Kind='" + kind + "'  and Status = '" + parentTemple.Status + "' Order by SortID");
+            templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + parentTemple.LPID +"' and Kind='" + kind + "' Order by SortID");
             //IList<LP_Temple> parentlist = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID='0' and Kind='" + kind + "'");
             //if (parentlist.Count > 0)
             //    parentTemple = parentlist[0];
@@ -190,22 +190,32 @@ namespace Ebada.Scgl.Lpgl
             int index = 0;
             foreach (LP_Temple lp in templeList)
             {
+                bool flag = (lp.Status == CurrRecord.Status);
                 Label label = new Label();
                 label.Text = lp.CellName;
                 //string[] location = lp.CtrlLocation.Split(',');
                 string[] size = lp.CtrlSize.Split(',');
                 label.Location = new Point(currentPosX, currentPosY);
                 label.Size = new Size(MaxWordWidth, 14);
-                currentPosY += 20;
+                label.Visible = flag;
+                if (flag)
+                {
+                    currentPosY += 20;
+                }                
                 Control ctrl ;
+                
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
                     ctrl = new uc_gridcontrol();
                 else
                     ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
                 ctrl.Location = new Point(currentPosX, currentPosY);
                 ctrl.Size = new Size(int.Parse(size[0]), int.Parse(size[1]));
-                currentPosY += int.Parse(size[1]) + 10; 
+                if (flag)
+                {
+                    currentPosY += int.Parse(size[1]) + 10; 
+                }                
                 ctrl.Leave += new EventHandler(ctrl_Leave);
+                ctrl.Visible = flag;
                 ctrl.Tag = lp;
                 ctrl.TabIndex = index;
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
@@ -426,7 +436,7 @@ namespace Ebada.Scgl.Lpgl
                     {
                         if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]))
                         {
-                            string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
+                            string strNew = str.Substring(0, (str.Length>0?str.Length:1)- 1) + (j + 1).ToString();
                             ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);                            
                         }
                     }
@@ -536,18 +546,19 @@ namespace Ebada.Scgl.Lpgl
                             strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                             break;
                     }
+                    IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
+                    if (kind == "yzgzp")
+                    {
+                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                    }
+                    else
+                    {
+                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                    }
+                    ctrlNumber.Text = strNumber;
+                    ContentChanged(ctrlNumber);
                 }
-                IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
-                if (kind == "yzgzp")
-                {
-                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
-                }
-                else
-                {
-                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
-                }
-                ctrlNumber.Text = strNumber;
-                ContentChanged(ctrlNumber);
+
             }
 
             LockExcel();
@@ -672,6 +683,7 @@ namespace Ebada.Scgl.Lpgl
         public void InitCtrlData(Control ctrl, string sqlSentence)
         {
             LP_Temple lp = (LP_Temple)ctrl.Tag;
+            bool flag = (lp.Status == CurrRecord.Status);
             string ctrltype = "";
             if (lp.CtrlType.IndexOf(',') == -1)
                 ctrltype = lp.CtrlType;
@@ -706,11 +718,54 @@ namespace Ebada.Scgl.Lpgl
                         }                        
                     }
                     if (((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Count > 0)
+                    {
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;
+                        ContentChanged(ctrl);
+                        if (lp.CellName == "单位")
+                        {
+                            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + ctrl.Text + "'");
+                            if (list.Count > 0)
+                            {
+                                switch (kind)
+                                {
+                                    case "yzgzp":
+                                        strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                                        break;
+                                    case "ezgzp":
+                                        strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                                        break;
+                                    case "dzczp":
+                                        strNumber = "BJ" + System.DateTime.Now.Year.ToString();
+                                        break;
+                                    case "xlqxp":
+                                        strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
+                                        break;
+                                    default:
+                                        strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                                        break;
+                                }
+                                IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
+                                if (kind == "yzgzp")
+                                {
+                                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                                }
+                                else
+                                {
+                                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                                }
+                            }
+                        }                        
+                        ctrlNumber.Text = strNumber;
+                        ContentChanged(ctrlNumber);
+                    }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
                     ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    if (flag)
+                    {
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                        ContentChanged(ctrl);
+                    }
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
                     break;
@@ -718,42 +773,7 @@ namespace Ebada.Scgl.Lpgl
                     ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[]{pchar},StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar),lp.ComBoxItem.Split(pchar));
                     break;
             }
-            if (lp.CellName == "单位")
-            {
-                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + ctrl.Text + "'");
-                if (list.Count > 0)
-                {
-                    switch (kind)
-                    {
-                        case "yzgzp":
-                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
-                            break;
-                        case "ezgzp":
-                            strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
-                            break;
-                        case "dzczp":
-                            strNumber = "BJ" + System.DateTime.Now.Year.ToString();
-                            break;
-                        case "xlqxp":
-                            strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
-                            break;
-                        default:
-                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
-                            break;
-                    }
-                }
-                IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
-                if (kind == "yzgzp")
-                {
-                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
-                }
-                else
-                {
-                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
-                }
-
-            }
-            ContentChanged(ctrl);
+           
         }
 
         public int CalcWidth()

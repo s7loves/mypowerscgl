@@ -39,11 +39,18 @@ namespace Ebada.Scgl.Lpgl {
             gridViewOperation = new GridViewOperation<LP_Temple>(gridControl1, gridView1, barManager1, new frmExcelModelEdit());
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeAdd);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<LP_Temple>(gridViewOperation_AfterAdd);
             gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeInsert);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeUpdate);
             initColumns();
         }
+
+        void gridViewOperation_AfterAdd(LP_Temple obj)
+        {
+            parentID = ParentObj.LPID;
+        }
+
 
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<LP_Temple> e) {
             //if (e.Value.Password.Length <= 12) {

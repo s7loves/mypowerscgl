@@ -265,9 +265,9 @@ namespace Ebada.Scgl.Lpgl {
             frm.Status = "add";
             frm.Kind = ParentObj.Kind;
             frm.ParentTemple = ParentObj;
-            ParentObj.Status = "填票";
+            lpr.Status = "填票";
             //frm.RowData = lpr;
-            //frm.CurrRecord = lpr;
+            frm.CurrRecord = lpr;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 InitData(ParentObj.Kind);
@@ -284,7 +284,7 @@ namespace Ebada.Scgl.Lpgl {
             frmLP frm = new frmLP();
             frm.Status = "edit";
             frm.ParentTemple = ParentObj;
-            frm.Kind = ParentObj.Kind;
+            frm.Kind = ParentObj.Kind;         
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
             foreach (DataColumn dc in gridtable.Columns)
