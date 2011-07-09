@@ -49,9 +49,7 @@ namespace Ebada.Scgl.Lpgl
             {
                 ds.Columns.Add(arrCol[i]);
                 ds.Columns[i].Caption = arrCol[i];
-            }
-            DataRow dr = ds.NewRow();
-            ds.Rows.Add(dr);
+            }    
             gridControl1.DataSource = ds;
             DevExpress.XtraGrid.Views.Grid.GridView grid = gridView1;
             grid.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
