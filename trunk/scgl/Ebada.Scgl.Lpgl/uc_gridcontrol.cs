@@ -50,19 +50,21 @@ namespace Ebada.Scgl.Lpgl
                 ds.Columns.Add(arrCol[i]);
                 ds.Columns[i].Caption = arrCol[i];
             }
+            DataRow dr = ds.NewRow();
+            ds.Rows.Add(dr);
             gridControl1.DataSource = ds;
             DevExpress.XtraGrid.Views.Grid.GridView grid = gridView1;
             grid.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            grid.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
+            grid.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;           
             grid.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            grid.OptionsView.ShowGroupPanel = false;
+            grid.OptionsView.ShowGroupPanel = false;            
             for (int i = 0; i < grid.Columns.Count; i++)
             {
                 DevExpress.XtraEditors.Repository.RepositoryItemComboBox lue1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
                 grid.Columns[i].ColumnEdit = lue1;
                 lue1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
                 colctrllist.Add(lue1);
-            }
+            }           
         }
 
         public void InitData(string[] sql,string[] sqlColName,string[] comBoxItem)
@@ -181,5 +183,6 @@ namespace Ebada.Scgl.Lpgl
             dtReturn.ReadXml(trDataTable);
             return dtReturn;
         }
+
     }
 }
