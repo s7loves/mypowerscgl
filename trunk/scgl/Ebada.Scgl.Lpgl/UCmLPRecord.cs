@@ -499,5 +499,50 @@ namespace Ebada.Scgl.Lpgl {
             }
         }
 
+        private void barReExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle < 0) return;
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            LP_Record currRecord = new LP_Record();
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+
+                }
+            }
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = "";
+            saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                fname = saveFileDialog1.FileName;
+                try
+                {
+                    DSOFramerControl ds1 = new DSOFramerControl();
+                    ds1.FileDataGzip = currRecord.DocContent ;
+                    //ds1.FileOpen(ds1.FileName);
+                    ds1.FileSave(fname,true);
+                    ds1.FileClose();
+                    if (MsgBox.ShowAskMessageBox ("导出成功，是否打开该文档？") != DialogResult.OK )
+                        return;
+
+                    System.Diagnostics.Process.Start(fname);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message ); 
+                    MsgBox.ShowWarningMessageBox ("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
+                    return;
+                }
+            }
+
+
+        }
+
     }
 }
