@@ -17,6 +17,7 @@ namespace Ebada.Scgl.Lpgl
         private char pcomboxitem = '，';
         private IList<DevExpress.XtraEditors.Repository.RepositoryItemComboBox> colctrllist;
         string[] m_ColName;
+        private bool gridFlag = false;
         public IList<DevExpress.XtraEditors.Repository.RepositoryItemComboBox> colCtrlList
         {
             get { return colctrllist; }
@@ -191,8 +192,8 @@ namespace Ebada.Scgl.Lpgl
             DataView dt = gridView1.DataSource as DataView;
             if (i<0)
             {
-                gridView1.UpdateCurrentRow();
-                //CellValueChanged(this, e);
+                //gridView1.UpdateCurrentRow();
+                //CellValueChanged(this, e);               
                 return;
             }
             dt.Table.Rows[i][e.Column.FieldName] = e.Value;
@@ -204,8 +205,29 @@ namespace Ebada.Scgl.Lpgl
             if (gridView1.FocusedRowHandle  < 0)
             {
                 DataView dt = gridView1.DataSource as DataView;
-                dt.Table.Rows.Add (dt.Table.NewRow());
-                
+                if (dt.Table.Rows.Count <= 0)
+                {
+                    dt.Table.Rows.Add(dt.Table.NewRow());
+                    gridFlag = true;
+                }
+                else
+                {
+                    if (gridFlag)
+                    {
+                        if (dt.Table.Rows.Count>0)
+                        {
+                            gridView1.FocusedRowHandle = dt.Table.Rows.Count - 1;
+                        }
+                        gridFlag = false;
+                    }
+                    else
+                    {
+                        dt.Table.Rows.Add(dt.Table.NewRow());
+                        gridView1.FocusedRowHandle = dt.Table.Rows.Count - 1;
+                    }                
+                    
+                }
+                             
             }
         }
 
