@@ -119,10 +119,20 @@ namespace Ebada.Scgl.Lpgl
         private void LockExcel()
         {
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
+            Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;           
             xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
-            
+            xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlUnlockedCells;
+            wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);  
         }
+
+        protected void wb_SheetBeforeDoubleClick(object Sh, Microsoft.Office.Interop.Excel.Range Target, ref bool Cancel)
+        {
+            if ((bool)(Target.Locked))
+            {
+                Cancel = true;
+            }
+        }
+
         /// <summary>
         /// 去保护工作表
         /// </summary>
@@ -133,6 +143,7 @@ namespace Ebada.Scgl.Lpgl
                 Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
                 Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
                 xx.Unprotect("MyPassword");
+                wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);  
             }
             catch { }
         }
