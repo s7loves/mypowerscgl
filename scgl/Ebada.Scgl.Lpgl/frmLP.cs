@@ -128,9 +128,13 @@ namespace Ebada.Scgl.Lpgl
         /// </summary>
         private void unLockExcel()
         {
-            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
-            xx.Unprotect("MyPassword");
+            try
+            {
+                Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                xx.Unprotect("MyPassword");
+            }
+            catch { }
         }
         private void LPFrm_Load(object sender, EventArgs e)
         {
@@ -222,7 +226,10 @@ namespace Ebada.Scgl.Lpgl
                 if (flag)
                 {
                     currentPosY += int.Parse(size[1]) + 10; 
-                }                
+                }
+
+
+                ctrl.TextChanged += new EventHandler(ctrl_Leave);
                 ctrl.Leave += new EventHandler(ctrl_Leave);
                 ctrl.Visible = flag;
                 ctrl.Tag = lp;
