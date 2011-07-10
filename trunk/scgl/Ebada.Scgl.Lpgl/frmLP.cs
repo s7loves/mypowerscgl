@@ -515,10 +515,15 @@ namespace Ebada.Scgl.Lpgl
             ea.MyWorkBook = wb;
             ea.MyExcel=wb.Application;
             if (lp.CtrlType.Contains("uc_gridcontrol"))
-            { FillTable(ea, lp, (sender as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar)))); return; }
+            { 
+                FillTable(ea, lp, (sender as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar))));
+                LockExcel();
+                return; 
+            }
             else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
             { 
-                FillTime(ea, lp, (sender as DateEdit).DateTime); 
+                FillTime(ea, lp, (sender as DateEdit).DateTime);
+                LockExcel();
                 return;
             }            
             string[] arrCellpos = lp.CellPos.Split(pchar);
@@ -541,6 +546,7 @@ namespace Ebada.Scgl.Lpgl
                             ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
                         }
                     }
+                    LockExcel();
                     return;
                 }
                 int i = 0;
@@ -549,6 +555,7 @@ namespace Ebada.Scgl.Lpgl
                     if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
                     {
                         ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        LockExcel();
                         return;
                     }
                     ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
