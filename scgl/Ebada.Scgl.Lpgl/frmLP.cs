@@ -780,11 +780,10 @@ namespace Ebada.Scgl.Lpgl
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
                     ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";
-                    if (flag)
-                    {
-                        ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
-                        ContentChanged(ctrl);
-                    }
+                  
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    ContentChanged(ctrl);
+                
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
                     break;
