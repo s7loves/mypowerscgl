@@ -27,6 +27,7 @@ namespace Ebada.Scgl.Lpgl
         const int wordWidth = 13;
         private LP_Temple parentTemple = null;
         private IList<LP_Temple> templeList;
+        private IList<Control> tempCtrlList=null;
         private LP_Record currRecord = null;
         private string kind,status;
         private string plitchar = "|";
@@ -132,6 +133,10 @@ namespace Ebada.Scgl.Lpgl
         }
         private void LPFrm_Load(object sender, EventArgs e)
         {
+            if (tempCtrlList==null)
+            {
+                tempCtrlList = new List<Control>();
+            }
             //InitializeComponent();
             InitIndex();            
                 //InitContorl();
@@ -386,7 +391,7 @@ namespace Ebada.Scgl.Lpgl
         {
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
             {
-                if (ctrl.Tag != null) 
+                if (ctrl.Tag != null&&ctrl.Visible) 
                 {
                     RelateEvent(ctrl);
                 }
@@ -398,7 +403,11 @@ namespace Ebada.Scgl.Lpgl
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
             {
                 //UpdateRelateData(ctrl);
-                if (ctrl.Tag != null)
+                if (!ctrl.Visible)
+                {
+                    continue;
+                }
+                if (ctrl.Tag != null&&(!tempCtrlList.Contains(ctrl)))
                     InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
             }
         }
@@ -410,7 +419,7 @@ namespace Ebada.Scgl.Lpgl
             {
                 return;
             }
-
+            unLockExcel();
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
@@ -462,6 +471,7 @@ namespace Ebada.Scgl.Lpgl
                 FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
 
             }
+            LockExcel();
         }
         void ctrl_Leave(object sender, EventArgs e)
         {
@@ -682,6 +692,7 @@ namespace Ebada.Scgl.Lpgl
 
         public void InitCtrlData(Control ctrl, string sqlSentence)
         {
+            tempCtrlList.Add(ctrl);
             LP_Temple lp = (LP_Temple)ctrl.Tag;
             bool flag = (lp.Status == CurrRecord.Status);
             string ctrltype = "";
@@ -692,10 +703,6 @@ namespace Ebada.Scgl.Lpgl
             switch (ctrltype)
             {
                 case "DevExpress.XtraEditors.TextEdit":
-                    if (lp.CellName == "编号")
-                    {
-                        ctrl.Text = strNumber;
-                    }
                     break;
                 case "DevExpress.XtraEditors.ComboBoxEdit":
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();     
@@ -754,9 +761,10 @@ namespace Ebada.Scgl.Lpgl
                                     strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                                 }
                             }
-                        }                        
-                        ctrlNumber.Text = strNumber;
-                        ContentChanged(ctrlNumber);
+                            ctrlNumber.Text = strNumber;
+                            ContentChanged(ctrlNumber);
+                        }                     
+
                     }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
@@ -800,21 +808,22 @@ namespace Ebada.Scgl.Lpgl
         {
             try
             {
-                LP_Temple lp = (LP_Temple)ctrl.Tag;
-                if (lp.AffectLPID != null && lp.AffectLPID != "")
-                {
-                    string[] arrLPID = lp.AffectLPID.Split(pchar);
-                    arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
-                    string[] arrEvent = lp.AffectEvent.Split(pchar);
-                    for (int i = 0; i < arrLPID.Length; i++)
+                    LP_Temple lp = (LP_Temple)ctrl.Tag;
+                    if (lp.AffectLPID != null && lp.AffectLPID != "")
                     {
-                        if (string.IsNullOrEmpty(arrLPID[i]) || string.IsNullOrEmpty(arrEvent[i]))
+                        string[] arrLPID = lp.AffectLPID.Split(pchar);
+                        arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
+                        string[] arrEvent = lp.AffectEvent.Split(pchar);
+                        for (int i = 0; i < arrLPID.Length; i++)
                         {
-                            continue;
+                            if (string.IsNullOrEmpty(arrLPID[i]) || string.IsNullOrEmpty(arrEvent[i]))
+                            {
+                                continue;
+                            }
+                            ctrl.GetType().GetEvent(arrEvent[i]).AddEventHandler(ctrl, new EventHandler(TriggerRelateEvent));
                         }
-                        ctrl.GetType().GetEvent(arrEvent[i]).AddEventHandler(ctrl, new EventHandler(TriggerRelateEvent));
-                    }
-                }
+                    }          
+               
             }
             catch (System.Exception e)
             {
@@ -835,7 +844,7 @@ namespace Ebada.Scgl.Lpgl
                     continue;
                 }
                 Control ctrl = FindCtrl((listLPID[0] as LP_Temple).LPID);
-                if (ctrl != null)
+                if (ctrl != null&&ctrl.Visible)
                 {                    
                     UpdateRelateData(ctrl); 
                 }
@@ -846,6 +855,7 @@ namespace Ebada.Scgl.Lpgl
         {
             LP_Temple lp = (LP_Temple)ctrl.Tag;
             string[] arrLPID = lp.RelateLPID.Split(pchar);
+            arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
             string sqlSentence = lp.SqlSentence;
             foreach (string lpid in arrLPID)
             {
@@ -869,7 +879,7 @@ namespace Ebada.Scgl.Lpgl
                         ((LP_Temple)ctrl.Tag).SqlSentence = sqlSentence;
                     }
                 }
-            }
+            }            
             InitCtrlData(ctrl, sqlSentence);
         }
 
