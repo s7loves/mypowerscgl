@@ -419,8 +419,8 @@ namespace Ebada.Scgl.Lpgl {
             {
                 return;
             }
-           
-            if (currRecord.Status != "终结")
+
+            if (currRecord.Status != "确认")
             {
                 MsgBox.ShowTipMessageBox("当前节点不能变更负责人，变更负责人失败!");
                 return;
@@ -470,7 +470,7 @@ namespace Ebada.Scgl.Lpgl {
 
                 }
             }
-            if (currRecord.Status != "终结")
+            if (currRecord.Status != "确认")
             {
                 MsgBox.ShowTipMessageBox("当前节点不能延期，延期失败!");
                 return;
