@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using DevExpress.XtraGrid;
 using System.Collections;
 using Ebada.Client.Platform;
+using DevExpress.XtraGrid.Views.Base;
 
 namespace Ebada.Scgl.Lpgl
 {
@@ -180,6 +181,32 @@ namespace Ebada.Scgl.Lpgl
             dtReturn.ReadXmlSchema(trSchema);
             dtReturn.ReadXml(trDataTable);
             return dtReturn;
+        }
+        public event CellValueChangedEventHandler CellValueChanged;
+        private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            sender = this;
+            int i = 0;
+            i = e.RowHandle;
+            DataView dt = gridView1.DataSource as DataView;
+            if (i<0)
+            {
+                gridView1.UpdateCurrentRow();
+                //CellValueChanged(this, e);
+                return;
+            }
+            dt.Table.Rows[i][e.Column.FieldName] = e.Value;
+            CellValueChanged(this, e);
+        }
+
+        private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle  < 0)
+            {
+                DataView dt = gridView1.DataSource as DataView;
+                dt.Table.Rows.Add (dt.Table.NewRow());
+                
+            }
         }
 
     }
