@@ -17,6 +17,7 @@ using System.IO;
 using Ebada.Core;
 using DevExpress.XtraRichEdit.API.Word;
 using Ebada.Scgl.WFlow;
+using DevExpress.XtraGrid.Views.Base;
 
 namespace Ebada.Scgl.Lpgl
 {
@@ -208,9 +209,12 @@ namespace Ebada.Scgl.Lpgl
                     currentPosY += 20;
                 }                
                 Control ctrl ;
-                
+
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
+                {
                     ctrl = new uc_gridcontrol();
+                    ((uc_gridcontrol)ctrl).CellValueChanged += new CellValueChangedEventHandler(gridView1_CellValueChanged);
+                }
                 else
                     ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
                 ctrl.Location = new Point(currentPosX, currentPosY);
@@ -247,7 +251,11 @@ namespace Ebada.Scgl.Lpgl
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
         }
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            ctrl_Leave(sender, e);
 
+        }
         void btn_Submit_Click(object sender, EventArgs e)
         {
             byte[] bt = new byte[0];
