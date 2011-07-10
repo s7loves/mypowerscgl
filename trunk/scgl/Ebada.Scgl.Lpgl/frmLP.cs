@@ -228,8 +228,10 @@ namespace Ebada.Scgl.Lpgl
                     currentPosY += int.Parse(size[1]) + 10; 
                 }
 
-
-                ctrl.TextChanged += new EventHandler(ctrl_Leave);
+                if (flag)
+                {
+                    ctrl.TextChanged += new EventHandler(ctrl_Leave);
+                }                
                 ctrl.Leave += new EventHandler(ctrl_Leave);
                 ctrl.Visible = flag;
                 ctrl.Tag = lp;
@@ -397,7 +399,7 @@ namespace Ebada.Scgl.Lpgl
                     }
                     else
                         ctrl.Text = dict[lp.LPID];
-                    ContentChanged(ctrl);
+                    //ContentChanged(ctrl);
                 }
             }
         }
@@ -438,7 +440,10 @@ namespace Ebada.Scgl.Lpgl
             if (lp.CtrlType.Contains("uc_gridcontrol"))
             { FillTable(ea, lp, (ctrl as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar)))); return; }
             else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
-            { FillTime(ea, lp, (ctrl as DateEdit).DateTime); return; }
+            { 
+                FillTime(ea, lp, (ctrl as DateEdit).DateTime); 
+                return;
+            }
             string[] arrCellpos = lp.CellPos.Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
@@ -501,7 +506,10 @@ namespace Ebada.Scgl.Lpgl
             if (lp.CtrlType.Contains("uc_gridcontrol"))
             { FillTable(ea, lp, (sender as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar)))); return; }
             else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
-            { FillTime(ea, lp, (sender as DateEdit).DateTime); return; }            
+            { 
+                FillTime(ea, lp, (sender as DateEdit).DateTime); 
+                return;
+            }            
             string[] arrCellpos = lp.CellPos.Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
@@ -577,7 +585,7 @@ namespace Ebada.Scgl.Lpgl
                         strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                     }
                     ctrlNumber.Text = strNumber;
-                    ContentChanged(ctrlNumber);
+                    //ContentChanged(ctrlNumber);
                 }
 
             }
@@ -738,7 +746,7 @@ namespace Ebada.Scgl.Lpgl
                     if (((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Count > 0)
                     {
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;
-                        ContentChanged(ctrl);
+                        //ContentChanged(ctrl);
                         if (lp.CellName == "单位")
                         {
                             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + ctrl.Text + "'");
@@ -773,16 +781,14 @@ namespace Ebada.Scgl.Lpgl
                                 }
                             }
                             ctrlNumber.Text = strNumber;
-                            ContentChanged(ctrlNumber);
+                            //ContentChanged(ctrlNumber);
                         }                     
 
                     }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";
-                  
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
-                    ContentChanged(ctrl);
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";                  
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;                 
                 
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
