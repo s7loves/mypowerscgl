@@ -391,7 +391,7 @@ namespace Ebada.Scgl.Lpgl
         {
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
             {
-                if (ctrl.Tag != null&&ctrl.Visible) 
+                if (ctrl.Tag != null) 
                 {
                     RelateEvent(ctrl);
                 }
@@ -403,10 +403,6 @@ namespace Ebada.Scgl.Lpgl
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
             {
                 //UpdateRelateData(ctrl);
-                if (!ctrl.Visible)
-                {
-                    continue;
-                }
                 if (ctrl.Tag != null&&(!tempCtrlList.Contains(ctrl)))
                     InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
             }
@@ -810,17 +806,28 @@ namespace Ebada.Scgl.Lpgl
             {
                     LP_Temple lp = (LP_Temple)ctrl.Tag;
                     if (lp.AffectLPID != null && lp.AffectLPID != "")
-                    {
+                    {                    
                         string[] arrLPID = lp.AffectLPID.Split(pchar);
                         arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
                         string[] arrEvent = lp.AffectEvent.Split(pchar);
                         for (int i = 0; i < arrLPID.Length; i++)
                         {
-                            if (string.IsNullOrEmpty(arrLPID[i]) || string.IsNullOrEmpty(arrEvent[i]))
+                            IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + arrLPID[i] + "' and parentid = '" + lp.ParentID + "'");
+                            if (listLPID.Count <= 0)
                             {
                                 continue;
                             }
+                            Control ctrlTemp = FindCtrl((listLPID[0] as LP_Temple).LPID);
+                            if (!ctrlTemp.Visible)
+                            {
+                                continue;
+                            }
+                            if (string.IsNullOrEmpty(arrLPID[i]) || string.IsNullOrEmpty(arrEvent[i]))
+                            {
+                                continue;
+                            }                            
                             ctrl.GetType().GetEvent(arrEvent[i]).AddEventHandler(ctrl, new EventHandler(TriggerRelateEvent));
+                            
                         }
                     }          
                
@@ -876,7 +883,7 @@ namespace Ebada.Scgl.Lpgl
                     {
                         sqlSentence = sqlSentence.Remove(pos, ("@" + lpid).Length);
                         sqlSentence = sqlSentence.Insert(pos, relateCtrl.Text);
-                        ((LP_Temple)ctrl.Tag).SqlSentence = sqlSentence;
+                        //((LP_Temple)ctrl.Tag).SqlSentence = sqlSentence;
                     }
                 }
             }            
