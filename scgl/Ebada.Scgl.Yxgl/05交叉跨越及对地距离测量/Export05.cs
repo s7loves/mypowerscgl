@@ -19,6 +19,7 @@ namespace Ebada.Scgl.Yxgl {
              ex.Open(fname);
                 int row = 1;
                 int col = 1;
+                int rowcount = 11;
                 //
                 ex.SetCellValue(jl.LineID, row + 3, col);
                 ex.SetCellValue(jl.gtID, row + 3, col + 3);
@@ -31,17 +32,62 @@ namespace Ebada.Scgl.Yxgl {
                 ex.SetCellValue(jl.jb, row + 6, col + 7);
                 //测量记录
                 IList<PJ_05jckyjl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_05jckyjl>(" where jckyID='" + jl.jckyID + "' order by CreateDate");
-                for (int i = 0; i < list.Count;i++ )
+                //加页
+                int pageindex = 1;
+                if (pageindex < Ecommon.GetPagecount(list.Count, 15))
                 {
-                    PJ_05jckyjl obj = list[i];
-                    ex.SetCellValue(obj.clrq.Year.ToString(), row + 10 + i, col);
-                    ex.SetCellValue(obj.clrq.Month.ToString(), row + 10 + i, col+1);
-                    ex.SetCellValue(obj.clrq.Day.ToString(), row + 10 + i, col+2);
-                    ex.SetCellValue(obj.scz.ToString(), row + 10 + i, col + 3);
-                    ex.SetCellValue(obj.qw, row + 10 + i, col + 4);
-                    ex.SetCellValue(obj.clrqz, row + 10 + i, col + 5);
-                    ex.SetCellValue(obj.jr, row + 10 + i, col + 7);
+                    pageindex = Ecommon.GetPagecount(list.Count, 15);
                 }
+                for (int j = 1; j <= pageindex; j++)
+                {
+                    if (j > 1)
+                    {
+                        ex.CopySheet(1, 1);
+                    }
+                }
+                ex.ShowExcel();
+                for (int j = 1; j <= pageindex; j++)
+                {
+                    ex.ActiveSheet(j);
+                    ex.ReNameWorkSheet(j, "Sheet" + (j));
+                    int prepageindex = j - 1;
+                    //主题
+                    int starow = prepageindex * 15 + 1;
+                    int endrow = j * 15;
+                   
+                    if (list.Count > endrow)
+                    {
+                        for (int i = 0; i < 15; i++)
+                        {
+                            
+
+                            ex.SetCellValue(list[starow - 1 + i].clrq.Year.ToString(), rowcount+ i, col);
+                            ex.SetCellValue(list[starow - 1 + i].clrq.Month.ToString(), rowcount + i, col + 1);
+                            ex.SetCellValue(list[starow - 1 + i].clrq.Day.ToString(), rowcount + i, col + 2);
+                            ex.SetCellValue(list[starow - 1 + i].scz.ToString(), rowcount + i, col + 3);
+                            ex.SetCellValue(list[starow - 1 + i].qw, rowcount + i, col + 4);
+                            ex.SetCellValue(list[starow - 1 + i].clrqz, rowcount + i, col + 5);
+                            ex.SetCellValue(list[starow - 1 + i].jr, rowcount + i, col + 7);
+
+                        }
+                    }
+                    else if (list.Count <= endrow && list.Count >= starow)
+                    {
+                        for (int i = 0; i < list.Count - starow + 1; i++)
+                        {
+                            ex.SetCellValue(list[starow - 1 + i].clrq.Year.ToString(), rowcount + i, col);
+                            ex.SetCellValue(list[starow - 1 + i].clrq.Month.ToString(), rowcount + i, col + 1);
+                            ex.SetCellValue(list[starow - 1 + i].clrq.Day.ToString(), rowcount + i, col + 2);
+                            ex.SetCellValue(list[starow - 1 + i].scz.ToString(), rowcount + i, col + 3);
+                            ex.SetCellValue(list[starow - 1 + i].qw, rowcount + i, col + 4);
+                            ex.SetCellValue(list[starow - 1 + i].clrqz, rowcount + i, col + 5);
+                            ex.SetCellValue(list[starow - 1 + i].jr, rowcount + i, col + 7);
+
+                        }
+                    }
+
+                }
+                ex.ActiveSheet(1);
                 
                 ex.ShowExcel();
                 
