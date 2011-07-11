@@ -21,16 +21,6 @@ namespace Ebada.Scgl.Yxgl {
                 int col = 1;
                 int rowcount = 11;
                 //
-                ex.SetCellValue(jl.LineID, row + 3, col);
-                ex.SetCellValue(jl.gtID, row + 3, col + 3);
-
-                //交叉跨越行
-                ex.SetCellValue(jl.kygh, row + 6, col);
-                ex.SetCellValue(jl.gdjl.ToString(), row + 6, col + 3);
-                ex.SetCellValue(jl.kymc, row + 6, col + 4);
-                ex.SetCellValue(jl.ssdw, row + 6, col + 5);
-                ex.SetCellValue(jl.jb, row + 6, col + 7);
-                //测量记录
                 IList<PJ_05jckyjl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_05jckyjl>(" where jckyID='" + jl.jckyID + "' order by CreateDate");
                 //加页
                 int pageindex = 1;
@@ -45,11 +35,23 @@ namespace Ebada.Scgl.Yxgl {
                         ex.CopySheet(1, 1);
                     }
                 }
+                ex.ActiveSheet(1);
+                ex.SetCellValue(jl.LineID, row + 3, col);
+                ex.SetCellValue(jl.gtID, row + 3, col + 3);
+
+                //交叉跨越行
+                ex.SetCellValue(jl.kygh, row + 6, col);
+                ex.SetCellValue(jl.gdjl.ToString(), row + 6, col + 3);
+                ex.SetCellValue(jl.kymc, row + 6, col + 4);
+                ex.SetCellValue(jl.ssdw, row + 6, col + 5);
+                ex.SetCellValue(jl.jb, row + 6, col + 7);
+                //测量记录
+              
                 ex.ShowExcel();
                 for (int j = 1; j <= pageindex; j++)
                 {
                     ex.ActiveSheet(j);
-                    ex.ReNameWorkSheet(j, "Sheet" + (j));
+                    //ex.ReNameWorkSheet(j, "Sheet" + (j));
                     int prepageindex = j - 1;
                     //主题
                     int starow = prepageindex * 15 + 1;
