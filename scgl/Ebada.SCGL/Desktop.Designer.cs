@@ -43,10 +43,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabControl2 = new DevExpress.XtraTab.XtraTabControl();
             this.newsTabPage = new DevExpress.XtraTab.XtraTabPage();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.taskTabPage = new DevExpress.XtraTab.XtraTabPage();
             this.gridTalskCon = new DevExpress.XtraGrid.GridControl();
             this.gridTalskView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -66,6 +62,7 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.UsualCtrl)).BeginInit();
             this.UsualCtrl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -81,11 +78,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).BeginInit();
             this.xtraTabControl2.SuspendLayout();
             this.newsTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.taskTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTalskCon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTalskView)).BeginInit();
@@ -255,63 +247,10 @@
             // 
             // newsTabPage
             // 
-            this.newsTabPage.Controls.Add(this.groupControl1);
-            this.newsTabPage.Controls.Add(this.groupControl2);
-            this.newsTabPage.Controls.Add(this.groupControl4);
+            this.newsTabPage.Controls.Add(this.webBrowser1);
             this.newsTabPage.Name = "newsTabPage";
             this.newsTabPage.Size = new System.Drawing.Size(521, 235);
             this.newsTabPage.Text = "重要工作";
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl1.AppearanceCaption.Options.UseTextOptions = true;
-            this.groupControl1.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.groupControl1.Location = new System.Drawing.Point(3, 94);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(651, 71);
-            this.groupControl1.TabIndex = 6;
-            this.groupControl1.Text = "单位计划";
-            // 
-            // groupControl2
-            // 
-            this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl2.AppearanceCaption.Options.UseTextOptions = true;
-            this.groupControl2.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.groupControl2.Controls.Add(this.groupControl3);
-            this.groupControl2.Location = new System.Drawing.Point(3, 3);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(651, 85);
-            this.groupControl2.TabIndex = 5;
-            this.groupControl2.Text = "单位计划";
-            // 
-            // groupControl3
-            // 
-            this.groupControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl3.AppearanceCaption.Options.UseTextOptions = true;
-            this.groupControl3.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.groupControl3.Location = new System.Drawing.Point(0, 91);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(651, 71);
-            this.groupControl3.TabIndex = 4;
-            this.groupControl3.Text = "周期性任务提醒";
-            // 
-            // groupControl4
-            // 
-            this.groupControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl4.AppearanceCaption.Options.UseTextOptions = true;
-            this.groupControl4.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.groupControl4.Location = new System.Drawing.Point(3, 171);
-            this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(651, 64);
-            this.groupControl4.TabIndex = 5;
-            this.groupControl4.Text = "安全公告板";
             // 
             // taskTabPage
             // 
@@ -476,6 +415,15 @@
             this.panel1.Size = new System.Drawing.Size(734, 108);
             this.panel1.TabIndex = 8;
             // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(521, 235);
+            this.webBrowser1.TabIndex = 0;
+            // 
             // Desktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -503,11 +451,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).EndInit();
             this.xtraTabControl2.ResumeLayout(false);
             this.newsTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.taskTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridTalskCon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTalskView)).EndInit();
@@ -533,10 +476,6 @@
         private System.Windows.Forms.Panel UsuaslPanel;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl2;
         private DevExpress.XtraTab.XtraTabPage newsTabPage;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.GroupControl groupControl3;
-        private DevExpress.XtraEditors.GroupControl groupControl4;
         private DevExpress.XtraTab.XtraTabPage taskTabPage;
         private DevExpress.XtraGrid.GridControl gridTalskCon;
         private DevExpress.XtraGrid.Views.Grid.GridView gridTalskView;
@@ -562,5 +501,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit imageEdit1;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }
