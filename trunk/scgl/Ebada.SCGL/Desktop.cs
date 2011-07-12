@@ -12,9 +12,13 @@ using System.Collections;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using Ebada.Scgl.WFlow;
+using System.IO;
+using System.Security.Permissions;
 
 namespace Ebada.SCGL
 {
+    [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+    [System.Runtime.InteropServices.ComVisibleAttribute(true)] 
     public partial class Desktop : UserControl
     {
         public Desktop()
@@ -180,8 +184,77 @@ namespace Ebada.SCGL
             taskdt.Columns.Add("Image", typeof(Bitmap));
             refreshTreeData();
             //iniUsualCtrl();
+            /*
+             *  <li><span class="fright">[2011-07-10]</span><a href="http://www.163.com/" target="_blank">新华社：风电并网技术国标已过终审有望出台</a></li>
+             * 
+             * 
+             * 
+             * 
+             * 
+             * */
+            string pageName=System.AppDomain.CurrentDomain.BaseDirectory.ToString()+"NewsPage.htm";
+            Encoding code = Encoding.GetEncoding("gb2312");
+            StreamReader sr = new StreamReader(typeof(Desktop).Assembly.GetManifestResourceStream("Ebada.SCGL.NewsPage.htm"), code);//要读取的流和编码 
+            string temp = sr.ReadToEnd();
+            string text="<li><span class=\"fright\">[2011-07-10]</span><a href=\"http://www.163.com/\" target=\"_blank\">新华社：风电并网技术国标已过终审有望出台</a></li>";
+            WriteFile(ref temp,"<$strPlanText$>", text, pageName);
+            WriteFile(ref temp, "<$strWorkText$>", text, pageName);
+            WriteFile(ref temp, "<$strAnnText$>", text, pageName);
+            this.webBrowser1.Navigate(pageName);
+            this.webBrowser1.ObjectForScripting = this;
+           // csToJavaScript(sender,e );
         }
+        /// <summary>
+        /// 菜单点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>    
+        private void csToJavaScript(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("javascript:cs_test();void(0);");
+        }
+        /// <summary>
+        /// BS调用方法
+        /// </summary>
+        /// <param name="strShow"></param>        
+        public void JavascriptCall(string strShow)
+        {
+            MessageBox.Show("bs发送信息到winform:" + strShow);
+        }
+        public static bool WriteFile(ref string strHtml ,string strMarkText,string strNewsText,string pageName)
+        {
+            Encoding code = Encoding.GetEncoding("gb2312");
+            string temp = "";
+            //定义写对象 
+            StreamWriter sw = null;
 
+            //生产的静态网页命名，用时间命名 
+            string htmlfilename = pageName ;
+            //替换内容 
+            //模板变量已经读取到str的变量中了 
+            strHtml = strHtml.Replace(strMarkText, strNewsText);
+         
+            //写文件 
+            try
+            {
+                //false表示如果该文件存在，则覆盖该文件。 
+                //true表示如果该文件存在，则在该文件上追加内容。 
+                //否则创建该文件---（完整的文件名（路径+文件名），是否追加到文件，编码方式） 
+                sw = new StreamWriter( htmlfilename, false, code);
+                sw.Write(strHtml);//写入文件 
+                sw.Flush();//清理所有缓冲区 
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp.Message  ); 
+               
+            }
+            finally
+            {
+                sw.Close();//关闭写操作 
+            }
+            return true;
+        }
      
 
        
