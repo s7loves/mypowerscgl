@@ -63,24 +63,39 @@ namespace Ebada.Scgl.Yxgl
 
             PJ_05jcky pj= Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_05jcky>(rowData.jckyID);
             this.comboBoxEdit1.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
+            this.comboBoxEdit3.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
         }
         void setqqry()
         {
             string str = rowData.clrqz;
-            string[] mans = str.Split(new char[1] { ';' });
-            comboBoxEdit1.EditValue = mans[0];
-            comboBoxEdit3.EditValue = mans[1];
+            comboBoxEdit1.EditValue = "";
+            comboBoxEdit3.EditValue = "";
+            string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
+            if (mans.Length >= 1)
+            {
+                comboBoxEdit1.EditValue = mans[0];
+            }
+            if (mans.Length >= 2)
+            {
+                comboBoxEdit3.EditValue = mans[1];
+            }
 
            
         }
         void getqqry()
         {
-            
             string str = "";
-            
-            str = comboBoxEdit1.EditValue.ToString() + ";" + comboBoxEdit3.EditValue.ToString();
-           
+            string yy1 = "";
+            yy1 = comboBoxEdit1.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy1 + ";";
+            string yy2 = "";
+            yy2 = comboBoxEdit3.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy2 + ";";
             rowData.clrqz = str;
+            
+           
         }
         /// <summary>
         /// 
