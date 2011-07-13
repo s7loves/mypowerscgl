@@ -185,12 +185,52 @@ namespace Ebada.Scgl.Yxgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (gridView1.FocusedRowHandle>=0)
+            if (gridView1.FocusedRowHandle > -1)
             {
-                Export24.ExportExcel(gridView1.GetFocusedRow() as PJ_24);
+                PJ_24 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_24;
+                if (OBJECT.BigData != null)
+                {
+                    if (OBJECT.BigData.Length != 0)
+                    {
+                        DSOFramerControl ds1 = new DSOFramerControl();
+                        ds1.FileData = OBJECT.BigData;
+                        // ds1.FileOpen(ds1.FileName);
+                        ExcelAccess ex = new ExcelAccess();
+
+                        string fname = ds1.FileName;
+
+                        ex.Open(fname);
+                        //此处写填充内容代码
+
+                        ex.ShowExcel();
+                    }
+                    else
+                    {
+                        Export24.ExportExcel(OBJECT);
+                    }
+
+                }
+                else
+                {
+                    Export24.ExportExcel(OBJECT);
+                }
             }
            
            
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle > -1)
+            {
+                frm24Template frm = new frm24Template();
+                frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_24;
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    Client.ClientHelper.PlatformSqlMap.Update<PJ_24>(frm.pjobject);
+                    MessageBox.Show("保存成功");
+                }
+            }
         }
     }
 }
