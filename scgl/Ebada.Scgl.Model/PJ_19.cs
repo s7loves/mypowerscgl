@@ -28,8 +28,8 @@ namespace Ebada.Scgl.Model
         private string _remark=String.Empty; 
         private string _gzrjid=String.Empty; 
         private string _createman=String.Empty; 
-        private DateTime _createdate=new DateTime(1900,1,1); 
-        private byte[] _bigdata=new byte[]{};   
+        private DateTime _createdate=new DateTime(2011,1,1); 
+        private byte[] _bigdata=new byte[]{1};   
         #endregion
   
   
