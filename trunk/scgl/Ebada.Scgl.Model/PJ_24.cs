@@ -23,13 +23,13 @@ namespace Ebada.Scgl.Model
         #region Private 成员
         private string _id=Newid(); 
         private string _parentid=String.Empty;
-        private DateTime _sj = new DateTime(1900, 1, 1); 
+        private DateTime _sj = new DateTime(2011, 1, 1); 
         private string _dd=String.Empty; 
         private string _nr=String.Empty; 
         private string _remark=String.Empty; 
         private string _gzrjid=String.Empty; 
         private string _createman=String.Empty; 
-        private DateTime _createdate=new DateTime(1900,1,1); 
+        private DateTime _createdate=new DateTime(2011,1,1); 
         private byte[] _bigdata=new byte[]{};   
         #endregion
   

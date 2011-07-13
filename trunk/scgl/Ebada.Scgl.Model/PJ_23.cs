@@ -25,11 +25,11 @@ namespace Ebada.Scgl.Model
         private string _parentid=String.Empty; 
         private string _cqfw=String.Empty; 
         private string _cqdw=String.Empty; 
-        private DateTime _qdrq=new DateTime(1900,1,1); 
+        private DateTime _qdrq=new DateTime(2011,1,1); 
         private string _remark=String.Empty; 
         private string _gzrjid=String.Empty; 
         private string _createman=String.Empty; 
-        private DateTime _createdate=new DateTime(1900,1,1); 
+        private DateTime _createdate=new DateTime(2011,1,1); 
         private byte[] _bigdata=new byte[]{};   
         #endregion
   
