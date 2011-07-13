@@ -86,7 +86,7 @@ namespace Ebada.Scgl.Yxgl
             //IList<PS_tq> listtq = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>("where xlCode='" + lineCode + "'");
             //comboBoxEdit5.Properties.DataSource = listtq;
             ICollection list = new ArrayList();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", lineCode));
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   xlCode='{0}' ", lineCode));
             //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
             comboBoxEdit5.Properties.Items.AddRange(list);
         }
