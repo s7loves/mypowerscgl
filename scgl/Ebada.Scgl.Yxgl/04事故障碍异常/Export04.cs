@@ -60,7 +60,7 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(hour1.ToString(),7, 17);
             ex.SetCellValue(min1.ToString(),7, 19);
             //损失电量
-            ex.SetCellValue(obj.ssdl.ToString(),8, 6);
+            ex.SetCellValue(obj.ssdl.ToString(),8,5);
             //ex.SetCellValue(obj.rq.Month.ToString(), 4, 7);
             //ex.SetCellValue(obj.rq.Day.ToString(), 4, 9);
             //防治对策执行人

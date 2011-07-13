@@ -326,16 +326,24 @@ namespace Ebada.Scgl.Yxgl
             }
             else
             {
-                string strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID   , WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
-                if (strmes.IndexOf("未提交至任何人") > -1)
+                try
                 {
-                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
-                    return;
+                    string strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+                    if (strmes.IndexOf("未提交至任何人") > -1)
+                    {
+                        MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                        return;
+                    }
+                    else
+                        MsgBox.ShowTipMessageBox(strmes);
+                   
                 }
-                else
-                    MsgBox.ShowTipMessageBox(strmes);
+                catch (System.Exception ex)
+                {
+                	
+                }
+
                 MainHelper.PlatformSqlMap.Update<PJ_03yxfx>(RowData);
-               
 
             }
 

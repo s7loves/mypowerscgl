@@ -25,6 +25,7 @@ namespace Ebada.Scgl.Yxgl
             this.textEdit2.DataBindings.Add("EditValue", rowData, "fsdd"); 
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "tdsj");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "sdsj");
+            //this.spinEdit1.DataBindings.Add("EditValue", rowData,ssdl)
             //this.textEdit1.DataBindings.Add("EditValue", rowData, "gtdsj");
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "ssdl");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "clqk",false, DataSourceUpdateMode.OnPropertyChanged);
