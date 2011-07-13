@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Yxgl
             base.OnLoad(e);
 
             InitColumns();//初始列
-            //InitData();//初始数据
+            InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -106,6 +106,12 @@ namespace Ebada.Scgl.Yxgl
         {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
+            //RefreshData("");
+            if (MainHelper.UserOrg != null)
+            {
+                string strSQL = "where ParentID='" + MainHelper.UserOrg.OrgCode + "' order by ID desc";
+                RefreshData(strSQL);
+            }
         }
         /// <summary>
         /// 初始化列,
@@ -114,8 +120,11 @@ namespace Ebada.Scgl.Yxgl
         {
 
             //需要隐藏列时在这写代码
+
+
             hideColumn("ParentID");
             hideColumn("gzrjID");
+            hideColumn("BigData");
         }
         /// <summary>
         /// 刷新数据
@@ -140,7 +149,7 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_24 newobj)
         {
-            if (parentID == null) return;
+           if (parentID == null) return;
             newobj.ParentID = parentID;
             //newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
@@ -151,7 +160,6 @@ namespace Ebada.Scgl.Yxgl
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        //[DesignTimeVisible(false)]
         public string ParentID
         {
             get { return parentID; }
@@ -160,7 +168,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where ParentID='" + value + "' order by CreateDate desc");
+                    RefreshData(" where ParentID ='" + value + "' order by ID desc");
                 }
             }
         }
@@ -184,7 +192,57 @@ namespace Ebada.Scgl.Yxgl
             }
         }
 
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle > -1)
+            {
+                frm24Template frm = new frm24Template();
+                frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_24;
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    Client.ClientHelper.PlatformSqlMap.Update<PJ_24>(frm.pjobject);
+                   MessageBox.Show("保存成功");
+                }
+            }
+            
+        }
+
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle > -1)
+            {
+               PJ_24 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_24;
+               if (OBJECT.BigData!=null)
+                {
+                    if (OBJECT.BigData.Length!=0)
+                   {
+                       DSOFramerControl ds1 = new DSOFramerControl();
+                       ds1.FileData = OBJECT.BigData;
+                      // ds1.FileOpen(ds1.FileName);
+                       ExcelAccess ex = new ExcelAccess();
+                     
+                       string fname = ds1.FileName;
+
+                       ex.Open(fname);
+                       //此处写填充内容代码
+
+                       ex.ShowExcel();
+                   }
+                    else
+                    {
+                        Export24.ExportExcel(OBJECT);
+                    }
+                 
+                }
+               else
+               {
+                   Export24.ExportExcel(OBJECT);
+               }
+            }
+        }
+
+        private void btView_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
             if (gridView1.FocusedRowHandle > -1)
             {
                 PJ_24 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_24;
@@ -213,22 +271,6 @@ namespace Ebada.Scgl.Yxgl
                 else
                 {
                     Export24.ExportExcel(OBJECT);
-                }
-            }
-           
-           
-        }
-
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (gridView1.FocusedRowHandle > -1)
-            {
-                frm24Template frm = new frm24Template();
-                frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_24;
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    Client.ClientHelper.PlatformSqlMap.Update<PJ_24>(frm.pjobject);
-                    MessageBox.Show("保存成功");
                 }
             }
         }

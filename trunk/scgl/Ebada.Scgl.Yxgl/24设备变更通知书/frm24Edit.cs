@@ -96,18 +96,19 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (comboBoxEdit1.Text == "")
-            {
-                MsgBox.ShowTipMessageBox("变动地点不能为空。");
-                comboBoxEdit1.Focus();
-                return;
-            }
-            if (rowData.BigData == null)
-            {
-                rowData.BigData = new byte[0];
-            }
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            //if (comboBoxEdit1.Text == "")
+            //{
+            //    MsgBox.ShowTipMessageBox("变动地点不能为空。");
+            //    comboBoxEdit1.Focus();
+            //    return;
+            //}
+           
+            ////if (rowData.BigData == null)
+            ////{
+            ////    rowData.BigData = new byte[0];
+            ////}
+            //this.DialogResult = DialogResult.OK;
+            //this.Close();
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
