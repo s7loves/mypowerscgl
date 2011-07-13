@@ -61,14 +61,16 @@ namespace Ebada.Scgl.Yxgl {
                     {
                         for (int i = 0; i < 15; i++)
                         {
-                            
 
+                            string str = list[starow - 1 + i].clrqz;
+                            string[] mans = str.Split(new char[1] { ';' });
                             ex.SetCellValue(list[starow - 1 + i].clrq.Year.ToString(), rowcount+ i, col);
                             ex.SetCellValue(list[starow - 1 + i].clrq.Month.ToString(), rowcount + i, col + 1);
                             ex.SetCellValue(list[starow - 1 + i].clrq.Day.ToString(), rowcount + i, col + 2);
                             ex.SetCellValue(list[starow - 1 + i].scz.ToString(), rowcount + i, col + 3);
                             ex.SetCellValue(list[starow - 1 + i].qw, rowcount + i, col + 4);
-                            ex.SetCellValue(list[starow - 1 + i].clrqz, rowcount + i, col + 5);
+                            ex.SetCellValue(mans[0], rowcount + i, col + 5);
+                            ex.SetCellValue(mans[1], rowcount + i, col + 6);
                             ex.SetCellValue(list[starow - 1 + i].jr, rowcount + i, col + 7);
 
                         }
@@ -77,12 +79,16 @@ namespace Ebada.Scgl.Yxgl {
                     {
                         for (int i = 0; i < list.Count - starow + 1; i++)
                         {
+                            string str = list[starow - 1 + i].clrqz;
+                            string[] mans = str.Split(new char[1] { ';' });
                             ex.SetCellValue(list[starow - 1 + i].clrq.Year.ToString(), rowcount + i, col);
                             ex.SetCellValue(list[starow - 1 + i].clrq.Month.ToString(), rowcount + i, col + 1);
                             ex.SetCellValue(list[starow - 1 + i].clrq.Day.ToString(), rowcount + i, col + 2);
                             ex.SetCellValue(list[starow - 1 + i].scz.ToString(), rowcount + i, col + 3);
                             ex.SetCellValue(list[starow - 1 + i].qw, rowcount + i, col + 4);
-                            ex.SetCellValue(list[starow - 1 + i].clrqz, rowcount + i, col + 5);
+                            
+                            ex.SetCellValue(mans[0], rowcount + i, col + 5);
+                            ex.SetCellValue(mans[1], rowcount + i, col + 6);
                             ex.SetCellValue(list[starow - 1 + i].jr, rowcount + i, col + 7);
 
                         }

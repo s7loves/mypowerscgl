@@ -36,6 +36,7 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
+                getqqry();
                 return rowData;
             }
             set {
@@ -47,6 +48,7 @@ namespace Ebada.Scgl.Yxgl
                 } else {
                     ConvertHelper.CopyTo<PJ_05jckyjl>(value as PJ_05jckyjl, rowData);
                 }
+                setqqry();
                 if (rowData.jr == "")
                 {
                     rowData.clrq = DateTime.Now;
@@ -62,7 +64,24 @@ namespace Ebada.Scgl.Yxgl
             PJ_05jcky pj= Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_05jcky>(rowData.jckyID);
             this.comboBoxEdit1.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
         }
+        void setqqry()
+        {
+            string str = rowData.clrqz;
+            string[] mans = str.Split(new char[1] { ';' });
+            comboBoxEdit1.EditValue = mans[0];
+            comboBoxEdit3.EditValue = mans[1];
 
+           
+        }
+        void getqqry()
+        {
+            
+            string str = "";
+            
+            str = comboBoxEdit1.EditValue.ToString() + ";" + comboBoxEdit3.EditValue.ToString();
+           
+            rowData.clrqz = str;
+        }
         /// <summary>
         /// 
         /// </summary>
