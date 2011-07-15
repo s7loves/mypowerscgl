@@ -151,7 +151,8 @@ namespace Ebada.Scgl.Yxgl
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
-            newobj.CreateMan = MainHelper.LoginName;
+            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            newobj.CreateMan = m_UserBase.RealName;
             newobj.ph = "18" + DateTime.Now.Year.ToString() + sws(gridView1.RowCount);
         }
         /// <summary>

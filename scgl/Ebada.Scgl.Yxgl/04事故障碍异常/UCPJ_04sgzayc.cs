@@ -147,10 +147,13 @@ namespace Ebada.Scgl.Yxgl
         void gridViewOperation_CreatingObjectEvent(PJ_04sgzayc newobj)
         {
             if (parentID == null) return;
+            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            newobj.CreateMan = m_UserBase.RealName;
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
-            newobj.CreateMan = MainHelper.LoginName;
+          
+            
         }
         /// <summary>
         /// 父表ID

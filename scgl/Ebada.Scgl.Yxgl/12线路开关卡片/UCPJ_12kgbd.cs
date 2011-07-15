@@ -168,7 +168,8 @@ namespace Ebada.Scgl.Yxgl
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
-            newobj.CreateMan = MainHelper.LoginName;
+            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            newobj.CreateMan = m_UserBase.RealName;
             newobj.kgCode = PSObj.kgCode;
             newobj.azrq = DateTime.Now;
            
