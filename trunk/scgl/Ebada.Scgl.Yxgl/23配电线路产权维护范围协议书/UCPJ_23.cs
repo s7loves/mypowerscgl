@@ -144,7 +144,8 @@ namespace Ebada.Scgl.Yxgl
             newobj.ParentID = parentID;
             //newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
-            newobj.CreateMan = MainHelper.LoginName;
+            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            newobj.CreateMan = m_UserBase.RealName;
         }
         /// <summary>
         /// 父表ID

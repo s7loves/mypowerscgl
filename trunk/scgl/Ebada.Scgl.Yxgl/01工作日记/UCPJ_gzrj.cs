@@ -159,7 +159,8 @@ namespace Ebada.Scgl.Yxgl
             newobj.GdsCode = parentID;
             newobj.GdsName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
-            newobj.CreateMan = MainHelper.LoginName;
+            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            newobj.CreateMan = m_UserBase.RealName;
             newobj.rq = DateTime.Now.Date;
             newobj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
             newobj.rsaqts = (DateTime.Today - parentObj.PSafeTime.Date).Days;

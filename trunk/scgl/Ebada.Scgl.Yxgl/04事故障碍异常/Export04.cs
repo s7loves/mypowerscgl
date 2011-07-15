@@ -35,9 +35,12 @@ namespace Ebada.Scgl.Yxgl
             //int[] starow = new int[3] { 9, 13, 18 };
             //Ecommon.CreatandWritesheet(ex, bhcollect, hs, starow);
             List<string> strcol = new List<string>();
-            Ecommon.addstring(Ecommon.ResultStrList("三、事故、障碍、异常运行情况及处理经过：" + obj.clqk, zc), ref strcol);
-            Ecommon.addstring(Ecommon.ResultStrList("四、主要原因分析：" + obj.yyfx, zc), ref strcol);
-            Ecommon.addstring(Ecommon.ResultStrList("五、今后防止对策：" + obj.fzdc, zc), ref strcol);
+            string sgyc = Ecommon.Comparestring(obj.clqk, "三") ? "" : "三、事故、障碍、异常运行情况及处理经过：";
+            string zyyy = Ecommon.Comparestring(obj.yyfx, "四") ? "" : "四、主要原因分析：";
+            string jhdc = Ecommon.Comparestring(obj.fzdc, "五") ? "" : "五、今后防止对策：";
+            Ecommon.addstring(Ecommon.ResultStrList(sgyc+ obj.clqk, zc), ref strcol);
+            Ecommon.addstring(Ecommon.ResultStrList(zyyy + obj.yyfx, zc), ref strcol);
+            Ecommon.addstring(Ecommon.ResultStrList(jhdc + obj.fzdc, zc), ref strcol);
             Ecommon.CreatandWritesheet(ex, strcol, 14, 9, 1);
             ex.ActiveSheet(1);
             //事故异常发生地点
@@ -54,9 +57,9 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.sdsj.Hour.ToString(), 7, 9);
             ex.SetCellValue(obj.sdsj.Minute.ToString(), 7, 11);
             //时间间隔
-            int data1 = (obj.tdsj - obj.sdsj).Days;
-            int hour1 = (obj.tdsj - obj.sdsj).Hours+data1*24;
-            int min1 = (obj.tdsj - obj.sdsj).Minutes;
+            int data1 = (obj.sdsj -obj.tdsj ).Days;
+            int hour1 = (obj.sdsj -obj.tdsj ).Hours+data1*24;
+            int min1 = (obj.sdsj-obj.tdsj  ).Minutes;
             ex.SetCellValue(hour1.ToString(),7, 17);
             ex.SetCellValue(min1.ToString(),7, 19);
             //损失电量
@@ -67,8 +70,8 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.zxr, 23, 8);
             //记录填写人
             ex.SetCellValue(obj.CreateMan, 24, 8);
-            ex.SetCellValue(obj.CreateDate.Month.ToString(), 24, 16);
-            ex.SetCellValue(obj.CreateDate.Day.ToString(), 24, 18);
+            ex.SetCellValue(obj.CreateDate.Month.ToString(), 24, 15);
+            ex.SetCellValue(obj.CreateDate.Day.ToString(), 24, 17);
            
             ////事故障碍异常
             //string sgzyc = "三、事故、障碍、异常运行情况及处理经过：" + obj.clqk;

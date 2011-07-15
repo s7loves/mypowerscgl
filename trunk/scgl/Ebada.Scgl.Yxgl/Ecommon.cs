@@ -16,7 +16,8 @@ namespace Ebada.Scgl.Yxgl
         public static bool Comparestring(string inputstring,string bpstring)
         {
             int length = bpstring.Length;
-            if (string.Equals(inputstring.Substring(length), bpstring))
+           
+            if (string.Equals(inputstring.Substring(0,length), bpstring))
             {
                 return true;
             }

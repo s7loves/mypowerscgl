@@ -160,6 +160,7 @@
             this.memoEdit2.Name = "memoEdit2";
             this.memoEdit2.Size = new System.Drawing.Size(465, 325);
             this.memoEdit2.TabIndex = 0;
+            this.memoEdit2.EditValueChanged += new System.EventHandler(this.memoEdit2_EditValueChanged);
             // 
             // xtraTabPage2
             // 

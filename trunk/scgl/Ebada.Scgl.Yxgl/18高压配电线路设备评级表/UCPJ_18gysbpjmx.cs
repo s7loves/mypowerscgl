@@ -171,7 +171,8 @@ namespace Ebada.Scgl.Yxgl
             //newobj.OrgName = parentObj.OrgName;
             newobj.PJ_ID = PSObj.PJ_ID;
             newobj.CreateDate = DateTime.Now;
-            newobj.CreateMan = MainHelper.LoginName;
+            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            newobj.CreateMan = m_UserBase.RealName;
         }
       
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

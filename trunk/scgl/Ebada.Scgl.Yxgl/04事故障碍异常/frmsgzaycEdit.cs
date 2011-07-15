@@ -85,5 +85,10 @@ namespace Ebada.Scgl.Yxgl
                 rowData.fzdc = dyk.nr3;
             }
         }
+
+        private void memoEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
