@@ -172,5 +172,18 @@ namespace Ebada.Scgl.Yxgl
             //}
             
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            
+            if (rowData.sdsj<rowData.tdsj)
+            {
+                MsgBox.ShowTipMessageBox("送电应在停电后!");
+                dateEdit3.Focus();
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }
