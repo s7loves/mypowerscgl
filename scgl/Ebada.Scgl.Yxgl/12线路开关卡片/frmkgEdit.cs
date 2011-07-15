@@ -50,6 +50,7 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
+                
                 return rowData;
             }
             set {
@@ -57,9 +58,11 @@ namespace Ebada.Scgl.Yxgl
                 if (rowData == null) {
                     this.rowData = value as PS_kg;
                     this.InitComboBoxData();
+                    
                     dataBind();
                 } else {
                     ConvertHelper.CopyTo<PS_kg>(value as PS_kg, rowData);
+                    this.InitComboBoxData();
                 }
             }
         }
@@ -112,6 +115,8 @@ namespace Ebada.Scgl.Yxgl
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
             rowData.gtID = lookUpEdit1.EditValue.ToString();
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select sbName from PS_gtsb where gtid='"+rowData.gtID+"'and sbType='开关'");
+            comboBoxEdit1.Properties.Items.AddRange(list);
         }
         private void btnOK_Click(object sender, EventArgs e)
         {
