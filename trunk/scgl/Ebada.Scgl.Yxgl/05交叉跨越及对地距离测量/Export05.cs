@@ -35,9 +35,11 @@ namespace Ebada.Scgl.Yxgl {
                         ex.CopySheet(1, 1);
                     }
                 }
+                PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
                 ex.ActiveSheet(1);
-                ex.SetCellValue(jl.LineID, row + 3, col);
-                ex.SetCellValue(jl.gtID, row + 3, col + 3);
+                ex.SetCellValue(xlobject.LineName, row + 3, col);
+                ex.SetCellValue("'"+jl.gtID.ToString(), row + 3, col + 3);
+                ex.SetCellValue(jl.kywz, row + 3, col + 6);
 
                 //交叉跨越行
                 ex.SetCellValue(jl.kygh, row + 6, col);

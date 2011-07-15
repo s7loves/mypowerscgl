@@ -50,12 +50,14 @@ namespace Ebada.Scgl.Yxgl
             }
             set {
                 if (value == null) return;
+                
                 if (rowData == null) {
                     this.rowData = value as PJ_06sbxs;
-                    this.InitComboBoxData();
+                   this.InitComboBoxData();
                     dataBind();
                 } else {
                     ConvertHelper.CopyTo<PJ_06sbxs>(value as PJ_06sbxs, rowData);
+                    this.InitComboBoxData();
                 }
                 setxsr();
                 setxcr();
@@ -182,6 +184,25 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("06设备巡视及缺陷消除记录", "缺陷内容", memoEdit1);
+
+        }
+
+     
+
+        private void comboBoxEdit3_Properties_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //string xsry = comboBoxEdit3.Properties.GetDisplayText(null);
+            ////comboBoxEdit3.EditValue = "";
+            //comboBoxEdit6.EditValue = "";
+            //string[] mans = xsry.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
+            //if (mans.Length >= 1)
+            //{
+            //    comboBoxEdit3.EditValue = mans[0];
+            //}
+            //if (mans.Length >= 2)
+            //{
+            //    comboBoxEdit6.EditValue = mans[1];
+            //}
 
         }
 
