@@ -20,6 +20,7 @@
         <result property="CreateMan" column="CreateMan" />
         <result property="CreateDate" column="CreateDate" />
         <result property="sbID" column="sbID" />
+        <result property="fzxl" column="fzxl" />
       </resultMap>
   </resultMaps>
 
@@ -40,29 +41,31 @@
          [trdzr],
          [CreateMan],
          [CreateDate],
-         [sbID]
+         [sbID],
+         [fzxl]
           FROM PJ_07jdzz
           $value$
    </select>
    
    <select id="SelectPJ_07jdzzByHash" parameterClass="Hashtable">
-         SELECT 
-         [jdzzID],
-         [OrgCode],
-         [OrgName],
-         [LineID],
-         [LineName],
-         [gth],
-         [gzwz],
-         [sbmc],
-         [xhgg],
-         [jddz],
-         [tz],
-         [trdzr],
-         [CreateMan],
-         [CreateDate],
-         [sbID]
-          FROM PJ_07jdzz
+     SELECT
+     [jdzzID],
+     [OrgCode],
+     [OrgName],
+     [LineID],
+     [LineName],
+     [gth],
+     [gzwz],
+     [sbmc],
+     [xhgg],
+     [jddz],
+     [tz],
+     [trdzr],
+     [CreateMan],
+     [CreateDate],
+     [sbID],
+     [fzxl]
+     FROM PJ_07jdzz
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="jdzzID">[jdzzID]='$jdzzID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
@@ -79,28 +82,30 @@
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="fzxl">[fzxl]='$fzxl$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_07jdzzByKey" resultMap="PJ_07jdzz_AllColumns" parameterClass="PJ_07jdzz">
-         SELECT 
-         [jdzzID],
-         [OrgCode],
-         [OrgName],
-         [LineID],
-         [LineName],
-         [gth],
-         [gzwz],
-         [sbmc],
-         [xhgg],
-         [jddz],
-         [tz],
-         [trdzr],
-         [CreateMan],
-         [CreateDate],
-         [sbID]
-         FROM PJ_07jdzz
-         WHERE 
-           jdzzID = #jdzzID#
+     SELECT
+     [jdzzID],
+     [OrgCode],
+     [OrgName],
+     [LineID],
+     [LineName],
+     [gth],
+     [gzwz],
+     [sbmc],
+     [xhgg],
+     [jddz],
+     [tz],
+     [trdzr],
+     [CreateMan],
+     [CreateDate],
+     [sbID],
+     [fzxl]
+     FROM PJ_07jdzz
+     WHERE
+     jdzzID = #jdzzID#
 
    </select>
  
@@ -125,64 +130,67 @@
    </delete>
    
    <update id="UpdatePJ_07jdzz" parameterClass="PJ_07jdzz" resultClass="int">
-          UPDATE PJ_07jdzz
-           SET
-             [OrgCode]=#OrgCode#,
-             [OrgName]=#OrgName#,
-             [LineID]=#LineID#,
-             [LineName]=#LineName#,
-             [gth]=#gth#,
-             [gzwz]=#gzwz#,
-             [sbmc]=#sbmc#,
-             [xhgg]=#xhgg#,
-             [jddz]=#jddz#,
-             [tz]=#tz#,
-             [trdzr]=#trdzr#,
-             [CreateMan]=#CreateMan#,
-             [CreateDate]=#CreateDate#,
-             [sbID]=#sbID#
-            WHERE 
-              jdzzID = #jdzzID#
+     UPDATE PJ_07jdzz
+     SET
+     [OrgCode]=#OrgCode#,
+     [OrgName]=#OrgName#,
+     [LineID]=#LineID#,
+     [LineName]=#LineName#,
+     [gth]=#gth#,
+     [gzwz]=#gzwz#,
+     [sbmc]=#sbmc#,
+     [xhgg]=#xhgg#,
+     [jddz]=#jddz#,
+     [tz]=#tz#,
+     [trdzr]=#trdzr#,
+     [CreateMan]=#CreateMan#,
+     [CreateDate]=#CreateDate#,
+     [sbID]=#sbID#,
+     [fzxl]=#fzxl#
+     WHERE
+     jdzzID = #jdzzID#
 
    </update>
   
    <insert id="InsertPJ_07jdzz" parameterClass="PJ_07jdzz">
-        INSERT INTO PJ_07jdzz
-         (
-         [jdzzID],
-         [OrgCode],
-         [OrgName],
-         [LineID],
-         [LineName],
-         [gth],
-         [gzwz],
-         [sbmc],
-         [xhgg],
-         [jddz],
-         [tz],
-         [trdzr],
-         [CreateMan],
-         [CreateDate],
-         [sbID]
-         )
-       VALUES
-         (
-         #jdzzID#,
-         #OrgCode#,
-         #OrgName#,
-         #LineID#,
-         #LineName#,
-         #gth#,
-         #gzwz#,
-         #sbmc#,
-         #xhgg#,
-         #jddz#,
-         #tz#,
-         #trdzr#,
-         #CreateMan#,
-         #CreateDate#,
-         #sbID#
-         )
+     INSERT INTO PJ_07jdzz
+     (
+     [jdzzID],
+     [OrgCode],
+     [OrgName],
+     [LineID],
+     [LineName],
+     [gth],
+     [gzwz],
+     [sbmc],
+     [xhgg],
+     [jddz],
+     [tz],
+     [trdzr],
+     [CreateMan],
+     [CreateDate],
+     [sbID],
+     [fzxl]
+     )
+     VALUES
+     (
+     #jdzzID#,
+     #OrgCode#,
+     #OrgName#,
+     #LineID#,
+     #LineName#,
+     #gth#,
+     #gzwz#,
+     #sbmc#,
+     #xhgg#,
+     #jddz#,
+     #tz#,
+     #trdzr#,
+     #CreateMan#,
+     #CreateDate#,
+     #sbID#,
+     #fzxl#
+     )
 
    </insert>
    
@@ -205,6 +213,7 @@
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="fzxl">[fzxl]='$fzxl$'</isNotNull>
      </dynamic>
 
    </select>
