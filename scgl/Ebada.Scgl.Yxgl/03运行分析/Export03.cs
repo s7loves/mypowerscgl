@@ -31,19 +31,21 @@ namespace Ebada.Scgl.Yxgl
             int zc = 60;
             //获得创建的工作表个数
             // int pagemax = 1;
-            List<string> listztstring = Ecommon.ResultStrList("主题：" + obj.zt, zc);
+            string zt = Ecommon.Comparestring(obj.zt, "主题") ? "" : "主题：";
+            List<string> listztstring = Ecommon.ResultStrList(zt + obj.zt, zc);
 
             //if (pagemax < Ecommon.GetPagecount(listztstring.Count,2))
             //{
             //    pagemax = Ecommon.GetPagecount(listztstring.Count, 2);
             //}
-
-            List<string> listjy = Ecommon.ResultStrList("纪要：" + obj.jy, zc);
+            string jy = Ecommon.Comparestring(obj.jy, "纪要") ? "" : "纪要：";
+            List<string> listjy = Ecommon.ResultStrList(jy + obj.jy, zc);
             //if (pagemax < Ecommon.GetPagecount(listjy.Count, 7))
             //{
             //    pagemax = Ecommon.GetPagecount(listjy.Count, 7);
             //}
-            List<string> listjldc = Ecommon.ResultStrList("结论及对策：" + obj.jr, zc);
+            string jr = Ecommon.Comparestring(obj.jr, "结论及对策") ? "" : "结论及对策：";
+            List<string> listjldc = Ecommon.ResultStrList(jr + obj.jr, zc);
             //if (pagemax < Ecommon.GetPagecount(listjldc.Count, 6))
             //{
             //    pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
