@@ -109,6 +109,7 @@ namespace Ebada.Scgl.Yxgl
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
             IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            
             for (int i = 0; i < list.Count;i++ )
             {
                 comboBoxEdit2.Properties.Items.Add(list[i].gtID);
