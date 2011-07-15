@@ -34,21 +34,27 @@ namespace Ebada.Scgl.Yxgl {
             //活动内容
 
 
-            string hdstr = "活动内容：";
+            string hdstr =Ecommon.Comparestring(obj.hdnr,"活动内容")?"" :"活动内容：";
             List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.hdnr, zc, 8);
             if (Ecommon.GetPagecount(hdlist.Count, 8) > pagecount)
             {
                 pagecount = Ecommon.GetPagecount(hdlist.Count, 8);
             }
             //活动小结
-            string hdxjstr = "活动小结：";
+            string hdxjstr = Ecommon.Comparestring(obj.hdxj,"活动小结")?"":"活动小结：";
             List<string> hdxlist = Ecommon.ResultStrListByPage(hdxjstr, obj.hdxj, zc, 5);
             if (Ecommon.GetPagecount(hdxlist.Count, 5) > pagecount)
             {
                 pagecount = Ecommon.GetPagecount(hdxlist.Count, 5);
             }
+            //发言简要记录
+            List<string> fyjyjllist = Ecommon.ResultStrListByPage("", obj.fyjyjl, zc, 21);
+            if (Ecommon.GetPagecount(fyjyjllist.Count,21)>pagecount)
+            {
+                pagecount = Ecommon.GetPagecount(fyjyjllist.Count, 21);
+            }
             //领导评语
-            string ldpystr = "领导检查评语：";
+            string ldpystr =Ecommon.Comparestring(obj.py,"领导检查评语")?"": "领导检查评语：";
             List<string> ldpylist = Ecommon.ResultStrListByPage(ldpystr, obj.py, zc, 2);
             if (Ecommon.GetPagecount(ldpylist.Count, 2) > pagecount)
             {
@@ -96,7 +102,18 @@ namespace Ebada.Scgl.Yxgl {
                         break;
                     }
                     string tempstr = ldpylist[p * 2 + t];
+                   
                     ex.SetCellValue(tempstr, 23 + t, 1);
+                }
+                //简要记录
+                for (int jy = 0; jy < 21;jy++ )
+                {
+                    if (p*21+jy>=fyjyjllist.Count)
+                    {
+                        break;
+                    }
+                    string tempstr = fyjyjllist[p * 21 + jy];
+                    ex.SetCellValue(tempstr, 30 + jy,1);
                 }
             }
 

@@ -8,6 +8,23 @@ namespace Ebada.Scgl.Yxgl
     class Ecommon
     {
         /// <summary>
+        ///判断前几个字是否重复
+        /// </summary>
+        /// <param name="inputString">输入字符串</param>
+        /// <param name="bpstring">判断的字符</param>
+        /// <returns>bool<string> </returns>
+        public static bool Comparestring(string inputstring,string bpstring)
+        {
+            int length = bpstring.Length;
+            if (string.Equals(inputstring.Substring(length), bpstring))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        /// <summary>
         ///按指定长度截断字符串
         /// </summary>
         /// <param name="inputString">输入字符串</param>
