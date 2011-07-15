@@ -31,6 +31,7 @@ namespace Ebada.Scgl.Yxgl {
 
                 //线路名称行
                 ex.SetCellValue(jl.LineName, row + 4, col+2);
+                ex.SetCellValue(jl.gzwz,row + 4, col + 11);
                 ex.SetCellValue(jl.gth, row + 4, col + 15);
 
                 //设备名称行
