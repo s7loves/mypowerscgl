@@ -129,5 +129,22 @@ namespace Ebada.Scgl.Yxgl
         {
 
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            PS_tqbyq byq = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tqbyq>(rowData.byqID);
+            if (rowData.azrq>byq.InDate)
+            {
+                MsgBox.ShowTipMessageBox("安装时间不能在投放时间之后！");
+                return;
+            }
+            if (rowData.ccrq < rowData.azrq)
+            {
+                MsgBox.ShowTipMessageBox("撤除时间不能在安装时间之前！");
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }
