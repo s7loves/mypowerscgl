@@ -140,6 +140,11 @@ namespace Ebada.Scgl.Yxgl
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
             rowData.tqID = lookUpEdit1.EditValue.ToString();
+            PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(rowData.tqID);
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select byqName from PS_tqbyq where tqid ='" + rowData.tqID+ "'"); 
+            rowData.byqName = pt.tqCode +list.Count.ToString();
+            comboBoxEdit2.Properties.Items.AddRange(list);
+            comboBoxEdit14.EditValue = pt.Adress;
             //string constr = "where tqID='" + lookUpEdit1.EditValue.ToString() + "'";
             //IList<PS_tqbyq> byqlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("SelectPS_tqbyqList", constr);
             //comboBoxEdit1.Properties.Items.Clear();
