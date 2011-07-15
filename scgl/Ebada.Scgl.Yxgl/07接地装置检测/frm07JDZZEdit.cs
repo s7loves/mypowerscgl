@@ -167,5 +167,20 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit3.Properties.Items.Add(list[i].Adress);
             }
         }
+
+        private void comboBoxEdit4_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(comboBoxEdit4.EditValue.ToString()))
+            {
+                string sbmc = comboBoxEdit4.EditValue.ToString();
+                ICollection list = new ArrayList();
+                comboBoxEdit5.Properties.Items.Clear();
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where parentid in(select ID from pj_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc+"型号"));
+                if (list.Count > 0)
+                    comboBoxEdit5.Properties.Items.AddRange(list);
+            }
+           
+          
+        }
     }
 }
