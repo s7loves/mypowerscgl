@@ -31,6 +31,7 @@ namespace Ebada.Scgl.Yxgl
 
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineID");
+            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "fzxl");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "gth");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "gzwz");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbmc");
@@ -80,7 +81,7 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土质", comboBoxEdit7);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8);
            
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'and LineType='1'");
             comboBoxEdit1.Properties.DataSource = xlList;
         }
 
@@ -109,10 +110,17 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
-            ICollection list = new ArrayList();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit1.EditValue.ToString()));
-            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
-            comboBoxEdit2.Properties.Items.AddRange(list) ;
+            if (!string.IsNullOrEmpty(comboBoxEdit1.EditValue.ToString()))
+            {
+                ICollection list = new ArrayList();
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit1.EditValue.ToString()));
+                //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+                comboBoxEdit2.Properties.Items.AddRange(list);
+                IList<PS_xl> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where ParentID='" + comboBoxEdit1.EditValue.ToString() + "'and LineType IN ('1','2')");
+                lookUpEdit1.Properties.DataSource = listXL;
+            }
+          
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -154,6 +162,7 @@ namespace Ebada.Scgl.Yxgl
                 return;
             }
             rowData.LineName = comboBoxEdit1.Text;
+
             rowData.xhgg = comboBoxEdit5.Text + "|" + comboBoxEdit9.Text;
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -161,11 +170,15 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
         {
-            IList<PS_tq> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(" where gtID='" + comboBoxEdit2.EditValue.ToString() + "' order by tqName");
-            for (int i = 0; i < list.Count; i++)
+            if (!string.IsNullOrEmpty(comboBoxEdit2.EditValue.ToString()))
             {
-                comboBoxEdit3.Properties.Items.Add(list[i].Adress);
+                IList<PS_tq> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(" where gtID='" + comboBoxEdit2.EditValue.ToString() + "' order by tqName");
+                for (int i = 0; i < list.Count; i++)
+                {
+                    comboBoxEdit3.Properties.Items.Add(list[i].Adress);
+                }
             }
+           
         }
 
         private void comboBoxEdit4_EditValueChanged(object sender, EventArgs e)
