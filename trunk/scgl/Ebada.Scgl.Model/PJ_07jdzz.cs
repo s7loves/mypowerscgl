@@ -35,7 +35,8 @@ namespace Ebada.Scgl.Model
         private decimal _trdzr=0; 
         private string _createman=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
-        private string _sbid=String.Empty;   
+        private string _sbid=String.Empty;
+        private string _fzxl = String.Empty;
         #endregion
   
   
@@ -347,7 +348,26 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        /// <summary>
+        /// 属性名称：fzxl
+        /// 属性描述：分支线路名称
+        /// 字段信息：[fzxl],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("分支线路")]
+        public string fzxl
+        {
+            get { return _fzxl; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[分支线路]长度不能大于50!");
+                if (_fzxl as object == null || !_fzxl.Equals(value))
+                {
+                    _fzxl = value;
+                }
+            }
+        }
         #endregion 
   
         #region 方法
