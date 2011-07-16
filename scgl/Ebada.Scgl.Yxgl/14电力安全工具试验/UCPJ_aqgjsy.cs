@@ -50,7 +50,7 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_AfterAdd(PJ_14aqgjsy obj)
         {
-            RefreshData(" where OrgCode='" + parentID + "' and sbID='" + PSObj.sbID + "' order by id desc");
+            RefreshData(" where OrgCode='" + parentID + "' and sbID='" + PSObj.sbID + "' order by rq");
         }
         public PS_aqgj PSObj
         {
@@ -78,7 +78,7 @@ namespace Ebada.Scgl.Yxgl
                 }
                 if (parentID != null && PSObj != null)
                 {
-                    RefreshData(" where OrgCode='" + parentID + "' and sbID='" + PSObj.sbID + "' order by id desc");
+                    RefreshData(" where OrgCode='" + parentID + "' and sbID='" + PSObj.sbID + "' order by rq");
 
                 }
               
@@ -205,7 +205,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value)&&PSObj!=null)
                 {
-                    RefreshData(" where OrgCode='" + value + "' and sbID='" + PSObj.sbID + "' order by id desc");
+                    RefreshData(" where OrgCode='" + value + "' and sbID='" + PSObj.sbID + "' order by rq");
                 }
             }
         }
