@@ -64,6 +64,7 @@ namespace Ebada.Scgl.Yxgl
                     this.InitComboBoxData();
                     dataBind();
                 } else {
+                    this.InitComboBoxData();
                     ConvertHelper.CopyTo<PS_tqdlbh>(value as PS_tqdlbh, rowData);
                 }
                 if(rowData.sbCode==""){
@@ -89,6 +90,9 @@ namespace Ebada.Scgl.Yxgl
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   xlCode='{0}' ", lineCode));
             //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
             comboBoxEdit5.Properties.Items.AddRange(list);
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select Adress from PS_tq where   xlCode='{0}' ", lineCode));
+            comboBoxEdit11.Properties.Items.AddRange(list);
+
         }
 
         /// <summary>
@@ -126,6 +130,12 @@ namespace Ebada.Scgl.Yxgl
             if (textEdit1.Text == "")
             {
                 MsgBox.ShowTipMessageBox("设备编号不能为空。");
+                textEdit1.Focus();
+                return;
+            }
+            if (rowData.InstallDate>rowData.InDate)
+            {
+                MsgBox.ShowTipMessageBox("安装日期不能大于投运日期。");
                 textEdit1.Focus();
                 return;
             }
