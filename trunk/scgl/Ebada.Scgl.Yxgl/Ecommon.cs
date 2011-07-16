@@ -34,32 +34,29 @@ namespace Ebada.Scgl.Yxgl
         public static List<string> ResultStrList(string inputString, int len)
         {
              List<string> RList = new List<string>();
-             ASCIIEncoding ascii = new ASCIIEncoding(); 
-             int tempLen=0; 
-             string tempString=""; 
-             byte[] s = ascii.GetBytes(inputString);
-             for (int i = 0; i < s.Length; i++)
-             {
-                 if ((int)s[i] == 63)
-                 {
-                     tempLen += 2;
+             ASCIIEncoding ascii = new ASCIIEncoding();
+             string[] lines = inputString.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+             foreach (string line in lines) {
+                 int tempLen = 0;
+                 string tempString = "";
+
+                 byte[] s = ascii.GetBytes(line);
+                 for (int i = 0; i < s.Length; i++) {
+                     if ((int)s[i] == 63) {
+                         tempLen += 2;
+                     } else {
+                         tempLen += 1;
+                     }
+                     tempString += line.Substring(i, 1);
+                     if (tempLen >= len && i <= (s.Length - 1)) {
+                         RList.Add(tempString);
+                         tempString = "";
+                         tempLen = 0;
+                     } else if (i == (s.Length - 1) && tempLen < len) {
+                         RList.Add(tempString);
+                     }
+
                  }
-                 else
-                 {
-                     tempLen += 1;
-                 }
-                 tempString += inputString.Substring(i, 1); 
-                 if (tempLen>=len&&i<=(s.Length-1))
-                 {
-                     RList.Add(tempString);
-                     tempString = "";
-                     tempLen = 0;
-                 }
-                 else if (i == (s.Length - 1) && tempLen < len)
-                 {
-                     RList.Add(tempString);
-                 }
-                
              }
              return RList;
            
