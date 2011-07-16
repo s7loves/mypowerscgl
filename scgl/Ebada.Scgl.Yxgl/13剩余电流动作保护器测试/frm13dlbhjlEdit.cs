@@ -46,6 +46,7 @@ namespace Ebada.Scgl.Yxgl
                     dataBind();
                 } else {
                     ConvertHelper.CopyTo<PJ_13dlbhjl>(value as PJ_13dlbhjl, rowData);
+                    InitComboBoxData();
                 }
             }
         }
