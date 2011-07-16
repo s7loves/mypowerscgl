@@ -56,13 +56,32 @@ namespace Ebada.Scgl.Yxgl
         {
             get { return _parentobj;}
             set 
-            { 
-                _parentobj = value;
-                if (parentID!=null&&PSObj!=null)
+            {
+                
+                
+                if (value!=null)
+                {
+                    _parentobj = value;
+                    //获取变电所
+                    IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + value.OrgID + "'");
+                    mOrg org = null;
+                    if (list.Count > 0)
+                        org = list[0];
+
+                    if (org != null)
+                    {
+                        ParentObj = org;
+
+                    }
+
+                    
+                }
+                if (parentID != null && PSObj != null)
                 {
                     RefreshData(" where OrgCode='" + parentID + "' and sbID='" + PSObj.sbID + "' order by id desc");
 
                 }
+              
                
             }
         }
