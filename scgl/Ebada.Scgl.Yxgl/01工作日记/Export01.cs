@@ -82,6 +82,11 @@ namespace Ebada.Scgl.Yxgl {
             ex.ShowExcel();
 
         }
+        /// <summary>
+        /// 填充头尾
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="jl"></param>
         private static void setHead(ExcelAccess ex, PJ_01gzrj jl) {
             int row = 1;
             int col = 1;
@@ -97,6 +102,11 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(jl.qzrq.Month.ToString(), row + 14 + row_nr, col + 9);
             ex.SetCellValue(jl.qzrq.Day.ToString(), row + 14 + row_nr, col + 11);
         }
+        /// <summary>
+        /// 填充人员
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="jl"></param>
         private static void setHead2(ExcelAccess ex, PJ_01gzrj jl) {
             int row = 1;
             int col = 1;
@@ -137,9 +147,13 @@ namespace Ebada.Scgl.Yxgl {
             //人身,设备
             ex.SetCellValue(jl.rsaqts.ToString(), row + 5, col + 13);
             ex.SetCellValue(jl.sbaqts.ToString(), row + 7, col + 13);
-
-            
         }
+
+        /// <summary>
+        /// 获了内容记录
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns></returns>
         private static IList<PJ_gzrjnr> getRjnrList(string pid) {
             IList<PJ_gzrjnr> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_gzrjnr>(" where gzrjID='" + pid + "' order by seq");
             IList<PJ_gzrjnr> list2 = new List<PJ_gzrjnr>();
