@@ -33,6 +33,8 @@ namespace Ebada.Scgl.Yxgl {
 
         void ucpJ_14aqgj1_FocusedRowChanged(object sender, PS_aqgj obj)
         {
+            ucpJ_14aqgjsy1.ParentID = "";
+            ucpJ_14aqgjsy1.PSObj = null;
             ucpJ_14aqgjsy1.PSObj = obj;
         }
 
