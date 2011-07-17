@@ -1,0 +1,5 @@
+update pj_dyk set nr=1 where nr='一年'
+update pj_dyk set nr=2 where nr='二年'
+update pj_dyk set nr=3 where nr='三年'
+update pj_dyk set nr=4 where nr='四年'
+update pj_dyk set nr=5 where nr='五年'
