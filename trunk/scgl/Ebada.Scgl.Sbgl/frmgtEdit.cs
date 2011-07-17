@@ -60,8 +60,8 @@ namespace Ebada.Scgl.Sbgl
         #endregion
 
         private void InitComboBoxData() {
-            ComboBoxHelper.FillCBoxByGttype(comboBoxEdit3);
-            pdsbModelHelper.FillCBoxByGt(comboBoxEdit4);
+            ComboBoxHelper.FillCBoxByGttype(comboBoxEdit4);
+            pdsbModelHelper.FillCBoxByGt(comboBoxEdit3);
 
         }
 
