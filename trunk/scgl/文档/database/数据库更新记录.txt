@@ -9,3 +9,4 @@
 2011.7.7 增加LP_Temple字段Status、ComBoxItem、ExtraWord,修改字段[AffectEvent]长度，由200调整到800
 2011.7.14 PJ_24 sj字段类型改为 datatime类型
 2011.7.15 PJ_07jdzz 添加fzxl字段  类型改为 NVCHAR类型
+2011.7.16 PS_tqdlbh  去掉sbid的外键索引字段 
