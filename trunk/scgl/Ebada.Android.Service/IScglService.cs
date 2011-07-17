@@ -25,7 +25,7 @@ namespace Ebada.Android.Service {
         /// <returns></returns>
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetXlList/{gdscode}", BodyStyle = WebMessageBodyStyle.Bare)]
-        List<PS_xl> GetXlList(string gdscode);
+        List<ps_xl> GetXlList(string gdscode);
         /// <summary>
         /// 获取杆塔列表
         /// </summary>
@@ -33,12 +33,12 @@ namespace Ebada.Android.Service {
         /// <returns></returns>
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetGtList/{xlcode}", BodyStyle = WebMessageBodyStyle.Bare)]
-        List<PS_gt> GetGtList(string xlcode);
+        List<ps_gt> GetGtList(string xlcode);
         [OperationContract]
         [WebInvoke(UriTemplate = "UpdateXl", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
-        string UpdateXl(List<PS_xl> data);
+        string UpdateXl(List<ps_xl> data);
         [OperationContract]
         [WebInvoke(UriTemplate = "UpdateGt", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
-        string UpdateGt(List<PS_gt> data);
+        string UpdateGt(List<ps_gt> data);
     }
 }
