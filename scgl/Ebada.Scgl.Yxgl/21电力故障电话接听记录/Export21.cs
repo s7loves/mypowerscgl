@@ -58,9 +58,9 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(objlist[starow - 1 + i].rq.Minute.ToString(), rowcount + i, 4);
                         ex.SetCellValue(objlist[starow - 1 + i].lxfs, rowcount + i, 5);
                         ex.SetCellValue(objlist[starow - 1 + i].yhdz, rowcount + i, 6);
-                        ex.SetCellValue(objlist[starow - 1 + i].gzjk, rowcount + i, 7);
-                        ex.SetCellValue(objlist[starow - 1 + i].djr, rowcount + i, 8);
-                        ex.SetCellValue(objlist[starow - 1 + i].clr, rowcount + i, 9);
+                        ex.SetCellValue(objlist[starow - 1 + i].gzjk, rowcount + i, 9);
+                        ex.SetCellValue(objlist[starow - 1 + i].djr, rowcount + i,12);
+                        ex.SetCellValue(objlist[starow - 1 + i].clr, rowcount + i, 13);
 
                     }
                 }
@@ -74,9 +74,9 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(objlist[starow - 1 + i].rq.Minute.ToString(), rowcount + i, 4);
                         ex.SetCellValue(objlist[starow - 1 + i].lxfs, rowcount + i, 5);
                         ex.SetCellValue(objlist[starow - 1 + i].yhdz, rowcount + i, 6);
-                        ex.SetCellValue(objlist[starow - 1 + i].gzjk, rowcount + i, 7);
-                        ex.SetCellValue(objlist[starow - 1 + i].djr, rowcount + i, 8);
-                        ex.SetCellValue(objlist[starow - 1 + i].clr, rowcount + i, 9);
+                        ex.SetCellValue(objlist[starow - 1 + i].gzjk, rowcount + i, 9);
+                        ex.SetCellValue(objlist[starow - 1 + i].djr, rowcount + i, 12);
+                        ex.SetCellValue(objlist[starow - 1 + i].clr, rowcount + i, 13);
 
                     }
                 }
