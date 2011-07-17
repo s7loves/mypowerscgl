@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Android.Service", "Ebada.Android.Service.csproj", "{0773FB7E-4CB7-4C67-849F-897756CC426D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "..\ConsoleClient\ConsoleClient.csproj", "{D854958F-8274-4E62-9864-3AF24DBB2ABF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0773FB7E-4CB7-4C67-849F-897756CC426D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0773FB7E-4CB7-4C67-849F-897756CC426D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{0773FB7E-4CB7-4C67-849F-897756CC426D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{0773FB7E-4CB7-4C67-849F-897756CC426D}.Debug|x86.ActiveCfg = Debug|x86
+		{0773FB7E-4CB7-4C67-849F-897756CC426D}.Debug|x86.Build.0 = Debug|x86
+		{0773FB7E-4CB7-4C67-849F-897756CC426D}.Release|Any CPU.ActiveCfg = Release|x86
+		{0773FB7E-4CB7-4C67-849F-897756CC426D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{0773FB7E-4CB7-4C67-849F-897756CC426D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{0773FB7E-4CB7-4C67-849F-897756CC426D}.Release|x86.ActiveCfg = Release|x86
+		{0773FB7E-4CB7-4C67-849F-897756CC426D}.Release|x86.Build.0 = Release|x86
+		{D854958F-8274-4E62-9864-3AF24DBB2ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D854958F-8274-4E62-9864-3AF24DBB2ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D854958F-8274-4E62-9864-3AF24DBB2ABF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D854958F-8274-4E62-9864-3AF24DBB2ABF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D854958F-8274-4E62-9864-3AF24DBB2ABF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D854958F-8274-4E62-9864-3AF24DBB2ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D854958F-8274-4E62-9864-3AF24DBB2ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D854958F-8274-4E62-9864-3AF24DBB2ABF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D854958F-8274-4E62-9864-3AF24DBB2ABF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D854958F-8274-4E62-9864-3AF24DBB2ABF}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
