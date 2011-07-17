@@ -356,7 +356,7 @@ namespace Ebada.Scgl.Core {
             if (mCache.ContainsKey(key)) {
                 list = mCache[key];
             } else {
-                list = new string[] { "直线杆", "加强杆", "耐张杆", "转角杆", "终端杆", "分歧杆"};
+                list = new string[] { "直线杆", "加强杆", "耐张杆", "转角杆", "终端杆", "分支杆"};
                 mCache.Add(key, list);
             }
             return list;
