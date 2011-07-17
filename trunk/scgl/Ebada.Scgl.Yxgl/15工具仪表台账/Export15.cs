@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(objlist[starow - 1 + i].sbCode, rowcount + i, 7);
                         ex.SetCellValue(objlist[starow - 1 + i].lqsj.Year.ToString(), rowcount + i, 8);
                         ex.SetCellValue(objlist[starow - 1 + i].lqsj.Month.ToString(), rowcount + i, 9);
-
+                        ex.SetCellValue(objlist[starow - 1 + i].Remark, rowcount + i, 9);
                     }
                 }
                 else if (objlist.Count <= endrow && objlist.Count >= starow)
@@ -78,7 +78,7 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(objlist[starow - 1 + i].sbCode, rowcount + i, 7);
                         ex.SetCellValue(objlist[starow - 1 + i].lqsj.Year.ToString(), rowcount + i, 8);
                         ex.SetCellValue(objlist[starow - 1 + i].lqsj.Month.ToString(), rowcount + i, 9);
-
+                        ex.SetCellValue(objlist[starow - 1 + i].Remark, rowcount + i, 9);
                     }
                 }
             }
