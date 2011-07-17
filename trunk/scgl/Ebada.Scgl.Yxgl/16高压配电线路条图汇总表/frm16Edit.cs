@@ -50,7 +50,10 @@ namespace Ebada.Scgl.Yxgl
                     this.InitComboBoxData();
                     dataBind();
                 } else {
+                    
                     ConvertHelper.CopyTo<PJ_16>(value as PJ_16, rowData);
+                    this.InitComboBoxData();
+                    
                 }
             }
         }
