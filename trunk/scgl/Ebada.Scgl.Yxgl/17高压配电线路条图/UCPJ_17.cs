@@ -213,6 +213,7 @@ namespace Ebada.Scgl.Yxgl
             pj.Remark ="";
             MainHelper.PlatformSqlMap.Create<PJ_17>(pj);
 
+            InitData();
             if (MsgBox.ShowAskMessageBox("是否马上生成条图") == DialogResult.OK)
             {
                 
@@ -1131,7 +1132,6 @@ namespace Ebada.Scgl.Yxgl
                 {
                     MainHelper.PlatformSqlMap.Update<PJ_17>(obj);
                 }
-                InitData();
             }
             catch (Exception ex)
             {
