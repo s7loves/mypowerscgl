@@ -160,7 +160,8 @@ namespace Ebada.Scgl.Yxgl {
             int nrows = 0;
             for (int i = 0; i < list.Count; i++) {
                 PJ_gzrjnr nr = list[i];
-                string[] lines = nr.gznr.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                List<string> lines = Ecommon.ResultStrList(nr.gznr, 34);
+                //string[] lines = nr.gznr.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 nr.gznr = "";
                 int j = 0;
                 foreach (string line in lines) {
