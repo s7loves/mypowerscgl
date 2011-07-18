@@ -94,6 +94,22 @@ namespace Ebada.Scgl.Sbgl
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void comboBoxEdit4_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEdit3.Text == "")
+            {
+                comboBoxEdit3.Properties.Items.Clear();
+                IList<PS_sbcs> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>(" where mc='" + comboBoxEdit4.Text  + "' order by ID");
+                for (int i = 0; i < list.Count; i++)
+                {
+
+                    comboBoxEdit3.Properties.Items.Add(list[i].xh);
+                
+                }
+            
+            }
+        }
     
     }
 }

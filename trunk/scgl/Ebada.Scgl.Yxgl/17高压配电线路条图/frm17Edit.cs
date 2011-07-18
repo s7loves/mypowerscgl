@@ -24,9 +24,19 @@ namespace Ebada.Scgl.Yxgl
         void dataBind() {
 
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineName");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "Remark");
-           
+            //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineName");
+            //this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "Remark");
+            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + MainHelper.User.OrgCode + "' order by linetype,linecode");
+
+            //this.comboBoxEdit1.DataBindings.Add("EditValue", list, "LineName");
+
+            foreach (PS_xl xl in list)
+            {
+                this.comboBoxEdit1.Properties.Items.Add(xl.LineName );  
+            
+            }
+            if (list.Count > 0) this.comboBoxEdit1.SelectedIndex = 0;
+            //this.comboBoxEdit1.Properties.Items.AddRange(list);
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -100,7 +110,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
         {
-
+            dataBind();
         }
 
         private void labelControl4_Click(object sender, EventArgs e)
@@ -121,6 +131,11 @@ namespace Ebada.Scgl.Yxgl
         private void labelControl7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;  
         }
     }
 }
