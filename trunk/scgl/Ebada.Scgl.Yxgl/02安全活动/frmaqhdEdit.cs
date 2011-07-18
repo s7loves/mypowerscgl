@@ -156,7 +156,9 @@ namespace Ebada.Scgl.Yxgl
 
             }
             ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" +  1]).Properties.Items.AddRange(ryList);
-            ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 6]).Properties.Items.AddRange(ryList);
+            string zhi = "领导";
+             ICollection   list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select UserName from mUser where Type like'%" + zhi + "%'");
+            ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 6]).Properties.Items.AddRange(list);
 
             //填充下拉列表数据
         }
