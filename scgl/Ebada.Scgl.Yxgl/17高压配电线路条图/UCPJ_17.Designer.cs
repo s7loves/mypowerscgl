@@ -35,10 +35,14 @@
             this.typeLookUp = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
-            this.btGDS = new DevExpress.XtraBars.BarEditItem();
+            this.btGdsList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.btXlList = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd2 = new DevExpress.XtraBars.BarButtonItem();
+            this.btReAdd = new DevExpress.XtraBars.BarButtonItem();
+            this.barCreat = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
@@ -56,14 +60,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             this.SuspendLayout();
             // 
             // treeList1
             // 
             this.treeList1.AllowDrop = true;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.KeyFieldName = "LineID";
-            this.treeList1.Location = new System.Drawing.Point(0, 25);
+            this.treeList1.Location = new System.Drawing.Point(0, 26);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.treeList1.OptionsBehavior.DragNodes = true;
@@ -72,7 +76,7 @@
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.typeCBox,
             this.typeLookUp});
-            this.treeList1.Size = new System.Drawing.Size(664, 327);
+            this.treeList1.Size = new System.Drawing.Size(909, 326);
             this.treeList1.TabIndex = 0;
             // 
             // typeCBox
@@ -112,10 +116,14 @@
             this.btClose,
             this.btExport0,
             this.btFind,
-            this.btGDS});
-            this.barManager1.MaxItemId = 11;
+            this.btGdsList,
+            this.btReAdd,
+            this.btXlList,
+            this.barCreat});
+            this.barManager1.MaxItemId = 15;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemLookUpEdit1});
+            this.repositoryItemLookUpEdit1,
+            this.repositoryItemLookUpEdit2});
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -125,10 +133,13 @@
             this.bar1.DockRow = 0;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGDS, "", false, true, true, 114),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 114),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btXlList, "", false, true, true, 97),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd2),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btEdit, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReAdd, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCreat, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
@@ -140,12 +151,14 @@
             this.bar1.OptionsBar.DrawDragBorder = false;
             this.bar1.Text = "Tools";
             // 
-            // btGDS
+            // btGdsList
             // 
-            this.btGDS.Caption = "barEditItem1";
-            this.btGDS.Edit = this.repositoryItemLookUpEdit1;
-            this.btGDS.Id = 10;
-            this.btGDS.Name = "btGDS";
+            this.btGdsList.Caption = "barEditItem1";
+            this.btGdsList.Edit = this.repositoryItemLookUpEdit1;
+            this.btGdsList.Id = 10;
+            this.btGdsList.Name = "btGdsList";
+            this.btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btGdsList.EditValueChanged += new System.EventHandler(this.btGDS_EditValueChanged);
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -153,6 +166,26 @@
             this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            this.repositoryItemLookUpEdit1.NullText = "请选择供电所";
+            // 
+            // btXlList
+            // 
+            this.btXlList.Caption = "barEditItem1";
+            this.btXlList.Edit = this.repositoryItemLookUpEdit2;
+            this.btXlList.Id = 13;
+            this.btXlList.Name = "btXlList";
+            // 
+            // repositoryItemLookUpEdit2
+            // 
+            this.repositoryItemLookUpEdit2.AutoHeight = false;
+            this.repositoryItemLookUpEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit2.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineCode", "Name5", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineName", "线路名称")});
+            this.repositoryItemLookUpEdit2.DisplayMember = "LineName";
+            this.repositoryItemLookUpEdit2.Name = "repositoryItemLookUpEdit2";
+            this.repositoryItemLookUpEdit2.NullText = "请选择线路";
             // 
             // btAdd
             // 
@@ -173,6 +206,24 @@
             this.btAdd2.Name = "btAdd2";
             this.btAdd2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btAdd2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // btReAdd
+            // 
+            this.btReAdd.Caption = "添加";
+            this.btReAdd.Id = 11;
+            this.btReAdd.ImageIndex = 8;
+            this.btReAdd.Name = "btReAdd";
+            this.btReAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReAdd_ItemClick);
+            // 
+            // barCreat
+            // 
+            this.barCreat.Caption = "生成条图";
+            this.barCreat.Id = 14;
+            this.barCreat.ImageIndex = 3;
+            this.barCreat.Name = "barCreat";
+            this.barCreat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barCreat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barCreat_ItemClick);
             // 
             // btEdit
             // 
@@ -245,25 +296,25 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(664, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(909, 26);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 352);
-            this.barDockControlBottom.Size = new System.Drawing.Size(664, 22);
+            this.barDockControlBottom.Size = new System.Drawing.Size(909, 22);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 327);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 326);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(664, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 327);
+            this.barDockControlRight.Location = new System.Drawing.Point(909, 26);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
             // 
             // imageList1
             // 
@@ -294,12 +345,13 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "UCPJ_17";
-            this.Size = new System.Drawing.Size(664, 374);
+            this.Size = new System.Drawing.Size(909, 374);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -325,7 +377,11 @@
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox typeCBox;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit typeLookUp;
-        private DevExpress.XtraBars.BarEditItem btGDS;
+        private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private DevExpress.XtraBars.BarButtonItem btReAdd;
+        private DevExpress.XtraBars.BarEditItem btXlList;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
+        private DevExpress.XtraBars.BarButtonItem barCreat;
     }
 }
