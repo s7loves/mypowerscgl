@@ -55,7 +55,15 @@ namespace Ebada.Android.Service {
         }
 
         public List<ps_gt> GetGtList(string xlcode) {
-            throw new NotImplementedException();
+            List<ps_gt> list = new List<ps_gt>();
+            IList<PS_gt> list2 = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where LineCode='" + xlcode + "'");
+            foreach (PS_gt gt in list2) {
+                list.Add(new ps_gt() { LineCode = gt.LineCode,
+                    gtCode=gt.gtCode,gtElev=gt.gtElev.ToString(),gtHeight=gt.gtHeight.ToString(),
+                gth=gt.gth,gtID=gt.gtID,gtLat=gt.gtLat.ToString(),gtLon=gt.gtLon.ToString(),gtSpan=gt.gtSpan.ToString(),gtType=gt.gtType.ToString()});
+            }
+
+            return list;
         }
 
         
