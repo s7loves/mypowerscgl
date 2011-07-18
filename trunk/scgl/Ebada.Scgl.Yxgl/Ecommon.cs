@@ -16,13 +16,18 @@ namespace Ebada.Scgl.Yxgl
         public static bool Comparestring(string inputstring,string bpstring)
         {
             int length = bpstring.Length;
-           
-            if (string.Equals(inputstring.Substring(0,length), bpstring))
+            if (!string.IsNullOrEmpty(inputstring))
             {
-                return true;
+                if (string.Equals(inputstring.Substring(0, length), bpstring))
+                {
+                    return true;
+                }
+                else
+                    return false;
             }
             else
                 return false;
+          
         }
         
         /// <summary>
@@ -72,6 +77,71 @@ namespace Ebada.Scgl.Yxgl
         /// <returns></returns>
         public static List<string> ResultStrListByPage(string fixstr,string inputString, int len,int onepagerows)
         {
+           
+            fixstr = fixstr.Trim();
+            inputString = inputString.Trim();
+            bool mustbreak = false;
+            string firststr = fixstr + inputString;
+            List<string> strRnlist = ResultStrList(firststr, len);
+            List<string> RList = new List<string>();
+            ASCIIEncoding ascii = new ASCIIEncoding();
+            int fixlen = strleng(fixstr);
+            
+            int coutrows = 0;
+          
+            for (int j = 0; j < strRnlist.Count; j++)
+            {
+                int tempLen = 0;
+                string tempString = "";
+                firststr = strRnlist[j];
+                byte[] s = ascii.GetBytes(firststr);
+
+                for (int i = 0; i < s.Length; i++)
+                {
+                    if ((int)s[i] == 63)
+                    {
+                        tempLen += 2;
+                    }
+                    else
+                    {
+                        tempLen += 1;
+                    }
+
+                    tempString += firststr.Substring(i, 1);
+                    if (tempLen >= len && i <= (s.Length - 1))
+                    {
+                        RList.Add(tempString);
+                        tempString = "";
+                        tempLen = 0;
+                        coutrows++;
+                    }
+                    else if (i == (s.Length - 1) && tempLen < len)
+                    {
+                        RList.Add(tempString);
+                        coutrows++;
+                    }
+                    //换页
+                    if (coutrows >= onepagerows)
+                    {
+                        coutrows = 0;
+                        tempString = fixstr;
+                        tempLen = fixlen;
+                    }
+                }
+            }
+
+            return RList;
+        }
+        /// <summary>
+        /// 根据给定条件截取字符串（可解决换页问题） 原来的
+        /// </summary>
+        /// <param name="fixstr">换页时的固定字符（如：“活动内容：”）</param>
+        /// <param name="inputString">内容字符(不要添加固定字符)</param>
+        /// <param name="len">截取长度</param>
+        /// <param name="onepagerows">每页显示行数</param>
+        /// <returns></returns>
+        public static List<string> ResultStrListByPagenr(string fixstr, string inputString, int len, int onepagerows)
+        {
             fixstr = fixstr.Trim();
             inputString = inputString.Trim();
             bool mustbreak = false;
@@ -83,7 +153,7 @@ namespace Ebada.Scgl.Yxgl
             int coutrows = 0;
             string tempString = "";
             byte[] s = ascii.GetBytes(firststr);
-            
+
             for (int i = 0; i < s.Length; i++)
             {
                 if ((int)s[i] == 63)
@@ -94,8 +164,8 @@ namespace Ebada.Scgl.Yxgl
                 {
                     tempLen += 1;
                 }
- 
-                    tempString += firststr.Substring(i, 1);
+
+                tempString += firststr.Substring(i, 1);
                 if (tempLen >= len && i <= (s.Length - 1))
                 {
                     RList.Add(tempString);
@@ -109,7 +179,7 @@ namespace Ebada.Scgl.Yxgl
                     coutrows++;
                 }
                 //换页
-                if (coutrows>=onepagerows)
+                if (coutrows >= onepagerows)
                 {
                     coutrows = 0;
                     tempString = fixstr;
@@ -117,6 +187,8 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
             return RList;
+
+
         }
         /// <summary>
         /// 返回字符串字符长度（中文字符长为2，非中文为1）
