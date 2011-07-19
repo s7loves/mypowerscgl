@@ -112,7 +112,8 @@ namespace Ebada.Scgl.Yxgl
             
             for (int i = 0; i < list.Count;i++ )
             {
-                comboBoxEdit2.Properties.Items.Add(list[i].gtID);
+                comboBoxEdit2.Properties.Items.Add(list[i].gth);
+                comboBoxEdit4.Properties.Items.Add(list[i].gtCode);
             }
             //comboBoxEdit2.Properties.Items.Add().DataSource = list;
         }
