@@ -133,7 +133,9 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit1.Focus();
                 return;
             }
-
+            if ()
+            {
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -146,6 +148,7 @@ namespace Ebada.Scgl.Yxgl
                 PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(rowData.tqID);
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select byqName from PS_tqbyq where tqid ='" + rowData.tqID + "'");
                 rowData.byqCode = pt.tqCode + list.Count.ToString();
+                comboBoxEdit1.Text = rowData.byqCode;
                 comboBoxEdit2.Properties.Items.AddRange(list);
                 comboBoxEdit14.EditValue = pt.Adress;
             }
