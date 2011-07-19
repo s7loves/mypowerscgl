@@ -8,22 +8,24 @@ namespace Ebada.Android.Service {
     [DataContract]
     public class ps_xl {
         [DataMember]
-        public string LineID { get; set; }
+        public string LineID;
         [DataMember]
-        public string LineCode { get; set; }
+        public string ParentID;
         [DataMember]
-        public string LineName { get; set; }
+        public string LineCode;
         [DataMember]
-        public string LineVol { get; set; }
+        public string LineName;
+        [DataMember]
+        public string LineVol ;
         /// <summary>
         /// 导线型号
         /// </summary>
         [DataMember]
-        public string WireType { get; set; }
+        public string WireType ;
         /// <summary>
         /// 线路长度
         /// </summary>
         [DataMember]
-        public string WireLength { get; set; }
+        public string WireLength;
     }
 }

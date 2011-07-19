@@ -8,30 +8,30 @@ namespace Ebada.Android.Service {
     [DataContract]
     public class ps_gt {
         [DataMember]
-        public string gtID { get; set; }
+        public string gtID;
         [DataMember]
-        public string LineCode { get; set; }
+        public string LineCode;
         [DataMember]
-        public string gtCode { get; set; }
+        public string gtCode;
         [DataMember]
-        public string gth { get; set; }
+        public string gth;
         [DataMember]
-        public string gtType { get; set; }
+        public string gtType;
         [DataMember]
-        public string gtHeight { get; set; }
+        public string gtHeight;
         [DataMember]
-        public string gtLon { get; set; }
+        public string gtLon;
         [DataMember]
-        public string gtLat { get; set; }
+        public string gtLat;
         /// <summary>
         /// 高程
         /// </summary>
         [DataMember]
-        public string gtElev { get; set; }
+        public string gtElev;
         /// <summary>
         /// 档距
         /// </summary>
         [DataMember]
-        public string gtSpan { get; set; }
+        public string gtSpan;
     }
 }
