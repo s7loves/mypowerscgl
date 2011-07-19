@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_sbxsqd" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_sbxsqd"  type="Ebada.Scgl.Model.PJ_sbxsqd,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_sbxsqd_AllColumns" class="PJ_sbxsqd">
+        <result property="LineCode" column="LineCode" />
+        <result property="XsqdName" column="XsqdName" />
+        <result property="XSR1" column="XSR1" />
+        <result property="XSR2" column="XSR2" />
+        <result property="ID" column="ID" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_sbxsqdList" resultMap="PJ_sbxsqd_AllColumns" parameterClass="string">
+        SELECT 
+         [LineCode],
+         [XsqdName],
+         [XSR1],
+         [XSR2],
+         [ID]
+          FROM PJ_sbxsqd
+          $value$
+   </select>
+   
+   <select id="SelectPJ_sbxsqdByHash" parameterClass="Hashtable">
+         SELECT 
+         [LineCode],
+         [XsqdName],
+         [XSR1],
+         [XSR2],
+         [ID]
+          FROM PJ_sbxsqd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="XsqdName">[XsqdName]='$XsqdName$'</isNotNull>
+       <isNotNull prepend="AND" property="XSR1">[XSR1]='$XSR1$'</isNotNull>
+       <isNotNull prepend="AND" property="XSR2">[XSR2]='$XSR2$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_sbxsqdByKey" resultMap="PJ_sbxsqd_AllColumns" parameterClass="PJ_sbxsqd">
+         SELECT 
+         [LineCode],
+         [XsqdName],
+         [XSR1],
+         [XSR2],
+         [ID]
+         FROM PJ_sbxsqd
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_sbxsqd" parameterClass="PJ_sbxsqd">
+        DELETE FROM 
+         PJ_sbxsqd
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_sbxsqdByWhere" parameterClass="string">
+     delete from PJ_sbxsqd $value$
+   </delete>
+   
+   <delete id="DeletePJ_sbxsqdByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_sbxsqd
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_sbxsqd" parameterClass="PJ_sbxsqd" resultClass="int">
+          UPDATE PJ_sbxsqd
+           SET
+             [LineCode]=#LineCode#,
+             [XsqdName]=#XsqdName#,
+             [XSR1]=#XSR1#,
+             [XSR2]=#XSR2#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_sbxsqd" parameterClass="PJ_sbxsqd">
+        INSERT INTO PJ_sbxsqd
+         (
+         [LineCode],
+         [XsqdName],
+         [XSR1],
+         [XSR2],
+         [ID]
+         )
+       VALUES
+         (
+         #LineCode#,
+         #XsqdName#,
+         #XSR1#,
+         #XSR2#,
+         #ID#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_sbxsqdRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_sbxsqd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="XsqdName">[XsqdName]='$XsqdName$'</isNotNull>
+       <isNotNull prepend="AND" property="XSR1">[XSR1]='$XSR1$'</isNotNull>
+       <isNotNull prepend="AND" property="XSR2">[XSR2]='$XSR2$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_sbxsqdRowCount" parameterClass="string">
+    select count(*) from PJ_sbxsqd $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
