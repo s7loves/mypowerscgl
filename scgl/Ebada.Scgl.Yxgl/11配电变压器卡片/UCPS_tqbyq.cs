@@ -159,7 +159,8 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PS_tqbyq newobj)
         {
-            ////if (parentID == null) return;
+           if (parentID == null) return;
+          // newobj.byqCode = DateTime.Now.ToString("yyyyMMddHHmmss");
             ////newobj.OrgCode = parentID;
             ////newobj.OrgName = parentObj.OrgName;
             ////newobj.CreateDate = DateTime.Now;
