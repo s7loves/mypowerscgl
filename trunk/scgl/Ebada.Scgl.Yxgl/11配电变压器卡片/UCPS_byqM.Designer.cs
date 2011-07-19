@@ -106,7 +106,7 @@
             // 
             this.xtraTabPage3.Controls.Add(this.ucpJ_11byqdy1);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(589, 192);
+            this.xtraTabPage3.Size = new System.Drawing.Size(585, 167);
             this.xtraTabPage3.Text = "电压电流测量记录";
             // 
             // ucpJ_11byqdy1
@@ -115,14 +115,14 @@
             this.ucpJ_11byqdy1.Location = new System.Drawing.Point(0, 0);
             this.ucpJ_11byqdy1.Name = "ucpJ_11byqdy1";
             this.ucpJ_11byqdy1.PSObj = null;
-            this.ucpJ_11byqdy1.Size = new System.Drawing.Size(589, 192);
+            this.ucpJ_11byqdy1.Size = new System.Drawing.Size(585, 167);
             this.ucpJ_11byqdy1.TabIndex = 0;
             // 
             // xtraTabPage4
             // 
             this.xtraTabPage4.Controls.Add(this.ucpJ_11byqdzcl1);
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(589, 192);
+            this.xtraTabPage4.Size = new System.Drawing.Size(585, 167);
             this.xtraTabPage4.Text = "绝缘电阻测量记录";
             // 
             // ucpJ_11byqdzcl1
@@ -131,7 +131,7 @@
             this.ucpJ_11byqdzcl1.Location = new System.Drawing.Point(0, 0);
             this.ucpJ_11byqdzcl1.Name = "ucpJ_11byqdzcl1";
             this.ucpJ_11byqdzcl1.PSObj = null;
-            this.ucpJ_11byqdzcl1.Size = new System.Drawing.Size(589, 192);
+            this.ucpJ_11byqdzcl1.Size = new System.Drawing.Size(585, 167);
             this.ucpJ_11byqdzcl1.TabIndex = 0;
             // 
             // UCPS_byqM
