@@ -219,7 +219,7 @@ namespace Ebada.Scgl.Yxgl
                 
                 try
                 {
-                    ExportToExcel("高        压        配        电        线        路        条        图", "", pj);
+                    ExportToExcel("高压配电线路条图", "", pj);
 
                     if (MsgBox.ShowAskMessageBox("是否保存条图") == DialogResult.OK)
                     {
