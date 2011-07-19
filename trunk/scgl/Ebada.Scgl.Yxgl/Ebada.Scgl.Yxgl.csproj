@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -208,6 +208,24 @@
     </Compile>
     <Compile Include="06设备巡视及缺陷消除\frm06sbxsLine.Designer.cs">
       <DependentUpon>frm06sbxsLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\frmXSQD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\frmXSQD.Designer.cs">
+      <DependentUpon>frmXSQD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\UCXSQD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\UCXSQD.Designer.cs">
+      <DependentUpon>UCXSQD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\frmxsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\frmxsDialog.Designer.cs">
+      <DependentUpon>frmxsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="07接地装置检测\Export07.cs" />
     <Compile Include="07接地装置检测\frm07JDZZEdit.cs">
@@ -690,6 +708,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="06设备巡视及缺陷消除\frm06sbxsLine.resx">
       <DependentUpon>frm06sbxsLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="06设备巡视及缺陷消除\frmXSQD.resx">
+      <DependentUpon>frmXSQD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="06设备巡视及缺陷消除\UCXSQD.resx">
+      <DependentUpon>UCXSQD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="06设备巡视及缺陷消除\frmxsDialog.resx">
+      <DependentUpon>frmxsDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="07接地装置检测\frm07JDZZEdit.resx">
