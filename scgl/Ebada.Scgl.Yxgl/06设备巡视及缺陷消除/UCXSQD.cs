@@ -27,34 +27,45 @@ namespace Ebada.Scgl.Yxgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPJ_06sbxs : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCXSQD : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_06sbxs> gridViewOperation;
+        private GridViewOperation<PJ_sbxsqd> gridViewOperation;
 
-        public event SendDataEventHandler<PJ_06sbxs> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_sbxsqd> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-        public UCPJ_06sbxs()
+        frmxsDialog fdialog = null;
+        public UCXSQD()
         {
             InitializeComponent();
+            fdialog = new frmxsDialog();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_06sbxs>(gridControl1, gridView1, barManager1,new frm06sbxsEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_06sbxs>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<PJ_sbxsqd>(gridControl1, gridView1, barManager1, fdialog);
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_sbxsqd>(gridViewOperation_BeforeAdd);
+            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_sbxsqd>(gridViewOperation_BeforEdit);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_06sbxs>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_sbxsqd>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
-        
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_06sbxs> e)
+        void gridViewOperation_BeforEdit(object render, ObjectOperationEventArgs<PJ_sbxsqd> e)
+        {
+            if (ParentID==null)
+            {
+                e.Cancel = true;
+            }
+            fdialog.orgcode = parentObj.OrgID;
+        }
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sbxsqd> e)
         {
            
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_06sbxs> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_sbxsqd> e)
         {
             if (parentID == null)
                 e.Cancel = true;
+            
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -93,7 +104,7 @@ namespace Ebada.Scgl.Yxgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_06sbxs);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_sbxsqd);
         }
         private void hideColumn(string colname)
         {
@@ -115,9 +126,9 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("OrgCode");
-            hideColumn("LineID");
-            hideColumn("gzrjID");
+            //hideColumn("OrgCode");
+            //hideColumn("LineID");
+            //hideColumn("gzrjID");
         }
         /// <summary>
         /// 刷新数据
@@ -131,7 +142,7 @@ namespace Ebada.Scgl.Yxgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_06sbxs> GridViewOperation
+        public GridViewOperation<PJ_sbxsqd> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -140,15 +151,16 @@ namespace Ebada.Scgl.Yxgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_06sbxs newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_sbxsqd newobj)
         {
             if (parentID == null) return;
-            newobj.OrgCode = parentID;
-            newobj.OrgName = parentObj.OrgName;
-            newobj.CreateDate = DateTime.Now;
-            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
-            newobj.CreateMan = m_UserBase.RealName;
-            newobj.xssj = DateTime.Now;
+            fdialog.orgcode = parentObj.OrgID;
+            //newobj.OrgCode = parentID;
+            //newobj.OrgName = parentObj.OrgName;
+            //newobj.CreateDate = DateTime.Now;
+            //Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            //newobj.CreateMan = m_UserBase.RealName;
+            //newobj.xssj = DateTime.Now;
         }
         /// <summary>
         /// 父表ID
@@ -163,7 +175,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where LineCode in(select lineid from ps_xl where OrgCode='" + value+ "')");
                 }
             }
         }
@@ -189,28 +201,19 @@ namespace Ebada.Scgl.Yxgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frm06sbxsLine frm = new frm06sbxsLine();
-            frm.orgcode = btGdsList.EditValue.ToString();
-            if (frm.ShowDialog()==DialogResult.OK)
-            {
+            //frm06sbxsLine frm = new frm06sbxsLine();
+            //frm.orgcode = btGdsList.EditValue.ToString();
+            //if (frm.ShowDialog()==DialogResult.OK)
+            //{
 
-                IList<PJ_06sbxs> pj06list = new List<PJ_06sbxs>();
-                pj06list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxs>(" where LineName='" + frm.linename + "'");
-                Export06.ExportExcel(pj06list);
-            }
+            //    IList<PJ_sbxsqd> pj06list = new List<PJ_sbxsqd>();
+            //    pj06list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbxsqd>(" where LineName='" + frm.linename + "'");
+            //    Export06.ExportExcel(pj06list);
+            //}
             
             
             
            
-        }
-
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (parentID == null) return;
-            frmXSQD pd = new frmXSQD();
-            pd.parentobj = ParentObj;
-            pd.ShowDialog();
-          
         }
     }
 }
