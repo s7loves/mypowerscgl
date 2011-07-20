@@ -86,7 +86,6 @@
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.Size = new System.Drawing.Size(501, 303);
             this.groupControlOrg.TabIndex = 9;
-
             // 
             // groupBox1
             // 
@@ -104,7 +103,6 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "线路开关检修记录";
-
             // 
             // labelControl1
             // 
@@ -146,7 +144,6 @@
             this.labelControl4.Size = new System.Drawing.Size(36, 14);
             this.labelControl4.TabIndex = 12;
             this.labelControl4.Text = "负责人";
-
             // 
             // dateEdit1
             // 

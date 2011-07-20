@@ -115,8 +115,14 @@ namespace Ebada.Scgl.Yxgl
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
             rowData.gtID = lookUpEdit1.EditValue.ToString();
+            PS_gt pg = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_gt>(rowData.gtID);
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select sbName from PS_gtsb where gtid='"+rowData.gtID+"'and sbType='开关'");
             comboBoxEdit1.Properties.Items.AddRange(list);
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select sbCode from PS_gtsb where gtid='" + rowData.gtID + "'and sbType='开关'");
+            IList<PS_kg> kglist= Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_kg>("where gtID='"+pg.gtID+"'");
+            string bh = (list.Count == 0 ? "00" : list[0].ToString());
+            comboBoxEdit13.EditValue = pg.gtCode + bh+ Ecommon.GenBH(kglist.Count + 1);
+           
         }
         private void btnOK_Click(object sender, EventArgs e)
         {
