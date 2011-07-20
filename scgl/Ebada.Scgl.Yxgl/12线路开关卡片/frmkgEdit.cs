@@ -122,6 +122,7 @@ namespace Ebada.Scgl.Yxgl
             IList<PS_kg> kglist= Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_kg>("where gtID='"+pg.gtID+"'");
             string bh = (list.Count == 0 ? "00" : list[0].ToString());
             comboBoxEdit13.EditValue = pg.gtCode + bh+ Ecommon.GenBH(kglist.Count + 1);
+            rowData.kgCode = comboBoxEdit13.EditValue.ToString();
            
         }
         private void btnOK_Click(object sender, EventArgs e)
