@@ -732,7 +732,7 @@ namespace Ebada.SCGL.WFlow.Engine
         {
             Bitmap objBitmap = new Bitmap(sz.Width , sz.Height );
             Graphics objGraphics = Graphics.FromImage(objBitmap);
-            
+            int Stringx = 400;
             int yspan = 0,ystrt=0;
             object obj=MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where workFlowId='" + workFlowId + "' and iYPosition in (select min(iYPosition) from WF_WorkTask where workFlowId='" + workFlowId + "')") ;
             if (obj != null)
@@ -744,13 +744,20 @@ namespace Ebada.SCGL.WFlow.Engine
             {
                 yspan = ((WF_WorkTask)obj).iYPosition - ystrt;
             }
-
+            obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where workFlowId='" + workFlowId + "'" );
+            string displayName = ((WF_WorkFlow)obj).FlowCaption;
+            System.Drawing.Font font = new System.Drawing.Font("¿¬Ìå_GB2312", 14, FontStyle.Regular);
+            StringFormat alignVertically = new StringFormat();
+            SizeF sizeF = objGraphics.MeasureString(displayName, font);
             //InitTaskMapData(workFlowId, workFlowInsId, objGraphics, sz.Height/2 - yspan - ystrt );
             //InitLinkMapData(workFlowId, workFlowInsId, objGraphics, sz.Height/2 - yspan - ystrt );
             InitTaskMapData(workFlowId, workFlowInsId, objGraphics, sz.Height * 3/5 - yspan - ystrt );
             InitLinkMapData(workFlowId, workFlowInsId, objGraphics, sz.Height*3/5 - yspan - ystrt );
-            //objBitmap.Save(workFlowId + ".jpg", ImageFormat.Jpeg);
+            Stringx =400 ;
+            objGraphics.DrawString(displayName, font, Brushes.Black, sz.Width / 2, sz.Height * 1 / 4 , alignVertically);
+            //objBitmap.Save(workFlowInsId + ".jpg", ImageFormat.Jpeg);
 
+           
             return objBitmap;
         }
         /// <summary>
