@@ -133,9 +133,6 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit1.Focus();
                 return;
             }
-            if ()
-            {
-            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -196,6 +196,7 @@
             // 
             // comboBoxEdit13
             // 
+            this.comboBoxEdit13.Enabled = false;
             this.comboBoxEdit13.Location = new System.Drawing.Point(106, 31);
             this.comboBoxEdit13.Name = "comboBoxEdit13";
             this.comboBoxEdit13.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
