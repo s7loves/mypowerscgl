@@ -64,7 +64,7 @@ namespace Ebada.Scgl.Yxgl {
                     ex.SetCellValue(tempobj.azrq.Day.ToString(), 12 + 2 * i, 5);
                     ex.SetCellValue(tempobj.azdd, 12 + 2 * i, 7);
                     ex.SetCellValue(tempobj.gtbh, 12 + 2 * i, 9);
-                    ex.SetCellValue(tempobj.kgCode, 12 + 2 * i,10);
+                    ex.SetCellValue("'"+tempobj.kgCode, 12 + 2 * i,10);
 
                     ex.SetCellValue(tempobj.ccrq.Year.ToString(), 12 + 2 * i, 11);
                     ex.SetCellValue(tempobj.ccrq.Month.ToString(), 12 + 2 * i, 13);
