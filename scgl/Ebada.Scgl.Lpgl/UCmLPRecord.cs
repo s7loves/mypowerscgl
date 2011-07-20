@@ -100,7 +100,19 @@ namespace Ebada.Scgl.Lpgl {
                 gridView1.Columns[i].Caption = AttributeHelper.GetDisplayName(typeof(LP_Record), gridView1.Columns[i].FieldName);
             }
             gridView1.Columns["ParentID"].Visible = false;
-            //gridView1.Columns["ID"].Visible = false;
+            gridView1.Columns["Content"].Visible = false;
+            gridView1.Columns["DocContent"].Visible = false;
+            gridView1.Columns["SignImg"].Visible = false;
+            gridView1.Columns["SortID"].Visible = false;
+            gridView1.Columns["ImageAttachment"].Visible = false;
+            gridView1.Columns["Kind"].Visible = false;
+
+            gridView1.Columns["Number"].VisibleIndex=0 ;
+            gridView1.Columns["Status"].VisibleIndex = 1;
+            gridView1.Columns["LastChangeTime"].VisibleIndex =2;
+            gridView1.Columns["CreateTime"].VisibleIndex = 4;
+
+
             //gridView1.Columns["OrgName"].Visible = false;
             //gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
             //repositoryItemTextEdit1.EditValueChanged += new EventHandler(repositoryItemTextEdit1_EditValueChanged);
@@ -131,7 +143,7 @@ namespace Ebada.Scgl.Lpgl {
                 picview.ColumnEdit = imageEdit1;
                 //DevExpress.XtraEditors.Repository.RepositoryItem
 
-                this.picview.VisibleIndex = 2;
+                this.picview.VisibleIndex =1;
                 picview.FieldName = "Image";
                 gridView1.Columns.Add(picview);
                 ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
