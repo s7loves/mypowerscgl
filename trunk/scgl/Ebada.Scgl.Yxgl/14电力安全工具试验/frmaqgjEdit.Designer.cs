@@ -243,11 +243,11 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(253, 29);
+            this.labelControl5.Location = new System.Drawing.Point(250, 29);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(52, 14);
+            this.labelControl5.Size = new System.Drawing.Size(74, 14);
             this.labelControl5.TabIndex = 7;
-            this.labelControl5.Text = "试验周期 ";
+            this.labelControl5.Text = "试验周期(年) ";
             // 
             // labelControl2
             // 
