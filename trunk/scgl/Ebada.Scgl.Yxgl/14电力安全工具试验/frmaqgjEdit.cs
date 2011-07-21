@@ -60,8 +60,16 @@ namespace Ebada.Scgl.Yxgl
 
         #endregion
 
-        private void InitComboBoxData() {
-            ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "工具名称", comboBoxEdit5.Properties);
+        private void InitComboBoxData()
+        {
+            IList<PS_tqsb> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqsb>("where tqid in(select tqid from ps_tq where xlcode in (select linecode from ps_xl OrgCode='"+rowData.OrgID+"')");
+            foreach (PS_tqsb pt in list)
+            {
+                comboBoxEdit5.Properties.Items.Add(pt.sbName);
+                comboBoxEdit2.Properties.Items.Add(pt.sbType);
+                comboBoxEdit1.Properties.Items.Add(pt.sbModle);
+            }
+            //ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "工具名称", comboBoxEdit5.Properties);
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "编 号", comboBoxEdit3.Properties);
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试 验 周 期", comboBoxEdit7.Properties);
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试验项目", comboBoxEdit4.Properties);
