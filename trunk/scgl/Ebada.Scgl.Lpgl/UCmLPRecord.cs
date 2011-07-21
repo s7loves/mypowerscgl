@@ -24,6 +24,7 @@ using System.Collections;
 using Ebada.Scgl.WFlow;
 using DevExpress.XtraEditors.Repository;
 using Ebada.Scgl.Core;
+using DevExpress.Utils;
 
 namespace Ebada.Scgl.Lpgl {
 
@@ -108,9 +109,13 @@ namespace Ebada.Scgl.Lpgl {
             gridView1.Columns["Kind"].Visible = false;
 
             gridView1.Columns["Number"].VisibleIndex=0 ;
+            gridView1.Columns["Number"].Width = 150;
             gridView1.Columns["Status"].VisibleIndex = 1;
-            gridView1.Columns["LastChangeTime"].VisibleIndex =2;
+            gridView1.Columns["Status"].Width = 100;
+            gridView1.Columns["LastChangeTime"].VisibleIndex = 2;
+            gridView1.Columns["LastChangeTime"].Width = 200;
             gridView1.Columns["CreateTime"].VisibleIndex = 4;
+            gridView1.Columns["CreateTime"].Width = 200;
 
 
             //gridView1.Columns["OrgName"].Visible = false;
@@ -255,7 +260,9 @@ namespace Ebada.Scgl.Lpgl {
             }         
             foreach (DevExpress.XtraGrid.Columns.GridColumn gc in gridView1.Columns)
             {
-                
+                gc.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
+                gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
+
             }
             if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(Bitmap));
             int i = 0;
