@@ -41,12 +41,18 @@ namespace Ebada.Scgl.Yxgl
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<PS_tqdlbh>(gridControl1, gridView1, barManager1, frm);
+            GridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PS_tqdlbh>(gridViewOperation_BeforeUpdate);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_tqdlbh>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tqdlbh>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
-        
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PS_tqdlbh> e)
+        {
+            if (parentID == null)
+                e.Cancel = true;
+            frm.OrgCode = btGdsList.EditValue.ToString();
+        }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_tqdlbh> e)
         {
            
@@ -161,6 +167,7 @@ namespace Ebada.Scgl.Yxgl
         void gridViewOperation_CreatingObjectEvent(PS_tqdlbh newobj)
         {
             if (parentID == null) return;
+            frm.OrgCode = btGdsList.EditValue.ToString();
             //newobj.tqID = ParentObj.OrgID;
             //newobj.OrgName = parentObj.OrgName;
             //newobj.CreateDate = DateTime.Now;
