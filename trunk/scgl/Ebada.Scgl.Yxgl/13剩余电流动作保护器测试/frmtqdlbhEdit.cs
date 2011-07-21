@@ -22,13 +22,17 @@ namespace Ebada.Scgl.Yxgl
             InitializeComponent();
         }
         private string lineCode = "";
-
+        private string orgcode = "";
         public string LineCode
         {
             get { return lineCode; }
             set { lineCode = value; }
         }
-
+        public string OrgCode
+        {
+            get { return orgcode; }
+            set { orgcode = value; }
+        }
         void dataBind() {
 
 
@@ -92,7 +96,8 @@ namespace Ebada.Scgl.Yxgl
             comboBoxEdit5.Properties.Items.AddRange(list);
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select Adress from PS_tq where   xlCode='{0}' ", lineCode));
             comboBoxEdit11.Properties.Items.AddRange(list);
-
+            ICollection ryList = ComboBoxHelper.GetGdsRy(OrgCode);//获取供电所人员列表
+            comboBoxEdit3.Properties.Items.AddRange(ryList);
         }
 
         /// <summary>

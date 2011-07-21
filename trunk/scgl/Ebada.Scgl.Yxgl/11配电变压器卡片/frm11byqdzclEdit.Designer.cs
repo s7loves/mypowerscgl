@@ -32,6 +32,9 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textEdit3 = new DevExpress.XtraEditors.SpinEdit();
+            this.textEdit2 = new DevExpress.XtraEditors.SpinEdit();
+            this.textEdit1 = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -39,18 +42,19 @@
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.textEdit1 = new DevExpress.XtraEditors.SpinEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.SpinEdit();
-            this.textEdit3 = new DevExpress.XtraEditors.SpinEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
             this.SuspendLayout();
+            // 
+            // m_DefaultLookAndFeel
+            // 
+            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
             // 
             // btnCancel
             // 
@@ -100,6 +104,63 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "变压器绝缘电阻测量记录";
+            // 
+            // textEdit3
+            // 
+            this.textEdit3.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.textEdit3.Location = new System.Drawing.Point(371, 55);
+            this.textEdit3.Name = "textEdit3";
+            this.textEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.textEdit3.Properties.MaxValue = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.textEdit3.Size = new System.Drawing.Size(100, 21);
+            this.textEdit3.TabIndex = 13;
+            // 
+            // textEdit2
+            // 
+            this.textEdit2.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.textEdit2.Location = new System.Drawing.Point(252, 55);
+            this.textEdit2.Name = "textEdit2";
+            this.textEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.textEdit2.Properties.MaxValue = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.textEdit2.Size = new System.Drawing.Size(100, 21);
+            this.textEdit2.TabIndex = 12;
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.textEdit1.Location = new System.Drawing.Point(131, 55);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.textEdit1.Properties.MaxValue = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.textEdit1.Size = new System.Drawing.Size(100, 21);
+            this.textEdit1.TabIndex = 11;
             // 
             // labelControl3
             // 
@@ -161,63 +222,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // textEdit1
-            // 
-            this.textEdit1.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.textEdit1.Location = new System.Drawing.Point(131, 55);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.textEdit1.Properties.MaxValue = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.textEdit1.Size = new System.Drawing.Size(100, 21);
-            this.textEdit1.TabIndex = 11;
-            // 
-            // textEdit2
-            // 
-            this.textEdit2.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.textEdit2.Location = new System.Drawing.Point(252, 55);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.textEdit2.Properties.MaxValue = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.textEdit2.Size = new System.Drawing.Size(100, 21);
-            this.textEdit2.TabIndex = 12;
-            // 
-            // textEdit3
-            // 
-            this.textEdit3.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.textEdit3.Location = new System.Drawing.Point(371, 55);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.textEdit3.Properties.MaxValue = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.textEdit3.Size = new System.Drawing.Size(100, 21);
-            this.textEdit3.TabIndex = 13;
-            // 
             // frm11byqdzclEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -233,11 +237,11 @@
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
