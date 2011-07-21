@@ -31,6 +31,32 @@ namespace Ebada.Scgl.Core {
             return list;
         }
         /// <summary>
+        /// 获取供电所人员列表
+        /// </summary>
+        /// <param name="field"> 字段</param>
+        /// <param name="zhi"> 值</param>
+        /// <returns></returns>
+        public static ICollection getRy(string field,string zhi)
+        {
+            string key = "all" + zhi;
+
+            ICollection list = null;
+
+            if (mUseCache && mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select UserName from mUser where "+field+"='" + zhi + "'");
+                if (mUseCache)
+                    mCache.Add(key, list);
+            }
+
+
+            return list;
+        }
+        /// <summary>
         /// 获取供电所负责人 供电所所长或者是机关科室科长
         /// </summary>
         /// <param name="gdsID"></param>
