@@ -18,6 +18,8 @@ namespace Ebada.Android.Service {
         [DataMember]
         public string gtType;
         [DataMember]
+        public string gtModle;
+        [DataMember]
         public string gtHeight;
         [DataMember]
         public string gtLon;
