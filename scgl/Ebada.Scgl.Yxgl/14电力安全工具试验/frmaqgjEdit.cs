@@ -62,7 +62,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitComboBoxData()
         {
-            IList<PS_tqsb> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqsb>("where tqid in(select tqid from ps_tq where xlcode in (select linecode from ps_xl OrgCode='"+rowData.OrgID+"')");
+            IList<PS_tqsb> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqsb>("where tqid in(select tqid from ps_tq where xlcode in (select linecode from ps_xl where OrgCode='"+rowData.OrgID+"'))");
             foreach (PS_tqsb pt in list)
             {
                 comboBoxEdit5.Properties.Items.Add(pt.sbName);
