@@ -195,7 +195,8 @@ namespace Ebada.Scgl.WFlow
 
                 return false;
             }
-            else if (MainHelper.UserOrg.OrgName.IndexOf("局") > -1)
+            //else if (MainHelper.UserOrg.OrgName.IndexOf("局") > -1)
+            else
             {
                 if (recordIkind == "定期分析")
                     return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "局定期分析").Rows.Count > 0 ? true : false;
@@ -203,8 +204,8 @@ namespace Ebada.Scgl.WFlow
                     return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "局专题分析").Rows.Count > 0 ? true : false;
                 return false;
             }
-            else
-                return false;
+            //else
+            //    return false;
         }
        
      /// <summary>
@@ -282,7 +283,8 @@ namespace Ebada.Scgl.WFlow
 
                 
             }
-            else if (MainHelper.UserOrg.OrgName.IndexOf("局") > -1)
+            //else if (MainHelper.UserOrg.OrgName.IndexOf("局") > -1)
+            else  
             {
                 if (recordIkind == "定期分析")
                 {
