@@ -53,7 +53,7 @@ namespace Ebada.Scgl.Yxgl {
                         bh++;
 
                         //ex.SetCellValue((bh.ToString(),rowcount + i, 1);
-                        ex.SetCellValue(bh, rowcount + 1, 1);
+                        ex.SetCellValue(bh.ToString(), rowcount + 1, 1);
                         ex.SetCellValue(objlist[starow - 1 + i].sbName, rowcount + i, 2);
                         ex.SetCellValue(objlist[starow - 1 + i].jdgg, rowcount + i, 3);
                         ex.SetCellValue(objlist[starow - 1 + i].dw, rowcount + i, 4);
