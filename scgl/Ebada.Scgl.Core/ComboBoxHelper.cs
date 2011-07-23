@@ -8,6 +8,26 @@ using DevExpress.XtraEditors;
 namespace Ebada.Scgl.Core {
     public class ComboBoxHelper {
         static Dictionary<string, ICollection> mCache = new Dictionary<string, ICollection>();
+        /// <summary>
+        /// 与系统默认时间进行比较，给定时间大于系统默认时间返回true否则返回false
+        /// 
+        /// </summary>
+        /// <param name="dtime">给定时间</param>
+        /// <returns></returns>
+       public  static bool CompreDate(DateTime dtime)
+        {
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", "公用属性", "默认时间"));
+            string str = list[0].ToString();
+            DateTime dt = Convert.ToDateTime(str);
+            if (dtime<=dt)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         static bool mUseCache = false;
         /// <summary>
         /// 获取供电所人员列表
