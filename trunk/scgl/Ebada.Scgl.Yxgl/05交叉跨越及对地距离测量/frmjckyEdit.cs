@@ -112,7 +112,7 @@ namespace Ebada.Scgl.Yxgl
             
             for (int i = 0; i < list.Count;i++ )
             {
-                comboBoxEdit2.Properties.Items.Add(list[i].gth);
+                comboBoxEdit2.Properties.Items.Add(list[i].gtID);
                 comboBoxEdit4.Properties.Items.Add(list[i].gtCode);
             }
             //comboBoxEdit2.Properties.Items.Add().DataSource = list;
@@ -120,8 +120,14 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
         {
+          
+        }
+
+        private void comboBoxEdit2_EditValueChanged_1(object sender, EventArgs e)
+        {
             IList<PS_tq> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(" where gtID='" + comboBoxEdit2.EditValue.ToString() + "' order by tqName");
-            for(int i=0;i<list.Count;i++){
+            for (int i = 0; i < list.Count; i++)
+            {
                 comboBoxEdit3.Properties.Items.Add(list[i].Adress);
             }
         }
