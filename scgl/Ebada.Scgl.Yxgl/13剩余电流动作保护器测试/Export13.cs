@@ -34,6 +34,8 @@ namespace Ebada.Scgl.Yxgl {
             ex.ActiveSheet(1);
 
             //线路名称行
+            ex.SetCellValue(jl.tqName, 4, 1);
+            ex.SetCellValue(jl.Factory, 5, 13);
             ex.SetCellValue(jl.InstallAdress, row + 4, col + 3);
             ex.SetCellValue(jl.dzdl, row + 4, col + 6);
             ex.SetCellValue(jl.sbModle, row + 4, col + 10);
