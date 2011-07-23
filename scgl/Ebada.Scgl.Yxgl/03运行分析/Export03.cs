@@ -4,6 +4,7 @@ using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
+using Ebada.Scgl.Core;
 namespace Ebada.Scgl.Yxgl
 {
     /// <summary>
@@ -86,9 +87,13 @@ namespace Ebada.Scgl.Yxgl
             //ex.ActiveSheet(1);
             ex.SetCellValue(obj.qz, 24, 4);
             //签字时间
-            ex.SetCellValue(obj.qzrq.Year.ToString(), 24, 5);
-            ex.SetCellValue(obj.qzrq.Month.ToString(), 24, 9);
-            ex.SetCellValue(obj.qzrq.Day.ToString(), 24, 11);
+            if (ComboBoxHelper.CompreDate(obj.qzrq))
+            {
+                 ex.SetCellValue(obj.qzrq.Year.ToString(), 24, 5);
+                ex.SetCellValue(obj.qzrq.Month.ToString(), 24, 9);
+                ex.SetCellValue(obj.qzrq.Day.ToString(), 24, 11);
+            }
+            
             //将固定的写完再创建不固定的。
            
             

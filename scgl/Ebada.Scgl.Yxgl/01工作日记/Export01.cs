@@ -4,7 +4,7 @@ using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
-
+using Ebada.Scgl.Core;
 namespace Ebada.Scgl.Yxgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
@@ -98,9 +98,13 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(jl.xq.Replace("星期", ""), row + 3, col + 10);
             //签字、时间
             ex.SetCellValue(jl.qz, row + 14 + row_nr, col + 2);
-            ex.SetCellValue(jl.qzrq.Year.ToString(), row + 14 + row_nr, col + 6);
-            ex.SetCellValue(jl.qzrq.Month.ToString(), row + 14 + row_nr, col + 9);
-            ex.SetCellValue(jl.qzrq.Day.ToString(), row + 14 + row_nr, col + 11);
+            if (ComboBoxHelper.CompreDate(jl.qzrq))
+            {
+                ex.SetCellValue(jl.qzrq.Year.ToString(), row + 14 + row_nr, col + 6);
+                ex.SetCellValue(jl.qzrq.Month.ToString(), row + 14 + row_nr, col + 9);
+                ex.SetCellValue(jl.qzrq.Day.ToString(), row + 14 + row_nr, col + 11);
+            }
+            
         }
         /// <summary>
         /// 填充人员
