@@ -71,6 +71,7 @@ namespace Ebada.Scgl.Yxgl
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
             
             //comboBoxEdit3.Properties.Items.AddRange(ryList);
+            ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视人", comboBoxEdit3);
             comboBoxEdit5.Properties.Items.AddRange(ryList);
             //comboBoxEdit6.Properties.Items.AddRange(ryList);
             comboBoxEdit7.Properties.Items.AddRange(ryList);
@@ -119,29 +120,31 @@ namespace Ebada.Scgl.Yxgl
         {
             string str = rowData.xsr;
             comboBoxEdit3.EditValue = "";
-            comboBoxEdit6.EditValue = "";
-            string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
-            if (mans.Length>=1)
-            {
-                comboBoxEdit3.EditValue = mans[0];
-            }
-            if (mans.Length>=2)
-            {
-                comboBoxEdit6.EditValue = mans[1];
-            }
+            comboBoxEdit3.EditValue = str;
+            //comboBoxEdit6.EditValue = "";
+            
+            //string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
+            //if (mans.Length>=1)
+            //{
+            //    comboBoxEdit3.EditValue = mans[0];
+            //}
+            //if (mans.Length>=2)
+            //{
+            //    comboBoxEdit6.EditValue = mans[1];
+            //}
         }
         void getxsr()
         {
             string str = "";
             string yy1 = "";
             yy1 = comboBoxEdit3.EditValue.ToString();
-            if (!string.IsNullOrEmpty(yy1.Trim()))
-                str += yy1 + ";";
-            string yy2 = "";
-            yy2 = comboBoxEdit6.EditValue.ToString();
-            if (!string.IsNullOrEmpty(yy1.Trim()))
-                str += yy2 + ";";
-            rowData.xsr = str;
+            //if (!string.IsNullOrEmpty(yy1.Trim()))
+            //    str += yy1 + ";";
+            //string yy2 = "";
+            //yy2 = comboBoxEdit6.EditValue.ToString();
+            //if (!string.IsNullOrEmpty(yy1.Trim()))
+            //    str += yy2 + ";";
+            rowData.xsr = yy1;
         }
         void setxcr()
         {
@@ -183,7 +186,7 @@ namespace Ebada.Scgl.Yxgl
                 {
                     comboBoxEdit2.Properties.Items.Add(xsqd.XsqdName);
                     comboBoxEdit3.Properties.Items.Add(xsqd.XSR1);
-                    comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
+                    //comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
                 }
             }
             

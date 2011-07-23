@@ -30,7 +30,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "hsz");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "jcqk");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "jr");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "jcr");
+           // this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "jcr");
 
         }
         #region IPopupFormEdit Members
@@ -38,6 +38,7 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
+                getxsr();
                 return rowData;
             }
             set {
@@ -53,17 +54,47 @@ namespace Ebada.Scgl.Yxgl
                 {
                     rowData.clrq = DateTime.Now;
                 }
+                setxsr();
             }
         }
 
         #endregion
+        void setxsr()
+        {
+            string str = rowData.jcr;
+            comboBoxEdit2.EditValue = "";
+           comboBoxEdit7.EditValue = "";
 
+           string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
+           if (mans.Length >= 1)
+           {
+               comboBoxEdit2.EditValue = mans[0];
+           }
+           if (mans.Length >= 2)
+           {
+               comboBoxEdit7.EditValue = mans[1];
+           }
+        }
+        void getxsr()
+        {
+            string str = "";
+            string yy1 = "";
+            yy1 = comboBoxEdit2.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy1 + ";";
+            string yy2 = "";
+            yy2 = comboBoxEdit7.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy2 + ";";
+            rowData.jcr = str;
+        }
         private void InitComboBoxData() {
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "天气", comboBoxEdit1);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "检查情况", comboBoxEdit4);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "结论", comboBoxEdit6);
             PJ_07jdzz pj = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_07jdzz>(rowData.jdzzID);
             this.comboBoxEdit2.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
+            this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
         }
 
         /// <summary>
@@ -149,5 +180,7 @@ namespace Ebada.Scgl.Yxgl
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        
     }
 }

@@ -37,7 +37,17 @@ namespace Ebada.Scgl.Yxgl {
                  
                 //设备名称行
                 ex.SetCellValue(jl.sbmc, row + 7, col);
-                ex.SetCellValue(jl.xhgg, row + 7, col + 3);
+                //ex.SetCellValue(jl.xhgg, row + 7, col + 3);
+                string[] str = jl.xhgg.Split('|');
+                if (str.Length>=1)
+                {
+                    ex.SetCellValue(str[0], row + 7, col + 3);
+                }
+                if (str.Length >=2 )
+                {
+                    ex.SetCellValue(str[1], row + 7, col + 4);
+                }
+              
                 ex.SetCellValue(jl.jddz.ToString(), row + 7, col + 5);
                 ex.SetCellValue(jl.tz, row + 7, col + 9);
                 ex.SetCellValue(jl.trdzr.ToString(), row + 7, col + 11);
@@ -62,7 +72,16 @@ namespace Ebada.Scgl.Yxgl {
                                 ex.SetCellValue(obj.hsz.ToString(), row + 9 + i, col + 6);
                                 ex.SetCellValue(obj.jcqk, row + 9 + i, col + 8);
                                 ex.SetCellValue(obj.jr, row + 9 + i, col + 10);
-                                ex.SetCellValue(obj.jcr, row + 9 + i, col + 12);
+                                //ex.SetCellValue(obj.jcr, row + 9 + i, col + 12);
+                                string[] jcrstr = obj.jcr.Split(';');
+                                if (jcrstr.Length >= 1)
+                                {
+                                    ex.SetCellValue(jcrstr[0], row + 9 + i, col + 12);
+                                }
+                                if (jcrstr.Length >= 2)
+                                {
+                                    ex.SetCellValue(jcrstr[1], row + 9 + i, col + 15);
+                                }
                             }
                         }
                     }
@@ -82,7 +101,17 @@ namespace Ebada.Scgl.Yxgl {
                                 ex.SetCellValue(obj.hsz.ToString(), row + 9 + i, col + 6);
                                 ex.SetCellValue(obj.jcqk, row + 9 + i, col + 8);
                                 ex.SetCellValue(obj.jr, row + 9 + i, col + 10);
-                                ex.SetCellValue(obj.jcr, row + 9 + i, col + 12);
+
+                                string[] jcrstr = obj.jcr.Split(';');
+                                if (jcrstr.Length >= 1)
+                                {
+                                    ex.SetCellValue(jcrstr[0], row + 9 + i, col + 12);
+                                }
+                                if (jcrstr.Length >= 2)
+                                {
+                                    ex.SetCellValue(jcrstr[1], row + 9 + i, col + 15);
+                                }
+                                //ex.SetCellValue(obj.jcr, row + 9 + i, col + 12);
                             }
                         }
                     }
