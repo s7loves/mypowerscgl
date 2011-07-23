@@ -110,14 +110,23 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(comboBoxEdit1.EditValue.ToString()))
+            if (!string.IsNullOrEmpty(comboBoxEdit1.Text))
             {
+                comboBoxEdit2.Properties.Items.Clear();
+                comboBoxEdit3.Properties.Items.Clear();
                 ICollection list = new ArrayList();
                 list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit1.EditValue.ToString()));
                 //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
                 comboBoxEdit2.Properties.Items.AddRange(list);
                 IList<PS_xl> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where ParentID='" + comboBoxEdit1.EditValue.ToString() + "'and LineType IN ('1','2')");
                 lookUpEdit1.Properties.DataSource = listXL;
+
+                IList list1 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select Adress from PS_tq where   left(tqCode,{1})='{0}' ", comboBoxEdit1.EditValue.ToString(), comboBoxEdit1.EditValue.ToString().Length));
+                comboBoxEdit3.Properties.Items.AddRange(list1);
+                //for (int i = 0; i < list.Count; i++)
+                //{
+                //    comboBoxEdit3.Properties.Items.Add(list[i].Adress);
+                //}
             }
           
 
