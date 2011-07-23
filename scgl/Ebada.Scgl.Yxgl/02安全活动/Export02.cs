@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
+using Ebada.Scgl.Core;
+using System.Collections;
 using System.Windows.Forms;
 namespace Ebada.Scgl.Yxgl {
     /// <summary>
@@ -192,10 +194,17 @@ namespace Ebada.Scgl.Yxgl {
             //签字
             ex.SetCellValue("签字: ", 25, 1);
             ex.SetCellValue(obj.qz, 25, col + 1);
-            ex.SetCellValue(obj.qzrq.Year.ToString(), 25, 5);
-            ex.SetCellValue(obj.qzrq.Month.ToString(), 25, 7);
-            ex.SetCellValue(obj.qzrq.Day.ToString(), 25, 11);
 
+          
+            //签字时间小于系统默认时间则不输出
+            if (ComboBoxHelper.CompreDate(obj.qzrq))
+            {
+                ex.SetCellValue(obj.qzrq.Year.ToString(), 25, 5);
+                ex.SetCellValue(obj.qzrq.Month.ToString(), 25, 7);
+                ex.SetCellValue(obj.qzrq.Day.ToString(), 25, 11);
+
+            }
+           
             ex.ShowExcel();
            
         }
