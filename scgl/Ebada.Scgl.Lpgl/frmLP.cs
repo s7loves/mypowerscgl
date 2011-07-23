@@ -747,11 +747,20 @@ namespace Ebada.Scgl.Lpgl
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
                     if (sqlSentence!="")
                     {
-                        IList list = ClientHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
-                        for (int i = 0; i < list.Count; i++)
+                        try
                         {
-                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i], null));
+                            IList list = ClientHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
+                            for (int i = 0; i < list.Count; i++)
+                            {
+                                ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i], null));
+                            }
                         }
+                        catch {
+                            string sql = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
+                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(list);
+                        }
+                        
                     }
                     string[] comBoxItem = lp.ComBoxItem.Split(pcomboxchar);
                     comBoxItem = StringHelper.ReplaceEmpty(comBoxItem).Split(pchar);
