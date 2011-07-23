@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Yxgl
             int row = 1;
             int col = 1;
             //每行显示文字长度
-            int zc = 60;
+            int zc = 33;
             //要发生变化的部分
             //List<string>[] bhcollect = new List<string>[3] { Ecommon.ResultStrList("三、事故、障碍、异常运行情况及处理经过：" + obj.clqk, zc), Ecommon.ResultStrList("四、主要原因分析：" + obj.yyfx, zc), Ecommon.ResultStrList("五、今后防止对策：" + obj.fzdc, zc) };
             //int[] hs = new int[3] { 4, 5, 5 };
@@ -41,7 +41,7 @@ namespace Ebada.Scgl.Yxgl
             Ecommon.addstring(Ecommon.ResultStrList(sgyc+ obj.clqk, zc), ref strcol);
             Ecommon.addstring(Ecommon.ResultStrList(zyyy + obj.yyfx, zc), ref strcol);
             Ecommon.addstring(Ecommon.ResultStrList(jhdc + obj.fzdc, zc), ref strcol);
-            Ecommon.CreatandWritesheet(ex, strcol, 14, 9, 1);
+            //Ecommon.CreatandWritesheet(ex, strcol, 14, 9, 1);
             ex.ActiveSheet(1);
             //事故异常发生地点
             ex.SetCellValue(obj.fsdd, 5, 6);
@@ -72,73 +72,76 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.CreateMan, 24, 8);
             ex.SetCellValue(obj.CreateDate.Month.ToString(), 24, 15);
             ex.SetCellValue(obj.CreateDate.Day.ToString(), 24, 17);
-           
-            ////事故障碍异常
-            //string sgzyc = "三、事故、障碍、异常运行情况及处理经过：" + obj.clqk;
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    string tempstr = "";
-            //    int startnum = i * zc;
-            //    int endnum = (i + 1) * zc;
-            //    bool ISempty = false;
-            //    if (startnum >= sgzyc.Length)
-            //    {
-            //        ISempty = true;
-            //    }
-            //    else if (endnum >= sgzyc.Length)
-            //    {
-            //        endnum = sgzyc.Length;
-            //    }
-            //    if (!ISempty)
-            //    {
-            //        tempstr = sgzyc.Substring(startnum, endnum - startnum);
-            //    }
-            //    ex.SetCellValue(tempstr, 9 + i, 1);
-            //}
-            ////主要原因分析
-            //string zyyuy = "四、主要原因分析："+obj.yyfx;
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    string tempstr = "";
-            //    int startnum = i * zc;
-            //    int endnum = (i + 1) * zc;
-            //    bool ISempty = false;
-            //    if (startnum >= zyyuy.Length)
-            //    {
-            //        ISempty = true;
-            //    }
-            //    else if (endnum >= zyyuy.Length)
-            //    {
-            //        endnum = zyyuy.Length;
-            //    }
-            //    if (!ISempty)
-            //    {
-            //        tempstr = zyyuy.Substring(startnum, endnum - startnum);
-            //    }
-            //    ex.SetCellValue(tempstr, 13+ i, 1);
-            //}
-            ////今后放置对策
-            //string fzdc = "五、今后防止对策：" + obj.fzdc;
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    string tempstr = "";
-            //    int startnum = i * zc;
-            //    int endnum = (i + 1) * zc;
-            //    bool ISempty = false;
-            //    if (startnum >= fzdc.Length)
-            //    {
-            //        ISempty = true;
-            //    }
-            //    else if (endnum >= fzdc.Length)
-            //    {
-            //        endnum = fzdc.Length;
-            //    }
-            //    if (!ISempty)
-            //    {
-            //        tempstr = fzdc.Substring(startnum, endnum - startnum);
-            //    }
-            //    ex.SetCellValue(tempstr, 18 + i, 1);
-            //}
+
+            //事故障碍异常
+            string sgzyc = "三、事故、障碍、异常运行情况及处理经过：" + obj.clqk;
+            //string hdstr = Ecommon.Comparestring(obj.hdnr, "活动内容") ? "" : "活动内容：";
+            //List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.clqk, zc, 8);
+
+            for (int i = 0; i < 4; i++)
+            {
+                string tempstr = "";
+                int startnum = i * zc;
+                int endnum = (i + 1) * zc;
+                bool ISempty = false;
+                if (startnum >= sgzyc.Length)
+                {
+                    ISempty = true;
+                }
+                else if (endnum >= sgzyc.Length)
+                {
+                    endnum = sgzyc.Length;
+                }
+                if (!ISempty)
+                {
+                    tempstr = sgzyc.Substring(startnum, endnum - startnum);
+                }
+                ex.SetCellValue(tempstr, 9 + i, 1);
+            }
+            //主要原因分析
+            string zyyuy = "四、主要原因分析：" + obj.yyfx;
+            for (int i = 0; i < 5; i++)
+            {
+                string tempstr = "";
+                int startnum = i * zc;
+                int endnum = (i + 1) * zc;
+                bool ISempty = false;
+                if (startnum >= zyyuy.Length)
+                {
+                    ISempty = true;
+                }
+                else if (endnum >= zyyuy.Length)
+                {
+                    endnum = zyyuy.Length;
+                }
+                if (!ISempty)
+                {
+                    tempstr = zyyuy.Substring(startnum, endnum - startnum);
+                }
+                ex.SetCellValue(tempstr, 13 + i, 1);
+            }
+            //今后放置对策
+            string fzdc = "五、今后防止对策：" + obj.fzdc;
+            for (int i = 0; i < 5; i++)
+            {
+                string tempstr = "";
+                int startnum = i * zc;
+                int endnum = (i + 1) * zc;
+                bool ISempty = false;
+                if (startnum >= fzdc.Length)
+                {
+                    ISempty = true;
+                }
+                else if (endnum >= fzdc.Length)
+                {
+                    endnum = fzdc.Length;
+                }
+                if (!ISempty)
+                {
+                    tempstr = fzdc.Substring(startnum, endnum - startnum);
+                }
+                ex.SetCellValue(tempstr, 18 + i, 1);
+            }
            
 
            
