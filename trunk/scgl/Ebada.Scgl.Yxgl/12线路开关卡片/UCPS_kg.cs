@@ -112,6 +112,7 @@ namespace Ebada.Scgl.Yxgl
         public void InitData()
         {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
+            RefreshData("");
             //需要初始化数据时在这写代码
         }
         /// <summary>
