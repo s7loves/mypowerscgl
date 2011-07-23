@@ -15,13 +15,16 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Yxgl
 {
-    public partial class frm06sbxsEdit : FormBase, IPopupFormEdit {
+    public partial class frm06sbxsEdit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<PJ_06sbxs> m_CityDic = new SortableSearchableBindingList<PJ_06sbxs>();
 
-        public frm06sbxsEdit() {
+        public frm06sbxsEdit()
+        {
             InitializeComponent();
         }
-        void dataBind() {
+        void dataBind()
+        {
 
 
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineID");
@@ -32,30 +35,36 @@ namespace Ebada.Scgl.Yxgl
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xcr");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "xcrq");
-            
+
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
+            // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
         private PJ_06sbxs rowData = null;
 
-        public object RowData {
-            get {
+        public object RowData
+        {
+            get
+            {
                 getxsr();
                 getxcr();
                 return rowData;
             }
-            set {
+            set
+            {
                 if (value == null) return;
-                
-                if (rowData == null) {
+
+                if (rowData == null)
+                {
                     this.rowData = value as PJ_06sbxs;
-                   this.InitComboBoxData();
+                    this.InitComboBoxData();
                     dataBind();
-                } else {
+                }
+                else
+                {
                     ConvertHelper.CopyTo<PJ_06sbxs>(value as PJ_06sbxs, rowData);
                     this.InitComboBoxData();
                 }
@@ -66,31 +75,30 @@ namespace Ebada.Scgl.Yxgl
 
         #endregion
 
-        private void InitComboBoxData() 
+        private void InitComboBoxData()
         {
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
-            
+
             //comboBoxEdit3.Properties.Items.AddRange(ryList);
-            ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视人", comboBoxEdit3);
             comboBoxEdit5.Properties.Items.AddRange(ryList);
             //comboBoxEdit6.Properties.Items.AddRange(ryList);
             comboBoxEdit7.Properties.Items.AddRange(ryList);
 
             //ICollection linelist = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电线路名称
             ////线路名称
-              //comboBoxEdit1.Properties.Items.AddRange(linelist);
-              IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'");
-              SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
-            
+            //comboBoxEdit1.Properties.Items.AddRange(linelist);
+            IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'");
+            SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
+
             //巡视区段
-             // ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视区段", comboBoxEdit2.Properties);
-             
-            
+            // ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视区段", comboBoxEdit2.Properties);
+
+
             //ICollection qxlist = ComboBoxHelper.GetQxlb();//获取缺陷类别
             //缺陷类别GetQxlb
-              ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
 
-              //ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视人", comboBoxEdit3.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视人", comboBoxEdit3.Properties);
 
             //comboBoxEdit4.Properties.Items.AddRange(qxlist);
         }
@@ -120,31 +128,29 @@ namespace Ebada.Scgl.Yxgl
         {
             string str = rowData.xsr;
             comboBoxEdit3.EditValue = "";
-            comboBoxEdit3.EditValue = str;
-            //comboBoxEdit6.EditValue = "";
-            
-            //string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
-            //if (mans.Length>=1)
-            //{
-            //    comboBoxEdit3.EditValue = mans[0];
-            //}
-            //if (mans.Length>=2)
-            //{
-            //    comboBoxEdit6.EditValue = mans[1];
-            //}
+            comboBoxEdit6.EditValue = "";
+            string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
+            if (mans.Length >= 1)
+            {
+                comboBoxEdit3.EditValue = mans[0];
+            }
+            if (mans.Length >= 2)
+            {
+                comboBoxEdit6.EditValue = mans[1];
+            }
         }
         void getxsr()
         {
             string str = "";
             string yy1 = "";
             yy1 = comboBoxEdit3.EditValue.ToString();
-            //if (!string.IsNullOrEmpty(yy1.Trim()))
-            //    str += yy1 + ";";
-            //string yy2 = "";
-            //yy2 = comboBoxEdit6.EditValue.ToString();
-            //if (!string.IsNullOrEmpty(yy1.Trim()))
-            //    str += yy2 + ";";
-            rowData.xsr = yy1;
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy1 + ";";
+            string yy2 = "";
+            yy2 = comboBoxEdit6.EditValue.ToString();
+            if (!string.IsNullOrEmpty(yy1.Trim()))
+                str += yy2 + ";";
+            rowData.xsr = str;
         }
         void setxcr()
         {
@@ -186,10 +192,10 @@ namespace Ebada.Scgl.Yxgl
                 {
                     comboBoxEdit2.Properties.Items.Add(xsqd.XsqdName);
                     comboBoxEdit3.Properties.Items.Add(xsqd.XSR1);
-                    //comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
+                    comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
                 }
             }
-            
+
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -198,7 +204,7 @@ namespace Ebada.Scgl.Yxgl
 
         }
 
-     
+
 
         private void comboBoxEdit3_Properties_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -217,12 +223,12 @@ namespace Ebada.Scgl.Yxgl
 
         }
 
-      
 
-      
-              
-         
-       
-       
+
+
+
+
+
+
     }
 }
