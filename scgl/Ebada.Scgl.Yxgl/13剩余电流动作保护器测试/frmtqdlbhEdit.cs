@@ -89,13 +89,15 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "运行情况", comboBoxEdit1);
 
             //IList<PS_tq> listtq = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>("where xlCode='" + lineCode + "'");
-            //comboBoxEdit5.Properties.DataSource = listtq;
+            //comboBoxEdit5.Properties.DataSource = listtq
             ICollection list = new ArrayList();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqCode,{1})='{0}' ", lineCode,lineCode.Length));
-            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
-            comboBoxEdit5.Properties.Items.AddRange(list);
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select Adress from PS_tq where   left(tqCode,{1})='{0}' ", lineCode, lineCode.Length));
-            comboBoxEdit11.Properties.Items.AddRange(list);
+            //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqCode,{1})='{0}' ", lineCode,lineCode.Length));
+            ////ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            //comboBoxEdit5.Properties.Items.AddRange(list);
+            IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>( string.Format("where left(tqCode,{1})='{0}' ", lineCode,lineCode.Length));
+            //comboBoxEdit5.Properties.DataSource = listXL;
+            SetComboBoxData(comboBoxEdit5, "tqName", "tqID", "台区名称", "", listXL);
+            
             ICollection ryList = ComboBoxHelper.GetGdsRy(OrgCode);//获取供电所人员列表
             comboBoxEdit3.Properties.Items.AddRange(ryList);
         }
@@ -109,7 +111,8 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_tq> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -147,6 +150,17 @@ namespace Ebada.Scgl.Yxgl
             rowData.tqName = comboBoxEdit5.Text;
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+       
+        private void comboBoxEdit5_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(comboBoxEdit5.Text))
+            {
+                PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(comboBoxEdit5.EditValue.ToString());
+                comboBoxEdit11.Properties.Items.Add(pt.Adress);
+            }
+         
         }
     }
 }

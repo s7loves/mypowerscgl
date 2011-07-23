@@ -142,6 +142,12 @@ namespace Ebada.Scgl.Yxgl
             //需要隐藏列时在这写代码
 
             //hideColumn("OrgCode");
+            hideColumn("sbName");
+            hideColumn("Number");
+            hideColumn("MadeDate");
+            hideColumn("InstallDate");
+            hideColumn("State");
+            hideColumn("dzsj ");
         }
         /// <summary>
         /// 刷新数据
