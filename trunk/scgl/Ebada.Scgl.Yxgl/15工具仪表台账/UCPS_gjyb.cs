@@ -108,7 +108,7 @@ namespace Ebada.Scgl.Yxgl
             //需要初始化数据时在这写代码
             if (MainHelper.UserOrg != null)
             {
-                string strSQL = "where OrgID='" + MainHelper.UserOrg.OrgCode + "' order by sbID desc";
+                string strSQL = "where OrgID='" + MainHelper.UserOrg.OrgCode + "' order by sbID asc";
                 RefreshData(strSQL);
             }
         }
