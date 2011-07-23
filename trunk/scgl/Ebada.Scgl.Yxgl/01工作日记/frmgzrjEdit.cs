@@ -109,6 +109,7 @@ namespace Ebada.Scgl.Yxgl {
 
             }
             comboBoxEdit21.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("公共属性", "签字人", comboBoxEdit21);
             comboBoxEdit21.Properties.Items.AddRange(ryList);
         }
         
