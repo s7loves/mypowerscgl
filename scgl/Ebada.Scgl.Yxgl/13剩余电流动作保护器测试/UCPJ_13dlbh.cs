@@ -147,7 +147,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("MadeDate");
             hideColumn("InstallDate");
             hideColumn("State");
-            hideColumn("dzsj ");
+            hideColumn("dzsj");
         }
         /// <summary>
         /// 刷新数据
@@ -189,10 +189,11 @@ namespace Ebada.Scgl.Yxgl
             get { return parentID; }
             set
             {
+                //where left(tqCode,{1})='{0}' ", lineCode,lineCode.Length
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where tqID in (select tqID  from PS_tq where xlCode ='" + value + "') order by sbCode ");
+                    RefreshData(" where tqID in (select tqID  from PS_tq where LEFT(tqCODE,'"+value.Length+"')= '" + value + "') order by sbCode ");
                 }
             }
         }
