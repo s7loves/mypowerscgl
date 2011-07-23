@@ -21,7 +21,7 @@ namespace Ebada.Scgl.Yxgl
 
         public frmyxfxEdit() {
             InitializeComponent();
-            IniControlStatus();
+            //IniControlStatus();
         }
         void dataBind() {
 
@@ -123,7 +123,7 @@ namespace Ebada.Scgl.Yxgl
 
 
                 recordStatus = value;
-                IniControlStatus();
+                //IniControlStatus();
 
             }
         }
@@ -174,16 +174,16 @@ namespace Ebada.Scgl.Yxgl
                     groupBox7.Enabled =  false;
                     break;
                 default :
-                    groupBox1.Enabled = false;
-                    groupBox2.Enabled = false;
-                    groupBox3.Enabled = false;
-                    //groupBox4.Enabled = false;
-                    //groupBox5.Enabled = false;
-                    //groupBox6.Enabled = false;
+                    //groupBox1.Enabled = false;
+                    //groupBox2.Enabled = false;
+                    //groupBox3.Enabled = false;
+                    ////groupBox4.Enabled = false;
+                    ////groupBox5.Enabled = false;
+                    ////groupBox6.Enabled = false;
 
-                    dateEdit4.Enabled = false;
-                    comboBoxEdit17.Enabled = false;
-                    groupBox7.Enabled = false;
+                    //dateEdit4.Enabled = false;
+                    //comboBoxEdit17.Enabled = false;
+                    //groupBox7.Enabled = false;
                     break;
             }
         
