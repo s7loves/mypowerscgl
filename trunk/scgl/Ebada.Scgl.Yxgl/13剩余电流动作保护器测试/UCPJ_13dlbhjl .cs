@@ -126,7 +126,7 @@ namespace Ebada.Scgl.Yxgl
         void gridViewOperation_CreatingObjectEvent(PJ_13dlbhjl newobj)
         {
             if (parentID == null) return;
-            mOrg mg = Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where OrgCode in(select orgcod from ps_xl where linecode in(select xlcode from ps_tq where tqid='" + parentObj.tqID + "')");
+            mOrg mg = Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where OrgCode in(select orgcode from ps_xl where linecode in(select xlcode from ps_tq where tqid='" + parentObj.tqID + "'))");
             if (mg!=null)
             {
                 newobj.OrgCode=mg.OrgCode;
