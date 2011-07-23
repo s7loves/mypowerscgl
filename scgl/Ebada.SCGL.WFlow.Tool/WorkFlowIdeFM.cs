@@ -324,26 +324,26 @@ namespace Ebada.SCGL.WFlow.Tool
             this.wfExportToolStripMenuItem,
             this.wfinputToolStripMenuItem});
             this.workflowcontextMenuStrip.Name = "classcontextMenuStrip";
-            this.workflowcontextMenuStrip.Size = new System.Drawing.Size(119, 264);
+            this.workflowcontextMenuStrip.Size = new System.Drawing.Size(123, 264);
             // 
             // newclassToolStripMenuItem
             // 
             this.newclassToolStripMenuItem.Name = "newclassToolStripMenuItem";
-            this.newclassToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.newclassToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.newclassToolStripMenuItem.Text = "新建分类";
             this.newclassToolStripMenuItem.Click += new System.EventHandler(this.newClassToolStripMenuItem_Click);
             // 
             // updateclassToolStripMenuItem
             // 
             this.updateclassToolStripMenuItem.Name = "updateclassToolStripMenuItem";
-            this.updateclassToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.updateclassToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.updateclassToolStripMenuItem.Text = "修改分类";
             this.updateclassToolStripMenuItem.Click += new System.EventHandler(this.updateclassToolStripMenuItem_Click);
             // 
             // delclassToolStripMenuItem
             // 
             this.delclassToolStripMenuItem.Name = "delclassToolStripMenuItem";
-            this.delclassToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.delclassToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.delclassToolStripMenuItem.Tag = "070102";
             this.delclassToolStripMenuItem.Text = "删除分类";
             this.delclassToolStripMenuItem.Click += new System.EventHandler(this.delclassToolStripMenuItem_Click);
@@ -351,26 +351,26 @@ namespace Ebada.SCGL.WFlow.Tool
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(115, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(119, 6);
             // 
             // newWftoolStripMenuItem1
             // 
             this.newWftoolStripMenuItem1.Name = "newWftoolStripMenuItem1";
-            this.newWftoolStripMenuItem1.Size = new System.Drawing.Size(118, 22);
+            this.newWftoolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
             this.newWftoolStripMenuItem1.Text = "新建流程";
             this.newWftoolStripMenuItem1.Click += new System.EventHandler(this.newWftoolStripMenuItem1_Click);
             // 
             // updateWftoolStripMenuItem2
             // 
             this.updateWftoolStripMenuItem2.Name = "updateWftoolStripMenuItem2";
-            this.updateWftoolStripMenuItem2.Size = new System.Drawing.Size(118, 22);
+            this.updateWftoolStripMenuItem2.Size = new System.Drawing.Size(122, 22);
             this.updateWftoolStripMenuItem2.Text = "修改流程";
             this.updateWftoolStripMenuItem2.Click += new System.EventHandler(this.updateWftoolStripMenuItem2_Click);
             // 
             // delWftoolStripMenuItem3
             // 
             this.delWftoolStripMenuItem3.Name = "delWftoolStripMenuItem3";
-            this.delWftoolStripMenuItem3.Size = new System.Drawing.Size(118, 22);
+            this.delWftoolStripMenuItem3.Size = new System.Drawing.Size(122, 22);
             this.delWftoolStripMenuItem3.Tag = "070101";
             this.delWftoolStripMenuItem3.Text = "删除流程";
             this.delWftoolStripMenuItem3.Click += new System.EventHandler(this.delWftoolStripMenuItem3_Click);
@@ -378,45 +378,45 @@ namespace Ebada.SCGL.WFlow.Tool
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(115, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(119, 6);
             // 
             // moveWfclsToolStripMenuItem
             // 
             this.moveWfclsToolStripMenuItem.Name = "moveWfclsToolStripMenuItem";
-            this.moveWfclsToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.moveWfclsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.moveWfclsToolStripMenuItem.Text = "移动分类";
             this.moveWfclsToolStripMenuItem.Click += new System.EventHandler(this.moveWfclsToolStripMenuItem_Click);
             // 
             // UsedToolStripMenuItem
             // 
             this.UsedToolStripMenuItem.Name = "UsedToolStripMenuItem";
-            this.UsedToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.UsedToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.UsedToolStripMenuItem.Text = "启用";
             this.UsedToolStripMenuItem.Click += new System.EventHandler(this.UsedToolStripMenuItem_Click);
             // 
             // unUsedToolStripMenuItem
             // 
             this.unUsedToolStripMenuItem.Name = "unUsedToolStripMenuItem";
-            this.unUsedToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.unUsedToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.unUsedToolStripMenuItem.Text = "禁用";
             this.unUsedToolStripMenuItem.Click += new System.EventHandler(this.unUsedToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(115, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(119, 6);
             // 
             // wfExportToolStripMenuItem
             // 
             this.wfExportToolStripMenuItem.Name = "wfExportToolStripMenuItem";
-            this.wfExportToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.wfExportToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.wfExportToolStripMenuItem.Text = "流程导出";
             this.wfExportToolStripMenuItem.Click += new System.EventHandler(this.wfExportToolStripMenuItem_Click);
             // 
             // wfinputToolStripMenuItem
             // 
             this.wfinputToolStripMenuItem.Name = "wfinputToolStripMenuItem";
-            this.wfinputToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.wfinputToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.wfinputToolStripMenuItem.Text = "流程导入";
             this.wfinputToolStripMenuItem.Click += new System.EventHandler(this.wfinputToolStripMenuItem_Click);
             // 
@@ -668,7 +668,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.Name = "fmWorkFlowIDE";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "流程图工具";
+            this.Text = "流程图设置";
             this.Load += new System.EventHandler(this.fmWorkFlowIDE_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fmWorkFlowIDE_FormClosing);
             this.panel1.ResumeLayout(false);
