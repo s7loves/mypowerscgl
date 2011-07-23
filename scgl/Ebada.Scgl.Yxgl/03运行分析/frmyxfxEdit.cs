@@ -280,7 +280,7 @@ namespace Ebada.Scgl.Yxgl
                 yxfx.CreateMan = MainHelper.User.UserName; 
                 //IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
                 //if (gzrj01.Count > 0)
-                {
+                //{
                     //gzr.gzrjID = gzrj01[0].gzrjID;
                     //IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
                     //if (gzrlist.Count > 0)
@@ -306,7 +306,7 @@ namespace Ebada.Scgl.Yxgl
                     //}
 
 
-                }
+                //}
                 //else
                 //{
                 //    MsgBox.ShowWarningMessageBox("未填写今日工作日记");   
@@ -324,7 +324,7 @@ namespace Ebada.Scgl.Yxgl
                 //if (gzrj01.Count > 0)
                     //MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
                 MainHelper.PlatformSqlMap.Create<PJ_03yxfx>(yxfx);
-
+                //this.Close();
             }
             else
             {
@@ -349,7 +349,7 @@ namespace Ebada.Scgl.Yxgl
 
             }
 
-        
+            //this.Close(); 
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)

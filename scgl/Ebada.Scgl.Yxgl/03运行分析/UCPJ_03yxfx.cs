@@ -125,7 +125,8 @@ namespace Ebada.Scgl.Yxgl
             //需要初始化数据时在这写代码
             if (MainHelper.UserOrg!=null)
             {
-                string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' and type='"+recordIkind+"' order by id desc";
+                //string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' and type='"+recordIkind+"' order by id desc";
+                string strSQL = "where   type='" + recordIkind + "' order by id desc";
                 RefreshData(strSQL);
             }
             
@@ -282,16 +283,22 @@ namespace Ebada.Scgl.Yxgl
                 return;
             }
         }
-        
-        private void btAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+
+        private void btReAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (MainHelper.UserOrg == null) return;
-
+            if (btGdsList.EditValue == null) return;
             if (!RecordWorkTask.HaveRewNewYXFXRole(recordIkind, MainHelper.User.UserID)) return;
             frmyxfxEdit fm = new frmyxfxEdit();
             PJ_03yxfx yxfx = new PJ_03yxfx();
-            yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
-            yxfx.OrgName = MainHelper.UserOrg.OrgName;
+            //yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
+            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
+            mOrg org = null;
+            if (list.Count > 0)
+                org = list[0];
+
+            yxfx.OrgCode = btGdsList.EditValue.ToString ();
+            yxfx.OrgName = org.OrgName;
             yxfx.type = recordIkind;
             yxfx.rq = DateTime.Now;
             fm.RowData = yxfx;
