@@ -28,7 +28,7 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btGdsList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.btAdd = new DevExpress.XtraBars.BarButtonItem();
+            this.btReAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btReEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btReDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
@@ -61,7 +61,7 @@
             this.barManager1.DockControls.Add(this.barDockControlRight);
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btAdd,
+            this.btReAdd,
             this.btReEdit,
             this.btReDelete,
             this.btFind,
@@ -85,7 +85,7 @@
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAdd, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReAdd, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
@@ -113,14 +113,14 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             // 
-            // btAdd
+            // btReAdd
             // 
-            this.btAdd.Caption = "增加";
-            this.btAdd.Id = 0;
-            this.btAdd.ImageIndex = 6;
-            this.btAdd.Name = "btAdd";
-            this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAdd_ItemClick);
+            this.btReAdd.Caption = "增加";
+            this.btReAdd.Id = 0;
+            this.btReAdd.ImageIndex = 6;
+            this.btReAdd.Name = "btReAdd";
+            this.btReAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReAdd_ItemClick);
             // 
             // btReEdit
             // 
@@ -212,20 +212,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 289);
-            this.barDockControlBottom.Size = new System.Drawing.Size(513, 25);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 287);
+            this.barDockControlBottom.Size = new System.Drawing.Size(513, 27);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 265);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 263);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(513, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 265);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 263);
             // 
             // gridControl1
             // 
@@ -239,7 +239,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(513, 265);
+            this.gridControl1.Size = new System.Drawing.Size(513, 263);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -286,7 +286,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarButtonItem btAdd;
+        private DevExpress.XtraBars.BarButtonItem btReAdd;
         private DevExpress.XtraBars.BarButtonItem btReEdit;
         private DevExpress.XtraBars.BarButtonItem btReDelete;
         private DevExpress.XtraBars.BarButtonItem btFind;
