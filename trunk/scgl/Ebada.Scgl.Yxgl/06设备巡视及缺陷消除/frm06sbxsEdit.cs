@@ -174,7 +174,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
-            if (lookUpEdit1.EditValue != null || lookUpEdit1.EditValue.ToString()!="")
+            if (!string.IsNullOrEmpty(lookUpEdit1.Text))
             {
                 rowData.LineID = lookUpEdit1.EditValue.ToString();
                 rowData.LineName = lookUpEdit1.Text;
