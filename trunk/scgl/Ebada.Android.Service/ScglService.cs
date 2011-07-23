@@ -49,7 +49,7 @@ namespace Ebada.Android.Service {
             IList<PS_xl> list2 =Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + gdscode + "'");
             foreach (PS_xl xl in list2) {
                 list.Add(new ps_xl() {LineCode=xl.LineCode,LineID=xl.LineID,LineName=xl.LineName,LineVol=xl.LineVol,
-                    WireLength=xl.WireLength.ToString(),WireType=xl.WireType ,ParentID=xl.ParentID});
+                    WireLength=xl.WireLength.ToString(),WireType=xl.WireType ,ParentID=xl.ParentID,OrgCode=xl.OrgCode});
             }
 
             return list;

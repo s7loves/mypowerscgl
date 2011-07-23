@@ -16,7 +16,9 @@ namespace Ebada.Android.Service {
         [DataMember]
         public string LineName;
         [DataMember]
-        public string LineVol ;
+        public string LineVol;
+        [DataMember]
+        public string OrgCode;
         /// <summary>
         /// 导线型号
         /// </summary>
