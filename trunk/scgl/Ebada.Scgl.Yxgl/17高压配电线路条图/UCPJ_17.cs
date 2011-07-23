@@ -180,7 +180,7 @@ namespace Ebada.Scgl.Yxgl
 
             treeList1.Columns["gzrjID"].Visible = false;
             //btGdsList.Edit = DicTypeHelper.GdsDic;
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + MainHelper.UserOrg.OrgCode    + "'");
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + MainHelper.User.OrgCode      + "'");
             repositoryItemLookUpEdit2.DataSource = xlList;
             if (this.Site == null)
                 InitData();
@@ -191,7 +191,7 @@ namespace Ebada.Scgl.Yxgl
         /// </summary>
         public void InitData() {
             //treeViewOperator.RefreshData(" where OrgCode='" + parentID + "' order by linetype,linecode");
-            treeViewOperator.RefreshData(" where OrgCode='" + MainHelper.UserOrg.OrgCode + "' order by  CreateDate");
+            treeViewOperator.RefreshData(" where OrgCode='" + MainHelper.User.OrgCode + "' order by  CreateDate");
         }
 
         
