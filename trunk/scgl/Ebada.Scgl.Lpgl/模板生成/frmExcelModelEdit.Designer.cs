@@ -36,7 +36,6 @@
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit11 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit10 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit9 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
@@ -68,17 +67,17 @@
             this.lookUpEdit4 = new DevExpress.XtraEditors.TextEdit();
             this.lookUpEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit8 = new DevExpress.XtraEditors.TextEdit();
+            this.comboBoxEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.comboBoxEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
@@ -93,9 +92,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -138,12 +138,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lookUpEdit2);
             this.groupBox1.Controls.Add(this.labelControl21);
             this.groupBox1.Controls.Add(this.textEdit12);
             this.groupBox1.Controls.Add(this.labelControl20);
             this.groupBox1.Controls.Add(this.textEdit11);
             this.groupBox1.Controls.Add(this.labelControl19);
-            this.groupBox1.Controls.Add(this.textEdit10);
             this.groupBox1.Controls.Add(this.textEdit9);
             this.groupBox1.Controls.Add(this.labelControl18);
             this.groupBox1.Controls.Add(this.labelControl14);
@@ -226,15 +226,6 @@
             this.labelControl19.TabIndex = 28;
             this.labelControl19.Text = "状态";
             this.labelControl19.UseWaitCursor = true;
-            // 
-            // textEdit10
-            // 
-            this.textEdit10.EditValue = "";
-            this.textEdit10.Location = new System.Drawing.Point(364, 135);
-            this.textEdit10.Name = "textEdit10";
-            this.textEdit10.Properties.MaxLength = 200;
-            this.textEdit10.Size = new System.Drawing.Size(100, 21);
-            this.textEdit10.TabIndex = 27;
             // 
             // textEdit9
             // 
@@ -534,6 +525,13 @@
             this.textEdit8.Size = new System.Drawing.Size(100, 21);
             this.textEdit8.TabIndex = 10;
             // 
+            // comboBoxEdit2
+            // 
+            this.comboBoxEdit2.Location = new System.Drawing.Point(113, 244);
+            this.comboBoxEdit2.Name = "comboBoxEdit2";
+            this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit2.TabIndex = 18;
+            // 
             // dateEdit1
             // 
             this.dateEdit1.EditValue = null;
@@ -573,12 +571,17 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // comboBoxEdit2
+            // lookUpEdit2
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(113, 244);
-            this.comboBoxEdit2.Name = "comboBoxEdit2";
-            this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit2.TabIndex = 18;
+            this.lookUpEdit2.Location = new System.Drawing.Point(364, 138);
+            this.lookUpEdit2.Name = "lookUpEdit2";
+            this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit2.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CtrlType", "代码"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name2", "名称")});
+            this.lookUpEdit2.Size = new System.Drawing.Size(100, 21);
+            this.lookUpEdit2.TabIndex = 33;
             // 
             // frmExcelModelEdit
             // 
@@ -598,7 +601,6 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
@@ -613,9 +615,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -665,9 +668,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl20;
         private DevExpress.XtraEditors.TextEdit textEdit11;
         private DevExpress.XtraEditors.LabelControl labelControl19;
-        private DevExpress.XtraEditors.TextEdit textEdit10;
         private DevExpress.XtraEditors.TextEdit textEdit8;
         private DevExpress.XtraEditors.TextEdit comboBoxEdit2;
+        private DevExpress.XtraEditors.LookUpEdit lookUpEdit2;
 
     }
 }

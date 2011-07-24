@@ -63,10 +63,32 @@ namespace Ebada.Scgl.Lpgl
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<LP_Temple>(" WHERE Citylevel = '2'"));
             IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("yzgzp", "一种工作票"));
-            list.Add(new DicType("ezgzp", "二种工作票"));
-            list.Add(new DicType("dzczp", "操作票"));
-            list.Add(new DicType("xlqxp", "抢修票"));
+            //list.Add(new DicType("yzgzp", "一种工作票"));
+            //list.Add(new DicType("ezgzp", "二种工作票"));
+            //list.Add(new DicType("dzczp", "操作票"));
+            //list.Add(new DicType("xlqxp", "抢修票"));
+            IList<WF_WorkFlow> li = MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", " where 1=1");
+            foreach (WF_WorkFlow wf in li)
+            {
+                if (wf.FlowCaption.IndexOf("一种工作票") > 0)
+                {
+                    list.Add(new DicType("yzgzp", wf.FlowCaption));
+                }
+                else if (wf.FlowCaption.IndexOf("二种工作票") > 0)
+                {
+                    list.Add(new DicType("ezgzp", wf.FlowCaption));
+                }
+                else if (wf.FlowCaption.IndexOf("操作票") > 0)
+                {
+                    list.Add(new DicType("dzczp", wf.FlowCaption));
+                }
+                else if (wf.FlowCaption.IndexOf("抢修票") > 0)
+                {
+                    list.Add(new DicType("xlqxp", wf.FlowCaption));
+                }
+                else
+                list.Add(new DicType(wf.FlowCaption, wf.FlowCaption));
+            }
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
@@ -108,7 +130,12 @@ namespace Ebada.Scgl.Lpgl
         private void btnOK_Click(object sender, EventArgs e)
         {
             this.dsoFramerWordControl1.FileSave();            
-            rowData.DocContent = this.dsoFramerWordControl1.FileDataGzip;          
+            rowData.DocContent = this.dsoFramerWordControl1.FileDataGzip; 
+            WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='"+lookUpEdit1.Text  +"'");
+            if (wf != null)
+            {
+                rowData.ParentID = wf.WorkFlowId;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

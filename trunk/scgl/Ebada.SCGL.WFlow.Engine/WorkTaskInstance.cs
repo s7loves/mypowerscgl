@@ -518,24 +518,44 @@ namespace Ebada.SCGL.WFlow.Engine
                 //    return WorkFlowConst.TaskAssignErrorCode;
                 //}
                  mUser fromuser = MainHelper.PlatformSqlMap.GetOneByKey<mUser>(userId);
+                 bool find = false;
                 WF_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
-                WF_WorkTaskInstance workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
-                WF_WorkTaskInstance preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
                 SetWorkTaskInstanceOver(userId, operins.WorkTaskInsId);
                 OperatorInstance.SetOperatorInstanceOver(userId, operatorInsId);
+                //创建一个任务实例
+                string newTaskId = Guid.NewGuid().ToString();//新任务处理者实例Id
+                WorkTaskInstance workTaskInstance = new WorkTaskInstance();
+                WF_WorkTaskInstance workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
+                WF_WorkTaskInstance preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
+                workTaskInstance.PreviousTaskId = workins.WorkTaskInsId   ;
+                string tmpStr = "select starttaskid from WF_WorkTaskLinkView where  EndTaskId ='" + workins.WorkTaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'";
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", tmpStr);
+                while (!find)
+                {
+                    //workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
+                    //preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
+                    if (li.Contains(preworkins.WorkTaskId ))
+                    {
+                        find = true;
+                    }
+                    else
+                    {
+
+                        operins = (WF_OperatorInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorInstanceList", " where WorkTaskInsId='" + preworkins.PreviousTaskId + "' and OperStatus='1' ");
+                        workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
+                        preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
+                    }
+                }
+                
                 WF_WorkTaskInstance workins2 = new WF_WorkTaskInstance();
                 workins2.SuccessMsg = "退回至提交人(" + preworkins.OperatedDes + ")!";
                 workins2.WorkTaskInsId = operins.WorkTaskInsId;
                 workins2.OperatedDes = fromuser.UserName ;
                 MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId", workins2);
-                //创建一个任务实例
-                string newTaskId = Guid.NewGuid().ToString();//新任务处理者实例Id
-                WorkTaskInstance workTaskInstance = new WorkTaskInstance();
                 workTaskInstance.WorkflowId = preworkins.WorkFlowId ;
                 workTaskInstance.WorktaskId = preworkins.WorkTaskId ;
                 workTaskInstance.WorkflowInsId = preworkins.WorkFlowInsId ;
                 workTaskInstance.WorktaskInsId = newTaskId;
-                workTaskInstance.PreviousTaskId = workins.WorkTaskInsId ;
                 workTaskInstance.TaskInsCaption = preworkins.TaskInsCaption ;
                 workTaskInstance.Status = "1";
                 workTaskInstance.Create();

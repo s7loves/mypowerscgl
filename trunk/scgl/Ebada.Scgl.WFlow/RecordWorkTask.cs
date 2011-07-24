@@ -42,13 +42,37 @@ namespace Ebada.Scgl.WFlow
             else if (kind == "ezgzp")
                     return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票").Rows.Count > 0 ? true : false;
             else if (kind == "xlqxp")
-                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单").Rows.Count > 0 ? true : false;
-                
+                return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单").Rows.Count > 0 ? true : false;
+            else
+            {
+
+                return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, kind).Rows.Count > 0 ? true : false;
+            }
             return false;
            
               
         }
-        
+        public static string GetGZPRecordSartStatus( string kind, string userID)
+        {
+
+            DataTable dt = null;
+            string  workFlowId = "", workTaskId = "";
+            
+            if (kind == "dzczp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票");
+            else if (kind == "yzgzp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第一种工作票");
+            else if (kind == "ezgzp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票");
+            else if (kind == "xlqxp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单");
+            else
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, kind);
+            workFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+            workTaskId = dt.Rows[0]["workTaskId"].ToString();
+            WorkFlowTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WorkFlowTask>(workTaskId);
+            return wt.TaskName;
+        }
       
         /// <summary>
         /// 创建工作票流程
@@ -70,7 +94,8 @@ namespace Ebada.Scgl.WFlow
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票");
             else if (kind == "xlqxp")
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单");
-                
+            else
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, kind);   
             workFlowId = dt.Rows[0]["WorkFlowId"].ToString();
             workTaskId = dt.Rows[0]["workTaskId"].ToString();
             flowCaption = dt.Rows[0]["FlowCaption"].ToString();

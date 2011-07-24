@@ -51,10 +51,11 @@ namespace Ebada.Scgl.Lpgl {
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "Birthday");
             this.checkEdit1.DataBindings.Add("EditValue", rowData, "IsVisible");
             this.textEdit9.DataBindings.Add("EditValue", rowData, "ColumnName");
-            this.textEdit10.DataBindings.Add("EditValue", rowData, "Status");
+            //this.textEdit10.DataBindings.Add("EditValue", rowData, "Status");
+            this.lookUpEdit2.DataBindings.Add("EditValue", rowData, "Status");  
             this.textEdit11.DataBindings.Add("EditValue", rowData, "ComBoxItem");
             this.textEdit12.DataBindings.Add("EditValue", rowData, "ExtraWord");
-
+            parentID = UCmExcel.GetParentID();
         }
         #region IPopupFormEdit Members
         private LP_Temple rowData = null;
@@ -91,7 +92,14 @@ namespace Ebada.Scgl.Lpgl {
             comboBoxEdit1.Properties.Items.Clear();
             comboBoxEdit1.Properties.Items.Add("table");
             comboBoxEdit1.Properties.Items.Add("enter");
-
+            LP_Temple tp = ClientHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(UCmExcel.GetParentID());
+            IList<WF_WorkTask> wflist = ClientHelper.PlatformSqlMap.GetList<WF_WorkTask>(" WHERE WorkFlowId = '" + tp.ParentID + "' and TaskTypeId!='2'");
+            list = new List<DicType>();
+            foreach (WF_WorkTask wf in wflist)
+            {
+                list.Add(new DicType(wf.TaskCaption, wf.TaskCaption));
+            }
+            this.SetComboBoxData(this.lookUpEdit2, "Value", "Key", "请选择", "状态", list);
             //comboBoxEdit2.Properties.Items.Clear();
             //ICollection col3 = Ebada.Scgl.Core.ComboBoxHelper.GetTables();
             //comboBoxEdit2.Properties.Items.AddRange(col3);

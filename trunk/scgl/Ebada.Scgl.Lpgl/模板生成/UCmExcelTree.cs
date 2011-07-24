@@ -107,7 +107,8 @@ namespace Ebada.Scgl.Lpgl
         /// 初始化数据
         /// </summary>
         public void InitData() {
-            treeViewOperator.RefreshData("where parentid = '0' order by cellname");
+            //treeViewOperator.RefreshData("where parentid = '0' order by cellname");
+            treeViewOperator.RefreshData("where  ParentID not in (select LPID from LP_Temple where 1=1) order by cellname");
         }
         public bool BarManagerVisible
         {            
