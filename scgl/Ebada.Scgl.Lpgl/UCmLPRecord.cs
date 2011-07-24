@@ -284,7 +284,9 @@ namespace Ebada.Scgl.Lpgl {
             frm.Status = "add";
             frm.Kind = ParentObj.Kind;
             frm.ParentTemple = ParentObj;
-            lpr.Status = "填票";
+
+            lpr.Status = RecordWorkTask.GetGZPRecordSartStatus(ParentObj.Kind, MainHelper.User.UserID);
+            //lpr.Status = "填票";
             //frm.RowData = lpr;
             frm.CurrRecord = lpr;
             if (frm.ShowDialog() == DialogResult.OK)
