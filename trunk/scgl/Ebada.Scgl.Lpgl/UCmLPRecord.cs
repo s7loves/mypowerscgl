@@ -565,5 +565,55 @@ namespace Ebada.Scgl.Lpgl {
 
         }
 
+        private void barReChange_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle < 0) return;
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            LP_Record currRecord = new LP_Record();
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+
+                }
+            }
+             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
+            if (dt.Rows.Count > 0)
+            {
+                frmWFChange fw = new frmWFChange();
+                fw.groupBox1.Text = dt.Rows[0]["FlowInsCaption"].ToString();
+                fw.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                if (fw.ShowDialog() != DialogResult.OK)
+                    return;
+                //请求确认
+                if (MsgBox.ShowAskMessageBox("确认更改 【" + dr["Number"].ToString() + "】状态为"+fw.WorkTaskCaption  +"?") != DialogResult.OK)
+                {
+                    return;
+                }
+                string strmes = RecordWorkTask.RunGZPWorkFlowChange(MainHelper.User.UserID, currRecord, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString(), fw.WorkTaskCaption);
+                if (strmes.IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                else
+                {
+
+
+                    InitData(parentObj.Kind);
+                    MsgBox.ShowTipMessageBox(strmes);
+
+                }
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,延期失败!");
+            }
+        }
+
     }
 }
