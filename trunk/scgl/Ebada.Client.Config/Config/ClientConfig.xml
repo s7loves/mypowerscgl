@@ -9,8 +9,8 @@
                   type="Castle.Facilities.Remoting.RemotingFacility, Castle.MicroKernel"
                   remotingConfigurationFile="./Config/RemotingTcpConfigClient.config"
                   isClient="true"
-                  remoteKernelUri="tcp://192.168.1.105:5100/kernel.rem"
-                  baseUri="tcp://192.168.1.105:5100" >
+                  remoteKernelUri="tcp://10.166.137.29:5100/kernel.rem"
+                  baseUri="tcp://10.166.137.29:5100" >
           </facility>
         </facilities>
         <!--<include uri="../Ebada.PlatformBll.xml" />--><!--所有服务接口type为虚拟实例-->
