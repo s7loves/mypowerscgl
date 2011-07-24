@@ -32,10 +32,10 @@
             this.btDeletefrm = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
-            this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.barBack = new DevExpress.XtraBars.BarButtonItem();
             this.barChange = new DevExpress.XtraBars.BarButtonItem();
             this.barSus = new DevExpress.XtraBars.BarButtonItem();
+            this.btReExport = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -44,11 +44,12 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.barReExport = new DevExpress.XtraBars.BarButtonItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.btReExport = new DevExpress.XtraBars.BarButtonItem();
+            this.barReChange = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -79,8 +80,9 @@
             this.barChange,
             this.barSus,
             this.barReExport,
-            this.btReExport});
-            this.barManager1.MaxItemId = 19;
+            this.btReExport,
+            this.barReChange});
+            this.barManager1.MaxItemId = 20;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -99,6 +101,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barBack, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barChange, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSus, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barReChange, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
@@ -150,15 +153,6 @@
             this.btFind.Name = "btFind";
             this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // btExport
-            // 
-            this.btExport.Caption = "导出";
-            this.btExport.Id = 8;
-            this.btExport.ImageIndex = 7;
-            this.btExport.Name = "btExport";
-            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
             // barBack
             // 
             this.barBack.Caption = "退回";
@@ -188,6 +182,15 @@
             this.barSus.Name = "barSus";
             this.barSus.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barSus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSus_ItemClick);
+            // 
+            // btReExport
+            // 
+            this.btReExport.Caption = "导出";
+            this.btReExport.Id = 18;
+            this.btReExport.ImageIndex = 7;
+            this.btReExport.Name = "btReExport";
+            this.btReExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barReExport_ItemClick);
             // 
             // btClose
             // 
@@ -260,6 +263,15 @@
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
             // 
+            // btExport
+            // 
+            this.btExport.Caption = "导出";
+            this.btExport.Id = 8;
+            this.btExport.ImageIndex = 7;
+            this.btExport.Name = "btExport";
+            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
             // barReExport
             // 
             this.barReExport.Caption = "导出";
@@ -308,14 +320,14 @@
             this.repositoryItemTextEdit1.NullText = "输入密码";
             this.repositoryItemTextEdit1.PasswordChar = '*';
             // 
-            // btReExport
+            // barReChange
             // 
-            this.btReExport.Caption = "导出";
-            this.btReExport.Id = 18;
-            this.btReExport.ImageIndex = 7;
-            this.btReExport.Name = "btReExport";
-            this.btReExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btReExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barReExport_ItemClick);
+            this.barReChange.Caption = "跳转";
+            this.barReChange.Id = 19;
+            this.barReChange.ImageIndex = 3;
+            this.barReChange.Name = "barReChange";
+            this.barReChange.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barReChange.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barReChange_ItemClick);
             // 
             // UCmLPRecord
             // 
@@ -362,5 +374,6 @@
         private DevExpress.XtraBars.BarButtonItem barReExport;
         private System.Windows.Forms.ImageList imageList1;
         private DevExpress.XtraBars.BarButtonItem btReExport;
+        private DevExpress.XtraBars.BarButtonItem barReChange;
     }
 }
