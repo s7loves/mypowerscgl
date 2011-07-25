@@ -766,7 +766,7 @@ namespace Ebada.Scgl.Lpgl
                             string sql = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
                             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
                             ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(list);
-                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Text = MainHelper.User.OrgName;
+                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedItem    = MainHelper.User.OrgName  ;
                         }
                         
                     }
@@ -781,6 +781,7 @@ namespace Ebada.Scgl.Lpgl
                     }
                     if (((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Count > 0)
                     {
+                        if (lp.CellName != "单位")
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;
                         //ContentChanged(ctrl);
                         if (lp.CellName == "单位")

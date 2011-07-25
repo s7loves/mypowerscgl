@@ -70,6 +70,11 @@ namespace Ebada.Scgl.Sbgl
             btGtList.EditValueChanged += new EventHandler(btGtList_EditValueChanged);
             btTQList.EditValueChanged += new EventHandler(btTQList_EditValueChanged);
             btBYQList.EditValueChanged += new EventHandler(btBYQList_EditValueChanged);
+            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
+            {//如果是供电所人员，则锁定
+                btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
+                btGdsList.Edit.ReadOnly = true;
+            }
 
         }
 
