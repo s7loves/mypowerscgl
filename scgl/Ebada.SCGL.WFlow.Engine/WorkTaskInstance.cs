@@ -520,33 +520,53 @@ namespace Ebada.SCGL.WFlow.Engine
                  mUser fromuser = MainHelper.PlatformSqlMap.GetOneByKey<mUser>(userId);
                  bool find = false;
                 WF_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
+                //SetWorkTaskInstanceOver(userId, operins.WorkTaskInsId);
                 SetWorkTaskInstanceOver(userId, operins.WorkTaskInsId);
-                OperatorInstance.SetOperatorInstanceOver(userId, operatorInsId);
                 //创建一个任务实例
                 string newTaskId = Guid.NewGuid().ToString();//新任务处理者实例Id
                 WorkTaskInstance workTaskInstance = new WorkTaskInstance();
                 WF_WorkTaskInstance workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
+                workins.OperatedDes = fromuser.UserName;
+                MainHelper.PlatformSqlMap.Update<WF_WorkTaskInstance>(workins);
                 WF_WorkTaskInstance preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
                 workTaskInstance.PreviousTaskId = workins.WorkTaskInsId   ;
                 string tmpStr = "select starttaskid from WF_WorkTaskLinkView where  EndTaskId ='" + workins.WorkTaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'";
                 IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", tmpStr);
-                while (!find)
+                if (li.Count > 0)
                 {
-                    //workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
-                    //preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
-                    if (li.Contains(preworkins.WorkTaskId ))
+                    while (!find)
                     {
-                        find = true;
-                    }
-                    else
-                    {
+                        //workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
+                        //preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
+                        if (li.Contains(preworkins.WorkTaskId))
+                        {
+                            find = true;
+                        }
+                        else
+                        {
 
-                        operins = (WF_OperatorInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorInstanceList", " where WorkTaskInsId='" + preworkins.PreviousTaskId + "' and OperStatus='1' ");
-                        workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
-                        preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
+                            operins = (WF_OperatorInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorInstanceList", " where WorkTaskInsId='" + preworkins.PreviousTaskId + "' and OperStatus='1' ");
+                            workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
+                            preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
+                            if (workins != null)
+                            {
+                                WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(workins.WorkTaskId);
+                                if (wt.TaskTypeId == "1")
+                                    break;
+                            }
+                            else
+                                break;
+                        }
                     }
                 }
+               
+                if (!find)
+                {
+                    operins = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
+                    workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
+                    preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
                 
+                }
                 WF_WorkTaskInstance workins2 = new WF_WorkTaskInstance();
                 workins2.SuccessMsg = "退回至提交人(" + preworkins.OperatedDes + ")!";
                 workins2.WorkTaskInsId = operins.WorkTaskInsId;
@@ -569,7 +589,8 @@ namespace Ebada.SCGL.WFlow.Engine
                 operatorInstance.WorktaskId = operins.WorkTaskId ;
                 operatorInstance.WorkflowInsId = workTaskInstance.WorkflowInsId;
                 operatorInstance.WorktaskInsId = workTaskInstance.WorktaskInsId;
-                operatorInstance.UserId = op.UserId ;
+                //operatorInstance.UserId = op.UserId ; fromuser.UserName ;
+                operatorInstance.UserId =fromuser.UserName;
                 operatorInstance.OperRealtion = op.OperRealtion ;
                 operatorInstance.OperContent = op.OperContent;
                 operatorInstance.OperContentText = op.OperContentText;

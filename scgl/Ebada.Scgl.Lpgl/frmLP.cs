@@ -319,7 +319,14 @@ namespace Ebada.Scgl.Lpgl
                     //currRecord.SignImg = bt;
                     currRecord.Content = GetContent();
                     WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
-                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+                    if (wt != null)
+                    {
+                        strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+                    }
+                    else
+                    {
+                        strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(),  "提交");
+                    }
                     if (strmes.IndexOf("未提交至任何人") > -1)
                     {
                         MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
@@ -759,6 +766,7 @@ namespace Ebada.Scgl.Lpgl
                             string sql = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
                             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
                             ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(list);
+                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Text = MainHelper.User.OrgName;
                         }
                         
                     }

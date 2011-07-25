@@ -52,12 +52,6 @@ namespace Ebada.Scgl.WFlow
            
               
         }
-        /// <summary>
-        /// 获得流程的启始状态
-        /// </summary>
-        /// <param name="kind">工作票种类</param>
-        /// <param name="userID">用户ID</param>
-        /// <returns>流程的启始状态</returns>
         public static string GetGZPRecordSartStatus( string kind, string userID)
         {
 
@@ -84,7 +78,7 @@ namespace Ebada.Scgl.WFlow
         /// 创建工作票流程
         /// </summary>
         /// <param name="recordID">记录ID</param>
-        /// <param name="kind">工作票种类</param>
+        /// <param name="kind">工作票种类（01操作票、02一种工作票、03二种工作票、04抢修单）</param>
         /// <param name="userID">用户ID</param>
         /// <returns>流程创建信息二维数组，[0]流程创建结果 [1]运行后流程的任务节点名称</returns>
         public static string[] RunNewGZPRecord(string recordID, string kind, string userID)
