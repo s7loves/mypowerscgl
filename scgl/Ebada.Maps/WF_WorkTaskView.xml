@@ -43,7 +43,7 @@
       (
       select  distinct  WFClassId,Caption,FatherId,WorkFlowId,FlowCaption,WorkTaskid,TaskCaption,cllevel,mgrurl,clmgrurl from WF_WorkTaskView  where
       (
-      (OperContent IN (SELECT OperContent FROM WF_opercontentView where UserId= $WorkFlowId$) ) OR
+      (OperContent IN (SELECT OperContent FROM WF_opercontentView where UserId= #WorkFlowId#) ) OR
       (OperContent IN (SELECT RoleID FROM rUserRole where UserId=#WorkFlowId#) ) OR
       (OperContent = 'ALL')
       ) and TaskTypeId='1'and Status='1' and (FlowCaption=#FlowCaption# )
