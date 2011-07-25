@@ -230,7 +230,7 @@ namespace Ebada.Scgl.Xtgl {
                         mRole mrl = MainHelper.PlatformSqlMap.GetOneByKey<mRole>(RoleID);
                         WF_Operator wfop = new WF_Operator();
                         wfop.OperatorId = Guid.NewGuid().ToString(); 
-                        wfop.OperContent = RoleID; ;
+                        wfop.OperContent = RoleID; 
                         wfop.Description = mrl.RoleName;
                         wfop.OperDisplay = mrl.RoleName;
                         wfop.WorkFlowId = wt.WorkFlowId;

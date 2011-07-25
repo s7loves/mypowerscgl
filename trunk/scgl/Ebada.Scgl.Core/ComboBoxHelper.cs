@@ -17,7 +17,9 @@ namespace Ebada.Scgl.Core {
        public  static bool CompreDate(DateTime dtime)
         {
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", "公用属性", "默认时间"));
-            string str = list[0].ToString();
+
+            if (list.Count < 1) return false;
+           string str = list[0].ToString();
             DateTime dt = Convert.ToDateTime(str);
             if (dtime<=dt)
             {
