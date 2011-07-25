@@ -389,7 +389,7 @@ namespace Ebada.Scgl.Lpgl {
             {
                 if (!RecordWorkTask.HaveWorkFlowBackRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
                 {
-                    MsgBox.ShowWarningMessageBox("当前节点不能退回，退回失败!");
+                    MsgBox.ShowWarningMessageBox("当前节点不能退回.设置里没有允许退回，退回失败!");
                     return;
                 }
                 string strmes = RecordWorkTask.RunWorkFlowBack(MainHelper.User.UserID, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString());

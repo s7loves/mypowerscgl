@@ -545,7 +545,8 @@ namespace Ebada.SCGL.WFlow.Engine
                         else
                         {
 
-                            operins = (WF_OperatorInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorInstanceList", " where WorkTaskInsId='" + preworkins.PreviousTaskId + "' and OperStatus='1' ");
+                            operins = (WF_OperatorInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorInstanceList", " where WorkTaskInsId='" + preworkins.PreviousTaskId + "' ");
+                            if (operins == null) break;
                             workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(operins.WorkTaskInsId);
                             preworkins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workins.PreviousTaskId);
                             if (workins != null)
