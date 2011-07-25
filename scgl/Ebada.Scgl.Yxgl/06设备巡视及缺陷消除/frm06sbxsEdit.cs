@@ -187,6 +187,9 @@ namespace Ebada.Scgl.Yxgl
             {
                 rowData.LineID = lookUpEdit1.EditValue.ToString();
                 rowData.LineName = lookUpEdit1.Text;
+                comboBoxEdit2.Properties.Items.Clear();
+                comboBoxEdit3.Properties.Items.Clear();
+                comboBoxEdit6.Properties.Items.Clear();
                 IList<PJ_sbxsqd> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbxsqd>(" where LineCode='" + rowData.LineID + "'");
                 foreach (PJ_sbxsqd xsqd in xllit)
                 {
@@ -221,6 +224,17 @@ namespace Ebada.Scgl.Yxgl
             //    comboBoxEdit6.EditValue = mans[1];
             //}
 
+        }
+
+        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            string xsqdname = comboBoxEdit2.EditValue.ToString();
+           PJ_sbxsqd ps = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_sbxsqd>("where XsqdName='"+xsqdname+"'and LineCode='"+rowData.LineID+"' ");
+            if (ps!=null)
+            {
+                comboBoxEdit3.EditValue = ps.XSR1;
+                comboBoxEdit6.EditValue = ps.XSR2;
+            }
         }
 
 
