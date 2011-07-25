@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
+using Ebada.Scgl.Core;
 using System.Windows.Forms;
 namespace Ebada.Scgl.Yxgl {
     /// <summary>
@@ -143,9 +144,13 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue("", row + i * len1, 12);
                     }
                     //消除时间
-                    ex.SetCellValue(tempobj.xcrq.Year.ToString(), row + 2 + i * len1, 8);
-                    ex.SetCellValue(tempobj.xcrq.Month.ToString(), row + 2 + i * len1, 11);
-                    ex.SetCellValue(tempobj.xcrq.Day.ToString(), row + 2 + i * len1, 13);
+                    if (ComboBoxHelper.CompreDate(tempobj.xcrq))
+                    {
+                        ex.SetCellValue(tempobj.xcrq.Year.ToString(), row + 2 + i * len1, 8);
+                        ex.SetCellValue(tempobj.xcrq.Month.ToString(), row + 2 + i * len1, 11);
+                        ex.SetCellValue(tempobj.xcrq.Day.ToString(), row + 2 + i * len1, 13);
+                    }
+                   
 
                 }
 
