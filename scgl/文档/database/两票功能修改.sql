@@ -1,3 +1,5 @@
+USE [EbadaScgl]
+GO
 update dbo.LP_Temple set ParentID='6360bcc1-0483-4720-a883-14bb76fd8901',CellName='电力线路第一种工作票' 
 where  CellName='一种工作票'
 
