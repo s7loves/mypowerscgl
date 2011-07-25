@@ -41,11 +41,19 @@ namespace Ebada.Scgl.Yxgl
             initImageList();
             gridViewOperation = new GridViewOperation<PJ_24>(gridControl1, gridView1, barManager1, new frm24Edit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_24>(gridViewOperation_BeforeAdd);
+            gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PJ_24>(gridViewOperation_BeforeUpdate);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_24>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_24> e)
+        {
+            if (e.Value.BigData == null)
+            {
+                e.Value.BigData = new byte[0]; 
+            }
         
+        }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_24> e)
         {
            
