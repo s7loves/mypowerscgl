@@ -87,7 +87,9 @@ namespace Ebada.Scgl.Core {
 
         public static RepositoryItem GdsDic {
             get {
-                if (gdsDic == null) {
+                //if (gdsDic == null) {
+                if (gdsDic == null||gdsDic.LinkCount  == 1 )
+                {
                     IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
                     IList<DicType> dic = new List<DicType>();
                     foreach (ViewGds gds in list) {
