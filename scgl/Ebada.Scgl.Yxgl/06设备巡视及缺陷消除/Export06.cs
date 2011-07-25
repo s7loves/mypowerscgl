@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
@@ -10,6 +11,38 @@ namespace Ebada.Scgl.Yxgl {
     /// 文档
     /// </summary>
     public class Export06  {
+        public static void ExportExcel(Dictionary<string,List<PJ_06sbxs>> objdic)
+        {
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\06设备巡视及缺陷消除记录.xls";
+
+            ex.Open(fname);
+            int zc = 20;
+            //与会人员之间的间隔符号
+            char[] jksign = new char[1] { ';' };
+            int row = 7;
+            int col = 1;
+            int len1 = 3;
+            int pageindex = 1;
+            pageindex = objdic.Count;
+            //根据所有的线路数来确定创建的页数
+            for (int j = 1; j <= pageindex; j++)
+            {
+                if (j > 1)
+                {
+                    ex.CopySheet(1, 1);
+                }
+            }
+            int pags = 0;
+            foreach ( KeyValuePair<string,List<PJ_06sbxs>> pp in objdic)
+            {
+                List<PJ_06sbxs> objlist=pp.Value;
+                ex.ActiveSheet(pags++);
+
+            }
+           
+        }
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>

@@ -194,26 +194,48 @@ namespace Ebada.Scgl.Yxgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frm06sbxsLine frm = new frm06sbxsLine();
-            frm.orgcode = btGdsList.EditValue.ToString();
-            if (frm.ShowDialog()==DialogResult.OK)
-            {
+            //frm06sbxsLine frm = new frm06sbxsLine();
+            //frm.orgcode = btGdsList.EditValue.ToString();
+            //if (frm.ShowDialog()==DialogResult.OK)
+            //{
 
-                IList<PJ_06sbxs> pj06list = new List<PJ_06sbxs>();
-                pj06list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxs>(" where LineName='" + frm.linename + "'");
-                if (pj06list.Count>0)
+            //    IList<PJ_06sbxs> pj06list = new List<PJ_06sbxs>();
+            //    pj06list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxs>(" where LineName='" + frm.linename + "'");
+            //    if (pj06list.Count>0)
+            //    {
+            //        Export06.ExportExcel(pj06list);
+            //    }
+            //   else
+            //    {
+            //        MsgBox.ShowTipMessageBox("此线路没有添加巡视情况。");
+            //        return;
+            //    }
+            //}
+
+            Dictionary<string, List<PJ_06sbxs>> diclist = new Dictionary<string, List<PJ_06sbxs>>();
+            for (int i = 0; i < gridView1.RowCount;i++ )
+            {
+                PJ_06sbxs _pj = gridView1.GetRow(i) as PJ_06sbxs;
+                if (diclist.ContainsKey(_pj.LineID))
                 {
-                    Export06.ExportExcel(pj06list);
+                    diclist[_pj.LineID].Add(_pj);
                 }
-               else
+                else
                 {
-                    MsgBox.ShowTipMessageBox("此线路没有添加巡视情况。");
-                    return;
+                    List<PJ_06sbxs> lispj = new List<PJ_06sbxs>();
+                    lispj.Add(_pj);
+                    diclist[_pj.LineID] = lispj;
                 }
             }
-            
-            
-            
+            foreach (KeyValuePair<string, List<PJ_06sbxs>> pp in diclist)
+            {
+                List<PJ_06sbxs> objlist = pp.Value;
+                if (objlist.Count > 0)
+                {
+                    Export06.ExportExcel(objlist);
+                }
+
+            }
            
         }
 
