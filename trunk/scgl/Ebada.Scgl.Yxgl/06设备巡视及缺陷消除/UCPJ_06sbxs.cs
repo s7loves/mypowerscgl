@@ -201,7 +201,15 @@ namespace Ebada.Scgl.Yxgl
 
                 IList<PJ_06sbxs> pj06list = new List<PJ_06sbxs>();
                 pj06list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxs>(" where LineName='" + frm.linename + "'");
-                Export06.ExportExcel(pj06list);
+                if (pj06list.Count>0)
+                {
+                    Export06.ExportExcel(pj06list);
+                }
+               else
+                {
+                    MsgBox.ShowTipMessageBox("此线路没有添加巡视情况。");
+                    return;
+                }
             }
             
             
