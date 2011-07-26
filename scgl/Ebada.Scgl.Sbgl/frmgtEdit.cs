@@ -108,6 +108,10 @@ namespace Ebada.Scgl.Sbgl
 
         }
 
+        private void pictureEdit1_EditValueChanged(object sender, EventArgs e) {
+
+        }
+
        
     }
 }
