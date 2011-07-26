@@ -240,6 +240,7 @@ namespace Ebada.Scgl.Yxgl
                        ex.Open(fname);
                        //此处写填充内容代码
 
+                       ds1.FileClose();
                        ex.ShowExcel();
                    }
                     else
@@ -274,6 +275,7 @@ namespace Ebada.Scgl.Yxgl
                         ex.Open(fname);
                         //此处写填充内容代码
 
+                        ds1.FileClose();
                         ex.ShowExcel();
                     }
                     else
