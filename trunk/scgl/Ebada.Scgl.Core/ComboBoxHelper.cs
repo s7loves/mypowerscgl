@@ -18,7 +18,7 @@ namespace Ebada.Scgl.Core {
         {
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", "公用属性", "默认时间"));
 
-            if (list.Count < 1) return false;
+            if (list.Count < 1) return true;
            string str = list[0].ToString();
             DateTime dt = Convert.ToDateTime(str);
             if (dtime<=dt)
