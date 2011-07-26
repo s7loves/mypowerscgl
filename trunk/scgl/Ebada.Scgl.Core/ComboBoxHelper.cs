@@ -251,7 +251,7 @@ namespace Ebada.Scgl.Core {
             if (mCache.ContainsKey(key)) {
                 list = mCache[key];
             } else {
-                list = new string[] { "变压器", "断路器", "电缆与架空线接头", "立瓶", "线路", "接户线" };
+                list = new string[] { "导线","金具","绝缘子","变压器","熔断器", "断路器", "电缆与架空线接头", "立瓶", "线路", "接户线" };
 
                 mCache.Add(key, list);
             }
@@ -404,7 +404,7 @@ namespace Ebada.Scgl.Core {
             if (mCache.ContainsKey(key)) {
                 list = mCache[key];
             } else {
-                list = new string[] { "直线杆", "加强杆", "耐张杆", "转角杆", "终端杆", "分支杆"};
+                list = new string[] {"起始杆", "直线杆", "加强杆", "耐张杆", "转角杆", "终端杆", "分支杆"};
                 mCache.Add(key, list);
             }
             return list;
