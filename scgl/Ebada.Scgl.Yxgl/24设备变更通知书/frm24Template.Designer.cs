@@ -156,7 +156,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(601, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 393);
             // 
-            // frm26Template
+            // frm24Template
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -169,6 +169,7 @@
             this.Name = "frm24Template";
             this.Text = "设备变更通知书.xls";
             this.Load += new System.EventHandler(this.frm26Template_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm24Template_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
