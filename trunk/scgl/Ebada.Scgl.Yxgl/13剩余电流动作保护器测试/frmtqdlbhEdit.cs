@@ -135,18 +135,18 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit5.Focus();
                 return;
             }
-            if (textEdit1.Text == "")
-            {
-                MsgBox.ShowTipMessageBox("设备编号不能为空。");
-                textEdit1.Focus();
-                return;
-            }
-            if (rowData.InstallDate>rowData.InDate)
-            {
-                MsgBox.ShowTipMessageBox("安装日期不能大于投运日期。");
-                textEdit1.Focus();
-                return;
-            }
+            //if (textEdit1.Text == "")
+            //{
+            //    MsgBox.ShowTipMessageBox("设备编号不能为空。");
+            //    textEdit1.Focus();
+            //    return;
+            //}
+            //if (rowData.InstallDate>rowData.InDate)
+            //{
+            //    MsgBox.ShowTipMessageBox("安装日期不能大于投运日期。");
+            //    textEdit1.Focus();
+            //    return;
+            //}
             rowData.tqName = comboBoxEdit5.Text;
             this.DialogResult = DialogResult.OK;
             this.Close();
