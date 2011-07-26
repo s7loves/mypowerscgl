@@ -38,7 +38,10 @@ namespace Ebada.Android.Service {
         [WebInvoke(UriTemplate = "UpdateXl", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
         string UpdateXl(List<ps_xl> data);
         [OperationContract]
-        [WebInvoke(UriTemplate = "UpdateGt", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
+        [WebInvoke(UriTemplate = "UpdateGtList", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
         string UpdateGt(List<ps_gt> data);
+        [WebInvoke(UriTemplate = "UpdateGtOne", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        [OperationContract]
+        string UpdateGtOne(ps_gt data);
     }
 }

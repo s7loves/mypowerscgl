@@ -76,9 +76,29 @@ namespace Ebada.Android.Service {
         }
 
         public string UpdateGt(List<ps_gt> data) {
-            throw new NotImplementedException();
+            string ret="0";
+            if (data != null) {
+                foreach(ps_gt gt in data){
+                    UpdateGtOne(gt);
+                }
+                ret = data.Count.ToString();
+            }
+            return ret;
         }
+        public string UpdateGtOne(ps_gt data) {
+            PS_gt gt = Ebada.Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_gt>(data.gtID);
+            if (gt != null) {
+                foreach(FieldInfo fi in data.GetType().GetFields()){
+                    try {
+                        gt.GetType().GetProperty(fi.Name).SetValue(gt, fi.GetValue(data), null);
+                    } catch { }
+                }
+                int n=Ebada.Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
+                Console.WriteLine("update {0} count {1}", gt.gtCode, n);
+            }
 
+            return "";
+        }
         #endregion
     }
 }
