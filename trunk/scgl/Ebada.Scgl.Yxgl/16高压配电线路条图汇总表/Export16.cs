@@ -14,12 +14,13 @@ namespace Ebada.Scgl.Yxgl {
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(PJ_16 obj)
+        public static void ExportExcel(PJ_16 obj1)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\16高压配电线路条图汇总表.xls";
-
+            PJ_16 obj = new PJ_16();
+            Ebada.Core.ConvertHelper.CopyTo(obj1, obj);
             ex.Open(fname);
             //此处写填充内容代码
             //线路名称
@@ -44,7 +45,12 @@ namespace Ebada.Scgl.Yxgl {
             //分支线的数目和长度
             sumgt = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xlRowCount", "where ParentID='" + obj.LineCode + "'and LineType in('2','3')").ToString();
             ex.SetCellValue(sumgt, 9, 6);
-            length = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where ParentID='" + obj.LineCode + "'and LineType in('2','3')").ToString();
+
+            Object ot= Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where ParentID='" + obj.LineCode + "'and LineType in('2','3')");
+            if(ot!=null)
+            {
+                int le = 1;
+            }
             ex.SetCellValue(length, 9, 7);
             //变压器容量和台
            
