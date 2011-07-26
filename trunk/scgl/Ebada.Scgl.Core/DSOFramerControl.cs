@@ -260,8 +260,8 @@ namespace Ebada.Scgl.Core {
         #region 私有方法
         private string GetTempFileName() {
             //生成一个唯一的临时文件名
-           // return TempPath + "\\~" + Guid.NewGuid().ToString() + ".xls";
-            return TempPath +"24工作簿"+ ".xls";
+            return TempPath + "\\~" + Guid.NewGuid().ToString() + ".xls";
+            //return TempPath +"24工作簿"+ ".xls";
         }
         private void Close() {
             if (MyWorkbook != null) {
@@ -334,6 +334,10 @@ namespace Ebada.Scgl.Core {
         /// </summary>
         public void FileClose() {
             axFramerControl1.Close();
+            Application.DoEvents();
+            if (File.Exists(fileName)) {
+                File.Delete(fileName);
+            }
         }
         /// <summary>
         /// 保存文件
