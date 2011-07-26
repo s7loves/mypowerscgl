@@ -50,14 +50,14 @@
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Horizontal = false;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 23);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 24);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.simpleButton2);
             this.splitContainerControl1.Panel2.Controls.Add(this.simpleButton1);
             this.splitContainerControl1.Panel2.Controls.Add(this.dsoFramerControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(601, 393);
+            this.splitContainerControl1.Size = new System.Drawing.Size(601, 392);
             this.splitContainerControl1.SplitterPosition = 0;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -65,7 +65,7 @@
             // simpleButton2
             // 
             this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton2.Location = new System.Drawing.Point(514, 361);
+            this.simpleButton2.Location = new System.Drawing.Point(514, 360);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(75, 23);
             this.simpleButton2.TabIndex = 2;
@@ -76,7 +76,7 @@
             // 
             this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.simpleButton1.Location = new System.Drawing.Point(414, 362);
+            this.simpleButton1.Location = new System.Drawing.Point(414, 361);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(75, 23);
             this.simpleButton1.TabIndex = 1;
@@ -90,7 +90,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.dsoFramerControl1.Location = new System.Drawing.Point(0, 0);
             this.dsoFramerControl1.Name = "dsoFramerControl1";
-            this.dsoFramerControl1.Size = new System.Drawing.Size(601, 345);
+            this.dsoFramerControl1.Size = new System.Drawing.Size(601, 344);
             this.dsoFramerControl1.TabIndex = 0;
             // 
             // barManager1
@@ -136,7 +136,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(601, 23);
+            this.barDockControlTop.Size = new System.Drawing.Size(601, 24);
             // 
             // barDockControlBottom
             // 
@@ -147,14 +147,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 23);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 393);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 392);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(601, 23);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 393);
+            this.barDockControlRight.Location = new System.Drawing.Point(601, 24);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 392);
             // 
             // frm26Template
             // 
@@ -168,6 +168,7 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "frm26Template";
             this.Text = "线路防护通知书";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm26Template_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm26Template_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
