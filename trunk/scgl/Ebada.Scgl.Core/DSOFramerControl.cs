@@ -268,6 +268,7 @@ namespace Ebada.Scgl.Core {
                 MyWorkbook.Close(false, missing, missing);
                 MyWorkbook.Application.Quit();
             }
+         
         }
         #endregion
         public Word.Workbook MyWorkbook {
