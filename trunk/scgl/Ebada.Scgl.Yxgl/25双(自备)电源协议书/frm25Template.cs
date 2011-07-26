@@ -55,7 +55,8 @@ namespace Ebada.Scgl.Yxgl
                 catch (System.Exception ex)
                 {
                     dsoFramerControl1.FileClose();
-                   // dsoFramerControl1.Dispose();
+                    dsoFramerControl1.Dispose();
+                    dsoFramerControl1 = null;
                 }
              
 
@@ -157,8 +158,19 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             pjobject.BigData = dsoFramerControl1.FileData;
-            //dsoFramerControl1.Dispose();
+            dsoFramerControl1.Dispose();
+            dsoFramerControl1 = null;
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void frm25Template_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (dsoFramerControl1 != null)
+            {
+                dsoFramerControl1.FileClose();
+                dsoFramerControl1.Dispose();
+                dsoFramerControl1 = null;
+            }
         }
 
     }

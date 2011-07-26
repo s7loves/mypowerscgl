@@ -169,6 +169,7 @@
             this.Name = "frm26Template";
             this.Text = "线路防护通知书";
             this.Load += new System.EventHandler(this.frm26Template_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm26Template_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
