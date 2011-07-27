@@ -278,13 +278,10 @@
             // 
             // comboBoxEdit14
             // 
-            this.comboBoxEdit14.Location = new System.Drawing.Point(358, 185);
+            this.comboBoxEdit14.Location = new System.Drawing.Point(358, 182);
             this.comboBoxEdit14.Name = "comboBoxEdit14";
             this.comboBoxEdit14.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit14.Properties.Items.AddRange(new object[] {
-            "运行",
-            "暂停"});
             this.comboBoxEdit14.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit14.TabIndex = 51;
             // 
