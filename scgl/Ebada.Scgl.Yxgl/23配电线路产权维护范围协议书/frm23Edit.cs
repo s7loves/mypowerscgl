@@ -133,5 +133,21 @@ namespace Ebada.Scgl.Yxgl
         {
 
         }
+
+        private void comboBoxEdit1_Properties_Click(object sender, EventArgs e)
+        {
+            frmDykSelector dlg = new frmDykSelector();
+            PJ_dyk dyk = null;
+            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='23配电线路产权维护范围协议书' and sx='维护界限划分原则' and parentid=''");
+            if (parentObj != null)
+            {
+                dlg.ucpJ_dykSelector1.ParentObj = parentObj;
+                // dlg.TxtMemo = txt;
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    comboBoxEdit1.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr4;
+                }
+            }
+        }
     }
 }
