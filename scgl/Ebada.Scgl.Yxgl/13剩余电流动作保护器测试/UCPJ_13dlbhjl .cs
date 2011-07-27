@@ -30,7 +30,7 @@ namespace Ebada.Scgl.Yxgl
     public partial class UCPJ_13dlbhjl : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_13dlbhjl> gridViewOperation;
-
+        public mOrg gds = null;
         public event SendDataEventHandler<PJ_13dlbhjl> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
@@ -126,11 +126,12 @@ namespace Ebada.Scgl.Yxgl
         void gridViewOperation_CreatingObjectEvent(PJ_13dlbhjl newobj)
         {
             if (parentID == null) return;
-            mOrg mg = Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where OrgCode in(select orgcode from ps_xl where linecode in(select xlcode from ps_tq where tqid='" + parentObj.tqID + "'))");
-            if (mg!=null)
+          //  mOrg mg = Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where OrgCode in(select orgcode from ps_xl where linecode in(select xlcode from ps_tq where tqid='" + parentObj.tqID + "'))");
+           
+            if (gds!=null)
             {
-                newobj.OrgCode=mg.OrgCode;
-                newobj.OrgName=mg.OrgName;
+                newobj.OrgCode=gds.OrgCode;
+                newobj.OrgName=gds.OrgName;
             }
             
             newobj.sbID = parentID;

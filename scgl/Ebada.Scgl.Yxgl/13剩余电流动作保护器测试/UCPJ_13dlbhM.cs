@@ -33,6 +33,11 @@ namespace Ebada.Scgl.Yxgl {
         void ucTop_FocusedRowChanged(object sender, PS_tqdlbh obj)
         {
             ucBottom.ParentObj = obj;
+            if (ucTop.gds!=null)
+            {
+                ucBottom.gds = ucTop.gds;
+            }
+            
             splitCC1.Panel2.Text = " " + (obj != null ? obj.tqName : "");
         }
 
