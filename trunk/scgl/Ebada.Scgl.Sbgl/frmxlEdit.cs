@@ -75,6 +75,9 @@ namespace Ebada.Scgl.Sbgl
             IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mOrg>(" where Orgtype='2'");
             comboBoxEdit8.Properties.DataSource = list2;
             pdsbModelHelper.FillCBox(comboBoxEdit14, pdsbModelHelper.dxxh);
+
+            this.comboBoxEdit14.Properties.Items.AddRange(ComboBoxHelper.GetLineTye());
+            this.comboBoxEdit5.Properties.Items.AddRange(ComboBoxHelper.GetVoltage()); 
         }
 
         /// <summary>

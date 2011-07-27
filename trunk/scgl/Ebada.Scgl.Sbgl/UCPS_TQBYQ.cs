@@ -55,7 +55,17 @@ namespace Ebada.Scgl.Sbgl
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_tqbyq> e)
         {
             if (parentID == null)
+            {
                 e.Cancel = true;
+                MsgBox.ShowTipMessageBox("台区不能为空！");
+            }
+            else
+            {
+
+                PS_tq tq = MainHelper.PlatformSqlMap.GetOneByKey<PS_tq>(parentID);
+                e.Value.byqInstallAdress = tq.Adress; 
+            
+            }
         }
         protected override void OnLoad(EventArgs e)
         {

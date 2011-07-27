@@ -422,7 +422,50 @@ namespace Ebada.Scgl.Core {
             }
             return list;
         }
-       
+
+        /// <summary>
+        /// 获取电压等级
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetVoltage()
+        {
+
+            
+
+            ICollection list = new ArrayList();
+            string key = "GetVoltage";
+            if (mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = new string[] { "65KV", "220V", "110V" };
+                mCache.Add(key, list);
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 获取导线型号
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetLineTye()
+        {
+            ICollection list = new ArrayList();
+            string key = "GetLineTye";
+            if (mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select xh from ps_sbcs where  mc='导线' and xh !='' ");
+                mCache.Add(key, list);
+            }
+            return list;
+            
+        }
         #endregion
     }
 }
