@@ -204,9 +204,18 @@ namespace Ebada.SCGL
                 }
                 
             } else {
+                if (MainHelper.User.LoginID == "rabbit") {
+                    barButtonItem1.Visibility = BarItemVisibility.Always;
+                    barButtonItem2.Visibility = BarItemVisibility.Always;
+
+                    ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence");
+                    ucModulBar1.SetImage();
+                } else {
+                    this.Close();
+                    return;
+                }
 #if DEBUG
-                ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence");
-                ucModulBar1.SetImage();
+                
 #endif
             }
             barButtonItem3.Enabled = (dlg.DialogResult == DialogResult.OK);
