@@ -30,7 +30,7 @@ namespace Ebada.Scgl.Yxgl
     public partial class UCPJ_13dlbh : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PS_tqdlbh> gridViewOperation;
-
+        public mOrg gds =null;
         public event SendDataEventHandler<PS_tqdlbh> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         frmtqdlbhEdit frm = new frmtqdlbhEdit();
@@ -106,9 +106,10 @@ namespace Ebada.Scgl.Yxgl
             mOrg org=null;
             if (list.Count > 0)
                 org = list[0];
-
+           
             if (org != null)
             {
+                gds = org;
                 IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
                 repositoryItemLookUpEdit3.DataSource = xlList;
             }

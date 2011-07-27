@@ -64,7 +64,8 @@ namespace Ebada.Scgl.Yxgl
             }
             // PJ_13dlbhjl pj = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_05jcky>(rowData.jckyID);
             //this.comboBoxEdit3.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(rowData.OrgCode));
-            ICollection ryList = ComboBoxHelper.GetGdsRy(MainHelper.User.OrgCode   );//获取供电所人员列表
+            //ICollection ryList = ComboBoxHelper.GetGdsRy(MainHelper.User.OrgCode );//获取供电所人员列表
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);
             this.comboBoxEdit3.Properties.Items.AddRange(ryList);
         }
 
