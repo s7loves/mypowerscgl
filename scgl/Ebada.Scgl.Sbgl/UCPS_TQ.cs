@@ -55,7 +55,10 @@ namespace Ebada.Scgl.Sbgl
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_tq> e)
         {
             if (parentID == null)
+            {
                 e.Cancel = true;
+                MsgBox.ShowWarningMessageBox("请先选择杆塔!");  
+            }
         }
         protected override void OnLoad(EventArgs e)
         {
