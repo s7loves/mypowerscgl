@@ -55,7 +55,10 @@ namespace Ebada.Scgl.Sbgl
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_kg> e)
         {
             if (parentID == null)
+            {
                 e.Cancel = true;
+                MsgBox.ShowWarningMessageBox("请先选择杆塔!");  
+            }
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -93,7 +96,7 @@ namespace Ebada.Scgl.Sbgl
 
         void btXlList_EditValueChanged(object sender, EventArgs e)
         {
-      
+                parentID = null;    
                 IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + btXlList.EditValue.ToString() + "'");
                 repositoryItemLookUpEdit3.DataSource = list;
         }
