@@ -75,6 +75,7 @@
             this.地形ToolStripMenuItem.Name = "地形ToolStripMenuItem";
             this.地形ToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.地形ToolStripMenuItem.Text = "地形";
+            this.地形ToolStripMenuItem.Visible = false;
             this.地形ToolStripMenuItem.Click += new System.EventHandler(this.地形ToolStripMenuItem_Click);
             // 
             // UCMapBox
