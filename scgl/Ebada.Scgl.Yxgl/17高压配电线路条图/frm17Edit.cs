@@ -24,23 +24,10 @@ namespace Ebada.Scgl.Yxgl
         void dataBind() {
 
 
-            //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineName");
-            //this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "Remark");
-            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + MainHelper.User.OrgCode + "' order by linetype,linecode");
-
+            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineCode");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "Remark");
             //this.comboBoxEdit1.DataBindings.Add("EditValue", list, "LineName");
 
-            foreach (PS_xl xl in list)
-            {
-                this.comboBoxEdit1.Properties.Items.Add(xl.LineName );  
-            
-            }
-            if (list.Count > 0) this.comboBoxEdit1.SelectedIndex = 0;
-            //this.comboBoxEdit1.Properties.Items.AddRange(list);
-            //
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
@@ -65,16 +52,9 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_17>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
+            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + MainHelper.User.OrgCode + "' order by linetype,linecode");
 
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+            SetComboBoxData(lookUpEdit1, "LineName", "LineCode", "请选择线路或分支", "线路", list);
         }
 
         /// <summary>
@@ -86,7 +66,7 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_xl> post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -94,7 +74,7 @@ namespace Ebada.Scgl.Yxgl
             comboBox.Properties.ValueMember = valueMember;
             comboBox.Properties.NullText = nullTest;
             comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "代码", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
