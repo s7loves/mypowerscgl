@@ -23,7 +23,7 @@ namespace Ebada.Scgl.Sbgl
         }
         void dataBind() {
 
-
+            
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "InDate");
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "WireLength");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "TotalLength");
@@ -62,6 +62,8 @@ namespace Ebada.Scgl.Sbgl
                 if(rowData.LineType==""){
                     rowData.InDate = DateTime.Now;
                 }
+                
+                if (rowData.LineVol == "") rowData.LineVol = "10";
             }
         }
 
@@ -72,6 +74,7 @@ namespace Ebada.Scgl.Sbgl
             comboBoxEdit7.Properties.DataSource = list;
             IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mOrg>(" where Orgtype='2'");
             comboBoxEdit8.Properties.DataSource = list2;
+            pdsbModelHelper.FillCBox(comboBoxEdit14, pdsbModelHelper.dxxh);
         }
 
         /// <summary>

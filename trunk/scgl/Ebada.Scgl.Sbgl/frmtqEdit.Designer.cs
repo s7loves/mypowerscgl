@@ -276,6 +276,10 @@
             this.comboBoxEdit10.Name = "comboBoxEdit10";
             this.comboBoxEdit10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit10.Properties.Items.AddRange(new object[] {
+            "一班",
+            "二班",
+            "三班"});
             this.comboBoxEdit10.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit10.TabIndex = 13;
             // 
@@ -312,6 +316,9 @@
             this.comboBoxEdit6.Name = "comboBoxEdit6";
             this.comboBoxEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit6.Properties.Items.AddRange(new object[] {
+            "局属",
+            "自维"});
             this.comboBoxEdit6.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit6.TabIndex = 13;
             // 

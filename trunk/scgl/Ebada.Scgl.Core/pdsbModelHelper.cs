@@ -10,9 +10,21 @@ namespace Ebada.Scgl.Core {
     /// </summary>
     public static class pdsbModelHelper {
 
+        public  const string dxxh = "02";
+        public  const string gtzl = "18";
+        public  const string gtxh = "";
         public static void FillCBoxByGt(ComboBoxEdit c) {
             c.Properties.Items.Clear();
             c.Properties.Items.AddRange(ComboBoxHelper.GetsbxhList("18"));
+        }
+        /// <summary>
+        /// 填充型号列表
+        /// </summary>
+        /// <param name="c"></param>
+        /// <param name="xhdm"></param>
+        public static void FillCBox(ComboBoxEdit c,string xhdm) {
+            c.Properties.Items.Clear();
+            c.Properties.Items.AddRange(ComboBoxHelper.GetsbxhList(xhdm));
         }
     }
 }
