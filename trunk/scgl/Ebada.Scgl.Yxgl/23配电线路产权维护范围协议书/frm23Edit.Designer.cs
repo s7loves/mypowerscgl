@@ -142,6 +142,7 @@
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit1.Properties.Click += new System.EventHandler(this.comboBoxEdit1_Properties_Click);
             this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit1.TabIndex = 13;
             // 
