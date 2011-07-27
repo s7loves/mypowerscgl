@@ -121,6 +121,38 @@ namespace Ebada.Scgl.Sbgl
             this.Close();
         }
 
+        private void comboBoxEdit6_Properties_Click(object sender, EventArgs e)
+        {
+            frmDykSelector dlg = new frmDykSelector();
+            PJ_dyk dyk = null;
+            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='台区' and sx='产权' and parentid=''");
+            if (parentObj != null)
+            {
+                dlg.ucpJ_dykSelector1.ParentObj = parentObj;
+                // dlg.TxtMemo = txt;
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    comboBoxEdit6.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr ;
+                }
+            }
+        }
+
+        private void comboBoxEdit10_Properties_Click(object sender, EventArgs e)
+        {
+            frmDykSelector dlg = new frmDykSelector();
+            PJ_dyk dyk = null;
+            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='台区' and sx='运行班次' and parentid=''");
+            if (parentObj != null)
+            {
+                dlg.ucpJ_dykSelector1.ParentObj = parentObj;
+                // dlg.TxtMemo = txt;
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    comboBoxEdit10.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
+                }
+            }
+        }
+
       
     }
 }

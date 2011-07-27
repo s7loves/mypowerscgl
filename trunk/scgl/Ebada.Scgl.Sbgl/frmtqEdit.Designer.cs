@@ -280,6 +280,7 @@
             "一班",
             "二班",
             "三班"});
+            this.comboBoxEdit10.Properties.Click += new System.EventHandler(this.comboBoxEdit10_Properties_Click);
             this.comboBoxEdit10.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit10.TabIndex = 13;
             // 
@@ -319,6 +320,7 @@
             this.comboBoxEdit6.Properties.Items.AddRange(new object[] {
             "局属",
             "自维"});
+            this.comboBoxEdit6.Properties.Click += new System.EventHandler(this.comboBoxEdit6_Properties_Click);
             this.comboBoxEdit6.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit6.TabIndex = 13;
             // 
