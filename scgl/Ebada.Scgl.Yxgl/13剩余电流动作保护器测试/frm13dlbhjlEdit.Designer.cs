@@ -196,11 +196,11 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(6, 36);
+            this.labelControl2.Location = new System.Drawing.Point(8, 36);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 2;
-            this.labelControl2.Text = "日      期";
+            this.labelControl2.Text = "测试日期";
             // 
             // bar1
             // 

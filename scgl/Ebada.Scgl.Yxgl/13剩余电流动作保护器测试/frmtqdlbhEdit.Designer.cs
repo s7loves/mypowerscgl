@@ -294,11 +294,11 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(37, 119);
+            this.labelControl10.Location = new System.Drawing.Point(30, 119);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(40, 14);
+            this.labelControl10.Size = new System.Drawing.Size(52, 14);
             this.labelControl10.TabIndex = 12;
-            this.labelControl10.Text = "制造厂 ";
+            this.labelControl10.Text = "制造厂名 ";
             // 
             // labelControl9
             // 
@@ -315,11 +315,11 @@
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(48, 14);
             this.labelControl1.TabIndex = 12;
-            this.labelControl1.Text = "设备型号";
+            this.labelControl1.Text = "型      号";
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(271, 122);
+            this.labelControl4.Location = new System.Drawing.Point(259, 122);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 12;
@@ -361,11 +361,11 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(273, 30);
+            this.labelControl6.Location = new System.Drawing.Point(256, 30);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(52, 14);
+            this.labelControl6.Size = new System.Drawing.Size(100, 14);
             this.labelControl6.TabIndex = 9;
-            this.labelControl6.Text = "动作电流 ";
+            this.labelControl6.Text = "额定漏电动作电流 ";
             // 
             // labelControl2
             // 
@@ -386,11 +386,11 @@
             // 
             // labelControl14
             // 
-            this.labelControl14.Location = new System.Drawing.Point(273, 91);
+            this.labelControl14.Location = new System.Drawing.Point(257, 91);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(52, 14);
+            this.labelControl14.Size = new System.Drawing.Size(48, 14);
             this.labelControl14.TabIndex = 2;
-            this.labelControl14.Text = "投运日期 ";
+            this.labelControl14.Text = "投运时间";
             // 
             // labelControl13
             // 
@@ -412,7 +412,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(273, 62);
+            this.labelControl3.Location = new System.Drawing.Point(257, 62);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(36, 14);
             this.labelControl3.TabIndex = 2;
