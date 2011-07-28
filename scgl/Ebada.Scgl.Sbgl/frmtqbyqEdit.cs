@@ -87,7 +87,7 @@ namespace Ebada.Scgl.Sbgl
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "相别", comboBoxEdit8.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "结线组别", comboBoxEdit9.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "周  波", comboBoxEdit12.Properties);
-   
+            this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetVoltage());   
 
         }
 
