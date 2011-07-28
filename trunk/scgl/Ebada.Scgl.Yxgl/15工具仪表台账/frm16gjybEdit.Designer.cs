@@ -219,11 +219,11 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(287, 109);
+            this.labelControl8.Location = new System.Drawing.Point(268, 109);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(24, 14);
+            this.labelControl8.Size = new System.Drawing.Size(48, 14);
             this.labelControl8.TabIndex = 6;
-            this.labelControl8.Text = "备注";
+            this.labelControl8.Text = "备      注";
             // 
             // labelControl7
             // 
@@ -245,17 +245,17 @@
             // 
             this.labelControl5.Location = new System.Drawing.Point(29, 138);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(24, 14);
+            this.labelControl5.Size = new System.Drawing.Size(48, 14);
             this.labelControl5.TabIndex = 3;
-            this.labelControl5.Text = "数量";
+            this.labelControl5.Text = "数      量";
             // 
             // labelControl4
             // 
             this.labelControl4.Location = new System.Drawing.Point(29, 114);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(24, 14);
+            this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 2;
-            this.labelControl4.Text = "单位";
+            this.labelControl4.Text = "单      位";
             // 
             // labelControl3
             // 
