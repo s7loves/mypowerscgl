@@ -134,7 +134,7 @@
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(48, 14);
             this.labelControl9.TabIndex = 14;
-            this.labelControl9.Text = "设备编号";
+            this.labelControl9.Text = "编      号";
             // 
             // memoEdit1
             // 
@@ -271,7 +271,7 @@
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "设备名称";
+            this.labelControl2.Text = "名      称";
             // 
             // labelControl1
             // 
