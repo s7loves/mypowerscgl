@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <item ver="2" key="Update" value="alter table ps_xl add  ParentGT   nvarchar(50)   null default ''"></item>
+</items>
