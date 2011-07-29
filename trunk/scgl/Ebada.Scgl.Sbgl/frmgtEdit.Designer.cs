@@ -60,6 +60,8 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.spinEdit8 = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -77,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit8.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -101,6 +104,8 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.labelControl5);
+            this.groupControlOrg.Controls.Add(this.spinEdit8);
             this.groupControlOrg.Controls.Add(this.groupBox1);
             this.groupControlOrg.Controls.Add(this.groupBox2);
             this.groupControlOrg.Controls.Add(this.btnCancel);
@@ -425,6 +430,40 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // spinEdit8
+            // 
+            this.spinEdit8.EditValue = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.spinEdit8.Location = new System.Drawing.Point(134, 393);
+            this.spinEdit8.Name = "spinEdit8";
+            this.spinEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit8.Properties.MaxValue = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.spinEdit8.Properties.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.spinEdit8.Size = new System.Drawing.Size(52, 21);
+            this.spinEdit8.TabIndex = 18;
+            this.spinEdit8.Visible = false;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(42, 396);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(84, 14);
+            this.labelControl5.TabIndex = 19;
+            this.labelControl5.Text = "批量增加杆塔数";
+            this.labelControl5.Visible = false;
+            // 
             // frmgtEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -439,6 +478,7 @@
             this.Load += new System.EventHandler(this.frmgtEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
+            this.groupControlOrg.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -455,6 +495,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit8.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -493,6 +534,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.SpinEdit spinEdit8;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
 
     }
 }

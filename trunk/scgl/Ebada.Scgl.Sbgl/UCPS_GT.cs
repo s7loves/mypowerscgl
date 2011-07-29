@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using System.Collections;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -160,7 +161,9 @@ namespace Ebada.Scgl.Sbgl
         {
             if (parentID == null) return;
             newobj.LineCode = parentID;
-   
+
+            newobj.gth = getGgh();
+            newobj.gtCode = ParentObj.LineCode + newobj.gth;
         }
         /// <summary>
         /// 父表ID
@@ -206,6 +209,61 @@ namespace Ebada.Scgl.Sbgl
             {
                 gridControl1.ExportToXls("C:\\temp.xls");
                 System.Diagnostics.Process.Start("C:\\temp.xls");
+            }
+        }
+        string getGgh() {
+            //杆塔号0010-9990
+            object obj=Client.ClientHelper.PlatformSqlMap.GetObject("Select", "Select isnull(max(gth),'0') as gth from ps_gt where Linecode='" + parentID + "'");
+            string gth = "0000";
+            if (obj != null) {
+                Hashtable ht = obj as Hashtable;
+                if (ht.Contains("gth")) {
+                    gth = ht["gth"].ToString();
+                }
+            }
+            gth = (int.Parse(gth) + 10).ToString("0000");
+            return gth;
+        }
+        private void btAddM_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (parentID == null)
+                return;
+            PS_gt gt = new PS_gt();
+            gt.gth = getGgh();
+            gt.gtCode = ParentObj.LineCode + gt.gth;
+            gt.gtSpan = 50;
+            gt.gtMs = 1.7m;
+            frmgtEdit frm = new frmgtEdit();
+            frm.RowData = gt;
+            frm.MultipleAdd = true;//批量增加
+            if (frm.ShowDialog() == DialogResult.OK) {
+                gt = frm.RowData as PS_gt;
+                int num = frm.MultipleNum;//批量增加杆塔数
+                int gh = int.Parse(gt.gth);
+                int count = num;
+                PS_Image image = null;
+                if (frm.GetImage() != null) {
+                    count++;
+                    image = new PS_Image();
+                    image.ImageName = "杆塔照片";
+                    image.ImageType = "gt";
+                    image.ImageData = (byte[])frm.GetImage();
+                    gt.ImageID = image.ImageID;
+                }
+                object[] gts = new object[count];
+                if (image != null)
+                    gts[count - 1] = image;
+                gt.LineCode = ParentObj.LineCode;
+                for (int i = 0; i < num; i++) {
+                    PS_gt newgt = new PS_gt();
+                    Ebada.Core.ConvertHelper.CopyTo(gt, newgt);
+                    newgt.gtID = newgt.CreateID();
+                    string gth = (gh + 10 * i).ToString("0000");
+                    newgt.gth = gth;
+                    newgt.gtCode = newgt.LineCode + gth;
+                    gts[i] = newgt;
+                }
+                Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(gts, null, null);
+
             }
         }
 

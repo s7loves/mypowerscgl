@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:54:00
+生成时间:2011-7-29 22:15:46
 ***********************************************/
 
 using System;
@@ -33,7 +33,12 @@ namespace Ebada.Scgl.Model
         private int _gtelev=0; 
         private int _x54=0; 
         private int _y54=0; 
-        private decimal _gtspan=0;   
+        private decimal _gtspan=0; 
+        private decimal _gtms=0; 
+        private string _gtzjfx=(""); 
+        private string _gtzj=(""); 
+        private string _gtjg=("否"); 
+        private string _imageid=("");   
         #endregion
   
   
@@ -289,6 +294,108 @@ namespace Ebada.Scgl.Model
                 if (_gtspan as object == null || !_gtspan.Equals(value))
                 {
                     _gtspan = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：gtMs
+        /// 属性描述：埋深
+        /// 字段信息：[gtMs],decimal
+        /// </summary>
+        [DisplayNameAttribute("埋深")]
+        public decimal gtMs
+        {
+            get { return _gtms; }
+            set
+            {			
+                if (_gtms as object == null || !_gtms.Equals(value))
+                {
+                    _gtms = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：gtZjfx
+        /// 属性描述：转角方向
+        /// 字段信息：[gtZjfx],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("转角方向")]
+        public string gtZjfx
+        {
+            get { return _gtzjfx; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 10)
+                throw new Exception("[转角方向]长度不能大于10!");
+                if (_gtzjfx as object == null || !_gtzjfx.Equals(value))
+                {
+                    _gtzjfx = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：gtZj
+        /// 属性描述：转角
+        /// 字段信息：[gtZj],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("转角")]
+        public string gtZj
+        {
+            get { return _gtzj; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 10)
+                throw new Exception("[转角]长度不能大于10!");
+                if (_gtzj as object == null || !_gtzj.Equals(value))
+                {
+                    _gtzj = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：gtJg
+        /// 属性描述：借杆
+        /// 字段信息：[gtJg],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("借杆")]
+        public string gtJg
+        {
+            get { return _gtjg; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 1)
+                throw new Exception("[借杆]长度不能大于1!");
+                if (_gtjg as object == null || !_gtjg.Equals(value))
+                {
+                    _gtjg = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ImageID
+        /// 属性描述：图片ID
+        /// 字段信息：[ImageID],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("图片ID")]
+        public string ImageID
+        {
+            get { return _imageid; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 150)
+                throw new Exception("[图片ID]长度不能大于150!");
+                if (_imageid as object == null || !_imageid.Equals(value))
+                {
+                    _imageid = value;
                 }
             }			 
         }

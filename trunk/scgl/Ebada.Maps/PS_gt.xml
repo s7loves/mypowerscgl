@@ -18,6 +18,11 @@
         <result property="X54" column="X54" />
         <result property="Y54" column="Y54" />
         <result property="gtSpan" column="gtSpan" />
+        <result property="gtMs" column="gtMs" />
+        <result property="gtZjfx" column="gtZjfx" />
+        <result property="gtZj" column="gtZj" />
+        <result property="gtJg" column="gtJg" />
+        <result property="ImageID" column="ImageID" />
       </resultMap>
   </resultMaps>
 
@@ -36,7 +41,12 @@
          [gtElev],
          [X54],
          [Y54],
-         [gtSpan]
+         [gtSpan],
+         [gtMs],
+         [gtZjfx],
+         [gtZj],
+         [gtJg],
+         [ImageID]
           FROM PS_gt
           $value$
    </select>
@@ -55,7 +65,12 @@
          [gtElev],
          [X54],
          [Y54],
-         [gtSpan]
+         [gtSpan],
+         [gtMs],
+         [gtZjfx],
+         [gtZj],
+         [gtJg],
+         [ImageID]
           FROM PS_gt
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
@@ -71,6 +86,11 @@
        <isNotNull prepend="AND" property="X54">[X54]='$X54$'</isNotNull>
        <isNotNull prepend="AND" property="Y54">[Y54]='$Y54$'</isNotNull>
        <isNotNull prepend="AND" property="gtSpan">[gtSpan]='$gtSpan$'</isNotNull>
+       <isNotNull prepend="AND" property="gtMs">[gtMs]='$gtMs$'</isNotNull>
+       <isNotNull prepend="AND" property="gtZjfx">[gtZjfx]='$gtZjfx$'</isNotNull>
+       <isNotNull prepend="AND" property="gtZj">[gtZj]='$gtZj$'</isNotNull>
+       <isNotNull prepend="AND" property="gtJg">[gtJg]='$gtJg$'</isNotNull>
+       <isNotNull prepend="AND" property="ImageID">[ImageID]='$ImageID$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_gtByKey" resultMap="PS_gt_AllColumns" parameterClass="PS_gt">
@@ -87,7 +107,12 @@
          [gtElev],
          [X54],
          [Y54],
-         [gtSpan]
+         [gtSpan],
+         [gtMs],
+         [gtZjfx],
+         [gtZj],
+         [gtJg],
+         [ImageID]
          FROM PS_gt
          WHERE 
            gtID = #gtID#
@@ -101,11 +126,7 @@
          gtID = #gtID#
 
    </delete>
-   
-   <delete id="DeletePS_gtByWhere" parameterClass="string">
-     delete from PS_gt $value$
-   </delete>
-   
+      
    <delete id="DeletePS_gtByKey" parameterClass="string">
         DELETE FROM 
          PS_gt
@@ -128,7 +149,12 @@
              [gtElev]=#gtElev#,
              [X54]=#X54#,
              [Y54]=#Y54#,
-             [gtSpan]=#gtSpan#
+             [gtSpan]=#gtSpan#,
+             [gtMs]=#gtMs#,
+             [gtZjfx]=#gtZjfx#,
+             [gtZj]=#gtZj#,
+             [gtJg]=#gtJg#,
+             [ImageID]=#ImageID#
             WHERE 
               gtID = #gtID#
 
@@ -149,7 +175,12 @@
          [gtElev],
          [X54],
          [Y54],
-         [gtSpan]
+         [gtSpan],
+         [gtMs],
+         [gtZjfx],
+         [gtZj],
+         [gtJg],
+         [ImageID]
          )
        VALUES
          (
@@ -165,32 +196,16 @@
          #gtElev#,
          #X54#,
          #Y54#,
-         #gtSpan#
+         #gtSpan#,
+         #gtMs#,
+         #gtZjfx#,
+         #gtZj#,
+         #gtJg#,
+         #ImageID#
          )
 
-   </insert>
-   
-   <select id="GetPS_gtRowCountByHash" parameterClass="Hashtable">
-         SELECT Count(*) 
-          FROM PS_gt
-     <dynamic prepend="WHERE">
-       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
-       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
-       <isNotNull prepend="AND" property="gtCode">[gtCode]='$gtCode$'</isNotNull>
-       <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
-       <isNotNull prepend="AND" property="gtType">[gtType]='$gtType$'</isNotNull>
-       <isNotNull prepend="AND" property="gtModle">[gtModle]='$gtModle$'</isNotNull>
-       <isNotNull prepend="AND" property="gtHeight">[gtHeight]='$gtHeight$'</isNotNull>
-       <isNotNull prepend="AND" property="gtLon">[gtLon]='$gtLon$'</isNotNull>
-       <isNotNull prepend="AND" property="gtLat">[gtLat]='$gtLat$'</isNotNull>
-       <isNotNull prepend="AND" property="gtElev">[gtElev]='$gtElev$'</isNotNull>
-       <isNotNull prepend="AND" property="X54">[X54]='$X54$'</isNotNull>
-       <isNotNull prepend="AND" property="Y54">[Y54]='$Y54$'</isNotNull>
-       <isNotNull prepend="AND" property="gtSpan">[gtSpan]='$gtSpan$'</isNotNull>
-     </dynamic>
-
-   </select>
-   
+   </insert>   
+     
    <select id="GetPS_gtRowCount" parameterClass="string">
     select count(*) from PS_gt $value$
    </select>

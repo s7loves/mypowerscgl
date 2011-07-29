@@ -17,7 +17,22 @@ namespace Ebada.Scgl.Sbgl
 {
     public partial class frmgtEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PS_gt> m_CityDic = new SortableSearchableBindingList<PS_gt>();
+        private Boolean multipleAdd = false;
 
+        public Boolean MultipleAdd {
+            get { return multipleAdd; }
+            set { multipleAdd = value;
+            labelControl5.Visible = value;
+            spinEdit8.Visible = value;
+            comboBoxEdit1.Enabled = !value;
+            comboBoxEdit2.Enabled = !value;
+            }
+        }
+        public int MultipleNum {
+            get{
+                return Convert.ToInt32(spinEdit8.EditValue);
+            }
+        }
         public frmgtEdit() {
             InitializeComponent();
         }
@@ -32,9 +47,10 @@ namespace Ebada.Scgl.Sbgl
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "gtLon");
             this.spinEdit3.DataBindings.Add("EditValue", rowData, "gtLat");
             this.spinEdit4.DataBindings.Add("EditValue", rowData, "gtElev");
-            //this.spinEdit5.DataBindings.Add("EditValue", rowData, "X54");
-            //this.spinEdit6.DataBindings.Add("EditValue", rowData, "Y54");
+            this.spinEdit5.DataBindings.Add("EditValue", rowData, "gtMs");
+            this.spinEdit6.DataBindings.Add("EditValue", rowData, "gtZj");
             this.spinEdit7.DataBindings.Add("EditValue", rowData, "gtSpan");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gtJg");
  
 
         }
@@ -54,7 +70,15 @@ namespace Ebada.Scgl.Sbgl
                 } else {
                     ConvertHelper.CopyTo<PS_gt>(value as PS_gt, rowData);
                 }
+                setImage();
             }
+        }
+
+        private void setImage() {
+            if (string.IsNullOrEmpty(rowData.ImageID)) return;
+            PS_Image image=Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.ImageID);
+            if (image != null)
+                pictureEdit1.EditValue = image.ImageData;
         }
 
         #endregion
@@ -109,9 +133,13 @@ namespace Ebada.Scgl.Sbgl
         }
 
         private void pictureEdit1_EditValueChanged(object sender, EventArgs e) {
-
+            imageData = pictureEdit1.EditValue;
         }
+        object imageData;
+        public object GetImage() {
 
+            return imageData;
+        }
        
     }
 }

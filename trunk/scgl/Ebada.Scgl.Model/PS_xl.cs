@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:54:00
+生成时间:2011-7-29 22:15:46
 ***********************************************/
 
 using System;
@@ -39,8 +39,10 @@ namespace Ebada.Scgl.Model
         private string _wiretype=String.Empty; 
         private int _wirelength=0; 
         private int _totallength=0; 
+        private int _gdbj=0; 
         private decimal _theoryloss=0; 
-        private decimal _actualloss=0;   
+        private decimal _actualloss=0; 
+        private string _parentgt=("");   
         #endregion
   
   
@@ -419,6 +421,24 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
+        /// 属性名称：gdbj
+        /// 属性描述：供电半径
+        /// 字段信息：[gdbj],int
+        /// </summary>
+        [DisplayNameAttribute("供电半径")]
+        public int gdbj
+        {
+            get { return _gdbj; }
+            set
+            {			
+                if (_gdbj as object == null || !_gdbj.Equals(value))
+                {
+                    _gdbj = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
         /// 属性名称：TheoryLoss
         /// 属性描述：理论线损
         /// 字段信息：[TheoryLoss],decimal
@@ -450,6 +470,27 @@ namespace Ebada.Scgl.Model
                 if (_actualloss as object == null || !_actualloss.Equals(value))
                 {
                     _actualloss = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ParentGT
+        /// 属性描述：
+        /// 字段信息：[ParentGT],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("")]
+        public string ParentGT
+        {
+            get { return _parentgt; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[]长度不能大于50!");
+                if (_parentgt as object == null || !_parentgt.Equals(value))
+                {
+                    _parentgt = value;
                 }
             }			 
         }
