@@ -214,11 +214,10 @@ namespace Ebada.SCGL.WFlow.Engine
         /// <summary>
         /// 指定的任务
         /// </summary>
-        /// <param name="userId">用户Id</param>
         /// <param name="WorkFlowId">流程Id</param>
         /// <param name="WorkFlowInstanceId">流程实例Id</param>
         /// <returns>指定的未认领的任务列表</returns>
-        public static DataTable SelectedWorkflowTask(string userId, string WorkFlowId, string WorkFlowInstanceId, string WorkTaskInsId, int topsize)
+        public static DataTable SelectedWorkflowTask(string WorkFlowId, string WorkFlowInstanceId, string WorkTaskInsId, int topsize)
         {
             try
             {
@@ -239,7 +238,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 sqlstr = sqlstr + "  (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "') ";
                 sqlstr = sqlstr + "union  ";
                 sqlstr = sqlstr + " select " + filedstr + " from WF_WorkTaskInsAccreditView where ";
-                sqlstr = sqlstr + " AccreditToUserId='" + userId + "' and AccreditStatus='1'and status='1'  ";
+                sqlstr = sqlstr + " 1=1  ";
                 sqlstr = sqlstr + " ) a ";
                 sqlstr = sqlstr + "  order by taskStartTime desc ";
                 Console.WriteLine(sqlstr);

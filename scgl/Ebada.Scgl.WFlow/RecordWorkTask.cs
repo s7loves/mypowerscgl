@@ -270,19 +270,18 @@ namespace Ebada.Scgl.WFlow
             return dt;
         }
         /// <summary>
-        /// 获得当前用户当前记录的流程信息,不限定流程状态
+        /// 获得当前记录的流程信息,不限定流程状态
         /// </summary>
         /// <param name="recordID">记录ID</param>
-        /// <param name="userID">用户ID</param>
         /// <returns>返回指定记录的流程信息</returns>
-        public static DataTable GetRecordWorkFlowData2(string recordID, string userID)
+        public static DataTable GetRecordWorkFlowData2(string recordID)
         {
             DataTable dtnull = new DataTable();
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             if (wf.Count == 0) return dtnull;
             WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
             // DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
-            DataTable dt = WorkFlowInstance.SelectedWorkflowTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, wfi.NowTaskId, 999);
+            DataTable dt = WorkFlowInstance.SelectedWorkflowTask( wf[0].WorkFlowId, wf[0].WorkFlowInsId, wfi.NowTaskId, 999);
             return dt;
         }
         /// <summary>
