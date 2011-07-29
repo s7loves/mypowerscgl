@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Ebada.Components;
+using System.Collections;
+namespace Ebada.Server.Host {
+    internal class DBHelper {
+        internal int mVer = 2;
+        string mSelect = "Select";
+        string mUpdate = "Update";
+        IBaseSqlMapDao sqlMap;
+        string  create_msys="if not exists (select 1 from  sysobjects where  id = object_id('dbo.mSys')  and   type = 'U') "
+            +" create table dbo.msys(DM  nvarchar(20)    not null,  Title    nvarchar(20)   null,   Value     nvarchar(20)   null, constraint PK_MSYS primary key (DM)"
+            +") "
+            +" insert into msys values('dbver','数据库版本','1')";
+        string select_ver = "select value from msys where dm='dbver'";
+        string update_ver = "update msys set value='{0}' where dm='dbver'";
+        public IBaseSqlMapDao SqlMap {
+            get {
+                if (sqlMap == null)
+                    sqlMap = ServerContainer.PlatformServer.GetService<IBaseSqlMapDao>();
+                return sqlMap; }
+            set { sqlMap = value; }
+        }
+        public void UpdateDatabase() {
+            object obj = null;
+            try { obj=SqlMap.GetObject("Select", select_ver); } catch { }
+            int ver = 0;
+            if (obj != null) {
+                ver = int.Parse((obj as Hashtable)["value"].ToString());
+                Console.WriteLine("当前数据库版本ver:{0}", ver);
+            }
+            if (ver == 0) 
+                SqlMap.Update(mUpdate, create_msys);
+            if (ver < 2) {
+                try {
+                    SqlMap.Update(mUpdate, string.Format(update_ver, mVer));
+                    Console.WriteLine("新数据库版本ver:{0}",mVer);
+                } catch (Exception e) { throw e; }
+
+            }
+        }
+    }
+}

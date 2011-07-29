@@ -22,7 +22,10 @@ namespace Ebada.Server.Host
                 //IWindsorContainer container2 = new RemotingContainer2();
                 
                 Console.WriteLine("服务开启,按任意键关闭...");
+                DBHelper dbhelper = new DBHelper();
+                dbhelper.UpdateDatabase();
 
+                Console.ReadLine();
             } catch (Exception er) { Console.WriteLine(er.Message); Console.ReadLine(); }
         }
     }
