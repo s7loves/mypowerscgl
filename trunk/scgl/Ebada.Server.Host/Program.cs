@@ -18,11 +18,11 @@ namespace Ebada.Server.Host
             //log4net.ILog Log = log4net.LogManager.GetLogger("IBatisNet.DataMapper.SqlMapSession");
             //Log.Info("***************应用程序服务器准备启动****************");
             try {
-                IWindsorContainer container = new ServerContainer();//container
+                ServerContainer container = new ServerContainer();//container
                 //IWindsorContainer container2 = new RemotingContainer2();
+                
+                Console.WriteLine("服务开启,按任意键关闭...");
 
-                Console.WriteLine("服务起动，等待访问。。。。");
-                Console.ReadLine();
             } catch (Exception er) { Console.WriteLine(er.Message); Console.ReadLine(); }
         }
     }
