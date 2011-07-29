@@ -144,14 +144,15 @@ namespace Ebada.Scgl.WFlow
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordData.ID  + "'");
             if (wf.Count == 0) return str1;
             object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where TaskCaption='" + newWorkTaskCap + "' and WorkFlowId='" + wf[0].WorkFlowId + "'  ");
-            if (obj != null)
+            if (obj != null && operins != null)
             {
                 nowtaskId = ((WF_WorkTask)obj).WorkTaskId;
                 workins.WorkTaskId = nowtaskId;
                 workins.StartTime = DateTime.Now;
                 workins.TaskInsCaption =((WF_WorkTask)obj).TaskCaption;
                 MainHelper.PlatformSqlMap.Delete <WF_WorkTaskInstance>(workins);
-                workins.WorkTaskInsId = Guid.NewGuid().ToString(); 
+                workins.WorkTaskInsId = Guid.NewGuid().ToString();
+                workins.Status = "1";
                 //WF_Operator op = (WF_Operator)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorList", " where WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
                 IList<WF_Operator> li = MainHelper.PlatformSqlMap.GetList<WF_Operator>("SelectWF_OperatorList", " where  WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
                 if (li.Count > 0)
@@ -165,7 +166,8 @@ namespace Ebada.Scgl.WFlow
                         operins.OperContent = op.OperContent;
                         operins.OperContentText = op.OperDisplay;
                         operins.OperDateTime = DateTime.Now;
-                        operins.WorkTaskInsId = workins.WorkTaskInsId; 
+                        operins.WorkTaskInsId = workins.WorkTaskInsId;
+                        operins.OperStatus = "0";
                         if (strtemp != "")
                         {
                             strtemp = strtemp + "," + op.OperDisplay;
@@ -262,8 +264,25 @@ namespace Ebada.Scgl.WFlow
             DataTable dtnull = new DataTable();
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             if (wf.Count == 0) return dtnull;
+            WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId); 
             DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
-           
+           // DataTable dt = WorkFlowInstance.SelectedWorkflowTask (userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId,wfi.NowTaskId , 999);
+            return dt;
+        }
+        /// <summary>
+        /// 获得当前用户当前记录的流程信息,不限定流程状态
+        /// </summary>
+        /// <param name="recordID">记录ID</param>
+        /// <param name="userID">用户ID</param>
+        /// <returns>返回指定记录的流程信息</returns>
+        public static DataTable GetRecordWorkFlowData2(string recordID, string userID)
+        {
+            DataTable dtnull = new DataTable();
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
+            if (wf.Count == 0) return dtnull;
+            WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
+            // DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
+            DataTable dt = WorkFlowInstance.SelectedWorkflowTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, wfi.NowTaskId, 999);
             return dt;
         }
         /// <summary>
