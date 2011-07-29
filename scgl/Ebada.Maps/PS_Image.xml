@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_Image" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_Image"  type="Ebada.Scgl.Model.PS_Image,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_Image_AllColumns" class="PS_Image">
+        <result property="ImageID" column="ImageID" />
+        <result property="ImageName" column="ImageName" />
+        <result property="Remark" column="Remark" />
+        <result property="ImageType" column="ImageType" />
+        <result property="ImageData" column="ImageData" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_ImageList" resultMap="PS_Image_AllColumns" parameterClass="string">
+        SELECT 
+         [ImageID],
+         [ImageName],
+         [Remark],
+         [ImageType],
+         [ImageData]
+          FROM PS_Image
+          $value$
+   </select>
+   
+   <select id="SelectPS_ImageByHash" parameterClass="Hashtable">
+         SELECT 
+         [ImageID],
+         [ImageName],
+         [Remark],
+         [ImageType],
+         [ImageData]
+          FROM PS_Image
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ImageID">[ImageID]='$ImageID$'</isNotNull>
+       <isNotNull prepend="AND" property="ImageName">[ImageName]='$ImageName$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="ImageType">[ImageType]='$ImageType$'</isNotNull>
+       <isNotNull prepend="AND" property="ImageData">[ImageData]='$ImageData$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_ImageByKey" resultMap="PS_Image_AllColumns" parameterClass="PS_Image">
+         SELECT 
+         [ImageID],
+         [ImageName],
+         [Remark],
+         [ImageType],
+         [ImageData]
+         FROM PS_Image
+         WHERE 
+           ImageID = #ImageID#
+
+   </select>
+ 
+   <delete id="DeletePS_Image" parameterClass="PS_Image">
+        DELETE FROM 
+         PS_Image
+           WHERE
+         ImageID = #ImageID#
+
+   </delete>
+      
+   <delete id="DeletePS_ImageByKey" parameterClass="string">
+        DELETE FROM 
+         PS_Image
+           WHERE
+         ImageID = #ImageID#
+    
+   </delete>
+   
+   <update id="UpdatePS_Image" parameterClass="PS_Image" resultClass="int">
+          UPDATE PS_Image
+           SET
+             [ImageName]=#ImageName#,
+             [Remark]=#Remark#,
+             [ImageType]=#ImageType#,
+             [ImageData]=#ImageData#
+            WHERE 
+              ImageID = #ImageID#
+
+   </update>
+  
+   <insert id="InsertPS_Image" parameterClass="PS_Image">
+        INSERT INTO PS_Image
+         (
+         [ImageID],
+         [ImageName],
+         [Remark],
+         [ImageType],
+         [ImageData]
+         )
+       VALUES
+         (
+         #ImageID#,
+         #ImageName#,
+         #Remark#,
+         #ImageType#,
+         #ImageData#
+         )
+
+   </insert>   
+     
+   <select id="GetPS_ImageRowCount" parameterClass="string">
+    select count(*) from PS_Image $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
