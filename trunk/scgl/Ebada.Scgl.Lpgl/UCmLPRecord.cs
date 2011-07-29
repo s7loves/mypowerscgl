@@ -581,7 +581,7 @@ namespace Ebada.Scgl.Lpgl {
 
                 }
             }
-             DataTable dt = RecordWorkTask.GetRecordWorkFlowData2(dr["ID"].ToString(), MainHelper.User.UserID);
+             DataTable dt = RecordWorkTask.GetRecordWorkFlowData2(dr["ID"].ToString());
             if (dt.Rows.Count > 0)
             {
                 frmWFChange fw = new frmWFChange();
