@@ -75,12 +75,21 @@ namespace Ebada.Scgl.Sbgl
         }
 
         private void setImage() {
+            pictureEdit1.EditValue = null;
+            imageData = null;
             if (string.IsNullOrEmpty(rowData.ImageID)) return;
-            PS_Image image=Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.ImageID);
+            image=Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.ImageID);
             if (image != null)
                 pictureEdit1.EditValue = image.ImageData;
+            
+            imageData = null;
         }
-
+        PS_Image image = null;
+        public PS_Image GetPS_Image() {
+            if (image != null && imageData!=null)
+                image.ImageData =(byte[]) imageData;
+            return image;
+        }
         #endregion
 
         private void InitComboBoxData() {
@@ -140,6 +149,6 @@ namespace Ebada.Scgl.Sbgl
 
             return imageData;
         }
-       
+        
     }
 }

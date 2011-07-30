@@ -45,11 +45,62 @@ namespace Ebada.Scgl.Sbgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_gt>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<PS_gt>(gridViewOperation_BeforeInsert);
+            gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PS_gt>(gridViewOperation_BeforeUpdate);
+        }
+
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PS_gt> e) {
+            e.Cancel = true;
+            try {
+                PS_gt gt =e.Value;
+                frmgtEdit frm = gridViewOperation.EditForm as frmgtEdit;
+                PS_Image image = null;
+                if (frm.GetImage() != null ) {
+                    if (gt.ImageID == "") {
+                        image = new PS_Image();
+                        image.ImageName = "杆塔照片";
+                        image.ImageType = "gt";
+                        image.ImageData = (byte[])frm.GetImage();
+                        gt.ImageID = image.ImageID;
+                         Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, gt, null);
+                    } else {
+                        image = frm.GetPS_Image();
+                        Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null,new object[] { gt, image },  null);
+                    }
+                   
+                } else {
+                    Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(e.Value);
+                }
+
+                Ebada.Core.ConvertHelper.CopyTo(gt, e.ValueOld);
+            } catch (Exception err) { throw err; }
+        }
+
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<PS_gt> e) {
+            e.Cancel = true;
+            try {
+                frmgtEdit frm = gridViewOperation.EditForm as frmgtEdit;
+                PS_Image image = null;
+                if (frm.GetImage() != null) {
+                    image = new PS_Image();
+                    image.ImageName = "杆塔照片";
+                    image.ImageType = "gt";
+                    image.ImageData = (byte[])frm.GetImage();
+                    e.Value.ImageID = image.ImageID;
+                    Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(new object[]{e.Value,image}, null, null);
+                }
+                else{
+                    Client.ClientHelper.PlatformSqlMap.Create<PS_gt>(e.Value);
+                }
+                
+                gridViewOperation.BindingList.Add(e.Value);
+            } catch (Exception err) { throw err; }
         }
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_gt> e)
         {
-           
+            //e.Cancel = true;
+            //gridViewOperation.BindingList.Remove(e.Value);
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_gt> e)
