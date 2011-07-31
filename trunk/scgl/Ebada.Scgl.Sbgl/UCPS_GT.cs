@@ -214,7 +214,9 @@ namespace Ebada.Scgl.Sbgl
             newobj.LineCode = parentID;
 
             newobj.gth = getGgh();
+            
             newobj.gtCode = ParentObj.LineCode + newobj.gth;
+            newobj.gtID = newobj.gtCode;
         }
         /// <summary>
         /// 父表ID
@@ -283,6 +285,9 @@ namespace Ebada.Scgl.Sbgl
             gt.gtCode = ParentObj.LineCode + gt.gth;
             gt.gtSpan = 50;
             gt.gtMs = 1.7m;
+            gt.gtHeight = 10m;
+            gt.gtModle = "直线杆";
+            gt.gtType = "混凝土拔梢杆";
             frmgtEdit frm = new frmgtEdit();
             frm.RowData = gt;
             frm.MultipleAdd = true;//批量增加
@@ -304,17 +309,18 @@ namespace Ebada.Scgl.Sbgl
                 if (image != null)
                     gts[count - 1] = image;
                 gt.LineCode = ParentObj.LineCode;
+                string id = DateTime.Now.ToString("yyyyMMddHHmmss");
                 for (int i = 0; i < num; i++) {
                     PS_gt newgt = new PS_gt();
                     Ebada.Core.ConvertHelper.CopyTo(gt, newgt);
-                    newgt.gtID = newgt.CreateID();
+                    
                     string gth = (gh + 10 * i).ToString("0000");
                     newgt.gth = gth;
-                    newgt.gtCode = newgt.LineCode + gth;
+                    newgt.gtID=newgt.gtCode = newgt.LineCode + gth;
                     gts[i] = newgt;
                 }
                 Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(gts, null, null);
-
+                gridViewOperation.BindingList.Add(gts);
             }
         }
 
