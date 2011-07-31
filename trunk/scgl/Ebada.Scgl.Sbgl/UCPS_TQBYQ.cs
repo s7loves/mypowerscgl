@@ -113,6 +113,9 @@ namespace Ebada.Scgl.Sbgl
         {
                 IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + btXlList.EditValue.ToString() + "'");
                 repositoryItemLookUpEdit3.DataSource = list;
+            string xlcode =btXlList.EditValue.ToString();
+            
+                RefreshData(string.Format(" where left(byqcode,{0})='{1}'",xlcode.Length,xlcode));
         }
 
         void btGdsList_EditValueChanged(object sender, EventArgs e)
