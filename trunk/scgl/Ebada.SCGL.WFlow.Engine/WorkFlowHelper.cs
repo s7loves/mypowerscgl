@@ -392,6 +392,7 @@ namespace Ebada.SCGL.WFlow.Engine
                     endTaskTypeAndOr = dr["endTaskTypeAndOr"].ToString();
                     OperParam.OperRule = endoperRule;
                     OperParam.IsJumpSelf = Convert.ToBoolean(dr["IsJumpSelf"]);
+                    if (endoperRule == "") endoperRule = "1";
                     if (priority != branchPriority) break;//只执行优先级最高的分支
                     if (ExpressPass(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, condition))//满足条件的任务节点
                     {
