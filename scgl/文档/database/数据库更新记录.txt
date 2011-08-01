@@ -11,3 +11,4 @@
 2011.7.15 PJ_07jdzz 添加fzxl字段  类型改为 NVCHAR类型
 2011.7.16 PS_tqdlbh  去掉sbid的外键索引字段 
 2011.7.29 增加update729.sql更新文件
+2011.8.1 PS_XL增加字段LineP、LineQ、K 类型为[decimal] 参考update729.sql

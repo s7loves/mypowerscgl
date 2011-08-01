@@ -52,8 +52,10 @@ go
 
 --ÐÞ¸Äps_xl
 
-alter table ps_xl add ParentGT   nvarchar(50)   null default ''
-
+alter table ps_xl add ParentGT   nvarchar(50)   null default '',
+	[LineP] [decimal](8, 5) NULL default '',
+	[LineQ] [decimal](8, 5) NULL default '',
+	[K] [decimal](8, 5) NULL default ''
 go
 
 --ÐÞ¸Äps_gt
