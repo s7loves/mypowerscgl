@@ -6,9 +6,69 @@ using System.Collections;
 
 namespace Ebada.Scgl.Core
 {
+    public class LineAnaly
+    {     
+        
+        private decimal lossRate=0;
+        private decimal economyLossRate=0;
+        private decimal economyI=0;
+        private decimal economyByqLoad=0;
+        private decimal fixLossWeight=0;
+        private decimal variableLossWeight=0; 
+        public LineAnaly()
+        {
+
+        }
+        public LineAnaly(decimal loss,decimal rate,decimal i,decimal load,decimal lossweight,decimal variableweight)
+        {
+            lossRate = loss;
+            economyLossRate = rate;
+            economyI = i;
+            economyByqLoad = load;
+            fixLossWeight = lossweight;
+            variableLossWeight = variableweight;
+        }
+        public decimal LossRate
+        {
+            get { return lossRate; }
+            set { lossRate = value; }
+        }
+        public decimal EconomyLossRate
+        {
+            get { return economyLossRate; }
+            set { economyLossRate = value; }
+        }
+        public decimal EconomyI
+        {
+            get { return economyI; }
+            set { economyI = value; }
+        }
+        public decimal EconomyByqLoad
+        {
+            get { return economyByqLoad; }
+            set { economyByqLoad = value; }
+        }
+        public decimal FixLossWeight
+        {
+            get { return fixLossWeight; }
+            set { fixLossWeight = value; }
+        }
+        public decimal VariableLossWeight
+        {
+            get { return variableLossWeight; }
+            set { variableLossWeight = value; }
+        }
+    }
     public class LineLossHelper
     {
-        public static List<PS_xl> GetChildrenList(string id)
+        public static LineAnaly LineLossAnaly(PS_xl line)
+        {
+            LineAnaly lineAnaly = new LineAnaly();
+            lineAnaly.LossRate = line.TheoryLoss / line.LineP;
+            //lineAnaly.EconomyLossRate = 
+            return lineAnaly;
+        }
+        public static List<PS_xl> GetChildrenList(string id)//所有子线路
         {
             List<PS_xl> list = new List<PS_xl>();
             IList<PS_xl> list1 = new List<PS_xl>();
@@ -20,18 +80,18 @@ namespace Ebada.Scgl.Core
             }
             return list;
         }
-        public static decimal Loss(PS_xl line)
+        public static decimal Loss(PS_xl line)//线损
         {
             decimal loss = 0;
             loss = LineLoss(line) + ByqLoss(line);
             return loss;
         }
-        public static decimal LineLoss(PS_xl line)
+        public static decimal LineLoss(PS_xl line)//线路可变损耗
         {
             decimal lineLoss = (LineR(line) + ByqR(line)) * line.K * line.K * (line.LineP * line.LineP + line.LineQ * line.LineQ) / (Convert.ToDecimal(line.LineVol) * Convert.ToDecimal(line.LineVol));
             return lineLoss;
         }
-        public static decimal ByqLoss(PS_xl line)
+        public static decimal ByqLoss(PS_xl line)//变压器固定损耗
         {
             decimal byqloss = 0;
             IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "'");
@@ -39,7 +99,7 @@ namespace Ebada.Scgl.Core
             byqloss = ByqP0(listGT);
             return byqloss;
         }
-        public static decimal LineR(PS_xl line)
+        public static decimal LineR(PS_xl line)//线路等值电阻
         {
             decimal lineloss = 0;
             IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList","where LineCode ='" + line.LineCode + "'");
@@ -59,7 +119,7 @@ namespace Ebada.Scgl.Core
             }
             return lineloss/(capSum*capSum);
         }
-        public static decimal ByqR(PS_xl line)
+        public static decimal ByqR(PS_xl line)//变压器等值电阻
         {
             decimal byqloss = 0;
             IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "'");
@@ -67,7 +127,7 @@ namespace Ebada.Scgl.Core
             byqloss = Convert.ToDecimal(line.LineVol) * Convert.ToDecimal(line.LineVol) * ByqPk(listGT) / (cap * cap);
             return byqloss;
         }
-        public static decimal ByqCapcity(PS_gt gt)
+        public static decimal ByqCapcity(PS_gt gt)//变压器容量
         {
             decimal byqCap = 0;
             IList<PS_tq> listTQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("SelectPS_tqList", "where gtID = '" + gt.gtID + "'");
@@ -81,7 +141,7 @@ namespace Ebada.Scgl.Core
             }
             return byqCap;
         }
-        public static decimal ByqCapcity(IList<PS_gt> listgt)
+        public static decimal ByqCapcity(IList<PS_gt> listgt)//变压器容量
         {
             decimal byqCap = 0;
             foreach (PS_gt gt in listgt)
@@ -98,7 +158,7 @@ namespace Ebada.Scgl.Core
             }
             return byqCap;
         }
-        public static decimal ByqPk(IList<PS_gt> listgt)//短路损耗
+        public static decimal ByqPk(IList<PS_gt> listgt)//变压器短路损耗
         {
             decimal byqpk = 0;
             foreach (PS_gt gt in listgt)
@@ -119,7 +179,7 @@ namespace Ebada.Scgl.Core
             }
             return byqpk;
         }
-        public static decimal ByqP0(IList<PS_gt> listgt)
+        public static decimal ByqP0(IList<PS_gt> listgt)//变压器开路损耗
         {
             decimal byqpk = 0;
             foreach (PS_gt gt in listgt)

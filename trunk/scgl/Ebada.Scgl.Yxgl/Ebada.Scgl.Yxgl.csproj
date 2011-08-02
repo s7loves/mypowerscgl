@@ -1219,7 +1219,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="测试记录（20110629）.xls" />
     <None Include="疑问或错误.txt" />
   </ItemGroup>

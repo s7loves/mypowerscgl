@@ -31,7 +31,7 @@
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
-            this.btExport = new DevExpress.XtraBars.BarSubItem();
+            this.btAnalysis = new DevExpress.XtraBars.BarSubItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -64,7 +64,7 @@
             this.btRefresh,
             this.btClose,
             this.bsItem1,
-            this.btExport});
+            this.btAnalysis});
             this.barManager1.MaxItemId = 14;
             this.barManager1.StatusBar = this.bar3;
             // 
@@ -81,7 +81,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btAnalysis, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -91,7 +91,7 @@
             // 
             // btLineLoss
             // 
-            this.btLineLoss.Caption = "增加";
+            this.btLineLoss.Caption = "线损计算";
             this.btLineLoss.CausesValidation = true;
             this.btLineLoss.Id = 0;
             this.btLineLoss.ImageIndex = 6;
@@ -133,13 +133,14 @@
             this.btFind.Name = "btFind";
             this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // btExport
+            // btAnalysis
             // 
-            this.btExport.Caption = "导出";
-            this.btExport.Id = 8;
-            this.btExport.ImageIndex = 7;
-            this.btExport.Name = "btExport";
-            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAnalysis.Caption = "线损分析";
+            this.btAnalysis.Id = 8;
+            this.btAnalysis.ImageIndex = 7;
+            this.btAnalysis.Name = "btAnalysis";
+            this.btAnalysis.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAnalysis.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAnalysis_ItemClick);
             // 
             // btClose
             // 
@@ -173,7 +174,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(479, 23);
+            this.barDockControlTop.Size = new System.Drawing.Size(479, 24);
             // 
             // barDockControlBottom
             // 
@@ -184,14 +185,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 23);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 266);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 265);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(479, 23);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 266);
+            this.barDockControlRight.Location = new System.Drawing.Point(479, 24);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 265);
             // 
             // gridControl1
             // 
@@ -201,11 +202,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 23);
+            this.gridControl1.Location = new System.Drawing.Point(0, 24);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(479, 266);
+            this.gridControl1.Size = new System.Drawing.Size(479, 265);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -260,6 +261,6 @@
         private DevExpress.XtraBars.BarStaticItem bsItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraBars.BarSubItem btExport;
+        private DevExpress.XtraBars.BarSubItem btAnalysis;
     }
 }
