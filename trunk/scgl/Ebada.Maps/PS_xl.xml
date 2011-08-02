@@ -26,6 +26,9 @@
         <result property="gdbj" column="gdbj" />
         <result property="TheoryLoss" column="TheoryLoss" />
         <result property="ActualLoss" column="ActualLoss" />
+        <result property="LineP" column="LineP" />
+        <result property="LineQ" column="LineQ" />
+        <result property="K" column="K" />
         <result property="ParentGT" column="ParentGT" />
       </resultMap>
   </resultMaps>
@@ -54,6 +57,9 @@
          [gdbj],
          [TheoryLoss],
          [ActualLoss],
+         [LineP],
+         [LineQ],
+         [K],
          [ParentGT]
           FROM PS_xl
           $value$
@@ -82,6 +88,9 @@
          [gdbj],
          [TheoryLoss],
          [ActualLoss],
+         [LineP],
+         [LineQ],
+         [K],
          [ParentGT]
           FROM PS_xl
      <dynamic prepend="WHERE">
@@ -106,6 +115,9 @@
        <isNotNull prepend="AND" property="gdbj">[gdbj]='$gdbj$'</isNotNull>
        <isNotNull prepend="AND" property="TheoryLoss">[TheoryLoss]='$TheoryLoss$'</isNotNull>
        <isNotNull prepend="AND" property="ActualLoss">[ActualLoss]='$ActualLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="LineP">[LineP]='$LineP$'</isNotNull>
+       <isNotNull prepend="AND" property="LineQ">[LineQ]='$LineQ$'</isNotNull>
+       <isNotNull prepend="AND" property="K">[K]='$K$'</isNotNull>
        <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
      </dynamic>
    </select>
@@ -132,6 +144,9 @@
          [gdbj],
          [TheoryLoss],
          [ActualLoss],
+         [LineP],
+         [LineQ],
+         [K],
          [ParentGT]
          FROM PS_xl
          WHERE 
@@ -146,7 +161,11 @@
          LineID = #LineID#
 
    </delete>
-      
+   
+   <delete id="DeletePS_xlByWhere" parameterClass="string">
+     delete from PS_xl $value$
+   </delete>
+   
    <delete id="DeletePS_xlByKey" parameterClass="string">
         DELETE FROM 
          PS_xl
@@ -178,6 +197,9 @@
              [gdbj]=#gdbj#,
              [TheoryLoss]=#TheoryLoss#,
              [ActualLoss]=#ActualLoss#,
+             [LineP]=#LineP#,
+             [LineQ]=#LineQ#,
+             [K]=#K#,
              [ParentGT]=#ParentGT#
             WHERE 
               LineID = #LineID#
@@ -208,6 +230,9 @@
          [gdbj],
          [TheoryLoss],
          [ActualLoss],
+         [LineP],
+         [LineQ],
+         [K],
          [ParentGT]
          )
        VALUES
@@ -233,11 +258,47 @@
          #gdbj#,
          #TheoryLoss#,
          #ActualLoss#,
+         #LineP#,
+         #LineQ#,
+         #K#,
          #ParentGT#
          )
 
-   </insert>   
-     
+   </insert>
+   
+   <select id="GetPS_xlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_xl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineType">[LineType]='$LineType$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineNamePath">[LineNamePath]='$LineNamePath$'</isNotNull>
+       <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
+       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
+       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
+       <isNotNull prepend="AND" property="RunState">[RunState]='$RunState$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+       <isNotNull prepend="AND" property="LineGtbegin">[LineGtbegin]='$LineGtbegin$'</isNotNull>
+       <isNotNull prepend="AND" property="LineGtend">[LineGtend]='$LineGtend$'</isNotNull>
+       <isNotNull prepend="AND" property="WireType">[WireType]='$WireType$'</isNotNull>
+       <isNotNull prepend="AND" property="WireLength">[WireLength]='$WireLength$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalLength">[TotalLength]='$TotalLength$'</isNotNull>
+       <isNotNull prepend="AND" property="gdbj">[gdbj]='$gdbj$'</isNotNull>
+       <isNotNull prepend="AND" property="TheoryLoss">[TheoryLoss]='$TheoryLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="ActualLoss">[ActualLoss]='$ActualLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="LineP">[LineP]='$LineP$'</isNotNull>
+       <isNotNull prepend="AND" property="LineQ">[LineQ]='$LineQ$'</isNotNull>
+       <isNotNull prepend="AND" property="K">[K]='$K$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
    <select id="GetPS_xlRowCount" parameterClass="string">
     select count(*) from PS_xl $value$
    </select>

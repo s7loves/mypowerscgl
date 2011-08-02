@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-7-29 22:15:46
+生成时间:2011-8-1 20:03:31
 ***********************************************/
 
 using System;
@@ -30,9 +30,9 @@ namespace Ebada.Scgl.Model
         private string _linevol=String.Empty; 
         private string _orgcode=String.Empty; 
         private string _orgcode2=String.Empty; 
-        private string _owner=("局属"); 
+        private string _owner=String.Empty; 
         private string _contractor=String.Empty; 
-        private string _runstate=("运行"); 
+        private string _runstate=String.Empty; 
         private DateTime _indate=new DateTime(1900,1,1); 
         private string _linegtbegin=String.Empty; 
         private string _linegtend=String.Empty; 
@@ -42,7 +42,10 @@ namespace Ebada.Scgl.Model
         private int _gdbj=0; 
         private decimal _theoryloss=0; 
         private decimal _actualloss=0; 
-        private string _parentgt=("");   
+        private decimal _linep=0; 
+        private decimal _lineq=0; 
+        private decimal _k=0; 
+        private string _parentgt=String.Empty;   
         #endregion
   
   
@@ -470,6 +473,60 @@ namespace Ebada.Scgl.Model
                 if (_actualloss as object == null || !_actualloss.Equals(value))
                 {
                     _actualloss = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：LineP
+        /// 属性描述：有功电量
+        /// 字段信息：[LineP],decimal
+        /// </summary>
+        [DisplayNameAttribute("有功电量")]
+        public decimal LineP
+        {
+            get { return _linep; }
+            set
+            {			
+                if (_linep as object == null || !_linep.Equals(value))
+                {
+                    _linep = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：LineQ
+        /// 属性描述：无功电量
+        /// 字段信息：[LineQ],decimal
+        /// </summary>
+        [DisplayNameAttribute("无功电量")]
+        public decimal LineQ
+        {
+            get { return _lineq; }
+            set
+            {			
+                if (_lineq as object == null || !_lineq.Equals(value))
+                {
+                    _lineq = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：K
+        /// 属性描述：负荷形状系数
+        /// 字段信息：[K],decimal
+        /// </summary>
+        [DisplayNameAttribute("负荷形状系数")]
+        public decimal K
+        {
+            get { return _k; }
+            set
+            {			
+                if (_k as object == null || !_k.Equals(value))
+                {
+                    _k = value;
                 }
             }			 
         }

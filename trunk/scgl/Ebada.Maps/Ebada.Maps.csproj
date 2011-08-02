@@ -154,7 +154,9 @@
     <EmbeddedResource Include="PS_sbcs.xml" />
     <EmbeddedResource Include="PS_xlxsqd.xml" />
     <EmbeddedResource Include="PJ_sbxsqd.xml" />
-    <EmbeddedResource Include="PS_Image.xml" />
+ 	<EmbeddedResource Include="PS_Image.xml" />
+    <EmbeddedResource Include="PS_byqxh.xml" />
+    <EmbeddedResource Include="PS_dxxh.xml" />
     <Content Include="rRoleFun.xml" />
     <EmbeddedResource Include="WFP_RecordWorkTaskIns.xml" />
   </ItemGroup>
