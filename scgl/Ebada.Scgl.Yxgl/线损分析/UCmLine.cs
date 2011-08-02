@@ -149,5 +149,22 @@ namespace Ebada.Scgl.Yxgl{
             gridViewOperation.RefreshData(str);
         }
 
+        private void btAnalysis_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PS_xl currentLine = gridView1.GetFocusedRow() as PS_xl;
+            if (currentLine!=null)
+            {
+                if (currentLine.TheoryLoss==0)
+                {
+                    MessageBox.Show("请进行线损计算后再运行线损分析！");
+                    return;
+                }
+                else
+                {
+
+                }
+            }
+        }
+
     }
 }
