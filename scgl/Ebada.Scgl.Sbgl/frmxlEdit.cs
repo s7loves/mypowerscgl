@@ -48,7 +48,9 @@ namespace Ebada.Scgl.Sbgl
 
         public object RowData {
             get {
-                return rowData;
+                PS_xl xl = new PS_xl();
+                ConvertHelper.CopyTo(rowData, xl);
+                return xl;
             }
             set {
                 if (value == null) return;
