@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_dxxh" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_dxxh"  type="Ebada.Scgl.Model.PS_dxxh,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_dxxh_AllColumns" class="PS_dxxh">
+        <result property="ID" column="ID" />
+        <result property="dydj" column="dydj" />
+        <result property="dxxh" column="dxxh" />
+        <result property="dwdz" column="dwdz" />
+        <result property="jmj" column="jmj" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_dxxhList" resultMap="PS_dxxh_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [dydj],
+         [dxxh],
+         [dwdz],
+         [jmj]
+          FROM PS_dxxh
+          $value$
+   </select>
+   
+   <select id="SelectPS_dxxhByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [dydj],
+         [dxxh],
+         [dwdz],
+         [jmj]
+          FROM PS_dxxh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="dydj">[dydj]='$dydj$'</isNotNull>
+       <isNotNull prepend="AND" property="dxxh">[dxxh]='$dxxh$'</isNotNull>
+       <isNotNull prepend="AND" property="dwdz">[dwdz]='$dwdz$'</isNotNull>
+       <isNotNull prepend="AND" property="jmj">[jmj]='$jmj$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_dxxhByKey" resultMap="PS_dxxh_AllColumns" parameterClass="PS_dxxh">
+         SELECT 
+         [ID],
+         [dydj],
+         [dxxh],
+         [dwdz],
+         [jmj]
+         FROM PS_dxxh
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePS_dxxh" parameterClass="PS_dxxh">
+        DELETE FROM 
+         PS_dxxh
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePS_dxxhByWhere" parameterClass="string">
+     delete from PS_dxxh $value$
+   </delete>
+   
+   <delete id="DeletePS_dxxhByKey" parameterClass="string">
+        DELETE FROM 
+         PS_dxxh
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePS_dxxh" parameterClass="PS_dxxh" resultClass="int">
+          UPDATE PS_dxxh
+           SET
+             [dydj]=#dydj#,
+             [dxxh]=#dxxh#,
+             [dwdz]=#dwdz#,
+             [jmj]=#jmj#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPS_dxxh" parameterClass="PS_dxxh">
+        INSERT INTO PS_dxxh
+         (
+         [ID],
+         [dydj],
+         [dxxh],
+         [dwdz],
+         [jmj]
+         )
+       VALUES
+         (
+         #ID#,
+         #dydj#,
+         #dxxh#,
+         #dwdz#,
+         #jmj#
+         )
+
+   </insert>
+   
+   <select id="GetPS_dxxhRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_dxxh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="dydj">[dydj]='$dydj$'</isNotNull>
+       <isNotNull prepend="AND" property="dxxh">[dxxh]='$dxxh$'</isNotNull>
+       <isNotNull prepend="AND" property="dwdz">[dwdz]='$dwdz$'</isNotNull>
+       <isNotNull prepend="AND" property="jmj">[jmj]='$jmj$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_dxxhRowCount" parameterClass="string">
+    select count(*) from PS_dxxh $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
