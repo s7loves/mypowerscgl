@@ -30,6 +30,8 @@ namespace Ebada.Scgl.Sbgl {
     public partial class UCPS_xlTree : DevExpress.XtraEditors.XtraUserControl {
 
         TreeViewOperation<PS_xl> treeViewOperator;
+        private string parentID = null;
+        private mOrg parentObj;
         [Browsable(false)]
         public TreeViewOperation<PS_xl> TreeViewOperator {
             get { return treeViewOperator; }
@@ -44,11 +46,20 @@ namespace Ebada.Scgl.Sbgl {
             InitializeComponent();
             treeViewOperator = new TreeViewOperation<PS_xl>(treeList1, barManager1,new frmxlEdit());
             treeViewOperator.CreatingObjectEvent += treeViewOperator_CreatingObject;
+            treeViewOperator.BeforeAdd += new ObjectOperationEventHandler<PS_xl>(treeViewOperator_BeforeAdd);
             treeViewOperator.AfterAdd += treeViewOperator_AfterAdd;
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete += treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
             Init();
+        }
+
+        void treeViewOperator_BeforeAdd(object render, ObjectOperationEventArgs<PS_xl> e) {
+            if (ParentObj == null) {
+                MsgBox.ShowTipMessageBox("请先选择供电所！");
+                e.Cancel = true;
+
+            }
         }
 
         
@@ -72,8 +83,44 @@ namespace Ebada.Scgl.Sbgl {
             if (FocusedNodeChanged != null)
                 FocusedNodeChanged(treeList1, treeList1.GetDataRecordByNode(e.Node) as PS_xl);
         }
-
+        string getparentValue() {
+            string ret = "0";
+            if (treeList1.Selection.Count > 0) {
+                ret = treeList1.Selection[0][treeList1.ParentFieldName].ToString();
+            }
+            return ret;
+        }
         void treeViewOperator_CreatingObject(PS_xl newobj) {
+            string pid = getparentValue();
+            TreeListNode pnode = treeList1.Selection[0].ParentNode;
+            if (newobj.ParentID == pid) {//同级
+                newobj.LineCode = newobj.LineID = getcode(pnode, pnode!=null?pnode.Nodes:treeList1.Nodes);
+            } else {
+                newobj.LineCode = newobj.LineID = getcode(treeList1.Selection[0], treeList1.Selection[0].Nodes);
+
+            }
+            newobj.OrgCode = parentID;
+        }
+        string getcode(TreeListNode pnode, TreeListNodes nodes) {
+            string code = "";
+            if (nodes.Count > 0) {
+                int maxcode = 0;
+                string linecode = nodes[0]["LineCode"].ToString();
+                foreach (TreeListNode node in nodes) {
+                    linecode = node["LineCode"].ToString();
+                    maxcode = Math.Max(maxcode, int.Parse(linecode.Substring(linecode.Length - 3, 3)));
+                }
+                code = linecode.Substring(0,linecode.Length - 3) + (maxcode + 1).ToString("000");
+
+            } else {
+                if (pnode != null) {
+                    code = pnode["LineCode"].ToString() + "001";
+                } else {
+                    code = ParentObj.OrgCode + "001";
+                }
+            }
+
+            return code;
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
@@ -99,9 +146,14 @@ namespace Ebada.Scgl.Sbgl {
             treeList1.Columns["OrgCode2"].ColumnEdit = DicTypeHelper.BdsDic;
             treeList1.Columns["Owner"].ColumnEdit = DicTypeHelper.OwnerDic;
             treeList1.Columns["RunState"].ColumnEdit = DicTypeHelper.RunState;
-            if (this.Site == null)
-                InitData();
+            if (this.Site != null) return;
+            btGdsList.Edit = DicTypeHelper.GdsDic;
 
+            btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
+            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1") {//如果是供电所人员，则锁定
+                btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
+                btGdsList.Edit.ReadOnly = true;
+            }
         }
         /// <summary>
         /// 初始化数据
@@ -109,6 +161,51 @@ namespace Ebada.Scgl.Sbgl {
         public void InitData() {
             treeViewOperator.RefreshData("order by linetype,linecode");
         }
+        void btGdsList_EditValueChanged(object sender, EventArgs e) {
+            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
+            mOrg org = null;
+            if (list.Count > 0)
+                org = list[0];
 
+            if (org != null) {
+                ParentObj = org;
+            }
+        }
+        public void RefreshData(string slqwhere) {
+            treeViewOperator.RefreshData(slqwhere);
+        }
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string ParentID
+        {
+            get { return parentID; }
+            set
+            {
+                parentID = value;
+                if (!string.IsNullOrEmpty(value))
+                {
+                    RefreshData(" where orgcode='" + value + "' order by linecode");
+                }
+            }
+        }
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public mOrg ParentObj
+        {
+            get { return parentObj; }
+            set
+            {
+
+                parentObj = value;
+                if (value == null)
+                {
+                    parentID = null;
+                }
+                else
+                {
+                    ParentID = value.OrgCode;
+                }
+            }
+        }
     }
 }
