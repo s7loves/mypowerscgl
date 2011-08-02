@@ -36,6 +36,8 @@ namespace Ebada.Scgl.Sbgl
         frmtqEdit frm = new frmtqEdit();
         private string parentID = null;
         private PS_gt parentObj;
+        string mLineCode=string.Empty;
+        string mOrgCode=string.Empty;
         public UCPS_TQ()
         {
             InitializeComponent();
@@ -54,10 +56,9 @@ namespace Ebada.Scgl.Sbgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_tq> e)
         {
-            if (parentID == null)
-            {
+            if (String.IsNullOrEmpty(frm.LineCode)) {
                 e.Cancel = true;
-                MsgBox.ShowWarningMessageBox("请先选择杆塔!");  
+                MsgBox.ShowWarningMessageBox("请先选择线路!");
             }
         }
         protected override void OnLoad(EventArgs e)
@@ -109,7 +110,8 @@ namespace Ebada.Scgl.Sbgl
             mOrg org=null;
             if (list.Count > 0)
                 org = list[0];
-            
+
+            frm.LineCode = string.Empty;
             if (org != null)
             {
                 frm.GdsCode = org.OrgCode;
