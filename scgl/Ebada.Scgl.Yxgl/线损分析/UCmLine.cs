@@ -19,6 +19,7 @@ using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Yxgl{
 
@@ -136,8 +137,16 @@ namespace Ebada.Scgl.Yxgl{
             PS_xl currentLine = gridView1.GetFocusedRow() as PS_xl;
             if (currentLine!=null)
             {
-
+                List<PS_xl> list = LineLossHelper.GetChildrenList(currentLine.LineID);
+                foreach (PS_xl line in list)
+                {
+                    line.TheoryLoss = LineLossHelper.Loss(line);
+                    Client.ClientHelper.PlatformSqlMap.Update<PS_xl>(line);
+                }
             }
+            string str = " where 1>1";
+            str = string.Format("where LineID='{0}'", parentID);
+            gridViewOperation.RefreshData(str);
         }
 
     }

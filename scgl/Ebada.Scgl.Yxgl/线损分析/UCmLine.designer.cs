@@ -97,7 +97,6 @@
             this.btLineLoss.ImageIndex = 6;
             this.btLineLoss.Name = "btLineLoss";
             this.btLineLoss.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btLineLoss.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btLineLoss.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btLineLoss_ItemClick);
             // 
             // btEdit
