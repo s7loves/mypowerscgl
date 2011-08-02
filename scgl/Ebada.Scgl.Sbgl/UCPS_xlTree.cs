@@ -51,6 +51,8 @@ namespace Ebada.Scgl.Sbgl {
             Init();
         }
 
+        
+
         void treeViewOperator_AfterDelete(PS_xl newobj) {
             if (AfterDelete != null)
                 AfterDelete(treeList1, newobj);
@@ -87,7 +89,11 @@ namespace Ebada.Scgl.Sbgl {
             treeList1.Columns["WireLength"].Visible = false;
             treeList1.Columns["TotalLength"].Visible = false;
             treeList1.Columns["ActualLoss"].Visible = false;
-
+            treeList1.Columns["gdbj"].Visible = false;
+            treeList1.Columns["TheoryLoss"].Visible = false;
+            treeList1.Columns["ParentGT"].Visible = false;
+            treeList1.Columns["WireType"].Visible = false;
+            treeList1.Columns["LineCode"].Visible = true;
 
             treeList1.Columns["OrgCode"].ColumnEdit = DicTypeHelper.GdsDic;
             treeList1.Columns["OrgCode2"].ColumnEdit = DicTypeHelper.BdsDic;
