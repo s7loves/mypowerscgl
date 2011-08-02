@@ -440,7 +440,7 @@ namespace Ebada.Scgl.Core {
             }
             else
             {
-                list = new string[] { "65KV", "220V", "110V" };
+                list = new string[] { "65kV", "10kV", "0.4kV" };
                 mCache.Add(key, list);
             }
             return list;
@@ -453,7 +453,7 @@ namespace Ebada.Scgl.Core {
         public static ICollection GetLineTye()
         {
             ICollection list = new ArrayList();
-            string key = "GetLineTye";
+            string key = "GetLineType";
             if (mCache.ContainsKey(key))
             {
                 list = mCache[key];
