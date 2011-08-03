@@ -252,6 +252,11 @@ namespace Ebada.Scgl.Core
             }
             return byqpk;
         }
+        /// <summary>
+        /// 线路的变压器开路损耗
+        /// </summary>
+        /// <param name="listgt"></param>
+        /// <returns></returns>
         public static decimal ByqP0(PS_xl line)//变压器开路损耗
         {
             IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "'");
