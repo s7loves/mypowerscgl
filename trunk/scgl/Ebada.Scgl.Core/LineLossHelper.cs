@@ -68,6 +68,11 @@ namespace Ebada.Scgl.Core
             //lineAnaly.EconomyLossRate = 
             return lineAnaly;
         }
+        /// <summary>
+        /// 所有子线路
+        /// </summary>
+        /// <param name="id">线路父ID</param>
+        /// <returns>指定ID的所有子线路集合</returns>
         public static List<PS_xl> GetChildrenList(string id)//所有子线路
         {
             List<PS_xl> list = new List<PS_xl>();
@@ -80,17 +85,32 @@ namespace Ebada.Scgl.Core
             }
             return list;
         }
+        /// <summary>
+        /// 线路线损
+        /// </summary>
+        /// <param name="line">线路</param>
+        /// <returns>输入线路的线损</returns>
         public static decimal Loss(PS_xl line)//线损
         {
             decimal loss = 0;
             loss = LineLoss(line) + ByqLoss(line);
             return loss;
         }
+        /// <summary>
+        /// 线路可变损耗
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         public static decimal LineLoss(PS_xl line)//线路可变损耗
         {
             decimal lineLoss = (LineR(line) + ByqR(line)) * line.K * line.K * (line.LineP * line.LineP + line.LineQ * line.LineQ) / (Convert.ToDecimal(line.LineVol) * Convert.ToDecimal(line.LineVol));
             return lineLoss;
         }
+        /// <summary>
+        /// 线路变压器固定损耗
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         public static decimal ByqLoss(PS_xl line)//变压器固定损耗
         {
             decimal byqloss = 0;
@@ -99,6 +119,11 @@ namespace Ebada.Scgl.Core
             byqloss = ByqP0(listGT);
             return byqloss;
         }
+        /// <summary>
+        /// 线路等值电阻
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         public static decimal LineR(PS_xl line)//线路等值电阻
         {
             decimal lineloss = 0;
@@ -119,6 +144,11 @@ namespace Ebada.Scgl.Core
             }
             return lineloss/(capSum*capSum);
         }
+        /// <summary>
+        /// 变压器等值电阻
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         public static decimal ByqR(PS_xl line)//变压器等值电阻
         {
             decimal byqloss = 0;
@@ -127,6 +157,11 @@ namespace Ebada.Scgl.Core
             byqloss = Convert.ToDecimal(line.LineVol) * Convert.ToDecimal(line.LineVol) * ByqPk(listGT) / (cap * cap);
             return byqloss;
         }
+        /// <summary>
+        /// 杆塔变压器容量
+        /// </summary>
+        /// <param name="gt"></param>
+        /// <returns></returns>
         public static decimal ByqCapcity(PS_gt gt)//变压器容量
         {
             decimal byqCap = 0;
@@ -141,6 +176,11 @@ namespace Ebada.Scgl.Core
             }
             return byqCap;
         }
+        /// <summary>
+        /// 杆塔集合的变压器容量
+        /// </summary>
+        /// <param name="listgt"></param>
+        /// <returns></returns>
         public static decimal ByqCapcity(IList<PS_gt> listgt)//变压器容量
         {
             decimal byqCap = 0;
@@ -158,6 +198,11 @@ namespace Ebada.Scgl.Core
             }
             return byqCap;
         }
+        /// <summary>
+        /// 杆塔集合的变压器短路损耗
+        /// </summary>
+        /// <param name="listgt"></param>
+        /// <returns></returns>
         public static decimal ByqPk(IList<PS_gt> listgt)//变压器短路损耗
         {
             decimal byqpk = 0;
@@ -179,6 +224,11 @@ namespace Ebada.Scgl.Core
             }
             return byqpk;
         }
+        /// <summary>
+        /// 杆塔集合的变压器开路损耗
+        /// </summary>
+        /// <param name="listgt"></param>
+        /// <returns></returns>
         public static decimal ByqP0(IList<PS_gt> listgt)//变压器开路损耗
         {
             decimal byqpk = 0;
