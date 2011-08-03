@@ -2,7 +2,7 @@
 <Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>   
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{890818B2-EE50-4CB2-9C85-BAA60730CAAB}</ProjectGuid>
@@ -147,6 +147,12 @@
       <DependentUpon>frmxlEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UCPS_dxxh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_dxxh.Designer.cs">
+      <DependentUpon>UCPS_dxxh.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCPS_sbcsM.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -231,6 +237,29 @@
     <Compile Include="UCPS_gtM.Designer.cs">
       <DependentUpon>UCPS_gtM.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmdxxhEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmdxxhEdit.Designer.cs">
+      <DependentUpon>frmdxxhEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPS_byqxh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_byqxh.Designer.cs">
+      <DependentUpon>UCPS_byqxh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmbyqxhEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmbyqxhEdit.Designer.cs">
+      <DependentUpon>frmbyqxhEdit.cs</DependentUpon>
+    </Compile>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmbyqxhEdit.Designer.cs">
+      <DependentUpon>frmbyqxhEdit.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmdyxlEdit.resx">
@@ -272,6 +301,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCPS_sbcs.resx">
       <DependentUpon>UCPS_sbcs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  <EmbeddedResource Include="UCPS_dxxh.resx">
+      <DependentUpon>UCPS_dxxh.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UCPS_GT.resx">
@@ -320,6 +353,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCPS_gtM.resx">
       <DependentUpon>UCPS_gtM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+<EmbeddedResource Include="frmdxxhEdit.resx">
+      <DependentUpon>frmdxxhEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_byqxh.resx">
+      <DependentUpon>UCPS_byqxh.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmbyqxhEdit.resx">
+      <DependentUpon>frmbyqxhEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+      <DependentUpon>frmbyqxhEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
