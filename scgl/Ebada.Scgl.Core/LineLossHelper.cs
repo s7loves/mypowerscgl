@@ -9,12 +9,12 @@ namespace Ebada.Scgl.Core
     public class LineAnaly
     {     
         
-        private decimal lossRate=0;
-        private decimal economyLossRate=0;
-        private decimal economyI=0;
-        private decimal economyByqLoad=0;
-        private decimal fixLossWeight=0;
-        private decimal variableLossWeight=0; 
+        private decimal lossRate=0;//线损率
+        private decimal economyLossRate=0;//经济线损率
+        private decimal economyI=0;//线路的经济负荷电流
+        private decimal economyByqLoad=0;//变压器经济综合平均负荷
+        private decimal fixLossWeight=0;//线路的固定损耗所站比重
+        private decimal variableLossWeight=0;// 线路的可变损耗所站比重
         public LineAnaly()
         {
 
@@ -65,7 +65,9 @@ namespace Ebada.Scgl.Core
         {
             LineAnaly lineAnaly = new LineAnaly();
             lineAnaly.LossRate = line.TheoryLoss / line.LineP;
-            //lineAnaly.EconomyLossRate = 
+            lineAnaly.EconomyLossRate = 2 * line.K * ((decimal)Math.Pow((double)(LineR(line) + ByqR(line)), 0.5)) / (Convert.ToDecimal(line.LineVol) * line.LineP / (decimal)(Math.Pow((double)(line.LineP * line.LineP + line.LineQ * line.LineQ), 0.5) * 1000));
+            lineAnaly.EconomyI = (decimal)Math.Pow((double)(ByqP0(line)/(3*line.K*(LineR(line) + ByqR(line)))),0.5);
+            lineAnaly.EconomyByqLoad = (decimal)Math.Pow((double)(ByqP0(line) / ( (LineR(line) + ByqR(line)))), 0.5);
             return lineAnaly;
         }
         /// <summary>
@@ -248,6 +250,13 @@ namespace Ebada.Scgl.Core
                     }
                 }
             }
+            return byqpk;
+        }
+        public static decimal ByqP0(PS_xl line)//变压器开路损耗
+        {
+            IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "'");
+            decimal byqpk = 0;
+            byqpk = ByqP0(listGT);
             return byqpk;
         }
     }
