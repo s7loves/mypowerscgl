@@ -79,7 +79,7 @@ namespace Ebada.Scgl.Sbgl
             pdsbModelHelper.FillCBox(comboBoxEdit14, pdsbModelHelper.dxxh);
 
             this.comboBoxEdit14.Properties.Items.AddRange(ComboBoxHelper.GetLineTye());
-            this.comboBoxEdit5.Properties.Items.AddRange(ComboBoxHelper.GetVoltage()); 
+            //this.comboBoxEdit5.Properties.Items.AddRange(ComboBoxHelper.GetVoltage()); 
         }
 
         /// <summary>
