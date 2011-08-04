@@ -99,6 +99,7 @@ namespace Ebada.Scgl.Sbgl {
                 newobj.LineCode = newobj.LineID = getcode(treeList1.Selection[0], treeList1.Selection[0].Nodes);
 
             }
+            newobj.LineVol = "10";
             newobj.OrgCode = parentID;
         }
         string getcode(TreeListNode pnode, TreeListNodes nodes) {
@@ -184,7 +185,7 @@ namespace Ebada.Scgl.Sbgl {
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where orgcode='" + value + "' order by linecode");
+                    RefreshData(" where orgcode='" + value + "' and linetype>='10' order by linecode");
                 }
             }
         }
