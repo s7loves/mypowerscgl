@@ -196,12 +196,12 @@ namespace Ebada.Scgl.Sbgl
                 string tqcode=gridViewOperation.BindingList[0].tqCode ;
                 foreach (PS_tq node in gridViewOperation.BindingList) {
                     tqcode = node.tqCode;
-                    maxcode = Math.Max(maxcode, int.Parse(tqcode.Substring(tqcode.Length - 3, 3)));
+                    maxcode = Math.Max(maxcode, int.Parse(tqcode.Substring(tqcode.Length - 4, 4)));
                 }
-                code = tqcode.Substring(0, tqcode.Length - 3) + (maxcode + 1).ToString("000");
+                code = tqcode.Substring(0, tqcode.Length - 4) + (maxcode + 10).ToString("0000");
 
             } else {
-                code=frm.LineCode + "001";
+                code=frm.LineCode + "0010";
             }
 
             return code;
