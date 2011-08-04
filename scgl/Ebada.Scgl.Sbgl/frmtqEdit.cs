@@ -63,7 +63,9 @@ namespace Ebada.Scgl.Sbgl
 
         public object RowData {
             get {
-                return rowData;
+                PS_tq tq = new PS_tq();
+                ConvertHelper.CopyTo(rowData, tq);
+                return tq;
             }
             set {
                 if (value == null) return;
