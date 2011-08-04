@@ -177,9 +177,34 @@ namespace Ebada.Scgl.Sbgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PS_tq newobj)
         {
-            if (parentID == null) return;
+            //if (parentID == null) return;
+            
+            if (gridView1.FocusedRowHandle > -1) {
+                PS_tq tq = gridView1.GetFocusedRow() as PS_tq;
+                Ebada.Core.ConvertHelper.CopyTo(tq, newobj);
+                newobj.tqName = "";
+            }
             newobj.gtID = parentID;
+            newobj.tqCode = newobj.tqID = getcode();
    
+        }
+        string getcode() {
+            string code = "";
+
+            if (gridViewOperation.BindingList.Count > 0) {
+                int maxcode = 0;
+                string tqcode=gridViewOperation.BindingList[0].tqCode ;
+                foreach (PS_tq node in gridViewOperation.BindingList) {
+                    tqcode = node.tqCode;
+                    maxcode = Math.Max(maxcode, int.Parse(tqcode.Substring(tqcode.Length - 3, 3)));
+                }
+                code = tqcode.Substring(0, tqcode.Length - 3) + (maxcode + 1).ToString("000");
+
+            } else {
+                code=frm.LineCode + "001";
+            }
+
+            return code;
         }
         /// <summary>
         /// 父表ID
