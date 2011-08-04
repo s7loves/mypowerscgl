@@ -54,7 +54,7 @@ namespace Ebada.Scgl.Sbgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_tqbyq> e)
         {
-            if (parentID == null)
+            if (parentObj == null)
             {
                 e.Cancel = true;
                 MsgBox.ShowTipMessageBox("台区不能为空！");
@@ -62,8 +62,8 @@ namespace Ebada.Scgl.Sbgl
             else
             {
 
-                PS_tq tq = MainHelper.PlatformSqlMap.GetOneByKey<PS_tq>(parentID);
-                e.Value.byqInstallAdress = tq.Adress; 
+                //PS_tq tq = MainHelper.PlatformSqlMap.GetOneByKey<PS_tq>(parentID);
+                //e.Value.byqInstallAdress = tq.Adress; 
             
             }
         }
@@ -118,7 +118,7 @@ namespace Ebada.Scgl.Sbgl
             IList<PS_tq> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqcode,{0})='{1}'", xlcode.Length, xlcode));
             repositoryItemLookUpEdit4.DataSource = list2;
             
-                RefreshData(string.Format(" where left(byqcode,{0})='{1}'",xlcode.Length,xlcode));
+            RefreshData(string.Format(" where left(byqcode,{0})='{1}'",xlcode.Length,xlcode));
         }
 
         void btGdsList_EditValueChanged(object sender, EventArgs e)
@@ -202,10 +202,35 @@ namespace Ebada.Scgl.Sbgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PS_tqbyq newobj)
         {
-            if (parentID == null) return;
+
+            if (gridView1.FocusedRowHandle > -1) {
+                PS_tqbyq tq = gridView1.GetFocusedRow() as PS_tqbyq;
+                Ebada.Core.ConvertHelper.CopyTo(tq, newobj);
+                
+            }
+            //newobj.byqInstallAdress = parentObj.Adress;
+            newobj.byqName = "";
             newobj.tqID = parentID;
-            
-   
+            newobj.byqCode = newobj.byqID = getcode();
+
+        }
+        string getcode() {
+            string code = "";
+
+            if (gridViewOperation.BindingList.Count > 0) {
+                int maxcode = 0; 
+                string tqcode = gridViewOperation.BindingList[0].byqCode;
+                foreach (PS_tqbyq node in gridViewOperation.BindingList) {
+                    tqcode = node.byqCode;
+                    maxcode = Math.Max(maxcode, int.Parse(tqcode.Substring(tqcode.Length - 2, 2)));
+                }
+                code = tqcode.Substring(0, tqcode.Length - 2) + (maxcode + 1).ToString("00");
+
+            } else {
+                code = parentObj.tqCode + "01";
+            }
+
+            return code;
         }
         /// <summary>
         /// 父表ID
