@@ -64,7 +64,7 @@ namespace Ebada.Scgl.Core
         public static LineAnaly LineLossAnaly(PS_xl line)
         {
             LineAnaly lineAnaly = new LineAnaly();
-            lineAnaly.LossRate = line.TheoryLoss / line.LineP;
+            lineAnaly.LossRate = line.TheoryLoss / (line.LineP==Convert.ToDecimal(0)?Convert.ToDecimal(1):line.LineP);
             lineAnaly.EconomyLossRate = 2 * line.K * ((decimal)Math.Pow((double)(LineR(line) + ByqR(line)), 0.5)) / (Convert.ToDecimal(line.LineVol) * line.LineP / (decimal)(Math.Pow((double)(line.LineP * line.LineP + line.LineQ * line.LineQ), 0.5) * 1000));
             lineAnaly.EconomyI = (decimal)Math.Pow((double)(ByqP0(line)/(3*line.K*(LineR(line) + ByqR(line)))),0.5);
             lineAnaly.EconomyByqLoad = (decimal)Math.Pow((double)(ByqP0(line) / ( (LineR(line) + ByqR(line)))), 0.5);
