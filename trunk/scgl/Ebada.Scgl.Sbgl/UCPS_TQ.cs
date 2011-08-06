@@ -38,6 +38,7 @@ namespace Ebada.Scgl.Sbgl
         private PS_gt parentObj;
         string mLineCode=string.Empty;
         string mOrgCode=string.Empty;
+        private mOrg _mOrg = null;
         public UCPS_TQ()
         {
             InitializeComponent();
@@ -107,16 +108,17 @@ namespace Ebada.Scgl.Sbgl
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
+            _mOrg = null;
             if (list.Count > 0)
-                org = list[0];
+                _mOrg = list[0];
 
             frm.LineCode = string.Empty;
-            if (org != null)
+            if (_mOrg != null)
             {
-                frm.GdsCode = org.OrgCode;
-                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
+                frm.GdsCode = _mOrg.OrgCode;
+                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + _mOrg.OrgCode + "'");
                 repositoryItemLookUpEdit2.DataSource = xlList;
+                
             }
             
 
@@ -266,6 +268,22 @@ namespace Ebada.Scgl.Sbgl
             }
            
            
+        }
+        PS_xl mXL = null;
+        public PS_xl GetXL() {
+
+            if (!string.IsNullOrEmpty(frm.LineCode)) {
+                if (mXL != null && mXL.LineCode == frm.LineCode) {
+                    
+                } else {
+                    mXL = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + frm.LineCode + "'");
+                }
+            }
+            return mXL;
+        }
+        public mOrg GetmOrg() {
+
+            return _mOrg;
         }
 
     }

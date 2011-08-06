@@ -17,6 +17,7 @@ namespace Ebada.Scgl.Sbgl
             ucpS_TQBYQ1.HideList();
             ucpS_TQDLBH1.HideList();
             ucpS_TQSB1.HideList();
+            ucpS_dyxlTree1.HideList();
             ucpS_TQ1.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_tq>(ucpS_TQ1_FocusedRowChanged);
         }
 
@@ -29,6 +30,9 @@ namespace Ebada.Scgl.Sbgl
                 ucpS_TQDLBH1.ParentObj = obj;
                 //ucpS_TQSB1.ParentID = obj.tqID;
                 ucpS_TQSB1.ParentObj = obj;
+                ucpS_dyxlTree1.XL= ucpS_TQ1.GetXL();
+                ucpS_dyxlTree1.TQ = obj;
+                ucpS_dyxlTree1.ParentObj = ucpS_TQ1.GetmOrg();
             }
             else
             {
@@ -38,6 +42,10 @@ namespace Ebada.Scgl.Sbgl
                 ucpS_TQDLBH1.ParentObj = null;
                 //ucpS_TQSB1.ParentID = null;
                 ucpS_TQSB1.ParentObj = null;
+
+                ucpS_dyxlTree1.XL = null;
+                ucpS_dyxlTree1.TQ = null;
+                ucpS_dyxlTree1.ParentObj = null;
             }
             splitCC1.Panel2.Text = "台区名：" + (obj != null ? obj.tqName : "");
         }
