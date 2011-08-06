@@ -27,11 +27,23 @@ namespace Ebada.Scgl.Sbgl {
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPS_xlTree : DevExpress.XtraEditors.XtraUserControl {
+    public partial class UCPS_dyxlTree : DevExpress.XtraEditors.XtraUserControl {
 
         TreeViewOperation<PS_xl> treeViewOperator;
         private string parentID = null;
         private mOrg parentObj;
+        private PS_tq tq;
+        private PS_xl xl;
+        [Browsable(false)]
+        public PS_xl XL {
+            get { return xl; }
+            set { xl = value; }
+        }
+        [Browsable(false)]
+        public PS_tq TQ {
+            get { return tq; }
+            set { tq = value; }
+        }
         [Browsable(false)]
         public TreeViewOperation<PS_xl> TreeViewOperator {
             get { return treeViewOperator; }
@@ -42,7 +54,7 @@ namespace Ebada.Scgl.Sbgl {
         public event SendDataEventHandler<PS_xl> AfterAdd;
         public event SendDataEventHandler<PS_xl> AfterEdit;
         public event SendDataEventHandler<PS_xl> AfterDelete;
-        public UCPS_xlTree() {
+        public UCPS_dyxlTree() {
             InitializeComponent();
             treeViewOperator = new TreeViewOperation<PS_xl>(treeList1, barManager1,new frmxlEdit());
             treeViewOperator.CreatingObjectEvent += treeViewOperator_CreatingObject;
@@ -51,17 +63,17 @@ namespace Ebada.Scgl.Sbgl {
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete += treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
-            Init();
+            
         }
 
         void treeViewOperator_BeforeAdd(object render, ObjectOperationEventArgs<PS_xl> e) {
             if (ParentObj == null) {
-                MsgBox.ShowTipMessageBox("请先选择供电所！");
+                MsgBox.ShowTipMessageBox("请先选择台区！");
                 e.Cancel = true;
 
             }
         }
-
+        
         
 
         void treeViewOperator_AfterDelete(PS_xl newobj) {
@@ -92,43 +104,49 @@ namespace Ebada.Scgl.Sbgl {
         }
         void treeViewOperator_CreatingObject(PS_xl newobj) {
             string pid = getparentValue();
-            TreeListNode pnode = treeList1.Selection[0].ParentNode;
-            if (newobj.ParentID == pid) {//同级
-                newobj.LineCode = newobj.LineID = getcode(pnode, pnode!=null?pnode.Nodes:treeList1.Nodes);
-            } else {
-                newobj.LineCode = newobj.LineID = getcode(treeList1.Selection[0], treeList1.Selection[0].Nodes);
-
+            TreeListNode pnode = null;
+            PS_xl xl1 = null;
+            if (treeList1.Selection.Count > 0) {
+                xl1 = treeList1.GetDataRecordByNode(treeList1.Selection[0]) as PS_xl;
+                pnode = treeList1.Selection[0].ParentNode;
             }
-            newobj.LineVol = "10";
-            newobj.LineType = "1";
-            newobj.OrgCode = parentID;
+            string linecode = "";
+            if (newobj.ParentID == pid) {//同级
+                linecode = getcode(pnode, pnode != null ? pnode.Nodes : treeList1.Nodes);
+            } else {
+                linecode = getcode(treeList1.Selection[0], treeList1.Selection[0].Nodes);
+            }
+            pid = newobj.ParentID;
+            if (xl1 != null)
+                Ebada.Core.ConvertHelper.CopyTo(xl1, newobj);
+            else if (xl != null) {
+                Ebada.Core.ConvertHelper.CopyTo(xl, newobj);
+                newobj.LineType = "1";
+                newobj.Contractor = tq.Contractor;
+            }
+
+            newobj.ParentID = pid;
+            if (pid == "0") newobj.ParentID = tq.tqCode;
+            newobj.LineID = newobj.LineCode = linecode;
+            newobj.LineVol = "0.4";
+            newobj.ParentGT = "";
         }
         string getcode(TreeListNode pnode, TreeListNodes nodes) {
             string code = "";
-            
             if (nodes.Count > 0) {
                 int maxcode = 0;
                 string linecode = nodes[0]["LineCode"].ToString();
-                int levenum = 3;
-                if (nodes[0].Level == 1) levenum = 4;
                 foreach (TreeListNode node in nodes) {
                     linecode = node["LineCode"].ToString();
-                    maxcode = Math.Max(maxcode, int.Parse(linecode.Substring(linecode.Length - levenum, levenum)));
+                    maxcode = Math.Max(maxcode, int.Parse(linecode.Substring(linecode.Length - 3, 3)));
                 }
-                if (levenum == 4) {
-                    code = linecode.Substring(0, linecode.Length - levenum) + (maxcode + 10).ToString("0000");
-                } else {
-                    code = linecode.Substring(0, linecode.Length - levenum) + (maxcode + 1).ToString("000");
-                }
+                code = linecode.Substring(0,linecode.Length - 3) + (maxcode + 1).ToString("000");
 
             } else {
                 if (pnode != null) {
-                    if(pnode.Level==0)
-                        code = pnode["LineCode"].ToString() + "0010";
-                    else
-                        code = pnode["LineCode"].ToString() + "001";
+                    code = pnode["LineCode"].ToString() + "001";
                 } else {
-                    code = ParentObj.OrgCode + "001";
+                    code = TQ.tqCode + "001";
                 }
             }
 
@@ -136,7 +154,7 @@ namespace Ebada.Scgl.Sbgl {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-
+            Init();
         }
         public void Init() {
 
@@ -153,12 +171,13 @@ namespace Ebada.Scgl.Sbgl {
             treeList1.Columns["ParentGT"].Visible = false;
             treeList1.Columns["WireType"].Visible = false;
             treeList1.Columns["LineCode"].Visible = true;
+            if (this.Site != null ) return;
 
             treeList1.Columns["OrgCode"].ColumnEdit = DicTypeHelper.GdsDic;
             treeList1.Columns["OrgCode2"].ColumnEdit = DicTypeHelper.BdsDic;
             treeList1.Columns["Owner"].ColumnEdit = DicTypeHelper.OwnerDic;
             treeList1.Columns["RunState"].ColumnEdit = DicTypeHelper.RunState;
-            if (this.Site != null) return;
+            
             btGdsList.Edit = DicTypeHelper.GdsDic;
 
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -196,7 +215,7 @@ namespace Ebada.Scgl.Sbgl {
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where orgcode='" + value + "'  order by linecode");
+                    RefreshData(string.Format(" where left(linecode,{0})='{1}' and linevol='0.4' order by linecode",tq.tqCode.Length,tq.tqCode));
                 }
             }
         }
@@ -218,6 +237,14 @@ namespace Ebada.Scgl.Sbgl {
                     ParentID = value.OrgCode;
                 }
             }
+        }
+        /// <summary>
+        /// 隐藏选择列表
+        /// </summary>
+        public void HideList() {
+            btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btTQList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
     }
 }

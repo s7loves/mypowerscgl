@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.splitCC1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.ucpS_TQ1 = new Ebada.Scgl.Sbgl.UCPS_TQ();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
-            this.ucpS_TQ1 = new Ebada.Scgl.Sbgl.UCPS_TQ();
             this.ucpS_TQBYQ1 = new Ebada.Scgl.Sbgl.UCPS_TQBYQ();
+            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.ucpS_TQDLBH1 = new Ebada.Scgl.Sbgl.UCPS_TQDLBH();
+            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.ucpS_TQSB1 = new Ebada.Scgl.Sbgl.UCPS_TQSB();
+            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.ucpS_dyxlTree1 = new Ebada.Scgl.Sbgl.UCPS_dyxlTree();
             ((System.ComponentModel.ISupportInitialize)(this.splitCC1)).BeginInit();
             this.splitCC1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -44,6 +46,7 @@
             this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
             this.xtraTabPage4.SuspendLayout();
+            this.xtraTabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitCC1
@@ -65,6 +68,14 @@
             this.splitCC1.TabIndex = 1;
             this.splitCC1.Text = "splitContainerControl1";
             // 
+            // ucpS_TQ1
+            // 
+            this.ucpS_TQ1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucpS_TQ1.Location = new System.Drawing.Point(0, 0);
+            this.ucpS_TQ1.Name = "ucpS_TQ1";
+            this.ucpS_TQ1.Size = new System.Drawing.Size(594, 214);
+            this.ucpS_TQ1.TabIndex = 0;
+            // 
             // xtraTabControl1
             // 
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -76,7 +87,8 @@
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage2,
             this.xtraTabPage3,
-            this.xtraTabPage4});
+            this.xtraTabPage4,
+            this.xtraTabPage1});
             // 
             // xtraTabPage2
             // 
@@ -84,28 +96,6 @@
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(585, 167);
             this.xtraTabPage2.Text = "变压器";
-            // 
-            // xtraTabPage3
-            // 
-            this.xtraTabPage3.Controls.Add(this.ucpS_TQDLBH1);
-            this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(585, 167);
-            this.xtraTabPage3.Text = "电流动作保护器";
-            // 
-            // xtraTabPage4
-            // 
-            this.xtraTabPage4.Controls.Add(this.ucpS_TQSB1);
-            this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(585, 167);
-            this.xtraTabPage4.Text = "其它设备";
-            // 
-            // ucpS_TQ1
-            // 
-            this.ucpS_TQ1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucpS_TQ1.Location = new System.Drawing.Point(0, 0);
-            this.ucpS_TQ1.Name = "ucpS_TQ1";
-            this.ucpS_TQ1.Size = new System.Drawing.Size(594, 214);
-            this.ucpS_TQ1.TabIndex = 0;
             // 
             // ucpS_TQBYQ1
             // 
@@ -115,6 +105,13 @@
             this.ucpS_TQBYQ1.Size = new System.Drawing.Size(585, 167);
             this.ucpS_TQBYQ1.TabIndex = 0;
             // 
+            // xtraTabPage3
+            // 
+            this.xtraTabPage3.Controls.Add(this.ucpS_TQDLBH1);
+            this.xtraTabPage3.Name = "xtraTabPage3";
+            this.xtraTabPage3.Size = new System.Drawing.Size(585, 167);
+            this.xtraTabPage3.Text = "电流动作保护器";
+            // 
             // ucpS_TQDLBH1
             // 
             this.ucpS_TQDLBH1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -123,6 +120,13 @@
             this.ucpS_TQDLBH1.Size = new System.Drawing.Size(585, 167);
             this.ucpS_TQDLBH1.TabIndex = 0;
             // 
+            // xtraTabPage4
+            // 
+            this.xtraTabPage4.Controls.Add(this.ucpS_TQSB1);
+            this.xtraTabPage4.Name = "xtraTabPage4";
+            this.xtraTabPage4.Size = new System.Drawing.Size(585, 167);
+            this.xtraTabPage4.Text = "其它设备";
+            // 
             // ucpS_TQSB1
             // 
             this.ucpS_TQSB1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -130,6 +134,23 @@
             this.ucpS_TQSB1.Name = "ucpS_TQSB1";
             this.ucpS_TQSB1.Size = new System.Drawing.Size(585, 167);
             this.ucpS_TQSB1.TabIndex = 0;
+            // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.ucpS_dyxlTree1);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(585, 167);
+            this.xtraTabPage1.Text = "低压线路";
+            // 
+            // ucpS_dyxlTree1
+            // 
+            this.ucpS_dyxlTree1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucpS_dyxlTree1.Location = new System.Drawing.Point(0, 0);
+            this.ucpS_dyxlTree1.Name = "ucpS_dyxlTree1";
+            this.ucpS_dyxlTree1.Size = new System.Drawing.Size(585, 167);
+            this.ucpS_dyxlTree1.TabIndex = 0;
+            this.ucpS_dyxlTree1.TQ = null;
+            this.ucpS_dyxlTree1.XL = null;
             // 
             // UCPS_tqM
             // 
@@ -145,6 +166,7 @@
             this.xtraTabPage2.ResumeLayout(false);
             this.xtraTabPage3.ResumeLayout(false);
             this.xtraTabPage4.ResumeLayout(false);
+            this.xtraTabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -160,5 +182,7 @@
         private UCPS_TQBYQ ucpS_TQBYQ1;
         private UCPS_TQDLBH ucpS_TQDLBH1;
         private UCPS_TQSB ucpS_TQSB1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private UCPS_dyxlTree ucpS_dyxlTree1;
     }
 }

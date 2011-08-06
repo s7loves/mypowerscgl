@@ -171,6 +171,12 @@
     <Compile Include="UCPS_dxxh.Designer.cs">
       <DependentUpon>UCPS_dxxh.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPS_dyxlTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_dyxlTree.Designer.cs">
+      <DependentUpon>UCPS_dyxlTree.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCPS_sbcsM.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -255,7 +261,6 @@
     <Compile Include="UCPS_gtM.Designer.cs">
       <DependentUpon>UCPS_gtM.cs</DependentUpon>
     </Compile>
-   
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmbyqxhEdit.resx">
@@ -307,6 +312,9 @@
       <DependentUpon>UCPS_dxxh.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_dyxlTree.resx">
+      <DependentUpon>UCPS_dyxlTree.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCPS_sbcsM.resx">
       <DependentUpon>UCPS_sbcsM.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -315,7 +323,6 @@
       <DependentUpon>UCPS_sbcs.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-
     <EmbeddedResource Include="UCPS_GT.resx">
       <DependentUpon>UCPS_GT.cs</DependentUpon>
       <SubType>Designer</SubType>
