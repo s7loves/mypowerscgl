@@ -188,7 +188,27 @@ namespace Ebada.Scgl.Sbgl
         {
             if (parentID == null) return;
             newobj.tqID = parentID;
+            newobj.sbNumber = 1;
+            newobj.sbCode = getcode();
    
+        }
+        string getcode() {
+            string code = "";
+
+            if (gridViewOperation.BindingList.Count > 0) {
+                int maxcode = 0;
+                string tqcode = gridViewOperation.BindingList[0].sbCode;
+                foreach (PS_tqsb node in gridViewOperation.BindingList) {
+                    tqcode = node.sbCode;
+                    maxcode = Math.Max(maxcode, int.Parse(tqcode));
+                }
+                code = (maxcode + 1).ToString("000");
+
+            } else {
+                code = "001";
+            }
+
+            return code;
         }
         /// <summary>
         /// 父表ID

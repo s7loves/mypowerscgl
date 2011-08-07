@@ -15,7 +15,7 @@ namespace Ebada.Scgl.Core {
         public  const string gtxh = "";
         public static void FillCBoxByGt(ComboBoxEdit c) {
             c.Properties.Items.Clear();
-            c.Properties.Items.AddRange(ComboBoxHelper.GetsbxhList("18"));
+            c.Properties.Items.AddRange(ComboBoxHelper.GetsbxhList(gtzl));
         }
         /// <summary>
         /// 填充型号列表

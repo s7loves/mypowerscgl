@@ -42,7 +42,9 @@ namespace Ebada.Scgl.Sbgl
 
         public object RowData {
             get {
-                return rowData;
+                PS_tqsb sb = new PS_tqsb();
+                ConvertHelper.CopyTo(rowData, sb);
+                return sb;
             }
             set {
                 if (value == null) return;
@@ -60,6 +62,15 @@ namespace Ebada.Scgl.Sbgl
 
         private void InitComboBoxData() {
 
+            SetComboBoxData(comboBoxEdit2, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh"));
+            comboBoxEdit2.EditValueChanged += new EventHandler(comboBoxEdit2_EditValueChanged);
+        }
+
+        void comboBoxEdit2_EditValueChanged(object sender, EventArgs e) {
+            object xh=comboBoxEdit2.EditValue;
+            if(string.IsNullOrEmpty(xh as string))return;
+            rowData.sbName = comboBoxEdit4.Text=comboBoxEdit2.Text;
+            pdsbModelHelper.FillCBox(comboBoxEdit3, xh.ToString().Substring(0, 2));
         }
 
         /// <summary>
@@ -71,7 +82,7 @@ namespace Ebada.Scgl.Sbgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_sbcs> post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
