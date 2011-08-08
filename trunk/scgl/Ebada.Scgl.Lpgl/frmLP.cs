@@ -548,7 +548,7 @@ namespace Ebada.Scgl.Lpgl
                 {
                     for (int j = 0; j < arrCellpos.Length; j++)
                     {
-                        if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]))
+                        if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j])&&str!="" )
                         {
                             string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
                             ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
