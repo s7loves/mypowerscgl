@@ -100,6 +100,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ps_gt.cs" />
+    <Compile Include="ps_sbzl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

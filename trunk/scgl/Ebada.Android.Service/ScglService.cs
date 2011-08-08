@@ -74,27 +74,38 @@ namespace Ebada.Android.Service {
 
             return "";
         }
-
+        int ncount = 0;
         public string UpdateGt(List<ps_gt> data) {
             string ret="0";
             if (data != null) {
+                ncount = 0;
                 foreach(ps_gt gt in data){
-                    UpdateGtOne(gt);
+                    try { UpdateGtOne(gt); } catch { }
                 }
                 ret = data.Count.ToString();
+                Console.WriteLine("update {0} count {1}", ret, ncount);
             }
             return ret;
         }
         public string UpdateGtOne(ps_gt data) {
             PS_gt gt = Ebada.Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_gt>(data.gtID);
             if (gt != null) {
-                foreach(FieldInfo fi in data.GetType().GetFields()){
-                    try {
-                        gt.GetType().GetProperty(fi.Name).SetValue(gt, fi.GetValue(data), null);
-                    } catch { }
-                }
+                //foreach(FieldInfo fi in data.GetType().GetFields()){
+                //    try {
+                //        gt.GetType().GetProperty(fi.Name).SetValue(gt, fi.GetValue(data), null);
+                //    } catch { }
+                //}
+                gt.gtType = data.gtType;
+                gt.gtModle = data.gtModle;
+                gt.gtElev = int.Parse(data.gtElev);
+                gt.gtLat = decimal.Parse(data.gtLat);
+                gt.gtLon = decimal.Parse(data.gtLon);
+                gt.gtHeight = decimal.Parse(data.gtHeight);
+                gt.gtSpan = decimal.Parse(data.gtSpan);
+
                 int n=Ebada.Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
-                Console.WriteLine("update {0} count {1}", gt.gtCode, n);
+                ncount += n;
+                //Console.WriteLine("update {0} count {1}", gt.gtCode, n);
             }
 
             return "";

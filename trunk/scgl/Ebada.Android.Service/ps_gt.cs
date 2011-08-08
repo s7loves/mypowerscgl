@@ -35,5 +35,7 @@ namespace Ebada.Android.Service {
         /// </summary>
         [DataMember]
         public string gtSpan;
+        [DataMember]
+        public string jsonData;
     }
 }
