@@ -129,6 +129,7 @@ namespace Ebada.Scgl.Sbgl {
             if (pid == "0") newobj.ParentID = tq.tqCode;
             newobj.LineID = newobj.LineCode = linecode;
             newobj.LineVol = "0.4";
+            newobj.LineName = "";
             newobj.ParentGT = "";
         }
         string getcode(TreeListNode pnode, TreeListNodes nodes) {
