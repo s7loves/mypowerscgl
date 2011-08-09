@@ -49,12 +49,23 @@ namespace Ebada.Android.Service {
             IList<PS_xl> list2 =Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + gdscode + "'");
             foreach (PS_xl xl in list2) {
                 list.Add(new ps_xl() {LineCode=xl.LineCode,LineID=xl.LineID,LineName=xl.LineName,LineVol=xl.LineVol,
-                    WireLength=xl.WireLength.ToString(),WireType=xl.WireType ,ParentID=xl.ParentID,OrgCode=xl.OrgCode});
+                    WireLength=xl.WireLength.ToString(),WireType=xl.WireType ,ParentID=xl.ParentID,OrgCode=xl.OrgCode,Contractor=xl.Contractor});
             }
 
             return list;
         }
+        public List<ps_xl> GetXlList2(string username) {
+            List<ps_xl> list = new List<ps_xl>();
+            IList<PS_xl> list2 = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where Contractor='" + username + "'");
+            foreach (PS_xl xl in list2) {
+                list.Add(new ps_xl() {
+                    LineCode = xl.LineCode, LineID = xl.LineID, LineName = xl.LineName, LineVol = xl.LineVol,
+                    WireLength = xl.WireLength.ToString(), WireType = xl.WireType, ParentID = xl.ParentID, OrgCode = xl.OrgCode,Contractor=xl.Contractor
+                });
+            }
 
+            return list;
+        }
         public List<ps_gt> GetGtList(string xlcode) {
             List<ps_gt> list = new List<ps_gt>();
             IList<PS_gt> list2 = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where LineCode='" + xlcode + "'");
@@ -110,6 +121,23 @@ namespace Ebada.Android.Service {
 
             return "";
         }
+        #endregion
+
+        #region IScglService 成员
+
+
+        public List<ps_sbzl> GetsbzlList() {
+            List<ps_sbzl> list = new List<ps_sbzl>();
+            IList<PS_sbcs> list2 = Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>(null);
+            foreach (PS_sbcs gt in list2) {
+                list.Add(new ps_sbzl() {
+                    id=gt.ID,xh=gt.xh,bh=gt.bh,mc=gt.mc,parentid=gt.ParentID
+                });
+            }
+
+            return list; throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

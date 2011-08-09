@@ -26,6 +26,12 @@ namespace Ebada.Android.Service {
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetXlList/{gdscode}", BodyStyle = WebMessageBodyStyle.Bare)]
         List<ps_xl> GetXlList(string gdscode);
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetXlList2/{username}", BodyStyle = WebMessageBodyStyle.Bare)]
+        List<ps_xl> GetXlList2(string username);
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetzlList", BodyStyle = WebMessageBodyStyle.Bare)]
+        List<ps_sbzl> GetsbzlList();
         /// <summary>
         /// 获取杆塔列表
         /// </summary>
