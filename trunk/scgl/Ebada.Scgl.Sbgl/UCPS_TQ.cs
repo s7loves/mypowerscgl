@@ -102,7 +102,11 @@ namespace Ebada.Scgl.Sbgl
                 IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + btXlList.EditValue.ToString() + "'");
                 repositoryItemLookUpEdit3.DataSource = list;
                 ParentObj = null;
-                RefreshData(string.Format("where left(tqcode,{0})='{1}'", frm.LineCode.Length, frm.LineCode));
+                if (frm.LineCode.Length == 6) {
+                    RefreshData(string.Format("where left(tqcode,{0})='{1}'", frm.LineCode.Length, frm.LineCode));
+                } else {
+                    RefreshData(string.Format("where xlcode2='{1}'",frm.LineCode));
+                }
         }
 
         void btGdsList_EditValueChanged(object sender, EventArgs e)
