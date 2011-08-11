@@ -6,6 +6,7 @@ using Ebada.Client.Platform;
 using Ebada.Scgl.Model;
 using System.Reflection;
 using System.ComponentModel;
+using Ebada.Components;
 
 namespace Ebada.Android.Service {
     public class ScglService : IScglService {
@@ -91,7 +92,7 @@ namespace Ebada.Android.Service {
             if (data != null) {
                 ncount = 0;
                 foreach(ps_gt gt in data){
-                    try { UpdateGtOne(gt); } catch { }
+                    try { UpdateGtOne(gt); } catch (Exception err) { Console.WriteLine(err.Message); }
                 }
                 ret = data.Count.ToString();
                 Console.WriteLine("update {0} count {1}", ret, ncount);
@@ -116,6 +117,25 @@ namespace Ebada.Android.Service {
 
                 int n=Ebada.Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
                 ncount += n;
+                if (data.jsonData != null) {
+                    Console.WriteLine(data.jsonData);
+                    List<ps_gtsb> list=Newtonsoft.Json.JsonConvert.DeserializeObject<List<ps_gtsb>>(data.jsonData);
+                    if (list != null) {
+                        List<SqlQueryObject> sqllist = new List<SqlQueryObject>();
+                        SqlQueryObject sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from ps_gtsb where gtid='"+gt.gtID+"'");
+                        sqllist.Add(sqo);
+                        int num = 0;
+                        foreach (ps_gtsb sb in list) {
+                            num++;
+                            PS_gtsb gtsb = new PS_gtsb() { gtID=gt.gtID, sbModle=sb.xh,sbType=sb.zldm,sbNumber=short.Parse(sb.sl), sbName=sb.zl,sbCode=num.ToString("000") };
+                            gtsb.sbID = gt.gtID + num.ToString("000");
+                            sqo = new SqlQueryObject(SqlQueryType.Insert, gtsb);
+                            sqllist.Add(sqo);
+                        }
+                        Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(sqllist);
+                    }
+                    //Console.WriteLine(list != null ? list.Count : 0);
+                }
                 //Console.WriteLine("update {0} count {1}", gt.gtCode, n);
             }
 
