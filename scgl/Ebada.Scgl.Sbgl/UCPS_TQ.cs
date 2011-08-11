@@ -105,7 +105,7 @@ namespace Ebada.Scgl.Sbgl
                 if (frm.LineCode.Length == 6) {
                     RefreshData(string.Format("where left(tqcode,{0})='{1}'", frm.LineCode.Length, frm.LineCode));
                 } else {
-                    RefreshData(string.Format("where xlcode2='{1}'",frm.LineCode));
+                    RefreshData(string.Format("where xlcode2='{0}'",frm.LineCode));
                 }
         }
 
