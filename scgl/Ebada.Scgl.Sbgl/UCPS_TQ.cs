@@ -116,7 +116,7 @@ namespace Ebada.Scgl.Sbgl
             if (_mOrg != null)
             {
                 frm.GdsCode = _mOrg.OrgCode;
-                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + _mOrg.OrgCode + "'");
+                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + _mOrg.OrgCode + "' and linevol='10'");
                 repositoryItemLookUpEdit2.DataSource = xlList;
                 
             }
