@@ -130,7 +130,7 @@ namespace Ebada.Scgl.Sbgl
             
             if (org != null)
             {
-                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
+                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "' and linevol='10'");
                 repositoryItemLookUpEdit2.DataSource = xlList;
             }
             
