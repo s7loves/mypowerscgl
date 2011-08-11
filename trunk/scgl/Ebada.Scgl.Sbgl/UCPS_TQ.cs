@@ -47,7 +47,13 @@ namespace Ebada.Scgl.Sbgl
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_tq>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tq>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PS_tq>(gridViewOperation_BeforeUpdate);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+        }
+
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PS_tq> e) {
+            if (e.Value.Contractor != e.ValueOld.Contractor)
+                Client.ClientHelper.PlatformSqlMap.Update("Update", "update ps_xl set Contractor='"+e.Value.Contractor+"' where parentid='"+e.Value.tqID+"'");
         }
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_tq> e)

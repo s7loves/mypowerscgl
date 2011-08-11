@@ -22,7 +22,7 @@ namespace Ebada.Scgl.Sbgl
         public string GdsCode
         {
             get { return gdsCode; }
-            set { gdsCode = value; }
+            set { gdsCode = value; ComboBoxHelper.Fillgdsry(comboBoxEdit9, gdsCode); }
         }
         private string lineCode;
 
@@ -88,6 +88,7 @@ namespace Ebada.Scgl.Sbgl
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + gdsCode + "' and linevol='10'");
             comboBoxEdit4.Properties.DataSource = xlList;
             comboBoxEdit5.Properties.DataSource = xlList;
+            
         }
 
         /// <summary>

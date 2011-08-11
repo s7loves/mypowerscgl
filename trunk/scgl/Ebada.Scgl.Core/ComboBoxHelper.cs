@@ -468,6 +468,11 @@ namespace Ebada.Scgl.Core {
         }
         #endregion
 
-        
+
+
+        public static void Fillgdsry(ComboBoxEdit box, string p) {
+            box.Properties.Items.Clear();
+            box.Properties.Items.AddRange(GetGdsRy(p));
+        }
     }
 }
