@@ -44,12 +44,19 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqState");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "InDate");
+            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "tqID");
 
+            this.lookUpEdit1.EditValueChanged += new EventHandler(lookUpEdit1_EditValueChanged);
 
+        }
+
+        void lookUpEdit1_EditValueChanged(object sender, EventArgs e) {
+            this.comboBoxEdit2.EditValue=rowData.byqName = lookUpEdit1.Text;
+            this.comboBoxEdit14.EditValue=rowData.byqInstallAdress = lookUpEdit1.Text;
         }
         #region IPopupFormEdit Members
         private PS_tqbyq rowData = null;
-
+        private string xlcode;
         public object RowData {
             get {
                 PS_tqbyq tq = new PS_tqbyq();
@@ -70,6 +77,12 @@ namespace Ebada.Scgl.Sbgl
                     rowData.byqInstallDate = DateTime.Now;
                     rowData.byqMadeDate = DateTime.Now;
                     rowData.InDate = DateTime.Now;
+                }
+                if (xlcode != rowData.byqCode.Substring(0, 6)) {
+                    xlcode = rowData.byqCode.Substring(0, 6);
+                    this.lookUpEdit1.EditValueChanged -= new EventHandler(lookUpEdit1_EditValueChanged);
+                    lookUpEdit1.Properties.DataSource = ClientHelper.PlatformSqlMap.GetList<PS_tq>(string.Format(" where left(tqcode,6)='{0}'", xlcode));
+                    this.lookUpEdit1.EditValueChanged += new EventHandler(lookUpEdit1_EditValueChanged);
                 }
             }
         }
