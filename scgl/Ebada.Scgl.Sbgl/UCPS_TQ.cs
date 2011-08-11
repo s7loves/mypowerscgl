@@ -53,7 +53,8 @@ namespace Ebada.Scgl.Sbgl
 
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PS_tq> e) {
             if (e.Value.Contractor != e.ValueOld.Contractor)
-                Client.ClientHelper.PlatformSqlMap.Update("Update", "update ps_xl set Contractor='"+e.Value.Contractor+"' where parentid='"+e.Value.tqID+"'");
+                Client.ClientHelper.PlatformSqlMap.Update("Update", 
+                    string.Format("update ps_xl set Contractor='{0}' where left(linecode,{1})='{2}'",e.Value.Contractor,e.Value.tqCode.Length,e.Value.tqCode));
         }
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_tq> e)
