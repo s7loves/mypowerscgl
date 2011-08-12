@@ -109,7 +109,7 @@ namespace Ebada.Android.Service {
                 //}
                 gt.gtType = data.gtType;
                 gt.gtModle = data.gtModle;
-                gt.gtElev = int.Parse(data.gtElev);
+                gt.gtElev = (int)decimal.Parse(data.gtElev);
                 gt.gtLat = decimal.Parse(data.gtLat);
                 gt.gtLon = decimal.Parse(data.gtLon);
                 gt.gtHeight = decimal.Parse(data.gtHeight);
