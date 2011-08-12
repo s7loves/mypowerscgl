@@ -73,7 +73,7 @@ namespace Ebada.Android.Service {
             foreach (PS_gt gt in list2) {
                 list.Add(new ps_gt() { LineCode = gt.LineCode,
                     gtCode=gt.gtCode,gtElev=gt.gtElev.ToString(),gtHeight=gt.gtHeight.ToString(),
-                gth=gt.gth,gtID=gt.gtID,gtLat=gt.gtLat.ToString(),gtLon=gt.gtLon.ToString(),gtSpan=gt.gtSpan.ToString(),
+                gth=gt.gth,gtID=gt.gtID,gtLat=gt.gtLat.ToString(),gtLon=gt.gtLon.ToString(),gtSpan=gt.gtJg,
                 gtModle=gt.gtModle,gtType=gt.gtType.ToString()});
             }
 
@@ -113,7 +113,7 @@ namespace Ebada.Android.Service {
                 gt.gtLat = decimal.Parse(data.gtLat);
                 gt.gtLon = decimal.Parse(data.gtLon);
                 gt.gtHeight = decimal.Parse(data.gtHeight);
-                gt.gtSpan = decimal.Parse(data.gtSpan);
+                gt.gtJg = data.gtSpan=="是"?"是":"否";//借杆
 
                 int n=Ebada.Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
                 ncount += n;
