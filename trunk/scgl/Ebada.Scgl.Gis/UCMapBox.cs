@@ -15,10 +15,10 @@ using DevExpress.XtraEditors;
 using Ebada.Client;
 using Ebada.Client.Platform;
 namespace Ebada.Scgl.Gis {
-    public partial class UCMapBox : XtraUserControl {
+    public partial class UCMapBox : XtraUserControl,IMapView {
         static UCMapBox() {
 
-            
+            TLVector.SpecialCursors.LoadCursors();//加载光标资源 
         }
         public UCMapBox() {
             InitializeComponent();
@@ -64,15 +64,16 @@ namespace Ebada.Scgl.Gis {
         }
         public void Init() {
             if (Site != null && Site.DesignMode) return;
+            
             initcontrol();
-            TLVector.SpecialCursors.LoadCursors();//加载光标资源 
+            
             try {
                 TONLI.MapView.DataHelper.IMapServer = ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>();
 
             } catch (Exception e) { MsgBox.ShowTipMessageBox("地图服务器连接失败！" + e.Message); }
             documentControl1.NewFile();
 
-            setLevel(8);
+            setLevel(9);
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
@@ -80,7 +81,7 @@ namespace Ebada.Scgl.Gis {
             
         }
         void setLevel(int level) {
-            documentControl1.ScaleRatio = 8f / (float)Math.Pow(2, (18 - level));
+            documentControl1.ScaleRatio = 8f / (float)Math.Pow(2, (19 - level));
         }
         void DrawArea_MouseUp(object sender, MouseEventArgs e) {
             isdown = false;
@@ -101,7 +102,9 @@ namespace Ebada.Scgl.Gis {
         }
 
         System.Drawing.Image backbmp = null;
-
+        int mapLevle = 9;
+        int MaxLevle = 17;
+        int MinLevel = 9;
         private void documentControl1_AfterPaintPage(object sender, TLVector.Core.PaintMapEventArgs e) {
 
             if (Site != null && Site.DesignMode) return;
@@ -112,7 +115,7 @@ namespace Ebada.Scgl.Gis {
 
             if (nScale == -1) return;
 
-
+            mapLevle = nScale;
             LongLat longlat = LongLat.Empty;
             //计算中心点经纬度
 
@@ -195,5 +198,33 @@ namespace Ebada.Scgl.Gis {
             (mapview as MapViewGoogle).SetTileType(8);
             documentControl1.Refresh();
         }
+
+        #region IMapView 成员
+
+        public void Zoomin() {
+            setLevel(mapLevle - 1);
+        }
+
+        public void Zoomout() {
+            setLevel(mapLevle + 1);
+        }
+
+        public void Roam() {
+            this.documentControl1.Operation = ToolOperation.Roam;
+        }
+
+        public void Fly() {
+            throw new NotImplementedException("功能正在开发。。。");
+        }
+
+        public void Distance() {
+            throw new NotImplementedException("功能正在开发。。。");
+        }
+
+        public void FullView() {
+            setLevel(9);
+        }
+
+        #endregion
     }
 }

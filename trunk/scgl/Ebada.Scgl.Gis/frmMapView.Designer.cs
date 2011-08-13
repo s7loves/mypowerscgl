@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMapView));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
@@ -31,6 +32,7 @@
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            this.btFullScrean = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
@@ -41,8 +43,8 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.ucMapBox1 = new Ebada.Scgl.Gis.UCMapBox();
-            this.btFullScrean = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +58,7 @@
             this.barManager1.DockControls.Add(this.barDockControlLeft);
             this.barManager1.DockControls.Add(this.barDockControlRight);
             this.barManager1.Form = this;
+            this.barManager1.Images = this.imageList1;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barButtonItem1,
             this.barButtonItem2,
@@ -68,8 +71,10 @@
             this.barButtonItem8,
             this.barButtonItem9,
             this.btFullScrean});
+            this.barManager1.LargeImages = this.imageList1;
             this.barManager1.MaxItemId = 12;
             this.barManager1.StatusBar = this.bar3;
+            this.barManager1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barManager1_ItemClick);
             // 
             // bar2
             // 
@@ -83,9 +88,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btFullScrean),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem6),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btFullScrean)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -94,47 +99,71 @@
             // 
             this.barButtonItem1.Caption = "漫游";
             this.barButtonItem1.Id = 0;
+            this.barButtonItem1.ImageIndex = 5;
             this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barButtonItem2
             // 
             this.barButtonItem2.Caption = "放大";
             this.barButtonItem2.Id = 1;
+            this.barButtonItem2.ImageIndex = 3;
+            this.barButtonItem2.LargeImageIndex = 3;
             this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barButtonItem3
             // 
             this.barButtonItem3.Caption = "缩小";
             this.barButtonItem3.Id = 2;
+            this.barButtonItem3.ImageIndex = 4;
             this.barButtonItem3.Name = "barButtonItem3";
+            this.barButtonItem3.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barButtonItem4
             // 
             this.barButtonItem4.Caption = "测距";
             this.barButtonItem4.Id = 3;
+            this.barButtonItem4.ImageIndex = 6;
             this.barButtonItem4.Name = "barButtonItem4";
+            this.barButtonItem4.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barButtonItem5
             // 
             this.barButtonItem5.Caption = "全景";
             this.barButtonItem5.Id = 4;
+            this.barButtonItem5.ImageIndex = 2;
             this.barButtonItem5.Name = "barButtonItem5";
+            this.barButtonItem5.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btFullScrean
+            // 
+            this.btFullScrean.Caption = "全屏";
+            this.btFullScrean.Id = 11;
+            this.btFullScrean.ImageIndex = 1;
+            this.btFullScrean.Name = "btFullScrean";
+            this.btFullScrean.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btFullScrean.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btFullScrean_ItemClick);
             // 
             // barButtonItem6
             // 
             this.barButtonItem6.Caption = "飞行";
             this.barButtonItem6.Id = 5;
+            this.barButtonItem6.ImageIndex = 7;
             this.barButtonItem6.Name = "barButtonItem6";
+            this.barButtonItem6.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barSubItem1
             // 
             this.barSubItem1.Caption = "定位";
             this.barSubItem1.Id = 7;
+            this.barSubItem1.ImageIndex = 8;
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem7),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem8),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9)});
             this.barSubItem1.Name = "barSubItem1";
+            this.barSubItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barButtonItem7
             // 
@@ -170,47 +199,54 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(519, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(731, 34);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 291);
-            this.barDockControlBottom.Size = new System.Drawing.Size(519, 22);
+            this.barDockControlBottom.Size = new System.Drawing.Size(731, 22);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 267);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 34);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 257);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(519, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 267);
+            this.barDockControlRight.Location = new System.Drawing.Point(731, 34);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 257);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "desktop-blue.png");
+            this.imageList1.Images.SetKeyName(1, "map.png");
+            this.imageList1.Images.SetKeyName(2, "map_magnify.png");
+            this.imageList1.Images.SetKeyName(3, "zoom_in.png");
+            this.imageList1.Images.SetKeyName(4, "zoom_out.png");
+            this.imageList1.Images.SetKeyName(5, "cursor_hand.png");
+            this.imageList1.Images.SetKeyName(6, "rulers-v3.png");
+            this.imageList1.Images.SetKeyName(7, "fly.png");
+            this.imageList1.Images.SetKeyName(8, "location.png");
             // 
             // ucMapBox1
             // 
             this.ucMapBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMapBox1.Location = new System.Drawing.Point(0, 24);
+            this.ucMapBox1.Location = new System.Drawing.Point(0, 34);
             this.ucMapBox1.Mapview = null;
             this.ucMapBox1.Name = "ucMapBox1";
-            this.ucMapBox1.Size = new System.Drawing.Size(519, 267);
+            this.ucMapBox1.Size = new System.Drawing.Size(731, 257);
             this.ucMapBox1.TabIndex = 4;
-            // 
-            // btFullScrean
-            // 
-            this.btFullScrean.Caption = "全屏";
-            this.btFullScrean.Id = 11;
-            this.btFullScrean.Name = "btFullScrean";
-            this.btFullScrean.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btFullScrean_ItemClick);
             // 
             // frmMapView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 313);
+            this.ClientSize = new System.Drawing.Size(731, 313);
             this.Controls.Add(this.ucMapBox1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -244,6 +280,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
         private UCMapBox ucMapBox1;
         private DevExpress.XtraBars.BarButtonItem btFullScrean;
+        private System.Windows.Forms.ImageList imageList1;
 
     }
 }
