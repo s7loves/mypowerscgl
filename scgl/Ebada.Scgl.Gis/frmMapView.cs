@@ -9,14 +9,17 @@ using DevExpress.XtraEditors;
 
 namespace Ebada.Scgl.Gis {
     public partial class frmMapView : XtraForm {
+        IMapView mapview;
         public frmMapView() {
             InitializeComponent();
+            mapview = ucMapBox1;
         }
         public void FullScrean() {
             FormState formState = new FormState();
             this.SetVisibleCore(false);
             formState.Maximize(this);
             this.SetVisibleCore(true);
+            btFullScrean.Caption = "退出全屏";
         }
         #region 工具栏事件
         private void btFullScrean_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -26,9 +29,31 @@ namespace Ebada.Scgl.Gis {
                 frmMapView dlg = new frmMapView();
                 dlg.Show();
                 dlg.FullScrean();
-                btFullScrean.Caption = "退出全屏";
+            }
+        }
+        private void barManager1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            switch (e.Item.Caption) {
+                case "漫游":
+                    mapview.Roam();
+                    break;
+                case "放大":
+                    mapview.Zoomout();
+                    break;
+                case "缩小":
+                    mapview.Zoomin();
+                    break;
+                case "测距":
+                    mapview.Distance();
+                    break;
+                case "全景":
+                    mapview.FullView();
+                    break;
+                case "飞行":
+                    mapview.Fly();
+                    break;                    
             }
         }
         #endregion
+
     }
 }
