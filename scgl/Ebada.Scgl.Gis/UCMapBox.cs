@@ -53,13 +53,12 @@ namespace Ebada.Scgl.Gis {
             this.documentControl1.DrawArea.MaxScale = 2;
             this.documentControl1.DrawArea.MinSacle = 8f / (float)Math.Pow(2, (18 - 7));
 
-            this.documentControl1.DrawMode = DrawModeType.MemoryImage;
+            this.documentControl1.DrawMode = DrawModeType.ScreenImage;
             this.documentControl1.CanEdit = false;
             this.documentControl1.MoveIn += new TLVector.DrawArea.SvgElementEventHandler(documentControl1_MoveIn);
             this.documentControl1.MoveOut += new TLVector.DrawArea.SvgElementEventHandler(documentControl1_MoveOut);
             this.documentControl1.DrawArea.MouseDown += new MouseEventHandler(DrawArea_MouseDown);
             this.documentControl1.DrawArea.MouseUp += new MouseEventHandler(DrawArea_MouseUp);
-
             this.documentControl1.Operation = ToolOperation.Roam;
         }
         public void Init() {
@@ -108,6 +107,12 @@ namespace Ebada.Scgl.Gis {
         private void documentControl1_AfterPaintPage(object sender, TLVector.Core.PaintMapEventArgs e) {
 
             if (Site != null && Site.DesignMode) return;
+            if (isdown) return;
+            if (Control.MouseButtons == MouseButtons.Left) {
+                e.G.Clear(Color.White);
+                return;
+
+            }
             //(mapview as MapViewBase).ShowMapInfo = true;
             int nScale = 0;
             float nn = 1;
@@ -158,16 +163,16 @@ namespace Ebada.Scgl.Gis {
             e.G.DrawEllipse(Pens.Red, e.Bounds.Width / 2 - 2, e.Bounds.Height / 2 - 2, 4, 4);
             e.G.DrawEllipse(Pens.Red, e.Bounds.Width / 2 - 1, e.Bounds.Height / 2 - 1, 2, 2);
             ///107,159
-            {//绘制比例尺
-                Point p1 = new Point(20, e.Bounds.Height - 30);
-                Point p2 = new Point(20, e.Bounds.Height - 20);
-                Point p3 = new Point(80, e.Bounds.Height - 20);
-                Point p4 = new Point(80, e.Bounds.Height - 30);
+            //{//绘制比例尺
+            //    Point p1 = new Point(20, e.Bounds.Height - 30);
+            //    Point p2 = new Point(20, e.Bounds.Height - 20);
+            //    Point p3 = new Point(80, e.Bounds.Height - 20);
+            //    Point p4 = new Point(80, e.Bounds.Height - 30);
 
-                e.G.DrawLines(new Pen(Color.Black, 2), new Point[4] { p1, p2, p3, p4 });
-                string str1 = string.Format("{0}公里", mapview.GetMiles(nScale));
-                e.G.DrawString(str1, new Font("宋体", 10), Brushes.Black, 30, e.Bounds.Height - 40);
-            }
+            //    e.G.DrawLines(new Pen(Color.Black, 2), new Point[4] { p1, p2, p3, p4 });
+            //    string str1 = string.Format("{0}公里", mapview.GetMiles(nScale));
+            //    e.G.DrawString(str1, new Font("宋体", 10), Brushes.Black, 30, e.Bounds.Height - 40);
+            //}
 
         }
 
