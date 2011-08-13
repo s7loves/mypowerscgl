@@ -17,14 +17,19 @@ using Ebada.Client.Platform;
 namespace Ebada.Scgl.Gis {
     public partial class UCMapBox : XtraUserControl {
         static UCMapBox() {
-            TLVector.SpecialCursors.LoadCursors();//加载光标资源 
-            try {
-                TONLI.MapView.DataHelper.IMapServer = ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>();
 
-            } catch (Exception e) { MsgBox.ShowTipMessageBox("地图服务器连接失败！" + e.Message); }
+            
         }
         public UCMapBox() {
             InitializeComponent();
+            
+        }
+
+        void map_OnDownCompleted(ClassImage mapclass) {
+            if (mapclass.PicImage != null)
+                documentControl1.DrawArea.InvadateRect(mapclass.Bounds);
+        }
+        void initcontrol() {
             double jd = double.Parse(ConfigurationManager.AppSettings["jd"]);
             double wd = double.Parse(ConfigurationManager.AppSettings["wd"]);
             bool showmapinfo = bool.Parse(ConfigurationManager.AppSettings["showmapinfo"]);
@@ -54,21 +59,25 @@ namespace Ebada.Scgl.Gis {
             this.documentControl1.MoveOut += new TLVector.DrawArea.SvgElementEventHandler(documentControl1_MoveOut);
             this.documentControl1.DrawArea.MouseDown += new MouseEventHandler(DrawArea_MouseDown);
             this.documentControl1.DrawArea.MouseUp += new MouseEventHandler(DrawArea_MouseUp);
-            Init();
+
             this.documentControl1.Operation = ToolOperation.Roam;
         }
-
-        void map_OnDownCompleted(ClassImage mapclass) {
-            if (mapclass.PicImage != null)
-                documentControl1.DrawArea.InvadateRect(mapclass.Bounds);
-        }
         public void Init() {
+            if (Site != null && Site.DesignMode) return;
+            initcontrol();
+            TLVector.SpecialCursors.LoadCursors();//加载光标资源 
+            try {
+                TONLI.MapView.DataHelper.IMapServer = ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>();
+
+            } catch (Exception e) { MsgBox.ShowTipMessageBox("地图服务器连接失败！" + e.Message); }
             documentControl1.NewFile();
 
+            setLevel(8);
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            setLevel(8);
+            Init();
+            
         }
         void setLevel(int level) {
             documentControl1.ScaleRatio = 8f / (float)Math.Pow(2, (18 - level));
@@ -95,6 +104,7 @@ namespace Ebada.Scgl.Gis {
 
         private void documentControl1_AfterPaintPage(object sender, TLVector.Core.PaintMapEventArgs e) {
 
+            if (Site != null && Site.DesignMode) return;
             //(mapview as MapViewBase).ShowMapInfo = true;
             int nScale = 0;
             float nn = 1;
