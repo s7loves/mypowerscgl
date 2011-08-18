@@ -72,7 +72,11 @@ namespace Ebada.Scgl.Xtgl {
 
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             if (FocusedNodeChanged != null)
-                FocusedNodeChanged(treeList1, treeList1.GetDataRecordByNode(e.Node) as mModule);
+            {
+                //FocusedNodeChanged(treeList1, treeList1.GetDataRecordByNode(e.Node) as mModule);
+                mModule md = MainHelper.PlatformSqlMap.GetOne<mModule>(" where Modu_ID='" + e.Node["Modu_ID"] + "'");
+                FocusedNodeChanged(treeList1, md);
+            }
         }
 
         void treeViewOperator_CreatingObject(mModule newobj) {
