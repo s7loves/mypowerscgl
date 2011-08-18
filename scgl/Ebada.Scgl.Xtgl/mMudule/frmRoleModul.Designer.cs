@@ -100,6 +100,7 @@
             this.checkedListBoxControl1.Size = new System.Drawing.Size(212, 394);
             this.checkedListBoxControl1.TabIndex = 0;
             this.checkedListBoxControl1.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControl1_ItemCheck);
+            this.checkedListBoxControl1.ItemChecking += new DevExpress.XtraEditors.Controls.ItemCheckingEventHandler(this.checkedListBoxControl1_ItemChecking);
             // 
             // frmRoleModul
             // 

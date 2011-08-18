@@ -49,8 +49,8 @@ namespace Ebada.Scgl.Xtgl
             foreach(mModulFun mf in li) 
             {
                 CheckedListBoxItem item = new CheckedListBoxItem();
-                item.Description = mf.FunName ;
-                item.Value = mf.FunCode;
+                item.Description  = mf.FunName ;
+                item.Value = mf.FunID;
                 rRoleFun md = (rRoleFun)MainHelper.PlatformSqlMap.GetObject("SelectrRoleFunList", " where FunID='" + mf.FunID + "' and RoleID='" + mRoleID + "'");
                 if (md != null)
                 {
@@ -65,7 +65,21 @@ namespace Ebada.Scgl.Xtgl
         }
 
         private void checkedListBoxControl1_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e) {
+           
+            
+                MainHelper.PlatformSqlMap.DeleteByWhere<rRoleFun>(" where FunID='" + checkedListBoxControl1.Items[e.Index].Value + "'");
+                if (e.State == CheckState.Checked)
+                {
+                    rRoleFun md = new rRoleFun();
+                    md.FunID = checkedListBoxControl1.Items[e.Index].Value.ToString();
+                    md.RoleID = this.mRoleID;
+                    MainHelper.PlatformSqlMap.Create<rRoleFun>(md);
+                }
+        }
 
+        private void checkedListBoxControl1_ItemChecking(object sender, ItemCheckingEventArgs e)
+        {
+            if (uCmFunctionTree1.FocusedNode.Checked == false) e.Cancel = true;
         }
     }
 }

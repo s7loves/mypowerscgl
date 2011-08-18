@@ -33,6 +33,11 @@ namespace Ebada.Scgl.Xtgl {
 
         TreeViewOperation<mModule> treeViewOperator;
         string m_RoleID;
+        TreeListNode focusedNode;
+        public TreeListNode FocusedNode
+        {
+            get { return focusedNode; }
+        }
         [Browsable(false)]
         public TreeViewOperation<mModule> TreeViewOperator {
             get { return treeViewOperator; }
@@ -73,6 +78,7 @@ namespace Ebada.Scgl.Xtgl {
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             if (FocusedNodeChanged != null)
             {
+                focusedNode = e.Node;
                 //FocusedNodeChanged(treeList1, treeList1.GetDataRecordByNode(e.Node) as mModule);
                 mModule md = MainHelper.PlatformSqlMap.GetOne<mModule>(" where Modu_ID='" + e.Node["Modu_ID"] + "'");
                 FocusedNodeChanged(treeList1, md);

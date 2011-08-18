@@ -127,7 +127,7 @@ namespace Ebada.Scgl.Xtgl {
         /// 初始化数据
         /// </summary>
         public void InitData() {
-            treeViewOperator.RefreshData("order by parentid,sequence");
+            treeViewOperator.RefreshData(" where ModuTypes!='hide' order by parentid,sequence");
         }
 
     }
