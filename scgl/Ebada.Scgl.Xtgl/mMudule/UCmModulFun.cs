@@ -19,6 +19,7 @@ using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
+using System.Threading;
 
 namespace Ebada.Scgl.Xtgl {
 
@@ -64,9 +65,13 @@ namespace Ebada.Scgl.Xtgl {
                 //增加初始模块
                 List<mModulFun> list =new List<mModulFun>();
                 list.Add(createFun("btAdd", "增加"));
+                Thread.Sleep(10);
                 list.Add(createFun("btEdit", "修改"));
+                Thread.Sleep(10);
                 list.Add(createFun("btDelete", "删除"));
+                Thread.Sleep(10);
                 list.Add(createFun("btFind", "查询"));
+                Thread.Sleep(10); 
                 list.Add(createFun("btExport", "导出"));
 
                 Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
