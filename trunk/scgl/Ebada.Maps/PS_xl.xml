@@ -302,6 +302,9 @@
    <select id="GetPS_xlRowCount" parameterClass="string">
     select count(*) from PS_xl $value$
    </select>
+    <select id="GetPS_xllength" parameterClass="string">
+      select sum(WireLength) from PS_xl $value$
+    </select>
   </statements>
 </sqlMap>
  
