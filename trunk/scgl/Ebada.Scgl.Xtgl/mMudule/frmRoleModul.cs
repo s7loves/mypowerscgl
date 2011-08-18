@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using Ebada.Client.Platform;
+using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Xtgl
 {
@@ -42,9 +44,24 @@ namespace Ebada.Scgl.Xtgl
             uCmFunctionTree1.RoleID = mRoleID;
         }
         private void initcheckbox(string modu_id) {
-            CheckedListBoxItem item = new CheckedListBoxItem();
-            item.Description = "";
-            item.Value = "";
+            checkedListBoxControl1.Items.Clear();
+            IList<mModulFun> li = MainHelper.PlatformSqlMap.GetList<mModulFun>("SelectmModulFunList", " where Modu_ID='" + modu_id + "'");
+            foreach(mModulFun mf in li) 
+            {
+                CheckedListBoxItem item = new CheckedListBoxItem();
+                item.Description = mf.FunName ;
+                item.Value = mf.FunCode;
+                rRoleFun md = (rRoleFun)MainHelper.PlatformSqlMap.GetObject("SelectrRoleFunList", " where FunID='" + mf.FunID + "' and RoleID='" + mRoleID + "'");
+                if (md != null)
+                {
+                    item.CheckState = CheckState.Checked;
+                }
+                else
+                {
+                    item.CheckState = CheckState.Unchecked;
+                }
+                checkedListBoxControl1.Items.Add(item);
+            }
         }
 
         private void checkedListBoxControl1_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e) {
