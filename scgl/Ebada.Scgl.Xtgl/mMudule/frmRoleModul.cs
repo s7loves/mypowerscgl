@@ -9,6 +9,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using Ebada.Client.Platform;
 using Ebada.Scgl.Model;
+using Ebada.Components;
 
 namespace Ebada.Scgl.Xtgl
 {
@@ -27,6 +28,7 @@ namespace Ebada.Scgl.Xtgl
 
         void uCmFunctionTree1_FocusedNodeChanged(object sender, Ebada.Scgl.Model.mModule obj) {
             initcheckbox(obj.Modu_ID);
+            allCheckEdit.CheckState = CheckState.Unchecked;
         }
 
         void btnCancel_Click(object sender, EventArgs e)
@@ -80,6 +82,29 @@ namespace Ebada.Scgl.Xtgl
         private void checkedListBoxControl1_ItemChecking(object sender, ItemCheckingEventArgs e)
         {
             if (uCmFunctionTree1.FocusedNode.Checked == false) e.Cancel = true;
+        }
+
+        private void allCheckEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            if (uCmFunctionTree1.FocusedNode.Checked == false)
+            {
+                allCheckEdit.CheckState = CheckState.Unchecked;
+                return;
+            }
+           
+
+            for (int i = 0; i < checkedListBoxControl1.Items.Count; i++)
+            {
+                checkedListBoxControl1.Items[i].CheckState = allCheckEdit.CheckState;
+                MainHelper.PlatformSqlMap.DeleteByWhere<rRoleFun>(" where FunID='" + checkedListBoxControl1.Items[i].Value  + "'");
+                if (checkedListBoxControl1.Items[i].CheckState  == CheckState.Checked)
+                {
+                    rRoleFun md = new rRoleFun();
+                    md.FunID = checkedListBoxControl1.Items[i].Value.ToString();
+                    md.RoleID = this.mRoleID;
+                    MainHelper.PlatformSqlMap.Create<rRoleFun>(md);
+                }
+            }
         }
     }
 }

@@ -34,11 +34,13 @@
             this.uCmFunctionTree1 = new Ebada.Scgl.Xtgl.UCmRoleModulTree();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.checkedListBoxControl1 = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.allCheckEdit = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelOpera)).BeginInit();
             this.panelOpera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allCheckEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelOpera
@@ -83,6 +85,7 @@
             // 
             this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl1.Controls.Add(this.allCheckEdit);
             this.groupControl1.Controls.Add(this.checkedListBoxControl1);
             this.groupControl1.Location = new System.Drawing.Point(387, 0);
             this.groupControl1.Name = "groupControl1";
@@ -102,6 +105,16 @@
             this.checkedListBoxControl1.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControl1_ItemCheck);
             this.checkedListBoxControl1.ItemChecking += new DevExpress.XtraEditors.Controls.ItemCheckingEventHandler(this.checkedListBoxControl1_ItemChecking);
             // 
+            // allCheckEdit
+            // 
+            this.allCheckEdit.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.allCheckEdit.Location = new System.Drawing.Point(2, 398);
+            this.allCheckEdit.Name = "allCheckEdit";
+            this.allCheckEdit.Properties.Caption = "全选";
+            this.allCheckEdit.Size = new System.Drawing.Size(212, 19);
+            this.allCheckEdit.TabIndex = 1;
+            this.allCheckEdit.CheckedChanged += new System.EventHandler(this.allCheckEdit_CheckedChanged);
+            // 
             // frmRoleModul
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -120,6 +133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allCheckEdit.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -132,6 +146,7 @@
         public  UCmRoleModulTree uCmFunctionTree1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl1;
+        private DevExpress.XtraEditors.CheckEdit allCheckEdit;
 
     }
 }
