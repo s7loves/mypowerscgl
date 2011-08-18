@@ -51,7 +51,7 @@ namespace Ebada.Scgl.Xtgl {
             treeViewOperator.AfterAdd += treeViewOperator_AfterAdd;
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete += treeViewOperator_AfterDelete;
-            //treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
+            treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
             
         }
 
