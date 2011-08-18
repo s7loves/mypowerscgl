@@ -61,9 +61,32 @@ namespace Ebada.Scgl.Xtgl {
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete += treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
-            
+            treeViewOperator.BeforeInsert += new ObjectOperationEventHandler<mModule>(treeViewOperator_BeforeInsert);
         }
 
+        void treeViewOperator_BeforeInsert(object render, ObjectOperationEventArgs<mModule> e) {
+            List<object> list = new List<object>();
+            string parentid = e.Value.Modu_ID;
+            list.Add(e.Value);
+            list.Add(createFun("btAdd", "增加", parentid));
+            list.Add(createFun("btEdit", "修改", parentid));
+            list.Add(createFun("btDelete", "删除", parentid));
+            list.Add(createFun("btFind", "查询", parentid));
+            list.Add(createFun("btExport", "导出", parentid));
+            
+            Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
+            e.Cancel = true;
+
+            treeViewOperator.BindingList.Add(e.Value);
+        }
+        private mModulFun createFun(string code, string name,string parentid) {
+            mModulFun fun = new mModulFun(); fun.FunID = fun.CreateID();
+            fun.FunCode = code;
+            fun.FunName = name;
+            fun.Modu_ID = parentid;
+
+            return fun;
+        }
         void treeViewOperator_AfterDelete(mModule newobj) {
             if (AfterDelete != null)
                 AfterDelete(treeList1, newobj);
@@ -93,10 +116,11 @@ namespace Ebada.Scgl.Xtgl {
         }
         public void Init() {
 
-            this.treeList1.KeyFieldName = "Modu_ID";
-            this.treeList1.ParentFieldName = "ParentID";
+            
             if (this.Site == null)
                 InitData();
+            this.treeList1.KeyFieldName = "Modu_ID";
+            this.treeList1.ParentFieldName = "ParentID";
 
         }
         /// <summary>
