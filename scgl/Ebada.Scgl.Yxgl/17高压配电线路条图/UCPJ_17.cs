@@ -248,6 +248,11 @@ namespace Ebada.Scgl.Yxgl
             SheetView sv = fps.Sheets[0];
 
             PS_xl xl = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + pj17.LineCode + "'");
+            if (xl == null)
+            {
+                MsgBox.ShowWarningMessageBox("数据出错，没找到线路");
+                return -1;
+            }
             int ColumnCount = sv.NonEmptyColumnCount;
             int RowCount = sv.NonEmptyRowCount;
             int ihang = 0,jlie=0;
