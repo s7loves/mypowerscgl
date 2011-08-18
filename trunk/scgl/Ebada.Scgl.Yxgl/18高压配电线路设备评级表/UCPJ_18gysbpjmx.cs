@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using Ebada.Components;
 
 namespace Ebada.Scgl.Yxgl
 {
@@ -46,11 +47,42 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_18gysbpjmx>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_18gysbpjmx>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_18gysbpjmx>(gridViewOperation_AfterDelete);
         }
+        void gridViewOperation_AfterDelete(PJ_18gysbpjmx obj)
+        {
 
+            IList<PJ_18gysbpjmx> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_18gysbpjmx>(" where PJ_ID='" + PSObj.PJ_ID + "' order by xh ");
+            List<PJ_18gysbpjmx> list2 = new List<PJ_18gysbpjmx>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i].xh = i;
+            }
+            list2.AddRange (list);
+            try
+            {
+                List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+                
+                if (list.Count > 0)
+                {
+                    SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list2.ToArray());
+                    list3.Add(obj3);
+                }
+
+                MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+                RefreshData(" where PJ_ID='" + PSObj.PJ_ID + "' order by xh ");
+
+            }
+            catch (Exception exception)
+            {
+                MainHelper.ShowWarningMessageBox(exception.Message);
+               
+            }
+        }
         void gridViewOperation_AfterAdd(PJ_18gysbpjmx obj)
         {
-            RefreshData(" where PJ_ID='" + PSObj.PJ_ID + "' order by id desc");
+            //RefreshData(" where PJ_ID='" + PSObj.PJ_ID + "' order by id desc");
+            RefreshData(" where PJ_ID='" + PSObj.PJ_ID + "' order by xh ");
           
         }
       
