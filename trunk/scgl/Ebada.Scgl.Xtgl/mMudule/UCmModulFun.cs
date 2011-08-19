@@ -69,8 +69,6 @@ namespace Ebada.Scgl.Xtgl {
                 list.Add(createFun("btEdit", "修改"));
                 Thread.Sleep(10);
                 list.Add(createFun("btDelete", "删除"));
-                Thread.Sleep(10);
-                list.Add(createFun("btFind", "查询"));
                 Thread.Sleep(10); 
                 list.Add(createFun("btExport", "导出"));
 

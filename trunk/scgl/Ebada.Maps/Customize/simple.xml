@@ -24,6 +24,17 @@
     <statement id="AnySql" parameterClass="string" resultClass="Hashtable">
     $value$
    </statement>
+   <select id="SelectUserFuns" resultClass="string" parameterClass="string">
+     select fun from
+     (select a.modutypes+'_'+d.funcode as fun
+     from mModule a
+     inner join rRoleModul b on a.modu_id=b.modu_id
+     inner join rUserRole c on b.roleid=c.roleid
+     inner join dbo.mModulFun d on d.modu_id =a.modu_id
+     inner join dbo.rRoleFun e on e.funid=d.funid
+     where a.visiableflag=1
+     and c.userid=#value#) f
+   </select>  
   </statements>
 </sqlMap>
  
