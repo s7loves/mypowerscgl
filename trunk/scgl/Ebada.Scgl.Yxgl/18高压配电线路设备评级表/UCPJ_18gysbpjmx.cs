@@ -95,7 +95,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (PSObj == null)
                 e.Cancel = true;
-           object ob= Client.ClientHelper.PlatformSqlMap.GetObject("GetPJ_18gysbpjmxRowCount", " where 1=1");
+            object ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPJ_18gysbpjmxRowCount", " where PJ_ID='" +e.Value.PJ_ID  + "'");
            e.Value.xh = Convert.ToInt32(ob);  
         }
         protected override void OnLoad(EventArgs e)
