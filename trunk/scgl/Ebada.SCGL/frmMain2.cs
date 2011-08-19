@@ -12,14 +12,11 @@ using System.Collections;
 using Ebada.Scgl.Model;
 using Ebada.Client;
 
-namespace Ebada.SCGL
-{
-    public partial class frmMain2 : DevExpress.XtraEditors.XtraForm
-    {
-        public frmMain2()
-        {
+namespace Ebada.SCGL {
+    public partial class frmMain2 : DevExpress.XtraEditors.XtraForm {
+        public frmMain2() {
             InitializeComponent();
-            
+
             //ucModulBar1.RefreshData("");
             ucModulBar1.PlatForm = this;
             iPaintStyle = new BarSubItem(barManager1, "皮肤");
@@ -29,16 +26,13 @@ namespace Ebada.SCGL
         #region Skins
         string skinMask = "Office 2010";
         BarSubItem iPaintStyle;
-        void InitSkins()
-        {
+        void InitSkins() {
             barManager1.ForceInitialize();
-            if (barManager1.GetController().PaintStyleName == "Skin")
-            {
+            if (barManager1.GetController().PaintStyleName == "Skin") {
                 iPaintStyle.Caption = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
                 iPaintStyle.Hint = iPaintStyle.Caption;
             }
-            foreach (DevExpress.Skins.SkinContainer cnt in DevExpress.Skins.SkinManager.Default.Skins)
-            {
+            foreach (DevExpress.Skins.SkinContainer cnt in DevExpress.Skins.SkinManager.Default.Skins) {
                 BarButtonItem item = new BarButtonItem(barManager1, cnt.SkinName);
                 item.Name = "bi" + cnt.SkinName;
                 item.Id = barManager1.GetNewItemId();
@@ -46,13 +40,12 @@ namespace Ebada.SCGL
                 item.ItemClick += new ItemClickEventHandler(OnSkinClick);
             }
         }
-        void OnSkinClick(object sender, ItemClickEventArgs e)
-        {
+        void OnSkinClick(object sender, ItemClickEventArgs e) {
             string skinName = e.Item.Caption.Replace(skinMask, "");
             DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(skinName);
             barManager1.GetController().PaintStyleName = "Skin";
             //solutionExplorer1.barManager1.GetController().PaintStyleName = "Skin";
-            iPaintStyle.Caption ="皮肤："+ e.Item.Caption;
+            iPaintStyle.Caption = "皮肤：" + e.Item.Caption;
             iPaintStyle.Hint = iPaintStyle.Caption;
             iPaintStyle.ImageIndex = -1;
         }
@@ -65,33 +58,27 @@ namespace Ebada.SCGL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void doModule(object sender, EventArgs e)
-        {
+        private void doModule(object sender, EventArgs e) {
             Application.DoEvents();
 
             DataRow row = sender as DataRow;
             mModule obj = Ebada.Core.ConvertHelper.RowToObject<mModule>(row);
             OpenModule(obj);
         }
-        public void OpenModule(mModule obj)
-        {
+        public void OpenModule(mModule obj) {
             //检查模块是否已经打开
-            if (openFormList.ContainsKey(obj.Modu_ID))
-            {
+            if (openFormList.ContainsKey(obj.Modu_ID)) {
                 openFormList[obj.Modu_ID].Activate();
                 return;
             }
             object instance = null;//模块接口
             this.Cursor = Cursors.WaitCursor;
-            try
-            {
+            try {
                 object result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
-                if (result is UserControl)
-                {
+                if (result is UserControl) {
                     instance = showControl(result as UserControl);
                 }
-                if (instance is FormBase)
-                {
+                if (instance is FormBase) {
                     FormBase fb = instance as FormBase;
                     openFormList.Add(obj.Modu_ID, instance as FormBase);
                     ((FormBase)instance).Text = obj.ModuName;
@@ -101,9 +88,7 @@ namespace Ebada.SCGL
                 }
                 this.Cursor = Cursors.Default;
 
-            }
-            catch (Exception err)
-            {
+            } catch (Exception err) {
                 this.Cursor = Cursors.Default;
                 MsgBox.ShowException(err);
             }
@@ -113,8 +98,7 @@ namespace Ebada.SCGL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void frmMain_ChildFormClosed(object sender, FormClosedEventArgs e)
-        {
+        void frmMain_ChildFormClosed(object sender, FormClosedEventArgs e) {
 
             openFormList.Remove((sender as Form).Tag.ToString());
         }
@@ -123,8 +107,7 @@ namespace Ebada.SCGL
         /// </summary>
         /// <param name="uc"></param>
         /// <returns></returns>
-        private FormBase showControl(UserControl uc)
-        {
+        private FormBase showControl(UserControl uc) {
             FormBase dlg = new FormBase();
             dlg.MdiParent = this;
             dlg.Controls.Add(uc);
@@ -151,20 +134,15 @@ namespace Ebada.SCGL
             //ClientHelper.UserFuns = ClientHelper.PlatformSqlMap.GetList("SelectUserFuns", userid);
 
         }
-        void createMenu(BarLinksHolder bc, DataRow[] rows, DataTable dt)
-        {
-            foreach (DataRow row in rows)
-            {
+        void createMenu(BarLinksHolder bc, DataRow[] rows, DataTable dt) {
+            foreach (DataRow row in rows) {
                 DataRow[] progs = dt.Select("parentid='" + row["Modu_ID"] + "' and visiableflag=1", "Sequence");
-                if (progs.Length > 0)
-                {
-                    BarSubItem sub1 = new BarSubItem(barManager1,row["ModuName"].ToString());
+                if (progs.Length > 0) {
+                    BarSubItem sub1 = new BarSubItem(barManager1, row["ModuName"].ToString());
                     createMenu(sub1, progs, dt);
                     bc.AddItem(sub1);
-                }
-                else
-                {
-                    BarButtonItem bt = new BarButtonItem(barManager1,row["ModuName"].ToString());
+                } else {
+                    BarButtonItem bt = new BarButtonItem(barManager1, row["ModuName"].ToString());
                     bt.ItemClick += new ItemClickEventHandler(bt_ItemClick);
                     bt.Tag = Ebada.Core.ConvertHelper.RowToObject<mModule>(row);
                     bc.AddItem(bt);
@@ -172,32 +150,28 @@ namespace Ebada.SCGL
             }
         }
 
-        void bt_ItemClick(object sender, ItemClickEventArgs e)
-        {
+        void bt_ItemClick(object sender, ItemClickEventArgs e) {
             OpenModule(e.Item.Tag as mModule);
         }
 
         #endregion
-        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            this.showControl(new sample1.MudleTreeManager()).Text="模块登记";
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e) {
+            this.showControl(new sample1.MudleTreeManager()).Text = "模块登记";
         }
-        protected override void OnShown(EventArgs e)
-        {
+        protected override void OnShown(EventArgs e) {
             base.OnShown(e);
             MainHelper.MainForm = this;
             InitSkins();
             btLogin_ItemClick(null, null);
         }
-        private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
-        {
+        private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e) {
             ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence"); InitMenu("");
         }
 
         private void btLogin_ItemClick(object sender, ItemClickEventArgs e) {
             frmLogin dlg = new frmLogin();
             if (dlg.ShowDialog() == DialogResult.OK) {
-                barStaticItem2.Caption = string.Format("部门：{0}  操作员：{1}" ,MainHelper.User.OrgName, MainHelper.User.UserName);
+                barStaticItem2.Caption = string.Format("部门：{0}  操作员：{1}", MainHelper.User.OrgName, MainHelper.User.UserName);
                 InitMenu(MainHelper.User.UserID);
                 ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence");
                 ucModulBar1.SetImage();
@@ -205,7 +179,7 @@ namespace Ebada.SCGL
                     barButtonItem1.Visibility = BarItemVisibility.Always;
                     barButtonItem2.Visibility = BarItemVisibility.Always;
                 }
-                
+
             } else {
                 if (MainHelper.User.LoginID == "rabbit") {
                     barButtonItem1.Visibility = BarItemVisibility.Always;
@@ -218,11 +192,11 @@ namespace Ebada.SCGL
                     return;
                 }
 #if DEBUG
-                
+
 #endif
             }
             barButtonItem3.Enabled = (dlg.DialogResult == DialogResult.OK);
-            
+
         }
 
         private void btClose_ItemClick(object sender, ItemClickEventArgs e) {
@@ -233,7 +207,7 @@ namespace Ebada.SCGL
 
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e) {
             //锁屏
-            
+
             Client.Platform.FormPasswordValidation dlg = new FormPasswordValidation();
             dlg.Owner = this;
             dlg.ShowInTaskbar = false;
@@ -249,11 +223,10 @@ namespace Ebada.SCGL
             }
         }
 
-        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            Desktop dt=new Desktop();
-            dt.PlatForm = this; 
+        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e) {
+            Desktop dt = new Desktop();
+            dt.PlatForm = this;
             this.showControl(dt).Text = "我的桌面";
-        } 
+        }
     }
 }
