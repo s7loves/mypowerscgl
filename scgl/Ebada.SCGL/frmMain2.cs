@@ -137,15 +137,19 @@ namespace Ebada.SCGL
         internal void InitMenu(string userid)
         {
             bar2.ItemLinks.Clear();
-            
-            IList list = (IList)MainHelper.PlatformSqlMap.GetList<mModule>("where ModuTypes != 'hide'");
+            string sqlwhere = "  a " +
+                "where a.modu_id in (select b.modu_id from rRoleModul b "+
+ //"inner join rRoleModul b on a.modu_id=b.modu_id " +
+ "inner join rUserRole c on b.roleid=c.roleid " +
+ "where a.visiableflag=1" +" and c.userid='"+userid+"')";
+            IList list = (IList)MainHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);
             DataTable dt = Ebada.Core.ConvertHelper.ToDataTable(list);
             DataRow[] rows = dt.Select("parentid='0'", "Sequence");
             createMenu(bar2, rows, dt);
-            //BarSubItem iPaintStyle = new BarSubItem(barManager1, "皮肤");
+            //BarSubItem iPaintStyle = new BarSubItem(barManager1, "皮肤");"where ModuTypes != 'hide'"
             //iPaintStyle.Name = "iPaintStyle";
             bar2.AddItem(iPaintStyle);
-
+            ClientHelper.UserFuns = ClientHelper.PlatformSqlMap.GetList("SelectUserFuns", userid);
             //InitSkins();
         }
         void createMenu(BarLinksHolder bc, DataRow[] rows, DataTable dt)
