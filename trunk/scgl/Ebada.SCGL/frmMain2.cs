@@ -143,9 +143,11 @@ namespace Ebada.SCGL
  "inner join rUserRole c on b.roleid=c.roleid " +
  "where a.visiableflag=1" +" and c.userid='"+userid+"')";
             IList list = (IList)MainHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);
-            DataTable dt = Ebada.Core.ConvertHelper.ToDataTable(list);
-            DataRow[] rows = dt.Select("parentid='0'", "Sequence");
-            createMenu(bar2, rows, dt);
+            if (list.Count > 0) {
+                DataTable dt = Ebada.Core.ConvertHelper.ToDataTable(list);
+                DataRow[] rows = dt.Select("parentid='0'", "Sequence");
+                createMenu(bar2, rows, dt);
+            }
             //BarSubItem iPaintStyle = new BarSubItem(barManager1, "皮肤");"where ModuTypes != 'hide'"
             //iPaintStyle.Name = "iPaintStyle";
             bar2.AddItem(iPaintStyle);
