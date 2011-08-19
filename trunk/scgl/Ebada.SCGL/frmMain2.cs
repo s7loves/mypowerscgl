@@ -134,25 +134,22 @@ namespace Ebada.SCGL
         }
         #endregion
         #region 加载菜单
-        internal void InitMenu(string userid)
-        {
+        internal void InitMenu(string userid) {
             bar2.ItemLinks.Clear();
             string sqlwhere = "  a " +
-                "where a.modu_id in (select b.modu_id from rRoleModul b "+
- //"inner join rRoleModul b on a.modu_id=b.modu_id " +
- "inner join rUserRole c on b.roleid=c.roleid " +
- "where a.visiableflag=1" +" and c.userid='"+userid+"')";
+                "where a.modu_id in (select b.modu_id from rRoleModul b " +
+                "inner join rUserRole c on b.roleid=c.roleid " +
+                "where a.visiableflag=1" + " and c.userid='" + userid + "')";
             IList list = (IList)MainHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);
             if (list.Count > 0) {
                 DataTable dt = Ebada.Core.ConvertHelper.ToDataTable(list);
                 DataRow[] rows = dt.Select("parentid='0'", "Sequence");
                 createMenu(bar2, rows, dt);
             }
-            //BarSubItem iPaintStyle = new BarSubItem(barManager1, "皮肤");"where ModuTypes != 'hide'"
-            //iPaintStyle.Name = "iPaintStyle";
             bar2.AddItem(iPaintStyle);
+            //加载用户操作权限列表
             //ClientHelper.UserFuns = ClientHelper.PlatformSqlMap.GetList("SelectUserFuns", userid);
-            //InitSkins();
+
         }
         void createMenu(BarLinksHolder bc, DataRow[] rows, DataTable dt)
         {
