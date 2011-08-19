@@ -149,7 +149,7 @@ namespace Ebada.SCGL
             //BarSubItem iPaintStyle = new BarSubItem(barManager1, "皮肤");"where ModuTypes != 'hide'"
             //iPaintStyle.Name = "iPaintStyle";
             bar2.AddItem(iPaintStyle);
-            ClientHelper.UserFuns = ClientHelper.PlatformSqlMap.GetList("SelectUserFuns", userid);
+            //ClientHelper.UserFuns = ClientHelper.PlatformSqlMap.GetList("SelectUserFuns", userid);
             //InitSkins();
         }
         void createMenu(BarLinksHolder bc, DataRow[] rows, DataTable dt)
