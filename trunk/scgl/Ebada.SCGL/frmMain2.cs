@@ -76,14 +76,16 @@ namespace Ebada.SCGL {
             try {
                 object result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
                 if (result is UserControl) {
-                    instance = showControl(result as UserControl);
+                    instance = showControl(result as UserControl,obj.Modu_ID);
                 }
-                if (instance is FormBase) {
-                    FormBase fb = instance as FormBase;
-                    openFormList.Add(obj.Modu_ID, instance as FormBase);
-                    ((FormBase)instance).Text = obj.ModuName;
-                    ((FormBase)instance).FormClosed += frmMain_ChildFormClosed;
-                    ((FormBase)instance).Tag = obj.Modu_ID;
+                if (instance is Form) {
+                    Form fb = instance as Form;
+                    openFormList.Add(obj.Modu_ID, fb);
+                    fb.Text = obj.ModuName;
+                    fb.FormClosed += frmMain_ChildFormClosed;
+                    Dictionary<string, object> dic = new Dictionary<string, object>();
+                    dic.Add("Modu_ID", obj.Modu_ID);
+                    fb.Tag = dic;
 
                 }
                 this.Cursor = Cursors.Default;
@@ -99,16 +101,22 @@ namespace Ebada.SCGL {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void frmMain_ChildFormClosed(object sender, FormClosedEventArgs e) {
-
-            openFormList.Remove((sender as Form).Tag.ToString());
+            Dictionary<string,object> dic =(sender as Form).Tag as Dictionary<string,object>;
+            if(dic!=null)
+            openFormList.Remove(dic["Modu_ID"].ToString());
         }
         /// <summary>
         /// 显示用户控件方法
         /// </summary>
         /// <param name="uc"></param>
         /// <returns></returns>
-        private FormBase showControl(UserControl uc) {
+        private FormBase showControl(UserControl uc,string moduID) {
             FormBase dlg = new FormBase();
+            if (!string.IsNullOrEmpty(moduID)) {
+                Dictionary<string, object> dic = new Dictionary<string, object>();
+                dic.Add("Modu_ID", moduID);
+                dlg.Tag = dic;
+            }
             dlg.MdiParent = this;
             dlg.Controls.Add(uc);
             uc.Dock = DockStyle.Fill;
@@ -156,7 +164,7 @@ namespace Ebada.SCGL {
 
         #endregion
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e) {
-            this.showControl(new sample1.MudleTreeManager()).Text = "模块登记";
+            this.showControl(new sample1.MudleTreeManager(),null).Text = "模块登记";
         }
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
@@ -226,7 +234,7 @@ namespace Ebada.SCGL {
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e) {
             Desktop dt = new Desktop();
             dt.PlatForm = this;
-            this.showControl(dt).Text = "我的桌面";
+            this.showControl(dt,null).Text = "我的桌面";
         }
     }
 }
