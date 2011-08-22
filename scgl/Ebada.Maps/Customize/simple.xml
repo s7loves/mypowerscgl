@@ -26,7 +26,7 @@
    </statement>
    <select id="SelectUserFuns" resultClass="string" parameterClass="string">
      select fun from
-     (select a.modutypes+'_'+d.funcode as fun
+     (select a.modu_id+'_'+d.funcode as fun
      from mModule a
      inner join rRoleModul b on a.modu_id=b.modu_id
      inner join rUserRole c on b.roleid=c.roleid
