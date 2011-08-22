@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Ebada.Client.Config")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("tonli")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Ebada.Client.Config")]
-[assembly: AssemblyCopyright("Copyright © tonli 2011")]
+[assembly: AssemblyCopyright("Copyright ©  2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
