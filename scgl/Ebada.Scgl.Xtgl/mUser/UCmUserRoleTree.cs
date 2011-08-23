@@ -186,7 +186,17 @@ namespace Ebada.Scgl.Xtgl {
             //mUser md = MainHelper.PlatformSqlMap.GetOne<mUser>(" where ModuName='工作流设置'");
             //if(md!=null)
             //    IniWFData(md.Modu_ID );
+            IList<mOrg> orgli = MainHelper.PlatformSqlMap.GetList<mOrg>("SelectmOrgList", "order by OrgType");
             IList<mUser> li = MainHelper.PlatformSqlMap.GetList<mUser>("SelectmUserList", slqwhere);
+            foreach (mOrg or in orgli)
+            {
+                mUser user = new mUser();
+                user.UserID = or.OrgID;
+                user.UserName = or.OrgName;
+                user.OrgCode = or.ParentID;
+                user.Type = "orgtemp";
+                li.Add(user); 
+            }
             if (li.Count != 0)
             {
                 //gridtable = ConvertHelper.ToDataTable((IList)li);
@@ -249,6 +259,8 @@ namespace Ebada.Scgl.Xtgl {
                 if (dic.ContainsKey(node["UserID"].ToString()))
                 {
                     node.Checked = true;
+                    if (node.ParentNode != null && !node.ParentNode.Checked)
+                        node.ParentNode.Checked = true;
                 }
                 if (node.HasChildren) {
                     this.SetChecked(node.Nodes, dic);
@@ -264,7 +276,8 @@ namespace Ebada.Scgl.Xtgl {
         }
         private void getCheckList(TreeListNodes nodes, IList<string> list) {
             foreach (TreeListNode node in nodes) {
-                if (node.Checked) {
+                if (node.Checked&&node["Type"].ToString ()!= "orgtemp") {
+                    
                     list.Add(node["UserID"].ToString());
                 }
                 if (node.HasChildren) {
