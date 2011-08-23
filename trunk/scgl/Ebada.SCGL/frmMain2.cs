@@ -125,9 +125,10 @@ namespace Ebada.SCGL {
         }
         #endregion
         #region 加载菜单
+        string sqlwhere = " where 1=0";
         internal void InitMenu(string userid) {
             bar2.ItemLinks.Clear();
-            string sqlwhere = "  a " +
+            sqlwhere = "  a " +
                 "where a.modu_id in (select b.modu_id from rRoleModul b " +
                 "inner join rUserRole c on b.roleid=c.roleid " +
                 "where a.visiableflag=1" + " and c.userid='" + userid + "')";
@@ -170,7 +171,7 @@ namespace Ebada.SCGL {
             base.OnShown(e);
             MainHelper.MainForm = this;
             InitSkins();
-            btLogin_ItemClick(null, null);
+            btLogin.PerformClick();
         }
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e) {
             ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence"); InitMenu("");
@@ -181,7 +182,7 @@ namespace Ebada.SCGL {
             if (dlg.ShowDialog() == DialogResult.OK) {
                 barStaticItem2.Caption = string.Format("部门：{0}  操作员：{1}", MainHelper.User.OrgName, MainHelper.User.UserName);
                 InitMenu(MainHelper.User.UserID);
-                ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence");
+                ucModulBar1.RefreshData(sqlwhere);
                 ucModulBar1.SetImage();
                 if (MainHelper.User.LoginID == "rabbit") {
                     barButtonItem1.Visibility = BarItemVisibility.Always;
