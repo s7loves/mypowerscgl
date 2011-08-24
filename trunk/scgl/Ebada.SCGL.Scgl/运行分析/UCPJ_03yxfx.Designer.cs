@@ -1,4 +1,4 @@
-﻿namespace Ebada.Scgl.Scgl
+﻿namespace Ebada.SCGL.Lcgl
 {
     partial class UCPJ_03yxfx {
         /// <summary> 

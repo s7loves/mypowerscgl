@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Ebada.Scgl.Scgl
+namespace Ebada.SCGL.Lcgl
 {
     public partial class UCPJ_03YXFXForm : Form
     {
@@ -17,7 +17,7 @@ namespace Ebada.Scgl.Scgl
         public void UCPJ_03YXFXForm_DQFX()
         {
             //InitializeComponent();
-            ucpJ_03yxfx1.RecordIkind = "定期分析";
+            ucpJ_03yxfx1.RecordIkind = "流程定期分析";
             //ucpJ_03yxfx1.InitColumns();
             //ucpJ_03yxfx1.InitData();
             this.Show();
@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Scgl
         public void UCPJ_03YXFXForm_ZTFX()
         {
             //InitializeComponent();
-            ucpJ_03yxfx1.RecordIkind = "专题分析";
+            ucpJ_03yxfx1.RecordIkind = "流程专题分析";
             //ucpJ_03yxfx1.InitColumns();
             //ucpJ_03yxfx1.InitData();
             this.Show() ;

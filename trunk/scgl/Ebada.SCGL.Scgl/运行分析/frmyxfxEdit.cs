@@ -14,14 +14,14 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
 using Ebada.Scgl.WFlow;
-namespace Ebada.Scgl.Scgl
+namespace Ebada.SCGL.Lcgl
 {
     public partial class frmyxfxEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_03yxfx> m_CityDic = new SortableSearchableBindingList<PJ_03yxfx>();
 
         public frmyxfxEdit() {
             InitializeComponent();
-            //IniControlStatus();
+            IniControlStatus();
         }
         void dataBind() {
 
@@ -123,7 +123,7 @@ namespace Ebada.Scgl.Scgl
 
 
                 recordStatus = value;
-                //IniControlStatus();
+                IniControlStatus();
 
             }
         }
@@ -162,6 +162,7 @@ namespace Ebada.Scgl.Scgl
                     groupBox1.Enabled = true;
                     groupBox2.Enabled = false;
                     groupBox3.Enabled = false;
+                    memoEdit4.Enabled = false;
                     //groupBox4.Enabled = false;
                     //groupBox5.Enabled = false;
                     //groupBox6.Enabled = false;
@@ -171,7 +172,7 @@ namespace Ebada.Scgl.Scgl
 
                     dateEdit4.Enabled = true;
                     comboBoxEdit17.Enabled = true;
-                    groupBox7.Enabled =  false;
+                    groupBox7.Enabled = true;
                     break;
                 default :
                     groupBox1.Enabled = false;
@@ -277,42 +278,42 @@ namespace Ebada.Scgl.Scgl
                 //rowData.gznrID =gzr.gznrID ;
                 //gzr.ParentID = yxfx.ID;
                 yxfx.CreateDate = DateTime.Now;
-                yxfx.CreateMan = MainHelper.User.UserName; 
+                yxfx.CreateMan = MainHelper.User.UserName;
                 //IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
                 //if (gzrj01.Count > 0)
                 //{
-                    //gzr.gzrjID = gzrj01[0].gzrjID;
-                    //IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
-                    //if (gzrlist.Count > 0)
-                    //{
-                    //    gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
-                    //}
-                    //else
-                    //    gzr.seq = 1;
-                    //gzr.gznr = yxfx.hydd + "运行分析-" + yxfx.type;
-                    //gzr.fzr = yxfx.zcr;
-                    //gzr.fssj = yxfx.rq;
-                    //string[] ss = yxfx.cjry.Split(';');
-                    //if (ss.Length >= 1)
-                    //{
+                //    gzr.gzrjID = gzrj01[0].gzrjID;
+                //    IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
+                //    if (gzrlist.Count > 0)
+                //    {
+                //        gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
+                //    }
+                //    else
+                //        gzr.seq = 1;
+                //    gzr.gznr = yxfx.hydd + "运行分析-" + yxfx.type;
+                //    gzr.fzr = yxfx.zcr;
+                //    gzr.fssj = yxfx.rq;
+                //    string[] ss = yxfx.cjry.Split(';');
+                //    if (ss.Length >= 1)
+                //    {
 
-                    //    gzr.cjry = gzr.fzr + "、" + ss[0];
-                    //    if (ss.Length > 2) gzr.cjry = gzr.cjry + "等";
-                    //    gzr.cjry = gzr.cjry + ss.Length + "人";
-                    //}
-                    //else
-                    //{
-                    //    gzr.cjry = gzr.fzr;
-                    //}
+                //        gzr.cjry = gzr.fzr + "、" + ss[0];
+                //        if (ss.Length > 2) gzr.cjry = gzr.cjry + "等";
+                //        gzr.cjry = gzr.cjry + ss.Length + "人";
+                //    }
+                //    else
+                //    {
+                //        gzr.cjry = gzr.fzr;
+                //    }
 
 
                 //}
                 //else
                 //{
-                //    MsgBox.ShowWarningMessageBox("未填写今日工作日记");   
+                //    MsgBox.ShowWarningMessageBox("未填写今日工作日记");
                 //    return;
                 //}
-                string strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, yxfx.type,MainHelper.User.UserID   );
+                string strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, yxfx.type.Replace("流程", ""), MainHelper.User.UserID);
                
                 if (strmes.IndexOf("未提交至任何人") > -1)
                 {
@@ -322,7 +323,7 @@ namespace Ebada.Scgl.Scgl
                 else
                     MsgBox.ShowTipMessageBox(strmes);
                 //if (gzrj01.Count > 0)
-                    //MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
+                //    MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
                 MainHelper.PlatformSqlMap.Create<PJ_03yxfx>(yxfx);
                 //this.Close();
             }
