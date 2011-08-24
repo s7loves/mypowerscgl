@@ -237,6 +237,18 @@ namespace Ebada.Scgl.Yxgl
             }
         }
 
+        private void comboBoxEdit2_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            ICollection list = new ArrayList();
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select XSR1 from PJ_sbxsqd where XsqdName='{0}' ", comboBoxEdit2.EditValue));
+            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.AddRange(list);
+
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select XSR2 from PJ_sbxsqd where XsqdName='{0}' ", comboBoxEdit2.EditValue));
+            comboBoxEdit6.Properties.Items.Clear();
+            comboBoxEdit6.Properties.Items.AddRange(list); 
+        }
+
 
 
 
