@@ -1,4 +1,4 @@
-﻿namespace Ebada.Scgl.Scgl
+﻿namespace Ebada.SCGL.Lcgl
 {
     partial class frmyxfxEdit
     {
@@ -158,6 +158,7 @@
             this.groupBox7.Controls.Add(this.labelControl6);
             this.groupBox7.Controls.Add(this.comboBoxEdit17);
             this.groupBox7.Controls.Add(this.labelControl2);
+            this.groupBox7.Enabled = false;
             this.groupBox7.Location = new System.Drawing.Point(414, 35);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(168, 485);
@@ -213,6 +214,7 @@
             // 
             this.groupBox3.Controls.Add(this.simpleButton1);
             this.groupBox3.Controls.Add(this.xtraTabControl1);
+            this.groupBox3.Enabled = false;
             this.groupBox3.Location = new System.Drawing.Point(9, 233);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(399, 287);
@@ -222,7 +224,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Location = new System.Drawing.Point(62, 0);
             this.simpleButton1.Name = "simpleButton1";
@@ -307,6 +309,7 @@
             this.groupBox2.Controls.Add(this.comboBoxEdit11);
             this.groupBox2.Controls.Add(this.comboBoxEdit6);
             this.groupBox2.Controls.Add(this.comboBoxEdit1);
+            this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(9, 35);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(399, 95);
@@ -459,6 +462,7 @@
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Controls.Add(this.comboBoxEdit16);
             this.groupBox1.Controls.Add(this.comboBoxEdit18);
+            this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(9, 136);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(396, 91);
