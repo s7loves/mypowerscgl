@@ -31,10 +31,44 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v10.1.Core, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Ebada.Client, Version=1.0.4225.27094, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Client.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Client.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Client.Resource, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Client.Resource.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Components, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.UI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -45,7 +79,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ecommon.cs" />
+    <Compile Include="运行分析\Export03.cs" />
+    <Compile Include="运行分析\frmyxfxEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="运行分析\frmyxfxEdit.Designer.cs">
+      <DependentUpon>frmyxfxEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="运行分析\UCPJ_03yxfx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="运行分析\UCPJ_03yxfx.Designer.cs">
+      <DependentUpon>UCPJ_03yxfx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="运行分析\UCPJ_03YXFXForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="运行分析\UCPJ_03YXFXForm.Designer.cs">
+      <DependentUpon>UCPJ_03YXFXForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="运行分析\frmyxfxEdit.resx">
+      <DependentUpon>frmyxfxEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="运行分析\UCPJ_03yxfx.resx">
+      <DependentUpon>UCPJ_03yxfx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="运行分析\UCPJ_03YXFXForm.resx">
+      <DependentUpon>UCPJ_03YXFXForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ebada.Scgl.Core\Ebada.Scgl.Core.csproj">
+      <Project>{BFD83E09-E190-4B5E-8F16-BD91F457E058}</Project>
+      <Name>Ebada.Scgl.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
+      <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
+      <Name>Ebada.Scgl.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ebada.Scgl.WFlow\Ebada.Scgl.WFlow.csproj">
+      <Project>{DB517AF8-551D-4C08-83BE-69D803C89173}</Project>
+      <Name>Ebada.Scgl.WFlow</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
