@@ -93,9 +93,9 @@
             // splitterControl1
             // 
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitterControl1.Location = new System.Drawing.Point(0, 372);
+            this.splitterControl1.Location = new System.Drawing.Point(0, 374);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(734, 6);
+            this.splitterControl1.Size = new System.Drawing.Size(734, 4);
             this.splitterControl1.TabIndex = 0;
             this.splitterControl1.TabStop = false;
             // 
@@ -161,9 +161,9 @@
             // 
             this.panelControl3.Controls.Add(this.treeList1);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(0, 28);
+            this.panelControl3.Location = new System.Drawing.Point(0, 26);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(196, 237);
+            this.panelControl3.Size = new System.Drawing.Size(196, 239);
             this.panelControl3.TabIndex = 7;
             // 
             // treeList1
@@ -178,7 +178,7 @@
             this.treeList1.OptionsView.ShowColumns = false;
             this.treeList1.OptionsView.ShowIndicator = false;
             this.treeList1.ParentFieldName = "parentid";
-            this.treeList1.Size = new System.Drawing.Size(192, 233);
+            this.treeList1.Size = new System.Drawing.Size(192, 235);
             this.treeList1.TabIndex = 2;
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
             this.treeList1.DoubleClick += new System.EventHandler(this.treeList1_DoubleClick);
@@ -197,7 +197,7 @@
             this.splitterControl2.Enabled = false;
             this.splitterControl2.Location = new System.Drawing.Point(0, 22);
             this.splitterControl2.Name = "splitterControl2";
-            this.splitterControl2.Size = new System.Drawing.Size(196, 6);
+            this.splitterControl2.Size = new System.Drawing.Size(196, 4);
             this.splitterControl2.TabIndex = 6;
             this.splitterControl2.TabStop = false;
             // 
@@ -239,7 +239,7 @@
             this.xtraTabControl2.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl2.Name = "xtraTabControl2";
             this.xtraTabControl2.SelectedTabPage = this.newsTabPage;
-            this.xtraTabControl2.Size = new System.Drawing.Size(528, 265);
+            this.xtraTabControl2.Size = new System.Drawing.Size(530, 265);
             this.xtraTabControl2.TabIndex = 8;
             this.xtraTabControl2.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.newsTabPage,
@@ -249,7 +249,7 @@
             // 
             this.newsTabPage.Controls.Add(this.webBrowser1);
             this.newsTabPage.Name = "newsTabPage";
-            this.newsTabPage.Size = new System.Drawing.Size(521, 235);
+            this.newsTabPage.Size = new System.Drawing.Size(525, 238);
             this.newsTabPage.Text = "重要工作";
             // 
             // webBrowser1
@@ -258,14 +258,14 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(521, 235);
+            this.webBrowser1.Size = new System.Drawing.Size(525, 238);
             this.webBrowser1.TabIndex = 0;
             // 
             // taskTabPage
             // 
             this.taskTabPage.Controls.Add(this.gridTalskCon);
             this.taskTabPage.Name = "taskTabPage";
-            this.taskTabPage.Size = new System.Drawing.Size(521, 235);
+            this.taskTabPage.Size = new System.Drawing.Size(525, 238);
             this.taskTabPage.Text = "我的任务";
             // 
             // gridTalskCon
@@ -277,7 +277,7 @@
             this.gridTalskCon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemHyperLinkEdit1,
             this.imageEdit1});
-            this.gridTalskCon.Size = new System.Drawing.Size(521, 235);
+            this.gridTalskCon.Size = new System.Drawing.Size(525, 238);
             this.gridTalskCon.TabIndex = 0;
             this.gridTalskCon.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridTalskView,
@@ -347,8 +347,6 @@
             this.gridColumn10.ColumnEdit = this.imageEdit1;
             this.gridColumn10.FieldName = "Image";
             this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 3;
             // 
             // imageEdit1
             // 
@@ -369,7 +367,7 @@
             this.gridColumn9.FieldName = "butt";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 4;
+            this.gridColumn9.VisibleIndex = 3;
             // 
             // repositoryItemHyperLinkEdit1
             // 
