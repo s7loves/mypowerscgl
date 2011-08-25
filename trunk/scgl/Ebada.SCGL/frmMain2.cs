@@ -11,6 +11,7 @@ using Ebada.UI.Base;
 using System.Collections;
 using Ebada.Scgl.Model;
 using Ebada.Client;
+using Ebada.SCGL.WFlow.Engine;
 
 namespace Ebada.SCGL {
     public partial class frmMain2 : DevExpress.XtraEditors.XtraForm {
@@ -204,6 +205,7 @@ namespace Ebada.SCGL {
 
 #endif
             }
+            showMessage(3);
             barButtonItem3.Enabled = (dlg.DialogResult == DialogResult.OK);
 
         }
@@ -231,7 +233,39 @@ namespace Ebada.SCGL {
                 }
             }
         }
-
+        private void showMessage(int type)
+        {
+            TaskbarNotifier taskbarNotifier1 = new TaskbarNotifier();
+            taskbarNotifier1.SetCloseBitmap(new Bitmap(Image.FromStream(typeof(UsualForm).Assembly.GetManifestResourceStream("Ebada.SCGL.Resources.close.bmp"))), Color.FromArgb(255, 0, 255), new Point(127, 8));
+            
+            switch (type)
+            {
+                case 1:
+                    taskbarNotifier1.SetBackgroundBitmap(new Bitmap(Image.FromStream(typeof(UsualForm).Assembly.GetManifestResourceStream("Ebada.SCGL.Resources.skin1.bmp"))), Color.FromArgb(255, 0, 255));
+                    taskbarNotifier1.TitleRectangle = new Rectangle(40, 9, 70, 25);
+                    taskbarNotifier1.ContentRectangle = new Rectangle(8, 41, 133, 68);
+                    break;
+                case 2:
+                    taskbarNotifier1.SetCloseBitmap(new Bitmap(Image.FromStream(typeof(UsualForm).Assembly.GetManifestResourceStream("Ebada.SCGL.Resources.skin2.bmp"))), Color.FromArgb(255, 0, 255), new Point(127, 8));
+                    taskbarNotifier1.TitleRectangle = new Rectangle(123, 80, 176, 16);
+                    taskbarNotifier1.ContentRectangle = new Rectangle(116, 97, 197, 22);
+                    break;
+                default :
+                    taskbarNotifier1.SetBackgroundBitmap(new Bitmap(Image.FromStream(typeof(UsualForm).Assembly.GetManifestResourceStream("Ebada.SCGL.Resources.skin3.bmp"))), Color.FromArgb(255, 0, 255));
+                    taskbarNotifier1.TitleRectangle = new Rectangle(150, 57, 125, 28);
+                    taskbarNotifier1.ContentRectangle = new Rectangle(75, 92, 215, 55);
+                    break;
+            }
+            taskbarNotifier1.CloseClickable = true;
+            taskbarNotifier1.KeepVisibleOnMousOver = true;	// Added Rev 002
+            taskbarNotifier1.ReShowOnMouseOver = true;			// Added Rev 002
+            taskbarNotifier1.EnableSelectionRectangle = true;
+            //taskbarNotifier1.TitleClick += new EventHandler(TitleClick);
+            //taskbarNotifier1.ContentClick += new EventHandler(ContentClick);
+            //taskbarNotifier1.CloseClick += new EventHandler(CloseClick);
+            taskbarNotifier1.Show("农电生产系统", "欢迎"+MainHelper.User.UserName +"登陆，今天有" + WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999).Rows.Count.ToString ()   + "个任务待处理", 500, 5000, 500);
+        
+        }
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e) {
             Desktop dt = new Desktop();
             dt.PlatForm = this;
