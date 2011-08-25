@@ -147,7 +147,7 @@ namespace Ebada.SCGL
                 WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(tdr["WorkFlowId"]);
                 taskdr["Modu_ID"] = wf.MgrUrl;
                 taskdr["butt"] = "进入";
-                taskdr["Image"] = WorkFlowInstance.WorkFlowBitmap(tdr["WorkFlowId"].ToString(), tdr["WorkFlowInsId"].ToString(), imageEdit1.PopupFormSize);
+                //taskdr["Image"] = WorkFlowInstance.WorkFlowBitmap(tdr["WorkFlowId"].ToString(), tdr["WorkFlowInsId"].ToString(), imageEdit1.PopupFormSize);
                 taskdt.Rows.Add(taskdr);
 
                 
@@ -181,7 +181,7 @@ namespace Ebada.SCGL
             taskdt.Columns.Add("WorkTaskId", typeof(string));
             taskdt.Columns.Add("Modu_ID", typeof(string));
             taskdt.Columns.Add("butt", typeof(string));
-            taskdt.Columns.Add("Image", typeof(Bitmap));
+            //taskdt.Columns.Add("Image", typeof(Bitmap));
             refreshTreeData();
             //iniUsualCtrl();
             /*

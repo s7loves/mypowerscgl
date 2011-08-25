@@ -34,13 +34,13 @@ namespace Ebada.Scgl.Model
         private string _xcr=String.Empty; 
         private DateTime _xcrq=new DateTime(1900,1,1); 
         private string _createman=String.Empty; 
-        private DateTime _createdate=new DateTime(1900,1,1); 
-        private string _gzrjid=String.Empty;   
+        private DateTime _createdate=new DateTime(1900,1,1);
+        private string _gzrjid = String.Empty;
+        private string _Deadline = String.Empty;   
         #endregion
   
   
         #region Public 成员
-   
         /// <summary>
         /// 属性名称：ID
         /// 属性描述：记录ID
@@ -246,7 +246,27 @@ namespace Ebada.Scgl.Model
                 {
                     _qxlb = value;
                 }
-            }			 
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：Deadline
+        /// 属性描述：消缺期限
+        /// 字段信息：[Deadline],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("消缺期限")]
+        public string Deadline
+        {
+            get { return _Deadline; }
+            set
+            {
+                if (value == null) return;
+
+                if (_Deadline as object == null || !_Deadline.Equals(value))
+                {
+                    _Deadline = value;
+                }
+            }
         }
   
         /// <summary>
