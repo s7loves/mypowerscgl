@@ -119,7 +119,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Client.Config", "Ebad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.AutoUpdater.Config", "Ebada.AutoUpdater.Config\Ebada.AutoUpdater.Config.csproj", "{21244318-4997-4F52-8ED7-3293A026502A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.SCGL.Lcgl", "Ebada.SCGL.Lcgl\Ebada.SCGL.Lcgl.csproj", "{1F5C3A84-EA23-43A1-B888-4C4BF2C68905}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Scgl.Lcgl", "Ebada.SCGL.Lcgl\Ebada.Scgl.Lcgl.csproj", "{1F5C3A84-EA23-43A1-B888-4C4BF2C68905}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution

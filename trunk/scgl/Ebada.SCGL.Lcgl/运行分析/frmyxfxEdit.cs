@@ -313,7 +313,7 @@ namespace Ebada.Scgl.Lcgl
                 //    MsgBox.ShowWarningMessageBox("未填写今日工作日记");
                 //    return;
                 //}
-                string strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, yxfx.type.Replace("流程", ""), MainHelper.User.UserID);
+                string strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, yxfx.type, MainHelper.User.UserID);
                
                 if (strmes.IndexOf("未提交至任何人") > -1)
                 {
