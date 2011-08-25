@@ -182,6 +182,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TaskbarNotifier.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UCModulBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -219,6 +222,12 @@
   <ItemGroup>
     <Content Include="3d_software.ico" />
     <EmbeddedResource Include="NewsPage.htm" />
+    <EmbeddedResource Include="Resources\skin.bmp" />
+    <EmbeddedResource Include="Resources\skin2.bmp" />
+    <EmbeddedResource Include="Resources\skin3.bmp" />
+    <EmbeddedResource Include="Resources\TaskFormBack.bmp" />
+    <EmbeddedResource Include="Resources\close.bmp" />
+    <EmbeddedResource Include="Resources\close2.bmp" />
     <Content Include="Resources\刷新.png" />
     <None Include="Resources\设置副本.bmp" />
   </ItemGroup>
