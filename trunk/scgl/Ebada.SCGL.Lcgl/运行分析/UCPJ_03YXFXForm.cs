@@ -17,7 +17,7 @@ namespace Ebada.Scgl.Lcgl
         public void UCPJ_03YXFXForm_DQFX()
         {
             //InitializeComponent();
-            ucpJ_03yxfx1.RecordIkind = "流程定期分析";
+            ucpJ_03yxfx1.RecordIkind = "定期分析";
             //ucpJ_03yxfx1.InitColumns();
             //ucpJ_03yxfx1.InitData();
             this.Show();
@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Lcgl
         public void UCPJ_03YXFXForm_ZTFX()
         {
             //InitializeComponent();
-            ucpJ_03yxfx1.RecordIkind = "流程专题分析";
+            ucpJ_03yxfx1.RecordIkind = "专题分析";
             //ucpJ_03yxfx1.InitColumns();
             //ucpJ_03yxfx1.InitData();
             this.Show() ;

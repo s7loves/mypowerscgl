@@ -332,7 +332,7 @@ namespace Ebada.Scgl.Lcgl
         {
             if (MainHelper.UserOrg == null) return;
             if (btGdsList.EditValue == null) return;
-            if (!RecordWorkTask.HaveRewNewYXFXRole(recordIkind.Replace("流程","") , MainHelper.User.UserID)) return;
+            if (!RecordWorkTask.HaveRewNewYXFXRole(recordIkind , MainHelper.User.UserID)) return;
             frmyxfxEdit fm = new frmyxfxEdit();
             PJ_03yxfx yxfx = new PJ_03yxfx();
             //yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
