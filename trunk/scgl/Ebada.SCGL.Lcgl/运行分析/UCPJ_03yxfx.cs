@@ -26,7 +26,7 @@ using System.Collections;
 using Ebada.Core;
 using DevExpress.XtraEditors.Repository;
 using Ebada.Components;
-namespace Ebada.SCGL.Lcgl
+namespace Ebada.Scgl.Lcgl
 {
     /// <summary>
     /// 

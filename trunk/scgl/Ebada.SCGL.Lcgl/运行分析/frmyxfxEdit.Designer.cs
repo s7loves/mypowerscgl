@@ -1,4 +1,4 @@
-﻿namespace Ebada.SCGL.Lcgl
+﻿namespace Ebada.Scgl.Lcgl
 {
     partial class frmyxfxEdit
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Ebada.Client;
 using System.IO;
-namespace Ebada.SCGL.Lcgl
+namespace Ebada.Scgl.Lcgl
 {
     class Ecommon
     {

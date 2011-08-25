@@ -1,4 +1,4 @@
-﻿namespace Ebada.SCGL.Lcgl
+﻿namespace Ebada.Scgl.Lcgl
 {
     partial class UCPJ_03YXFXForm
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ucpJ_03yxfx1 = new Ebada.SCGL.Lcgl.UCPJ_03yxfx();
+            this.ucpJ_03yxfx1 = new Ebada.Scgl.Lcgl.UCPJ_03yxfx();
             this.SuspendLayout();
             // 
             // ucpJ_03yxfx1

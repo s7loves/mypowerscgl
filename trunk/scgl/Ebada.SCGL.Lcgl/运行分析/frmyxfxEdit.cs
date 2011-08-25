@@ -14,7 +14,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
 using Ebada.Scgl.WFlow;
-namespace Ebada.SCGL.Lcgl
+namespace Ebada.Scgl.Lcgl
 {
     public partial class frmyxfxEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_03yxfx> m_CityDic = new SortableSearchableBindingList<PJ_03yxfx>();

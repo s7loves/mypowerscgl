@@ -8,8 +8,8 @@
     <ProjectGuid>{1F5C3A84-EA23-43A1-B888-4C4BF2C68905}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ebada.SCGL.Lcgl</RootNamespace>
-    <AssemblyName>Ebada.SCGL.Lcgl</AssemblyName>
+    <RootNamespace>Ebada.Scgl.Lcgl</RootNamespace>
+    <AssemblyName>Ebada.Scgl.Lcgl</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>
@@ -78,6 +78,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="设备巡视及缺陷消除\Export06.cs" />
+    <Compile Include="设备巡视及缺陷消除\frm06sbxsEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\frm06sbxsEdit.Designer.cs">
+      <DependentUpon>frm06sbxsEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\frm06sbxsLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\frm06sbxsLine.Designer.cs">
+      <DependentUpon>frm06sbxsLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\frmxsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\frmxsDialog.Designer.cs">
+      <DependentUpon>frmxsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\frmXSQD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\frmXSQD.Designer.cs">
+      <DependentUpon>frmXSQD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\UCPJ_06sbxs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\UCPJ_06sbxs.Designer.cs">
+      <DependentUpon>UCPJ_06sbxs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\UCXSQD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="设备巡视及缺陷消除\UCXSQD.Designer.cs">
+      <DependentUpon>UCXSQD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ecommon.cs" />
     <Compile Include="运行分析\Export03.cs" />
     <Compile Include="运行分析\frmyxfxEdit.cs">
@@ -101,6 +138,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="设备巡视及缺陷消除\frm06sbxsEdit.resx">
+      <DependentUpon>frm06sbxsEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设备巡视及缺陷消除\frm06sbxsLine.resx">
+      <DependentUpon>frm06sbxsLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设备巡视及缺陷消除\frmxsDialog.resx">
+      <DependentUpon>frmxsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设备巡视及缺陷消除\frmXSQD.resx">
+      <DependentUpon>frmXSQD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设备巡视及缺陷消除\UCPJ_06sbxs.resx">
+      <DependentUpon>UCPJ_06sbxs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设备巡视及缺陷消除\UCXSQD.resx">
+      <DependentUpon>UCXSQD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="运行分析\frmyxfxEdit.resx">
       <DependentUpon>frmyxfxEdit.cs</DependentUpon>
