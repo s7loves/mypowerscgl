@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Ebada.SCGL.Lcgl
+namespace Ebada.Scgl.Lcgl
 {
     public partial class UCPJ_03YXFXForm : Form
     {
