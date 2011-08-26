@@ -21,9 +21,6 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
-using Ebada.Scgl.WFlow;
-using System.Collections;
-using Ebada.Core;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -38,27 +35,17 @@ namespace Ebada.Scgl.Lcgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-        private DataTable gridtable = null;
         public UCPJ_06sbxs()
         {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<PJ_06sbxs>(gridControl1, gridView1, barManager1,new frm06sbxsEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_06sbxs>(gridViewOperation_BeforeAdd);
-            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_06sbxs>(gridViewOperation_AfterAdd);
-            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_06sbxs>(gridViewOperation_AfterEdit);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_06sbxs>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
-        void gridViewOperation_AfterEdit(PJ_06sbxs obj)
-        {
-            InitData();
-        }
-        void gridViewOperation_AfterAdd(PJ_06sbxs obj)
-        {
-            InitData();
-        }
+        
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_06sbxs> e)
         {
            
@@ -124,7 +111,6 @@ namespace Ebada.Scgl.Lcgl
         {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
-            RefreshData(" where OrgCode='" + parentID + "' order by id desc");
         }
         /// <summary>
         /// 初始化列,
@@ -133,28 +119,10 @@ namespace Ebada.Scgl.Lcgl
         {
 
             //需要隐藏列时在这写代码
-            for (int i = 0; i < gridView1.Columns.Count; i++)
-            {
-                gridView1.Columns[i].Caption = AttributeHelper.GetDisplayName(typeof(PJ_06sbxs), gridView1.Columns[i].FieldName);
 
-            }
             hideColumn("OrgCode");
             hideColumn("LineID");
             hideColumn("gzrjID");
-            //((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            //((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            //GridColumn picview = new DevExpress.XtraGrid.Columns.GridColumn();
-            //picview.Caption = "消缺限期";
-            //picview.Visible = true;
-            ////picview.MaxWidth = 300;
-            ////picview.MinWidth = 300;
-            ////DevExpress.XtraEditors.Repository.RepositoryItem
-
-            //picview.VisibleIndex = 8;
-            //picview.FieldName = "Deadline";
-            //gridView1.Columns.Add(picview);
-            //((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            //((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
         }
         /// <summary>
         /// 刷新数据
@@ -162,62 +130,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
-            //gridViewOperation.RefreshData(slqwhere);
-            if (gridtable != null) gridtable.Rows.Clear();
-
-            IList<PJ_06sbxs> li = MainHelper.PlatformSqlMap.GetList<PJ_06sbxs>("SelectPJ_06sbxsList", slqwhere);
-            if (li.Count != 0)
-            {
-                gridtable = ConvertHelper.ToDataTable((IList)li);
-                if (!gridtable.Columns.Contains("Deadline")) gridtable.Columns.Add("Deadline", typeof(string));
-                DataRow[] drlist = gridtable.Select("qxlb<>'' and xcr='' ");
-                string dx = "", sx = "";
-                int dayspan1 = 1, dayspan2 = 10, dayspan3 = 30;
-                dx = "06设备巡视及缺陷消除记录";
-                sx = "紧急缺陷";
-                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
-                if (list.Count > 0)
-                {
-                    dayspan1 = Convert.ToInt32(list[0]);
-                }
-
-                sx = "重大缺陷";
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
-                if (list.Count > 0)
-                {
-                    dayspan2 = Convert.ToInt32(list[0]);
-                }
-                sx = "一般缺陷";
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
-                if (list.Count > 0)
-                {
-                    dayspan3 = Convert.ToInt32(list[0]);
-                }
-                foreach (DataRow dr in drlist)
-                {
-                    DateTime dt = Convert.ToDateTime(dr["xssj"]);
-
-                    switch (dr["qxlb"].ToString())
-                    {
-                        case "紧急缺陷":
-                            dr["Deadline"] = dt.AddDays(dayspan1).ToShortDateString();
-                            break;
-                        case "重大缺陷":
-                            dr["Deadline"] = dt.AddDays(dayspan2).ToShortDateString();
-                            break;
-                        case "一般缺陷":
-                            dr["Deadline"] = dt.AddDays(dayspan3).ToShortDateString();
-                            break;
-                    }
-
-                }
-                if (drlist.Length > 0) li = ConvertHelper.ToIList<PJ_06sbxs>(gridtable);
-            }
-            
-           
-           gridControl1.DataSource = li;
+            gridViewOperation.RefreshData(slqwhere);
         }
-
         /// <summary>
         /// 封装了数据操作的对象
         /// </summary>
@@ -333,6 +247,5 @@ namespace Ebada.Scgl.Lcgl
             pd.ShowDialog();
           
         }
-
     }
 }

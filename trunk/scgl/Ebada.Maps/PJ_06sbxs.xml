@@ -20,6 +20,7 @@
         <result property="CreateMan" column="CreateMan" />
         <result property="CreateDate" column="CreateDate" />
         <result property="gzrjID" column="gzrjID" />
+        <result property="xcqx" column="xcqx" />
       </resultMap>
   </resultMaps>
 
@@ -40,7 +41,8 @@
          [xcrq],
          [CreateMan],
          [CreateDate],
-         [gzrjID]
+         [gzrjID],
+         [xcqx]
           FROM PJ_06sbxs
           $value$
    </select>
@@ -61,7 +63,8 @@
          [xcrq],
          [CreateMan],
          [CreateDate],
-         [gzrjID]
+         [gzrjID],
+         [xcqx]
           FROM PJ_06sbxs
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -79,6 +82,7 @@
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="xcqx">[xcqx]='$xcqx$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_06sbxsByKey" resultMap="PJ_06sbxs_AllColumns" parameterClass="PJ_06sbxs">
@@ -97,7 +101,8 @@
          [xcrq],
          [CreateMan],
          [CreateDate],
-         [gzrjID]
+         [gzrjID],
+         [xcqx]
          FROM PJ_06sbxs
          WHERE 
            ID = #ID#
@@ -140,7 +145,8 @@
              [xcrq]=#xcrq#,
              [CreateMan]=#CreateMan#,
              [CreateDate]=#CreateDate#,
-             [gzrjID]=#gzrjID#
+             [gzrjID]=#gzrjID#,
+             [xcqx]=#xcqx#
             WHERE 
               ID = #ID#
 
@@ -163,7 +169,8 @@
          [xcrq],
          [CreateMan],
          [CreateDate],
-         [gzrjID]
+         [gzrjID],
+         [xcqx]
          )
        VALUES
          (
@@ -181,7 +188,8 @@
          #xcrq#,
          #CreateMan#,
          #CreateDate#,
-         #gzrjID#
+         #gzrjID#,
+         #xcqx#
          )
 
    </insert>
@@ -200,6 +208,7 @@
        <isNotNull prepend="AND" property="xsr">[xsr]='$xsr$'</isNotNull>
        <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
        <isNotNull prepend="AND" property="qxlb">[qxlb]='$qxlb$'</isNotNull>
+       <isNotNull prepend="AND" property="xcqx">[xcqx]='$xcqx$'</isNotNull>
        <isNotNull prepend="AND" property="xcr">[xcr]='$xcr$'</isNotNull>
        <isNotNull prepend="AND" property="xcrq">[xcrq]='$xcrq$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>

@@ -244,6 +244,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit1.Size = new System.Drawing.Size(100, 21);
             this.dateEdit1.TabIndex = 30;
+            this.dateEdit1.EditValueChanged += new System.EventHandler(this.dateEdit1_EditValueChanged);
             // 
             // labelControl2
             // 
@@ -277,6 +278,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit4.TabIndex = 33;
+            this.comboBoxEdit4.EditValueChanged += new System.EventHandler(this.comboBoxEdit4_EditValueChanged);
             // 
             // dateEdit2
             // 
