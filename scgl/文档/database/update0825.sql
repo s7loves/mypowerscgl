@@ -1,3 +1,4 @@
+USE [EbadaScgl]
 alter table PJ_06sbxs add
   
    xcqx               nvarchar(50)         null default ''
