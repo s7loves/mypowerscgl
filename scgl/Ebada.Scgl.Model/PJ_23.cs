@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-10 14:57:59
+生成时间:2011-8-26 19:54:09
 ***********************************************/
 
 using System;
@@ -26,11 +26,13 @@ namespace Ebada.Scgl.Model
         private string _cqfw=String.Empty; 
         private string _cqdw=String.Empty; 
         private DateTime _qdrq=new DateTime(1900,1,1); 
+        private string _qxydd=String.Empty; 
+        private string _xybh=String.Empty; 
         private string _remark=String.Empty; 
         private string _gzrjid=String.Empty; 
         private string _createman=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
-        private byte[] _bigdata=new byte[0];   
+        private byte[] _bigdata=new byte[]{};   
         #endregion
   
   
@@ -135,6 +137,48 @@ namespace Ebada.Scgl.Model
                 if (_qdrq as object == null || !_qdrq.Equals(value))
                 {
                     _qdrq = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：qxydd
+        /// 属性描述：签协议地点
+        /// 字段信息：[qxydd],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("签协议地点")]
+        public string qxydd
+        {
+            get { return _qxydd; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[签协议地点]长度不能大于50!");
+                if (_qxydd as object == null || !_qxydd.Equals(value))
+                {
+                    _qxydd = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：xybh
+        /// 属性描述：协议编号
+        /// 字段信息：[xybh],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("协议编号")]
+        public string xybh
+        {
+            get { return _xybh; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[协议编号]长度不能大于50!");
+                if (_xybh as object == null || !_xybh.Equals(value))
+                {
+                    _xybh = value;
                 }
             }			 
         }
