@@ -10,6 +10,7 @@
         <result property="cqfw" column="cqfw" />
         <result property="cqdw" column="cqdw" />
         <result property="qdrq" column="qdrq" />
+        <result property="qxydd" column="qxydd" />
         <result property="Remark" column="Remark" />
         <result property="gzrjID" column="gzrjID" />
         <result property="CreateMan" column="CreateMan" />
@@ -26,6 +27,7 @@
          [cqfw],
          [cqdw],
          [qdrq],
+         [qxydd],
          [Remark],
          [gzrjID],
          [CreateMan],
@@ -42,6 +44,7 @@
          [cqfw],
          [cqdw],
          [qdrq],
+         [qxydd],
          [Remark],
          [gzrjID],
          [CreateMan],
@@ -54,6 +57,7 @@
        <isNotNull prepend="AND" property="cqfw">[cqfw]='$cqfw$'</isNotNull>
        <isNotNull prepend="AND" property="cqdw">[cqdw]='$cqdw$'</isNotNull>
        <isNotNull prepend="AND" property="qdrq">[qdrq]='$qdrq$'</isNotNull>
+       <isNotNull prepend="AND" property="qxydd">[qxydd]='$qxydd$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
@@ -68,6 +72,7 @@
          [cqfw],
          [cqdw],
          [qdrq],
+         [qxydd],
          [Remark],
          [gzrjID],
          [CreateMan],
@@ -106,6 +111,7 @@
              [cqfw]=#cqfw#,
              [cqdw]=#cqdw#,
              [qdrq]=#qdrq#,
+             [qxydd]=#qxydd#,
              [Remark]=#Remark#,
              [gzrjID]=#gzrjID#,
              [CreateMan]=#CreateMan#,
@@ -124,6 +130,7 @@
          [cqfw],
          [cqdw],
          [qdrq],
+         [qxydd],
          [Remark],
          [gzrjID],
          [CreateMan],
@@ -137,6 +144,7 @@
          #cqfw#,
          #cqdw#,
          #qdrq#,
+         #qxydd#,
          #Remark#,
          #gzrjID#,
          #CreateMan#,
@@ -155,6 +163,7 @@
        <isNotNull prepend="AND" property="cqfw">[cqfw]='$cqfw$'</isNotNull>
        <isNotNull prepend="AND" property="cqdw">[cqdw]='$cqdw$'</isNotNull>
        <isNotNull prepend="AND" property="qdrq">[qdrq]='$qdrq$'</isNotNull>
+       <isNotNull prepend="AND" property="qxydd">[qxydd]='$qxydd$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>

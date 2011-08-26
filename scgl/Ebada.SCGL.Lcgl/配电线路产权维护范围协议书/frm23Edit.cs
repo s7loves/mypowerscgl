@@ -13,7 +13,8 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Yxgl
+using Excel = Microsoft.Office.Interop.Excel;
+namespace Ebada.Scgl.Lcgl
 {
     public partial class frm23Edit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_23> m_CityDic = new SortableSearchableBindingList<PJ_23>();
@@ -70,7 +71,6 @@ namespace Ebada.Scgl.Yxgl
             list.Add(new DicType("2", "变电所"));
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
             ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
-
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
         }
@@ -150,6 +150,30 @@ namespace Ebada.Scgl.Yxgl
                     comboBoxEdit1.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr4;
                 }
             }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
+            DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+            dsoFramerControl1.FileOpen(fname);
+            Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            int icount = MainHelper.PlatformSqlMap.GetRowCount<PJ_23>("where ParentID='"+rowData.ParentID +"'" );
+            mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
+            string strname = SelectorHelper.GetPYString(org.OrgName);
+            ExcelAccess ea = new ExcelAccess();
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
+            ea.SetCellValue(strname.ToUpper() , 4, 8);
+            strname=DateTime.Now.Year.ToString();
+            ea.SetCellValue(strname, 4, 9);
+            strname = string.Format("{0:D3}", icount);
+            ea.SetCellValue(strname, 4, 10);
+            dsoFramerControl1.FileSave();
+            rowData.BigData = dsoFramerControl1.FileData  ;
+            dsoFramerControl1.FileClose();
+            dsoFramerControl1.Dispose();
+            dsoFramerControl1 = null;
         }
     }
 }

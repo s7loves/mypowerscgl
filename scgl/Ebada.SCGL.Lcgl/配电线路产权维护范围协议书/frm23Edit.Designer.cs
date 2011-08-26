@@ -1,4 +1,4 @@
-﻿namespace Ebada.Scgl.Yxgl
+﻿namespace Ebada.Scgl.Lcgl
 {
     partial class frm23Edit
     {
@@ -42,8 +42,8 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.comboBoxEdit4 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBoxEdit4 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -78,6 +78,7 @@
             this.btnOK.Size = new System.Drawing.Size(49, 23);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // groupControlOrg
             // 
@@ -93,12 +94,12 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBoxEdit4);
-            this.groupBox1.Controls.Add(this.labelControl4);
             this.groupBox1.Controls.Add(this.dateEdit1);
+            this.groupBox1.Controls.Add(this.comboBoxEdit4);
             this.groupBox1.Controls.Add(this.comboBoxEdit3);
             this.groupBox1.Controls.Add(this.comboBoxEdit2);
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
+            this.groupBox1.Controls.Add(this.labelControl4);
             this.groupBox1.Controls.Add(this.labelControl3);
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Controls.Add(this.labelControl5);
@@ -134,7 +135,7 @@
             // 
             // comboBoxEdit2
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(265, 39);
+            this.comboBoxEdit2.Location = new System.Drawing.Point(268, 36);
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -161,7 +162,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(29, 95);
+            this.labelControl1.Location = new System.Drawing.Point(29, 93);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(24, 14);
             this.labelControl1.TabIndex = 7;
@@ -200,22 +201,22 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(202, 70);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(60, 14);
+            this.labelControl4.TabIndex = 7;
+            this.labelControl4.Text = "签协议地点";
+            // 
             // comboBoxEdit4
             // 
-            this.comboBoxEdit4.Location = new System.Drawing.Point(265, 66);
+            this.comboBoxEdit4.Location = new System.Drawing.Point(268, 66);
             this.comboBoxEdit4.Name = "comboBoxEdit4";
             this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit4.TabIndex = 16;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(199, 70);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(60, 14);
-            this.labelControl4.TabIndex = 15;
-            this.labelControl4.Text = "签协议地点";
+            this.comboBoxEdit4.TabIndex = 13;
             // 
             // frm23Edit
             // 
