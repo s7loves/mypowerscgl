@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-12 21:48:36
+生成时间:2011-8-25 22:00:53
 ***********************************************/
 
 using System;
@@ -29,18 +29,19 @@ namespace Ebada.Scgl.Model
         private string _xlqd=String.Empty; 
         private DateTime _xssj=new DateTime(1900,1,1); 
         private string _xsr=String.Empty; 
-        private string _qxnr=String.Empty; 
-        private string _qxlb=String.Empty; 
+        private string _qxnr=String.Empty;
+        private string _qxlb = String.Empty;
+        private string _xcqx = String.Empty;    
         private string _xcr=String.Empty; 
         private DateTime _xcrq=new DateTime(1900,1,1); 
         private string _createman=String.Empty; 
-        private DateTime _createdate=new DateTime(1900,1,1);
-        private string _gzrjid = String.Empty;
-        private string _Deadline = String.Empty;   
+        private DateTime _createdate=new DateTime(1900,1,1); 
+        private string _gzrjid=String.Empty; 
         #endregion
   
   
         #region Public 成员
+   
         /// <summary>
         /// 属性名称：ID
         /// 属性描述：记录ID
@@ -246,29 +247,30 @@ namespace Ebada.Scgl.Model
                 {
                     _qxlb = value;
                 }
-            }
+            }			 
         }
 
+
         /// <summary>
-        /// 属性名称：Deadline
+        /// 属性名称：xcqx
         /// 属性描述：消缺期限
-        /// 字段信息：[Deadline],nvarchar
+        /// 字段信息：[xcqx],nvarchar
         /// </summary>
         [DisplayNameAttribute("消缺期限")]
-        public string Deadline
+        public string xcqx
         {
-            get { return _Deadline; }
+            get { return _xcqx; }
             set
             {
                 if (value == null) return;
-
-                if (_Deadline as object == null || !_Deadline.Equals(value))
+                if (value.ToString().Length > 50)
+                    throw new Exception("[消缺期限]长度不能大于50!");
+                if (_xcqx as object == null || !_xcqx.Equals(value))
                 {
-                    _Deadline = value;
+                    _xcqx = value;
                 }
             }
         }
-  
         /// <summary>
         /// 属性名称：xcr
         /// 属性描述：消除人

@@ -249,6 +249,54 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit6.Properties.Items.AddRange(list); 
         }
 
+        private void comboBoxEdit4_EditValueChanged(object sender, EventArgs e)
+        {
+
+            DateTime dt = Convert.ToDateTime(rowData.xssj );
+            string dx = "", sx = "";
+            int dayspan1 = 1, dayspan2 = 10, dayspan3 = 30;
+            dx = "06设备巡视及缺陷消除记录";
+            sx = "紧急缺陷";
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
+            if (list.Count > 0)
+            {
+                dayspan1 = Convert.ToInt32(list[0]);
+            }
+
+            sx = "重大缺陷";
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
+            if (list.Count > 0)
+            {
+                dayspan2 = Convert.ToInt32(list[0]);
+            }
+            sx = "一般缺陷";
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
+            if (list.Count > 0)
+            {
+                dayspan3 = Convert.ToInt32(list[0]);
+            }
+            if (comboBoxEdit4.EditValue == null) return;
+            switch (comboBoxEdit4.EditValue.ToString())
+                {
+                    case "紧急缺陷":
+                        rowData .xcqx = dt.AddDays(dayspan1).ToShortDateString();
+                        break;
+                    case "重大缺陷":
+                        rowData.xcqx = dt.AddDays(dayspan2).ToShortDateString();
+                        break;
+                    case "一般缺陷":
+                        rowData.xcqx = dt.AddDays(dayspan3).ToShortDateString();
+                        break;
+                }
+
+          
+        }
+
+        private void dateEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            comboBoxEdit4_EditValueChanged(sender ,e);
+        }
+
 
 
 
