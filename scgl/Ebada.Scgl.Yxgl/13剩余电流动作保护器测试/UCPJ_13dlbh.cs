@@ -227,7 +227,9 @@ namespace Ebada.Scgl.Yxgl
         {
             if (gridView1.FocusedRowHandle != -1)
             {
-                Export13.ExportExcel(gridView1.GetFocusedRow() as PS_tqdlbh);
+                //Export13.ExportExcel(gridView1.GetFocusedRow() as PS_tqdlbh);
+                mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(btGdsList.EditValue.ToString());
+                Export13.ExportExcel2(gridControl1.DataSource as IList<PS_tqdlbh>, org.OrgName);
             }
         }
     }

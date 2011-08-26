@@ -175,5 +175,13 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         }
+
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle != -1)
+            {
+                Export13.ExportExcel(ParentObj);
+            }
+        }
     }
 }
