@@ -190,6 +190,7 @@ namespace Ebada.SCGL {
                     barButtonItem2.Visibility = BarItemVisibility.Always;
                 }
 
+                showMessage(3);
             } else {
                 if (MainHelper.User.LoginID == "rabbit") {
                     barButtonItem1.Visibility = BarItemVisibility.Always;
@@ -205,7 +206,6 @@ namespace Ebada.SCGL {
 
 #endif
             }
-            showMessage(3);
             barButtonItem3.Enabled = (dlg.DialogResult == DialogResult.OK);
 
         }
