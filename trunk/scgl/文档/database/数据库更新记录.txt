@@ -13,4 +13,4 @@
 2011.7.29 增加update729.sql更新文件
 2011.8.1 PS_XL增加字段LineP、LineQ、K 类型为[decimal] 参考update729.sql
 2011.8.25 PJ_06sbxs增加字段xcqx 类型为[nvarchar(50)] 参考update825.sql
-2011.8.25 PJ_23增加字段qxydd 类型为[nvarchar(50)] 参考update826.sql
+2011.8.25 PJ_23增加字段qxydd、xybh类型为[nvarchar(50)] 参考update826.sql
