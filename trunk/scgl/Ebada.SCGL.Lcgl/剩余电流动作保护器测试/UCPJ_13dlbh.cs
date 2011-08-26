@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using DevExpress.XtraEditors.Repository;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -225,9 +226,11 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            
             if (gridView1.FocusedRowHandle != -1)
             {
-                Export13.ExportExcel(gridView1.GetFocusedRow() as PS_tqdlbh);
+                mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(btGdsList.EditValue.ToString());  
+                Export13.ExportExcel2(gridControl1.DataSource as IList<PS_tqdlbh>, org.OrgName);
             }
         }
     }
