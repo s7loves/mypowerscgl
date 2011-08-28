@@ -23,7 +23,7 @@ using DevExpress.XtraEditors.Controls;
 using Ebada.Scgl.Core;
 using DevExpress.XtraTreeList.Columns;
 
-namespace Ebada.Scgl.Lcgl
+namespace Ebada.Scgl.Lpgl
 {
     /// <summary>
     /// 组织机构

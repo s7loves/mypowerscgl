@@ -1,4 +1,4 @@
-﻿namespace Ebada.Scgl.Lcgl
+﻿namespace Ebada.Scgl.Lpgl
 {
     partial class frmExcelEdit
     {
