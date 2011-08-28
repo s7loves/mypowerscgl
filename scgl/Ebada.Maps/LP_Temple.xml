@@ -25,6 +25,7 @@
         <result property="ImageAttachment" column="ImageAttachment" />
         <result property="SignImg" column="SignImg" />
         <result property="Kind" column="Kind" />
+        <result property="KindTable" column="KindTable" />
         <result property="SortID" column="SortID" />
         <result property="IsVisible" column="IsVisible" />
         <result property="ColumnName" column="ColumnName" />
@@ -57,6 +58,7 @@
          [ImageAttachment],
          [SignImg],
          [Kind],
+         [KindTable],
          [SortID],
          [IsVisible],
          [ColumnName],
@@ -89,6 +91,7 @@
          [ImageAttachment],
          [SignImg],
          [Kind],
+         [KindTable],
          [SortID],
          [IsVisible],
          [ColumnName],
@@ -117,6 +120,7 @@
        <isNotNull prepend="AND" property="ImageAttachment">[ImageAttachment]='$ImageAttachment$'</isNotNull>
        <isNotNull prepend="AND" property="SignImg">[SignImg]='$SignImg$'</isNotNull>
        <isNotNull prepend="AND" property="Kind">[Kind]='$Kind$'</isNotNull>
+       <isNotNull prepend="AND" property="KindTable">[KindTable]='$KindTable$'</isNotNull>
        <isNotNull prepend="AND" property="SortID">[SortID]='$SortID$'</isNotNull>
        <isNotNull prepend="AND" property="IsVisible">[IsVisible]='$IsVisible$'</isNotNull>
        <isNotNull prepend="AND" property="ColumnName">[ColumnName]='$ColumnName$'</isNotNull>
@@ -147,6 +151,7 @@
          [ImageAttachment],
          [SignImg],
          [Kind],
+         [KindTable],
          [SortID],
          [IsVisible],
          [ColumnName],
@@ -201,6 +206,7 @@
              [ImageAttachment]=#ImageAttachment#,
              [SignImg]=#SignImg#,
              [Kind]=#Kind#,
+             [KindTable]=#KindTable#,
              [SortID]=#SortID#,
              [IsVisible]=#IsVisible#,
              [ColumnName]=#ColumnName#,
@@ -235,6 +241,7 @@
          [ImageAttachment],
          [SignImg],
          [Kind],
+         [KindTable],
          [SortID],
          [IsVisible],
          [ColumnName],
@@ -264,6 +271,7 @@
          #ImageAttachment#,
          #SignImg#,
          #Kind#,
+         #KindTable#,
          #SortID#,
          #IsVisible#,
          #ColumnName#,
@@ -298,6 +306,7 @@
        <isNotNull prepend="AND" property="ImageAttachment">[ImageAttachment]='$ImageAttachment$'</isNotNull>
        <isNotNull prepend="AND" property="SignImg">[SignImg]='$SignImg$'</isNotNull>
        <isNotNull prepend="AND" property="Kind">[Kind]='$Kind$'</isNotNull>
+       <isNotNull prepend="AND" property="KindTable">[KindTable]='$KindTable$'</isNotNull>
        <isNotNull prepend="AND" property="SortID">[SortID]='$SortID$'</isNotNull>
        <isNotNull prepend="AND" property="IsVisible">[IsVisible]='$IsVisible$'</isNotNull>
        <isNotNull prepend="AND" property="ColumnName">[ColumnName]='$ColumnName$'</isNotNull>

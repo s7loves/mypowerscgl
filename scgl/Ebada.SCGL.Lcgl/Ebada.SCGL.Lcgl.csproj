@@ -43,8 +43,10 @@
     <Reference Include="DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v10.1.Core, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Ebada.Client, Version=1.0.4225.27094, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.Client.dll</HintPath>
@@ -80,12 +82,6 @@
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -120,6 +116,79 @@
     </Compile>
     <Compile Include="剩余电流动作保护器测试\UCPJ_13dlbhM.Designer.cs">
       <DependentUpon>UCPJ_13dlbhM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\frmLP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义流程\frmLP.Designer.cs">
+      <DependentUpon>frmLP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\frmWFChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义流程\frmWFChange.Designer.cs">
+      <DependentUpon>frmWFChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\LPFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义流程\LPFrm.Designer.cs">
+      <DependentUpon>LPFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\LPListFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义流程\LPListFrm.Designer.cs">
+      <DependentUpon>LPListFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\StringHelper.cs" />
+    <Compile Include="自定义流程\UCmLPRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\UCmLPRecord.Designer.cs">
+      <DependentUpon>UCmLPRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\UCmModelUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\UCmModelUI.Designer.cs">
+      <DependentUpon>UCmModelUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\uc_gridcontrol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\uc_gridcontrol.Designer.cs">
+      <DependentUpon>uc_gridcontrol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\模板生成\frmExcelEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义流程\模板生成\frmExcelEdit.Designer.cs">
+      <DependentUpon>frmExcelEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\模板生成\frmExcelModelEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义流程\模板生成\frmExcelModelEdit.Designer.cs">
+      <DependentUpon>frmExcelModelEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\模板生成\UCmExcel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\模板生成\UCmExcel.Designer.cs">
+      <DependentUpon>UCmExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\模板生成\UCmExcelTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\模板生成\UCmExcelTree.Designer.cs">
+      <DependentUpon>UCmExcelTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\模板生成\UCmImportExcelUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\模板生成\UCmImportExcelUI.Designer.cs">
+      <DependentUpon>UCmImportExcelUI.cs</DependentUpon>
     </Compile>
     <Compile Include="设备巡视及缺陷消除\Export06.cs" />
     <Compile Include="设备巡视及缺陷消除\frm06sbxsEdit.cs">
@@ -220,6 +289,54 @@
       <DependentUpon>UCPJ_13dlbhM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\frmLP.resx">
+      <DependentUpon>frmLP.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\frmWFChange.resx">
+      <DependentUpon>frmWFChange.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\LPFrm.resx">
+      <DependentUpon>LPFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\LPListFrm.resx">
+      <DependentUpon>LPListFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\UCmLPRecord.resx">
+      <DependentUpon>UCmLPRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\UCmModelUI.resx">
+      <DependentUpon>UCmModelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\uc_gridcontrol.resx">
+      <DependentUpon>uc_gridcontrol.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\模板生成\frmExcelEdit.resx">
+      <DependentUpon>frmExcelEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\模板生成\frmExcelModelEdit.resx">
+      <DependentUpon>frmExcelModelEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\模板生成\UCmExcel.resx">
+      <DependentUpon>UCmExcel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\模板生成\UCmExcelTree.resx">
+      <DependentUpon>UCmExcelTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\模板生成\UCmImportExcelUI.resx">
+      <DependentUpon>UCmImportExcelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="设备巡视及缺陷消除\frm06sbxsEdit.resx">
       <DependentUpon>frm06sbxsEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -283,6 +400,32 @@
       <Project>{DB517AF8-551D-4C08-83BE-69D803C89173}</Project>
       <Name>Ebada.Scgl.WFlow</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="自定义流程\00两票模板\电力线路倒闸操作票.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="自定义流程\00两票模板\电力线路第二种工作票.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="自定义流程\00两票模板\电力线路第一种工作票.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="自定义流程\00两票模板\电力线路事故应急抢修单.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="自定义流程\00两票模板\模板示例说明\电力线路事故应急抢修单模块.xls" />
+    <None Include="自定义流程\00两票模板\模板示例说明\电力线路倒闸操作票模块.xls" />
+    <None Include="自定义流程\00两票模板\模板示例说明\电力线路第一种工作票模块.xls" />
+    <None Include="自定义流程\00两票模板\模板示例说明\电力线路第二种工作票模块.xls" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
