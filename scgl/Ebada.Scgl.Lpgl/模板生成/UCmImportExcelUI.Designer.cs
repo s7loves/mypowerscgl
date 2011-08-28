@@ -1,4 +1,5 @@
-﻿namespace Ebada.Scgl.Lcgl {
+﻿namespace Ebada.Scgl.Lpgl
+{
     partial class UCmImportExcelUI {
         /// <summary> 
         /// Required designer variable.
@@ -24,8 +25,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.splitCC1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.ucLeft1 = new Ebada.Scgl.Lcgl.UCmExcelTree();
-            this.ucRight1 = new Ebada.Scgl.Lcgl.UCmExcel();
+            this.ucLeft1 = new Ebada.Scgl.Lpgl.UCmExcelTree();
+            this.ucRight1 = new Ebada.Scgl.Lpgl.UCmExcel();
             ((System.ComponentModel.ISupportInitialize)(this.splitCC1)).BeginInit();
             this.splitCC1.SuspendLayout();
             this.SuspendLayout();

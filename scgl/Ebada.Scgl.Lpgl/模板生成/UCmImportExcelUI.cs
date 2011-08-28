@@ -15,7 +15,8 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Ebada.Scgl.Model;
 
-namespace Ebada.Scgl.Lcgl {
+namespace Ebada.Scgl.Lpgl
+{
     /// <summary>
     /// 机构职员维护
     /// </summary>

@@ -13,7 +13,8 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Lcgl {
+namespace Ebada.Scgl.Lpgl
+{
     public partial class frmExcelModelEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<LP_Temple> m_CityDic = new SortableSearchableBindingList<LP_Temple>();
         private string parentID;
