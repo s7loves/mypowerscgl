@@ -20,7 +20,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 
-namespace Ebada.Scgl.Lpgl {
+namespace Ebada.Scgl.Lcgl {
 
     public partial class UCmExcel : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<LP_Temple> gridViewOperation;

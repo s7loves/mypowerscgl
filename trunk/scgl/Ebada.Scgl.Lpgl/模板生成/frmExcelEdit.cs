@@ -13,7 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Lpgl
+namespace Ebada.Scgl.Lcgl
 {
     public partial class frmExcelEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<LP_Temple> m_CityDic = new SortableSearchableBindingList<LP_Temple>();
@@ -47,6 +47,8 @@ namespace Ebada.Scgl.Lpgl
                     this.rowData = value as LP_Temple;               
                     this.InitComboBoxData();                    
                     dataBind();
+                    textBox1.Text = rowData.KindTable;  
+                    
                 } else {                
                     ConvertHelper.CopyTo<LP_Temple>(value as LP_Temple, rowData);              
                     
@@ -136,11 +138,27 @@ namespace Ebada.Scgl.Lpgl
             {
                 rowData.ParentID = wf.WorkFlowId;
             }
+            rowData.KindTable = textBox1.Text;  
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {       
             this.dsoFramerWordControl1.FileClose();
+        }
+
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + lookUpEdit1.Text + "'");
+            IList<WF_WorkTask> wtlist = ClientHelper.PlatformSqlMap.GetList<WF_WorkTask>(" WHERE WorkFlowId = '" + wf.WorkFlowId + "' and TaskTypeId!='2' order by TaskTypeId");
+            textBox1.Text = "";
+            Microsoft.Office.Interop.Excel.Workbook wb=dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.Sheets[1] as Microsoft.Office.Interop.Excel.Worksheet;
+            foreach (WF_WorkTask wt in wtlist)
+            {
+                textBox1.Text += wt.TaskCaption + ":" + xx.Name  + ",";
+            }
+            textBox1.Text = textBox1.Text.Substring(0, textBox1.Text.Length - 1);
+
         }
 
        
