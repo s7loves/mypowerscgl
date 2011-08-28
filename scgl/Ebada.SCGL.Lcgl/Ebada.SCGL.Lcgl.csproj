@@ -401,32 +401,6 @@
       <Name>Ebada.Scgl.WFlow</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="自定义流程\00两票模板\电力线路倒闸操作票.xls">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="自定义流程\00两票模板\电力线路第二种工作票.xls">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="自定义流程\00两票模板\电力线路第一种工作票.xls">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="自定义流程\00两票模板\电力线路事故应急抢修单.xls">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="自定义流程\00两票模板\模板示例说明\电力线路事故应急抢修单模块.xls" />
-    <None Include="自定义流程\00两票模板\模板示例说明\电力线路倒闸操作票模块.xls" />
-    <None Include="自定义流程\00两票模板\模板示例说明\电力线路第一种工作票模块.xls" />
-    <None Include="自定义流程\00两票模板\模板示例说明\电力线路第二种工作票模块.xls" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
