@@ -1,4 +1,4 @@
-﻿namespace Ebada.Scgl.Lpgl
+﻿namespace Ebada.Scgl.Lcgl
 {
     partial class frmExcelEdit
     {
@@ -34,7 +34,9 @@
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
@@ -93,7 +95,9 @@
             // 
             // dockPanel1_Container
             // 
+            this.dockPanel1_Container.Controls.Add(this.textBox1);
             this.dockPanel1_Container.Controls.Add(this.lookUpEdit1);
+            this.dockPanel1_Container.Controls.Add(this.labelControl1);
             this.dockPanel1_Container.Controls.Add(this.labelControl3);
             this.dockPanel1_Container.Controls.Add(this.labelControl2);
             this.dockPanel1_Container.Controls.Add(this.textEdit2);
@@ -104,9 +108,18 @@
             this.dockPanel1_Container.Size = new System.Drawing.Size(810, 46);
             this.dockPanel1_Container.TabIndex = 0;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(534, 11);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(202, 31);
+            this.textBox1.TabIndex = 12;
+            // 
             // lookUpEdit1
             // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(362, 13);
+            this.lookUpEdit1.Location = new System.Drawing.Point(264, 13);
             this.lookUpEdit1.Name = "lookUpEdit1";
             this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -115,10 +128,19 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name2", "名称")});
             this.lookUpEdit1.Size = new System.Drawing.Size(186, 21);
             this.lookUpEdit1.TabIndex = 10;
+            this.lookUpEdit1.EditValueChanged += new System.EventHandler(this.lookUpEdit1_EditValueChanged);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(456, 16);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(72, 14);
+            this.labelControl1.TabIndex = 8;
+            this.labelControl1.Text = "子节点对应表";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(332, 16);
+            this.labelControl3.Location = new System.Drawing.Point(234, 16);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(24, 14);
             this.labelControl3.TabIndex = 8;
@@ -126,7 +148,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(28, 16);
+            this.labelControl2.Location = new System.Drawing.Point(12, 16);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(24, 14);
             this.labelControl2.TabIndex = 9;
@@ -134,7 +156,7 @@
             // 
             // textEdit2
             // 
-            this.textEdit2.Location = new System.Drawing.Point(58, 13);
+            this.textEdit2.Location = new System.Drawing.Point(42, 13);
             this.textEdit2.Name = "textEdit2";
             this.textEdit2.Size = new System.Drawing.Size(186, 21);
             this.textEdit2.TabIndex = 7;
@@ -143,7 +165,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(689, 11);
+            this.btnCancel.Location = new System.Drawing.Point(755, 11);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(52, 23);
             this.btnCancel.TabIndex = 5;
@@ -154,7 +176,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(606, 11);
+            this.btnOK.Location = new System.Drawing.Point(700, 11);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(49, 23);
             this.btnOK.TabIndex = 6;
@@ -206,6 +228,8 @@
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private new Ebada.Scgl.Core.DSOFramerControl dsoFramerWordControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.TextBox textBox1;
 
     }
 }

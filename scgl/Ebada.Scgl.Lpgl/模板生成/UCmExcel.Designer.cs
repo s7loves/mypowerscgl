@@ -1,4 +1,4 @@
-﻿namespace Ebada.Scgl.Lpgl {
+﻿namespace Ebada.Scgl.Lcgl {
     partial class UCmExcel {
         /// <summary> 
         /// Required designer variable.
