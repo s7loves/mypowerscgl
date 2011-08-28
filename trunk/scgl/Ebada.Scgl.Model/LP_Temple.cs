@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-7-7 21:51:32
+生成时间:2011-8-28 9:32:47
 ***********************************************/
 
 using System;
@@ -41,6 +41,7 @@ namespace Ebada.Scgl.Model
         private byte[] _imageattachment=new byte[]{}; 
         private byte[] _signimg=new byte[]{}; 
         private string _kind=String.Empty; 
+        private string _kindtable=String.Empty; 
         private int _sortid=0; 
         private int _isvisible=0; 
         private string _columnname=String.Empty; 
@@ -357,7 +358,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 800)
-                throw new Exception("[关联触发事件，用|号分开，与AffectLPID对应，用于联动事件]长度不能大于200!");
+                throw new Exception("[关联触发事件，用|号分开，与AffectLPID对应，用于联动事件]长度不能大于800!");
                 if (_affectevent as object == null || !_affectevent.Equals(value))
                 {
                     _affectevent = value;
@@ -457,6 +458,27 @@ namespace Ebada.Scgl.Model
                 if (_kind as object == null || !_kind.Equals(value))
                 {
                     _kind = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：KindTable
+        /// 属性描述：各状态对应的工作表
+        /// 字段信息：[KindTable],varchar
+        /// </summary>
+        [DisplayNameAttribute("各状态对应的工作表")]
+        public string KindTable
+        {
+            get { return _kindtable; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 500)
+                throw new Exception("[]长度不能大于500!");
+                if (_kindtable as object == null || !_kindtable.Equals(value))
+                {
+                    _kindtable = value;
                 }
             }			 
         }
