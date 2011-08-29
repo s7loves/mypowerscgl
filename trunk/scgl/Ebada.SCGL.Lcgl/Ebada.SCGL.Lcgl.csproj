@@ -86,6 +86,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="预防性试验\frmtestHCRecordEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="预防性试验\frmtestHCRecordEdit.Designer.cs">
+      <DependentUpon>frmtestHCRecordEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\UCtestHCRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="预防性试验\UCtestHCRecord.Designer.cs">
+      <DependentUpon>UCtestHCRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\UCtestRecordM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="预防性试验\UCtestRecordM.Designer.cs">
+      <DependentUpon>UCtestRecordM.cs</DependentUpon>
+    </Compile>
     <Compile Include="剩余电流动作保护器测试\Export13.cs" />
     <Compile Include="剩余电流动作保护器测试\frm13dlbhjlEdit.cs">
       <SubType>Form</SubType>
@@ -281,6 +299,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="预防性试验\frmtestHCRecordEdit.resx">
+      <DependentUpon>frmtestHCRecordEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\UCtestHCRecord.resx">
+      <DependentUpon>UCtestHCRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\UCtestRecordM.resx">
+      <DependentUpon>UCtestRecordM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="剩余电流动作保护器测试\frm13dlbhjlEdit.resx">
       <DependentUpon>frm13dlbhjlEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -400,10 +427,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestRecordEdit.resx">
       <DependentUpon>frmtestRecordEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="预防性试验\UCtestRecord.resx">
-      <DependentUpon>UCtestRecord.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

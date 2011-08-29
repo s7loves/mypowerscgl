@@ -15,23 +15,24 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmtestRecordEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_yfsyjl> m_CityDic = new SortableSearchableBindingList<PJ_yfsyjl>();
+    public partial class frmtestHCRecordEdit : FormBase, IPopupFormEdit {
+        SortableSearchableBindingList<PJ_yfsyhcjl> m_CityDic = new SortableSearchableBindingList<PJ_yfsyhcjl>();
 
-        public frmtestRecordEdit()
+        public frmtestHCRecordEdit()
         {
             InitializeComponent();
         }
         void dataBind() {
 
 
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "sbInstallAdress");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "yssbName");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "xhclName");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbModle");
-            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbCapacity");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "syProject");
-            this.dateEdit3.DataBindings.Add("EditValue", rowData, "preExpTime");
-            this.dateEdit2.DataBindings.Add("EditValue", rowData, "planExpTime");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dw");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sy");
+            this.dateEdit3.DataBindings.Add("EditValue", rowData, "sj");
+            this.dateEdit2.DataBindings.Add("EditValue", rowData, "syMan");
+            this.dateEdit4.DataBindings.Add("EditValue", rowData, "yxdwMan");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -40,7 +41,7 @@ namespace Ebada.Scgl.Lcgl
 
         }
         #region IPopupFormEdit Members
-        private PJ_yfsyjl rowData = null;
+        private PJ_yfsyhcjl rowData = null;
 
         public object RowData {
             get {
@@ -49,11 +50,11 @@ namespace Ebada.Scgl.Lcgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_yfsyjl;
+                    this.rowData = value as PJ_yfsyhcjl;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_yfsyjl>(value as PJ_yfsyjl, rowData);
+                    ConvertHelper.CopyTo<PJ_yfsyhcjl>(value as PJ_yfsyhcjl, rowData);
                 }
             }
         }
@@ -65,7 +66,7 @@ namespace Ebada.Scgl.Lcgl
             ICollection ryList = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电所人员列表
             comboBoxEdit1.Properties.Items.AddRange(ryList);
             //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>(" WHERE Citylevel = '2'"));
+            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_yfsyhcjl>(" WHERE Citylevel = '2'"));
           /*  IList<DicType> list = new List<DicType>();
             list.Add(new DicType("0", "机构"));
             list.Add(new DicType("1", "供电所"));
@@ -142,6 +143,22 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-      
+        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            switch (comboBoxEdit2.Text )
+            {
+                case "变压器":
+
+                    break;
+                //case "":
+
+                //    break;
+                //case "":
+
+                //    break;
+
+            
+            }
+        }
     }
 }

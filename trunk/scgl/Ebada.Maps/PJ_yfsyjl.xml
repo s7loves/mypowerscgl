@@ -15,6 +15,7 @@
         <result property="sbCapacity" column="sbCapacity" />
         <result property="syProject" column="syProject" />
         <result property="syPeriod" column="syPeriod" />
+        <result property="sl" column="sl" />
         <result property="preExpTime" column="preExpTime" />
         <result property="planExpTime" column="planExpTime" />
         <result property="gzrjID" column="gzrjID" />
@@ -37,6 +38,7 @@
          [sbCapacity],
          [syProject],
          [syPeriod],
+         [sl],
          [preExpTime],
          [planExpTime],
          [gzrjID],
@@ -59,6 +61,7 @@
          [sbCapacity],
          [syProject],
          [syPeriod],
+         [sl],
          [preExpTime],
          [planExpTime],
          [gzrjID],
@@ -77,6 +80,7 @@
        <isNotNull prepend="AND" property="sbCapacity">[sbCapacity]='$sbCapacity$'</isNotNull>
        <isNotNull prepend="AND" property="syProject">[syProject]='$syProject$'</isNotNull>
        <isNotNull prepend="AND" property="syPeriod">[syPeriod]='$syPeriod$'</isNotNull>
+       <isNotNull prepend="AND" property="sl">[sl]='$sl$'</isNotNull>
        <isNotNull prepend="AND" property="preExpTime">[preExpTime]='$preExpTime$'</isNotNull>
        <isNotNull prepend="AND" property="planExpTime">[planExpTime]='$planExpTime$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
@@ -97,6 +101,7 @@
          [sbCapacity],
          [syProject],
          [syPeriod],
+         [sl],
          [preExpTime],
          [planExpTime],
          [gzrjID],
@@ -141,6 +146,7 @@
              [sbCapacity]=#sbCapacity#,
              [syProject]=#syProject#,
              [syPeriod]=#syPeriod#,
+             [sl]=#sl#,
              [preExpTime]=#preExpTime#,
              [planExpTime]=#planExpTime#,
              [gzrjID]=#gzrjID#,
@@ -165,6 +171,7 @@
          [sbCapacity],
          [syProject],
          [syPeriod],
+         [sl],
          [preExpTime],
          [planExpTime],
          [gzrjID],
@@ -184,6 +191,7 @@
          #sbCapacity#,
          #syProject#,
          #syPeriod#,
+         #sl#,
          #preExpTime#,
          #planExpTime#,
          #gzrjID#,
@@ -208,6 +216,7 @@
        <isNotNull prepend="AND" property="sbCapacity">[sbCapacity]='$sbCapacity$'</isNotNull>
        <isNotNull prepend="AND" property="syProject">[syProject]='$syProject$'</isNotNull>
        <isNotNull prepend="AND" property="syPeriod">[syPeriod]='$syPeriod$'</isNotNull>
+       <isNotNull prepend="AND" property="sl">[sl]='$sl$'</isNotNull>
        <isNotNull prepend="AND" property="preExpTime">[preExpTime]='$preExpTime$'</isNotNull>
        <isNotNull prepend="AND" property="planExpTime">[planExpTime]='$planExpTime$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
