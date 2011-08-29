@@ -109,6 +109,31 @@ namespace Ebada.Scgl.Yxgl
             ////}
             //this.DialogResult = DialogResult.OK;
             //this.Close();
+            DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+            Microsoft.Office.Interop.Excel.Workbook wb;
+            if (rowData.BigData.Length == 0)
+            {
+                string fname = Application.StartupPath + "\\00记录模板\\24配电线路产权维护范围协议书.xls";
+                dsoFramerControl1.FileOpen(fname);
+            }
+            else
+            dsoFramerControl1.FileData = rowData.BigData;
+            wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            ExcelAccess ea = new ExcelAccess();
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
+            DateTime dt = Convert.ToDateTime(dateEdit1.EditValue);
+            ea.SetCellValue(dt.Year.ToString(), 9, 1);
+            ea.SetCellValue(dt.Month .ToString(), 9, 3);
+            ea.SetCellValue(dt.Day.ToString(), 9, 5);
+            ea.SetCellValue(comboBoxEdit1.Text, 6, 7);
+            ea.SetCellValue(memoEdit1.Text, 6, 8);
+            ea.SetCellValue(memoEdit2.Text, 6, 11);
+            dsoFramerControl1.FileSave();
+            rowData.BigData = dsoFramerControl1.FileData;
+            dsoFramerControl1.FileClose();
+            dsoFramerControl1.Dispose();
+            dsoFramerControl1 = null;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
