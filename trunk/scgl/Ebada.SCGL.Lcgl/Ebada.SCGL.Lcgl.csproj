@@ -267,6 +267,18 @@
       <DependentUpon>UCPJ_03YXFXForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="预防性试验\frmtestRecordEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecordEdit.Designer.cs">
+      <DependentUpon>frmtestRecordEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\UCtestRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="预防性试验\UCtestRecord.Designer.cs">
+      <DependentUpon>UCtestRecord.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="剩余电流动作保护器测试\frm13dlbhjlEdit.resx">
@@ -384,6 +396,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="运行分析\UCPJ_03YXFXForm.resx">
       <DependentUpon>UCPJ_03YXFXForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\frmtestRecordEdit.resx">
+      <DependentUpon>frmtestRecordEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\UCtestRecord.resx">
+      <DependentUpon>UCtestRecord.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
