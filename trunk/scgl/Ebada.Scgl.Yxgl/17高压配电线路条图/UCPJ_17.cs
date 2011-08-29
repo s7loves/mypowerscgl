@@ -221,9 +221,12 @@ namespace Ebada.Scgl.Yxgl
                 {
                     if (ExportToExcel("高压配电线路条图", "", pj) < 1) return;
 
-                    if (MsgBox.ShowAskMessageBox("是否保存条图") == DialogResult.OK)
+                    frm17Template frm = new frm17Template();
+                    frm.pjobject = pj;
+                    if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        MainHelper.PlatformSqlMap.Update<PJ_17>(pj);
+                        Client.ClientHelper.PlatformSqlMap.Update<PJ_17>(frm.pjobject);
+                        MessageBox.Show("保存成功");
                     }
                 }
                 catch (Exception ex)
@@ -1117,7 +1120,7 @@ namespace Ebada.Scgl.Yxgl
             dsoFramerWordControl1.FileClose(); 
             dsoFramerWordControl1.Dispose();
             #endregion
-            System.Diagnostics.Process.Start(outfname);
+            //System.Diagnostics.Process.Start(outfname);
             return 1;
         }
        
@@ -1133,9 +1136,12 @@ namespace Ebada.Scgl.Yxgl
             {
                 if (ExportToExcel("高压配电线路条图", "", obj) < 1) return;
 
-                if (MsgBox.ShowAskMessageBox("是否保存条图") == DialogResult.OK)
+                frm17Template frm = new frm17Template();
+                frm.pjobject = obj;
+                if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    MainHelper.PlatformSqlMap.Update<PJ_17>(obj);
+                    Client.ClientHelper.PlatformSqlMap.Update<PJ_17>(frm.pjobject);
+                    MessageBox.Show("保存成功");
                 }
             }
             catch (Exception ex)
@@ -1175,6 +1181,23 @@ namespace Ebada.Scgl.Yxgl
                         MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
                         return;
                     }
+                }
+            }
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (treeList1.FocusedNode != null)
+            {
+                frm17Template frm = new frm17Template();
+                PJ_17 obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_17>(treeList1.FocusedNode["ID"]);
+                if (obj == null)
+                    return;
+                frm.pjobject = obj;
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    Client.ClientHelper.PlatformSqlMap.Update<PJ_17>(frm.pjobject);
+                    MessageBox.Show("保存成功");
                 }
             }
         }
