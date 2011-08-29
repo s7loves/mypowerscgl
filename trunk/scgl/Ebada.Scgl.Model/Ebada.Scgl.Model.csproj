@@ -81,6 +81,7 @@
     <Compile Include="PJ_gzrjnr.cs" />
     <Compile Include="PJ_sbxsqd.cs" />
     <Compile Include="PJ_sheetTemp.cs" />
+    <Compile Include="PJ_yfsyjl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PS_aqgj.cs" />
     <Compile Include="PS_byqxh.cs" />

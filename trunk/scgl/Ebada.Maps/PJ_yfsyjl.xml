@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_yfsyjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_yfsyjl"  type="Ebada.Scgl.Model.PJ_yfsyjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_yfsyjl_AllColumns" class="PJ_yfsyjl">
+        <result property="ID" column="ID" />
+        <result property="xh" column="xh" />
+        <result property="type" column="type" />
+        <result property="sbInstallAdress" column="sbInstallAdress" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="sbModle" column="sbModle" />
+        <result property="sbCapacity" column="sbCapacity" />
+        <result property="syProject" column="syProject" />
+        <result property="syPeriod" column="syPeriod" />
+        <result property="preExpTime" column="preExpTime" />
+        <result property="planExpTime" column="planExpTime" />
+        <result property="gzrjID" column="gzrjID" />
+        <result property="charMan" column="charMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="Remark" column="Remark" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_yfsyjlList" resultMap="PJ_yfsyjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [xh],
+         [type],
+         [sbInstallAdress],
+         [OrgCode],
+         [OrgName],
+         [sbModle],
+         [sbCapacity],
+         [syProject],
+         [syPeriod],
+         [preExpTime],
+         [planExpTime],
+         [gzrjID],
+         [charMan],
+         [CreateDate],
+         [Remark]
+          FROM PJ_yfsyjl
+          $value$
+   </select>
+   
+   <select id="SelectPJ_yfsyjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [xh],
+         [type],
+         [sbInstallAdress],
+         [OrgCode],
+         [OrgName],
+         [sbModle],
+         [sbCapacity],
+         [syProject],
+         [syPeriod],
+         [preExpTime],
+         [planExpTime],
+         [gzrjID],
+         [charMan],
+         [CreateDate],
+         [Remark]
+          FROM PJ_yfsyjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="sbInstallAdress">[sbInstallAdress]='$sbInstallAdress$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCapacity">[sbCapacity]='$sbCapacity$'</isNotNull>
+       <isNotNull prepend="AND" property="syProject">[syProject]='$syProject$'</isNotNull>
+       <isNotNull prepend="AND" property="syPeriod">[syPeriod]='$syPeriod$'</isNotNull>
+       <isNotNull prepend="AND" property="preExpTime">[preExpTime]='$preExpTime$'</isNotNull>
+       <isNotNull prepend="AND" property="planExpTime">[planExpTime]='$planExpTime$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="charMan">[charMan]='$charMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_yfsyjlByKey" resultMap="PJ_yfsyjl_AllColumns" parameterClass="PJ_yfsyjl">
+         SELECT 
+         [ID],
+         [xh],
+         [type],
+         [sbInstallAdress],
+         [OrgCode],
+         [OrgName],
+         [sbModle],
+         [sbCapacity],
+         [syProject],
+         [syPeriod],
+         [preExpTime],
+         [planExpTime],
+         [gzrjID],
+         [charMan],
+         [CreateDate],
+         [Remark]
+         FROM PJ_yfsyjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_yfsyjl" parameterClass="PJ_yfsyjl">
+        DELETE FROM 
+         PJ_yfsyjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_yfsyjlByWhere" parameterClass="string">
+     delete from PJ_yfsyjl $value$
+   </delete>
+   
+   <delete id="DeletePJ_yfsyjlByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_yfsyjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_yfsyjl" parameterClass="PJ_yfsyjl" resultClass="int">
+          UPDATE PJ_yfsyjl
+           SET
+             [xh]=#xh#,
+             [type]=#type#,
+             [sbInstallAdress]=#sbInstallAdress#,
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [sbModle]=#sbModle#,
+             [sbCapacity]=#sbCapacity#,
+             [syProject]=#syProject#,
+             [syPeriod]=#syPeriod#,
+             [preExpTime]=#preExpTime#,
+             [planExpTime]=#planExpTime#,
+             [gzrjID]=#gzrjID#,
+             [charMan]=#charMan#,
+             [CreateDate]=#CreateDate#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_yfsyjl" parameterClass="PJ_yfsyjl">
+        INSERT INTO PJ_yfsyjl
+         (
+         [ID],
+         [xh],
+         [type],
+         [sbInstallAdress],
+         [OrgCode],
+         [OrgName],
+         [sbModle],
+         [sbCapacity],
+         [syProject],
+         [syPeriod],
+         [preExpTime],
+         [planExpTime],
+         [gzrjID],
+         [charMan],
+         [CreateDate],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #xh#,
+         #type#,
+         #sbInstallAdress#,
+         #OrgCode#,
+         #OrgName#,
+         #sbModle#,
+         #sbCapacity#,
+         #syProject#,
+         #syPeriod#,
+         #preExpTime#,
+         #planExpTime#,
+         #gzrjID#,
+         #charMan#,
+         #CreateDate#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_yfsyjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_yfsyjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="sbInstallAdress">[sbInstallAdress]='$sbInstallAdress$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCapacity">[sbCapacity]='$sbCapacity$'</isNotNull>
+       <isNotNull prepend="AND" property="syProject">[syProject]='$syProject$'</isNotNull>
+       <isNotNull prepend="AND" property="syPeriod">[syPeriod]='$syPeriod$'</isNotNull>
+       <isNotNull prepend="AND" property="preExpTime">[preExpTime]='$preExpTime$'</isNotNull>
+       <isNotNull prepend="AND" property="planExpTime">[planExpTime]='$planExpTime$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="charMan">[charMan]='$charMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_yfsyjlRowCount" parameterClass="string">
+    select count(*) from PJ_yfsyjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
