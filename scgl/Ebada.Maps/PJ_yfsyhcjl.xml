@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_yfsyhcjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_yfsyhcjl"  type="Ebada.Scgl.Model.PJ_yfsyhcjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_yfsyhcjl_AllColumns" class="PJ_yfsyhcjl">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="xh" column="xh" />
+        <result property="sj" column="sj" />
+        <result property="yssbName" column="yssbName" />
+        <result property="xhclName" column="xhclName" />
+        <result property="sbModle" column="sbModle" />
+        <result property="dw" column="dw" />
+        <result property="sl" column="sl" />
+        <result property="syMan" column="syMan" />
+        <result property="yxdwMan" column="yxdwMan" />
+        <result property="Remark" column="Remark" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_yfsyhcjlList" resultMap="PJ_yfsyhcjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [xh],
+         [sj],
+         [yssbName],
+         [xhclName],
+         [sbModle],
+         [dw],
+         [sl],
+         [syMan],
+         [yxdwMan],
+         [Remark]
+          FROM PJ_yfsyhcjl
+          $value$
+   </select>
+   
+   <select id="SelectPJ_yfsyhcjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [xh],
+         [sj],
+         [yssbName],
+         [xhclName],
+         [sbModle],
+         [dw],
+         [sl],
+         [syMan],
+         [yxdwMan],
+         [Remark]
+          FROM PJ_yfsyhcjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="sj">[sj]='$sj$'</isNotNull>
+       <isNotNull prepend="AND" property="yssbName">[yssbName]='$yssbName$'</isNotNull>
+       <isNotNull prepend="AND" property="xhclName">[xhclName]='$xhclName$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="dw">[dw]='$dw$'</isNotNull>
+       <isNotNull prepend="AND" property="sl">[sl]='$sl$'</isNotNull>
+       <isNotNull prepend="AND" property="syMan">[syMan]='$syMan$'</isNotNull>
+       <isNotNull prepend="AND" property="yxdwMan">[yxdwMan]='$yxdwMan$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_yfsyhcjlByKey" resultMap="PJ_yfsyhcjl_AllColumns" parameterClass="PJ_yfsyhcjl">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [xh],
+         [sj],
+         [yssbName],
+         [xhclName],
+         [sbModle],
+         [dw],
+         [sl],
+         [syMan],
+         [yxdwMan],
+         [Remark]
+         FROM PJ_yfsyhcjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_yfsyhcjl" parameterClass="PJ_yfsyhcjl">
+        DELETE FROM 
+         PJ_yfsyhcjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_yfsyhcjlByWhere" parameterClass="string">
+     delete from PJ_yfsyhcjl $value$
+   </delete>
+   
+   <delete id="DeletePJ_yfsyhcjlByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_yfsyhcjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_yfsyhcjl" parameterClass="PJ_yfsyhcjl" resultClass="int">
+          UPDATE PJ_yfsyhcjl
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [xh]=#xh#,
+             [sj]=#sj#,
+             [yssbName]=#yssbName#,
+             [xhclName]=#xhclName#,
+             [sbModle]=#sbModle#,
+             [dw]=#dw#,
+             [sl]=#sl#,
+             [syMan]=#syMan#,
+             [yxdwMan]=#yxdwMan#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_yfsyhcjl" parameterClass="PJ_yfsyhcjl">
+        INSERT INTO PJ_yfsyhcjl
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [xh],
+         [sj],
+         [yssbName],
+         [xhclName],
+         [sbModle],
+         [dw],
+         [sl],
+         [syMan],
+         [yxdwMan],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #xh#,
+         #sj#,
+         #yssbName#,
+         #xhclName#,
+         #sbModle#,
+         #dw#,
+         #sl#,
+         #syMan#,
+         #yxdwMan#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_yfsyhcjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_yfsyhcjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="sj">[sj]='$sj$'</isNotNull>
+       <isNotNull prepend="AND" property="yssbName">[yssbName]='$yssbName$'</isNotNull>
+       <isNotNull prepend="AND" property="xhclName">[xhclName]='$xhclName$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="dw">[dw]='$dw$'</isNotNull>
+       <isNotNull prepend="AND" property="sl">[sl]='$sl$'</isNotNull>
+       <isNotNull prepend="AND" property="syMan">[syMan]='$syMan$'</isNotNull>
+       <isNotNull prepend="AND" property="yxdwMan">[yxdwMan]='$yxdwMan$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_yfsyhcjlRowCount" parameterClass="string">
+    select count(*) from PJ_yfsyhcjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-8-29 19:04:55
+生成时间:2011-8-29 20:07:10
 ***********************************************/
 
 using System;
@@ -31,6 +31,7 @@ namespace Ebada.Scgl.Model
         private int _sbcapacity=0; 
         private string _syproject=String.Empty; 
         private string _syperiod=String.Empty; 
+        private int _sl=0; 
         private DateTime _preexptime=new DateTime(1900,1,1); 
         private DateTime _planexptime=new DateTime(1900,1,1); 
         private string _gzrjid=String.Empty; 
@@ -243,6 +244,24 @@ namespace Ebada.Scgl.Model
                 if (_syperiod as object == null || !_syperiod.Equals(value))
                 {
                     _syperiod = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：sl
+        /// 属性描述：数量
+        /// 字段信息：[sl],int
+        /// </summary>
+        [DisplayNameAttribute("数量")]
+        public int sl
+        {
+            get { return _sl; }
+            set
+            {			
+                if (_sl as object == null || !_sl.Equals(value))
+                {
+                    _sl = value;
                 }
             }			 
         }
