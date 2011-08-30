@@ -18,6 +18,16 @@ namespace Ebada.Scgl.Lcgl
     public partial class frmtestRecordEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_yfsyjl> m_CityDic = new SortableSearchableBindingList<PJ_yfsyjl>();
 
+        private string _type = null;
+        public string Type
+        {
+            get { return _type; }
+            set
+            {
+                _type = value;
+
+            }
+        }
         public frmtestRecordEdit()
         {
             InitializeComponent();
@@ -27,12 +37,33 @@ namespace Ebada.Scgl.Lcgl
 
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "sbInstallAdress");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbModle");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sl");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbCapacity");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "syProject");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "preExpTime");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "planExpTime");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
+            switch (rowData.type )
+            {
+                case "变压器":
+                    labelControl3.Visible = true;
+                    comboBoxEdit2.Visible = true;
+                    break;
+                case "断路器":
+                    labelControl8.Visible = true;
+                    comboBoxEdit1.Visible = true;
+
+                    break;
+
+                case "避雷器":
+                    labelControl8.Visible = true;
+                    comboBoxEdit1.Visible = true;
+                    break;
+
+
+            
+            }
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -50,6 +81,7 @@ namespace Ebada.Scgl.Lcgl
                 if (value == null) return;
                 if (rowData == null) {
                     this.rowData = value as PJ_yfsyjl;
+                    rowData.type = _type; 
                     this.InitComboBoxData();
                     dataBind();
                 } else {

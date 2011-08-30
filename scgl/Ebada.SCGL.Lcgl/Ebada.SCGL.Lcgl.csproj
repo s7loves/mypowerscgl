@@ -305,6 +305,9 @@
     <EmbeddedResource Include="预防性试验\UCtestHCRecord.resx">
       <DependentUpon>UCtestHCRecord.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\UCtestRecord.resx">
+      <DependentUpon>UCtestRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\UCtestRecordM.resx">
       <DependentUpon>UCtestRecordM.cs</DependentUpon>
     </EmbeddedResource>
