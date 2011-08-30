@@ -27,11 +27,11 @@ namespace Ebada.Scgl.Model
         private string _sbinstalladress=String.Empty; 
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
-        private string _sbmodle=String.Empty; 
-        private int _sbcapacity=0; 
+        private string _sbmodle=String.Empty;
+        private int _sbcapacity = 0;
+        private int _sl = 0; 
         private string _syproject=String.Empty; 
         private string _syperiod=String.Empty; 
-        private int _sl=0; 
         private DateTime _preexptime=new DateTime(1900,1,1); 
         private DateTime _planexptime=new DateTime(1900,1,1); 
         private string _gzrjid=String.Empty; 
@@ -205,7 +205,24 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+
+        /// <summary>
+        /// 属性名称：sl
+        /// 属性描述：数量
+        /// 字段信息：[sl],int
+        /// </summary>
+        [DisplayNameAttribute("数量")]
+        public int sl
+        {
+            get { return _sl; }
+            set
+            {
+                if (_sl as object == null || !_sl.Equals(value))
+                {
+                    _sl = value;
+                }
+            }
+        }
         /// <summary>
         /// 属性名称：syProject
         /// 属性描述：试验项目
@@ -248,23 +265,6 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
-        /// <summary>
-        /// 属性名称：sl
-        /// 属性描述：数量
-        /// 字段信息：[sl],int
-        /// </summary>
-        [DisplayNameAttribute("数量")]
-        public int sl
-        {
-            get { return _sl; }
-            set
-            {			
-                if (_sl as object == null || !_sl.Equals(value))
-                {
-                    _sl = value;
-                }
-            }			 
-        }
   
         /// <summary>
         /// 属性名称：preExpTime

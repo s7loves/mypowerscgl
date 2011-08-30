@@ -26,13 +26,13 @@ namespace Ebada.Scgl.Lcgl
 
 
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "yssbName");
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "xhclName");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xhclName");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbModle");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dw");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sy");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sl");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "sj");
-            this.dateEdit2.DataBindings.Add("EditValue", rowData, "syMan");
-            this.dateEdit4.DataBindings.Add("EditValue", rowData, "yxdwMan");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "syMan");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "yxdwMan");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -143,22 +143,12 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
+       
+
+        private void btnOK_Click(object sender, EventArgs e)
         {
-            switch (comboBoxEdit2.Text )
-            {
-                case "变压器":
-
-                    break;
-                //case "":
-
-                //    break;
-                //case "":
-
-                //    break;
-
-            
-            }
+            rowData.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyhcjl>(" where OrgCode='"+rowData.OrgCode  +"'") + 1;
+           
         }
     }
 }
