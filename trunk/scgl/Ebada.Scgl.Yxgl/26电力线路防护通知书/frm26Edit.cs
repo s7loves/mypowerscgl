@@ -127,5 +127,28 @@ namespace Ebada.Scgl.Yxgl
         {
 
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+            Microsoft.Office.Interop.Excel.Workbook wb;
+            if (rowData.BigData == null || rowData.BigData.Length == 0)
+            {
+                string fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
+                dsoFramerControl1.FileOpen(fname);
+            }
+            else
+                dsoFramerControl1.FileData = rowData.BigData;
+            wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            ExcelAccess ea = new ExcelAccess();
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
+            ea.SetCellValue(comboBoxEdit1.Text , 5, 2);
+            dsoFramerControl1.FileSave();
+            rowData.BigData = dsoFramerControl1.FileData;
+            dsoFramerControl1.FileClose();
+            dsoFramerControl1.Dispose();
+            dsoFramerControl1 = null;
+        }
     }
 }

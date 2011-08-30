@@ -123,7 +123,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("OrgCode");
             hideColumn("LineID");
             hideColumn("gzrjID");
-            hideColumn("xcqx");
+            //hideColumn("xcqx");
         }
         /// <summary>
         /// 刷新数据
