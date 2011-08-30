@@ -145,7 +145,7 @@ namespace Ebada.Scgl.Yxgl
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
-            ea.SetCellValue("乙 方："+comboBoxEdit1.Text, 2, 1);
+            ea.SetCellValue("乙 方："+comboBoxEdit1.Text, 5, 1);
             dsoFramerControl1.FileSave();
             rowData.BigData = dsoFramerControl1.FileData;
             dsoFramerControl1.FileClose();
