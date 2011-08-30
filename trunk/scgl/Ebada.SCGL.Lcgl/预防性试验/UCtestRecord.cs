@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using Ebada.Components;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -46,12 +47,36 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_yfsyjl>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterDelete);
+        }
+
+        void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
+        {
+
+            IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' order by xh");
+            int i=1;
+            List<PJ_yfsyjl> list = new List<PJ_yfsyjl>();
+            foreach (PJ_yfsyjl ob in li)
+            {
+                ob.xh = i;
+                i++;
+                list.Add(ob); 
+            }
+            List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+            if (list.Count > 0)
+            {
+                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray ());
+                list3.Add(obj3);
+            }
+
+            MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type  + "'  order by xh ");
         }
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
-            
-            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by id desc");
+
+            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
         }
         public string Type
         {
@@ -61,7 +86,24 @@ namespace Ebada.Scgl.Lcgl
                 _type = value;
                 if (_type != null )
                 {
-                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by id desc");
+                    switch (_type)
+                    {
+                        case "变压器":
+                            hideColumn("sl");
+                            break;
+                        case "断路器":
+                            hideColumn("sbCapacity");
+
+                            break;
+
+                        case "避雷器":
+                            hideColumn("sbCapacity");
+                            break;
+
+
+
+                    }
+                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
                 }
 
             }
@@ -75,7 +117,15 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
         {
             if (parentID == null)
+            {
                 e.Cancel = true;
+            }
+            else
+            {
+                e.Value.type = _type;
+                e.Value.OrgCode = parentObj.OrgCode;
+                e.Value.OrgName = parentObj.OrgName; 
+            }
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -143,6 +193,8 @@ namespace Ebada.Scgl.Lcgl
 
             hideColumn("OrgCode");
             hideColumn("gzrjID");
+            hideColumn("type");
+            hideColumn("CreateDate");
         }
         /// <summary>
         /// 刷新数据
@@ -187,7 +239,8 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value) )
                 {
-                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'  order by id desc");
+                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'  order by xh ");
+
                 }
             }
         }

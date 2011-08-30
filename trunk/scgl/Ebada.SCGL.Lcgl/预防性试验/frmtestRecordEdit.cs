@@ -35,7 +35,7 @@ namespace Ebada.Scgl.Lcgl
         void dataBind() {
 
 
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "sbInstallAdress");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "sbInstallAdress");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbModle");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sl");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbCapacity");
@@ -93,9 +93,9 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         private void InitComboBoxData() {
-            comboBoxEdit1.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.Clear();
             ICollection ryList = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电所人员列表
-            comboBoxEdit1.Properties.Items.AddRange(ryList);
+            comboBoxEdit3.Properties.Items.AddRange(ryList);
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>(" WHERE Citylevel = '2'"));
           /*  IList<DicType> list = new List<DicType>();
@@ -172,6 +172,12 @@ namespace Ebada.Scgl.Lcgl
         private void dateEdit1_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            rowData.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='"+rowData.OrgCode  +"' and  type='" + rowData.type + "'") + 1;
+            rowData.CreateDate = DateTime.Now; 
         }
 
       

@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using Ebada.Components;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -40,18 +41,42 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_yfsyhcjl>(gridControl1, gridView1, barManager1, new frmtestRecordEdit());
+            gridViewOperation = new GridViewOperation<PJ_yfsyhcjl>(gridControl1, gridView1, barManager1, new frmtestHCRecordEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_yfsyhcjl>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_yfsyhcjl>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_yfsyhcjl>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_yfsyhcjl>(gridViewOperation_AfterDelete);
         }
+        void gridViewOperation_AfterDelete(PJ_yfsyhcjl obj)
+        {
 
+            IList<PJ_yfsyhcjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyhcjl>(" where OrgCode='" + obj.OrgCode + "' order by xh");
+            int i = 1;
+            List<PJ_yfsyhcjl> list = new List<PJ_yfsyhcjl>();
+            foreach (PJ_yfsyhcjl ob in li)
+            {
+                ob.xh = i;
+                i++;
+                list.Add(ob);
+            }
+            List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+            if (list.Count > 0)
+            {
+                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
+                list3.Add(obj3);
+            }
+
+            MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+            RefreshData(" where OrgCode='" + obj.OrgCode +"'  order by xh ");
+        }
         void gridViewOperation_AfterAdd(PJ_yfsyhcjl obj)
         {
             
-            RefreshData(" where OrgCode='" + ParentID + "'   order by id desc");
+            RefreshData(" where OrgCode='" + ParentID + "'    order by xh ");
+           
+
         }
         public string Type
         {
@@ -59,10 +84,8 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 _type = value;
-                if (_type != null )
-                {
-                    RefreshData(" where OrgCode='" + ParentID + "'    order by id desc");
-                }
+               RefreshData(" where OrgCode='" + ParentID + "'    order by xh ");
+                
 
             }
         }
@@ -75,7 +98,16 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_yfsyhcjl> e)
         {
             if (parentID == null)
+            {
                 e.Cancel = true;
+            }
+            else
+            {
+                e.Value.OrgCode = parentObj.OrgCode;
+                e.Value.OrgName = parentObj.OrgName;
+                if (_type!=null)
+                e.Value.yssbName = _type; 
+            }
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -183,7 +215,9 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value) )
                 {
-                    RefreshData(" where OrgCode='" + value + "'   order by id desc");
+                 
+                    
+                        RefreshData(" where OrgCode='" + value + "'    order by xh ");
                 }
             }
         }
