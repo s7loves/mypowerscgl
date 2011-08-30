@@ -379,9 +379,9 @@ namespace Ebada.Scgl.WFlow
             if (wf.Count == 0) return ;
             {
                 MainHelper.PlatformSqlMap.Delete<WFP_RecordWorkTaskIns>(wf[0]);
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where WorkFlowInsId='" + wf[0].WorkFlowInsId  + "'");
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskInstance>(" where WorkFlowInsId='" + wf[0].WorkFlowInsId + "'");
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowInstance>(" where WorkFlowInsId='" + wf[0].WorkFlowInsId + "'");
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
             }
             
             //return "";
@@ -437,7 +437,28 @@ namespace Ebada.Scgl.WFlow
                 li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
                 if (li.Count > 0)
                 {
-                    return li[0].TaskInsCaption;
+                    if (li[0].isSubWorkflow == false)
+                    {
+                        return li[0].TaskInsCaption;
+                    }
+                    else
+                    {
+                         WF_WorkFlowInstance mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  WorkflowInsId='" + li[0].MainWorkflowInsId + "'");
+                         if (mainwf != null)
+                        {
+                            //WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(mainwf.NowTaskId);
+                            WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
+                            if (wt.TaskTypeId == "6")
+                            {
+                                WF_WorkFlowInstance subwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  MainWorkflowInsId='" + li[0].MainWorkflowInsId + "'and MainWorktaskId='" + mainwf.NowTaskId + "' ");
+                                wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(subwf.NowTaskId);
+                                
+                            }
+                           
+                                return wt.TaskCaption ;
+
+                        }
+                    }
                 }
 
                 return "";
@@ -513,7 +534,43 @@ namespace Ebada.Scgl.WFlow
                 TaskToWhoMsg = "未提交至任何人,请检查流程模板和组织机构配置是否正确!";
                 if (ResultMsg == WorkFlowConst.WorkflowOverMsg)//流程结束
                 {
-                    TaskToWhoMsg = "流程结束!";
+                    string sql = "where previoustaskid='" + workTaskInsId + "' order by opertype";
+                    IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
+                    if (li.Count > 0)
+                    {
+                        if (li[0].isSubWorkflow == false)
+                        {
+                            TaskToWhoMsg = "流程结束!";
+                        }
+                        else
+                        {
+                            WF_WorkFlowInstance mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  WorkflowInsId='" + li[0].MainWorkflowInsId + "'");
+                            if (mainwf != null)
+                            {
+                                //WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(mainwf.NowTaskId);
+                                WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
+                                if (wt.TaskTypeId == "6")
+                                {
+                                    WF_WorkFlowInstance subwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  MainWorkflowInsId='" + li[0].MainWorkflowInsId + "'and MainWorktaskId='" + mainwf.NowTaskId + "' ");
+                                    sql = "where MainWorkflowInsId='" + subwf.MainWorkflowInsId + "' and MainWorktaskId='" + subwf.MainWorktaskId  + "'and WorkTaskId='" + subwf .NowTaskId+ "' order by opertype";
+                                    li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
+                                    if (li.Count > 0)
+                                    {
+                                        TaskToWhoMsg = WorkTaskInstance.GetTaskToWhoMsg(li[0].PreviousTaskId   );
+                                    }
+                                }
+                                else
+                                    if (wt.TaskTypeId == "2")
+                                    {
+                                        TaskToWhoMsg = "流程结束!";
+                                    }
+
+                               
+
+                            }
+                        }
+                    }
+                    
                 }
                 if (ResultMsg == WorkFlowConst.TaskBackMsg)
                 {
