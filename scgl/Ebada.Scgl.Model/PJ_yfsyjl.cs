@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-8-30 8:28:25
+生成时间:2011-8-30 17:38:45
 ***********************************************/
 
 using System;
@@ -27,15 +27,16 @@ namespace Ebada.Scgl.Model
         private string _sbinstalladress=String.Empty; 
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
-        private string _sbmodle=String.Empty;
-        private int _sbcapacity = 0;
-        private int _sl = 0; 
+        private string _sbmodle=String.Empty; 
+        private int _sbcapacity=0; 
+        private int _sl=0; 
         private string _syproject=String.Empty; 
         private string _syperiod=String.Empty; 
         private DateTime _preexptime=new DateTime(1900,1,1); 
         private DateTime _planexptime=new DateTime(1900,1,1); 
         private string _gzrjid=String.Empty; 
         private string _charman=String.Empty; 
+        private string _syman=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
         private string _remark=String.Empty;   
         #endregion
@@ -205,7 +206,7 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-
+  
         /// <summary>
         /// 属性名称：sl
         /// 属性描述：数量
@@ -216,13 +217,14 @@ namespace Ebada.Scgl.Model
         {
             get { return _sl; }
             set
-            {
+            {			
                 if (_sl as object == null || !_sl.Equals(value))
                 {
                     _sl = value;
                 }
-            }
+            }			 
         }
+  
         /// <summary>
         /// 属性名称：syProject
         /// 属性描述：试验项目
@@ -264,7 +266,6 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
   
         /// <summary>
         /// 属性名称：preExpTime
@@ -340,6 +341,27 @@ namespace Ebada.Scgl.Model
                 if (_charman as object == null || !_charman.Equals(value))
                 {
                     _charman = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：syMan
+        /// 属性描述：实验人
+        /// 字段信息：[syMan],nchar
+        /// </summary>
+        [DisplayNameAttribute("实验人")]
+        public string syMan
+        {
+            get { return _syman; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 10)
+                throw new Exception("[实验人]长度不能大于10!");
+                if (_syman as object == null || !_syman.Equals(value))
+                {
+                    _syman = value;
                 }
             }			 
         }

@@ -223,7 +223,8 @@ namespace Ebada.SCGL.WFlow.Engine
                     workTaskInstance.TaskInsCaption = WorkFlowTask.GetTaskCaption(WorkTaskId);
                     if (isSubWorkflow)//是子流程调用，需要放到未认领任务中
                     {
-                        workTaskInstance.PreviousTaskId = WorkTaskInstanceId;
+                        //workTaskInstance.PreviousTaskId = WorkTaskInstanceId;
+                        workTaskInstance.PreviousTaskId = MainWorktaskInsId;
                         workTaskInstance.Status = "1";
                     }
                     else//不是子流程调用,启动节点直接放入已认领任务中

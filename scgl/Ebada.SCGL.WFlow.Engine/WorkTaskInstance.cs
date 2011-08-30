@@ -209,7 +209,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@worktaskInsId", worktaskInsId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //DataTable dt= agent.ExecuteDataTable(sqlItem);
-                string sql = "where previoustaskid='" + worktaskInsId + "' and operstatus='0' order by opertype";
+                string sql = "where (previoustaskid='" + worktaskInsId + "' or previoustaskid in ( select NowTaskId  from WF_WorkFlowInstance where MainWorktaskInsId='" + worktaskInsId + "' ) ) and operstatus='0' order by opertype";
                  DataTable dt=null;
                 IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewList", sql);
                 if (li.Count == 0)

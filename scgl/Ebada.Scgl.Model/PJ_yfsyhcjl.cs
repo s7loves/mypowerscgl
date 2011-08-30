@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-8-30 8:28:25
+生成时间:2011-8-30 17:38:45
 ***********************************************/
 
 using System;
@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Model
         private string _sbmodle=String.Empty; 
         private string _dw=String.Empty; 
         private int _sl=0; 
-        private string _syman=String.Empty; 
+        private string _ysman=String.Empty; 
         private string _yxdwman=String.Empty; 
         private string _remark=String.Empty;   
         #endregion
@@ -242,22 +242,22 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：syMan
+        /// 属性名称：ysMan
         /// 属性描述：预试人员
-        /// 字段信息：[syMan],nvarchar
+        /// 字段信息：[ysMan],nvarchar
         /// </summary>
         [DisplayNameAttribute("预试人员")]
-        public string syMan
+        public string ysMan
         {
-            get { return _syman; }
+            get { return _ysman; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
                 throw new Exception("[预试人员]长度不能大于50!");
-                if (_syman as object == null || !_syman.Equals(value))
+                if (_ysman as object == null || !_ysman.Equals(value))
                 {
-                    _syman = value;
+                    _ysman = value;
                 }
             }			 
         }
