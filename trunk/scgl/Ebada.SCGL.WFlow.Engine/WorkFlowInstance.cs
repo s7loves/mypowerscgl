@@ -282,7 +282,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
                 sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') ) OR ";
                 sqlstr = sqlstr + " (OperContent = 'ALL')) and  (OperStatus='0') and ";
-                sqlstr = sqlstr + " (Status='1') and (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "') ";
+                sqlstr = sqlstr + " (Status='1') and ( (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "')  or WorkFlowInsId in (select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + WorkFlowInstanceId + "' ))";
                 sqlstr = sqlstr + "union  ";
                 sqlstr = sqlstr + " select " + filedstr + " from WF_WorkTaskInsAccreditView where ";
                 sqlstr = sqlstr + " AccreditToUserId='" + userId + "' and AccreditStatus='1'and status='1'  ";
@@ -830,6 +830,18 @@ namespace Ebada.SCGL.WFlow.Engine
             if (dtCurr.Rows.Count > 0)
             {
                 currTaskId = dtCurr.Rows[0]["NowTaskId"].ToString();//流程实例当前节点
+                //WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(currTaskId);
+                //if (wt.TaskTypeId == "6")
+                //{
+
+                //    WF_WorkFlowInstance wf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", " where MainWorkflowInsId='" + workflowInsId + "' and MainWorktaskId='" + currTaskId + "'");
+                //    if (wf != null)
+                //    {
+                //        currTaskId = wf.NowTaskId;
+                    
+                //    }
+                //}
+ 
                 gc.Clear(System.Drawing.Color.FromArgb(255, 253, 244));   // 改变背景颜色
                 foreach (DataRow dr in tasktable.Rows)
                 {

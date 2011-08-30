@@ -429,7 +429,7 @@ namespace Ebada.SCGL.WFlow.Tool
             try
             {
                 string sqlStr = "where TaskTypeId = '1' and  workflowId='" + workFlowId + "'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskPowerList", sqlStr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskList", sqlStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();

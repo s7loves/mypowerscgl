@@ -15,7 +15,7 @@
         <result property="sbModle" column="sbModle" />
         <result property="dw" column="dw" />
         <result property="sl" column="sl" />
-        <result property="syMan" column="syMan" />
+        <result property="ysMan" column="ysMan" />
         <result property="yxdwMan" column="yxdwMan" />
         <result property="Remark" column="Remark" />
       </resultMap>
@@ -34,7 +34,7 @@
          [sbModle],
          [dw],
          [sl],
-         [syMan],
+         [ysMan],
          [yxdwMan],
          [Remark]
           FROM PJ_yfsyhcjl
@@ -53,7 +53,7 @@
          [sbModle],
          [dw],
          [sl],
-         [syMan],
+         [ysMan],
          [yxdwMan],
          [Remark]
           FROM PJ_yfsyhcjl
@@ -68,7 +68,7 @@
        <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
        <isNotNull prepend="AND" property="dw">[dw]='$dw$'</isNotNull>
        <isNotNull prepend="AND" property="sl">[sl]='$sl$'</isNotNull>
-       <isNotNull prepend="AND" property="syMan">[syMan]='$syMan$'</isNotNull>
+       <isNotNull prepend="AND" property="ysMan">[ysMan]='$ysMan$'</isNotNull>
        <isNotNull prepend="AND" property="yxdwMan">[yxdwMan]='$yxdwMan$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
      </dynamic>
@@ -85,7 +85,7 @@
          [sbModle],
          [dw],
          [sl],
-         [syMan],
+         [ysMan],
          [yxdwMan],
          [Remark]
          FROM PJ_yfsyhcjl
@@ -126,7 +126,7 @@
              [sbModle]=#sbModle#,
              [dw]=#dw#,
              [sl]=#sl#,
-             [syMan]=#syMan#,
+             [ysMan]=#ysMan#,
              [yxdwMan]=#yxdwMan#,
              [Remark]=#Remark#
             WHERE 
@@ -147,7 +147,7 @@
          [sbModle],
          [dw],
          [sl],
-         [syMan],
+         [ysMan],
          [yxdwMan],
          [Remark]
          )
@@ -163,7 +163,7 @@
          #sbModle#,
          #dw#,
          #sl#,
-         #syMan#,
+         #ysMan#,
          #yxdwMan#,
          #Remark#
          )
@@ -184,7 +184,7 @@
        <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
        <isNotNull prepend="AND" property="dw">[dw]='$dw$'</isNotNull>
        <isNotNull prepend="AND" property="sl">[sl]='$sl$'</isNotNull>
-       <isNotNull prepend="AND" property="syMan">[syMan]='$syMan$'</isNotNull>
+       <isNotNull prepend="AND" property="ysMan">[ysMan]='$ysMan$'</isNotNull>
        <isNotNull prepend="AND" property="yxdwMan">[yxdwMan]='$yxdwMan$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
      </dynamic>

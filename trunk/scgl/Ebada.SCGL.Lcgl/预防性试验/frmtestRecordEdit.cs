@@ -43,6 +43,7 @@ namespace Ebada.Scgl.Lcgl
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "syProject");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "preExpTime");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "planExpTime");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "charMan");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             switch (rowData.type )
             {
@@ -50,13 +51,11 @@ namespace Ebada.Scgl.Lcgl
                     labelControl3.Visible = true;
                     comboBoxEdit2.Visible = true;
                     break;
+                case "避雷器":
                 case "断路器":
+                case "电容器":
                     labelControl8.Visible = true;
                     comboBoxEdit1.Visible = true;
-
-                    break;
-
-                case "避雷器":
                     labelControl8.Visible = true;
                     comboBoxEdit1.Visible = true;
                     break;

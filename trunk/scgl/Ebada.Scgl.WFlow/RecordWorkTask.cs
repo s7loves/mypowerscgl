@@ -424,7 +424,7 @@ namespace Ebada.Scgl.WFlow
         /// <returns></returns>
         public static string GetWorkFlowTaskCaption( string WorkTaskInsId)
         {
-            string sql = "where previoustaskid='" + WorkTaskInsId + "' and operstatus='0' order by opertype";
+            string sql = "where ( previoustaskid='" + WorkTaskInsId + "'  or WorkTaskId in ( select NowTaskId  from WF_WorkFlowInstance where MainWorktaskInsId='" + WorkTaskInsId + "' ) ) and operstatus='0' order by opertype";
             
             IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
             if (li.Count > 0)
@@ -508,7 +508,7 @@ namespace Ebada.Scgl.WFlow
             ResultMsg = WorkTaskInstance.GetResultMsg(workTaskInsId);
 
             title = "操作结果:" + ResultMsg;
-            if (TaskToWhoMsg.Length <= 0)
+            if (ResultMsg!= WorkFlowConst.SuccessMsg)
             {
                 TaskToWhoMsg = "未提交至任何人,请检查流程模板和组织机构配置是否正确!";
                 if (ResultMsg == WorkFlowConst.WorkflowOverMsg)//流程结束

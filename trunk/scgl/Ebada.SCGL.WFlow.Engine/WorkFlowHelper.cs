@@ -640,7 +640,8 @@ namespace Ebada.SCGL.WFlow.Engine
                                         wfruntime.WorkFlowNo = "subWorkflow";
                                         wfruntime.CommandName = "提交";
                                         wfruntime.WorkflowInsCaption = subWorkflowCaption;
-                                        wfruntime.IsDraft = true;//开始节点需要交互，草稿状态，暂不提交
+                                        //wfruntime.IsDraft = true;//开始节点需要交互，草稿状态，暂不提交
+                                        wfruntime.IsDraft = false;//开始节点需要交互，草稿状态，暂不提交
                                         wfruntime.Start();
                                         //设置处理者实例正常结束
                                         OperatorInstance.SetOperatorInstanceOver(userId, operatorInstanceId);
