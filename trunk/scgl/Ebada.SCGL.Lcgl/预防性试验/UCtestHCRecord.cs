@@ -51,7 +51,7 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterAdd(PJ_yfsyhcjl obj)
         {
             
-            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by id desc");
+            RefreshData(" where OrgCode='" + ParentID + "'   order by id desc");
         }
         public string Type
         {
@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Lcgl
                 _type = value;
                 if (_type != null )
                 {
-                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by id desc");
+                    RefreshData(" where OrgCode='" + ParentID + "'    order by id desc");
                 }
 
             }
@@ -137,7 +137,8 @@ namespace Ebada.Scgl.Lcgl
             //需要隐藏列时在这写代码
 
             hideColumn("OrgCode");
-            hideColumn("gzrjID");
+            hideColumn("OrgName");
+            //hideColumn("gzrjID");
         }
         /// <summary>
         /// 刷新数据
@@ -182,7 +183,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value) )
                 {
-                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'  order by id desc");
+                    RefreshData(" where OrgCode='" + value + "'   order by id desc");
                 }
             }
         }
