@@ -32,6 +32,9 @@ namespace Ebada.Android.Service {
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetzlList", BodyStyle = WebMessageBodyStyle.Bare)]
         List<ps_sbzl> GetsbzlList();
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetVer", BodyStyle = WebMessageBodyStyle.Bare)]
+        string GetVersion();
         /// <summary>
         /// 获取杆塔列表
         /// </summary>
@@ -49,5 +52,6 @@ namespace Ebada.Android.Service {
         [WebInvoke(UriTemplate = "UpdateGtOne", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         [OperationContract]
         string UpdateGtOne(ps_gt data);
+
     }
 }

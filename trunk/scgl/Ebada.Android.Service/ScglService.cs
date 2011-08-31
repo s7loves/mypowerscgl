@@ -179,7 +179,21 @@ namespace Ebada.Android.Service {
 
             return list; throw new NotImplementedException();
         }
-
+        string select_ver = "select value from msys where dm='androidver'";
+        public string GetVersion() {
+            string ver ="0";
+            try {
+                object obj = null;
+                try { obj = Client.ClientHelper.PlatformSqlMap.GetObject("Select", select_ver); } catch { }
+                int nver = 0;
+                if (obj != null) {
+                    nver = int.Parse((obj as System.Collections.Hashtable)["value"].ToString());
+                    ver = nver.ToString();
+                    Console.WriteLine(ver);
+                }
+            } catch { }
+            return ver;
+        }
         #endregion
     }
 }
