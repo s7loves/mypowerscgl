@@ -71,13 +71,35 @@ namespace Ebada.Android.Service {
             List<ps_gt> list = new List<ps_gt>();
             IList<PS_gt> list2 = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where LineCode='" + xlcode + "'");
             foreach (PS_gt gt in list2) {
-                list.Add(new ps_gt() { LineCode = gt.LineCode,
-                    gtCode=gt.gtCode,gtElev=gt.gtElev.ToString(),gtHeight=gt.gtHeight.ToString(),
-                gth=gt.gth,gtID=gt.gtID,gtLat=gt.gtLat.ToString(),gtLon=gt.gtLon.ToString(),gtSpan=gt.gtJg,
-                gtModle=gt.gtModle,gtType=gt.gtType.ToString()});
+                ps_gt psgt = new ps_gt() {
+                    LineCode = gt.LineCode,
+                    gtCode = gt.gtCode, gtElev = gt.gtElev.ToString(), gtHeight = gt.gtHeight.ToString(),
+                    gth = gt.gth, gtID = gt.gtID, gtLat = gt.gtLat.ToString(), gtLon = gt.gtLon.ToString(), gtSpan = gt.gtJg,
+                    gtModle = gt.gtModle, gtType = gt.gtType.ToString()
+                };
+                list.Add(psgt);
+                psgt.jsonData = getjsonData(gt.gtID);
             }
 
             return list;
+        }
+
+        private string getjsonData(string p) {
+            IList<PS_gtsb> list= Client.ClientHelper.PlatformSqlMap.GetList<PS_gtsb>("where gtid='"+p+"'");
+            string jsondata = null;
+            if (list.Count > 0) {
+                IList<ps_gtsb> gsonList = new List<ps_gtsb>();
+                foreach (PS_gtsb sb in list) {
+                    ps_gtsb gtsb = new ps_gtsb() { sl = sb.sbNumber.ToString(), xh = sb.sbModle, zl = sb.sbName, zldm = sb.sbType };
+                    gsonList.Add(gtsb);
+                }
+                try {
+                    jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(gsonList);
+                    Console.WriteLine(jsondata);
+                } catch (Exception err) { Console.WriteLine(err.Message); }
+
+            }
+            return jsondata;
         }
 
         
