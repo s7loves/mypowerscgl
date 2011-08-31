@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-8-30 17:38:45
+生成时间:2011-8-31 14:53:33
 ***********************************************/
 
 using System;
@@ -34,7 +34,10 @@ namespace Ebada.Scgl.Model
         private string _syperiod=String.Empty; 
         private DateTime _preexptime=new DateTime(1900,1,1); 
         private DateTime _planexptime=new DateTime(1900,1,1); 
+        private DateTime _sjexptime=new DateTime(1900,1,1); 
         private string _gzrjid=String.Empty; 
+        private string _iswc=String.Empty; 
+        private string _syjg=String.Empty; 
         private string _charman=String.Empty; 
         private string _syman=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
@@ -304,6 +307,24 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
+        /// 属性名称：sjExpTime
+        /// 属性描述：完成试验时间
+        /// 字段信息：[sjExpTime],datetime
+        /// </summary>
+        [DisplayNameAttribute("完成试验时间")]
+        public DateTime sjExpTime
+        {
+            get { return _sjexptime; }
+            set
+            {			
+                if (_sjexptime as object == null || !_sjexptime.Equals(value))
+                {
+                    _sjexptime = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
         /// 属性名称：gzrjID
         /// 属性描述：日志
         /// 字段信息：[gzrjID],nvarchar
@@ -320,6 +341,48 @@ namespace Ebada.Scgl.Model
                 if (_gzrjid as object == null || !_gzrjid.Equals(value))
                 {
                     _gzrjid = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：iswc
+        /// 属性描述：是否完成
+        /// 字段信息：[iswc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("是否完成")]
+        public string iswc
+        {
+            get { return _iswc; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[是否完成]长度不能大于50!");
+                if (_iswc as object == null || !_iswc.Equals(value))
+                {
+                    _iswc = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：syjg
+        /// 属性描述：实验结果
+        /// 字段信息：[syjg],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("实验结果")]
+        public string syjg
+        {
+            get { return _syjg; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[实验结果]长度不能大于50!");
+                if (_syjg as object == null || !_syjg.Equals(value))
+                {
+                    _syjg = value;
                 }
             }			 
         }

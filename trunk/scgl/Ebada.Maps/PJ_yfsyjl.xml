@@ -18,7 +18,10 @@
         <result property="syPeriod" column="syPeriod" />
         <result property="preExpTime" column="preExpTime" />
         <result property="planExpTime" column="planExpTime" />
+        <result property="sjExpTime" column="sjExpTime" />
         <result property="gzrjID" column="gzrjID" />
+        <result property="iswc" column="iswc" />
+        <result property="syjg" column="syjg" />
         <result property="charMan" column="charMan" />
         <result property="syMan" column="syMan" />
         <result property="CreateDate" column="CreateDate" />
@@ -42,7 +45,10 @@
          [syPeriod],
          [preExpTime],
          [planExpTime],
+         [sjExpTime],
          [gzrjID],
+         [iswc],
+         [syjg],
          [charMan],
          [syMan],
          [CreateDate],
@@ -66,7 +72,10 @@
          [syPeriod],
          [preExpTime],
          [planExpTime],
+         [sjExpTime],
          [gzrjID],
+         [iswc],
+         [syjg],
          [charMan],
          [syMan],
          [CreateDate],
@@ -86,7 +95,10 @@
        <isNotNull prepend="AND" property="syPeriod">[syPeriod]='$syPeriod$'</isNotNull>
        <isNotNull prepend="AND" property="preExpTime">[preExpTime]='$preExpTime$'</isNotNull>
        <isNotNull prepend="AND" property="planExpTime">[planExpTime]='$planExpTime$'</isNotNull>
+       <isNotNull prepend="AND" property="sjExpTime">[sjExpTime]='$sjExpTime$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="iswc">[iswc]='$iswc$'</isNotNull>
+       <isNotNull prepend="AND" property="syjg">[syjg]='$syjg$'</isNotNull>
        <isNotNull prepend="AND" property="charMan">[charMan]='$charMan$'</isNotNull>
        <isNotNull prepend="AND" property="syMan">[syMan]='$syMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
@@ -108,7 +120,10 @@
          [syPeriod],
          [preExpTime],
          [planExpTime],
+         [sjExpTime],
          [gzrjID],
+         [iswc],
+         [syjg],
          [charMan],
          [syMan],
          [CreateDate],
@@ -154,7 +169,10 @@
              [syPeriod]=#syPeriod#,
              [preExpTime]=#preExpTime#,
              [planExpTime]=#planExpTime#,
+             [sjExpTime]=#sjExpTime#,
              [gzrjID]=#gzrjID#,
+             [iswc]=#iswc#,
+             [syjg]=#syjg#,
              [charMan]=#charMan#,
              [syMan]=#syMan#,
              [CreateDate]=#CreateDate#,
@@ -180,7 +198,10 @@
          [syPeriod],
          [preExpTime],
          [planExpTime],
+         [sjExpTime],
          [gzrjID],
+         [iswc],
+         [syjg],
          [charMan],
          [syMan],
          [CreateDate],
@@ -201,7 +222,10 @@
          #syPeriod#,
          #preExpTime#,
          #planExpTime#,
+         #sjExpTime#,
          #gzrjID#,
+         #iswc#,
+         #syjg#,
          #charMan#,
          #syMan#,
          #CreateDate#,
@@ -227,7 +251,10 @@
        <isNotNull prepend="AND" property="syPeriod">[syPeriod]='$syPeriod$'</isNotNull>
        <isNotNull prepend="AND" property="preExpTime">[preExpTime]='$preExpTime$'</isNotNull>
        <isNotNull prepend="AND" property="planExpTime">[planExpTime]='$planExpTime$'</isNotNull>
+       <isNotNull prepend="AND" property="sjExpTime">[sjExpTime]='$sjExpTime$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="iswc">[iswc]='$iswc$'</isNotNull>
+       <isNotNull prepend="AND" property="syjg">[syjg]='$syjg$'</isNotNull>
        <isNotNull prepend="AND" property="charMan">[charMan]='$charMan$'</isNotNull>
        <isNotNull prepend="AND" property="syMan">[syMan]='$syMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
