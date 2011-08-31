@@ -45,6 +45,22 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_24>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_24>(gridViewOperation_AfterAdd);
+        }
+        void gridViewOperation_AfterAdd(PJ_24 e)
+        {
+            DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+            Microsoft.Office.Interop.Excel.Workbook wb;dsoFramerControl1.FileData = e.BigData;
+            wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            ExcelAccess ea = new ExcelAccess();
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
+            ea.SetCellValue(ParentObj.OrgName , 4, 9);
+            dsoFramerControl1.FileSave();
+            e.BigData = dsoFramerControl1.FileData;
+            dsoFramerControl1.FileClose();
+            dsoFramerControl1.Dispose();
+            dsoFramerControl1 = null;
         }
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_24> e)
         {
