@@ -5,7 +5,7 @@ using Ebada.Components;
 using System.Collections;
 namespace Ebada.Server.Host {
     internal class DBHelper {
-        internal int mVer = 2;
+        internal int mVer = 3;
         string mSelect = "Select";
         string mUpdate = "Update";
         IBaseSqlMapDao sqlMap;
@@ -15,6 +15,7 @@ namespace Ebada.Server.Host {
             +" insert into msys values('dbver','数据库版本','1')";
         string select_ver = "select value from msys where dm='dbver'";
         string update_ver = "update msys set value='{0}' where dm='dbver'";
+        string insertAndroidVer = "insert msys values('androidver','手机端软件版本','2')";
         public IBaseSqlMapDao SqlMap {
             get {
                 if (sqlMap == null)
@@ -35,7 +36,15 @@ namespace Ebada.Server.Host {
             if (ver < 2) {
                 try {
                     SqlMap.Update(mUpdate, string.Format(update_ver, mVer));
-                    Console.WriteLine("新数据库版本ver:{0}",mVer);
+                    Console.WriteLine("更新数据库版本ver:{0}",mVer);
+                } catch (Exception e) { throw e; }
+
+            }
+            if (ver < 3) {
+                try {
+                    sqlMap.Update(mUpdate, insertAndroidVer);
+                    SqlMap.Update(mUpdate, string.Format(update_ver, mVer));
+                    Console.WriteLine("更新数据库版本ver:{0}", mVer);
                 } catch (Exception e) { throw e; }
 
             }
