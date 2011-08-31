@@ -100,6 +100,10 @@ namespace Ebada.Scgl.Lcgl
                             hideColumn("sbCapacity");
                             break;
 
+                        case "电容器":
+                            hideColumn("sbCapacity");
+                            break;
+
 
 
                     }
@@ -194,6 +198,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("OrgCode");
             hideColumn("gzrjID");
             hideColumn("type");
+            hideColumn("syMan");
             hideColumn("CreateDate");
         }
         /// <summary>
