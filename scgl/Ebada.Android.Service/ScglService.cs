@@ -95,7 +95,7 @@ namespace Ebada.Android.Service {
                 }
                 try {
                     jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(gsonList);
-                    Console.WriteLine(jsondata);
+                    //Console.WriteLine(jsondata);
                 } catch (Exception err) { Console.WriteLine(err.Message); }
 
             }
