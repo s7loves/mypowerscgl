@@ -15,7 +15,7 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmtestRecordEdit : FormBase, IPopupFormEdit {
+    public partial class frmtestRecordsyqkEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_yfsyjl> m_CityDic = new SortableSearchableBindingList<PJ_yfsyjl>();
 
         private string _type = null;
@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Lcgl
 
             }
         }
-        public frmtestRecordEdit()
+        public frmtestRecordsyqkEdit()
         {
             InitializeComponent();
         }
@@ -49,15 +49,15 @@ namespace Ebada.Scgl.Lcgl
             {
                 case "变压器":
                     labelControl3.Visible = true;
-                    comboBoxEdit4.Visible = true;
+                    comboBoxEdit2.Visible = true;
                     break;
                 case "避雷器":
                 case "断路器":
                 case "电容器":
                     labelControl8.Visible = true;
-                    comboBoxEdit2.Visible = true;
+                    comboBoxEdit1.Visible = true;
                     labelControl8.Visible = true;
-                    comboBoxEdit2.Visible = true;
+                    comboBoxEdit1.Visible = true;
                     break;
 
 

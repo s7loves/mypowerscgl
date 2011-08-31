@@ -86,6 +86,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="预防性试验\frmtestRecordsyqkEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecordsyqkEdit.Designer.cs">
+      <DependentUpon>frmtestRecordsyqkEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecordwcqkEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecordwcqkEdit.Designer.cs">
+      <DependentUpon>frmtestRecordwcqkEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecordjhmxEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecordjhmxEdit.Designer.cs">
+      <DependentUpon>frmtestRecordjhmxEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\UCtestRecordsyqkTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="预防性试验\UCtestRecordsyqkTable.Designer.cs">
+      <DependentUpon>UCtestRecordsyqkTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\UCtestRecordwcqkTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="预防性试验\UCtestRecordwcqkTable.Designer.cs">
+      <DependentUpon>UCtestRecordwcqkTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\UCtestRecordjhmxTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="预防性试验\UCtestRecordjhmxTable.Designer.cs">
+      <DependentUpon>UCtestRecordjhmxTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="预防性试验\frmtestHCRecordEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +335,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="预防性试验\frmtestRecordsyqkEdit.resx">
+      <DependentUpon>frmtestRecordsyqkEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\frmtestRecordwcqkEdit.resx">
+      <DependentUpon>frmtestRecordwcqkEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\frmtestRecordjhmxEdit.resx">
+      <DependentUpon>frmtestRecordjhmxEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\UCtestRecordsyqkTable.resx">
+      <DependentUpon>UCtestRecordsyqkTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\UCtestRecordwcqkTable.resx">
+      <DependentUpon>UCtestRecordwcqkTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\UCtestRecordjhmxTable.resx">
+      <DependentUpon>UCtestRecordjhmxTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestHCRecordEdit.resx">
       <DependentUpon>frmtestHCRecordEdit.cs</DependentUpon>
     </EmbeddedResource>

@@ -29,20 +29,20 @@ namespace Ebada.Scgl.Lcgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCtestRecord : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCtestRecordsyqkTable : DevExpress.XtraEditors.XtraUserControl
     {
-        public  GridViewOperation<PJ_yfsyjl> gridViewOperation;
+        private GridViewOperation<PJ_yfsyjl> gridViewOperation;
 
         public event SendDataEventHandler<PJ_yfsyjl> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
         private string _type = null;
-        public UCtestRecord()
+        public UCtestRecordsyqkTable()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_yfsyjl>(gridControl1, gridView1, barManager1, new frmtestRecordEdit());
+            gridViewOperation = new GridViewOperation<PJ_yfsyjl>(gridControl1, gridView1, barManager1, new frmtestRecordsyqkEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_yfsyjl>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_yfsyjl>(gridViewOperation_BeforeDelete);
@@ -87,23 +87,31 @@ namespace Ebada.Scgl.Lcgl
                 _type = value;
                 if (_type != null )
                 {
+                    gridView1.Columns["sbCapacity"].VisibleIndex = 4;
+                    gridView1.Columns["sl"].VisibleIndex = 4;
                     switch (_type)
                     {
                         case "变压器":
                             hideColumn("sl");
+                            hideColumn("sbCapacity", true);
                             break;
                         case "断路器":
                             hideColumn("sbCapacity");
+                            hideColumn("sl", true);
 
                             break;
 
                         case "避雷器":
                             hideColumn("sbCapacity");
+                            hideColumn("sl", true);
                             break;
 
                         case "电容器":
                             hideColumn("sbCapacity");
+                            hideColumn("sl", true);
                             break;
+
+
                     }
                     RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
                 }
@@ -175,7 +183,12 @@ namespace Ebada.Scgl.Lcgl
         }
         private void hideColumn(string colname)
         {
-            gridView1.Columns[colname].Visible = false;
+            //gridView1.Columns[colname].Visible = false;
+            hideColumn(colname, false);
+        }
+        private void hideColumn(string colname, bool ishide)
+        {
+            gridView1.Columns[colname].Visible = ishide;
         }
         /// <summary>
         /// 初始化数据
@@ -195,21 +208,20 @@ namespace Ebada.Scgl.Lcgl
 
             hideColumn("OrgCode");
             hideColumn("OrgName");
+            hideColumn("syPeriod");
             hideColumn("gzrjID");
             hideColumn("type");
-            hideColumn("iswc");
-            hideColumn("syjg");
-            hideColumn("syMan");
-            hideColumn("sjExpTime");
             hideColumn("CreateDate");
-            gridView1.Columns["preExpTime"].Caption = "检查试验时间";
-            gridView1.Columns["planExpTime"].Caption = "下次试验时间";
+            hideColumn("preExpTime");
+            gridView1.Columns["charMan"].Caption = "负责人";
+            gridView1.Columns["planExpTime"].Caption = "计划试验时间";
             foreach (GridColumn gc in gridView1.Columns)
             {
-                gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
-                gc.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
+                gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;   
+                gc.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;   
             }
         }
+        
         /// <summary>
         /// 刷新数据
         /// </summary>
@@ -217,6 +229,10 @@ namespace Ebada.Scgl.Lcgl
         public void RefreshData(string slqwhere)
         {
             gridViewOperation.RefreshData(slqwhere);
+        }
+        public void RefreshData()
+        {
+            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
         }
         /// <summary>
         /// 封装了数据操作的对象

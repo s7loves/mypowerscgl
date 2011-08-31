@@ -22,6 +22,7 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Components;
+using DevExpress.Utils;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -171,6 +172,11 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("OrgCode");
             hideColumn("OrgName");
             //hideColumn("gzrjID");
+            foreach (GridColumn gc in gridView1.Columns)
+            {
+                gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
+                gc.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
+            }
         }
         /// <summary>
         /// 刷新数据
