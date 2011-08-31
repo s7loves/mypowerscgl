@@ -113,7 +113,7 @@ namespace Ebada.Scgl.Yxgl
             Microsoft.Office.Interop.Excel.Workbook wb;
             if (rowData.BigData.Length == 0)
             {
-                string fname = Application.StartupPath + "\\00记录模板\\24配电线路产权维护范围协议书.xls";
+                string fname = Application.StartupPath + "\\00记录模板\\24设备变更通知书.xls";
                 dsoFramerControl1.FileOpen(fname);
             }
             else
