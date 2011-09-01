@@ -21,7 +21,8 @@ namespace Ebada.Scgl.Yxgl {
             InitializeComponent();
         }
         void dataBind() {
-            this.textEdit1.DataBindings.Add("EditValue", rowData, "rq");
+            //this.textEdit1.DataBindings.Add("EditValue", rowData, "rq");
+            this.dateEdit2.DataBindings.Add("EditValue", rowData, "rq");
             this.textEdit2.DataBindings.Add("EditValue", rowData, "xq");
             this.cBoxTq.DataBindings.Add("EditValue", rowData, "tq");
             this.textEdit4.DataBindings.Add("EditValue", rowData, "rsaqts");
@@ -128,6 +129,13 @@ namespace Ebada.Scgl.Yxgl {
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("01工作日记", "领导检查评语", memoEdit2);
+        }
+
+        private void dateEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            DateTime dt=Convert.ToDateTime (dateEdit2.Text );
+            textEdit2.Text = "星期" + dt.ToString("ddd",new System.Globalization.CultureInfo("zh-cn"));
+            rowData.xq = textEdit2.Text;
         }
     }
 }
