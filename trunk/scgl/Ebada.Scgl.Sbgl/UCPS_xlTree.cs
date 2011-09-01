@@ -22,6 +22,7 @@ using Ebada.Scgl.Model;
 using DevExpress.XtraEditors.Controls;
 using Ebada.Scgl.Core;
 using DevExpress.XtraTreeList.Columns;
+using System.Collections;
 
 namespace Ebada.Scgl.Sbgl {
     /// <summary>
@@ -95,40 +96,60 @@ namespace Ebada.Scgl.Sbgl {
             TreeListNode pnode = treeList1.Selection[0].ParentNode;
             if (newobj.ParentID == pid) {//同级
                 newobj.LineCode = newobj.LineID = getcode(pnode, pnode!=null?pnode.Nodes:treeList1.Nodes);
+               newobj.LineType =pnode==null?"1": Math.Min(3, pnode.Level + 1).ToString();
             } else {
                 newobj.LineCode = newobj.LineID = getcode(treeList1.Selection[0], treeList1.Selection[0].Nodes);
-
+                newobj.LineType = Math.Min(3, treeList1.Selection[0].Level + 2).ToString();
             }
+            
             newobj.LineVol = "10";
-            newobj.LineType = "1";
             newobj.OrgCode = parentID;
         }
         string getcode(TreeListNode pnode, TreeListNodes nodes) {
             string code = "";
-            
-            if (nodes.Count > 0) {
-                int maxcode = 0;
-                string linecode = nodes[0]["LineCode"].ToString();
-                int levenum = 3;
-                if (nodes[0].Level == 1) levenum = 4;
-                foreach (TreeListNode node in nodes) {
-                    linecode = node["LineCode"].ToString();
-                    maxcode = Math.Max(maxcode, int.Parse(linecode.Substring(linecode.Length - levenum, levenum)));
+            int levenum = 3;
+            if (pnode!=null && pnode.Level == 0) levenum = 4;
+            string linecode = "";// pnode["LineCode"].ToString();
+            if (pnode != null && pnode.Level > 0) {//可能与低压线路重号
+                linecode = pnode["LineCode"].ToString();
+                string sql = string.Format("Select max(linecode) as LineCode from ps_xl where len(linecode)={2} and Left(linecode,{0})={1}", linecode.Length,linecode,linecode.Length+levenum);
+                Hashtable ht = Client.ClientHelper.PlatformSqlMap.GetObject("Select", sql) as Hashtable;
+                if (ht != null && ht["LineCode"]!=null) {
+                    string childcode = ht["LineCode"].ToString();
+                    if (!string.IsNullOrEmpty(childcode)) {
+                        int maxcode = int.Parse(childcode.Substring(linecode.Length, levenum));
+                        if (levenum == 4) {
+                            code = linecode + (maxcode + 10).ToString("0000");
+                        } else {
+                            code = linecode + (maxcode + 1).ToString("000");
+                        }
+                    }
                 }
-                if (levenum == 4) {
-                    code = linecode.Substring(0, linecode.Length - levenum) + (maxcode + 10).ToString("0000");
-                } else {
-                    code = linecode.Substring(0, linecode.Length - levenum) + (maxcode + 1).ToString("000");
-                }
+            } 
+           if(code==""){
+                if (nodes.Count > 0) {
+                    int maxcode = 0;
+                    linecode = nodes[0]["LineCode"].ToString();
+                    foreach (TreeListNode node in nodes) {
+                        linecode = node["LineCode"].ToString();
+                        maxcode = Math.Max(maxcode, int.Parse(linecode.Substring(linecode.Length - levenum, levenum)));
+                    }
 
-            } else {
-                if (pnode != null) {
-                    if(pnode.Level==0)
-                        code = pnode["LineCode"].ToString() + "0010";
-                    else
-                        code = pnode["LineCode"].ToString() + "001";
+                    if (levenum == 4) {
+                        code = linecode.Substring(0, linecode.Length - levenum) + (maxcode + 10).ToString("0000");
+                    } else {
+                        code = linecode.Substring(0, linecode.Length - levenum) + (maxcode + 1).ToString("000");
+                    }
+
                 } else {
-                    code = ParentObj.OrgCode + "001";
+                    if (pnode != null) {
+                        if (pnode.Level == 0)
+                            code = pnode["LineCode"].ToString() + "0010";
+                        else
+                            code = pnode["LineCode"].ToString() + "001";
+                    } else {
+                        code = ParentObj.OrgCode + "001";
+                    }
                 }
             }
 
