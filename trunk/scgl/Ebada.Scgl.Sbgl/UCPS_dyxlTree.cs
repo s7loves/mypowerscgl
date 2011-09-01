@@ -22,6 +22,7 @@ using Ebada.Scgl.Model;
 using DevExpress.XtraEditors.Controls;
 using Ebada.Scgl.Core;
 using DevExpress.XtraTreeList.Columns;
+using System.Collections;
 
 namespace Ebada.Scgl.Sbgl {
     /// <summary>
@@ -134,23 +135,38 @@ namespace Ebada.Scgl.Sbgl {
         }
         string getcode(TreeListNode pnode, TreeListNodes nodes) {
             string code = "";
-            if (nodes.Count > 0) {
-                int maxcode = 0;
-                string linecode = nodes[0]["LineCode"].ToString();
-                foreach (TreeListNode node in nodes) {
-                    linecode = node["LineCode"].ToString();
-                    maxcode = Math.Max(maxcode, int.Parse(linecode.Substring(linecode.Length - 3, 3)));
-                }
-                code = linecode.Substring(0,linecode.Length - 3) + (maxcode + 1).ToString("000");
+            string linecode = TQ.tqCode;
+            int levenum = 3;
+            if(pnode!=null)
+                linecode = pnode["LineCode"].ToString();
 
-            } else {
-                if (pnode != null) {
-                    code = pnode["LineCode"].ToString() + "001";
-                } else {
-                    code = TQ.tqCode + "001";
+            string sql = string.Format("Select max(linecode) as LineCode from ps_xl where len(linecode)={2} and Left(linecode,{0})={1}", linecode.Length,linecode,linecode.Length+levenum);
+            Hashtable ht = Client.ClientHelper.PlatformSqlMap.GetObject("Select", sql) as Hashtable;
+            if (ht != null && ht["LineCode"] != null) {
+                string childcode = ht["LineCode"].ToString();
+                if (!string.IsNullOrEmpty(childcode)) {
+                    int maxcode = int.Parse(childcode.Substring(linecode.Length, levenum));
+                    code = linecode + (maxcode + 1).ToString("000");
                 }
             }
+            if (code == "") {
+                if (nodes.Count > 0) {
+                    int maxcode = 0;
+                    linecode = nodes[0]["LineCode"].ToString();
+                    foreach (TreeListNode node in nodes) {
+                        linecode = node["LineCode"].ToString();
+                        maxcode = Math.Max(maxcode, int.Parse(linecode.Substring(linecode.Length - 3, 3)));
+                    }
+                    code = linecode.Substring(0, linecode.Length - 3) + (maxcode + 1).ToString("000");
 
+                } else {
+                    if (pnode != null) {
+                        code = pnode["LineCode"].ToString() + "001";
+                    } else {
+                        code = TQ.tqCode + "001";
+                    }
+                }
+            }
             return code;
         }
         protected override void OnLoad(EventArgs e) {
