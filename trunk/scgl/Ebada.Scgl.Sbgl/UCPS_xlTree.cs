@@ -96,7 +96,7 @@ namespace Ebada.Scgl.Sbgl {
             TreeListNode pnode = treeList1.Selection[0].ParentNode;
             if (newobj.ParentID == pid) {//同级
                 newobj.LineCode = newobj.LineID = getcode(pnode, pnode!=null?pnode.Nodes:treeList1.Nodes);
-               newobj.LineType =pnode==null?"1": Math.Min(3, pnode.Level + 1).ToString();
+               newobj.LineType =pnode==null?"1": Math.Min(3, pnode.Level + 2).ToString();
             } else {
                 newobj.LineCode = newobj.LineID = getcode(treeList1.Selection[0], treeList1.Selection[0].Nodes);
                 newobj.LineType = Math.Min(3, treeList1.Selection[0].Level + 2).ToString();
