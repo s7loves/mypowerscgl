@@ -34,7 +34,7 @@
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
-            this.btExport0 = new DevExpress.XtraBars.BarSubItem();
+            this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -68,7 +68,7 @@
             this.btRefresh,
             this.btClose,
             this.bsItem1,
-            this.btExport0,
+            this.btExport,
             this.btGdsList,
             this.btView});
             this.barManager1.MaxItemId = 16;
@@ -91,7 +91,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExport0),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExport),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -167,14 +167,13 @@
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
-            // btExport0
+            // btExport
             // 
-            this.btExport0.Caption = "导出";
-            this.btExport0.Id = 8;
-            this.btExport0.ImageIndex = 7;
-            this.btExport0.Name = "btExport0";
-            this.btExport0.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btExport0.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btExport.Caption = "导出";
+            this.btExport.Id = 8;
+            this.btExport.ImageIndex = 7;
+            this.btExport.Name = "btExport";
+            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // btClose
             // 
@@ -208,7 +207,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(508, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(508, 24);
             // 
             // barDockControlBottom
             // 
@@ -219,14 +218,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 278);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 279);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(508, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 278);
+            this.barDockControlRight.Location = new System.Drawing.Point(508, 24);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 279);
             // 
             // gridControl1
             // 
@@ -236,11 +235,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 25);
+            this.gridControl1.Location = new System.Drawing.Point(0, 24);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(508, 278);
+            this.gridControl1.Size = new System.Drawing.Size(508, 279);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -296,7 +295,7 @@
         private DevExpress.XtraBars.BarStaticItem bsItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraBars.BarSubItem btExport0;
+        private DevExpress.XtraBars.BarSubItem btExport;
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
