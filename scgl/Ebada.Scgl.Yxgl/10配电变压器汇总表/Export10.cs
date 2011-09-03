@@ -228,7 +228,7 @@ namespace Ebada.Scgl.Yxgl {
             //obj = "317";
             string strfilter = " and 1=1";
             if (obj != "") strfilter = strfilter + " and a.OrgCode='" + obj+"' ";
-            IList caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", "select distinct  b.byqCapcity    from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter);
+            IList caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", "select distinct  b.byqCapcity    from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " order by b.byqCapcity");
             //caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", "11配电变压器卡片", "容量"));
             IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'') from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
             IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'') from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
@@ -297,8 +297,24 @@ namespace Ebada.Scgl.Yxgl {
                 //ex.SetCellValue(caplist[j].ToString(), 4, jstart + j % jmax + 1);
 
             }
+            ex.ActiveSheet(1);
             ex.ShowExcel();
         }
+        /// <summary>
+        /// 设置Excel数据信息
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="list"></param>
+        /// <param name="caplist"></param>
+        /// <param name="modtmlist"></param>
+        /// <param name="modmflist"></param>
+        /// <param name="jstrfilter"></param>
+        /// <param name="strfilter"></param>
+        /// <param name="jstart"></param>
+        /// <param name="j"></param>
+        /// <param name="jmax"></param>
+        /// <param name="istart"></param>
+        /// <param name="istart2"></param>
         public static void setExceldt(ExcelAccess ex, IList list, IList caplist, IList modtmlist, IList modmflist, string jstrfilter, string strfilter, int jstart, int j, int jmax, int istart, int istart2)
         {
             
@@ -341,6 +357,19 @@ namespace Ebada.Scgl.Yxgl {
 
             }
         }
+        /// <summary>
+        /// 设置非密封数据
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="list"></param>
+        /// <param name="modtmlist"></param>
+        /// <param name="jstrfilter"></param>
+        /// <param name="strfilter"></param>
+        /// <param name="jstart"></param>
+        /// <param name="j"></param>
+        /// <param name="jmax"></param>
+        /// <param name="istart"></param>
+        /// <param name="itm"></param>
         public static void setExceltmdt(ExcelAccess ex, IList list,IList modtmlist, string jstrfilter, string strfilter, int jstart, int j, int jmax, int istart,  int itm)
         {
 
@@ -353,6 +382,19 @@ namespace Ebada.Scgl.Yxgl {
             if (list[0] != null)
             ex.SetCellValue(list[0].ToString(), istart + (itm % 6) * 2 + 1, jstart + j % jmax);
         }
+        /// <summary>
+        /// 设置密封数据
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="list"></param>
+        /// <param name="modmflist"></param>
+        /// <param name="jstrfilter"></param>
+        /// <param name="strfilter"></param>
+        /// <param name="jstart"></param>
+        /// <param name="j"></param>
+        /// <param name="jmax"></param>
+        /// <param name="istart2"></param>
+        /// <param name="imf"></param>
         public static void setExcelmfdt(ExcelAccess ex, IList list,   IList modmflist, string jstrfilter, string strfilter, int jstart, int j, int jmax, int istart2,int imf)
         {
 
