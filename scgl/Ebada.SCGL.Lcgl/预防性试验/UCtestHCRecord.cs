@@ -74,7 +74,10 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_AfterAdd(PJ_yfsyhcjl obj)
         {
-            
+            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyhcjl>(" where OrgCode='" + obj.OrgCode + "'");
+
+            MainHelper.PlatformSqlMap.Update<PJ_yfsyhcjl>(obj);
+
             RefreshData(" where OrgCode='" + ParentID + "'    order by xh ");
            
 

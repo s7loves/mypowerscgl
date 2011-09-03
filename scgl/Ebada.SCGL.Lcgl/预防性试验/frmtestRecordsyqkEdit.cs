@@ -40,24 +40,26 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sl");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbCapacity");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
+            this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "syjg");
+            this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "iswc");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "syProject");
-            this.dateEdit3.DataBindings.Add("EditValue", rowData, "preExpTime");
-            this.dateEdit2.DataBindings.Add("EditValue", rowData, "planExpTime");
+            this.dateEdit3.DataBindings.Add("EditValue", rowData, "planExpTime");
+            this.dateEdit2.DataBindings.Add("EditValue", rowData, "sjExpTime");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "charMan");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             switch (rowData.type )
             {
                 case "变压器":
                     labelControl3.Visible = true;
-                    comboBoxEdit2.Visible = true;
+                    comboBoxEdit4.Visible = true;
                     break;
                 case "避雷器":
                 case "断路器":
                 case "电容器":
                     labelControl8.Visible = true;
-                    comboBoxEdit1.Visible = true;
+                    comboBoxEdit2.Visible = true;
                     labelControl8.Visible = true;
-                    comboBoxEdit1.Visible = true;
+                    comboBoxEdit2.Visible = true;
                     break;
 
 
@@ -92,19 +94,27 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         private void InitComboBoxData() {
-            comboBoxEdit3.Properties.Items.Clear();
-            ICollection ryList = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电所人员列表
-            comboBoxEdit3.Properties.Items.AddRange(ryList);
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
 
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+            comboBoxEdit5.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备安装位置", comboBoxEdit5);
+            comboBoxEdit1.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备型号", comboBoxEdit1);
+            comboBoxEdit3.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit3);
+            comboBoxEdit4.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "容量", comboBoxEdit4);
+            comboBoxEdit6.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit6);
+            comboBoxEdit7.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验人", comboBoxEdit7);
+            comboBoxEdit8.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验人", comboBoxEdit8);
+            comboBoxEdit9.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "实验结果", comboBoxEdit9);
+            comboBoxEdit10.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "是否完成", comboBoxEdit10);
+           
+          
         }
 
         /// <summary>
@@ -128,55 +138,31 @@ namespace Ebada.Scgl.Lcgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+      
+      
 
         private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
         {
-
+            string str = rowData.syMan;
+            string[] mans = str.Split(new char[1] { ' ' });
+            if (mans.Length >= 2)
+            {
+                comboBoxEdit7.Text = mans[0];
+                comboBoxEdit8.Text = mans[1];
+            }
         }
 
-        private void labelControl4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            rowData.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='"+rowData.OrgCode  +"' and  type='" + rowData.type + "'") + 1;
-            rowData.CreateDate = DateTime.Now; 
+            
+            if (comboBoxEdit7.Text!="")
+                rowData.syMan = comboBoxEdit7.Text;
+            if (rowData.syMan != "" && comboBoxEdit8.Text!="")
+                rowData.syMan += " "+comboBoxEdit8.Text;
+            else if (rowData.syMan == "")
+                rowData.syMan =  comboBoxEdit8.Text;
         }
 
       

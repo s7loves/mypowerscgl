@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using DevExpress.Utils;
 
 namespace Ebada.Scgl.Yxgl
 {
@@ -192,7 +193,10 @@ namespace Ebada.Scgl.Yxgl
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle >= 0)
             {
-                Export10.ExportExcel(parentID);
+                WaitDialogForm wait = new WaitDialogForm("", "正在导出, 请稍候..."); 
+                Export10.ExportExceldt(parentID);
+                wait.Close();
+                //Export10.ExportExcel(parentID);
             }
             else
             {
@@ -202,6 +206,19 @@ namespace Ebada.Scgl.Yxgl
 
            
            
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+           // IList<ViewGds> list = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+            WaitDialogForm wait = null;
+            //foreach(ViewGds vg in list )
+            {
+                wait = new WaitDialogForm("", "正在导出数据, 请稍候...");
+                Export10.ExportExceldt("");
+                wait.Close();
+            
+            }
         }
     }
 }

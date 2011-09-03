@@ -46,6 +46,10 @@ namespace Ebada.Scgl.Lcgl
             uCtestRecord2.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
             uCtestRecord3.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
             uCtestRecord4.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
+
+            uCtestRecordjhmxTable1.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
+            uCtestRecordssqkTable1.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
+            uCtestRecordwcqkTable1.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
         }
         void uCtestRecordRefreshData()
         {

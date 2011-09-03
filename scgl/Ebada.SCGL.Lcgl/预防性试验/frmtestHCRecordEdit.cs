@@ -142,13 +142,5 @@ namespace Ebada.Scgl.Lcgl
         {
 
         }
-
-       
-
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            rowData.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyhcjl>(" where OrgCode='"+rowData.OrgCode  +"'") + 1;
-           
-        }
     }
 }

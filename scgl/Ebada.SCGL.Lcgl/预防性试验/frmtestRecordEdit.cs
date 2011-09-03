@@ -91,20 +91,16 @@ namespace Ebada.Scgl.Lcgl
 
         #endregion
 
-        private void InitComboBoxData() {
+        private void InitComboBoxData()
+        {
+            comboBoxEdit5.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备安装位置", comboBoxEdit5);
+            comboBoxEdit1.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备型号", comboBoxEdit1);
             comboBoxEdit3.Properties.Items.Clear();
-            ICollection ryList = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电所人员列表
-            comboBoxEdit3.Properties.Items.AddRange(ryList);
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-
-            //if (null != cityCode && cityCode.Trim().Length > 0)
-            //    this.cltCity.Properties.KeyValue = cityCode;
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit3);
+            comboBoxEdit4.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "容量", comboBoxEdit4);
         }
 
         /// <summary>
@@ -173,12 +169,15 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void simpleButton1_Click(object sender, EventArgs e)
         {
-            rowData.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='"+rowData.OrgCode  +"' and  type='" + rowData.type + "'") + 1;
-            rowData.CreateDate = DateTime.Now; 
+            SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit1);
         }
 
+       
+     
+
+       
       
     }
 }
