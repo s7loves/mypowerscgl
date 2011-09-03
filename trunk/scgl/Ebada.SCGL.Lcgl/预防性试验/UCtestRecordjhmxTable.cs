@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Lcgl
     /// </summary>
     public partial class UCtestRecordjhmxTable : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_yfsyjl> gridViewOperation;
+        public GridViewOperation<PJ_yfsyjl> gridViewOperation;
 
         public event SendDataEventHandler<PJ_yfsyjl> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
@@ -76,7 +76,9 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
-
+            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
+            obj.CreateDate = DateTime.Now;
+            MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
         }
         public string Type
@@ -212,6 +214,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("iswc");
             hideColumn("syjg");
             hideColumn("syMan");
+            hideColumn("wcRemark");
             hideColumn("CreateDate");
             foreach (GridColumn gc in gridView1.Columns)
             {

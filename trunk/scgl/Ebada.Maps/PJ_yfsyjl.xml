@@ -26,6 +26,7 @@
         <result property="syMan" column="syMan" />
         <result property="CreateDate" column="CreateDate" />
         <result property="Remark" column="Remark" />
+        <result property="wcRemark" column="wcRemark" />
       </resultMap>
   </resultMaps>
 
@@ -52,7 +53,8 @@
          [charMan],
          [syMan],
          [CreateDate],
-         [Remark]
+         [Remark],
+         [wcRemark]
           FROM PJ_yfsyjl
           $value$
    </select>
@@ -79,7 +81,8 @@
          [charMan],
          [syMan],
          [CreateDate],
-         [Remark]
+         [Remark],
+         [wcRemark]
           FROM PJ_yfsyjl
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -103,6 +106,7 @@
        <isNotNull prepend="AND" property="syMan">[syMan]='$syMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="wcRemark">[wcRemark]='$wcRemark$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_yfsyjlByKey" resultMap="PJ_yfsyjl_AllColumns" parameterClass="PJ_yfsyjl">
@@ -127,7 +131,8 @@
          [charMan],
          [syMan],
          [CreateDate],
-         [Remark]
+         [Remark],
+         [wcRemark]
          FROM PJ_yfsyjl
          WHERE 
            ID = #ID#
@@ -176,7 +181,8 @@
              [charMan]=#charMan#,
              [syMan]=#syMan#,
              [CreateDate]=#CreateDate#,
-             [Remark]=#Remark#
+             [Remark]=#Remark#,
+             [wcRemark]=#wcRemark#
             WHERE 
               ID = #ID#
 
@@ -205,7 +211,8 @@
          [charMan],
          [syMan],
          [CreateDate],
-         [Remark]
+         [Remark],
+         [wcRemark]
          )
        VALUES
          (
@@ -229,7 +236,8 @@
          #charMan#,
          #syMan#,
          #CreateDate#,
-         #Remark#
+         #Remark#,
+         #wcRemark#
          )
 
    </insert>
@@ -259,6 +267,7 @@
        <isNotNull prepend="AND" property="syMan">[syMan]='$syMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="wcRemark">[wcRemark]='$wcRemark$'</isNotNull>
      </dynamic>
 
    </select>

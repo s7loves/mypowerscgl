@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-8-31 14:53:33
+生成时间:2011-8-31 18:19:01
 ***********************************************/
 
 using System;
@@ -41,7 +41,8 @@ namespace Ebada.Scgl.Model
         private string _charman=String.Empty; 
         private string _syman=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
-        private string _remark=String.Empty;   
+        private string _remark=String.Empty; 
+        private string _wcremark=String.Empty;   
         #endregion
   
   
@@ -464,6 +465,27 @@ namespace Ebada.Scgl.Model
                 if (_remark as object == null || !_remark.Equals(value))
                 {
                     _remark = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：wcRemark
+        /// 属性描述：说明
+        /// 字段信息：[wcRemark],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("说明")]
+        public string wcRemark
+        {
+            get { return _wcremark; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 1073741823)
+                throw new Exception("[说明]长度不能大于1073741823!");
+                if (_wcremark as object == null || !_wcremark.Equals(value))
+                {
+                    _wcremark = value;
                 }
             }			 
         }

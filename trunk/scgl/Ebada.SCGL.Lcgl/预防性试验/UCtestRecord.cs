@@ -76,7 +76,9 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
-
+            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
+            obj.CreateDate = DateTime.Now;
+            MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
         }
         public string Type
@@ -202,6 +204,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("syMan");
             hideColumn("sjExpTime");
             hideColumn("CreateDate");
+            hideColumn("wcRemark");
             gridView1.Columns["preExpTime"].Caption = "检查试验时间";
             gridView1.Columns["planExpTime"].Caption = "下次试验时间";
             foreach (GridColumn gc in gridView1.Columns)

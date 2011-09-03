@@ -12,9 +12,11 @@
    </select>  
    <select id="SelectOneStr" resultClass="string" parameterClass="string">       
      $value$
-   </select>  
-   
-   <delete id="Delete" parameterClass="string" resultClass="int">
+   </select>
+    <select id="SelectOneInt" resultClass="int" parameterClass="string">
+      $value$
+    </select>
+    <delete id="Delete" parameterClass="string" resultClass="int">
      $value$
    </delete>  
    
