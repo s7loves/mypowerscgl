@@ -245,6 +245,7 @@ namespace Ebada.Scgl.Lpgl
                     ctrl.TextChanged += new EventHandler(ctrl_Leave);
                 }                
                 ctrl.Leave += new EventHandler(ctrl_Leave);
+                ctrl.Enter += new EventHandler(ctrl_Enter);
                 ctrl.Visible = flag;
                 ctrl.Tag = lp;
                 ctrl.TabIndex = index;
@@ -507,6 +508,27 @@ namespace Ebada.Scgl.Lpgl
 
             }
             LockExcel();
+        }
+        void ctrl_Enter(object sender, EventArgs e)
+        {
+            unLockExcel();
+            LP_Temple lp = (LP_Temple)(sender as Control).Tag;
+            string str = (sender as Control).Text;
+            if (dsoFramerWordControl1.MyExcel == null)
+            {
+                return;
+            }
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
+            string[] arrCellpos = lp.CellPos.Split(pchar);
+            arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
+            {
+                //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]], xx.Cells[GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]]);
+                range.Select();
+            }
+            LockExcel();   
         }
         void ctrl_Leave(object sender, EventArgs e)
         {
