@@ -615,5 +615,26 @@ namespace Ebada.Scgl.Lpgl {
             }
         }
 
+        private void barView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle < 0) return;
+            frmTemplate fm = new frmTemplate();
+            LP_Record currRecord = new LP_Record();
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+
+                }
+            }
+            fm.pjobject = currRecord;
+            fm.ShowDialog();
+        }
+
     }
 }
