@@ -121,8 +121,8 @@ namespace Ebada.Scgl.Lpgl
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;      
             Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;           
             xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
-            xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
-            wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);  
+            //xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+            //wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);  
         }
 
         protected void wb_SheetBeforeDoubleClick(object Sh, Microsoft.Office.Interop.Excel.Range Target, ref bool Cancel)
@@ -143,8 +143,8 @@ namespace Ebada.Scgl.Lpgl
                 Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
                 Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
                 xx.Unprotect("MyPassword");
-                xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
-                wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);  
+                //xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+               // wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);  
             }
             catch { }
         }
@@ -261,6 +261,7 @@ namespace Ebada.Scgl.Lpgl
                 {
                     ctrlNumber = ctrl;
                 }
+               
             }
             InitEvent();
             InitData();         
@@ -280,6 +281,17 @@ namespace Ebada.Scgl.Lpgl
         }
         void btn_Submit_Click(object sender, EventArgs e)
         {
+            Excel.Workbook wb;
+            Excel.Worksheet sheet;
+            wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            sheet = wb.Application.Sheets[1] as Excel.Worksheet;
+            unLockExcel();
+            for (int i = 1;  sheet.Protection.AllowEditRanges.Count>0;)
+            {
+                Excel.AllowEditRange editRange = sheet.Protection.AllowEditRanges.get_Item(i);
+                editRange.Delete()  ;
+            }
+            LockExcel();
             byte[] bt = new byte[0];
             string strmes = "";
             switch (status)
@@ -522,11 +534,25 @@ namespace Ebada.Scgl.Lpgl
             Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
-            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
+            if (arrCellpos.Length >0 )
             {
                 //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-                Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]], xx.Cells[GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]]);
+                Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]], xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]]);
                 range.Select();
+                bool isfind = false;
+                for (int i = 1; i <= xx.Protection.AllowEditRanges.Count; i++)
+                {
+                    Excel.AllowEditRange editRange = xx.Protection.AllowEditRanges.get_Item(i);
+                    if (editRange.Title == lp.CellPos.Replace("|", ""))
+                    {
+                        isfind = true;
+                        break;
+                    }
+                }
+                if (!isfind)
+                {
+                    xx.Protection.AllowEditRanges.Add(lp.CellPos.Replace ("|","")    , range, Type.Missing);
+                }
             }
             LockExcel();   
         }
@@ -846,8 +872,10 @@ namespace Ebada.Scgl.Lpgl
                     }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";                  
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;                 
+                    //((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";                  
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd HH:mm";                  
                 
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":

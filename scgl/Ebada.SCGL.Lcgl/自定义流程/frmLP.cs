@@ -387,6 +387,13 @@ namespace Ebada.Scgl.Lcgl
 
                 }
             }
+            unLockExcel();
+            for (int i = 1; sheet.Protection.AllowEditRanges.Count > 0; )
+            {
+                Excel.AllowEditRange editRange = sheet.Protection.AllowEditRanges.get_Item(i);
+                editRange.Delete();
+            }
+            LockExcel();
             byte[] bt = new byte[0];
             string strmes = "";
             switch (status)
@@ -632,11 +639,25 @@ namespace Ebada.Scgl.Lcgl
             Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
-            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
+            if (arrCellpos.Length > 1)
             {
                 //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-                Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]], xx.Cells[GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]]);
+                Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]], xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]]);
                 range.Select();
+                bool isfind = false;
+                for (int i = 1; i <= xx.Protection.AllowEditRanges.Count; i++)
+                {
+                    Excel.AllowEditRange editRange = xx.Protection.AllowEditRanges.get_Item(i);
+                    if (editRange.Title == lp.CellPos.Replace("|", ""))
+                    {
+                        isfind = true;
+                        break;
+                    }
+                }
+                if (!isfind)
+                {
+                    xx.Protection.AllowEditRanges.Add(lp.CellPos.Replace("|", ""), range, Type.Missing);
+                }
             }
             LockExcel();
         }
@@ -957,8 +978,10 @@ namespace Ebada.Scgl.Lcgl
                     }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";                  
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;                 
+                    //((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";                  
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd HH:mm";                   
                 
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
