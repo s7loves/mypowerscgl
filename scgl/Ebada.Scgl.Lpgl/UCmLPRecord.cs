@@ -541,7 +541,7 @@ namespace Ebada.Scgl.Lpgl {
             if (currRecord.Status != "存档")
             {
                 MsgBox.ShowTipMessageBox("安监未审核,不能导出!");
-            
+                return;
             }
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = "";
