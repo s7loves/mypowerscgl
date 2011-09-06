@@ -13,6 +13,7 @@ using Ebada.Scgl.Core;
 using System.Reflection;
 using Ebada.Client;
 using Ebada.Client.Platform;
+using Ebada.Scgl.WFlow;
 
 namespace Ebada.Scgl.Lpgl
 {
@@ -23,7 +24,24 @@ namespace Ebada.Scgl.Lpgl
         string filename = "";
         string filepath = Path.GetTempPath();
         LP_Record _pjobject;
+        private DataTable dt = null;//实例流程信息
 
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+
+                return dt;
+            }
+            set
+            {
+
+
+                dt = value;
+
+
+            }
+        }
         public frmTemplate()
         {
             InitializeComponent();
@@ -42,24 +60,36 @@ namespace Ebada.Scgl.Lpgl
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (pjobject!=null)
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认退回 ?") != DialogResult.OK)
             {
-                try
+                return;
+            }
+            if (dt.Rows.Count > 0)
+            {
+                if (!RecordWorkTask.HaveWorkFlowBackRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
                 {
-                    // dsoFramerControl1.FileSave(filename, true);
-                    //dsoFramerControl1.FileName = filename;
-                   dsoFramerControl1.FileSave();
-                    pjobject.DocContent = dsoFramerControl1.FileDataGzip ;
-                    Client.ClientHelper.PlatformSqlMap.Update<LP_Record>(pjobject);
+                    MsgBox.ShowWarningMessageBox("当前节点不能退回.设置里没有允许退回，退回失败!");
+                    return;
                 }
-                catch (System.Exception ex)
+                string strmes = RecordWorkTask.RunWorkFlowBack(MainHelper.User.UserID, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString());
+                if (strmes.IndexOf("未提交至任何人") > -1)
                 {
-                    dsoFramerControl1.FileClose();
-                    dsoFramerControl1.Dispose();
-                    dsoFramerControl1 = null;
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
                 }
-             
+                else
+                {
 
+                    _pjobject.Status = RecordWorkTask.GetWorkFlowTaskCaption(dt.Rows[0]["WorkTaskInsId"].ToString());
+                    MainHelper.PlatformSqlMap.Update("UpdateLP_Record", _pjobject);
+                    MsgBox.ShowTipMessageBox(strmes);
+
+                }
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,退回失败!");
             }
         }
 
@@ -174,6 +204,37 @@ namespace Ebada.Scgl.Lpgl
                 dsoFramerControl1.Dispose();
                 dsoFramerControl1 = null;
             }
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string strmes = "";
+            WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + dt.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(dt.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                pjobject.Status = "存档";
+            }
+            else
+            {
+                pjobject.Status = strmes;
+            }
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", pjobject);
         }
 
     }

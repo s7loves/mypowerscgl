@@ -592,9 +592,12 @@ namespace Ebada.SCGL.WFlow.Engine
                 operatorInstance.WorktaskInsId = workTaskInstance.WorktaskInsId;
                 //operatorInstance.UserId = op.UserId ; fromuser.UserName ;
                 operatorInstance.UserId =fromuser.UserName;
-                operatorInstance.OperRealtion = op.OperRealtion ;
-                operatorInstance.OperContent = op.OperContent;
-                operatorInstance.OperContentText = op.OperContentText;
+                if (op != null)
+                {
+                    operatorInstance.OperRealtion = op.OperRealtion;
+                    operatorInstance.OperContent = op.OperContent;
+                    operatorInstance.OperContentText = op.OperContentText;
+                }
                 operatorInstance.OperType = 3;//此处修改为指定处理人
                 operatorInstance.Create();
 
