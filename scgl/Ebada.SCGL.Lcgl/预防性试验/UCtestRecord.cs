@@ -23,6 +23,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Components;
 using DevExpress.Utils;
+using System.Collections;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -283,16 +284,12 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //if (PSObj!=null&&gridView1.RowCount>0)
-            //{
-            //     IList<PJ_yfsyjl> pjlist=new List<PJ_yfsyjl>();
-            //    for (int i = 0; i < gridView1.RowCount; i++)
-            //    {
-            //        pjlist.Add(gridView1.GetRow(i) as PJ_yfsyjl);
-            //    }
-            //    Export14.ExportExcel(PSObj, pjlist);
-            //}
-           
+            //DataTable dt = new DataTable();
+            IList<PJ_yfsyjl> li = gridView1.DataSource as IList<PJ_yfsyjl>; 
+            frmTemplate frm = new frmTemplate();
+            frm.dataList  = li;
+            frm.ShowDialog();
+            
            
         }
     }

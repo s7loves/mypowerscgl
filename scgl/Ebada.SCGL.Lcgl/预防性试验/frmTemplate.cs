@@ -13,6 +13,8 @@ using Ebada.Scgl.Core;
 using System.Reflection;
 using Ebada.Client;
 using Ebada.Client.Platform;
+using System.Collections;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -22,7 +24,25 @@ namespace Ebada.Scgl.Lcgl
         string uid1 = "";
         string filename = "";
         string filepath = Path.GetTempPath();
-       
+        private DataTable dt = null;
+        private IList<PJ_yfsyjl> dtlist = null;
+        private StringBuilder strMerCol;
+        public DataTable dataTable
+        {
+            set {dt=value ;  }
+            
+        }
+        public IList<PJ_yfsyjl> dataList
+        {
+            set { dtlist = value; }
+
+        }
+        public StringBuilder MerColNames
+        {
+            set { strMerCol = value; }
+
+        }
+
 
         public frmTemplate()
         {
@@ -36,12 +56,45 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        { 
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                string fname = "";
+                saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    fname = saveFileDialog1.FileName;
+                    
+                    gridControl1.ExportToXls(fname); 
+                    DSOFramerControl fc=new DSOFramerControl ();
+                    fc.FileOpen (fname);
+                    Excel.Workbook wb = fc.AxFramerControl.ActiveDocument as Excel.Workbook;
+                    Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                    int i=xx.UsedRange.Columns.Count;
+                    int j = xx.UsedRange.Columns.Count;
+                    for(i=1;i<=xx.UsedRange.Columns.Count;i++)
+                        for (j = 1; j <= xx.UsedRange.Rows.Count; j++)
+                        {
+                            Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[j, i], xx.Cells[j, i]);
+                            range.Interior.ColorIndex = Excel.XlColorIndex.xlColorIndexAutomatic;
+                        }
+                    fc.FileSave( );
+                    fc.FileClose();
+                    fc.Dispose();
+                }
+
         }
 
         private void frm26Template_Load(object sender, EventArgs e)
         {
-           
+            if (dtlist != null)
+            {
+                gridControl1.DataSource = dtlist;
+            }
+            else
+            if (dt != null)
+            {
+                gridControl1.DataSource = dt;
+            }
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -57,8 +110,9 @@ namespace Ebada.Scgl.Lcgl
 
         private void frm24Template_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+           
         }
+
 
     }
 }
