@@ -194,29 +194,35 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit5_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                double[] dcoe = { 1.05, 1.05, 1, 1.6, 1.9, 2, 2.2, 2.55, 1.6, 1.55, 1.55, 1.35 };
+                if (dateEdit1.Text == "") return;
+                DateTime dt = Convert.ToDateTime(dateEdit1.Text);
+                string dx = "07接地装置检测记录";
+                string sx = "季节系数";
+                string nr = dt.Month.ToString();
+                double dtemp = dcoe[dt.Month - 1], d1 = 0;
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}月' ", dx, sx, nr));
+                if (list.Count > 0 && list[0] != null && list[0].ToString() != "")
+                {
+                    dtemp = Convert.ToInt32(list[0]);
+                }
+                if (comboBoxEdit5.Text != "")
+                {
+                    d1 = Convert.ToDouble(comboBoxEdit5.Text);
+                }
+                else
+                {
 
-            double[] dcoe = { 1.05, 1.05, 1, 1.6, 1.9, 2, 2.2, 2.55, 1.6, 1.55, 1.55, 1.35 };
-            if (dateEdit1.Text == "") return;
-            DateTime dt = Convert.ToDateTime(dateEdit1.Text);
-            string dx = "07接地装置检测记录";
-            string sx = "季节系数";
-            string nr = dt.Month.ToString();
-            double dtemp = dcoe[dt.Month - 1], d1 = 0;
-            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}月' ", dx, sx, nr));
-            if (list.Count > 0 && list[0] != null && list[0].ToString() != "")
-            {
-                dtemp = Convert.ToInt32(list[0]);
+                }
+                rowData.hsz = Convert.ToDecimal(d1 * dtemp);
+                comboBoxEdit3.Text = rowData.hsz.ToString();
             }
-            if (comboBoxEdit5.Text != "")
+            catch(Exception ex)
             {
-                d1 = Convert.ToDouble(comboBoxEdit5.Text);
+                MessageBox.Show(ex.Message+" "+ dateEdit1.Text); 
             }
-            else
-            {
-
-            }
-            rowData.hsz = Convert.ToDecimal(d1 * dtemp);
-            comboBoxEdit3.Text = rowData.hsz.ToString();
         }
 
         
