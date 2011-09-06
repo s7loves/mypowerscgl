@@ -67,11 +67,11 @@ namespace Ebada.Scgl.Lpgl
             }
             if (dt.Rows.Count > 0)
             {
-                if (!RecordWorkTask.HaveWorkFlowBackRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
-                {
-                    MsgBox.ShowWarningMessageBox("当前节点不能退回.设置里没有允许退回，退回失败!");
-                    return;
-                }
+                //if (!RecordWorkTask.HaveWorkFlowBackRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
+                //{
+                //    MsgBox.ShowWarningMessageBox("当前节点不能退回.设置里没有允许退回，退回失败!");
+                //    return;
+                //}
                 string strmes = RecordWorkTask.RunWorkFlowBack(MainHelper.User.UserID, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString());
                 if (strmes.IndexOf("未提交至任何人") > -1)
                 {
@@ -84,6 +84,7 @@ namespace Ebada.Scgl.Lpgl
                     _pjobject.Status = RecordWorkTask.GetWorkFlowTaskCaption(dt.Rows[0]["WorkTaskInsId"].ToString());
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record", _pjobject);
                     MsgBox.ShowTipMessageBox(strmes);
+                    this.DialogResult = DialogResult.OK;
 
                 }
             }
@@ -91,6 +92,7 @@ namespace Ebada.Scgl.Lpgl
             {
                 MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,退回失败!");
             }
+
         }
 
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -161,6 +163,10 @@ namespace Ebada.Scgl.Lpgl
             //string fname = filepath + Guid.NewGuid().ToString() + ".xls";
             //filename = fname;
             //fname = Application.StartupPath + "\\00记录模板\\24设备变更通知书.xls";
+            if (pjobject.Status != "安监审核")
+            {
+                barButtonItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
             if (pjobject.DocContent ==null)
             {
                 return;
@@ -193,6 +199,7 @@ namespace Ebada.Scgl.Lpgl
             dsoFramerControl1.FileClose();
             dsoFramerControl1.Dispose();
             dsoFramerControl1 = null;
+            workFlowRun();
             this.DialogResult = DialogResult.OK;
         }
 
@@ -205,8 +212,7 @@ namespace Ebada.Scgl.Lpgl
                 dsoFramerControl1 = null;
             }
         }
-
-        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void workFlowRun()
         {
             string strmes = "";
             WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + dt.Rows[0]["WorkTaskId"].ToString() + "'");
@@ -235,6 +241,13 @@ namespace Ebada.Scgl.Lpgl
                 pjobject.Status = strmes;
             }
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", pjobject);
+        
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            workFlowRun();
+            this.DialogResult = DialogResult.OK;
         }
 
     }

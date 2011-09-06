@@ -93,7 +93,11 @@ namespace Ebada.Scgl.Sbgl {
         }
         void treeViewOperator_CreatingObject(PS_xl newobj) {
             string pid = getparentValue();
-            TreeListNode pnode = treeList1.Selection[0].ParentNode;
+            TreeListNode pnode=null;
+            if (treeList1.Selection[0] != null)
+            {
+                 pnode = treeList1.Selection[0].ParentNode;
+            }
             if (newobj.ParentID == pid) {//同级
                 newobj.LineCode = newobj.LineID = getcode(pnode, pnode!=null?pnode.Nodes:treeList1.Nodes);
                newobj.LineType =pnode==null?"1": Math.Min(3, pnode.Level + 2).ToString();
