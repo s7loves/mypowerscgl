@@ -523,7 +523,9 @@ namespace Ebada.Scgl.Lpgl {
         private void barReExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (gridView1.FocusedRowHandle < 0) return;
+
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            
             LP_Record currRecord = new LP_Record();
             foreach (DataColumn dc in gridtable.Columns)
             {
@@ -535,6 +537,11 @@ namespace Ebada.Scgl.Lpgl {
                         currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
 
                 }
+            }
+            if (currRecord.Status != "存档")
+            {
+                MsgBox.ShowTipMessageBox("安监未审核,不能导出!");
+            
             }
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = "";
@@ -621,6 +628,8 @@ namespace Ebada.Scgl.Lpgl {
             frmTemplate fm = new frmTemplate();
             LP_Record currRecord = new LP_Record();
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData2(dr["ID"].ToString());
+            fm.RecordWorkFlowData = dt;
             foreach (DataColumn dc in gridtable.Columns)
             {
                 if (dc.ColumnName != "Image")
@@ -632,8 +641,10 @@ namespace Ebada.Scgl.Lpgl {
 
                 }
             }
+
             fm.pjobject = currRecord;
             fm.ShowDialog();
+            InitData(parentObj.Kind);
         }
 
     }

@@ -136,6 +136,14 @@ namespace Ebada.Scgl.Yxgl {
             DateTime dt=Convert.ToDateTime (dateEdit2.Text );
             textEdit2.Text = "星期" + dt.ToString("ddd",new System.Globalization.CultureInfo("zh-cn"));
             rowData.xq = textEdit2.Text;
+            mOrg org = Client.ClientHelper.PlatformSqlMap.GetOne <mOrg>("where orgcode='" + rowData.GdsCode + "'");
+            if (org != null)
+            {
+                rowData.rsaqts = (dt - org.PSafeTime.Date).Days;
+                rowData.sbaqts = (dt - org.DSafeTime.Date).Days;
+            }
+            this.textEdit4.Text= rowData.rsaqts.ToString();
+            this.textEdit5.Text = rowData.sbaqts.ToString();
         }
     }
 }

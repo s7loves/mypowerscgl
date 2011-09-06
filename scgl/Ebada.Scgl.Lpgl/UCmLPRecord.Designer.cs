@@ -29,6 +29,7 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btAddfrm = new DevExpress.XtraBars.BarButtonItem();
             this.btEditfrm = new DevExpress.XtraBars.BarButtonItem();
+            this.barView = new DevExpress.XtraBars.BarButtonItem();
             this.btDeletefrm = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
@@ -50,7 +51,6 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.barView = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -130,6 +130,15 @@
             this.btEditfrm.Name = "btEditfrm";
             this.btEditfrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btEditfrm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btEditfrm_ItemClick);
+            // 
+            // barView
+            // 
+            this.barView.Caption = "安监审核";
+            this.barView.Id = 20;
+            this.barView.ImageIndex = 1;
+            this.barView.Name = "barView";
+            this.barView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barView_ItemClick);
             // 
             // btDeletefrm
             // 
@@ -236,7 +245,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(766, 26);
+            this.barDockControlTop.Size = new System.Drawing.Size(766, 25);
             // 
             // barDockControlBottom
             // 
@@ -247,14 +256,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 263);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 264);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(766, 26);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 263);
+            this.barDockControlRight.Location = new System.Drawing.Point(766, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 264);
             // 
             // imageList1
             // 
@@ -299,13 +308,13 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 26);
+            this.gridControl1.Location = new System.Drawing.Point(0, 25);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(766, 263);
+            this.gridControl1.Size = new System.Drawing.Size(766, 264);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -331,15 +340,6 @@
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             this.repositoryItemTextEdit1.NullText = "输入密码";
             this.repositoryItemTextEdit1.PasswordChar = '*';
-            // 
-            // barView
-            // 
-            this.barView.Caption = "查看";
-            this.barView.Id = 20;
-            this.barView.ImageIndex = 1;
-            this.barView.Name = "barView";
-            this.barView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barView_ItemClick);
             // 
             // UCmLPRecord
             // 
