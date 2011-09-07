@@ -35,6 +35,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Db4objects.Db4o.dll</HintPath>
     </Reference>
+    <Reference Include="GMap.NET.Core, Version=1.5.5.5, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.5.5.5, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="MapLib, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\MapLib.dll</HintPath>
@@ -124,11 +132,18 @@
     <Compile Include="frmMapView.Designer.cs">
       <DependentUpon>frmMapView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Provider\GoogleChinaHybridMap.cs" />
     <Compile Include="IMapView.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Provider\GoogleChinaMap.cs" />
+    <Compile Include="Provider\GoogleChinaSatelliteMap.cs" />
+    <Compile Include="Provider\MapHelper.cs" />
+    <Compile Include="RMap.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="WinApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,6 +152,12 @@
     </Compile>
     <Compile Include="UCMapBox.Designer.cs">
       <DependentUpon>UCMapBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMap.Designer.cs">
+      <DependentUpon>frmMap.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -148,9 +169,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="RMap.resx">
+      <DependentUpon>RMap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCMapBox.resx">
       <DependentUpon>UCMapBox.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMap.resx">
+      <DependentUpon>frmMap.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

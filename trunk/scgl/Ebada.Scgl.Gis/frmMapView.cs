@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**********************************************
+系统:地理信息
+模块:
+作者:Rabbit
+创建时间:2011-9-4
+最后一次修改:2011-9-4
+***********************************************/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
