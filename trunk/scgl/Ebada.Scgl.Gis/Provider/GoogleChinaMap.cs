@@ -14,11 +14,13 @@ using System.IO;
 
 namespace Ebada.Scgl.Gis {
     public class GoogleChinaMap : GoogleChinaMapProvider {
-        TONLI.MapCore.IMapServer mapserver;
+
+        public TONLI.MapCore.IMapServer Mapserver {
+            get { return Client.ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>(); }
+        }
         string type = "m1_";
         public new static readonly GoogleChinaMap Instance;
          GoogleChinaMap() {
-            mapserver = Client.ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>();
             TryCorrectVersion = false;
          }
         static GoogleChinaMap() {
@@ -45,7 +47,7 @@ namespace Ebada.Scgl.Gis {
                     OnNeedTileImage(image, args);
 
                 } else {
-                    args.Image = mapserver.GetImage(type, args.Url);
+                    args.Image = Mapserver.GetImage(type, args.Url);
                     if (args.Image != null) {
                         MapHelper.SetImage(type, args.Url, args.Image);
                     }
