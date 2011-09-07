@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**********************************************
+系统:地理信息
+模块:
+作者:Rabbit
+创建时间:2011-9-4
+最后一次修改:2011-9-4
+***********************************************/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,13 +14,6 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using GMap.NET.MapProviders;
-/**********************************************
-系统:地理信息
-模块:
-作者:Rabbit
-创建时间:2011-9-4
-最后一次修改:2011-9-4
-***********************************************/
 using GMap.NET;
 using Ebada.Client;
 using System.Globalization;
@@ -32,6 +32,7 @@ namespace Ebada.Scgl.Gis {
         public frmMap() {
             InitializeComponent();
             rMap1 = new RMap();
+            rMap1.MouseWheelZoomType = MouseWheelZoomType.MousePositionWithoutCenter;
             rMap1.Dock = DockStyle.Fill;
             Controls.Add(rMap1);
             mapview = rMap1;
@@ -131,9 +132,11 @@ namespace Ebada.Scgl.Gis {
                 currentMarker = null;
             }
         }
-        GMapMarker createMarker() {
-            GMapMarker marker = new GMapMarkerGoogleGreen(rMap1.Position);
+        GMapMarker createMarker(PointLatLng pos) {
+            GMapMarker marker = new GMapMarkerGoogleGreen(pos);
             marker.IsHitTestVisible = true;
+            marker.ToolTipMode = MarkerTooltipMode.Always;
+            marker.ToolTipText = pos.ToString();
             objects.Markers.Add(marker);
             return marker;
         }
@@ -141,14 +144,13 @@ namespace Ebada.Scgl.Gis {
             if (e.Button == MouseButtons.Left) {
                 isMouseDown = true;
                 if (currentMarker == null && canAddMarker) {
-                     GMapMarker marker= createMarker();
+                    GMapMarker marker = createMarker(rMap1.FromLocalToLatLng(e.X, e.Y));
+                    // marker.Position = rMap1.FromLocalToLatLng(e.X, e.Y);
 
-                     marker.Position = rMap1.FromLocalToLatLng(e.X, e.Y);
+                    // var px = rMap1.MapProvider.Projection.FromLatLngToPixel(marker.Position.Lat, marker.Position.Lng, (int)rMap1.Zoom);
+                    //var tile = rMap1.MapProvider.Projection.FromPixelToTileXY(px);
 
-                     var px = rMap1.MapProvider.Projection.FromLatLngToPixel(marker.Position.Lat, marker.Position.Lng, (int)rMap1.Zoom);
-                    var tile = rMap1.MapProvider.Projection.FromPixelToTileXY(px);
-
-                    Debug.WriteLine("MouseDown: " + marker.LocalPosition + " | geo: " + marker.Position + " | px: " + px + " | tile: " + tile);
+                    //Debug.WriteLine("MouseDown: " + marker.LocalPosition + " | geo: " + marker.Position + " | px: " + px + " | tile: " + tile);
                 }
             }
         }
