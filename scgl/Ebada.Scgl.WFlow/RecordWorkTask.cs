@@ -529,7 +529,7 @@ namespace Ebada.Scgl.WFlow
             ResultMsg = WorkTaskInstance.GetResultMsg(workTaskInsId);
 
             title = "操作结果:" + ResultMsg;
-            if (ResultMsg != WorkFlowConst.SuccessMsg && ResultMsg.IndexOf("退回") == -1 && ResultMsg!="")
+            if (TaskToWhoMsg == "")
             {
                 TaskToWhoMsg = "未提交至任何人,请检查流程模板和组织机构配置是否正确!";
                 if (ResultMsg == WorkFlowConst.WorkflowOverMsg)//流程结束
