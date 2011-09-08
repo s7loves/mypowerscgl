@@ -56,6 +56,7 @@ namespace Ebada.Scgl.Lpgl
             this.lookUpEdit2.DataBindings.Add("EditValue", rowData, "Status");  
             this.textEdit11.DataBindings.Add("EditValue", rowData, "ComBoxItem");
             this.textEdit12.DataBindings.Add("EditValue", rowData, "ExtraWord");
+            //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "isExplorer");
             parentID = UCmExcel.GetParentID();
         }
         #region IPopupFormEdit Members
@@ -152,6 +153,16 @@ namespace Ebada.Scgl.Lpgl
         private void lookUpEdit3_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            rowData.isExplorer = comboBoxEdit3.SelectedIndex;
+        }
+
+        private void frmExcelModelEdit_Load(object sender, EventArgs e)
+        {
+            comboBoxEdit3.SelectedIndex = rowData.isExplorer;
         }
     }
 }

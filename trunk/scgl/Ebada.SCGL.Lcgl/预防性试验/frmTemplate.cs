@@ -77,9 +77,13 @@ namespace Ebada.Scgl.Lcgl
                             Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[j, i], xx.Cells[j, i]);
                             range.Interior.ColorIndex = Excel.XlColorIndex.xlColorIndexAutomatic;
                         }
+
                     fc.FileSave( );
                     fc.FileClose();
                     fc.Dispose();
+                    if (MessageBox.Show("导出成功，是否打开该文档？", "警告", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                        return;
+                    System.Diagnostics.Process.Start(fname);
                 }
 
         }
