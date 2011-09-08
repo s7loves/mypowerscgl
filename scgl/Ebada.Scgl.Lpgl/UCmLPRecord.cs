@@ -25,6 +25,7 @@ using Ebada.Scgl.WFlow;
 using DevExpress.XtraEditors.Repository;
 using Ebada.Scgl.Core;
 using DevExpress.Utils;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Ebada.Scgl.Lpgl {
 
@@ -525,7 +526,46 @@ namespace Ebada.Scgl.Lpgl {
                 MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,延期失败!");
             }
         }
+        public int[] GetCellPos(string cellpos)
+        {
+            cellpos = cellpos.Replace("|", "");
+            return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
+        }
+        /// <summary>
+        ///设置保护工作表
+        /// </summary>
+        private void LockExcel(ExcelAccess ea)
+        {
+            Excel.Workbook wb = ea.MyWorkBook as Excel.Workbook;
+            Excel.Worksheet xx = ea.MyExcel.ActiveSheet as Excel.Worksheet;
+            xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
+            xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+            wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+        }
 
+        protected void wb_SheetBeforeDoubleClick(object Sh, Microsoft.Office.Interop.Excel.Range Target, ref bool Cancel)
+        {
+            if ((bool)(Target.Locked))
+            {
+                Cancel = true;
+            }
+        }
+
+        /// <summary>
+        /// 去保护工作表
+        /// </summary>
+        private void unLockExcel(ExcelAccess ea)
+        {
+            try
+            {
+                Excel.Workbook wb = ea.MyWorkBook as Excel.Workbook;
+                Excel.Worksheet xx = ea.MyExcel.ActiveSheet as Excel.Worksheet;
+                xx.Unprotect("MyPassword");
+                xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+                wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+            }
+            catch { }
+        }
         private void barReExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (gridView1.FocusedRowHandle < 0) return;
@@ -561,11 +601,29 @@ namespace Ebada.Scgl.Lpgl {
                     ds1.FileDataGzip = currRecord.DocContent ;
                     //ds1.FileOpen(ds1.FileName);
                     ds1.FileSave(fname,true);
-                    ds1.FileClose();
-                    if (MsgBox.ShowAskMessageBox ("导出成功，是否打开该文档？") != DialogResult.OK )
-                        return;
+                    
+                    ExcelAccess ea = new ExcelAccess();
+                    ea.Open(fname);
+                    char pchar = '|';
+                    Excel.Workbook wb = ds1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                    Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                    IList<LP_Temple> templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + ParentObj.LPID + "' and isExplorer='1' Order by SortID");
+                    LockExcel(ea);
+                    unLockExcel(ea);
 
-                    System.Diagnostics.Process.Start(fname);
+                    foreach (LP_Temple lp in templeList)
+                    {
+                        string[] arrCellpos = lp.CellPos.Split(pchar);
+                        for (int i = 0; i < arrCellpos.Length && arrCellpos[i] != ""; i++)
+                        {
+                            ea.SetCellValue("", GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+
+                        }
+
+                    }
+                    ea.ShowExcel();
+                    ds1.FileClose();
+                    ds1.Dispose ();
                 }
                 catch(Exception ex)
                 {
