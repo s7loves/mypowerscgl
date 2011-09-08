@@ -14,3 +14,4 @@
 2011.8.1 PS_XL增加字段LineP、LineQ、K 类型为[decimal] 参考update729.sql
 2011.8.25 PJ_06sbxs增加字段xcqx 类型为[nvarchar(50)] 参考update825.sql
 2011.8.25 PJ_23增加字段qxydd、xybh类型为[nvarchar(50)] KindTable类型为[nvarchar(500)]参考update826.sql
+2011.9.8  表Lp_Record增加字段OrgName(nvarchar(50)),Lp_Temple增加字段isExplorer(int)
