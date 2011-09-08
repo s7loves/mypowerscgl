@@ -26,6 +26,7 @@ using DevExpress.XtraEditors.Repository;
 using Ebada.Scgl.Core;
 using DevExpress.Utils;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
 
 namespace Ebada.Scgl.Lpgl {
 
@@ -53,7 +54,8 @@ namespace Ebada.Scgl.Lpgl {
         private LP_Temple parentObj;
         private GridColumn picview;
         private DataTable gridtable = null;
-        private RepositoryItemImageEdit imageEdit1;
+        //private RepositoryItemImageEdit imageEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
         public UCmLPRecord() {
             InitializeComponent();
             initImageList();
@@ -122,40 +124,74 @@ namespace Ebada.Scgl.Lpgl {
             //gridView1.Columns["OrgName"].Visible = false;
             //gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
             //repositoryItemTextEdit1.EditValueChanged += new EventHandler(repositoryItemTextEdit1_EditValueChanged);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+           
             if (picview == null)
             {
-                imageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
-                ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).BeginInit();
-                // 
-                // imageEdit1
-                // 
-                this.imageEdit1.AutoHeight = false;
-                this.imageEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-                this.imageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-                    new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-                this.imageEdit1.Name = "imageEdit1";
-                this.imageEdit1.PopupFormSize = new System.Drawing.Size(1200, 600); 
-                ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).EndInit();
+                //imageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
+                //((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).BeginInit();
+                //// 
+                //// imageEdit1
+                //// 
+                //this.imageEdit1.AutoHeight = false;
+                //this.imageEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+                //this.imageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+                //    new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+                //this.imageEdit1.Name = "imageEdit1";
+                //this.imageEdit1.PopupFormSize = new System.Drawing.Size(1200, 600); 
+                //((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).EndInit();
 
                 picview = new DevExpress.XtraGrid.Columns.GridColumn();
                 picview.Caption = "流程图";
                 picview.Visible = true;
                 //picview.MaxWidth = 300;
                 //picview.MinWidth = 300;
-                gridControl1.RepositoryItems.Add(imageEdit1);
+                //gridControl1.RepositoryItems.Add(imageEdit1);
 
-                picview.ColumnEdit = imageEdit1;
+                //picview.ColumnEdit = imageEdit1;
                 //DevExpress.XtraEditors.Repository.RepositoryItem
 
+                ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+                ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+                this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+                ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
+                this.repositoryItemHyperLinkEdit1.AutoHeight = false;
+                this.repositoryItemHyperLinkEdit1.Caption = "查看";
+                this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
+                this.repositoryItemHyperLinkEdit1.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit1_Click);
+                this.picview.Caption = "流程图";
+                this.picview.ColumnEdit = this.repositoryItemHyperLinkEdit1;
                 this.picview.VisibleIndex =1;
                 picview.FieldName = "Image";
                 gridView1.Columns.Add(picview);
+                ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
                 ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
                 ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             }
             gridView1.Columns["OrgName"].Visible = false;
+        }
+        private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
+        {
+            int ihand = gridView1.FocusedRowHandle;
+            if (ihand < 0)
+                return;
+            DataRow dr = gridView1.GetDataRow(ihand);
+            Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(),new Size (1024 ,768));
+            string tempPath = Path.GetTempPath();
+            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".bmp";
+            if (objBitmap != null)
+            {
+
+
+                objBitmap.Save(tempfile);
+                try
+                {
+                    System.Diagnostics.Process.Start("explorer.exe", tempfile);
+                }
+                catch {
+                    
+                
+                }
+            }
         }
 
         void repositoryItemTextEdit1_EditValueChanged(object sender, EventArgs e) {
@@ -271,12 +307,12 @@ namespace Ebada.Scgl.Lpgl {
                 gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
 
             }
-            if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(Bitmap));
+            if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(string));
             int i = 0;
             for (i = 0; i < gridtable.Rows.Count; i++)
             {
 
-                gridtable.Rows[i]["Image"] = RecordWorkTask.WorkFlowBitmap(gridtable.Rows[i]["ID"].ToString(), imageEdit1.PopupFormSize);
+                gridtable.Rows[i]["Image"] = "查看";
             }
 
             gridControl1.DataSource = gridtable; 
