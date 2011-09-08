@@ -30,7 +30,12 @@ namespace Ebada.SCGL
             treeList1.BeginInit();
             treeList1.Nodes.Clear();
             treeList1.DataSource = null;
-            IList mlist = MainHelper.PlatformSqlMap.GetList("SelectmModuleList", "where ModuTypes != 'hide'");
+            string sqlwhere = " where 1=0";
+            sqlwhere = "  a " +
+               "where a.modu_id in (select b.modu_id from rRoleModul b " +
+               "inner join rUserRole c on b.roleid=c.roleid " +
+               "where a.visiableflag=1" + " and c.userid='" + MainHelper.User.UserID + "' and ModuTypes != 'hide')";
+            IList mlist = MainHelper.PlatformSqlMap.GetList("SelectmModuleList", sqlwhere);
             if (mlist.Count == 0)
             {
                 mdt = new DataTable();

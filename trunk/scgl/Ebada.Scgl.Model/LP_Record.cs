@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-7-5 11:13:48
+生成时间:2011-9-8 14:13:20
 ***********************************************/
 
 using System;
@@ -32,7 +32,8 @@ namespace Ebada.Scgl.Model
         private string _createtime=String.Empty; 
         private string _lastchangetime=String.Empty; 
         private string _status=String.Empty; 
-        private string _number=String.Empty;   
+        private string _number=String.Empty; 
+        private string _orgname=String.Empty;   
         #endregion
   
   
@@ -95,7 +96,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 1073741823)
-                throw new Exception("[所有控件上的内容，格式：控件ID，控件内容| ]长度不能大于1073741823!");
+                throw new Exception("[所有控件上的内容，格式：控件ID，控件内容|]长度不能大于1073741823!");
                 if (_content as object == null || !_content.Equals(value))
                 {
                     _content = value;
@@ -251,7 +252,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[状态]长度不能大于50!");
                 if (_status as object == null || !_status.Equals(value))
                 {
                     _status = value;
@@ -261,10 +262,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：Number
-        /// 属性描述：编号
+        /// 属性描述：票号
         /// 字段信息：[Number],nvarchar
         /// </summary>
-        [DisplayNameAttribute("编号")]
+        [DisplayNameAttribute("票号")]
         public string Number
         {
             get { return _number; }
@@ -272,10 +273,31 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[票号]长度不能大于50!");
                 if (_number as object == null || !_number.Equals(value))
                 {
                     _number = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：OrgName
+        /// 属性描述：单位名称
+        /// 字段信息：[OrgName],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("单位名称")]
+        public string OrgName
+        {
+            get { return _orgname; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[单位名称]长度不能大于50!");
+                if (_orgname as object == null || !_orgname.Equals(value))
+                {
+                    _orgname = value;
                 }
             }			 
         }

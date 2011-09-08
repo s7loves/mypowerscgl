@@ -154,6 +154,7 @@ namespace Ebada.Scgl.Lpgl {
                 ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
                 ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             }
+            gridView1.Columns["OrgName"].Visible = false;
         }
 
         void repositoryItemTextEdit1_EditValueChanged(object sender, EventArgs e) {
@@ -244,8 +245,13 @@ namespace Ebada.Scgl.Lpgl {
         {
             string str = string.Format("where kind='{0}'", kind);             
             //gridViewOperation.RefreshData(str);
+            string str2 = MainHelper.UserOrg.OrgName;
+            if (str2.IndexOf("局") == -1)
+            {
+                str = str + " and OrgName='" + MainHelper.UserOrg.OrgName + "'";
 
-
+            }
+            
             if (gridtable != null) gridtable.Rows.Clear();
 
             IList<LP_Record> li = MainHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", str);

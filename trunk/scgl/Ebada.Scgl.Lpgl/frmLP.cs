@@ -36,6 +36,7 @@ namespace Ebada.Scgl.Lpgl
         private char pcomboxchar = '，';
         private string strNumber = "";
         private Control ctrlNumber = null;
+        private Control ctrlOrgName = null;
 
         public LP_Temple ParentTemple
         {
@@ -261,7 +262,10 @@ namespace Ebada.Scgl.Lpgl
                 {
                     ctrlNumber = ctrl;
                 }
-               
+                if (lp.CellName == "单位")
+                {
+                    ctrlOrgName = ctrl;
+                }
             }
             InitEvent();
             InitData();         
@@ -303,7 +307,9 @@ namespace Ebada.Scgl.Lpgl
                     newRecord.Kind = kind;
                     newRecord.Content = GetContent();
                     if (ctrlNumber!=null)
-                    newRecord.Number = ctrlNumber.Text ; 
+                    newRecord.Number = ctrlNumber.Text ;
+                    if (ctrlNumber != null)
+                        newRecord.OrgName  = ctrlOrgName.Text;
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
                     newRecord.CreateTime = DateTime.Now.ToString();
@@ -325,6 +331,8 @@ namespace Ebada.Scgl.Lpgl
                     break;
                 case "edit":
                     currRecord.LastChangeTime = DateTime.Now.ToString();
+                    if (ctrlNumber != null)
+                        currRecord.OrgName = ctrlOrgName.Text;
                     dsoFramerWordControl1.FileSave();
                     currRecord.DocContent = this.dsoFramerWordControl1.FileDataGzip;
                     //byte[] bt = new byte[0];
@@ -629,6 +637,7 @@ namespace Ebada.Scgl.Lpgl
             if (lp.CellName == "单位")
             {
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + str + "'");
+                if (ctrlOrgName != null) ctrlOrgName.Text = str;
                 if (list.Count > 0)
                 {
                     switch (kind)
@@ -835,6 +844,7 @@ namespace Ebada.Scgl.Lpgl
                         if (lp.CellName == "单位")
                         {
                             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + ctrl.Text + "'");
+                            if (ctrlOrgName != null) ctrlOrgName.Text = ctrl.Text;
                             if (list.Count > 0)
                             {
                                 switch (kind)
