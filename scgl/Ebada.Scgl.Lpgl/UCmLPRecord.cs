@@ -642,6 +642,7 @@ namespace Ebada.Scgl.Lpgl {
                 }
             }
 
+            fm.ParentTemple = ParentObj;
             fm.pjobject = currRecord;
             fm.ShowDialog();
             InitData(parentObj.Kind);

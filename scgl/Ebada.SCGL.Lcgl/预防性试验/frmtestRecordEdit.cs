@@ -101,6 +101,8 @@ namespace Ebada.Scgl.Lcgl
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit3);
             comboBoxEdit4.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "容量", comboBoxEdit4);
+            comboBoxEdit6.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit6);
         }
 
         /// <summary>
@@ -136,7 +138,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
         {
-
+            InitComboBoxData();
         }
 
         private void labelControl4_Click(object sender, EventArgs e)
@@ -171,7 +173,8 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit1);
+            SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit2);
+            rowData.syProject = memoEdit2.EditValue.ToString();  
         }
 
        

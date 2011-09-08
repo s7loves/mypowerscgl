@@ -32,6 +32,7 @@
         <result property="Status" column="Status" />
         <result property="ComBoxItem" column="ComBoxItem" />
         <result property="ExtraWord" column="ExtraWord" />
+        <result property="isExplorer" column="isExplorer" />
       </resultMap>
   </resultMaps>
 
@@ -64,7 +65,8 @@
          [ColumnName],
          [Status],
          [ComBoxItem],
-         [ExtraWord]
+         [ExtraWord],
+         [isExplorer]
           FROM LP_Temple
           $value$
    </select>
@@ -97,7 +99,8 @@
          [ColumnName],
          [Status],
          [ComBoxItem],
-         [ExtraWord]
+         [ExtraWord],
+         [isExplorer]
           FROM LP_Temple
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="LPID">[LPID]='$LPID$'</isNotNull>
@@ -127,6 +130,7 @@
        <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
        <isNotNull prepend="AND" property="ComBoxItem">[ComBoxItem]='$ComBoxItem$'</isNotNull>
        <isNotNull prepend="AND" property="ExtraWord">[ExtraWord]='$ExtraWord$'</isNotNull>
+       <isNotNull prepend="AND" property="isExplorer">[isExplorer]='$isExplorer$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectLP_TempleByKey" resultMap="LP_Temple_AllColumns" parameterClass="LP_Temple">
@@ -157,7 +161,8 @@
          [ColumnName],
          [Status],
          [ComBoxItem],
-         [ExtraWord]
+         [ExtraWord],
+         [isExplorer]
          FROM LP_Temple
          WHERE 
            LPID = #LPID#
@@ -212,7 +217,8 @@
              [ColumnName]=#ColumnName#,
              [Status]=#Status#,
              [ComBoxItem]=#ComBoxItem#,
-             [ExtraWord]=#ExtraWord#
+             [ExtraWord]=#ExtraWord#,
+             [isExplorer]=#isExplorer#
             WHERE 
               LPID = #LPID#
 
@@ -247,7 +253,8 @@
          [ColumnName],
          [Status],
          [ComBoxItem],
-         [ExtraWord]
+         [ExtraWord],
+         [isExplorer]
          )
        VALUES
          (
@@ -277,7 +284,8 @@
          #ColumnName#,
          #Status#,
          #ComBoxItem#,
-         #ExtraWord#
+         #ExtraWord#,
+         #isExplorer#
          )
 
    </insert>
@@ -313,6 +321,7 @@
        <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
        <isNotNull prepend="AND" property="ComBoxItem">[ComBoxItem]='$ComBoxItem$'</isNotNull>
        <isNotNull prepend="AND" property="ExtraWord">[ExtraWord]='$ExtraWord$'</isNotNull>
+       <isNotNull prepend="AND" property="isExplorer">[isExplorer]='$isExplorer$'</isNotNull>
      </dynamic>
 
    </select>

@@ -14,6 +14,7 @@ using System.Reflection;
 using Ebada.Client;
 using Ebada.Client.Platform;
 using Ebada.Scgl.WFlow;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Ebada.Scgl.Lpgl
 {
@@ -25,7 +26,13 @@ namespace Ebada.Scgl.Lpgl
         string filepath = Path.GetTempPath();
         LP_Record _pjobject;
         private DataTable dt = null;//实例流程信息
+        private LP_Temple parentTemple = null;
 
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set { parentTemple = value; }
+        }
         public DataTable RecordWorkFlowData
         {
             get
@@ -94,7 +101,46 @@ namespace Ebada.Scgl.Lpgl
             }
 
         }
+        public int[] GetCellPos(string cellpos)
+        {
+            cellpos = cellpos.Replace("|", "");
+            return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
+        }
+        /// <summary>
+        ///设置保护工作表
+        /// </summary>
+        private void LockExcel(ExcelAccess ea)
+        {
+            Excel.Workbook wb = ea.MyWorkBook as Excel.Workbook;
+            Excel.Worksheet xx = ea.MyExcel.ActiveSheet as Excel.Worksheet;
+            xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
+            xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+            wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+        }
 
+        protected void wb_SheetBeforeDoubleClick(object Sh, Microsoft.Office.Interop.Excel.Range Target, ref bool Cancel)
+        {
+            if ((bool)(Target.Locked))
+            {
+                Cancel = true;
+            }
+        }
+
+        /// <summary>
+        /// 去保护工作表
+        /// </summary>
+        private void unLockExcel(ExcelAccess ea)
+        {
+            try
+            {
+                Excel.Workbook wb = ea.MyWorkBook  as Excel.Workbook;
+                Excel.Worksheet xx = ea.MyExcel.ActiveSheet   as Excel.Worksheet;
+                xx.Unprotect("MyPassword");
+                xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+                wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+            }
+            catch { }
+        }
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
               SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -108,55 +154,49 @@ namespace Ebada.Scgl.Lpgl
                 try
                 {
                     dsoFramerControl1.FileSave(saveFileDialog1.FileName, true);
-                    //dsoFramerControl1.Dispose();
+                    ExcelAccess ea = new ExcelAccess();
+                    ea.Open(fname);
+                    char pchar = '|';
+                    Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                    Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                    IList<LP_Temple> templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + parentTemple.LPID + "' and isExplorer='1' Order by SortID");
+                    LockExcel(ea);
+                    unLockExcel( ea);
 
-                    //dsoExcelControl1.AxFramerControl.Save(fname,true,null,null);
-                    // dsoExcelControl1.FileSaveAs(out fname);
-                    //if (MsgBox.Show("导出成功!") != DialogResult.Yes)
-                    //////MsgBox.Show("导出成功!");
-                    //////dsoExcelControl1.AxFramerControl.Dispose();
-                    //////return;
-
-                    if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.Yes)
+                    foreach (LP_Temple lp in templeList)
                     {
-                        //dsoExcelControl1.AxFramerControl.Dispose();
-                        //dsoExcelControl1.Dispose();
-                        ExcelAccess ex = new ExcelAccess();
-                        //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                        //string fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
+                        string[] arrCellpos = lp.CellPos.Split(pchar);
+                        for (int i = 0; i < arrCellpos.Length && arrCellpos[i]!=""; i++)
+                        {
+                            ea.SetCellValue("", GetCellPos(arrCellpos[i])[0],GetCellPos(arrCellpos[i])[1]);
+                        
+                        }
 
-                        ex.Open(fname);
-                        //此处写填充内容代码
+                    }
 
-                        ex.ShowExcel();
+
+
+
+
+
+                     LockExcel( ea);
+                        ea.ShowExcel();
                         //Microsoft.Office.Interop.Excel.Application exc = new Microsoft.Office.Interop.Excel.Application(); //引用Excel对象
                         //Microsoft.Office.Interop.Excel.Workbook book = exc.Application.Workbooks.Add(fname); //引用Excel工作簿
                         //exc.Visible = true; //使Excel可视
                         return;
-                    }
-                    //System.Diagnostics.Process.Start(fname);
-
-                    //ExcelAccess ex = new ExcelAccess();
-                    ////SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                    ////string fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
-
-                    //ex.Open(fname);
-                    ////此处写填充内容代码
-
-                    //ex.ShowExcel();
-
-
-
-
-                    //  System.Diagnostics.Process.Start(fname);
+                    
+                   
                 }
                 catch
                 {
+                   
                     MsgBox.ShowSuccessfulMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
                     return;
                 }
             }
         }
+       
 
         private void frm26Template_Load(object sender, EventArgs e)
         {
