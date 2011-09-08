@@ -17,6 +17,7 @@
         <result property="LastChangeTime" column="LastChangeTime" />
         <result property="Status" column="Status" />
         <result property="Number" column="Number" />
+        <result property="OrgName" column="OrgName" />
       </resultMap>
   </resultMaps>
 
@@ -34,7 +35,8 @@
          [CreateTime],
          [LastChangeTime],
          [Status],
-         [Number]
+         [Number],
+         [OrgName]
           FROM LP_Record
           $value$
    </select>
@@ -52,7 +54,8 @@
          [CreateTime],
          [LastChangeTime],
          [Status],
-         [Number]
+         [Number],
+         [OrgName]
           FROM LP_Record
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -67,6 +70,7 @@
        <isNotNull prepend="AND" property="LastChangeTime">[LastChangeTime]='$LastChangeTime$'</isNotNull>
        <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
        <isNotNull prepend="AND" property="Number">[Number]='$Number$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectLP_RecordByKey" resultMap="LP_Record_AllColumns" parameterClass="LP_Record">
@@ -82,7 +86,8 @@
          [CreateTime],
          [LastChangeTime],
          [Status],
-         [Number]
+         [Number],
+         [OrgName]
          FROM LP_Record
          WHERE 
            ID = #ID#
@@ -122,7 +127,8 @@
              [CreateTime]=#CreateTime#,
              [LastChangeTime]=#LastChangeTime#,
              [Status]=#Status#,
-             [Number]=#Number#
+             [Number]=#Number#,
+             [OrgName]=#OrgName#
             WHERE 
               ID = #ID#
 
@@ -142,7 +148,8 @@
          [CreateTime],
          [LastChangeTime],
          [Status],
-         [Number]
+         [Number],
+         [OrgName]
          )
        VALUES
          (
@@ -157,7 +164,8 @@
          #CreateTime#,
          #LastChangeTime#,
          #Status#,
-         #Number#
+         #Number#,
+         #OrgName#
          )
 
    </insert>
@@ -178,6 +186,7 @@
        <isNotNull prepend="AND" property="LastChangeTime">[LastChangeTime]='$LastChangeTime$'</isNotNull>
        <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
        <isNotNull prepend="AND" property="Number">[Number]='$Number$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
      </dynamic>
 
    </select>

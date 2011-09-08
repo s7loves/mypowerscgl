@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-8-28 9:32:47
+生成时间:2011-9-8 12:17:59
 ***********************************************/
 
 using System;
@@ -47,7 +47,8 @@ namespace Ebada.Scgl.Model
         private string _columnname=String.Empty; 
         private string _status=String.Empty; 
         private string _comboxitem=String.Empty; 
-        private string _extraword=String.Empty;   
+        private string _extraword=String.Empty; 
+        private int _isexplorer=0;   
         #endregion
   
   
@@ -464,10 +465,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：KindTable
-        /// 属性描述：各状态对应的工作表
+        /// 属性描述：
         /// 字段信息：[KindTable],varchar
         /// </summary>
-        [DisplayNameAttribute("各状态对应的工作表")]
+        [DisplayNameAttribute("")]
         public string KindTable
         {
             get { return _kindtable; }
@@ -599,6 +600,24 @@ namespace Ebada.Scgl.Model
                 if (_extraword as object == null || !_extraword.Equals(value))
                 {
                     _extraword = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：isExplorer
+        /// 属性描述：是否导出
+        /// 字段信息：[isExplorer],int
+        /// </summary>
+        [DisplayNameAttribute("是否导出")]
+        public int isExplorer
+        {
+            get { return _isexplorer; }
+            set
+            {			
+                if (_isexplorer as object == null || !_isexplorer.Equals(value))
+                {
+                    _isexplorer = value;
                 }
             }			 
         }
