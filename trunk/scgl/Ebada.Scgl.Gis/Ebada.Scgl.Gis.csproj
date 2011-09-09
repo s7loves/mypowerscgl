@@ -126,12 +126,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Device\frmBaseSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device\frmBaseSelector.Designer.cs">
+      <DependentUpon>frmBaseSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Device\frmLineSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device\frmLineSelector.Designer.cs">
+      <DependentUpon>frmLineSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMapView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMapView.Designer.cs">
       <DependentUpon>frmMapView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Markers\GMapMarkerVector.cs" />
+    <Compile Include="Markers\GMapMarkerImage.cs" />
     <Compile Include="Provider\GoogleChinaHybridMap.cs" />
     <Compile Include="IMapView.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -161,6 +175,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Device\frmBaseSelector.resx">
+      <DependentUpon>frmBaseSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Device\frmLineSelector.resx">
+      <DependentUpon>frmLineSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMapView.resx">
       <DependentUpon>frmMapView.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +199,9 @@
     <EmbeddedResource Include="frmMap.resx">
       <DependentUpon>frmMap.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Operation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -20,6 +20,7 @@ using System.Globalization;
 using GMap.NET.WindowsForms;
 using System.Diagnostics;
 using GMap.NET.WindowsForms.Markers;
+using Ebada.Scgl.Gis.Markers;
 
 namespace Ebada.Scgl.Gis {
     public partial class frmMap : XtraForm {
@@ -27,7 +28,8 @@ namespace Ebada.Scgl.Gis {
         IMapView mapview;
         bool isMouseDown=false;
         GMapMarker currentMarker;
-        internal GMapOverlay objects;
+        internal GMapOverlay objects;//杆塔
+        internal GMapOverlay routes;//线路
         bool canAddMarker;
         public frmMap() {
             InitializeComponent();
@@ -54,8 +56,32 @@ namespace Ebada.Scgl.Gis {
             mapServer = ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>();
 
             objects = new GMapOverlay(rMap1, "objects");
+            routes = new GMapOverlay(rMap1, "LineCode");
+            rMap1.Overlays.Add(routes);
             rMap1.Overlays.Add(objects);
+            
+            objects.Markers.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Markers_CollectionChanged);
             barButtonItem10.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
+        }
+        void refreshRoute(){
+            List<PointLatLng> linePoints = new List<PointLatLng>();
+
+            foreach (GMapMarker m in objects.Markers) {
+                if (true) {
+                    m.Tag = linePoints.Count;
+                    linePoints.Add(m.Position);
+                }
+            }
+            if (linePoints.Count > 0) {
+                GMapRoute route = new GMapRoute(linePoints, "LineCode");
+                routes.Routes.Clear();
+                routes.Routes.Add(route);
+                
+            }
+        }
+        void Markers_CollectionChanged(object sender, GMap.NET.ObjectModel.NotifyCollectionChangedEventArgs e) {
+            refreshRoute();
+
         }
         public frmMap(RMap map) {
             InitializeComponent();
@@ -133,11 +159,12 @@ namespace Ebada.Scgl.Gis {
             }
         }
         GMapMarker createMarker(PointLatLng pos) {
-            GMapMarker marker = new GMapMarkerGoogleGreen(pos);
+            GMapMarker marker = new GMapMarkerVector(pos);
             marker.IsHitTestVisible = true;
-            marker.ToolTipMode = MarkerTooltipMode.Always;
+            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
             marker.ToolTipText = pos.ToString();
             objects.Markers.Add(marker);
+            
             return marker;
         }
         void MainMap_MouseDown(object sender, MouseEventArgs e) {
@@ -161,6 +188,8 @@ namespace Ebada.Scgl.Gis {
                 if (currentMarker != null) {
                     if (currentMarker.IsVisible) {
                         currentMarker.Position = rMap1.FromLocalToLatLng(e.X, e.Y);
+                        currentMarker.ToolTipText = currentMarker.Position.ToString();
+                        refreshRoute();
                     }
                 } else // move rect marker
             {
@@ -311,6 +340,10 @@ namespace Ebada.Scgl.Gis {
 
         private void barButtonItem10_DownChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             canAddMarker = barButtonItem10.Down;
+        }
+
+        private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            //线路 
         }
 
     }
