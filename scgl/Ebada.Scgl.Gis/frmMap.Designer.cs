@@ -188,6 +188,7 @@
             this.barButtonItem8.Caption = "线路";
             this.barButtonItem8.Id = 9;
             this.barButtonItem8.Name = "barButtonItem8";
+            this.barButtonItem8.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem8_ItemClick);
             // 
             // barButtonItem9
             // 
