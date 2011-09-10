@@ -55,6 +55,11 @@ namespace Ebada.Scgl.Yxgl
         {
             if (parentID == null)
                 e.Cancel = true;
+            e.Value.bxsj = DateTime.Now;
+            e.Value.dsj = DateTime.Now;
+            e.Value.wsj = DateTime.Now;
+            e.Value.tdsj = DateTime.Now;
+            e.Value.sdsj = DateTime.Now;  
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -158,7 +163,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
-            newobj.ph = "18" + DateTime.Now.Year.ToString() + sws(gridView1.RowCount);
+            newobj.ph = "18" + DateTime.Now.Year.ToString() + sws(gridView1.RowCount+1);
         }
         /// <summary>
         /// 父表ID
