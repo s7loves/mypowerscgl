@@ -45,11 +45,50 @@ namespace Ebada.Scgl.Yxgl
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "tdsj");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "sdsj");
             this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "tdxl");
-            this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "czxm");
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "tdxlgt");
             this.comboBoxEdit19.DataBindings.Add("EditValue", rowData, "ddsb");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "wxd",false,DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "cljg", false, DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit4.DataBindings.Add("EditValue", rowData, "Remark");
+
+            this.checkEdit1.DataBindings.Add("EditValue", rowData, "tdcz1xz");
+            this.checkEdit2.DataBindings.Add("EditValue", rowData, "tdcz1cz");
+            this.checkEdit3.DataBindings.Add("EditValue", rowData, "tdcz2xz");
+            this.checkEdit4.DataBindings.Add("EditValue", rowData, "tdcz2cz");
+            this.checkEdit5.DataBindings.Add("EditValue", rowData, "tdcz3xz");
+            this.checkEdit6.DataBindings.Add("EditValue", rowData, "tdcz3cz");
+            this.checkEdit7.DataBindings.Add("EditValue", rowData, "tdcz4xz");
+            this.checkEdit8.DataBindings.Add("EditValue", rowData, "tdcz4cz");
+            this.checkEdit9.DataBindings.Add("EditValue", rowData, "tdcz5xz");
+            this.checkEdit10.DataBindings.Add("EditValue", rowData, "tdcz5cz");
+            this.checkEdit11.DataBindings.Add("EditValue", rowData, "tdcz6xz");
+            this.checkEdit12.DataBindings.Add("EditValue", rowData, "tdcz6cz");
+            this.checkEdit13.DataBindings.Add("EditValue", rowData, "tdcz7xz");
+            this.checkEdit14.DataBindings.Add("EditValue", rowData, "tdcz7cz");
+            this.checkEdit15.DataBindings.Add("EditValue", rowData, "tdcz8xz");
+            this.checkEdit16.DataBindings.Add("EditValue", rowData, "tdcz8cz");
+            this.textEdit2.DataBindings.Add("EditValue", rowData, "tdczjxname1");
+            this.textEdit3.DataBindings.Add("EditValue", rowData, "tdczjxname2");
+            this.textEdit4.DataBindings.Add("EditValue", rowData, "tdczjxname3");
+
+            this.checkEdit17.DataBindings.Add("EditValue", rowData, "sdcz1xz");
+            this.checkEdit18.DataBindings.Add("EditValue", rowData, "sdcz1cz");
+            this.checkEdit19.DataBindings.Add("EditValue", rowData, "sdcz2xz");
+            this.checkEdit20.DataBindings.Add("EditValue", rowData, "sdcz2cz");
+            this.checkEdit21.DataBindings.Add("EditValue", rowData, "sdcz3xz");
+            this.checkEdit22.DataBindings.Add("EditValue", rowData, "sdcz3cz");
+            this.checkEdit23.DataBindings.Add("EditValue", rowData, "sdcz4xz");
+            this.checkEdit24.DataBindings.Add("EditValue", rowData, "sdcz4cz");
+            this.checkEdit25.DataBindings.Add("EditValue", rowData, "sdcz5xz");
+            this.checkEdit26.DataBindings.Add("EditValue", rowData, "sdcz5cz");
+            this.checkEdit27.DataBindings.Add("EditValue", rowData, "sdcz6xz");
+            this.checkEdit28.DataBindings.Add("EditValue", rowData, "sdcz6cz");
+            this.checkEdit29.DataBindings.Add("EditValue", rowData, "sdcz7xz");
+            this.checkEdit30.DataBindings.Add("EditValue", rowData, "sdcz7cz");
+            this.checkEdit31.DataBindings.Add("EditValue", rowData, "sdcz8xz");
+            this.checkEdit32.DataBindings.Add("EditValue", rowData, "sdcz8cz");
+            this.textEdit5.DataBindings.Add("EditValue", rowData, "sdczjxname1");
+            this.textEdit6.DataBindings.Add("EditValue", rowData, "sdczjxname2");
         }
         #region IPopupFormEdit Members
         private PJ_22 rowData = null;
