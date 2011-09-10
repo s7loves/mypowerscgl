@@ -29,6 +29,7 @@
         <result property="tdsj" column="tdsj" />
         <result property="sdsj" column="sdsj" />
         <result property="tdxl" column="tdxl" />
+        <result property="tdxlgt" column="tdxlgt" />
         <result property="czxm" column="czxm" />
         <result property="ddsb" column="ddsb" />
         <result property="wxd" column="wxd" />
@@ -37,6 +38,43 @@
         <result property="gzrjID" column="gzrjID" />
         <result property="CreateMan" column="CreateMan" />
         <result property="CreateDate" column="CreateDate" />
+        <result property="tdcz1xz" column="tdcz1xz" />
+        <result property="tdcz1cz" column="tdcz1cz" />
+        <result property="tdcz2xz" column="tdcz2xz" />
+        <result property="tdcz2cz" column="tdcz2cz" />
+        <result property="tdcz3xz" column="tdcz3xz" />
+        <result property="tdcz3cz" column="tdcz3cz" />
+        <result property="tdcz4xz" column="tdcz4xz" />
+        <result property="tdcz4cz" column="tdcz4cz" />
+        <result property="tdcz5xz" column="tdcz5xz" />
+        <result property="tdcz5cz" column="tdcz5cz" />
+        <result property="tdcz6xz" column="tdcz6xz" />
+        <result property="tdcz6cz" column="tdcz6cz" />
+        <result property="tdcz7xz" column="tdcz7xz" />
+        <result property="tdcz7cz" column="tdcz7cz" />
+        <result property="tdcz8xz" column="tdcz8xz" />
+        <result property="tdcz8cz" column="tdcz8cz" />
+        <result property="tdczjxname1" column="tdczjxname1" />
+        <result property="tdczjxname2" column="tdczjxname2" />
+        <result property="tdczjxname3" column="tdczjxname3" />
+        <result property="sdcz1xz" column="sdcz1xz" />
+        <result property="sdcz1cz" column="sdcz1cz" />
+        <result property="sdcz2xz" column="sdcz2xz" />
+        <result property="sdcz2cz" column="sdcz2cz" />
+        <result property="sdcz3xz" column="sdcz3xz" />
+        <result property="sdcz3cz" column="sdcz3cz" />
+        <result property="sdcz4xz" column="sdcz4xz" />
+        <result property="sdcz4cz" column="sdcz4cz" />
+        <result property="sdcz5xz" column="sdcz5xz" />
+        <result property="sdcz5cz" column="sdcz5cz" />
+        <result property="sdcz6xz" column="sdcz6xz" />
+        <result property="sdcz6cz" column="sdcz6cz" />
+        <result property="sdcz7xz" column="sdcz7xz" />
+        <result property="sdcz7cz" column="sdcz7cz" />
+        <result property="sdcz8xz" column="sdcz8xz" />
+        <result property="sdcz8cz" column="sdcz8cz" />
+        <result property="sdczjxname1" column="sdczjxname1" />
+        <result property="sdczjxname2" column="sdczjxname2" />
       </resultMap>
   </resultMaps>
 
@@ -67,6 +105,7 @@
          [tdsj],
          [sdsj],
          [tdxl],
+         [tdxlgt],
          [czxm],
          [ddsb],
          [wxd],
@@ -74,7 +113,44 @@
          [Remark],
          [gzrjID],
          [CreateMan],
-         [CreateDate]
+         [CreateDate],
+         [tdcz1xz],
+         [tdcz1cz],
+         [tdcz2xz],
+         [tdcz2cz],
+         [tdcz3xz],
+         [tdcz3cz],
+         [tdcz4xz],
+         [tdcz4cz],
+         [tdcz5xz],
+         [tdcz5cz],
+         [tdcz6xz],
+         [tdcz6cz],
+         [tdcz7xz],
+         [tdcz7cz],
+         [tdcz8xz],
+         [tdcz8cz],
+         [tdczjxname1],
+         [tdczjxname2],
+         [tdczjxname3],
+         [sdcz1xz],
+         [sdcz1cz],
+         [sdcz2xz],
+         [sdcz2cz],
+         [sdcz3xz],
+         [sdcz3cz],
+         [sdcz4xz],
+         [sdcz4cz],
+         [sdcz5xz],
+         [sdcz5cz],
+         [sdcz6xz],
+         [sdcz6cz],
+         [sdcz7xz],
+         [sdcz7cz],
+         [sdcz8xz],
+         [sdcz8cz],
+         [sdczjxname1],
+         [sdczjxname2]
           FROM PJ_22
           $value$
    </select>
@@ -105,6 +181,7 @@
          [tdsj],
          [sdsj],
          [tdxl],
+         [tdxlgt],
          [czxm],
          [ddsb],
          [wxd],
@@ -112,7 +189,44 @@
          [Remark],
          [gzrjID],
          [CreateMan],
-         [CreateDate]
+         [CreateDate],
+         [tdcz1xz],
+         [tdcz1cz],
+         [tdcz2xz],
+         [tdcz2cz],
+         [tdcz3xz],
+         [tdcz3cz],
+         [tdcz4xz],
+         [tdcz4cz],
+         [tdcz5xz],
+         [tdcz5cz],
+         [tdcz6xz],
+         [tdcz6cz],
+         [tdcz7xz],
+         [tdcz7cz],
+         [tdcz8xz],
+         [tdcz8cz],
+         [tdczjxname1],
+         [tdczjxname2],
+         [tdczjxname3],
+         [sdcz1xz],
+         [sdcz1cz],
+         [sdcz2xz],
+         [sdcz2cz],
+         [sdcz3xz],
+         [sdcz3cz],
+         [sdcz4xz],
+         [sdcz4cz],
+         [sdcz5xz],
+         [sdcz5cz],
+         [sdcz6xz],
+         [sdcz6cz],
+         [sdcz7xz],
+         [sdcz7cz],
+         [sdcz8xz],
+         [sdcz8cz],
+         [sdczjxname1],
+         [sdczjxname2]
           FROM PJ_22
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -139,6 +253,7 @@
        <isNotNull prepend="AND" property="tdsj">[tdsj]='$tdsj$'</isNotNull>
        <isNotNull prepend="AND" property="sdsj">[sdsj]='$sdsj$'</isNotNull>
        <isNotNull prepend="AND" property="tdxl">[tdxl]='$tdxl$'</isNotNull>
+       <isNotNull prepend="AND" property="tdxlgt">[tdxlgt]='$tdxlgt$'</isNotNull>
        <isNotNull prepend="AND" property="czxm">[czxm]='$czxm$'</isNotNull>
        <isNotNull prepend="AND" property="ddsb">[ddsb]='$ddsb$'</isNotNull>
        <isNotNull prepend="AND" property="wxd">[wxd]='$wxd$'</isNotNull>
@@ -147,6 +262,43 @@
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz1xz">[tdcz1xz]='$tdcz1xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz1cz">[tdcz1cz]='$tdcz1cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz2xz">[tdcz2xz]='$tdcz2xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz2cz">[tdcz2cz]='$tdcz2cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz3xz">[tdcz3xz]='$tdcz3xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz3cz">[tdcz3cz]='$tdcz3cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz4xz">[tdcz4xz]='$tdcz4xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz4cz">[tdcz4cz]='$tdcz4cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz5xz">[tdcz5xz]='$tdcz5xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz5cz">[tdcz5cz]='$tdcz5cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz6xz">[tdcz6xz]='$tdcz6xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz6cz">[tdcz6cz]='$tdcz6cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz7xz">[tdcz7xz]='$tdcz7xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz7cz">[tdcz7cz]='$tdcz7cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz8xz">[tdcz8xz]='$tdcz8xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz8cz">[tdcz8cz]='$tdcz8cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdczjxname1">[tdczjxname1]='$tdczjxname1$'</isNotNull>
+       <isNotNull prepend="AND" property="tdczjxname2">[tdczjxname2]='$tdczjxname2$'</isNotNull>
+       <isNotNull prepend="AND" property="tdczjxname3">[tdczjxname3]='$tdczjxname3$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz1xz">[sdcz1xz]='$sdcz1xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz1cz">[sdcz1cz]='$sdcz1cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz2xz">[sdcz2xz]='$sdcz2xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz2cz">[sdcz2cz]='$sdcz2cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz3xz">[sdcz3xz]='$sdcz3xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz3cz">[sdcz3cz]='$sdcz3cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz4xz">[sdcz4xz]='$sdcz4xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz4cz">[sdcz4cz]='$sdcz4cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz5xz">[sdcz5xz]='$sdcz5xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz5cz">[sdcz5cz]='$sdcz5cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz6xz">[sdcz6xz]='$sdcz6xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz6cz">[sdcz6cz]='$sdcz6cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz7xz">[sdcz7xz]='$sdcz7xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz7cz">[sdcz7cz]='$sdcz7cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz8xz">[sdcz8xz]='$sdcz8xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz8cz">[sdcz8cz]='$sdcz8cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdczjxname1">[sdczjxname1]='$sdczjxname1$'</isNotNull>
+       <isNotNull prepend="AND" property="sdczjxname2">[sdczjxname2]='$sdczjxname2$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_22ByKey" resultMap="PJ_22_AllColumns" parameterClass="PJ_22">
@@ -175,6 +327,7 @@
          [tdsj],
          [sdsj],
          [tdxl],
+         [tdxlgt],
          [czxm],
          [ddsb],
          [wxd],
@@ -182,7 +335,44 @@
          [Remark],
          [gzrjID],
          [CreateMan],
-         [CreateDate]
+         [CreateDate],
+         [tdcz1xz],
+         [tdcz1cz],
+         [tdcz2xz],
+         [tdcz2cz],
+         [tdcz3xz],
+         [tdcz3cz],
+         [tdcz4xz],
+         [tdcz4cz],
+         [tdcz5xz],
+         [tdcz5cz],
+         [tdcz6xz],
+         [tdcz6cz],
+         [tdcz7xz],
+         [tdcz7cz],
+         [tdcz8xz],
+         [tdcz8cz],
+         [tdczjxname1],
+         [tdczjxname2],
+         [tdczjxname3],
+         [sdcz1xz],
+         [sdcz1cz],
+         [sdcz2xz],
+         [sdcz2cz],
+         [sdcz3xz],
+         [sdcz3cz],
+         [sdcz4xz],
+         [sdcz4cz],
+         [sdcz5xz],
+         [sdcz5cz],
+         [sdcz6xz],
+         [sdcz6cz],
+         [sdcz7xz],
+         [sdcz7cz],
+         [sdcz8xz],
+         [sdcz8cz],
+         [sdczjxname1],
+         [sdczjxname2]
          FROM PJ_22
          WHERE 
            ID = #ID#
@@ -235,6 +425,7 @@
              [tdsj]=#tdsj#,
              [sdsj]=#sdsj#,
              [tdxl]=#tdxl#,
+             [tdxlgt]=#tdxlgt#,
              [czxm]=#czxm#,
              [ddsb]=#ddsb#,
              [wxd]=#wxd#,
@@ -242,7 +433,44 @@
              [Remark]=#Remark#,
              [gzrjID]=#gzrjID#,
              [CreateMan]=#CreateMan#,
-             [CreateDate]=#CreateDate#
+             [CreateDate]=#CreateDate#,
+             [tdcz1xz]=#tdcz1xz#,
+             [tdcz1cz]=#tdcz1cz#,
+             [tdcz2xz]=#tdcz2xz#,
+             [tdcz2cz]=#tdcz2cz#,
+             [tdcz3xz]=#tdcz3xz#,
+             [tdcz3cz]=#tdcz3cz#,
+             [tdcz4xz]=#tdcz4xz#,
+             [tdcz4cz]=#tdcz4cz#,
+             [tdcz5xz]=#tdcz5xz#,
+             [tdcz5cz]=#tdcz5cz#,
+             [tdcz6xz]=#tdcz6xz#,
+             [tdcz6cz]=#tdcz6cz#,
+             [tdcz7xz]=#tdcz7xz#,
+             [tdcz7cz]=#tdcz7cz#,
+             [tdcz8xz]=#tdcz8xz#,
+             [tdcz8cz]=#tdcz8cz#,
+             [tdczjxname1]=#tdczjxname1#,
+             [tdczjxname2]=#tdczjxname2#,
+             [tdczjxname3]=#tdczjxname3#,
+             [sdcz1xz]=#sdcz1xz#,
+             [sdcz1cz]=#sdcz1cz#,
+             [sdcz2xz]=#sdcz2xz#,
+             [sdcz2cz]=#sdcz2cz#,
+             [sdcz3xz]=#sdcz3xz#,
+             [sdcz3cz]=#sdcz3cz#,
+             [sdcz4xz]=#sdcz4xz#,
+             [sdcz4cz]=#sdcz4cz#,
+             [sdcz5xz]=#sdcz5xz#,
+             [sdcz5cz]=#sdcz5cz#,
+             [sdcz6xz]=#sdcz6xz#,
+             [sdcz6cz]=#sdcz6cz#,
+             [sdcz7xz]=#sdcz7xz#,
+             [sdcz7cz]=#sdcz7cz#,
+             [sdcz8xz]=#sdcz8xz#,
+             [sdcz8cz]=#sdcz8cz#,
+             [sdczjxname1]=#sdczjxname1#,
+             [sdczjxname2]=#sdczjxname2#
             WHERE 
               ID = #ID#
 
@@ -275,6 +503,7 @@
          [tdsj],
          [sdsj],
          [tdxl],
+         [tdxlgt],
          [czxm],
          [ddsb],
          [wxd],
@@ -282,7 +511,44 @@
          [Remark],
          [gzrjID],
          [CreateMan],
-         [CreateDate]
+         [CreateDate],
+         [tdcz1xz],
+         [tdcz1cz],
+         [tdcz2xz],
+         [tdcz2cz],
+         [tdcz3xz],
+         [tdcz3cz],
+         [tdcz4xz],
+         [tdcz4cz],
+         [tdcz5xz],
+         [tdcz5cz],
+         [tdcz6xz],
+         [tdcz6cz],
+         [tdcz7xz],
+         [tdcz7cz],
+         [tdcz8xz],
+         [tdcz8cz],
+         [tdczjxname1],
+         [tdczjxname2],
+         [tdczjxname3],
+         [sdcz1xz],
+         [sdcz1cz],
+         [sdcz2xz],
+         [sdcz2cz],
+         [sdcz3xz],
+         [sdcz3cz],
+         [sdcz4xz],
+         [sdcz4cz],
+         [sdcz5xz],
+         [sdcz5cz],
+         [sdcz6xz],
+         [sdcz6cz],
+         [sdcz7xz],
+         [sdcz7cz],
+         [sdcz8xz],
+         [sdcz8cz],
+         [sdczjxname1],
+         [sdczjxname2]
          )
        VALUES
          (
@@ -310,6 +576,7 @@
          #tdsj#,
          #sdsj#,
          #tdxl#,
+         #tdxlgt#,
          #czxm#,
          #ddsb#,
          #wxd#,
@@ -317,7 +584,44 @@
          #Remark#,
          #gzrjID#,
          #CreateMan#,
-         #CreateDate#
+         #CreateDate#,
+         #tdcz1xz#,
+         #tdcz1cz#,
+         #tdcz2xz#,
+         #tdcz2cz#,
+         #tdcz3xz#,
+         #tdcz3cz#,
+         #tdcz4xz#,
+         #tdcz4cz#,
+         #tdcz5xz#,
+         #tdcz5cz#,
+         #tdcz6xz#,
+         #tdcz6cz#,
+         #tdcz7xz#,
+         #tdcz7cz#,
+         #tdcz8xz#,
+         #tdcz8cz#,
+         #tdczjxname1#,
+         #tdczjxname2#,
+         #tdczjxname3#,
+         #sdcz1xz#,
+         #sdcz1cz#,
+         #sdcz2xz#,
+         #sdcz2cz#,
+         #sdcz3xz#,
+         #sdcz3cz#,
+         #sdcz4xz#,
+         #sdcz4cz#,
+         #sdcz5xz#,
+         #sdcz5cz#,
+         #sdcz6xz#,
+         #sdcz6cz#,
+         #sdcz7xz#,
+         #sdcz7cz#,
+         #sdcz8xz#,
+         #sdcz8cz#,
+         #sdczjxname1#,
+         #sdczjxname2#
          )
 
    </insert>
@@ -350,6 +654,7 @@
        <isNotNull prepend="AND" property="tdsj">[tdsj]='$tdsj$'</isNotNull>
        <isNotNull prepend="AND" property="sdsj">[sdsj]='$sdsj$'</isNotNull>
        <isNotNull prepend="AND" property="tdxl">[tdxl]='$tdxl$'</isNotNull>
+       <isNotNull prepend="AND" property="tdxlgt">[tdxlgt]='$tdxlgt$'</isNotNull>
        <isNotNull prepend="AND" property="czxm">[czxm]='$czxm$'</isNotNull>
        <isNotNull prepend="AND" property="ddsb">[ddsb]='$ddsb$'</isNotNull>
        <isNotNull prepend="AND" property="wxd">[wxd]='$wxd$'</isNotNull>
@@ -358,6 +663,43 @@
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz1xz">[tdcz1xz]='$tdcz1xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz1cz">[tdcz1cz]='$tdcz1cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz2xz">[tdcz2xz]='$tdcz2xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz2cz">[tdcz2cz]='$tdcz2cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz3xz">[tdcz3xz]='$tdcz3xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz3cz">[tdcz3cz]='$tdcz3cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz4xz">[tdcz4xz]='$tdcz4xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz4cz">[tdcz4cz]='$tdcz4cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz5xz">[tdcz5xz]='$tdcz5xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz5cz">[tdcz5cz]='$tdcz5cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz6xz">[tdcz6xz]='$tdcz6xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz6cz">[tdcz6cz]='$tdcz6cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz7xz">[tdcz7xz]='$tdcz7xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz7cz">[tdcz7cz]='$tdcz7cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz8xz">[tdcz8xz]='$tdcz8xz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdcz8cz">[tdcz8cz]='$tdcz8cz$'</isNotNull>
+       <isNotNull prepend="AND" property="tdczjxname1">[tdczjxname1]='$tdczjxname1$'</isNotNull>
+       <isNotNull prepend="AND" property="tdczjxname2">[tdczjxname2]='$tdczjxname2$'</isNotNull>
+       <isNotNull prepend="AND" property="tdczjxname3">[tdczjxname3]='$tdczjxname3$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz1xz">[sdcz1xz]='$sdcz1xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz1cz">[sdcz1cz]='$sdcz1cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz2xz">[sdcz2xz]='$sdcz2xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz2cz">[sdcz2cz]='$sdcz2cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz3xz">[sdcz3xz]='$sdcz3xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz3cz">[sdcz3cz]='$sdcz3cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz4xz">[sdcz4xz]='$sdcz4xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz4cz">[sdcz4cz]='$sdcz4cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz5xz">[sdcz5xz]='$sdcz5xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz5cz">[sdcz5cz]='$sdcz5cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz6xz">[sdcz6xz]='$sdcz6xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz6cz">[sdcz6cz]='$sdcz6cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz7xz">[sdcz7xz]='$sdcz7xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz7cz">[sdcz7cz]='$sdcz7cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz8xz">[sdcz8xz]='$sdcz8xz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdcz8cz">[sdcz8cz]='$sdcz8cz$'</isNotNull>
+       <isNotNull prepend="AND" property="sdczjxname1">[sdczjxname1]='$sdczjxname1$'</isNotNull>
+       <isNotNull prepend="AND" property="sdczjxname2">[sdczjxname2]='$sdczjxname2$'</isNotNull>
      </dynamic>
 
    </select>
