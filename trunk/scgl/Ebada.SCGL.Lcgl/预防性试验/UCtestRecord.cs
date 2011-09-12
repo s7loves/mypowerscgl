@@ -285,11 +285,23 @@ namespace Ebada.Scgl.Lcgl
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //DataTable dt = new DataTable();
-            IList<PJ_yfsyjl> li = gridView1.DataSource as IList<PJ_yfsyjl>; 
-            frmTemplate frm = new frmTemplate();
-            frm.dataList  = li;
-            frm.ShowDialog();
-            
+            //IList<PJ_yfsyjl> li = gridView1.DataSource as IList<PJ_yfsyjl>; 
+            //frmTemplate frm = new frmTemplate();
+            //frm.dataList  = li;
+            //frm.ShowDialog();
+            IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>; 
+         
+                 switch (_type)
+                    {
+                        case "变压器":
+                            Export11.ExportExcelbyq(datalist, _type+"预防性试验记录");
+                            break;
+                        case "断路器":
+                        case "避雷器":
+                        case "电容器":
+                            Export11.ExportExcelbyq(datalist, _type + "预防性试验记录");
+                            break;
+                    }
            
         }
     }

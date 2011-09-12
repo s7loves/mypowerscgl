@@ -233,8 +233,8 @@ namespace Ebada.Scgl.Yxgl {
             IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'') from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
             IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'') from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
             int jmax = 18;
-            pagecount = caplist.Count / jmax + 1;
-            int itemp=modtmlist.Count /6>modmflist.Count /3?modtmlist.Count /6+1:modmflist.Count /3+1;
+            pagecount =(int)Math.Ceiling( caplist.Count / (jmax + 0.0));
+            int itemp = modtmlist.Count / 6.0 > modmflist.Count / 3.0 ? (int)Math.Ceiling(modtmlist.Count / 6.0) : (int)Math.Ceiling(modmflist.Count / 3.0 );
             int i = 0;
             pagecount = itemp * pagecount;
             if (pagecount > 1)
@@ -251,12 +251,12 @@ namespace Ebada.Scgl.Yxgl {
                 ex.ReNameWorkSheet((i + 1), "Sheet" + (i + 1));
                
             }
-            int istart = 7, istart2 = 19, jstart = 4, ispan = 0,imf=0,itm=0,j=0,pageindex=1;
-            string str = "",jstrfilter="";
+            int istart = 7, istart2 = 19, jstart = 4, j=0;
+            string jstrfilter="";
             mOrg org = Client.ClientHelper.PlatformSqlMap.GetOneByKey<mOrg>(obj);
             for ( j = 0; j < caplist.Count; j++)
             {
-                ex.ActiveSheet("Sheet" + (j / jmax == 0 ? 1 : j / jmax + 1));
+                ex.ActiveSheet("Sheet" + (j / jmax == 0 ? 1 : (int)Math.Ceiling(j / (jmax + 0.0))));
                 if (j % jmax == 0)
                 {
 
@@ -269,7 +269,7 @@ namespace Ebada.Scgl.Yxgl {
                     ex.SetCellValue(list[0].ToString(), 6, jstart + j % jmax);
                     setExceldt(ex, list, caplist, modtmlist, modmflist, jstrfilter, strfilter, jstart, j, jmax, istart, istart2);    
                 }
-                ex.ActiveSheet("Sheet" + (j / jmax == 0 ? 1 : j / jmax + 1));
+                ex.ActiveSheet("Sheet" + (j / jmax == 0 ? 1 : (int)Math.Ceiling(j / (jmax + 0.0))));
                     jstrfilter = " and 1=1 and b.byqCapcity='" + caplist[j] + "'";
                     //ex.SetCellValue(caplist[j].ToString(), 4, jstart + j % jmax + 1);
                     setExceldt(ex, list, caplist, modtmlist, modmflist, jstrfilter, strfilter, jstart+1, j, jmax, istart, istart2);    
@@ -331,7 +331,7 @@ namespace Ebada.Scgl.Yxgl {
 
             for (int itm = 0; itm < modtmlist.Count; itm++)
             {
-                ex.ActiveSheet("Sheet" + (1 + (itm / 6) * (caplist.Count / jmax + 1) + j / jmax ));
+                ex.ActiveSheet("Sheet" + (1 + (itm / 6) * (int)Math.Ceiling(caplist.Count /( jmax + 0.0)) + j / jmax));
                 if (j % jmax == 0)
                 {
                     ex.SetCellValue(modtmlist[itm].ToString(), istart + (itm % 6) * 2, 1);
@@ -344,7 +344,7 @@ namespace Ebada.Scgl.Yxgl {
             for (int imf = 0; imf < modmflist.Count; imf++)
             {
 
-                ex.ActiveSheet("Sheet" + (1 + (imf / 3) * (caplist.Count / jmax+1) + j / jmax));
+                ex.ActiveSheet("Sheet" + (1 + (imf / 3) * (int)Math.Ceiling(caplist.Count / (jmax + 0.0)) + j / jmax));
                 if (j % jmax == 0)
                 {
                     ex.SetCellValue(modmflist[imf].ToString(), istart2 + (imf % 3) * 2, 2);
