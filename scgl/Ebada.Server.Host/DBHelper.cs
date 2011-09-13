@@ -51,9 +51,9 @@ namespace Ebada.Server.Host {
             }
             if (ver < 4) {
                 try {
-                    sqlMap.Update(mUpdate, string.Format(update_AndroidVer,3));
+                    sqlMap.Update(mUpdate, string.Format(update_AndroidVer,3));//更新android客户端
                     SqlMap.Update(mUpdate, string.Format(update_ver, 4));
-                    Console.WriteLine("更新数据库版本ver:{0}", mVer);
+                    Console.WriteLine("更新数据库版本ver:{0}", 4);
                     Console.WriteLine("更新手机服务器版本ver:{0}", 3);
                 } catch (Exception e) { throw e; }
 
