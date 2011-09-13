@@ -5,7 +5,7 @@ using Ebada.Components;
 using System.Collections;
 namespace Ebada.Server.Host {
     internal class DBHelper {
-        internal int mVer = 3;
+        internal int mVer = 4;
         string mSelect = "Select";
         string mUpdate = "Update";
         IBaseSqlMapDao sqlMap;
@@ -15,6 +15,7 @@ namespace Ebada.Server.Host {
             +" insert into msys values('dbver','数据库版本','1')";
         string select_ver = "select value from msys where dm='dbver'";
         string update_ver = "update msys set value='{0}' where dm='dbver'";
+        string update_AndroidVer = "update msys set value='{0}' where dm='androidver'";
         string insertAndroidVer = "insert msys values('androidver','手机端软件版本','2')";
         public IBaseSqlMapDao SqlMap {
             get {
@@ -35,16 +36,25 @@ namespace Ebada.Server.Host {
                 SqlMap.Update(mUpdate, create_msys);
             if (ver < 2) {
                 try {
-                    SqlMap.Update(mUpdate, string.Format(update_ver, mVer));
-                    Console.WriteLine("更新数据库版本ver:{0}",mVer);
+                    SqlMap.Update(mUpdate, string.Format(update_ver, 2));
+                    Console.WriteLine("更新数据库版本ver:{0}",2);
                 } catch (Exception e) { throw e; }
 
             }
             if (ver < 3) {
                 try {
                     sqlMap.Update(mUpdate, insertAndroidVer);
-                    SqlMap.Update(mUpdate, string.Format(update_ver, mVer));
+                    SqlMap.Update(mUpdate, string.Format(update_ver, 3));
+                    Console.WriteLine("更新数据库版本ver:{0}", 3);
+                } catch (Exception e) { throw e; }
+
+            }
+            if (ver < 4) {
+                try {
+                    sqlMap.Update(mUpdate, string.Format(update_AndroidVer,3));
+                    SqlMap.Update(mUpdate, string.Format(update_ver, 4));
                     Console.WriteLine("更新数据库版本ver:{0}", mVer);
+                    Console.WriteLine("更新手机服务器版本ver:{0}", 3);
                 } catch (Exception e) { throw e; }
 
             }
