@@ -57,16 +57,17 @@ namespace Ebada.Scgl.Gis {
 
             objects = new GMapOverlay(rMap1, "objects");
             routes = new GMapOverlay(rMap1, "LineCode");
+            
             rMap1.Overlays.Add(routes);
             rMap1.Overlays.Add(objects);
-            
-            objects.Markers.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Markers_CollectionChanged);
+
+            routes.Markers.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Markers_CollectionChanged);
             barButtonItem10.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
         }
         void refreshRoute(){
             List<PointLatLng> linePoints = new List<PointLatLng>();
 
-            foreach (GMapMarker m in objects.Markers) {
+            foreach (GMapMarker m in routes.Markers) {
                 if (true) {
                     m.Tag = linePoints.Count;
                     linePoints.Add(m.Position);
@@ -74,6 +75,7 @@ namespace Ebada.Scgl.Gis {
             }
             if (linePoints.Count > 0) {
                 GMapRoute route = new GMapRoute(linePoints, "LineCode");
+                route.Stroke.Width = 4;
                 routes.Routes.Clear();
                 routes.Routes.Add(route);
                 
@@ -159,11 +161,16 @@ namespace Ebada.Scgl.Gis {
             }
         }
         GMapMarker createMarker(PointLatLng pos) {
-            GMapMarker marker = new GMapMarkerVector(pos);
+            GMapMarkerVector marker = new GMapMarkerVector(pos);
+            if (objects.Markers.Count % 2.0 == 0)
+                marker = new GMapMarkerRect(pos);
+            marker.Pen =new Pen(Color.FromArgb(144, Color.MidnightBlue),2);
             marker.IsHitTestVisible = true;
             marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-            marker.ToolTipText = pos.ToString();
-            objects.Markers.Add(marker);
+            routes.Markers.Add(marker);
+            if (routes.Markers.Count > 1)
+
+                marker.ToolTipText = routes.Routes[0].Distance + "";// rMap1.Manager.GetDistance(pos, objects.Markers[objects.Markers.Count - 1].Position) + "";
             
             return marker;
         }
