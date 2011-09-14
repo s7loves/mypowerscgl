@@ -297,9 +297,13 @@ namespace Ebada.Scgl.Lcgl
                             Export11.ExportExcelbyq(datalist, _type+"预防性试验记录",parentID);
                             break;
                         case "断路器":
-                        case "避雷器":
-                        case "电容器":
                             Export11.ExportExceldlq(datalist, _type + "预防性试验记录", parentID);
+                            break;
+                        case "避雷器":
+                            Export11.ExportExcelblq(datalist, _type + "预防性试验记录", parentID);
+                            break;
+                        case "电容器":
+                            Export11.ExportExceldrq(datalist, _type + "预防性试验记录", parentID);
                             break;
                     }
            
