@@ -294,12 +294,12 @@ namespace Ebada.Scgl.Lcgl
                  switch (_type)
                     {
                         case "变压器":
-                            Export11.ExportExcelbyq(datalist, _type+"预防性试验记录");
+                            Export11.ExportExcelbyq(datalist, _type+"预防性试验记录",parentID);
                             break;
                         case "断路器":
                         case "避雷器":
                         case "电容器":
-                            Export11.ExportExcelbyq(datalist, _type + "预防性试验记录");
+                            Export11.ExportExceldlq(datalist, _type + "预防性试验记录", parentID);
                             break;
                     }
            
