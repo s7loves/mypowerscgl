@@ -319,7 +319,7 @@ namespace Ebada.Scgl.Lcgl
 
             for (int m = 0; m + itemp < sname.Length; m++)
             {
-                if (m < 5)
+                if (m < 4)
                     ex.SetCellValue(sname[itemp], istart + ((i + spanadd) % jmax ) * imax2 + m, jstart + 5);
                 else
                 {
@@ -340,20 +340,23 @@ namespace Ebada.Scgl.Lcgl
         }
         public static void ExportExceldrqEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
-           
 
-            int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 5, sheetindex = 0, spanlistcount = 0, itemp = 0, imax2 = 5, spanadd = 0;
+
+            int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 4, sheetindex = 0, spanlistcount = 0, itemp = 0, imax1 = 4, imax2 = 5, spanadd = 0, spanadd2 = 0;
             Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
-            for (i = 0; i < datalist.Count; i++)
+            for (i = 0; i < datalist.Count-1; i+=2)
             {
                 string[] sname = datalist[i].syProject.Split('、');
-                if (sname.Length > 5)
+                string[] sname2 = datalist[i+1].syProject.Split('、');
+                if (sname.Length > 4 || sname2.Length > 1)
                 {
-                    spanlistcount += sname.Length / imax2;
+                    spanlistcount += sname.Length / imax1 > sname2.Length ? sname.Length / imax1 : sname2.Length;
                 }
+                else
+                    spanlistcount++;
 
             }
-            pagecount = Convert.ToInt32(Math.Ceiling((datalist.Count + spanlistcount) / (jmax + 0.0)));
+            pagecount = Convert.ToInt32(Math.Ceiling(( spanlistcount) / (jmax + 0.0)));
             ex.ActiveSheet(sheetname);
             for (i = 1; i <= wb.Application.Worksheets.Count; i++)
             {
@@ -385,41 +388,101 @@ namespace Ebada.Scgl.Lcgl
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 15);
             }
-            for (i = 0; i < datalist.Count; i++)
+            for (i = 0; i < datalist.Count-1; i+=2)
             {
-                if (Math.Ceiling((i + 1.0 + spanadd) / (jmax)) > 1)
+                
+                if (Math.Ceiling((i + 1.0 + spanadd2) / (jmax)) > 1)
                 {
-                    ex.ActiveSheet(sheetname + Math.Ceiling((i + 1.0 + spanadd) / (jmax)));
+                    ex.ActiveSheet(sheetname + Math.Ceiling((i + 1.0 + spanadd2) / (jmax)));
 
                 }
                 else
                     ex.ActiveSheet(sheetname);
-                ex.SetCellValue(Convert.ToString(i + 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
-                ex.SetCellValue(datalist[i].sbInstallAdress, istart + ((i + spanadd) % jmax) * imax2, jstart + 1);
-                ex.SetCellValue(datalist[i].sbModle, istart + ((i + spanadd) % jmax) * imax2, jstart + 2);
-                ex.SetCellValue(datalist[i].sl.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 3);
+                ex.SetCellValue(datalist[i].xh.ToString(), istart + ((spanadd2) % jmax) * imax2, jstart);
+                ex.SetCellValue(datalist[i].sbInstallAdress, istart + (( spanadd2) % jmax) * imax2, jstart + 1);
+                ex.SetCellValue(datalist[i].sbModle, istart + ((spanadd2) % jmax) * imax2, jstart + 2);
+                ex.SetCellValue(datalist[i].sl.ToString(), istart + (( spanadd2) % jmax) * imax2, jstart + 3);
 
-                ex.SetCellValue(datalist[i].syPeriod, istart + ((i + spanadd) % jmax) * imax2, jstart + 6);
-                ex.SetCellValue(datalist[i].preExpTime.Year.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 7);
-                ex.SetCellValue(datalist[i].preExpTime.Month.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 8);
-                ex.SetCellValue(datalist[i].preExpTime.Day.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 9);
+                ex.SetCellValue(datalist[i].syPeriod, istart + (( spanadd2) % jmax) * imax2, jstart + 6);
 
-                ex.SetCellValue(datalist[i].planExpTime.Year.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 10);
-                ex.SetCellValue(datalist[i].planExpTime.Month.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 11);
-                ex.SetCellValue(datalist[i].planExpTime.Day.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 12);
+                ex.SetCellValue(datalist[i].preExpTime.Year.ToString(), istart + (( spanadd2) % jmax) * imax2, jstart + 7);
+                ex.SetCellValue(datalist[i].preExpTime.Month.ToString(), istart + ((spanadd2) % jmax) * imax2, jstart + 8);
+                ex.SetCellValue(datalist[i].preExpTime.Day.ToString(), istart + (( spanadd2) % jmax) * imax2, jstart + 9);
+
+                ex.SetCellValue(datalist[i].planExpTime.Year.ToString(), istart + ((spanadd2) % jmax) * imax2, jstart + 10);
+                ex.SetCellValue(datalist[i].planExpTime.Month.ToString(), istart + ((spanadd2) % jmax) * imax2, jstart + 11);
+                ex.SetCellValue(datalist[i].planExpTime.Day.ToString(), istart + (( spanadd2) % jmax) * imax2, jstart + 12);
 
                 string[] sname = datalist[i].syProject.Split('、');
                 for (itemp = 0; itemp < sname.Length; itemp++)
                 {
-                    if (itemp < 5)
-                        ex.SetCellValue(sname[itemp], istart + ((i + spanadd) % jmax) * imax2 + itemp, jstart + 5);
-                    else
+                 
+                    if ((istart + (( spanadd + itemp/imax1 )) * imax2 ) / 25.0 > 1)
                     {
-                        spanadd++;
-                        setSpanExcel(ex, datalist[i], i, istart, jmax, jstart, ref spanadd, imax2, sheetname, sname, itemp);
+                        ex.ActiveSheet(sheetname + Math.Ceiling((istart + (( spanadd + itemp / imax1)) * imax2) / 25.0));
 
-                        break;
+
                     }
+                    else
+                        ex.ActiveSheet(sheetname);
+                    ex.SetCellValue(sname[itemp], (istart + (( spanadd + itemp / imax1) % jmax) * imax2) + itemp % imax1, jstart + 5);
+                    if (itemp % 4 == 0)
+                    {
+                        ex.SetCellValue(datalist[i].xh.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart);
+                        ex.SetCellValue(datalist[i].sbInstallAdress, istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 1);
+                        ex.SetCellValue(datalist[i].sbModle, istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 2);
+                        ex.SetCellValue(datalist[i].sl.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 3);
+
+
+                        ex.SetCellValue(datalist[i].preExpTime.Year.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 7);
+                        ex.SetCellValue(datalist[i].preExpTime.Month.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 8);
+                        ex.SetCellValue(datalist[i].preExpTime.Day.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 9);
+
+                        ex.SetCellValue(datalist[i].planExpTime.Year.ToString(), istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 10);
+                        ex.SetCellValue(datalist[i].planExpTime.Month.ToString(), istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 11);
+                        ex.SetCellValue(datalist[i].planExpTime.Day.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 12);
+                        spanadd2++;
+                    }
+                    
+     
+                }
+                if (datalist[i + 1].syProject != "")
+                {
+                    string[] sname2 = datalist[i + 1].syProject.Split('、');
+                   
+                    for (itemp = 0; itemp < sname2.Length; itemp++)
+                    {
+                        if ((istart + ((spanadd + itemp)) * imax2 + 4 )/ 26.0> 1)
+                        {
+                            ex.ActiveSheet(sheetname + Math.Ceiling((istart + (( spanadd + itemp)) * imax2 + 4) / 26.0));
+
+
+                        }
+                        else
+                            ex.ActiveSheet(sheetname);
+                        ex.SetCellValue(datalist[i].xh.ToString(), istart + (( spanadd + itemp) % jmax) * imax2, jstart);
+                        ex.SetCellValue(datalist[i].sbInstallAdress, istart + ((spanadd + itemp) % jmax) * imax2, jstart + 1);
+                        ex.SetCellValue(datalist[i].sbModle, istart + ((spanadd + itemp) % jmax) * imax2, jstart + 2);
+                        ex.SetCellValue(datalist[i].sl.ToString(), istart + (( spanadd + itemp) % jmax) * imax2, jstart + 3);
+
+                            ex.SetCellValue(sname2[itemp], (istart + ((spanadd+ itemp ) % jmax) * imax2 + 4), jstart + 5);
+
+                            ex.SetCellValue(datalist[i + 1].syPeriod, (istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 6);
+                            ex.SetCellValue(datalist[i + 1].preExpTime.Year.ToString(),( istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 7);
+                            ex.SetCellValue(datalist[i + 1].preExpTime.Month.ToString(),( istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 8);
+                            ex.SetCellValue(datalist[i + 1].preExpTime.Day.ToString(),( istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 9);
+
+                            ex.SetCellValue(datalist[i + 1].planExpTime.Year.ToString(),( istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 10);
+                            ex.SetCellValue(datalist[i + 1].planExpTime.Month.ToString(),( istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 11);
+                            ex.SetCellValue(datalist[i + 1].planExpTime.Day.ToString(), (istart + ((spanadd + itemp) % jmax) * imax2 + 4) , jstart + 12);
+                           
+                      
+                            
+                            
+
+                      }
+
+                    spanadd = spanadd2;
                 }
 
 

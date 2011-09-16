@@ -50,8 +50,13 @@ namespace Ebada.Scgl.Lcgl
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterDelete);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
         }
-
+        void gridViewOperation_AfterEdit(PJ_yfsyjl obj)
+        {
+            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+        
+        }
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
 
@@ -77,9 +82,9 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
-            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
-            obj.CreateDate = DateTime.Now;
-            MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
+            //obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
+            //obj.CreateDate = DateTime.Now;
+            //MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
         }
         public string Type
@@ -104,9 +109,19 @@ namespace Ebada.Scgl.Lcgl
                             hideColumn("sbCapacity");
                             break;
 
-                        case "电容器":
-                            hideColumn("sbCapacity");
-                            break;
+                        //case "电容器":
+                        //    hideColumn("sbCapacity");
+                        //    gridView1.OptionsView.AllowCellMerge = true; 
+                        //    gridView1.Columns["xh"].OptionsColumn.AllowMerge = DefaultBoolean.True;
+                        //    gridView1.Columns["sbInstallAdress"].OptionsColumn.AllowMerge = DefaultBoolean.True;
+                        //    gridView1.Columns["sbModle"].OptionsColumn.AllowMerge = DefaultBoolean.True;
+                        //    gridView1.Columns["syPeriod"].OptionsColumn.AllowMerge = DefaultBoolean.True;
+                        //    gridView1.Columns["preExpTime"].OptionsColumn.AllowMerge = DefaultBoolean.True;
+                        //    gridView1.Columns["planExpTime"].OptionsColumn.AllowMerge = DefaultBoolean.True;
+                        //    gridView1.Columns["charMan"].OptionsColumn.AllowMerge = DefaultBoolean.True;
+                        //    gridView1.Columns["Remark"].OptionsColumn.AllowMerge = DefaultBoolean.True;   
+                        //    gridViewOperation.EditForm =  new frmtestRecorddrqEdit();
+                            //break;
                     }
                     RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
                 }
@@ -285,27 +300,27 @@ namespace Ebada.Scgl.Lcgl
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //DataTable dt = new DataTable();
-            //IList<PJ_yfsyjl> li = gridView1.DataSource as IList<PJ_yfsyjl>; 
+            //IList<PJ_yfsyjl> li = gridView1.DataSource as IList<PJ_yfsyjl>;
             //frmTemplate frm = new frmTemplate();
-            //frm.dataList  = li;
+            //frm.dataList = li;
             //frm.ShowDialog();
-            IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>; 
-         
-                 switch (_type)
-                    {
-                        case "变压器":
-                            Export11.ExportExcelbyq(datalist, _type+"预防性试验记录",parentID);
-                            break;
-                        case "断路器":
-                            Export11.ExportExceldlq(datalist, _type + "预防性试验记录", parentID);
-                            break;
-                        case "避雷器":
-                            Export11.ExportExcelblq(datalist, _type + "预防性试验记录", parentID);
-                            break;
-                        case "电容器":
-                            Export11.ExportExceldrq(datalist, _type + "预防性试验记录", parentID);
-                            break;
-                    }
+
+            IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>;
+            switch (_type)
+            {
+                case "变压器":
+                    Export11.ExportExcelbyq(datalist, _type + "预防性试验记录", parentID);
+                    break;
+                case "断路器":
+                    Export11.ExportExceldlq(datalist, _type + "预防性试验记录", parentID);
+                    break;
+                case "避雷器":
+                    Export11.ExportExcelblq(datalist, _type + "预防性试验记录", parentID);
+                    break;
+                case "电容器":
+                    Export11.ExportExceldrq(datalist, _type + "预防性试验记录", parentID);
+                    break;
+            }
            
         }
     }
