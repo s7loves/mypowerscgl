@@ -23,44 +23,56 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Components;
 using DevExpress.Utils;
+using System.Collections;
 
 namespace Ebada.Scgl.Lcgl
 {
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCtestRecordwcqkTable : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCtestdrqRecord : DevExpress.XtraEditors.XtraUserControl
     {
-        public GridViewOperation<PJ_yfsyjl> gridViewOperation;
+        public  GridViewOperation<PJ_yfsyjl> gridViewOperation;
 
         public event SendDataEventHandler<PJ_yfsyjl> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
         private string _type = null;
-        public UCtestRecordwcqkTable()
+        public UCtestdrqRecord()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_yfsyjl>(gridControl1, gridView1, barManager1, new frmtestRecordwcqkEdit());
+            gridViewOperation = new GridViewOperation<PJ_yfsyjl>(gridControl1, gridView1, barManager1, new frmtestRecorddrqEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_yfsyjl>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_yfsyjl>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterDelete);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
         }
-
+        void gridViewOperation_AfterEdit(PJ_yfsyjl obj)
+        {
+            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+        
+        }
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
 
             IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' order by xh");
-            int i=1;
+            int i=0;
             List<PJ_yfsyjl> list = new List<PJ_yfsyjl>();
+            int xh = -1;
             foreach (PJ_yfsyjl ob in li)
             {
+                if (xh != ob.xh)
+                {
+                    i++;
+                    xh = ob.xh;
+                }
                 ob.xh = i;
-                i++;
+               
                 list.Add(ob); 
             }
             List<SqlQueryObject> list3 = new List<SqlQueryObject>();
@@ -76,9 +88,9 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
-            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
-            obj.CreateDate = DateTime.Now;
-            MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
+            //obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
+            //obj.CreateDate = DateTime.Now;
+            //MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
         }
         public string Type
@@ -89,35 +101,25 @@ namespace Ebada.Scgl.Lcgl
                 _type = value;
                 if (_type != null )
                 {
-
-                    gridView1.Columns["sbCapacity"].VisibleIndex = 4;
-                    gridView1.Columns["sl"].VisibleIndex = 4;
-                    gridView1.OptionsView.AllowCellMerge = false; 
-                        switch (_type)
+                    switch (_type)
                     {
                         case "变压器":
                             hideColumn("sl");
-                            hideColumn("sbCapacity", true);
                             break;
                         case "断路器":
                             hideColumn("sbCapacity");
-                            hideColumn("sl", true);
 
                             break;
 
                         case "避雷器":
                             hideColumn("sbCapacity");
-                            hideColumn("sl", true);
                             break;
 
                         case "电容器":
                             hideColumn("sbCapacity");
-                            hideColumn("sl", true);
                             gridView1.OptionsView.AllowCellMerge = true; 
+                           
                             break;
-
-
-
                     }
                     RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
                 }
@@ -127,7 +129,13 @@ namespace Ebada.Scgl.Lcgl
        
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
         {
+            IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", "where xh='" + e.Value.xh + "'and type ='" + e.Value.type + "' order by CreateDate");
+           if (li.Count == 2)
+           {
+               Client.ClientHelper.PlatformSqlMap.Delete<PJ_yfsyjl>(li[0]);
+               Client.ClientHelper.PlatformSqlMap.Delete<PJ_yfsyjl>(li[1]);
            
+           }
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
@@ -189,12 +197,7 @@ namespace Ebada.Scgl.Lcgl
         }
         private void hideColumn(string colname)
         {
-            //gridView1.Columns[colname].Visible = false;
-            hideColumn(colname, false);
-        }
-        private void hideColumn(string colname, bool ishide)
-        {
-            gridView1.Columns[colname].Visible = ishide;
+            gridView1.Columns[colname].Visible = false;
         }
         /// <summary>
         /// 初始化数据
@@ -216,12 +219,14 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("OrgName");
             hideColumn("gzrjID");
             hideColumn("type");
-            hideColumn("charMan");
+            hideColumn("iswc");
+            hideColumn("syjg");
             hideColumn("syMan");
+            hideColumn("sjExpTime");
             hideColumn("CreateDate");
-            hideColumn("preExpTime");
-            hideColumn("Remark");
-            gridView1.Columns["planExpTime"].Caption = "计划试验时间";
+            hideColumn("wcRemark");
+            gridView1.Columns["preExpTime"].Caption = "检查试验时间";
+            gridView1.Columns["planExpTime"].Caption = "下次试验时间";
             foreach (GridColumn gc in gridView1.Columns)
             {
                 gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
@@ -235,10 +240,6 @@ namespace Ebada.Scgl.Lcgl
         public void RefreshData(string slqwhere)
         {
             gridViewOperation.RefreshData(slqwhere);
-        }
-        public void RefreshData()
-        {
-            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -302,16 +303,28 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //if (PSObj!=null&&gridView1.RowCount>0)
-            //{
-            //     IList<PJ_yfsyjl> pjlist=new List<PJ_yfsyjl>();
-            //    for (int i = 0; i < gridView1.RowCount; i++)
-            //    {
-            //        pjlist.Add(gridView1.GetRow(i) as PJ_yfsyjl);
-            //    }
-            //    Export14.ExportExcel(PSObj, pjlist);
-            //}
-           
+            //DataTable dt = new DataTable();
+            //IList<PJ_yfsyjl> li = gridView1.DataSource as IList<PJ_yfsyjl>;
+            //frmTemplate frm = new frmTemplate();
+            //frm.dataList = li;
+            //frm.ShowDialog();
+
+            IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>;
+            switch (_type)
+            {
+                case "变压器":
+                    Export11.ExportExcelbyq(datalist, _type + "预防性试验记录", parentID);
+                    break;
+                case "断路器":
+                    Export11.ExportExceldlq(datalist, _type + "预防性试验记录", parentID);
+                    break;
+                case "避雷器":
+                    Export11.ExportExcelblq(datalist, _type + "预防性试验记录", parentID);
+                    break;
+                case "电容器":
+                    Export11.ExportExceldrq(datalist, _type + "预防性试验记录", parentID);
+                    break;
+            }
            
         }
     }

@@ -86,6 +86,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="预防性试验\UCtestdrqRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="预防性试验\UCtestdrqRecord.Designer.cs">
+      <DependentUpon>UCtestdrqRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecorddrqEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecorddrqEdit.Designer.cs">
+      <DependentUpon>frmtestRecorddrqEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="预防性试验\Export11.cs" />
     <Compile Include="预防性试验\frmTemplate.cs">
       <SubType>Form</SubType>
@@ -342,6 +354,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="预防性试验\UCtestdrqRecord.resx">
+      <DependentUpon>UCtestdrqRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\frmtestRecorddrqEdit.resx">
+      <DependentUpon>frmtestRecorddrqEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmTemplate.resx">
       <DependentUpon>frmTemplate.cs</DependentUpon>
       <SubType>Designer</SubType>
