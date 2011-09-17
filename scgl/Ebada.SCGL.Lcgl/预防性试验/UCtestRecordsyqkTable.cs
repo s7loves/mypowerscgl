@@ -54,7 +54,7 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
 
-            IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' order by xh");
+            IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "'   and planExpTime like '%" + DateTime.Now.Year + "%' order by xh");
             int i=1;
             List<PJ_yfsyjl> list = new List<PJ_yfsyjl>();
             foreach (PJ_yfsyjl ob in li)
@@ -71,7 +71,7 @@ namespace Ebada.Scgl.Lcgl
             }
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type  + "'  order by xh ");
+            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "'  and planExpTime like '%" + DateTime.Now.Year + "%'   order by xh ");
         }
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
@@ -79,7 +79,7 @@ namespace Ebada.Scgl.Lcgl
             obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
             obj.CreateDate = DateTime.Now;
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
-            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'   and planExpTime like '%" + DateTime.Now.Year + "%'  order by xh ");
         }
         public string Type
         {
@@ -117,7 +117,7 @@ namespace Ebada.Scgl.Lcgl
 
 
                     }
-                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'   and planExpTime like '%" + DateTime.Now.Year + "%'  order by xh ");
                 }
 
             }
@@ -311,6 +311,22 @@ namespace Ebada.Scgl.Lcgl
             //    }
             //    Export14.ExportExcel(PSObj, pjlist);
             //}
+            IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>;
+            switch (_type)
+            {
+                case "变压器":
+                    Export11.ExportExcelbyqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
+                    break;
+                case "断路器":
+                    Export11.ExportExceldlqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
+                    break;
+                case "避雷器":
+                    Export11.ExportExcelblqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
+                    break;
+                case "电容器":
+                    Export11.ExportExceldrqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
+                    break;
+            }
 
 
         }
