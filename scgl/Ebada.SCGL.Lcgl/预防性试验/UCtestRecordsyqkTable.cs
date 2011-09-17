@@ -218,6 +218,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("CreateDate");
             hideColumn("preExpTime");
             hideColumn("wcRemark");
+            hideColumn("iswc");
             gridView1.Columns["charMan"].Caption = "负责人";
             gridView1.Columns["planExpTime"].Caption = "计划试验时间";
             foreach (GridColumn gc in gridView1.Columns)
@@ -310,8 +311,40 @@ namespace Ebada.Scgl.Lcgl
             //    }
             //    Export14.ExportExcel(PSObj, pjlist);
             //}
-           
-           
+
+
+        }
+
+        private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle < 0) return;
+            PJ_yfsyjl ob = gridView1.GetFocusedRow() as PJ_yfsyjl;
+            switch (_type)
+            {
+                case "变压器":
+                case "断路器":
+                case "避雷器":
+                    frmtestRecordsyqkEdit fm = new frmtestRecordsyqkEdit();
+                    fm.Type = _type;
+                    fm.RowData = ob;
+                    if (fm.ShowDialog() == DialogResult.OK)
+                    {
+                        MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(ob);
+
+                    }
+                    break;
+
+                case "电容器":
+                    frmtestRecorddrqsyqkEdit fm2 = new frmtestRecorddrqsyqkEdit();
+                    fm2.Type = _type;
+                    fm2.RowData = ob;
+                    if (fm2.ShowDialog() == DialogResult.OK)
+                    {
+                        MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(ob);
+
+                    }
+                    break;
+            }
         }
     }
 }

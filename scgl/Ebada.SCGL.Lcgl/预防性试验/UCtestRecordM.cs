@@ -47,15 +47,24 @@ namespace Ebada.Scgl.Lcgl
             uCtestRecord3.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
             uCtestRecord4.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
 
-            uCtestRecordjhmxTable1.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
-            uCtestRecordssqkTable1.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
-            uCtestRecordwcqkTable1.gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
+            uCtestRecordjhmxTable1.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btReEdit_ItemClick);
+            uCtestRecordssqkTable1.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btReEdit_ItemClick);
+            uCtestRecordwcqkTable1.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btReEdit_ItemClick);
+        }
+        private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            uCtestRecordRefreshData();
         }
         void uCtestRecordRefreshData()
         {
             uCtestRecordjhmxTable1.RefreshData();
             uCtestRecordssqkTable1.RefreshData();
             uCtestRecordwcqkTable1.RefreshData();
+
+            uCtestRecord1.RefreshData();
+            uCtestRecord2.RefreshData();
+            uCtestRecord3.RefreshData();
+            uCtestRecord4.RefreshData();
         }
         void gridViewOperation_AfterEdit(PJ_yfsyjl obj)
         {

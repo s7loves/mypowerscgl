@@ -86,6 +86,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="预防性试验\frmtestRecorddrqwcqkEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecorddrqwcqkEdit.Designer.cs">
+      <DependentUpon>frmtestRecorddrqwcqkEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecorddrqjhmxEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecorddrqjhmxEdit.Designer.cs">
+      <DependentUpon>frmtestRecorddrqjhmxEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecorddrqsyqkEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="预防性试验\frmtestRecorddrqsyqkEdit.Designer.cs">
+      <DependentUpon>frmtestRecorddrqsyqkEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="预防性试验\UCtestdrqRecord.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -354,6 +372,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="预防性试验\frmtestRecorddrqwcqkEdit.resx">
+      <DependentUpon>frmtestRecorddrqwcqkEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\frmtestRecorddrqjhmxEdit.resx">
+      <DependentUpon>frmtestRecorddrqjhmxEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="预防性试验\frmtestRecorddrqsyqkEdit.resx">
+      <DependentUpon>frmtestRecorddrqsyqkEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\UCtestdrqRecord.resx">
       <DependentUpon>UCtestdrqRecord.cs</DependentUpon>
     </EmbeddedResource>

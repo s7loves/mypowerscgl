@@ -206,18 +206,104 @@ namespace Ebada.Scgl.Lcgl
         {
             
 
-            int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 6, sheetindex = 0, spanlistcount = 0, itemp = 0, imax2 = 4, spanadd = 0;
+            //int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 6, sheetindex = 0, spanlistcount = 0, itemp = 0, imax2 = 4, spanadd = 0;
+            //Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
+            //for (i = 0; i < datalist.Count; i++)
+            //{
+            //    string[] sname = datalist[i].syProject.Split('、');
+            //    if (sname.Length > 5)
+            //    {
+            //        spanlistcount += sname.Length / imax2;
+            //    }
+
+            //}
+            //pagecount = Convert.ToInt32(Math.Ceiling((datalist.Count + spanlistcount) / (jmax + 0.0)));
+            //ex.ActiveSheet(sheetname);
+            //for (i = 1; i <= wb.Application.Worksheets.Count; i++)
+            //{
+            //    Excel.Worksheet sheet = wb.Application.Worksheets[i] as Excel.Worksheet;
+            //    if (sheet.Name == sheetname)
+            //    {
+            //        sheetindex = sheet.Index;
+            //        break;
+            //    }
+            //}
+            //itemp = sheetindex;
+            //for (i = 1; i < pagecount; i++)
+            //{
+
+            //    ex.CopySheet(sheetindex, itemp);
+            //    ex.ReNameWorkSheet(itemp + 1, sheetname + (i + 1));
+            //    itemp++;
+
+            //}
+            //mOrg org = Client.ClientHelper.PlatformSqlMap.GetOneByKey<mOrg>(orgid);
+            //for (i = 0; i < pagecount; i++)
+            //{
+            //    if (Math.Ceiling((i + 1.0) / (jmax)) > 1)
+            //        ex.ActiveSheet(sheetname + Math.Ceiling((i + 1.0) / (datalist.Count)));
+            //    else
+            //        ex.ActiveSheet(sheetname);
+            //    if (org != null)
+            //        ex.SetCellValue(org.OrgName, 3, 2);
+            //    if (datalist.Count > 0)
+            //        ex.SetCellValue(datalist[0].charMan, 26, 14);
+            //}
+            //for (i = 0; i < datalist.Count; i++)
+            //{
+            //    if (Math.Ceiling((i + 1.0 + spanadd) / (jmax)) > 1)
+            //    {
+            //        ex.ActiveSheet(sheetname + Math.Ceiling((i + 1.0 + spanadd) / (jmax)));
+
+            //    }
+            //    else
+            //        ex.ActiveSheet(sheetname);
+            //    ex.SetCellValue(Convert.ToString(i + 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
+            //    ex.SetCellValue(datalist[i].sbInstallAdress, istart + ((i + spanadd) % jmax) * imax2, jstart + 1);
+            //    ex.SetCellValue(datalist[i].sbModle, istart + ((i + spanadd) % jmax) * imax2, jstart + 2);
+            //    ex.SetCellValue(datalist[i].sl.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 3);
+
+            //    ex.SetCellValue(datalist[i].syPeriod, istart + ((i + spanadd) % jmax) * imax2, jstart + 6);
+
+            //    ex.SetCellValue(datalist[i].preExpTime.Year.ToString()+"年", istart + ((i + spanadd) % jmax) * imax2, jstart + 7);
+            //    ex.SetCellValue(datalist[i].preExpTime.Month.ToString() + "月", istart + ((i + spanadd) % jmax) * imax2, jstart + 8);
+            //    ex.SetCellValue(datalist[i].preExpTime.Day.ToString() + "日", istart + ((i + spanadd) % jmax) * imax2, jstart + 9);
+
+            //    ex.SetCellValue(datalist[i].planExpTime.Year.ToString() + "年", istart + ((i + spanadd) % jmax) * imax2, jstart + 10);
+            //    ex.SetCellValue(datalist[i].planExpTime.Month.ToString() + "月", istart + ((i + spanadd) % jmax) * imax2, jstart + 11);
+            //    ex.SetCellValue(datalist[i].planExpTime.Day.ToString() + "日", istart + ((i + spanadd) % jmax) * imax2, jstart + 12);
+            //    ex.SetCellValue(datalist[i].Remark , istart + ((i + spanadd) % jmax) * imax2, jstart + 13);
+
+            //    string[] sname = datalist[i].syProject.Split('、');
+            //    for (itemp = 0; itemp < sname.Length; itemp++)
+            //    {
+            //        if (itemp < 5)
+            //            ex.SetCellValue(sname[itemp], istart + ((i + spanadd) % jmax) * imax2 + itemp, jstart + 5);
+            //        else
+            //        {
+            //            spanadd++;
+            //            setSpanExcel(ex, datalist[i], i, istart, jmax, jstart, ref spanadd, imax2, sheetname, sname, itemp);
+
+            //            break;
+            //        }
+            //    }
+
+
+            //}
+            int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 5, sheetindex = 0, spanlistcount = 0, itemp = 0,  imax2 = 4, spanadd = 0, spanadd2 = 0;
             Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
             for (i = 0; i < datalist.Count; i++)
             {
                 string[] sname = datalist[i].syProject.Split('、');
-                if (sname.Length > 5)
+                if (sname.Length > 4 )
                 {
-                    spanlistcount += sname.Length / imax2;
+                    spanlistcount += sname.Length / imax2 ;
                 }
+                else
+                    spanlistcount++;
 
             }
-            pagecount = Convert.ToInt32(Math.Ceiling((datalist.Count + spanlistcount) / (jmax + 0.0)));
+            pagecount = Convert.ToInt32(Math.Ceiling(( spanlistcount) / (jmax + 0.0)));
             ex.ActiveSheet(sheetname);
             for (i = 1; i <= wb.Application.Worksheets.Count; i++)
             {
@@ -247,49 +333,72 @@ namespace Ebada.Scgl.Lcgl
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
                 if (datalist.Count > 0)
-                    ex.SetCellValue(datalist[0].charMan, 26, 14);
+                    ex.SetCellValue(datalist[0].charMan, 26, 15);
             }
-            for (i = 0; i < datalist.Count; i++)
+            for (i = 0; i < datalist.Count; i ++)
             {
-                if (Math.Ceiling((i + 1.0 + spanadd) / (jmax)) > 1)
+
+                if (Math.Ceiling(( spanadd2+0.0) / (jmax)) > 1)
                 {
-                    ex.ActiveSheet(sheetname + Math.Ceiling((i + 1.0 + spanadd) / (jmax)));
+                    ex.ActiveSheet(sheetname + Math.Ceiling((spanadd2 + 0.0) / (jmax)));
 
                 }
                 else
                     ex.ActiveSheet(sheetname);
-                ex.SetCellValue(Convert.ToString(i + 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
-                ex.SetCellValue(datalist[i].sbInstallAdress, istart + ((i + spanadd) % jmax) * imax2, jstart + 1);
-                ex.SetCellValue(datalist[i].sbModle, istart + ((i + spanadd) % jmax) * imax2, jstart + 2);
-                ex.SetCellValue(datalist[i].sl.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 3);
+                ex.SetCellValue(datalist[i].xh.ToString(), istart + ((spanadd2) % jmax) * imax2, jstart);
+                ex.SetCellValue(datalist[i].sbInstallAdress, istart + ((spanadd2) % jmax) * imax2, jstart + 1);
+                ex.SetCellValue(datalist[i].sbModle, istart + ((spanadd2) % jmax) * imax2, jstart + 2);
+                ex.SetCellValue(datalist[i].sl.ToString(), istart + ((spanadd2) % jmax) * imax2, jstart + 3);
 
-                ex.SetCellValue(datalist[i].syPeriod, istart + ((i + spanadd) % jmax) * imax2, jstart + 6);
+                ex.SetCellValue(datalist[i].syPeriod, istart + ((spanadd2) % jmax) * imax2, jstart + 6);
 
-                ex.SetCellValue(datalist[i].preExpTime.Year.ToString()+"年", istart + ((i + spanadd) % jmax) * imax2, jstart + 7);
-                ex.SetCellValue(datalist[i].preExpTime.Month.ToString() + "月", istart + ((i + spanadd) % jmax) * imax2, jstart + 8);
-                ex.SetCellValue(datalist[i].preExpTime.Day.ToString() + "日", istart + ((i + spanadd) % jmax) * imax2, jstart + 9);
+                ex.SetCellValue(datalist[i].preExpTime.Year.ToString() + "年", istart + ((spanadd2) % jmax) * imax2, jstart + 7);
+                ex.SetCellValue(datalist[i].preExpTime.Month.ToString() + "月", istart + ((spanadd2) % jmax) * imax2, jstart + 8);
+                ex.SetCellValue(datalist[i].preExpTime.Day.ToString() + "日", istart + ((spanadd2) % jmax) * imax2, jstart + 9);
 
-                ex.SetCellValue(datalist[i].planExpTime.Year.ToString() + "年", istart + ((i + spanadd) % jmax) * imax2, jstart + 10);
-                ex.SetCellValue(datalist[i].planExpTime.Month.ToString() + "月", istart + ((i + spanadd) % jmax) * imax2, jstart + 11);
-                ex.SetCellValue(datalist[i].planExpTime.Day.ToString() + "日", istart + ((i + spanadd) % jmax) * imax2, jstart + 12);
-                ex.SetCellValue(datalist[i].Remark , istart + ((i + spanadd) % jmax) * imax2, jstart + 13);
+                ex.SetCellValue(datalist[i].planExpTime.Year.ToString() + "年", istart + ((spanadd2) % jmax) * imax2, jstart + 10);
+                ex.SetCellValue(datalist[i].planExpTime.Month.ToString() + "月", istart + ((spanadd2) % jmax) * imax2, jstart + 11);
+                ex.SetCellValue(datalist[i].planExpTime.Day.ToString() + "日", istart + ((spanadd2) % jmax) * imax2, jstart + 12);
 
                 string[] sname = datalist[i].syProject.Split('、');
                 for (itemp = 0; itemp < sname.Length; itemp++)
                 {
-                    if (itemp < 5)
-                        ex.SetCellValue(sname[itemp], istart + ((i + spanadd) % jmax) * imax2 + itemp, jstart + 5);
-                    else
-                    {
-                        spanadd++;
-                        setSpanExcel(ex, datalist[i], i, istart, jmax, jstart, ref spanadd, imax2, sheetname, sname, itemp);
 
-                        break;
+                    if ((istart + ((spanadd + itemp / imax2)) * imax2) / 25.0 > 1)
+                    {
+                        ex.ActiveSheet(sheetname + Math.Ceiling((istart + ((spanadd + itemp / imax2)) * imax2) / 25.0));
+
+
+                    }
+                    else
+                        ex.ActiveSheet(sheetname);
+                    ex.SetCellValue(sname[itemp], (istart + ((spanadd + itemp / imax2) % jmax) * imax2) + itemp % imax2, jstart + 5);
+                    if (itemp % 4== 0)
+                    {
+                        ex.SetCellValue(datalist[i].xh.ToString(), istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart);
+                        ex.SetCellValue(datalist[i].sbInstallAdress, istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 1);
+                        ex.SetCellValue(datalist[i].sbModle, istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 2);
+                        ex.SetCellValue(datalist[i].sl.ToString(), istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 3);
+
+                        ex.SetCellValue(datalist[i].syPeriod, istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 6);
+
+
+                        ex.SetCellValue(datalist[i].Remark, istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 13);
+
+                        ex.SetCellValue(datalist[i].preExpTime.Year.ToString() + "年", istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 7);
+                        ex.SetCellValue(datalist[i].preExpTime.Month.ToString() + "月", istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 8);
+                        ex.SetCellValue(datalist[i].preExpTime.Day.ToString() + "日", istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 9);
+
+                        ex.SetCellValue(datalist[i].planExpTime.Year.ToString() + "年", istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 10);
+                        ex.SetCellValue(datalist[i].planExpTime.Month.ToString() + "月", istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 11);
+                        ex.SetCellValue(datalist[i].planExpTime.Day.ToString() + "日", istart + ((spanadd + itemp / imax2) % jmax) * imax2 + itemp % imax2, jstart + 12);
+                        spanadd2++;
                     }
                 }
-
-
+                spanadd = spanadd2;
             }
+     
+                
             ex.ActiveSheet(sheetname);
             ex.ShowExcel();
         }
@@ -386,14 +495,14 @@ namespace Ebada.Scgl.Lcgl
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
                 if (datalist.Count > 0)
-                    ex.SetCellValue(datalist[0].charMan, 26, 15);
+                    ex.SetCellValue(datalist[0].charMan, 26, 14);
             }
             for (i = 0; i < datalist.Count-1; i+=2)
             {
                 
-                if (Math.Ceiling((i + 1.0 + spanadd2) / (jmax)) > 1)
+                if (Math.Ceiling((0.0 + spanadd2) / (jmax)) > 1)
                 {
-                    ex.ActiveSheet(sheetname + Math.Ceiling((i + 1.0 + spanadd2) / (jmax)));
+                    ex.ActiveSheet(sheetname + Math.Ceiling((0.0 + spanadd2) / (jmax)));
 
                 }
                 else
@@ -405,13 +514,13 @@ namespace Ebada.Scgl.Lcgl
 
                 ex.SetCellValue(datalist[i].syPeriod, istart + (( spanadd2) % jmax) * imax2, jstart + 6);
 
-                ex.SetCellValue(datalist[i].preExpTime.Year.ToString(), istart + (( spanadd2) % jmax) * imax2, jstart + 7);
-                ex.SetCellValue(datalist[i].preExpTime.Month.ToString(), istart + ((spanadd2) % jmax) * imax2, jstart + 8);
-                ex.SetCellValue(datalist[i].preExpTime.Day.ToString(), istart + (( spanadd2) % jmax) * imax2, jstart + 9);
+                ex.SetCellValue(datalist[i].preExpTime.Year.ToString() + "年", istart + ((spanadd2) % jmax) * imax2, jstart + 7);
+                ex.SetCellValue(datalist[i].preExpTime.Month.ToString() + "月", istart + ((spanadd2) % jmax) * imax2, jstart + 8);
+                ex.SetCellValue(datalist[i].preExpTime.Day.ToString() + "日", istart + ((spanadd2) % jmax) * imax2, jstart + 9);
 
-                ex.SetCellValue(datalist[i].planExpTime.Year.ToString(), istart + ((spanadd2) % jmax) * imax2, jstart + 10);
-                ex.SetCellValue(datalist[i].planExpTime.Month.ToString(), istart + ((spanadd2) % jmax) * imax2, jstart + 11);
-                ex.SetCellValue(datalist[i].planExpTime.Day.ToString(), istart + (( spanadd2) % jmax) * imax2, jstart + 12);
+                ex.SetCellValue(datalist[i].planExpTime.Year.ToString() + "年", istart + ((spanadd2) % jmax) * imax2, jstart + 10);
+                ex.SetCellValue(datalist[i].planExpTime.Month.ToString() + "月", istart + ((spanadd2) % jmax) * imax2, jstart + 11);
+                ex.SetCellValue(datalist[i].planExpTime.Day.ToString() + "日", istart + ((spanadd2) % jmax) * imax2, jstart + 12);
 
                 string[] sname = datalist[i].syProject.Split('、');
                 for (itemp = 0; itemp < sname.Length; itemp++)
@@ -432,15 +541,17 @@ namespace Ebada.Scgl.Lcgl
                         ex.SetCellValue(datalist[i].sbInstallAdress, istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 1);
                         ex.SetCellValue(datalist[i].sbModle, istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 2);
                         ex.SetCellValue(datalist[i].sl.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 3);
+                        ex.SetCellValue(datalist[i].syPeriod, istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 6);
 
+                        ex.SetCellValue(datalist[i].Remark, istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 13);
 
-                        ex.SetCellValue(datalist[i].preExpTime.Year.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 7);
-                        ex.SetCellValue(datalist[i].preExpTime.Month.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 8);
-                        ex.SetCellValue(datalist[i].preExpTime.Day.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 9);
+                        ex.SetCellValue(datalist[i].preExpTime.Year.ToString() + "年", istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 7);
+                        ex.SetCellValue(datalist[i].preExpTime.Month.ToString() + "月", istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 8);
+                        ex.SetCellValue(datalist[i].preExpTime.Day.ToString() + "日", istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 9);
 
-                        ex.SetCellValue(datalist[i].planExpTime.Year.ToString(), istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 10);
-                        ex.SetCellValue(datalist[i].planExpTime.Month.ToString(), istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 11);
-                        ex.SetCellValue(datalist[i].planExpTime.Day.ToString(), istart + (( spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 12);
+                        ex.SetCellValue(datalist[i].planExpTime.Year.ToString() + "年", istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 10);
+                        ex.SetCellValue(datalist[i].planExpTime.Month.ToString() + "月", istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 11);
+                        ex.SetCellValue(datalist[i].planExpTime.Day.ToString() + "日", istart + ((spanadd + itemp / imax1) % jmax) * imax2 + itemp % imax1, jstart + 12);
                         spanadd2++;
                     }
                     
@@ -468,13 +579,17 @@ namespace Ebada.Scgl.Lcgl
                             ex.SetCellValue(sname2[itemp], (istart + ((spanadd+ itemp ) % jmax) * imax2 + 4), jstart + 5);
 
                             ex.SetCellValue(datalist[i + 1].syPeriod, (istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 6);
-                            ex.SetCellValue(datalist[i + 1].preExpTime.Year.ToString(),( istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 7);
-                            ex.SetCellValue(datalist[i + 1].preExpTime.Month.ToString(),( istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 8);
-                            ex.SetCellValue(datalist[i + 1].preExpTime.Day.ToString(),( istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 9);
 
-                            ex.SetCellValue(datalist[i + 1].planExpTime.Year.ToString(),( istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 10);
-                            ex.SetCellValue(datalist[i + 1].planExpTime.Month.ToString(),( istart + (( spanadd + itemp) % jmax) * imax2 + 4), jstart + 11);
-                            ex.SetCellValue(datalist[i + 1].planExpTime.Day.ToString(), (istart + ((spanadd + itemp) % jmax) * imax2 + 4) , jstart + 12);
+                            ex.SetCellValue(datalist[i + 1].preExpTime.Year.ToString() + "年", (istart + ((spanadd + itemp) % jmax) * imax2 + 4), jstart + 7);
+                            ex.SetCellValue(datalist[i + 1].preExpTime.Month.ToString() + "月", (istart + ((spanadd + itemp) % jmax) * imax2 + 4), jstart + 8);
+                            ex.SetCellValue(datalist[i + 1].preExpTime.Day.ToString() + "日", (istart + ((spanadd + itemp) % jmax) * imax2 + 4), jstart + 9);
+
+
+                            ex.SetCellValue(datalist[i+1].Remark, istart + ((spanadd + itemp) % jmax) * imax2 +4, jstart + 13);
+
+                            ex.SetCellValue(datalist[i + 1].planExpTime.Year.ToString() + "年", (istart + ((spanadd + itemp) % jmax) * imax2 + 4), jstart + 10);
+                            ex.SetCellValue(datalist[i + 1].planExpTime.Month.ToString() + "月", (istart + ((spanadd + itemp) % jmax) * imax2 + 4), jstart + 11);
+                            ex.SetCellValue(datalist[i + 1].planExpTime.Day.ToString() + "日", (istart + ((spanadd + itemp) % jmax) * imax2 + 4), jstart + 12);
                            
                       
                             

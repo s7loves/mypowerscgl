@@ -241,6 +241,10 @@ namespace Ebada.Scgl.Lcgl
         {
             gridViewOperation.RefreshData(slqwhere);
         }
+        public void RefreshData()
+        {
+            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+        }
         /// <summary>
         /// 封装了数据操作的对象
         /// </summary>
