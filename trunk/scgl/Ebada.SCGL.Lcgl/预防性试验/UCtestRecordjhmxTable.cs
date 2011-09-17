@@ -49,8 +49,13 @@ namespace Ebada.Scgl.Lcgl
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterDelete);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
         }
-
+        void gridViewOperation_AfterEdit(PJ_yfsyjl obj)
+        { 
+        
+        
+        }
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
 
@@ -71,7 +76,7 @@ namespace Ebada.Scgl.Lcgl
             }
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type  + "'  order by xh ");
+            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' and planExpTime like '%" + DateTime.Now.Year + "%' order by xh ");
         }
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
@@ -79,7 +84,7 @@ namespace Ebada.Scgl.Lcgl
             obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
             obj.CreateDate = DateTime.Now;
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
-            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "' and planExpTime like '%" + DateTime.Now.Year + "%'  order by xh ");
         }
         public string Type
         {
@@ -115,7 +120,7 @@ namespace Ebada.Scgl.Lcgl
                             gridView1.OptionsView.AllowCellMerge = true; 
                             break;
                     }
-                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  and planExpTime like '%" + DateTime.Now.Year + "%' order by xh ");
                 }
 
             }
@@ -234,7 +239,7 @@ namespace Ebada.Scgl.Lcgl
         }
         public void RefreshData()
         {
-            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  and planExpTime like '%" + DateTime.Now.Year + "%' order by xh ");
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -271,7 +276,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value) )
                 {
-                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'  order by xh ");
+                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'  and planExpTime like '%" + DateTime.Now.Year + "%'   order by xh ");
 
                 }
             }
@@ -309,6 +314,38 @@ namespace Ebada.Scgl.Lcgl
             //}
            
            
+        }
+
+        private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle < 0) return;
+            PJ_yfsyjl ob = gridView1.GetFocusedRow() as PJ_yfsyjl; 
+            switch (_type)
+            {
+                case "变压器":
+                case "断路器":
+                case "避雷器":
+                    frmtestRecordjhmxEdit fm = new frmtestRecordjhmxEdit();
+                    fm.Type = _type;
+                    fm.RowData = ob;
+                    if (fm.ShowDialog()==DialogResult.OK  )
+                    {
+                        MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(ob); 
+                    
+                    }
+                    break;
+
+                case "电容器":
+                    frmtestRecorddrqjhmxEdit fm2 = new frmtestRecorddrqjhmxEdit();
+                    fm2.Type = _type;
+                    fm2.RowData = ob;
+                    if (fm2.ShowDialog() == DialogResult.OK)
+                    {
+                        MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(ob);
+
+                    }
+                    break;
+            }
         }
     }
 }

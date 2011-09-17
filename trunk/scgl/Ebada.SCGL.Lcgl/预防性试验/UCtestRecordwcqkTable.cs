@@ -314,5 +314,37 @@ namespace Ebada.Scgl.Lcgl
            
            
         }
+
+        private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle < 0) return;
+            PJ_yfsyjl ob = gridView1.GetFocusedRow() as PJ_yfsyjl;
+            switch (_type)
+            {
+                case "变压器":
+                case "断路器":
+                case "避雷器":
+                    frmtestRecordwcqkEdit fm = new frmtestRecordwcqkEdit();
+                    fm.Type = _type;
+                    fm.RowData = ob;
+                    if (fm.ShowDialog() == DialogResult.OK)
+                    {
+                        MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(ob);
+
+                    }
+                    break;
+
+                case "电容器":
+                    frmtestRecorddrqwcqkEdit fm2 = new frmtestRecorddrqwcqkEdit();
+                    fm2.Type = _type;
+                    fm2.RowData = ob;
+                    if (fm2.ShowDialog() == DialogResult.OK)
+                    {
+                        MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(ob);
+
+                    }
+                    break;
+            }
+        }
     }
 }
