@@ -311,8 +311,23 @@ namespace Ebada.Scgl.Lcgl
             //    }
             //    Export14.ExportExcel(PSObj, pjlist);
             //}
-           
-           
+
+            IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>;
+            switch (_type)
+            {
+                case "变压器":
+                    Export11.ExportExcelbyqssqk(datalist, _type + "预防性试验完成情况报表", parentID);
+                    break;
+                case "断路器":
+                    Export11.ExportExceldlqssqk(datalist, _type + "预防性试验完成情况报表", parentID);
+                    break;
+                case "避雷器":
+                    Export11.ExportExcelblqssqk(datalist, _type + "预防性试验完成情况报表", parentID);
+                    break;
+                case "电容器":
+                    Export11.ExportExceldrqssqk(datalist, _type + "预防性试验完成情况报表", parentID);
+                    break;
+            }
         }
 
         private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
