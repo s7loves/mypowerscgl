@@ -120,7 +120,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：线路编号
         /// 字段信息：[LineCode],nvarchar
         /// </summary>
-        [Browsable(false)]
+        [Browsable(true)]
         [DisplayNameAttribute("线路编号")]
         public string LineCode
         {
