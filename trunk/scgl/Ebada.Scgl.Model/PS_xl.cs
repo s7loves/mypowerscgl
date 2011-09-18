@@ -533,10 +533,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：ParentGT
-        /// 属性描述：
+        /// 属性描述：分支杆号
         /// 字段信息：[ParentGT],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("出线杆号")]
         public string ParentGT
         {
             get { return _parentgt; }
@@ -544,7 +544,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                    throw new Exception("[分支杆号]长度不能大于50!");
                 if (_parentgt as object == null || !_parentgt.Equals(value))
                 {
                     _parentgt = value;
