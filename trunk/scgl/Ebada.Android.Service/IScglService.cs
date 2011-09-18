@@ -5,6 +5,7 @@ using System.Text;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using Ebada.Scgl.Model;
+using System.IO;
 
 namespace Ebada.Android.Service {
     [ServiceContract]
@@ -44,14 +45,26 @@ namespace Ebada.Android.Service {
         [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetGtList/{xlcode}", BodyStyle = WebMessageBodyStyle.Bare)]
         List<ps_gt> GetGtList(string xlcode);
         [OperationContract]
-        [WebInvoke(UriTemplate = "UpdateXl", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
+        [WebInvoke(UriTemplate = "UpdateXl", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         string UpdateXl(List<ps_xl> data);
         [OperationContract]
-        [WebInvoke(UriTemplate = "UpdateGtList", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
+        [WebInvoke(UriTemplate = "UpdateGtList", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         string UpdateGt(List<ps_gt> data);
-        [WebInvoke(UriTemplate = "UpdateGtOne", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         [OperationContract]
+        [WebInvoke(UriTemplate = "UpdateGtOne", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         string UpdateGtOne(ps_gt data);
+        [OperationContract]
+        [WebInvoke(UriTemplate = "UpdateImage", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
+        string UpdateGtImage(List<ps_image> list);
+        [OperationContract]
+        [WebInvoke(UriTemplate = "UpdateImage2", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        string UpdateGtImage2(string id,string data,string type,int flag);
+        [OperationContract]
+        [WebInvoke(UriTemplate = "upload_image", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
+        string upload_image(ps_image list);
+        [OperationContract]
+        [WebInvoke(UriTemplate = "UploadFile/{id}/{type}")]
+        string UploadFile(string id,string type, Stream fileContents);
 
     }
 }
