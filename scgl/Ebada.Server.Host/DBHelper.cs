@@ -60,7 +60,7 @@ namespace Ebada.Server.Host {
             }
             if (ver < 5) {
                 try {
-                    sqlMap.Update(mUpdate, string.Format(update_AndroidVer, 4));//更新android客户端
+                    sqlMap.Update(mUpdate, string.Format(update_AndroidVer, 4));//更新android客户端，增加上传图片功能
                     SqlMap.Update(mUpdate, string.Format(update_ver, 5));
                     Console.WriteLine("更新数据库版本ver:{0}", 5);
                     Console.WriteLine("更新手机服务器版本ver:{0}", 4);
