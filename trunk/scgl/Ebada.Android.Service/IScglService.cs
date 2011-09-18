@@ -53,17 +53,17 @@ namespace Ebada.Android.Service {
         [OperationContract]
         [WebInvoke(UriTemplate = "UpdateGtOne", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         string UpdateGtOne(ps_gt data);
+        //[OperationContract]
+        //[WebInvoke(UriTemplate = "UpdateImage", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
+        //string UpdateGtImage(List<ps_image> list);
+        //[OperationContract]
+        //[WebInvoke(UriTemplate = "UpdateImage2", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        //string UpdateGtImage2(string id,string data,string type,int flag);
+        //[OperationContract]
+        //[WebInvoke(UriTemplate = "upload_image", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
+        //string upload_image(ps_image list);
         [OperationContract]
-        [WebInvoke(UriTemplate = "UpdateImage", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
-        string UpdateGtImage(List<ps_image> list);
-        [OperationContract]
-        [WebInvoke(UriTemplate = "UpdateImage2", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        string UpdateGtImage2(string id,string data,string type,int flag);
-        [OperationContract]
-        [WebInvoke(UriTemplate = "upload_image", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
-        string upload_image(ps_image list);
-        [OperationContract]
-        [WebInvoke(UriTemplate = "UploadFile/{id}/{type}")]
+        [WebInvoke(UriTemplate = "UploadFile/{id}/{type}",Method = "POST", ResponseFormat = WebMessageFormat.Json)]
         string UploadFile(string id,string type, Stream fileContents);
 
     }
