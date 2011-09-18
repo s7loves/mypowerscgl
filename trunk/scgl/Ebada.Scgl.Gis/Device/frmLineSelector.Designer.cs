@@ -27,11 +27,10 @@
             // 
             // frmLineSelector
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 285);
             this.Name = "frmLineSelector";
-            this.Text = "frmLineSelector";
+            this.Text = "选择线路";
             this.ResumeLayout(false);
 
         }

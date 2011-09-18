@@ -21,6 +21,7 @@ using GMap.NET.WindowsForms;
 using System.Diagnostics;
 using GMap.NET.WindowsForms.Markers;
 using Ebada.Scgl.Gis.Markers;
+using Ebada.Scgl.Gis.Device;
 
 namespace Ebada.Scgl.Gis {
     public partial class frmMap : XtraForm {
@@ -351,6 +352,8 @@ namespace Ebada.Scgl.Gis {
 
         private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             //线路 
+            frmLineSelector dlg = new frmLineSelector();
+            dlg.Show(this);
         }
 
     }
