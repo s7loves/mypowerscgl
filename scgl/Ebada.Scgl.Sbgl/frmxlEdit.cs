@@ -42,6 +42,7 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "LineGtbegin");
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "LineGtend");
             this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "WireType");
+            this.comboBoxEdit15.DataBindings.Add("EditValue", rowData, "ParentGT");//分支杆号
         }
         #region IPopupFormEdit Members
         private PS_xl rowData = null;
@@ -66,11 +67,21 @@ namespace Ebada.Scgl.Sbgl
                 }
                 
                 if (rowData.LineVol == "") rowData.LineVol = "10";
+                
             }
         }
-
+        protected override void OnLoad(EventArgs e) {
+            base.OnLoad(e);
+            this.Invoke(new MethodInvoker(initParentGtList));
+        }
         #endregion
-
+        private void initParentGtList() {
+            //初始分支杆号
+            string sql =string.Format("select a.gtcode from ps_gt a ,ps_xl b where a.LineCode=b.Linecode and b.LineID='{0}'",rowData.ParentID);
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
+            comboBoxEdit15.Properties.Items.Clear();
+            comboBoxEdit15.Properties.Items.AddRange(list);
+        }
         private void InitComboBoxData() {
             IList<ViewGds> list = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
             comboBoxEdit7.Properties.DataSource = list;
