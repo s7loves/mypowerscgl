@@ -106,6 +106,7 @@
     <Compile Include="ps_gt.cs" />
     <Compile Include="ps_sbzl.cs" />
     <Compile Include="ps_gtsb.cs" />
+    <Compile Include="ps_image.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
