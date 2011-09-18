@@ -5,7 +5,7 @@ using Ebada.Components;
 using System.Collections;
 namespace Ebada.Server.Host {
     internal class DBHelper {
-        internal int mVer = 4;
+        internal int mVer = 5;
         string mSelect = "Select";
         string mUpdate = "Update";
         IBaseSqlMapDao sqlMap;
@@ -55,6 +55,15 @@ namespace Ebada.Server.Host {
                     SqlMap.Update(mUpdate, string.Format(update_ver, 4));
                     Console.WriteLine("更新数据库版本ver:{0}", 4);
                     Console.WriteLine("更新手机服务器版本ver:{0}", 3);
+                } catch (Exception e) { throw e; }
+
+            }
+            if (ver < 5) {
+                try {
+                    sqlMap.Update(mUpdate, string.Format(update_AndroidVer, 4));//更新android客户端
+                    SqlMap.Update(mUpdate, string.Format(update_ver, 5));
+                    Console.WriteLine("更新数据库版本ver:{0}", 5);
+                    Console.WriteLine("更新手机服务器版本ver:{0}", 4);
                 } catch (Exception e) { throw e; }
 
             }
