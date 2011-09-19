@@ -19,8 +19,8 @@ namespace Ebada.Scgl.Gis.Device {
                 c.Visible = false;
 
             }
-            gridView1.Columns["LineCode"].Visible = true;
             gridView1.Columns["LineName"].Visible = true;
+            gridView1.Columns["LineCode"].Visible = true;
         }
     }
 }
