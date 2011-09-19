@@ -215,33 +215,33 @@ namespace Ebada.Android.Service {
 
             return UpdateGtImage3(data.id, data.data, data.type);
         }
-        public string UpdateGtImage2(string id, string data, string type,int flag) {
-            switch (flag) {
-                case 1:
-                    if (!imageCache.ContainsKey(id)) {
-                        imageCache.Add(id, new MemoryStream());
-                    } else {
-                        imageCache[id] = new MemoryStream();
-                    }
-                    imageCache[id].WriteBase64String(data);
-                    break;
-                case 2:
-                    imageCache[id].WriteBase64String(data);
-                    break;
-                case 0:
-                    return UpdateGtImage3(id, data, type);
-                case 100:
-                    imageCache[id].WriteBase64String(data);
-                    byte[] buff = imageCache[id].ToArray();
-                    imageCache.Remove(id);
-                    return UpdateGtImage3(id, buff, type);
-                default:
-                    break;
-            }
-            string msg = "1";
+        //public string UpdateGtImage2(string id, string data, string type,int flag) {
+        //    switch (flag) {
+        //        case 1:
+        //            if (!imageCache.ContainsKey(id)) {
+        //                imageCache.Add(id, new MemoryStream());
+        //            } else {
+        //                imageCache[id] = new MemoryStream();
+        //            }
+        //            imageCache[id].WriteBase64String(data);
+        //            break;
+        //        case 2:
+        //            imageCache[id].WriteBase64String(data);
+        //            break;
+        //        case 0:
+        //            return UpdateGtImage3(id, data, type);
+        //        case 100:
+        //            imageCache[id].WriteBase64String(data);
+        //            byte[] buff = imageCache[id].ToArray();
+        //            imageCache.Remove(id);
+        //            return UpdateGtImage3(id, buff, type);
+        //        default:
+        //            break;
+        //    }
+        //    string msg = "1";
             
-            return msg;
-        }
+        //    return msg;
+        //}
         public string UpdateGtImage3(string id, byte[] data, string type) {
 
             string msg = "";
@@ -303,11 +303,11 @@ namespace Ebada.Android.Service {
 
         #endregion
     }
-    public static class Extensions {
+    //public static class Extensions {
 
-        public static void WriteBase64String(this MemoryStream m, string data) {
-            byte[] bytes = Convert.FromBase64String(data);
-            m.Write(bytes, 0, bytes.Length);
-        }
-    }
+    //    public static void WriteBase64String(this MemoryStream m, string data) {
+    //        byte[] bytes = Convert.FromBase64String(data);
+    //        m.Write(bytes, 0, bytes.Length);
+    //    }
+    //}
 }
