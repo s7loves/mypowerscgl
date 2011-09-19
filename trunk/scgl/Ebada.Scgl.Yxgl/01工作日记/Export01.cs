@@ -96,14 +96,14 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(jl.rq.Month.ToString(), row + 3, col + 3);
             ex.SetCellValue(jl.rq.Day.ToString(), row + 3, col + 5);
             ex.SetCellValue(jl.xq.Replace("星期", ""), row + 3, col + 10);
-            //签字、时间
-            ex.SetCellValue(jl.qz, row + 14 + row_nr, col + 2);
-            if (ComboBoxHelper.CompreDate(jl.qzrq))
-            {
-                ex.SetCellValue(jl.qzrq.Year.ToString(), row + 14 + row_nr, col + 6);
-                ex.SetCellValue(jl.qzrq.Month.ToString(), row + 14 + row_nr, col + 9);
-                ex.SetCellValue(jl.qzrq.Day.ToString(), row + 14 + row_nr, col + 11);
-            }
+            ////签字、时间
+            //ex.SetCellValue(jl.qz, row + 14 + row_nr, col + 2);
+            //if (ComboBoxHelper.CompreDate(jl.qzrq))
+            //{
+            //    ex.SetCellValue(jl.qzrq.Year.ToString(), row + 14 + row_nr, col + 6);
+            //    ex.SetCellValue(jl.qzrq.Month.ToString(), row + 14 + row_nr, col + 9);
+            //    ex.SetCellValue(jl.qzrq.Day.ToString(), row + 14 + row_nr, col + 11);
+            //}
             
         }
         /// <summary>
