@@ -362,5 +362,11 @@ namespace Ebada.Scgl.Lcgl
                     break;
             }
         }
+
+        private void barAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            Export11.ExportExceljhbAll("预防性试验", "设备预防性试验计划（总）表", parentID);
+        }
     }
 }

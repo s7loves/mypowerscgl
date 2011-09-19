@@ -52,7 +52,7 @@ namespace Ebada.Scgl.Lcgl
             //this.comboBoxEdit9.DataBindings.Add("EditValue", rowData2, "charMan");
             this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "syjg");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "iswc");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "wcRemark");
             switch (rowData.type )
             {
                 case "变压器":

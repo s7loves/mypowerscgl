@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dw");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sl");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "sj");
-            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "syMan");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "ysMan");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "yxdwMan");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             //

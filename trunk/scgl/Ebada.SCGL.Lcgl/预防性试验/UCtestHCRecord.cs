@@ -253,7 +253,8 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-           
+            IList<PJ_yfsyhcjl> datalist = gridView1.DataSource as IList<PJ_yfsyhcjl>;
+            Export11.ExportExcelhc(datalist, "设备维护实施记录", parentID); 
            
         }
     }

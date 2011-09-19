@@ -36,6 +36,7 @@
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.uCtestRecord3 = new Ebada.Scgl.Lcgl.UCtestRecord();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.uCtestRecord4 = new Ebada.Scgl.Lcgl.UCtestdrqRecord();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xtraTabControl2 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
@@ -46,7 +47,6 @@
             this.uCtestRecordwcqkTable1 = new Ebada.Scgl.Lcgl.UCtestRecordwcqkTable();
             this.xtraTabPage8 = new DevExpress.XtraTab.XtraTabPage();
             this.uCtestHCRecord1 = new Ebada.Scgl.Lcgl.UCtestHCRecord();
-            this.uCtestRecord4 = new Ebada.Scgl.Lcgl.UCtestdrqRecord();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -132,6 +132,15 @@
             this.xtraTabPage4.Name = "xtraTabPage4";
             this.xtraTabPage4.Size = new System.Drawing.Size(616, 186);
             this.xtraTabPage4.Text = "电容器预防性实验记录";
+            // 
+            // uCtestRecord4
+            // 
+            this.uCtestRecord4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uCtestRecord4.Location = new System.Drawing.Point(0, 0);
+            this.uCtestRecord4.Name = "uCtestRecord4";
+            this.uCtestRecord4.Size = new System.Drawing.Size(616, 186);
+            this.uCtestRecord4.TabIndex = 0;
+            this.uCtestRecord4.Type = null;
             // 
             // splitContainerControl1
             // 
@@ -229,15 +238,6 @@
             this.uCtestHCRecord1.Size = new System.Drawing.Size(616, 217);
             this.uCtestHCRecord1.TabIndex = 0;
             this.uCtestHCRecord1.Type = null;
-            // 
-            // uCtestRecord4
-            // 
-            this.uCtestRecord4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uCtestRecord4.Location = new System.Drawing.Point(0, 0);
-            this.uCtestRecord4.Name = "uCtestRecord4";
-            this.uCtestRecord4.Size = new System.Drawing.Size(616, 186);
-            this.uCtestRecord4.TabIndex = 0;
-            this.uCtestRecord4.Type = null;
             // 
             // UCtestRecordM
             // 
