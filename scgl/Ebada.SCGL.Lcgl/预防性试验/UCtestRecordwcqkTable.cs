@@ -316,16 +316,16 @@ namespace Ebada.Scgl.Lcgl
             switch (_type)
             {
                 case "变压器":
-                    Export11.ExportExcelbyqssqk(datalist, _type + "预防性试验完成情况报表", parentID);
+                    Export11.ExportExcelbyqwcqk(datalist, _type + "预防性试验完成情况报表", parentID);
                     break;
                 case "断路器":
-                    Export11.ExportExceldlqssqk(datalist, _type + "预防性试验完成情况报表", parentID);
+                    Export11.ExportExceldlqwcqk(datalist, _type + "预防性试验完成情况报表", parentID);
                     break;
                 case "避雷器":
-                    Export11.ExportExcelblqssqk(datalist, _type + "预防性试验完成情况报表", parentID);
+                    Export11.ExportExcelblqwcqk(datalist, _type + "预防性试验完成情况报表", parentID);
                     break;
                 case "电容器":
-                    Export11.ExportExceldrqssqk(datalist, _type + "预防性试验完成情况报表", parentID);
+                    Export11.ExportExceldrqwcqk(datalist, _type + "预防性试验完成情况报表", parentID);
                     break;
             }
         }
