@@ -104,7 +104,37 @@ namespace Ebada.Scgl.Lcgl
                 IList mlist = hnamemod[typelist[i]] as IList;
                 IList plist = hnamepro[typelist[i]] as IList;
                 IList menlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  charMan    from dbo.PJ_yfsyjl a  where a.OrgCode='" + orgid + "' and type='" + typelist[i] + "' ");
+                string typedw = "";
+                switch (typelist[i].ToString())
+                {
+                    case "变压器":
+                         typedw="台"; 
+                        break;
 
+                    case "避雷器":
+
+                        typedw = "只"; 
+                        break;
+
+                    case "断路器":
+                        typedw = "台"; 
+
+                        break;
+
+                    case "电容器":
+                        typedw = "台"; 
+
+                        break;
+
+                }
+                string dx = "预防性试验";
+                string sx = "单位";
+                string nr = typelist[i] + "预防性试验";
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}' ", dx, sx, nr));
+                if (list.Count > 0 && list[0] != null && list[0].ToString() != "")
+                {
+                    typedw = list[0].ToString();
+                }
                 for (itemp = 0; itemp < mlist.Count || itemp < plist.Count; itemp++)
                 {
                     if (Math.Ceiling((1.0 + spanadd+ itemp / imax2) / (jmax)) > 1)
@@ -128,7 +158,8 @@ namespace Ebada.Scgl.Lcgl
                         ex.SetCellValue(Convert.ToString(i + 1), istart + ((spanadd + itemp / imax2) % jmax) * imax2 , jstart);
                         ex.SetCellValue(Convert.ToString(typelist[i] + cellname), istart + ((spanadd + itemp / imax2) % jmax) * imax2 , jstart + 1);
                         if (menlist.Count >0)
-                            ex.SetCellValue(Convert.ToString(menlist[0]), istart + ((spanadd + itemp / imax2) % jmax) * imax2 , jstart + 6);
+                            ex.SetCellValue(Convert.ToString(menlist[0]), istart + ((spanadd + itemp / imax2) % jmax) * imax2, jstart + 6);
+                        ex.SetCellValue(typedw , istart + ((spanadd + itemp / imax2) % jmax) * imax2, jstart+4);
                         spanadd2++;
                     }
                
