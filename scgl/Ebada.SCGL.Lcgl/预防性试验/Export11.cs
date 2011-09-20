@@ -20,13 +20,57 @@ namespace Ebada.Scgl.Lcgl
             string fname = Application.StartupPath + "\\00记录模板\\预防性试验记录.xls";
             ex.Open(fname);
             ExportExceljhbAllEx(ex, cellname, sheetname, orgid);
+            string filter="";
+            if(orgid!="") filter=" and OrgCode='" + orgid + "'";
+            IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'" + filter + " order by xh ");
+            Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid);
+            IList<PJ_yfsyjl> byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            Export11.ExportExcelblqjhbEx (ex,byqdatalist, "变压器" + "预防性试验计划表", orgid);
+            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "变压器" + "预防性试验实施情况记录", orgid);
+            Export11.ExportExcelbyqwcqkEx(ex, byqdatalist, "变压器" + "预防性试验完成情况报表", orgid);
+
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'" + filter + " order by xh ");
+            Export11.ExportExceldlqEx(ex, byqdatalist, "断路器" + "预防性试验记录", orgid);
+            byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            Export11.ExportExceldlqjhbEx(ex, byqdatalist, "断路器" + "预防性试验计划表", orgid);
+            Export11.ExportExceldlqssqkEx(ex, byqdatalist, "断路器" + "预防性试验实施情况记录", orgid);
+            Export11.ExportExceldlqwcqkEx(ex, byqdatalist, "断路器" + "预防性试验完成情况报表", orgid);
+
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'" + filter + " order by xh ");
+            Export11.ExportExcelblqEx(ex, byqdatalist, "避雷器" + "预防性试验记录", orgid);
+            byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            Export11.ExportExcelblqjhbEx(ex, byqdatalist, "避雷器" + "预防性试验计划表", orgid);
+            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "避雷器" + "预防性试验实施情况记录", orgid);
+            Export11.ExportExcelblqwcqkEx(ex, byqdatalist, "避雷器" + "预防性试验完成情况报表", orgid);
+
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'" + filter + " order by xh ");
+            Export11.ExportExceldrqEx(ex, byqdatalist, "电容器" + "预防性试验记录", orgid);
+            byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            Export11.ExportExceldrqjhbEx(ex, byqdatalist, "电容器" + "预防性试验计划表", orgid);
+            Export11.ExportExceldrqssqkEx(ex, byqdatalist, "电容器" + "预防性试验实施情况记录", orgid);
+            Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid);
+
+            IList<PJ_yfsyhcjl> hcdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyhcjl>("SelectPJ_yfsyhcjlList", " where  1=1 " + filter + " order by xh ");
+            Export11.ExportExcelhcEx(ex, hcdatalist, "设备维护实施记录", orgid); 
+
+        }
+        public static void ExportExcelAll(string orgid)
+        {
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\预防性试验记录.xls";
+            ex.Open(fname);
+
+           
         }
         public static void ExportExceljhbAllEx(ExcelAccess ex, string cellname, string sheetname, string orgid)
         {
 
             int pagecount = 0, i = 0, j = 0, istart = 4, jstart = 1, jmax = 4, imax2 = 6, sheetindex = 0, itemp = 0,spanadd=0, spanadd2 = 0;
             Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
-            IList typelist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  type    from dbo.PJ_yfsyjl a  where a.OrgCode='" + orgid + "' ");
+            string filter = "";
+            if (orgid != "") filter = " and a.OrgCode='" + orgid + "' ";
+            IList typelist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  type    from dbo.PJ_yfsyjl a  where 1=1 " + filter );
             Hashtable hmodnum = new Hashtable();
             Hashtable hnamemod = new Hashtable();
             Hashtable hnamepro = new Hashtable();
@@ -34,11 +78,11 @@ namespace Ebada.Scgl.Lcgl
             {
                 string type = typelist[i].ToString();
                 IList prolist = new ArrayList();
-                IList modlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  sbModle    from dbo.PJ_yfsyjl a  where a.OrgCode='" + orgid + "' and type='" + type + "' ");
-                IList proorlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  syProject    from dbo.PJ_yfsyjl a  where a.OrgCode='" + orgid + "' and type='" + type + "' ");
+                IList modlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  sbModle    from dbo.PJ_yfsyjl a  where  type='" + type + "' " + filter);
+                IList proorlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  syProject    from dbo.PJ_yfsyjl a  where type='" + type + "' " + filter);
                 for (j = 0; j < modlist.Count; j++)
                 {
-                    IList modnumlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", "select sum(sl)    from dbo.PJ_yfsyjl a  where a.OrgCode='" + orgid + "' and type='" + type + "'and sbModle='" + modlist[j] + "' ");
+                    IList modnumlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", "select sum(sl)    from dbo.PJ_yfsyjl a  where  type='" + type + "'and sbModle='" + modlist[j] + "' " + filter);
                     if (modnumlist.Count > 0)
                     {
                         if (hmodnum.Contains(type + "-" + modlist[j])) hmodnum[type + "-" + modlist[j]] = modnumlist[0];
@@ -103,7 +147,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 IList mlist = hnamemod[typelist[i]] as IList;
                 IList plist = hnamepro[typelist[i]] as IList;
-                IList menlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  charMan    from dbo.PJ_yfsyjl a  where a.OrgCode='" + orgid + "' and type='" + typelist[i] + "' ");
+                IList menlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  charMan    from dbo.PJ_yfsyjl a  where  type='" + typelist[i] + "' " + filter);
                 string typedw = "";
                 switch (typelist[i].ToString())
                 {
@@ -186,7 +230,7 @@ namespace Ebada.Scgl.Lcgl
 
             int pagecount = 0, i = 0, istart = 5, jstart = 1, jmax = 20, sheetindex = 0;
             Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
-
+          
             pagecount = Convert.ToInt32(Math.Ceiling(datalist.Count / (jmax + 0.0)));
             ex.ActiveSheet(sheetname);
             for (i = 1; i <= wb.Application.Worksheets.Count; i++)
@@ -215,7 +259,10 @@ namespace Ebada.Scgl.Lcgl
                 else
                     ex.ActiveSheet(sheetname);
                 if (org != null)
-                    ex.SetCellValue(org.OrgName, 3, 2);
+                    ex.SetCellValue(org.OrgName, 2, 3);
+                else
+                    ex.SetCellValue("全局", 2, 3);
+
                 //if (datalist.Count > 0)
                 //    ex.SetCellValue(datalist[0].charMan, 29, 14);
             }
@@ -294,6 +341,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 29, 14);
             }
@@ -370,6 +419,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 29, 14);
             }
@@ -444,6 +495,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 29, 14);
             }
@@ -521,6 +574,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count >0)
                     ex.SetCellValue(datalist[0].charMan , 30,12);
             }
@@ -606,6 +661,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 14);
             }
@@ -750,6 +807,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 14);
             }
@@ -894,6 +953,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 15);
             }
@@ -999,6 +1060,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 15);
             }
@@ -1142,6 +1205,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 15);
             }
@@ -1274,6 +1339,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 15);
             }
@@ -1402,6 +1469,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 15);
             }
@@ -1528,6 +1597,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 15);
             }
@@ -1658,6 +1729,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 15);
             }
@@ -1845,6 +1918,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 14);
             }
@@ -2020,6 +2095,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 14);
             }
@@ -2191,6 +2268,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(sheetname);
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
+                else
+                    ex.SetCellValue("全局", 3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 14);
             }
