@@ -365,8 +365,11 @@ namespace Ebada.Scgl.Lcgl
 
         private void barAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
             Export11.ExportExceljhbAll("预防性试验", "设备预防性试验计划（总）表", parentID);
+            else
+                Export11.ExportExceljhbAll("预防性试验", "设备预防性试验计划（总）表", "");
+
         }
     }
 }
