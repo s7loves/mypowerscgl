@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Yxgl {
                             ex.SetCellValue(obj.dzdl, row + 11 + i, col + 3);
                             ex.SetCellValue(obj.dzsj.ToString(), row + 11 + i, col + 4);
                             ex.SetCellValue(obj.yxqk, row + 11 + i, col + 5);
-                            ex.SetCellValue(obj.csr, row + 11 + i, col + 6);
+                          //  ex.SetCellValue(obj.csr, row + 11 + i, col + 6);
                         }
                     }
                 }
