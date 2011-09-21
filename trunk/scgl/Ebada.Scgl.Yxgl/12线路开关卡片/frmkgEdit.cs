@@ -130,6 +130,7 @@ namespace Ebada.Scgl.Yxgl
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select sbName from PS_gtsb where gtid='"+rowData.gtID+"'and sbType='开关'");
             comboBoxEdit1.Properties.Items.AddRange(list);
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select sbCode from PS_gtsb where gtid='" + rowData.gtID + "'and sbType='开关'");
+            if (pg == null) return;
             IList<PS_kg> kglist= Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_kg>("where gtID='"+pg.gtID+"'");
             string bh = (list.Count == 0 ? "00" : list[0].ToString());
             comboBoxEdit13.EditValue = pg.gtCode + bh+ Ecommon.GenBH(kglist.Count + 1);
