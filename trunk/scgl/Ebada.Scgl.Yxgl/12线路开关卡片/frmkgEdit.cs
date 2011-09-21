@@ -38,6 +38,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "kgInstallAdress");
             this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "kgState");
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "kgCode");
+            this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "kgfgb");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "kgCapcity");
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "gtID");
             //
@@ -80,11 +81,12 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "重合装置", comboBoxEdit9.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "制造厂", comboBoxEdit5.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "电压", comboBoxEdit3.Properties);
-
+            
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "电压", comboBoxEdit3.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "遮断容量", comboBoxEdit4.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "合闸线圈电压", comboBoxEdit7.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "跳闸电流", comboBoxEdit8.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "互感器变比", comboBoxEdit14.Properties);
 
          
       

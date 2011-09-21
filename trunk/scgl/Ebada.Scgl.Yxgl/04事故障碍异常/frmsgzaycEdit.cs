@@ -28,6 +28,7 @@ namespace Ebada.Scgl.Yxgl
             //this.spinEdit1.DataBindings.Add("EditValue", rowData,ssdl)
             //this.textEdit1.DataBindings.Add("EditValue", rowData, "gtdsj");
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "ssdl");
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "charMan");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "clqk",false, DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "yyfx", false, DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit4.DataBindings.Add("EditValue", rowData, "fzdc", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -62,6 +63,7 @@ namespace Ebada.Scgl.Yxgl
             if (ryList.Count>0)
             {
                 this.comboBoxEdit6.Properties.Items.AddRange(ryList);
+                this.comboBoxEdit1.Properties.Items.AddRange(ryList);
             }
             
         }
@@ -81,6 +83,8 @@ namespace Ebada.Scgl.Yxgl
         {
             PJ_dyk dyk = SelectorHelper.SelectDyk("04事故异常运行记录", "异常运行内容", memoEdit2, memoEdit1, memoEdit4);
             if (dyk != null) {
+                memoEdit2.Text = memoEdit2.Text + "处理人：" + comboBoxEdit1.Text; 
+                
                 rowData.yyfx = dyk.nr2;
                 rowData.fzdc = dyk.nr3;
             }
