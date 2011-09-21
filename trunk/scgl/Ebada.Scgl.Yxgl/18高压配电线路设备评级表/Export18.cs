@@ -57,7 +57,7 @@ namespace Ebada.Scgl.Yxgl {
                     ex.SetCellValue(tempobj.fzdw, 7 + i, 14);
 
                 }
-                ex.SetCellValue(obj.fzr, 36, 2);
+    //            ex.SetCellValue(obj.fzr, 36, 2);
                 ex.SetCellValue(obj.zbr, 36, 4);
                 ex.SetCellValue(obj.rq.Year.ToString(), 36, 6);
                 ex.SetCellValue(obj.rq.Month.ToString(), 36, 8);
