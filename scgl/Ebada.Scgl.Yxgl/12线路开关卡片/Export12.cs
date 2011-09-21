@@ -149,6 +149,7 @@ namespace Ebada.Scgl.Yxgl {
 
             ex.SetCellValue(obj.kgNumber, 8, 7);
             ex.SetCellValue(obj.kgOpenEle, 8, 11);
+            ex.SetCellValue(obj.kgfgb, 8, 19);
 
             ex.ActiveSheet(1);
            ex.ShowExcel();
