@@ -39,6 +39,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "kgState");
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "kgCode");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "kgCapcity");
+            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "gtID");
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
