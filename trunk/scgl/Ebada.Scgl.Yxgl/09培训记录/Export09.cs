@@ -139,13 +139,13 @@ namespace Ebada.Scgl.Yxgl {
 
         
             //签字
-            ex.SetCellValue(obj.qz, 24, 3);
-            if (ComboBoxHelper.CompreDate(obj.qzrq))
-            {
-                ex.SetCellValue(obj.qzrq.Year.ToString(), 24, 8);
-                ex.SetCellValue(obj.qzrq.Month.ToString(), 24, 10);
-                ex.SetCellValue(obj.qzrq.Day.ToString(), 24, 12);
-            }
+           // ex.SetCellValue(obj.qz, 24, 3);
+          //  if (ComboBoxHelper.CompreDate(obj.qzrq))
+          //  {
+           //     ex.SetCellValue(obj.qzrq.Year.ToString(), 24, 8);
+          //      ex.SetCellValue(obj.qzrq.Month.ToString(), 24, 10);
+          //      ex.SetCellValue(obj.qzrq.Day.ToString(), 24, 12);
+          //  }
 
             ex.ActiveSheet(1);
             ex.ShowExcel();
