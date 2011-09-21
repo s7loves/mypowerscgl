@@ -140,7 +140,7 @@ namespace Ebada.Scgl.Sbgl {
             if(pnode!=null)
                 linecode = pnode["LineCode"].ToString();
 
-            string sql = string.Format("Select max(linecode) as LineCode from ps_xl where len(linecode)={2} and Left(linecode,{0})={1}", linecode.Length,linecode,linecode.Length+levenum);
+            string sql = string.Format("Select top 1 linecode from ps_xl where len(linecode)={2} and Left(linecode,{0})={1} order by linecode desc", linecode.Length,linecode,linecode.Length+levenum);
             Hashtable ht = Client.ClientHelper.PlatformSqlMap.GetObject("Select", sql) as Hashtable;
             if (ht != null && ht["LineCode"] != null) {
                 string childcode = ht["LineCode"].ToString();
