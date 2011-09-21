@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-10 15:13:49
+生成时间:2011-9-21 10:47:50
 ***********************************************/
 
 using System;
@@ -33,6 +33,7 @@ namespace Ebada.Scgl.Model
         private string _yyfx=String.Empty; 
         private string _fzdc=String.Empty; 
         private string _zxr=String.Empty; 
+        private string _charman=String.Empty; 
         private string _createman=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
         private string _gznrid=String.Empty;   
@@ -281,6 +282,27 @@ namespace Ebada.Scgl.Model
                 if (_zxr as object == null || !_zxr.Equals(value))
                 {
                     _zxr = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：charMan
+        /// 属性描述：处理人
+        /// 字段信息：[charMan],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("处理人")]
+        public string charMan
+        {
+            get { return _charman; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[处理人]长度不能大于50!");
+                if (_charman as object == null || !_charman.Equals(value))
+                {
+                    _charman = value;
                 }
             }			 
         }

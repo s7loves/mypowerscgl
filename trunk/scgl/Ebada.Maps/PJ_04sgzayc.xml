@@ -17,6 +17,7 @@
         <result property="yyfx" column="yyfx" />
         <result property="fzdc" column="fzdc" />
         <result property="zxr" column="zxr" />
+        <result property="charMan" column="charMan" />
         <result property="CreateMan" column="CreateMan" />
         <result property="CreateDate" column="CreateDate" />
         <result property="gznrID" column="gznrID" />
@@ -38,6 +39,7 @@
          [yyfx],
          [fzdc],
          [zxr],
+         [charMan],
          [CreateMan],
          [CreateDate],
          [gznrID]
@@ -59,6 +61,7 @@
          [yyfx],
          [fzdc],
          [zxr],
+         [charMan],
          [CreateMan],
          [CreateDate],
          [gznrID]
@@ -76,6 +79,7 @@
        <isNotNull prepend="AND" property="yyfx">[yyfx]='$yyfx$'</isNotNull>
        <isNotNull prepend="AND" property="fzdc">[fzdc]='$fzdc$'</isNotNull>
        <isNotNull prepend="AND" property="zxr">[zxr]='$zxr$'</isNotNull>
+       <isNotNull prepend="AND" property="charMan">[charMan]='$charMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
@@ -95,6 +99,7 @@
          [yyfx],
          [fzdc],
          [zxr],
+         [charMan],
          [CreateMan],
          [CreateDate],
          [gznrID]
@@ -138,6 +143,7 @@
              [yyfx]=#yyfx#,
              [fzdc]=#fzdc#,
              [zxr]=#zxr#,
+             [charMan]=#charMan#,
              [CreateMan]=#CreateMan#,
              [CreateDate]=#CreateDate#,
              [gznrID]=#gznrID#
@@ -161,6 +167,7 @@
          [yyfx],
          [fzdc],
          [zxr],
+         [charMan],
          [CreateMan],
          [CreateDate],
          [gznrID]
@@ -179,6 +186,7 @@
          #yyfx#,
          #fzdc#,
          #zxr#,
+         #charMan#,
          #CreateMan#,
          #CreateDate#,
          #gznrID#
@@ -202,6 +210,7 @@
        <isNotNull prepend="AND" property="yyfx">[yyfx]='$yyfx$'</isNotNull>
        <isNotNull prepend="AND" property="fzdc">[fzdc]='$fzdc$'</isNotNull>
        <isNotNull prepend="AND" property="zxr">[zxr]='$zxr$'</isNotNull>
+       <isNotNull prepend="AND" property="charMan">[charMan]='$charMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>

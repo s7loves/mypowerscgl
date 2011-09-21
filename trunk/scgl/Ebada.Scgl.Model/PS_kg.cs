@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:54:00
+生成时间:2011-9-21 10:25:52
 ***********************************************/
 
 using System;
@@ -35,6 +35,7 @@ namespace Ebada.Scgl.Model
         private DateTime _kgmadedate=new DateTime(1900,1,1); 
         private string _kgclosevol=String.Empty; 
         private string _kgopenele=String.Empty; 
+        private string _kgfgb=String.Empty; 
         private DateTime _kginstalldate=new DateTime(1900,1,1); 
         private string _kginstalladress=String.Empty; 
         private string _kgstate=String.Empty; 
@@ -330,6 +331,27 @@ namespace Ebada.Scgl.Model
                 if (_kgopenele as object == null || !_kgopenele.Equals(value))
                 {
                     _kgopenele = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：kgfgb
+        /// 属性描述：开关互感器变比
+        /// 字段信息：[kgfgb],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("开关互感器变比")]
+        public string kgfgb
+        {
+            get { return _kgfgb; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[开关互感器变比]长度不能大于50!");
+                if (_kgfgb as object == null || !_kgfgb.Equals(value))
+                {
+                    _kgfgb = value;
                 }
             }			 
         }
