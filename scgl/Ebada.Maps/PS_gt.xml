@@ -209,6 +209,9 @@
    <select id="GetPS_gtRowCount" parameterClass="string">
     select count(*) from PS_gt $value$
    </select>
+    <select id="SelectPS_gtByStr" resultMap="PS_gt_AllColumns" parameterClass="string">
+      $value$
+    </select>
   </statements>
 </sqlMap>
  
