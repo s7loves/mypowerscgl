@@ -177,12 +177,12 @@ namespace Ebada.Scgl.Lpgl {
             DataRow dr = gridView1.GetDataRow(ihand);
             Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(),new Size (1024 ,768));
             string tempPath = Path.GetTempPath();
-            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".bmp";
+            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".png";
             if (objBitmap != null)
             {
 
 
-                objBitmap.Save(tempfile);
+                objBitmap.Save(tempfile,System.Drawing.Imaging.ImageFormat.Png     );
                 try
                 {
                     System.Diagnostics.Process.Start("explorer.exe", tempfile);
