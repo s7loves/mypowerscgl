@@ -248,6 +248,9 @@
    <select id="GetPS_kgRowCount" parameterClass="string">
     select count(*) from PS_kg $value$
    </select>
+    <select id="SelectPS_kgByStr" resultMap="PS_kg_AllColumns" parameterClass="string">
+      $value$
+    </select>
   </statements>
 </sqlMap>
  

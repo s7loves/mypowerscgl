@@ -72,8 +72,13 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-           
-            IList<PS_gt> gtlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("");
+
+            IList<PS_gt> gtlist;
+            if ( MainHelper.UserOrg.OrgType == "1")
+                gtlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtByStr", "select * from dbo.PS_gt b ,dbo.PS_xl c where   b.LineCode=c.LineCode and c.OrgCode='" + MainHelper.User.OrgCode + "'");
+            else
+                gtlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("");
+
             SetComboBoxData(lookUpEdit1, "", "", "", "", gtlist);
 
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "型号", comboBoxEdit2.Properties);

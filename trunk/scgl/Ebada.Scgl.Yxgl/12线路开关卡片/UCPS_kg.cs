@@ -90,8 +90,12 @@ namespace Ebada.Scgl.Yxgl
             if (org != null)
             {
                 ParentObj = org;
-                if (SelectGdsChanged != null)
-                    SelectGdsChanged(this, org);
+                //if (SelectGdsChanged != null)
+                //    SelectGdsChanged(this, org);
+                //RefreshData("select * from dbo.PS_kg a,dbo.PS_gt b ,dbo.PS_xl c where  a.gtID=b.gtID and b.LineCode=c.LineCode and c.OrgCode='" + org.OrgCode + "'");
+                //RefreshData(" where  PS_kg.gtID=PS_gt.gtID and PS_gt.LineCode=PS_xl.LineCode and PS_xl.OrgCode='" + org.OrgCode + "'");
+                IList<PS_kg> blist = Client.ClientHelper.PlatformSqlMap.GetList<PS_kg>("SelectPS_kgByStr", "select * from dbo.PS_kg a,dbo.PS_gt b ,dbo.PS_xl c where  a.gtID=b.gtID and b.LineCode=c.LineCode and c.OrgCode='" + org.OrgCode + "'");
+                gridControl1.DataSource = blist;
             }
             
 
