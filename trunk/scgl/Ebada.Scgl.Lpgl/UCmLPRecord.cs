@@ -185,7 +185,8 @@ namespace Ebada.Scgl.Lpgl {
                 objBitmap.Save(tempfile,System.Drawing.Imaging.ImageFormat.Png     );
                 try
                 {
-                    System.Diagnostics.Process.Start("explorer.exe", tempfile);
+                    //System.Diagnostics.Process.Start("explorer.exe", tempfile);
+                    SelectorHelper.Execute("rundll32.exe %Systemroot%\\System32\\shimgvw.dll,ImageView_Fullscreen "+tempfile ); 
                 }
                 catch {
                     
@@ -193,6 +194,7 @@ namespace Ebada.Scgl.Lpgl {
                 }
             }
         }
+  
 
         void repositoryItemTextEdit1_EditValueChanged(object sender, EventArgs e) {
             
