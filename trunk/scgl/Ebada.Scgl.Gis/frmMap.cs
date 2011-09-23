@@ -22,6 +22,7 @@ using System.Diagnostics;
 using GMap.NET.WindowsForms.Markers;
 using Ebada.Scgl.Gis.Markers;
 using Ebada.Scgl.Gis.Device;
+using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Gis {
     public partial class frmMap : XtraForm {
@@ -353,7 +354,23 @@ namespace Ebada.Scgl.Gis {
         private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             //线路 
             frmLineSelector dlg = new frmLineSelector();
-            dlg.Show(this);
+            if (dlg.ShowDialog(this) == DialogResult.OK) {
+                PS_xl obj = dlg.GetSelected() as PS_xl;
+                if (obj != null) {
+                   GMapRoute route =new GMapRoute(MapBuilder.BuildLine(obj.LineCode),obj.LineCode);
+                   
+                    int ncount=route.Points.Count;
+                   for (int i = 0; i < ncount; i++) {
+                       GMapMarker m =createMarker(route.Points[i]);
+
+                       if (i > 0)
+                           m.ToolTipText = rMap1.Manager.GetDistance(route.Points[i], route.Points[i - 1])*1000 + "";
+                       routes.Markers.Add(m);
+                   }
+                   routes.Routes.Add(route);
+                   rMap1.ZoomAndCenterRoute(route);
+                }
+            }
         }
 
     }
