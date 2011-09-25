@@ -60,7 +60,7 @@ namespace Ebada.Scgl.Yxgl
             comboBoxEdit2.Properties.Items.Clear();
             comboBoxEdit2.Properties.Items.AddRange(ryList);
 
-            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "检  修  内  容", comboBoxEdit1.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "检修内容", comboBoxEdit1.Properties);
 
         }
 
