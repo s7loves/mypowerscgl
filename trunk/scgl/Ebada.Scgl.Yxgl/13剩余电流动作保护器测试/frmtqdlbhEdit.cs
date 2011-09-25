@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitComboBoxData() {
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "额定漏电动作电流", comboBoxEdit4);
-            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "型   号", comboBoxEdit2);
+            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "型号", comboBoxEdit2);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "制造厂名", comboBoxEdit9);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "额定漏电动作时间", comboBoxEdit7);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "运行情况", comboBoxEdit1);
