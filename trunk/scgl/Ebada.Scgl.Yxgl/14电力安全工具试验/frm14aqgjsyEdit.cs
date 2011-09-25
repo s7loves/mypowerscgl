@@ -138,7 +138,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("14电力安全工具试验记录", "结 论", memoEdit1);
+            SelectorHelper.SelectDyk("14电力安全工具试验记录", "结论", memoEdit1);
 
         }
     }
