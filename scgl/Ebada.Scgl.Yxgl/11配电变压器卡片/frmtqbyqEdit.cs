@@ -87,12 +87,12 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "制造厂", comboBoxEdit10.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "一次电压", spinEdit2.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "二次电压", spinEdit3.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", " 一  次  额定电流", spinEdit4.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", " 二  次  额定电流", spinEdit5.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", " 一次额定电流", spinEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", " 二次额定电流", spinEdit5.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "容量", spinEdit1.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "相别", comboBoxEdit8.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "结线组别", comboBoxEdit9.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "周  波", comboBoxEdit12.Properties);
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "周波", comboBoxEdit12.Properties);
            
        
         
