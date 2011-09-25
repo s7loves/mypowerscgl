@@ -84,7 +84,7 @@ namespace Ebada.Scgl.Yxgl
             //comboBoxEdit13.Properties.Items.AddRange(tqList);
 
 
-            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "天       气", comboBoxEdit13.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "天气", comboBoxEdit13.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "温度(℃)", comboBoxEdit20.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "耐压前", comboBoxEdit3.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "耐压前", comboBoxEdit10.Properties);
@@ -103,8 +103,8 @@ namespace Ebada.Scgl.Yxgl
 
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "同期检查情况", comboBoxEdit18.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "外观检查情况", comboBoxEdit19.Properties);
-            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "实 验 结 论", comboBoxEdit16.Properties);
-            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "实 验 结 论", comboBoxEdit16.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "实验结论", comboBoxEdit16.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "实验结论", comboBoxEdit16.Properties);
 
 
         }
