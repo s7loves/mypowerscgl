@@ -147,6 +147,7 @@
       <DependentUpon>frmMapView.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\MapBuilder.cs" />
+    <Compile Include="LineOverLay.cs" />
     <Compile Include="Markers\GMapMarkerVector.cs" />
     <Compile Include="Markers\GMapMarkerImage.cs" />
     <Compile Include="Markers\GMapMarkerRect.cs" />
@@ -209,6 +210,10 @@
     <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ebada.Scgl.Sbgl\Ebada.Scgl.Sbgl.csproj">
+      <Project>{890818B2-EE50-4CB2-9C85-BAA60730CAAB}</Project>
+      <Name>Ebada.Scgl.Sbgl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

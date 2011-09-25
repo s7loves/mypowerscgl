@@ -16,8 +16,8 @@ namespace Ebada.Scgl.Gis.Markers {
             System.Drawing.Point p1 = new System.Drawing.Point(LocalPosition.X, LocalPosition.Y);
 
             Rectangle r = new Rectangle(p1, SizeSt);
-            g.FillEllipse(Brushes.White, r);
-            g.DrawEllipse(Pen, r);
+            g.FillRectangle(Brushes.White, r);
+            g.DrawRectangle(Pen, r);
 
         }
     }
