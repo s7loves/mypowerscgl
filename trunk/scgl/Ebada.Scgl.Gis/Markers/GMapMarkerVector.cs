@@ -17,12 +17,12 @@ namespace Ebada.Scgl.Gis.Markers {
 
         }
         public override void OnRender(Graphics g) {
+           
             System.Drawing.Point p1 = new System.Drawing.Point(LocalPosition.X, LocalPosition.Y);
 
             Rectangle r = new Rectangle(p1, SizeSt);
-            g.FillRectangle(Brushes.White, r);
-            g.DrawRectangle(Pen, r);
-
+            g.FillEllipse(Brushes.White, r);
+            g.DrawEllipse(Pen, r);
         }
     }
 }
