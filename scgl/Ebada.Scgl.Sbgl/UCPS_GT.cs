@@ -229,6 +229,12 @@ namespace Ebada.Scgl.Sbgl
             
             newobj.gtCode = ParentObj.LineCode + newobj.gth;
             newobj.gtID = newobj.gtCode;
+
+            newobj.gtSpan = 50;
+            newobj.gtMs = 1.7m;
+            newobj.gtHeight = 10m;
+            newobj.gtModle = "直线杆";
+            newobj.gtType = "混凝土拔梢杆";
         }
         /// <summary>
         /// 父表ID
@@ -279,14 +285,17 @@ namespace Ebada.Scgl.Sbgl
         string getGgh() {
             //杆塔号0010-9990
             object obj=Client.ClientHelper.PlatformSqlMap.GetObject("Select", "Select isnull(max(gth),'0') as gth from ps_gt where Linecode='" + parentID + "'");
-            string gth = "0000";
+            string gth = "0";
             if (obj != null) {
                 Hashtable ht = obj as Hashtable;
                 if (ht.Contains("gth")) {
                     gth = ht["gth"].ToString();
+                    
                 }
             }
-            gth = (int.Parse(gth) + 10).ToString("0000");
+            int step = 10;
+            if (gth =="0") step = 0;
+            gth = (int.Parse(gth) + step).ToString("0000");
             return gth;
         }
         private void btAddM_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
