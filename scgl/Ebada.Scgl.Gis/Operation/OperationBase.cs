@@ -17,14 +17,21 @@ namespace Ebada.Scgl.Gis {
         private Point localPoint;
         protected GMapOverlay routes;
         protected Boolean canAddMarker;
+        private Boolean canEditMarker;        
         private GMapMarker updateMarker;
         private ContextMenu mMenu;
         public OperationBase(RMap mapcontrol){
             rMap1 = mapcontrol;
             //routes = new GMapOverlay(rMap1, "Line");
             mMenu = CreatePopuMenu();
+            canEditMarker = true;
         }
-
+        #region 属性
+        protected Boolean CanEditMarker {
+            get { return canEditMarker; }
+            set { canEditMarker = value; }
+        }
+        #endregion
         void rMap1_Paint(object sender, PaintEventArgs e) {
             OnPaint(e.Graphics);
         }
@@ -72,12 +79,10 @@ namespace Ebada.Scgl.Gis {
         public virtual void MouseMove(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left && isMouseDown) {
                 if (currentMarker != null) {
-                    if (currentMarker.IsVisible) {
+                    if (currentMarker.IsVisible && canEditMarker) {
                         Point p0 = localPoint;
                         Point p1 = new Point(p0.X + e.X - beginPoint.X, p0.Y + e.Y - beginPoint.Y);
-                        //beginPoint = new Point(e.X, e.Y);
                         currentMarker.Position = rMap1.FromLocalToLatLng(p1.X, p1.Y);
-                        //currentMarker.ToolTipText = currentMarker.Position.ToString();
                         if (currentMarker.Overlay is LineOverlay) {
                             (currentMarker.Overlay as LineOverlay).OnMarkerChanged(currentMarker);
                             updateMarker = currentMarker;
@@ -99,7 +104,7 @@ namespace Ebada.Scgl.Gis {
         void 属性_Click(object sender, EventArgs e) {
 
             if (selectedMarker != null && selectedMarker.Overlay is LineOverlay) {
-                (selectedMarker.Overlay as LineOverlay).ShowDialog(selectedMarker);
+                (selectedMarker.Overlay as LineOverlay).ShowDialog(selectedMarker,canEditMarker);
             }
                 
         }
