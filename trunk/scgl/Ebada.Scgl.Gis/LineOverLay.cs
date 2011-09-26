@@ -30,6 +30,8 @@ namespace Ebada.Scgl.Gis {
             }
             GMapRoute route = new GMapRoute(points, lineCode);
             lay.mRoute = route;
+            if (list.Count > 1)
+                list[0].ToolTipText += "\n" + route.Distance;
             lay.Routes.Add(route);
             return lay;
         }
@@ -45,11 +47,11 @@ namespace Ebada.Scgl.Gis {
             Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
         }
 
-        internal void ShowDialog(GMapMarker marker) {
+        internal void ShowDialog(GMapMarker marker,bool canEdit) {
 
             frmgtEdit frm = new frmgtEdit();
             frm.RowData = marker.Tag;
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK && canEdit) {
                 marker.Tag = frm.RowData;
                 PS_gt gt =marker.Tag as PS_gt;
                 Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(marker.Tag);
