@@ -34,11 +34,15 @@ namespace Ebada.Scgl.Gis {
 
              List<GMapMarker> markers = new List<GMapMarker>();
              //GMapRoute route = new GMapRoute(points, LineCode);
+             GMapMarker marker = null;
              foreach (PS_gt gt in list) {
                  PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
                  if (box.Contains(pf)) {
                      PointLatLng point = new PointLatLng(Convert.ToDouble(gt.gtLat), Convert.ToDouble(gt.gtLon));
-                     GMapMarkerVector marker = new GMapMarkerVector(point);
+                     if (gt.gtType.Contains("方杆"))
+                         marker = new GMapMarkerRect(point);
+                     else
+                         marker = new GMapMarkerVector(point);
                      marker.ToolTipText = gt.gth + "\n" + LineName;
                      marker.Tag = gt;
                      markers.Add(marker);
