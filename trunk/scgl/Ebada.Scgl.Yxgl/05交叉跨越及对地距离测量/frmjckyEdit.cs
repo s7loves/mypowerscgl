@@ -72,7 +72,7 @@ namespace Ebada.Scgl.Yxgl
 
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
             comboBoxEdit1.Properties.DataSource = xlList;
-            comboBoxEdit2.Properties.DataSource = xlList;
+           // comboBoxEdit2.Properties.DataSource = xlList;
         }
 
         /// <summary>
@@ -112,10 +112,10 @@ namespace Ebada.Scgl.Yxgl
             
             for (int i = 0; i < list.Count;i++ )
             {
-             //   comboBoxEdit2.Properties.Items.Add(list[i].gtID);
+                comboBoxEdit2.Properties.Items.Add(list[i].gtID);
                 comboBoxEdit4.Properties.Items.Add(list[i].gtCode);
             }
-            //comboBoxEdit2.Properties.Items.Add().DataSource = list;
+         //  comboBoxEdit2.Properties.Items.Add().DataSource = list;
         }
 
         private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
