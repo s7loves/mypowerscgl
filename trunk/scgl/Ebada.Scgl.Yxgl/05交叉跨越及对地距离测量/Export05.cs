@@ -38,7 +38,9 @@ namespace Ebada.Scgl.Yxgl {
                 PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
                 ex.ActiveSheet(1);
                 ex.SetCellValue(xlobject.LineName, row + 3, col);
-                ex.SetCellValue("'"+jl.gtID.ToString(), row + 3, col + 3);
+                PS_xl xlobject2 = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.gtID);
+
+                ex.SetCellValue("'" + xlobject2.LineName, row + 3, col + 3);
                 ex.SetCellValue(jl.kywz, row + 3, col + 6);
 
                 //交叉跨越行
