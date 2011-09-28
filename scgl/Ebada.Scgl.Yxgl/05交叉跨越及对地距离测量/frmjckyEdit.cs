@@ -33,6 +33,7 @@ namespace Ebada.Scgl.Yxgl
 
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineID");
+            //this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "LineID");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "gtID");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "kywz");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "kygh");
@@ -72,7 +73,9 @@ namespace Ebada.Scgl.Yxgl
 
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
             comboBoxEdit1.Properties.DataSource = xlList;
-           // comboBoxEdit2.Properties.DataSource = xlList;
+           comboBoxEdit2.Properties.DataSource = xlList;
+
+
         }
 
         /// <summary>
@@ -108,11 +111,12 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
+            if (comboBoxEdit1.EditValue == null) return;
             IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
             
             for (int i = 0; i < list.Count;i++ )
             {
-                comboBoxEdit2.Properties.Items.Add(list[i].gtID);
+                //comboBoxEdit2.Properties.Items.Add(list[i].LineID);
                 comboBoxEdit4.Properties.Items.Add(list[i].gtCode);
             }
          //  comboBoxEdit2.Properties.Items.Add().DataSource = list;
@@ -129,6 +133,18 @@ namespace Ebada.Scgl.Yxgl
             for (int i = 0; i < list.Count; i++)
             {
                 comboBoxEdit3.Properties.Items.Add(list[i].Adress);
+            }
+        }
+
+        private void comboBoxEdit2_EditValueChanged_2(object sender, EventArgs e)
+        {
+            if (comboBoxEdit2.EditValue == null) return;
+            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit2.EditValue.ToString() + "'");
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                //comboBoxEdit2.Properties.Items.Add(list[i].LineID);
+                comboBoxEdit4.Properties.Items.Add(list[i].gtCode);
             }
         }
     }
