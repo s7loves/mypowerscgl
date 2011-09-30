@@ -92,7 +92,7 @@
 
         #endregion
 
-        private TLVector.TLVectorControl documentControl1;
+        public TLVector.TLVectorControl documentControl1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 城市ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 卫星照片ToolStripMenuItem;

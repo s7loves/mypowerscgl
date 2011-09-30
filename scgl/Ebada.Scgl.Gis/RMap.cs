@@ -65,10 +65,11 @@ namespace Ebada.Scgl.Gis {
         #region IMapView 成员
 
         public void Zoomin() {
-
+            this.Zoomin();
         }
 
         public void Zoomout() {
+            this.Zoomout();
         }
 
         public void Roam() {

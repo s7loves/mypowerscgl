@@ -68,6 +68,12 @@ namespace Ebada.Scgl.Gis {
             this.documentControl1.DrawArea.MouseDown += new MouseEventHandler(DrawArea_MouseDown);
             this.documentControl1.DrawArea.MouseUp += new MouseEventHandler(DrawArea_MouseUp);
             this.documentControl1.Operation = ToolOperation.Roam;
+            this.documentControl1.OnTipEvent += new TLVector.Core.Interface.OnTipEventHandler(documentControl1_OnTipEvent);
+        }
+
+        void documentControl1_OnTipEvent(object sender, string tooltip, byte TipType) {
+            
+
         }
         public void Init() {
             if (Site != null && Site.DesignMode) return;
