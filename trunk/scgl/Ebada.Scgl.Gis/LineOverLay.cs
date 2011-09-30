@@ -47,7 +47,7 @@ namespace Ebada.Scgl.Gis {
             Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
         }
 
-        internal void ShowDialog(GMapMarker marker,bool canEdit) {
+        internal void ShowDialog(GMapMarker marker,bool canEdit) { 
 
             frmgtEdit frm = new frmgtEdit();
             frm.RowData = marker.Tag;

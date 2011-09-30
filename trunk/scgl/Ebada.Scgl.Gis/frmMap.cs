@@ -378,8 +378,9 @@ namespace Ebada.Scgl.Gis {
                    //routes.Routes.Add(route);
                    //rMap1.ZoomAndCenterRoute(route);
                     GMapOverlay lay = rMap1.FindOverlay(obj.LineCode);
-                    if(lay==null)
-                        rMap1.Overlays.Add(LineOverlay.CreateLine(rMap1, obj.LineCode,obj.LineName));
+                    if (lay != null)
+                        rMap1.Overlays.Remove(lay);
+                    rMap1.Overlays.Add(LineOverlay.CreateLine(rMap1, obj.LineCode,obj.LineName));
                     rMap1.ZoomAndCenterRoutes(obj.LineCode);
                 }
             }
