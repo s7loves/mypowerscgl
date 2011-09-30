@@ -45,6 +45,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.ucMapBox1 = new Ebada.Scgl.Gis.UCMapBox();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,9 +71,10 @@
             this.barButtonItem7,
             this.barButtonItem8,
             this.barButtonItem9,
-            this.btFullScrean});
+            this.btFullScrean,
+            this.barStaticItem1});
             this.barManager1.LargeImages = this.imageList1;
-            this.barManager1.MaxItemId = 12;
+            this.barManager1.MaxItemId = 13;
             this.barManager1.StatusBar = this.bar3;
             this.barManager1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barManager1_ItemClick);
             // 
@@ -190,6 +192,8 @@
             this.bar3.DockCol = 0;
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
@@ -204,20 +208,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 291);
-            this.barDockControlBottom.Size = new System.Drawing.Size(731, 22);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 288);
+            this.barDockControlBottom.Size = new System.Drawing.Size(731, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 34);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 257);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 254);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(731, 34);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 257);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 254);
             // 
             // imageList1
             // 
@@ -239,8 +243,14 @@
             this.ucMapBox1.Location = new System.Drawing.Point(0, 34);
             this.ucMapBox1.Mapview = null;
             this.ucMapBox1.Name = "ucMapBox1";
-            this.ucMapBox1.Size = new System.Drawing.Size(731, 257);
+            this.ucMapBox1.Size = new System.Drawing.Size(731, 254);
             this.ucMapBox1.TabIndex = 4;
+            // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Id = 12;
+            this.barStaticItem1.Name = "barStaticItem1";
+            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // frmMapView
             // 
@@ -281,6 +291,7 @@
         private UCMapBox ucMapBox1;
         private DevExpress.XtraBars.BarButtonItem btFullScrean;
         private System.Windows.Forms.ImageList imageList1;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
 
     }
 }

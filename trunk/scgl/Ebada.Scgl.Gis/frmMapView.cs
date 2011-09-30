@@ -20,6 +20,12 @@ namespace Ebada.Scgl.Gis {
         public frmMapView() {
             InitializeComponent();
             mapview = ucMapBox1;
+            ucMapBox1.documentControl1.OnTipEvent += new TLVector.Core.Interface.OnTipEventHandler(documentControl1_OnTipEvent);
+        }
+
+        void documentControl1_OnTipEvent(object sender, string tooltip, byte TipType) {
+            if (TipType == 2) 
+            barStaticItem1.Caption = tooltip+"["+TipType+"]";
         }
         public void FullScrean() {
             FormState formState = new FormState();

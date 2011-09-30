@@ -306,10 +306,12 @@ namespace Ebada.Scgl.Gis {
         //}
 
         // ensure focus on map, trackbar can have it too
-        
+        PointLatLng offsize = new PointLatLng(0.00187f, 0.00654f);
         void rMap1_MouseMove(object sender, MouseEventArgs e) {
             PointLatLng ll = rMap1.FromLocalToLatLng(e.X, e.Y);
-            barStaticItem1.Caption = string.Format("lat:{0},lng:{1}", ll.Lat, ll.Lng);
+            barStaticItem1.Caption = string.Format("lat:{0},lng:{1}", ll.Lat, ll.Lng );
+           
+            //barStaticItem1.Caption = string.Format("lat:{0},lng:{1}", ll.Lat-offsize.Lat, ll.Lng-offsize.Lng);
         }
 
         void rMap1_MouseEnter(object sender, EventArgs e) {
