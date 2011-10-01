@@ -156,6 +156,13 @@ namespace Ebada.Scgl.Sbgl
             }
         }
 
+        private void comboBoxEdit5_EditValueChanged(object sender, EventArgs e) {
+            //分支线路改变时刷新杆塔号
+            string linecode=comboBoxEdit5.EditValue.ToString();
+            if (string.IsNullOrEmpty(linecode)) return;
+            lookUpEdit1.Properties.DataSource = ClientHelper.PlatformSqlMap.GetList<PS_gt>("Where linecode='" + linecode + "'"); 
+        }
+
       
     }
 }
