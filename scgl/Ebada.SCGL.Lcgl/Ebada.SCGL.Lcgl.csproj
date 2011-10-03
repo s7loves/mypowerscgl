@@ -86,6 +86,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="自定义流程\DownFileControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\DownFileControl.Designer.cs">
+      <DependentUpon>DownFileControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="预防性试验\frmtestRecorddrqwcqkEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -372,6 +378,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="自定义流程\DownFileControl.resx">
+      <DependentUpon>DownFileControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestRecorddrqwcqkEdit.resx">
       <DependentUpon>frmtestRecorddrqwcqkEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -543,6 +552,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutoUpdater\AutoUpdater.csproj">
+      <Project>{4BA4719C-C6AB-49BA-9754-848CA24C1FD6}</Project>
+      <Name>AutoUpdater</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ebada.Scgl.Core\Ebada.Scgl.Core.csproj">
       <Project>{BFD83E09-E190-4B5E-8F16-BD91F457E058}</Project>
       <Name>Ebada.Scgl.Core</Name>

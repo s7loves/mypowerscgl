@@ -19,6 +19,8 @@ using DevExpress.XtraRichEdit.API.Word;
 using Ebada.Scgl.WFlow;
 using DevExpress.XtraGrid.Views.Base;
 using System.Text.RegularExpressions;
+using DevExpress.XtraTreeList;
+using System.Net;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -261,7 +263,7 @@ namespace Ebada.Scgl.Lcgl
                 LockExcel();
             }
         }
-
+       
         protected override void OnShown(EventArgs e)
         {
             //InitializeComponent();
@@ -318,7 +320,7 @@ namespace Ebada.Scgl.Lcgl
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
                 {
                     ctrl = new uc_gridcontrol();
-                    ((uc_gridcontrol)ctrl).CellValueChanged += new CellValueChangedEventHandler(gridView1_CellValueChanged);
+                    ((uc_gridcontrol)ctrl).CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridView1_CellValueChanged);
                 }
                 else
                     ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
@@ -352,8 +354,16 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
             InitEvent();
-            InitData();         
-      
+            InitData();
+            
+            DownFileControl filecontrol = new DownFileControl();
+            filecontrol.FormType = "上传";
+            filecontrol.Size = new System.Drawing.Size(400, 200);
+            filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+            currentPosY = currentPosY + filecontrol.Size.Height;
+
+            dockPanel1.Controls.Add(filecontrol);
+            currentPosY += 20;
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
