@@ -13,6 +13,7 @@ namespace EbadaAutoupdater
         #region The private fields
         private bool enabled = true;
         private string serverUrl = string.Empty;
+        private string upfileUrl = string.Empty;
         private UpdateFileList updateFileList = new UpdateFileList();
         #endregion
 
@@ -26,6 +27,11 @@ namespace EbadaAutoupdater
         {
             get { return serverUrl; }
             set { serverUrl = value; }
+        }
+        public string UpfileUrl
+        {
+            get { return upfileUrl; }
+            set { upfileUrl = value; }
         }
         public UpdateFileList UpdateFileList
         {
