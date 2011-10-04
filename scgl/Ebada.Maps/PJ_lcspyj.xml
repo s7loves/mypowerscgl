@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_lcspyj" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_lcspyj"  type="Ebada.Scgl.Model.PJ_lcspyj,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_lcspyj_AllColumns" class="PJ_lcspyj">
+        <result property="ID" column="ID" />
+        <result property="RecordID" column="RecordID" />
+        <result property="Spyj" column="Spyj" />
+        <result property="Sptime" column="Sptime" />
+        <result property="Reserve1" column="Reserve1" />
+        <result property="Reserve2" column="Reserve2" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_lcspyjList" resultMap="PJ_lcspyj_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [RecordID],
+         [Spyj],
+         [Sptime],
+         [Reserve1],
+         [Reserve2]
+          FROM PJ_lcspyj
+          $value$
+   </select>
+   
+   <select id="SelectPJ_lcspyjByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [RecordID],
+         [Spyj],
+         [Sptime],
+         [Reserve1],
+         [Reserve2]
+          FROM PJ_lcspyj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
+       <isNotNull prepend="AND" property="Spyj">[Spyj]='$Spyj$'</isNotNull>
+       <isNotNull prepend="AND" property="Sptime">[Sptime]='$Sptime$'</isNotNull>
+       <isNotNull prepend="AND" property="Reserve1">[Reserve1]='$Reserve1$'</isNotNull>
+       <isNotNull prepend="AND" property="Reserve2">[Reserve2]='$Reserve2$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_lcspyjByKey" resultMap="PJ_lcspyj_AllColumns" parameterClass="PJ_lcspyj">
+         SELECT 
+         [ID],
+         [RecordID],
+         [Spyj],
+         [Sptime],
+         [Reserve1],
+         [Reserve2]
+         FROM PJ_lcspyj
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_lcspyj" parameterClass="PJ_lcspyj">
+        DELETE FROM 
+         PJ_lcspyj
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_lcspyjByWhere" parameterClass="string">
+     delete from PJ_lcspyj $value$
+   </delete>
+   
+   <delete id="DeletePJ_lcspyjByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_lcspyj
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_lcspyj" parameterClass="PJ_lcspyj" resultClass="int">
+          UPDATE PJ_lcspyj
+           SET
+             [RecordID]=#RecordID#,
+             [Spyj]=#Spyj#,
+             [Sptime]=#Sptime#,
+             [Reserve1]=#Reserve1#,
+             [Reserve2]=#Reserve2#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_lcspyj" parameterClass="PJ_lcspyj">
+        INSERT INTO PJ_lcspyj
+         (
+         [ID],
+         [RecordID],
+         [Spyj],
+         [Sptime],
+         [Reserve1],
+         [Reserve2]
+         )
+       VALUES
+         (
+         #ID#,
+         #RecordID#,
+         #Spyj#,
+         #Sptime#,
+         #Reserve1#,
+         #Reserve2#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_lcspyjRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_lcspyj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
+       <isNotNull prepend="AND" property="Spyj">[Spyj]='$Spyj$'</isNotNull>
+       <isNotNull prepend="AND" property="Sptime">[Sptime]='$Sptime$'</isNotNull>
+       <isNotNull prepend="AND" property="Reserve1">[Reserve1]='$Reserve1$'</isNotNull>
+       <isNotNull prepend="AND" property="Reserve2">[Reserve2]='$Reserve2$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_lcspyjRowCount" parameterClass="string">
+    select count(*) from PJ_lcspyj $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

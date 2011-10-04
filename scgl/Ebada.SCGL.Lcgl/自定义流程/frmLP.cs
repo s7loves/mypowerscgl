@@ -357,11 +357,21 @@ namespace Ebada.Scgl.Lcgl
             InitData();
             
             DownFileControl filecontrol = new DownFileControl();
+            if(status=="add")
             filecontrol.FormType = "上传";
-            filecontrol.Size = new System.Drawing.Size(400, 200);
+            else if (status == "edit")
+            {
+                filecontrol.FormType = "下载";
+            }
+            filecontrol.Size = new System.Drawing.Size(450, 300);
             filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
             currentPosY = currentPosY + filecontrol.Size.Height;
-
+            filecontrol.UpfilePath = parentTemple.CellName;
+            if (currRecord==null)
+            {
+                currRecord = new LP_Record();
+            }
+            filecontrol.RecordID = CurrRecord.ID;
             dockPanel1.Controls.Add(filecontrol);
             currentPosY += 20;
             Button btn_Submit = new Button();
@@ -409,20 +419,20 @@ namespace Ebada.Scgl.Lcgl
             switch (status)
             {
                 case "add":
-                    LP_Record newRecord = new LP_Record();
+                    //LP_Record newRecord = new LP_Record();
                     dsoFramerWordControl1.FileSave();
-                    newRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
-                    newRecord.Kind = kind;
-                    newRecord.Content = GetContent();
+                    currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+                    currRecord.Kind = kind;
+                    currRecord.Content = GetContent();
                     if (ctrlNumber!=null)
-                    newRecord.Number = ctrlNumber.Text ; 
+                        currRecord.Number = ctrlNumber.Text; 
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
-                    newRecord.CreateTime = DateTime.Now.ToString();
+                    currRecord.CreateTime = DateTime.Now.ToString();
 
-                    string[] strtemp = RecordWorkTask.RunNewGZPRecord(newRecord.ID, kind, MainHelper.User.UserID);
+                    string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
                     strmes = strtemp[0];
-                    newRecord.Status =strtemp[1];
+                    currRecord.Status = strtemp[1];
                     if (strmes.IndexOf("未提交至任何人") > -1)
                     {
                         MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
@@ -430,10 +440,10 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else
                         MsgBox.ShowTipMessageBox(strmes);
-                     
-                    MainHelper.PlatformSqlMap.Create<LP_Record>(newRecord);
+
+                    MainHelper.PlatformSqlMap.Create<LP_Record>(currRecord);
                     rowData = null;
-                    currRecord = newRecord;
+                    //currRecord = newRecord;
                     break;
                 case "edit":
                     currRecord.LastChangeTime = DateTime.Now.ToString();

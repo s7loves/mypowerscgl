@@ -17,15 +17,38 @@ namespace Ebada.ScglUpFileService
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     public class Handler1 : IHttpHandler
     {
+        public void EnablePathExit(string filepath)
+        {
+            System.IO.DirectoryInfo topDir = System.IO.Directory.GetParent(filepath);
 
+            //topDirPath即上层目录 
+            if (Directory.Exists(topDir.FullName) == false)//如果不存在就创建file文件夹
+            {
+                Directory.CreateDirectory(topDir.FullName);
+            }
+            if (topDir.FullName != topDir.Root.FullName)
+            {
+                EnablePathExit(topDir.FullName);
+            }
+        }
         public void ProcessRequest(HttpContext context)
         {
             string filename = context.Request.QueryString["filename"].ToString();
-            if (Directory.Exists(context.Server.MapPath("UpLoadFiles/")) == false)//如果不存在就创建file文件夹
-            {
-                Directory.CreateDirectory(context.Server.MapPath("UpLoadFiles/"));
-            }
-            using (FileStream inputStram = File.Create(context.Server.MapPath("UpLoadFiles/") + filename))
+            int i = filename.LastIndexOf("/");
+
+            string filefullpath = "";
+            if(i>-1)
+                filefullpath = context.Server.MapPath("UpFile/" + filename.Substring(0, i + 1)) + filename.Substring(i + 1);
+            else
+                filefullpath = context.Server.MapPath("UpFile/") + filename;
+
+            //if (Directory.Exists(context.Server.MapPath("UpLoadFiles/")) == false)//如果不存在就创建file文件夹
+            //{
+            //    Directory.CreateDirectory(context.Server.MapPath("UpLoadFiles/"));
+            //}
+
+            EnablePathExit(filefullpath);
+            using (FileStream inputStram = File.Create(filefullpath))
             {
                 SaveFile(context.Request.InputStream, inputStram);
             }

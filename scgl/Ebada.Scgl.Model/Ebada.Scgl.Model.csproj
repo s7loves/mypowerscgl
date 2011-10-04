@@ -79,6 +79,8 @@
     <Compile Include="PJ_26.cs" />
     <Compile Include="PJ_dyk.cs" />
     <Compile Include="PJ_gzrjnr.cs" />
+    <Compile Include="PJ_lcfj.cs" />
+    <Compile Include="PJ_lcspyj.cs" />
     <Compile Include="PJ_sbxsqd.cs" />
     <Compile Include="PJ_sheetTemp.cs" />
     <Compile Include="PJ_yfsyhcjl.cs" />
