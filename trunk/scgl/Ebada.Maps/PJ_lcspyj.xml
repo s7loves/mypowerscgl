@@ -7,10 +7,11 @@
       <resultMap id="PJ_lcspyj_AllColumns" class="PJ_lcspyj">
         <result property="ID" column="ID" />
         <result property="RecordID" column="RecordID" />
+        <result property="taskID" column="taskID" />
         <result property="Spyj" column="Spyj" />
-        <result property="Sptime" column="Sptime" />
+        <result property="Creattime" column="Creattime" />
+        <result property="Charman" column="Charman" />
         <result property="Reserve1" column="Reserve1" />
-        <result property="Reserve2" column="Reserve2" />
       </resultMap>
   </resultMaps>
 
@@ -19,10 +20,11 @@
         SELECT 
          [ID],
          [RecordID],
+         [taskID],
          [Spyj],
-         [Sptime],
-         [Reserve1],
-         [Reserve2]
+         [Creattime],
+         [Charman],
+         [Reserve1]
           FROM PJ_lcspyj
           $value$
    </select>
@@ -31,28 +33,31 @@
          SELECT 
          [ID],
          [RecordID],
+         [taskID],
          [Spyj],
-         [Sptime],
-         [Reserve1],
-         [Reserve2]
+         [Creattime],
+         [Charman],
+         [Reserve1]
           FROM PJ_lcspyj
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
+       <isNotNull prepend="AND" property="taskID">[taskID]='$taskID$'</isNotNull>
        <isNotNull prepend="AND" property="Spyj">[Spyj]='$Spyj$'</isNotNull>
-       <isNotNull prepend="AND" property="Sptime">[Sptime]='$Sptime$'</isNotNull>
+       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
+       <isNotNull prepend="AND" property="Charman">[Charman]='$Charman$'</isNotNull>
        <isNotNull prepend="AND" property="Reserve1">[Reserve1]='$Reserve1$'</isNotNull>
-       <isNotNull prepend="AND" property="Reserve2">[Reserve2]='$Reserve2$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_lcspyjByKey" resultMap="PJ_lcspyj_AllColumns" parameterClass="PJ_lcspyj">
          SELECT 
          [ID],
          [RecordID],
+         [taskID],
          [Spyj],
-         [Sptime],
-         [Reserve1],
-         [Reserve2]
+         [Creattime],
+         [Charman],
+         [Reserve1]
          FROM PJ_lcspyj
          WHERE 
            ID = #ID#
@@ -83,10 +88,11 @@
           UPDATE PJ_lcspyj
            SET
              [RecordID]=#RecordID#,
+             [taskID]=#taskID#,
              [Spyj]=#Spyj#,
-             [Sptime]=#Sptime#,
-             [Reserve1]=#Reserve1#,
-             [Reserve2]=#Reserve2#
+             [Creattime]=#Creattime#,
+             [Charman]=#Charman#,
+             [Reserve1]=#Reserve1#
             WHERE 
               ID = #ID#
 
@@ -97,19 +103,21 @@
          (
          [ID],
          [RecordID],
+         [taskID],
          [Spyj],
-         [Sptime],
-         [Reserve1],
-         [Reserve2]
+         [Creattime],
+         [Charman],
+         [Reserve1]
          )
        VALUES
          (
          #ID#,
          #RecordID#,
+         #taskID#,
          #Spyj#,
-         #Sptime#,
-         #Reserve1#,
-         #Reserve2#
+         #Creattime#,
+         #Charman#,
+         #Reserve1#
          )
 
    </insert>
@@ -120,10 +128,11 @@
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
+       <isNotNull prepend="AND" property="taskID">[taskID]='$taskID$'</isNotNull>
        <isNotNull prepend="AND" property="Spyj">[Spyj]='$Spyj$'</isNotNull>
-       <isNotNull prepend="AND" property="Sptime">[Sptime]='$Sptime$'</isNotNull>
+       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
+       <isNotNull prepend="AND" property="Charman">[Charman]='$Charman$'</isNotNull>
        <isNotNull prepend="AND" property="Reserve1">[Reserve1]='$Reserve1$'</isNotNull>
-       <isNotNull prepend="AND" property="Reserve2">[Reserve2]='$Reserve2$'</isNotNull>
      </dynamic>
 
    </select>

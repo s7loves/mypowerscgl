@@ -10,6 +10,7 @@
         <result property="Filename" column="Filename" />
         <result property="FileSize" column="FileSize" />
         <result property="FileRelativePath" column="FileRelativePath" />
+        <result property="Creattime" column="Creattime" />
       </resultMap>
   </resultMaps>
 
@@ -20,7 +21,8 @@
          [RecordID],
          [Filename],
          [FileSize],
-         [FileRelativePath]
+         [FileRelativePath],
+         [Creattime]
           FROM PJ_lcfj
           $value$
    </select>
@@ -31,7 +33,8 @@
          [RecordID],
          [Filename],
          [FileSize],
-         [FileRelativePath]
+         [FileRelativePath],
+         [Creattime]
           FROM PJ_lcfj
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -39,6 +42,7 @@
        <isNotNull prepend="AND" property="Filename">[Filename]='$Filename$'</isNotNull>
        <isNotNull prepend="AND" property="FileSize">[FileSize]='$FileSize$'</isNotNull>
        <isNotNull prepend="AND" property="FileRelativePath">[FileRelativePath]='$FileRelativePath$'</isNotNull>
+       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_lcfjByKey" resultMap="PJ_lcfj_AllColumns" parameterClass="PJ_lcfj">
@@ -47,7 +51,8 @@
          [RecordID],
          [Filename],
          [FileSize],
-         [FileRelativePath]
+         [FileRelativePath],
+         [Creattime]
          FROM PJ_lcfj
          WHERE 
            ID = #ID#
@@ -80,7 +85,8 @@
              [RecordID]=#RecordID#,
              [Filename]=#Filename#,
              [FileSize]=#FileSize#,
-             [FileRelativePath]=#FileRelativePath#
+             [FileRelativePath]=#FileRelativePath#,
+             [Creattime]=#Creattime#
             WHERE 
               ID = #ID#
 
@@ -93,7 +99,8 @@
          [RecordID],
          [Filename],
          [FileSize],
-         [FileRelativePath]
+         [FileRelativePath],
+         [Creattime]
          )
        VALUES
          (
@@ -101,7 +108,8 @@
          #RecordID#,
          #Filename#,
          #FileSize#,
-         #FileRelativePath#
+         #FileRelativePath#,
+         #Creattime#
          )
 
    </insert>
@@ -115,6 +123,7 @@
        <isNotNull prepend="AND" property="Filename">[Filename]='$Filename$'</isNotNull>
        <isNotNull prepend="AND" property="FileSize">[FileSize]='$FileSize$'</isNotNull>
        <isNotNull prepend="AND" property="FileRelativePath">[FileRelativePath]='$FileRelativePath$'</isNotNull>
+       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
      </dynamic>
 
    </select>

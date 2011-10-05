@@ -22,28 +22,32 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
         }
-        private string formtype="";
+        private string formtype="";//是上传文件还是下载文件
         private DataTable fjtable = null;
-        private string upfileurl;
-        private string downfileurl;
+        private string upfileurl="";
+        private string upfileErr = "";
+        private string downfileurl = "";
         private int icurrent = -1;
         private int itablecurrent = -1;
         private int iupcount = -1;
+        private int idowncount = -1;
         private bool isupfile = false;
         private bool isdownfile = false;
         private bool upcancel = false;
         private long lupTotleSize = 0;
         private long lupedTotleSize = 0;
+        private long ldownTotleSize = 0;
+        private long ldownedTotleSize = 0;
         private List<string> upfilelist;
         private List<string> downfilelist;
         private FileStream myFileStream;
         private BinaryReader myBinaryReader;
-        private string upfilePath;
-        private string recordID;
+        private string upfilePath;//上传文件的上级文件夹名称，默认是流程的名称
+        private string recordID;//所属记录的ID
         private static AutoResetEvent upcomEvent;
         private static AutoResetEvent downcomEvent;
-
-
+        private string downFileFolder = "";
+        public Thread upThread=null;
         public string RecordID
         {
             get { return recordID; }
@@ -82,11 +86,12 @@ namespace Ebada.Scgl.Lcgl
              myBinaryReader = new BinaryReader(myFileStream);
             
             UriBuilder url = new UriBuilder(strUrlDirPath);//上传路径
+            url.Query = string.Format("filename={0}", saveFileName);//上传url参数
             WebClient webClient = new WebClient();
             webClient.OpenWriteCompleted+= new OpenWriteCompletedEventHandler(webClient_OpenWriteCompleted);//委托异步上传事件
             webClient.Headers["User-Agent"] = "blah";
             webClient.Credentials = CredentialCache.DefaultCredentials;
-            url.Query = string.Format("filename={0}", saveFileName);//上传url参数
+            
             webClient.OpenWriteAsync(url.Uri);
         }
          /// <summary>
@@ -98,35 +103,57 @@ namespace Ebada.Scgl.Lcgl
         {
             DirectoryInfo di = Directory.GetParent(fileNameFullPath);
             if (!di.Exists) di.Create();
-            WebClient client = new WebClient();  //再次new 避免WebClient不能I/O并发   
-            client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);  
-            client.DownloadFile(strUrlDirPath, fileNameFullPath);
-            //异步下载
-            client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-            client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-            client.DownloadFileAsync(new Uri(strUrlDirPath), fileNameFullPath); 
+            WebClient webClient = new WebClient();  //再次new 避免WebClient不能I/O并发   
+            webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
+            webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
+
+            webClient.DownloadFileAsync(new Uri(strUrlDirPath), fileNameFullPath); 
         
         }
-        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            downcomEvent.Set();
+            //downcomEvent.Set();
+            if (itablecurrent != -1)
+            {
+                fjtable.Rows[itablecurrent]["FileName"] = Path.GetFileName(fjtable.Rows[itablecurrent]["FilePath"].ToString());
+                fjtable.Rows[itablecurrent]["Progress"] = 100;
+                fjtable.Rows[itablecurrent]["Kind"] = "上传完毕"/* "等待上传中..."*/;
+                itablecurrent = -1;
+            }
+            downfilelist.RemoveAt(0);
+            if (idowncount != 0) progressBarControlTol.Position = Convert.ToInt32((100 * (idowncount - downfilelist.Count)) / idowncount);
+            downfileFunc(0);
         }
-        private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        void webClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         { //下载过程中
-            int a = e.ProgressPercentage;
-            fjtable.Rows[itablecurrent]["Progress"]  = a;
+
+            //if (e.ProgressPercentage % 5 != 0) return;
+            if (itablecurrent == -1) return;
+            if (isdownfile ==false) return;
+            try{
+                if (fjtable.Columns.Contains("Progress")) fjtable.Rows[itablecurrent]["Progress"] = e.ProgressPercentage;
+                if (idowncount!=0) progressBarControlTol.Position = (idowncount - downfilelist.Count) * 100 / idowncount;
+                }
+            catch
+            {
+            }
         }
         private void iniColoumn()
         {
             if (formtype == "下载")
             {
                 fjgridView.Columns["DelBut"].VisibleIndex = -1;
-                fjgridView.Columns["DownBut"].Visible=true;
                 upfileButton.Visible = false;
+                downfileButton.Visible = true;
+                selctFileButton.Visible = true;
+                openFolderButton.Visible = true;
             }
             if (formtype == "上传")
             {
                 fjgridView.Columns["DownBut"].VisibleIndex = -1;
+                fjgridView.Columns["SlectFile"].VisibleIndex = -1;
+                upfileButton.Visible = true;
+                downfileButton.Visible = false;
             }
         }
         private void iniData()
@@ -143,7 +170,9 @@ namespace Ebada.Scgl.Lcgl
                     dr["Kind"] = "";
                     dr["DownBut"] = "下载";
                     dr["DelBut"] = "删除";
+                    dr["SlectFile"] = 1;
                     dr["SaveFileName"] = lifjlis[i].FileRelativePath;
+                    dr["FileSize"] = lifjlis[i].FileSize;
                     fjtable.Rows.Add(dr);
                 }
             }
@@ -188,48 +217,220 @@ namespace Ebada.Scgl.Lcgl
                 if (lupedTotleSize / (1000) < 1000)
                 {
                     strdw2 = "K";
-                    ldw2 = 1000;
-                }
-                else if (lupedTotleSize / (1000 * 1000) < 1000)
-                {
-                    strdw2 = "M";
-                    ldw2 = 1000 * 1000;
+                 ldw2 = 1000;
+                 }
+                 else if (lupedTotleSize / (1000 * 1000) < 1000)
+                 {
+                     strdw2 = "M";
+                     ldw2 = 1000 * 1000;
 
-                }
-                tipLabelControl.Text = String.Format("已上传 : {0}{1}，总文件大小{2}{3}", Math.Round(lupedTotleSize / (ldw2 + 0.0), 1), strdw2, Math.Round(lupTotleSize / (ldw1 + 0.0), 1), strdw1);
-                progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
-                lupedTotleSize += byteGet;
+                 }
+             tipLabelControl.Text = String.Format("已上传 : {0}{1}，总文件大小{2}{3}", Math.Round(lupedTotleSize / (ldw2 + 0.0), 1), strdw2, Math.Round(lupTotleSize / (ldw1 + 0.0), 1), strdw1);
+             if (lupTotleSize != 0) progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
+             else progressBarControlTol.Position = 0;
+             lupedTotleSize += byteGet;
+         }
+         try
+         {
+             if (bytewrited < 20 * 1000 * 1000)
+                 tipLabelControl.Text = String.Format("等待服务器返回，{0}", tipLabelControl.Text);
+             else
+             {
+                 tipLabelControl.Text = String.Format("等待服务器返回，文件较大时时间较长");
+             }
+         
+
+             if (!upcancel && itablecurrent != -1)
+             {
+                 //wc.IsOver = true;
+                 e.Result.Close();//关闭
+             }
+         }
+         catch (System.Exception err)
+         {
+             Console.WriteLine(err.Message);
+         }
+         myBinaryReader.Close();//关闭myBinaryReader
+         tipLabelControl.Text = String.Format("已上传 : {0}{1}，总文件大小{2}{3}", lupedTotleSize / (ldw2), strdw2, lupTotleSize / ldw1, strdw1);
+         //if (upcancel || itablecurrent==-1||fjtable.Rows[itablecurrent]["Progress"].ToString() == "100")
+         {
+             upcomEvent.Set();
+         }
+     }
+      /// 将本地文件上传到指定的服务器(HttpWebRequest方法)
+        /// </summary>
+        /// <param name="address">文件上传到的服务器</param>
+        /// <param name="fileNamePath">要上传的本地文件（全路径）</param>
+        /// <param name="saveName">文件上传后的名称</param>
+        /// <param name="progressBar">上传进度条</param>
+        /// <returns>成功返回1，失败返回0</returns>
+        private int Upload_Request(string address, string fileNamePath, string saveName)
+        {
+            int returnValue = 0;
+            // 要上传的文件
+            FileStream fs = new FileStream(fileNamePath, FileMode.Open, FileAccess.Read);
+            BinaryReader r = new BinaryReader(fs);
+
+            //时间戳
+            string strBoundary = "----------" + DateTime.Now.Ticks.ToString("x");
+            byte[] boundaryBytes = Encoding.ASCII.GetBytes("\r\n--" + strBoundary + "\r\n");
+
+            //请求头部信息
+            StringBuilder sb = new StringBuilder();
+            sb.Append("--");
+            sb.Append(strBoundary);
+            sb.Append("\r\n");
+            sb.Append("Content-Disposition: form-data; name=\"");
+            sb.Append("file");
+            sb.Append("\"; filename=\"");
+            sb.Append(saveName);
+            sb.Append("\"");
+            sb.Append("\r\n");
+            sb.Append("Content-Type: ");
+            sb.Append("application/octet-stream");
+            sb.Append("\r\n");
+            sb.Append("\r\n");
+
+            string strPostHeader = sb.ToString();
+            byte[] postHeaderBytes = Encoding.UTF8.GetBytes(strPostHeader);
+
+
+            // 根据uri创建HttpWebRequest对象
+            UriBuilder url = new UriBuilder(address);//上传路径
+            url.Query = string.Format("filename={0}", saveName);//上传url参数
+            HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(url.Uri);
+            httpReq.Method = "POST";
+
+            //对发送的数据不使用缓存【重要、关键】
+            httpReq.AllowWriteStreamBuffering = false;
+
+            //设置获得响应的超时时间（300秒）
+            httpReq.Timeout = 60*60*1000;
+            httpReq.ContentType = "multipart/form-data; boundary=" + strBoundary;
+            long length = fs.Length + postHeaderBytes.Length + boundaryBytes.Length;
+            long fileLength = fs.Length;
+            httpReq.ContentLength = length;
+            
+            string strdw1 = "";
+            long ldw1 = 1;
+            string strdw2 = "";
+            long ldw2 = 1;
+            if (lupTotleSize / (1000) < 1000)
+            {
+                strdw1 = "K";
+                ldw1 = 1000;
+            }
+            else if (lupTotleSize / (1000 * 1000) < 1000)
+            {
+                strdw1 = "M";
+                ldw1 = 1000 * 1000;
+
+            }
+            else if (lupTotleSize / (1000 * 1000*1000) < 1000)
+            {
+                strdw1 = "G";
+                ldw1 = 1000 * 1000*1000;
+
             }
             try
             {
-                if (bytewrited < 20 * 1000 * 1000)
-                    tipLabelControl.Text = String.Format("等待服务器返回，{0}", tipLabelControl.Text);
-                else
+                //progressBar.Maximum = int.MaxValue;
+                //progressBar.Minimum = 0;
+                //progressBar.Value = 0;
+                //每次上传4k
+                int bufferLength = 4096;
+                byte[] buffer = new byte[bufferLength];
+                //已上传的字节数
+                long offset = 0;
+                //开始上传时间
+                DateTime startTime = DateTime.Now;
+                int size =0;
+                Stream postStream = httpReq.GetRequestStream();
+                //发送请求头部消息
+                postStream.Write(postHeaderBytes, 0, postHeaderBytes.Length);
+                while ((size = r.Read(buffer, 0, bufferLength)) > 0)
                 {
-                    tipLabelControl.Text = String.Format("等待服务器返回，文件较大时时间较长");
-                }
-            
+                    if (upcancel)
+                    {
+                        lupedTotleSize -= offset;
+                        break;
+                    }
+                    postStream.Write(buffer, 0, size);
+                    offset += size;
+                    //progressBar.Value = (int)(offset * (int.MaxValue / length));
+                    TimeSpan span = DateTime.Now - startTime;
+                    double second = span.TotalSeconds;
+                    if (lupedTotleSize / (1000) < 1000)
+                    {
+                        strdw2 = "K";
+                        ldw2 = 1000;
+                    }
+                    else if (lupedTotleSize / (1000 * 1000) < 1000)
+                    {
+                        strdw2 = "M";
+                        ldw2 = 1000 * 1000;
 
-                if (!upcancel && itablecurrent != -1)
+                    }
+                    else if (lupedTotleSize / (1000 * 1000 * 1000) < 1000)
+                    {
+                        strdw2 = "G";
+                        ldw2 = 1000 * 1000 * 1000;
+
+                    }
+
+                    tipLabelControl.Text = String.Format("平均速度：{4} KB/秒已上传 : {0}{1}，总文件大小{2}{3}", Math.Round(lupedTotleSize / (ldw2 + 0.0), 1), strdw2, Math.Round(lupTotleSize / (ldw1 + 0.0), 1), strdw1, (offset / 1024 / second).ToString("0.00"));
+                    if (lupTotleSize != 0) progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
+                    else progressBarControlTol.Position = 0;
+                    lupedTotleSize += size;
+
+
+                    fjtable.Rows[itablecurrent]["Progress"] = (int)((100 * offset )/ length);
+                   
+                   
+                }
+                if (!upcancel)
                 {
-                    //wc.IsOver = true;
-                    e.Result.Close();//关闭
+
+
+                    //添加尾部的时间戳
+                    postStream.Write(boundaryBytes, 0, boundaryBytes.Length);
+                    postStream.Close();
+                    //获取服务器端的响应
+                    WebResponse webRespon = httpReq.GetResponse();
+                    Stream s = webRespon.GetResponseStream();
+                    StreamReader sr = new StreamReader(s);
+                    //读取服务器端返回的消息
+                    String sReturnString = sr.ReadLine();
+                    s.Close();
+                    sr.Close();
+                    if (sReturnString == "Success")
+                    {
+                        returnValue = 1;
+                        upfileErr = "";
+                    }
+                    else if (sReturnString.IndexOf("Error") > -1)
+                    {
+                        lupedTotleSize -= offset;
+                        returnValue = 0;
+                        upfileErr = sReturnString;
+                    }
                 }
             }
-            catch (System.Exception err)
+            catch(Exception ex)
             {
-                Console.WriteLine(err.Message);
+                returnValue = 0;
+                upfileErr = ex.Message;
             }
-            myBinaryReader.Close();//关闭myBinaryReader
-            tipLabelControl.Text = String.Format("已上传 : {0}{1}，总文件大小{2}{3}", lupedTotleSize / (ldw2), strdw2, lupTotleSize / ldw1, strdw1);
-            //if (upcancel || itablecurrent==-1||fjtable.Rows[itablecurrent]["Progress"].ToString() == "100")
+            finally
             {
-                upcomEvent.Set();
+                fs.Close();
+                r.Close();
             }
+            return returnValue;
         }
         private void upfileButton_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Title = "";
+            openFileDialog1.FileName = "";
             openFileDialog1.Filter = "(*.*)|*.*";
             openFileDialog1.Multiselect = true; 
            if(openFileDialog1.ShowDialog()==DialogResult.OK)
@@ -241,15 +442,15 @@ namespace Ebada.Scgl.Lcgl
                FileStream fileStreamtemp;
                String strerr = "";
                string savefilename = "";
-               PJ_lcfj lcfu;
+               //PJ_lcfj lcfu;
                for (int i = 0; i < openFileDialog1.FileNames.Length; i++)
                {
                    DataRow dr = fjtable.NewRow();
                    string strFileName = openFileDialog1.FileNames[i];
-                   lcfu = new PJ_lcfj();
+                   
                    dr["FileName"] = System.IO.Path.GetFileName(strFileName) + "(等待上传中...)";
                    fileStreamtemp = new FileStream(strFileName, FileMode.Open, FileAccess.Read);
-                   if (fileStreamtemp.Length >  1000 * 1000 * 1055&&1==2)
+                   if (fileStreamtemp.Length >  1000 * 1000 * 55)
                    {
                        if (strerr == "")
                            strerr = System.IO.Path.GetFileName(strFileName) + " ";// +"";
@@ -258,7 +459,7 @@ namespace Ebada.Scgl.Lcgl
 
                        continue;
                    }
-                   if (lupTotleSize + fileStreamtemp.Length > (long)1000 * 1000 * 1000 && 1 == 2)
+                   if (lupTotleSize + fileStreamtemp.Length > (long)1000 * 1000 * 1000)
                    {
                        MsgBox.ShowTipMessageBox("附件总大小不超过1G");
                        break;
@@ -269,19 +470,17 @@ namespace Ebada.Scgl.Lcgl
                    dr["DownBut"] = "下载";
                    dr["DelBut"] = "删除";
                    dr["Kind"] = "等待上传中...";
-                   savefilename = DateTime.Now.ToString("yyyyMMddHHmmssffffff") + "-" + Path.GetFileName(strFileName);
+                   //savefilename = DateTime.Now.ToString("yyyyMMddHHmmssffffff") + "-" + Path.GetFileName(strFileName);
+                   string strtime =(string) ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select replace(replace(replace(replace(CONVERT(varchar, getdate(), 121 ),'-',''),' ',''),':',''),'.','')");
+                   savefilename = strtime + "-" + Path.GetFileName(strFileName);
                    dr["SaveFileName"] = savefilename;
+                   dr["FileSize"] = fileStreamtemp.Length;
                    fjtable.Rows.Add(dr);
                    upfilelist.Add(savefilename);
-                   lcfu.ID = lcfu.CreateID();
-                   lcfu.Filename = Path.GetFileName(strFileName);
-                   lcfu.FileRelativePath = upfilePath + "/" + savefilename;
-                   lcfu.FileSize = fileStreamtemp.Length;
-                   lcfu.RecordID = recordID;
-                   MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
-                   Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                   
                    iupcount++;
-                   progressBarControlTol.Position =Convert.ToInt32( (100*lupedTotleSize ) / lupTotleSize);
+                   if (lupTotleSize != 0) progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
+                   else progressBarControlTol.Position = 0;
                }
                if (strerr!="")
                {
@@ -294,8 +493,8 @@ namespace Ebada.Scgl.Lcgl
                    isupfile = true;
                    tipLabelControl.Visible = true;
                    Control.CheckForIllegalCrossThreadCalls = false;
-                   Thread downThread = new Thread(new ThreadStart(this.upfileFunc));
-                   downThread.Start();
+                   upThread = new Thread(new ThreadStart(this.upfileFunc));
+                   upThread.Start();
                    //upfileFunc(1);
                }
            }
@@ -332,28 +531,42 @@ namespace Ebada.Scgl.Lcgl
                    }
                }
                upcancel = false;
-               UpLoadFile(filepath, upfilePath + "/" + savefilename, upfileurl);
-               upcomEvent.WaitOne();
-               if (!upcancel && itablecurrent!=-1)
+               upfileErr = "";
+               //UpLoadFile(filepath, upfilePath + "/" + savefilename, upfileurl);
+               //upcomEvent.WaitOne();
+               //if (!upcancel && itablecurrent!=-1)
+               if (Upload_Request(upfileurl, filepath, upfilePath + "/" + savefilename) == 1)
                {
                    fjtable.Rows[itablecurrent]["FileName"] = Path.GetFileName(filepath);
                    fjtable.Rows[itablecurrent]["Progress"] = 100;
                    fjtable.Rows[itablecurrent]["Kind"] = "上传完毕"/* "等待上传中..."*/;
+                   PJ_lcfj lcfu = new PJ_lcfj();
+                   lcfu.ID = lcfu.CreateID();
+                   lcfu.Filename = Path.GetFileName(filepath);
+                   lcfu.FileRelativePath = upfilePath + "/" + savefilename;
+                   lcfu.FileSize = Convert.ToInt64(fjtable.Rows[itablecurrent]["FileSize"]);
+                   lcfu.RecordID = recordID;
+                   lcfu.Creattime = DateTime.Now;
+                   MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
                    itablecurrent = -1;
                    upfilelist.Remove(upfilelist[0]);
                    progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
                }
+               else
+               {
+                   MessageBox.Show(upfileErr);
+                }
            }
            isupfile = false;
            return;
        }
-        void downfileFunc()
+        void downfileFunc(int i)
         {
 
-            int i = 0;
+            //int i = 0;
             string savefilename = "";
             string filepath = "";
-            for (i = 0; i < downfilelist.Count; )
+            //for (i = 0; i < downfilelist.Count; )
             {
                 icurrent = i;
 
@@ -373,42 +586,25 @@ namespace Ebada.Scgl.Lcgl
                         break;
                     }
                 }
-                DownFile(filepath, downfileurl + "UpLoadFiles/" + savefilename);
-                downcomEvent.WaitOne();
-                if (!upcancel && itablecurrent != -1)
-                {
-                    fjtable.Rows[itablecurrent]["FileName"] = Path.GetFileName(filepath);
-                    fjtable.Rows[itablecurrent]["Progress"] = 100;
-                    fjtable.Rows[itablecurrent]["Kind"] = "上传完毕"/* "等待上传中..."*/;
-                    itablecurrent = -1;
-                    downfilelist.Remove(downfilelist[0]);
-                    //progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
-                }
+                if (itablecurrent!=-1)
+                DownFile(filepath, downfileurl+ savefilename);
+                //downcomEvent.WaitOne();
+                
             }
-            isdownfile = false;
-            return;
+            if (downfilelist.Count == 0)
+            {
+                isdownfile = false;
+                idowncount = 0;
+                downfileButton.Enabled = true;
+            }
+           // return;
         }
         private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
         {
             if (fjgridView.FocusedRowHandle < 0) return;
             DataRow dr = fjgridView.GetDataRow(fjgridView.FocusedRowHandle);
-            FolderBrowserDialog dlg = new FolderBrowserDialog();
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                dr["FilePath"] = dlg.SelectedPath.ToString() + dr["FileName"].ToString();
-                dr["Kind"] = "等待下载中...";
-                dr["FileName"] = dr["FileName"].ToString() + "(等待下载中...)";
-            }
-            downfilelist.Add(dr["SaveFileName"].ToString());
-
-            if (!isdownfile && downfilelist.Count > 0)
-               {
-                   isdownfile = true;
-                   tipLabelControl.Visible = true;
-                   Thread downThread = new Thread(new ThreadStart(this.downfileFunc));
-                   downThread.Start();
-                   //upfileFunc(1);
-               }
+           
+            System.Diagnostics.Process.Start("explorer.exe",downfileurl+ dr["SaveFileName"].ToString());
         }
      
         private void DownFileControl_Load(object sender, EventArgs e)
@@ -422,7 +618,9 @@ namespace Ebada.Scgl.Lcgl
                 fjtable.Columns.Add("DownBut", typeof(string));
                 fjtable.Columns.Add("Progress", typeof(string));
                 fjtable.Columns.Add("FilePath", typeof(string));
+                fjtable.Columns.Add("SlectFile", typeof(Boolean));
                 fjtable.Columns.Add("Kind", typeof(string));
+                fjtable.Columns.Add("FileSize", typeof(string));
             }
             fjgridControl.DataSource= fjtable;
             upfileurl = Config.LoadConfig(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConstFile.FILENAME)).UpfileUrl;
@@ -433,7 +631,9 @@ namespace Ebada.Scgl.Lcgl
             downcomEvent = new AutoResetEvent(false);
             //upfileurl = "http://localhost/ScglUpFileService/UpFileHandler.ashx";
             int i = upfileurl.LastIndexOf("/");
-            downfileurl= upfileurl.Substring(0, i + 1);
+            downfileurl= upfileurl.Substring(0, i + 1)+"UpFileFolder/";
+            downFileFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "工作流附件\\" + upfilePath)+"\\";
+            SelectorHelper.EnableFilePathExit(downFileFolder);
             iupcount = 0;
             iniColoumn();
             iniData();
@@ -463,6 +663,12 @@ namespace Ebada.Scgl.Lcgl
                 ldw1 = 1000 * 1000;
 
             }
+            else if (lupTotleSize / (1000 * 1000 * 1000) < 1000)
+            {
+                strdw1 = "G";
+                ldw1 = 1000 * 1000*1000;
+
+            }
             if (lupedTotleSize / (1000) < 1000)
             {
                 strdw2 = "K";
@@ -472,6 +678,12 @@ namespace Ebada.Scgl.Lcgl
             {
                 strdw2 = "M";
                 ldw2 = 1000 * 1000;
+
+            }
+            else if (lupedTotleSize / (1000 * 1000*1000) < 1000)
+            {
+                strdw2 = "G";
+                ldw2 = 1000 * 1000*1000;
 
             }
             FileStream fileStreamtemp = new FileStream(dr["FilePath"].ToString(), FileMode.Open, FileAccess.Read);
@@ -486,10 +698,12 @@ namespace Ebada.Scgl.Lcgl
                 
                 
                 lupTotleSize -= fileStreamtemp.Length;
-                if (dr["Kind"].ToString() == "上传中..." || dr["Kind"].ToString() == "上传完毕")
+                if (dr["Kind"].ToString() == "上传完毕")
                  lupedTotleSize -= fileStreamtemp.Length;
                 upfilelist.Remove(dr["SaveFileName"].ToString());
-                progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
+                if (lupTotleSize != 0) progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
+                else
+                    progressBarControlTol.Position = 0;
             }
             else
             {
@@ -515,6 +729,77 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
             
+        }
+
+        private void downfileButton_Click(object sender, EventArgs e)
+        {
+            //FolderBrowserDialog dlg = new FolderBrowserDialog();
+
+            
+            SelectorHelper.EnableFilePathExit(downFileFolder);
+           
+            for (int j = 0; j < fjtable.Rows.Count; j++)
+            {
+                if (fjtable.Rows[j]["SlectFile"].ToString().ToLower() != "true")
+                {
+                    continue;
+                }
+                DataRow dr = fjtable.Rows[j];
+                dr["FilePath"] = downFileFolder +  dr["FileName"].ToString();
+                dr["Kind"] = "等待下载中...";
+                dr["FileName"] = dr["FileName"].ToString() + "(等待下载中...)";
+                downfilelist.Add(dr["SaveFileName"].ToString());
+                //ldownTotleSize += Convert.ToInt64(dr["FileSize"]);
+                idowncount++;
+            }
+            if (!isdownfile && downfilelist.Count > 0)
+            {
+                isdownfile = true;
+                //tipLabelControl.Visible = true;
+                downfileButton.Enabled = false;
+                //Control.CheckForIllegalCrossThreadCalls = false;
+                //Thread downThread = new Thread(new ThreadStart(this.downfileFunc));
+                //downThread.Start();
+                downfileFunc(0);
+            }
+
+          
+        }
+
+        private void selctFileButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.SelectedPath = downFileFolder;
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                downFileFolder = fbd.SelectedPath+"\\";
+            
+            }
+        }
+
+       
+
+        private void openFolderButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", downFileFolder);
+        }
+
+        private void fjgridView_DoubleClick(object sender, EventArgs e)
+        {
+            if (fjgridView.FocusedRowHandle < 0) return;
+            DataRow dr = fjgridView.GetDataRow(fjgridView.FocusedRowHandle);
+            if (File.Exists(downFileFolder+ dr["FileName"].ToString()))
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(downFileFolder + dr["FileName"].ToString());
+                }
+                catch { }
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("打开失败，文件未找到!");
+            }
         }
 
 
