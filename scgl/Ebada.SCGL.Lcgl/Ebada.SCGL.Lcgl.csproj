@@ -86,6 +86,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="自定义流程\SPYJControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\SPYJControl.Designer.cs">
+      <DependentUpon>SPYJControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="自定义流程\DownFileControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -378,6 +384,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="自定义流程\SPYJControl.resx">
+      <DependentUpon>SPYJControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\DownFileControl.resx">
       <DependentUpon>DownFileControl.cs</DependentUpon>
     </EmbeddedResource>

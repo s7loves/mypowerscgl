@@ -21,6 +21,7 @@ using DevExpress.XtraGrid.Views.Base;
 using System.Text.RegularExpressions;
 using DevExpress.XtraTreeList;
 using System.Net;
+using System.Threading;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -41,6 +42,9 @@ namespace Ebada.Scgl.Lcgl
         private Control ctrlNumber = null;
         private string activeSheetName = "";
         private int activeSheetIndex = 1;
+        private DownFileControl filecontrol = null;
+        private SPYJControl hqyjcontrol = null;
+
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -355,8 +359,15 @@ namespace Ebada.Scgl.Lcgl
             }
             InitEvent();
             InitData();
-            
-            DownFileControl filecontrol = new DownFileControl();
+            if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
+            hqyjcontrol.Size = new System.Drawing.Size(450, 200);
+            hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+            currentPosY = currentPosY + hqyjcontrol.Size.Height;
+            hqyjcontrol.RecordID = CurrRecord.ID;
+            dockPanel1.Controls.Add(hqyjcontrol);
+
+
+            if (filecontrol==null) filecontrol = new DownFileControl();
             if(status=="add")
             filecontrol.FormType = "上传";
             else if (status == "edit")
@@ -443,6 +454,18 @@ namespace Ebada.Scgl.Lcgl
 
                     MainHelper.PlatformSqlMap.Create<LP_Record>(currRecord);
                     rowData = null;
+                    if (hqyjcontrol != null)
+                    {
+                        PJ_lcspyj lcyj = new PJ_lcspyj();
+                        lcyj.Charman = MainHelper.User.UserName;
+                        lcyj.ID = PJ_lcspyj.Newid();
+                        lcyj.RecordID = currRecord.ID;
+                        WorkFlowData=RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+                        lcyj.taskID = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
+                        lcyj.Creattime = DateTime.Now;
+                        MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
+                    }
                     //currRecord = newRecord;
                     break;
                 case "edit":
@@ -470,6 +493,18 @@ namespace Ebada.Scgl.Lcgl
                     else
                         MsgBox.ShowTipMessageBox(strmes);
                     strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+                    if (hqyjcontrol != null)
+                    {
+                        PJ_lcspyj lcyj = new PJ_lcspyj();
+                        lcyj.Charman = MainHelper.User.UserName;
+                        lcyj.ID = PJ_lcspyj.Newid();
+                        lcyj.RecordID = currRecord.ID;
+                        lcyj.taskID = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
+                        lcyj.Creattime = DateTime.Now;
+                        MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
+
+                    }
                     if (strmes == "结束节点1")
                     {
                         CurrRecord.Status = "存档";
@@ -1140,6 +1175,21 @@ namespace Ebada.Scgl.Lcgl
             //rowData = null;
             dockPanel1.ControlContainer.Controls.Clear();
             templeList.Clear();
+            try
+            {
+            if (filecontrol != null)
+            {
+                if (filecontrol.upThread.ThreadState == ThreadState.Running)
+                {
+                    
+                        filecontrol.upThread.IsBackground = true;
+                        filecontrol.upThread.Abort();
+                   
+                }
+
+            }
+            }
+            catch { }
         }
     }
 }

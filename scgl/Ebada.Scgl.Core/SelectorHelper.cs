@@ -4,6 +4,7 @@ using System.Text;
 using Ebada.Scgl.Model;
 using DevExpress.XtraEditors;
 using System.Diagnostics;
+using System.IO;
 
 namespace Ebada.Scgl.Core {
     /// <summary>
@@ -11,10 +12,25 @@ namespace Ebada.Scgl.Core {
     /// </summary>
     public class SelectorHelper {
     private static System.Collections.Hashtable htqp;
-        //private static System.Collections.Hashtable htsm;
+    //private static System.Collections.Hashtable htsm;
+    #region 确认输入文件路径的文件夹存在
+    public static void EnableFilePathExit(string fileFullPath)
+    {
+        System.IO.DirectoryInfo Dir = new DirectoryInfo(fileFullPath);
+        if (Directory.Exists(Dir.FullName) == false)//如果不存在就创建file文件夹
+        {
+            Directory.CreateDirectory(Dir.FullName);
+        }
+        DirectoryInfo topDir = Directory.GetParent(Dir.FullName);
 
-        #region 汉字的区位对应表数组
-        /*
+        if (topDir.FullName != Dir.Root.FullName)
+        {
+            EnableFilePathExit(topDir.FullName);
+        }
+    }
+    #endregion
+    #region 汉字的区位对应表数组
+    /*
         private static int[] pyvalue = new int[]{-20319,-20317,-20304,-20295,-20292,-20283,
         -20265,-20257,-20242,-20230,-20051,
         -20036,-20032,-20026, -20002,-19990,

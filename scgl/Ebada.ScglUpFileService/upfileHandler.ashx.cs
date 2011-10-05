@@ -33,24 +33,59 @@ namespace Ebada.ScglUpFileService
         }
         public void ProcessRequest(HttpContext context)
         {
-            string filename = context.Request.QueryString["filename"].ToString();
-            int i = filename.LastIndexOf("/");
+            //string filename = context.Request.QueryString["filename"].ToString();
+            //int i = filename.LastIndexOf("/");
 
-            string filefullpath = "";
-            if(i>-1)
-                filefullpath = context.Server.MapPath("UpFile/" + filename.Substring(0, i + 1)) + filename.Substring(i + 1);
-            else
-                filefullpath = context.Server.MapPath("UpFile/") + filename;
+            //string filefullpath = "";
+            //if(i>-1)
+            //    filefullpath = context.Server.MapPath("UpFile/" + filename.Substring(0, i + 1)) + filename.Substring(i + 1);
+            //else
+            //    filefullpath = context.Server.MapPath("UpFile/") + filename;
 
-            //if (Directory.Exists(context.Server.MapPath("UpLoadFiles/")) == false)//如果不存在就创建file文件夹
+            ////if (Directory.Exists(context.Server.MapPath("UpLoadFiles/")) == false)//如果不存在就创建file文件夹
+            ////{
+            ////    Directory.CreateDirectory(context.Server.MapPath("UpLoadFiles/"));
+            ////}
+
+            //EnablePathExit(filefullpath);
+            //using (FileStream inputStram = File.Create(filefullpath))
             //{
-            //    Directory.CreateDirectory(context.Server.MapPath("UpLoadFiles/"));
+            //    SaveFile(context.Request.InputStream, inputStram);
             //}
-
-            EnablePathExit(filefullpath);
-            using (FileStream inputStram = File.Create(filefullpath))
+            if (context.Request.Files.Count > 0)
             {
-                SaveFile(context.Request.InputStream, inputStram);
+                try
+                {
+                    HttpPostedFile file = context.Request.Files[0];
+                    string filename = context.Request.QueryString["filename"].ToString();
+                    string filefullpath = "";
+                    int i = -1;
+                    i = filename.LastIndexOf("/");
+                    if (i > -1)
+                        filefullpath = context.Server.MapPath("UpFileFolder/" + filename.Substring(0, i + 1)) + filename.Substring(i + 1);
+                    else
+                        filefullpath = context.Server.MapPath("UpFileFolder/") + filename;
+                    EnablePathExit(filefullpath);
+                    if (file != null)
+                    {
+                        file.SaveAs(filefullpath);
+                        context.Response.Write("Success");
+                    }
+                    else
+                    {
+
+                        context.Response.Write("Error: file为空");
+                    }
+                   
+                }
+                catch (Exception ex)
+                {
+                    context.Response.Write("Error:" + ex.Message);
+                }
+            }
+            else
+            {
+                context.Response.Write("Error:服务器没接收到上传的文件信息");
             }
 
         }
