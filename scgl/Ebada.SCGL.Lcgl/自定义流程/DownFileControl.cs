@@ -510,54 +510,60 @@ namespace Ebada.Scgl.Lcgl
            int i = 0;
            string savefilename="";
            string filepath = "";
-           for ( i = 0; i < upfilelist.Count; )
+           try
            {
-               icurrent = i;
-               
-               for (int j= 0; j < fjtable.Rows.Count;j++)
+               for (i = 0; i < upfilelist.Count; )
                {
-                   if (fjtable.Rows[j]["Kind"].ToString() != "等待上传中...")
+                   icurrent = i;
+
+                   for (int j = 0; j < fjtable.Rows.Count; j++)
                    {
-                       continue;
+                       if (fjtable.Rows[j]["Kind"].ToString() != "等待上传中...")
+                       {
+                           continue;
+                       }
+                       if (upfilelist[icurrent] == fjtable.Rows[j]["SaveFileName"].ToString())
+                       {
+                           itablecurrent = j;
+                           fjtable.Rows[itablecurrent]["Kind"] = "上传中...";
+                           savefilename = fjtable.Rows[itablecurrent]["SaveFileName"].ToString();
+                           filepath = fjtable.Rows[itablecurrent]["FilePath"].ToString();
+                           fjtable.Rows[itablecurrent]["FileName"] = Path.GetFileName(filepath);
+                           break;
+                       }
                    }
-                   if (upfilelist[icurrent] == fjtable.Rows[j]["SaveFileName"].ToString())
+                   upcancel = false;
+                   upfileErr = "";
+                   //UpLoadFile(filepath, upfilePath + "/" + savefilename, upfileurl);
+                   //upcomEvent.WaitOne();
+                   //if (!upcancel && itablecurrent!=-1)
+                   if (Upload_Request(upfileurl, filepath, upfilePath + "/" + savefilename) == 1)
                    {
-                       itablecurrent = j;
-                       fjtable.Rows[itablecurrent]["Kind"] = "上传中...";
-                       savefilename = fjtable.Rows[itablecurrent]["SaveFileName"].ToString();
-                       filepath = fjtable.Rows[itablecurrent]["FilePath"].ToString();
                        fjtable.Rows[itablecurrent]["FileName"] = Path.GetFileName(filepath);
-                       break;
+                       fjtable.Rows[itablecurrent]["Progress"] = 100;
+                       fjtable.Rows[itablecurrent]["Kind"] = "上传完毕"/* "等待上传中..."*/;
+                       PJ_lcfj lcfu = new PJ_lcfj();
+                       lcfu.ID = lcfu.CreateID();
+                       lcfu.Filename = Path.GetFileName(filepath);
+                       lcfu.FileRelativePath = upfilePath + "/" + savefilename;
+                       lcfu.FileSize = Convert.ToInt64(fjtable.Rows[itablecurrent]["FileSize"]);
+                       lcfu.RecordID = recordID;
+                       lcfu.Creattime = DateTime.Now;
+                       MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
+                       itablecurrent = -1;
+                       upfilelist.Remove(upfilelist[0]);
+                       progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
+                   }
+                   else
+                   {
+                       MessageBox.Show(upfileErr);
                    }
                }
-               upcancel = false;
-               upfileErr = "";
-               //UpLoadFile(filepath, upfilePath + "/" + savefilename, upfileurl);
-               //upcomEvent.WaitOne();
-               //if (!upcancel && itablecurrent!=-1)
-               if (Upload_Request(upfileurl, filepath, upfilePath + "/" + savefilename) == 1)
-               {
-                   fjtable.Rows[itablecurrent]["FileName"] = Path.GetFileName(filepath);
-                   fjtable.Rows[itablecurrent]["Progress"] = 100;
-                   fjtable.Rows[itablecurrent]["Kind"] = "上传完毕"/* "等待上传中..."*/;
-                   PJ_lcfj lcfu = new PJ_lcfj();
-                   lcfu.ID = lcfu.CreateID();
-                   lcfu.Filename = Path.GetFileName(filepath);
-                   lcfu.FileRelativePath = upfilePath + "/" + savefilename;
-                   lcfu.FileSize = Convert.ToInt64(fjtable.Rows[itablecurrent]["FileSize"]);
-                   lcfu.RecordID = recordID;
-                   lcfu.Creattime = DateTime.Now;
-                   MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
-                   itablecurrent = -1;
-                   upfilelist.Remove(upfilelist[0]);
-                   progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
-               }
-               else
-               {
-                   MessageBox.Show(upfileErr);
-                }
            }
+           catch
+           { }
            isupfile = false;
+
            return;
        }
         void downfileFunc(int i)

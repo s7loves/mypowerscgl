@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-10-4 19:13:09
+生成时间:2011-10-5 21:06:05
 ***********************************************/
 
 using System;
@@ -25,7 +25,8 @@ namespace Ebada.Scgl.Model
         private string _recordid=String.Empty; 
         private string _filename=String.Empty; 
         private long _filesize=0; 
-        private string _filerelativepath=String.Empty;   
+        private string _filerelativepath=String.Empty; 
+        private DateTime _creattime=new DateTime(1900,1,1);   
         #endregion
   
   
@@ -130,6 +131,24 @@ namespace Ebada.Scgl.Model
                 if (_filerelativepath as object == null || !_filerelativepath.Equals(value))
                 {
                     _filerelativepath = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：Creattime
+        /// 属性描述：创建时间
+        /// 字段信息：[Creattime],datetime
+        /// </summary>
+        [DisplayNameAttribute("创建时间")]
+        public DateTime Creattime
+        {
+            get { return _creattime; }
+            set
+            {			
+                if (_creattime as object == null || !_creattime.Equals(value))
+                {
+                    _creattime = value;
                 }
             }			 
         }
