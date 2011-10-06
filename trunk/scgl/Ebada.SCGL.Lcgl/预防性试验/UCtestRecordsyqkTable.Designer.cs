@@ -283,24 +283,24 @@
 
         #endregion
 
-        private DevExpress.XtraBars.BarManager barManager1;
-        private DevExpress.XtraBars.Bar bar1;
-        private DevExpress.XtraBars.Bar bar3;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarButtonItem btAdd;
-        private DevExpress.XtraBars.BarButtonItem btDelete;
-        private DevExpress.XtraBars.BarButtonItem btFind;
-        private DevExpress.XtraBars.BarButtonItem btRefresh;
-        private DevExpress.XtraBars.BarButtonItem btClose;
-        private DevExpress.XtraBars.BarStaticItem bsItem1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraBars.BarSubItem btExport;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
-        private DevExpress.XtraBars.BarButtonItem btView;
+        public DevExpress.XtraBars.BarManager barManager1;
+        public DevExpress.XtraBars.Bar bar1;
+        public DevExpress.XtraBars.Bar bar3;
+        public DevExpress.XtraBars.BarDockControl barDockControlTop;
+        public DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        public DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        public DevExpress.XtraBars.BarDockControl barDockControlRight;
+        public DevExpress.XtraBars.BarButtonItem btAdd;
+        public DevExpress.XtraBars.BarButtonItem btDelete;
+        public DevExpress.XtraBars.BarButtonItem btFind;
+        public DevExpress.XtraBars.BarButtonItem btRefresh;
+        public DevExpress.XtraBars.BarButtonItem btClose;
+        public DevExpress.XtraBars.BarStaticItem bsItem1;
+        public DevExpress.XtraGrid.GridControl gridControl1;
+        public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        public DevExpress.XtraBars.BarSubItem btExport;
+        public DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        public DevExpress.XtraBars.BarButtonItem btView;
         public DevExpress.XtraBars.BarEditItem btGdsList;
         public DevExpress.XtraBars.BarButtonItem btReEdit;
     }

@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using Ebada.Scgl.Model;
 using Ebada.Client.Platform;
+using System.Threading;
+using Ebada.Client;
 
 
 
@@ -77,6 +79,15 @@ namespace Ebada.SCGL.WFlow.Tool
             //tbxPath.Text = (nowTreeNode as WorkFlowTreeNode).MgrUrl;
             cbxStatus.Checked = (nowTreeNode as WorkFlowTreeNode).Status == "1"; 
             this.tbxDescription.Text = (nowTreeNode as WorkFlowTreeNode).Description;
+            //*********控制权限
+            DataTable powerTable = WorkFlowTask.GetTaskPower((nowTreeNode as WorkFlowTreeNode).NodeId, (nowTreeNode as WorkFlowTreeNode).NodeId);
+            string powerStr = "";
+            foreach (DataRow dr in powerTable.Rows)
+            {
+                powerStr = powerStr + dr["PowerName"].ToString() + ",";
+            }
+            cbxFuJian.Checked = powerStr.IndexOf(WorkConst.WorkTask_FuJian) > -1;//附件
+            checkHuiQianYiJian.Checked = powerStr.IndexOf(WorkConst.WorkTask_SPYJ) > -1;//审批意见
         }
     
 
@@ -111,6 +122,24 @@ namespace Ebada.SCGL.WFlow.Tool
                     if (nowTreeNode.NodeType == WorkConst.WORKFLOW_FLOW)//点击的是流程节点
                     {
                         nowTreeNode.Parent.Nodes.Add(tmpNodeInfo);
+                        WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + tmpNodeInfo.Text + "'");
+                        if(wf!=null)
+                        {
+                            MsgBox.ShowWarningMessageBox("流程名 " + tmpNodeInfo.Text + " 已经存在，不能重复");
+                            return;
+                        }
+
+                        //保存控制权限
+                        WorkFlowTask.DeleteAllPower((nowTreeNode as WorkFlowTreeNode).NodeId, (nowTreeNode as WorkFlowTreeNode).NodeId);
+                        if (cbxFuJian.Checked)
+                        {
+                            WorkFlowTask.SetTaskPower(WorkConst.WorkTask_FuJian, tmpNodeInfo.NodeId, tmpNodeInfo.NodeId);
+                            Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        }
+                        if (cbxFuJian.Checked)
+                        {
+                            WorkFlowTask.SetTaskPower(WorkConst.WorkTask_SPYJ, tmpNodeInfo.NodeId, tmpNodeInfo.NodeId);
+                        }
                     }
                
             }
@@ -118,14 +147,24 @@ namespace Ebada.SCGL.WFlow.Tool
             {
 
                 nowTreeNode.Text = tbxWorkflowCaption.Text;
-                (nowTreeNode as WorkFlowTreeNode).MgrUrl = tbxPath.Tag.ToString();
+                if (tbxPath.Tag!=null) (nowTreeNode as WorkFlowTreeNode).MgrUrl = tbxPath.Tag.ToString();
                 nowTreeNode.NodeType = WorkConst.WORKFLOW_FLOW;
                 (nowTreeNode as WorkFlowTreeNode).Description = tbxDescription.Text;
                 if (cbxStatus.Checked) (nowTreeNode as WorkFlowTreeNode).Status = "1";
                 else
                     (nowTreeNode as WorkFlowTreeNode).Status = "0";
-                (nowTreeNode as WorkFlowTreeNode).UpdateWorkflowNode();
-               
+                (nowTreeNode as WorkFlowTreeNode).UpdateWorkflowNode(); 
+                //保存控制权限
+                WorkFlowTask.DeleteAllPower((nowTreeNode as WorkFlowTreeNode).NodeId, (nowTreeNode as WorkFlowTreeNode).NodeId);
+                if (cbxFuJian.Checked)
+                {
+                   WorkFlowTask.SetTaskPower(WorkConst.WorkTask_FuJian, (nowTreeNode as WorkFlowTreeNode).NodeId, (nowTreeNode as WorkFlowTreeNode).NodeId);
+                   Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                }
+                if (cbxFuJian.Checked)
+                {
+                    WorkFlowTask.SetTaskPower(WorkConst.WorkTask_SPYJ, (nowTreeNode as WorkFlowTreeNode).NodeId, (nowTreeNode as WorkFlowTreeNode).NodeId);
+                }
                
             }
             this.Close();

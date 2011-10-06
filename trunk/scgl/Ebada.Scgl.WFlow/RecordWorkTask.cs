@@ -23,8 +23,58 @@ namespace Ebada.Scgl.WFlow
     }
     public class RecordWorkTask
     {
+        /// <summary>
+        /// 获得当前流程是否有附件的权限
+        /// </summary>
+        /// <param name="kind">流程名称</param>
+        /// <returns>bool true有权限 false 无权限</returns>
+
+        public static bool HaveRunFuJianRole(string kind)
+        {
+
+            WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + kind + "'");
+            if (wf == null) return false;
 
 
+            return HaveRunPowerRole(WorkConst.WorkTask_FuJian,wf.WorkFlowId,wf.WorkFlowId);
+
+
+        }
+        /// <summary>
+        /// 获得当前流程是否有审批意见的权限
+        /// </summary>
+        /// <param name="kind">流程名称</param>
+        /// <returns>bool true有权限 false 无权限</returns>
+
+        public static bool HaveRunSPYJRole(string kind)
+        {
+
+            WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + kind + "'");
+            if (wf == null) return false;
+
+
+            return HaveRunPowerRole(WorkConst.WorkTask_SPYJ, wf.WorkFlowId, wf.WorkFlowId);
+
+
+        }
+        /// <summary>
+        /// 获得当前流程是否有输入名称的全新
+        /// </summary>
+        /// <param name="TaskPower">控制权限名称</param>
+        /// <param name="WorkFlowId">WorkFlowId</param>
+        /// <param name="WorkTaskId">WorkTaskId</param>
+        /// <returns>bool true有权限 false 无权限</returns>
+
+        public static bool HaveRunPowerRole(string TaskPower ,string WorkFlowId, string WorkTaskId)
+        {
+
+            object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where PowerName='" + TaskPower + "' and WorkFlowId='" + WorkFlowId + "' and WorkTaskId='" + WorkTaskId+"'");
+            if (obj == null) return false;
+            
+            return true;
+
+
+        }
         /// <summary>
         /// 获得当前用户是否可以填写工作票的权限
         /// </summary>

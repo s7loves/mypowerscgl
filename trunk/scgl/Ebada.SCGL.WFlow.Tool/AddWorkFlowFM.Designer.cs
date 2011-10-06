@@ -40,6 +40,8 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tbxDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.checkHuiQianYiJian = new System.Windows.Forms.CheckBox();
+            this.cbxFuJian = new System.Windows.Forms.CheckBox();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.grpBase.SuspendLayout();
@@ -101,6 +103,8 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // grpBase
             // 
+            this.grpBase.Controls.Add(this.checkHuiQianYiJian);
+            this.grpBase.Controls.Add(this.cbxFuJian);
             this.grpBase.Controls.Add(this.label2);
             this.grpBase.Controls.Add(this.tbxPath);
             this.grpBase.Controls.Add(this.btnBussWebPage);
@@ -112,7 +116,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.grpBase.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpBase.Location = new System.Drawing.Point(0, 0);
             this.grpBase.Name = "grpBase";
-            this.grpBase.Size = new System.Drawing.Size(426, 133);
+            this.grpBase.Size = new System.Drawing.Size(426, 140);
             this.grpBase.TabIndex = 14;
             this.grpBase.TabStop = false;
             this.grpBase.Text = "基本信息";
@@ -153,7 +157,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // tbxDescription
             // 
-            this.tbxDescription.Location = new System.Drawing.Point(23, 160);
+            this.tbxDescription.Location = new System.Drawing.Point(23, 171);
             this.tbxDescription.Multiline = true;
             this.tbxDescription.Name = "tbxDescription";
             this.tbxDescription.Size = new System.Drawing.Size(343, 64);
@@ -162,7 +166,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 136);
+            this.label1.Location = new System.Drawing.Point(21, 153);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 12);
             this.label1.TabIndex = 16;
@@ -171,6 +175,26 @@ namespace Ebada.SCGL.WFlow.Tool
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // checkHuiQianYiJian
+            // 
+            this.checkHuiQianYiJian.AutoSize = true;
+            this.checkHuiQianYiJian.Location = new System.Drawing.Point(82, 111);
+            this.checkHuiQianYiJian.Name = "checkHuiQianYiJian";
+            this.checkHuiQianYiJian.Size = new System.Drawing.Size(96, 16);
+            this.checkHuiQianYiJian.TabIndex = 129;
+            this.checkHuiQianYiJian.Text = "添加会签意见";
+            this.checkHuiQianYiJian.UseVisualStyleBackColor = true;
+            // 
+            // cbxFuJian
+            // 
+            this.cbxFuJian.AutoSize = true;
+            this.cbxFuJian.Location = new System.Drawing.Point(195, 110);
+            this.cbxFuJian.Name = "cbxFuJian";
+            this.cbxFuJian.Size = new System.Drawing.Size(96, 16);
+            this.cbxFuJian.TabIndex = 128;
+            this.cbxFuJian.Text = "允许添加附件";
+            this.cbxFuJian.UseVisualStyleBackColor = true;
             // 
             // fmAddWorkFlow
             // 
@@ -199,5 +223,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private System.Windows.Forms.TextBox tbxPath;
         private System.Windows.Forms.Button btnBussWebPage;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.CheckBox checkHuiQianYiJian;
+        private System.Windows.Forms.CheckBox cbxFuJian;
     }
 }

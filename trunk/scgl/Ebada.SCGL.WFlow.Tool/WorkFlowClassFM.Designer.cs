@@ -79,7 +79,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.grpBase.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpBase.Location = new System.Drawing.Point(0, 0);
             this.grpBase.Name = "grpBase";
-            this.grpBase.Size = new System.Drawing.Size(426, 133);
+            this.grpBase.Size = new System.Drawing.Size(426, 127);
             this.grpBase.TabIndex = 15;
             this.grpBase.TabStop = false;
             this.grpBase.Text = "基本信息";
@@ -87,25 +87,28 @@ namespace Ebada.SCGL.WFlow.Tool
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 102);
+            this.label5.Location = new System.Drawing.Point(21, 15);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 125;
             this.label5.Text = "选择模块:";
+            this.label5.Visible = false;
             // 
             // tbxPath
             // 
-            this.tbxPath.Location = new System.Drawing.Point(78, 99);
+            this.tbxPath.Location = new System.Drawing.Point(80, 12);
             this.tbxPath.Name = "tbxPath";
             this.tbxPath.Size = new System.Drawing.Size(242, 21);
             this.tbxPath.TabIndex = 124;
+            this.tbxPath.Visible = false;
             // 
             // btnBussWebPage
             // 
-            this.btnBussWebPage.Location = new System.Drawing.Point(326, 99);
+            this.btnBussWebPage.Location = new System.Drawing.Point(328, 12);
             this.btnBussWebPage.Name = "btnBussWebPage";
             this.btnBussWebPage.Size = new System.Drawing.Size(41, 23);
             this.btnBussWebPage.TabIndex = 123;
+            this.btnBussWebPage.Visible = false;
             this.btnBussWebPage.Click += new System.EventHandler(this.btnBussWebPage_Click);
             // 
             // label2
@@ -164,7 +167,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox1.Controls.Add(this.tbxDescription);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 133);
+            this.groupBox1.Location = new System.Drawing.Point(0, 127);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(426, 104);
             this.groupBox1.TabIndex = 16;
