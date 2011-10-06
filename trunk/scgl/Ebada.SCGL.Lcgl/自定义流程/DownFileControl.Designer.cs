@@ -109,7 +109,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.progressBarControlTol);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(557, 270);
-            this.splitContainerControl1.SplitterPosition = 53;
+            this.splitContainerControl1.SplitterPosition = 63;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -125,9 +125,8 @@
             this.repositoryItemPictureEdit1,
             this.repositoryItemHyperLinkEdit2,
             this.repositoryItemCheckEdit1});
-            this.fjgridControl.Size = new System.Drawing.Size(557, 211);
+            this.fjgridControl.Size = new System.Drawing.Size(557, 201);
             this.fjgridControl.TabIndex = 0;
-            
             this.fjgridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.fjgridView});
             // 
@@ -268,7 +267,7 @@
             // openFolderButton
             // 
             this.openFolderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.openFolderButton.Location = new System.Drawing.Point(421, 27);
+            this.openFolderButton.Location = new System.Drawing.Point(421, 37);
             this.openFolderButton.Name = "openFolderButton";
             this.openFolderButton.Size = new System.Drawing.Size(69, 23);
             this.openFolderButton.TabIndex = 2;
@@ -279,7 +278,7 @@
             // downfileButton
             // 
             this.downfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.downfileButton.Location = new System.Drawing.Point(496, 27);
+            this.downfileButton.Location = new System.Drawing.Point(496, 37);
             this.downfileButton.Name = "downfileButton";
             this.downfileButton.Size = new System.Drawing.Size(55, 23);
             this.downfileButton.TabIndex = 2;
@@ -290,7 +289,7 @@
             // upfileButton
             // 
             this.upfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.upfileButton.Location = new System.Drawing.Point(496, 27);
+            this.upfileButton.Location = new System.Drawing.Point(496, 37);
             this.upfileButton.Name = "upfileButton";
             this.upfileButton.Size = new System.Drawing.Size(55, 23);
             this.upfileButton.TabIndex = 2;
@@ -300,7 +299,7 @@
             // selctFileButton
             // 
             this.selctFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.selctFileButton.Location = new System.Drawing.Point(360, 27);
+            this.selctFileButton.Location = new System.Drawing.Point(360, 37);
             this.selctFileButton.Name = "selctFileButton";
             this.selctFileButton.Size = new System.Drawing.Size(55, 23);
             this.selctFileButton.TabIndex = 2;
@@ -311,7 +310,7 @@
             // labelControl2
             // 
             this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelControl2.Location = new System.Drawing.Point(5, 6);
+            this.labelControl2.Location = new System.Drawing.Point(5, 4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(36, 14);
             this.labelControl2.TabIndex = 1;
@@ -319,9 +318,8 @@
             // 
             // tipLabelControl
             // 
-            this.tipLabelControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.tipLabelControl.Location = new System.Drawing.Point(43, 27);
+            this.tipLabelControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tipLabelControl.Location = new System.Drawing.Point(43, 21);
             this.tipLabelControl.Name = "tipLabelControl";
             this.tipLabelControl.Size = new System.Drawing.Size(30, 14);
             this.tipLabelControl.TabIndex = 1;
@@ -333,7 +331,7 @@
             this.progressBarControlTol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBarControlTol.EditValue = "0";
-            this.progressBarControlTol.Location = new System.Drawing.Point(43, 5);
+            this.progressBarControlTol.Location = new System.Drawing.Point(43, 3);
             this.progressBarControlTol.Name = "progressBarControlTol";
             this.progressBarControlTol.Properties.ShowTitle = true;
             this.progressBarControlTol.Size = new System.Drawing.Size(508, 16);

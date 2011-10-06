@@ -9,8 +9,8 @@
         <result property="RecordID" column="RecordID" />
         <result property="taskID" column="taskID" />
         <result property="Spyj" column="Spyj" />
-        <result property="Creattime" column="Creattime" />
         <result property="Charman" column="Charman" />
+        <result property="Creattime" column="Creattime" />
         <result property="Reserve1" column="Reserve1" />
       </resultMap>
   </resultMaps>
@@ -22,8 +22,8 @@
          [RecordID],
          [taskID],
          [Spyj],
-         [Creattime],
          [Charman],
+         [Creattime],
          [Reserve1]
           FROM PJ_lcspyj
           $value$
@@ -35,8 +35,8 @@
          [RecordID],
          [taskID],
          [Spyj],
-         [Creattime],
          [Charman],
+         [Creattime],
          [Reserve1]
           FROM PJ_lcspyj
      <dynamic prepend="WHERE">
@@ -44,8 +44,8 @@
        <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
        <isNotNull prepend="AND" property="taskID">[taskID]='$taskID$'</isNotNull>
        <isNotNull prepend="AND" property="Spyj">[Spyj]='$Spyj$'</isNotNull>
-       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
        <isNotNull prepend="AND" property="Charman">[Charman]='$Charman$'</isNotNull>
+       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
        <isNotNull prepend="AND" property="Reserve1">[Reserve1]='$Reserve1$'</isNotNull>
      </dynamic>
    </select>
@@ -55,8 +55,8 @@
          [RecordID],
          [taskID],
          [Spyj],
-         [Creattime],
          [Charman],
+         [Creattime],
          [Reserve1]
          FROM PJ_lcspyj
          WHERE 
@@ -90,8 +90,8 @@
              [RecordID]=#RecordID#,
              [taskID]=#taskID#,
              [Spyj]=#Spyj#,
-             [Creattime]=#Creattime#,
              [Charman]=#Charman#,
+             [Creattime]=#Creattime#,
              [Reserve1]=#Reserve1#
             WHERE 
               ID = #ID#
@@ -105,8 +105,8 @@
          [RecordID],
          [taskID],
          [Spyj],
-         [Creattime],
          [Charman],
+         [Creattime],
          [Reserve1]
          )
        VALUES
@@ -115,8 +115,8 @@
          #RecordID#,
          #taskID#,
          #Spyj#,
-         #Creattime#,
          #Charman#,
+         #Creattime#,
          #Reserve1#
          )
 
@@ -130,8 +130,8 @@
        <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
        <isNotNull prepend="AND" property="taskID">[taskID]='$taskID$'</isNotNull>
        <isNotNull prepend="AND" property="Spyj">[Spyj]='$Spyj$'</isNotNull>
-       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
        <isNotNull prepend="AND" property="Charman">[Charman]='$Charman$'</isNotNull>
+       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
        <isNotNull prepend="AND" property="Reserve1">[Reserve1]='$Reserve1$'</isNotNull>
      </dynamic>
 
