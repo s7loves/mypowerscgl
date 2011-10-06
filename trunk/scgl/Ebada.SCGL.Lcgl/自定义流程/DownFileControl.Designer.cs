@@ -127,7 +127,7 @@
             this.repositoryItemCheckEdit1});
             this.fjgridControl.Size = new System.Drawing.Size(557, 211);
             this.fjgridControl.TabIndex = 0;
-            this.toolTip1.SetToolTip(this.fjgridControl, "双击可以打开文件");
+            
             this.fjgridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.fjgridView});
             // 

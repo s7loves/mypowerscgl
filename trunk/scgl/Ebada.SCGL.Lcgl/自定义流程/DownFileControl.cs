@@ -48,6 +48,12 @@ namespace Ebada.Scgl.Lcgl
         private static AutoResetEvent downcomEvent;
         private string downFileFolder = "";
         public Thread upThread=null;
+        public WebClient webClient=null;
+        public DataTable FJtable
+        {
+            get { return fjtable; }
+           
+        }
         public string RecordID
         {
             get { return recordID; }
@@ -71,6 +77,22 @@ namespace Ebada.Scgl.Lcgl
             get { return formtype; }
             set { formtype = value;
                 
+            }
+        }
+        public bool Isupfile
+        {
+            get { return isupfile; }
+            set { isupfile = value;
+                
+            }
+        }
+        public bool Isdownfile
+        {
+            get { return isdownfile; }
+            set
+            {
+                isdownfile = value;
+
             }
         }
         /// <summary>
@@ -103,7 +125,7 @@ namespace Ebada.Scgl.Lcgl
         {
             DirectoryInfo di = Directory.GetParent(fileNameFullPath);
             if (!di.Exists) di.Create();
-            WebClient webClient = new WebClient();  //再次new 避免WebClient不能I/O并发   
+            webClient = new WebClient();  //再次new 避免WebClient不能I/O并发   
             webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
             webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
 
@@ -332,16 +354,15 @@ namespace Ebada.Scgl.Lcgl
                 ldw1 = 1000 * 1000*1000;
 
             }
+            //每次上传4k
+            int bufferLength = 4096;
+            long offset = 0;
             try
             {
-                //progressBar.Maximum = int.MaxValue;
-                //progressBar.Minimum = 0;
-                //progressBar.Value = 0;
-                //每次上传4k
-                int bufferLength = 4096;
+               
                 byte[] buffer = new byte[bufferLength];
                 //已上传的字节数
-                long offset = 0;
+               
                 //开始上传时间
                 DateTime startTime = DateTime.Now;
                 int size =0;
@@ -378,13 +399,13 @@ namespace Ebada.Scgl.Lcgl
 
                     }
 
-                    tipLabelControl.Text = String.Format("平均速度：{4} KB/秒已上传 : {0}{1}，总文件大小{2}{3}", Math.Round(lupedTotleSize / (ldw2 + 0.0), 1), strdw2, Math.Round(lupTotleSize / (ldw1 + 0.0), 1), strdw1, (offset / 1024 / second).ToString("0.00"));
+                    tipLabelControl.Text = String.Format("速度:{4} KB/秒 已上传 : {0}{1}，总文件大小{2}{3}", Math.Round(lupedTotleSize / (ldw2 + 0.0), 1), strdw2, Math.Round(lupTotleSize / (ldw1 + 0.0), 1), strdw1, (offset / 1024 / second).ToString("0.00"));
                     if (lupTotleSize != 0) progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
                     else progressBarControlTol.Position = 0;
                     lupedTotleSize += size;
 
 
-                    fjtable.Rows[itablecurrent]["Progress"] = (int)((100 * offset )/ length);
+                    if (itablecurrent != -1) fjtable.Rows[itablecurrent]["Progress"] = (int)((100 * offset) / length);
                    
                    
                 }
@@ -418,6 +439,7 @@ namespace Ebada.Scgl.Lcgl
             }
             catch(Exception ex)
             {
+                lupedTotleSize -= offset;
                 returnValue = 0;
                 upfileErr = ex.Message;
             }
@@ -450,7 +472,7 @@ namespace Ebada.Scgl.Lcgl
                    
                    dr["FileName"] = System.IO.Path.GetFileName(strFileName) + "(等待上传中...)";
                    fileStreamtemp = new FileStream(strFileName, FileMode.Open, FileAccess.Read);
-                   if (fileStreamtemp.Length >  1000 * 1000 * 55)
+                   if (fileStreamtemp.Length >  1000 * 1000 * 255)
                    {
                        if (strerr == "")
                            strerr = System.IO.Path.GetFileName(strFileName) + " ";// +"";
@@ -542,14 +564,7 @@ namespace Ebada.Scgl.Lcgl
                        fjtable.Rows[itablecurrent]["FileName"] = Path.GetFileName(filepath);
                        fjtable.Rows[itablecurrent]["Progress"] = 100;
                        fjtable.Rows[itablecurrent]["Kind"] = "上传完毕"/* "等待上传中..."*/;
-                       PJ_lcfj lcfu = new PJ_lcfj();
-                       lcfu.ID = lcfu.CreateID();
-                       lcfu.Filename = Path.GetFileName(filepath);
-                       lcfu.FileRelativePath = upfilePath + "/" + savefilename;
-                       lcfu.FileSize = Convert.ToInt64(fjtable.Rows[itablecurrent]["FileSize"]);
-                       lcfu.RecordID = recordID;
-                       lcfu.Creattime = DateTime.Now;
-                       MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
+                       
                        itablecurrent = -1;
                        upfilelist.Remove(upfilelist[0]);
                        progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
@@ -629,6 +644,11 @@ namespace Ebada.Scgl.Lcgl
                 fjtable.Columns.Add("FileSize", typeof(string));
             }
             fjgridControl.DataSource= fjtable;
+            if (formtype == "下载")
+            {
+                this.toolTip1.SetToolTip(this.fjgridControl, "双击可以打开文件");
+            
+            }
             upfileurl = Config.LoadConfig(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConstFile.FILENAME)).UpfileUrl;
             DevExpress.Data.CurrencyDataController.DisableThreadingProblemsDetection = true;
             upfilelist = new List<string>();
@@ -793,6 +813,7 @@ namespace Ebada.Scgl.Lcgl
         private void fjgridView_DoubleClick(object sender, EventArgs e)
         {
             if (fjgridView.FocusedRowHandle < 0) return;
+            if (formtype != "下载") return;
             DataRow dr = fjgridView.GetDataRow(fjgridView.FocusedRowHandle);
             if (File.Exists(downFileFolder+ dr["FileName"].ToString()))
             {
