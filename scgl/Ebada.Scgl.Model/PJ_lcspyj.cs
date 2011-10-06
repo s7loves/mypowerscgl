@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-10-5 21:02:28
+生成时间:2011-10-6 10:57:48
 ***********************************************/
 
 using System;
@@ -25,8 +25,8 @@ namespace Ebada.Scgl.Model
         private string _recordid=String.Empty; 
         private string _taskid=String.Empty; 
         private string _spyj=String.Empty; 
-        private DateTime _creattime=new DateTime(1900,1,1); 
         private string _charman=String.Empty; 
+        private DateTime _creattime=new DateTime(1900,1,1); 
         private string _reserve1=String.Empty;   
         #endregion
   
@@ -78,10 +78,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：taskID
-        /// 属性描述：填写审批意见的流程节点ID
+        /// 属性描述：填写审批意见的流程节点实例ID
         /// 字段信息：[taskID],nvarchar
         /// </summary>
-        [DisplayNameAttribute("填写审批意见的流程节点ID")]
+        [DisplayNameAttribute("填写审批意见的流程节点实例ID")]
         public string taskID
         {
             get { return _taskid; }
@@ -89,7 +89,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[填写审批意见的流程节点ID]长度不能大于50!");
+                throw new Exception("[填写审批意见的流程节点实例ID]长度不能大于50!");
                 if (_taskid as object == null || !_taskid.Equals(value))
                 {
                     _taskid = value;
@@ -119,6 +119,27 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
+        /// 属性名称：Charman
+        /// 属性描述：填写人
+        /// 字段信息：[Charman],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("填写人")]
+        public string Charman
+        {
+            get { return _charman; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[填写人]长度不能大于50!");
+                if (_charman as object == null || !_charman.Equals(value))
+                {
+                    _charman = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
         /// 属性名称：Creattime
         /// 属性描述：审批时间
         /// 字段信息：[Creattime],datetime
@@ -132,27 +153,6 @@ namespace Ebada.Scgl.Model
                 if (_creattime as object == null || !_creattime.Equals(value))
                 {
                     _creattime = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：Charman
-        /// 属性描述：
-        /// 字段信息：[Charman],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("")]
-        public string Charman
-        {
-            get { return _charman; }
-            set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
-                if (_charman as object == null || !_charman.Equals(value))
-                {
-                    _charman = value;
                 }
             }			 
         }

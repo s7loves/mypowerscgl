@@ -490,10 +490,11 @@ namespace Ebada.Scgl.Lcgl
                              PJ_lcfj lcfu = new PJ_lcfj();
                              lcfu.ID = lcfu.CreateID();
                              lcfu.Filename = Path.GetFileName(filecontrol.FJtable.Rows[i]["FilePath"].ToString());
-                             lcfu.FileRelativePath = filecontrol.UpfilePath + "/" + filecontrol.FJtable.Rows[i]["SaveFileName"].ToString();
+                             lcfu.FileRelativePath =  filecontrol.FJtable.Rows[i]["SaveFileName"].ToString();
                              lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
                              lcfu.RecordID = currRecord.ID;
                              lcfu.Creattime = DateTime.Now;
+                             Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
                              MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
                          }
                     
@@ -1218,7 +1219,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmLP_FormClosed(object sender, FormClosedEventArgs e)
         {
-            base.Close();
+            //base.Close();
             currRecord = null;
             //rowData = null;
             dockPanel1.ControlContainer.Controls.Clear();

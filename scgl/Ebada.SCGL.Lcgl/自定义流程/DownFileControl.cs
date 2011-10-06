@@ -47,6 +47,7 @@ namespace Ebada.Scgl.Lcgl
         private static AutoResetEvent upcomEvent;
         private static AutoResetEvent downcomEvent;
         private string downFileFolder = "";
+        private string upfileRoot = "UpFileFolder/";//上传文件根目录
         public Thread upThread=null;
         public WebClient webClient=null;
         public DataTable FJtable
@@ -398,8 +399,11 @@ namespace Ebada.Scgl.Lcgl
                         ldw2 = 1000 * 1000 * 1000;
 
                     }
+                    if ((offset / 1024 / second)<1000)
+                    tipLabelControl.Text = String.Format("速度:{4} K/秒 已上传 : {0}{1}，总文件大小{2}{3}", Math.Round(lupedTotleSize / (ldw2 + 0.0), 1), strdw2, Math.Round(lupTotleSize / (ldw1 + 0.0), 1), strdw1, (offset / 1024 / second).ToString("0.00"));
+                    else
+                        tipLabelControl.Text = String.Format("速度:{4} M/秒 已上传 : {0}{1}，总文件大小{2}{3}", Math.Round(lupedTotleSize / (ldw2 + 0.0), 1), strdw2, Math.Round(lupTotleSize / (ldw1 + 0.0), 1), strdw1, (offset /( 1024*1024 )/ second).ToString("0.00"));
 
-                    tipLabelControl.Text = String.Format("速度:{4} KB/秒 已上传 : {0}{1}，总文件大小{2}{3}", Math.Round(lupedTotleSize / (ldw2 + 0.0), 1), strdw2, Math.Round(lupTotleSize / (ldw1 + 0.0), 1), strdw1, (offset / 1024 / second).ToString("0.00"));
                     if (lupTotleSize != 0) progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
                     else progressBarControlTol.Position = 0;
                     lupedTotleSize += size;
@@ -472,7 +476,7 @@ namespace Ebada.Scgl.Lcgl
                    
                    dr["FileName"] = System.IO.Path.GetFileName(strFileName) + "(等待上传中...)";
                    fileStreamtemp = new FileStream(strFileName, FileMode.Open, FileAccess.Read);
-                   if (fileStreamtemp.Length >  1000 * 1000 * 255)
+                   if (fileStreamtemp.Length >  1000 * 1000 * 55)
                    {
                        if (strerr == "")
                            strerr = System.IO.Path.GetFileName(strFileName) + " ";// +"";
@@ -494,7 +498,7 @@ namespace Ebada.Scgl.Lcgl
                    dr["Kind"] = "等待上传中...";
                    //savefilename = DateTime.Now.ToString("yyyyMMddHHmmssffffff") + "-" + Path.GetFileName(strFileName);
                    string strtime =(string) ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select replace(replace(replace(replace(CONVERT(varchar, getdate(), 121 ),'-',''),' ',''),':',''),'.','')");
-                   savefilename = strtime + "-" + Path.GetFileName(strFileName);
+                   savefilename = upfileRoot + upfilePath+"/" + strtime + "-" + Path.GetFileName(strFileName);
                    dr["SaveFileName"] = savefilename;
                    dr["FileSize"] = fileStreamtemp.Length;
                    fjtable.Rows.Add(dr);
@@ -559,7 +563,7 @@ namespace Ebada.Scgl.Lcgl
                    //UpLoadFile(filepath, upfilePath + "/" + savefilename, upfileurl);
                    //upcomEvent.WaitOne();
                    //if (!upcancel && itablecurrent!=-1)
-                   if (Upload_Request(upfileurl, filepath, upfilePath + "/" + savefilename) == 1)
+                   if (Upload_Request(upfileurl, filepath,   savefilename) == 1)
                    {
                        fjtable.Rows[itablecurrent]["FileName"] = Path.GetFileName(filepath);
                        fjtable.Rows[itablecurrent]["Progress"] = 100;
@@ -657,7 +661,7 @@ namespace Ebada.Scgl.Lcgl
             downcomEvent = new AutoResetEvent(false);
             //upfileurl = "http://localhost/ScglUpFileService/UpFileHandler.ashx";
             int i = upfileurl.LastIndexOf("/");
-            downfileurl= upfileurl.Substring(0, i + 1)+"UpFileFolder/";
+            downfileurl= upfileurl.Substring(0, i + 1);
             downFileFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "工作流附件\\" + upfilePath)+"\\";
             SelectorHelper.EnableFilePathExit(downFileFolder);
             iupcount = 0;

@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-10-5 21:06:05
+生成时间:2011-10-6 10:57:47
 ***********************************************/
 
 using System;
@@ -56,10 +56,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：RecordID
-        /// 属性描述：
+        /// 属性描述：对应记录ID
         /// 字段信息：[RecordID],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("对应记录ID")]
         public string RecordID
         {
             get { return _recordid; }
@@ -67,7 +67,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[对应记录ID]长度不能大于50!");
                 if (_recordid as object == null || !_recordid.Equals(value))
                 {
                     _recordid = value;
@@ -77,10 +77,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：Filename
-        /// 属性描述：
+        /// 属性描述：文件名
         /// 字段信息：[Filename],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("文件名")]
         public string Filename
         {
             get { return _filename; }
@@ -88,7 +88,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 250)
-                throw new Exception("[]长度不能大于250!");
+                throw new Exception("[文件名]长度不能大于250!");
                 if (_filename as object == null || !_filename.Equals(value))
                 {
                     _filename = value;
@@ -98,10 +98,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：FileSize
-        /// 属性描述：
+        /// 属性描述：文件大小
         /// 字段信息：[FileSize],bigint
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("文件大小")]
         public long FileSize
         {
             get { return _filesize; }
@@ -116,10 +116,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：FileRelativePath
-        /// 属性描述：
+        /// 属性描述：文件服务器相对路径
         /// 字段信息：[FileRelativePath],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("文件服务器相对路径")]
         public string FileRelativePath
         {
             get { return _filerelativepath; }
@@ -127,7 +127,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 250)
-                throw new Exception("[]长度不能大于250!");
+                throw new Exception("[文件服务器相对路径]长度不能大于250!");
                 if (_filerelativepath as object == null || !_filerelativepath.Equals(value))
                 {
                     _filerelativepath = value;
