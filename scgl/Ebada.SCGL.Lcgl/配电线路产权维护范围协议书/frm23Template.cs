@@ -85,7 +85,7 @@ namespace Ebada.Scgl.Lcgl
                     //////dsoExcelControl1.AxFramerControl.Dispose();
                     //////return;
 
-                    if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.Yes)
+                    if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
                     {
                         //dsoExcelControl1.AxFramerControl.Dispose();
                         //dsoExcelControl1.Dispose();

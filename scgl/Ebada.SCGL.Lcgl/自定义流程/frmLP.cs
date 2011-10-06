@@ -360,7 +360,7 @@ namespace Ebada.Scgl.Lcgl
             InitEvent();
             InitData();
             if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
-            hqyjcontrol.Size = new System.Drawing.Size(450, 200);
+            hqyjcontrol.Size = new System.Drawing.Size(400, 200);
             hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
             currentPosY = currentPosY + hqyjcontrol.Size.Height;
             hqyjcontrol.RecordID = CurrRecord.ID;
@@ -374,7 +374,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 filecontrol.FormType = "下载";
             }
-            filecontrol.Size = new System.Drawing.Size(450, 300);
+            filecontrol.Size = new System.Drawing.Size(400, 300);
             filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
             currentPosY = currentPosY + filecontrol.Size.Height;
             filecontrol.UpfilePath = parentTemple.CellName;
@@ -405,6 +405,22 @@ namespace Ebada.Scgl.Lcgl
             wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
             activeSheetIndex = sheet.Index;
+            if (filecontrol != null)
+            {
+                if (filecontrol.Isupfile)
+                {
+                    MsgBox.ShowTipMessageBox("请稍后，正在上传文件");
+                    return;
+                } 
+                if (filecontrol.Isdownfile)
+                {
+                    if (MsgBox.ShowAskMessageBox("正在下载文件，确认提交?") != DialogResult.OK)
+                    {
+                        return;
+                    }
+                   
+                }
+            }
             for (int i = 1; i <= wb.Application.Sheets.Count; i++)
             {
                 if (i != activeSheetIndex)
@@ -466,6 +482,22 @@ namespace Ebada.Scgl.Lcgl
                         lcyj.Creattime = DateTime.Now;
                         MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
                     }
+                    if (filecontrol != null)
+                    {
+                        for (int i = 0; i < filecontrol.FJtable.Rows.Count; i++)
+                        {
+
+                             PJ_lcfj lcfu = new PJ_lcfj();
+                             lcfu.ID = lcfu.CreateID();
+                             lcfu.Filename = Path.GetFileName(filecontrol.FJtable.Rows[i]["FilePath"].ToString());
+                             lcfu.FileRelativePath = filecontrol.UpfilePath + "/" + filecontrol.FJtable.Rows[i]["SaveFileName"].ToString();
+                             lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
+                             lcfu.RecordID = currRecord.ID;
+                             lcfu.Creattime = DateTime.Now;
+                             MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
+                         }
+                    
+                    }
                     //currRecord = newRecord;
                     break;
                 case "edit":
@@ -503,6 +535,22 @@ namespace Ebada.Scgl.Lcgl
                         lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
                         lcyj.Creattime = DateTime.Now;
                         MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
+
+                    }
+                    if (filecontrol != null)
+                    {
+                        for (int i = 0; i < filecontrol.FJtable.Rows.Count; i++)
+                        {
+
+                            PJ_lcfj lcfu = new PJ_lcfj();
+                            lcfu.ID = lcfu.CreateID();
+                            lcfu.Filename = Path.GetFileName(filecontrol.FJtable.Rows[i]["FilePath"].ToString());
+                            lcfu.FileRelativePath = filecontrol.UpfilePath + "/" + filecontrol.FJtable.Rows[i]["SaveFileName"].ToString();
+                            lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
+                            lcfu.RecordID = currRecord.ID;
+                            lcfu.Creattime = DateTime.Now;
+                            MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
+                        }
 
                     }
                     if (strmes == "结束节点1")
@@ -1177,19 +1225,48 @@ namespace Ebada.Scgl.Lcgl
             templeList.Clear();
             try
             {
-            if (filecontrol != null)
-            {
-                if (filecontrol.upThread.ThreadState == ThreadState.Running)
-                {
-                    
-                        filecontrol.upThread.IsBackground = true;
-                        filecontrol.upThread.Abort();
-                   
-                }
+                    if (filecontrol != null)
+                    {
+                        
+                        if (filecontrol.upThread.ThreadState == ThreadState.Running)
+                        {
+                            
+                                filecontrol.upThread.IsBackground = true;
+                                filecontrol.upThread.Abort();
+                           
+                        }
+                        if (filecontrol.Isdownfile)
+                        {
 
-            }
+                            if (filecontrol.webClient!=null) filecontrol.webClient.CancelAsync();
+
+                        }
+                    }
             }
             catch { }
+        }
+
+        private void frmLP_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (filecontrol != null)
+                {
+                    if (filecontrol.Isupfile)
+                    {
+                        if (MsgBox.ShowAskMessageBox("正在上传文件，确认退出?") != DialogResult.OK)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+                    }
+                    if (filecontrol.Isdownfile)
+                    {
+                        if (MsgBox.ShowAskMessageBox("正在下载文件，确认退出?") != DialogResult.OK)
+                        {
+                            e.Cancel = true;
+                        }
+
+                    }
+                }
         }
     }
 }
