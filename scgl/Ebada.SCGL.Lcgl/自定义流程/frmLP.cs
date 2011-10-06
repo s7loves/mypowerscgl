@@ -359,32 +359,38 @@ namespace Ebada.Scgl.Lcgl
             }
             InitEvent();
             InitData();
-            if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
-            hqyjcontrol.Size = new System.Drawing.Size(400, 200);
-            hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
-            currentPosY = currentPosY + hqyjcontrol.Size.Height;
-            hqyjcontrol.RecordID = CurrRecord.ID;
-            dockPanel1.Controls.Add(hqyjcontrol);
-
-
-            if (filecontrol==null) filecontrol = new DownFileControl();
-            if(status=="add")
-            filecontrol.FormType = "上传";
-            else if (status == "edit")
+            if (RecordWorkTask.HaveRunSPYJRole(parentTemple.Kind))
             {
-                filecontrol.FormType = "下载";
+                if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
+                hqyjcontrol.Size = new System.Drawing.Size(400, 200);
+                hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+                currentPosY = currentPosY + hqyjcontrol.Size.Height;
+                hqyjcontrol.RecordID = CurrRecord.ID;
+                dockPanel1.Controls.Add(hqyjcontrol);
             }
-            filecontrol.Size = new System.Drawing.Size(400, 300);
-            filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
-            currentPosY = currentPosY + filecontrol.Size.Height;
-            filecontrol.UpfilePath = parentTemple.CellName;
-            if (currRecord==null)
+
+            if(RecordWorkTask.HaveRunFuJianRole(parentTemple.Kind))
             {
-                currRecord = new LP_Record();
+                
+                if (filecontrol==null) filecontrol = new DownFileControl();
+                if(status=="add")
+                filecontrol.FormType = "上传";
+                else if (status == "edit")
+                {
+                    filecontrol.FormType = "下载";
+                }
+                filecontrol.Size = new System.Drawing.Size(400, 300);
+                filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+                currentPosY = currentPosY + filecontrol.Size.Height;
+                filecontrol.UpfilePath = parentTemple.CellName;
+                if (currRecord==null)
+                {
+                    currRecord = new LP_Record();
+                }
+                filecontrol.RecordID = CurrRecord.ID;
+                dockPanel1.Controls.Add(filecontrol);
+                currentPosY += 20;
             }
-            filecontrol.RecordID = CurrRecord.ID;
-            dockPanel1.Controls.Add(filecontrol);
-            currentPosY += 20;
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);

@@ -628,6 +628,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
 
                 WF_WorkTaskPower wt = new WF_WorkTaskPower();
+                wt.Powerid = wt.CreateID();
                 wt.PowerName = powerName;
                 wt.WorkFlowId = workflowid;
                 wt.WorkTaskId = worktaskId;

@@ -47,7 +47,7 @@
     <Reference Include="DevExpress.Utils.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="Ebada.Client, Version=1.0.4117.16253, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Ebada.Client, Version=1.0.4225.27094, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.Client.dll</HintPath>
     </Reference>
@@ -93,6 +93,12 @@
     </Compile>
     <Compile Include="Bounds.cs" />
     <Compile Include="BaseTreeNode.cs" />
+    <Compile Include="SelctModleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelctModleForm.Designer.cs">
+      <DependentUpon>SelctModleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectModuleFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,6 +388,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="SelctModleForm.resx">
+      <DependentUpon>SelctModleForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectModuleFm.resx">
       <DependentUpon>SelectModuleFm.cs</DependentUpon>
       <SubType>Designer</SubType>

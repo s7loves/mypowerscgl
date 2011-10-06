@@ -267,25 +267,25 @@
 
         #endregion
 
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private UCtestRecord uCtestRecord1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private UCtestRecord uCtestRecord2;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
-        private UCtestRecord uCtestRecord3;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
+        public DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        public DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        public UCtestRecord uCtestRecord1;
+        public DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        public UCtestRecord uCtestRecord2;
+        public DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        public UCtestRecord uCtestRecord3;
+        public DevExpress.XtraTab.XtraTabPage xtraTabPage4;
         public DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl2;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage6;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage7;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage8;
-        private UCtestRecordjhmxTable uCtestRecordjhmxTable1;
-        private UCtestRecordsyqkTable uCtestRecordssqkTable1;
-        private UCtestRecordwcqkTable uCtestRecordwcqkTable1;
-        private UCtestHCRecord uCtestHCRecord1;
-        private UCtestdrqRecord uCtestRecord4;
+        public DevExpress.XtraTab.XtraTabControl xtraTabControl2;
+        public DevExpress.XtraTab.XtraTabPage xtraTabPage5;
+        public DevExpress.XtraTab.XtraTabPage xtraTabPage6;
+        public DevExpress.XtraTab.XtraTabPage xtraTabPage7;
+        public DevExpress.XtraTab.XtraTabPage xtraTabPage8;
+        public UCtestRecordjhmxTable uCtestRecordjhmxTable1;
+        public UCtestRecordsyqkTable uCtestRecordssqkTable1;
+        public UCtestRecordwcqkTable uCtestRecordwcqkTable1;
+        public UCtestHCRecord uCtestHCRecord1;
+        public UCtestdrqRecord uCtestRecord4;
 
     }
 }

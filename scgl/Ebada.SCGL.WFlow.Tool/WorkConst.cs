@@ -82,7 +82,13 @@ namespace Ebada.SCGL.WFlow.Tool
         /// <summary>
         /// 任务退回
         /// </summary>
-        public const string WorkTask_Return = "退回";
+        public const string WorkTask_Return = "退回"; /// <summary>
+        /// 任务附件
+        /// </summary>
+        public const string WorkTask_FuJian = "附件";
+        /// 任务审批意见
+        /// </summary>
+        public const string WorkTask_SPYJ = "审批意见";
         /// <summary>
         /// 任务指派
         /// </summary>
