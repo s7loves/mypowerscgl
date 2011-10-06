@@ -285,9 +285,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="address">文件上传到的服务器</param>
         /// <param name="fileNamePath">要上传的本地文件（全路径）</param>
         /// <param name="saveName">文件上传后的名称</param>
-        /// <param name="progressBar">上传进度条</param>
         /// <returns>成功返回1，失败返回0</returns>
-        private int Upload_Request(string address, string fileNamePath, string saveName)
+        private int UpLoadFile(string address, string fileNamePath, string saveName)
         {
             int returnValue = 0;
             // 要上传的文件
@@ -563,7 +562,7 @@ namespace Ebada.Scgl.Lcgl
                    //UpLoadFile(filepath, upfilePath + "/" + savefilename, upfileurl);
                    //upcomEvent.WaitOne();
                    //if (!upcancel && itablecurrent!=-1)
-                   if (Upload_Request(upfileurl, filepath,   savefilename) == 1)
+                   if (UpLoadFile(upfileurl, filepath, savefilename) == 1)
                    {
                        fjtable.Rows[itablecurrent]["FileName"] = Path.GetFileName(filepath);
                        fjtable.Rows[itablecurrent]["Progress"] = 100;
