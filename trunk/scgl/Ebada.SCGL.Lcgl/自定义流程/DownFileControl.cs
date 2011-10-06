@@ -101,7 +101,7 @@ namespace Ebada.Scgl.Lcgl
         /// </summary>
         /// <param name="fileNameFullPath">要上传的文件（全路径格式）</param>
         /// <param name="strUrlDirPath">Web服务器文件夹路径</param>
-        public void UpLoadFile( string fileNameFullPath, string saveFileName, string strUrlDirPath)
+        public void UpLoadFile2( string fileNameFullPath, string saveFileName, string strUrlDirPath)
         {
            
            
