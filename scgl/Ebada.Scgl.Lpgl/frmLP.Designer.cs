@@ -90,6 +90,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.LPFrm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmLP_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLP_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dockPanel1.ResumeLayout(false);
             this.ResumeLayout(false);

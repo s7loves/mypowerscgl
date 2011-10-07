@@ -31,8 +31,16 @@ namespace Ebada.Scgl.WFlow
 
         public static bool HaveRunFuJianRole(string kind)
         {
-
-            WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + kind + "'");
+            string strkind = kind;
+            if (kind == "dzczp")
+                strkind= "电力线路倒闸操作票";
+            else if (kind == "yzgzp")
+                strkind=  "电力线路第一种工作票";
+            else if (kind == "ezgzp")
+               strkind= "电力线路第二种工作票";
+            else if (kind == "xlqxp")
+               strkind=  "电力线路事故应急抢修单";
+            WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + strkind + "'");
             if (wf == null) return false;
 
 
@@ -49,7 +57,16 @@ namespace Ebada.Scgl.WFlow
         public static bool HaveRunSPYJRole(string kind)
         {
 
-            WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + kind + "'");
+            string strkind = kind;
+            if (kind == "dzczp")
+                strkind = "电力线路倒闸操作票";
+            else if (kind == "yzgzp")
+                strkind = "电力线路第一种工作票";
+            else if (kind == "ezgzp")
+                strkind = "电力线路第二种工作票";
+            else if (kind == "xlqxp")
+                strkind = "电力线路事故应急抢修单";
+            WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + strkind + "'");
             if (wf == null) return false;
 
 

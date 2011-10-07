@@ -18,6 +18,7 @@ using Ebada.Core;
 using DevExpress.XtraRichEdit.API.Word;
 using Ebada.Scgl.WFlow;
 using DevExpress.XtraGrid.Views.Base;
+using System.Threading;
 
 namespace Ebada.Scgl.Lpgl
 {
@@ -37,6 +38,8 @@ namespace Ebada.Scgl.Lpgl
         private string strNumber = "";
         private Control ctrlNumber = null;
         private Control ctrlOrgName = null;
+        private DownFileControl filecontrol = null;
+        private SPYJControl hqyjcontrol = null;
 
         public LP_Temple ParentTemple
         {
@@ -268,7 +271,39 @@ namespace Ebada.Scgl.Lpgl
                 }
             }
             InitEvent();
-            InitData();         
+            InitData();
+            if (RecordWorkTask.HaveRunSPYJRole(parentTemple.Kind))
+            {
+                if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
+                hqyjcontrol.Size = new System.Drawing.Size(400, 200);
+                hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+                currentPosY = currentPosY + hqyjcontrol.Size.Height;
+                hqyjcontrol.RecordID = CurrRecord.ID;
+                dockPanel1.Controls.Add(hqyjcontrol);
+            }
+
+            if (RecordWorkTask.HaveRunFuJianRole(parentTemple.Kind))
+            {
+
+                if (filecontrol == null) filecontrol = new DownFileControl();
+                if (status == "add")
+                    filecontrol.FormType = "上传";
+                else if (status == "edit")
+                {
+                    filecontrol.FormType = "下载";
+                }
+                filecontrol.Size = new System.Drawing.Size(400, 300);
+                filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+                currentPosY = currentPosY + filecontrol.Size.Height;
+                filecontrol.UpfilePath = parentTemple.CellName;
+                if (currRecord == null)
+                {
+                    currRecord = new LP_Record();
+                }
+                filecontrol.RecordID = CurrRecord.ID;
+                dockPanel1.Controls.Add(filecontrol);
+                currentPosY += 20;
+            }    
       
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
@@ -289,6 +324,22 @@ namespace Ebada.Scgl.Lpgl
             Excel.Worksheet sheet;
             wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             sheet = wb.Application.Sheets[1] as Excel.Worksheet;
+            if (filecontrol != null)
+            {
+                if (filecontrol.Isupfile)
+                {
+                    MsgBox.ShowTipMessageBox("请稍后，正在上传文件");
+                    return;
+                }
+                if (filecontrol.Isdownfile)
+                {
+                    if (MsgBox.ShowAskMessageBox("正在下载文件，确认提交?") != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                }
+            }
             unLockExcel();
             for (int i = 1;  sheet.Protection.AllowEditRanges.Count>0;)
             {
@@ -301,22 +352,22 @@ namespace Ebada.Scgl.Lpgl
             switch (status)
             {
                 case "add":
-                    LP_Record newRecord = new LP_Record();
+                    //LP_Record newRecord = new LP_Record();
                     dsoFramerWordControl1.FileSave();
-                    newRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
-                    newRecord.Kind = kind;
-                    newRecord.Content = GetContent();
+                    currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+                    currRecord.Kind = kind;
+                    currRecord.Content = GetContent();
                     if (ctrlNumber!=null)
-                    newRecord.Number = ctrlNumber.Text ;
+                        currRecord.Number = ctrlNumber.Text;
                     if (ctrlNumber != null)
-                        newRecord.OrgName  = ctrlOrgName.Text;
+                        currRecord.OrgName = ctrlOrgName.Text;
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
-                    newRecord.CreateTime = DateTime.Now.ToString();
+                    currRecord.CreateTime = DateTime.Now.ToString();
 
-                    string[] strtemp = RecordWorkTask.RunNewGZPRecord(newRecord.ID, kind, MainHelper.User.UserID);
+                    string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
                     strmes = strtemp[0];
-                    newRecord.Status =strtemp[1];
+                    currRecord.Status = strtemp[1];
                     if (strmes.IndexOf("未提交至任何人") > -1)
                     {
                         MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
@@ -324,10 +375,39 @@ namespace Ebada.Scgl.Lpgl
                     }
                     else
                         MsgBox.ShowTipMessageBox(strmes);
-                     
-                    MainHelper.PlatformSqlMap.Create<LP_Record>(newRecord);
+
+                    MainHelper.PlatformSqlMap.Create<LP_Record>(currRecord);
                     rowData = null;
-                    currRecord = newRecord;
+                    if (hqyjcontrol != null)
+                    {
+                        PJ_lcspyj lcyj = new PJ_lcspyj();
+                        lcyj.Charman = MainHelper.User.UserName;
+                        lcyj.ID = PJ_lcspyj.Newid();
+                        lcyj.RecordID = currRecord.ID;
+                        WorkFlowData = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+                        lcyj.taskID = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
+                        lcyj.Creattime = DateTime.Now;
+                        MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
+                    }
+                    if (filecontrol != null)
+                    {
+                        for (int i = 0; i < filecontrol.FJtable.Rows.Count; i++)
+                        {
+
+                            PJ_lcfj lcfu = new PJ_lcfj();
+                            lcfu.ID = lcfu.CreateID();
+                            lcfu.Filename = Path.GetFileName(filecontrol.FJtable.Rows[i]["FilePath"].ToString());
+                            lcfu.FileRelativePath = filecontrol.FJtable.Rows[i]["SaveFileName"].ToString();
+                            lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
+                            lcfu.RecordID = currRecord.ID;
+                            lcfu.Creattime = DateTime.Now;
+                            Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
+                            MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
+                        }
+
+                    }
+                    //currRecord = newRecord;
                     break;
                 case "edit":
                     currRecord.LastChangeTime = DateTime.Now.ToString();
@@ -356,6 +436,42 @@ namespace Ebada.Scgl.Lpgl
                     else
                         MsgBox.ShowTipMessageBox(strmes);
                     strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+                    if (hqyjcontrol != null)
+                    {
+                        PJ_lcspyj lcyj = new PJ_lcspyj();
+                        lcyj.Charman = MainHelper.User.UserName;
+                        lcyj.ID = PJ_lcspyj.Newid();
+                        lcyj.RecordID = currRecord.ID;
+                        lcyj.taskID = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
+                        lcyj.Creattime = DateTime.Now;
+                        MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
+
+                    }
+                    if (filecontrol != null)
+                    {
+                        for (int i = 0; i < filecontrol.FJtable.Rows.Count; i++)
+                        {
+
+                            PJ_lcfj lcfu = new PJ_lcfj();
+                            lcfu.ID = lcfu.CreateID();
+                            lcfu.Filename = Path.GetFileName(filecontrol.FJtable.Rows[i]["FilePath"].ToString());
+                            lcfu.FileRelativePath = filecontrol.UpfilePath + "/" + filecontrol.FJtable.Rows[i]["SaveFileName"].ToString();
+                            lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
+                            lcfu.RecordID = currRecord.ID;
+                            lcfu.Creattime = DateTime.Now;
+                            MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
+                        }
+
+                    }
+                    if (strmes == "结束节点1")
+                    {
+                        CurrRecord.Status = "存档";
+                    }
+                    else
+                    {
+                        CurrRecord.Status = strmes;
+                    }
                     if (strmes == "结束节点1")
                     {
                         CurrRecord.Status = "存档";
@@ -1019,11 +1135,55 @@ namespace Ebada.Scgl.Lpgl
 
         private void frmLP_FormClosed(object sender, FormClosedEventArgs e)
         {
-            base.Close();
+            //base.Close();
             currRecord = null;
             //rowData = null;
             dockPanel1.ControlContainer.Controls.Clear();
             templeList.Clear();
+            try
+            {
+                if (filecontrol != null)
+                {
+
+                    if (filecontrol.upThread.ThreadState == ThreadState.Running)
+                    {
+
+                        filecontrol.upThread.IsBackground = true;
+                        filecontrol.upThread.Abort();
+
+                    }
+                    if (filecontrol.Isdownfile)
+                    {
+
+                        if (filecontrol.webClient != null) filecontrol.webClient.CancelAsync();
+
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void frmLP_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (filecontrol != null)
+            {
+                if (filecontrol.Isupfile)
+                {
+                    if (MsgBox.ShowAskMessageBox("正在上传文件，确认退出?") != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                if (filecontrol.Isdownfile)
+                {
+                    if (MsgBox.ShowAskMessageBox("正在下载文件，确认退出?") != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                    }
+
+                }
+            }
         }
     }
 }
