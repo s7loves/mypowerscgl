@@ -37,9 +37,9 @@ namespace Ebada.SCGL.WFlow.Tool
             DataTable dtSearch = MainUserControl.GetMainUserControlByCaption(ikey);
             foreach (DataRow dr in dtSearch.Rows)
             {
-                ListViewItem lvi1 = new ListViewItem(dr["mucCaption"].ToString(), 0);
-                lvi1.SubItems.Add(dr["MainUserCtrlId"].ToString());
-                lvi1.SubItems.Add(dr["mucDescription"].ToString());
+                ListViewItem lvi1 = new ListViewItem(dr["CellName"].ToString(), 0);
+                lvi1.SubItems.Add(dr["LPID"].ToString());
+                lvi1.SubItems.Add(dr["CtrlType"].ToString());
                 lvMainUserCtrl.Items.Add(lvi1);
 
             }
@@ -66,12 +66,12 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (tbxCaption.Text.Length == 0)
-            {
-                MsgBox.ShowTipMessageBox ("请输入主表单名!");
-                tbxCaption.Focus();
-                return;
-            }
+            //if (tbxCaption.Text.Length == 0)
+            //{
+            //    MsgBox.ShowTipMessageBox ("请输入主表单名!");
+            //    tbxCaption.Focus();
+            //    return;
+            //}
             lvMainUserCtrl.Clear();
             InitializeUIData(tbxCaption.Text);
 

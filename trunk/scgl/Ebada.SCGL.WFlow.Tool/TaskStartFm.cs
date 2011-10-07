@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using System.Data;
 using System.Collections.Generic;
 using Ebada.Client;
+using Ebada.Client.Platform;
+using Ebada.Scgl.Model;
 
 
 namespace Ebada.SCGL.WFlow.Tool
@@ -61,6 +63,12 @@ namespace Ebada.SCGL.WFlow.Tool
         private Button btnAddVar;
         private ListView lvVar;
         private ListView lvCommand;
+        private Label label6;
+        private TextBox tbxModleName;
+        private Button btnSelectModle;
+        private Label label7;
+        private TextBox tbxFiledName;
+        private Button btnSelctField;
         private ListView lvOper;
  
 	
@@ -135,10 +143,16 @@ namespace Ebada.SCGL.WFlow.Tool
             this.contextMenu2 = new System.Windows.Forms.ContextMenu();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lvCommand = new System.Windows.Forms.ListView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbxModleName = new System.Windows.Forms.TextBox();
+            this.btnSelectModle = new System.Windows.Forms.Button();
             this.tbxTaskName = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.contextMenu3 = new System.Windows.Forms.ContextMenu();
+            this.btnSelctField = new System.Windows.Forms.Button();
+            this.tbxFiledName = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -368,7 +382,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnSelectCtrls
             // 
-            this.btnSelectCtrls.Location = new System.Drawing.Point(353, 51);
+            this.btnSelectCtrls.Location = new System.Drawing.Point(351, 101);
             this.btnSelectCtrls.Name = "btnSelectCtrls";
             this.btnSelectCtrls.Size = new System.Drawing.Size(41, 23);
             this.btnSelectCtrls.TabIndex = 11;
@@ -376,24 +390,24 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(55, 78);
+            this.label4.Location = new System.Drawing.Point(55, 48);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 23);
+            this.label4.Size = new System.Drawing.Size(75, 23);
             this.label4.TabIndex = 99;
             this.label4.Text = "任务描述:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tbxTaskDes
             // 
-            this.tbxTaskDes.Location = new System.Drawing.Point(135, 80);
+            this.tbxTaskDes.Location = new System.Drawing.Point(135, 50);
             this.tbxTaskDes.Name = "tbxTaskDes";
-            this.tbxTaskDes.Size = new System.Drawing.Size(259, 21);
+            this.tbxTaskDes.Size = new System.Drawing.Size(266, 21);
             this.tbxTaskDes.TabIndex = 98;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 127);
+            this.label2.Location = new System.Drawing.Point(16, 154);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 12);
             this.label2.TabIndex = 97;
@@ -401,7 +415,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // groupBox1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(13, 116);
+            this.groupBox1.Location = new System.Drawing.Point(13, 151);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(379, 2);
             this.groupBox1.TabIndex = 96;
@@ -423,7 +437,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnDeletecmd
             // 
-            this.btnDeletecmd.Location = new System.Drawing.Point(257, 320);
+            this.btnDeletecmd.Location = new System.Drawing.Point(257, 333);
             this.btnDeletecmd.Name = "btnDeletecmd";
             this.btnDeletecmd.Size = new System.Drawing.Size(80, 23);
             this.btnDeletecmd.TabIndex = 16;
@@ -432,7 +446,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnModifycmd
             // 
-            this.btnModifycmd.Location = new System.Drawing.Point(135, 320);
+            this.btnModifycmd.Location = new System.Drawing.Point(135, 333);
             this.btnModifycmd.Name = "btnModifycmd";
             this.btnModifycmd.Size = new System.Drawing.Size(80, 23);
             this.btnModifycmd.TabIndex = 15;
@@ -441,7 +455,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnAddcmd
             // 
-            this.btnAddcmd.Location = new System.Drawing.Point(35, 320);
+            this.btnAddcmd.Location = new System.Drawing.Point(35, 333);
             this.btnAddcmd.Name = "btnAddcmd";
             this.btnAddcmd.Size = new System.Drawing.Size(80, 23);
             this.btnAddcmd.TabIndex = 12;
@@ -450,7 +464,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(67, 51);
+            this.label3.Location = new System.Drawing.Point(65, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 23);
             this.label3.TabIndex = 13;
@@ -459,7 +473,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // tbxFormName
             // 
-            this.tbxFormName.Location = new System.Drawing.Point(135, 51);
+            this.tbxFormName.Location = new System.Drawing.Point(135, 101);
             this.tbxFormName.Name = "tbxFormName";
             this.tbxFormName.ReadOnly = true;
             this.tbxFormName.Size = new System.Drawing.Size(212, 21);
@@ -481,8 +495,14 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage1.Controls.Add(this.btnDeletecmd);
             this.tabPage1.Controls.Add(this.btnModifycmd);
             this.tabPage1.Controls.Add(this.btnAddcmd);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.tbxModleName);
+            this.tabPage1.Controls.Add(this.tbxFiledName);
             this.tabPage1.Controls.Add(this.tbxFormName);
+            this.tabPage1.Controls.Add(this.btnSelectModle);
+            this.tabPage1.Controls.Add(this.btnSelctField);
             this.tabPage1.Controls.Add(this.tbxTaskName);
             this.tabPage1.Controls.Add(this.btnSelectCtrls);
             this.tabPage1.Controls.Add(this.label1);
@@ -496,14 +516,39 @@ namespace Ebada.SCGL.WFlow.Tool
             // lvCommand
             // 
             this.lvCommand.FullRowSelect = true;
-            this.lvCommand.Location = new System.Drawing.Point(15, 148);
+            this.lvCommand.Location = new System.Drawing.Point(15, 171);
             this.lvCommand.Name = "lvCommand";
-            this.lvCommand.Size = new System.Drawing.Size(379, 166);
+            this.lvCommand.Size = new System.Drawing.Size(379, 160);
             this.lvCommand.SmallImageList = this.imgListSmall;
             this.lvCommand.TabIndex = 127;
             this.lvCommand.UseCompatibleStateImageBehavior = false;
             this.lvCommand.View = System.Windows.Forms.View.Details;
             this.lvCommand.DoubleClick += new System.EventHandler(this.btnModifycmd_Click);
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(65, 72);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 23);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "模块名:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbxModleName
+            // 
+            this.tbxModleName.Location = new System.Drawing.Point(135, 74);
+            this.tbxModleName.Name = "tbxModleName";
+            this.tbxModleName.ReadOnly = true;
+            this.tbxModleName.Size = new System.Drawing.Size(212, 21);
+            this.tbxModleName.TabIndex = 12;
+            // 
+            // btnSelectModle
+            // 
+            this.btnSelectModle.Location = new System.Drawing.Point(351, 73);
+            this.btnSelectModle.Name = "btnSelectModle";
+            this.btnSelectModle.Size = new System.Drawing.Size(41, 23);
+            this.btnSelectModle.TabIndex = 11;
+            this.btnSelectModle.Click += new System.EventHandler(this.btnSelectModle_Click);
             // 
             // tbxTaskName
             // 
@@ -532,6 +577,31 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.contextMenu3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem8});
+            // 
+            // btnSelctField
+            // 
+            this.btnSelctField.Location = new System.Drawing.Point(351, 128);
+            this.btnSelctField.Name = "btnSelctField";
+            this.btnSelctField.Size = new System.Drawing.Size(41, 23);
+            this.btnSelctField.TabIndex = 11;
+            this.btnSelctField.Click += new System.EventHandler(this.btnSelctField_Click);
+            // 
+            // tbxFiledName
+            // 
+            this.tbxFiledName.Location = new System.Drawing.Point(135, 128);
+            this.tbxFiledName.Name = "tbxFiledName";
+            this.tbxFiledName.ReadOnly = true;
+            this.tbxFiledName.Size = new System.Drawing.Size(212, 21);
+            this.tbxFiledName.TabIndex = 12;
+            // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(28, 128);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(94, 23);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "可操作的字段:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // fmTaskStart
             // 
@@ -647,8 +717,23 @@ namespace Ebada.SCGL.WFlow.Tool
             DataTable ctrlTable = WorkFlowTask.GetTaskControls(NowTask.TaskId);
             if (ctrlTable!=null &&ctrlTable.Rows.Count>0)
             {
-                tbxFormName.Text = ctrlTable.Rows[0]["mucCaption"].ToString();
-                UserControlId = ctrlTable.Rows[0]["UserControlId"].ToString();
+                tbxFormName.Text = ctrlTable.Rows[0]["CellName"].ToString();
+                UserControlId = ctrlTable.Rows[0]["LPID"].ToString();
+            }
+            //可操作字段
+            IList<WF_TableUsedField> ulist = MainHelper.PlatformSqlMap.GetList<WF_TableUsedField>("SelectWF_TableUsedFieldList", "where UserControlId ='" + UserControlId + "' and WorktaskId='" + NowTask.TaskId + "' and WorkflowId='" + NowTask.WorkFlowId + "'");
+            for(int i=0;i<ulist.Count;i++)
+            {
+                if (tbxFiledName.Text == "")
+                {
+                    tbxFiledName.Text = ulist[i].FieldName;
+                }
+                else
+                {
+                    tbxFiledName.Text +=","+ ulist[i].FieldName;
+                
+                }
+            
             }
         }
         private void SaveData()
@@ -980,13 +1065,16 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnSelectCtrls_Click(object sender, EventArgs e)
         {
-            fmSelectMainUserCtrl tmpfmSelectCtrl = new fmSelectMainUserCtrl(tbxFormName.Text);
+           fmSelectMainUserCtrl tmpfmSelectCtrl = new fmSelectMainUserCtrl(tbxFormName.Text);
             tmpfmSelectCtrl.ShowDialog();
             DialogResult dlr = tmpfmSelectCtrl.DialogResult;
             if (dlr == DialogResult.OK && tmpfmSelectCtrl.lvMainUserCtrl.SelectedItems.Count > 0)
             {
                 UserControlId = tmpfmSelectCtrl.lvMainUserCtrl.SelectedItems[0].SubItems[1].Text;
                 tbxFormName.Text = tmpfmSelectCtrl.lvMainUserCtrl.SelectedItems[0].Text;
+
+                tbxFiledName.Tag = null;
+                tbxFiledName.Text = "";
             }
         }
 
@@ -998,6 +1086,31 @@ namespace Ebada.SCGL.WFlow.Tool
                 bool isSysVar = SystemVarData.isSystemVar(lvi1.Text);
                 btnModifyVar.Enabled = !isSysVar;
                 btnDeleteVar.Enabled = !isSysVar;
+            }
+        }
+
+        private void btnSelectModle_Click(object sender, EventArgs e)
+        {
+            SelctTaskModleForm fm = new SelctTaskModleForm();
+            fm.ShowDialog();
+        }
+
+       
+        private void btnSelctField_Click(object sender, EventArgs e)
+        {
+            if (UserControlId == "")
+            {
+                MsgBox.ShowWarningMessageBox("请先选择表单");
+                return;
+            }
+            SelectTableFiledFm stf = new SelectTableFiledFm();
+            stf.TableID = UserControlId;
+            stf.Taskid = NowTask.TaskId;
+            stf.Workflowid = NowTask.WorkFlowId;
+            if (stf.ShowDialog() == DialogResult.OK )
+            {
+                tbxFiledName.Tag = stf.StrFieldidList;
+                tbxFiledName.Text = stf.StrFieldNameList;
             }
         }
 

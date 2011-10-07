@@ -1,6 +1,6 @@
 ﻿namespace Ebada.SCGL.WFlow.Tool
 {
-    partial class SelctModleForm
+    partial class SelctTaskModleForm
     {
         /// <summary>
         /// Required designer variable.

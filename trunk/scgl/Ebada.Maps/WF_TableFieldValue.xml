@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_TableFieldValue" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_TableFieldValue"  type="Ebada.Scgl.Model.WF_TableFieldValue,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_TableFieldValue_AllColumns" class="WF_TableFieldValue">
+        <result property="ID" column="ID" />
+        <result property="RecordId" column="RecordId" />
+        <result property="FieldId" column="FieldId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkFlowInsId" column="WorkFlowInsId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="WorkTaskInsId" column="WorkTaskInsId" />
+        <result property="ControlValue" column="ControlValue" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_TableFieldValueList" resultMap="WF_TableFieldValue_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [RecordId],
+         [FieldId],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [ControlValue]
+          FROM WF_TableFieldValue
+          $value$
+   </select>
+   
+   <select id="SelectWF_TableFieldValueByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [RecordId],
+         [FieldId],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [ControlValue]
+          FROM WF_TableFieldValue
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="RecordId">[RecordId]='$RecordId$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldId">[FieldId]='$FieldId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="ControlValue">[ControlValue]='$ControlValue$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_TableFieldValueByKey" resultMap="WF_TableFieldValue_AllColumns" parameterClass="WF_TableFieldValue">
+         SELECT 
+         [ID],
+         [RecordId],
+         [FieldId],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [ControlValue]
+         FROM WF_TableFieldValue
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteWF_TableFieldValue" parameterClass="WF_TableFieldValue">
+        DELETE FROM 
+         WF_TableFieldValue
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteWF_TableFieldValueByWhere" parameterClass="string">
+     delete from WF_TableFieldValue $value$
+   </delete>
+   
+   <delete id="DeleteWF_TableFieldValueByKey" parameterClass="string">
+        DELETE FROM 
+         WF_TableFieldValue
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateWF_TableFieldValue" parameterClass="WF_TableFieldValue" resultClass="int">
+          UPDATE WF_TableFieldValue
+           SET
+             [RecordId]=#RecordId#,
+             [FieldId]=#FieldId#,
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkFlowInsId]=#WorkFlowInsId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [WorkTaskInsId]=#WorkTaskInsId#,
+             [ControlValue]=#ControlValue#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertWF_TableFieldValue" parameterClass="WF_TableFieldValue">
+        INSERT INTO WF_TableFieldValue
+         (
+         [ID],
+         [RecordId],
+         [FieldId],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [ControlValue]
+         )
+       VALUES
+         (
+         #ID#,
+         #RecordId#,
+         #FieldId#,
+         #WorkFlowId#,
+         #WorkFlowInsId#,
+         #WorkTaskId#,
+         #WorkTaskInsId#,
+         #ControlValue#
+         )
+
+   </insert>
+   
+   <select id="GetWF_TableFieldValueRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_TableFieldValue
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="RecordId">[RecordId]='$RecordId$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldId">[FieldId]='$FieldId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="ControlValue">[ControlValue]='$ControlValue$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_TableFieldValueRowCount" parameterClass="string">
+    select count(*) from WF_TableFieldValue $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

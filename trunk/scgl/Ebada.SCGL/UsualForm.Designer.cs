@@ -53,6 +53,10 @@
             this.groupControl2.SuspendLayout();
             this.SuspendLayout();
             // 
+            // m_DefaultLookAndFeel
+            // 
+            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
+            // 
             // treeList1
             // 
             this.treeList1.Appearance.FocusedRow.Options.UseBackColor = true;
@@ -74,7 +78,7 @@
             this.treeList1.OptionsBehavior.Editable = false;
             this.treeList1.OptionsSelection.InvertSelection = true;
             this.treeList1.OptionsSelection.UseIndicatorForSelection = true;
-            this.treeList1.Size = new System.Drawing.Size(282, 371);
+            this.treeList1.Size = new System.Drawing.Size(330, 437);
             this.treeList1.TabIndex = 0;
             this.treeList1.DoubleClick += new System.EventHandler(this.treeList1_DoubleClick);
             // 
@@ -95,7 +99,7 @@
             this.gridControl1.Location = new System.Drawing.Point(2, 23);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(317, 371);
+            this.gridControl1.Size = new System.Drawing.Size(371, 437);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -159,7 +163,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(286, 396);
+            this.groupControl1.Size = new System.Drawing.Size(334, 462);
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "模块列表";
             // 
@@ -168,16 +172,16 @@
             this.panelControl1.Controls.Add(this.RemoveMoudle);
             this.panelControl1.Controls.Add(this.AddMoudle);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelControl1.Location = new System.Drawing.Point(286, 0);
+            this.panelControl1.Location = new System.Drawing.Point(334, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(33, 396);
+            this.panelControl1.Size = new System.Drawing.Size(38, 462);
             this.panelControl1.TabIndex = 2;
             // 
             // RemoveMoudle
             // 
-            this.RemoveMoudle.Location = new System.Drawing.Point(1, 172);
+            this.RemoveMoudle.Location = new System.Drawing.Point(1, 201);
             this.RemoveMoudle.Name = "RemoveMoudle";
-            this.RemoveMoudle.Size = new System.Drawing.Size(28, 23);
+            this.RemoveMoudle.Size = new System.Drawing.Size(33, 27);
             this.RemoveMoudle.TabIndex = 1;
             this.RemoveMoudle.Text = "<<";
             this.RemoveMoudle.Click += new System.EventHandler(this.RemoveMoudle_Click);
@@ -186,9 +190,9 @@
             // 
             this.AddMoudle.Appearance.Font = new System.Drawing.Font("Tahoma", 8F);
             this.AddMoudle.Appearance.Options.UseFont = true;
-            this.AddMoudle.Location = new System.Drawing.Point(1, 133);
+            this.AddMoudle.Location = new System.Drawing.Point(1, 155);
             this.AddMoudle.Name = "AddMoudle";
-            this.AddMoudle.Size = new System.Drawing.Size(28, 23);
+            this.AddMoudle.Size = new System.Drawing.Size(33, 27);
             this.AddMoudle.TabIndex = 0;
             this.AddMoudle.Text = ">>";
             this.AddMoudle.Click += new System.EventHandler(this.AddMoudle_Click);
@@ -199,17 +203,17 @@
             this.groupControl2.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.groupControl2.Controls.Add(this.gridControl1);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl2.Location = new System.Drawing.Point(319, 0);
+            this.groupControl2.Location = new System.Drawing.Point(372, 0);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(321, 396);
+            this.groupControl2.Size = new System.Drawing.Size(375, 462);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "常用功能";
             // 
             // UsualForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 396);
+            this.ClientSize = new System.Drawing.Size(747, 462);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.groupControl1);
