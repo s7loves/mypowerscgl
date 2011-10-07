@@ -60,5 +60,17 @@ namespace Ebada.Scgl.Gis {
                 //control.UpdateMarkerLocalPosition(marker);
             }
         }
+
+        internal void ShowLineinfo(GMapMarker selectedMarker, bool canEditMarker) {
+            PS_gt gt = selectedMarker.Tag as PS_gt;
+            string linecode=gt.gtCode.Substring(0, gt.gtCode.Length - 4);
+            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='" + linecode + "'");
+            if (xl != null) {
+                frmxlEdit dlg = new frmxlEdit();
+                dlg.RowData = xl;
+                dlg.ShowDialog();
+            }
+
+        }
     }
 }

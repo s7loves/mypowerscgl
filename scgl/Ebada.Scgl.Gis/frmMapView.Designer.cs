@@ -103,6 +103,7 @@
             this.barButtonItem1.Id = 0;
             this.barButtonItem1.ImageIndex = 5;
             this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barButtonItem2
@@ -152,6 +153,7 @@
             this.barButtonItem6.Caption = "飞行";
             this.barButtonItem6.Id = 5;
             this.barButtonItem6.ImageIndex = 7;
+            this.barButtonItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem6.Name = "barButtonItem6";
             this.barButtonItem6.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
