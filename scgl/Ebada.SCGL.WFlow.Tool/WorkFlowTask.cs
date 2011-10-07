@@ -582,6 +582,12 @@ namespace Ebada.SCGL.WFlow.Tool
 
                     return dt;
                 }
+                else
+                {
+                    sqlStr = " where LPID ='" + ((WF_WorkTaskControlsView)li[0]).UserControlId + "'";
+                    li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", sqlStr);
+                
+                }
                 return ConvertHelper.ToDataTable(li); 
                
             }
@@ -599,16 +605,16 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-
-                WF_WorkTaskControls wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(userCtrlId);
-                if (wt == null) return;
+                WF_WorkTaskControls wt = new WF_WorkTaskControls();
+                //WF_WorkTaskControls wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(userCtrlId);
+                //if (wt == null) return;
                 wt.UserControlId= userCtrlId;
                 wt.WorkflowId=workflowid;
                 wt.WorktaskId = worktaskId;
-                if (MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(wt)==null)
+               // if (MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(wt)==null)
                 MainHelper.PlatformSqlMap.Create<WF_WorkTaskControls>(wt);
-                else
-                MainHelper.PlatformSqlMap.Update <WF_WorkTaskControls>(wt);
+                //else
+                //MainHelper.PlatformSqlMap.Update <WF_WorkTaskControls>(wt);
                 
             }
             catch (Exception ex)

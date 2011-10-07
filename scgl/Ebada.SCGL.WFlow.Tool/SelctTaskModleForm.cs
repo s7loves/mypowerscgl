@@ -11,12 +11,13 @@ using System.Collections;
 using Ebada.Scgl.Model;
 using System.Reflection;
 using System.Globalization;
+using Ebada.UI.Base;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
-    public partial class SelctModleForm : Form
+    public partial class SelctTaskModleForm : FormBase
     {
-        public SelctModleForm()
+        public SelctTaskModleForm()
         {
             InitializeComponent();
         }
@@ -66,12 +67,20 @@ namespace Ebada.SCGL.WFlow.Tool
             //    {
             //        Form fb = instance as Form;
             //    }
-            object instance = null;//模块接口
-            object uc = Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
-            if (uc is UserControl)
+            if (obj.AssemblyFileName == "") return;
+            Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory+obj.AssemblyFileName);
+            Type tp = assembly.GetType(obj.ModuTypes);
+            object fromCtrl;
+            if (obj.MethodName == "")////窗体的构造函数不需要参数
+                fromCtrl = Activator.CreateInstance(tp);
+            else//窗体的构造函数需要参数
+                fromCtrl = Activator.CreateInstance(tp, obj.MethodName);
+            //object instance = null;//模块接口
+            //object uc = Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
+            if (fromCtrl is UserControl)
             {
-                UserControl fromCtrl = uc as UserControl;
-                    foreach (Control c in fromCtrl.Controls)
+                UserControl fromCtrl2 = fromCtrl as UserControl;
+                foreach (Control c in fromCtrl2.Controls)
                     {
                      
                         //Control c1 = c as Button;
@@ -90,73 +99,9 @@ namespace Ebada.SCGL.WFlow.Tool
 
                     }
                 }
-             if (instance is Form)
-             {
-
-             }
-            
+             
         }
-        public static object Execute(string assemblyName, string className, string methodName, object[] paramValues, Form mdi, ref object classInstance)
-        {
-            int num;
-            if (assemblyName == null)
-            {
-                assemblyName = string.Empty;
-            }
-            if ((className == null) || (className == string.Empty))
-            {
-                return null;
-            }
-            if (string.IsNullOrEmpty(methodName))
-            {
-                methodName = "Show";
-            }
-            if (paramValues == null)
-            {
-                paramValues = new object[0];
-            }
-            object obj2 = null;
-            Type type = Assembly.GetExecutingAssembly().GetType(className);
-            if (null == type)
-            {
-                type = ((assemblyName == string.Empty) ? Assembly.GetExecutingAssembly() : Assembly.LoadFrom(Application.StartupPath + @"\" + assemblyName)).GetType(className, true);
-            }
-            Type[] types = new Type[paramValues.Length];
-            for (num = 0; num < paramValues.Length; num++)
-            {
-                types[num] = paramValues[num].GetType();
-            }
-            MethodInfo method = type.GetMethod(methodName, types);
-            if (method == null)
-            {
-                return obj2;
-            }
-            ParameterInfo[] parameters = method.GetParameters();
-            if (parameters.Length != paramValues.Length)
-            {
-                return obj2;
-            }
-            object[] objArray = new object[paramValues.Length];
-            for (num = 0; num < paramValues.Length; num++)
-            {
-                objArray[num] = Convert.ChangeType(paramValues[num], parameters[num].ParameterType, CultureInfo.InvariantCulture);
-            }
-            if (classInstance == null)
-            {
-                classInstance = method.IsStatic ? null : Activator.CreateInstance(type);
-            }
-            if ((classInstance is Form) && (mdi != null))
-            {
-               // ((Form)classInstance).MdiParent = mdi;
-                classInstance = mdi;
-            }
-            else if (classInstance is UserControl)
-            {
-                return classInstance;
-            }
-            return method.Invoke(classInstance, objArray);
-        }
-
+    
  
 
  

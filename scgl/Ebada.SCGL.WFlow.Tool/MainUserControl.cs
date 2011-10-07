@@ -264,8 +264,13 @@ namespace Ebada.SCGL.WFlow.Tool
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
 
-                string tmpStr = " where   mucCaption like '%" + mainUserCtrlCaption + "%'";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_MainUserControlList", tmpStr);
+                string tmpStr = "";
+                if (mainUserCtrlCaption!="") 
+                    tmpStr = " where ParentID not in (select LPID from LP_Temple where 1=1) and  CellName like '%" + mainUserCtrlCaption + "%'";
+                else
+                    tmpStr = " where ParentID not in (select LPID from LP_Temple where 1=1) ";
+
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", tmpStr);
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();

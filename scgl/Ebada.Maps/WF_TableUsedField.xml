@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_TableUsedField" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_TableUsedField"  type="Ebada.Scgl.Model.WF_TableUsedField,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_TableUsedField_AllColumns" class="WF_TableUsedField">
+        <result property="ID" column="ID" />
+        <result property="WorkflowId" column="WorkflowId" />
+        <result property="UserControlId" column="UserControlId" />
+        <result property="WorktaskId" column="WorktaskId" />
+        <result property="FieldId" column="FieldId" />
+        <result property="FieldName" column="FieldName" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_TableUsedFieldList" resultMap="WF_TableUsedField_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [WorkflowId],
+         [UserControlId],
+         [WorktaskId],
+         [FieldId],
+         [FieldName]
+          FROM WF_TableUsedField
+          $value$
+   </select>
+   
+   <select id="SelectWF_TableUsedFieldByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [WorkflowId],
+         [UserControlId],
+         [WorktaskId],
+         [FieldId],
+         [FieldName]
+          FROM WF_TableUsedField
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserControlId">[UserControlId]='$UserControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldId">[FieldId]='$FieldId$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldName">[FieldName]='$FieldName$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_TableUsedFieldByKey" resultMap="WF_TableUsedField_AllColumns" parameterClass="WF_TableUsedField">
+         SELECT 
+         [ID],
+         [WorkflowId],
+         [UserControlId],
+         [WorktaskId],
+         [FieldId],
+         [FieldName]
+         FROM WF_TableUsedField
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteWF_TableUsedField" parameterClass="WF_TableUsedField">
+        DELETE FROM 
+         WF_TableUsedField
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteWF_TableUsedFieldByWhere" parameterClass="string">
+     delete from WF_TableUsedField $value$
+   </delete>
+   
+   <delete id="DeleteWF_TableUsedFieldByKey" parameterClass="string">
+        DELETE FROM 
+         WF_TableUsedField
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateWF_TableUsedField" parameterClass="WF_TableUsedField" resultClass="int">
+          UPDATE WF_TableUsedField
+           SET
+             [WorkflowId]=#WorkflowId#,
+             [UserControlId]=#UserControlId#,
+             [WorktaskId]=#WorktaskId#,
+             [FieldId]=#FieldId#,
+             [FieldName]=#FieldName#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertWF_TableUsedField" parameterClass="WF_TableUsedField">
+        INSERT INTO WF_TableUsedField
+         (
+         [ID],
+         [WorkflowId],
+         [UserControlId],
+         [WorktaskId],
+         [FieldId],
+         [FieldName]
+         )
+       VALUES
+         (
+         #ID#,
+         #WorkflowId#,
+         #UserControlId#,
+         #WorktaskId#,
+         #FieldId#,
+         #FieldName#
+         )
+
+   </insert>
+   
+   <select id="GetWF_TableUsedFieldRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_TableUsedField
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="UserControlId">[UserControlId]='$UserControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldId">[FieldId]='$FieldId$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldName">[FieldName]='$FieldName$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_TableUsedFieldRowCount" parameterClass="string">
+    select count(*) from WF_TableUsedField $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

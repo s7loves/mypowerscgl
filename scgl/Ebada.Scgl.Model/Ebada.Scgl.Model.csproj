@@ -115,6 +115,8 @@
     <Compile Include="WF_OperatorInstance.cs" />
     <Compile Include="WF_OperContentView.cs" />
     <Compile Include="WF_SubWorkFlow.cs" />
+    <Compile Include="WF_TableFieldValue.cs" />
+    <Compile Include="WF_TableUsedField.cs" />
     <Compile Include="WF_TaskVar.cs" />
     <Compile Include="WF_UserControls.cs" />
     <Compile Include="WF_UserControlsLink.cs" />

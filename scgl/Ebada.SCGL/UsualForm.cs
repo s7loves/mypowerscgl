@@ -13,10 +13,11 @@ using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using Ebada.Components;
 using DevExpress.XtraGrid.Columns;
+using Ebada.UI.Base;
 
 namespace Ebada.SCGL
 {
-    public partial class UsualForm : Form
+    public partial class UsualForm : FormBase
     {
         public UsualForm()
         {
