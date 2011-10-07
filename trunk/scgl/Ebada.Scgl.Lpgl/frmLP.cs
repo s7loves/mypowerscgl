@@ -388,6 +388,7 @@ namespace Ebada.Scgl.Lpgl
                         lcyj.taskID = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
                         lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
                         lcyj.Creattime = DateTime.Now;
+                        if (hqyjcontrol.nowMemoEdit.Text!="")
                         MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
                     }
                     if (filecontrol != null)
@@ -445,6 +446,7 @@ namespace Ebada.Scgl.Lpgl
                         lcyj.taskID = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
                         lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
                         lcyj.Creattime = DateTime.Now;
+                        if (hqyjcontrol.nowMemoEdit.Text != "")
                         MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
 
                     }
