@@ -15,7 +15,7 @@ using Ebada.Scgl.Model;
 using Ebada.Client.Platform;
 using System.Web;
 
-namespace Ebada.Scgl.Lcgl
+namespace Ebada.Scgl.Lpgl
 {
     public partial class DownFileControl : UserControl
     {
@@ -456,9 +456,7 @@ namespace Ebada.Scgl.Lcgl
         }
         private void upfileButton_Click(object sender, EventArgs e)
         {
-            openFileDialog1.FileName = "";
-            openFileDialog1.Filter = "(*.*)|*.*";
-            openFileDialog1.Multiselect = true; 
+           
            if(openFileDialog1.ShowDialog()==DialogResult.OK)
            {
                if (icurrent == -1)
@@ -665,6 +663,9 @@ namespace Ebada.Scgl.Lcgl
             downFileFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "工作流附件\\" + upfilePath)+"\\";
             SelectorHelper.EnableFilePathExit(downFileFolder);
             iupcount = 0;
+            openFileDialog1.FileName = "";
+            openFileDialog1.Filter = "(*.*)|*.*";
+            openFileDialog1.Multiselect = true; 
             iniColoumn();
             iniData();
         }

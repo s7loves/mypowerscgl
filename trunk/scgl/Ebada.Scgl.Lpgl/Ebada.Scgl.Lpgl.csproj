@@ -51,6 +51,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
@@ -109,6 +110,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutoUpdater\AutoUpdater.csproj">
+      <Project>{4BA4719C-C6AB-49BA-9754-848CA24C1FD6}</Project>
+      <Name>AutoUpdater</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ebada.Scgl.Core\Ebada.Scgl.Core.csproj">
       <Project>{BFD83E09-E190-4B5E-8F16-BD91F457E058}</Project>
       <Name>Ebada.Scgl.Core</Name>
@@ -123,6 +128,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DownFileControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DownFileControl.Designer.cs">
+      <DependentUpon>DownFileControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +152,12 @@
     </Compile>
     <Compile Include="frmLP.Designer.cs">
       <DependentUpon>frmLP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SPYJControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SPYJControl.Designer.cs">
+      <DependentUpon>SPYJControl.cs</DependentUpon>
     </Compile>
     <Compile Include="模板生成\frmExcelEdit.cs">
       <SubType>Form</SubType>
@@ -223,6 +240,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DownFileControl.resx">
+      <DependentUpon>DownFileControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTemplate.resx">
       <DependentUpon>frmTemplate.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -235,6 +255,9 @@
     <EmbeddedResource Include="frmLP.resx">
       <DependentUpon>frmLP.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SPYJControl.resx">
+      <DependentUpon>SPYJControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="模板生成\frmExcelEdit.resx">
       <DependentUpon>frmExcelEdit.cs</DependentUpon>
