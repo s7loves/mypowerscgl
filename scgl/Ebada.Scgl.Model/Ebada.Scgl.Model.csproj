@@ -111,6 +111,7 @@
     <Compile Include="WF_AccreditUser.cs" />
     <Compile Include="WF_FrmworkParamer.cs" />
     <Compile Include="WF_MainUserControl.cs" />
+    <Compile Include="WF_ModleUsedFunc.cs" />
     <Compile Include="WF_Operator.cs" />
     <Compile Include="WF_OperatorInstance.cs" />
     <Compile Include="WF_OperContentView.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="WF_WorkTaskInstance.cs" />
     <Compile Include="WF_WorkTaskInstanceView.cs" />
     <Compile Include="WF_WorkTaskLinkView.cs" />
+    <Compile Include="WF_WorkTaskModle.cs" />
     <Compile Include="WF_WorkTaskPower.cs" />
     <Compile Include="WF_WorkTaskView.cs" />
   </ItemGroup>

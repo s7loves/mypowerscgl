@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_WorkTaskModle" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_WorkTaskModle"  type="Ebada.Scgl.Model.WF_WorkTaskModle,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_WorkTaskModle_AllColumns" class="WF_WorkTaskModle">
+        <result property="taskControlId" column="taskControlId" />
+        <result property="WorkflowId" column="WorkflowId" />
+        <result property="Modu_ID" column="Modu_ID" />
+        <result property="WorktaskId" column="WorktaskId" />
+        <result property="ControlType" column="ControlType" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_WorkTaskModleList" resultMap="WF_WorkTaskModle_AllColumns" parameterClass="string">
+        SELECT 
+         [taskControlId],
+         [WorkflowId],
+         [Modu_ID],
+         [WorktaskId],
+         [ControlType]
+          FROM WF_WorkTaskModle
+          $value$
+   </select>
+   
+   <select id="SelectWF_WorkTaskModleByHash" parameterClass="Hashtable">
+         SELECT 
+         [taskControlId],
+         [WorkflowId],
+         [Modu_ID],
+         [WorktaskId],
+         [ControlType]
+          FROM WF_WorkTaskModle
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="taskControlId">[taskControlId]='$taskControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="Modu_ID">[Modu_ID]='$Modu_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="ControlType">[ControlType]='$ControlType$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_WorkTaskModleByKey" resultMap="WF_WorkTaskModle_AllColumns" parameterClass="WF_WorkTaskModle">
+         SELECT 
+         [taskControlId],
+         [WorkflowId],
+         [Modu_ID],
+         [WorktaskId],
+         [ControlType]
+         FROM WF_WorkTaskModle
+         WHERE 
+           taskControlId = #taskControlId#
+
+   </select>
+ 
+   <delete id="DeleteWF_WorkTaskModle" parameterClass="WF_WorkTaskModle">
+        DELETE FROM 
+         WF_WorkTaskModle
+           WHERE
+         taskControlId = #taskControlId#
+
+   </delete>
+   
+   <delete id="DeleteWF_WorkTaskModleByWhere" parameterClass="string">
+     delete from WF_WorkTaskModle $value$
+   </delete>
+   
+   <delete id="DeleteWF_WorkTaskModleByKey" parameterClass="string">
+        DELETE FROM 
+         WF_WorkTaskModle
+           WHERE
+         taskControlId = #taskControlId#
+    
+   </delete>
+   
+   <update id="UpdateWF_WorkTaskModle" parameterClass="WF_WorkTaskModle" resultClass="int">
+          UPDATE WF_WorkTaskModle
+           SET
+             [WorkflowId]=#WorkflowId#,
+             [Modu_ID]=#Modu_ID#,
+             [WorktaskId]=#WorktaskId#,
+             [ControlType]=#ControlType#
+            WHERE 
+              taskControlId = #taskControlId#
+
+   </update>
+  
+   <insert id="InsertWF_WorkTaskModle" parameterClass="WF_WorkTaskModle">
+        INSERT INTO WF_WorkTaskModle
+         (
+         [taskControlId],
+         [WorkflowId],
+         [Modu_ID],
+         [WorktaskId],
+         [ControlType]
+         )
+       VALUES
+         (
+         #taskControlId#,
+         #WorkflowId#,
+         #Modu_ID#,
+         #WorktaskId#,
+         #ControlType#
+         )
+
+   </insert>
+   
+   <select id="GetWF_WorkTaskModleRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_WorkTaskModle
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="taskControlId">[taskControlId]='$taskControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="Modu_ID">[Modu_ID]='$Modu_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="ControlType">[ControlType]='$ControlType$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_WorkTaskModleRowCount" parameterClass="string">
+    select count(*) from WF_WorkTaskModle $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

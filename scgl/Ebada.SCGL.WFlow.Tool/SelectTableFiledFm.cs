@@ -26,8 +26,8 @@ namespace Ebada.SCGL.WFlow.Tool
         DataTable mdt = new DataTable();
         DataTable udt = new DataTable();
         private string tableid = "";
-        private string taskid = "";
-        private string workflowid = "";
+        private string worktaskId = "";
+        private string workflowId = "";
         private string strfieldidlist = "";
         private string strfieldnamelist = "";
         public string StrFieldNameList
@@ -53,16 +53,16 @@ namespace Ebada.SCGL.WFlow.Tool
         }
         public string Taskid
         {
-            get { return taskid; }
+            get { return worktaskId; }
 
-            set { taskid = value; }
+            set { worktaskId = value; }
 
         }
         public string Workflowid
         {
-            get { return workflowid; }
+            get { return workflowId; }
 
-            set { workflowid = value; }
+            set { workflowId = value; }
 
         }
         private void SelectTableFiledFm_Load(object sender, EventArgs e)
@@ -82,7 +82,7 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             treeList1.DataSource = mdt;
             treeList1.EndInit();
-            IList ulist = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList", "where UserControlId ='" + tableid + "' and WorktaskId='" + taskid + "' and WorkflowId='" + Workflowid + "'");
+            IList ulist = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList", "where UserControlId ='" + tableid + "' and WorktaskId='" + worktaskId + "' and WorkflowId='" + workflowId + "'");
             if (ulist.Count == 0)
             {
                 udt = new DataTable ();
@@ -120,8 +120,8 @@ namespace Ebada.SCGL.WFlow.Tool
                  um.UserControlId = tableid;
                  um.FieldName =obj.CellName ;
                  um.FieldId =obj.LPID ;
-                 um.WorkflowId= workflowid;  
-                 um.WorktaskId=taskid;
+                 um.WorkflowId= workflowId;  
+                 um.WorktaskId=worktaskId;
                  DataRow dr = udt.NewRow();
                  dr["ID"] = um.ID;
                  dr["UserControlId"] = um.UserControlId;

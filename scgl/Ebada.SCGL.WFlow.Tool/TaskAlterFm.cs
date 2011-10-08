@@ -21,6 +21,7 @@ namespace Ebada.SCGL.WFlow.Tool
         public string UserId = "";//操作人账号，用作权限判断。
         public string UserName = "";//操作人姓名，用作显示。
         public string UserControlId = "";//关联表单id
+        public string UserModleId = "";//关联模块id
         private TabControl tabControl1;
         private TabPage tabPage1;
         private PictureBox pictureBox1;
@@ -859,6 +860,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnSelectModle.Name = "btnSelectModle";
             this.btnSelectModle.Size = new System.Drawing.Size(41, 23);
             this.btnSelectModle.TabIndex = 128;
+            this.btnSelectModle.Click += new System.EventHandler(this.btnSelectModle_Click);
             // 
             // btnSelctField
             // 
@@ -1341,6 +1343,13 @@ namespace Ebada.SCGL.WFlow.Tool
                 lvi1.SubItems.Add(dr["AccessType"].ToString());
                 lvVar.Items.Add(lvi1);
             }
+            //*********模块
+            DataTable modleTable = WorkFlowTask.GetTaskModle(NowTask.TaskId);
+            if (modleTable != null && modleTable.Rows.Count > 0)
+            {
+                tbxModleName.Text = modleTable.Rows[0]["ModuName"].ToString();
+                UserModleId = modleTable.Rows[0]["Modu_ID"].ToString();
+            }
             //*********表单
             DataTable ctrlTable = WorkFlowTask.GetTaskControls(NowTask.TaskId);
             if (ctrlTable != null && ctrlTable.Rows.Count > 0)
@@ -1350,7 +1359,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 tbxFormName.Text = ctrlTable.Rows[0]["CellName"].ToString();
                 UserControlId = ctrlTable.Rows[0]["LPID"].ToString();
             }
-            //可操作字段
+            //*********可操作字段
             IList<WF_TableUsedField> ulist = MainHelper.PlatformSqlMap.GetList<WF_TableUsedField>("SelectWF_TableUsedFieldList", "where UserControlId ='" + UserControlId + "' and WorktaskId='" + NowTask.TaskId + "' and WorkflowId='" + NowTask.WorkFlowId + "'");
             for (int i = 0; i < ulist.Count; i++)
             {
@@ -1489,7 +1498,9 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             //保存关联表单
             WorkFlowTask.DeleteAllControls(NowTask.TaskId);
-            WorkFlowTask.SetTaskUserCtrls(UserControlId,NowTask.WorkFlowId, NowTask.TaskId);
+            WorkFlowTask.SetTaskUserCtrls(UserControlId, NowTask.WorkFlowId, NowTask.TaskId);
+            //保存关联模块
+            WorkFlowTask.SetTaskUserModle(UserModleId, NowTask.WorkFlowId, NowTask.TaskId);
 
             //保存控制权限
             WorkFlowTask.DeleteAllPower(NowTask.WorkFlowId, NowTask.TaskId);
@@ -1881,6 +1892,19 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 tbxFiledName.Tag = stf.StrFieldidList;
                 tbxFiledName.Text = stf.StrFieldNameList;
+            }
+        }
+
+        private void btnSelectModle_Click(object sender, EventArgs e)
+        {
+            SelctTaskModleForm fm = new SelctTaskModleForm();
+            fm.Workflowid = NowTask.WorkFlowId;
+            fm.Taskid = NowTask.TaskId;
+            fm.StrModleId = UserModleId;
+            if (fm.ShowDialog() == DialogResult.OK)
+            {
+                UserModleId = fm.StrModleId;
+                tbxModleName.Text = fm.StrModleName;
             }
         }
 

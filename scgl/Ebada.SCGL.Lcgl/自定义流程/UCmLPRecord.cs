@@ -49,7 +49,7 @@ namespace Ebada.Scgl.Lcgl {
         }
         public event SendDataEventHandler<LP_Record> FocusedRowChanged;
         private string parentID;
-        private LP_Temple parentObj;
+        private WF_WorkFlow parentObj;
         private GridColumn picview;
         private DataTable gridtable = null;
         private RepositoryItemImageEdit imageEdit1;
@@ -219,7 +219,7 @@ namespace Ebada.Scgl.Lcgl {
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public LP_Temple ParentObj {
+        public WF_WorkFlow ParentObj {
             get { return parentObj; }
             set {
                     string str=" where 1>1";
@@ -230,14 +230,12 @@ namespace Ebada.Scgl.Lcgl {
                        strKind = null;
                     } else {
                       // ParentID = value.LPID;
-                        strKind = value.Kind;
+                        strKind = value.FlowCaption;
                         
-                        if (!string.IsNullOrEmpty(value.Kind)) {
-                            str = string.Format("where kind='{0}'", value.Kind);
-                        }
+                       
                     }
                     //gridViewOperation.RefreshData(str);
-                    InitData(value.Kind);
+                    InitData(value.WorkFlowId);
             }
         }
         private void InitData(string kind)
@@ -278,20 +276,20 @@ namespace Ebada.Scgl.Lcgl {
         {
             if (MainHelper.UserOrg == null) return;
 
-            if (!RecordWorkTask.HaveRunNewGZPRole(ParentObj.Kind, MainHelper.User.UserID)) return;
+            if (!RecordWorkTask.HaveRunNewGZPRole(ParentObj.FlowCaption, MainHelper.User.UserID)) return;
             frmLP frm = new frmLP();
             LP_Record lpr = new LP_Record();
             frm.Status = "add";
-            frm.Kind = ParentObj.Kind;
+            frm.Kind = ParentObj.FlowCaption;
             frm.ParentTemple = ParentObj;
 
-            lpr.Status = RecordWorkTask.GetGZPRecordSartStatus(ParentObj.Kind, MainHelper.User.UserID);
+            lpr.Status = RecordWorkTask.GetGZPRecordSartStatus(ParentObj.FlowCaption, MainHelper.User.UserID);
             //lpr.Status = "填票";
             //frm.RowData = lpr;
             frm.CurrRecord = lpr;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                InitData(ParentObj.Kind);
+                InitData(ParentObj.FlowCaption);
             }
         }
 
@@ -305,7 +303,7 @@ namespace Ebada.Scgl.Lcgl {
             frmLP frm = new frmLP();
             frm.Status = "edit";
             frm.ParentTemple = ParentObj;
-            frm.Kind = ParentObj.Kind;         
+            frm.Kind = ParentObj.FlowCaption;         
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
             foreach (DataColumn dc in gridtable.Columns)
@@ -325,7 +323,7 @@ namespace Ebada.Scgl.Lcgl {
             frm.RecordWorkFlowData = dt;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                InitData(ParentObj.Kind);
+                InitData(ParentObj.FlowCaption);
             }
         }
 
@@ -353,7 +351,7 @@ namespace Ebada.Scgl.Lcgl {
 
                 RecordWorkTask.DeleteRecord(dr["ID"].ToString());
                 MainHelper.PlatformSqlMap.DeleteByWhere<LP_Record>(" where id ='" + dr["ID"].ToString() + "'");
-                InitData(parentObj.Kind);
+                InitData(parentObj.FlowCaption);
             }
             catch (Exception ex)
             {
@@ -403,7 +401,7 @@ namespace Ebada.Scgl.Lcgl {
 
                     currRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(dt.Rows[0]["WorkTaskInsId"].ToString());
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
-                    InitData(parentObj.Kind);
+                    InitData(parentObj.FlowCaption);
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
@@ -459,7 +457,7 @@ namespace Ebada.Scgl.Lcgl {
                 {
 
 
-                    InitData(parentObj.Kind);
+                    InitData(parentObj.FlowCaption);
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
@@ -509,7 +507,7 @@ namespace Ebada.Scgl.Lcgl {
                 {
 
 
-                    InitData(parentObj.Kind);
+                    InitData(parentObj.FlowCaption);
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
@@ -604,7 +602,7 @@ namespace Ebada.Scgl.Lcgl {
                 {
 
 
-                    InitData(parentObj.Kind);
+                    InitData(parentObj.FlowCaption);
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }

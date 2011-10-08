@@ -1,4 +1,5 @@
-﻿namespace Ebada.Scgl.Lcgl {
+﻿
+namespace Ebada.Scgl.Lcgl {
     partial class UcmModelUI {
         /// <summary> 
         /// Required designer variable.
