@@ -5,6 +5,8 @@ using GMap.NET.WindowsForms;
 using GMap.NET;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Sbgl;
+using System.Data;
+using Ebada.Scgl.Gis.Markers;
 namespace Ebada.Scgl.Gis {
     public class LineOverlay :GMapOverlay{
 
@@ -23,8 +25,8 @@ namespace Ebada.Scgl.Gis {
         public static LineOverlay CreateLine(GMapControl map, string lineCode,string lineName){
             LineOverlay lay = new LineOverlay(map, lineCode);
             List<PointLatLng> points=new List<PointLatLng>();
-            List<GMapMarker> list = MapBuilder.BuildLineGT(lineCode,lineName);
-            foreach(GMapMarker item in list){
+            List<GMapMarkerVector> list = MapBuilder.BuildLineGT(lineCode, lineName);
+            foreach (GMapMarkerVector item in list) {
                 lay.Markers.Add(item);
                 points.Add(item.Position);
             }
@@ -34,6 +36,18 @@ namespace Ebada.Scgl.Gis {
                 list[0].ToolTipText += "\n" + route.Distance;
             lay.Routes.Add(route);
             return lay;
+        }
+        public static LineOverlay CreateLine(GMapControl map, PS_xl xl){
+
+            LineOverlay lay = CreateLine(map, xl.LineCode, xl.LineName);
+            GMapRoute route =lay.Routes[0];
+            if (route.Points.Count > 0)
+                CreateLineSub(route, null);
+            return lay;
+        }
+        private static void CreateLineSub(GMapRoute r,DataRow[] rows){
+             
+
         }
         public void OnMarkerChanged(GMapMarker marker) {
             this.Routes[0].Points[this.Markers.IndexOf(marker)] = marker.Position;

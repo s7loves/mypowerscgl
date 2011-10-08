@@ -47,7 +47,7 @@ namespace Ebada.Scgl.Gis {
             map.TryCorrectVersion = false;
             rMap1.MapProvider = map;
             //rMap1.Position = new PointLatLng(46.6, 130);
-            rMap1.MaxZoom = 17;
+            rMap1.MaxZoom = 16;
             rMap1.MinZoom = 9;
             mapServer = ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>();
 
