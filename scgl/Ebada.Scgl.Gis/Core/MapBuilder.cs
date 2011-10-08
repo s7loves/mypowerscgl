@@ -29,12 +29,13 @@ namespace Ebada.Scgl.Gis {
          /// </summary>
          /// <param name="LineCode"></param>
          /// <returns></returns>
-         static public List<GMapMarker> BuildLineGT(string LineCode,string LineName) {
+         static public List<GMapMarkerVector> BuildLineGT(string LineCode, string LineName) {
              IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(string.Format("where Linecode='{0}' order by gtcode", LineCode));
 
-             List<GMapMarker> markers = new List<GMapMarker>();
+             List<GMapMarkerVector> markers = new List<GMapMarkerVector>();
              //GMapRoute route = new GMapRoute(points, LineCode);
-             GMapMarker marker = null;
+             GMapMarkerVector marker = null;
+             GMapMarkerVector preMarker = null;
              foreach (PS_gt gt in list) {
                  PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
                  if (box.Contains(pf)) {
@@ -43,8 +44,14 @@ namespace Ebada.Scgl.Gis {
                          marker = new GMapMarkerRect(point);
                      else
                          marker = new GMapMarkerVector(point);
+                     if (preMarker != null) {
+                         marker.ParentMarker = preMarker;
+                         preMarker.NextMarker = marker;
+                     }
+                     preMarker = marker;
                      marker.ToolTipText = gt.gth + "\n" + LineName;
                      marker.Tag = gt;
+
                      markers.Add(marker);
                  }
              }
