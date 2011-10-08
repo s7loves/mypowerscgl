@@ -21,7 +21,7 @@ using System.Threading;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
-    public partial class frmLP : Form,IPopupFormEdit
+    public partial class frmTablePreview : Form,IPopupFormEdit
     {
         #region 字段
 
@@ -88,7 +88,7 @@ namespace Ebada.SCGL.WFlow.Tool
         }
 
         #endregion
-        public frmLP()
+        public frmTablePreview()
         {
             InitializeComponent();           
         }

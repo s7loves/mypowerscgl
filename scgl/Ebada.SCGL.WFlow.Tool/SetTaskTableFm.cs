@@ -108,7 +108,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            frmLP frm = new frmLP();
+            frmTablePreview frm = new frmTablePreview();
             LP_Record lpr = new LP_Record();
             frm.Status = "add";
             frm.Kind = rowData.Kind;

@@ -1,6 +1,6 @@
 ﻿namespace Ebada.SCGL.WFlow.Tool
 {
-    partial class frmLP
+    partial class frmTablePreview
     {
         /// <summary>
         /// Required designer variable.
