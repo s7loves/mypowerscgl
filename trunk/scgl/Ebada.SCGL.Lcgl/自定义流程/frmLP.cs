@@ -30,7 +30,7 @@ namespace Ebada.Scgl.Lcgl
         #region 字段
 
         const int wordWidth = 13;
-        private LP_Temple parentTemple = null;
+        private WF_WorkFlow parentTemple = null;
         private IList<LP_Temple> templeList;
         private IList<Control> tempCtrlList=null;
         private LP_Record currRecord = null;
@@ -45,7 +45,7 @@ namespace Ebada.Scgl.Lcgl
         private DownFileControl filecontrol = null;
         private SPYJControl hqyjcontrol = null;
 
-        public LP_Temple ParentTemple
+        public WF_WorkFlow ParentTemple
         {
             get { return parentTemple; }
             set { parentTemple = value; }
@@ -215,10 +215,10 @@ namespace Ebada.Scgl.Lcgl
             Excel.Worksheet sheet;
             ExcelAccess ea = new ExcelAccess();
             Regex r1 = new Regex(@"(?<=" + CurrRecord.Status + ":)([^,]+)((?=,)?)");
-            if (r1.Match(parentTemple.KindTable).Value != "")
-            {
-                activeSheetName = r1.Match(parentTemple.KindTable).Value;
-            }
+            //if (r1.Match(parentTemple.KindTable).Value != "")
+            //{
+            //    activeSheetName = r1.Match(parentTemple.KindTable).Value;
+            //}
             //int istart = parentTemple.KindTable.IndexOf(CurrRecord.Status + ":") + CurrRecord.Status.Length + 1;
             //int iend = parentTemple.KindTable.IndexOf(",", istart);
             //if (iend>-1)
@@ -226,46 +226,46 @@ namespace Ebada.Scgl.Lcgl
             //else
             //    activeSheetName = parentTemple.KindTable.Substring(istart);
 
-            if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
-            {              
-                this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+            //if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
+            //{              
+            //    this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
                
-                InitContorl();
-            }
-            else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0)
-            {
-                if (parentTemple != null)
-                    InitContorl();             
-                this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+            //    InitContorl();
+            //}
+            //else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0)
+            //{
+            //    if (parentTemple != null)
+            //        InitContorl();             
+            //    this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
 
 
 
-                //保护工作表
-                LockExcel();
-                LoadContent();
-            }
-            if (parentTemple.DocContent != null || (currRecord.DocContent != null&&currRecord.DocContent.Length >0))
-            {
-                wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-                sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
-                activeSheetIndex = sheet.Index;
-                for (int i = 1; i <= wb.Application.Sheets.Count; i++)
-                {
-                    if (i != activeSheetIndex)
-                    {
-                        Excel.Worksheet tmpSheet = (Excel.Worksheet)wb.Application.Sheets.get_Item(i);
-                        try
-                        {
-                            if (tmpSheet != null) tmpSheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
+            //    //保护工作表
+            //    LockExcel();
+            //    LoadContent();
+            //}
+            //if (parentTemple.DocContent != null || (currRecord.DocContent != null&&currRecord.DocContent.Length >0))
+            //{
+            //    wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            //    sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
+            //    activeSheetIndex = sheet.Index;
+            //    for (int i = 1; i <= wb.Application.Sheets.Count; i++)
+            //    {
+            //        if (i != activeSheetIndex)
+            //        {
+            //            Excel.Worksheet tmpSheet = (Excel.Worksheet)wb.Application.Sheets.get_Item(i);
+            //            try
+            //            {
+            //                if (tmpSheet != null) tmpSheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
                            
-                        }
-                        catch { }
+            //            }
+            //            catch { }
 
-                    }
-                }
+            //        }
+            //    }
                 //保护工作表
                 LockExcel();
-            }
+            //}
         }
        
         protected override void OnShown(EventArgs e)
@@ -292,7 +292,7 @@ namespace Ebada.Scgl.Lcgl
         }
         public void InitIndex()
         {
-            templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + parentTemple.LPID +"' and Kind='" + kind + "' Order by SortID");
+            //templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + parentTemple.LPID +"' and Kind='" + kind + "' Order by SortID");
             //IList<LP_Temple> parentlist = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID='0' and Kind='" + kind + "'");
             //if (parentlist.Count > 0)
             //    parentTemple = parentlist[0];
@@ -359,7 +359,7 @@ namespace Ebada.Scgl.Lcgl
             }
             InitEvent();
             InitData();
-            if (RecordWorkTask.HaveRunSPYJRole(parentTemple.Kind))
+            if (RecordWorkTask.HaveRunSPYJRole(parentTemple.FlowCaption))
             {
                 if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
                 hqyjcontrol.Size = new System.Drawing.Size(400, 200);
@@ -369,7 +369,7 @@ namespace Ebada.Scgl.Lcgl
                 dockPanel1.Controls.Add(hqyjcontrol);
             }
 
-            if(RecordWorkTask.HaveRunFuJianRole(parentTemple.Kind))
+            if (RecordWorkTask.HaveRunFuJianRole(parentTemple.FlowCaption))
             {
                 
                 if (filecontrol==null) filecontrol = new DownFileControl();
@@ -382,7 +382,7 @@ namespace Ebada.Scgl.Lcgl
                 filecontrol.Size = new System.Drawing.Size(400, 300);
                 filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
                 currentPosY = currentPosY + filecontrol.Size.Height;
-                filecontrol.UpfilePath = parentTemple.CellName;
+                filecontrol.UpfilePath = parentTemple.FlowCaption;
                 if (currRecord==null)
                 {
                     currRecord = new LP_Record();

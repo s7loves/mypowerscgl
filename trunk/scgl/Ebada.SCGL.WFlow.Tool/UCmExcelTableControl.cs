@@ -102,6 +102,9 @@ namespace Ebada.SCGL.WFlow.Tool
             //treeList1.Columns["OrgType"].ColumnEdit = DicTypeHelper.OrgTypeDic;
             if (this.Site == null)
                 InitData();
+            treeList1.Columns["CellName"].Caption = "表名";
+            treeList1.Columns["CellName"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            treeList1.Columns["CellName"].AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 
         }
         /// <summary>
@@ -110,6 +113,7 @@ namespace Ebada.SCGL.WFlow.Tool
         public void InitData() {
             //treeViewOperator.RefreshData("where parentid = '0' order by cellname");
             treeViewOperator.RefreshData("where  ParentID not in (select LPID from LP_Temple where 1=1) order by cellname");
+           
         }
         public bool BarManagerVisible
         {            

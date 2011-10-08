@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_ModleUsedFunc" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_ModleUsedFunc"  type="Ebada.Scgl.Model.WF_ModleUsedFunc,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_ModleUsedFunc_AllColumns" class="WF_ModleUsedFunc">
+        <result property="ID" column="ID" />
+        <result property="WorkflowId" column="WorkflowId" />
+        <result property="WorktaskId" column="WorktaskId" />
+        <result property="Modu_ID" column="Modu_ID" />
+        <result property="FunCode" column="FunCode" />
+        <result property="FunName" column="FunName" />
+        <result property="FunID" column="FunID" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_ModleUsedFuncList" resultMap="WF_ModleUsedFunc_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [WorkflowId],
+         [WorktaskId],
+         [Modu_ID],
+         [FunCode],
+         [FunName],
+         [FunID]
+          FROM WF_ModleUsedFunc
+          $value$
+   </select>
+   
+   <select id="SelectWF_ModleUsedFuncByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [WorkflowId],
+         [WorktaskId],
+         [Modu_ID],
+         [FunCode],
+         [FunName],
+         [FunID]
+          FROM WF_ModleUsedFunc
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="Modu_ID">[Modu_ID]='$Modu_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="FunCode">[FunCode]='$FunCode$'</isNotNull>
+       <isNotNull prepend="AND" property="FunName">[FunName]='$FunName$'</isNotNull>
+       <isNotNull prepend="AND" property="FunID">[FunID]='$FunID$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_ModleUsedFuncByKey" resultMap="WF_ModleUsedFunc_AllColumns" parameterClass="WF_ModleUsedFunc">
+         SELECT 
+         [ID],
+         [WorkflowId],
+         [WorktaskId],
+         [Modu_ID],
+         [FunCode],
+         [FunName],
+         [FunID]
+         FROM WF_ModleUsedFunc
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteWF_ModleUsedFunc" parameterClass="WF_ModleUsedFunc">
+        DELETE FROM 
+         WF_ModleUsedFunc
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteWF_ModleUsedFuncByWhere" parameterClass="string">
+     delete from WF_ModleUsedFunc $value$
+   </delete>
+   
+   <delete id="DeleteWF_ModleUsedFuncByKey" parameterClass="string">
+        DELETE FROM 
+         WF_ModleUsedFunc
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateWF_ModleUsedFunc" parameterClass="WF_ModleUsedFunc" resultClass="int">
+          UPDATE WF_ModleUsedFunc
+           SET
+             [WorkflowId]=#WorkflowId#,
+             [WorktaskId]=#WorktaskId#,
+             [Modu_ID]=#Modu_ID#,
+             [FunCode]=#FunCode#,
+             [FunName]=#FunName#,
+             [FunID]=#FunID#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertWF_ModleUsedFunc" parameterClass="WF_ModleUsedFunc">
+        INSERT INTO WF_ModleUsedFunc
+         (
+         [ID],
+         [WorkflowId],
+         [WorktaskId],
+         [Modu_ID],
+         [FunCode],
+         [FunName],
+         [FunID]
+         )
+       VALUES
+         (
+         #ID#,
+         #WorkflowId#,
+         #WorktaskId#,
+         #Modu_ID#,
+         #FunCode#,
+         #FunName#,
+         #FunID#
+         )
+
+   </insert>
+   
+   <select id="GetWF_ModleUsedFuncRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_ModleUsedFunc
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkflowId">[WorkflowId]='$WorkflowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorktaskId">[WorktaskId]='$WorktaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="Modu_ID">[Modu_ID]='$Modu_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="FunCode">[FunCode]='$FunCode$'</isNotNull>
+       <isNotNull prepend="AND" property="FunName">[FunName]='$FunName$'</isNotNull>
+       <isNotNull prepend="AND" property="FunID">[FunID]='$FunID$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_ModleUsedFuncRowCount" parameterClass="string">
+    select count(*) from WF_ModleUsedFunc $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

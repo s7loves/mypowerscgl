@@ -565,6 +565,43 @@ namespace Ebada.SCGL.WFlow.Tool
                 throw ex;
             }
         }
+     
+        /// <summary>
+        /// 获得任务节点绑定的模块
+        /// </summary>
+        /// <param name="workflowId">任务模板Id</param>
+        /// <returns></returns>
+        public static DataTable GetTaskModle(string workTaskId)
+        {
+            try
+            {
+                string sqlStr = " where WorkTaskId ='" + workTaskId + "' ";
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskModleList", sqlStr);
+                if (li.Count == 0)
+                {
+                    DataTable dt = new DataTable();
+
+                    return dt;
+                }
+                else
+                {
+                    sqlStr = " where Modu_ID ='" + ((WF_WorkTaskModle)li[0]).Modu_ID + "'";
+                    li = MainHelper.PlatformSqlMap.GetList("SelectmModuleList", sqlStr);
+                    if (li.Count == 0)
+                    {
+                        DataTable dt = new DataTable();
+
+                        return dt;
+                    }
+                }
+                return ConvertHelper.ToDataTable(li);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         /// <summary>
         /// 获得任务节点绑定的表单
         /// </summary>
@@ -597,6 +634,32 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
         /// <summary>
+        /// 任务节点绑定模块
+        /// </summary>
+        /// <param name="mainUserCtrlId">模块id</param>
+        /// <param name="userContrlsId">任务节点id</param>
+        public static void SetTaskUserModle(string userModleId, string workflowid, string worktaskId)
+        {
+            try
+            {
+                WF_WorkTaskModle wt = new WF_WorkTaskModle();
+                //WF_WorkTaskControls wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(userCtrlId);
+                //if (wt == null) return;
+                wt.Modu_ID = userModleId;
+                wt.WorkflowId = workflowid;
+                wt.WorktaskId = worktaskId;
+                // if (MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(wt)==null)
+                MainHelper.PlatformSqlMap.Create<WF_WorkTaskModle>(wt);
+                //else
+                //MainHelper.PlatformSqlMap.Update <WF_WorkTaskControls>(wt);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /// <summary>
         /// 任务节点绑定表单
         /// </summary>
         /// <param name="mainUserCtrlId">主表单id</param>
@@ -611,6 +674,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 wt.UserControlId= userCtrlId;
                 wt.WorkflowId=workflowid;
                 wt.WorktaskId = worktaskId;
+                wt.ControlType = "表单";
                // if (MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(wt)==null)
                 MainHelper.PlatformSqlMap.Create<WF_WorkTaskControls>(wt);
                 //else

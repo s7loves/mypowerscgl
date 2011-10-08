@@ -27,11 +27,11 @@ namespace Ebada.Scgl.Lcgl {
             InitializeComponent();
             //接收TreeList行焦点改变事件
             ucLeft1.BarManagerVisible = false;
-            ucLeft1.FocusedNodeChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.LP_Temple>(ucLeft1_FocusedNodeChanged);
+            ucLeft1.FocusedNodeChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.WF_WorkFlow>(ucLeft1_FocusedNodeChanged);
             //ucLeft1.ChildView = ucRight1.GridViewOperation;
         }
 
-        void ucLeft1_FocusedNodeChanged(object sender, Ebada.Scgl.Model.LP_Temple obj)
+        void ucLeft1_FocusedNodeChanged(object sender, Ebada.Scgl.Model.WF_WorkFlow obj)
         {
             ucRight1.ParentObj = obj;
            // splitCC1.Panel2.Text = "职员所在机构：" + (obj != null ? obj.OrgName : "");

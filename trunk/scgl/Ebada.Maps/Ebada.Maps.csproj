@@ -177,6 +177,12 @@
     <EmbeddedResource Include="WF_TableUsedField.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="WF_ModleUsedFunc.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WF_WorkTaskModle.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

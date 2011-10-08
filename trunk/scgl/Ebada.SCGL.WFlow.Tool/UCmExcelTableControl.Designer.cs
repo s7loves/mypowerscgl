@@ -60,7 +60,7 @@
             this.treeList1.AllowDrop = true;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.KeyFieldName = "OrgID";
-            this.treeList1.Location = new System.Drawing.Point(0, 25);
+            this.treeList1.Location = new System.Drawing.Point(0, 26);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.treeList1.OptionsBehavior.DragNodes = true;
@@ -69,7 +69,7 @@
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.typeCBox,
             this.typeLookUp});
-            this.treeList1.Size = new System.Drawing.Size(549, 327);
+            this.treeList1.Size = new System.Drawing.Size(549, 326);
             this.treeList1.TabIndex = 0;
             // 
             // typeCBox
@@ -222,7 +222,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(549, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(549, 26);
             // 
             // barDockControlBottom
             // 
@@ -233,14 +233,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 327);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 326);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(549, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 327);
+            this.barDockControlRight.Location = new System.Drawing.Point(549, 26);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
             // 
             // imageList1
             // 
@@ -261,7 +261,7 @@
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
             // 
-            // UCmExcelTree
+            // UCmExcelTableControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -270,7 +270,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCmExcelTree";
+            this.Name = "UCmExcelTableControl";
             this.Size = new System.Drawing.Size(549, 374);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).EndInit();
