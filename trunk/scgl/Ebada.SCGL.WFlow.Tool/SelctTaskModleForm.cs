@@ -58,15 +58,6 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 return;
             }
-            //object instance = null;//模块接口
-            // object result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
-            //    if (result is UserControl) {
-                    
-            //    }
-            //    if (instance is Form)
-            //    {
-            //        Form fb = instance as Form;
-            //    }
             if (obj.AssemblyFileName == "") return;
             Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory+obj.AssemblyFileName);
             Type tp = assembly.GetType(obj.ModuTypes);
@@ -75,24 +66,16 @@ namespace Ebada.SCGL.WFlow.Tool
                 fromCtrl = Activator.CreateInstance(tp);
             else//窗体的构造函数需要参数
                 fromCtrl = Activator.CreateInstance(tp, obj.MethodName);
-            //object instance = null;//模块接口
-            //object uc = Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
             if (fromCtrl is UserControl)
             {
                 UserControl fromCtrl2 = fromCtrl as UserControl;
                 foreach (Control c in fromCtrl2.Controls)
                     {
-                     
-                        //Control c1 = c as Button;
-                        //if (c1 != null)
-                        //{
-                        //    c1.Text = "This is A Button";
-                        //}
                         switch(c.GetType().FullName)
                         {
                             case "DevExpress.XtraEditors.SplitContainerControl":
                                 DevExpress.XtraEditors.SplitContainerControl sc = c as DevExpress.XtraEditors.SplitContainerControl;
-
+                                sc.Visible = false;
                                 sc.Name = sc.Name;
                                 break;
                         }

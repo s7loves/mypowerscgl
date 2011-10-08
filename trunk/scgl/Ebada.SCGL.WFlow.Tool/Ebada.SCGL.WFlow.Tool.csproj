@@ -109,11 +109,11 @@
     </Compile>
     <Compile Include="Bounds.cs" />
     <Compile Include="BaseTreeNode.cs" />
-    <Compile Include="frmLP.cs">
+    <Compile Include="frmTablePreview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLP.Designer.cs">
-      <DependentUpon>frmLP.cs</DependentUpon>
+    <Compile Include="frmTablePreview.Designer.cs">
+      <DependentUpon>frmTablePreview.cs</DependentUpon>
     </Compile>
     <Compile Include="SetTaskTableFm.cs">
       <SubType>Form</SubType>
@@ -450,8 +450,8 @@
     <EmbeddedResource Include="Resources\自动节点.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmLP.resx">
-      <DependentUpon>frmLP.cs</DependentUpon>
+    <EmbeddedResource Include="frmTablePreview.resx">
+      <DependentUpon>frmTablePreview.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SetTaskTableFm.resx">
