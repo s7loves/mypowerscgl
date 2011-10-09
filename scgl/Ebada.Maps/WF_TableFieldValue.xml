@@ -13,6 +13,10 @@
         <result property="WorkTaskId" column="WorkTaskId" />
         <result property="WorkTaskInsId" column="WorkTaskInsId" />
         <result property="ControlValue" column="ControlValue" />
+        <result property="UserControlId" column="UserControlId" />
+        <result property="XExcelPos" column="XExcelPos" />
+        <result property="YExcelPos" column="YExcelPos" />
+        <result property="ExcelSheetName" column="ExcelSheetName" />
       </resultMap>
   </resultMaps>
 
@@ -26,7 +30,11 @@
          [WorkFlowInsId],
          [WorkTaskId],
          [WorkTaskInsId],
-         [ControlValue]
+         [ControlValue],
+         [UserControlId],
+         [XExcelPos],
+         [YExcelPos],
+         [ExcelSheetName]
           FROM WF_TableFieldValue
           $value$
    </select>
@@ -40,7 +48,11 @@
          [WorkFlowInsId],
          [WorkTaskId],
          [WorkTaskInsId],
-         [ControlValue]
+         [ControlValue],
+         [UserControlId],
+         [XExcelPos],
+         [YExcelPos],
+         [ExcelSheetName]
           FROM WF_TableFieldValue
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -51,6 +63,10 @@
        <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
        <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
        <isNotNull prepend="AND" property="ControlValue">[ControlValue]='$ControlValue$'</isNotNull>
+       <isNotNull prepend="AND" property="UserControlId">[UserControlId]='$UserControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="XExcelPos">[XExcelPos]='$XExcelPos$'</isNotNull>
+       <isNotNull prepend="AND" property="YExcelPos">[YExcelPos]='$YExcelPos$'</isNotNull>
+       <isNotNull prepend="AND" property="ExcelSheetName">[ExcelSheetName]='$ExcelSheetName$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectWF_TableFieldValueByKey" resultMap="WF_TableFieldValue_AllColumns" parameterClass="WF_TableFieldValue">
@@ -62,7 +78,11 @@
          [WorkFlowInsId],
          [WorkTaskId],
          [WorkTaskInsId],
-         [ControlValue]
+         [ControlValue],
+         [UserControlId],
+         [XExcelPos],
+         [YExcelPos],
+         [ExcelSheetName]
          FROM WF_TableFieldValue
          WHERE 
            ID = #ID#
@@ -98,7 +118,11 @@
              [WorkFlowInsId]=#WorkFlowInsId#,
              [WorkTaskId]=#WorkTaskId#,
              [WorkTaskInsId]=#WorkTaskInsId#,
-             [ControlValue]=#ControlValue#
+             [ControlValue]=#ControlValue#,
+             [UserControlId]=#UserControlId#,
+             [XExcelPos]=#XExcelPos#,
+             [YExcelPos]=#YExcelPos#,
+             [ExcelSheetName]=#ExcelSheetName#
             WHERE 
               ID = #ID#
 
@@ -114,7 +138,11 @@
          [WorkFlowInsId],
          [WorkTaskId],
          [WorkTaskInsId],
-         [ControlValue]
+         [ControlValue],
+         [UserControlId],
+         [XExcelPos],
+         [YExcelPos],
+         [ExcelSheetName]
          )
        VALUES
          (
@@ -125,7 +153,11 @@
          #WorkFlowInsId#,
          #WorkTaskId#,
          #WorkTaskInsId#,
-         #ControlValue#
+         #ControlValue#,
+         #UserControlId#,
+         #XExcelPos#,
+         #YExcelPos#,
+         #ExcelSheetName#
          )
 
    </insert>
@@ -142,6 +174,10 @@
        <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
        <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
        <isNotNull prepend="AND" property="ControlValue">[ControlValue]='$ControlValue$'</isNotNull>
+       <isNotNull prepend="AND" property="UserControlId">[UserControlId]='$UserControlId$'</isNotNull>
+       <isNotNull prepend="AND" property="XExcelPos">[XExcelPos]='$XExcelPos$'</isNotNull>
+       <isNotNull prepend="AND" property="YExcelPos">[YExcelPos]='$YExcelPos$'</isNotNull>
+       <isNotNull prepend="AND" property="ExcelSheetName">[ExcelSheetName]='$ExcelSheetName$'</isNotNull>
      </dynamic>
 
    </select>

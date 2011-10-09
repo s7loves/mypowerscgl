@@ -25,6 +25,7 @@ using Ebada.Scgl.WFlow;
 using DevExpress.XtraEditors.Repository;
 using Ebada.Scgl.Core;
 using DevExpress.Utils;
+using System.IO;
 
 namespace Ebada.Scgl.Lcgl {
 
@@ -52,7 +53,8 @@ namespace Ebada.Scgl.Lcgl {
         private WF_WorkFlow parentObj;
         private GridColumn picview;
         private DataTable gridtable = null;
-        private RepositoryItemImageEdit imageEdit1;
+        //private RepositoryItemImageEdit imageEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
         public UCmLPRecord() {
             InitializeComponent();
             initImageList();
@@ -121,44 +123,82 @@ namespace Ebada.Scgl.Lcgl {
             //gridView1.Columns["OrgName"].Visible = false;
             //gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
             //repositoryItemTextEdit1.EditValueChanged += new EventHandler(repositoryItemTextEdit1_EditValueChanged);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            if (picview == null)
+            //((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            //if (picview == null)
             {
-                imageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
-                ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).BeginInit();
-                // 
-                // imageEdit1
-                // 
-                this.imageEdit1.AutoHeight = false;
-                this.imageEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-                this.imageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-                    new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-                this.imageEdit1.Name = "imageEdit1";
-                this.imageEdit1.PopupFormSize = new System.Drawing.Size(1200, 600); 
-                ((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).EndInit();
+                //imageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
+                //((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).BeginInit();
+                //// 
+                //// imageEdit1
+                //// 
+                //this.imageEdit1.AutoHeight = false;
+                //this.imageEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+                //this.imageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+                //    new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+                //this.imageEdit1.Name = "imageEdit1";
+                //this.imageEdit1.PopupFormSize = new System.Drawing.Size(1200, 600); 
+                //((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).EndInit();
 
                 picview = new DevExpress.XtraGrid.Columns.GridColumn();
                 picview.Caption = "流程图";
                 picview.Visible = true;
                 //picview.MaxWidth = 300;
                 //picview.MinWidth = 300;
-                gridControl1.RepositoryItems.Add(imageEdit1);
+                //gridControl1.RepositoryItems.Add(imageEdit1);
 
-                picview.ColumnEdit = imageEdit1;
+                //picview.ColumnEdit = imageEdit1;
                 //DevExpress.XtraEditors.Repository.RepositoryItem
 
-                this.picview.VisibleIndex =1;
+                //this.picview.VisibleIndex =1;
+                //picview.FieldName = "Image";
+                ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+                ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+                this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+                ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
+                this.repositoryItemHyperLinkEdit1.AutoHeight = false;
+                this.repositoryItemHyperLinkEdit1.Caption = "查看";
+                this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
+                this.repositoryItemHyperLinkEdit1.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit1_Click);
+                this.picview.Caption = "流程图";
+                this.picview.ColumnEdit = this.repositoryItemHyperLinkEdit1;
+                this.picview.VisibleIndex = 1;
                 picview.FieldName = "Image";
+                gridView1.Columns.Add(picview);
+                ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
+
                 gridView1.Columns.Add(picview);
                 ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
                 ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             }
         }
+        private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
+        {
+            int ihand = gridView1.FocusedRowHandle;
+            if (ihand < 0)
+                return;
+            DataRow dr = gridView1.GetDataRow(ihand);
+            Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(), new Size(1024, 768));
+            string tempPath = Path.GetTempPath();
+            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".png";
+            if (objBitmap != null)
+            {
 
-        void repositoryItemTextEdit1_EditValueChanged(object sender, EventArgs e) {
-            
+
+                objBitmap.Save(tempfile, System.Drawing.Imaging.ImageFormat.Png);
+                try
+                {
+                    //System.Diagnostics.Process.Start("explorer.exe", tempfile);
+                    SelectorHelper.Execute("rundll32.exe %Systemroot%\\System32\\shimgvw.dll,ImageView_Fullscreen " + tempfile);
+                }
+                catch
+                {
+
+
+                }
+            }
         }
+  
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<LP_Record> e)
         {
             Status = "add";
@@ -230,12 +270,34 @@ namespace Ebada.Scgl.Lcgl {
                        strKind = null;
                     } else {
                       // ParentID = value.LPID;
-                        strKind = value.FlowCaption;
-                        
-                       
+                        if (value.FlowCaption == "电力线路倒闸操作票")
+                        {
+                            strKind = "dzczp";
+                            InitData("dzczp");
+                        }
+                        else if (value.FlowCaption == "电力线路第一种工作票")
+                        {
+                            strKind = "yzgzp";
+                            InitData("yzgzp");
+                        }
+                        else if (value.FlowCaption == "电力线路第二种工作票")
+                        {
+                            strKind = "ezgzp";
+                            InitData("ezgzp");
+                        }
+                        else if (value.FlowCaption == "电力线路事故应急抢修单")
+                        {
+                            strKind = "xlqxp";
+                            InitData("xlqxp");
+                        }
+                        else
+                        {
+                            strKind = value.FlowCaption;
+                            InitData(value.FlowCaption);
+                        }
                     }
                     //gridViewOperation.RefreshData(str);
-                    InitData(value.WorkFlowId);
+                    
             }
         }
         private void InitData(string kind)
@@ -262,12 +324,14 @@ namespace Ebada.Scgl.Lcgl {
                 gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
 
             }
-            if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(Bitmap));
+            //if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(Bitmap));
+            if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(string));
             int i = 0;
             for (i = 0; i < gridtable.Rows.Count; i++)
             {
 
-                gridtable.Rows[i]["Image"] = RecordWorkTask.WorkFlowBitmap(gridtable.Rows[i]["ID"].ToString(), imageEdit1.PopupFormSize);
+                //gridtable.Rows[i]["Image"] = RecordWorkTask.WorkFlowBitmap(gridtable.Rows[i]["ID"].ToString(), imageEdit1.PopupFormSize);
+                gridtable.Rows[i]["Image"] = "查看";
             }
 
             gridControl1.DataSource = gridtable; 
@@ -276,14 +340,22 @@ namespace Ebada.Scgl.Lcgl {
         {
             if (MainHelper.UserOrg == null) return;
 
-            if (!RecordWorkTask.HaveRunNewGZPRole(ParentObj.FlowCaption, MainHelper.User.UserID)) return;
+            if (!RecordWorkTask.HaveRunNewGZPRole(strKind, MainHelper.User.UserID)) return;
             frmLP frm = new frmLP();
             LP_Record lpr = new LP_Record();
             frm.Status = "add";
-            frm.Kind = ParentObj.FlowCaption;
-            frm.ParentTemple = ParentObj;
-
-            lpr.Status = RecordWorkTask.GetGZPRecordSartStatus(ParentObj.FlowCaption, MainHelper.User.UserID);
+            frm.Kind = strKind;
+            frm.ParentTemple =RecordWorkTask.GetNewWorkTaskTemple(strKind, MainHelper.User.UserID) ;
+            if (frm.ParentTemple == null)
+            {
+                MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
+            }
+            frm.RecordWorkFlowData =RecordWorkTask.GetGZPRecordSartWorkData(ParentObj.FlowCaption, MainHelper.User.UserID);
+            if (frm.RecordWorkFlowData == null)
+            {
+                MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
+            }
+            lpr.Status =frm.RecordWorkFlowData.Rows[0]["TaskCaption"].ToString();
             //lpr.Status = "填票";
             //frm.RowData = lpr;
             frm.CurrRecord = lpr;
@@ -302,8 +374,6 @@ namespace Ebada.Scgl.Lcgl {
            
             frmLP frm = new frmLP();
             frm.Status = "edit";
-            frm.ParentTemple = ParentObj;
-            frm.Kind = ParentObj.FlowCaption;         
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
             foreach (DataColumn dc in gridtable.Columns)
@@ -320,6 +390,13 @@ namespace Ebada.Scgl.Lcgl {
             frm.CurrRecord = currRecord;
             if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+            frm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt);
+            if (frm.ParentTemple == null)
+            {
+                MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
+            }
+
+            frm.Kind = strKind;         
             frm.RecordWorkFlowData = dt;
             if (frm.ShowDialog() == DialogResult.OK)
             {

@@ -22,6 +22,7 @@ using Ebada.Scgl.Model;
 using DevExpress.XtraEditors.Controls;
 using Ebada.Scgl.Core;
 using DevExpress.XtraTreeList.Columns;
+using System.Collections;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -82,7 +83,24 @@ namespace Ebada.Scgl.Lcgl
         
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             if (FocusedNodeChanged != null)
-                FocusedNodeChanged(treeList1, treeList1.GetDataRecordByNode(e.Node) as WF_WorkFlow);
+            {
+                //DataRow dr = treeList1.GetDataRecordByNode(e.Node) as DataRow;
+                
+                WF_WorkFlow wf = new WF_WorkFlow();
+                if (e.Node["Kind"].ToString() == "流程")
+                {
+                    wf.FlowCaption = e.Node["FlowCaption"].ToString();
+                    wf.WFClassId = e.Node["WFClassId"].ToString();
+                    wf.WorkFlowId = e.Node["WorkFlowId"].ToString();
+                    FocusedNodeChanged(treeList1, wf);
+                }
+                else
+                {
+                    FocusedNodeChanged(treeList1, null);
+                
+                }
+                
+            }
         }
 
         void treeViewOperator_CreatingObject(WF_WorkFlow newobj) {
@@ -93,10 +111,15 @@ namespace Ebada.Scgl.Lcgl
             Init();
         }
         public void Init() {
-
+            if (dt == null)
+            {
+                dt = new DataTable();
+            
+            }
             foreach (TreeListColumn tc in treeList1.Columns)
             {
-                tc.Visible = false;
+                //tc.Visible = false;
+                dt.Columns.Add(tc.FieldName, typeof(string));
             }
             //treeList1.Columns["CellName"].Visible = true;
             //treeList1.Columns["OrgType"].ColumnEdit = DicTypeHelper.OrgTypeDic;
@@ -104,11 +127,41 @@ namespace Ebada.Scgl.Lcgl
                 InitData();
 
         }
+        public void InitWorkFlowData(string WFClassId)
+        {
+            IList<WF_WorkFlow> li = MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", " where  WFClassId ='" + WFClassId + "' and Status='1'");
+            for (int i = 0; i < li.Count; i++)
+            {
+                DataRow dr = dt.NewRow();
+                dr["FlowCaption"] = li[i].FlowCaption;
+                dr["WorkFlowId"] = li[i].WorkFlowId;
+                dr["MgrUrl"] = li[i].MgrUrl;
+                dr["WFClassId"] = li[i].WFClassId;
+                dr["Kind"] = "流程";
+                dt.Rows.Add(dr);
+                InitWorkFlowData(dr["WorkFlowId"].ToString());
+            }
+        }
         /// <summary>
         /// 初始化数据
         /// </summary>
         public void InitData() {
             //treeViewOperator.RefreshData("where 1=1");
+            IList<WF_WorkFlowClass> li = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", " where 1=1");
+           
+                for (int i = 0; i < li.Count;i++ )
+                {
+                    DataRow dr = dt.NewRow();
+                    dr["FlowCaption"] = li[i].Caption;
+                    dr["WorkFlowId"] = li[i].WFClassId;
+                    dr["MgrUrl"] = li[i].clMgrUrl;
+                    dr["WFClassId"] = li[i].FatherId;
+                    dr["Kind"] = "分类";
+                    dt.Rows.Add(dr);
+                    InitWorkFlowData(dr["WorkFlowId"].ToString());
+                }
+                treeList1.DataSource = dt;
+                if (treeList1.Nodes.Count > 0 && treeList1.Nodes[0].HasChildren) treeList1.SetFocusedNode(treeList1.Nodes[0].FirstNode);
             
         }
         public bool BarManagerVisible

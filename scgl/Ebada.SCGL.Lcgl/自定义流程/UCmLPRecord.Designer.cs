@@ -35,6 +35,7 @@
             this.barBack = new DevExpress.XtraBars.BarButtonItem();
             this.barChange = new DevExpress.XtraBars.BarButtonItem();
             this.barSus = new DevExpress.XtraBars.BarButtonItem();
+            this.barReChange = new DevExpress.XtraBars.BarButtonItem();
             this.btReExport = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -49,7 +50,6 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.barReChange = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -183,6 +183,15 @@
             this.barSus.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barSus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSus_ItemClick);
             // 
+            // barReChange
+            // 
+            this.barReChange.Caption = "跳转";
+            this.barReChange.Id = 19;
+            this.barReChange.ImageIndex = 3;
+            this.barReChange.Name = "barReChange";
+            this.barReChange.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barReChange.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barReChange_ItemClick);
+            // 
             // btReExport
             // 
             this.btReExport.Caption = "导出";
@@ -307,7 +316,7 @@
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
             this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+            this.gridView1.OptionsSelection.UseIndicatorForSelection = false;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
@@ -319,15 +328,6 @@
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             this.repositoryItemTextEdit1.NullText = "输入密码";
             this.repositoryItemTextEdit1.PasswordChar = '*';
-            // 
-            // barReChange
-            // 
-            this.barReChange.Caption = "跳转";
-            this.barReChange.Id = 19;
-            this.barReChange.ImageIndex = 3;
-            this.barReChange.Name = "barReChange";
-            this.barReChange.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barReChange.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barReChange_ItemClick);
             // 
             // UCmLPRecord
             // 
