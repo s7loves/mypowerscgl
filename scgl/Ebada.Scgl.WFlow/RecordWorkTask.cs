@@ -92,6 +92,64 @@ namespace Ebada.Scgl.WFlow
 
 
         }
+        // <summary>
+        /// 获得流程的当前的节点关联的表单
+        /// </summary>
+        /// <param name="kind">流程名称（工作票：dzczp操作票、yzgzp一种工作票、ezgzp二种工作票、xlqxp抢修单）</param>
+        /// <param name="userID">用户ID</param>
+        /// <returns>bool true有权限 false 无权限</returns>
+
+        public static LP_Temple GetWorkTaskTemple(DataTable workflowData)
+        {
+
+            if (workflowData.Rows.Count > 0)
+            {
+                WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + workflowData.Rows[0]["WorkflowId"] + "' and WorktaskId='" + workflowData.Rows[0]["WorktaskId"] + "'");
+                if (wtc == null) return null;
+                LP_Temple tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
+                if (tp == null) return null;
+                else
+                    return tp;
+            }
+
+            return null;
+
+
+        }
+        /// <summary>
+        /// 获得新创建的流程的第一个节点关联的表单
+        /// </summary>
+        /// <param name="kind">流程名称（工作票：dzczp操作票、yzgzp一种工作票、ezgzp二种工作票、xlqxp抢修单）</param>
+        /// <param name="userID">用户ID</param>
+        /// <returns>bool true有权限 false 无权限</returns>
+
+        public static LP_Temple GetNewWorkTaskTemple(string kind, string userID)
+        {
+            DataTable dt = null;
+            if (kind == "dzczp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票");
+            else if (kind == "yzgzp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第一种工作票");
+            else if (kind == "ezgzp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票");
+            else if (kind == "xlqxp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单");
+            else
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, kind);
+            if (dt.Rows.Count > 0)
+            {
+                WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + dt.Rows[0]["WorkflowId"] + "' and WorktaskId='" + dt.Rows[0]["WorktaskId"] + "'");
+                if (wtc == null) return null;
+                LP_Temple tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
+                if (tp == null) return null;
+                else
+                    return tp;
+            }
+          
+            return null;
+
+
+        }
         /// <summary>
         /// 获得当前用户是否可以填写工作票的权限
         /// </summary>
@@ -119,7 +177,7 @@ namespace Ebada.Scgl.WFlow
            
               
         }
-        public static string GetGZPRecordSartStatus( string kind, string userID)
+        public static DataTable GetGZPRecordSartWorkData(string kind, string userID)
         {
 
             DataTable dt = null;
@@ -135,10 +193,31 @@ namespace Ebada.Scgl.WFlow
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单");
             else
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, kind);
+            //workFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+            //workTaskId = dt.Rows[0]["workTaskId"].ToString();
+            //WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(workTaskId);
+            return dt ;
+        }
+        public static string GetGZPRecordSartStatus(string kind, string userID)
+        {
+
+            DataTable dt = null;
+            string workFlowId = "", workTaskId = "";
+
+            if (kind == "dzczp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票");
+            else if (kind == "yzgzp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第一种工作票");
+            else if (kind == "ezgzp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票");
+            else if (kind == "xlqxp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单");
+            else
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, kind);
             workFlowId = dt.Rows[0]["WorkFlowId"].ToString();
             workTaskId = dt.Rows[0]["workTaskId"].ToString();
             WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(workTaskId);
-            return wt.TaskCaption ;
+            return wt.TaskCaption;
         }
       
         /// <summary>
@@ -444,6 +523,7 @@ namespace Ebada.Scgl.WFlow
             MainHelper.PlatformSqlMap.DeleteByWhere<PJ_gzrjnr>(" where ParentID='" + recordID + "'");
             MainHelper.PlatformSqlMap.DeleteByWhere<PJ_lcfj>(" where recordID='" + recordID + "'");
             MainHelper.PlatformSqlMap.DeleteByWhere<PJ_lcspyj>(" where recordID='" + recordID + "'");
+            MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where recordID='" + recordID + "'");
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             if (wf.Count == 0) return ;
             {
