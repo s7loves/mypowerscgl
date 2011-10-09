@@ -33,6 +33,18 @@ namespace Ebada.Scgl.Gis {
         internal GMapOverlay objects;//杆塔
         internal GMapOverlay routes;//线路
         OperationBase curOperation;
+
+        internal OperationBase CurOperation {
+            get { return curOperation; }
+            set {
+                if (null == value || curOperation == value) return;
+                if (curOperation is OperationDistance)
+                    curOperation.Reset();
+                curOperation = value; 
+            
+            }
+        }
+        OperationInstances oInstances;
         bool canAddMarker;
         public frmMap() {
             InitializeComponent();
@@ -58,8 +70,9 @@ namespace Ebada.Scgl.Gis {
             rMap1.Overlays.Add(objects);
 
             routes.Markers.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Markers_CollectionChanged);
-            barButtonItem10.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
-            curOperation = new OperationBase(rMap1);
+            
+            oInstances = new OperationInstances(rMap1);
+            curOperation = oInstances.LineOperation;
             rMap1.OnMapZoomChanged += new MapZoomChanged(rMap1_OnMapZoomChanged);
             rMap1.MouseEnter += new EventHandler(rMap1_MouseEnter);
             rMap1.MouseMove += new MouseEventHandler(rMap1_MouseMove);
@@ -68,6 +81,19 @@ namespace Ebada.Scgl.Gis {
             rMap1.MouseUp += new MouseEventHandler(MainMap_MouseUp);
             rMap1.OnMarkerEnter += new MarkerEnter(MainMap_OnMarkerEnter);
             rMap1.OnMarkerLeave += new MarkerLeave(MainMap_OnMarkerLeave);
+
+            barButtonItem10.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
+            barButtonItem10.AllowAllUp = true;
+            barButtonItem4.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
+            barButtonItem4.DownChanged += new DevExpress.XtraBars.ItemClickEventHandler(测距_DownChanged);
+            barButtonItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+        }
+
+        void 测距_DownChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (barButtonItem4.Down)
+                CurOperation = oInstances.DistanceOperation;
+            else
+                CurOperation = oInstances.LineOperation;
         }
         void refreshRoute(){
             List<PointLatLng> linePoints = new List<PointLatLng>();
@@ -129,7 +155,7 @@ namespace Ebada.Scgl.Gis {
                     mapview.Zoomin();
                     break;
                 case "测距":
-                    mapview.Distance();
+                    //curOperation = oInstances.DistanceOperation;
                     break;
                 case "全景":
                     mapview.FullView();
@@ -184,18 +210,7 @@ namespace Ebada.Scgl.Gis {
         }
         void MainMap_MouseDown(object sender, MouseEventArgs e) {
             curOperation.MouseDown(sender, e);
-            if (e.Button == MouseButtons.Left) {
-                isMouseDown = true;
-                if (currentMarker == null && canAddMarker) {
-                    GMapMarker marker = createMarker(rMap1.FromLocalToLatLng(e.X, e.Y));
-                    // marker.Position = rMap1.FromLocalToLatLng(e.X, e.Y);
-
-                    // var px = rMap1.MapProvider.Projection.FromLatLngToPixel(marker.Position.Lat, marker.Position.Lng, (int)rMap1.Zoom);
-                    //var tile = rMap1.MapProvider.Projection.FromPixelToTileXY(px);
-
-                    //Debug.WriteLine("MouseDown: " + marker.LocalPosition + " | geo: " + marker.Position + " | px: " + px + " | tile: " + tile);
-                }
-            }
+            
         }
 
         // move current marker with left holding
