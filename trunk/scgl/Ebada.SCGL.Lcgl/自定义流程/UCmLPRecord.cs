@@ -26,6 +26,7 @@ using DevExpress.XtraEditors.Repository;
 using Ebada.Scgl.Core;
 using DevExpress.Utils;
 using System.IO;
+using Ebada.UI.Base;
 
 namespace Ebada.Scgl.Lcgl {
 
@@ -341,28 +342,59 @@ namespace Ebada.Scgl.Lcgl {
             if (MainHelper.UserOrg == null) return;
 
             if (!RecordWorkTask.HaveRunNewGZPRole(strKind, MainHelper.User.UserID)) return;
-            frmLP frm = new frmLP();
-            LP_Record lpr = new LP_Record();
-            frm.Status = "add";
-            frm.Kind = strKind;
-            frm.ParentTemple =RecordWorkTask.GetNewWorkTaskTemple(strKind, MainHelper.User.UserID) ;
-            if (frm.ParentTemple == null)
+            
+            object obj= RecordWorkTask.GetNewWorkTaskModle(strKind, MainHelper.User.UserID);
+            if (obj == null)
             {
-                MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
+                return;
             }
-            frm.RecordWorkFlowData =RecordWorkTask.GetGZPRecordSartWorkData(ParentObj.FlowCaption, MainHelper.User.UserID);
-            if (frm.RecordWorkFlowData == null)
+            if (obj is frmLP)
             {
-                MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
+                frmLP frm = new frmLP();
+                LP_Record lpr = new LP_Record();
+                frm.Status = "add";
+                frm.Kind = strKind;
+                frm.ParentTemple = RecordWorkTask.GetNewWorkTaskTemple(strKind, MainHelper.User.UserID);
+                if (frm.ParentTemple == null)
+                {
+                    MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
+                }
+                frm.RecordWorkFlowData = RecordWorkTask.GetGZPRecordSartWorkData(ParentObj.FlowCaption, MainHelper.User.UserID);
+                if (frm.RecordWorkFlowData == null)
+                {
+                    MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
+                }
+                lpr.Status = frm.RecordWorkFlowData.Rows[0]["TaskCaption"].ToString();
+                //lpr.Status = "填票";
+                //frm.RowData = lpr;
+                frm.CurrRecord = lpr;
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    InitData(ParentObj.FlowCaption);
+                }
             }
-            lpr.Status =frm.RecordWorkFlowData.Rows[0]["TaskCaption"].ToString();
-            //lpr.Status = "填票";
-            //frm.RowData = lpr;
-            frm.CurrRecord = lpr;
-            if (frm.ShowDialog() == DialogResult.OK)
+            else
             {
-                InitData(ParentObj.FlowCaption);
+                
+               
+              
+                if (obj is UserControl)
+                {
+                    FormBase dlg = new FormBase();
+                    dlg.Text = ((UserControl)obj).Name;
+                    dlg.MdiParent = MainHelper.MainForm;
+                    dlg.Controls.Add((UserControl)obj);
+                    ((UserControl)obj).Dock = DockStyle.Fill;
+                    dlg.Show();
+                }
+                else
+                    if (obj is Form)
+                    {
+                        ((Form)obj).ShowDialog();
+                    }
+               
             }
+            
         }
 
         private void btEditfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

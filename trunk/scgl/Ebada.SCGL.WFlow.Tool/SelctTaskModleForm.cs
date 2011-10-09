@@ -257,7 +257,9 @@ namespace Ebada.SCGL.WFlow.Tool
                 return;
                 WF_ModleUsedFunc obj = MainHelper.PlatformSqlMap.GetOneByKey<WF_ModleUsedFunc>(treeList3.FocusedNode["ID"]);
                 strmodleid = obj.Modu_ID;
-                strmodlename = treeList1.FindNodeByKeyID(strmodleid)["ModuName"].ToString();
+                mModule objtemp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(obj.Modu_ID);
+
+                strmodlename = objtemp.ModuName;
         }
     
  

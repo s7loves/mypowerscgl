@@ -11,6 +11,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
+using System.Reflection;
+using DevExpress.XtraTab;
 
 namespace Ebada.Scgl.WFlow
 {
@@ -115,6 +117,113 @@ namespace Ebada.Scgl.WFlow
             return null;
 
 
+        }
+        public static void IniControl(System.Windows.Forms.Control.ControlCollection uc, IList<WF_ModleUsedFunc> mulist, ref bool outisfind)
+        {
+            bool isfind = false;
+            foreach(Control ct  in uc)
+            {
+                isfind = false;
+                foreach (WF_ModleUsedFunc ufc in mulist)
+                {
+                    if (ct.Name == ufc.FunCode)
+                    {
+                        isfind = true;
+                        outisfind = true;
+                        break;
+                    }
+                }
+                if (!isfind)
+                IniControl(ct.Controls, mulist, ref isfind);
+                if (ct is XtraTabPage)
+                {
+                    ((XtraTabPage)ct).PageVisible = isfind;
+                }
+                if (isfind) outisfind = true;
+            }
+        }
+        public static void IniCreatModle(object formCtr, IList<WF_ModleUsedFunc>mulist)
+        {
+            if (formCtr == null) return;
+            bool isfind = false;
+            if (formCtr is UserControl)
+            {
+                UserControl uc = formCtr as UserControl;
+                IniControl(uc.Controls, mulist, ref isfind);
+            }
+            else if (formCtr is Form)
+            {
+                Form fm = formCtr as Form;
+                IniControl(fm.Controls, mulist, ref isfind);
+            }
+
+        
+        }
+        public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName,string moduName)
+        {
+            object fromCtrl;
+            Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + assemblyFileName);
+            Type tp = assembly.GetType(moduTypes);
+            if (methodName == "")////窗体的构造函数不需要参数
+                fromCtrl = Activator.CreateInstance(tp);
+            else//窗体的构造函数需要参数
+                fromCtrl = Activator.CreateInstance(tp, methodName);
+            if (fromCtrl is UserControl)
+            {
+                UserControl uc = fromCtrl as UserControl;
+                uc.Name = moduName;
+                
+            }
+            else if (fromCtrl is Form)
+            {
+                Form fm = fromCtrl as Form;
+                fm.Name = moduName;
+            }
+            return fromCtrl;
+        }
+         /// <summary>
+        /// 获得新创建的流程的第一个节点关联的模块
+        /// </summary>
+        /// <param name="kind">流程名称（工作票：dzczp操作票、yzgzp一种工作票、ezgzp二种工作票、xlqxp抢修单）</param>
+        /// <param name="userID">用户ID</param>
+        /// <returns>bool true有权限 false 无权限</returns>
+
+        public static object GetNewWorkTaskModle(string kind, string userID)
+        {
+            DataTable dt = null;
+            object fromCtrl;
+            if (kind == "dzczp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票");
+            else if (kind == "yzgzp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第一种工作票");
+            else if (kind == "ezgzp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票");
+            else if (kind == "xlqxp")
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单");
+            else
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, kind);
+            if (dt.Rows.Count > 0)
+            {
+                WF_WorkTaskModle wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>(" where WorkflowId='" + dt.Rows[0]["WorkflowId"] + "' and WorktaskId='" + dt.Rows[0]["WorktaskId"] + "'");
+                if (wtc == null) return null;
+                mModule tp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtc.Modu_ID);
+                if (tp == null)
+                {
+                    fromCtrl = CreatNewMoldeIns("Ebada.Scgl.Lcgl.dll", "frmLP","","表单执行平台");
+                }
+                else
+                {
+                    fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName,tp.ModuTypes,tp.MethodName,tp.ModuName);
+                
+                }
+                IList<WF_ModleUsedFunc> mulist = MainHelper.PlatformSqlMap.GetList<WF_ModleUsedFunc>(" where WorkflowId='" + dt.Rows[0]["WorkflowId"] + "' and WorktaskId='" + dt.Rows[0]["WorktaskId"] + "' and Modu_ID='" + tp.Modu_ID+ "'");
+                if (mulist.Count>0) IniCreatModle(fromCtrl, mulist);
+                return fromCtrl;
+            }
+           
+            return null;
+
+        
         }
         /// <summary>
         /// 获得新创建的流程的第一个节点关联的表单
