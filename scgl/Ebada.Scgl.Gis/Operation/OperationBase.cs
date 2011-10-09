@@ -19,7 +19,7 @@ namespace Ebada.Scgl.Gis {
         protected Boolean canAddMarker;
         private Boolean canEditMarker;        
         private GMapMarker updateMarker;
-        private ContextMenu mMenu;
+        protected ContextMenu mMenu;
         public OperationBase(RMap mapcontrol){
             rMap1 = mapcontrol;
             //routes = new GMapOverlay(rMap1, "Line");
@@ -91,6 +91,9 @@ namespace Ebada.Scgl.Gis {
                 } 
             }
         }
+        public virtual void Reset() { }
+
+
         public virtual ContextMenu CreatePopuMenu() {
             ContextMenu menu = new ContextMenu();
             MenuItem item = new MenuItem();

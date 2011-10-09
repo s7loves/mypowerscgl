@@ -152,6 +152,8 @@
     <Compile Include="Markers\GMapMarkerImage.cs" />
     <Compile Include="Markers\GMapMarkerRect.cs" />
     <Compile Include="Operation\OperationBase.cs" />
+    <Compile Include="Operation\OperationDistance.cs" />
+    <Compile Include="Operation\OperationInstance.cs" />
     <Compile Include="Provider\GoogleChinaHybridMap.cs" />
     <Compile Include="IMapView.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
