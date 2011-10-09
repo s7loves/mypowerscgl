@@ -13,12 +13,12 @@ namespace Ebada.Scgl.Gis {
         protected GMapMarker currentMarker;
         protected Boolean isMouseDown;
         protected GMapMarker selectedMarker;
-        private Point beginPoint;
-        private Point localPoint;
+        protected Point beginPoint;
+        protected Point localPoint;
         protected GMapOverlay routes;
         protected Boolean canAddMarker;
-        private Boolean canEditMarker;        
-        private GMapMarker updateMarker;
+        protected Boolean canEditMarker;
+        protected GMapMarker updateMarker;
         protected ContextMenu mMenu;
         public OperationBase(RMap mapcontrol){
             rMap1 = mapcontrol;
@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Gis {
             canEditMarker = true;
         }
         #region 属性
-        protected Boolean CanEditMarker {
+        public Boolean CanEditMarker {
             get { return canEditMarker; }
             set { canEditMarker = value; }
         }
