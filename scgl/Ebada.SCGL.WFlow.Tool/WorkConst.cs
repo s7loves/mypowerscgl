@@ -80,6 +80,14 @@ namespace Ebada.SCGL.WFlow.Tool
         /// </summary>
         public const string UserControl_Child = "ChildUserControl";
         /// <summary>
+        /// 绑定表单内容
+        /// </summary>
+        public const string WorkTask_BindTable = "绑定表单内容"; /// <summary>
+        /// <summary>
+        /// 基于节点内容
+        /// </summary>
+        public const string WorkTask_BindTask = "基于节点内容"; /// <summary>
+        /// <summary>
         /// 任务退回
         /// </summary>
         public const string WorkTask_Return = "退回"; /// <summary>

@@ -41,10 +41,19 @@ namespace Ebada.Scgl.Lcgl
         {
             preMemoEdit.Text = "";
             IList<PJ_lcspyj>spyjlist = MainHelper.PlatformSqlMap.GetList<PJ_lcspyj>("SelectPJ_lcspyjList", "where RecordID='" + recordID + "' order by creattime");
+            
             for (int i = 0; i < spyjlist.Count; i++)
             {
-               preMemoEdit.Text+= spyjlist[i].Charman + ":" + "\r\n" + spyjlist[i].Spyj + "\r\n";
+                if (spyjlist[i].Creattime.ToString("d") == DateTime.Now.ToString("d"))
+                {
 
+                    preMemoEdit.Text += spyjlist[i].Charman + " " + spyjlist[i].Creattime.ToString("HH:mm:ss") + ":" + "\r\n" + spyjlist[i].Spyj + "\r\n";
+
+                }
+                else
+                {
+                    preMemoEdit.Text += spyjlist[i].Charman + " " + spyjlist[i].Creattime.ToString("yyyy/MM/dd HH:mm:ss") + ":" + "\r\n" + spyjlist[i].Spyj + "\r\n";
+                }
             }
         }
         private void SPYJControl_Load(object sender, EventArgs e)

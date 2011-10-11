@@ -117,6 +117,13 @@ namespace Ebada.SCGL.WFlow.Tool
         private Button btnSelectModle;
         private Button btnSelctField;
         private Button btnSelectCtrls;
+        private CheckBox cbxbindTable;
+        private CheckBox cbxbindTask;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private ComboBox comTaskboBox;
+        private Button btnModleClear;
+        private Button btnFieldClear;
+        private Button btnTableClear;
         private IContainer components;//处理人
 
         public fmTaskAlter(AlternateTask alterTask, string userId, string userName)
@@ -228,8 +235,12 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tbxTaskName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.comTaskboBox = new System.Windows.Forms.ComboBox();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cbxDyAssignNext = new System.Windows.Forms.CheckBox();
             this.cbxAssign = new System.Windows.Forms.CheckBox();
+            this.cbxbindTask = new System.Windows.Forms.CheckBox();
+            this.cbxbindTable = new System.Windows.Forms.CheckBox();
             this.cbxReturn = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -253,6 +264,9 @@ namespace Ebada.SCGL.WFlow.Tool
             this.contextMenu2 = new System.Windows.Forms.ContextMenu();
             this.contextMenu3 = new System.Windows.Forms.ContextMenu();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
+            this.btnTableClear = new System.Windows.Forms.Button();
+            this.btnModleClear = new System.Windows.Forms.Button();
+            this.btnFieldClear = new System.Windows.Forms.Button();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -340,7 +354,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage6.Controls.Add(this.checkBox1);
             this.tabPage6.Location = new System.Drawing.Point(4, 21);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(424, 371);
+            this.tabPage6.Size = new System.Drawing.Size(424, 376);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "处理者";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -487,7 +501,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage3.Controls.Add(this.btnAddVar);
             this.tabPage3.Location = new System.Drawing.Point(4, 21);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(424, 371);
+            this.tabPage3.Size = new System.Drawing.Size(424, 376);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "任务变量";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -771,7 +785,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabControl1.Location = new System.Drawing.Point(9, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(432, 396);
+            this.tabControl1.Size = new System.Drawing.Size(432, 401);
             this.tabControl1.TabIndex = 19;
             // 
             // tabPage1
@@ -782,6 +796,9 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage1.Controls.Add(this.tbxModleName);
             this.tabPage1.Controls.Add(this.tbxFiledName);
             this.tabPage1.Controls.Add(this.tbxFormName);
+            this.tabPage1.Controls.Add(this.btnModleClear);
+            this.tabPage1.Controls.Add(this.btnFieldClear);
+            this.tabPage1.Controls.Add(this.btnTableClear);
             this.tabPage1.Controls.Add(this.btnSelectModle);
             this.tabPage1.Controls.Add(this.btnSelctField);
             this.tabPage1.Controls.Add(this.btnSelectCtrls);
@@ -798,7 +815,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(424, 371);
+            this.tabPage1.Size = new System.Drawing.Size(424, 376);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "常规";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -881,7 +898,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 151);
+            this.label2.Location = new System.Drawing.Point(20, 168);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 12);
             this.label2.TabIndex = 127;
@@ -890,7 +907,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // lvCommand
             // 
             this.lvCommand.FullRowSelect = true;
-            this.lvCommand.Location = new System.Drawing.Point(22, 174);
+            this.lvCommand.Location = new System.Drawing.Point(22, 184);
             this.lvCommand.Name = "lvCommand";
             this.lvCommand.Size = new System.Drawing.Size(379, 166);
             this.lvCommand.SmallImageList = this.imgListSmall;
@@ -917,7 +934,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // groupBox2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(22, 142);
+            this.groupBox2.Location = new System.Drawing.Point(22, 163);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(379, 2);
             this.groupBox2.TabIndex = 123;
@@ -925,7 +942,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnDeletecmd
             // 
-            this.btnDeletecmd.Location = new System.Drawing.Point(266, 346);
+            this.btnDeletecmd.Location = new System.Drawing.Point(266, 351);
             this.btnDeletecmd.Name = "btnDeletecmd";
             this.btnDeletecmd.Size = new System.Drawing.Size(80, 23);
             this.btnDeletecmd.TabIndex = 122;
@@ -934,7 +951,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnModifycmd
             // 
-            this.btnModifycmd.Location = new System.Drawing.Point(144, 346);
+            this.btnModifycmd.Location = new System.Drawing.Point(144, 352);
             this.btnModifycmd.Name = "btnModifycmd";
             this.btnModifycmd.Size = new System.Drawing.Size(80, 23);
             this.btnModifycmd.TabIndex = 121;
@@ -943,7 +960,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnAddcmd
             // 
-            this.btnAddcmd.Location = new System.Drawing.Point(44, 346);
+            this.btnAddcmd.Location = new System.Drawing.Point(44, 352);
             this.btnAddcmd.Name = "btnAddcmd";
             this.btnAddcmd.Size = new System.Drawing.Size(80, 23);
             this.btnAddcmd.TabIndex = 118;
@@ -968,41 +985,84 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.comTaskboBox);
+            this.tabPage5.Controls.Add(this.labelControl1);
             this.tabPage5.Controls.Add(this.cbxDyAssignNext);
             this.tabPage5.Controls.Add(this.cbxAssign);
+            this.tabPage5.Controls.Add(this.cbxbindTask);
+            this.tabPage5.Controls.Add(this.cbxbindTable);
             this.tabPage5.Controls.Add(this.cbxReturn);
             this.tabPage5.Location = new System.Drawing.Point(4, 21);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(424, 371);
+            this.tabPage5.Size = new System.Drawing.Size(424, 376);
             this.tabPage5.TabIndex = 6;
             this.tabPage5.Text = "控制权限";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // comTaskboBox
+            // 
+            this.comTaskboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comTaskboBox.FormattingEnabled = true;
+            this.comTaskboBox.Location = new System.Drawing.Point(111, 51);
+            this.comTaskboBox.Name = "comTaskboBox";
+            this.comTaskboBox.Size = new System.Drawing.Size(99, 20);
+            this.comTaskboBox.TabIndex = 5;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(218, 54);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(24, 14);
+            this.labelControl1.TabIndex = 4;
+            this.labelControl1.Text = "数据";
+            // 
             // cbxDyAssignNext
             // 
             this.cbxDyAssignNext.AutoSize = true;
-            this.cbxDyAssignNext.Location = new System.Drawing.Point(35, 77);
+            this.cbxDyAssignNext.Location = new System.Drawing.Point(35, 96);
             this.cbxDyAssignNext.Name = "cbxDyAssignNext";
             this.cbxDyAssignNext.Size = new System.Drawing.Size(180, 16);
             this.cbxDyAssignNext.TabIndex = 2;
             this.cbxDyAssignNext.Text = "允许动态指定一下任务处理人";
             this.cbxDyAssignNext.UseVisualStyleBackColor = true;
+            this.cbxDyAssignNext.Visible = false;
             // 
             // cbxAssign
             // 
             this.cbxAssign.AutoSize = true;
-            this.cbxAssign.Location = new System.Drawing.Point(35, 54);
+            this.cbxAssign.Location = new System.Drawing.Point(35, 73);
             this.cbxAssign.Name = "cbxAssign";
             this.cbxAssign.Size = new System.Drawing.Size(120, 16);
             this.cbxAssign.TabIndex = 1;
             this.cbxAssign.Text = "允许指派他人处理";
             this.cbxAssign.UseVisualStyleBackColor = true;
+            this.cbxAssign.Visible = false;
+            // 
+            // cbxbindTask
+            // 
+            this.cbxbindTask.AutoSize = true;
+            this.cbxbindTask.Location = new System.Drawing.Point(35, 53);
+            this.cbxbindTask.Name = "cbxbindTask";
+            this.cbxbindTask.Size = new System.Drawing.Size(72, 16);
+            this.cbxbindTask.TabIndex = 0;
+            this.cbxbindTask.Text = "基于节点";
+            this.cbxbindTask.UseVisualStyleBackColor = true;
+            // 
+            // cbxbindTable
+            // 
+            this.cbxbindTable.AutoSize = true;
+            this.cbxbindTable.Location = new System.Drawing.Point(35, 33);
+            this.cbxbindTable.Name = "cbxbindTable";
+            this.cbxbindTable.Size = new System.Drawing.Size(180, 16);
+            this.cbxbindTable.TabIndex = 0;
+            this.cbxbindTable.Text = "关联流程内本表单的相关数据";
+            this.cbxbindTable.UseVisualStyleBackColor = true;
             // 
             // cbxReturn
             // 
             this.cbxReturn.AutoSize = true;
-            this.cbxReturn.Location = new System.Drawing.Point(35, 31);
+            this.cbxReturn.Location = new System.Drawing.Point(35, 17);
             this.cbxReturn.Name = "cbxReturn";
             this.cbxReturn.Size = new System.Drawing.Size(72, 16);
             this.cbxReturn.TabIndex = 0;
@@ -1015,7 +1075,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage2.Controls.Add(this.groupBox7);
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(424, 371);
+            this.tabPage2.Size = new System.Drawing.Size(424, 376);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "超时配置";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1027,7 +1087,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage4.Controls.Add(this.groupBox6);
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(424, 371);
+            this.tabPage4.Size = new System.Drawing.Size(424, 376);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "任务通知";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1213,6 +1273,33 @@ namespace Ebada.SCGL.WFlow.Tool
             this.menuItem7.Index = 0;
             this.menuItem7.Text = "删除";
             // 
+            // btnTableClear
+            // 
+            this.btnTableClear.Location = new System.Drawing.Point(399, 93);
+            this.btnTableClear.Name = "btnTableClear";
+            this.btnTableClear.Size = new System.Drawing.Size(20, 23);
+            this.btnTableClear.TabIndex = 128;
+            this.btnTableClear.Tag = "清除";
+            this.btnTableClear.Click += new System.EventHandler(this.btnTableClear_Click);
+            // 
+            // btnModleClear
+            // 
+            this.btnModleClear.Location = new System.Drawing.Point(399, 64);
+            this.btnModleClear.Name = "btnModleClear";
+            this.btnModleClear.Size = new System.Drawing.Size(20, 23);
+            this.btnModleClear.TabIndex = 128;
+            this.btnModleClear.Tag = "清除";
+            this.btnModleClear.Click += new System.EventHandler(this.btnModleClear_Click);
+            // 
+            // btnFieldClear
+            // 
+            this.btnFieldClear.Location = new System.Drawing.Point(399, 117);
+            this.btnFieldClear.Name = "btnFieldClear";
+            this.btnFieldClear.Size = new System.Drawing.Size(20, 23);
+            this.btnFieldClear.TabIndex = 128;
+            this.btnFieldClear.Tag = "清除";
+            this.btnFieldClear.Click += new System.EventHandler(this.btnFieldClear_Click);
+            // 
             // fmTaskAlter
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -1360,19 +1447,27 @@ namespace Ebada.SCGL.WFlow.Tool
                 UserControlId = ctrlTable.Rows[0]["LPID"].ToString();
             }
             //*********可操作字段
-            IList<WF_TableUsedField> ulist = MainHelper.PlatformSqlMap.GetList<WF_TableUsedField>("SelectWF_TableUsedFieldList", "where UserControlId ='" + UserControlId + "' and WorktaskId='" + NowTask.TaskId + "' and WorkflowId='" + NowTask.WorkFlowId + "'");
-            for (int i = 0; i < ulist.Count; i++)
+            if (UserControlId != "节点审核")
             {
-                if (tbxFiledName.Text == "")
+                IList<WF_TableUsedField> ulist = MainHelper.PlatformSqlMap.GetList<WF_TableUsedField>("SelectWF_TableUsedFieldList", "where UserControlId ='" + UserControlId + "' and WorktaskId='" + NowTask.TaskId + "' and WorkflowId='" + NowTask.WorkFlowId + "'");
+                for (int i = 0; i < ulist.Count; i++)
                 {
-                    tbxFiledName.Text = ulist[i].FieldName;
-                }
-                else
-                {
-                    tbxFiledName.Text += "," + ulist[i].FieldName;
+                    if (tbxFiledName.Text == "")
+                    {
+                        tbxFiledName.Text = ulist[i].FieldName;
+                    }
+                    else
+                    {
+                        tbxFiledName.Text += "," + ulist[i].FieldName;
+
+                    }
 
                 }
-
+            }
+            else
+            {
+                tbxFiledName.Text = "不可用";
+                tbxFiledName.Tag = null;
             }
             //*********控制权限
             DataTable powerTable = WorkFlowTask.GetTaskPower(NowTask.WorkFlowId, NowTask.TaskId);
@@ -1381,9 +1476,12 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 powerStr = powerStr + dr["PowerName"].ToString()+",";
             }
-            cbxReturn.Checked=powerStr.IndexOf(WorkConst.WorkTask_Return) > -1;//退回
+            cbxReturn.Checked = powerStr.IndexOf(WorkConst.WorkTask_Return) > -1;//退回
+            cbxbindTable.Checked = powerStr.IndexOf(WorkConst.WorkTask_BindTable) > -1;//绑定表单内容
+            cbxbindTask.Checked = powerStr.IndexOf(WorkConst.WorkTask_BindTask) > -1;//基于节点内容
             cbxAssign.Checked = powerStr.IndexOf(WorkConst.WorkTask_Assign) >-1;//指派
             cbxDyAssignNext.Checked = powerStr.IndexOf(WorkConst.WorkTask_DyAssignNext) > -1;//动态指定下一任务处理人
+            iniBindTask();
             //********* 超时配置
             WorkOutTime ot = new WorkOutTime();
             ot.GetWorkOutTimeInfo(NowTask.TaskId);
@@ -1419,7 +1517,56 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (usr.Length > 0)
                 lbxRmMsgToUsers.Items.Add(usr);
             }
+        }
+        
+        private void iniBindTask()
+        {
+            Hashtable hs = new Hashtable();
+            GetFormTask(NowTask.TaskId,NowTask.WorkFlowId,ref hs);
+            ArrayList akeys=new ArrayList(hs.Keys);
+            string taskcaption = "";
+            for (int i = 0; i < akeys.Count; i++)
+            {
+                taskcaption= hs[akeys[i]] as string;
+                ListItem item = new ListItem(akeys[i].ToString(),taskcaption);
+                comTaskboBox.Items.Add(item);
+            }
+            if (comTaskboBox.Items.Count > 0) comTaskboBox.SelectedIndex = 0;
+            DataTable binddt = WorkFlowTask.GetTaskBindTaskContent(NowTask.TaskId);
+            if (binddt.Rows.Count > 0)
+            {
+                WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(binddt.Rows[0]["UserControlId"]);
+                if (wt != null)
+                {
+                    comTaskboBox.Text = wt.TaskCaption;
+                    for (int i = 0; i < comTaskboBox.Items.Count;i++ )
+                    {
+                        ListItem item =comTaskboBox.Items[i] as ListItem;
+                        if (item.ID==wt.WorkTaskId)
+                        {
 
+                            comTaskboBox.SelectedIndex = i;
+                            comTaskboBox.SelectedItem = item;
+                            break;
+                        }
+                    }
+                       
+                }
+
+            }
+        }
+        private void GetFormTask(string taskid, string workFlowId, ref Hashtable taskht)
+        {
+            
+            string tmpStr = " where  EndTaskId='" + taskid + "' and WorkFlowId='" + workFlowId + "'";
+            IList<WF_WorkTaskLinkView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskLinkView>("SelectWF_WorkTaskLinkViewList", tmpStr);
+            foreach (WF_WorkTaskLinkView tl in li)
+            {
+                if (!taskht.ContainsKey(tl.StartTaskId))
+                taskht.Add(tl.StartTaskId, tl.startTaskCaption);
+                GetFormTask(tl.StartTaskId, workFlowId, ref  taskht);
+            }
+            
         }
         private void SaveData()
         {
@@ -1498,14 +1645,22 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             //保存关联表单
             WorkFlowTask.DeleteAllControls(NowTask.TaskId);
-            WorkFlowTask.SetTaskUserCtrls(UserControlId, NowTask.WorkFlowId, NowTask.TaskId);
+            if (UserControlId != "") WorkFlowTask.SetTaskUserCtrls(UserControlId, NowTask.WorkFlowId, NowTask.TaskId);
             //保存关联模块
-            WorkFlowTask.SetTaskUserModle(UserModleId, NowTask.WorkFlowId, NowTask.TaskId);
+            WorkFlowTask.DeleteAllModle(NowTask.TaskId);
+            if (UserModleId!="") WorkFlowTask.SetTaskUserModle(UserModleId, NowTask.WorkFlowId, NowTask.TaskId);
 
             //保存控制权限
             WorkFlowTask.DeleteAllPower(NowTask.WorkFlowId, NowTask.TaskId);
             if (cbxReturn.Checked)
-            WorkFlowTask.SetTaskPower(WorkConst.WorkTask_Return,NowTask.WorkFlowId, NowTask.TaskId);
+                WorkFlowTask.SetTaskPower(WorkConst.WorkTask_Return, NowTask.WorkFlowId, NowTask.TaskId);
+            if (cbxbindTable.Checked)
+                WorkFlowTask.SetTaskPower(WorkConst.WorkTask_BindTable, NowTask.WorkFlowId, NowTask.TaskId);
+            if (cbxbindTask.Checked)
+            {
+                WorkFlowTask.SetTaskPower(WorkConst.WorkTask_BindTask, NowTask.WorkFlowId, NowTask.TaskId);
+                WorkFlowTask.SetTaskBindTaskContent(((ListItem)comTaskboBox.SelectedItem).ID, NowTask.WorkFlowId, NowTask.TaskId);
+            }
             if (cbxAssign.Checked)
             WorkFlowTask.SetTaskPower(WorkConst.WorkTask_Assign, NowTask.WorkFlowId, NowTask.TaskId);
             if (cbxDyAssignNext.Checked)
@@ -1905,7 +2060,59 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 UserModleId = fm.StrModleId;
                 tbxModleName.Text = fm.StrModleName;
+                mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(UserModleId);
+                if (obj != null && obj.ModuTypes.IndexOf("frmLP") == -1)
+                {
+                    UserControlId = "节点审核";
+                    tbxFormName.Text = "节点提交";
+
+                    tbxFiledName.Tag = null;
+                    tbxFiledName.Text = "不可用";
+                    label2.Text = "处理(任务命令可用代码{01：代表调用提交文件模块，02：手动结束}):";
+                }
+                else
+                {
+                    if (UserControlId == "节点审核")
+                    {
+                        UserControlId = "";
+                        tbxFormName.Text = "";
+
+                        tbxFiledName.Tag = null;
+                        tbxFiledName.Text = "";
+                        label2.Text = "处理";
+                    }
+                }
             }
+        }
+
+        private void btnModleClear_Click(object sender, EventArgs e)
+        {
+            //保存关联模块
+            WorkFlowTask.DeleteAllModle(NowTask.TaskId);
+            WorkFlowTask.DeleteAllModleField(NowTask.WorkFlowId,NowTask.TaskId);
+            UserModleId = "";
+            tbxModleName.Text = "";
+        }
+
+        private void btnTableClear_Click(object sender, EventArgs e)
+        {
+            //保存关联表单
+            WorkFlowTask.DeleteAllControls(NowTask.TaskId);
+            WorkFlowTask.DeleteAllTableField(NowTask.WorkFlowId, NowTask.TaskId);
+            UserControlId = "";
+            tbxFormName.Text = "";
+            tbxFiledName.Tag = null;
+            tbxFiledName.Text = "";
+            label2.Text = "处理";
+        }
+
+        private void btnFieldClear_Click(object sender, EventArgs e)
+        {
+
+
+            WorkFlowTask.DeleteAllTableField(NowTask.WorkFlowId, NowTask.TaskId);
+            tbxFiledName.Tag = null;
+            tbxFiledName.Text = "";
         }
 
        

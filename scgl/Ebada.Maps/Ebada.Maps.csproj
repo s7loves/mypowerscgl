@@ -183,6 +183,11 @@
     <EmbeddedResource Include="WF_WorkTaskModle.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="WF_ModleCheckTable.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

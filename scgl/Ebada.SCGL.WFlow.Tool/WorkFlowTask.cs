@@ -6,6 +6,7 @@ using Ebada.Scgl.Model;
 using Ebada.Client.Platform;
 using System.Collections;
 using Ebada.Core;
+using System.Threading;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -272,6 +273,7 @@ namespace Ebada.SCGL.WFlow.Tool
         /// <summary>
         /// 删除任务的所有控制权限
         /// </summary>
+        /// <param name="workflowId"></param>
         /// <param name="worktaskId"></param>
         /// <returns></returns>
         public static int DeleteAllPower(string workflowId,string worktaskId)
@@ -292,6 +294,71 @@ namespace Ebada.SCGL.WFlow.Tool
             }
 
         }
+        /// <summary>
+        /// 删除任务关联表的所有字段
+        /// </summary>
+        /// <param name="worktaskId"></param>
+        /// <returns></returns>
+        public static int DeleteAllTableField(string workflowId, string worktaskId)
+        {
+            try
+            {
+                string sqlStr = " where  WorkTaskId='" + worktaskId + "' and workflowId='" + workflowId + "' ";
+
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableUsedField>(sqlStr);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 删除任务关联模块的所有z功能
+        /// </summary>
+        /// <param name="worktaskId"></param>
+        /// <returns></returns>
+        public static int DeleteAllModleField(string workflowId,string worktaskId )
+        {
+            try
+            {
+                string sqlStr = " where  WorkTaskId='" + worktaskId + "' and workflowId='" + workflowId + "' ";
+
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleUsedFunc>(sqlStr);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 删除任务的所有表单
+        /// </summary>
+        /// <param name="worktaskId"></param>
+        /// <returns></returns>
+        public static int DeleteAllModle(string worktaskId)
+        {
+            try
+            {
+                string sqlStr = " where  WorkTaskId='" + worktaskId + "'";
+
+                return MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskModle>(sqlStr);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         /// <summary>
         /// 删除任务的所有表单
         /// </summary>
@@ -602,6 +669,36 @@ namespace Ebada.SCGL.WFlow.Tool
                 throw ex;
             }
         }
+         /// <summary>
+        /// 获得任务节点绑定的节点
+        /// </summary>
+        /// <param name="workflowId">任务模板Id</param>
+        /// <returns></returns>
+        public static DataTable GetTaskBindTaskContent(string workTaskId)
+        {
+
+            try
+            {
+                string sqlStr = " where WorkTaskId ='" + workTaskId + "' and  ControlType = '绑定节点' ";
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskControlsList", sqlStr);
+                if (li.Count == 0 || ((WF_WorkTaskControls)li[0]).UserControlId == "")
+                {
+                    DataTable dt = new DataTable();
+
+                    return dt;
+                }
+                else
+                {
+
+                    return ConvertHelper.ToDataTable(li);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         /// <summary>
         /// 获得任务节点绑定的表单
         /// </summary>
@@ -611,9 +708,9 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                string sqlStr = " where WorkTaskId ='"+workTaskId+"' order by CtrlOrderNbr";
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskControlsViewList", sqlStr);
-                if (li.Count == 0)
+                string sqlStr = " where WorkTaskId ='" + workTaskId + "' and  ControlType = '表单' ";
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskControlsList", sqlStr);
+                if (li.Count == 0 || ((WF_WorkTaskControls)li[0]).UserControlId == "")
                 {
                     DataTable dt = new DataTable();
 
@@ -621,8 +718,23 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else
                 {
-                    sqlStr = " where LPID ='" + ((WF_WorkTaskControlsView)li[0]).UserControlId + "'";
-                    li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", sqlStr);
+                    if (((WF_WorkTaskControls)li[0]).UserControlId != "节点审核")
+                    {
+                        sqlStr = " where LPID ='" + ((WF_WorkTaskControls)li[0]).UserControlId + "'";
+                        li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", sqlStr);
+
+                    }
+                    else
+                    {
+                        li.Clear();
+                        LP_Temple lp = new LP_Temple();
+                        lp.LPID = "节点审核";
+                        lp.CellName = "节点提交";
+                        li.Add(lp);
+                        
+                      
+                    }
+
                 
                 }
                 return ConvertHelper.ToDataTable(li); 
@@ -662,8 +774,38 @@ namespace Ebada.SCGL.WFlow.Tool
         /// <summary>
         /// 任务节点绑定表单
         /// </summary>
-        /// <param name="mainUserCtrlId">主表单id</param>
         /// <param name="userContrlsId">任务节点id</param>
+        /// <param name="workflowid">workflowid</param>
+        /// <param name="worktaskId">worktaskId</param>
+        public static void SetTaskBindTaskContent(string WorktaskId, string workflowid, string worktaskId)
+        {
+            try
+            {
+                WF_WorkTaskControls wt = new WF_WorkTaskControls();
+                //WF_WorkTaskControls wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(userCtrlId);
+                //if (wt == null) return;
+                wt.UserControlId = WorktaskId;
+                wt.WorkflowId = workflowid;
+                wt.WorktaskId = worktaskId;
+                wt.ControlType = "绑定节点";
+                // if (MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(wt)==null)
+                MainHelper.PlatformSqlMap.Create<WF_WorkTaskControls>(wt);
+                //else
+                //MainHelper.PlatformSqlMap.Update <WF_WorkTaskControls>(wt);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        
+        }
+        /// <summary>
+        /// 任务节点绑定表单
+        /// </summary>
+        /// <param name="userContrlsId">任务节点id</param>
+        /// <param name="workflowid">workflowid</param>
+        /// <param name="worktaskId">worktaskId</param>
         public static void SetTaskUserCtrls(string userCtrlId, string workflowid,string worktaskId)
         {
             try
@@ -702,6 +844,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 wt.PowerName = powerName;
                 wt.WorkFlowId = workflowid;
                 wt.WorkTaskId = worktaskId;
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 MainHelper.PlatformSqlMap.Create<WF_WorkTaskPower>(wt);
 
 

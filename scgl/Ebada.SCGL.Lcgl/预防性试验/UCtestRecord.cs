@@ -24,14 +24,21 @@ using Ebada.Scgl.Core;
 using Ebada.Components;
 using DevExpress.Utils;
 using System.Collections;
+using Ebada.Scgl.WFlow;
+using System.Runtime.InteropServices;
+using Ebada.UI.Base;
 
 namespace Ebada.Scgl.Lcgl
 {
+    
     /// <summary>
     /// 
     /// </summary>
+    /// 
     public partial class UCtestRecord : DevExpress.XtraEditors.XtraUserControl
     {
+        [DllImport("user32.dll", EntryPoint = "SendMessageA")]
+        public static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
         public  GridViewOperation<PJ_yfsyjl> gridViewOperation;
 
         public event SendDataEventHandler<PJ_yfsyjl> FocusedRowChanged;
@@ -39,6 +46,65 @@ namespace Ebada.Scgl.Lcgl
         private string parentID = null;
         private mOrg parentObj;
         private string _type = null;
+        private bool isWorkfowCall = false;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set { parentTemple = value; }
+        }
+        public bool IsWorkfowCall
+        {
+            set {
+
+                isWorkfowCall = value;
+                
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set { currRecord = value; }
+        }
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+
+                return WorkFlowData;
+            }
+            set
+            {
+
+
+                WorkFlowData = value;
+
+                if (isWorkfowCall)
+                {
+                    IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+                    foreach (WF_WorkTaskCommands wt in wtlist)
+                    {
+                        if (wt.CommandName == "01")
+                        {
+                            liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            SubmitButton.Caption = wt.Description;
+                        }
+                        else
+                            if (wt.CommandName == "02")
+                            {
+                                liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                                TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                                TaskOverButton.Caption = wt.Description;
+                            }
+                        
+                    }
+                }
+            }
+        }
         public UCtestRecord()
         {
             InitializeComponent();
@@ -326,6 +392,60 @@ namespace Ebada.Scgl.Lcgl
                     break;
             }
            
+        }
+
+        private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmModleSubmit fm = new frmModleSubmit();
+            fm.RecordWorkFlowData = WorkFlowData;
+            fm.CurrRecord = currRecord;
+            fm.Status = "add";
+            fm.Kind = currRecord.Kind;
+            fm.ParentTemple = parentTemple;
+            if(fm.ShowDialog()==DialogResult.OK)
+            {
+                gridControl1.FindForm().Close();
+            }
+           
+        }
+
+
+        private void TaskOverButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认此节点结束，并进入下一流程?") != DialogResult.OK)
+            {
+                SendMessage(this.Handle, 0x0010, (IntPtr)0, (IntPtr)0);
+                return;
+            }
+            string strmes = "";
+            WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                currRecord.Status = "存档";
+            }
+            else
+            {
+                currRecord.Status = strmes;
+            }
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+            gridControl1.FindForm().Close();
         }
     }
 }

@@ -145,15 +145,15 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lvCommand = new System.Windows.Forms.ListView();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.tbxModleName = new System.Windows.Forms.TextBox();
+            this.tbxFiledName = new System.Windows.Forms.TextBox();
             this.btnSelectModle = new System.Windows.Forms.Button();
+            this.btnSelctField = new System.Windows.Forms.Button();
             this.tbxTaskName = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.contextMenu3 = new System.Windows.Forms.ContextMenu();
-            this.btnSelctField = new System.Windows.Forms.Button();
-            this.tbxFiledName = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -535,6 +535,15 @@ namespace Ebada.SCGL.WFlow.Tool
             this.label6.Text = "模块名:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(28, 128);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(94, 23);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "可操作的字段:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // tbxModleName
             // 
             this.tbxModleName.Location = new System.Drawing.Point(135, 74);
@@ -543,6 +552,14 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tbxModleName.Size = new System.Drawing.Size(212, 21);
             this.tbxModleName.TabIndex = 12;
             // 
+            // tbxFiledName
+            // 
+            this.tbxFiledName.Location = new System.Drawing.Point(135, 128);
+            this.tbxFiledName.Name = "tbxFiledName";
+            this.tbxFiledName.ReadOnly = true;
+            this.tbxFiledName.Size = new System.Drawing.Size(212, 21);
+            this.tbxFiledName.TabIndex = 12;
+            // 
             // btnSelectModle
             // 
             this.btnSelectModle.Location = new System.Drawing.Point(351, 73);
@@ -550,6 +567,14 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnSelectModle.Size = new System.Drawing.Size(41, 23);
             this.btnSelectModle.TabIndex = 11;
             this.btnSelectModle.Click += new System.EventHandler(this.btnSelectModle_Click);
+            // 
+            // btnSelctField
+            // 
+            this.btnSelctField.Location = new System.Drawing.Point(351, 128);
+            this.btnSelctField.Name = "btnSelctField";
+            this.btnSelctField.Size = new System.Drawing.Size(41, 23);
+            this.btnSelctField.TabIndex = 11;
+            this.btnSelctField.Click += new System.EventHandler(this.btnSelctField_Click);
             // 
             // tbxTaskName
             // 
@@ -578,31 +603,6 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.contextMenu3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem8});
-            // 
-            // btnSelctField
-            // 
-            this.btnSelctField.Location = new System.Drawing.Point(351, 128);
-            this.btnSelctField.Name = "btnSelctField";
-            this.btnSelctField.Size = new System.Drawing.Size(41, 23);
-            this.btnSelctField.TabIndex = 11;
-            this.btnSelctField.Click += new System.EventHandler(this.btnSelctField_Click);
-            // 
-            // tbxFiledName
-            // 
-            this.tbxFiledName.Location = new System.Drawing.Point(135, 128);
-            this.tbxFiledName.Name = "tbxFiledName";
-            this.tbxFiledName.ReadOnly = true;
-            this.tbxFiledName.Size = new System.Drawing.Size(212, 21);
-            this.tbxFiledName.TabIndex = 12;
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(28, 128);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 23);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "可操作的字段:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // fmTaskStart
             // 
@@ -729,20 +729,29 @@ namespace Ebada.SCGL.WFlow.Tool
                 UserControlId = ctrlTable.Rows[0]["LPID"].ToString();
             }
             //可操作字段
-            IList<WF_TableUsedField> ulist = MainHelper.PlatformSqlMap.GetList<WF_TableUsedField>("SelectWF_TableUsedFieldList", "where UserControlId ='" + UserControlId + "' and WorktaskId='" + NowTask.TaskId + "' and WorkflowId='" + NowTask.WorkFlowId + "'");
-            for(int i=0;i<ulist.Count;i++)
+            if(UserControlId!="节点审核")
             {
-                if (tbxFiledName.Text == "")
+                IList<WF_TableUsedField> ulist = MainHelper.PlatformSqlMap.GetList<WF_TableUsedField>("SelectWF_TableUsedFieldList", "where UserControlId ='" + UserControlId + "' and WorktaskId='" + NowTask.TaskId + "' and WorkflowId='" + NowTask.WorkFlowId + "'");
+                for (int i = 0; i < ulist.Count; i++)
                 {
-                    tbxFiledName.Text = ulist[i].FieldName;
+                    if (tbxFiledName.Text == "")
+                    {
+                        tbxFiledName.Text = ulist[i].FieldName;
+                    }
+                    else
+                    {
+                        tbxFiledName.Text += "," + ulist[i].FieldName;
+
+                    }
+
                 }
-                else
-                {
-                    tbxFiledName.Text +=","+ ulist[i].FieldName;
-                
-                }
-            
             }
+            else
+            {
+                tbxFiledName.Text = "不可用";
+                tbxFiledName.Tag =null;
+            }
+            
         }
         private void SaveData()
         {
@@ -817,9 +826,10 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             //保存关联表单
             WorkFlowTask.DeleteAllControls(NowTask.TaskId);
-            WorkFlowTask.SetTaskUserCtrls(UserControlId,NowTask.WorkFlowId,NowTask.TaskId);
+            if (UserControlId != "") WorkFlowTask.SetTaskUserCtrls(UserControlId, NowTask.WorkFlowId, NowTask.TaskId);
             //保存关联模块
-            WorkFlowTask.SetTaskUserModle(UserModleId, NowTask.WorkFlowId, NowTask.TaskId);
+            WorkFlowTask.DeleteAllModle(NowTask.TaskId);
+            if (UserModleId != "") WorkFlowTask.SetTaskUserModle(UserModleId, NowTask.WorkFlowId, NowTask.TaskId);
  
         }
         private void tabPage1_Click(object sender, EventArgs e)
@@ -1109,6 +1119,16 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 UserModleId = fm.StrModleId;
                 tbxModleName.Text = fm.StrModleName;
+                mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(UserModleId);
+                if (obj != null && obj.MethodName != "frmLP")
+                {
+                    UserControlId = "节点审核";
+                    tbxFormName.Text = "节点提交";
+
+                    tbxFiledName.Tag = null;
+                    tbxFiledName.Text = "不可用";
+                    label2.Text = "处理(任务命令可用代码{01：代表调用提交文件模块，02：手动结束}):";
+                }
             }
         }
 

@@ -18,10 +18,11 @@ using Ebada.Core;
 using DevExpress.XtraRichEdit.API.Word;
 using DevExpress.XtraGrid.Views.Base;
 using System.Threading;
+using Ebada.Scgl.WFlow;
 
-namespace Ebada.SCGL.WFlow.Tool
+namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmTablePreview : Form,IPopupFormEdit
+    public partial class frmModleSubmit : Form,IPopupFormEdit
     {
         #region 字段
 
@@ -88,14 +89,16 @@ namespace Ebada.SCGL.WFlow.Tool
         }
 
         #endregion
-        public frmTablePreview()
+        public frmModleSubmit()
         {
             InitializeComponent();           
         }
         void dataBind()
-        {        
-            
+        {
+
         }
+        private DownFileControl filecontrol = null;
+        private SPYJControl hqyjcontrol = null;
         private DataTable WorkFlowData = null;//实例流程信息
 
         public DataTable RecordWorkFlowData
@@ -155,23 +158,17 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 tempCtrlList = new List<Control>();
             }
-            //InitializeComponent();
-            InitIndex();            
-                //InitContorl();
-            if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
-            {              
-                this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;            
+                   
                 InitContorl();
-            }
-            else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0)
-            {
-                if (parentTemple != null)
-                    InitContorl();             
-                this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;               
+                if (parentTemple != null) this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+                else
+                {
+                    this.dsoFramerWordControl1.FileDataGzip = new byte[0];
+                }
                 LoadContent();
-            }
-            //保护工作表
-            LockExcel();
+            
+            ////保护工作表
+            //LockExcel();
         }
 
         protected override void OnShown(EventArgs e)
@@ -204,79 +201,189 @@ namespace Ebada.SCGL.WFlow.Tool
             //    parentTemple = parentlist[0];
            // dsoFramerWordControl1.
         }
+        public static string GetWorkFlowNmae(string kind)
+        {
+            string strkind = kind;
+            if (kind == "dzczp")
+                strkind = "电力线路倒闸操作票";
+            else if (kind == "yzgzp")
+                strkind = "电力线路第一种工作票";
+            else if (kind == "ezgzp")
+                strkind = "电力线路第二种工作票";
+            else if (kind == "xlqxp")
+                strkind = "电力线路事故应急抢修单";
+            return strkind;
 
+
+        }
         public void InitContorl()
         {
-            int MaxWordWidth = CalcWidth();
+            int MaxWordWidth = 0;
             int currentPosY = 10;
             int currentPosX = 10;
             int index = 0;
-            foreach (LP_Temple lp in templeList)
+
+
+            if (RecordWorkTask.HaveRunSPYJRole(kind))
             {
-                bool flag = (lp.Status == CurrRecord.Status);
-                flag = true;
-                Label label = new Label();
-                label.Text = lp.CellName;
-                //string[] location = lp.CtrlLocation.Split(',');
-                string[] size = lp.CtrlSize.Split(',');
-                label.Location = new Point(currentPosX, currentPosY);
-                label.Size = new Size(MaxWordWidth, 14);
-                label.Visible = flag;
-                if (flag)
-                {
-                    currentPosY += 20;
-                }                
-                Control ctrl ;
+                if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
+                hqyjcontrol.Size = new System.Drawing.Size(400, 200);
+                hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+                currentPosY = currentPosY + hqyjcontrol.Size.Height;
+                hqyjcontrol.RecordID = CurrRecord.ID;
+                dockPanel1.Controls.Add(hqyjcontrol);
+            }
 
-                if (lp.CtrlType.Contains("uc_gridcontrol"))
-                {
-                    ctrl = new uc_gridcontrol();
-                    ((uc_gridcontrol)ctrl).CellValueChanged += new CellValueChangedEventHandler(gridView1_CellValueChanged);
-                }
-                else
-                    ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
-                ctrl.Location = new Point(currentPosX, currentPosY);
-                ctrl.Size = new Size(int.Parse(size[0]), int.Parse(size[1]));
-                if (flag)
-                {
-                    currentPosY += int.Parse(size[1]) + 10; 
-                }
+            if (RecordWorkTask.HaveRunFuJianRole(kind))
+            {
 
-                if (flag)
+                if (filecontrol == null) filecontrol = new DownFileControl();
+                if (status == "add")
+                    filecontrol.FormType = "上传";
+                else if (status == "edit")
                 {
-                    ctrl.TextChanged += new EventHandler(ctrl_Leave);
-                }                
-                ctrl.Leave += new EventHandler(ctrl_Leave);
-                ctrl.Enter += new EventHandler(ctrl_Enter);
-                ctrl.Visible = flag;
-                ctrl.Tag = lp;
-                ctrl.TabIndex = index;
-                if (lp.CtrlType.Contains("uc_gridcontrol"))
-                {
-                    (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar));
+                    filecontrol.FormType = "下载";
                 }
-                index++;
-                ctrl.Name = lp.LPID;
-                dockPanel1.Controls.Add(label);
-                dockPanel1.Controls.Add(ctrl);
-                if (lp.CellName == "编号")
+                filecontrol.Size = new System.Drawing.Size(400, 300);
+                filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+                currentPosY = currentPosY + filecontrol.Size.Height;
+                filecontrol.UpfilePath = GetWorkFlowNmae(kind);
+                if (currRecord == null)
                 {
-                    ctrlNumber = ctrl;
+                    currRecord = new LP_Record();
                 }
-                if (lp.CellName == "单位")
+                filecontrol.RecordID = CurrRecord.ID;
+                dockPanel1.Controls.Add(filecontrol);
+                currentPosY += 20;
+            }
+            MaxWordWidth = CalcWidth();
+            dockPanel1.Width = MaxWordWidth + 10;
+            switch (status)
+            {
+                case "add":
+                    Button btn_Submit = new Button();
+                    dockPanel1.Controls.Add(btn_Submit);
+                    btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
+                    btn_Submit.Click += new EventHandler(btn_Submit_Click);
+                    btn_Submit.Text = "提交";
+                    break;
+
+                case "view":
+                    Button btn_View = new Button();
+                    dockPanel1.Controls.Add(btn_View);
+                    btn_View.Location = new Point(currentPosX, currentPosY + 10);
+                    btn_View.Click += new EventHandler(btn_View_Click);
+                    btn_View.Text = "查看";
+                    break;
+            }
+                    if (dockPanel1.ControlContainer.Controls.Count > 0)
+                        dockPanel1.ControlContainer.Controls[0].Focus();
+
+        }
+        void btn_View_Click(object sender, EventArgs e)
+         {
+             this.DialogResult = DialogResult.OK;
+         }
+        void btn_Submit_Click(object sender, EventArgs e)
+        {
+            if (filecontrol != null)
+            {
+                if (filecontrol.Isupfile)
                 {
-                    ctrlOrgName = ctrl;
+                    MsgBox.ShowTipMessageBox("请稍后，正在上传文件");
+                    return;
+                }
+                if (filecontrol.Isdownfile)
+                {
+                    if (MsgBox.ShowAskMessageBox("正在下载文件，确认提交?") != DialogResult.OK)
+                    {
+                        return;
+                    }
+
                 }
             }
-            InitEvent();
-            //InitData();
+            dsoFramerWordControl1.FileSave();
+            currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+            currRecord.Kind = kind;
+            currRecord.Content = GetContent();
+            if (ctrlNumber != null)
+                currRecord.Number = ctrlNumber.Text;
+            //currRecord.ImageAttachment = bt;
+            //currRecord.SignImg = bt;
+            currRecord.LastChangeTime = DateTime.Now.ToString();
+            string strmes = "";
+            WF_WorkTaskCommands wt;
+            //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
+            wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                currRecord.Status = "存档";
+            }
+            else
+            {
+                currRecord.Status = strmes;
+            }
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
+            rowData = null;
+            if (hqyjcontrol != null)
+            {
+                PJ_lcspyj lcyj = new PJ_lcspyj();
+                lcyj.Charman = MainHelper.User.UserName;
+                lcyj.ID = PJ_lcspyj.Newid();
+                lcyj.RecordID = currRecord.ID;
+                WorkFlowData = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+                lcyj.taskID = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
+                lcyj.Creattime = DateTime.Now;
+                if (hqyjcontrol.nowMemoEdit.Text != "")
+                MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
+            }
+            if (filecontrol != null)
+            {
+                for (int i = 0; i < filecontrol.FJtable.Rows.Count; i++)
+                {
 
-            Button btn_Submit = new Button();
-            dockPanel1.Controls.Add(btn_Submit);
-            btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
-            btn_Submit.Text = "提交";
-            if (dockPanel1.ControlContainer.Controls.Count > 0)
-                dockPanel1.ControlContainer.Controls[0].Focus();
+                    PJ_lcfj lcfu = new PJ_lcfj();
+                    lcfu.ID = lcfu.CreateID();
+                    lcfu.Filename = Path.GetFileName(filecontrol.FJtable.Rows[i]["FilePath"].ToString());
+                    lcfu.FileRelativePath = filecontrol.FJtable.Rows[i]["SaveFileName"].ToString();
+                    lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
+                    lcfu.RecordID = currRecord.ID;
+                    lcfu.Creattime = DateTime.Now;
+                    Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
+                    if (hqyjcontrol.nowMemoEdit.Text != "")
+                    MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
+                }
+
+            }
+            WF_ModleCheckTable mc = new WF_ModleCheckTable();
+            mc.RecordId = currRecord.ID;
+            mc.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+            mc.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+            mc.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+            mc.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+            mc.DocContent = currRecord.DocContent;
+            mc.Creattime = DateTime.Now;
+            Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
+            MainHelper.PlatformSqlMap.Create<WF_ModleCheckTable>(mc);
+
+            this.DialogResult = DialogResult.OK;
         }
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
@@ -814,12 +921,32 @@ namespace Ebada.SCGL.WFlow.Tool
         public int CalcWidth()
         {
             int wordcount = 0;
-            foreach (LP_Temple lp in templeList)
+            int width;
+            if(templeList!=null)
             {
-                if (lp.CellName.Length > wordcount)
-                    wordcount = lp.CellName.Length;
+
+                foreach (LP_Temple lp in templeList)
+                {
+                    if (lp.CellName.Length > wordcount)
+                        wordcount = lp.CellName.Length;
+                }
             }
-            return wordWidth * wordcount;
+            width= wordWidth * wordcount;
+            if(filecontrol!=null)
+            {
+                if(filecontrol.Width>width)
+                {
+                    width = filecontrol.Width;
+                }
+            }
+            if (hqyjcontrol != null)
+            {
+                if (hqyjcontrol.Width > width)
+                {
+                    width = hqyjcontrol.Width;
+                }
+            }
+            return width;
         }
 
         public string[] SplitSQL(string sql)
@@ -937,7 +1064,7 @@ namespace Ebada.SCGL.WFlow.Tool
             currRecord = null;
             //rowData = null;
             dockPanel1.ControlContainer.Controls.Clear();
-            templeList.Clear();
+            if (templeList!=null) templeList.Clear();
            
         }
 

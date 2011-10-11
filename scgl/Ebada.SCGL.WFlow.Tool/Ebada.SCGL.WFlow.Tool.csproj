@@ -109,28 +109,29 @@
     </Compile>
     <Compile Include="Bounds.cs" />
     <Compile Include="BaseTreeNode.cs" />
-    <Compile Include="frmTablePreview.cs">
+    <Compile Include="自定义表单和模块\frmTablePreview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTablePreview.Designer.cs">
+    <Compile Include="自定义表单和模块\frmTablePreview.Designer.cs">
       <DependentUpon>frmTablePreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="SetTaskTableFm.cs">
+    <Compile Include="ListItem.cs" />
+    <Compile Include="自定义表单和模块\SetTaskTableFm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SetTaskTableFm.Designer.cs">
+    <Compile Include="自定义表单和模块\SetTaskTableFm.Designer.cs">
       <DependentUpon>SetTaskTableFm.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmExcelModelEdit.cs">
+    <Compile Include="自定义表单和模块\frmExcelModelEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExcelModelEdit.Designer.cs">
+    <Compile Include="自定义表单和模块\frmExcelModelEdit.Designer.cs">
       <DependentUpon>frmExcelModelEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelctTaskModleForm.cs">
+    <Compile Include="自定义表单和模块\SelctTaskModleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelctTaskModleForm.Designer.cs">
+    <Compile Include="自定义表单和模块\SelctTaskModleForm.Designer.cs">
       <DependentUpon>SelctTaskModleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SelectModuleFm.cs">
@@ -353,28 +354,28 @@
     <Compile Include="TaskViewFm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UCmExcel.cs">
+    <Compile Include="自定义表单和模块\UCmExcel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCmExcel.Designer.cs">
+    <Compile Include="自定义表单和模块\UCmExcel.Designer.cs">
       <DependentUpon>UCmExcel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCmExcelTableControl.cs">
+    <Compile Include="自定义表单和模块\UCmExcelTableControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCmExcelTableControl.Designer.cs">
+    <Compile Include="自定义表单和模块\UCmExcelTableControl.Designer.cs">
       <DependentUpon>UCmExcelTableControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="uc_gridcontrol.cs">
+    <Compile Include="自定义表单和模块\uc_gridcontrol.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="uc_gridcontrol.Designer.cs">
+    <Compile Include="自定义表单和模块\uc_gridcontrol.Designer.cs">
       <DependentUpon>uc_gridcontrol.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectTableFiledFm.cs">
+    <Compile Include="自定义表单和模块\SelectTableFiledFm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectTableFiledFm.Designer.cs">
+    <Compile Include="自定义表单和模块\SelectTableFiledFm.Designer.cs">
       <DependentUpon>SelectTableFiledFm.cs</DependentUpon>
     </Compile>
     <Compile Include="WinFormFun.cs" />
@@ -450,20 +451,20 @@
     <EmbeddedResource Include="Resources\自动节点.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmTablePreview.resx">
+    <EmbeddedResource Include="自定义表单和模块\frmTablePreview.resx">
       <DependentUpon>frmTablePreview.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetTaskTableFm.resx">
+    <EmbeddedResource Include="自定义表单和模块\SetTaskTableFm.resx">
       <DependentUpon>SetTaskTableFm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExcelModelEdit.resx">
+    <EmbeddedResource Include="自定义表单和模块\frmExcelModelEdit.resx">
       <DependentUpon>frmExcelModelEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="SelctTaskModleForm.resx">
+    <EmbeddedResource Include="自定义表单和模块\SelctTaskModleForm.resx">
       <DependentUpon>SelctTaskModleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectModuleFm.resx">
@@ -471,19 +472,19 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\自连线.ico" />
-    <EmbeddedResource Include="UCmExcel.resx">
+    <EmbeddedResource Include="自定义表单和模块\UCmExcel.resx">
       <DependentUpon>UCmExcel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCmExcelTableControl.resx">
+    <EmbeddedResource Include="自定义表单和模块\UCmExcelTableControl.resx">
       <DependentUpon>UCmExcelTableControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="uc_gridcontrol.resx">
+    <EmbeddedResource Include="自定义表单和模块\uc_gridcontrol.resx">
       <DependentUpon>uc_gridcontrol.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectTableFiledFm.resx">
+    <EmbeddedResource Include="自定义表单和模块\SelectTableFiledFm.resx">
       <DependentUpon>SelectTableFiledFm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

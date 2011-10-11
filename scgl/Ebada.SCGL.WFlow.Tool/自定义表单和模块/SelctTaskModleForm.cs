@@ -253,13 +253,13 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (treeList3.FocusedNode == null)
+            if (treeList1.FocusedNode == null)
                 return;
-                WF_ModleUsedFunc obj = MainHelper.PlatformSqlMap.GetOneByKey<WF_ModleUsedFunc>(treeList3.FocusedNode["ID"]);
+            mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(treeList1.FocusedNode["Modu_ID"]);
                 strmodleid = obj.Modu_ID;
-                mModule objtemp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(obj.Modu_ID);
 
-                strmodlename = objtemp.ModuName;
+
+                strmodlename = obj.ModuName;
         }
     
  

@@ -111,6 +111,7 @@
     <Compile Include="WF_AccreditUser.cs" />
     <Compile Include="WF_FrmworkParamer.cs" />
     <Compile Include="WF_MainUserControl.cs" />
+    <Compile Include="WF_ModleCheckTable.cs" />
     <Compile Include="WF_ModleUsedFunc.cs" />
     <Compile Include="WF_Operator.cs" />
     <Compile Include="WF_OperatorInstance.cs" />

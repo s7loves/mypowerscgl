@@ -62,6 +62,10 @@
             this.groupControl3.SuspendLayout();
             this.SuspendLayout();
             // 
+            // m_DefaultLookAndFeel
+            // 
+            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
+            // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -87,7 +91,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl1.Location = new System.Drawing.Point(323, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(38, 407);
+            this.panelControl1.Size = new System.Drawing.Size(38, 409);
             this.panelControl1.TabIndex = 5;
             // 
             // RemoveMoudle
@@ -120,7 +124,7 @@
             this.groupControl2.Controls.Add(this.gridControl1);
             this.groupControl2.Location = new System.Drawing.Point(364, 3);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(380, 407);
+            this.groupControl2.Size = new System.Drawing.Size(380, 409);
             this.groupControl2.TabIndex = 4;
             this.groupControl2.Text = "操作字段";
             // 
@@ -130,7 +134,7 @@
             this.gridControl1.Location = new System.Drawing.Point(2, 23);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(376, 382);
+            this.gridControl1.Size = new System.Drawing.Size(376, 384);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -201,7 +205,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(323, 407);
+            this.groupControl1.Size = new System.Drawing.Size(323, 409);
             this.groupControl1.TabIndex = 3;
             this.groupControl1.Text = "字段列表";
             // 
@@ -226,7 +230,7 @@
             this.treeList1.OptionsBehavior.Editable = false;
             this.treeList1.OptionsSelection.InvertSelection = true;
             this.treeList1.OptionsSelection.UseIndicatorForSelection = true;
-            this.treeList1.Size = new System.Drawing.Size(319, 382);
+            this.treeList1.Size = new System.Drawing.Size(319, 384);
             this.treeList1.TabIndex = 0;
             this.treeList1.DoubleClick += new System.EventHandler(this.treeList1_DoubleClick);
             // 

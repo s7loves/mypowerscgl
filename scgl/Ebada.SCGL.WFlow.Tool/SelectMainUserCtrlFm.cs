@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Ebada.Client;
+using Ebada.UI.Base;
+using Ebada.Client.Platform;
 
 
 
@@ -89,6 +91,14 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             //fmMainUserControl f = new fmMainUserControl(UserId, UserName, WorkConst.STATE_ADD, "");
             //f.ShowDialog();
+            FormBase dlg = new FormBase();
+            UCmExcelTableControl tc = new UCmExcelTableControl();
+            dlg.Text = "表单管理";
+            dlg.WindowState = FormWindowState.Maximized;
+            //dlg.MdiParent = MainHelper.MainForm;
+            dlg.Controls.Add(tc);
+            (tc).Dock = DockStyle.Fill;
+            dlg.ShowDialog();
         }
 
         
