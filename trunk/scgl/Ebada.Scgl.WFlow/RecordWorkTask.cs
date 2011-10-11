@@ -13,6 +13,9 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.Reflection;
 using DevExpress.XtraTab;
+using Excel = Microsoft.Office.Interop.Excel;
+using Ebada.Client;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.WFlow
 {
@@ -144,7 +147,7 @@ namespace Ebada.Scgl.WFlow
                     }
                     else
                     {
-                        tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(ctrlTable.Rows[0]["UserControlId"]);
+                        tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(ctrlTable.Rows[0]["LPID"]);
                         if (tp != null)
                         {
 
@@ -157,7 +160,7 @@ namespace Ebada.Scgl.WFlow
                      tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
                     if (tp != null) 
                     {
-
+                        iniTableRecordData(ref  tp, record, workflowData.Rows[0]["WorkflowId"].ToString(), workflowData.Rows[0]["WorkFlowInsId"].ToString());
                         return tp;
                     }
                 }
@@ -166,6 +169,56 @@ namespace Ebada.Scgl.WFlow
             return null;
 
 
+        }
+        private static void iniTableRecordData(ref LP_Temple parentTemple, LP_Record currRecord, string WorkflowId,string WorkFlowInsId)
+        {
+            if (parentTemple != null)
+            {
+                DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
+                dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+                IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                    " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + WorkflowId + "' and WorkFlowInsId='" + WorkFlowInsId + "' ");
+                Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                Excel.Worksheet xx;
+                ExcelAccess ea = new ExcelAccess();
+                ea.MyWorkBook = wb;
+                ea.MyExcel = wb.Application;
+                string activeSheetName = "";
+                xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                int i = 0;
+                ArrayList al = new ArrayList();
+                for (i = 1; i <= wb.Application.Sheets.Count; i++)
+                {
+                    xx = wb.Application.Sheets[i] as Excel.Worksheet;
+                    if (!al.Contains(xx.Name)) al.Add(xx.Name);
+                }
+                for (i = 0; i < tfvli.Count; i++)
+                {
+                    if (!al.Contains(tfvli[i].ExcelSheetName))
+                    {
+
+                        continue;
+                    }
+                    if (activeSheetName != tfvli[i].ExcelSheetName)
+                    {
+                        if (activeSheetName != "")
+                        {
+
+                            xx = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
+
+
+                        }
+                        xx = wb.Application.Sheets[tfvli[i].ExcelSheetName] as Excel.Worksheet;
+
+                        activeSheetName = tfvli[i].ExcelSheetName;
+
+                        ea.ActiveSheet(xx.Index);
+                    }
+
+                    ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
+
+                }
+            }
         }
         public static void IniControl(System.Windows.Forms.Control.ControlCollection uc, IList<WF_ModleUsedFunc> mulist, ref bool outisfind)
         {
@@ -729,6 +782,7 @@ namespace Ebada.Scgl.WFlow
             MainHelper.PlatformSqlMap.DeleteByWhere<PJ_lcfj>(" where recordID='" + recordID + "'");
             MainHelper.PlatformSqlMap.DeleteByWhere<PJ_lcspyj>(" where recordID='" + recordID + "'");
             MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where recordID='" + recordID + "'");
+            MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleCheckTable>(" where recordID='" + recordID + "'");
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             if (wf.Count == 0) return ;
             {
