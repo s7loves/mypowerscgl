@@ -127,7 +127,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(73, 23);
             this.btnNew.TabIndex = 2;
-            this.btnNew.Text = "新建";
+            this.btnNew.Text = "表单管理";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
@@ -139,6 +139,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnModify.TabIndex = 3;
             this.btnModify.Text = "修改";
             this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Visible = false;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // fmSelectMainUserCtrl

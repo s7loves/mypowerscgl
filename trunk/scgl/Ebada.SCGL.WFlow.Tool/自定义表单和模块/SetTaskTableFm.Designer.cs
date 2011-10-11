@@ -35,12 +35,15 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.dsoFramerWordControl1 = new Ebada.Scgl.Core.DSOFramerControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.uCmExcel1 = new Ebada.SCGL.WFlow.Tool.UCmExcel();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -51,6 +54,8 @@
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -87,15 +92,15 @@
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
-            this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl2);
+            this.splitContainerControl1.Panel1.MinSize = 823;
             this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.Controls.Add(this.uCmExcel1);
+            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(816, 363);
-            this.splitContainerControl1.SplitterPosition = 185;
+            this.splitContainerControl1.Size = new System.Drawing.Size(1159, 363);
+            this.splitContainerControl1.SplitterPosition = 318;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -109,13 +114,15 @@
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.dsoFramerWordControl1);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(816, 174);
+            this.splitContainerControl2.Size = new System.Drawing.Size(837, 363);
             this.splitContainerControl2.SplitterPosition = 44;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.btnCancel);
+            this.groupControl2.Controls.Add(this.btnOK);
             this.groupControl2.Controls.Add(this.simpleButton1);
             this.groupControl2.Controls.Add(this.memoEdit1);
             this.groupControl2.Controls.Add(this.labelControl3);
@@ -123,15 +130,39 @@
             this.groupControl2.Controls.Add(this.textEdit1);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl2.Location = new System.Drawing.Point(0, 0);
+            this.groupControl2.MinimumSize = new System.Drawing.Size(823, 0);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.ShowCaption = false;
-            this.groupControl2.Size = new System.Drawing.Size(816, 44);
+            this.groupControl2.Size = new System.Drawing.Size(837, 44);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "groupControl2";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(780, 12);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(52, 23);
+            this.btnCancel.TabIndex = 15;
+            this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnOK
+            // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Location = new System.Drawing.Point(716, 12);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(49, 23);
+            this.btnOK.TabIndex = 16;
+            this.btnOK.Text = "确定";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(612, 12);
+            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton1.Location = new System.Drawing.Point(611, 12);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(99, 23);
             this.simpleButton1.TabIndex = 14;
@@ -173,22 +204,33 @@
             this.dsoFramerWordControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dsoFramerWordControl1.Location = new System.Drawing.Point(0, 0);
             this.dsoFramerWordControl1.Name = "dsoFramerWordControl1";
-            this.dsoFramerWordControl1.Size = new System.Drawing.Size(816, 126);
+            this.dsoFramerWordControl1.Size = new System.Drawing.Size(837, 315);
             this.dsoFramerWordControl1.TabIndex = 2;
+            this.dsoFramerWordControl1.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.dsoFramerWordControl1_ChangeUICues);
+            this.dsoFramerWordControl1.BindingContextChanged += new System.EventHandler(this.dsoFramerWordControl1_BindingContextChanged);
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.uCmExcel1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(318, 363);
+            this.panelControl1.TabIndex = 0;
             // 
             // uCmExcel1
             // 
             this.uCmExcel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uCmExcel1.Location = new System.Drawing.Point(0, 0);
+            this.uCmExcel1.Location = new System.Drawing.Point(2, 2);
             this.uCmExcel1.Name = "uCmExcel1";
-            this.uCmExcel1.Size = new System.Drawing.Size(816, 185);
-            this.uCmExcel1.TabIndex = 0;
+            this.uCmExcel1.Size = new System.Drawing.Size(314, 359);
+            this.uCmExcel1.TabIndex = 2;
             // 
             // SetTaskTableFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(816, 363);
+            this.ClientSize = new System.Drawing.Size(1159, 363);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "SetTaskTableFm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -206,6 +248,8 @@
             this.groupControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -222,9 +266,12 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit textEdit1;
-        private Ebada.Scgl.Core.DSOFramerControl dsoFramerWordControl1;
-        private Ebada.SCGL.WFlow.Tool.UCmExcel uCmExcel1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private Ebada.Scgl.Core.DSOFramerControl dsoFramerWordControl1;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private UCmExcel uCmExcel1;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.SimpleButton btnOK;
 
     }
 }

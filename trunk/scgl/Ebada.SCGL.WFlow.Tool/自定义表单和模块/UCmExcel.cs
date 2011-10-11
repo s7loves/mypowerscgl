@@ -24,7 +24,7 @@ namespace Ebada.SCGL.WFlow.Tool
 {
 
     public partial class UCmExcel : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<LP_Temple> gridViewOperation;
+        public GridViewOperation<LP_Temple> gridViewOperation;
         private static string strParentID;
         public static string GetParentID()
         {
@@ -44,6 +44,7 @@ namespace Ebada.SCGL.WFlow.Tool
             gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeInsert);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeUpdate);
+            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeEdit);
             initColumns();
         }
 
@@ -52,7 +53,17 @@ namespace Ebada.SCGL.WFlow.Tool
             parentID = ParentObj.LPID;
         }
 
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<LP_Temple> e)
+        {
+            if (string.IsNullOrEmpty(parentID))
+            {
+                e.Cancel = true;
+                MsgBox.ShowWarningMessageBox("请先选择模板后再修改模板！");
 
+            }
+
+            if(e.Value.DocContent.Length==0)e.Value.DocContent = parentObj.DocContent;
+        }
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<LP_Temple> e) {
             //if (e.Value.Password.Length <= 12) {
             //    e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
@@ -92,7 +103,9 @@ namespace Ebada.SCGL.WFlow.Tool
             if (string.IsNullOrEmpty(parentID)) {
                 e.Cancel = true;
                 MsgBox.ShowWarningMessageBox("请先选择模板后再修改模板！");
+
             }
+            e.Value.DocContent = parentObj.DocContent;
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();

@@ -97,21 +97,70 @@ namespace Ebada.Scgl.WFlow
         // <summary>
         /// 获得流程的当前的节点关联的表单
         /// </summary>
-        /// <param name="kind">流程名称（工作票：dzczp操作票、yzgzp一种工作票、ezgzp二种工作票、xlqxp抢修单）</param>
-        /// <param name="userID">用户ID</param>
-        /// <returns>bool true有权限 false 无权限</returns>
+        /// <param name="workflowData">流程信息列表</param>
 
-        public static LP_Temple GetWorkTaskTemple(DataTable workflowData)
+        /// <returns>关联的表单</returns>
+
+        public static LP_Temple GetWorkTaskTemple(DataTable workflowData,LP_Record record)
         {
-
+            LP_Temple tp=null ;
+            string strsql="";
             if (workflowData.Rows.Count > 0)
             {
                 WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + workflowData.Rows[0]["WorkflowId"] + "' and WorktaskId='" + workflowData.Rows[0]["WorktaskId"] + "'");
-                if (wtc == null) return null;
-                LP_Temple tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
-                if (tp == null) return null;
+                if (wtc == null)
+                {
+                    return null;
+                }
+                if (wtc.ControlType== "绑定节点")
+                {
+                    DataTable ctrlTable = WorkFlowTask.GetTaskControls(wtc.WorktaskId);
+                    bool notable=true;
+                    for(int i=0;i<ctrlTable.Rows.Count;i++)
+                    {
+                        if(ctrlTable.Rows[i]["LPID"].ToString()!="节点审核")
+                        {
+                            notable = false;
+                            break;
+                        }
+                    }
+                    if (notable)
+                    {
+                        ctrlTable = WorkFlowTask.GetTaskBindTaskContent(wtc.WorktaskId);
+                        strsql = " where WorkflowId='" + workflowData.Rows[0]["WorkflowId"] + "'"
+                            + " and WorktaskId='" + ctrlTable.Rows[0]["UserControlId"] + "'"
+                              + " and WorkFlowInsId='" + workflowData.Rows[0]["WorkFlowInsId"] + "'"
+
+                              + " and RecordId='" + record.ID + "' order by Creattime desc";
+                        WF_ModleCheckTable mct = MainHelper.PlatformSqlMap.GetOne<WF_ModleCheckTable>(strsql);
+                        if (mct != null)
+                        {
+                            tp = new LP_Temple();
+                            tp.Status = "绑定节点";
+                            tp.DocContent = mct.DocContent;
+                            return tp;
+                        }
+
+                    }
+                    else
+                    {
+                        tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(ctrlTable.Rows[0]["UserControlId"]);
+                        if (tp != null)
+                        {
+
+                            return tp;
+                        }
+                    }
+                }
                 else
-                    return tp;
+                {
+                     tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
+                    if (tp != null) 
+                    {
+
+                        return tp;
+                    }
+                }
             }
 
             return null;
@@ -145,6 +194,7 @@ namespace Ebada.Scgl.WFlow
         public static void IniCreatModle(object formCtr, IList<WF_ModleUsedFunc>mulist)
         {
             if (formCtr == null) return;
+            if (mulist.Count == 0) return;
             bool isfind = false;
             if (formCtr is UserControl)
             {
@@ -181,6 +231,40 @@ namespace Ebada.Scgl.WFlow
             }
             return fromCtrl;
         }
+        /// <summary>
+        /// 获得流程的当前节点关联的模块
+        /// </summary>
+        /// <param name="kind">流程名称（工作票：dzczp操作票、yzgzp一种工作票、ezgzp二种工作票、xlqxp抢修单）</param>
+        /// <param name="userID">用户ID</param>
+        /// <returns>bool true有权限 false 无权限</returns>
+
+        public static object GetWorkTaskModle(DataTable workflowData)
+        {
+
+            if (workflowData.Rows.Count > 0)
+            {
+                object fromCtrl;
+                WF_WorkTaskModle wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>(" where WorkflowId='" + workflowData.Rows[0]["WorkflowId"] + "' and WorktaskId='" + workflowData.Rows[0]["WorktaskId"] + "'");
+                if (wtc == null) return null;
+                mModule tp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtc.Modu_ID);
+                if (tp == null)
+                {
+                    fromCtrl = CreatNewMoldeIns("Ebada.Scgl.Lcgl.dll", "frmLP", "", "表单执行平台");
+                }
+                else
+                {
+                    fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName, tp.ModuTypes, tp.MethodName, tp.ModuName);
+
+                }
+                IList<WF_ModleUsedFunc> mulist = MainHelper.PlatformSqlMap.GetList<WF_ModleUsedFunc>(" where WorkflowId='" + workflowData.Rows[0]["WorkflowId"] + "' and WorktaskId='" + workflowData.Rows[0]["WorktaskId"] + "' and Modu_ID='" + tp.Modu_ID + "'");
+                if (mulist.Count > 0) IniCreatModle(fromCtrl, mulist);
+                return fromCtrl;
+            }
+
+            return null;
+
+
+        }
          /// <summary>
         /// 获得新创建的流程的第一个节点关联的模块
         /// </summary>
@@ -214,7 +298,7 @@ namespace Ebada.Scgl.WFlow
                 else
                 {
                     fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName,tp.ModuTypes,tp.MethodName,tp.ModuName);
-                
+                    
                 }
                 IList<WF_ModleUsedFunc> mulist = MainHelper.PlatformSqlMap.GetList<WF_ModleUsedFunc>(" where WorkflowId='" + dt.Rows[0]["WorkflowId"] + "' and WorktaskId='" + dt.Rows[0]["WorktaskId"] + "' and Modu_ID='" + tp.Modu_ID+ "'");
                 if (mulist.Count>0) IniCreatModle(fromCtrl, mulist);
@@ -338,6 +422,18 @@ namespace Ebada.Scgl.WFlow
         /// <returns>流程创建信息二维数组，[0]流程创建结果 [1]运行后流程的任务节点名称</returns>
         public static string[] RunNewGZPRecord(string recordID, string kind, string userID)
         {
+            return RunNewGZPRecord(recordID, kind, userID,true);
+        }
+        /// <summary>
+        /// 创建工作票流程
+        /// </summary>
+        /// <param name="recordID">记录ID</param>
+        /// <param name="kind">工作票种类（01操作票、02一种工作票、03二种工作票、04抢修单）</param>
+        /// <param name="userID">用户ID</param>
+        /// <param name="IsRun">流程是否流转</param>
+        /// <returns>流程创建信息二维数组，[0]流程创建结果 [1]运行后流程的任务节点名称</returns>
+        public static string[] RunNewGZPRecord(string recordID, string kind, string userID, bool IsRun)
+        {
             DataTable dt = null;
             string command = "", workFlowId = "", workTaskId = "", flowCaption = "", workFlowInstanceId = "", workTaskInstanceId = "";
             string strtemp = "";
@@ -366,7 +462,7 @@ namespace Ebada.Scgl.WFlow
                 command = "提交";
             }
             string[] strmes=new  string[2] ;
-            strmes[0]= CreatWorkFlow(userID, workFlowId, workTaskId, workFlowInstanceId, workTaskInstanceId, flowCaption, command);
+            strmes[0] = CreatWorkFlow(userID, workFlowId, workTaskId, workFlowInstanceId, workTaskInstanceId, flowCaption, command, IsRun);
             
             WFP_RecordWorkTaskIns wpfrecord = new WFP_RecordWorkTaskIns();
             wpfrecord.RecordID = recordID;
@@ -519,8 +615,8 @@ namespace Ebada.Scgl.WFlow
             DataTable dtnull = new DataTable();
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             if (wf.Count == 0) return dtnull;
-            WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId); 
-            DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
+            WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
+            DataTable dt = WorkFlowInstance.SelectedWorkflowNowTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, wfi.NowTaskId, 999);
            // DataTable dt = WorkFlowInstance.SelectedWorkflowTask (userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId,wfi.NowTaskId , 999);
             return dt;
         }
@@ -644,7 +740,6 @@ namespace Ebada.Scgl.WFlow
             
             //return "";
         }
-        
         /// <summary>
         /// 创建流程
         /// </summary>
@@ -656,8 +751,26 @@ namespace Ebada.Scgl.WFlow
         /// <param name="FlowCaption">流程名称</param>
         /// <param name="command">按钮命令名称</param>
         /// <returns>返回流程执行结果</returns>
-        
+
         public static string CreatWorkFlow(string userID, string WorkFlowId, string workTaskId, string workFlowInstanceId, string WorkTaskInstanceId, string FlowCaption, string command)
+        { 
+        
+            return CreatWorkFlow( userID,  WorkFlowId,  workTaskId,  workFlowInstanceId,  WorkTaskInstanceId,  FlowCaption,  command,true);
+        }
+        /// <summary>
+        /// 创建流程
+        /// </summary>
+        /// <param name="userID">用户ID</param>
+        /// <param name="WorkFlowId">流程ID</param>
+        /// <param name="workTaskId">任务ID</param>
+        /// <param name="workFlowInstanceId">流程实例ID</param>
+        /// <param name="WorkTaskInstanceId">任务实例ID</param>
+        /// <param name="FlowCaption">流程名称</param>
+        /// <param name="command">按钮命令名称</param>
+        /// <param name="IsRun">流程是否流转</param>
+        /// <returns>返回流程执行结果</returns>
+
+        public static string CreatWorkFlow(string userID, string WorkFlowId, string workTaskId, string workFlowInstanceId, string WorkTaskInstanceId, string FlowCaption, string command, bool IsRun)
         {
 
             WorkFlowRuntime wfruntime = new WorkFlowRuntime();
@@ -669,9 +782,12 @@ namespace Ebada.Scgl.WFlow
             wfruntime.WorkFlowNo = WorkFlowInstance.GetWorkflowNO();
             wfruntime.CommandName = command;
             wfruntime.WorkflowInsCaption = FlowCaption;
-            wfruntime.IsDraft = false;//保存并执行流程流转
+            wfruntime.IsDraft = (IsRun == false);//执行流程流转,IsRun是true流转，否则保存
             wfruntime.Start();
-
+            if (!IsRun)
+            {
+                return userID;
+            }
             return Toollips(WorkTaskInstanceId);
             //return "";
         }

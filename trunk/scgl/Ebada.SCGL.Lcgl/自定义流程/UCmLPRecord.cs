@@ -348,36 +348,87 @@ namespace Ebada.Scgl.Lcgl {
             {
                 return;
             }
+            LP_Record lpr = new LP_Record();
+            lpr.Kind = strKind;
+            lpr.CreateTime = DateTime.Now.ToString();
             if (obj is frmLP)
             {
                 frmLP frm = new frmLP();
-                LP_Record lpr = new LP_Record();
+               
                 frm.Status = "add";
                 frm.Kind = strKind;
-                frm.ParentTemple = RecordWorkTask.GetNewWorkTaskTemple(strKind, MainHelper.User.UserID);
-                if (frm.ParentTemple == null)
-                {
-                    MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
-                }
-                frm.RecordWorkFlowData = RecordWorkTask.GetGZPRecordSartWorkData(ParentObj.FlowCaption, MainHelper.User.UserID);
+                string[] strtemp = RecordWorkTask.RunNewGZPRecord(lpr.ID, strKind, MainHelper.User.UserID, false);
+                
+                //frm.ParentTemple = RecordWorkTask.GetNewWorkTaskTemple(strKind, MainHelper.User.UserID);
+                
+                //frm.RecordWorkFlowData = RecordWorkTask.GetGZPRecordSartWorkData(ParentObj.FlowCaption, MainHelper.User.UserID);
+                frm.RecordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
                 if (frm.RecordWorkFlowData == null)
                 {
                     MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
+                }
+                frm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(frm.RecordWorkFlowData,lpr);
+                if (frm.ParentTemple == null)
+                {
+                    MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
                 }
                 lpr.Status = frm.RecordWorkFlowData.Rows[0]["TaskCaption"].ToString();
                 //lpr.Status = "填票";
                 //frm.RowData = lpr;
                 frm.CurrRecord = lpr;
+                MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    InitData(ParentObj.FlowCaption);
+                    InitData(strKind);
                 }
             }
             else
             {
-                
-               
-              
+
+
+                string[] strtemp = RecordWorkTask.RunNewGZPRecord(lpr.ID, strKind, MainHelper.User.UserID, false);
+                if (strtemp[0].IndexOf("未提交至任何人") > -1)
+                    {
+                        MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                        return;
+                    }
+                DataTable recordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
+                if (recordWorkFlowData == null)
+                {
+                    MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
+
+                }
+
+                lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
+                MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
+                if (obj.GetType().GetProperty("IsWorkfowCall") != null)
+                    obj.GetType().GetProperty("IsWorkfowCall").SetValue(obj, true, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj.GetType().GetProperty("CurrRecord") != null)
+                    obj.GetType().GetProperty("CurrRecord").SetValue(obj, lpr, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
+                    obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, recordWorkFlowData, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj.GetType().GetProperty("ParentTemple") != null)
+                    obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr), null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
                 if (obj is UserControl)
                 {
                     FormBase dlg = new FormBase();
@@ -392,7 +443,7 @@ namespace Ebada.Scgl.Lcgl {
                     {
                         ((Form)obj).ShowDialog();
                     }
-               
+                InitData(strKind);
             }
             
         }
@@ -403,9 +454,6 @@ namespace Ebada.Scgl.Lcgl {
             {
                 return;
             }
-           
-            frmLP frm = new frmLP();
-            frm.Status = "edit";
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
             foreach (DataColumn dc in gridtable.Columns)
@@ -414,25 +462,92 @@ namespace Ebada.Scgl.Lcgl {
                 {
                     if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
                         currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
-                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "") 
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
                         currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
 
                 }
             }
-            frm.CurrRecord = currRecord;
-            if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
-            frm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt);
-            if (frm.ParentTemple == null)
+
+            if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
+            object obj = RecordWorkTask.GetWorkTaskModle(dt);
+            if (obj == null)
             {
-                MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
+                return;
             }
 
-            frm.Kind = strKind;         
-            frm.RecordWorkFlowData = dt;
-            if (frm.ShowDialog() == DialogResult.OK)
+            if (obj is frmLP)
             {
-                InitData(ParentObj.FlowCaption);
+                frmLP frm = new frmLP();
+                frm.Status = "edit";
+                
+                
+                frm.CurrRecord = currRecord;
+
+
+                frm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+                if (frm.ParentTemple == null)
+                {
+                    MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
+                    //return;
+                }
+
+                frm.Kind = strKind;
+                frm.RecordWorkFlowData = dt;
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    InitData(ParentObj.FlowCaption);
+                }
+            }
+            else
+            {
+
+                
+                
+                if (obj.GetType().GetProperty("IsWorkfowCall") != null)
+                    obj.GetType().GetProperty("IsWorkfowCall").SetValue(obj, true, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj.GetType().GetProperty("CurrRecord") != null)
+                    obj.GetType().GetProperty("CurrRecord").SetValue(obj, currRecord, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
+                    obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj.GetType().GetProperty("ParentTemple") != null)
+                    obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(dt, currRecord), null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj is UserControl)
+                {
+                    
+                    FormBase dlg = new FormBase();
+                    dlg.Text = ((UserControl)obj).Name;
+                    dlg.MdiParent = MainHelper.MainForm;
+                    dlg.Controls.Add((UserControl)obj);
+                    ((UserControl)obj).Dock = DockStyle.Fill;
+                    dlg.Show();
+                }
+                else
+                    if (obj is Form)
+                    {
+                        ((Form)obj).ShowDialog();
+                    }
+                InitData(strKind);
             }
         }
 
@@ -460,7 +575,7 @@ namespace Ebada.Scgl.Lcgl {
 
                 RecordWorkTask.DeleteRecord(dr["ID"].ToString());
                 MainHelper.PlatformSqlMap.DeleteByWhere<LP_Record>(" where id ='" + dr["ID"].ToString() + "'");
-                InitData(parentObj.FlowCaption);
+                InitData(strKind);
             }
             catch (Exception ex)
             {

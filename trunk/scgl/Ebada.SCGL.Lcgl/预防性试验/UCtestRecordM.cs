@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Ebada.Scgl.Model;
 using DevExpress.XtraBars;
 using Ebada.Client;
+using Ebada.UI.Base;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -17,7 +18,55 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
         }
+        private bool isWorkfowCall = false;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set
+            {
+                parentTemple = value;
+                uCtestRecord1.ParentTemple = value;
+            }
+        }
+        public bool IsWorkfowCall
+        {
+            set {
 
+                isWorkfowCall = value;
+                uCtestRecord1.IsWorkfowCall = value;
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set
+            {
+                currRecord = value;
+                uCtestRecord1.CurrRecord = value;
+            
+            }
+        }
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+
+                return WorkFlowData;
+            }
+            set
+            {
+
+
+                WorkFlowData = value;
+                uCtestRecord1.RecordWorkFlowData = value;
+
+
+            }
+        }
         private void UCtestRecordM_Load(object sender, EventArgs e)
         {
             uCtestRecord1.Type = "变压器";

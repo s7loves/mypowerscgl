@@ -72,8 +72,8 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (rowData == null) {
                     this.rowData = value as LP_Temple;
                     dataBind();
-                    this.InitComboBoxData();
-                    if (comboBoxEdit4.Properties.Items.Count > 0) rowData.KindTable = comboBoxEdit4.Properties.Items[0].ToString();
+                    //this.InitComboBoxData();
+                   
                 } else {
                     ConvertHelper.CopyTo<LP_Temple>(value as LP_Temple, rowData);
                 }
@@ -105,16 +105,20 @@ namespace Ebada.SCGL.WFlow.Tool
             //}
             //this.SetComboBoxData(this.lookUpEdit2, "Value", "Key", "请选择", "状态", list);
            DSOFramerControl dsoFramerWordControl1 =new DSOFramerControl ();
+           //bool isadd = true;
            if (tp == null)
            {
                dsoFramerWordControl1.FileDataGzip = rowData.DocContent;
                rowData.DocContent = new byte[0];
            }
            else
+           {
                dsoFramerWordControl1.FileDataGzip = tp.DocContent;
+               
+           }
 
            Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-           Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.Sheets[1] as Microsoft.Office.Interop.Excel.Worksheet;
+           Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
            comboBoxEdit4.Properties.Items.Clear();
             for (int i = 1; i <= wb.Application.Sheets.Count; i++)
            {
@@ -133,7 +137,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                
            }
-            
+           comboBoxEdit4.Text = xx.Name;
         }
 
         /// <summary>
@@ -180,7 +184,23 @@ namespace Ebada.SCGL.WFlow.Tool
         private void frmExcelModelEdit_Load(object sender, EventArgs e)
         {
             comboBoxEdit3.SelectedIndex = rowData.isExplorer;
+            if (rowData.DocContent.Length>0)
+            {
+                DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
+                dsoFramerWordControl1.FileDataGzip = rowData.DocContent;
+                Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+                Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
+                rowData.KindTable = xx.Name;
+                
+            
+            }
             InitComboBoxData();
+            if (rowData.KindTable == "")
+            {
+               
+                if (comboBoxEdit4.Properties.Items.Count > 0) rowData.KindTable = comboBoxEdit4.Properties.Items[0].ToString();
+                comboBoxEdit4.Text = rowData.KindTable;
+            }
         }
     }
 }

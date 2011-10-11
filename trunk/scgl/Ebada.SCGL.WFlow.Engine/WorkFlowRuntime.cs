@@ -205,6 +205,8 @@ namespace Ebada.SCGL.WFlow.Engine
                     workflowInstance.WorkflowInsCaption = WorkflowInsCaption;
                     workflowInstance.Description = Description;
                     workflowInstance.Priority = Priority;
+                    if (IsDraft) workflowInstance.Status = "1";
+                    else
                     workflowInstance.Status = Status;
                     workflowInstance.NowTaskId = WorkTaskId;//当前流程所处流程模板的位置
                     workflowInstance.isSubWorkflow = isSubWorkflow;
@@ -229,7 +231,9 @@ namespace Ebada.SCGL.WFlow.Engine
                     }
                     else//不是子流程调用,启动节点直接放入已认领任务中
                     {
-                        workTaskInstance.PreviousTaskId = WorkTaskInstanceId;//开始节点的前一节点等于自己
+                        workTaskInstance.PreviousTaskId = WorkTaskInstanceId;//开始节点的前一节点等于自己 
+                        if (IsDraft) workTaskInstance.Status = "1";
+                        else
                         workTaskInstance.Status = "2";
                     }
                     workTaskInstance.Create();
@@ -252,7 +256,11 @@ namespace Ebada.SCGL.WFlow.Engine
                     if (isSubWorkflow)//是子流程调用，需要放到未认领任务中
                         operatorInstance.OperStatus = "0";
                     else//不是子流程调用,启动节点直接放入已认领任务中
+                    {
+                        if (IsDraft) operatorInstance.OperStatus = "0";
+                        else
                         operatorInstance.OperStatus = "3";
+                    }
 
                     operatorInstance.Create();
                 }

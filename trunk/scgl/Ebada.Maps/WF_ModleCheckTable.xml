@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_ModleCheckTable" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_ModleCheckTable"  type="Ebada.Scgl.Model.WF_ModleCheckTable,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_ModleCheckTable_AllColumns" class="WF_ModleCheckTable">
+        <result property="ID" column="ID" />
+        <result property="RecordId" column="RecordId" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkFlowInsId" column="WorkFlowInsId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="WorkTaskInsId" column="WorkTaskInsId" />
+        <result property="DocContent" column="DocContent" />
+        <result property="Creattime" column="Creattime" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_ModleCheckTableList" resultMap="WF_ModleCheckTable_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [RecordId],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [DocContent],
+         [Creattime]
+          FROM WF_ModleCheckTable
+          $value$
+   </select>
+   
+   <select id="SelectWF_ModleCheckTableByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [RecordId],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [DocContent],
+         [Creattime]
+          FROM WF_ModleCheckTable
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="RecordId">[RecordId]='$RecordId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="DocContent">[DocContent]='$DocContent$'</isNotNull>
+       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_ModleCheckTableByKey" resultMap="WF_ModleCheckTable_AllColumns" parameterClass="WF_ModleCheckTable">
+         SELECT 
+         [ID],
+         [RecordId],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [DocContent],
+         [Creattime]
+         FROM WF_ModleCheckTable
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteWF_ModleCheckTable" parameterClass="WF_ModleCheckTable">
+        DELETE FROM 
+         WF_ModleCheckTable
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteWF_ModleCheckTableByWhere" parameterClass="string">
+     delete from WF_ModleCheckTable $value$
+   </delete>
+   
+   <delete id="DeleteWF_ModleCheckTableByKey" parameterClass="string">
+        DELETE FROM 
+         WF_ModleCheckTable
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateWF_ModleCheckTable" parameterClass="WF_ModleCheckTable" resultClass="int">
+          UPDATE WF_ModleCheckTable
+           SET
+             [RecordId]=#RecordId#,
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkFlowInsId]=#WorkFlowInsId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [WorkTaskInsId]=#WorkTaskInsId#,
+             [DocContent]=#DocContent#,
+             [Creattime]=#Creattime#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertWF_ModleCheckTable" parameterClass="WF_ModleCheckTable">
+        INSERT INTO WF_ModleCheckTable
+         (
+         [ID],
+         [RecordId],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [DocContent],
+         [Creattime]
+         )
+       VALUES
+         (
+         #ID#,
+         #RecordId#,
+         #WorkFlowId#,
+         #WorkFlowInsId#,
+         #WorkTaskId#,
+         #WorkTaskInsId#,
+         #DocContent#,
+         #Creattime#
+         )
+
+   </insert>
+   
+   <select id="GetWF_ModleCheckTableRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_ModleCheckTable
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="RecordId">[RecordId]='$RecordId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="DocContent">[DocContent]='$DocContent$'</isNotNull>
+       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWF_ModleCheckTableRowCount" parameterClass="string">
+    select count(*) from WF_ModleCheckTable $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
