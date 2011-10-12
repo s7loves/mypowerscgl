@@ -617,7 +617,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                string sqlStr = " where WorkTaskId  ='" + workaskId + "'";
+                string sqlStr = " where WorkTaskId  ='" + workaskId + "' and (AccessType='2' or AccessType='1')";
                 IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TaskVarList", sqlStr);
                 if (li.Count == 0)
                 {
@@ -632,7 +632,28 @@ namespace Ebada.SCGL.WFlow.Tool
                 throw ex;
             }
         }
-     
+        /// <summary>
+        /// 获得任日志务变量
+        /// </summary>
+        /// <param name="workflowId">任务模板Id</param>
+        /// <returns></returns>
+        public static WF_TaskVar GetTaskRiZhiVar(string workaskId,string strkind)
+        {
+            try
+            {
+                string sqlStr = " where WorkTaskId  ='" + workaskId + "' and (VarName='" + strkind + "' ) and AccessType='工作日志'";
+                IList<WF_TaskVar> li = MainHelper.PlatformSqlMap.GetList<WF_TaskVar>("SelectWF_TaskVarList", sqlStr);
+                if (li.Count == 0)
+                {
+                    return null;
+                }
+                return li[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         /// <summary>
         /// 获得任务节点绑定的模块
         /// </summary>
