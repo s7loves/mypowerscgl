@@ -6,6 +6,7 @@ using System.Drawing;
 using GMap.NET;
 
 namespace Ebada.Scgl.Gis.Markers {
+    [Serializable]
     internal class GMapMarkerRect : GMapMarkerVector {
         
         public GMapMarkerRect(PointLatLng p)

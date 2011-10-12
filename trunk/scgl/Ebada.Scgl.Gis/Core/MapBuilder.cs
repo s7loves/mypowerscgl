@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**********************************************
+系统:地理信息
+模块:
+作者:Rabbit
+创建时间:2011-9-20
+最后一次修改:2011-9-30
+***********************************************/
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Ebada.Scgl.Model;
@@ -10,10 +17,9 @@ namespace Ebada.Scgl.Gis {
      class MapBuilder {
          static RectangleF box = new RectangleF( 126.98f-10,46.63f-5, 20, 10);
          static public List<PointLatLng> BuildLine(string LineCode) {
-            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(string.Format("where Linecode='{0}'", LineCode));
+            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(string.Format("where Linecode='{0}' order by gtcode", LineCode));
 
             List<PointLatLng> points = new List<PointLatLng>();
-            //GMapRoute route = new GMapRoute(points, LineCode);
              foreach(PS_gt gt in list){
                  PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
                  if (box.Contains(pf)) {
@@ -33,14 +39,13 @@ namespace Ebada.Scgl.Gis {
              IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(string.Format("where Linecode='{0}' order by gtcode", LineCode));
 
              List<GMapMarkerVector> markers = new List<GMapMarkerVector>();
-             //GMapRoute route = new GMapRoute(points, LineCode);
              GMapMarkerVector marker = null;
              GMapMarkerVector preMarker = null;
              foreach (PS_gt gt in list) {
                  PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
                  if (box.Contains(pf)) {
                      PointLatLng point = new PointLatLng(Convert.ToDouble(gt.gtLat), Convert.ToDouble(gt.gtLon));
-                     if (gt.gtType.Contains("方杆"))
+                     if (gt.gtType.Contains("方杆")) 
                          marker = new GMapMarkerRect(point);
                      else
                          marker = new GMapMarkerVector(point);
@@ -58,5 +63,89 @@ namespace Ebada.Scgl.Gis {
 
              return markers;
          }
-    }
+         internal static void BuildTQLines(ref LineOverlay layer, string tqcode, string tqname) {
+             IList<PS_xl> xllist=Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(string.Format("where left(Linecode,{0})='{1}' and LineVol = '0.4'",tqcode.Length,tqcode));
+             
+             string linecode = "";
+
+             foreach (PS_xl line in xllist) {
+                 linecode = line.LineCode;
+                 IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(string.Format("where Linecode='{0}' order by gtcode", linecode));
+
+
+                 GMapMarkerVector marker = null;
+                 GMapMarkerVector preMarker = null;
+                 List<PointLatLng> points = new List<PointLatLng>();
+                 LineRoute route = new LineRoute(points, linecode);
+                 foreach (PS_gt gt in list) {
+                     PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
+                     if (box.Contains(pf)) {
+                         PointLatLng point = new PointLatLng(Convert.ToDouble(gt.gtLat), Convert.ToDouble(gt.gtLon));
+                         route.Points.Add(point);
+                         if (gt.gtType.Contains("方杆"))
+                             marker = new GMapMarkerRect(point);
+                         else
+                             marker = new GMapMarkerVector(point);
+                         if (preMarker != null) {
+                             marker.ParentMarker = preMarker;
+                             preMarker.NextMarker = marker;
+                         }
+                         
+                         preMarker = marker;
+                         marker.ToolTipText = gt.gth + "\n" + line.LineName;
+                         marker.Tag = gt;
+                         marker.Id = gt.gtID;
+                         layer.Markers.Add(marker);
+                         route.Markers.Add(marker);
+                         marker.Route = route;
+                     }
+                 }
+                 if (route.Points.Count > 0) {
+                     
+                     layer.Routes.Add(route);
+                 }
+             }
+         }
+         internal static void Build10kVLines(ref LineOverlay layer, string lineCode) {
+             IList<PS_xl> xllist = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(string.Format("where left(Linecode,{0})='{1}' and LineVol = '10'", lineCode.Length, lineCode));
+             string linecode = "";
+             foreach (PS_xl line in xllist) {
+                 linecode = line.LineCode;
+                 IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(string.Format("where Linecode='{0}' order by gtcode", linecode));
+
+
+                 GMapMarkerVector marker = null;
+                 GMapMarkerVector preMarker = null;
+                 List<PointLatLng> points = new List<PointLatLng>();
+                 LineRoute route = new LineRoute(points, linecode);
+                 foreach (PS_gt gt in list) {
+                     PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
+                     if (box.Contains(pf)) {
+                         PointLatLng point = new PointLatLng(Convert.ToDouble(gt.gtLat), Convert.ToDouble(gt.gtLon));
+                         route.Points.Add(point);
+                         if (gt.gtType.Contains("方杆"))
+                             marker = new GMapMarkerRect(point);
+                         else
+                             marker = new GMapMarkerVector(point);
+                         if (preMarker != null) {
+                             marker.ParentMarker = preMarker;
+                             preMarker.NextMarker = marker;
+                         }
+                         
+                         preMarker = marker;
+                         marker.ToolTipText = gt.gth + "\n" + line.LineName;
+                         marker.Tag = gt;
+                         marker.Id = gt.gtID;
+                         layer.Markers.Add(marker);
+                         route.Markers.Add(marker);
+                         marker.Route = route;
+                     }
+                 }
+                 if (route.Points.Count > 0) {
+                     
+                     layer.Routes.Add(route);
+                 }
+             }
+         }
+     }
 }

@@ -140,6 +140,12 @@
     <Compile Include="Device\frmLineSelector.Designer.cs">
       <DependentUpon>frmLineSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Device\frmTQSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device\frmTQSelector.Designer.cs">
+      <DependentUpon>frmTQSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMapView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,7 @@
     </Compile>
     <Compile Include="Core\MapBuilder.cs" />
     <Compile Include="LineOverLay.cs" />
+    <Compile Include="LineRoute.cs" />
     <Compile Include="Markers\GMapMarkerVector.cs" />
     <Compile Include="Markers\GMapMarkerImage.cs" />
     <Compile Include="Markers\GMapMarkerRect.cs" />
@@ -166,6 +173,18 @@
     <Compile Include="Provider\MapHelper.cs" />
     <Compile Include="RMap.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCLayerManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCLayerManager.Designer.cs">
+      <DependentUpon>UCLayerManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCMapLayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCMapLayer.Designer.cs">
+      <DependentUpon>UCMapLayer.cs</DependentUpon>
     </Compile>
     <Compile Include="WinApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,6 +208,9 @@
     <EmbeddedResource Include="Device\frmLineSelector.resx">
       <DependentUpon>frmLineSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Device\frmTQSelector.resx">
+      <DependentUpon>frmTQSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMapView.resx">
       <DependentUpon>frmMapView.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,12 +222,18 @@
     <EmbeddedResource Include="RMap.resx">
       <DependentUpon>RMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCLayerManager.resx">
+      <DependentUpon>UCLayerManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCMapBox.resx">
       <DependentUpon>UCMapBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMap.resx">
       <DependentUpon>frmMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCMapLayer.resx">
+      <DependentUpon>UCMapLayer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

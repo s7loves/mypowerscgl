@@ -11,9 +11,10 @@ namespace Ebada.Scgl.Gis {
     public class LineOverlay :GMapOverlay{
 
         private GMapControl control;
-        private GMapRoute mRoute;
+        private LineRoute mRoute;
         public LineOverlay(GMapControl map, string lineCode)
             : base(map, lineCode) {
+            
             control = map;
         }
         /// <summary>
@@ -25,22 +26,23 @@ namespace Ebada.Scgl.Gis {
         public static LineOverlay CreateLine(GMapControl map, string lineCode,string lineName){
             LineOverlay lay = new LineOverlay(map, lineCode);
             List<PointLatLng> points=new List<PointLatLng>();
-            List<GMapMarkerVector> list = MapBuilder.BuildLineGT(lineCode, lineName);
-            foreach (GMapMarkerVector item in list) {
-                lay.Markers.Add(item);
-                points.Add(item.Position);
-            }
-            GMapRoute route = new GMapRoute(points, lineCode);
-            lay.mRoute = route;
-            if (list.Count > 1)
-                list[0].ToolTipText += "\n" + route.Distance;
-            lay.Routes.Add(route);
+            MapBuilder.Build10kVLines(ref lay, lineCode);
+            //List<GMapMarkerVector> list = MapBuilder.BuildLineGT(lineCode, lineName);
+            //foreach (GMapMarkerVector item in list) {
+            //    lay.Markers.Add(item);
+            //    points.Add(item.Position);
+            //}
+            //LineRoute route = new LineRoute(points, lineCode);
+            //lay.mRoute = route;
+            //if (list.Count > 1)
+            //    list[0].ToolTipText += "\n" + route.Distance;
+            //lay.Routes.Add(route);
             return lay;
         }
         public static LineOverlay CreateLine(GMapControl map, PS_xl xl){
 
             LineOverlay lay = CreateLine(map, xl.LineCode, xl.LineName);
-            GMapRoute route =lay.Routes[0];
+            GMapRoute route = lay.Routes[0];
             if (route.Points.Count > 0)
                 CreateLineSub(route, null);
             return lay;
@@ -49,9 +51,16 @@ namespace Ebada.Scgl.Gis {
              
 
         }
-        public void OnMarkerChanged(GMapMarker marker) {
-            this.Routes[0].Points[this.Markers.IndexOf(marker)] = marker.Position;
-            control.UpdateRouteLocalPosition(mRoute);
+        public static LineOverlay CreateTQLine(GMapControl map, string tqCode, string tqName) {
+            LineOverlay lay = new LineOverlay(map, tqCode);
+
+            MapBuilder.BuildTQLines(ref lay,tqCode, tqName);
+
+            return lay;
+        }
+        public void OnMarkerChanged(GMapMarkerVector marker) {
+            marker.Route.UpdateRoutePostion(marker);
+            control.UpdateRouteLocalPosition(marker.Route);
 
         }
         public void Update(GMapMarker marker) {
@@ -61,7 +70,7 @@ namespace Ebada.Scgl.Gis {
             Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
         }
 
-        internal void ShowDialog(GMapMarker marker,bool canEdit) { 
+        public void ShowDialog(GMapMarker marker, bool canEdit) { 
 
             frmgtEdit frm = new frmgtEdit();
             frm.RowData = marker.Tag;
@@ -70,12 +79,12 @@ namespace Ebada.Scgl.Gis {
                 PS_gt gt =marker.Tag as PS_gt;
                 Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(marker.Tag);
                 marker.Position = new PointLatLng((double)gt.gtLat, (double)gt.gtLon);
-                OnMarkerChanged(marker);
+                OnMarkerChanged(marker as GMapMarkerVector);
                 //control.UpdateMarkerLocalPosition(marker);
             }
         }
 
-        internal void ShowLineinfo(GMapMarker selectedMarker, bool canEditMarker) {
+        public void ShowLineinfo(GMapMarker selectedMarker, bool canEditMarker) {
             PS_gt gt = selectedMarker.Tag as PS_gt;
             string linecode=gt.gtCode.Substring(0, gt.gtCode.Length - 4);
             PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='" + linecode + "'");

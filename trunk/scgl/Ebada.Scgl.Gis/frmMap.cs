@@ -105,7 +105,7 @@ namespace Ebada.Scgl.Gis {
                 }
             }
             if (linePoints.Count > 0) {
-                GMapRoute route = new GMapRoute(linePoints, "LineCode");
+                LineRoute route = new LineRoute(linePoints, "LineCode");
                 route.Stroke.Width = 4;
                 routes.Routes.Clear();
                 routes.Routes.Add(route);
@@ -162,7 +162,25 @@ namespace Ebada.Scgl.Gis {
                     break;
                 case "飞行":
                     mapview.Fly();
-                    break;                    
+                    break;
+                case "变台":
+                    showTQ();
+                    break;  
+            }
+        }
+
+        private void showTQ() {
+            //线路 
+            frmTQSelector dlg = new frmTQSelector();
+            if (dlg.ShowDialog(this) == DialogResult.OK) {
+                PS_tq obj = dlg.GetSelected() as PS_tq;
+                if (obj != null) {
+                    GMapOverlay lay = rMap1.FindOverlay(obj.tqCode);
+                    if (lay != null)
+                        rMap1.Overlays.Remove(lay);
+                    rMap1.Overlays.Add(LineOverlay.CreateTQLine(rMap1,obj.tqCode,obj.tqName));
+                    rMap1.ZoomAndCenterRoutes(obj.tqCode);
+                }
             }
         }
         #endregion
@@ -381,19 +399,7 @@ namespace Ebada.Scgl.Gis {
             frmLineSelector dlg = new frmLineSelector();
             if (dlg.ShowDialog(this) == DialogResult.OK) {
                 PS_xl obj = dlg.GetSelected() as PS_xl;
-                if (obj != null) {
-                   //GMapRoute route =new GMapRoute(MapBuilder.BuildLine(obj.LineCode),obj.LineCode);
-                   
-                   // int ncount=route.Points.Count;
-                   //for (int i = 0; i < ncount; i++) {
-                   //    GMapMarker m =createMarker(route.Points[i]);
-
-                   //    if (i > 0)
-                   //        m.ToolTipText = rMap1.Manager.GetDistance(route.Points[i], route.Points[i - 1])*1000 + "";
-                   //    routes.Markers.Add(m);
-                   //}
-                   //routes.Routes.Add(route);
-                   //rMap1.ZoomAndCenterRoute(route);
+                if (obj != null) {                  
                     GMapOverlay lay = rMap1.FindOverlay(obj.LineCode);
                     if (lay != null)
                         rMap1.Overlays.Remove(lay);
