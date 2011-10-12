@@ -102,6 +102,10 @@ namespace Ebada.SCGL.WFlow.Tool
         /// </summary>
         public const string WorkTask_Assign = "指派";
         /// <summary>
+        /// 工作日志
+        /// </summary>
+        public const string WorkTask_WorkRiZhi = "工作日志";
+        /// <summary>
         /// 动态指定一下任务处理人
         /// </summary>
         public const string WorkTask_DyAssignNext = "动态指定";
