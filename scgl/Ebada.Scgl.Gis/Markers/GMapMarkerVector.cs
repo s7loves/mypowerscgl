@@ -6,12 +6,24 @@ using System.Drawing;
 using GMap.NET;
 
 namespace Ebada.Scgl.Gis.Markers {
-    internal class GMapMarkerVector : GMapMarker {
+
+    [Serializable]
+    public class GMapMarkerVector : GMapMarker {
         public System.Drawing.Size SizeSt = new Size(8, 8);
         public Pen Pen;
         private List<GMapMarkerVector> items;
         private GMapMarkerVector parentMarker;
+        private string id;
+        private LineRoute route;
 
+        public LineRoute Route {
+            get { return route; }
+            set { route = value; }
+        }
+        public string Id {
+            get { return id; }
+            set { id = value; }
+        }
         public GMapMarkerVector NextMarker {
             get {
                 GMapMarkerVector next = null;
@@ -43,5 +55,7 @@ namespace Ebada.Scgl.Gis.Markers {
             g.FillEllipse(Brushes.White, r);
             g.DrawEllipse(Pen, r);
         }
+
+        
     }
 }

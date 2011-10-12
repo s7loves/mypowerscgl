@@ -28,6 +28,10 @@ namespace Ebada.Scgl.Gis {
         /// </summary>
         /// <param name="drawingContext"></param>
         protected override void OnPaintOverlays(System.Drawing.Graphics g) {
+            if (Zoom < 15)
+                MarkersEnabled = false;
+            else
+                MarkersEnabled = true;
             base.OnPaintOverlays(g);
 
 #if DEBUG
@@ -47,7 +51,7 @@ namespace Ebada.Scgl.Gis {
             this.Name = "RMap";
             this.Size = new System.Drawing.Size(243, 210);
             this.ResumeLayout(false);
-
+            MapScaleInfoEnabled = true;
         }
         public GMapOverlay FindOverlay(string id) {
             GMapOverlay lay = null;

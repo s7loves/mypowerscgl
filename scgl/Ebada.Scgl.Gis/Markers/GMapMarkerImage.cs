@@ -6,7 +6,8 @@ using System.Drawing;
 using GMap.NET;
 
 namespace Ebada.Scgl.Gis.Markers {
-    internal class GMapMarkerImage : GMapMarker {
+    [Serializable]
+    internal class GMapMarkerImage : GMapMarkerVector {
         public float? Bearing;
 
         public System.Drawing.Size SizeSt = new Size(14, 14);
