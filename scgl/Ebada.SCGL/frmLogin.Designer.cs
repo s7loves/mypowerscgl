@@ -28,6 +28,7 @@ namespace Ebada.SCGL
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.btnCancel = new Ebada.UI.Base.ButtonBase();
             this.btnOK = new Ebada.UI.Base.ButtonBase();
@@ -45,9 +46,12 @@ namespace Ebada.SCGL
             // 
             this.pictureBoxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
+            this.pictureBoxLogo.InitialImage = null;
             this.pictureBoxLogo.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
             this.pictureBoxLogo.Size = new System.Drawing.Size(385, 56);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.TabIndex = 29;
             this.pictureBoxLogo.TabStop = false;
             // 
@@ -118,7 +122,7 @@ namespace Ebada.SCGL
             this.label1.TabIndex = 27;
             this.label1.Text = "ÓÃ»§Ãû:";
             // 
-            // FormLogin
+            // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -134,7 +138,7 @@ namespace Ebada.SCGL
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormLogin";
+            this.Name = "frmLogin";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
