@@ -402,7 +402,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.tbxTaskDes.Location = new System.Drawing.Point(135, 50);
             this.tbxTaskDes.Name = "tbxTaskDes";
-            this.tbxTaskDes.Size = new System.Drawing.Size(266, 21);
+            this.tbxTaskDes.Size = new System.Drawing.Size(257, 21);
             this.tbxTaskDes.TabIndex = 98;
             // 
             // label2
@@ -580,7 +580,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.tbxTaskName.Location = new System.Drawing.Point(135, 23);
             this.tbxTaskName.Name = "tbxTaskName";
-            this.tbxTaskName.Size = new System.Drawing.Size(259, 21);
+            this.tbxTaskName.Size = new System.Drawing.Size(257, 21);
             this.tbxTaskName.TabIndex = 3;
             // 
             // tabControl1
