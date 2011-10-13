@@ -30,6 +30,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 parentTemple = value;
                 uCtestRecord1.ParentTemple = value;
+                uCtestRecordssqkTable1.ParentTemple = value;
             }
         }
         public bool IsWorkfowCall
@@ -38,6 +39,7 @@ namespace Ebada.Scgl.Lcgl
 
                 isWorkfowCall = value;
                 uCtestRecord1.IsWorkfowCall = value;
+                uCtestRecordssqkTable1.IsWorkfowCall = value;
             }
         }
         public LP_Record CurrRecord
@@ -47,6 +49,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord = value;
                 uCtestRecord1.CurrRecord = value;
+                uCtestRecordssqkTable1.CurrRecord = value;
             
             }
         }
@@ -64,6 +67,7 @@ namespace Ebada.Scgl.Lcgl
 
                 WorkFlowData = value;
                 uCtestRecord1.RecordWorkFlowData = value;
+                uCtestRecordssqkTable1.RecordWorkFlowData = value;
 
 
             }
@@ -74,6 +78,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 varDbTableName = value;
+                uCtestRecordssqkTable1.VarDbTableName = value;
             }
         }
         private void UCtestRecordM_Load(object sender, EventArgs e)
@@ -161,6 +166,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
+            if (e.Page == null) return;
             if (e.Page.Text.IndexOf("变压器") > -1)
             {
                 uCtestHCRecord1.Type = "变压器";

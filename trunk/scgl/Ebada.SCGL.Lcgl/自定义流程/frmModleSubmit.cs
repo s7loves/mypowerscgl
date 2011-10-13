@@ -19,6 +19,7 @@ using DevExpress.XtraRichEdit.API.Word;
 using DevExpress.XtraGrid.Views.Base;
 using System.Threading;
 using Ebada.Scgl.WFlow;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -311,6 +312,11 @@ namespace Ebada.Scgl.Lcgl
             //currRecord.ImageAttachment = bt;
             //currRecord.SignImg = bt;
             currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+                RecordWorkTask.CreatRiZhi(WorkFlowData, dsoFramerWordControl1, currRecord.ID, null);
+
+            }
             string strmes = "";
             WF_WorkTaskCommands wt;
             //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
@@ -347,7 +353,6 @@ namespace Ebada.Scgl.Lcgl
                 lcyj.Charman = MainHelper.User.UserName;
                 lcyj.ID = PJ_lcspyj.Newid();
                 lcyj.RecordID = currRecord.ID;
-                WorkFlowData = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
                 lcyj.taskID = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
                 lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
                 lcyj.Creattime = DateTime.Now;
@@ -382,9 +387,13 @@ namespace Ebada.Scgl.Lcgl
             mc.Creattime = DateTime.Now;
             Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
             MainHelper.PlatformSqlMap.Create<WF_ModleCheckTable>(mc);
-
+            
+            
             this.DialogResult = DialogResult.OK;
         }
+       
+        
+
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             ctrl_Leave(sender, e);

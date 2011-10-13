@@ -362,12 +362,14 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSave.Location = new System.Drawing.Point(385, 12);
             this.btnSave.Text = "确定(&O)";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnClose.Location = new System.Drawing.Point(470, 12);
             this.btnClose.Text = "取消(&C)";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // groupBox2
             // 
@@ -1776,6 +1778,7 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             else
             {
+                label2.Text = "处理(任务命令可用代码{01：提交文件模块，02：手动结束}):";
                 tbxFiledName.Text = "不可用";
                 tbxFiledName.Tag =null;
             }
@@ -1915,7 +1918,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else if (tv.VarModule == "Excel")
                 {
-                    rbnWorkTable.Checked = true;
+                    rbnWorkExcel.Checked = true;
                     tetWorkExcelName.Text = tv.TableName;
                     tetWorkPos.Text = tv.TableField;
                 }
@@ -1953,7 +1956,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else if (tv.VarModule == "Excel")
                 {
-                    rbnProjectTable.Checked = true;
+                    rbnProjectExcel.Checked = true;
                     tetProjectExcelName.Text = tv.TableName;
                     tetProjectPos.Text = tv.TableField;
                 }
@@ -1989,7 +1992,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else if (tv.VarModule == "Excel")
                 {
-                    rbnCharManTable.Checked = true;
+                    rbnCharManExcel.Checked = true;
                     tetCharManExcelName.Text = tv.TableName;
                     tetCharManPos.Text = tv.TableField;
                 }
@@ -2025,7 +2028,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else if (tv.VarModule == "Excel")
                 {
-                    rbnAttendManTable.Checked = true;
+                    rbnAttendManExcel.Checked = true;
                     tetAttendManExcelName.Text = tv.TableName;
                     tetAttendManPos.Text = tv.TableField;
                 }
@@ -2115,6 +2118,15 @@ namespace Ebada.SCGL.WFlow.Tool
                 taskCommand.Description = lt.SubItems[2].Text;
                 taskCommand.InsertWorkTaskCommands();
             }
+
+            //保存控制权限
+            WorkFlowTask.DeleteAllPower(NowTask.WorkFlowId, NowTask.TaskId);
+           
+            if (cbxRiZhi.Checked)
+            {
+                WorkFlowTask.SetTaskPower(WorkConst.WorkTask_WorkRiZhi, NowTask.WorkFlowId, NowTask.TaskId);
+                SaveRiZhiData();
+            }
             //保存关联表单
             WorkFlowTask.DeleteAllControls(NowTask.TaskId);
             if (UserControlId != "") WorkFlowTask.SetTaskUserCtrls(UserControlId, NowTask.WorkFlowId, NowTask.TaskId);
@@ -2122,6 +2134,144 @@ namespace Ebada.SCGL.WFlow.Tool
             WorkFlowTask.DeleteAllModle(NowTask.TaskId);
             if (UserModleId != "") WorkFlowTask.SetTaskUserModle(UserModleId, NowTask.WorkFlowId, NowTask.TaskId);
  
+        }
+        private void SaveRiZhiData()
+        {
+            TaskVar tv = new TaskVar();
+            tv.WorkFlowId = NowTask.WorkFlowId;
+            tv.WorkTaskId = NowTask.TaskId;
+            tv.VarName = "工作地点";
+            tv.AccessType = WorkConst.WorkTask_WorkRiZhi;
+            if (rbnWorkFixValue.Checked == true)
+            {
+                tv.VarModule = "固定值";
+                tv.InitValue = tetWorkFixValue.Text;
+            }
+            else if (rbnWorkTable.Checked == true)
+            {
+                tv.VarModule = "表单";
+                tv.TableName = ((ListItem)cbxWorkDataTable.SelectedItem).ID;
+                tv.TableField = ((ListItem)cbxWorkTableColumns.SelectedItem).ID;
+            }
+            else if (rbnWorkExcel.Checked == true)
+            {
+
+                tv.VarModule = "Excel";
+                tv.TableName = tetWorkExcelName.Text;
+                tv.TableField = tetWorkPos.Text;
+            }
+            else if (rbnWorkDatabase.Checked == true)
+            {
+
+                tv.VarModule = "数据库";
+                tv.TableName = ((ListItem)cbxWorkDbTable.SelectedItem).ID;
+                tv.TableField = ((ListItem)cbxWorkDbTableColumns.SelectedItem).ID;
+            }
+            tv.InsertTaskVar();
+            tv = new TaskVar();
+            tv.WorkFlowId = NowTask.WorkFlowId;
+            tv.WorkTaskId = NowTask.TaskId;
+            tv.VarName = "项目";
+            tv.AccessType = WorkConst.WorkTask_WorkRiZhi;
+            if (tv != null)
+            {
+                if (rbnProjectFixValue.Checked == true)
+                {
+                    tv.VarModule = "固定值";
+                    tv.InitValue = tetProjectFixValue.Text;
+                }
+                else if (rbnProjectTable.Checked == true)
+                {
+
+                    tv.VarModule = "表单";
+                    tv.TableName = ((ListItem)cbxProjectDataTable.SelectedItem).ID;
+                    tv.TableField = ((ListItem)cbxProjectTableColumns.SelectedItem).ID;
+                }
+                else if (rbnProjectExcel.Checked == true)
+                {
+
+                    tv.VarModule = "Excel";
+                    tv.TableName = tetProjectExcelName.Text;
+                    tv.TableField = tetProjectPos.Text;
+                }
+                else if (rbnProjectDatabase.Checked == true)
+                {
+
+
+                    tv.VarModule = "数据库";
+                    tv.TableName = ((ListItem)cbxProjectDbTable.SelectedItem).ID;
+                    tv.TableField = ((ListItem)cbxProjectDbTableColumns.SelectedItem).ID;
+                }
+            }
+            tv.InsertTaskVar();
+            tv = new TaskVar();
+            tv.WorkFlowId = NowTask.WorkFlowId;
+            tv.WorkTaskId = NowTask.TaskId;
+            tv.VarName = "负责人";
+            tv.AccessType = WorkConst.WorkTask_WorkRiZhi;
+            if (tv != null)
+            {
+                if (rbnCharManFixValue.Checked == true)
+                {
+                    tv.VarModule = "固定值";
+                    tetCharManFixValue.Text = tv.InitValue;
+                }
+                else if (rbnCharManTable.Checked == true)
+                {
+                    tv.VarModule = "表单";
+                    tv.TableName = ((ListItem)cbxCharManDataTable.SelectedItem).ID;
+                    tv.TableField = ((ListItem)cbxCharManTableColumns.SelectedItem).ID;
+                }
+                else if (rbnCharManExcel.Checked == true)
+                {
+                    tv.VarModule = "Excel";
+                    tv.TableName = tetCharManExcelName.Text;
+                    tv.TableField = tetCharManPos.Text;
+                }
+                else if (rbnCharManDatabase.Checked == true)
+                {
+
+                    tv.VarModule = "数据库";
+                    tv.TableName = ((ListItem)cbxCharManDbTable.SelectedItem).ID;
+                    tv.TableField = ((ListItem)cbxCharManDbTableColumns.SelectedItem).ID;
+                }
+            }
+            tv.InsertTaskVar();
+            tv = new TaskVar();
+            tv.WorkFlowId = NowTask.WorkFlowId;
+            tv.WorkTaskId = NowTask.TaskId;
+            tv.VarName = "参加人员";
+            tv.AccessType = WorkConst.WorkTask_WorkRiZhi;
+            if (tv != null)
+            {
+                if (rbnAttendManFixValue.Checked == true)
+                {
+                    tv.VarModule = "固定值";
+                    tv.InitValue = tetAttendManFixValue.Text;
+                }
+                else if (rbnAttendManTable.Checked == true)
+                {
+                    tv.VarModule = "表单";
+                    tv.TableName = ((ListItem)cbxAttendManDataTable.SelectedItem).ID;
+                    tv.TableField = ((ListItem)cbxAttendManTableColumns.SelectedItem).ID;
+                }
+                else if (rbnAttendManExcel.Checked == true)
+                {
+                    tv.VarModule = "Excel";
+                    tv.TableName = tetAttendManExcelName.Text;
+                    tv.TableField = tetAttendManPos.Text;
+                }
+                else if (rbnAttendManDatabase.Checked == true)
+                {
+
+
+                    tv.VarModule = "数据库";
+                    tv.TableName = ((ListItem)cbxAttendManDbTable.SelectedItem).ID;
+                    tv.TableField = ((ListItem)cbxAttendManDbTableColumns.SelectedItem).ID;
+                }
+            }
+            tv.InsertTaskVar();
+
         }
         private void tabPage1_Click(object sender, EventArgs e)
         {
@@ -2419,7 +2569,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                     tbxFiledName.Tag = null;
                     tbxFiledName.Text = "不可用";
-                    label2.Text = "处理(任务命令可用代码{01：代表调用提交文件模块，02：手动结束}):";
+                    label2.Text = "处理(任务命令可用代码{01：提交文件模块，02：手动结束}):";
                 }
                 else
                 {
