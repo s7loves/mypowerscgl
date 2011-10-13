@@ -2453,6 +2453,7 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             else
             {
+                label2.Text = "处理(任务命令可用代码{01：提交文件模块，02：手动结束}):";
                 tbxFiledName.Text = "不可用";
                 tbxFiledName.Tag = null;
             }
@@ -2618,7 +2619,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else if (tv.VarModule == "Excel")
                 {
-                    rbnWorkTable.Checked = true;
+                    rbnWorkExcel.Checked = true;
                     tetWorkExcelName.Text = tv.TableName;
                     tetWorkPos.Text = tv.TableField;
                 }
@@ -2655,7 +2656,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else if (tv.VarModule == "Excel")
                 {
-                    rbnProjectTable.Checked = true;
+                    rbnProjectExcel.Checked = true;
                     tetProjectExcelName.Text = tv.TableName;
                     tetProjectPos.Text = tv.TableField;
                 }
@@ -2691,7 +2692,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else if (tv.VarModule == "Excel")
                 {
-                    rbnCharManTable.Checked = true;
+                    rbnCharManExcel.Checked = true;
                     tetCharManExcelName.Text = tv.TableName;
                     tetCharManPos.Text = tv.TableField;
                 }
@@ -2727,7 +2728,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else if (tv.VarModule == "Excel")
                 {
-                    rbnAttendManTable.Checked = true;
+                    rbnAttendManExcel.Checked = true;
                     tetAttendManExcelName.Text = tv.TableName;
                     tetAttendManPos.Text = tv.TableField;
                 }
@@ -3468,7 +3469,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                     tbxFiledName.Tag = null;
                     tbxFiledName.Text = "不可用";
-                    label2.Text = "处理(任务命令可用代码{01：代表调用提交文件模块，02：手动结束}):";
+                    label2.Text = "处理(任务命令可用代码{01：提交文件模块，02：手动结束}):";
                 }
                 else
                 {

@@ -16,6 +16,7 @@ using DevExpress.XtraTab;
 using Excel = Microsoft.Office.Interop.Excel;
 using Ebada.Client;
 using Ebada.Scgl.Core;
+using System.Threading;
 
 namespace Ebada.Scgl.WFlow
 {
@@ -97,7 +98,154 @@ namespace Ebada.Scgl.WFlow
 
 
         }
-        // <summary>
+        public static void CreatRiZhi(DataTable WorkFlowData, DSOFramerControl dsoFramerWordControl1, string recordID, object modlecord)
+        {
+
+            WF_TaskVar tvAddress = RecordWorkTask.GetWorkTaskRiZhi(WorkFlowData, "工作地点");
+            WF_TaskVar tvProject = RecordWorkTask.GetWorkTaskRiZhi(WorkFlowData, "项目");
+            WF_TaskVar tvCharMan = RecordWorkTask.GetWorkTaskRiZhi(WorkFlowData, "负责人");
+            WF_TaskVar tvAttendMan = RecordWorkTask.GetWorkTaskRiZhi(WorkFlowData, "参加人员");
+
+            PJ_gzrjnr gzr = new PJ_gzrjnr();
+            gzr.gzrjID = gzr.CreateID();
+            gzr.ParentID = recordID;
+            Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+            IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
+
+            if (gzrj01.Count > 0)
+            {
+                gzr.gzrjID = gzrj01[0].gzrjID;
+            }
+            else
+            {
+                PJ_01gzrj pj = new PJ_01gzrj();
+                pj.gzrjID = pj.CreateID();
+                pj.CreateDate = DateTime.Now;
+                pj.CreateMan = MainHelper.User.UserName;
+                gzr.gzrjID = pj.gzrjID;
+                pj.rq = DateTime.Now.Date;
+                pj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                MainHelper.PlatformSqlMap.Create<PJ_01gzrj>(pj);
+
+                //MsgBox.ShowWarningMessageBox("未填写今日工作日记");
+                //return;
+            }
+            IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
+            if (gzrlist.Count > 0)
+            {
+                gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
+            }
+            else
+                gzr.seq = 1;
+            gzr.gznr = GetTaskVarRiZhiValue(tvAddress, dsoFramerWordControl1, recordID, modlecord) + GetTaskVarRiZhiValue(tvProject, dsoFramerWordControl1, recordID, modlecord);
+            gzr.fzr = GetTaskVarRiZhiValue(tvCharMan, dsoFramerWordControl1, recordID, modlecord);
+            gzr.cjry = GetTaskVarRiZhiValue(tvAttendMan, dsoFramerWordControl1, recordID, modlecord);
+            gzr.CreateDate = DateTime.Now;
+            gzr.CreateMan = MainHelper.User.UserName;
+            MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
+
+        }
+      
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="workflowData"></param>
+        /// <param name="varName"></param>
+        /// <returns></returns>
+        public static WF_TaskVar GetWorkTaskRiZhi(DataTable workflowData, string varName)
+        {
+            return WorkFlowTask.GetTaskRiZhiVar(workflowData.Rows[0]["WorktaskId"].ToString(), varName);
+        }
+        public static string GetTaskVarRiZhiValue(WF_TaskVar tv, DSOFramerControl dsoFramerWordControl1, string recordID, object modlecord)
+        {
+
+            Excel.Worksheet xx = null;
+            if (tv.TableName != "" && dsoFramerWordControl1!=null)
+            {
+                Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                xx = wb.Application.Sheets[tv.TableName] as Excel.Worksheet;
+            }
+            return GetTaskVarRiZhiValue(tv, xx, recordID, modlecord);
+        }
+        public static string GetTaskVarRiZhiValue(WF_TaskVar tvAddress, Excel.Worksheet xx, string recordID)
+        {
+            return GetTaskVarRiZhiValue(tvAddress,xx,recordID, null);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tvAddress"></param>
+        /// <param name="record"></param>
+        /// <returns></returns>
+        public static string GetTaskVarRiZhiValue(WF_TaskVar tvAddress, Excel.Worksheet xx, string recordID, object modlecord)
+        {
+            string strvalue = "";
+            if (tvAddress.VarModule == "固定值")
+            {
+                strvalue = tvAddress.InitValue;
+            }
+            else if (tvAddress.VarModule == "表单")
+            {
+                //LP_Temple tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tvAddress.TableField);
+                IList<WF_TableFieldValue> filedvaluelist = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                    "where RecordId  = '" + recordID + "' and FieldId='" + tvAddress.TableField
+                    + "' and WorkFlowId='" + tvAddress.WorkFlowId
+                    + "' and WorkTaskId='" + tvAddress.WorkTaskId + "' order by seq  ");
+                if (filedvaluelist.Count > 0)
+                {
+                    strvalue = filedvaluelist[0].ControlValue;
+                }
+            }
+            else if (tvAddress.VarModule == "Excel")
+            {
+                if (tvAddress.TableName != "")
+                {
+                   
+                    string[] arrCellPos = tvAddress.TableField.Split('|');
+                    arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
+                    string strcellvalue = "";
+                    for (int i = 0; i < arrCellPos.Length; i++)
+                    {
+                        Excel.Range range = xx.get_Range(xx.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], xx.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
+                        strcellvalue += range.Value2;
+                    }
+                    strvalue = strcellvalue;
+                }
+
+            }
+            else if (tvAddress.VarModule == "数据库" && modlecord != null)
+            {
+                if (modlecord.GetType().ToString().IndexOf(tvAddress.TableName) > -1)
+                {
+                    if (modlecord.GetType().GetProperty(tvAddress.TableField) != null && modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null) != null)
+                    {
+                        strvalue = modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null).ToString();
+
+                    }
+
+                }
+            }
+            return strvalue;
+        }
+        public static int[] GetCellPos(string cellpos)
+        {
+            cellpos = cellpos.Replace("|", "");
+            return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
+        }
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="workflowData"></param>
+       /// <returns></returns>
+        public static bool CheckOnRiZhi(DataTable workflowData)
+        {
+            if (workflowData == null || workflowData.Rows.Count == 0) return false;
+
+            return WorkFlowTask.CheckTaskPowerExit(workflowData.Rows[0]["WorkflowId"].ToString(), workflowData.Rows[0]["WorktaskId"].ToString(), "工作日志");
+        }
+        /// <summary>
         /// 获得流程的当前的节点关联的表单
         /// </summary>
         /// <param name="workflowData">流程信息列表</param>
@@ -140,6 +288,7 @@ namespace Ebada.Scgl.WFlow
                         {
                             tp = new LP_Temple();
                             tp.Status = "绑定节点";
+                            tp.LPID = mct.ID;
                             tp.DocContent = mct.DocContent;
                             return tp;
                         }

@@ -561,7 +561,6 @@ namespace Ebada.Scgl.Lcgl
                         lcyj.Charman = MainHelper.User.UserName;
                         lcyj.ID = PJ_lcspyj.Newid();
                         lcyj.RecordID = currRecord.ID;
-                        WorkFlowData=RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
                         lcyj.taskID = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
                         lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
                         lcyj.Creattime = DateTime.Now;

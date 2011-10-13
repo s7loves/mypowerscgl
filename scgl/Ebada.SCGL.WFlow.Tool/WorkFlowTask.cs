@@ -464,6 +464,31 @@ namespace Ebada.SCGL.WFlow.Tool
         /// <param name="workflowId">工作流模板Id</param>
         /// <param name="taskId">任务模板Id</param>
         /// <returns></returns>
+        public static bool CheckTaskPowerExit(string workFlowId, string workTaskId, string powerName)
+        {
+            try
+            {
+                string sqlStr = "where WorkTaskId ='" + workTaskId + "'and workflowId='" + workFlowId + "' and PowerName='" + powerName+"'";
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskPowerList", sqlStr);
+                if (li.Count == 0)
+                {
+                   
+
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 获得控制权限
+        /// </summary>
+        /// <param name="workflowId">工作流模板Id</param>
+        /// <param name="taskId">任务模板Id</param>
+        /// <returns></returns>
         public static DataTable GetTaskPower(string workFlowId, string workTaskId)
         {
             try

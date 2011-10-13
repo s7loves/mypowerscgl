@@ -23,6 +23,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Components;
 using DevExpress.Utils;
+using Ebada.Scgl.WFlow;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -38,6 +39,55 @@ namespace Ebada.Scgl.Lcgl
         private string parentID = null;
         private mOrg parentObj;
         private string _type = null;
+        private bool isWorkfowCall = false;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        private string varDbTableName = "PJ_yfsyjl";
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set
+            {
+                parentTemple = value;
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set
+            {
+                currRecord = value;
+            }
+        }
+        public bool IsWorkfowCall
+        {
+            set
+            {
+
+                isWorkfowCall = value;
+            }
+        }
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+                return WorkFlowData;
+            }
+            set
+            {
+                WorkFlowData = value;
+            }
+        }
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value;
+            }
+        }
+
         public UCtestRecordsyqkTable()
         {
             InitializeComponent();
@@ -79,6 +129,10 @@ namespace Ebada.Scgl.Lcgl
             obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
             obj.CreateDate = DateTime.Now;
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, obj);
+            }
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'   and planExpTime like '%" + DateTime.Now.Year + "%'  order by xh ");
         }
         public string Type
