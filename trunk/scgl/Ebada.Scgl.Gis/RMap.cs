@@ -113,8 +113,9 @@ namespace Ebada.Scgl.Gis {
                     marker = new GMapMarkerBDZ(new PointLatLng(d1, d2));
                 marker.Tag = obj;
                 marker.Id = obj.OrgCode;
+                marker.Text = obj.OrgName;
                 marker.ToolTipText = obj.OrgName;
-                marker.ToolTipMode = MarkerTooltipMode.Always;
+                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                 bdzLayer.Markers.Add(marker);
             }
             return marker;
