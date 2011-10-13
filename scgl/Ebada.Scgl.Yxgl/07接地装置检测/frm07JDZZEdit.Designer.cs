@@ -246,7 +246,6 @@
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit4.TabIndex = 17;
             this.comboBoxEdit4.EditValueChanged += new System.EventHandler(this.comboBoxEdit4_EditValueChanged);
-            this.comboBoxEdit4.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit4_SelectedIndexChanged);
             // 
             // groupBox1
             // 
