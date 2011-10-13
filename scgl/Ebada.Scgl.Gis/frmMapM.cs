@@ -25,7 +25,7 @@ using Ebada.Scgl.Gis.Device;
 using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Gis {
-    public partial class frmMap : XtraForm {
+    public partial class frmMapM : XtraForm {
         TONLI.MapCore.IMapServer mapServer;
         IMapView mapview;
         bool isMouseDown=false;
@@ -46,7 +46,7 @@ namespace Ebada.Scgl.Gis {
         }
         OperationInstances oInstances;
         bool canAddMarker;
-        public frmMap() {
+        public frmMapM() {
             InitializeComponent();
             rMap1 = new RMap();
 
@@ -81,7 +81,9 @@ namespace Ebada.Scgl.Gis {
             rMap1.MouseUp += new MouseEventHandler(MainMap_MouseUp);
             rMap1.OnMarkerEnter += new MarkerEnter(MainMap_OnMarkerEnter);
             rMap1.OnMarkerLeave += new MarkerLeave(MainMap_OnMarkerLeave);
+            rMap1.OnTileLoadStart += new TileLoadStart(MainMap_OnTileLoadStart);
 
+            rMap1.OnTileLoadComplete += new TileLoadComplete(MainMap_OnTileLoadComplete);
             barButtonItem10.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
             barButtonItem10.AllowAllUp = true;
             barButtonItem4.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
@@ -116,12 +118,7 @@ namespace Ebada.Scgl.Gis {
             refreshRoute();
 
         }
-        public frmMap(RMap map) {
-            InitializeComponent();
-            rMap1 = map;
-            Controls.Add(rMap1);
-            
-        }
+        
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
             mapview.FullView();
@@ -165,27 +162,12 @@ namespace Ebada.Scgl.Gis {
                     break;
                 case "变台":
                     showTQ();
-                    break;
-                case "变电站(所)":
-                    showBDS();
-                    break; 
-            }
-        }
-
-        private void showBDS() {
-            frmBDSSelector dlg = new frmBDSSelector();
-            if (dlg.ShowDialog(this) == DialogResult.OK) {
-                mOrg obj = dlg.GetSelected() as mOrg;
-                if (obj != null) {
-                    GMapMarker marker = rMap1.FindMarker(obj);
-                    if (marker != null)
-                        rMap1.Position = marker.Position;
-                }
+                    break;  
             }
         }
 
         private void showTQ() {
-            // 台区
+            //线路 
             frmTQSelector dlg = new frmTQSelector();
             if (dlg.ShowDialog(this) == DialogResult.OK) {
                 PS_tq obj = dlg.GetSelected() as PS_tq;
@@ -201,30 +183,17 @@ namespace Ebada.Scgl.Gis {
         #endregion
         #region -- map events --
         void MainMap_OnMarkerLeave(GMapMarker item) {
-            //if (!isMouseDown && currentMarker==item)
-            //    currentMarker = null;
             curOperation.OnMarkerLeave(item);
         }
 
         void MainMap_OnMarkerEnter(GMapMarker item) {
-            //if (!isMouseDown)
-            //    currentMarker = item;
             curOperation.OnMarkerEnter(item);
         }
 
         void MainMap_OnMapTypeChanged(GMapProvider type) {
-            
-
-            //if (radioButtonTransport.Checked) {
-            //    MainMap.ZoomAndCenterMarkers("objects");
-            //}
         }
 
         void MainMap_MouseUp(object sender, MouseEventArgs e) {
-            //if (e.Button == MouseButtons.Left) {
-            //    isMouseDown = false;
-            //    currentMarker = null;
-            //}
             curOperation.MouseUp(sender, e);
         }
         GMapMarker createMarker(PointLatLng pos) {
@@ -249,93 +218,41 @@ namespace Ebada.Scgl.Gis {
         // move current marker with left holding
         void MainMap_MouseMove(object sender, MouseEventArgs e) {
             curOperation.MouseMove(sender, e);
-            //if (e.Button == MouseButtons.Left && isMouseDown) {
-            //    if (currentMarker != null) {
-            //        if (currentMarker.IsVisible) {
-            //            currentMarker.Position = rMap1.FromLocalToLatLng(e.X, e.Y);
-            //            currentMarker.ToolTipText = currentMarker.Position.ToString();
-            //            refreshRoute();
-            //        }
-            //    } else // move rect marker
-            //{
-            //        //PointLatLng pnew = rMap1.FromLocalToLatLng(e.X, e.Y);
-
-            //        //int? pIndex = (int?)CurentRectMarker.Tag;
-            //        //if (pIndex.HasValue) {
-            //        //    if (pIndex < polygon.Points.Count) {
-            //        //        polygon.Points[pIndex.Value] = pnew;
-            //        //        rMap1.UpdatePolygonLocalPosition(polygon);
-            //        //    }
-            //        //}
-
-            //        //if (currentMarker.IsVisible) {
-            //        //    currentMarker.Position = pnew;
-            //        //}
-            //        //CurentRectMarker.Position = pnew;
-
-            //        //if (CurentRectMarker.InnerMarker != null) {
-            //        //    CurentRectMarker.InnerMarker.Position = pnew;
-            //        //}
-            //    }
-            //}
         }
 
         // MapZoomChanged
         void MainMap_OnMapZoomChanged() {
-            //trackBar1.Value = (int)(MainMap.Zoom);
-            //textBoxZoomCurrent.Text = MainMap.Zoom.ToString();
-            //center.Position = MainMap.Position;
         }
 
         // click on some marker
         void MainMap_OnMarkerClick(GMapMarker item, MouseEventArgs e) {
-            //if (e.Button == System.Windows.Forms.MouseButtons.Left) {
-            //    if (item is GMapMarkerRect) {
-            //        Placemark pos = GMaps.Instance.GetPlacemarkFromGeocoder(item.Position);
-            //        if (pos != null) {
-            //            GMapMarkerRect v = item as GMapMarkerRect;
-            //            {
-            //                v.ToolTipText = pos.Address;
-            //            }
-            //            MainMap.Invalidate(false);
-            //        }
-            //    } else {
-            //        if (item.Tag != null) {
-            //            if (currentTransport != null) {
-            //                currentTransport.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-            //                currentTransport = null;
-            //            }
-            //            currentTransport = item;
-            //            currentTransport.ToolTipMode = MarkerTooltipMode.Always;
-            //        }
-            //    }
-            //}
         }
 
         // loader start loading tiles
         void MainMap_OnTileLoadStart() {
-            //MethodInvoker m = delegate() {
-            //    panelMenu.Text = "Menu: loading tiles...";
-            //};
-            //try {
-            //    BeginInvoke(m);
-            //} catch {
-            //}
+            MethodInvoker m = delegate() {
+                //panelMenu.Text = "Menu: loading tiles...";
+                barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            };
+            try {
+                BeginInvoke(m);
+            } catch {
+            }
         }
 
         // loader end loading tiles
         void MainMap_OnTileLoadComplete(long ElapsedMilliseconds) {
             //MainMap.ElapsedMilliseconds = ElapsedMilliseconds;
 
-            //MethodInvoker m = delegate() {
-            //    panelMenu.Text = "Menu, last load in " + MainMap.ElapsedMilliseconds + "ms";
-
-            //    textBoxMemory.Text = string.Format(CultureInfo.InvariantCulture, "{0:0.00}MB of {1:0.00}MB", MainMap.Manager.MemoryCacheSize, MainMap.Manager.MemoryCacheCapacity);
-            //};
-            //try {
-            //    BeginInvoke(m);
-            //} catch {
-            //}
+            MethodInvoker m = delegate() {
+                //panelMenu.Text = "Menu, last load in " + MainMap.ElapsedMilliseconds + "ms";
+                barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //textBoxMemory.Text = string.Format(CultureInfo.InvariantCulture, "{0:0.00}MB of {1:0.00}MB", MainMap.Manager.MemoryCacheSize, MainMap.Manager.MemoryCacheCapacity);
+            };
+            try {
+                BeginInvoke(m);
+            } catch {
+            }
         }
 
         // current point changed
@@ -346,20 +263,14 @@ namespace Ebada.Scgl.Gis {
         }
 
         // center markers on start
-        //private void Form_Load(object sender, EventArgs e) {
-        //    if (objects.Markers.Count > 0) {
-        //        MainMap.ZoomAndCenterMarkers(null);
-        //        trackBar1.Value = (int)MainMap.Zoom;
-        //    }
-        //}
+       
 
         // ensure focus on map, trackbar can have it too
-        PointLatLng offsize = new PointLatLng(0.00187f, 0.00654f);
+        //PointLatLng offsize = new PointLatLng(0.00187f, 0.00654f);
         void rMap1_MouseMove(object sender, MouseEventArgs e) {
             PointLatLng ll = rMap1.FromLocalToLatLng(e.X, e.Y);
-            barStaticItem1.Caption = string.Format("lat:{0},lng:{1}", ll.Lat, ll.Lng );
+            barStaticItem1.Caption = string.Format("纬度:{0},经度:{1}", ll.Lat, ll.Lng );
            
-            //barStaticItem1.Caption = string.Format("lat:{0},lng:{1}", ll.Lat-offsize.Lat, ll.Lng-offsize.Lng);
         }
 
         void rMap1_MouseEnter(object sender, EventArgs e) {

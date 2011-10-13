@@ -57,7 +57,7 @@
             this.treeListColumn4});
             this.treeList1.ColumnsImageList = this.imageCollection1;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.Location = new System.Drawing.Point(0, 0);
+            this.treeList1.Location = new System.Drawing.Point(0, 25);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.ImmediateEditor = false;
             this.treeList1.OptionsSelection.InvertSelection = true;
@@ -197,8 +197,8 @@
             new DevExpress.XtraEditors.NavigatorCustomButton(-1, 10, true, true, "删除", "Del"),
             new DevExpress.XtraEditors.NavigatorCustomButton(-1, 14, true, true, "上移", "Up"),
             new DevExpress.XtraEditors.NavigatorCustomButton(-1, 17, true, true, "下移", "Down")});
-            this.controlNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.controlNavigator1.Location = new System.Drawing.Point(0, 151);
+            this.controlNavigator1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlNavigator1.Location = new System.Drawing.Point(0, 0);
             this.controlNavigator1.Name = "controlNavigator1";
             this.controlNavigator1.NavigatableControl = this.treeList1;
             this.controlNavigator1.ShowToolTips = true;

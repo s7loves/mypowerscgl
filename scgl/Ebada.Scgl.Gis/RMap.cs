@@ -11,27 +11,28 @@ namespace Ebada.Scgl.Gis {
     using System.Drawing;
     using System;
     using GMap.NET;
+    using Ebada.Scgl.Gis.Markers;
 
     /// <summary>
     /// custom map of GMapControl
     /// </summary>
     public class RMap : GMapControl, IMapView {
         public long ElapsedMilliseconds;
+        public PointOverLay bdzLayer;
 
 #if DEBUG
         private int counter;
         readonly Font DebugFont = new Font(FontFamily.GenericSansSerif, 24, FontStyle.Regular);
 #endif
-
+        public RMap()
+            : base() {
+            InitializeComponent();
+        }
         /// <summary>
         /// any custom drawing here
         /// </summary>
         /// <param name="drawingContext"></param>
         protected override void OnPaintOverlays(System.Drawing.Graphics g) {
-            if (Zoom < 15)
-                MarkersEnabled = false;
-            else
-                MarkersEnabled = true;
             base.OnPaintOverlays(g);
 
 #if DEBUG
@@ -41,17 +42,14 @@ namespace Ebada.Scgl.Gis {
         }
 
         private void InitializeComponent() {
-            this.SuspendLayout();
-            // 
-            // RMap
-            // 
-            this.DoubleBuffered = true;
-            //this.GrayScaleMode = true;
+            
             this.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
-            this.Name = "RMap";
-            this.Size = new System.Drawing.Size(243, 210);
-            this.ResumeLayout(false);
-            MapScaleInfoEnabled = true;
+            //MapScaleInfoEnabled = true;
+            initOverlay();
+        }
+        private void initOverlay() {
+            bdzLayer = new PointOverLay(this, "bdz");
+            this.Overlays.Add(bdzLayer);
         }
         public GMapOverlay FindOverlay(string id) {
             GMapOverlay lay = null;
@@ -94,5 +92,32 @@ namespace Ebada.Scgl.Gis {
         }
 
         #endregion
+
+        internal GMapMarker FindMarker(Ebada.Scgl.Model.mOrg obj) {
+            GMapMarkerBDZ marker =null;
+            foreach (GMapMarkerBDZ bdz in bdzLayer.Markers) {
+                if (bdz.Id == obj.OrgCode) {
+                    marker = bdz;
+                    break;
+                }
+            }
+            if (marker == null) {
+                //新建
+                double d1=this.Position.Lat;
+                double d2 =this.Position.Lng;
+                double.TryParse(obj.C1, out d1);
+                double.TryParse(obj.C2, out d2);
+                if (d1 == 0 || d2 == 0)
+                    marker = new GMapMarkerBDZ(Position);
+                else
+                    marker = new GMapMarkerBDZ(new PointLatLng(d1, d2));
+                marker.Tag = obj;
+                marker.Id = obj.OrgCode;
+                marker.ToolTipText = obj.OrgName;
+                marker.ToolTipMode = MarkerTooltipMode.Always;
+                bdzLayer.Markers.Add(marker);
+            }
+            return marker;
+        }
     }
 }
