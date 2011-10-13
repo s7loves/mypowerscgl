@@ -192,13 +192,6 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit4_EditValueChanged(object sender, EventArgs e)
         {
-            comboBoxEdit4_SelectedIndexChanged(sender, e);
-           
-          
-        }
-
-        private void comboBoxEdit4_SelectedIndexChanged(object sender, EventArgs e)
-        {
             if (!string.IsNullOrEmpty(comboBoxEdit4.EditValue.ToString()))
             {
                 string sbmc = comboBoxEdit4.EditValue.ToString();
@@ -208,6 +201,10 @@ namespace Ebada.Scgl.Yxgl
                 if (list.Count > 0)
                     comboBoxEdit5.Properties.Items.AddRange(list);
             }
+           
+          
         }
+
+     
     }
 }
