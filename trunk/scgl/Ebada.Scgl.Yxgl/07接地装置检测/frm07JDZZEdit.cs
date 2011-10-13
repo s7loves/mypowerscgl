@@ -197,11 +197,22 @@ namespace Ebada.Scgl.Yxgl
                 string sbmc = comboBoxEdit4.EditValue.ToString();
                 ICollection list = new ArrayList();
                 comboBoxEdit5.Properties.Items.Clear();
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where parentid in(select ID from pj_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc + "型号"));
+                //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where parentid in(select ID from pj_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc + "型号"));
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select nr from pj_dyk where  dx='07接地装置检测记录' and sx like '%{0}%' and nr!=''", sbmc + "型号"));
                 if (list.Count > 0)
                     comboBoxEdit5.Properties.Items.AddRange(list);
+
+
+
+                comboBoxEdit9.Properties.Items.Clear();
+                //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where parentid in(select ID from pj_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc + "型号"));
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select nr from pj_dyk where  dx='07接地装置检测记录' and sx like '%{0}%' and nr!=''", sbmc + "规格"));
+                if (list.Count > 0)
+                    comboBoxEdit9.Properties.Items.AddRange(list);
             }
-           
+          
           
         }
 
