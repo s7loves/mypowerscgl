@@ -2456,6 +2456,8 @@ namespace Ebada.SCGL.WFlow.Tool
                 label2.Text = "处理(任务命令可用代码{01：提交文件模块，02：手动结束}):";
                 tbxFiledName.Text = "不可用";
                 tbxFiledName.Tag = null;
+                btnSelectCtrls.Enabled = false;
+                btnSelctField.Enabled = false;
             }
             //*********控制权限
             DataTable powerTable = WorkFlowTask.GetTaskPower(NowTask.WorkFlowId, NowTask.TaskId);
@@ -3470,6 +3472,8 @@ namespace Ebada.SCGL.WFlow.Tool
                     tbxFiledName.Tag = null;
                     tbxFiledName.Text = "不可用";
                     label2.Text = "处理(任务命令可用代码{01：提交文件模块，02：手动结束}):";
+                    btnSelectCtrls.Enabled = false;
+                    btnSelctField.Enabled = false;
                 }
                 else
                 {
@@ -3481,6 +3485,8 @@ namespace Ebada.SCGL.WFlow.Tool
                         tbxFiledName.Tag = null;
                         tbxFiledName.Text = "";
                         label2.Text = "处理";
+                        btnSelectCtrls.Enabled = true;
+                        btnSelctField.Enabled = true;
                     }
                 }
                 iniRiZhiData();
@@ -3489,15 +3495,28 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnModleClear_Click(object sender, EventArgs e)
         {
+
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认清除关联模块?") != DialogResult.OK)
+            {
+                return;
+            }
             //保存关联模块
             WorkFlowTask.DeleteAllModle(NowTask.TaskId);
             WorkFlowTask.DeleteAllModleField(NowTask.WorkFlowId,NowTask.TaskId);
             UserModleId = "";
             tbxModleName.Text = "";
+            btnSelectCtrls.Enabled = true;
+            btnSelctField.Enabled = true;
         }
 
         private void btnTableClear_Click(object sender, EventArgs e)
         {
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认清除关联表单?") != DialogResult.OK)
+            {
+                return;
+            }
             //保存关联表单
             WorkFlowTask.DeleteAllControls(NowTask.TaskId);
             WorkFlowTask.DeleteAllTableField(NowTask.WorkFlowId, NowTask.TaskId);
@@ -3511,6 +3530,11 @@ namespace Ebada.SCGL.WFlow.Tool
         private void btnFieldClear_Click(object sender, EventArgs e)
         {
 
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认清除关联字段?") != DialogResult.OK)
+            {
+                return;
+            }
 
             WorkFlowTask.DeleteAllTableField(NowTask.WorkFlowId, NowTask.TaskId);
             tbxFiledName.Tag = null;
