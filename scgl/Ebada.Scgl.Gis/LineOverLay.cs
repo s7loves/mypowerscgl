@@ -11,6 +11,7 @@ namespace Ebada.Scgl.Gis {
     public class LineOverlay :GMapOverlay{
 
         private GMapControl control;
+        public bool AllowEdit;
         public LineOverlay(GMapControl map, string lineCode)
             : base(map, lineCode) {
             
