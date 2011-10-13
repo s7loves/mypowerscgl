@@ -22,6 +22,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
+        private string varDbTableName = "PJ_yfsyjl,PJ_yfsyhcjl";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -65,6 +66,14 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecord1.RecordWorkFlowData = value;
 
 
+            }
+        }
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value;
             }
         }
         private void UCtestRecordM_Load(object sender, EventArgs e)
