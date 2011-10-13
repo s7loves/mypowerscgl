@@ -6,6 +6,7 @@ using Ebada.Client.Platform;
 using System.Collections;
 using Ebada.Core;
 using Ebada.Scgl.Model;
+using System.Threading;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -124,8 +125,8 @@ namespace Ebada.SCGL.WFlow.Tool
         /// </summary>
         public void InsertTaskVar()
         {
-            if (TaskVarId.Trim().Length == 0 || TaskVarId == null)
-                throw new Exception("InsertTaskVar方法错误，TaskVarId 不能为空！");
+            //if (TaskVarId.Trim().Length == 0 || TaskVarId == null)
+                //throw new Exception("InsertTaskVar方法错误，TaskVarId 不能为空！");
             try
             {
                 //setInsertSql();//设定insert语句
@@ -134,7 +135,8 @@ namespace Ebada.SCGL.WFlow.Tool
                 //agent.ExecuteNonQuery(sqlDataItem);
                 WF_TaskVar tv = MainHelper.PlatformSqlMap.GetOneByKey<WF_TaskVar>(TaskVarId);
                 if (tv==null) tv = new WF_TaskVar();
-                tv.TaskVarId=this.TaskVarId;
+                //tv.TaskVarId=this.TaskVarId;
+                tv.TaskVarId = tv.CreateID();
                 tv.WorkFlowId=this.WorkFlowId;
                 tv.WorkTaskId=this.WorkTaskId;
                 tv.VarName=this.VarName;
@@ -145,6 +147,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 tv.TableField=this.TableField;
                 tv.InitValue=this.InitValue;
                 tv.AccessType = this.AccessType;
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 if(MainHelper.PlatformSqlMap.GetOneByKey <WF_TaskVar>(tv)==null)
                 MainHelper.PlatformSqlMap.Create<WF_TaskVar>(tv);
                 else
