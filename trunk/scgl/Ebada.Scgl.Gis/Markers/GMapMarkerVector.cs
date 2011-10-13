@@ -56,6 +56,11 @@ namespace Ebada.Scgl.Gis.Markers {
             g.DrawEllipse(Pen, r);
         }
 
-        
+
+
+        internal virtual void Update() {
+            if (this.Overlay is LineOverlay)
+                (this.Overlay as LineOverlay).Update(this);
+        }
     }
 }

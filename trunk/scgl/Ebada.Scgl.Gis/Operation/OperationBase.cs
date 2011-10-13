@@ -50,8 +50,8 @@ namespace Ebada.Scgl.Gis {
         public virtual void MouseUp(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) {
                 isMouseDown = false;
-                if (updateMarker != null) {
-                    (updateMarker.Overlay as LineOverlay).Update(updateMarker);
+                if (updateMarker != null && updateMarker is GMapMarkerVector) {
+                    (updateMarker as GMapMarkerVector).Update();
                 }
             }
         }
@@ -85,15 +85,20 @@ namespace Ebada.Scgl.Gis {
                         currentMarker.Position = rMap1.FromLocalToLatLng(p1.X, p1.Y);
                         if (currentMarker.Overlay is LineOverlay) {
                             (currentMarker.Overlay as LineOverlay).OnMarkerChanged(currentMarker as GMapMarkerVector);
-                            updateMarker = currentMarker;
+
+                        } else {
+                            OnMarkerChanged(currentMarker);
                         }
+                        updateMarker = currentMarker;
                     }
                 } 
             }
         }
         public virtual void Reset() { }
 
+        public virtual void OnMarkerChanged(GMapMarker marker) {
 
+        }
         public virtual ContextMenu CreatePopuMenu() {
             ContextMenu menu = new ContextMenu();
             MenuItem item = new MenuItem();

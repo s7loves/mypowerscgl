@@ -16,7 +16,12 @@ namespace Ebada.Scgl.Gis.Device {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            Invoke(new MethodInvoker(InitData));
+            
+        }
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+            Application.DoEvents();
+            InitData();
         }
         protected virtual void simpleButton1_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.OK;

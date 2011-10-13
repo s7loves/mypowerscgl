@@ -23,15 +23,16 @@ namespace TLMapPlatform {
         }
         DataTable mTable;
         protected void InitTree() {
-            //TreeListColumn tlc = treeList1.Columns.Add();
             mTable = new DataTable();
             mTable.Columns.Add("显示");
             mTable.Columns.Add("编辑");
             mTable.Columns.Add("层");
             mTable.Columns.Add("layer");
             mTable.Columns.Add("ID");
-
+            mTable.Columns.Add("ParentID");
             treeList1.DataSource = mTable;
+            treeList1.KeyFieldName = "ID";
+            treeList1.ParentFieldName = "ParentID";
         }
         private TLVector.TLVectorControl mVectorControl;
         /// <summary>
@@ -77,8 +78,8 @@ namespace TLMapPlatform {
      
         private void controlNavigator1_ButtonClick(object sender, DevExpress.XtraEditors.NavigatorButtonClickEventArgs e) {
             if (e.Button.Tag.ToString() == "Add") {
-                Layer layer = Layer.CreateNew("新图层", VectorControl.SVGDocument);
-                mTable.Rows.Add("1", "1", "新图层", "1", layer.ID); e.Handled = true;
+                //Layer layer = Layer.CreateNew("新图层", VectorControl.SVGDocument);
+                mTable.Rows.Add("1", "1", "新图层", "1", "","0"); e.Handled = true;
             } 
            if (e.Button.Tag.ToString() =="Del" ) {
                if (MessageBox.Show("确定要删除吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
@@ -111,15 +112,15 @@ namespace TLMapPlatform {
                 if (hit.Column.VisibleIndex < 2) {
                     hit.Node.SetValue(hit.Column.FieldName, (value == "1") ? 0 : 1);
                     if (hit.Column.FieldName == "显示") {
-                        Layer layer = mVectorControl.SVGDocument.GetLayerByID(hit.Node["ID"].ToString());
-                        layer.Visible = hit.Node["显示"].ToString() == "1";
+                        //Layer layer = mVectorControl.SVGDocument.GetLayerByID(hit.Node["ID"].ToString());
+                        //layer.Visible = hit.Node["显示"].ToString() == "1";
                     } else if (hit.Column.FieldName == "编辑") {
-                        Layer layer = mVectorControl.SVGDocument.GetLayerByID(hit.Node["ID"].ToString());
-                        XmlNodeList list = this.mVectorControl.SVGDocument.SelectNodes("//*[@layer='" + layer.ID + "']");
-                        foreach (XmlNode elNode in list)
-                        {
-                            (elNode as IGraph).IsLock =hit.Node["编辑"].ToString() == "0"?true:false; 
-                        }
+                        //Layer layer = mVectorControl.SVGDocument.GetLayerByID(hit.Node["ID"].ToString());
+                        //XmlNodeList list = this.mVectorControl.SVGDocument.SelectNodes("//*[@layer='" + layer.ID + "']");
+                        //foreach (XmlNode elNode in list)
+                        //{
+                            //(elNode as IGraph).IsLock =hit.Node["编辑"].ToString() == "0"?true:false; 
+                        //}
                     }
                 }
             } 
@@ -131,7 +132,7 @@ namespace TLMapPlatform {
 
         private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             if (e.Node == null) return;
-            mVectorControl.SVGDocument.CurrentLayer = mVectorControl.SVGDocument.GetLayerByID(e.Node["ID"].ToString());
+            //mVectorControl.SVGDocument.CurrentLayer = mVectorControl.SVGDocument.GetLayerByID(e.Node["ID"].ToString());
         }
 
         private void treeList1_CellValueChanged(object sender, CellValueChangedEventArgs e) {

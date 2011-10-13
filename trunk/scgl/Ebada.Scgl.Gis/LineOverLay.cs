@@ -11,7 +11,6 @@ namespace Ebada.Scgl.Gis {
     public class LineOverlay :GMapOverlay{
 
         private GMapControl control;
-        private LineRoute mRoute;
         public LineOverlay(GMapControl map, string lineCode)
             : base(map, lineCode) {
             
@@ -27,16 +26,6 @@ namespace Ebada.Scgl.Gis {
             LineOverlay lay = new LineOverlay(map, lineCode);
             List<PointLatLng> points=new List<PointLatLng>();
             MapBuilder.Build10kVLines(ref lay, lineCode);
-            //List<GMapMarkerVector> list = MapBuilder.BuildLineGT(lineCode, lineName);
-            //foreach (GMapMarkerVector item in list) {
-            //    lay.Markers.Add(item);
-            //    points.Add(item.Position);
-            //}
-            //LineRoute route = new LineRoute(points, lineCode);
-            //lay.mRoute = route;
-            //if (list.Count > 1)
-            //    list[0].ToolTipText += "\n" + route.Distance;
-            //lay.Routes.Add(route);
             return lay;
         }
         public static LineOverlay CreateLine(GMapControl map, PS_xl xl){
@@ -62,6 +51,16 @@ namespace Ebada.Scgl.Gis {
             marker.Route.UpdateRoutePostion(marker);
             control.UpdateRouteLocalPosition(marker.Route);
 
+        }
+        protected override void DrawRoutes(System.Drawing.Graphics g) {
+            base.DrawRoutes(g);
+        }
+        public override void Render(System.Drawing.Graphics g) {
+            bool flag=control.MarkersEnabled;
+            if (control.Zoom < 15)
+                control.MarkersEnabled = false;
+            base.Render(g);
+            control.MarkersEnabled = flag;
         }
         public void Update(GMapMarker marker) {
             PS_gt gt = marker.Tag as PS_gt;

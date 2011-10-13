@@ -146,6 +146,12 @@
     <Compile Include="Device\frmTQSelector.Designer.cs">
       <DependentUpon>frmTQSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Device\frmBDSSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device\frmBDSSelector.Designer.cs">
+      <DependentUpon>frmBDSSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMapView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,7 @@
     <Compile Include="Markers\GMapMarkerVector.cs" />
     <Compile Include="Markers\GMapMarkerImage.cs" />
     <Compile Include="Markers\GMapMarkerRect.cs" />
+    <Compile Include="Markers\GMapMarkerBDZ.cs" />
     <Compile Include="Operation\OperationBase.cs" />
     <Compile Include="Operation\OperationDistance.cs" />
     <Compile Include="Operation\OperationInstance.cs" />
@@ -200,6 +207,13 @@
     <Compile Include="frmMap.Designer.cs">
       <DependentUpon>frmMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMapM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMapM.Designer.cs">
+      <DependentUpon>frmMapM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PointOverLay.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Device\frmBaseSelector.resx">
@@ -210,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Device\frmTQSelector.resx">
       <DependentUpon>frmTQSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Device\frmBDSSelector.resx">
+      <DependentUpon>frmBDSSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMapView.resx">
       <DependentUpon>frmMapView.cs</DependentUpon>
@@ -234,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCMapLayer.resx">
       <DependentUpon>UCMapLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMapM.resx">
+      <DependentUpon>frmMapM.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
