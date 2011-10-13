@@ -151,6 +151,9 @@ namespace Ebada.SCGL.WFlow.Tool
         private RadioButton rbnProjectTable;
         private CheckBox cbxRiZhi;
         private ListView lvOper;
+        private Button btnModleClear;
+        private Button btnFieldClear;
+        private Button btnTableClear;
         private string varDbTableName = "";
  
 	
@@ -224,6 +227,9 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tbxFormName = new System.Windows.Forms.TextBox();
             this.contextMenu2 = new System.Windows.Forms.ContextMenu();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnModleClear = new System.Windows.Forms.Button();
+            this.btnFieldClear = new System.Windows.Forms.Button();
+            this.btnTableClear = new System.Windows.Forms.Button();
             this.lvCommand = new System.Windows.Forms.ListView();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -352,18 +358,16 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSave.Location = new System.Drawing.Point(768, 12);
+            this.btnSave.Location = new System.Drawing.Point(385, 12);
             this.btnSave.Text = "确定(&O)";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(861, 12);
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnClose.Location = new System.Drawing.Point(470, 12);
             this.btnClose.Text = "取消(&C)";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // groupBox2
             // 
@@ -565,6 +569,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnSelectCtrls.Name = "btnSelectCtrls";
             this.btnSelectCtrls.Size = new System.Drawing.Size(41, 23);
             this.btnSelectCtrls.TabIndex = 11;
+            this.btnSelectCtrls.Text = "...";
             this.btnSelectCtrls.Click += new System.EventHandler(this.btnSelectCtrls_Click);
             // 
             // label4
@@ -665,6 +670,9 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnModleClear);
+            this.tabPage1.Controls.Add(this.btnFieldClear);
+            this.tabPage1.Controls.Add(this.btnTableClear);
             this.tabPage1.Controls.Add(this.lvCommand);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.tbxTaskDes);
@@ -691,6 +699,36 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "常规";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnModleClear
+            // 
+            this.btnModleClear.Image = global::Ebada.SCGL.WFlow.Tool.Properties.Resources.删除;
+            this.btnModleClear.Location = new System.Drawing.Point(513, 86);
+            this.btnModleClear.Name = "btnModleClear";
+            this.btnModleClear.Size = new System.Drawing.Size(20, 23);
+            this.btnModleClear.TabIndex = 131;
+            this.btnModleClear.Tag = "清除";
+            this.btnModleClear.Click += new System.EventHandler(this.btnModleClear_Click);
+            // 
+            // btnFieldClear
+            // 
+            this.btnFieldClear.Image = ((System.Drawing.Image)(resources.GetObject("btnFieldClear.Image")));
+            this.btnFieldClear.Location = new System.Drawing.Point(513, 139);
+            this.btnFieldClear.Name = "btnFieldClear";
+            this.btnFieldClear.Size = new System.Drawing.Size(20, 23);
+            this.btnFieldClear.TabIndex = 130;
+            this.btnFieldClear.Tag = "清除";
+            this.btnFieldClear.Click += new System.EventHandler(this.btnFieldClear_Click);
+            // 
+            // btnTableClear
+            // 
+            this.btnTableClear.Image = ((System.Drawing.Image)(resources.GetObject("btnTableClear.Image")));
+            this.btnTableClear.Location = new System.Drawing.Point(513, 115);
+            this.btnTableClear.Name = "btnTableClear";
+            this.btnTableClear.Size = new System.Drawing.Size(20, 23);
+            this.btnTableClear.TabIndex = 129;
+            this.btnTableClear.Tag = "清除";
+            this.btnTableClear.Click += new System.EventHandler(this.btnTableClear_Click);
             // 
             // lvCommand
             // 
@@ -744,6 +782,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnSelectModle.Name = "btnSelectModle";
             this.btnSelectModle.Size = new System.Drawing.Size(41, 23);
             this.btnSelectModle.TabIndex = 11;
+            this.btnSelectModle.Text = "...";
             this.btnSelectModle.Click += new System.EventHandler(this.btnSelectModle_Click);
             // 
             // btnSelctField
@@ -752,6 +791,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.btnSelctField.Name = "btnSelctField";
             this.btnSelctField.Size = new System.Drawing.Size(41, 23);
             this.btnSelctField.TabIndex = 11;
+            this.btnSelctField.Text = "...";
             this.btnSelctField.Click += new System.EventHandler(this.btnSelctField_Click);
             // 
             // tbxTaskName
@@ -2104,7 +2144,7 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-       
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -2504,6 +2544,35 @@ namespace Ebada.SCGL.WFlow.Tool
             DataTable dt = ConvertHelper.ToDataTable(li);
             WinFormFun.LoadComboBox(cbxAttendManDbTableColumns, dt, "name", "name");
             cbxAttendManDbTableColumns.SelectedIndex = 0;
+        }
+
+        private void btnModleClear_Click(object sender, EventArgs e)
+        {
+            //保存关联模块
+            WorkFlowTask.DeleteAllModle(NowTask.TaskId);
+            WorkFlowTask.DeleteAllModleField(NowTask.WorkFlowId, NowTask.TaskId);
+            UserModleId = "";
+            tbxModleName.Text = "";
+        }
+
+        private void btnTableClear_Click(object sender, EventArgs e)
+        {
+            //保存关联表单
+            WorkFlowTask.DeleteAllControls(NowTask.TaskId);
+            WorkFlowTask.DeleteAllTableField(NowTask.WorkFlowId, NowTask.TaskId);
+            UserControlId = "";
+            tbxFormName.Text = "";
+            tbxFiledName.Tag = null;
+            tbxFiledName.Text = "";
+            label2.Text = "处理";
+        }
+
+        private void btnFieldClear_Click(object sender, EventArgs e)
+        {
+
+            WorkFlowTask.DeleteAllTableField(NowTask.WorkFlowId, NowTask.TaskId);
+            tbxFiledName.Tag = null;
+            tbxFiledName.Text = "";
         }
 
 
