@@ -31,13 +31,12 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit12 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit11 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit9 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
@@ -75,13 +74,14 @@
             this.textEdit8 = new DevExpress.XtraEditors.TextEdit();
             this.comboBoxEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).BeginInit();
@@ -146,6 +146,19 @@
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
+            // lookUpEdit2
+            // 
+            this.lookUpEdit2.Location = new System.Drawing.Point(369, 26);
+            this.lookUpEdit2.Name = "lookUpEdit2";
+            this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit2.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CtrlType", "代码"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name2", "名称")});
+            this.lookUpEdit2.Size = new System.Drawing.Size(100, 21);
+            this.lookUpEdit2.TabIndex = 33;
+            this.lookUpEdit2.Visible = false;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.labelControl21);
@@ -195,19 +208,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单元格信息";
             // 
-            // lookUpEdit2
-            // 
-            this.lookUpEdit2.Location = new System.Drawing.Point(369, 26);
-            this.lookUpEdit2.Name = "lookUpEdit2";
-            this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit2.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CtrlType", "代码"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name2", "名称")});
-            this.lookUpEdit2.Size = new System.Drawing.Size(100, 21);
-            this.lookUpEdit2.TabIndex = 33;
-            this.lookUpEdit2.Visible = false;
-            // 
             // labelControl21
             // 
             this.labelControl21.Location = new System.Drawing.Point(249, 170);
@@ -242,16 +242,6 @@
             this.textEdit11.Name = "textEdit11";
             this.textEdit11.Size = new System.Drawing.Size(100, 21);
             this.textEdit11.TabIndex = 29;
-            // 
-            // labelControl19
-            // 
-            this.labelControl19.Location = new System.Drawing.Point(254, 23);
-            this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(24, 14);
-            this.labelControl19.TabIndex = 28;
-            this.labelControl19.Text = "状态";
-            this.labelControl19.UseWaitCursor = true;
-            this.labelControl19.Visible = false;
             // 
             // textEdit9
             // 
@@ -406,6 +396,7 @@
             // 
             this.textEdit1.Location = new System.Drawing.Point(113, 30);
             this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textEdit1.Properties.Mask.EditMask = "([a-zA-Z]{1,2}\\d{1,3}[|])+";
             this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.textEdit1.Size = new System.Drawing.Size(100, 21);
@@ -613,6 +604,16 @@
             this.dateEdit1.TabIndex = 3;
             this.dateEdit1.Visible = false;
             // 
+            // labelControl19
+            // 
+            this.labelControl19.Location = new System.Drawing.Point(254, 23);
+            this.labelControl19.Name = "labelControl19";
+            this.labelControl19.Size = new System.Drawing.Size(24, 14);
+            this.labelControl19.TabIndex = 28;
+            this.labelControl19.Text = "状态";
+            this.labelControl19.UseWaitCursor = true;
+            this.labelControl19.Visible = false;
+            // 
             // labelControl9
             // 
             this.labelControl9.Location = new System.Drawing.Point(159, 360);
@@ -654,9 +655,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupControlOrg.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).EndInit();
