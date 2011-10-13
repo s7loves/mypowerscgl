@@ -47,6 +47,7 @@ namespace Ebada.Scgl.Lcgl
         private Hashtable valuehs = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private bool isWorkfowCall = false;
+        private string varDbTableName = "LP_Record";
         public bool IsWorkfowCall
         {
             set
@@ -77,6 +78,14 @@ namespace Ebada.Scgl.Lcgl
         {
             get { return currRecord; }
             set { currRecord = value; }
+        }
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value;
+            }
         }
 
         #endregion
