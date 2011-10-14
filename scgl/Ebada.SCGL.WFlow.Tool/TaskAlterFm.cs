@@ -540,7 +540,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnDeleteOpr
             // 
-            this.btnDeleteOpr.Location = new System.Drawing.Point(266, 345);
+            this.btnDeleteOpr.Location = new System.Drawing.Point(266, 374);
             this.btnDeleteOpr.Name = "btnDeleteOpr";
             this.btnDeleteOpr.Size = new System.Drawing.Size(80, 23);
             this.btnDeleteOpr.TabIndex = 120;
@@ -550,7 +550,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnModifyOpr
             // 
-            this.btnModifyOpr.Location = new System.Drawing.Point(153, 345);
+            this.btnModifyOpr.Location = new System.Drawing.Point(153, 374);
             this.btnModifyOpr.Name = "btnModifyOpr";
             this.btnModifyOpr.Size = new System.Drawing.Size(80, 23);
             this.btnModifyOpr.TabIndex = 119;
@@ -560,7 +560,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnAddOpr
             // 
-            this.btnAddOpr.Location = new System.Drawing.Point(53, 345);
+            this.btnAddOpr.Location = new System.Drawing.Point(53, 374);
             this.btnAddOpr.Name = "btnAddOpr";
             this.btnAddOpr.Size = new System.Drawing.Size(80, 23);
             this.btnAddOpr.TabIndex = 118;
@@ -573,7 +573,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.lvOper.FullRowSelect = true;
             this.lvOper.Location = new System.Drawing.Point(53, 160);
             this.lvOper.Name = "lvOper";
-            this.lvOper.Size = new System.Drawing.Size(449, 169);
+            this.lvOper.Size = new System.Drawing.Size(449, 208);
             this.lvOper.SmallImageList = this.imgListSmall;
             this.lvOper.TabIndex = 117;
             this.lvOper.UseCompatibleStateImageBehavior = false;
@@ -631,7 +631,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // cbxJumpSelf
             // 
             this.cbxJumpSelf.AutoSize = true;
-            this.cbxJumpSelf.Location = new System.Drawing.Point(53, 379);
+            this.cbxJumpSelf.Location = new System.Drawing.Point(53, 408);
             this.cbxJumpSelf.Name = "cbxJumpSelf";
             this.cbxJumpSelf.Size = new System.Drawing.Size(180, 16);
             this.cbxJumpSelf.TabIndex = 111;
@@ -642,7 +642,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(53, 401);
+            this.checkBox1.Location = new System.Drawing.Point(53, 430);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(168, 16);
             this.checkBox1.TabIndex = 110;
@@ -692,7 +692,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.lvVar.Location = new System.Drawing.Point(47, 26);
             this.lvVar.MultiSelect = false;
             this.lvVar.Name = "lvVar";
-            this.lvVar.Size = new System.Drawing.Size(462, 343);
+            this.lvVar.Size = new System.Drawing.Size(462, 388);
             this.lvVar.TabIndex = 7;
             this.lvVar.UseCompatibleStateImageBehavior = false;
             this.lvVar.View = System.Windows.Forms.View.Details;
@@ -701,7 +701,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnDeleteVar
             // 
-            this.btnDeleteVar.Location = new System.Drawing.Point(264, 392);
+            this.btnDeleteVar.Location = new System.Drawing.Point(267, 421);
             this.btnDeleteVar.Name = "btnDeleteVar";
             this.btnDeleteVar.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteVar.TabIndex = 6;
@@ -711,7 +711,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnModifyVar
             // 
-            this.btnModifyVar.Location = new System.Drawing.Point(147, 391);
+            this.btnModifyVar.Location = new System.Drawing.Point(150, 420);
             this.btnModifyVar.Name = "btnModifyVar";
             this.btnModifyVar.Size = new System.Drawing.Size(75, 23);
             this.btnModifyVar.TabIndex = 5;
@@ -721,7 +721,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // btnAddVar
             // 
-            this.btnAddVar.Location = new System.Drawing.Point(47, 392);
+            this.btnAddVar.Location = new System.Drawing.Point(50, 421);
             this.btnAddVar.Name = "btnAddVar";
             this.btnAddVar.Size = new System.Drawing.Size(75, 23);
             this.btnAddVar.TabIndex = 4;
