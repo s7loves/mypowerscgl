@@ -155,13 +155,13 @@ namespace Ebada.SCGL.WFlow.Tool
         private Button btnFieldClear;
         private Button btnTableClear;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.TextEdit tetWorkSQL;
         private DevExpress.XtraEditors.LabelControl labelControl31;
-        private DevExpress.XtraEditors.TextEdit tetProjectSQL;
         private DevExpress.XtraEditors.LabelControl labelControl33;
-        private DevExpress.XtraEditors.TextEdit tetCharManSQL;
         private DevExpress.XtraEditors.LabelControl labelControl32;
-        private DevExpress.XtraEditors.TextEdit tetAttendManSQL;
+        private DevExpress.XtraEditors.MemoEdit tetProjectSQL;
+        private DevExpress.XtraEditors.MemoEdit tetWorkSQL;
+        private DevExpress.XtraEditors.MemoEdit tetCharManSQL;
+        private DevExpress.XtraEditors.MemoEdit tetAttendManSQL;
         private string varDbTableName = "";
  
 	
@@ -250,6 +250,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.cbxRiZhi = new System.Windows.Forms.CheckBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.labelControl31 = new DevExpress.XtraEditors.LabelControl();
             this.cbxProjectDbTableColumns = new System.Windows.Forms.ComboBox();
             this.cbxProjectDbTable = new System.Windows.Forms.ComboBox();
             this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
@@ -269,6 +270,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.rbnProjectExcel = new System.Windows.Forms.RadioButton();
             this.rbnProjectTable = new System.Windows.Forms.RadioButton();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cbxWorkDbTableColumns = new System.Windows.Forms.ComboBox();
             this.cbxWorkDbTable = new System.Windows.Forms.ComboBox();
             this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
@@ -288,6 +290,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.rbnWorkExcel = new System.Windows.Forms.RadioButton();
             this.rbnWorkTable = new System.Windows.Forms.RadioButton();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
             this.cbxCharManDbTableColumns = new System.Windows.Forms.ComboBox();
             this.cbxCharManDbTable = new System.Windows.Forms.ComboBox();
             this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
@@ -308,6 +311,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.rbnCharManTable = new System.Windows.Forms.RadioButton();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.cbxAttendManDbTableColumns = new System.Windows.Forms.ComboBox();
+            this.labelControl32 = new DevExpress.XtraEditors.LabelControl();
             this.tetAttendManFixValue = new DevExpress.XtraEditors.TextEdit();
             this.cbxAttendManDbTable = new System.Windows.Forms.ComboBox();
             this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
@@ -327,14 +331,10 @@ namespace Ebada.SCGL.WFlow.Tool
             this.rbnAttendManTable = new System.Windows.Forms.RadioButton();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.contextMenu3 = new System.Windows.Forms.ContextMenu();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.tetWorkSQL = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl31 = new DevExpress.XtraEditors.LabelControl();
-            this.tetProjectSQL = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl32 = new DevExpress.XtraEditors.LabelControl();
-            this.tetCharManSQL = new DevExpress.XtraEditors.TextEdit();
-            this.tetAttendManSQL = new DevExpress.XtraEditors.TextEdit();
+            this.tetCharManSQL = new DevExpress.XtraEditors.MemoEdit();
+            this.tetProjectSQL = new DevExpress.XtraEditors.MemoEdit();
+            this.tetAttendManSQL = new DevExpress.XtraEditors.MemoEdit();
+            this.tetWorkSQL = new DevExpress.XtraEditors.MemoEdit();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -360,10 +360,10 @@ namespace Ebada.SCGL.WFlow.Tool
             ((System.ComponentModel.ISupportInitialize)(this.tetAttendManFixValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetAttendManExcelName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetAttendManPos.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetProjectSQL.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetCharManSQL.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetProjectSQL.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetAttendManSQL.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // plclassFill
@@ -862,8 +862,8 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.labelControl31);
             this.groupBox10.Controls.Add(this.tetProjectSQL);
+            this.groupBox10.Controls.Add(this.labelControl31);
             this.groupBox10.Controls.Add(this.cbxProjectDbTableColumns);
             this.groupBox10.Controls.Add(this.cbxProjectDbTable);
             this.groupBox10.Controls.Add(this.labelControl25);
@@ -887,6 +887,14 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox10.Size = new System.Drawing.Size(510, 103);
             this.groupBox10.TabIndex = 33;
             this.groupBox10.TabStop = false;
+            // 
+            // labelControl31
+            // 
+            this.labelControl31.Location = new System.Drawing.Point(361, 81);
+            this.labelControl31.Name = "labelControl31";
+            this.labelControl31.Size = new System.Drawing.Size(34, 14);
+            this.labelControl31.TabIndex = 48;
+            this.labelControl31.Text = "SQL£º";
             // 
             // cbxProjectDbTableColumns
             // 
@@ -1052,8 +1060,8 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.labelControl4);
             this.groupBox11.Controls.Add(this.tetWorkSQL);
+            this.groupBox11.Controls.Add(this.labelControl4);
             this.groupBox11.Controls.Add(this.cbxWorkDbTableColumns);
             this.groupBox11.Controls.Add(this.cbxWorkDbTable);
             this.groupBox11.Controls.Add(this.labelControl23);
@@ -1078,6 +1086,14 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox11.TabIndex = 31;
             this.groupBox11.TabStop = false;
             // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(355, 93);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(34, 14);
+            this.labelControl4.TabIndex = 43;
+            this.labelControl4.Text = "SQL£º";
+            // 
             // cbxWorkDbTableColumns
             // 
             this.cbxWorkDbTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1092,7 +1108,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.cbxWorkDbTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDbTable.FormattingEnabled = true;
-            this.cbxWorkDbTable.Location = new System.Drawing.Point(406, 39);
+            this.cbxWorkDbTable.Location = new System.Drawing.Point(405, 40);
             this.cbxWorkDbTable.Name = "cbxWorkDbTable";
             this.cbxWorkDbTable.Size = new System.Drawing.Size(99, 20);
             this.cbxWorkDbTable.TabIndex = 41;
@@ -1242,12 +1258,12 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.tetCharManSQL);
             this.groupBox9.Controls.Add(this.labelControl33);
             this.groupBox9.Controls.Add(this.cbxCharManDbTableColumns);
             this.groupBox9.Controls.Add(this.cbxCharManDbTable);
             this.groupBox9.Controls.Add(this.labelControl27);
             this.groupBox9.Controls.Add(this.labelControl28);
-            this.groupBox9.Controls.Add(this.tetCharManSQL);
             this.groupBox9.Controls.Add(this.rbnCharManDatabase);
             this.groupBox9.Controls.Add(this.tetCharManFixValue);
             this.groupBox9.Controls.Add(this.tetCharManExcelName);
@@ -1267,6 +1283,14 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox9.Size = new System.Drawing.Size(509, 105);
             this.groupBox9.TabIndex = 30;
             this.groupBox9.TabStop = false;
+            // 
+            // labelControl33
+            // 
+            this.labelControl33.Location = new System.Drawing.Point(357, 80);
+            this.labelControl33.Name = "labelControl33";
+            this.labelControl33.Size = new System.Drawing.Size(34, 14);
+            this.labelControl33.TabIndex = 54;
+            this.labelControl33.Text = "SQL£º";
             // 
             // cbxCharManDbTableColumns
             // 
@@ -1432,10 +1456,10 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.tetAttendManSQL);
             this.groupBox8.Controls.Add(this.cbxAttendManDbTableColumns);
             this.groupBox8.Controls.Add(this.labelControl32);
             this.groupBox8.Controls.Add(this.tetAttendManFixValue);
-            this.groupBox8.Controls.Add(this.tetAttendManSQL);
             this.groupBox8.Controls.Add(this.cbxAttendManDbTable);
             this.groupBox8.Controls.Add(this.labelControl30);
             this.groupBox8.Controls.Add(this.tetAttendManExcelName);
@@ -1467,6 +1491,14 @@ namespace Ebada.SCGL.WFlow.Tool
             this.cbxAttendManDbTableColumns.Size = new System.Drawing.Size(99, 20);
             this.cbxAttendManDbTableColumns.TabIndex = 50;
             this.cbxAttendManDbTableColumns.SelectedIndexChanged += new System.EventHandler(this.cbxAttendManDbTableColumns_SelectedIndexChanged);
+            // 
+            // labelControl32
+            // 
+            this.labelControl32.Location = new System.Drawing.Point(371, 91);
+            this.labelControl32.Name = "labelControl32";
+            this.labelControl32.Size = new System.Drawing.Size(34, 14);
+            this.labelControl32.TabIndex = 55;
+            this.labelControl32.Text = "SQL£º";
             // 
             // tetAttendManFixValue
             // 
@@ -1630,65 +1662,33 @@ namespace Ebada.SCGL.WFlow.Tool
             this.contextMenu3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem8});
             // 
-            // labelControl4
+            // tetCharManSQL
             // 
-            this.labelControl4.Location = new System.Drawing.Point(355, 93);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(34, 14);
-            this.labelControl4.TabIndex = 43;
-            this.labelControl4.Text = "SQL£º";
-            // 
-            // tetWorkSQL
-            // 
-            this.tetWorkSQL.Location = new System.Drawing.Point(403, 90);
-            this.tetWorkSQL.Name = "tetWorkSQL";
-            this.tetWorkSQL.Size = new System.Drawing.Size(100, 21);
-            this.tetWorkSQL.TabIndex = 42;
-            // 
-            // labelControl31
-            // 
-            this.labelControl31.Location = new System.Drawing.Point(361, 81);
-            this.labelControl31.Name = "labelControl31";
-            this.labelControl31.Size = new System.Drawing.Size(34, 14);
-            this.labelControl31.TabIndex = 48;
-            this.labelControl31.Text = "SQL£º";
+            this.tetCharManSQL.Location = new System.Drawing.Point(408, 75);
+            this.tetCharManSQL.Name = "tetCharManSQL";
+            this.tetCharManSQL.Size = new System.Drawing.Size(102, 27);
+            this.tetCharManSQL.TabIndex = 55;
             // 
             // tetProjectSQL
             // 
-            this.tetProjectSQL.Location = new System.Drawing.Point(409, 76);
+            this.tetProjectSQL.Location = new System.Drawing.Point(409, 74);
             this.tetProjectSQL.Name = "tetProjectSQL";
-            this.tetProjectSQL.Size = new System.Drawing.Size(100, 21);
-            this.tetProjectSQL.TabIndex = 47;
-            // 
-            // labelControl33
-            // 
-            this.labelControl33.Location = new System.Drawing.Point(357, 80);
-            this.labelControl33.Name = "labelControl33";
-            this.labelControl33.Size = new System.Drawing.Size(34, 14);
-            this.labelControl33.TabIndex = 54;
-            this.labelControl33.Text = "SQL£º";
-            // 
-            // labelControl32
-            // 
-            this.labelControl32.Location = new System.Drawing.Point(371, 91);
-            this.labelControl32.Name = "labelControl32";
-            this.labelControl32.Size = new System.Drawing.Size(34, 14);
-            this.labelControl32.TabIndex = 55;
-            this.labelControl32.Text = "SQL£º";
-            // 
-            // tetCharManSQL
-            // 
-            this.tetCharManSQL.Location = new System.Drawing.Point(407, 77);
-            this.tetCharManSQL.Name = "tetCharManSQL";
-            this.tetCharManSQL.Size = new System.Drawing.Size(100, 21);
-            this.tetCharManSQL.TabIndex = 52;
+            this.tetProjectSQL.Size = new System.Drawing.Size(100, 27);
+            this.tetProjectSQL.TabIndex = 54;
             // 
             // tetAttendManSQL
             // 
-            this.tetAttendManSQL.Location = new System.Drawing.Point(420, 86);
+            this.tetAttendManSQL.Location = new System.Drawing.Point(419, 83);
             this.tetAttendManSQL.Name = "tetAttendManSQL";
-            this.tetAttendManSQL.Size = new System.Drawing.Size(100, 21);
-            this.tetAttendManSQL.TabIndex = 53;
+            this.tetAttendManSQL.Size = new System.Drawing.Size(100, 25);
+            this.tetAttendManSQL.TabIndex = 56;
+            // 
+            // tetWorkSQL
+            // 
+            this.tetWorkSQL.Location = new System.Drawing.Point(405, 86);
+            this.tetWorkSQL.Name = "tetWorkSQL";
+            this.tetWorkSQL.Size = new System.Drawing.Size(100, 25);
+            this.tetWorkSQL.TabIndex = 53;
             // 
             // fmTaskStart
             // 
@@ -1730,10 +1730,10 @@ namespace Ebada.SCGL.WFlow.Tool
             ((System.ComponentModel.ISupportInitialize)(this.tetAttendManFixValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetAttendManExcelName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetAttendManPos.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetProjectSQL.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetCharManSQL.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetProjectSQL.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetAttendManSQL.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).EndInit();
             this.ResumeLayout(false);
 
 		}

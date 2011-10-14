@@ -496,7 +496,7 @@ namespace Ebada.Scgl.Lcgl {
                 frm.RecordWorkFlowData = dt;
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    InitData(ParentObj.FlowCaption);
+                    InitData(strKind);
                 }
             }
             else
@@ -625,7 +625,7 @@ namespace Ebada.Scgl.Lcgl {
 
                     currRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(dt.Rows[0]["WorkTaskInsId"].ToString());
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
-                    InitData(parentObj.FlowCaption);
+                    InitData(strKind);
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
@@ -681,7 +681,7 @@ namespace Ebada.Scgl.Lcgl {
                 {
 
 
-                    InitData(parentObj.FlowCaption);
+                    InitData(strKind);
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
@@ -731,7 +731,7 @@ namespace Ebada.Scgl.Lcgl {
                 {
 
 
-                    InitData(parentObj.FlowCaption);
+                    InitData(strKind);
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
@@ -826,7 +826,7 @@ namespace Ebada.Scgl.Lcgl {
                 {
 
 
-                    InitData(parentObj.FlowCaption);
+                    InitData(strKind);
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
