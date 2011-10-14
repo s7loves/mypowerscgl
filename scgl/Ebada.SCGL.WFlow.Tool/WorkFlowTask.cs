@@ -658,7 +658,7 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
         /// <summary>
-        /// 获得任日志务变量
+        /// 获得任务日志变量
         /// </summary>
         /// <param name="workflowId">任务模板Id</param>
         /// <returns></returns>

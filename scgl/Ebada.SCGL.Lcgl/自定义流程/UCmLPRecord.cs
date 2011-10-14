@@ -758,6 +758,29 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
             }
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
+            if (dt.Rows.Count > 0)
+            {
+                if (!RecordWorkTask.HaveWorkFlowAllExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
+                {
+                    if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID))
+                    {
+                        MsgBox.ShowWarningMessageBox("没有运行权限，导出失败!");
+                        return;
+                    }
+                    if (!RecordWorkTask.HaveWorkFlowExploreRole(currRecord.ID, MainHelper.User.UserID))
+                    {
+                        MsgBox.ShowWarningMessageBox("没有导出权限，导出失败!");
+                        return;
+                    }
+                   
+                }
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,导出失败!");
+                return;
+            }
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = "";
             saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
