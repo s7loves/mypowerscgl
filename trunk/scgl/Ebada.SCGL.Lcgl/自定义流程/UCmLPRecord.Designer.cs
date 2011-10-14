@@ -30,7 +30,7 @@
             this.btAddfrm = new DevExpress.XtraBars.BarButtonItem();
             this.btEditfrm = new DevExpress.XtraBars.BarButtonItem();
             this.btDeletefrm = new DevExpress.XtraBars.BarButtonItem();
-            this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
+            this.btRefresh1 = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.barBack = new DevExpress.XtraBars.BarButtonItem();
             this.barChange = new DevExpress.XtraBars.BarButtonItem();
@@ -72,7 +72,7 @@
             this.btEditfrm,
             this.btDeletefrm,
             this.btFind,
-            this.btRefresh,
+            this.btRefresh1,
             this.btClose,
             this.bsItem1,
             this.btExport,
@@ -96,7 +96,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddfrm),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEditfrm),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletefrm),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh1),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barBack, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barChange, true),
@@ -137,13 +137,14 @@
             this.btDeletefrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btDeletefrm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDeletefrm_ItemClick);
             // 
-            // btRefresh
+            // btRefresh1
             // 
-            this.btRefresh.Caption = "刷新";
-            this.btRefresh.Id = 4;
-            this.btRefresh.ImageIndex = 9;
-            this.btRefresh.Name = "btRefresh";
-            this.btRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btRefresh1.Caption = "刷新";
+            this.btRefresh1.Id = 4;
+            this.btRefresh1.ImageIndex = 9;
+            this.btRefresh1.Name = "btRefresh1";
+            this.btRefresh1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btRefresh1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btRefresh1_ItemClick);
             // 
             // btFind
             // 
@@ -361,7 +362,7 @@
         private DevExpress.XtraBars.BarButtonItem btEditfrm;
         private DevExpress.XtraBars.BarButtonItem btDeletefrm;
         private DevExpress.XtraBars.BarButtonItem btFind;
-        private DevExpress.XtraBars.BarButtonItem btRefresh;
+        private DevExpress.XtraBars.BarButtonItem btRefresh1;
         private DevExpress.XtraBars.BarButtonItem btClose;
         private DevExpress.XtraBars.BarStaticItem bsItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;

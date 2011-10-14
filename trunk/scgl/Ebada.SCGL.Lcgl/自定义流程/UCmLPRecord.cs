@@ -350,7 +350,7 @@ namespace Ebada.Scgl.Lcgl {
             }
             LP_Record lpr = new LP_Record();
             lpr.Kind = strKind;
-            lpr.CreateTime = DateTime.Now.ToString();
+             lpr.CreateTime = DateTime.Now.ToString();
             if (obj is frmLP)
             {
                 frmLP frm = new frmLP();
@@ -835,6 +835,12 @@ namespace Ebada.Scgl.Lcgl {
             {
                 MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,延期失败!");
             }
+        }
+
+        private void btRefresh1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            InitData(ParentObj.FlowCaption);
+
         }
 
     }
