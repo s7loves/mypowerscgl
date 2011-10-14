@@ -10,6 +10,11 @@ using TLVector.Core.Figure;
 using DevExpress.XtraTreeList;
 using System.Xml;
 using TLVector.Core.Interface.Figure;
+using Ebada.Scgl.Gis;
+using GMap.NET.WindowsForms;
+using Ebada.Client;
+using Ebada.Scgl.Model;
+using System.Collections;
 
 namespace TLMapPlatform {
     /// <summary>
@@ -18,37 +23,58 @@ namespace TLMapPlatform {
     public partial class UCMapLayer : UserControl {
 
         public UCMapLayer() {
+
             InitializeComponent();
+            //mRMap = map;
+            //mRMap.Overlays.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Overlays_CollectionChanged);
             InitTree();
         }
+
+        void Overlays_CollectionChanged(object sender, GMap.NET.ObjectModel.NotifyCollectionChangedEventArgs e) {
+            
+        }
         DataTable mTable;
+        const string visible="1";
+        const string hide = "0";
         protected void InitTree() {
             mTable = new DataTable();
             mTable.Columns.Add("显示");
             mTable.Columns.Add("编辑");
             mTable.Columns.Add("层");
-            mTable.Columns.Add("layer");
             mTable.Columns.Add("ID");
             mTable.Columns.Add("ParentID");
+            mTable.Columns.Add("Layer");//打开层属性
             treeList1.DataSource = mTable;
             treeList1.KeyFieldName = "ID";
             treeList1.ParentFieldName = "ParentID";
+
+            mTable.Rows.Add(hide, "0", "10kV线路", "10", "0");
+            mTable.Rows.Add(hide, "0", "台区", "11", "0");
+            mTable.Rows.Add(hide, "0", "变电所", "12", "0");
         }
-        private TLVector.TLVectorControl mVectorControl;
+        private bool showToolbar;
+
+        public bool ShowToolbar {
+            get { return showToolbar; }
+            set { showToolbar = value;
+            controlNavigator1.Visible = showToolbar;
+            }
+        }
+        private RMap mRMap;
         /// <summary>
         /// 图形控制
         /// </summary>
-        public TLVector.TLVectorControl VectorControl {
-            get { return mVectorControl; }
+        public RMap MapControl {
+            get { return mRMap; }
             set {
-                if (value == mVectorControl) return;
-                mVectorControl = value;
+                if (value == mRMap) return;
+                mRMap = value;
                 treeList1.BeginInit();
-                mTable.Rows.Clear();
+                //mTable.Rows.Clear();
                 if (value != null) {
-                    foreach (Layer layer in mVectorControl.SVGDocument.Layers) {
-                        mTable.Rows.Add(layer.Visible?"1":"0", "1", layer.Label, "1", layer.ID);
-                    }
+                    //foreach (GMapOverlay layer in mRMap.Overlays) {
+                    //    mTable.Rows.Add(layer.IsVisibile ? "1" : "0", "1", layer.Text, layer.Id, "0");
+                    //}
                 }
                 treeList1.EndInit();
             }
@@ -56,23 +82,28 @@ namespace TLMapPlatform {
         public void InitLayer()
         {
             treeList1.BeginInit();
-            mTable.Rows.Clear();
-            if (mVectorControl != null)
+            //mTable.Rows.Clear();
+            if (mRMap != null)
             {
-                foreach (Layer layer in mVectorControl.SVGDocument.Layers)
-                {
-                    mTable.Rows.Add(layer.Visible ? "1" : "0", "1", layer.Label, "1", layer.ID);
-                }
+                //foreach (GMapOverlay layer in mRMap.Overlays) {
+                //    mTable.Rows.Add(layer.IsVisibile ? "1" : "0", "1", layer.ToString(), "1", layer.Id);
+                //}
             }
+            IList<PS_xl> list= ClientHelper.PlatformSqlMap.GetList<PS_xl>("where len(linecode)=6 order by linecode");
+            foreach (PS_xl xl in list) {
+                mTable.Rows.Add(hide, "0", xl.LineName, xl.LineCode, "10");
+            }
+            
             treeList1.EndInit();
+            treeList1.ParentFieldName = "ParentID";
         }
         private void controlNavigator1_Click(object sender, EventArgs e) {
 
         }
-        public Layer AddLayer(string strName)
+        public GMapOverlay AddLayer(string strName)
         {
-            Layer layer = Layer.CreateNew(strName, VectorControl.SVGDocument);
-            mTable.Rows.Add("1", "1", strName, "1", layer.ID);
+            GMapOverlay layer = new GMapOverlay(mRMap, "0");
+            mTable.Rows.Add("1", "1", strName, "1", layer.Id);
             return layer;
         }
      
@@ -87,40 +118,41 @@ namespace TLMapPlatform {
             }
             if (e.Button.Tag.ToString() == "Up")
             {
-                DevExpress.XtraTreeList.Nodes.TreeListNode node = treeList1.FocusedNode.Clone() as DevExpress.XtraTreeList.Nodes.TreeListNode;
-                Layer layer = mVectorControl.SVGDocument.GetLayerByID(treeList1.FocusedNode["ID"].ToString());
-                layer.GoUp();
-                InitLayer();
-                treeList1.FocusedNode = treeList1.FindNodeByID(node.Id-1);
+                
             }
             if (e.Button.Tag.ToString() == "Down")
             {
-                DevExpress.XtraTreeList.Nodes.TreeListNode node = treeList1.FocusedNode.Clone() as DevExpress.XtraTreeList.Nodes.TreeListNode;
-                Layer layer = mVectorControl.SVGDocument.GetLayerByID(treeList1.FocusedNode["ID"].ToString());
-                layer.GoDown();
-                InitLayer();
-                treeList1.FocusedNode = treeList1.FindNodeByID(node.Id+1);
+                
             }
             
         }
+        private void showLayer(string lineCode,bool visible) {
 
+            GMapOverlay lay = mRMap.FindOverlay(lineCode);
+            if (lay == null) {
+                //    mRMap.Overlays.Remove(lay);
+                lay = LineOverlay.CreateLine(mRMap, lineCode, "");
+                mRMap.Overlays.Add(lay);
+                mRMap.ZoomAndCenterRoutes(lineCode);
+            }
+            lay.IsVisibile = visible;
+            //if(visible)
+            //
+        }
         private void treeList1_MouseClick(object sender, MouseEventArgs e) {
             //查找单元格，改变状态
             TreeListHitInfo hit = treeList1.CalcHitInfo(e.Location);
             if (hit.Node != null && hit.Column != null) {
                 string value = hit.Node[hit.Column.FieldName].ToString();
-                if (hit.Column.VisibleIndex < 2) {
+                if (hit.Column.VisibleIndex >0 && hit.Column.VisibleIndex<3) {
                     hit.Node.SetValue(hit.Column.FieldName, (value == "1") ? 0 : 1);
                     if (hit.Column.FieldName == "显示") {
-                        //Layer layer = mVectorControl.SVGDocument.GetLayerByID(hit.Node["ID"].ToString());
-                        //layer.Visible = hit.Node["显示"].ToString() == "1";
+                        string code = hit.Node["ID"].ToString();
+                        if (code.Length == 6)
+                            showLayer(code, hit.Node["显示"].ToString() == "1");
+
                     } else if (hit.Column.FieldName == "编辑") {
-                        //Layer layer = mVectorControl.SVGDocument.GetLayerByID(hit.Node["ID"].ToString());
-                        //XmlNodeList list = this.mVectorControl.SVGDocument.SelectNodes("//*[@layer='" + layer.ID + "']");
-                        //foreach (XmlNode elNode in list)
-                        //{
-                            //(elNode as IGraph).IsLock =hit.Node["编辑"].ToString() == "0"?true:false; 
-                        //}
+                        
                     }
                 }
             } 
@@ -132,14 +164,12 @@ namespace TLMapPlatform {
 
         private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             if (e.Node == null) return;
-            //mVectorControl.SVGDocument.CurrentLayer = mVectorControl.SVGDocument.GetLayerByID(e.Node["ID"].ToString());
+            //mRMap.SVGDocument.CurrentLayer = mRMap.SVGDocument.GetLayerByID(e.Node["ID"].ToString());
         }
 
         private void treeList1_CellValueChanged(object sender, CellValueChangedEventArgs e) {
             if (e.Column.FieldName == "层") {//修改图层名称
-                Layer layer = mVectorControl.SVGDocument.GetLayerByID(e.Node["ID"].ToString());
-                if (layer != null)
-                    layer.Label = e.Value.ToString();
+                
             }
         }
 

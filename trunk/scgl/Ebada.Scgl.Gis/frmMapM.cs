@@ -122,6 +122,9 @@ namespace Ebada.Scgl.Gis {
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
             mapview.FullView();
+            ucMapLayer1.MapControl = rMap1;
+            ucMapLayer1.ShowToolbar = false;
+            ucMapLayer1.InitLayer();
         }
         public void FullScrean() {
             FormState formState = new FormState();
@@ -281,7 +284,7 @@ namespace Ebada.Scgl.Gis {
             base.OnLoad(e);
 
         }
-
+        
         void rMap1_OnMapZoomChanged() {
             //trackBar1.Value = (int)rMap1.Zoom;
         }

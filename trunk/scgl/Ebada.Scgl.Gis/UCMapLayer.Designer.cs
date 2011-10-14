@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCMapLayer));
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
-            this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemImageComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.controlNavigator1 = new DevExpress.XtraEditors.ControlNavigator();
@@ -51,9 +51,9 @@
             // 
             this.treeList1.BestFitVisibleOnly = true;
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn3,
             this.treeListColumn1,
             this.treeListColumn2,
-            this.treeListColumn3,
             this.treeListColumn4});
             this.treeList1.ColumnsImageList = this.imageCollection1;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -61,10 +61,7 @@
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.ImmediateEditor = false;
             this.treeList1.OptionsSelection.InvertSelection = true;
-            this.treeList1.OptionsView.ShowColumns = false;
-            this.treeList1.OptionsView.ShowFocusedFrame = false;
             this.treeList1.OptionsView.ShowIndicator = false;
-            this.treeList1.OptionsView.ShowRoot = false;
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageComboBox1,
             this.repositoryItemImageComboBox2,
@@ -77,11 +74,23 @@
             this.treeList1.CellValueChanged += new DevExpress.XtraTreeList.CellValueChangedEventHandler(this.treeList1_CellValueChanged);
             this.treeList1.NodeChanged += new DevExpress.XtraTreeList.NodeChangedEventHandler(this.treeList1_NodeChanged);
             // 
+            // treeListColumn3
+            // 
+            this.treeListColumn3.Caption = "层名";
+            this.treeListColumn3.FieldName = "层";
+            this.treeListColumn3.Name = "treeListColumn3";
+            this.treeListColumn3.OptionsColumn.AllowEdit = false;
+            this.treeListColumn3.OptionsColumn.AllowMove = false;
+            this.treeListColumn3.OptionsColumn.AllowSort = false;
+            this.treeListColumn3.Visible = true;
+            this.treeListColumn3.VisibleIndex = 0;
+            this.treeListColumn3.Width = 125;
+            // 
             // treeListColumn1
             // 
-            this.treeListColumn1.Caption = "显示";
             this.treeListColumn1.ColumnEdit = this.repositoryItemImageComboBox1;
             this.treeListColumn1.FieldName = "显示";
+            this.treeListColumn1.ImageAlignment = System.Drawing.StringAlignment.Center;
             this.treeListColumn1.ImageIndex = 0;
             this.treeListColumn1.MinWidth = 22;
             this.treeListColumn1.Name = "treeListColumn1";
@@ -92,8 +101,8 @@
             this.treeListColumn1.OptionsColumn.AllowSort = false;
             this.treeListColumn1.OptionsColumn.FixedWidth = true;
             this.treeListColumn1.Visible = true;
-            this.treeListColumn1.VisibleIndex = 0;
-            this.treeListColumn1.Width = 22;
+            this.treeListColumn1.VisibleIndex = 1;
+            this.treeListColumn1.Width = 26;
             // 
             // repositoryItemImageComboBox1
             // 
@@ -114,9 +123,10 @@
             // 
             // treeListColumn2
             // 
-            this.treeListColumn2.Caption = "编辑";
             this.treeListColumn2.ColumnEdit = this.repositoryItemImageComboBox2;
             this.treeListColumn2.FieldName = "编辑";
+            this.treeListColumn2.ImageAlignment = System.Drawing.StringAlignment.Center;
+            this.treeListColumn2.ImageIndex = 1;
             this.treeListColumn2.MinWidth = 22;
             this.treeListColumn2.Name = "treeListColumn2";
             this.treeListColumn2.OptionsColumn.AllowEdit = false;
@@ -125,8 +135,8 @@
             this.treeListColumn2.OptionsColumn.AllowSize = false;
             this.treeListColumn2.OptionsColumn.FixedWidth = true;
             this.treeListColumn2.Visible = true;
-            this.treeListColumn2.VisibleIndex = 1;
-            this.treeListColumn2.Width = 22;
+            this.treeListColumn2.VisibleIndex = 2;
+            this.treeListColumn2.Width = 26;
             // 
             // repositoryItemImageComboBox2
             // 
@@ -138,20 +148,12 @@
             this.repositoryItemImageComboBox2.Name = "repositoryItemImageComboBox2";
             this.repositoryItemImageComboBox2.SmallImages = this.imageCollection1;
             // 
-            // treeListColumn3
-            // 
-            this.treeListColumn3.Caption = "层名";
-            this.treeListColumn3.FieldName = "层";
-            this.treeListColumn3.Name = "treeListColumn3";
-            this.treeListColumn3.OptionsColumn.AllowSort = false;
-            this.treeListColumn3.Visible = true;
-            this.treeListColumn3.VisibleIndex = 2;
-            // 
             // treeListColumn4
             // 
-            this.treeListColumn4.Caption = "图层属性...";
             this.treeListColumn4.ColumnEdit = this.repositoryItemImageComboBox3;
             this.treeListColumn4.FieldName = "layer";
+            this.treeListColumn4.ImageAlignment = System.Drawing.StringAlignment.Center;
+            this.treeListColumn4.ImageIndex = 2;
             this.treeListColumn4.MinWidth = 22;
             this.treeListColumn4.Name = "treeListColumn4";
             this.treeListColumn4.OptionsColumn.AllowEdit = false;
@@ -162,7 +164,7 @@
             this.treeListColumn4.OptionsColumn.FixedWidth = true;
             this.treeListColumn4.Visible = true;
             this.treeListColumn4.VisibleIndex = 3;
-            this.treeListColumn4.Width = 22;
+            this.treeListColumn4.Width = 26;
             // 
             // repositoryItemImageComboBox3
             // 

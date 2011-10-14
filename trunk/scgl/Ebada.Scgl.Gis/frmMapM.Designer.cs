@@ -318,8 +318,8 @@
             this.dockPanel1.Options.AllowDockFill = false;
             this.dockPanel1.Options.AllowDockTop = false;
             this.dockPanel1.Options.ShowCloseButton = false;
-            this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(200, 364);
+            this.dockPanel1.OriginalSize = new System.Drawing.Size(253, 200);
+            this.dockPanel1.Size = new System.Drawing.Size(253, 364);
             this.dockPanel1.Text = "图层表";
             // 
             // dockPanel1_Container
@@ -327,17 +327,17 @@
             this.dockPanel1_Container.Controls.Add(this.ucMapLayer1);
             this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(194, 336);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(247, 336);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // ucMapLayer1
             // 
             this.ucMapLayer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucMapLayer1.Location = new System.Drawing.Point(0, 0);
+            this.ucMapLayer1.MapControl = null;
             this.ucMapLayer1.Name = "ucMapLayer1";
-            this.ucMapLayer1.Size = new System.Drawing.Size(194, 336);
+            this.ucMapLayer1.Size = new System.Drawing.Size(247, 336);
             this.ucMapLayer1.TabIndex = 0;
-            this.ucMapLayer1.VectorControl = null;
             // 
             // imageList1
             // 
