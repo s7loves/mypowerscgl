@@ -98,7 +98,8 @@ namespace Ebada.Scgl.WFlow
 
 
         }
-        public static void CreatRiZhi(DataTable WorkFlowData, DSOFramerControl dsoFramerWordControl1, string recordID, object modlecord)
+
+        public static void CreatRiZhi(DataTable WorkFlowData, DSOFramerControl dsoFramerWordControl1, string recordID, params   object[] modlecord)
         {
 
             WF_TaskVar tvAddress = RecordWorkTask.GetWorkTaskRiZhi(WorkFlowData, "工作地点");
@@ -138,15 +139,32 @@ namespace Ebada.Scgl.WFlow
             }
             else
                 gzr.seq = 1;
-            gzr.gznr = GetTaskVarRiZhiValue(tvAddress, dsoFramerWordControl1, recordID, modlecord) + GetTaskVarRiZhiValue(tvProject, dsoFramerWordControl1, recordID, modlecord);
-            gzr.fzr = GetTaskVarRiZhiValue(tvCharMan, dsoFramerWordControl1, recordID, modlecord);
-            gzr.cjry = GetTaskVarRiZhiValue(tvAttendMan, dsoFramerWordControl1, recordID, modlecord);
+
+            gzr.gznr = GetTaskVarRiZhiValue(tvAddress, dsoFramerWordControl1, recordID, GetRoedObj(tvAddress, modlecord))
+                + GetTaskVarRiZhiValue(tvProject, dsoFramerWordControl1, recordID, GetRoedObj(tvProject, modlecord));
+            gzr.fzr = GetTaskVarRiZhiValue(tvCharMan, dsoFramerWordControl1, recordID, GetRoedObj(tvCharMan, modlecord));
+            gzr.cjry = GetTaskVarRiZhiValue(tvAttendMan, dsoFramerWordControl1, recordID, GetRoedObj(tvAttendMan, modlecord));
             gzr.CreateDate = DateTime.Now;
             gzr.CreateMan = MainHelper.User.UserName;
             MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
 
         }
-      
+        public static object GetRoedObj(WF_TaskVar tv, object[] modlecordlist)
+       {
+           object obj=null;
+           for (int i = 0; i < modlecordlist.Length && tv.TableName != "" && tv.VarModule == "数据库"; i++)
+           {
+               if (modlecordlist[i].GetType().ToString().IndexOf(tv.TableName) > -1)
+               {
+                   obj = modlecordlist[i];
+                   break;
+               
+               }
+           
+           }
+
+               return obj;
+       }
        
         /// <summary>
         /// 
@@ -162,10 +180,18 @@ namespace Ebada.Scgl.WFlow
         {
 
             Excel.Worksheet xx = null;
-            if (tv.TableName != "" && dsoFramerWordControl1!=null)
+            if (tv.TableName != "" && dsoFramerWordControl1!=null&&tv.VarModule=="Excel")
             {
                 Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-                xx = wb.Application.Sheets[tv.TableName] as Excel.Worksheet;
+                for (int i = 1; i < wb.Application.Sheets.Count; i++)
+                {
+                    Excel.Worksheet sheet = wb.Application.Sheets[i] as Excel.Worksheet;
+                    if (sheet.Name == tv.TableName)
+                    {
+                        xx = sheet;
+                        break;
+                    }
+                }
             }
             return GetTaskVarRiZhiValue(tv, xx, recordID, modlecord);
         }
@@ -219,15 +245,53 @@ namespace Ebada.Scgl.WFlow
             {
                 if (modlecord.GetType().ToString().IndexOf(tvAddress.TableName) > -1)
                 {
-                    if (modlecord.GetType().GetProperty(tvAddress.TableField) != null && modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null) != null)
-                    {
-                        strvalue = modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null).ToString();
-
-                    }
+                    //if (modlecord.GetType().GetProperty(tvAddress.TableField) != null && modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null) != null)
+                    //{
+                        //strvalue = modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null).ToString();
+                        string strsql = "";
+                        strsql = tvAddress.InitValue;
+                        strsql = SetSQLValue(strsql, modlecord);
+                        try
+                        {
+                            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",strsql);
+                            if (list.Count > 0)
+                            {
+                                for (int i = 0; i < list.Count; i++)
+                                {
+                                    strvalue += list[i].ToString();
+                                }
+                            }
+                            else
+                            {
+                                strvalue = "无数据";
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            strvalue = "出错:"+ex.Message;
+                        }
+                    //}
 
                 }
             }
             return strvalue;
+        }
+        public static string SetSQLValue(string strSQL, object modlecord)
+        {
+            int index1 = -1,index2=-1;
+            string strtemp = "", strnewsql = strSQL;
+            if ((index1 = strSQL.IndexOf("{")) > -1 && (index2 = strSQL.IndexOf("}")) > -1)
+            {
+                
+                strtemp = strSQL.Substring(index1+1, index2 - index1-1);
+                if (modlecord.GetType().GetProperty(strtemp) != null && modlecord.GetType().GetProperty(strtemp).GetValue(modlecord, null) != null)
+                {
+                    strnewsql = strSQL.Substring(0, index1) + modlecord.GetType().GetProperty(strtemp).GetValue(modlecord, null) + strSQL.Substring(index2+1);
+                    return SetSQLValue(strnewsql, modlecord);
+                }
+              
+            }
+            return strnewsql;
         }
         public static int[] GetCellPos(string cellpos)
         {

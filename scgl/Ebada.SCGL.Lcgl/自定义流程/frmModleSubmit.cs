@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Lcgl
         private string strNumber = "";
         private Control ctrlNumber = null;
         private Control ctrlOrgName = null;
-
+        private string varDbTableName = "LP_Record";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -88,7 +88,14 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         }
-
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value;
+            }
+        }
         #endregion
         public frmModleSubmit()
         {
@@ -314,7 +321,8 @@ namespace Ebada.Scgl.Lcgl
             currRecord.LastChangeTime = DateTime.Now.ToString();
             if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
             {
-                RecordWorkTask.CreatRiZhi(WorkFlowData, dsoFramerWordControl1, currRecord.ID, null);
+                
+                RecordWorkTask.CreatRiZhi(WorkFlowData, dsoFramerWordControl1, currRecord.ID, currRecord);
 
             }
             string strmes = "";

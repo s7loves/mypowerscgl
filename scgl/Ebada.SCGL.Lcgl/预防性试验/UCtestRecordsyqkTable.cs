@@ -43,7 +43,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        private string varDbTableName = "PJ_yfsyjl";
+        private string varDbTableName = "PJ_yfsyjl,LP_Record";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -131,7 +131,7 @@ namespace Ebada.Scgl.Lcgl
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
             if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
             {
-                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, obj);
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] {obj, currRecord });
             }
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'   and planExpTime like '%" + DateTime.Now.Year + "%'  order by xh ");
         }
