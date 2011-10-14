@@ -98,8 +98,14 @@ namespace Ebada.Scgl.WFlow
 
 
         }
-
-        public static void CreatRiZhi(DataTable WorkFlowData, DSOFramerControl dsoFramerWordControl1, string recordID, params   object[] modlecord)
+        /// <summary>
+        /// 生成日志记录
+        /// </summary>
+        /// <param name="WorkFlowData">流程数据信息</param>
+        /// <param name="dsoFramerWordControl1">Excel控件</param>
+        /// <param name="recordID">记录ID</param>
+        /// <param name="modlecordlist">模块相关记录集</param>
+        public static void CreatRiZhi(DataTable WorkFlowData, DSOFramerControl dsoFramerWordControl1, string recordID, params   object[] modlecordlist)
         {
 
             WF_TaskVar tvAddress = RecordWorkTask.GetWorkTaskRiZhi(WorkFlowData, "工作地点");
@@ -140,23 +146,29 @@ namespace Ebada.Scgl.WFlow
             else
                 gzr.seq = 1;
 
-            gzr.gznr = GetTaskVarRiZhiValue(tvAddress, dsoFramerWordControl1, recordID, GetRoedObj(tvAddress, modlecord))
-                + GetTaskVarRiZhiValue(tvProject, dsoFramerWordControl1, recordID, GetRoedObj(tvProject, modlecord));
-            gzr.fzr = GetTaskVarRiZhiValue(tvCharMan, dsoFramerWordControl1, recordID, GetRoedObj(tvCharMan, modlecord));
-            gzr.cjry = GetTaskVarRiZhiValue(tvAttendMan, dsoFramerWordControl1, recordID, GetRoedObj(tvAttendMan, modlecord));
+            gzr.gznr = GetTaskVarRiZhiValue(tvAddress, dsoFramerWordControl1, recordID, GetModleRecordObj(tvAddress, modlecordlist))
+                + GetTaskVarRiZhiValue(tvProject, dsoFramerWordControl1, recordID, GetModleRecordObj(tvProject, modlecordlist));
+            gzr.fzr = GetTaskVarRiZhiValue(tvCharMan, dsoFramerWordControl1, recordID, GetModleRecordObj(tvCharMan, modlecordlist));
+            gzr.cjry = GetTaskVarRiZhiValue(tvAttendMan, dsoFramerWordControl1, recordID, GetModleRecordObj(tvAttendMan, modlecordlist));
             gzr.CreateDate = DateTime.Now;
             gzr.CreateMan = MainHelper.User.UserName;
             MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
 
         }
-        public static object GetRoedObj(WF_TaskVar tv, object[] modlecordlist)
+        /// <summary>
+        /// 找到工作日志关联的记录
+        /// </summary>
+        /// <param name="tv">日志任务变量</param>
+        /// <param name="modleRecordlist">模块相关记录集</param>
+        /// <returns>返回工作日志关联的记录</returns>
+        public static object GetModleRecordObj(WF_TaskVar tv, object[] modleRecordlist)
        {
            object obj=null;
-           for (int i = 0; i < modlecordlist.Length && tv.TableName != "" && tv.VarModule == "数据库"; i++)
+           for (int i = 0; i < modleRecordlist.Length && tv.TableName != "" && tv.VarModule == "数据库"; i++)
            {
-               if (modlecordlist[i].GetType().ToString().IndexOf(tv.TableName) > -1)
+               if (modleRecordlist[i].GetType().ToString().IndexOf(tv.TableName) > -1)
                {
-                   obj = modlecordlist[i];
+                   obj = modleRecordlist[i];
                    break;
                
                }
@@ -167,15 +179,23 @@ namespace Ebada.Scgl.WFlow
        }
        
         /// <summary>
-        /// 
+        /// 获得任务日志变量
         /// </summary>
-        /// <param name="workflowData"></param>
-        /// <param name="varName"></param>
-        /// <returns></returns>
+        /// <param name="workflowData">流程信息</param>
+        /// <param name="varName">要获得的日志变量设置的名称</param>
+        /// <returns>返回任务日志设置变量</returns>
         public static WF_TaskVar GetWorkTaskRiZhi(DataTable workflowData, string varName)
         {
             return WorkFlowTask.GetTaskRiZhiVar(workflowData.Rows[0]["WorktaskId"].ToString(), varName);
         }
+        /// <summary>
+        /// 读取工作日志变量对应的值
+        /// </summary>
+        /// <param name="tv">工作日志变量</param>
+        /// <param name="dsoFramerWordControl1">Excel控件</param>
+        /// <param name="recordID">记录ID</param>
+        /// <param name="modlecord">模块记录</param>
+        /// <returns>返回工作日志变量对应的值，不存在则为空</returns>
         public static string GetTaskVarRiZhiValue(WF_TaskVar tv, DSOFramerControl dsoFramerWordControl1, string recordID, object modlecord)
         {
 
@@ -195,61 +215,70 @@ namespace Ebada.Scgl.WFlow
             }
             return GetTaskVarRiZhiValue(tv, xx, recordID, modlecord);
         }
-        public static string GetTaskVarRiZhiValue(WF_TaskVar tvAddress, Excel.Worksheet xx, string recordID)
-        {
-            return GetTaskVarRiZhiValue(tvAddress,xx,recordID, null);
-        }
         /// <summary>
-        /// 
+        /// 读取工作日志变量对应的值
         /// </summary>
-        /// <param name="tvAddress"></param>
-        /// <param name="record"></param>
-        /// <returns></returns>
-        public static string GetTaskVarRiZhiValue(WF_TaskVar tvAddress, Excel.Worksheet xx, string recordID, object modlecord)
+        /// <param name="tv">工作日志变量</param>
+        /// <param name="sheet">工作日志变量对应的工作表</param>
+        /// <param name="recordID">记录ID</param>
+        /// <returns>返回工作日志变量对应的值，不存在则为空</returns>
+        public static string GetTaskVarRiZhiValue(WF_TaskVar tv, Excel.Worksheet sheet, string recordID)
+        {
+            return GetTaskVarRiZhiValue(tv, sheet, recordID, null);
+        }
+       /// <summary>
+        /// 返回工作日志变量对应的值，不存在则为空
+       /// </summary>
+        /// <param name="tv">工作日志变量</param>
+        /// <param name="sheet">工作日志变量对应的工作表</param>
+        /// <param name="recordID">记录ID</param>
+        /// <param name="modlecord">模块记录</param>
+        /// <returns>返回工作日志变量对应的值，不存在则为空</returns>
+        public static string GetTaskVarRiZhiValue(WF_TaskVar tv, Excel.Worksheet sheet, string recordID, object modlecord)
         {
             string strvalue = "";
-            if (tvAddress.VarModule == "固定值")
+            if (tv.VarModule == "固定值")
             {
-                strvalue = tvAddress.InitValue;
+                strvalue = tv.InitValue;
             }
-            else if (tvAddress.VarModule == "表单")
+            else if (tv.VarModule == "表单")
             {
                 //LP_Temple tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tvAddress.TableField);
                 IList<WF_TableFieldValue> filedvaluelist = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
-                    "where RecordId  = '" + recordID + "' and FieldId='" + tvAddress.TableField
-                    + "' and WorkFlowId='" + tvAddress.WorkFlowId
-                    + "' and WorkTaskId='" + tvAddress.WorkTaskId + "' order by seq  ");
+                    "where RecordId  = '" + recordID + "' and FieldId='" + tv.TableField
+                    + "' and WorkFlowId='" + tv.WorkFlowId
+                    + "' and WorkTaskId='" + tv.WorkTaskId + "' order by seq  ");
                 if (filedvaluelist.Count > 0)
                 {
                     strvalue = filedvaluelist[0].ControlValue;
                 }
             }
-            else if (tvAddress.VarModule == "Excel")
+            else if (tv.VarModule == "Excel")
             {
-                if (tvAddress.TableName != "")
+                if (tv.TableName != "")
                 {
-                   
-                    string[] arrCellPos = tvAddress.TableField.Split('|');
+
+                    string[] arrCellPos = tv.TableField.Split('|');
                     arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
                     string strcellvalue = "";
                     for (int i = 0; i < arrCellPos.Length; i++)
                     {
-                        Excel.Range range = xx.get_Range(xx.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], xx.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
+                        Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
                         strcellvalue += range.Value2;
                     }
                     strvalue = strcellvalue;
                 }
 
             }
-            else if (tvAddress.VarModule == "数据库" && modlecord != null)
+            else if (tv.VarModule == "数据库" && modlecord != null)
             {
-                if (modlecord.GetType().ToString().IndexOf(tvAddress.TableName) > -1)
+                if (modlecord.GetType().ToString().IndexOf(tv.TableName) > -1)
                 {
                     //if (modlecord.GetType().GetProperty(tvAddress.TableField) != null && modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null) != null)
                     //{
                         //strvalue = modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null).ToString();
                         string strsql = "";
-                        strsql = tvAddress.InitValue;
+                        strsql = tv.InitValue;
                         strsql = SetSQLValue(strsql, modlecord);
                         try
                         {
@@ -276,6 +305,12 @@ namespace Ebada.Scgl.WFlow
             }
             return strvalue;
         }
+        /// <summary>
+        /// 设置SQL语句里的变量值
+        /// </summary>
+        /// <param name="strSQL">SQL语句</param>
+        /// <param name="modlecord">模块相关记录</param>
+        /// <returns>返回新的SQL语句</returns>
         public static string SetSQLValue(string strSQL, object modlecord)
         {
             int index1 = -1,index2=-1;
@@ -293,16 +328,21 @@ namespace Ebada.Scgl.WFlow
             }
             return strnewsql;
         }
+        /// <summary>
+        /// 获得Excel的表格数字位置，去掉字母
+        /// </summary>
+        /// <param name="cellpos">Excel的表格位置</param>
+        /// <returns>Excel的表格数字位置</returns>
         public static int[] GetCellPos(string cellpos)
         {
             cellpos = cellpos.Replace("|", "");
             return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
         }
        /// <summary>
-       /// 
+       /// 确认工作日志是否开启
        /// </summary>
-       /// <param name="workflowData"></param>
-       /// <returns></returns>
+       /// <param name="workflowData">流程信息</param>
+       /// <returns>true 开启 false 没开启日志功能</returns>
         public static bool CheckOnRiZhi(DataTable workflowData)
         {
             if (workflowData == null || workflowData.Rows.Count == 0) return false;
@@ -383,6 +423,13 @@ namespace Ebada.Scgl.WFlow
 
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parentTemple"></param>
+        /// <param name="currRecord"></param>
+        /// <param name="WorkflowId"></param>
+        /// <param name="WorkFlowInsId"></param>
         private static void iniTableRecordData(ref LP_Temple parentTemple, LP_Record currRecord, string WorkflowId,string WorkFlowInsId)
         {
             if (parentTemple != null)
@@ -433,6 +480,12 @@ namespace Ebada.Scgl.WFlow
                 }
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uc"></param>
+        /// <param name="mulist"></param>
+        /// <param name="outisfind"></param>
         public static void IniControl(System.Windows.Forms.Control.ControlCollection uc, IList<WF_ModleUsedFunc> mulist, ref bool outisfind)
         {
             bool isfind = false;
@@ -457,6 +510,11 @@ namespace Ebada.Scgl.WFlow
                 if (isfind) outisfind = true;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="formCtr"></param>
+        /// <param name="mulist"></param>
         public static void IniCreatModle(object formCtr, IList<WF_ModleUsedFunc>mulist)
         {
             if (formCtr == null) return;
@@ -475,6 +533,14 @@ namespace Ebada.Scgl.WFlow
 
         
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assemblyFileName"></param>
+        /// <param name="moduTypes"></param>
+        /// <param name="methodName"></param>
+        /// <param name="moduName"></param>
+        /// <returns></returns>
         public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName,string moduName)
         {
             object fromCtrl;
@@ -1118,7 +1184,30 @@ namespace Ebada.Scgl.WFlow
                 return true;
             return false ;
         }
-
+        /// <summary>
+        /// 流程是否可以所有人导出
+        /// </summary>
+        /// <param name="WorkTaskId">任务节点id</param>
+        /// <param name="WorkFlowId">流程ID</param>
+        /// <returns>true ，可以导出 反之不能</returns>
+        public static bool HaveWorkFlowAllExploreRole(string WorkTaskId, string WorkFlowId)
+        {
+            if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + WorkTaskId + "' and WorkFlowId='" + WorkFlowId + "' and PowerName='" + WorkConst.WorkTask_WorkAllExplore + "'") != null)
+                return true;
+            return false;
+        }
+        /// <summary>
+        /// 流程是否可以导出
+        /// </summary>
+        /// <param name="WorkTaskId">任务节点id</param>
+        /// <param name="WorkFlowId">流程ID</param>
+        /// <returns>true ，可以导出 反之不能</returns>
+        public static bool HaveWorkFlowExploreRole(string WorkTaskId, string WorkFlowId)
+        {
+            if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + WorkTaskId + "' and WorkFlowId='" + WorkFlowId + "' and PowerName='" + WorkConst.WorkTask_WorkExplore + "'") != null)
+                return true;
+            return false;
+        }
         
         /// <summary>
         /// 流程退回
