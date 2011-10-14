@@ -839,7 +839,7 @@ namespace Ebada.Scgl.Lcgl {
 
         private void btRefresh1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            InitData(ParentObj.FlowCaption);
+            InitData(strKind);
 
         }
 
