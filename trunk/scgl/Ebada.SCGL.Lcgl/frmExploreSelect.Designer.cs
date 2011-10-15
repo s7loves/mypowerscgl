@@ -35,9 +35,9 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -56,7 +56,7 @@
             this.splitContainerControl1.Panel1.Controls.Add(this.gridControl1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.checkEdit1);
-            this.splitContainerControl1.Panel2.Controls.Add(this.simpleButton2);
+            this.splitContainerControl1.Panel2.Controls.Add(this.btnCancel);
             this.splitContainerControl1.Panel2.Controls.Add(this.simpleButton1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(629, 347);
@@ -121,14 +121,25 @@
             this.gridColumn3.FieldName = "Index";
             this.gridColumn3.Name = "gridColumn3";
             // 
-            // simpleButton2
+            // checkEdit1
             // 
-            this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton2.Location = new System.Drawing.Point(565, 7);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(52, 27);
-            this.simpleButton2.TabIndex = 4;
-            this.simpleButton2.Text = "取消";
+            this.checkEdit1.EditValue = true;
+            this.checkEdit1.Location = new System.Drawing.Point(12, 6);
+            this.checkEdit1.Name = "checkEdit1";
+            this.checkEdit1.Properties.Caption = "全选";
+            this.checkEdit1.Size = new System.Drawing.Size(75, 19);
+            this.checkEdit1.TabIndex = 5;
+            this.checkEdit1.CheckedChanged += new System.EventHandler(this.checkEdit1_CheckedChanged);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(565, 7);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(52, 27);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // simpleButton1
             // 
@@ -140,16 +151,6 @@
             this.simpleButton1.TabIndex = 3;
             this.simpleButton1.Text = "确定";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
-            // checkEdit1
-            // 
-            this.checkEdit1.EditValue = true;
-            this.checkEdit1.Location = new System.Drawing.Point(12, 6);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Caption = "全选";
-            this.checkEdit1.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit1.TabIndex = 5;
-            this.checkEdit1.CheckedChanged += new System.EventHandler(this.checkEdit1_CheckedChanged);
             // 
             // frmExploreSelect
             // 
@@ -182,7 +183,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
     }

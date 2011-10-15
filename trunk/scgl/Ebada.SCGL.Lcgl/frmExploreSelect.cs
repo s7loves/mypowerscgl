@@ -40,7 +40,7 @@ namespace Ebada.Scgl.Lcgl
             checkIndexhs.Clear();
             for (int i = 0; i < sourcedt.Rows.Count; i++)
             {
-                if( sourcedt.Rows[i]["Checked"].ToString()=="1" )
+                if( sourcedt.Rows[i]["Checked"].ToString().ToLower()=="true" )
                 {
                     checkIndexhs.Add(sourcedt.Rows[i]["Index"], sourcedt.Rows[i]["Name"]);
                 }
@@ -55,6 +55,12 @@ namespace Ebada.Scgl.Lcgl
                 sourcedt.Rows[i]["Checked"] = checkEdit1.Checked;
 
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            
+            this.Close();
         }
     }
 }
