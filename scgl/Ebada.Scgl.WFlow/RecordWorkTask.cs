@@ -53,17 +53,16 @@ namespace Ebada.Scgl.WFlow
         {
             Hashtable templehs = new Hashtable();
             Hashtable hs = new Hashtable();
-            GetPreviousTask(WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkTaskId"].ToString(), ref hs);
+            if (!hs.ContainsKey(WorkFlowData.Rows[0]["WorkTaskId"].ToString()))
+                hs.Add(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["TaskCaption"].ToString());
+            GetPreviousTask(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString(), ref hs);
             ArrayList akeys = new ArrayList(hs.Keys);
             for (int i = 0; i < akeys.Count; i++)
             {
                 if (!RecordWorkTask.HaveWorkFlowAllExploreRole(akeys[i].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
                 {
-                    if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID))
-                    {
-                        continue;
-                    }
-                    if (!RecordWorkTask.HaveWorkFlowExploreRole(currRecord.ID, MainHelper.User.UserID))
+                  
+                    if (!RecordWorkTask.HaveWorkFlowExploreRole(akeys[i].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
                     {
                         continue;
                     }
@@ -553,11 +552,30 @@ namespace Ebada.Scgl.WFlow
             }//绑定节点
             else
             {
-                tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
-                if (tp != null)
+                if (wtc.UserControlId == "节点审核")
                 {
-                    
-                    return tp;
+                    strsql = " where WorkflowId='" + workflowId + "'"
+                        + " and WorktaskId='" + wtc.WorktaskId + "'"
+                          + " and WorkFlowInsId='" + workFlowInsId + "'"
+
+                          + " and RecordId='" + record.ID + "' order by Creattime desc";
+                    WF_ModleCheckTable mct = MainHelper.PlatformSqlMap.GetOne<WF_ModleCheckTable>(strsql);
+                    if (mct != null)
+                    {
+                        tp = new LP_Temple();
+                        tp.Status = "节点审核";
+                        tp.LPID = mct.ID;
+                        tp.DocContent = mct.DocContent;
+                        return tp;
+                    }
+                }
+                else {
+                    tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
+                    if (tp != null)
+                    {
+
+                        return tp;
+                    }
                 }
             }//非绑定节点
             return null;

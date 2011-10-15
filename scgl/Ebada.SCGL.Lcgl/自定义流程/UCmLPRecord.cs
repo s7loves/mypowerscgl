@@ -741,7 +741,25 @@ namespace Ebada.Scgl.Lcgl {
                 MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,延期失败!");
             }
         }
+        private string CheckFileName(string filename)
+        {
+            if (!File.Exists(filename + ".xls"))
+            {
+                return filename + ".xls";
+            }
+            else
+            {
+                for (int i = 0; ; i++)
+                {
+                    if (!File.Exists(filename + "(" + i.ToString() + ").xls"))
+                    {
+                        return filename + "(" + i.ToString() + ").xls";
+                    }
+                }
 
+            }
+            return "";
+        }
         private void barReExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (gridView1.FocusedRowHandle < 0) return;
@@ -808,11 +826,11 @@ namespace Ebada.Scgl.Lcgl {
                     DataRow templedr = templedt.NewRow();
                     if (obj is LP_Temple)
                     {
-                        WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOne<WF_WorkTask>(templehs[akeys[i]]);
+                        WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(templehs[akeys[i]]);
                         if (wt != null)
                         {
                             templedr["Name"] = wt.TaskCaption + "-申报表单";
-                            templedr["Checked"] = 0;
+                            templedr["Checked"] =1;
                             templedr["Index"] = i;
                             templedt.Rows.Add(templedr);
 
@@ -822,7 +840,7 @@ namespace Ebada.Scgl.Lcgl {
                     else if (obj is string)
                     {
 
-                        LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(templehs[akeys[i]]);
+                        LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(templehs[akeys[i]]);
                         if (taskTemple != null)
                         {
                             templedr["Name"] = taskTemple.CellName;
@@ -855,19 +873,19 @@ namespace Ebada.Scgl.Lcgl {
 
                                     ds1.FileDataGzip = ((LP_Temple)obj).DocContent;
                                     //ds1.FileOpen(ds1.FileName);
-                                    ds1.FileSave(fname + frmes.CheckIndehs[checkkeys[i]], true);
+                                    ds1.FileSave(CheckFileName(fname + frmes.CheckIndehs[checkkeys[i]]), true);
                                     ds1.FileClose();
 
                                 }
                                 else if (obj is string)
                                 {
 
-                                    LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(templehs[akeys[i]]);
+                                    LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(templehs[akeys[i]]);
                                     if (taskTemple != null)
                                     {
                                         ds1.FileDataGzip = taskTemple.DocContent;
                                         //ds1.FileOpen(ds1.FileName);
-                                        ds1.FileSave(fname + taskTemple.CellName, true);
+                                        ds1.FileSave(CheckFileName(fname + taskTemple.CellName), true);
                                         ds1.FileClose();
 
                                     }
@@ -901,20 +919,20 @@ namespace Ebada.Scgl.Lcgl {
                     {
                        
                         DSOFramerControl ds1 = new DSOFramerControl();
-                        if (templehs[akeys[0]] is LP_Temple)
+                        if (akeys[0] is LP_Temple)
                         {
-                            ds1.FileDataGzip = ((LP_Temple)templehs[akeys[0]]).DocContent;
+                            ds1.FileDataGzip = ((LP_Temple)akeys[0]).DocContent;
                             ds1.FileSave(fname, true);
                             ds1.FileClose();
                         }
-                        else if (templehs[akeys[0]] is string)
+                        else if (akeys[0] is string)
                         {
 
-                            LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(templehs[akeys[0]]);
+                            LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(templehs[akeys[0]]);
                             if (taskTemple != null)
                             {
                                 ds1.FileDataGzip = taskTemple.DocContent;
-                                ds1.FileSave(fname + taskTemple.CellName, true);
+                                ds1.FileSave(fname, true);
                                 ds1.FileClose();
 
                             }
@@ -934,7 +952,7 @@ namespace Ebada.Scgl.Lcgl {
             }
 
         }
-
+       
         private void barReChange_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (gridView1.FocusedRowHandle < 0) return;
