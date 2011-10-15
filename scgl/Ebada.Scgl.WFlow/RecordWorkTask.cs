@@ -69,11 +69,11 @@ namespace Ebada.Scgl.WFlow
 
                 }
                LP_Temple temp=  GetWorkTaskTemple(currRecord, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkFlowInsId"].ToString(),akeys[i].ToString());
-               if (temp.Status == "节点审核")
+               if (temp !=null&& temp.Status == "节点审核")
                {
                    if (!templehs.Contains(temp)) templehs.Add(temp, akeys[i].ToString());
                }
-               else
+               else if(temp!=null)
                {
                    if (!templehs.Contains(temp.LPID)) templehs.Add(temp.LPID, akeys[i].ToString());
                }
@@ -433,7 +433,7 @@ namespace Ebada.Scgl.WFlow
         /// <param name="currRecord"></param>
         /// <param name="WorkflowId"></param>
         /// <param name="WorkFlowInsId"></param>
-        private static void iniTableRecordData(ref LP_Temple temple, LP_Record currRecord, string WorkflowId, string WorkFlowInsId)
+        public static void iniTableRecordData(ref LP_Temple temple, LP_Record currRecord, string WorkflowId, string WorkFlowInsId)
         {
             if (temple != null)
             {

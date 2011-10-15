@@ -791,7 +791,7 @@ namespace Ebada.Scgl.Lcgl {
                             MsgBox.ShowWarningMessageBox("没有运行权限，导出失败!");
                             return;
                         }
-                        if (!RecordWorkTask.HaveWorkFlowExploreRole(currRecord.ID, MainHelper.User.UserID))
+                        if (!RecordWorkTask.HaveWorkFlowExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
                         {
                             MsgBox.ShowWarningMessageBox("没有导出权限，导出失败!");
                             return;
@@ -928,9 +928,10 @@ namespace Ebada.Scgl.Lcgl {
                         else if (akeys[0] is string)
                         {
 
-                            LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(templehs[akeys[0]]);
+                            LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(akeys[0]);
                             if (taskTemple != null)
                             {
+                                RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, dt.Rows[0]["WorkflowId"].ToString(),dt.Rows[0]["WorkFlowInsId"].ToString());
                                 ds1.FileDataGzip = taskTemple.DocContent;
                                 ds1.FileSave(fname, true);
                                 ds1.FileClose();
