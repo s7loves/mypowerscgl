@@ -445,6 +445,14 @@ namespace Ebada.Scgl.Lcgl
                 dockPanel1.Controls.Add(filecontrol);
                 currentPosY += 20;
             }
+            if (RecordWorkTask.HaveWorkFlowBackRole(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
+            {
+                Button btn_Back = new Button();
+                dockPanel1.Controls.Add(btn_Back);
+                btn_Back.Click += new EventHandler(btn_Back_Click);
+                btn_Back.Location = new Point(currentPosX + 80, currentPosY + 10);
+                btn_Back.Text = "退回";
+            }
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
@@ -457,6 +465,43 @@ namespace Ebada.Scgl.Lcgl
         {
             ctrl_Leave(sender, e);
 
+        }
+        void btn_Back_Click(object sender, EventArgs e)
+        {
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认退回?") != DialogResult.OK)
+            {
+                return;
+            }
+            string strmes = RecordWorkTask.RunWorkFlowBack(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            }
+            else
+            {
+
+                currRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+                MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
+                MsgBox.ShowTipMessageBox(strmes);
+
+            }
+            if (hqyjcontrol != null)
+            {
+                PJ_lcspyj lcyj = new PJ_lcspyj();
+                lcyj.Charman = MainHelper.User.UserName;
+                lcyj.ID = PJ_lcspyj.Newid();
+                lcyj.RecordID = currRecord.ID;
+                lcyj.taskID = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
+                lcyj.Creattime = DateTime.Now;
+                if (hqyjcontrol.nowMemoEdit.Text != "")
+                    MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
+
+            }
+            dsoFramerWordControl1.FileClose();
+            this.DialogResult = DialogResult.OK;
         }
         void btn_Submit_Click(object sender, EventArgs e)
         {

@@ -747,6 +747,8 @@ namespace Ebada.Scgl.Lcgl {
             if (gridView1.FocusedRowHandle < 0) return;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
+            int i = 0;
+            //string exploreKind = "";
             foreach (DataColumn dc in gridtable.Columns)
             {
                 if (dc.ColumnName != "Image")
@@ -759,54 +761,177 @@ namespace Ebada.Scgl.Lcgl {
                 }
             }
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
-            if (dt.Rows.Count > 0)
+            if (currRecord.Status != "存档")
             {
-                if (!RecordWorkTask.HaveWorkFlowAllExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
+                
+                if (dt.Rows.Count > 0)
                 {
-                    if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID))
+                    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
                     {
-                        MsgBox.ShowWarningMessageBox("没有运行权限，导出失败!");
-                        return;
-                    }
-                    if (!RecordWorkTask.HaveWorkFlowExploreRole(currRecord.ID, MainHelper.User.UserID))
-                    {
-                        MsgBox.ShowWarningMessageBox("没有导出权限，导出失败!");
-                        return;
-                    }
-                   
-                }
-            }
-            else
-            {
-                MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,导出失败!");
-                return;
-            }
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = "";
-            saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                fname = saveFileDialog1.FileName;
-                try
-                {
-                    DSOFramerControl ds1 = new DSOFramerControl();
-                    ds1.FileDataGzip = currRecord.DocContent ;
-                    //ds1.FileOpen(ds1.FileName);
-                    ds1.FileSave(fname,true);
-                    ds1.FileClose();
-                    if (MsgBox.ShowAskMessageBox ("导出成功，是否打开该文档？") != DialogResult.OK )
-                        return;
+                        if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID))
+                        {
+                            MsgBox.ShowWarningMessageBox("没有运行权限，导出失败!");
+                            return;
+                        }
+                        if (!RecordWorkTask.HaveWorkFlowExploreRole(currRecord.ID, MainHelper.User.UserID))
+                        {
+                            MsgBox.ShowWarningMessageBox("没有导出权限，导出失败!");
+                            return;
+                        }
 
-                    System.Diagnostics.Process.Start(fname);
+                    }
                 }
-                catch(Exception ex)
+                else
                 {
-                    Console.WriteLine(ex.Message ); 
-                    MsgBox.ShowWarningMessageBox ("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
+                    MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,导出失败!");
                     return;
                 }
             }
+            else if (!RecordWorkTask.HaveRunFuJianRole(currRecord.Kind))
+            {
+                MsgBox.ShowTipMessageBox("流程结束后不允许导出,导出失败!");
+                return;
+            
+            }
+            Hashtable templehs = RecordWorkTask.GetExploerLP_TempleList(dt, currRecord);
 
+            if (templehs.Count > 1)
+            {
+                DataTable templedt = new DataTable();
+                templedt.Columns.Add("Checked", typeof(bool));
+                templedt.Columns.Add("Index", typeof(string));
+                templedt.Columns.Add("Name", typeof(string));
+                ArrayList akeys = new ArrayList(templehs.Keys);
+                for (i = 0; i < akeys.Count; i++)
+                {
+                    object obj = akeys[i];
+                    DataRow templedr = templedt.NewRow();
+                    if (obj is LP_Temple)
+                    {
+                        WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOne<WF_WorkTask>(templehs[akeys[i]]);
+                        if (wt != null)
+                        {
+                            templedr["Name"] = wt.TaskCaption + "-申报表单";
+                            templedr["Checked"] = 0;
+                            templedr["Index"] = i;
+                            templedt.Rows.Add(templedr);
+
+                        }
+
+                    }
+                    else if (obj is string)
+                    {
+
+                        LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(templehs[akeys[i]]);
+                        if (taskTemple != null)
+                        {
+                            templedr["Name"] = taskTemple.CellName;
+                            templedr["Checked"] = 1;
+                            templedr["Index"] = i;
+                            templedt.Rows.Add(templedr);
+
+                        }
+                    }
+                }
+                frmExploreSelect frmes = new frmExploreSelect();
+                frmes.SourceDt = templedt;
+                if (frmes.ShowDialog() == DialogResult.OK && frmes.CheckIndehs.Count > 0)
+                {
+
+                    string fname = "";
+                    FolderBrowserDialog fbd = new FolderBrowserDialog();
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        fname = fbd.SelectedPath + "\\";
+                        ArrayList checkkeys = new ArrayList(frmes.CheckIndehs.Keys);
+                        for (i = 0; i < checkkeys.Count; i++)
+                        {
+                            object obj = akeys[Convert.ToInt32(checkkeys[i])];
+                            DSOFramerControl ds1 = new DSOFramerControl();
+                            try
+                            {
+                                if (obj is LP_Temple)
+                                {
+
+                                    ds1.FileDataGzip = ((LP_Temple)obj).DocContent;
+                                    //ds1.FileOpen(ds1.FileName);
+                                    ds1.FileSave(fname + frmes.CheckIndehs[checkkeys[i]], true);
+                                    ds1.FileClose();
+
+                                }
+                                else if (obj is string)
+                                {
+
+                                    LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(templehs[akeys[i]]);
+                                    if (taskTemple != null)
+                                    {
+                                        ds1.FileDataGzip = taskTemple.DocContent;
+                                        //ds1.FileOpen(ds1.FileName);
+                                        ds1.FileSave(fname + taskTemple.CellName, true);
+                                        ds1.FileClose();
+
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                                MsgBox.ShowWarningMessageBox("无法保存" + frmes.CheckIndehs[checkkeys[i]] + "。请用其他文件名保存文件，或将文件存至其他位置。");
+                               
+                            }
+                           
+
+                        }//循环所有选择的表单
+                        if (MsgBox.ShowAskMessageBox("导出成功，是否所在文件夹？") != DialogResult.OK)
+                            return;
+                        System.Diagnostics.Process.Start(fname);
+                    }
+                }
+            }//表单不止一个
+            else
+            {
+                ArrayList akeys = new ArrayList(templehs.Keys);
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                string fname = "";
+                saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    fname = saveFileDialog1.FileName;
+                    try
+                    {
+                       
+                        DSOFramerControl ds1 = new DSOFramerControl();
+                        if (templehs[akeys[0]] is LP_Temple)
+                        {
+                            ds1.FileDataGzip = ((LP_Temple)templehs[akeys[0]]).DocContent;
+                            ds1.FileSave(fname, true);
+                            ds1.FileClose();
+                        }
+                        else if (templehs[akeys[0]] is string)
+                        {
+
+                            LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(templehs[akeys[0]]);
+                            if (taskTemple != null)
+                            {
+                                ds1.FileDataGzip = taskTemple.DocContent;
+                                ds1.FileSave(fname + taskTemple.CellName, true);
+                                ds1.FileClose();
+
+                            }
+                        }
+                        if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
+                            return;
+
+                        System.Diagnostics.Process.Start(fname);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
+                        return;
+                    }
+                }
+            }
 
         }
 

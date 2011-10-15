@@ -33,6 +33,8 @@ namespace Ebada.SCGL.WFlow.Tool
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.grpBase = new System.Windows.Forms.GroupBox();
+            this.checkHuiQianYiJian = new System.Windows.Forms.CheckBox();
+            this.cbxFuJian = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tbxPath = new System.Windows.Forms.TextBox();
             this.btnBussWebPage = new System.Windows.Forms.Button();
@@ -40,8 +42,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tbxDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.checkHuiQianYiJian = new System.Windows.Forms.CheckBox();
-            this.cbxFuJian = new System.Windows.Forms.CheckBox();
+            this.cbxExplore = new System.Windows.Forms.CheckBox();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.grpBase.SuspendLayout();
@@ -104,6 +105,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // grpBase
             // 
             this.grpBase.Controls.Add(this.checkHuiQianYiJian);
+            this.grpBase.Controls.Add(this.cbxExplore);
             this.grpBase.Controls.Add(this.cbxFuJian);
             this.grpBase.Controls.Add(this.label2);
             this.grpBase.Controls.Add(this.tbxPath);
@@ -120,6 +122,26 @@ namespace Ebada.SCGL.WFlow.Tool
             this.grpBase.TabIndex = 14;
             this.grpBase.TabStop = false;
             this.grpBase.Text = "基本信息";
+            // 
+            // checkHuiQianYiJian
+            // 
+            this.checkHuiQianYiJian.AutoSize = true;
+            this.checkHuiQianYiJian.Location = new System.Drawing.Point(82, 111);
+            this.checkHuiQianYiJian.Name = "checkHuiQianYiJian";
+            this.checkHuiQianYiJian.Size = new System.Drawing.Size(96, 16);
+            this.checkHuiQianYiJian.TabIndex = 129;
+            this.checkHuiQianYiJian.Text = "添加会签意见";
+            this.checkHuiQianYiJian.UseVisualStyleBackColor = true;
+            // 
+            // cbxFuJian
+            // 
+            this.cbxFuJian.AutoSize = true;
+            this.cbxFuJian.Location = new System.Drawing.Point(179, 110);
+            this.cbxFuJian.Name = "cbxFuJian";
+            this.cbxFuJian.Size = new System.Drawing.Size(96, 16);
+            this.cbxFuJian.TabIndex = 128;
+            this.cbxFuJian.Text = "允许添加附件";
+            this.cbxFuJian.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -176,25 +198,15 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // checkHuiQianYiJian
+            // cbxExplore
             // 
-            this.checkHuiQianYiJian.AutoSize = true;
-            this.checkHuiQianYiJian.Location = new System.Drawing.Point(82, 111);
-            this.checkHuiQianYiJian.Name = "checkHuiQianYiJian";
-            this.checkHuiQianYiJian.Size = new System.Drawing.Size(96, 16);
-            this.checkHuiQianYiJian.TabIndex = 129;
-            this.checkHuiQianYiJian.Text = "添加会签意见";
-            this.checkHuiQianYiJian.UseVisualStyleBackColor = true;
-            // 
-            // cbxFuJian
-            // 
-            this.cbxFuJian.AutoSize = true;
-            this.cbxFuJian.Location = new System.Drawing.Point(195, 110);
-            this.cbxFuJian.Name = "cbxFuJian";
-            this.cbxFuJian.Size = new System.Drawing.Size(96, 16);
-            this.cbxFuJian.TabIndex = 128;
-            this.cbxFuJian.Text = "允许添加附件";
-            this.cbxFuJian.UseVisualStyleBackColor = true;
+            this.cbxExplore.AutoSize = true;
+            this.cbxExplore.Location = new System.Drawing.Point(277, 109);
+            this.cbxExplore.Name = "cbxExplore";
+            this.cbxExplore.Size = new System.Drawing.Size(132, 16);
+            this.cbxExplore.TabIndex = 128;
+            this.cbxExplore.Text = "流程结束后允许导出";
+            this.cbxExplore.UseVisualStyleBackColor = true;
             // 
             // fmAddWorkFlow
             // 
@@ -225,5 +237,6 @@ namespace Ebada.SCGL.WFlow.Tool
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.CheckBox checkHuiQianYiJian;
         private System.Windows.Forms.CheckBox cbxFuJian;
+        private System.Windows.Forms.CheckBox cbxExplore;
     }
 }

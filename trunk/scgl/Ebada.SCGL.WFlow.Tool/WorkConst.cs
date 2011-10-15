@@ -113,6 +113,9 @@ namespace Ebada.SCGL.WFlow.Tool
         /// 允许所有人导出
         /// </summary>
         public const string WorkTask_WorkAllExplore = "允许所有人导出";
+        /// 任务审批意见
+        /// </summary>
+        public const string WorkTask_FlowEndExplore = "流程结束后允许导出";
         /// <summary>
         /// 动态指定一下任务处理人
         /// </summary>
