@@ -27,8 +27,86 @@ namespace Ebada.Scgl.WFlow
             return (System.ComponentModel.TypeDescriptor.GetProperties(modelType)[propertyDisplayName].Attributes[typeof(System.ComponentModel.DisplayNameAttribute)] as System.ComponentModel.DisplayNameAttribute).DisplayName;
         }
     }
+
     public class RecordWorkTask
     {
+        public static void GetPreviousTask(string taskid, string workFlowId, ref Hashtable taskht)
+        {
+
+            string tmpStr = " where  EndTaskId='" + taskid + "' and WorkFlowId='" + workFlowId + "'";
+            IList<WF_WorkTaskLinkView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskLinkView>("SelectWF_WorkTaskLinkViewList", tmpStr);
+            foreach (WF_WorkTaskLinkView tl in li)
+            {
+                if (!taskht.ContainsKey(tl.StartTaskId))
+                    taskht.Add(tl.StartTaskId, tl.startTaskCaption);
+                GetPreviousTask(tl.StartTaskId, workFlowId, ref  taskht);
+            }
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="WorkFlowData"></param>
+        /// <param name="currRecord"></param>
+        /// <returns></returns>
+        public static Hashtable GetExploerLP_TempleList(DataTable WorkFlowData, LP_Record currRecord)
+        {
+            Hashtable templehs = new Hashtable();
+            Hashtable hs = new Hashtable();
+            GetPreviousTask(WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkTaskId"].ToString(), ref hs);
+            ArrayList akeys = new ArrayList(hs.Keys);
+            for (int i = 0; i < akeys.Count; i++)
+            {
+                if (!RecordWorkTask.HaveWorkFlowAllExploreRole(akeys[i].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
+                {
+                    if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID))
+                    {
+                        continue;
+                    }
+                    if (!RecordWorkTask.HaveWorkFlowExploreRole(currRecord.ID, MainHelper.User.UserID))
+                    {
+                        continue;
+                    }
+
+                }
+               LP_Temple temp=  GetWorkTaskTemple(currRecord, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkFlowInsId"].ToString(),akeys[i].ToString());
+               if (temp.Status == "节点审核")
+               {
+                   if (!templehs.Contains(temp)) templehs.Add(temp, akeys[i].ToString());
+               }
+               else
+               {
+                   if (!templehs.Contains(temp.LPID)) templehs.Add(temp.LPID, akeys[i].ToString());
+               }
+            }
+
+            return templehs;
+        }
+        /// <summary>
+        /// 获得当前流程是否有流程结束后允许导出的权限
+        /// </summary>
+        /// <param name="kind">流程名称</param>
+        /// <returns>bool true有权限 false 无权限</returns>
+
+        public static bool HaveFlowEndExploreRole(string kind)
+        {
+            string strkind = kind;
+            if (kind == "dzczp")
+                strkind = "电力线路倒闸操作票";
+            else if (kind == "yzgzp")
+                strkind = "电力线路第一种工作票";
+            else if (kind == "ezgzp")
+                strkind = "电力线路第二种工作票";
+            else if (kind == "xlqxp")
+                strkind = "电力线路事故应急抢修单";
+            WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + strkind + "'");
+            if (wf == null) return false;
+
+
+            return HaveRunPowerRole(WorkConst.WorkTask_FlowEndExplore, wf.WorkFlowId, wf.WorkFlowId);
+
+
+        }
         /// <summary>
         /// 获得当前流程是否有附件的权限
         /// </summary>
@@ -350,94 +428,20 @@ namespace Ebada.Scgl.WFlow
             return WorkFlowTask.CheckTaskPowerExit(workflowData.Rows[0]["WorkflowId"].ToString(), workflowData.Rows[0]["WorktaskId"].ToString(), "工作日志");
         }
         /// <summary>
-        /// 获得流程的当前的节点关联的表单
+        /// 关联表单的字段值
         /// </summary>
-        /// <param name="workflowData">流程信息列表</param>
-
-        /// <returns>关联的表单</returns>
-
-        public static LP_Temple GetWorkTaskTemple(DataTable workflowData,LP_Record record)
-        {
-            LP_Temple tp=null ;
-            string strsql="";
-            if (workflowData.Rows.Count > 0)
-            {
-                WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + workflowData.Rows[0]["WorkflowId"] + "' and WorktaskId='" + workflowData.Rows[0]["WorktaskId"] + "'");
-                if (wtc == null)
-                {
-                    return null;
-                }
-                if (wtc.ControlType== "绑定节点")
-                {
-                    DataTable ctrlTable = WorkFlowTask.GetTaskControls(wtc.WorktaskId);
-                    bool notable=true;
-                    for(int i=0;i<ctrlTable.Rows.Count;i++)
-                    {
-                        if(ctrlTable.Rows[i]["LPID"].ToString()!="节点审核")
-                        {
-                            notable = false;
-                            break;
-                        }
-                    }
-                    if (notable)
-                    {
-                        ctrlTable = WorkFlowTask.GetTaskBindTaskContent(wtc.WorktaskId);
-                        strsql = " where WorkflowId='" + workflowData.Rows[0]["WorkflowId"] + "'"
-                            + " and WorktaskId='" + ctrlTable.Rows[0]["UserControlId"] + "'"
-                              + " and WorkFlowInsId='" + workflowData.Rows[0]["WorkFlowInsId"] + "'"
-
-                              + " and RecordId='" + record.ID + "' order by Creattime desc";
-                        WF_ModleCheckTable mct = MainHelper.PlatformSqlMap.GetOne<WF_ModleCheckTable>(strsql);
-                        if (mct != null)
-                        {
-                            tp = new LP_Temple();
-                            tp.Status = "绑定节点";
-                            tp.LPID = mct.ID;
-                            tp.DocContent = mct.DocContent;
-                            return tp;
-                        }
-
-                    }
-                    else
-                    {
-                        tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(ctrlTable.Rows[0]["LPID"]);
-                        if (tp != null)
-                        {
-
-                            return tp;
-                        }
-                    }
-                }
-                else
-                {
-                     tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
-                    if (tp != null) 
-                    {
-                        iniTableRecordData(ref  tp, record, workflowData.Rows[0]["WorkflowId"].ToString(), workflowData.Rows[0]["WorkFlowInsId"].ToString());
-                        return tp;
-                    }
-                }
-            }
-
-            return null;
-
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="parentTemple"></param>
+        /// <param name="temple"></param>
         /// <param name="currRecord"></param>
         /// <param name="WorkflowId"></param>
         /// <param name="WorkFlowInsId"></param>
-        private static void iniTableRecordData(ref LP_Temple parentTemple, LP_Record currRecord, string WorkflowId,string WorkFlowInsId)
+        private static void iniTableRecordData(ref LP_Temple temple, LP_Record currRecord, string WorkflowId, string WorkFlowInsId)
         {
-            if (parentTemple != null)
+            if (temple != null)
             {
                 DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
-                dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+                dsoFramerWordControl1.FileDataGzip = temple.DocContent;
                 IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
-                    " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + WorkflowId + "' and WorkFlowInsId='" + WorkFlowInsId + "' ");
+                    " where RecordId='" + currRecord.ID + "' and UserControlId='" + temple.LPID + "' and   WorkflowId='" + WorkflowId + "' and WorkFlowInsId='" + WorkFlowInsId + "' ");
                 Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
                 Excel.Worksheet xx;
                 ExcelAccess ea = new ExcelAccess();
@@ -478,8 +482,109 @@ namespace Ebada.Scgl.WFlow
                     ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
 
                 }
+                dsoFramerWordControl1.FileSave();
+                temple.DocContent = dsoFramerWordControl1.FileDataGzip;
+
             }
         }
+        /// <summary>
+        /// 获得流程的输入的节点关联的表单
+        /// </summary>
+        /// <param name="record"></param>
+        /// <param name="workflowId"></param>
+        /// <param name="workFlowInsId"></param>
+        /// <param name="worktaskId"></param>
+        /// <returns></returns>
+        public static LP_Temple GetWorkTaskTemple(LP_Record record, string workflowId, string workFlowInsId, string worktaskId)
+        {
+            LP_Temple tp = null;
+            string strsql = "";
+            WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + workflowId
+                + "' and WorktaskId='" + worktaskId + "'");
+            if (wtc == null)
+            {
+                return null;
+            }
+            if (wtc.ControlType == "绑定节点")
+            {
+                DataTable ctrlTable = WorkFlowTask.GetTaskControls(wtc.WorktaskId);
+                bool notable = true;
+                for (int i = 0; i < ctrlTable.Rows.Count; i++)
+                {
+                    if (ctrlTable.Rows[i]["LPID"].ToString() != "节点审核")
+                    {
+                        notable = false;
+                        break;
+                    }
+                }
+                if (notable)
+                {
+                    ctrlTable = WorkFlowTask.GetTaskBindTaskContent(wtc.WorktaskId);
+                    strsql = " where WorkflowId='" + workflowId + "'"
+                        + " and WorktaskId='" + ctrlTable.Rows[0]["UserControlId"] + "'"
+                          + " and WorkFlowInsId='" + workFlowInsId + "'"
+
+                          + " and RecordId='" + record.ID + "' order by Creattime desc";
+                    WF_ModleCheckTable mct = MainHelper.PlatformSqlMap.GetOne<WF_ModleCheckTable>(strsql);
+                    if (mct != null)
+                    {
+                        tp = new LP_Temple();
+                        tp.Status = "节点审核";
+                        tp.LPID = mct.ID;
+                        tp.DocContent = mct.DocContent;
+                        return tp;
+                    }
+
+                }//是节点审核
+                else
+                {
+                    
+                    tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(ctrlTable.Rows[0]["LPID"]);
+                    if (tp != null)
+                    {
+                         /***
+                         * 绑定的节点是表单，则把它的字段值填上
+                         * 
+                         * **/
+                        iniTableRecordData(ref  tp, record, workflowId, workFlowInsId);
+                        return tp;
+                    }
+                }//是表单
+            }//绑定节点
+            else
+            {
+                tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
+                if (tp != null)
+                {
+                    
+                    return tp;
+                }
+            }//非绑定节点
+            return null;
+        }
+        /// <summary>
+        /// 获得流程的输入的节点关联的表单
+        /// </summary>
+        /// <param name="workflowData">流程信息列表</param>
+
+        /// <returns>关联的表单</returns>
+
+        public static LP_Temple GetWorkTaskTemple(DataTable workflowData,LP_Record record)
+        {
+           
+            if (workflowData.Rows.Count > 0)
+            {
+
+                return GetWorkTaskTemple(record, workflowData.Rows[0]["WorkflowId"].ToString(),
+                    workflowData.Rows[0]["WorkFlowInsId"].ToString(),
+                    workflowData.Rows[0]["WorktaskId"].ToString());
+            }
+
+            return null;
+
+
+        }
+   
         /// <summary>
         /// 
         /// </summary>

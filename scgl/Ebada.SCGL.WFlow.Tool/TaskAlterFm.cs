@@ -334,6 +334,8 @@ namespace Ebada.SCGL.WFlow.Tool
             this.cbxAssign = new System.Windows.Forms.CheckBox();
             this.cbxbindTask = new System.Windows.Forms.CheckBox();
             this.cbxbindTable = new System.Windows.Forms.CheckBox();
+            this.cbxTaskAllExplore = new System.Windows.Forms.CheckBox();
+            this.cbxTaskExplore = new System.Windows.Forms.CheckBox();
             this.cbxReturn = new System.Windows.Forms.CheckBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -443,8 +445,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.contextMenu2 = new System.Windows.Forms.ContextMenu();
             this.contextMenu3 = new System.Windows.Forms.ContextMenu();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
-            this.cbxTaskExplore = new System.Windows.Forms.CheckBox();
-            this.cbxTaskAllExplore = new System.Windows.Forms.CheckBox();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -499,20 +499,20 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // plclassBottom
             // 
-            this.plclassBottom.Location = new System.Drawing.Point(0, 482);
-            this.plclassBottom.Size = new System.Drawing.Size(550, 47);
+            this.plclassBottom.Location = new System.Drawing.Point(0, 491);
+            this.plclassBottom.Size = new System.Drawing.Size(550, 38);
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(374, 12);
+            this.btnSave.Location = new System.Drawing.Point(374, 3);
             this.btnSave.Text = "确定(&O)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClose.Location = new System.Drawing.Point(466, 12);
+            this.btnClose.Location = new System.Drawing.Point(466, 3);
             this.btnClose.Text = "取消(&C)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -989,7 +989,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabControl1.Location = new System.Drawing.Point(9, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(536, 479);
+            this.tabControl1.Size = new System.Drawing.Size(536, 491);
             this.tabControl1.TabIndex = 19;
             // 
             // tabPage1
@@ -1298,6 +1298,26 @@ namespace Ebada.SCGL.WFlow.Tool
             this.cbxbindTable.Text = "关联流程内本表单的相关数据";
             this.cbxbindTable.UseVisualStyleBackColor = true;
             // 
+            // cbxTaskAllExplore
+            // 
+            this.cbxTaskAllExplore.AutoSize = true;
+            this.cbxTaskAllExplore.Location = new System.Drawing.Point(35, 99);
+            this.cbxTaskAllExplore.Name = "cbxTaskAllExplore";
+            this.cbxTaskAllExplore.Size = new System.Drawing.Size(108, 16);
+            this.cbxTaskAllExplore.TabIndex = 0;
+            this.cbxTaskAllExplore.Text = "允许所有人导出";
+            this.cbxTaskAllExplore.UseVisualStyleBackColor = true;
+            // 
+            // cbxTaskExplore
+            // 
+            this.cbxTaskExplore.AutoSize = true;
+            this.cbxTaskExplore.Location = new System.Drawing.Point(35, 77);
+            this.cbxTaskExplore.Name = "cbxTaskExplore";
+            this.cbxTaskExplore.Size = new System.Drawing.Size(72, 16);
+            this.cbxTaskExplore.TabIndex = 0;
+            this.cbxTaskExplore.Text = "允许导出";
+            this.cbxTaskExplore.UseVisualStyleBackColor = true;
+            // 
             // cbxReturn
             // 
             this.cbxReturn.AutoSize = true;
@@ -1310,6 +1330,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.cbxRiZhi);
             this.tabPage7.Controls.Add(this.groupBox11);
             this.tabPage7.Controls.Add(this.groupBox10);
             this.tabPage7.Controls.Add(this.groupBox9);
@@ -1317,14 +1338,13 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage7.Location = new System.Drawing.Point(4, 21);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(528, 454);
+            this.tabPage7.Size = new System.Drawing.Size(528, 466);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "日志功能";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.cbxRiZhi);
             this.groupBox11.Controls.Add(this.tetWorkSQL);
             this.groupBox11.Controls.Add(this.cbxWorkDbTableColumns);
             this.groupBox11.Controls.Add(this.cbxWorkDbTable);
@@ -1345,7 +1365,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox11.Controls.Add(this.labelControl2);
             this.groupBox11.Controls.Add(this.rbnWorkExcel);
             this.groupBox11.Controls.Add(this.rbnWorkTable);
-            this.groupBox11.Location = new System.Drawing.Point(9, 12);
+            this.groupBox11.Location = new System.Drawing.Point(14, 25);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(509, 111);
             this.groupBox11.TabIndex = 27;
@@ -1354,7 +1374,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // cbxRiZhi
             // 
             this.cbxRiZhi.AutoSize = true;
-            this.cbxRiZhi.Location = new System.Drawing.Point(3, -6);
+            this.cbxRiZhi.Location = new System.Drawing.Point(10, 10);
             this.cbxRiZhi.Name = "cbxRiZhi";
             this.cbxRiZhi.Size = new System.Drawing.Size(72, 16);
             this.cbxRiZhi.TabIndex = 28;
@@ -1363,7 +1383,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // tetWorkSQL
             // 
-            this.tetWorkSQL.Location = new System.Drawing.Point(406, 84);
+            this.tetWorkSQL.Location = new System.Drawing.Point(405, 82);
             this.tetWorkSQL.Name = "tetWorkSQL";
             this.tetWorkSQL.Size = new System.Drawing.Size(100, 27);
             this.tetWorkSQL.TabIndex = 42;
@@ -1382,7 +1402,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.cbxWorkDbTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDbTable.FormattingEnabled = true;
-            this.cbxWorkDbTable.Location = new System.Drawing.Point(406, 36);
+            this.cbxWorkDbTable.Location = new System.Drawing.Point(405, 35);
             this.cbxWorkDbTable.Name = "cbxWorkDbTable";
             this.cbxWorkDbTable.Size = new System.Drawing.Size(99, 20);
             this.cbxWorkDbTable.TabIndex = 41;
@@ -1560,15 +1580,15 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox10.Controls.Add(this.labelControl8);
             this.groupBox10.Controls.Add(this.rbnProjectExcel);
             this.groupBox10.Controls.Add(this.rbnProjectTable);
-            this.groupBox10.Location = new System.Drawing.Point(13, 120);
+            this.groupBox10.Location = new System.Drawing.Point(13, 129);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(510, 97);
+            this.groupBox10.Size = new System.Drawing.Size(510, 102);
             this.groupBox10.TabIndex = 26;
             this.groupBox10.TabStop = false;
             // 
             // tetProjectSQL
             // 
-            this.tetProjectSQL.Location = new System.Drawing.Point(405, 73);
+            this.tetProjectSQL.Location = new System.Drawing.Point(408, 72);
             this.tetProjectSQL.Name = "tetProjectSQL";
             this.tetProjectSQL.Size = new System.Drawing.Size(100, 27);
             this.tetProjectSQL.TabIndex = 47;
@@ -1765,9 +1785,9 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox9.Controls.Add(this.labelControl13);
             this.groupBox9.Controls.Add(this.rbnCharManExcel);
             this.groupBox9.Controls.Add(this.rbnCharManTable);
-            this.groupBox9.Location = new System.Drawing.Point(13, 220);
+            this.groupBox9.Location = new System.Drawing.Point(13, 228);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(509, 105);
+            this.groupBox9.Size = new System.Drawing.Size(509, 114);
             this.groupBox9.TabIndex = 25;
             this.groupBox9.TabStop = false;
             // 
@@ -1970,15 +1990,15 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox8.Controls.Add(this.labelControl18);
             this.groupBox8.Controls.Add(this.rbnAttendManExcel);
             this.groupBox8.Controls.Add(this.rbnAttendManTable);
-            this.groupBox8.Location = new System.Drawing.Point(13, 325);
+            this.groupBox8.Location = new System.Drawing.Point(13, 340);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(510, 118);
+            this.groupBox8.Size = new System.Drawing.Size(510, 114);
             this.groupBox8.TabIndex = 24;
             this.groupBox8.TabStop = false;
             // 
             // tetAttendManSQL
             // 
-            this.tetAttendManSQL.Location = new System.Drawing.Point(403, 86);
+            this.tetAttendManSQL.Location = new System.Drawing.Point(404, 84);
             this.tetAttendManSQL.Name = "tetAttendManSQL";
             this.tetAttendManSQL.Size = new System.Drawing.Size(100, 25);
             this.tetAttendManSQL.TabIndex = 52;
@@ -2357,26 +2377,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.menuItem7.Index = 0;
             this.menuItem7.Text = "删除";
             // 
-            // cbxTaskExplore
-            // 
-            this.cbxTaskExplore.AutoSize = true;
-            this.cbxTaskExplore.Location = new System.Drawing.Point(35, 77);
-            this.cbxTaskExplore.Name = "cbxTaskExplore";
-            this.cbxTaskExplore.Size = new System.Drawing.Size(72, 16);
-            this.cbxTaskExplore.TabIndex = 0;
-            this.cbxTaskExplore.Text = "允许导出";
-            this.cbxTaskExplore.UseVisualStyleBackColor = true;
-            // 
-            // cbxTaskAllExplore
-            // 
-            this.cbxTaskAllExplore.AutoSize = true;
-            this.cbxTaskAllExplore.Location = new System.Drawing.Point(35, 99);
-            this.cbxTaskAllExplore.Name = "cbxTaskAllExplore";
-            this.cbxTaskAllExplore.Size = new System.Drawing.Size(108, 16);
-            this.cbxTaskAllExplore.TabIndex = 0;
-            this.cbxTaskAllExplore.Text = "允许所有人导出";
-            this.cbxTaskAllExplore.UseVisualStyleBackColor = true;
-            // 
             // fmTaskAlter
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -2410,6 +2410,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).EndInit();
@@ -2886,7 +2887,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private void iniBindTask()
         {
             Hashtable hs = new Hashtable();
-            GetFormTask(NowTask.TaskId,NowTask.WorkFlowId,ref hs);
+            GetPreviousTask(NowTask.TaskId, NowTask.WorkFlowId, ref hs);
             ArrayList akeys=new ArrayList(hs.Keys);
             string taskcaption = "";
             for (int i = 0; i < akeys.Count; i++)
@@ -2919,7 +2920,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
             }
         }
-        private void GetFormTask(string taskid, string workFlowId, ref Hashtable taskht)
+        private void GetPreviousTask(string taskid, string workFlowId, ref Hashtable taskht)
         {
             
             string tmpStr = " where  EndTaskId='" + taskid + "' and WorkFlowId='" + workFlowId + "'";
@@ -2928,7 +2929,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 if (!taskht.ContainsKey(tl.StartTaskId))
                 taskht.Add(tl.StartTaskId, tl.startTaskCaption);
-                GetFormTask(tl.StartTaskId, workFlowId, ref  taskht);
+                GetPreviousTask(tl.StartTaskId, workFlowId, ref  taskht);
             }
             
         }
