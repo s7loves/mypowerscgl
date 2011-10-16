@@ -627,6 +627,11 @@ namespace Ebada.Scgl.Lpgl {
 
                 }
             }
+            if (currRecord.ID.IndexOf("N") > -1)
+            {
+                MsgBox.ShowTipMessageBox("此记录有新模块创建，请使用升级模块操作!");
+                return;
+            }
             if (currRecord.Status != "存档")
             {
                 MsgBox.ShowTipMessageBox("安监未审核,不能导出!");
