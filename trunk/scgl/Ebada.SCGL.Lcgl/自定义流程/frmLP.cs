@@ -708,6 +708,7 @@ namespace Ebada.Scgl.Lcgl
                 wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
                 wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
                 wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                wfv.UserControlId = parentTemple.LPID;
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 list.Add(wfv);
             }

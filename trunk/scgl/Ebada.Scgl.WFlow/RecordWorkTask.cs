@@ -53,22 +53,37 @@ namespace Ebada.Scgl.WFlow
         {
             Hashtable templehs = new Hashtable();
             Hashtable hs = new Hashtable();
-            if (!hs.ContainsKey(WorkFlowData.Rows[0]["WorkTaskId"].ToString()))
-                hs.Add(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["TaskCaption"].ToString());
-            GetPreviousTask(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString(), ref hs);
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
+            if (WorkFlowData.Rows.Count > 0)
+            {
+                if (!hs.ContainsKey(WorkFlowData.Rows[0]["WorkTaskId"].ToString()))
+                    hs.Add(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["TaskCaption"].ToString());
+                GetPreviousTask(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), wf[0].WorkFlowId, ref hs);
+            }
+            else if (currRecord.Status == "存档")
+            {
+                
+                if (wf.Count > 0)
+                {
+                    IList<WF_WorkTask> tasklist = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where TaskTypeId='1' and WorkFlowId='" + wf[0].WorkFlowId + "'");
+                    if (!hs.ContainsKey(tasklist[0].WorkTaskId))
+                        hs.Add(tasklist[0].WorkTaskId, tasklist[0].TaskCaption);
+                    GetPreviousTask(tasklist[0].WorkTaskId, tasklist[0].TaskCaption, ref hs);
+                }
+            }
             ArrayList akeys = new ArrayList(hs.Keys);
             for (int i = 0; i < akeys.Count; i++)
             {
-                if (!RecordWorkTask.HaveWorkFlowAllExploreRole(akeys[i].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
+                if (!RecordWorkTask.HaveWorkFlowAllExploreRole(akeys[i].ToString(), wf[0].WorkFlowId))
                 {
-                  
-                    if (!RecordWorkTask.HaveWorkFlowExploreRole(akeys[i].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
+
+                    if (!RecordWorkTask.HaveWorkFlowExploreRole(akeys[i].ToString(), wf[0].WorkFlowId))
                     {
                         continue;
                     }
 
                 }
-               LP_Temple temp=  GetWorkTaskTemple(currRecord, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkFlowInsId"].ToString(),akeys[i].ToString());
+                LP_Temple temp = GetWorkTaskTemple(currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, akeys[i].ToString());
                if (temp !=null&& temp.Status == "节点审核")
                {
                    if (!templehs.Contains(temp)) templehs.Add(temp, akeys[i].ToString());

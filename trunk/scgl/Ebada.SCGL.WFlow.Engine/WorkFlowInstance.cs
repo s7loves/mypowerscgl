@@ -291,6 +291,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 sqlstr = sqlstr + "  order by taskStartTime desc ";
                 Console.WriteLine(sqlstr);
                 IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewListValue", sqlstr);
+                
                 if (li.Count == 0)
                 {
                     DataTable dt = new DataTable();
