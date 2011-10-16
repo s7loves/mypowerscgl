@@ -171,6 +171,12 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (cbxFuJian.Checked)
                 {
                     WorkFlowTask.SetTaskPower(WorkConst.WorkTask_SPYJ, (nowTreeNode as WorkFlowTreeNode).NodeId, (nowTreeNode as WorkFlowTreeNode).NodeId);
+                    Thread.Sleep(new TimeSpan(100000));//0.1∫¡√Î
+                }
+                if (cbxExplore.Checked)
+                {
+                    WorkFlowTask.SetTaskPower(WorkConst.WorkTask_FlowEndExplore, (nowTreeNode as WorkFlowTreeNode).NodeId, (nowTreeNode as WorkFlowTreeNode).NodeId);
+                    Thread.Sleep(new TimeSpan(100000));//0.1∫¡√Î
                 }
                
             }

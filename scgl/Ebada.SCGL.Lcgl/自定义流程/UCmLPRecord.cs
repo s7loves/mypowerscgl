@@ -779,6 +779,7 @@ namespace Ebada.Scgl.Lcgl {
                 }
             }
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
             if (currRecord.Status != "存档")
             {
                 
@@ -805,7 +806,7 @@ namespace Ebada.Scgl.Lcgl {
                     return;
                 }
             }
-            else if (!RecordWorkTask.HaveRunFuJianRole(currRecord.Kind))
+            else if (!RecordWorkTask.HaveFlowEndExploreRole(currRecord.Kind))
             {
                 MsgBox.ShowTipMessageBox("流程结束后不允许导出,导出失败!");
                 return;
@@ -883,6 +884,7 @@ namespace Ebada.Scgl.Lcgl {
                                     LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(templehs[akeys[i]]);
                                     if (taskTemple != null)
                                     {
+                                        RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId);
                                         ds1.FileDataGzip = taskTemple.DocContent;
                                         //ds1.FileOpen(ds1.FileName);
                                         ds1.FileSave(CheckFileName(fname + taskTemple.CellName), true);
@@ -931,7 +933,8 @@ namespace Ebada.Scgl.Lcgl {
                             LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(akeys[0]);
                             if (taskTemple != null)
                             {
-                                RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, dt.Rows[0]["WorkflowId"].ToString(),dt.Rows[0]["WorkFlowInsId"].ToString());
+
+                                RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId );
                                 ds1.FileDataGzip = taskTemple.DocContent;
                                 ds1.FileSave(fname, true);
                                 ds1.FileClose();
