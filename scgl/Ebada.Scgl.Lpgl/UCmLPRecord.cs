@@ -365,6 +365,11 @@ namespace Ebada.Scgl.Lpgl {
                 }
             }
             frm.CurrRecord = currRecord;
+            if (currRecord.ID.IndexOf("N") > -1)
+            {
+                MsgBox.ShowWarningMessageBox("此记录有新模块创建，请使用升级模块操作!");
+                return;
+            }
             if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
             frm.RecordWorkFlowData = dt;

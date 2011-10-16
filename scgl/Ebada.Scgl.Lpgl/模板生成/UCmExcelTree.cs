@@ -108,7 +108,7 @@ namespace Ebada.Scgl.Lpgl
         /// </summary>
         public void InitData() {
             //treeViewOperator.RefreshData("where parentid = '0' order by cellname");
-            treeViewOperator.RefreshData("where  ParentID not in (select LPID from LP_Temple where 1=1) order by cellname");
+            treeViewOperator.RefreshData("where  ParentID not in (select LPID from LP_Temple where 1=1) and CellName like '%电力线路%' order by cellname");//限制为两票
         }
         public bool BarManagerVisible
         {            

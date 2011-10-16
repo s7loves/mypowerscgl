@@ -254,11 +254,18 @@ namespace Ebada.Scgl.Lcgl
             else if (status == "edit" && currRecord.DocContent != null )
             {
                
-                    InitContorl();             
-                //this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
-                if (parentTemple!=null) this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
-                else
-                    this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                    InitContorl();
+                    if (currRecord.ID.IndexOf("N") == -1)
+                    {
+                        this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                    }
+                    else
+                    {
+                        if (parentTemple != null) this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+                        else
+                            this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                    }
+                
 
 
                
@@ -794,7 +801,7 @@ namespace Ebada.Scgl.Lcgl
                     //ContentChanged(ctrl);
                 }
             }
-            if (parentTemple != null)
+            if (parentTemple != null&& currRecord.ID.IndexOf("N") > -1)
             {
                 IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                     " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + WorkFlowData.Rows[0]["WorkflowId"] + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "' ");
