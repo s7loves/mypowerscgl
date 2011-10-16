@@ -27,5 +27,14 @@ namespace Ebada.Scgl.Gis {
                 return lineOperation;
             }
         }
+        private OperationPoint operationPoint;
+
+        internal OperationPoint OperationPoint {
+            get {
+                if (operationPoint == null)
+                    operationPoint = new OperationPoint(mapcontrol);
+                return operationPoint;
+            }
+        }
     }
 }

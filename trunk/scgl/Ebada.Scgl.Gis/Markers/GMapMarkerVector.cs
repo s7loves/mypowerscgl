@@ -8,7 +8,10 @@ using GMap.NET;
 namespace Ebada.Scgl.Gis.Markers {
 
     [Serializable]
-    public class GMapMarkerVector : GMapMarker {
+    public class GMapMarkerVector : GMapMarker,ICloneable {
+
+        public float? Bearing;
+
         public System.Drawing.Size SizeSt = new Size(8, 8);
         public Pen Pen;
         private List<GMapMarkerVector> items;
@@ -59,8 +62,16 @@ namespace Ebada.Scgl.Gis.Markers {
 
 
         internal virtual void Update() {
-            if (this.Overlay is LineOverlay)
-                (this.Overlay as LineOverlay).Update(this);
+            if (this.Overlay is IUpdateable)
+                (this.Overlay as IUpdateable).Update(this);
         }
+
+        #region ICloneable 成员
+
+        public object Clone() {
+            return null;
+        }
+
+        #endregion
     }
 }
