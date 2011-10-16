@@ -349,6 +349,7 @@ namespace Ebada.Scgl.Lcgl {
                 return;
             }
             LP_Record lpr = new LP_Record();
+            lpr.ID = "N" + lpr.CreateID();
             lpr.Kind = strKind;
              lpr.CreateTime = DateTime.Now.ToString();
             if (obj is frmLP)

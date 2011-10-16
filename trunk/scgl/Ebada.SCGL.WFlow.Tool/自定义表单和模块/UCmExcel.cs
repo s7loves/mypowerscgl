@@ -62,7 +62,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
             }
 
-            if(e.Value.DocContent.Length==0)e.Value.DocContent = parentObj.DocContent;
+            if (e.Value.DocContent==null||e.Value.DocContent.Length == 0) e.Value.DocContent = parentObj.DocContent;
         }
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<LP_Temple> e) {
             //if (e.Value.Password.Length <= 12) {
