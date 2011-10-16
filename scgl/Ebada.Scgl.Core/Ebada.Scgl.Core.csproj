@@ -146,6 +146,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SelectorHelper.cs" />
+    <Compile Include="Tween.cs" />
     <Compile Include="UCPJ_dykFind.cs">
       <SubType>UserControl</SubType>
     </Compile>

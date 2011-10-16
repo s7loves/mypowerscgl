@@ -15,18 +15,21 @@ namespace Ebada.Scgl.Gis {
         protected GMapMarker selectedMarker;
         protected Point beginPoint;
         protected Point localPoint;
-        protected GMapOverlay routes;
+        private GMapOverlay curOverlay;        
         protected Boolean canAddMarker;
         protected Boolean canEditMarker;
         protected GMapMarker updateMarker;
         protected ContextMenu mMenu;
         public OperationBase(RMap mapcontrol){
             rMap1 = mapcontrol;
-            //routes = new GMapOverlay(rMap1, "Line");
             mMenu = CreatePopuMenu();
             canEditMarker = true;
         }
         #region 属性
+        protected GMapOverlay CurOverlay {
+            get { return curOverlay; }
+            set { curOverlay = value; }
+        }
         public Boolean CanEditMarker {
             get { return canEditMarker; }
             set { canEditMarker = value; }
@@ -61,9 +64,6 @@ namespace Ebada.Scgl.Gis {
                 beginPoint = new Point(e.X, e.Y);
                 if (currentMarker != null && currentMarker.IsMouseOver) {
                     selectedMarker = currentMarker;
-                    GPoint p= rMap1.FromLatLngToLocal(currentMarker.Position);
-                    localPoint = new Point(p.X, p.Y);
-                    routes = currentMarker.Overlay;
                 } else
                     selectedMarker = null;
             } else if (e.Button == MouseButtons.Right) {

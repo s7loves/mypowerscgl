@@ -8,14 +8,11 @@ using GMap.NET;
 namespace Ebada.Scgl.Gis.Markers {
     [Serializable]
     internal class GMapMarkerImage : GMapMarkerVector {
-        public float? Bearing;
-
-        public System.Drawing.Size SizeSt = new Size(14, 14);
         public Bitmap Image;
         public Bitmap ImageShadow;
         public GMapMarkerImage(PointLatLng p)
             : base(p) {
-            Size = SizeSt;
+            Size = new Size(14, 14);
             //Offset = new Point(-6, -6);
         }
 

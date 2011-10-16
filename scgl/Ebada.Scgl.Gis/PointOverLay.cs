@@ -8,7 +8,7 @@ using Ebada.Scgl.Sbgl;
 using System.Data;
 using Ebada.Scgl.Gis.Markers;
 namespace Ebada.Scgl.Gis {
-    public class PointOverLay :GMapOverlay{
+    public class PointOverLay : GMapOverlay, IUpdateable {
 
         private GMapControl control;
         public bool AllowEdit;

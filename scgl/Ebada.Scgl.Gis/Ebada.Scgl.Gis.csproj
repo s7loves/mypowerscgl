@@ -159,6 +159,7 @@
       <DependentUpon>frmMapView.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\MapBuilder.cs" />
+    <Compile Include="IUpdateable.cs" />
     <Compile Include="LineOverLay.cs" />
     <Compile Include="LineRoute.cs" />
     <Compile Include="Markers\GMapMarkerVector.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Operation\OperationBase.cs" />
     <Compile Include="Operation\OperationDistance.cs" />
     <Compile Include="Operation\OperationInstance.cs" />
+    <Compile Include="Operation\OperationPoint.cs" />
     <Compile Include="Provider\GoogleChinaHybridMap.cs" />
     <Compile Include="IMapView.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

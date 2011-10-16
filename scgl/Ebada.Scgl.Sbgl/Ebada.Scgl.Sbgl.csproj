@@ -128,6 +128,12 @@
     <Compile Include="frmgtsbEdit.Designer.cs">
       <DependentUpon>frmgtsbEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmjckyEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmjckyEdit.Designer.cs">
+      <DependentUpon>frmjckyEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmkgEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +267,12 @@
     <Compile Include="UCPS_gtM.Designer.cs">
       <DependentUpon>UCPS_gtM.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPS_jcky.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_jcky.Designer.cs">
+      <DependentUpon>UCPS_jcky.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmbyqxhEdit.resx">
@@ -281,6 +293,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmgtsbEdit.resx">
       <DependentUpon>frmgtsbEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmjckyEdit.resx">
+      <DependentUpon>frmjckyEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmkgEdit.resx">
@@ -369,6 +385,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCPS_gtM.resx">
       <DependentUpon>UCPS_gtM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_jcky.resx">
+      <DependentUpon>UCPS_jcky.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
