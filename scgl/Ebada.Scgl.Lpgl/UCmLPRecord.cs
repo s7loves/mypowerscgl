@@ -367,7 +367,7 @@ namespace Ebada.Scgl.Lpgl {
             frm.CurrRecord = currRecord;
             if (currRecord.ID.IndexOf("N") > -1)
             {
-                MsgBox.ShowWarningMessageBox("此记录有新模块创建，请使用升级模块操作!");
+                MsgBox.ShowWarningMessageBox("此记录由新模块创建，请使用新模块操作!");
                 return;
             }
             if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
@@ -629,7 +629,7 @@ namespace Ebada.Scgl.Lpgl {
             }
             if (currRecord.ID.IndexOf("N") > -1)
             {
-                MsgBox.ShowTipMessageBox("此记录有新模块创建，请使用升级模块操作!");
+                MsgBox.ShowTipMessageBox("此记录由新模块创建，请使用新模块操作!");
                 return;
             }
             if (currRecord.Status != "存档")
