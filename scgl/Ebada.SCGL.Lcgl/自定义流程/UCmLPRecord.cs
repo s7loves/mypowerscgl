@@ -806,13 +806,43 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,导出失败!");
                     return;
                 }
-            }
+            }//流程没结束
             else if (!RecordWorkTask.HaveFlowEndExploreRole(currRecord.Kind))
             {
                 MsgBox.ShowTipMessageBox("流程结束后不允许导出,导出失败!");
                 return;
-            
-            }
+
+            }//流程结束
+            if (currRecord.ID.IndexOf("N") == -1)
+            { 
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                string fname = "";
+                saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    fname = saveFileDialog1.FileName;
+                    try
+                    {
+
+                        DSOFramerControl ds1 = new DSOFramerControl();
+
+                        ds1.FileDataGzip = currRecord.DocContent;
+                        ds1.FileSave(fname, true);
+
+                        if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
+                            return;
+
+                        System.Diagnostics.Process.Start(fname);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
+
+                    }
+                }
+                return;
+            }//是旧记录
             Hashtable templehs = RecordWorkTask.GetExploerLP_TempleList(dt, currRecord);
 
             if (templehs.Count > 1)
