@@ -111,6 +111,18 @@
     <Compile Include="自定义流程\DownFileControl.Designer.cs">
       <DependentUpon>DownFileControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="自定义流程\UCmLPRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\UCmLPRecord.designer.cs">
+      <DependentUpon>UCmLPRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\UCmModelUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\UCmModelUI.designer.cs">
+      <DependentUpon>UCmModelUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="自定义流程\模板生成\UCmExcelTree.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -258,18 +270,6 @@
       <DependentUpon>LPListFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="自定义流程\StringHelper.cs" />
-    <Compile Include="自定义流程\UCmLPRecord.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="自定义流程\UCmLPRecord.Designer.cs">
-      <DependentUpon>UCmLPRecord.cs</DependentUpon>
-    </Compile>
-    <Compile Include="自定义流程\UCmModelUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="自定义流程\UCmModelUI.Designer.cs">
-      <DependentUpon>UCmModelUI.cs</DependentUpon>
-    </Compile>
     <Compile Include="自定义流程\uc_gridcontrol.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -386,6 +386,12 @@
     <EmbeddedResource Include="自定义流程\DownFileControl.resx">
       <DependentUpon>DownFileControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\UCmLPRecord.resx">
+      <DependentUpon>UCmLPRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\UCmModelUI.resx">
+      <DependentUpon>UCmModelUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\模板生成\UCmExcelTree.resx">
       <DependentUpon>UCmExcelTree.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -469,14 +475,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\LPListFrm.resx">
       <DependentUpon>LPListFrm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="自定义流程\UCmLPRecord.resx">
-      <DependentUpon>UCmLPRecord.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="自定义流程\UCmModelUI.resx">
-      <DependentUpon>UCmModelUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\uc_gridcontrol.resx">
