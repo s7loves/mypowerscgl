@@ -3024,6 +3024,7 @@ namespace Ebada.SCGL.WFlow.Tool
             if (cbxbindTask.Checked)
             {
                 WorkFlowTask.SetTaskPower(WorkConst.WorkTask_BindTask, NowTask.WorkFlowId, NowTask.TaskId);
+                if (comTaskboBox.SelectedItem!=null)
                 WorkFlowTask.SetTaskBindTaskContent(((ListItem)comTaskboBox.SelectedItem).ID, NowTask.WorkFlowId, NowTask.TaskId);
             }
             if (cbxAssign.Checked)

@@ -441,7 +441,7 @@ namespace Ebada.Scgl.WFlow
 
             return WorkFlowTask.CheckTaskPowerExit(workflowData.Rows[0]["WorkflowId"].ToString(), workflowData.Rows[0]["WorktaskId"].ToString(), "工作日志");
         }
-        /// <summary>
+         /// <summary>
         /// 关联表单的字段值
         /// </summary>
         /// <param name="temple"></param>
@@ -449,6 +449,18 @@ namespace Ebada.Scgl.WFlow
         /// <param name="WorkflowId"></param>
         /// <param name="WorkFlowInsId"></param>
         public static void iniTableRecordData(ref LP_Temple temple, LP_Record currRecord, string WorkflowId, string WorkFlowInsId)
+        { 
+            iniTableRecordData(ref temple,  currRecord,  WorkflowId,  WorkFlowInsId,false);
+        }
+        /// <summary>
+        /// 关联表单的字段值
+        /// </summary>
+        /// <param name="temple"></param>
+        /// <param name="currRecord"></param>
+        /// <param name="WorkflowId"></param>
+        /// <param name="WorkFlowInsId"></param>
+        /// <param name="isExplorerCall"></param>
+        public static void iniTableRecordData(ref LP_Temple temple, LP_Record currRecord, string WorkflowId, string WorkFlowInsId, bool isExplorerCall)
         {
             if (temple != null)
             {
@@ -476,6 +488,18 @@ namespace Ebada.Scgl.WFlow
                     {
 
                         continue;
+                    }
+                    if (isExplorerCall)
+                    {
+
+                        LP_Temple field = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tfvli[i].FieldId);
+                        if (field != null)
+                        {
+                            if (field.isExplorer==0)
+                            {
+                                continue;
+                            }
+                        }
                     }
                     if (activeSheetName != tfvli[i].ExcelSheetName)
                     {
