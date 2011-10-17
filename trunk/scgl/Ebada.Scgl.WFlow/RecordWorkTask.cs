@@ -495,7 +495,7 @@ namespace Ebada.Scgl.WFlow
                         LP_Temple field = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tfvli[i].FieldId);
                         if (field != null)
                         {
-                            if (field.isExplorer==0)
+                            if (field.isExplorer==1)
                             {
                                 continue;
                             }
