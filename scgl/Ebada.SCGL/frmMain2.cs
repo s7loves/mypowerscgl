@@ -73,13 +73,14 @@ namespace Ebada.SCGL {
                 return;
             }
             object instance = null;//模块接口
+            barEditItem1.Visibility = BarItemVisibility.Always;
             this.Cursor = Cursors.WaitCursor;
             try {
                 object result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
                 if (result is UserControl) {
-                    instance = showControl(result as UserControl,obj.Modu_ID);
+                    instance = showControl(result as UserControl, obj.Modu_ID);
                 }
-                if (instance is Form) {
+                if (instance is Form){
                     Form fb = instance as Form;
                     openFormList.Add(obj.Modu_ID, fb);
                     fb.Text = obj.ModuName;
@@ -87,13 +88,14 @@ namespace Ebada.SCGL {
                     Dictionary<string, object> dic = new Dictionary<string, object>();
                     dic.Add("Modu_ID", obj.Modu_ID);
                     fb.Tag = dic;
-
                 }
                 this.Cursor = Cursors.Default;
 
             } catch (Exception err) {
                 this.Cursor = Cursors.Default;
                 MsgBox.ShowException(err);
+            } finally {
+                barEditItem1.Visibility = BarItemVisibility.Never;
             }
         }
         /// <summary>
@@ -172,7 +174,21 @@ namespace Ebada.SCGL {
             base.OnShown(e);
             MainHelper.MainForm = this;
             InitSkins();
+            MethodInvoker m = delegate() {
+                mModule module = new mModule();
+                module.ModuTypes = "Ebada.Scgl.Gis.frmMap";
+                module.ModuName = "首页";
+                module.AssemblyFileName = "Ebada.Scgl.Gis.dll";
+                OpenModule(module);
+            };
+            
+            
             btLogin.PerformClick();
+            Application.DoEvents();
+            try {
+                BeginInvoke(m);
+            } catch {
+            }
         }
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e) {
             ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence"); InitMenu("");
