@@ -915,7 +915,7 @@ namespace Ebada.Scgl.Lcgl {
                                     LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(templehs[akeys[i]]);
                                     if (taskTemple != null)
                                     {
-                                        RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId);
+                                        RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId,true);
                                         ds1.FileDataGzip = taskTemple.DocContent;
                                         //ds1.FileOpen(ds1.FileName);
                                         ds1.FileSave(CheckFileName(fname + taskTemple.CellName), true);
@@ -965,7 +965,7 @@ namespace Ebada.Scgl.Lcgl {
                             if (taskTemple != null)
                             {
 
-                                RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId );
+                                RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, true);
                                 ds1.FileDataGzip = taskTemple.DocContent;
                                 ds1.FileSave(fname, true);
                                 ds1.FileClose();
