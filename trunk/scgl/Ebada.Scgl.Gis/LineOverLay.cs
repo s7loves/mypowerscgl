@@ -71,8 +71,14 @@ namespace Ebada.Scgl.Gis {
         }
 
         public void ShowDialog(GMapMarker marker, bool canEdit) { 
+            
+            frmgtEdit frm = new frmgtEdit();            
+            PS_gt gt0 = marker.Tag as PS_gt;
+            GMapMarkerVector pm = (marker as GMapMarkerVector).ParentMarker;
+            if (pm != null) {
+                gt0.gtSpan = (decimal)Math.Round(control.Manager.GetDistance(pm.Position, marker.Position)*1000, 1);
+            }
 
-            frmgtEdit frm = new frmgtEdit();
             frm.RowData = marker.Tag;
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK && canEdit) {
                 marker.Tag = frm.RowData;
