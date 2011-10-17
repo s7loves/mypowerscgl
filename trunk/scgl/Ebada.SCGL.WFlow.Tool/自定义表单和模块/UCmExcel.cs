@@ -156,7 +156,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     parentID = value;
 
                     if (!string.IsNullOrEmpty(parentID)) {
-                        str = string.Format("where parentid='{0}'", parentID);
+                        str = string.Format("where parentid='{0}' order by status", parentID);
                     }
                 }
                 gridViewOperation.RefreshData(str);
