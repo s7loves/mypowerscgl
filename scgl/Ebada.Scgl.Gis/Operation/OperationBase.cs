@@ -51,7 +51,7 @@ namespace Ebada.Scgl.Gis {
 
         }
         public virtual void MouseUp(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Left) {
+            if (e.Button == MouseButtons.Left && isMouseDown) {
                 isMouseDown = false;
                 if (updateMarker != null && updateMarker is GMapMarkerVector) {
                     (updateMarker as GMapMarkerVector).Update();
@@ -64,6 +64,9 @@ namespace Ebada.Scgl.Gis {
                 beginPoint = new Point(e.X, e.Y);
                 if (currentMarker != null && currentMarker.IsMouseOver) {
                     selectedMarker = currentMarker;
+                    GPoint p = rMap1.FromLatLngToLocal(currentMarker.Position);
+                    localPoint = new Point(p.X, p.Y);
+
                 } else
                     selectedMarker = null;
             } else if (e.Button == MouseButtons.Right) {
