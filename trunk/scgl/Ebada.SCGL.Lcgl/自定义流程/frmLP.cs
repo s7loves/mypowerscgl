@@ -271,7 +271,7 @@ namespace Ebada.Scgl.Lcgl
                
                 LoadContent();
             }
-            if ((parentTemple!=null&&parentTemple.DocContent != null) || (currRecord.DocContent != null && currRecord.DocContent.Length > 0))
+            if ((parentTemple != null && parentTemple.DocContent != null) || (currRecord!=null&&currRecord.DocContent != null && currRecord.DocContent.Length > 0))
             {
                 wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
                 
