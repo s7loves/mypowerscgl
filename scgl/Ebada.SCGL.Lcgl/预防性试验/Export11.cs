@@ -6,6 +6,7 @@ using Ebada.Scgl.Model;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections;
+using Ebada.Scgl.Core;
 namespace Ebada.Scgl.Lcgl
 {
     /// <summary>
@@ -13,7 +14,70 @@ namespace Ebada.Scgl.Lcgl
     /// 文档
     /// </summary>
     public class Export11 {
+        public static void ExportExceljhbAllSubmit(ref LP_Temple parentTemple, string cellname, string sheetname, string orgid, bool isShow)
+        {
+            DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
+            string fname = Application.StartupPath + "\\00记录模板\\预防性试验记录.xls";
+            dsoFramerWordControl1.FileOpen(fname);
+            if (parentTemple == null)
+            {
+                parentTemple = new LP_Temple();
+                parentTemple.Status = "文档生成";
+            }
+            parentTemple.DocContent = dsoFramerWordControl1.FileDataGzip;
+            dsoFramerWordControl1.FileClose();
+            dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+            ExcelAccess ex = new ExcelAccess();
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            ex.MyWorkBook = wb;
+            ex.MyExcel = wb.Application;
+            ExportExceljhbAllEx(ex, cellname, sheetname, orgid, isShow);
+            string filter = "";
+            if (orgid != "") filter = " and OrgCode='" + orgid + "'";
+            IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'" + filter + " order by xh ");
+            Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid, isShow);
+            IList<PJ_yfsyjl> byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            Export11.ExportExcelblqjhbEx(ex, byqdatalist, "变压器" + "预防性试验计划表", orgid, isShow);
+            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "变压器" + "预防性试验实施情况记录", orgid, isShow);
+            Export11.ExportExcelbyqwcqkEx(ex, byqdatalist, "变压器" + "预防性试验完成情况报表", orgid, isShow);
+
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'" + filter + " order by xh ");
+            Export11.ExportExceldlqEx(ex, byqdatalist, "断路器" + "预防性试验记录", orgid, isShow);
+            byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            Export11.ExportExceldlqjhbEx(ex, byqdatalist, "断路器" + "预防性试验计划表", orgid, isShow);
+            Export11.ExportExceldlqssqkEx(ex, byqdatalist, "断路器" + "预防性试验实施情况记录", orgid, isShow);
+            Export11.ExportExceldlqwcqkEx(ex, byqdatalist, "断路器" + "预防性试验完成情况报表", orgid, isShow);
+
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'" + filter + " order by xh ");
+            Export11.ExportExcelblqEx(ex, byqdatalist, "避雷器" + "预防性试验记录", orgid, isShow);
+            byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            Export11.ExportExcelblqjhbEx(ex, byqdatalist, "避雷器" + "预防性试验计划表", orgid, isShow);
+            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "避雷器" + "预防性试验实施情况记录", orgid, isShow);
+            Export11.ExportExcelblqwcqkEx(ex, byqdatalist, "避雷器" + "预防性试验完成情况报表", orgid, isShow);
+
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'" + filter + " order by xh ");
+            Export11.ExportExceldrqEx(ex, byqdatalist, "电容器" + "预防性试验记录", orgid, isShow);
+            byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            Export11.ExportExceldrqssqkEx(ex, byqdatalist, "电容器" + "预防性试验实施情况记录", orgid, isShow);
+            Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid, isShow);
+
+            IList<PJ_yfsyhcjl> hcdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyhcjl>("SelectPJ_yfsyhcjlList", " where  1=1 " + filter + " order by xh ");
+            Export11.ExportExcelhcEx(ex, hcdatalist, "设备维护实施记录", orgid, isShow);
+            if (parentTemple == null)
+            {
+                parentTemple = new LP_Temple();
+                parentTemple.Status = "文档生成";
+            }
+            dsoFramerWordControl1.FileSave();
+            parentTemple.DocContent = dsoFramerWordControl1.FileDataGzip;
+            dsoFramerWordControl1.FileClose();
+
+        }
         public static void ExportExceljhbAll(string cellname, string sheetname, string orgid)
+        {
+            ExportExceljhbAll(cellname, sheetname, orgid, true);
+        }
+        public static void ExportExceljhbAll(string cellname, string sheetname, string orgid,bool isShow)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -23,35 +87,34 @@ namespace Ebada.Scgl.Lcgl
             string filter="";
             if(orgid!="") filter=" and OrgCode='" + orgid + "'";
             IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'" + filter + " order by xh ");
-            Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid);
+            Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid, isShow);
             IList<PJ_yfsyjl> byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            Export11.ExportExcelblqjhbEx (ex,byqdatalist, "变压器" + "预防性试验计划表", orgid);
-            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "变压器" + "预防性试验实施情况记录", orgid);
-            Export11.ExportExcelbyqwcqkEx(ex, byqdatalist, "变压器" + "预防性试验完成情况报表", orgid);
+            Export11.ExportExcelblqjhbEx(ex, byqdatalist, "变压器" + "预防性试验计划表", orgid, isShow);
+            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "变压器" + "预防性试验实施情况记录", orgid, isShow);
+            Export11.ExportExcelbyqwcqkEx(ex, byqdatalist, "变压器" + "预防性试验完成情况报表", orgid, isShow);
 
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'" + filter + " order by xh ");
-            Export11.ExportExceldlqEx(ex, byqdatalist, "断路器" + "预防性试验记录", orgid);
+            Export11.ExportExceldlqEx(ex, byqdatalist, "断路器" + "预防性试验记录", orgid, isShow);
             byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            Export11.ExportExceldlqjhbEx(ex, byqdatalist, "断路器" + "预防性试验计划表", orgid);
-            Export11.ExportExceldlqssqkEx(ex, byqdatalist, "断路器" + "预防性试验实施情况记录", orgid);
-            Export11.ExportExceldlqwcqkEx(ex, byqdatalist, "断路器" + "预防性试验完成情况报表", orgid);
+            Export11.ExportExceldlqjhbEx(ex, byqdatalist, "断路器" + "预防性试验计划表", orgid, isShow);
+            Export11.ExportExceldlqssqkEx(ex, byqdatalist, "断路器" + "预防性试验实施情况记录", orgid, isShow);
+            Export11.ExportExceldlqwcqkEx(ex, byqdatalist, "断路器" + "预防性试验完成情况报表", orgid, isShow);
 
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'" + filter + " order by xh ");
-            Export11.ExportExcelblqEx(ex, byqdatalist, "避雷器" + "预防性试验记录", orgid);
+            Export11.ExportExcelblqEx(ex, byqdatalist, "避雷器" + "预防性试验记录", orgid, isShow);
             byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            Export11.ExportExcelblqjhbEx(ex, byqdatalist, "避雷器" + "预防性试验计划表", orgid);
-            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "避雷器" + "预防性试验实施情况记录", orgid);
-            Export11.ExportExcelblqwcqkEx(ex, byqdatalist, "避雷器" + "预防性试验完成情况报表", orgid);
+            Export11.ExportExcelblqjhbEx(ex, byqdatalist, "避雷器" + "预防性试验计划表", orgid, isShow);
+            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "避雷器" + "预防性试验实施情况记录", orgid, isShow);
+            Export11.ExportExcelblqwcqkEx(ex, byqdatalist, "避雷器" + "预防性试验完成情况报表", orgid, isShow);
 
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'" + filter + " order by xh ");
-            Export11.ExportExceldrqEx(ex, byqdatalist, "电容器" + "预防性试验记录", orgid);
+            Export11.ExportExceldrqEx(ex, byqdatalist, "电容器" + "预防性试验记录", orgid, isShow);
             byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            Export11.ExportExceldrqjhbEx(ex, byqdatalist, "电容器" + "预防性试验计划表", orgid);
-            Export11.ExportExceldrqssqkEx(ex, byqdatalist, "电容器" + "预防性试验实施情况记录", orgid);
-            Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid);
+            Export11.ExportExceldrqssqkEx(ex, byqdatalist, "电容器" + "预防性试验实施情况记录", orgid, isShow);
+            Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid, isShow);
 
             IList<PJ_yfsyhcjl> hcdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyhcjl>("SelectPJ_yfsyhcjlList", " where  1=1 " + filter + " order by xh ");
-            Export11.ExportExcelhcEx(ex, hcdatalist, "设备维护实施记录", orgid); 
+            Export11.ExportExcelhcEx(ex, hcdatalist, "设备维护实施记录", orgid, isShow); 
 
         }
         public static void ExportExcelAll(string orgid)
@@ -64,6 +127,10 @@ namespace Ebada.Scgl.Lcgl
            
         }
         public static void ExportExceljhbAllEx(ExcelAccess ex, string cellname, string sheetname, string orgid)
+        {
+            ExportExceljhbAllEx(ex, cellname, sheetname, orgid, true);
+        }
+        public static void ExportExceljhbAllEx(ExcelAccess ex, string cellname, string sheetname, string orgid,bool isShow)
         {
 
             int pagecount = 0, i = 0, j = 0, istart = 4, jstart = 1, jmax = 4, imax2 = 6, sheetindex = 0, itemp = 0,spanadd=0, spanadd2 = 0;
@@ -213,8 +280,11 @@ namespace Ebada.Scgl.Lcgl
                 }
                 spanadd=spanadd2;
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
 
         public static void ExportExcelhc(IList<PJ_yfsyhcjl> datalist, string sheetname, string orgid)
@@ -226,6 +296,10 @@ namespace Ebada.Scgl.Lcgl
             ExportExcelhcEx(ex, datalist, sheetname, orgid);
         }
         public static void ExportExcelhcEx(ExcelAccess ex, IList<PJ_yfsyhcjl> datalist, string sheetname, string orgid)
+        {
+            ExportExcelhcEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExcelhcEx(ExcelAccess ex, IList<PJ_yfsyhcjl> datalist, string sheetname, string orgid,bool isShow)
         {
 
             int pagecount = 0, i = 0, istart = 5, jstart = 1, jmax = 20, sheetindex = 0;
@@ -290,8 +364,11 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[i].Remark , istart + i % jmax, jstart + 11);
 
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
 
 
@@ -307,6 +384,11 @@ namespace Ebada.Scgl.Lcgl
             ExportExcelbyqwcqkEx(ex, datalist, sheetname, orgid);
         }
         public static void ExportExcelbyqwcqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExcelbyqwcqkEx(ex, datalist, sheetname, orgid, true);
+        
+        }
+        public static void ExportExcelbyqwcqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
             int pagecount = 0, i = 0, istart = 5, jstart = 1, jmax = 24, sheetindex = 0;
@@ -373,8 +455,11 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[i].wcRemark, istart + i % jmax, jstart + 13);
 
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void ExportExcelbyqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
@@ -385,6 +470,11 @@ namespace Ebada.Scgl.Lcgl
             ExportExcelbyqssqkEx(ex, datalist, sheetname, orgid);
         }
         public static void ExportExcelbyqssqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExcelbyqssqkEx(ex, datalist, sheetname, orgid,true);
+        
+        }
+        public static void ExportExcelbyqssqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
             int pagecount = 0, i = 0, istart = 5, jstart = 1, jmax = 24, sheetindex = 0;
@@ -449,8 +539,11 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[i].syMan , istart + i % jmax, jstart + 13);
 
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void ExportExcelbyqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
@@ -461,6 +554,10 @@ namespace Ebada.Scgl.Lcgl
             ExportExcelbyqjhbEx(ex, datalist, sheetname, orgid);
         }
         public static void ExportExcelbyqjhbEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExcelbyqjhbEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExcelbyqjhbEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
             int pagecount = 0, i = 0, istart = 5, jstart = 1, jmax = 24, sheetindex = 0;
@@ -539,7 +636,11 @@ namespace Ebada.Scgl.Lcgl
             ex.Open(fname);
             ExportExcelbyqEx(ex, datalist, sheetname, orgid);
         }
-        public static void ExportExcelbyqEx(ExcelAccess ex ,IList<PJ_yfsyjl> datalist, string sheetname,string orgid)
+        public static void ExportExcelbyqEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExcelbyqEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExcelbyqEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
             
             int pagecount = 0, i = 0, istart = 6,jstart=1,jmax=24,sheetindex=0;
@@ -600,10 +701,13 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[i].planExpTime.Month.ToString(), istart + i % jmax, jstart + 10);
                 ex.SetCellValue(datalist[i].planExpTime.Day.ToString(), istart + i % jmax, jstart + 11);
                 ex.SetCellValue(datalist[i].Remark, istart + i % jmax, jstart + 12);
-            
+
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
 
 
@@ -619,6 +723,10 @@ namespace Ebada.Scgl.Lcgl
 
         }
         public static void ExportExceldlqwcqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExceldlqwcqkEx(ex, datalist, sheetname, orgid,true);
+        }
+        public static void ExportExceldlqwcqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
             int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 4, sheetindex = 0, spanlistcount = 0, itemp = 0, imax2 = 5, spanadd = 0;
@@ -710,8 +818,11 @@ namespace Ebada.Scgl.Lcgl
 
 
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void setwcSpanExcel(ExcelAccess ex, PJ_yfsyjl data, int i, int istart, int jmax, int jstart, ref int spanadd, int imax2, string sheetname, string[] sname, int itemp)
         {
@@ -765,6 +876,10 @@ namespace Ebada.Scgl.Lcgl
 
         }
         public static void ExportExceldlqssqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExceldlqssqkEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExceldlqssqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
             int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 4, sheetindex = 0, spanlistcount = 0, itemp = 0, imax2 = 5, spanadd = 0;
@@ -855,8 +970,11 @@ namespace Ebada.Scgl.Lcgl
 
 
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void setssSpanExcel(ExcelAccess ex, PJ_yfsyjl data, int i, int istart, int jmax, int jstart, ref int spanadd, int imax2, string sheetname, string[] sname, int itemp)
         {
@@ -911,6 +1029,10 @@ namespace Ebada.Scgl.Lcgl
 
         }
         public static void ExportExceldlqjhbEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExceldlqjhbEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExceldlqjhbEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
             int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 4, sheetindex = 0, spanlistcount = 0, itemp = 0, imax2 = 5, spanadd = 0;
@@ -1000,8 +1122,11 @@ namespace Ebada.Scgl.Lcgl
 
 
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         /// <summary>
         /// 文档格式预定义好的，生成台账
@@ -1017,7 +1142,11 @@ namespace Ebada.Scgl.Lcgl
             ExportExceldlqEx(ex, datalist, sheetname, orgid);
         
         }
-        public static void ExportExceldlqEx(ExcelAccess ex ,IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public static void ExportExceldlqEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExceldlqEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExceldlqEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
             
             int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 4, sheetindex = 0, spanlistcount = 0, itemp = 0, imax2 = 5, spanadd = 0;
@@ -1104,10 +1233,13 @@ namespace Ebada.Scgl.Lcgl
                     }
                 }
 
-                
+
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void setSpanExcel(ExcelAccess ex, PJ_yfsyjl data, int i, int istart, int jmax, int jstart, ref int spanadd, int imax2, string sheetname, string[] sname, int itemp)
         {
@@ -1161,6 +1293,10 @@ namespace Ebada.Scgl.Lcgl
             ExportExcelblqwcqkEx(ex, datalist, sheetname, orgid);
         }
         public static void ExportExcelblqwcqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExcelblqwcqkEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExcelblqwcqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
             int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 5, sheetindex = 0, spanlistcount = 0, itemp = 0, imax2 = 4, spanadd = 0, spanadd2 = 0;
@@ -1280,10 +1416,11 @@ namespace Ebada.Scgl.Lcgl
                 }
                 spanadd = spanadd2;
             }
-
-
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void ExportExcelblqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
@@ -1295,6 +1432,10 @@ namespace Ebada.Scgl.Lcgl
             ExportExcelblqssqkEx(ex, datalist, sheetname, orgid);
         }
         public static void ExportExcelblqssqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExcelblqssqkEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExcelblqssqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
             int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 5, sheetindex = 0, spanlistcount = 0, itemp = 0, imax2 = 4, spanadd = 0, spanadd2 = 0;
@@ -1410,10 +1551,11 @@ namespace Ebada.Scgl.Lcgl
                 }
                 spanadd = spanadd2;
             }
-
-
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void ExportExcelblqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
@@ -1425,6 +1567,10 @@ namespace Ebada.Scgl.Lcgl
             ExportExcelblqjhbEx(ex, datalist, sheetname, orgid);
         }
         public static void ExportExcelblqjhbEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExcelblqjhbEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExcelblqjhbEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
             int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 5, sheetindex = 0, spanlistcount = 0, itemp = 0, imax2 = 4, spanadd = 0, spanadd2 = 0;
@@ -1538,10 +1684,11 @@ namespace Ebada.Scgl.Lcgl
                 }
                 spanadd = spanadd2;
             }
-
-
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void ExportExcelblq(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
@@ -1552,7 +1699,11 @@ namespace Ebada.Scgl.Lcgl
             ex.Open(fname);
             ExportExcelblqEx(ex, datalist, sheetname, orgid);
         }
-        public static void ExportExcelblqEx(ExcelAccess ex ,IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public static void ExportExcelblqEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExcelblqEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExcelblqEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
             
             int pagecount = 0, i = 0, istart = 6, jstart = 1, jmax = 5, sheetindex = 0, spanlistcount = 0, itemp = 0,  imax2 = 4, spanadd = 0, spanadd2 = 0;
@@ -1666,10 +1817,11 @@ namespace Ebada.Scgl.Lcgl
                 }
                 spanadd = spanadd2;
             }
-     
-                
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
     
 
@@ -1683,6 +1835,10 @@ namespace Ebada.Scgl.Lcgl
             ExportExceldrqwcqkEx(ex, datalist, sheetname, orgid);
         }
         public static void ExportExceldrqwcqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExceldrqwcqkEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExceldrqwcqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
 
@@ -1859,8 +2015,11 @@ namespace Ebada.Scgl.Lcgl
 
 
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void ExportExceldrqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
@@ -1872,6 +2031,10 @@ namespace Ebada.Scgl.Lcgl
             ExportExceldrqssqkEx(ex, datalist, sheetname, orgid);
         }
         public static void ExportExceldrqssqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExceldrqssqkEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExceldrqssqkEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
 
@@ -2036,8 +2199,11 @@ namespace Ebada.Scgl.Lcgl
 
 
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void ExportExceldrqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
@@ -2049,6 +2215,10 @@ namespace Ebada.Scgl.Lcgl
             ExportExceldrqjhbEx(ex, datalist, sheetname, orgid);
         }
         public static void ExportExceldrqjhbEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExceldrqjhbEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExceldrqjhbEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
 
@@ -2209,8 +2379,11 @@ namespace Ebada.Scgl.Lcgl
 
 
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
         public static void ExportExceldrq(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
@@ -2222,6 +2395,10 @@ namespace Ebada.Scgl.Lcgl
             ExportExceldrqEx( ex, datalist,  sheetname,  orgid);
         }
         public static void ExportExceldrqEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        {
+            ExportExceldrqEx(ex, datalist, sheetname, orgid, true);
+        }
+        public static void ExportExceldrqEx(ExcelAccess ex, IList<PJ_yfsyjl> datalist, string sheetname, string orgid, bool isShow)
         {
 
 
@@ -2381,8 +2558,11 @@ namespace Ebada.Scgl.Lcgl
 
 
             }
-            ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if (isShow)
+            {
+                ex.ActiveSheet(sheetname);
+                ex.ShowExcel();
+            }
         }
     }
 }
