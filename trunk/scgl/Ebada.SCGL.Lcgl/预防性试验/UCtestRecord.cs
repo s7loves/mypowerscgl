@@ -401,6 +401,10 @@ namespace Ebada.Scgl.Lcgl
             fm.CurrRecord = currRecord;
             fm.Status = "add";
             fm.Kind = currRecord.Kind;
+            if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
+                Export11.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", parentID,false);
+            else
+                Export11.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", "", false);
             fm.ParentTemple = parentTemple;
             if(fm.ShowDialog()==DialogResult.OK)
             {

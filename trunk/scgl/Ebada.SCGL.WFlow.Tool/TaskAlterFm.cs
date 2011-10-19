@@ -338,8 +338,8 @@ namespace Ebada.SCGL.WFlow.Tool
             this.cbxTaskExplore = new System.Windows.Forms.CheckBox();
             this.cbxReturn = new System.Windows.Forms.CheckBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.cbxRiZhi = new System.Windows.Forms.CheckBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.tetWorkSQL = new DevExpress.XtraEditors.MemoEdit();
             this.cbxWorkDbTableColumns = new System.Windows.Forms.ComboBox();
             this.cbxWorkDbTable = new System.Windows.Forms.ComboBox();
@@ -557,7 +557,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage6.Controls.Add(this.checkBox1);
             this.tabPage6.Location = new System.Drawing.Point(4, 21);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(528, 454);
+            this.tabPage6.Size = new System.Drawing.Size(528, 466);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "处理者";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -704,7 +704,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage3.Controls.Add(this.btnAddVar);
             this.tabPage3.Location = new System.Drawing.Point(4, 21);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(528, 454);
+            this.tabPage3.Size = new System.Drawing.Size(528, 466);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "任务变量";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1019,7 +1019,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(528, 454);
+            this.tabPage1.Size = new System.Drawing.Size(528, 466);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "常规";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1234,7 +1234,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage5.Location = new System.Drawing.Point(4, 21);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(528, 454);
+            this.tabPage5.Size = new System.Drawing.Size(528, 466);
             this.tabPage5.TabIndex = 6;
             this.tabPage5.Text = "控制权限";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1343,6 +1343,16 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage7.Text = "日志功能";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // cbxRiZhi
+            // 
+            this.cbxRiZhi.AutoSize = true;
+            this.cbxRiZhi.Location = new System.Drawing.Point(10, 10);
+            this.cbxRiZhi.Name = "cbxRiZhi";
+            this.cbxRiZhi.Size = new System.Drawing.Size(72, 16);
+            this.cbxRiZhi.TabIndex = 28;
+            this.cbxRiZhi.Text = "开启日志";
+            this.cbxRiZhi.UseVisualStyleBackColor = true;
+            // 
             // groupBox11
             // 
             this.groupBox11.Controls.Add(this.tetWorkSQL);
@@ -1370,16 +1380,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox11.Size = new System.Drawing.Size(509, 111);
             this.groupBox11.TabIndex = 27;
             this.groupBox11.TabStop = false;
-            // 
-            // cbxRiZhi
-            // 
-            this.cbxRiZhi.AutoSize = true;
-            this.cbxRiZhi.Location = new System.Drawing.Point(10, 10);
-            this.cbxRiZhi.Name = "cbxRiZhi";
-            this.cbxRiZhi.Size = new System.Drawing.Size(72, 16);
-            this.cbxRiZhi.TabIndex = 28;
-            this.cbxRiZhi.Text = "开启日志";
-            this.cbxRiZhi.UseVisualStyleBackColor = true;
             // 
             // tetWorkSQL
             // 
@@ -2179,7 +2179,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage2.Controls.Add(this.groupBox7);
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(528, 454);
+            this.tabPage2.Size = new System.Drawing.Size(528, 466);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "超时配置";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2191,7 +2191,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage4.Controls.Add(this.groupBox6);
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(528, 454);
+            this.tabPage4.Size = new System.Drawing.Size(528, 466);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "任务通知";
             this.tabPage4.UseVisualStyleBackColor = true;
