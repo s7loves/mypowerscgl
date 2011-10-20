@@ -13,18 +13,48 @@ namespace Ebada.Scgl.Gis {
 
         private GMapControl control;
         private bool allowEdit;
-
-        
+        ContextMenu contextMenu;
+        GMapMarker selectedMarker;
         public PointOverLay(GMapControl map, string lineCode)
             : base(map, lineCode) {
             control = map;
+            map.OnMarkerEnter += new MarkerEnter(map_OnMarkerEnter);
+            map.OnMarkerLeave += new MarkerLeave(map_OnMarkerLeave);
+            
+        }
+        
+        void map_OnMarkerLeave(GMapMarker item) {
+            if (item.Overlay == this)
+                selectedMarker = null;
+        }
+
+        void map_OnMarkerEnter(GMapMarker item) {
+            if (item.Overlay == this)
+                selectedMarker = item;
         }
         public bool AllowEdit {
             get { return allowEdit; }
             set { allowEdit = value; }
         }
         public virtual ContextMenu CreatePopuMenu() {
-            return new ContextMenu();
+            if (contextMenu == null) {
+                contextMenu = new ContextMenu();
+                MenuItem item = new MenuItem();
+                item.Text = "变电所属性";
+                item.Click += new EventHandler(属性_Click);
+                contextMenu.MenuItems.Add(item);
+            }
+            return contextMenu;
+        }
+
+        void 属性_Click(object sender, EventArgs e) {
+            if (selectedMarker == null) return;
+            frmBdsEdit dlg = new frmBdsEdit();
+
+            dlg.RowData = selectedMarker.Tag;
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                Client.ClientHelper.PlatformSqlMap.Update<mOrg>(dlg.RowData);
+            }
         }
         protected override void DrawRoutes(System.Drawing.Graphics g) {
             base.DrawRoutes(g);
