@@ -86,7 +86,7 @@
             this.Controls.Add(this.dockPanel1);
             this.Name = "frmLP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "工作票";
+            this.Text = "表单";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.LPFrm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmLP_FormClosed);
