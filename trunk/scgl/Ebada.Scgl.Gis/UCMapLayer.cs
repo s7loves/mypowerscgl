@@ -126,6 +126,12 @@ namespace TLMapPlatform {
             }
             
         }
+        private void setLayerAllowEdit(string lineCode, bool isEdit) {
+            GMapOverlay lay = mRMap.FindOverlay(lineCode);
+            if (lay != null && lay is IUpdateable) {
+                (lay as IUpdateable).AllowEdit = isEdit;
+            }
+        }
         private void showLayer(string lineCode,bool visible) {
 
             GMapOverlay lay = mRMap.FindOverlay(lineCode);
@@ -146,13 +152,14 @@ namespace TLMapPlatform {
                 string value = hit.Node[hit.Column.FieldName].ToString();
                 if (hit.Column.VisibleIndex >0 && hit.Column.VisibleIndex<3) {
                     hit.Node.SetValue(hit.Column.FieldName, (value == "1") ? 0 : 1);
+                    string code = hit.Node["ID"].ToString();
                     if (hit.Column.FieldName == "显示") {
-                        string code = hit.Node["ID"].ToString();
+                        
                         if (code.Length == 6)
                             showLayer(code, hit.Node["显示"].ToString() == "1");
 
                     } else if (hit.Column.FieldName == "编辑") {
-                        
+                        setLayerAllowEdit(code, hit.Node["编辑"].ToString() == "1");
                     }
                 }
             } 

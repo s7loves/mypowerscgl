@@ -11,13 +11,17 @@ namespace Ebada.Scgl.Gis {
     public class PointOverLay : GMapOverlay, IUpdateable {
 
         private GMapControl control;
-        public bool AllowEdit;
+        private bool allowEdit;
+
+        
         public PointOverLay(GMapControl map, string lineCode)
             : base(map, lineCode) {
-            AllowEdit = true;
             control = map;
-        }        
-        
+        }
+        public bool AllowEdit {
+            get { return allowEdit; }
+            set { allowEdit = value; }
+        }
         protected override void DrawRoutes(System.Drawing.Graphics g) {
             base.DrawRoutes(g);
         }
