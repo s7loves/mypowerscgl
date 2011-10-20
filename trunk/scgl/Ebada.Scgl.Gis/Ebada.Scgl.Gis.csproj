@@ -159,6 +159,7 @@
       <DependentUpon>frmMapView.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\MapBuilder.cs" />
+    <Compile Include="IPopuMenu.cs" />
     <Compile Include="IUpdateable.cs" />
     <Compile Include="LineOverLay.cs" />
     <Compile Include="LineRoute.cs" />

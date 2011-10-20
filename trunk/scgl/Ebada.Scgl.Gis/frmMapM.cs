@@ -165,10 +165,24 @@ namespace Ebada.Scgl.Gis {
                     break;
                 case "变台":
                     showTQ();
-                    break;  
+                    break;
+                case "变电站(所)":
+                    showBDS();
+                    break;
             }
         }
 
+        private void showBDS() {
+            frmBDSSelector dlg = new frmBDSSelector();
+            if (dlg.ShowDialog(this) == DialogResult.OK) {
+                mOrg obj = dlg.GetSelected() as mOrg;
+                if (obj != null) {
+                    GMapMarker marker = rMap1.FindMarker(obj);
+                    if (marker != null)
+                        rMap1.Position = marker.Position;
+                }
+            }
+        }
         private void showTQ() {
             //线路 
             frmTQSelector dlg = new frmTQSelector();

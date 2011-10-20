@@ -7,8 +7,9 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Sbgl;
 using System.Data;
 using Ebada.Scgl.Gis.Markers;
+using System.Windows.Forms;
 namespace Ebada.Scgl.Gis {
-    public class PointOverLay : GMapOverlay, IUpdateable {
+    public class PointOverLay : GMapOverlay, IUpdateable, IPopuMenu {
 
         private GMapControl control;
         private bool allowEdit;
@@ -21,6 +22,9 @@ namespace Ebada.Scgl.Gis {
         public bool AllowEdit {
             get { return allowEdit; }
             set { allowEdit = value; }
+        }
+        public virtual ContextMenu CreatePopuMenu() {
+            return new ContextMenu();
         }
         protected override void DrawRoutes(System.Drawing.Graphics g) {
             base.DrawRoutes(g);

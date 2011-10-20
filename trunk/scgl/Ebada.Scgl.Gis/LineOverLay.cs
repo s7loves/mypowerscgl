@@ -7,20 +7,34 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Sbgl;
 using System.Data;
 using Ebada.Scgl.Gis.Markers;
+using System.Windows.Forms;
 namespace Ebada.Scgl.Gis {
-    public class LineOverlay : GMapOverlay, IUpdateable {
+    public class LineOverlay : GMapOverlay, IUpdateable,IDisposable,IPopuMenu {
 
         private GMapControl control;
         private bool allowEdit;
-
+        ContextMenu contextMenu;
+        GMapMarker selectedMarker;
         public bool AllowEdit {
             get { return allowEdit; }
             set { allowEdit = value; }
         }
         public LineOverlay(GMapControl map, string lineCode)
             : base(map, lineCode) {
-            
+            map.OnMarkerEnter += new MarkerEnter(map_OnMarkerEnter);
+            map.OnMarkerLeave += new MarkerLeave(map_OnMarkerLeave);
             control = map;
+        }
+        
+        void map_OnMarkerLeave(GMapMarker item) {
+            if (item.Overlay == this)
+                selectedMarker = null;
+        }
+
+        void map_OnMarkerEnter(GMapMarker item) {
+
+            if (item.Overlay == this)
+                selectedMarker = item;
         }
         /// <summary>
         /// 创建线路层
@@ -75,7 +89,36 @@ namespace Ebada.Scgl.Gis {
             gt.gtLon = (decimal)marker.Position.Lng;
             Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
         }
+        public virtual ContextMenu CreatePopuMenu() {
+            if (contextMenu == null) {
+                contextMenu = new ContextMenu();
+                MenuItem item = new MenuItem();
+                item.Text = "杆塔属性";
+                item.Click += new EventHandler(杆塔属性_Click);
+                contextMenu.MenuItems.Add(item);
+                item = new MenuItem();
+                item.Text = "线路属性";
+                item.Click += new EventHandler(线路属性_Click);
+                contextMenu.MenuItems.Add(item);
 
+            }
+            return contextMenu;
+
+        }
+
+        void 线路属性_Click(object sender, EventArgs e) {
+            if (selectedMarker != null) {
+                this.ShowLineinfo(selectedMarker, allowEdit);
+            }
+        }
+
+        void 杆塔属性_Click(object sender, EventArgs e) {
+
+            if (selectedMarker != null ) {
+                this.ShowDialog(selectedMarker, allowEdit);
+            }
+
+        }
         public void ShowDialog(GMapMarker marker, bool canEdit) { 
             
             frmgtEdit frm = new frmgtEdit();            
@@ -109,5 +152,14 @@ namespace Ebada.Scgl.Gis {
             }
 
         }
+
+        #region IDisposable 成员
+
+        public void Dispose() {
+            control.OnMarkerEnter -= map_OnMarkerEnter;
+            control.OnMarkerLeave -= map_OnMarkerLeave;            
+        }
+
+        #endregion
     }
 }

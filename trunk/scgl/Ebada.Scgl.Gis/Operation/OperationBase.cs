@@ -76,8 +76,8 @@ namespace Ebada.Scgl.Gis {
             } else if (e.Button == MouseButtons.Right) {
                 if (currentMarker != null && currentMarker.IsMouseOver) {
                     selectedMarker = currentMarker;
-
-                    mMenu.Show(rMap1, e.Location);
+                    if (currentMarker.Overlay is IPopuMenu)
+                        (currentMarker.Overlay as IPopuMenu).CreatePopuMenu().Show(rMap1, e.Location);
                 } 
             }
         }
