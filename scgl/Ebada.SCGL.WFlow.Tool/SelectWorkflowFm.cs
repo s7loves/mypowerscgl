@@ -46,13 +46,13 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (tbxWorkflowCaption.Text.Length == 0)
-            {
-                MsgBox.ShowWarningMessageBox ("请输入流程名!");
-                tbxWorkflowCaption.Focus();
-                return;
+            //if (tbxWorkflowCaption.Text.Length == 0)
+            //{
+            //    MsgBox.ShowWarningMessageBox ("请输入流程名!");
+            //    tbxWorkflowCaption.Focus();
+            //    return;
 
-            }
+            //}
             lvWorkflow.Clear();
             InitializeUIData();
             DataTable dtSearch = null;

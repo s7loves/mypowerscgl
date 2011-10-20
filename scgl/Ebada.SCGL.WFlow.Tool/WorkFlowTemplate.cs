@@ -298,6 +298,10 @@ namespace Ebada.SCGL.WFlow.Tool
         {
            
             string tmpStr = "where FlowCaption like '%"+workflowCaption+"%'";
+            if (workflowCaption == "")
+            {
+                tmpStr = "where 1=1";
+            }
             try
             {
 
