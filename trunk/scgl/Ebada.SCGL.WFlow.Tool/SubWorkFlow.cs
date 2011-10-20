@@ -122,7 +122,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 swf.subStartTaskId= SubStartTaskId;
                 swf.subWorkflowCaption= SubWorkflowCaption;
                 swf.Description = Description;
-                MainHelper.PlatformSqlMap.Create<WF_SubWorkFlow>(swf); 
+                MainHelper.PlatformSqlMap.Create<WF_SubWorkFlow>(swf);
 			}
             catch (Exception ex)
             {
@@ -151,7 +151,9 @@ namespace Ebada.SCGL.WFlow.Tool
                 swf.subStartTaskId = SubStartTaskId;
                 swf.subWorkflowCaption = SubWorkflowCaption;
                 swf.Description = Description;
-                MainHelper.PlatformSqlMap.Update<WF_SubWorkFlow>(swf); 
+                MainHelper.PlatformSqlMap.Update<WF_SubWorkFlow>(swf);
+
+
 			}
 			catch(Exception ex)
 			{

@@ -295,7 +295,8 @@ namespace Ebada.SCGL.WFlow.Tool
             Description = tbxTaskDes.Text;
             SubWorkflowCaption = tbxWorkflowCaption.Text;
             SubStartTaskId = cbxStartTasks.SelectedValue.ToString();
-
+            NowTask.TaskName = "×ÓÁ÷³Ì:" + SubWorkflowCaption;
+            NowTask.SaveUpdateTask();
             SubWorkFlow subworkflow = new SubWorkFlow();
             subworkflow.SubId = SubId;
             subworkflow.WorkflowId = WorkflowId;
