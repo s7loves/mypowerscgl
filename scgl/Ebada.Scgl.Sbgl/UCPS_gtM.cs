@@ -18,25 +18,31 @@ namespace Ebada.Scgl.Sbgl
             ucpS_KG1.HideList();
             ucpS_GTSB1.HideList();
             ucpS_GT1.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_gt>(ucpS_GT1_FocusedRowChanged);
+            xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(xtraTabControl1_SelectedPageChanged);
+        }
+        UCPS_jcky ucps_jcky;
+        Ebada.Scgl.Model.PS_gt mgt;
+        void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e) {
+            if (e.Page == xtraTabPage4) {
+                if (ucps_jcky == null)
+                    ucps_jcky = new UCPS_jcky();
+                ucps_jcky.ParentObj = mgt;
+            }
         }
 
         void ucpS_GT1_FocusedRowChanged(object sender, Ebada.Scgl.Model.PS_gt obj) {
             if (obj!=null)
             {
-                ucpS_TQ1.ParentID = obj.gtID;
+                mgt = obj;
                 ucpS_TQ1.ParentObj = obj;
-                ucpS_KG1.ParentID = obj.gtID;
                 ucpS_KG1.ParentObj = obj;
-                ucpS_GTSB1.ParentID = obj.gtID;
                 ucpS_GTSB1.ParentObj = obj;
             }
             else
             {
-                ucpS_TQ1.ParentID = null;
+                mgt = null;
                 ucpS_TQ1.ParentObj = null;
-                ucpS_KG1.ParentID = null;
                 ucpS_KG1.ParentObj = null;
-                ucpS_GTSB1.ParentID = null;
                 ucpS_GTSB1.ParentObj = null;
             }
            
