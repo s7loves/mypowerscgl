@@ -318,7 +318,7 @@ namespace Ebada.SCGL
                  frm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
                  if (frm.ParentTemple == null)
                  {
-                     MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
+                     MsgBox.ShowWarningMessageBox("未找到该节点关联的表单，请检查模板设置!");
                      //return;
                  }
 
