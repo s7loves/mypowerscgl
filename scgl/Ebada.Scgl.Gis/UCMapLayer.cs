@@ -49,8 +49,7 @@ namespace TLMapPlatform {
             treeList1.ParentFieldName = "ParentID";
 
             mTable.Rows.Add(hide, "0", "10kV线路", "10", "0");
-            mTable.Rows.Add(hide, "0", "台区", "11", "0");
-            mTable.Rows.Add(hide, "0", "变电所", "12", "0");
+            mTable.Rows.Add(hide, "0", "变电所", "bdz", "0");
         }
         private bool showToolbar;
 
@@ -136,14 +135,23 @@ namespace TLMapPlatform {
 
             GMapOverlay lay = mRMap.FindOverlay(lineCode);
             if (lay == null) {
-                //    mRMap.Overlays.Remove(lay);
                 lay = LineOverlay.CreateLine(mRMap, lineCode, "");
                 mRMap.Overlays.Add(lay);
-                mRMap.ZoomAndCenterRoutes(lineCode);
+                //mRMap.ZoomAndCenterRoutes(lineCode);
             }
             lay.IsVisibile = visible;
-            //if(visible)
-            //
+            if (lineCode == "bdz")
+                showbdz(lay);
+        }
+
+        private void showbdz(GMapOverlay lay) {
+           IList<mOrg> list= Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mOrg>(" where orgtype='2' order by  orgcode");
+           
+            foreach (mOrg obj in list) {
+               if (obj != null) {
+                   mRMap.FindMarker(obj);
+               }
+           }
         }
         private void treeList1_MouseClick(object sender, MouseEventArgs e) {
             //查找单元格，改变状态
@@ -155,7 +163,7 @@ namespace TLMapPlatform {
                     string code = hit.Node["ID"].ToString();
                     if (hit.Column.FieldName == "显示") {
                         
-                        if (code.Length == 6)
+                        if (code.Length == 6 || code=="bdz")
                             showLayer(code, hit.Node["显示"].ToString() == "1");
 
                     } else if (hit.Column.FieldName == "编辑") {

@@ -49,6 +49,7 @@ namespace Ebada.Scgl.Gis {
         }
         private void initOverlay() {
             bdzLayer = new PointOverLay(this, "bdz");
+            bdzLayer.Text = "变电所";
             this.Overlays.Add(bdzLayer);
         }
         public GMapOverlay FindOverlay(string id) {
