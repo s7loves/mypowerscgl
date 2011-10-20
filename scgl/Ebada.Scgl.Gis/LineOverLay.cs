@@ -11,7 +11,12 @@ namespace Ebada.Scgl.Gis {
     public class LineOverlay : GMapOverlay, IUpdateable {
 
         private GMapControl control;
-        public bool AllowEdit;
+        private bool allowEdit;
+
+        public bool AllowEdit {
+            get { return allowEdit; }
+            set { allowEdit = value; }
+        }
         public LineOverlay(GMapControl map, string lineCode)
             : base(map, lineCode) {
             
@@ -48,9 +53,10 @@ namespace Ebada.Scgl.Gis {
 
             return lay;
         }
-        public void OnMarkerChanged(GMapMarkerVector marker) {
-            marker.Route.UpdateRoutePostion(marker);
-            control.UpdateRouteLocalPosition(marker.Route);
+        public void OnMarkerChanged(GMapMarker marker) {
+            GMapMarkerVector markerv = marker as GMapMarkerVector;
+            markerv.Route.UpdateRoutePostion(markerv);
+            control.UpdateRouteLocalPosition(markerv.Route);
 
         }
         protected override void DrawRoutes(System.Drawing.Graphics g) {
@@ -78,15 +84,15 @@ namespace Ebada.Scgl.Gis {
             if (pm != null) {
                 gt0.gtSpan = (decimal)Math.Round(control.Manager.GetDistance(pm.Position, marker.Position)*1000, 1);
             }
-
-            frm.RowData = marker.Tag;
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK && canEdit) {
-                marker.Tag = frm.RowData;
+            PS_gt gt2 = new PS_gt();
+            Ebada.Core.ConvertHelper.CopyTo(gt0, gt2);
+            frm.RowData =  gt2;
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK && allowEdit) {
+                Ebada.Core.ConvertHelper.CopyTo(gt2, gt0);
                 PS_gt gt =marker.Tag as PS_gt;
                 Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(marker.Tag);
                 marker.Position = new PointLatLng((double)gt.gtLat, (double)gt.gtLon);
                 OnMarkerChanged(marker as GMapMarkerVector);
-                //control.UpdateMarkerLocalPosition(marker);
             }
         }
 
@@ -97,7 +103,9 @@ namespace Ebada.Scgl.Gis {
             if (xl != null) {
                 frmxlEdit dlg = new frmxlEdit();
                 dlg.RowData = xl;
-                dlg.ShowDialog();
+                if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK && allowEdit) {
+                    Client.ClientHelper.PlatformSqlMap.Update<PS_xl>(dlg.RowData);
+                }
             }
 
         }

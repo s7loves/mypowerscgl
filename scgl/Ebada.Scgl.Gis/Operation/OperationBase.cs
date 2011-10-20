@@ -59,6 +59,10 @@ namespace Ebada.Scgl.Gis {
             }
         }
         public virtual void MouseDown(object sender, MouseEventArgs e) {
+            if (currentMarker != null && currentMarker.IsMouseOver) {
+                if (currentMarker.Overlay is IUpdateable)
+                   canEditMarker= (currentMarker.Overlay as IUpdateable).AllowEdit;
+            }
             if (e.Button == MouseButtons.Left) {
                 isMouseDown = true;
                 beginPoint = new Point(e.X, e.Y);
@@ -86,12 +90,8 @@ namespace Ebada.Scgl.Gis {
                         Point p0 = localPoint;
                         Point p1 = new Point(p0.X + e.X - beginPoint.X, p0.Y + e.Y - beginPoint.Y);
                         currentMarker.Position = rMap1.FromLocalToLatLng(p1.X, p1.Y);
-                        if (currentMarker.Overlay is LineOverlay) {
-                            (currentMarker.Overlay as LineOverlay).OnMarkerChanged(currentMarker as GMapMarkerVector);
-
-                        } else {
-                            OnMarkerChanged(currentMarker);
-                        }
+                        
+                        OnMarkerChanged(currentMarker);
                         updateMarker = currentMarker;
                     }
                 } 
@@ -100,7 +100,12 @@ namespace Ebada.Scgl.Gis {
         public virtual void Reset() { }
 
         public virtual void OnMarkerChanged(GMapMarker marker) {
+            IUpdateable layer = marker.Overlay as IUpdateable;
+            if (layer!=null && layer.AllowEdit) {
+                layer.OnMarkerChanged(currentMarker as GMapMarkerVector);
+            } else {
 
+            }
         }
         public virtual ContextMenu CreatePopuMenu() {
             ContextMenu menu = new ContextMenu();
