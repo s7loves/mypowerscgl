@@ -66,7 +66,7 @@ namespace Ebada.Scgl.Lcgl {
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeEdit);
             gridViewOperation.AfterAdd += new ObjectEventHandler<LP_Record>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterEdit += new ObjectEventHandler<LP_Record>(gridViewOperation_AfterEdit);
-            //gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
+            gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
             //gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeInsert);
             //gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeUpdate);
             initColumns();
@@ -216,6 +216,15 @@ namespace Ebada.Scgl.Lcgl {
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as LP_Record);
+            //获得编辑按钮的状态
+            if (gridView1.FocusedRowHandle>-1)
+            {
+               DataRow dr = gridView1.GetFocusedDataRow();
+
+               this.btEditfrm.Caption = dr["Status"].ToString();
+            }
+            
+           
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -445,10 +454,12 @@ namespace Ebada.Scgl.Lcgl {
                         ((Form)obj).ShowDialog();
                     }
                 InitData(strKind);
+               
             }
-            
+            //获得编辑按钮的状态
+            this.btEditfrm.Caption = lpr.Status;
         }
-
+       
         private void btEditfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (gridView1.FocusedRowHandle<0)
@@ -550,6 +561,8 @@ namespace Ebada.Scgl.Lcgl {
                     }
                 InitData(strKind);
             }
+            //获得编辑按钮的状态
+            this.btEditfrm.Caption= currRecord.Status;
         }
 
         private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
@@ -1042,6 +1055,14 @@ namespace Ebada.Scgl.Lcgl {
         {
             InitData(strKind);
 
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.ViewFocusEventArgs e)
+        {
+            if (FocusedRowChanged != null)
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as LP_Record);
+            //获得编辑按钮的状态
+            this.btEditfrm.Caption = (gridView1.GetFocusedRow() as LP_Record).Status;
         }
 
     }
