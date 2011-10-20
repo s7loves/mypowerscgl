@@ -222,7 +222,7 @@ namespace Ebada.Scgl.Sbgl
                 parentObj = value;
                 if (value == null)
                 {
-                    parentID = null;
+                    ParentID = null;
                 }
                 else
                 {

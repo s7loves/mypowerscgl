@@ -3,7 +3,28 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Ebada.Scgl.Core {
+    /// <summary>
+//    Linear：无缓动效果；
+//Quadratic：二次方的缓动（t^2）；
+//Cubic：三次方的缓动（t^3）；
+//Quartic：四次方的缓动（t^4）；
+//Quintic：五次方的缓动（t^5）；
+//Sinusoidal：正弦曲线的缓动（sin(t)）；
+//Exponential：指数曲线的缓动（2^t）；
+//Circular：圆形曲线的缓动（sqrt(1-t^2)）；
+//Elastic：指数衰减的正弦曲线缓动；
+//Back：超过范围的三次方缓动（(s+1)*t^3 - s*t^2）；
+//Bounce：指数衰减的反弹缓动。
+//ps：以上都是自己的烂翻译，希望各位修正。
 
+//每个效果都分三个缓动方式（方法），分别是：
+//easeIn：从0开始加速的缓动；
+//easeOut：减速到0的缓动；
+//easeInOut：前半段从0开始加速，后半段减速到0的缓动。
+//其中Linear是无缓动效果，没有以上效果。
+
+
+    /// </summary>
     public static class Easing {
         public enum Mode {
             linear,
@@ -19,7 +40,19 @@ namespace Ebada.Scgl.Core {
             easeInBack, easeOutBack, easeInOutBack,
             easeInStrong, easeOutStrong, easeInOutStrong
         }
-
+        /// <summary>
+        /// t: current time（当前时间）；
+        //b: beginning value（初始值）；
+        //c: change in value（变化量）；
+        //d: duration（持续时间）。
+        //ps：Elastic和Back有其他可选参数，里面都有说明。
+        /// </summary>
+        /// <param name="tick">当前时间</param>
+        /// <param name="start">初始值</param>
+        /// <param name="end">结束值</param>
+        /// <param name="duration">持续时间</param>
+        /// <param name="easingMode">变化类型</param>
+        /// <returns></returns>
         public static float GetTween(int tick, float start, float end, float duration, Mode easingMode) {
             if (tick > duration) {
                 return end;
