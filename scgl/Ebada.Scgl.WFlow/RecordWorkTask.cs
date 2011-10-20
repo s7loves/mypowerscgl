@@ -62,7 +62,7 @@ namespace Ebada.Scgl.WFlow
             }
             else if (currRecord.Status == "存档")
             {
-                
+
                 if (wf.Count > 0)
                 {
                     IList<WF_WorkTask> tasklist = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where TaskTypeId='1' and WorkFlowId='" + wf[0].WorkFlowId + "'");
@@ -84,14 +84,14 @@ namespace Ebada.Scgl.WFlow
 
                 }
                 LP_Temple temp = GetWorkTaskTemple(currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, akeys[i].ToString());
-               if (temp !=null&& temp.Status == "节点审核")
-               {
-                   if (!templehs.Contains(temp)) templehs.Add(temp, akeys[i].ToString());
-               }
-               else if(temp!=null)
-               {
-                   if (!templehs.Contains(temp.LPID)) templehs.Add(temp.LPID, akeys[i].ToString());
-               }
+                if (temp != null && temp.Status == "节点审核")
+                {
+                    if (!templehs.Contains(temp)) templehs.Add(temp, akeys[i].ToString());
+                }
+                else if (temp != null)
+                {
+                    if (!templehs.Contains(temp.LPID)) templehs.Add(temp.LPID, akeys[i].ToString());
+                }
             }
 
             return templehs;
@@ -131,18 +131,18 @@ namespace Ebada.Scgl.WFlow
         {
             string strkind = kind;
             if (kind == "dzczp")
-                strkind= "电力线路倒闸操作票";
+                strkind = "电力线路倒闸操作票";
             else if (kind == "yzgzp")
-                strkind=  "电力线路第一种工作票";
+                strkind = "电力线路第一种工作票";
             else if (kind == "ezgzp")
-               strkind= "电力线路第二种工作票";
+                strkind = "电力线路第二种工作票";
             else if (kind == "xlqxp")
-               strkind=  "电力线路事故应急抢修单";
+                strkind = "电力线路事故应急抢修单";
             WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + strkind + "'");
             if (wf == null) return false;
 
 
-            return HaveRunPowerRole(WorkConst.WorkTask_FuJian,wf.WorkFlowId,wf.WorkFlowId);
+            return HaveRunPowerRole(WorkConst.WorkTask_FuJian, wf.WorkFlowId, wf.WorkFlowId);
 
 
         }
@@ -180,12 +180,12 @@ namespace Ebada.Scgl.WFlow
         /// <param name="WorkTaskId">WorkTaskId</param>
         /// <returns>bool true有权限 false 无权限</returns>
 
-        public static bool HaveRunPowerRole(string TaskPower ,string WorkFlowId, string WorkTaskId)
+        public static bool HaveRunPowerRole(string TaskPower, string WorkFlowId, string WorkTaskId)
         {
 
-            object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where PowerName='" + TaskPower + "' and WorkFlowId='" + WorkFlowId + "' and WorkTaskId='" + WorkTaskId+"'");
+            object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where PowerName='" + TaskPower + "' and WorkFlowId='" + WorkFlowId + "' and WorkTaskId='" + WorkTaskId + "'");
             if (obj == null) return false;
-            
+
             return true;
 
 
@@ -254,22 +254,22 @@ namespace Ebada.Scgl.WFlow
         /// <param name="modleRecordlist">模块相关记录集</param>
         /// <returns>返回工作日志关联的记录</returns>
         public static object GetModleRecordObj(WF_TaskVar tv, object[] modleRecordlist)
-       {
-           object obj=null;
-           for (int i = 0; i < modleRecordlist.Length && tv.TableName != "" && tv.VarModule == "数据库"; i++)
-           {
-               if (modleRecordlist[i].GetType().ToString().IndexOf(tv.TableName) > -1)
-               {
-                   obj = modleRecordlist[i];
-                   break;
-               
-               }
-           
-           }
+        {
+            object obj = null;
+            for (int i = 0; i < modleRecordlist.Length && tv.TableName != "" && tv.VarModule == "数据库"; i++)
+            {
+                if (modleRecordlist[i].GetType().ToString().IndexOf(tv.TableName) > -1)
+                {
+                    obj = modleRecordlist[i];
+                    break;
 
-               return obj;
-       }
-       
+                }
+
+            }
+
+            return obj;
+        }
+
         /// <summary>
         /// 获得任务日志变量
         /// </summary>
@@ -292,7 +292,7 @@ namespace Ebada.Scgl.WFlow
         {
 
             Excel.Worksheet xx = null;
-            if (tv.TableName != "" && dsoFramerWordControl1!=null&&tv.VarModule=="Excel")
+            if (tv.TableName != "" && dsoFramerWordControl1 != null && tv.VarModule == "Excel")
             {
                 Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
                 for (int i = 1; i < wb.Application.Sheets.Count; i++)
@@ -318,9 +318,9 @@ namespace Ebada.Scgl.WFlow
         {
             return GetTaskVarRiZhiValue(tv, sheet, recordID, null);
         }
-       /// <summary>
+        /// <summary>
         /// 返回工作日志变量对应的值，不存在则为空
-       /// </summary>
+        /// </summary>
         /// <param name="tv">工作日志变量</param>
         /// <param name="sheet">工作日志变量对应的工作表</param>
         /// <param name="recordID">记录ID</param>
@@ -368,29 +368,29 @@ namespace Ebada.Scgl.WFlow
                 {
                     //if (modlecord.GetType().GetProperty(tvAddress.TableField) != null && modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null) != null)
                     //{
-                        //strvalue = modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null).ToString();
-                        string strsql = "";
-                        strsql = tv.InitValue;
-                        strsql = SetSQLValue(strsql, modlecord);
-                        try
+                    //strvalue = modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null).ToString();
+                    string strsql = "";
+                    strsql = tv.InitValue;
+                    strsql = SetSQLValue(strsql, modlecord);
+                    try
+                    {
+                        IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strsql);
+                        if (list.Count > 0)
                         {
-                            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",strsql);
-                            if (list.Count > 0)
+                            for (int i = 0; i < list.Count; i++)
                             {
-                                for (int i = 0; i < list.Count; i++)
-                                {
-                                    strvalue += list[i].ToString();
-                                }
-                            }
-                            else
-                            {
-                                strvalue = "无数据";
+                                strvalue += list[i].ToString();
                             }
                         }
-                        catch(Exception ex)
+                        else
                         {
-                            strvalue = "出错:"+ex.Message;
+                            strvalue = "无数据";
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        strvalue = "出错:" + ex.Message;
+                    }
                     //}
 
                 }
@@ -405,18 +405,18 @@ namespace Ebada.Scgl.WFlow
         /// <returns>返回新的SQL语句</returns>
         public static string SetSQLValue(string strSQL, object modlecord)
         {
-            int index1 = -1,index2=-1;
+            int index1 = -1, index2 = -1;
             string strtemp = "", strnewsql = strSQL;
             if ((index1 = strSQL.IndexOf("{")) > -1 && (index2 = strSQL.IndexOf("}")) > -1)
             {
-                
-                strtemp = strSQL.Substring(index1+1, index2 - index1-1);
+
+                strtemp = strSQL.Substring(index1 + 1, index2 - index1 - 1);
                 if (modlecord.GetType().GetProperty(strtemp) != null && modlecord.GetType().GetProperty(strtemp).GetValue(modlecord, null) != null)
                 {
-                    strnewsql = strSQL.Substring(0, index1) + modlecord.GetType().GetProperty(strtemp).GetValue(modlecord, null) + strSQL.Substring(index2+1);
+                    strnewsql = strSQL.Substring(0, index1) + modlecord.GetType().GetProperty(strtemp).GetValue(modlecord, null) + strSQL.Substring(index2 + 1);
                     return SetSQLValue(strnewsql, modlecord);
                 }
-              
+
             }
             return strnewsql;
         }
@@ -430,18 +430,18 @@ namespace Ebada.Scgl.WFlow
             cellpos = cellpos.Replace("|", "");
             return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
         }
-       /// <summary>
-       /// 确认工作日志是否开启
-       /// </summary>
-       /// <param name="workflowData">流程信息</param>
-       /// <returns>true 开启 false 没开启日志功能</returns>
+        /// <summary>
+        /// 确认工作日志是否开启
+        /// </summary>
+        /// <param name="workflowData">流程信息</param>
+        /// <returns>true 开启 false 没开启日志功能</returns>
         public static bool CheckOnRiZhi(DataTable workflowData)
         {
             if (workflowData == null || workflowData.Rows.Count == 0) return false;
 
             return WorkFlowTask.CheckTaskPowerExit(workflowData.Rows[0]["WorkflowId"].ToString(), workflowData.Rows[0]["WorktaskId"].ToString(), "工作日志");
         }
-         /// <summary>
+        /// <summary>
         /// 关联表单的字段值
         /// </summary>
         /// <param name="temple"></param>
@@ -449,8 +449,8 @@ namespace Ebada.Scgl.WFlow
         /// <param name="WorkflowId"></param>
         /// <param name="WorkFlowInsId"></param>
         public static void iniTableRecordData(ref LP_Temple temple, LP_Record currRecord, string WorkflowId, string WorkFlowInsId)
-        { 
-            iniTableRecordData(ref temple,  currRecord,  WorkflowId,  WorkFlowInsId,false);
+        {
+            iniTableRecordData(ref temple, currRecord, WorkflowId, WorkFlowInsId, false);
         }
         /// <summary>
         /// 关联表单的字段值
@@ -495,7 +495,7 @@ namespace Ebada.Scgl.WFlow
                         LP_Temple field = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tfvli[i].FieldId);
                         if (field != null)
                         {
-                            if (field.isExplorer==1)
+                            if (field.isExplorer == 1)
                             {
                                 continue;
                             }
@@ -576,14 +576,14 @@ namespace Ebada.Scgl.WFlow
                 }//是节点审核
                 else
                 {
-                    
+
                     tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(ctrlTable.Rows[0]["LPID"]);
                     if (tp != null)
                     {
-                         /***
-                         * 绑定的节点是表单，则把它的字段值填上
-                         * 
-                         * **/
+                        /***
+                        * 绑定的节点是表单，则把它的字段值填上
+                        * 
+                        * **/
                         iniTableRecordData(ref  tp, record, workflowId, workFlowInsId);
                         return tp;
                     }
@@ -608,7 +608,8 @@ namespace Ebada.Scgl.WFlow
                         return tp;
                     }
                 }
-                else {
+                else
+                {
                     tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
                     if (tp != null)
                     {
@@ -626,9 +627,9 @@ namespace Ebada.Scgl.WFlow
 
         /// <returns>关联的表单</returns>
 
-        public static LP_Temple GetWorkTaskTemple(DataTable workflowData,LP_Record record)
+        public static LP_Temple GetWorkTaskTemple(DataTable workflowData, LP_Record record)
         {
-           
+
             if (workflowData.Rows.Count > 0)
             {
 
@@ -641,7 +642,7 @@ namespace Ebada.Scgl.WFlow
 
 
         }
-   
+
         /// <summary>
         /// 
         /// </summary>
@@ -651,7 +652,7 @@ namespace Ebada.Scgl.WFlow
         public static void IniControl(System.Windows.Forms.Control.ControlCollection uc, IList<WF_ModleUsedFunc> mulist, ref bool outisfind)
         {
             bool isfind = false;
-            foreach(Control ct  in uc)
+            foreach (Control ct in uc)
             {
                 isfind = false;
                 foreach (WF_ModleUsedFunc ufc in mulist)
@@ -664,7 +665,7 @@ namespace Ebada.Scgl.WFlow
                     }
                 }
                 if (!isfind)
-                IniControl(ct.Controls, mulist, ref isfind);
+                    IniControl(ct.Controls, mulist, ref isfind);
                 if (ct is XtraTabPage)
                 {
                     ((XtraTabPage)ct).PageVisible = isfind;
@@ -677,7 +678,7 @@ namespace Ebada.Scgl.WFlow
         /// </summary>
         /// <param name="formCtr"></param>
         /// <param name="mulist"></param>
-        public static void IniCreatModle(object formCtr, IList<WF_ModleUsedFunc>mulist)
+        public static void IniCreatModle(object formCtr, IList<WF_ModleUsedFunc> mulist)
         {
             if (formCtr == null) return;
             if (mulist.Count == 0) return;
@@ -693,7 +694,7 @@ namespace Ebada.Scgl.WFlow
                 IniControl(fm.Controls, mulist, ref isfind);
             }
 
-        
+
         }
         /// <summary>
         /// 
@@ -703,7 +704,7 @@ namespace Ebada.Scgl.WFlow
         /// <param name="methodName"></param>
         /// <param name="moduName"></param>
         /// <returns></returns>
-        public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName,string moduName)
+        public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName, string moduName)
         {
             object fromCtrl;
             Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + assemblyFileName);
@@ -716,7 +717,7 @@ namespace Ebada.Scgl.WFlow
             {
                 UserControl uc = fromCtrl as UserControl;
                 uc.Name = moduName;
-                
+
             }
             else if (fromCtrl is Form)
             {
@@ -732,41 +733,48 @@ namespace Ebada.Scgl.WFlow
         /// <param name="userID">用户ID</param>
         /// <returns>bool true有权限 false 无权限</returns>
         public static object GetWorkTaskModle(DataTable workflowData)
-        { 
+        {
             if (workflowData.Rows.Count > 0)
-                {
-               return GetWorkTaskModle( workflowData.Rows[0]["WorkflowId"].ToString(),   workflowData.Rows[0]["WorktaskId"].ToString() );
+            {
+                return GetWorkTaskModle(workflowData.Rows[0]["WorkflowId"].ToString(), workflowData.Rows[0]["WorktaskId"].ToString());
             }
-            
+
             return null;
         }
         public static object GetWorkTaskModle(string workflowId, string worktaskId)
         {
 
-            
-                object fromCtrl;
-                WF_WorkTaskModle wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>(" where WorkflowId='" +workflowId  + "' and WorktaskId='" +worktaskId+ "'");
-                if (wtc == null) return null;
-                mModule tp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtc.Modu_ID);
-                if (tp == null)
-                {
-                    fromCtrl = CreatNewMoldeIns("Ebada.Scgl.Lcgl.dll", "frmLP", "", "表单执行平台");
-                }
-                else
-                {
-                    fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName, tp.ModuTypes, tp.MethodName, tp.ModuName);
 
-                }
-                IList<WF_ModleUsedFunc> mulist = MainHelper.PlatformSqlMap.GetList<WF_ModleUsedFunc>(" where WorkflowId='" +workflowId + "' and WorktaskId='" +worktaskId+ "' and Modu_ID='" + tp.Modu_ID + "'");
+            object fromCtrl;
+            WF_WorkTaskModle wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>(" where WorkflowId='" + workflowId + "' and WorktaskId='" + worktaskId + "'");
+            //if (wtc == null) return null;
+            mModule tp=null;
+            if (wtc != null)
+            {
+                 tp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtc.Modu_ID);
+            }
+            if (tp == null)
+            {
+                fromCtrl = CreatNewMoldeIns("Ebada.Scgl.Lcgl.dll", "Ebada.Scgl.Lcgl.frmLP", "", "表单执行平台");
+            }
+            else
+            {
+                fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName, tp.ModuTypes, tp.MethodName, tp.ModuName);
+
+            }
+            if (tp != null)
+            {
+                IList<WF_ModleUsedFunc> mulist = MainHelper.PlatformSqlMap.GetList<WF_ModleUsedFunc>(" where WorkflowId='" + workflowId + "' and WorktaskId='" + worktaskId + "' and Modu_ID='" + tp.Modu_ID + "'");
                 if (mulist.Count > 0) IniCreatModle(fromCtrl, mulist);
-                return fromCtrl;
-            
+            }
+            return fromCtrl;
+
 
             return null;
 
 
         }
-         /// <summary>
+        /// <summary>
         /// 获得新创建的流程的第一个节点关联的模块
         /// </summary>
         /// <param name="kind">流程名称（工作票：dzczp操作票、yzgzp一种工作票、ezgzp二种工作票、xlqxp抢修单）</param>
@@ -794,21 +802,21 @@ namespace Ebada.Scgl.WFlow
                 mModule tp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtc.Modu_ID);
                 if (tp == null)
                 {
-                    fromCtrl = CreatNewMoldeIns("Ebada.Scgl.Lcgl.dll", "frmLP","","表单执行平台");
+                    fromCtrl = CreatNewMoldeIns("Ebada.Scgl.Lcgl.dll", "frmLP", "", "表单执行平台");
                 }
                 else
                 {
-                    fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName,tp.ModuTypes,tp.MethodName,tp.ModuName);
-                    
+                    fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName, tp.ModuTypes, tp.MethodName, tp.ModuName);
+
                 }
-                IList<WF_ModleUsedFunc> mulist = MainHelper.PlatformSqlMap.GetList<WF_ModleUsedFunc>(" where WorkflowId='" + dt.Rows[0]["WorkflowId"] + "' and WorktaskId='" + dt.Rows[0]["WorktaskId"] + "' and Modu_ID='" + tp.Modu_ID+ "'");
-                if (mulist.Count>0) IniCreatModle(fromCtrl, mulist);
+                IList<WF_ModleUsedFunc> mulist = MainHelper.PlatformSqlMap.GetList<WF_ModleUsedFunc>(" where WorkflowId='" + dt.Rows[0]["WorkflowId"] + "' and WorktaskId='" + dt.Rows[0]["WorktaskId"] + "' and Modu_ID='" + tp.Modu_ID + "'");
+                if (mulist.Count > 0) IniCreatModle(fromCtrl, mulist);
                 return fromCtrl;
             }
-           
+
             return null;
 
-        
+
         }
         /// <summary>
         /// 获得新创建的流程的第一个节点关联的表单
@@ -839,7 +847,7 @@ namespace Ebada.Scgl.WFlow
                 else
                     return tp;
             }
-          
+
             return null;
 
 
@@ -855,11 +863,11 @@ namespace Ebada.Scgl.WFlow
         {
 
             if (kind == "dzczp")
-                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票").Rows.Count > 0 ? true : false;
+                return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票").Rows.Count > 0 ? true : false;
             else if (kind == "yzgzp")
-                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第一种工作票").Rows.Count > 0 ? true : false;
+                return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第一种工作票").Rows.Count > 0 ? true : false;
             else if (kind == "ezgzp")
-                    return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票").Rows.Count > 0 ? true : false;
+                return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路第二种工作票").Rows.Count > 0 ? true : false;
             else if (kind == "xlqxp")
                 return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单").Rows.Count > 0 ? true : false;
             else
@@ -868,15 +876,15 @@ namespace Ebada.Scgl.WFlow
                 return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, kind).Rows.Count > 0 ? true : false;
             }
             return false;
-           
-              
+
+
         }
         public static DataTable GetGZPRecordSartWorkData(string kind, string userID)
         {
 
             DataTable dt = null;
-            string  workFlowId = "", workTaskId = "";
-            
+            string workFlowId = "", workTaskId = "";
+
             if (kind == "dzczp")
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路倒闸操作票");
             else if (kind == "yzgzp")
@@ -890,7 +898,7 @@ namespace Ebada.Scgl.WFlow
             //workFlowId = dt.Rows[0]["WorkFlowId"].ToString();
             //workTaskId = dt.Rows[0]["workTaskId"].ToString();
             //WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(workTaskId);
-            return dt ;
+            return dt;
         }
         public static string GetGZPRecordSartStatus(string kind, string userID)
         {
@@ -913,7 +921,7 @@ namespace Ebada.Scgl.WFlow
             WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(workTaskId);
             return wt.TaskCaption;
         }
-      
+
         /// <summary>
         /// 创建工作票流程
         /// </summary>
@@ -923,7 +931,7 @@ namespace Ebada.Scgl.WFlow
         /// <returns>流程创建信息二维数组，[0]流程创建结果 [1]运行后流程的任务节点名称</returns>
         public static string[] RunNewGZPRecord(string recordID, string kind, string userID)
         {
-            return RunNewGZPRecord(recordID, kind, userID,true);
+            return RunNewGZPRecord(recordID, kind, userID, true);
         }
         /// <summary>
         /// 创建工作票流程
@@ -947,7 +955,7 @@ namespace Ebada.Scgl.WFlow
             else if (kind == "xlqxp")
                 dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "电力线路事故应急抢修单");
             else
-                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, kind);   
+                dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, kind);
             workFlowId = dt.Rows[0]["WorkFlowId"].ToString();
             workTaskId = dt.Rows[0]["workTaskId"].ToString();
             flowCaption = dt.Rows[0]["FlowCaption"].ToString();
@@ -962,9 +970,9 @@ namespace Ebada.Scgl.WFlow
             {
                 command = "提交";
             }
-            string[] strmes=new  string[2] ;
+            string[] strmes = new string[2];
             strmes[0] = CreatWorkFlow(userID, workFlowId, workTaskId, workFlowInstanceId, workTaskInstanceId, flowCaption, command, IsRun);
-            
+
             WFP_RecordWorkTaskIns wpfrecord = new WFP_RecordWorkTaskIns();
             wpfrecord.RecordID = recordID;
             wpfrecord.WorkFlowId = workFlowId;
@@ -972,8 +980,8 @@ namespace Ebada.Scgl.WFlow
             wpfrecord.WorkTaskId = workTaskId;
             wpfrecord.WorkTaskInsId = workTaskInstanceId;
             if (strmes[0].IndexOf("未提交至任何人") == -1) MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
-            
-            strtemp=RecordWorkTask.GetWorkFlowTaskCaption (workTaskInstanceId);
+
+            strtemp = RecordWorkTask.GetWorkFlowTaskCaption(workTaskInstanceId);
             if (strtemp == "结束节点1")
             {
                 strmes[1] = "存档";
@@ -987,13 +995,13 @@ namespace Ebada.Scgl.WFlow
 
         public static string RunGZPWorkFlowChange(string userID, LP_Record recordData, string operatorInsId, string workTaskInsId, string newWorkTaskCap)
         {
-            string nowtaskId = "",strsql ="",strtemp="";
+            string nowtaskId = "", strsql = "", strtemp = "";
             string str1 = "未提交至任何人,请检查流程模板和组织机构配置是否正确!";
 
             WF_WorkTaskInstance workins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(workTaskInsId);
-            
+
             WF_OperatorInstance operins = MainHelper.PlatformSqlMap.GetOneByKey<WF_OperatorInstance>(operatorInsId);
-            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordData.ID  + "'");
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordData.ID + "'");
             if (wf.Count == 0) return str1;
             object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where TaskCaption='" + newWorkTaskCap + "' and WorkFlowId='" + wf[0].WorkFlowId + "'  ");
             if (obj != null && operins != null)
@@ -1001,8 +1009,8 @@ namespace Ebada.Scgl.WFlow
                 nowtaskId = ((WF_WorkTask)obj).WorkTaskId;
                 workins.WorkTaskId = nowtaskId;
                 workins.StartTime = DateTime.Now;
-                workins.TaskInsCaption =((WF_WorkTask)obj).TaskCaption;
-                MainHelper.PlatformSqlMap.Delete <WF_WorkTaskInstance>(workins);
+                workins.TaskInsCaption = ((WF_WorkTask)obj).TaskCaption;
+                MainHelper.PlatformSqlMap.Delete<WF_WorkTaskInstance>(workins);
                 workins.WorkTaskInsId = Guid.NewGuid().ToString();
                 workins.Status = "1";
                 //WF_Operator op = (WF_Operator)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorList", " where WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
@@ -1013,7 +1021,7 @@ namespace Ebada.Scgl.WFlow
                     {
 
 
-                        operins.OperatorInsId = Guid.NewGuid().ToString(); 
+                        operins.OperatorInsId = Guid.NewGuid().ToString();
                         operins.WorkTaskId = nowtaskId;
                         operins.OperContent = op.OperContent;
                         operins.OperContentText = op.OperDisplay;
@@ -1029,17 +1037,17 @@ namespace Ebada.Scgl.WFlow
                             strtemp = op.OperDisplay;
                         }
 
-                            
-                        MainHelper.PlatformSqlMap.Create <WF_OperatorInstance>(operins);
 
-                        
+                        MainHelper.PlatformSqlMap.Create<WF_OperatorInstance>(operins);
+
+
                     }
                     recordData.Status = newWorkTaskCap;
                     strsql = "  update WF_WorkFlowInstance set nowtaskId='" + nowtaskId + "' where workflowInsid='" + workins.WorkFlowInsId + "'";
                     MainHelper.PlatformSqlMap.Update("UpdateWF_WorkFlowInstanceValue", strsql);
                     MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where WorkFlowInsId='" + operins.WorkFlowInsId + "' and WorkTaskInsId='" + workTaskInsId + "' ");
                     MainHelper.PlatformSqlMap.Update<LP_Record>(recordData);
-                    MainHelper.PlatformSqlMap.Create <WF_WorkTaskInstance>(workins);
+                    MainHelper.PlatformSqlMap.Create<WF_WorkTaskInstance>(workins);
                 }
                 else
                 {
@@ -1067,7 +1075,7 @@ namespace Ebada.Scgl.WFlow
         {
             if (MainHelper.UserOrg.OrgName.IndexOf("供电所") > -1)
             {
-                if (recordIkind=="定期分析")
+                if (recordIkind == "定期分析")
                     return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "供电所定期分析").Rows.Count > 0 ? true : false;
                 else if (recordIkind == "专题分析")
                     return WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "供电所专题分析").Rows.Count > 0 ? true : false;
@@ -1086,10 +1094,10 @@ namespace Ebada.Scgl.WFlow
             //else
             //    return false;
         }
-       
-     /// <summary>
-     /// 获得当前用户是否可以运行当前记录权限
-     /// </summary>
+
+        /// <summary>
+        /// 获得当前用户是否可以运行当前记录权限
+        /// </summary>
         /// <param name="recordID">记录ID</param>
         /// <param name="userID">用户ID</param>
         /// <returns>true:有权限反之无权限</returns>
@@ -1102,7 +1110,7 @@ namespace Ebada.Scgl.WFlow
             {
                 return true;
             }
-                return false;
+            return false;
         }
 
         /// <summary>
@@ -1118,7 +1126,7 @@ namespace Ebada.Scgl.WFlow
             if (wf.Count == 0) return dtnull;
             WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
             DataTable dt = WorkFlowInstance.SelectedWorkflowNowTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, wfi.NowTaskId, 999);
-           // DataTable dt = WorkFlowInstance.SelectedWorkflowTask (userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId,wfi.NowTaskId , 999);
+            // DataTable dt = WorkFlowInstance.SelectedWorkflowTask (userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId,wfi.NowTaskId , 999);
             return dt;
         }
         /// <summary>
@@ -1133,7 +1141,7 @@ namespace Ebada.Scgl.WFlow
             if (wf.Count == 0) return dtnull;
             WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
             // DataTable dt = WorkFlowInstance.SelectedWorkflowClaimingTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, 999);
-            DataTable dt = WorkFlowInstance.SelectedWorkflowTask( wf[0].WorkFlowId, wf[0].WorkFlowInsId, wfi.NowTaskId, 999);
+            DataTable dt = WorkFlowInstance.SelectedWorkflowTask(wf[0].WorkFlowId, wf[0].WorkFlowInsId, wfi.NowTaskId, 999);
             return dt;
         }
         /// <summary>
@@ -1142,25 +1150,25 @@ namespace Ebada.Scgl.WFlow
         /// <param name="recordID">记录ID</param>
         /// <param name="sz">图片大小</param>
         /// <returns>Bitmap</returns>
-        public static Bitmap WorkFlowBitmap(string recordID,Size sz)
+        public static Bitmap WorkFlowBitmap(string recordID, Size sz)
         {
-            Bitmap objBitmap = new Bitmap(sz.Width, sz.Height );
+            Bitmap objBitmap = new Bitmap(sz.Width, sz.Height);
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             if (wf.Count == 0) return null;
-            objBitmap=WorkFlowInstance.WorkFlowBitmap(wf[0].WorkFlowId, wf[0].WorkFlowInsId, sz);
+            objBitmap = WorkFlowInstance.WorkFlowBitmap(wf[0].WorkFlowId, wf[0].WorkFlowInsId, sz);
             //System.IO.MemoryStream _ImageMem = new System.IO.MemoryStream();
             //objBitmap.Save(recordID + ".jpg", ImageFormat.Jpeg);
             //objBitmap.Save(_ImageMem, ImageFormat.Bmp);
             //byte[] _ImageBytes = _ImageMem.GetBuffer();
             return objBitmap;
         }
-       /// <summary>
+        /// <summary>
         /// 创建运行分析流程
-       /// </summary>
-       /// <param name="recordID">记录ID</param>
+        /// </summary>
+        /// <param name="recordID">记录ID</param>
         /// <param name="recordIkind">运行分析记录种类</param>
         /// <param name="userID">用户ID</param>
-       /// <returns>流程创建结果</returns>
+        /// <returns>流程创建结果</returns>
         public static string RunNewYXFXRecord(string recordID, string recordIkind, string userID)
         {
             DataTable dt = null;
@@ -1176,10 +1184,10 @@ namespace Ebada.Scgl.WFlow
                     dt = WorkFlowTemplate.GetSelectedNameWorkFlows(userID, "供电所专题分析");
                 }
 
-                
+
             }
             //else if (MainHelper.UserOrg.OrgName.IndexOf("局") > -1)
-            else  
+            else
             {
                 if (recordIkind == "定期分析")
                 {
@@ -1194,10 +1202,10 @@ namespace Ebada.Scgl.WFlow
             }
             workFlowId = dt.Rows[0]["WorkFlowId"].ToString();
             workTaskId = dt.Rows[0]["workTaskId"].ToString();
-            flowCaption=dt.Rows[0]["FlowCaption"].ToString();
-            workFlowInstanceId=Guid.NewGuid().ToString();
+            flowCaption = dt.Rows[0]["FlowCaption"].ToString();
+            workFlowInstanceId = Guid.NewGuid().ToString();
             workTaskInstanceId = Guid.NewGuid().ToString();
-            DataTable taskCommand = WorkFlowTask.GetTaskCommands(workFlowId,workTaskId);
+            DataTable taskCommand = WorkFlowTask.GetTaskCommands(workFlowId, workTaskId);
             if (taskCommand.Rows.Count > 0)
             {
                 command = taskCommand.Rows[0]["CommandName"].ToString();
@@ -1207,15 +1215,15 @@ namespace Ebada.Scgl.WFlow
                 command = "提交";
             }
             string strmes = CreatWorkFlow(userID, workFlowId, workTaskId, workFlowInstanceId, workTaskInstanceId, flowCaption, command);
-           
+
             WFP_RecordWorkTaskIns wpfrecord = new WFP_RecordWorkTaskIns();
             wpfrecord.RecordID = recordID;
             wpfrecord.WorkFlowId = workFlowId;
-            wpfrecord.WorkFlowInsId  = workFlowInstanceId;
+            wpfrecord.WorkFlowInsId = workFlowInstanceId;
             wpfrecord.WorkTaskId = workTaskId;
             wpfrecord.WorkTaskInsId = workTaskInstanceId;
-          
-            if ( strmes.IndexOf("未提交至任何人")== -1) MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
+
+            if (strmes.IndexOf("未提交至任何人") == -1) MainHelper.PlatformSqlMap.Create<WFP_RecordWorkTaskIns>(wpfrecord);
 
 
             return strmes;
@@ -1232,14 +1240,14 @@ namespace Ebada.Scgl.WFlow
             MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where recordID='" + recordID + "'");
             MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleCheckTable>(" where recordID='" + recordID + "'");
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
-            if (wf.Count == 0) return ;
+            if (wf.Count == 0) return;
             {
                 MainHelper.PlatformSqlMap.Delete<WFP_RecordWorkTaskIns>(wf[0]);
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
             }
-            
+
             //return "";
         }
         /// <summary>
@@ -1255,9 +1263,9 @@ namespace Ebada.Scgl.WFlow
         /// <returns>返回流程执行结果</returns>
 
         public static string CreatWorkFlow(string userID, string WorkFlowId, string workTaskId, string workFlowInstanceId, string WorkTaskInstanceId, string FlowCaption, string command)
-        { 
-        
-            return CreatWorkFlow( userID,  WorkFlowId,  workTaskId,  workFlowInstanceId,  WorkTaskInstanceId,  FlowCaption,  command,true);
+        {
+
+            return CreatWorkFlow(userID, WorkFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, FlowCaption, command, true);
         }
         /// <summary>
         /// 创建流程
@@ -1298,10 +1306,10 @@ namespace Ebada.Scgl.WFlow
         /// </summary>
         /// <param name="WorkTaskInsId"></param>
         /// <returns></returns>
-        public static string GetWorkFlowTaskCaption( string WorkTaskInsId)
+        public static string GetWorkFlowTaskCaption(string WorkTaskInsId)
         {
             string sql = "where ( previoustaskid='" + WorkTaskInsId + "'  or WorkTaskId in ( select NowTaskId  from WF_WorkFlowInstance where MainWorktaskInsId='" + WorkTaskInsId + "' ) ) and operstatus='0' order by opertype";
-            
+
             IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
             if (li.Count > 0)
             {
@@ -1319,8 +1327,8 @@ namespace Ebada.Scgl.WFlow
                     }
                     else
                     {
-                         WF_WorkFlowInstance mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  WorkflowInsId='" + li[0].MainWorkflowInsId + "'");
-                         if (mainwf != null)
+                        WF_WorkFlowInstance mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  WorkflowInsId='" + li[0].MainWorkflowInsId + "'");
+                        if (mainwf != null)
                         {
                             //WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(mainwf.NowTaskId);
                             WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
@@ -1328,10 +1336,10 @@ namespace Ebada.Scgl.WFlow
                             {
                                 WF_WorkFlowInstance subwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  MainWorkflowInsId='" + li[0].MainWorkflowInsId + "'and MainWorktaskId='" + mainwf.NowTaskId + "' ");
                                 wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(subwf.NowTaskId);
-                                
+
                             }
-                           
-                                return wt.TaskCaption ;
+
+                            return wt.TaskCaption;
 
                         }
                     }
@@ -1340,18 +1348,18 @@ namespace Ebada.Scgl.WFlow
                 return "";
             }
         }
-        
+
         /// <summary>
         /// 流程是否可以退回
         /// </summary>
         /// <param name="WorkTaskId">任务节点id</param>
         /// <param name="WorkFlowId">流程ID</param>
         /// <returns>true ，可以退回 反之不能</returns>
-        public static bool  HaveWorkFlowBackRole(string WorkTaskId, string WorkFlowId)
+        public static bool HaveWorkFlowBackRole(string WorkTaskId, string WorkFlowId)
         {
-            if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + WorkTaskId + "' and WorkFlowId='" + WorkFlowId+ "' and PowerName='"+WorkConst.WorkTask_Return+"'") != null)
+            if (MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where WorkTaskId='" + WorkTaskId + "' and WorkFlowId='" + WorkFlowId + "' and PowerName='" + WorkConst.WorkTask_Return + "'") != null)
                 return true;
-            return false ;
+            return false;
         }
         /// <summary>
         /// 流程是否可以所有人导出
@@ -1377,7 +1385,7 @@ namespace Ebada.Scgl.WFlow
                 return true;
             return false;
         }
-        
+
         /// <summary>
         /// 流程退回
         /// </summary>
@@ -1394,17 +1402,17 @@ namespace Ebada.Scgl.WFlow
 
             return Toollips(WorkTaskInsId);
         }
-       /// <summary>
+        /// <summary>
         /// 执行流程
-       /// </summary>
+        /// </summary>
         /// <param name="userID">用户ID</param>
-       /// <param name="OperatorInsId">操作ID</param>
-       /// <param name="WorkTaskInsId">任务记录ID</param>
-       /// <param name="command">命令名称</param>
-       /// <returns>返回流程执行结果</returns>
+        /// <param name="OperatorInsId">操作ID</param>
+        /// <param name="WorkTaskInsId">任务记录ID</param>
+        /// <param name="command">命令名称</param>
+        /// <returns>返回流程执行结果</returns>
         public static string RunWorkFlow(string userID, string OperatorInsId, string WorkTaskInsId, string command)
         {
-           
+
             WorkFlowRuntime wfruntime = new WorkFlowRuntime();
             //wfruntime.RunSuccess += new WorkFlowRuntime.RunSuccessEventHandler(wfruntime_RunSuccess);
             //wfruntime.RunFail += new WorkFlowRuntime.RunFailEventHandler(wfruntime_RunFail);
@@ -1451,11 +1459,11 @@ namespace Ebada.Scgl.WFlow
                                 if (wt.TaskTypeId == "6")
                                 {
                                     WF_WorkFlowInstance subwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  MainWorkflowInsId='" + li[0].MainWorkflowInsId + "'and MainWorktaskId='" + mainwf.NowTaskId + "' ");
-                                    sql = "where MainWorkflowInsId='" + subwf.MainWorkflowInsId + "' and MainWorktaskId='" + subwf.MainWorktaskId  + "'and WorkTaskId='" + subwf .NowTaskId+ "' order by opertype";
+                                    sql = "where MainWorkflowInsId='" + subwf.MainWorkflowInsId + "' and MainWorktaskId='" + subwf.MainWorktaskId + "'and WorkTaskId='" + subwf.NowTaskId + "' order by opertype";
                                     li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
                                     if (li.Count > 0)
                                     {
-                                        TaskToWhoMsg = WorkTaskInstance.GetTaskToWhoMsg(li[0].PreviousTaskId   );
+                                        TaskToWhoMsg = WorkTaskInstance.GetTaskToWhoMsg(li[0].PreviousTaskId);
                                     }
                                 }
                                 else
@@ -1464,12 +1472,12 @@ namespace Ebada.Scgl.WFlow
                                         TaskToWhoMsg = "流程结束!";
                                     }
 
-                               
+
 
                             }
                         }
                     }
-                    
+
                 }
                 if (ResultMsg == WorkFlowConst.TaskBackMsg)
                 {
@@ -1477,8 +1485,8 @@ namespace Ebada.Scgl.WFlow
                 }
             }
 
-            return TaskToWhoMsg ="成功提交至:" + TaskToWhoMsg + "。已完成该任务处理,可以关闭该窗口。";
+            return TaskToWhoMsg = "成功提交至:" + TaskToWhoMsg + "。已完成该任务处理,可以关闭该窗口。";
         }
-     
+
     }
 }
