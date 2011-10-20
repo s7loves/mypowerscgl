@@ -282,7 +282,7 @@ namespace Ebada.SCGL {
             //taskbarNotifier1.TitleClick += new EventHandler(TitleClick);
             taskbarNotifier1.ContentClick += new EventHandler(ContentClick);
             //taskbarNotifier1.CloseClick += new EventHandler(CloseClick);
-            taskbarNotifier1.Show("农电生产系统", "欢迎 "+MainHelper.User.UserName +" 登陆，您今天有" + WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999).Rows.Count.ToString ()   + "个任务待处理", 500, 5000, 500);
+            taskbarNotifier1.Show("农电生产系统", "欢迎 "+MainHelper.User.UserName +" 登陆，您今天有" + WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999).Rows.Count.ToString ()   + "个任务待处理", 10, 5000, 50);
         
         }
         void ContentClick(object obj, EventArgs e)
