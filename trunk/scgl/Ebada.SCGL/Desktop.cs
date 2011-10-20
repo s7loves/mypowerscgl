@@ -14,6 +14,9 @@ using DevExpress.XtraGrid.Columns;
 using Ebada.Scgl.WFlow;
 using System.IO;
 using System.Security.Permissions;
+using Ebada.Client;
+using Ebada.UI.Base;
+using Ebada.Scgl.Lcgl;
 
 namespace Ebada.SCGL
 {
@@ -99,8 +102,11 @@ namespace Ebada.SCGL
             Hashtable ht = new Hashtable();
             Hashtable ht2 = new Hashtable();
             DataRow dr=null;
+            string strflowinsid = "";
             foreach (DataRow tdr in claimdt.Rows)
             {
+                if (strflowinsid.IndexOf(tdr["WorkFlowInsId"].ToString()) > -1) continue;
+                strflowinsid += tdr["WorkFlowInsId"];
                 if (ht.Contains(tdr["FlowCaption"]))
                 {
                     ht[tdr["FlowCaption"]] = Convert.ToInt32(ht[tdr["FlowCaption"]]) + 1;
@@ -117,9 +123,9 @@ namespace Ebada.SCGL
                 dr["name"] = de.Key.ToString() + "(" + de.Value.ToString() + ")";
                 dr["id"] = Guid.NewGuid().ToString();
                 dr["parentid"] = parentid;
-                WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(ht2[de.Key].ToString());
-                if (wf != null)
-                    dr["Modu_ID"] = wf.MgrUrl;
+                //WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(ht2[de.Key].ToString());
+                //if (wf != null)
+                //    dr["Modu_ID"] = wf.MgrUrl;
                 dt.Rows.Add(dr);
 
             }
@@ -129,12 +135,11 @@ namespace Ebada.SCGL
         {
             DataTable workTaskdt = WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999);
             
-            treeList1.Nodes.Clear(); 
-            DataRow dr = dt.NewRow();
-            dr["name"] = "我的任务(" + workTaskdt.Rows.Count + ")";
-            dr["id"] = 0;
-            dt.Rows.Add(dr);
+            treeList1.Nodes.Clear();
+            dt.Rows.Clear();
             taskdt.Rows.Clear();
+            string strflowinsid = "";
+
             foreach (DataRow tdr in workTaskdt.Rows)
             {
 
@@ -144,15 +149,22 @@ namespace Ebada.SCGL
                     if (gc.ColumnName == "Modu_ID" || gc.ColumnName == "butt" || gc.ColumnName == "Image") continue;
                     taskdr[gc.ColumnName] = tdr[gc.ColumnName];
                 }
-                WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(tdr["WorkFlowId"]);
-                taskdr["Modu_ID"] = wf.MgrUrl;
+                if (strflowinsid.IndexOf(tdr["WorkFlowInsId"].ToString()) > -1) continue;
+                strflowinsid += tdr["WorkFlowInsId"];
+                //WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(tdr["WorkFlowId"]);
+                //taskdr["Modu_ID"] = wf.MgrUrl;
                 taskdr["butt"] = "进入";
+                taskdr["WorkFlowInsId"] = tdr["WorkFlowInsId"];
                 //taskdr["Image"] = WorkFlowInstance.WorkFlowBitmap(tdr["WorkFlowId"].ToString(), tdr["WorkFlowInsId"].ToString(), imageEdit1.PopupFormSize);
                 taskdt.Rows.Add(taskdr);
 
                 
               
             }
+            DataRow dr = dt.NewRow();
+            dr["name"] = "我的任务(" + taskdt.Rows.Count + ")";
+            dr["id"] = 0;
+            dt.Rows.Add(dr);
             IniWorkFlowData(workTaskdt, 0);
             treeList1.DataSource = dt;
             treeList1.ExpandAll();
@@ -177,6 +189,7 @@ namespace Ebada.SCGL
             taskdt.Columns.Add("TaskCaption", typeof(string));
             taskdt.Columns.Add("taskStartTime", typeof(string));
             taskdt.Columns.Add("WorkFlowId", typeof(string));
+            taskdt.Columns.Add("WorkFlowInsId", typeof(string));
             taskdt.Columns.Add("WorkTaskInsId", typeof(string));
             taskdt.Columns.Add("WorkTaskId", typeof(string));
             taskdt.Columns.Add("Modu_ID", typeof(string));
@@ -278,11 +291,92 @@ namespace Ebada.SCGL
             if (ihand < 0)
                 return;
             DataRow dr = gridTalskView.GetDataRow(ihand);
-            mModule md = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(dr["Modu_ID"]);
-            if (md != null)
+            //mModule md = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(dr["Modu_ID"]);
+            //if (md != null)
+            //{
+            //    PlatForm.OpenModule(md);
+            //}
+            IList<WFP_RecordWorkTaskIns> rwt = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where WorkFlowId='" + dr["WorkFlowId"] + "' and WorkFlowInsId='" + dr["WorkFlowInsId"] + "'");
+            if (rwt.Count == 0) return;
+            LP_Record currRecord= MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(rwt[0].RecordID);
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+            object obj = RecordWorkTask.GetWorkTaskModle(dr["WorkFlowId"].ToString(), dr["WorkTaskId"].ToString());
+             if (obj == null)
             {
-                PlatForm.OpenModule(md);
+                return;
             }
+
+             if (obj is frmLP)
+             {
+                 frmLP frm = new frmLP();
+                 frm.Status = "edit";
+
+
+                 frm.CurrRecord = currRecord;
+
+
+                 frm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+                 if (frm.ParentTemple == null)
+                 {
+                     MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
+                     //return;
+                 }
+
+                 frm.Kind = dr["TaskCaption"].ToString();
+                 frm.RecordWorkFlowData = dt;
+                 frm.ShowDialog();
+                
+             }
+             else
+             {
+
+
+
+                 if (obj.GetType().GetProperty("IsWorkfowCall") != null)
+                     obj.GetType().GetProperty("IsWorkfowCall").SetValue(obj, true, null);
+                 else
+                 {
+                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                     return;
+                 }
+                 if (obj.GetType().GetProperty("CurrRecord") != null)
+                     obj.GetType().GetProperty("CurrRecord").SetValue(obj, currRecord, null);
+                 else
+                 {
+                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                     return;
+                 }
+                 if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
+                     obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
+                 else
+                 {
+                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                     return;
+                 }
+                 if (obj.GetType().GetProperty("ParentTemple") != null)
+                     obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(dt, currRecord), null);
+                 else
+                 {
+                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                     return;
+                 }
+                 if (obj is UserControl)
+                 {
+
+                     FormBase dlg = new FormBase();
+                     dlg.Text = ((UserControl)obj).Name;
+                     dlg.MdiParent = MainHelper.MainForm;
+                     dlg.Controls.Add((UserControl)obj);
+                     ((UserControl)obj).Dock = DockStyle.Fill;
+                     dlg.Show();
+                 }
+                 else
+                     if (obj is Form)
+                     {
+                         ((Form)obj).ShowDialog();
+                     }
+             }
+
         }
 
         private void gridTalskView_ShowingEditor(object sender, CancelEventArgs e)

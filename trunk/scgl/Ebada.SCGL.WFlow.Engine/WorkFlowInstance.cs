@@ -192,7 +192,7 @@ namespace Ebada.SCGL.WFlow.Engine
                  sqlstr=sqlstr+"union  ";
                  sqlstr=sqlstr+ " select "+filedstr +" from WF_WorkTaskInstanceView where UserId='"+userId+"' and (status='1' or status='2')";//--已认领任务
                  sqlstr=sqlstr+") a ";
-                 sqlstr=sqlstr+"  order by status, taskStartTime desc ";
+                 sqlstr = sqlstr + "  order by FlowCaption, status, taskStartTime desc ";
                 Console.WriteLine (sqlstr);
                 IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewListValue", sqlstr);
                 if (li.Count == 0)

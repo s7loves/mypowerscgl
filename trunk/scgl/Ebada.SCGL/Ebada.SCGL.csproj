@@ -203,6 +203,10 @@
       <Project>{F7CEAF24-AA97-46C3-A18B-B74AA5772BAF}</Project>
       <Name>Ebada.Modules.Demo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ebada.SCGL.Lcgl\Ebada.SCGL.Lcgl.csproj">
+      <Project>{1F5C3A84-EA23-43A1-B888-4C4BF2C68905}</Project>
+      <Name>Ebada.SCGL.Lcgl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
