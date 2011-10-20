@@ -251,9 +251,12 @@ namespace Ebada.Scgl.Lcgl
                 this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
                 InitContorl();
             }
-            else if (status == "edit" && currRecord.DocContent != null )
+            else if (status == "edit"   )
             {
-               
+                if (currRecord.DocContent == null)
+                {
+                    currRecord.DocContent = new byte[0];
+                }
                     InitContorl();
                     if (currRecord.ID.IndexOf("N") == -1)
                     {

@@ -63,6 +63,7 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.UsualCtrl)).BeginInit();
             this.UsualCtrl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -295,7 +296,8 @@
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8,
-            this.gridColumn5});
+            this.gridColumn5,
+            this.gridColumn11});
             this.gridTalskView.GridControl = this.gridTalskCon;
             this.gridTalskView.Name = "gridTalskView";
             this.gridTalskView.OptionsView.ShowGroupPanel = false;
@@ -440,6 +442,12 @@
             this.panel1.Size = new System.Drawing.Size(734, 108);
             this.panel1.TabIndex = 8;
             // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "gridColumn11";
+            this.gridColumn11.FieldName = "WorkFlowInsId";
+            this.gridColumn11.Name = "gridColumn11";
+            // 
             // Desktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -518,5 +526,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit imageEdit1;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
     }
 }

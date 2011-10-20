@@ -731,14 +731,21 @@ namespace Ebada.Scgl.WFlow
         /// <param name="kind">流程名称（工作票：dzczp操作票、yzgzp一种工作票、ezgzp二种工作票、xlqxp抢修单）</param>
         /// <param name="userID">用户ID</param>
         /// <returns>bool true有权限 false 无权限</returns>
-
         public static object GetWorkTaskModle(DataTable workflowData)
+        { 
+            if (workflowData.Rows.Count > 0)
+                {
+               return GetWorkTaskModle( workflowData.Rows[0]["WorkflowId"].ToString(),   workflowData.Rows[0]["WorktaskId"].ToString() );
+            }
+            
+            return null;
+        }
+        public static object GetWorkTaskModle(string workflowId, string worktaskId)
         {
 
-            if (workflowData.Rows.Count > 0)
-            {
+            
                 object fromCtrl;
-                WF_WorkTaskModle wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>(" where WorkflowId='" + workflowData.Rows[0]["WorkflowId"] + "' and WorktaskId='" + workflowData.Rows[0]["WorktaskId"] + "'");
+                WF_WorkTaskModle wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>(" where WorkflowId='" +workflowId  + "' and WorktaskId='" +worktaskId+ "'");
                 if (wtc == null) return null;
                 mModule tp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtc.Modu_ID);
                 if (tp == null)
@@ -750,10 +757,10 @@ namespace Ebada.Scgl.WFlow
                     fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName, tp.ModuTypes, tp.MethodName, tp.ModuName);
 
                 }
-                IList<WF_ModleUsedFunc> mulist = MainHelper.PlatformSqlMap.GetList<WF_ModleUsedFunc>(" where WorkflowId='" + workflowData.Rows[0]["WorkflowId"] + "' and WorktaskId='" + workflowData.Rows[0]["WorktaskId"] + "' and Modu_ID='" + tp.Modu_ID + "'");
+                IList<WF_ModleUsedFunc> mulist = MainHelper.PlatformSqlMap.GetList<WF_ModleUsedFunc>(" where WorkflowId='" +workflowId + "' and WorktaskId='" +worktaskId+ "' and Modu_ID='" + tp.Modu_ID + "'");
                 if (mulist.Count > 0) IniCreatModle(fromCtrl, mulist);
                 return fromCtrl;
-            }
+            
 
             return null;
 
