@@ -643,6 +643,7 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
+                this.btEditfrm.Caption = currRecord.Status;
             }
             else
             {
@@ -699,6 +700,7 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
+                this.btEditfrm.Caption = currRecord.Status;
             }
             else
             {
