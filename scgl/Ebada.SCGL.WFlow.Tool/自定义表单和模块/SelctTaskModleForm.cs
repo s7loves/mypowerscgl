@@ -201,8 +201,9 @@ namespace Ebada.SCGL.WFlow.Tool
                  um.FunCode = obj.FunCode;
                  um.WorkflowId = workflowId;
                  um.WorktaskId = worktaskId;
-                 
+
                  DataRow dr = udt.NewRow();
+                 dr["ID"] = um.ID;
                  dr["FunID"] = obj.FunID;
                  dr["FunName"] = obj.FunName;
                  dr["Modu_ID"] = obj.Modu_ID;
