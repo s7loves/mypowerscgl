@@ -148,9 +148,9 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
-            //obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
-            //obj.CreateDate = DateTime.Now;
-            //MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
+            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
+            obj.CreateDate = DateTime.Now;
+            MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
         }
         public string Type
