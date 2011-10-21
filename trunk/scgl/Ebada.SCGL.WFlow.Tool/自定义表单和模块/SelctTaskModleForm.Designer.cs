@@ -53,6 +53,7 @@
             this.treeListColumn8 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
+            this.treeListColumn12 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -194,7 +195,8 @@
             this.treeListColumn6,
             this.treeListColumn9,
             this.treeListColumn10,
-            this.treeListColumn11});
+            this.treeListColumn11,
+            this.treeListColumn12});
             this.treeList3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList3.Location = new System.Drawing.Point(2, 23);
             this.treeList3.Name = "treeList3";
@@ -366,6 +368,14 @@
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // treeListColumn12
+            // 
+            this.treeListColumn12.Caption = "treeListColumn12";
+            this.treeListColumn12.FieldName = "ID";
+            this.treeListColumn12.Name = "treeListColumn12";
+            this.treeListColumn12.Visible = true;
+            this.treeListColumn12.VisibleIndex = 1;
+            // 
             // SelctTaskModleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -424,6 +434,7 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn11;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn12;
 
     }
 }
