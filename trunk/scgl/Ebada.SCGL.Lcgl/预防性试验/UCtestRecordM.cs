@@ -31,6 +31,8 @@ namespace Ebada.Scgl.Lcgl
                 parentTemple = value;
                 uCtestRecord1.ParentTemple = value;
                 uCtestRecordssqkTable1.ParentTemple = value;
+                uCtestRecordjhmxTable1.ParentTemple = value;
+                uCtestRecord4.ParentTemple = value; 
             }
         }
         public bool IsWorkfowCall
@@ -40,6 +42,8 @@ namespace Ebada.Scgl.Lcgl
                 isWorkfowCall = value;
                 uCtestRecord1.IsWorkfowCall = value;
                 uCtestRecordssqkTable1.IsWorkfowCall = value;
+                uCtestRecordjhmxTable1.IsWorkfowCall = value;
+                uCtestRecord4.IsWorkfowCall = value; 
             }
         }
         public LP_Record CurrRecord
@@ -50,6 +54,8 @@ namespace Ebada.Scgl.Lcgl
                 currRecord = value;
                 uCtestRecord1.CurrRecord = value;
                 uCtestRecordssqkTable1.CurrRecord = value;
+                uCtestRecordjhmxTable1.CurrRecord = value;
+                uCtestRecord4.CurrRecord = value; 
             
             }
         }
@@ -68,6 +74,8 @@ namespace Ebada.Scgl.Lcgl
                 WorkFlowData = value;
                 uCtestRecord1.RecordWorkFlowData = value;
                 uCtestRecordssqkTable1.RecordWorkFlowData = value;
+                uCtestRecordjhmxTable1.RecordWorkFlowData = value;
+                uCtestRecord4.RecordWorkFlowData = value; 
 
 
             }
@@ -79,6 +87,8 @@ namespace Ebada.Scgl.Lcgl
             {
                 varDbTableName = value;
                 uCtestRecordssqkTable1.VarDbTableName = value;
+                uCtestRecordjhmxTable1.VarDbTableName = value;
+                uCtestRecord4.VarDbTableName = value; 
             }
         }
         private void UCtestRecordM_Load(object sender, EventArgs e)

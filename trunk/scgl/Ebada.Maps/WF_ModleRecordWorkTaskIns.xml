@@ -1,145 +1,163 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<sqlMap namespace='WF_ModleRecordWorkTaskIns' xmlns='http://ibatis.apache.org/mapping' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
-<alias>
-	<typeAlias alias='WF_ModleRecordWorkTaskIns' assembly='Ebada.Scgl.Model.dll' type='Ebada.Scgl.Model.WF_ModleRecordWorkTaskIns' />
-</alias>
-	<resultMaps>
-		<resultMap id='WF_ModleRecordWorkTaskIns_AllColumns' class='WF_ModleRecordWorkTaskIns'>
-			<result property='ID' column='ID' />
-			<result property='RecordID' column='RecordID' />
-			<result property='ModleRecordID' column='ModleRecordID' />
-			<result property='ModleTableName' column='ModleTableName' />
-			<result property='WorkFlowId' column='WorkFlowId' />
-			<result property='WorkFlowInsId' column='WorkFlowInsId' />
-			<result property='WorkTaskId' column='WorkTaskId' />
-			<result property='WorkTaskInsId' column='WorkTaskInsId' />
-		</resultMap>
-	</resultMaps>
-<statements>
-  <select id="SelectWF_ModleRecordWorkTaskInsList" resultMap="WF_ModleRecordWorkTaskIns_AllColumns" parameterClass="string">
-    "ID",
-    "RecordID",
-    "ModleRecordID",
-    "ModleTableName",
-    "WorkFlowId",
-    "WorkFlowInsId",
-    "WorkTaskId",
-    "WorkTaskInsId"
-    FROM WF_ModleRecordWorkTaskIns
-    $value$
-	</select>
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_ModleRecordWorkTaskIns" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_ModleRecordWorkTaskIns"  type="Ebada.Scgl.Model.WF_ModleRecordWorkTaskIns,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_ModleRecordWorkTaskIns_AllColumns" class="WF_ModleRecordWorkTaskIns">
+        <result property="ID" column="ID" />
+        <result property="RecordID" column="RecordID" />
+        <result property="ModleRecordID" column="ModleRecordID" />
+        <result property="ModleTableName" column="ModleTableName" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkFlowInsId" column="WorkFlowInsId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="WorkTaskInsId" column="WorkTaskInsId" />
+        <result property="CreatTime" column="CreatTime" />
+      </resultMap>
+  </resultMaps>
 
-  <select id="SelectWF_ModleRecordWorkTaskInsByHash" parameterClass="Hashtable">
-    SELECT
-    "ID",
-    "RecordID",
-    "ModleRecordID",
-    "ModleTableName",
-    "WorkFlowId",
-    "WorkFlowInsId",
-    "WorkTaskId",
-    "WorkTaskInsId"
-    FROM WF_ModleRecordWorkTaskIns
-    <dynamic prepend="WHERE">
-      <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
-      <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
-      <isNotNull prepend="AND" property="WorkFlowId">[ModleRecordID]='$ModleRecordID$'</isNotNull>
-      <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
-      <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
-      <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
-      <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
-    </dynamic>
-  </select>
-  <select id="SelectWF_ModleRecordWorkTaskInsByKey" resultMap="WF_ModleRecordWorkTaskIns_AllColumns" parameterClass="WF_ModleRecordWorkTaskIns">
-    SELECT
-    [ID],
-    [RecordID],
-    [ModleRecordID],
-    [WorkFlowId],
-    [WorkFlowInsId],
-    [WorkTaskId],
-    [WorkTaskInsId]
-    FROM WF_ModleRecordWorkTaskIns
-    WHERE
-    ID = #ID#
+  <statements>
+   <select id="SelectWF_ModleRecordWorkTaskInsList" resultMap="WF_ModleRecordWorkTaskIns_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [RecordID],
+         [ModleRecordID],
+         [ModleTableName],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [CreatTime]
+          FROM WF_ModleRecordWorkTaskIns
+          $value$
+   </select>
+   
+   <select id="SelectWF_ModleRecordWorkTaskInsByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [RecordID],
+         [ModleRecordID],
+         [ModleTableName],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [CreatTime]
+          FROM WF_ModleRecordWorkTaskIns
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
+       <isNotNull prepend="AND" property="ModleRecordID">[ModleRecordID]='$ModleRecordID$'</isNotNull>
+       <isNotNull prepend="AND" property="ModleTableName">[ModleTableName]='$ModleTableName$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="CreatTime">[CreatTime]='$CreatTime$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWF_ModleRecordWorkTaskInsByKey" resultMap="WF_ModleRecordWorkTaskIns_AllColumns" parameterClass="WF_ModleRecordWorkTaskIns">
+         SELECT 
+         [ID],
+         [RecordID],
+         [ModleRecordID],
+         [ModleTableName],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [CreatTime]
+         FROM WF_ModleRecordWorkTaskIns
+         WHERE 
+           ID = #ID#
 
-  </select>
+   </select>
+ 
+   <delete id="DeleteWF_ModleRecordWorkTaskIns" parameterClass="WF_ModleRecordWorkTaskIns">
+        DELETE FROM 
+         WF_ModleRecordWorkTaskIns
+           WHERE
+         ID = #ID#
 
-  <delete id="DeleteWF_ModleRecordWorkTaskIns" parameterClass="WF_ModleRecordWorkTaskIns">
-    DELETE FROM
-    WF_ModleRecordWorkTaskIns
-    WHERE
-    ID = #ID#
+   </delete>
+   
+   <delete id="DeleteWF_ModleRecordWorkTaskInsByWhere" parameterClass="string">
+     delete from WF_ModleRecordWorkTaskIns $value$
+   </delete>
+   
+   <delete id="DeleteWF_ModleRecordWorkTaskInsByKey" parameterClass="Unknown">
+        DELETE FROM 
+         WF_ModleRecordWorkTaskIns
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateWF_ModleRecordWorkTaskIns" parameterClass="WF_ModleRecordWorkTaskIns" resultClass="int">
+          UPDATE WF_ModleRecordWorkTaskIns
+           SET
+             [RecordID]=#RecordID#,
+             [ModleRecordID]=#ModleRecordID#,
+             [ModleTableName]=#ModleTableName#,
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkFlowInsId]=#WorkFlowInsId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [WorkTaskInsId]=#WorkTaskInsId#,
+             [CreatTime]=#CreatTime#
+            WHERE 
+              ID = #ID#
 
-  </delete>
+   </update>
+  
+   <insert id="InsertWF_ModleRecordWorkTaskIns" parameterClass="WF_ModleRecordWorkTaskIns">
+        INSERT INTO WF_ModleRecordWorkTaskIns
+         (
+         [ID],
+         [RecordID],
+         [ModleRecordID],
+         [ModleTableName],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [CreatTime]
+         )
+       VALUES
+         (
+         #ID#,
+         #RecordID#,
+         #ModleRecordID#,
+         #ModleTableName#,
+         #WorkFlowId#,
+         #WorkFlowInsId#,
+         #WorkTaskId#,
+         #WorkTaskInsId#,
+         #CreatTime#
+         )
 
-  <delete id="DeleteWF_ModleRecordWorkTaskInsByWhere" parameterClass="string">
-    delete from WF_ModleRecordWorkTaskIns $value$
-  </delete>
+   </insert>
+   
+   <select id="GetWF_ModleRecordWorkTaskInsRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WF_ModleRecordWorkTaskIns
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
+       <isNotNull prepend="AND" property="ModleRecordID">[ModleRecordID]='$ModleRecordID$'</isNotNull>
+       <isNotNull prepend="AND" property="ModleTableName">[ModleTableName]='$ModleTableName$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
+       <isNotNull prepend="AND" property="CreatTime">[CreatTime]='$CreatTime$'</isNotNull>
+     </dynamic>
 
-  <delete id="DeleteWF_ModleRecordWorkTaskInsByKey" parameterClass="string">
-    DELETE FROM
-    WF_ModleRecordWorkTaskIns
-    WHERE
-    ID = #ID#
-
-  </delete>
-
-  <update id="UpdateWF_ModleRecordWorkTaskIns" parameterClass="WF_ModleRecordWorkTaskIns" resultClass="int">
-    UPDATE WF_ModleRecordWorkTaskIns
-    SET
-    [RecordID]=#RecordID#,
-    [ModleRecordID]=#ModleRecordID#,
-    [WorkFlowId]=#WorkFlowId#,
-    [WorkFlowInsId]=#WorkFlowInsId#,
-    [WorkTaskId]=#WorkTaskId#,
-    [WorkTaskInsId]=#WorkTaskInsId#
-    WHERE
-    ID = #ID#
-
-  </update>
-
-  <insert id="InsertWF_ModleRecordWorkTaskIns" parameterClass="WF_ModleRecordWorkTaskIns">
-    INSERT INTO WF_ModleRecordWorkTaskIns
-    (
-    [ID],
-    [RecordID],
-    [ModleRecordID],
-    [WorkFlowId],
-    [WorkFlowInsId],
-    [WorkTaskId],
-    [WorkTaskInsId]
-    )
-    VALUES
-    (
-    #ID#,
-    #ModleRecordID#,
-    #RecordID#,
-    #WorkFlowId#,
-    #WorkFlowInsId#,
-    #WorkTaskId#,
-    #WorkTaskInsId#
-    )
-
-  </insert>
-
-  <select id="GetWF_ModleRecordWorkTaskInsRowCountByHash" parameterClass="Hashtable">
-    SELECT Count(*)
-    FROM WF_ModleRecordWorkTaskIns
-    <dynamic prepend="WHERE">
-      <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
-      <isNotNull prepend="AND" property="RecordID">[RecordID]='$RecordID$'</isNotNull>
-      <isNotNull prepend="AND" property="RecordID">[ModleRecordID]='$ModleRecordID$'</isNotNull>
-      <isNotNull prepend="AND" property="WorkFlowId">[WorkFlowId]='$WorkFlowId$'</isNotNull>
-      <isNotNull prepend="AND" property="WorkFlowInsId">[WorkFlowInsId]='$WorkFlowInsId$'</isNotNull>
-      <isNotNull prepend="AND" property="WorkTaskId">[WorkTaskId]='$WorkTaskId$'</isNotNull>
-      <isNotNull prepend="AND" property="WorkTaskInsId">[WorkTaskInsId]='$WorkTaskInsId$'</isNotNull>
-    </dynamic>
-
-  </select>
-
-  <select id="GetWF_ModleRecordWorkTaskInsRowCount" parameterClass="string">
+   </select>
+   
+   <select id="GetWF_ModleRecordWorkTaskInsRowCount" parameterClass="string">
     select count(*) from WF_ModleRecordWorkTaskIns $value$
-  </select>
-</statements>
+   </select>
+  </statements>
 </sqlMap>
+ 
