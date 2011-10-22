@@ -39,6 +39,56 @@ namespace Ebada.Scgl.Lcgl
         private string parentID = null;
         private mOrg parentObj;
         private string _type = null;
+        private bool isWorkfowCall = false;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        private string varDbTableName = "PJ_yfsyjl,PJ_yfsyhcjl,LP_Record";
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set { parentTemple = value; }
+        }
+        public bool IsWorkfowCall
+        {
+            set
+            {
+
+                isWorkfowCall = value;
+
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set { currRecord = value; }
+        }
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+
+                return WorkFlowData;
+            }
+            set
+            {
+
+
+                WorkFlowData = value;
+
+
+            }
+        }
+
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value;
+            }
+        }
         public UCtestdrqRecord()
         {
             InitializeComponent();
@@ -314,19 +364,24 @@ namespace Ebada.Scgl.Lcgl
             //frm.ShowDialog();
 
             IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>;
+            Export11 export = new Export11();
+            export.CurrRecord = currRecord;
+            export.IsWorkfowCall = isWorkfowCall;
+            export.ParentTemple = parentTemple;
+            export.RecordWorkFlowData = WorkFlowData;
             switch (_type)
             {
                 case "变压器":
-                    Export11.ExportExcelbyq(datalist, _type + "预防性试验记录", parentID);
+                    export.ExportExcelbyq(datalist, _type + "预防性试验记录", parentID);
                     break;
                 case "断路器":
-                    Export11.ExportExceldlq(datalist, _type + "预防性试验记录", parentID);
+                    export.ExportExceldlq(datalist, _type + "预防性试验记录", parentID);
                     break;
                 case "避雷器":
-                    Export11.ExportExcelblq(datalist, _type + "预防性试验记录", parentID);
+                    export.ExportExcelblq(datalist, _type + "预防性试验记录", parentID);
                     break;
                 case "电容器":
-                    Export11.ExportExceldrq(datalist, _type + "预防性试验记录", parentID);
+                    export.ExportExceldrq(datalist, _type + "预防性试验记录", parentID);
                     break;
             }
            

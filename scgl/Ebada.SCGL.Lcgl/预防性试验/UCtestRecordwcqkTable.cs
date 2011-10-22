@@ -71,7 +71,7 @@ namespace Ebada.Scgl.Lcgl
             }
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type  + "'  order by xh ");
+            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type  + "'  ");
         }
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
@@ -79,7 +79,7 @@ namespace Ebada.Scgl.Lcgl
             obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
             obj.CreateDate = DateTime.Now;
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
-            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  ");
         }
         public string Type
         {
@@ -119,7 +119,7 @@ namespace Ebada.Scgl.Lcgl
 
 
                     }
-                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  ");
                 }
 
             }
@@ -234,11 +234,20 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
             gridViewOperation.RefreshData(slqwhere);
         }
         public void RefreshData()
         {
-            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  ");
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -275,7 +284,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value) )
                 {
-                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'  order by xh ");
+                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "' ");
 
                 }
             }

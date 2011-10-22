@@ -120,12 +120,21 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_AfterEdit(PJ_yfsyjl obj)
         {
-            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  ");
         
         }
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
 
+            if (isWorkfowCall)
+            {
+
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID
+                    + " and  WorkFlowId='"+ WorkFlowData.Rows[0]["WorkFlowId"].ToString()+"'"
+                    + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                    + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
+            }
             IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' order by xh");
             int i=1;
             List<PJ_yfsyjl> list = new List<PJ_yfsyjl>();
@@ -143,7 +152,7 @@ namespace Ebada.Scgl.Lcgl
             }
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type  + "'  order by xh ");
+            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type  + "'  ");
         }
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
@@ -151,7 +160,20 @@ namespace Ebada.Scgl.Lcgl
             obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
             obj.CreateDate = DateTime.Now;
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
-            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+            if (isWorkfowCall)
+            {
+                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ModleRecordID = obj.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            }
+
+            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  ");
         }
         public string Type
         {
@@ -189,7 +211,7 @@ namespace Ebada.Scgl.Lcgl
                         //    gridViewOperation.EditForm =  new frmtestRecorddrqEdit();
                             //break;
                     }
-                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  ");
                 }
 
             }
@@ -301,11 +323,21 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            slqwhere = slqwhere + " order by xh";
             gridViewOperation.RefreshData(slqwhere);
         }
         public void RefreshData()
         {
-            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh ");
+            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  ");
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -342,7 +374,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value) )
                 {
-                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'  order by xh ");
+                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'   ");
 
                 }
             }
@@ -376,19 +408,24 @@ namespace Ebada.Scgl.Lcgl
             //frm.ShowDialog();
 
             IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>;
+            Export11 export = new Export11();
+            export.CurrRecord = currRecord;
+            export.IsWorkfowCall = isWorkfowCall;
+            export.ParentTemple = parentTemple;
+            export.RecordWorkFlowData = WorkFlowData;
             switch (_type)
             {
                 case "变压器":
-                    Export11.ExportExcelbyq(datalist, _type + "预防性试验记录", parentID);
+                    export.ExportExcelbyq(datalist, _type + "预防性试验记录", parentID);
                     break;
                 case "断路器":
-                    Export11.ExportExceldlq(datalist, _type + "预防性试验记录", parentID);
+                    export.ExportExceldlq(datalist, _type + "预防性试验记录", parentID);
                     break;
                 case "避雷器":
-                    Export11.ExportExcelblq(datalist, _type + "预防性试验记录", parentID);
+                    export.ExportExcelblq(datalist, _type + "预防性试验记录", parentID);
                     break;
                 case "电容器":
-                    Export11.ExportExceldrq(datalist, _type + "预防性试验记录", parentID);
+                    export.ExportExceldrq(datalist, _type + "预防性试验记录", parentID);
                     break;
             }
            
@@ -401,10 +438,15 @@ namespace Ebada.Scgl.Lcgl
             fm.CurrRecord = currRecord;
             fm.Status = "add";
             fm.Kind = currRecord.Kind;
+            Export11 export = new Export11();
+            export.CurrRecord = currRecord;
+            export.IsWorkfowCall = isWorkfowCall;
+            export.ParentTemple = parentTemple;
+            export.RecordWorkFlowData = WorkFlowData;
             if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                Export11.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", parentID,false);
+                export.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", parentID, false);
             else
-                Export11.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", "", false);
+                export.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", "", false);
             fm.ParentTemple = parentTemple;
             if(fm.ShowDialog()==DialogResult.OK)
             {

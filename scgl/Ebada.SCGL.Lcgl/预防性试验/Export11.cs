@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections;
 using Ebada.Scgl.Core;
+using System.Data;
 namespace Ebada.Scgl.Lcgl
 {
     /// <summary>
@@ -14,7 +15,47 @@ namespace Ebada.Scgl.Lcgl
     /// 文档
     /// </summary>
     public class Export11 {
-        public static void ExportExceljhbAllSubmit(ref LP_Temple parentTemple, string cellname, string sheetname, string orgid, bool isShow)
+        private bool isWorkfowCall = false;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set { parentTemple = value; }
+        }
+        public bool IsWorkfowCall
+        {
+            set
+            {
+
+                isWorkfowCall = value;
+
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set { currRecord = value; }
+        }
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+
+                return WorkFlowData;
+            }
+            set
+            {
+
+
+                WorkFlowData = value;
+
+               
+            }
+        }
+        public  void ExportExceljhbAllSubmit(ref LP_Temple parentTemple, string cellname, string sheetname, string orgid, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string fname = Application.StartupPath + "\\00记录模板\\预防性试验记录.xls";
@@ -34,6 +75,11 @@ namespace Ebada.Scgl.Lcgl
             ExportExceljhbAllEx(ex, cellname, sheetname, orgid, isShow);
             string filter = "";
             if (orgid != "") filter = " and OrgCode='" + orgid + "'";
+            if (isWorkfowCall)
+            {
+                filter =filter+ " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='"
+                   + CurrRecord.ID + "' and   WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') ";
+            }
             IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'" + filter + " order by xh ");
             Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid, isShow);
             IList<PJ_yfsyjl> byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
@@ -73,11 +119,11 @@ namespace Ebada.Scgl.Lcgl
             dsoFramerWordControl1.FileClose();
 
         }
-        public static void ExportExceljhbAll(string cellname, string sheetname, string orgid)
+        public  void ExportExceljhbAll(string cellname, string sheetname, string orgid)
         {
             ExportExceljhbAll(cellname, sheetname, orgid, true);
         }
-        public static void ExportExceljhbAll(string cellname, string sheetname, string orgid,bool isShow)
+        public  void ExportExceljhbAll(string cellname, string sheetname, string orgid,bool isShow)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -85,7 +131,12 @@ namespace Ebada.Scgl.Lcgl
             ex.Open(fname);
             ExportExceljhbAllEx(ex, cellname, sheetname, orgid);
             string filter="";
-            if(orgid!="") filter=" and OrgCode='" + orgid + "'";
+            if (orgid != "") filter = " and OrgCode='" + orgid + "'";
+            if (isWorkfowCall)
+            {
+                filter = filter + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='"
+                   + CurrRecord.ID + "' and   WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') ";
+            }
             IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'" + filter + " order by xh ");
             Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid, isShow);
             IList<PJ_yfsyjl> byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
@@ -628,7 +679,7 @@ namespace Ebada.Scgl.Lcgl
         /// </summary>
         /// <param name="obj"></param>
         /// 
-        public static void ExportExcelbyq(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExcelbyq(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -1132,7 +1183,7 @@ namespace Ebada.Scgl.Lcgl
         /// 文档格式预定义好的，生成台账
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExceldlq(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExceldlq(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -1690,7 +1741,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.ShowExcel();
             }
         }
-        public static void ExportExcelblq(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExcelblq(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -2385,7 +2436,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.ShowExcel();
             }
         }
-        public static void ExportExceldrq(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExceldrq(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
