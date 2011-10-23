@@ -157,6 +157,7 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
                 mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
                 mrwt.CreatTime = DateTime.Now;
+                mrwt.ModleTableName = obj.GetType().ToString();
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
             RefreshData(" where OrgCode='" + ParentID + "'   ");
