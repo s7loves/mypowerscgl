@@ -183,6 +183,7 @@ namespace Ebada.Scgl.Lcgl
                      mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
                      mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
                      mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                     mrwt.ModleTableName = obj.GetType().ToString();
                      mrwt.CreatTime = DateTime.Now;
                      MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                      mrwt = new WF_ModleRecordWorkTaskIns();
@@ -192,6 +193,7 @@ namespace Ebada.Scgl.Lcgl
                      mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
                      mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
                      mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                     mrwt.ModleTableName = obj.GetType().ToString();
                      mrwt.CreatTime = DateTime.Now;
                      MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                  }
