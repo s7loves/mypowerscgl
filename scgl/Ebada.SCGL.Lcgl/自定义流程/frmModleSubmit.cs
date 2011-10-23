@@ -1081,13 +1081,48 @@ namespace Ebada.Scgl.Lcgl
             currRecord = null;
             //rowData = null;
             dockPanel1.ControlContainer.Controls.Clear();
-            if (templeList!=null) templeList.Clear();
+            if (templeList != null) templeList.Clear();
+            if (filecontrol != null)
+            {
+
+                if (filecontrol.upThread.ThreadState == ThreadState.Running)
+                {
+
+                    filecontrol.upThread.IsBackground = true;
+                    filecontrol.upThread.Abort();
+
+                }
+                if (filecontrol.Isdownfile)
+                {
+
+                    if (filecontrol.webClient != null) filecontrol.webClient.CancelAsync();
+
+                }
+            }
            
         }
 
         private void frmLP_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            if (filecontrol != null)
+            {
+                if (filecontrol.Isupfile)
+                {
+                    if (MsgBox.ShowAskMessageBox("正在上传文件，确认退出?") != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                if (filecontrol.Isdownfile)
+                {
+                    if (MsgBox.ShowAskMessageBox("正在下载文件，确认退出?") != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                    }
+
+                }
+            }
            
         }
     }
