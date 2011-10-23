@@ -1749,8 +1749,8 @@ namespace Ebada.Scgl.Lcgl
                 templeList.Clear();
                     if (filecontrol != null)
                     {
-                        
-                        if (filecontrol.upThread.ThreadState == ThreadState.Running)
+
+                        if (filecontrol.upThread != null && filecontrol.upThread.ThreadState == ThreadState.Running)
                         {
                             
                                 filecontrol.upThread.IsBackground = true;
