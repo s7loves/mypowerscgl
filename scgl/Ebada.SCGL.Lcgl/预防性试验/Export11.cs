@@ -83,32 +83,33 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'" + filter + " order by xh ");
             Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid, isShow);
             IList<PJ_yfsyjl> byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            Export11.ExportExcelblqjhbEx(ex, byqdatalist, "变压器" + "预防性试验计划表", orgid, isShow);
-            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "变压器" + "预防性试验实施情况记录", orgid, isShow);
-            Export11.ExportExcelbyqwcqkEx(ex, byqdatalist, "变压器" + "预防性试验完成情况报表", orgid, isShow);
+            Export11.ExportExcelbyqjhbEx(ex, byqdatalist, "变压器" + "预防性试验计划表", orgid, isShow);
+            //Export11.ExportExcelbyqssqkEx(ex, byqdatalist, "变压器" + "预防性试验实施情况记录", orgid, isShow);
+            //Export11.ExportExcelbyqwcqkEx(ex, byqdatalist, "变压器" + "预防性试验完成情况报表", orgid, isShow);
 
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'" + filter + " order by xh ");
             Export11.ExportExceldlqEx(ex, byqdatalist, "断路器" + "预防性试验记录", orgid, isShow);
             byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
             Export11.ExportExceldlqjhbEx(ex, byqdatalist, "断路器" + "预防性试验计划表", orgid, isShow);
-            Export11.ExportExceldlqssqkEx(ex, byqdatalist, "断路器" + "预防性试验实施情况记录", orgid, isShow);
-            Export11.ExportExceldlqwcqkEx(ex, byqdatalist, "断路器" + "预防性试验完成情况报表", orgid, isShow);
+            //Export11.ExportExceldlqssqkEx(ex, byqdatalist, "断路器" + "预防性试验实施情况记录", orgid, isShow);
+            //Export11.ExportExceldlqwcqkEx(ex, byqdatalist, "断路器" + "预防性试验完成情况报表", orgid, isShow);
 
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'" + filter + " order by xh ");
             Export11.ExportExcelblqEx(ex, byqdatalist, "避雷器" + "预防性试验记录", orgid, isShow);
             byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
             Export11.ExportExcelblqjhbEx(ex, byqdatalist, "避雷器" + "预防性试验计划表", orgid, isShow);
-            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "避雷器" + "预防性试验实施情况记录", orgid, isShow);
-            Export11.ExportExcelblqwcqkEx(ex, byqdatalist, "避雷器" + "预防性试验完成情况报表", orgid, isShow);
+            //Export11.ExportExcelblqssqkEx(ex, byqdatalist, "避雷器" + "预防性试验实施情况记录", orgid, isShow);
+            //Export11.ExportExcelblqwcqkEx(ex, byqdatalist, "避雷器" + "预防性试验完成情况报表", orgid, isShow);
 
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'" + filter + " order by xh ");
             Export11.ExportExceldrqEx(ex, byqdatalist, "电容器" + "预防性试验记录", orgid, isShow);
             byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            Export11.ExportExceldrqssqkEx(ex, byqdatalist, "电容器" + "预防性试验实施情况记录", orgid, isShow);
-            Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid, isShow);
+            Export11.ExportExceldrqjhbEx(ex, byqjhbdatalist, "电容器" + "预防性试验计划表", orgid, isShow);
+            //Export11.ExportExceldrqssqkEx(ex, byqdatalist, "电容器" + "预防性试验实施情况记录", orgid, isShow);
+            //Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid, isShow);
 
-            IList<PJ_yfsyhcjl> hcdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyhcjl>("SelectPJ_yfsyhcjlList", " where  1=1 " + filter + " order by xh ");
-            Export11.ExportExcelhcEx(ex, hcdatalist, "设备维护实施记录", orgid, isShow);
+            //IList<PJ_yfsyhcjl> hcdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyhcjl>("SelectPJ_yfsyhcjlList", " where  1=1 " + filter + " order by xh ");
+            //Export11.ExportExcelhcEx(ex, hcdatalist, "设备维护实施记录", orgid, isShow);
             if (parentTemple == null)
             {
                 parentTemple = new LP_Temple();
@@ -140,8 +141,8 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'" + filter + " order by xh ");
             Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid, isShow);
             IList<PJ_yfsyjl> byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            Export11.ExportExcelblqjhbEx(ex, byqdatalist, "变压器" + "预防性试验计划表", orgid, isShow);
-            Export11.ExportExcelblqssqkEx(ex, byqdatalist, "变压器" + "预防性试验实施情况记录", orgid, isShow);
+            Export11.ExportExcelbyqjhbEx(ex, byqdatalist, "变压器" + "预防性试验计划表", orgid, isShow);
+            Export11.ExportExcelbyqssqkEx(ex, byqdatalist, "变压器" + "预防性试验实施情况记录", orgid, isShow);
             Export11.ExportExcelbyqwcqkEx(ex, byqdatalist, "变压器" + "预防性试验完成情况报表", orgid, isShow);
 
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'" + filter + " order by xh ");
@@ -161,6 +162,7 @@ namespace Ebada.Scgl.Lcgl
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'" + filter + " order by xh ");
             Export11.ExportExceldrqEx(ex, byqdatalist, "电容器" + "预防性试验记录", orgid, isShow);
             byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            Export11.ExportExceldrqjhbEx(ex, byqdatalist, "电容器" + "预防性试验计划表", orgid, isShow);
             Export11.ExportExceldrqssqkEx(ex, byqdatalist, "电容器" + "预防性试验实施情况记录", orgid, isShow);
             Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid, isShow);
 
@@ -340,6 +342,21 @@ namespace Ebada.Scgl.Lcgl
                 }
                 spanadd=spanadd2;
             }
+            mOrg org = Client.ClientHelper.PlatformSqlMap.GetOneByKey<mOrg>(orgid);
+            for (i = 0; i < pagecount; i++)
+            {
+                if (Math.Ceiling((i + 1.0)) > 1)
+                    ex.ActiveSheet(sheetname + Math.Ceiling((i + 1.0)));
+                else
+                    ex.ActiveSheet(sheetname);
+                if (org != null)
+                    ex.SetCellValue(org.OrgName, 2, 2);
+                else
+                    ex.SetCellValue("全局", 2, 2);
+
+                //if (datalist.Count > 0)
+                //    ex.SetCellValue(datalist[0].charMan, 29, 14);
+            }
             if (isShow)
             {
                 ex.ActiveSheet(sheetname);
@@ -366,6 +383,10 @@ namespace Ebada.Scgl.Lcgl
             Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
           
             pagecount = Convert.ToInt32(Math.Ceiling(datalist.Count / (jmax + 0.0)));
+            if (pagecount == 0)
+            {
+                pagecount = 1;
+            }
             ex.ActiveSheet(sheetname);
             for (i = 1; i <= wb.Application.Worksheets.Count; i++)
             {
@@ -393,9 +414,9 @@ namespace Ebada.Scgl.Lcgl
                 else
                     ex.ActiveSheet(sheetname);
                 if (org != null)
-                    ex.SetCellValue(org.OrgName, 2, 3);
+                    ex.SetCellValue(org.OrgName, 2, 2);
                 else
-                    ex.SetCellValue("全局", 2, 3);
+                    ex.SetCellValue("全局", 2, 2);
 
                 //if (datalist.Count > 0)
                 //    ex.SetCellValue(datalist[0].charMan, 29, 14);
@@ -482,9 +503,9 @@ namespace Ebada.Scgl.Lcgl
                 else
                     ex.ActiveSheet(sheetname);
                 if (org != null)
-                    ex.SetCellValue(org.OrgName, 3, 2);
+                    ex.SetCellValue(org.OrgName, 2, 2);
                 else
-                    ex.SetCellValue("全局", 3, 2);
+                    ex.SetCellValue("全局", 2, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 29, 14);
             }
@@ -568,9 +589,9 @@ namespace Ebada.Scgl.Lcgl
                 else
                     ex.ActiveSheet(sheetname);
                 if (org != null)
-                    ex.SetCellValue(org.OrgName, 3, 2);
+                    ex.SetCellValue(org.OrgName, 2, 2);
                 else
-                    ex.SetCellValue("全局", 3, 2);
+                    ex.SetCellValue("全局", 2, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 29, 14);
             }
@@ -651,9 +672,9 @@ namespace Ebada.Scgl.Lcgl
                 else
                     ex.ActiveSheet(sheetname);
                 if (org != null)
-                    ex.SetCellValue(org.OrgName, 3, 2);
+                    ex.SetCellValue(org.OrgName, 2, 2);
                 else
-                    ex.SetCellValue("全局", 3, 2);
+                    ex.SetCellValue("全局", 2, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 29, 14);
             }
@@ -830,7 +851,7 @@ namespace Ebada.Scgl.Lcgl
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
                 else
-                    ex.SetCellValue("全局", 3, 2);
+                    ex.SetCellValue("全局",3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 14);
             }
@@ -1946,7 +1967,7 @@ namespace Ebada.Scgl.Lcgl
                 if (org != null)
                     ex.SetCellValue(org.OrgName, 3, 2);
                 else
-                    ex.SetCellValue("全局", 3, 2);
+                    ex.SetCellValue("全局",3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 15);
             }
@@ -2140,9 +2161,9 @@ namespace Ebada.Scgl.Lcgl
                 else
                     ex.ActiveSheet(sheetname);
                 if (org != null)
-                    ex.SetCellValue(org.OrgName, 3, 2);
+                    ex.SetCellValue(org.OrgName,3, 2);
                 else
-                    ex.SetCellValue("全局", 3, 2);
+                    ex.SetCellValue("全局",3, 2);
                 if (datalist.Count > 0)
                     ex.SetCellValue(datalist[0].charMan, 26, 14);
             }
