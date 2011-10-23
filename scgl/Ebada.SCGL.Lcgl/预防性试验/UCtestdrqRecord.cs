@@ -43,7 +43,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        private string varDbTableName = "PJ_yfsyjl,PJ_yfsyhcjl,LP_Record";
+        private string varDbTableName = "PJ_yfsyjl,LP_Record";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -109,6 +109,15 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
+            if (isWorkfowCall)
+            {
+
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID + "'"
+                    + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                    + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                    + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
+            }
             string slqwhere = " where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' ";
             if (isWorkfowCall)
             {
@@ -158,20 +167,34 @@ namespace Ebada.Scgl.Lcgl
                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                    + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
             }
-            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(slqwhere);
+            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(slqwhere)+1;
             obj.CreateDate = DateTime.Now;
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
             if (isWorkfowCall)
             {
-                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                mrwt.ModleRecordID = obj.ID;
-                mrwt.RecordID = currRecord.ID;
-                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                mrwt.CreatTime = DateTime.Now;
-                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", "where xh='" + obj.xh + "'and type ='" + obj.type + "' order by CreateDate");
+                 if (li.Count == 2)
+                 {
+
+                     WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                     mrwt.ModleRecordID = li[0].ID;
+                     mrwt.RecordID = currRecord.ID;
+                     mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                     mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                     mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                     mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                     mrwt.CreatTime = DateTime.Now;
+                     MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                     mrwt = new WF_ModleRecordWorkTaskIns();
+                     mrwt.ModleRecordID = li[1].ID;
+                     mrwt.RecordID = currRecord.ID;
+                     mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                     mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                     mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                     mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                     mrwt.CreatTime = DateTime.Now;
+                     MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                 }
             }
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "' ");
         }

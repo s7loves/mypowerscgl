@@ -177,17 +177,22 @@ namespace Ebada.Scgl.Lcgl
 
            
         }
-        public static void ExportExceljhbAllEx(ExcelAccess ex, string cellname, string sheetname, string orgid)
+        public  void ExportExceljhbAllEx(ExcelAccess ex, string cellname, string sheetname, string orgid)
         {
             ExportExceljhbAllEx(ex, cellname, sheetname, orgid, true);
         }
-        public static void ExportExceljhbAllEx(ExcelAccess ex, string cellname, string sheetname, string orgid,bool isShow)
+        public  void ExportExceljhbAllEx(ExcelAccess ex, string cellname, string sheetname, string orgid,bool isShow)
         {
 
             int pagecount = 0, i = 0, j = 0, istart = 4, jstart = 1, jmax = 4, imax2 = 6, sheetindex = 0, itemp = 0,spanadd=0, spanadd2 = 0;
             Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
             string filter = "";
             if (orgid != "") filter = " and a.OrgCode='" + orgid + "' ";
+            if (isWorkfowCall)
+            {
+                filter = filter + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='"
+                   + CurrRecord.ID + "' and   WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') ";
+            }
             IList typelist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  type    from dbo.PJ_yfsyjl a  where 1=1 " + filter );
             Hashtable hmodnum = new Hashtable();
             Hashtable hnamemod = new Hashtable();
@@ -201,6 +206,10 @@ namespace Ebada.Scgl.Lcgl
                 for (j = 0; j < modlist.Count; j++)
                 {
                     IList modnumlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", "select sum(sl)    from dbo.PJ_yfsyjl a  where  type='" + type + "'and sbModle='" + modlist[j] + "' " + filter);
+                    if (type == "变压器")
+                    {
+                        modnumlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", "select count(*)    from dbo.PJ_yfsyjl a  where  type='" + type + "'and sbModle='" + modlist[j] + "' " + filter);
+                    }
                     if (modnumlist.Count > 0)
                     {
                         if (hmodnum.Contains(type + "-" + modlist[j])) hmodnum[type + "-" + modlist[j]] = modnumlist[0];

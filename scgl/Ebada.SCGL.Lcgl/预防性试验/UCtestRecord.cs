@@ -50,6 +50,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
+        private string varDbTableName = "PJ_yfsyjl,LP_Record";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -105,6 +106,15 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         }
+
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value;
+            }
+        }
         public UCtestRecord()
         {
             InitializeComponent();
@@ -129,13 +139,24 @@ namespace Ebada.Scgl.Lcgl
             if (isWorkfowCall)
             {
 
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID+"'"
                     + " and  WorkFlowId='"+ WorkFlowData.Rows[0]["WorkFlowId"].ToString()+"'"
                     + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
                     + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
-            IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' order by xh");
+            string slqwhere = " where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' ";
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            slqwhere = slqwhere + " order by xh";
+            IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(slqwhere);
             int i=1;
             List<PJ_yfsyjl> list = new List<PJ_yfsyjl>();
             foreach (PJ_yfsyjl ob in li)
@@ -157,7 +178,17 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
-            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
+            string slqwhere = " where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' ";
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(slqwhere)+1;
             obj.CreateDate = DateTime.Now;
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
             if (isWorkfowCall)
@@ -168,6 +199,7 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
                 mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
                 mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = obj.GetType().ToString();
                 mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
                 mrwt.CreatTime = DateTime.Now;
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
@@ -337,7 +369,18 @@ namespace Ebada.Scgl.Lcgl
         }
         public void RefreshData()
         {
-            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  ");
+            string slqwhere = " where OrgCode='" + ParentID + "'  and type='" + _type + "' ";
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            slqwhere = slqwhere + " order by xh";
+            gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
         /// 封装了数据操作的对象
