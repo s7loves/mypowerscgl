@@ -709,10 +709,11 @@ namespace Ebada.Scgl.WFlow
             object fromCtrl;
             Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + assemblyFileName);
             Type tp = assembly.GetType(moduTypes);
-            if (methodName == "")////窗体的构造函数不需要参数
+            MethodInfo method = tp.GetMethod(methodName);
+            //if (methodName == "")////窗体的构造函数不需要参数
                 fromCtrl = Activator.CreateInstance(tp);
-            else//窗体的构造函数需要参数
-                fromCtrl = Activator.CreateInstance(tp, methodName);
+            //else//窗体的构造函数需要参数
+            //    fromCtrl = Activator.CreateInstance(tp, methodName);
             if (fromCtrl is UserControl)
             {
                 UserControl uc = fromCtrl as UserControl;
@@ -724,6 +725,16 @@ namespace Ebada.Scgl.WFlow
                 Form fm = fromCtrl as Form;
                 fm.Name = moduName;
             }
+            //if (method != null)
+            //{
+            //    object[] objArray = new object[0];
+            //    method.Invoke(fromCtrl, objArray);
+            //}
+            //else
+            //{
+            //    ((Form)fromCtrl).ShowDialog();
+            //}
+
             return fromCtrl;
         }
         /// <summary>

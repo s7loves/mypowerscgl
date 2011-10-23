@@ -451,6 +451,21 @@ namespace Ebada.Scgl.Lcgl {
                 else
                     if (obj is Form)
                     {
+                        if (obj is frmyxfxWorkFlowEdit)
+                        {
+                            PJ_03yxfx yxfx = new PJ_03yxfx();
+                            yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
+                            yxfx.OrgName = MainHelper.UserOrg.OrgName;
+                            if(parentObj.FlowCaption.IndexOf("定期分析")>0)
+                                yxfx.type = "定期分析";
+                            else
+                                if (parentObj.FlowCaption.IndexOf("专题分析") > 0)
+                                    yxfx.type = "专题分析";
+                            ((frmyxfxWorkFlowEdit)obj).RecordStatus = 0; 
+                            yxfx.rq = DateTime.Now;
+                            ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
+
+                        }
                         ((Form)obj).ShowDialog();
                     }
                 InitData(strKind);
@@ -557,6 +572,50 @@ namespace Ebada.Scgl.Lcgl {
                 else
                     if (obj is Form)
                     {
+                        if (obj is frmyxfxWorkFlowEdit)
+                        {
+                            IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
+                             +" and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'"
+                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                               + " and  WorkTaskId='" + dt.Rows[0]["WorkTaskId"].ToString() + "'"
+                               + " and  WorkTaskInsId='" + dt.Rows[0]["WorkTaskInsId"].ToString() + "'");
+                            PJ_03yxfx yxfx = new PJ_03yxfx();
+                            if (li.Count > 0)
+                            {
+                                yxfx = MainHelper.PlatformSqlMap.GetOneByKey<PJ_03yxfx>(li[0].ModleRecordID);
+
+                            }
+                            else
+                            {
+                                yxfx = new PJ_03yxfx();
+                                yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
+                                yxfx.OrgName = MainHelper.UserOrg.OrgName;
+                                if (parentObj.FlowCaption.IndexOf("定期分析") > 0)
+                                    yxfx.type = "定期分析";
+                                else
+                                    if (parentObj.FlowCaption.IndexOf("专题分析") > 0)
+                                        yxfx.type = "专题分析";
+                                ((frmyxfxWorkFlowEdit)obj).RecordStatus = 0;
+                                yxfx.rq = DateTime.Now;
+                                ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
+                            }
+                            switch (dt.Rows[0]["TaskInsCaption"].ToString())
+                            {
+                                case "填写":
+                                    ((frmyxfxWorkFlowEdit)obj).RecordStatus = 0;
+                                    break;
+                                case "领导检查":
+                                    ((frmyxfxWorkFlowEdit)obj).RecordStatus = 1;
+                                    break;
+                                case "检查人检查":
+                                    ((frmyxfxWorkFlowEdit)obj).RecordStatus = 2;
+                                    break;
+
+                            }
+                            yxfx.rq = DateTime.Now;
+                            ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
+
+                        }
                         ((Form)obj).ShowDialog();
                     }
                 InitData(strKind);

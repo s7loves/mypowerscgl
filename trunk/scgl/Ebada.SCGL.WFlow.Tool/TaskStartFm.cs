@@ -10,6 +10,7 @@ using Ebada.Client.Platform;
 using Ebada.Scgl.Model;
 using System.Reflection;
 using Ebada.Core;
+using System.Globalization;
 
 
 namespace Ebada.SCGL.WFlow.Tool
@@ -1933,10 +1934,12 @@ namespace Ebada.SCGL.WFlow.Tool
             object fromCtrl;
             Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + assemblyFileName);
             Type tp = assembly.GetType(moduTypes);
-            if (methodName == "")////窗体的构造函数不需要参数
+            //MethodInfo method = tp.GetMethod(methodName);
+
+            //if (methodName == "")////窗体的构造函数不需要参数
                 fromCtrl = Activator.CreateInstance(tp);
-            else//窗体的构造函数需要参数
-                fromCtrl = Activator.CreateInstance(tp, methodName);
+            //else//窗体的构造函数需要参数
+            //    fromCtrl = Activator.CreateInstance(tp, method);
             if (fromCtrl is UserControl)
             {
                 UserControl uc = fromCtrl as UserControl;
@@ -1948,8 +1951,75 @@ namespace Ebada.SCGL.WFlow.Tool
                 Form fm = fromCtrl as Form;
                 fm.Name = moduName;
             }
+            //if (method != null)
+            //{
+            //    object[] objArray = new object[0];
+            //    method.Invoke(fromCtrl, objArray);
+            //}
             return fromCtrl;
         }
+        public static object Execute(string assemblyName, string className, string methodName, object[] paramValues, Form mdi, ref object classInstance)
+        {
+            int num;
+            if (assemblyName == null)
+            {
+                assemblyName = string.Empty;
+            }
+            if ((className == null) || (className == string.Empty))
+            {
+                return null;
+            }
+            if (string.IsNullOrEmpty(methodName))
+            {
+                methodName = "Show";
+            }
+            if (paramValues == null)
+            {
+                paramValues = new object[0];
+            }
+            object obj2 = null;
+            Type type = Assembly.GetExecutingAssembly().GetType(className);
+            if (null == type)
+            {
+                type = ((assemblyName == string.Empty) ? Assembly.GetExecutingAssembly() : Assembly.LoadFrom(Application.StartupPath + @"\" + assemblyName)).GetType(className, true);
+            }
+            Type[] types = new Type[paramValues.Length];
+            for (num = 0; num < paramValues.Length; num++)
+            {
+                types[num] = paramValues[num].GetType();
+            }
+            MethodInfo method = type.GetMethod(methodName, types);
+            if (method == null)
+            {
+                return obj2;
+            }
+            ParameterInfo[] parameters = method.GetParameters();
+            if (parameters.Length != paramValues.Length)
+            {
+                return obj2;
+            }
+            object[] objArray = new object[paramValues.Length];
+            for (num = 0; num < paramValues.Length; num++)
+            {
+                objArray[num] = Convert.ChangeType(paramValues[num], parameters[num].ParameterType, CultureInfo.InvariantCulture);
+            }
+            if (classInstance == null)
+            {
+                classInstance = method.IsStatic ? null : Activator.CreateInstance(type);
+            }
+            if ((classInstance is Form) && (mdi != null))
+            {
+                ((Form)classInstance).MdiParent = mdi;
+            }
+            else if (classInstance is UserControl)
+            {
+                return classInstance;
+            }
+            return method.Invoke(classInstance, objArray);
+        }
+
+ 
+
         private void iniRiZhiTablelcbxData(ComboBox cbxtable, ComboBox cbxtablefield, string taskID, string tableID, string fieldID)
         {
             //string tmpStr = " where ParentID not in (select LPID from LP_Temple where 1=1) ";
