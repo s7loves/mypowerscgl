@@ -338,7 +338,7 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        public static void ExportExcelhc(IList<PJ_yfsyhcjl> datalist, string sheetname, string orgid)
+        public  void ExportExcelhc(IList<PJ_yfsyhcjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -426,7 +426,7 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-        public static void ExportExcelbyqwcqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExcelbyqwcqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -512,7 +512,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.ShowExcel();
             }
         }
-        public static void ExportExcelbyqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExcelbyqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -596,7 +596,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.ShowExcel();
             }
         }
-        public static void ExportExcelbyqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExcelbyqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -763,7 +763,7 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-        public static void ExportExceldlqwcqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExceldlqwcqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -916,7 +916,7 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        public static void ExportExceldlqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExceldlqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -1069,7 +1069,7 @@ namespace Ebada.Scgl.Lcgl
         /// 文档格式预定义好的，生成台账
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExceldlqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExceldlqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -1334,7 +1334,7 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-        public static void ExportExcelblqwcqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExcelblqwcqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -1473,7 +1473,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.ShowExcel();
             }
         }
-        public static void ExportExcelblqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExcelblqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -1608,7 +1608,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.ShowExcel();
             }
         }
-        public static void ExportExcelblqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExcelblqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -1876,7 +1876,7 @@ namespace Ebada.Scgl.Lcgl
         }
     
 
-        public static void ExportExceldrqwcqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExceldrqwcqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -2072,7 +2072,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.ShowExcel();
             }
         }
-        public static void ExportExceldrqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExceldrqssqk(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -2256,7 +2256,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.ShowExcel();
             }
         }
-        public static void ExportExceldrqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
+        public  void ExportExceldrqjhb(IList<PJ_yfsyjl> datalist, string sheetname, string orgid)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();

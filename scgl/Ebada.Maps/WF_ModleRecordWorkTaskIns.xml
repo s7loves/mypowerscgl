@@ -86,7 +86,7 @@
      delete from WF_ModleRecordWorkTaskIns $value$
    </delete>
    
-   <delete id="DeleteWF_ModleRecordWorkTaskInsByKey" parameterClass="Unknown">
+   <delete id="DeleteWF_ModleRecordWorkTaskInsByKey" parameterClass="string">
         DELETE FROM 
          WF_ModleRecordWorkTaskIns
            WHERE
