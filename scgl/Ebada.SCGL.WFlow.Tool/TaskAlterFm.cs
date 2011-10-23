@@ -3575,10 +3575,10 @@ namespace Ebada.SCGL.WFlow.Tool
             object fromCtrl;
             Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + assemblyFileName);
             Type tp = assembly.GetType(moduTypes);
-            if (methodName == "")////窗体的构造函数不需要参数
+            //if (methodName == "")////窗体的构造函数不需要参数
                 fromCtrl = Activator.CreateInstance(tp);
-            else//窗体的构造函数需要参数
-                fromCtrl = Activator.CreateInstance(tp, methodName);
+            //else//窗体的构造函数需要参数
+            //    fromCtrl = Activator.CreateInstance(tp, methodName);
             if (fromCtrl is UserControl)
             {
                 UserControl uc = fromCtrl as UserControl;
