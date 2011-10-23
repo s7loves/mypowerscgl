@@ -38,9 +38,10 @@ namespace Ebada.Scgl.Gis {
 #if DEBUG
             //g.DrawString(string.Format("lat：{0},lon:{1}", this.Position.Lat, this.Position.Lng), DebugFont, Brushes.Red, 36, 36);
             //g.DrawString("render: " + counter++ + ", load: " + ElapsedMilliseconds + "ms", DebugFont, Brushes.Blue, 36, 36);
+            g.DrawString(debugMsg, DebugFont, Brushes.Blue, 36, 36);
 #endif
         }
-
+        public string debugMsg = "";
         private void InitializeComponent() {
             
             this.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
