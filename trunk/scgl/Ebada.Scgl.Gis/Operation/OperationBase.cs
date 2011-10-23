@@ -14,12 +14,14 @@ namespace Ebada.Scgl.Gis {
         protected Boolean isMouseDown;
         protected GMapMarker selectedMarker;
         protected Point beginPoint;
+        protected Point endPoint;
         protected Point localPoint;
         private GMapOverlay curOverlay;        
         protected Boolean canAddMarker;
         protected Boolean canEditMarker;
         protected GMapMarker updateMarker;
         protected ContextMenu mMenu;
+        private bool isMoving;
         public OperationBase(RMap mapcontrol){
             rMap1 = mapcontrol;
             mMenu = CreatePopuMenu();
@@ -56,16 +58,64 @@ namespace Ebada.Scgl.Gis {
                 if (updateMarker != null && updateMarker is GMapMarkerVector) {
                     (updateMarker as GMapMarkerVector).Update();
                 }
+            } else if (e.Button == MouseButtons.Right && isMoving) {
+                endPoint = e.Location;
+                //moveMap();
+                isMoving = false;
+
             }
         }
+        private double GetDistance(Point p1, Point p2) {
+            return GetDistance(p1.X, p1.Y, p2.X, p2.Y);
+        }
+        private double GetDistance(int A_x, int A_y, int B_x, int B_y) {
+            int x = System.Math.Abs(B_x - A_x);
+            int y = System.Math.Abs(B_y - A_y);
+            return Math.Sqrt(x * x + y * y);
+        } 
+
+        bool beginMove = false;
+        private void moveMap() {
+            int len=(int)GetDistance(beginPoint, endPoint);
+            if ( len< 10) return;
+            int x0 = 10 * (endPoint.X - beginPoint.X) / len;
+            int y0 = 10 * (endPoint.Y - beginPoint.Y) / len;
+            beginMove=true;
+            MethodInvoker m = delegate {
+                int t = 0;
+                int b = 0;
+                int c = 10;
+                int d = 10;
+                GPoint gp = rMap1.FromLatLngToLocal(rMap1.Position);
+                rMap1.debugMsg = "";
+                while (beginMove) {
+                    int offx = (int)Math.Ceiling(Ebada.Scgl.Core.Easing.GetTween(t, b, x0, d, Ebada.Scgl.Core.Easing.Mode.linear));
+                    int offy = (int)Math.Ceiling(Ebada.Scgl.Core.Easing.GetTween(t, b, y0, d, Ebada.Scgl.Core.Easing.Mode.linear));
+                    //rMap1.debugMsg += t + "_" + (gp.X + offx) + ",";
+                    t++;
+                    if (!beginMove)
+                        break;
+                    rMap1.Position= rMap1.FromLocalToLatLng(gp.X - offx, gp.Y-offy);
+                    if (t > d)
+                        break;
+
+
+                    System.Threading.Thread.Sleep(20);
+                }
+            };
+            m.BeginInvoke(null, null);
+
+        }
         public virtual void MouseDown(object sender, MouseEventArgs e) {
+            beginMove = false;
+            beginPoint = new Point(e.X, e.Y);
             if (currentMarker != null && currentMarker.IsMouseOver) {
                 if (currentMarker.Overlay is IUpdateable)
                    canEditMarker= (currentMarker.Overlay as IUpdateable).AllowEdit;
             }
             if (e.Button == MouseButtons.Left) {
                 isMouseDown = true;
-                beginPoint = new Point(e.X, e.Y);
+                //beginPoint = new Point(e.X, e.Y);
                 if (currentMarker != null && currentMarker.IsMouseOver) {
                     selectedMarker = currentMarker;
                     GPoint p = rMap1.FromLatLngToLocal(currentMarker.Position);
@@ -78,7 +128,9 @@ namespace Ebada.Scgl.Gis {
                     selectedMarker = currentMarker;
                     if (currentMarker.Overlay is IPopuMenu)
                         (currentMarker.Overlay as IPopuMenu).CreatePopuMenu().Show(rMap1, e.Location);
-                } 
+                } else {
+                    isMoving = true;
+                }
             }
         }
 

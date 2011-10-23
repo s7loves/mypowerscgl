@@ -270,6 +270,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ebada.Scgl.Core\Ebada.Scgl.Core.csproj">
+      <Project>{BFD83E09-E190-4B5E-8F16-BD91F457E058}</Project>
+      <Name>Ebada.Scgl.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
