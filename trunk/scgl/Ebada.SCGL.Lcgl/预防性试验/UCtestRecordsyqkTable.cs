@@ -103,8 +103,19 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
+            string slqwhere = " where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "'   and planExpTime like '%" + DateTime.Now.Year + "%' ";
+            if (isWorkfowCall)
+            {
 
-            IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "'   and planExpTime like '%" + DateTime.Now.Year + "%' order by xh");
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            slqwhere = slqwhere + " order by xh";
+
+            IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(slqwhere);
             int i=1;
             List<PJ_yfsyjl> list = new List<PJ_yfsyjl>();
             foreach (PJ_yfsyjl ob in li)
@@ -126,7 +137,17 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
-            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
+            string slqwhere = " where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'";
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(slqwhere);
             obj.CreateDate = DateTime.Now;
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
             if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
@@ -302,7 +323,17 @@ namespace Ebada.Scgl.Lcgl
         }
         public void RefreshData()
         {
-            gridViewOperation.RefreshData("where OrgCode='" + ParentID + "'  and type='" + _type + "'  order by xh  ");
+            string slqwhere = " where OrgCode='" + ParentID + "'  and type='" + _type + "' ";
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -376,19 +407,25 @@ namespace Ebada.Scgl.Lcgl
             //    Export14.ExportExcel(PSObj, pjlist);
             //}
             IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>;
+
+            Export11 export = new Export11();
+            export.CurrRecord = currRecord;
+            export.IsWorkfowCall = isWorkfowCall;
+            export.ParentTemple = parentTemple;
+            export.RecordWorkFlowData = WorkFlowData;
             switch (_type)
             {
                 case "变压器":
-                    Export11.ExportExcelbyqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
+                    export.ExportExcelbyqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
                     break;
                 case "断路器":
-                    Export11.ExportExceldlqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
+                    export.ExportExceldlqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
                     break;
                 case "避雷器":
-                    Export11.ExportExcelblqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
+                    export.ExportExcelblqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
                     break;
                 case "电容器":
-                    Export11.ExportExceldrqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
+                    export.ExportExceldrqssqk(datalist, _type + "预防性试验实施情况记录", parentID);
                     break;
             }
 

@@ -372,19 +372,24 @@ namespace Ebada.Scgl.Lcgl
             //    Export14.ExportExcel(PSObj, pjlist);
             //}
             IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>;
+            Export11 export = new Export11();
+            export.CurrRecord = currRecord;
+            export.IsWorkfowCall = isWorkfowCall;
+            export.ParentTemple = parentTemple;
+            export.RecordWorkFlowData = WorkFlowData;
             switch (_type)
             {
                 case "变压器":
-                    Export11.ExportExcelbyqjhb(datalist, _type + "预防性试验计划表", parentID);
+                    export.ExportExcelbyqjhb(datalist, _type + "预防性试验计划表", parentID);
                     break;
                 case "断路器":
-                    Export11.ExportExceldlqjhb(datalist, _type + "预防性试验计划表", parentID);
+                    export.ExportExceldlqjhb(datalist, _type + "预防性试验计划表", parentID);
                     break;
                 case "避雷器":
-                    Export11.ExportExcelblqjhb(datalist, _type + "预防性试验计划表", parentID);
+                    export.ExportExcelblqjhb(datalist, _type + "预防性试验计划表", parentID);
                     break;
                 case "电容器":
-                    Export11.ExportExceldrqjhb(datalist, _type + "预防性试验计划表", parentID);
+                    export.ExportExceldrqjhb(datalist, _type + "预防性试验计划表", parentID);
                     break;
             }
            

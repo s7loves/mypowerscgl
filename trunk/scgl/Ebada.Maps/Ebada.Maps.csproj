@@ -114,7 +114,8 @@
   <ItemGroup>
     <EmbeddedResource Include="WF_AccreditUser.xml" />
     <EmbeddedResource Include="WF_FrmworkParamer.xml" />
-    <EmbeddedResource Include="WF_MainUserControl.xml" />
+    <EmbeddedResource Include="WF_MainUserControl.xml">
+    </EmbeddedResource>
     <EmbeddedResource Include="WF_Operator.xml" />
     <EmbeddedResource Include="WF_OperatorInstance.xml" />
     <EmbeddedResource Include="WF_OperContentView.xml" />
@@ -184,11 +185,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WF_ModleCheckTable.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="WF_ModleRecordWorkTaskIns.xml" />
+    <EmbeddedResource Include="WF_ModleRecordWorkTaskIns.xml">
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="flow\" />

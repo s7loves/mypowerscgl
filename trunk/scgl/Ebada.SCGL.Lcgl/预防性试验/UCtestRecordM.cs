@@ -32,7 +32,8 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecord1.ParentTemple = value;
                 uCtestRecordssqkTable1.ParentTemple = value;
                 uCtestRecordjhmxTable1.ParentTemple = value;
-                uCtestRecord4.ParentTemple = value; 
+                uCtestRecord4.ParentTemple = value;
+                uCtestHCRecord1.ParentTemple = value; 
             }
         }
         public bool IsWorkfowCall
@@ -43,7 +44,8 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecord1.IsWorkfowCall = value;
                 uCtestRecordssqkTable1.IsWorkfowCall = value;
                 uCtestRecordjhmxTable1.IsWorkfowCall = value;
-                uCtestRecord4.IsWorkfowCall = value; 
+                uCtestRecord4.IsWorkfowCall = value;
+                uCtestHCRecord1.IsWorkfowCall = value; 
             }
         }
         public LP_Record CurrRecord
@@ -55,7 +57,8 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecord1.CurrRecord = value;
                 uCtestRecordssqkTable1.CurrRecord = value;
                 uCtestRecordjhmxTable1.CurrRecord = value;
-                uCtestRecord4.CurrRecord = value; 
+                uCtestRecord4.CurrRecord = value;
+                uCtestHCRecord1.CurrRecord = value; 
             
             }
         }
@@ -75,7 +78,8 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecord1.RecordWorkFlowData = value;
                 uCtestRecordssqkTable1.RecordWorkFlowData = value;
                 uCtestRecordjhmxTable1.RecordWorkFlowData = value;
-                uCtestRecord4.RecordWorkFlowData = value; 
+                uCtestRecord4.RecordWorkFlowData = value;
+                uCtestHCRecord1.RecordWorkFlowData = value;
 
 
             }
@@ -88,7 +92,8 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value;
                 uCtestRecordssqkTable1.VarDbTableName = value;
                 uCtestRecordjhmxTable1.VarDbTableName = value;
-                uCtestRecord4.VarDbTableName = value; 
+                uCtestRecord4.VarDbTableName = value;
+                uCtestHCRecord1.VarDbTableName = value;
             }
         }
         private void UCtestRecordM_Load(object sender, EventArgs e)

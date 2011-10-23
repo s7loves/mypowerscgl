@@ -39,6 +39,51 @@ namespace Ebada.Scgl.Lcgl
         private string parentID = null;
         private mOrg parentObj;
         private string _type = null;
+        private bool isWorkfowCall = false;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        private string varDbTableName = "PJ_yfsyjl,PJ_yfsyhcjl,LP_Record";
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set { parentTemple = value; }
+        }
+        public bool IsWorkfowCall
+        {
+            set
+            {
+
+                isWorkfowCall = value;
+
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set { currRecord = value; }
+        }
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+                return WorkFlowData;
+            }
+            set
+            {
+                WorkFlowData = value;
+            }
+        }
+
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value;
+            }
+        }
         public UCtestHCRecord()
         {
             InitializeComponent();
@@ -54,7 +99,18 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterDelete(PJ_yfsyhcjl obj)
         {
 
-            IList<PJ_yfsyhcjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyhcjl>(" where OrgCode='" + obj.OrgCode + "' order by xh");
+            string slqwhere = " where OrgCode='" + obj.OrgCode +"' ";
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            slqwhere = slqwhere + " order by xh";
+            IList<PJ_yfsyhcjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyhcjl>(slqwhere);
             int i = 1;
             List<PJ_yfsyhcjl> list = new List<PJ_yfsyhcjl>();
             foreach (PJ_yfsyhcjl ob in li)
@@ -71,15 +127,27 @@ namespace Ebada.Scgl.Lcgl
             }
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            RefreshData(" where OrgCode='" + obj.OrgCode +"'  order by xh ");
+            RefreshData(" where OrgCode='" + obj.OrgCode +"'  ");
         }
         void gridViewOperation_AfterAdd(PJ_yfsyhcjl obj)
         {
-            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyhcjl>(" where OrgCode='" + obj.OrgCode + "'");
+
+            string slqwhere = " where OrgCode='" + obj.OrgCode + "' ";
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            slqwhere = slqwhere + " order by xh";
+            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyhcjl>(slqwhere);
 
             MainHelper.PlatformSqlMap.Update<PJ_yfsyhcjl>(obj);
 
-            RefreshData(" where OrgCode='" + ParentID + "'    order by xh ");
+            RefreshData(" where OrgCode='" + ParentID + "'   ");
            
 
         }
@@ -89,7 +157,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 _type = value;
-               RefreshData(" where OrgCode='" + ParentID + "'    order by xh ");
+               RefreshData(" where OrgCode='" + ParentID + "'     ");
                 
 
             }
@@ -188,6 +256,17 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
+
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            slqwhere = slqwhere + " order by xh";
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
@@ -227,7 +306,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                  
                     
-                        RefreshData(" where OrgCode='" + value + "'    order by xh ");
+                        RefreshData(" where OrgCode='" + value + "'     ");
                 }
             }
         }
@@ -254,7 +333,12 @@ namespace Ebada.Scgl.Lcgl
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             IList<PJ_yfsyhcjl> datalist = gridView1.DataSource as IList<PJ_yfsyhcjl>;
-            Export11.ExportExcelhc(datalist, "设备维护实施记录", parentID); 
+            Export11 export = new Export11();
+            export.CurrRecord = currRecord;
+            export.IsWorkfowCall = isWorkfowCall;
+            export.ParentTemple = parentTemple;
+            export.RecordWorkFlowData = WorkFlowData;
+            export.ExportExcelhc(datalist, "设备维护实施记录", parentID); 
            
         }
     }
