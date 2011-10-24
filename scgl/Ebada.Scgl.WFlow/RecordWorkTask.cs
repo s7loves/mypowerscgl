@@ -173,7 +173,7 @@ namespace Ebada.Scgl.WFlow
 
         }
         /// <summary>
-        /// 获得当前流程是否有输入名称的全新
+        /// 获得当前流程是否有输入名称的权限（像是否有导出，退回）
         /// </summary>
         /// <param name="TaskPower">控制权限名称</param>
         /// <param name="WorkFlowId">WorkFlowId</param>
