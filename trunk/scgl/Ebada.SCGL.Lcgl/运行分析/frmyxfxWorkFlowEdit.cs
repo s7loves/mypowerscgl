@@ -345,6 +345,18 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.Status = strmes;
             }
+            if (currRecord.ImageAttachment == null)
+            {
+                currRecord.ImageAttachment = new byte[0];
+            }
+            if (currRecord.DocContent== null)
+            {
+                currRecord.DocContent = new byte[0];
+            }
+            if (currRecord.SignImg == null)
+            {
+                currRecord.SignImg = new byte[0];
+            }
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
             //this.Close(); 
         }
