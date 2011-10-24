@@ -31,6 +31,7 @@ namespace Ebada.SCGL
         }
         DataTable dt = null;
         DataTable taskdt = null;
+        DataTable workTaskdt = null;
         public frmMain2 PlatForm = null;
       
         public  void iniUsualCtrl()
@@ -133,7 +134,7 @@ namespace Ebada.SCGL
         }
         public void refreshTreeData()
         {
-            DataTable workTaskdt = WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999);
+           DataTable workTaskdt = WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999);
             
             treeList1.Nodes.Clear();
             dt.Rows.Clear();
@@ -435,14 +436,41 @@ namespace Ebada.SCGL
 
         private void treeList1_DoubleClick(object sender, EventArgs e)
         {
-
+           
         }
 
         private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {
+            
             xtraTabControl2.SelectedTabPage =taskTabPage ;
+            if (e.Node!=null)
+            {
+
+                if (e.Node["name"].ToString().IndexOf("我的任务") > -1)
+                {
+                    gridTalskCon.DataSource = taskdt;
+                }
+                else
+                {
+                    string filt = e.Node["name"].ToString().Substring(0, e.Node["name"].ToString().IndexOf('('));
+                    DataTable dt = taskdt.Clone();
+                    DataRow[] drlist = taskdt.Select("FlowCaption='" + e.Node["name"].ToString().Substring(0, e.Node["name"].ToString().IndexOf('(')) + "'");
+                    foreach (DataRow dr in drlist)
+                    {
+                        DataRow ndr = dt.NewRow();
+                        ndr.ItemArray = dr.ItemArray.Clone() as object[];
+                        dt.Rows.Add(ndr);
+                    }
+                    gridTalskCon.DataSource = dt;
+                }
+            }
+            
         }
 
+        //string GetflitName(string name)
+        //{
+        //    return name.Substring(0, name.IndexOf('('));
+        //}
      
 
      
