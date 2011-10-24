@@ -33,8 +33,9 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecord2.ParentTemple = value;
                 uCtestRecord3.ParentTemple = value;
                 uCtestRecord4.ParentTemple = value;
-                uCtestRecordssqkTable1.ParentTemple = value;
                 uCtestRecordjhmxTable1.ParentTemple = value;
+                uCtestRecordssqkTable1.ParentTemple = value;
+                uCtestRecordwcqkTable1.ParentTemple = value;
                 uCtestHCRecord1.ParentTemple = value; 
             }
         }
@@ -47,6 +48,7 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecord2.IsWorkfowCall = value;
                 uCtestRecord3.IsWorkfowCall = value;
                 uCtestRecordssqkTable1.IsWorkfowCall = value;
+                uCtestRecordwcqkTable1.IsWorkfowCall = value;
                 uCtestRecordjhmxTable1.IsWorkfowCall = value;
                 uCtestRecord4.IsWorkfowCall = value;
                 uCtestHCRecord1.IsWorkfowCall = value; 
@@ -62,6 +64,7 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecord2.CurrRecord = value;
                 uCtestRecord3.CurrRecord = value;
                 uCtestRecordssqkTable1.CurrRecord = value;
+                uCtestRecordwcqkTable1.CurrRecord = value;
                 uCtestRecordjhmxTable1.CurrRecord = value;
                 uCtestRecord4.CurrRecord = value;
                 uCtestHCRecord1.CurrRecord = value; 
@@ -85,6 +88,7 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecord2.RecordWorkFlowData = value;
                 uCtestRecord3.RecordWorkFlowData = value;
                 uCtestRecordssqkTable1.RecordWorkFlowData = value;
+                uCtestRecordwcqkTable1.RecordWorkFlowData = value;
                 uCtestRecordjhmxTable1.RecordWorkFlowData = value;
                 uCtestRecord4.RecordWorkFlowData = value;
                 uCtestHCRecord1.RecordWorkFlowData = value;
@@ -99,6 +103,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 varDbTableName = value;
                 uCtestRecordssqkTable1.VarDbTableName = value;
+                uCtestRecordwcqkTable1.VarDbTableName = value;
                 uCtestRecord2.VarDbTableName = value;
                 uCtestRecord3.VarDbTableName = value;
                 uCtestRecordjhmxTable1.VarDbTableName = value;

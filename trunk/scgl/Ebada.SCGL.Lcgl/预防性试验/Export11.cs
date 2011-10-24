@@ -77,6 +77,7 @@ namespace Ebada.Scgl.Lcgl
                 {
 
                     WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ID = mrwt.CreateID();
                     mrwt.ModleRecordID = byqdatalist[i].ID;
                     mrwt.RecordID = currRecord.ID;
                     mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
@@ -97,6 +98,7 @@ namespace Ebada.Scgl.Lcgl
                 {
 
                     WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ID = mrwt.CreateID();
                     mrwt.ModleRecordID = byqdatalist[i].ID;
                     mrwt.RecordID = currRecord.ID;
                     mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
@@ -118,6 +120,7 @@ namespace Ebada.Scgl.Lcgl
                 {
 
                     WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ID = mrwt.CreateID();
                     mrwt.ModleRecordID = byqdatalist[i].ID;
                     mrwt.RecordID = currRecord.ID;
                     mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
@@ -139,6 +142,7 @@ namespace Ebada.Scgl.Lcgl
                 {
 
                     WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ID = mrwt.CreateID();
                     mrwt.ModleRecordID = byqdatalist[i].ID;
                     mrwt.RecordID = currRecord.ID;
                     mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();

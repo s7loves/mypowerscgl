@@ -545,7 +545,7 @@ namespace Ebada.Scgl.WFlow
             }
             if (wtc.ControlType == "绑定节点")
             {
-                DataTable ctrlTable = WorkFlowTask.GetTaskControls(wtc.UserControlId);
+                DataTable ctrlTable = WorkFlowTask.GetTaskControls(worktaskId);
                 bool notable = true;
                 for (int i = 0; i < ctrlTable.Rows.Count; i++)
                 {
@@ -578,8 +578,20 @@ namespace Ebada.Scgl.WFlow
                 {
 
                     tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(ctrlTable.Rows[0]["LPID"]);
+
                     if (tp != null)
                     {
+                         ctrlTable = WorkFlowTask.GetTaskBindTaskContent(wtc.WorktaskId);
+                    strsql = " where WorkflowId='" + workflowId + "'"
+                        + " and WorktaskId='" + ctrlTable.Rows[0]["UserControlId"] + "'"
+                          + " and WorkFlowInsId='" + workFlowInsId + "'"
+
+                          + " and RecordId='" + record.ID + "' order by Creattime desc";
+                    WF_ModleCheckTable mct = MainHelper.PlatformSqlMap.GetOne<WF_ModleCheckTable>(strsql);
+                    if (mct != null)
+                    {
+                        tp.DocContent = mct.DocContent;
+                    }
                         /***
                         * 绑定的节点是表单，则把它的字段值填上
                         * 
