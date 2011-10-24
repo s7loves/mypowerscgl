@@ -324,7 +324,7 @@ namespace Ebada.SCGL
                      //return;
                  }
 
-                 frm.Kind = dr["TaskCaption"].ToString();
+                 frm.Kind = dr["FlowCaption"].ToString();
                  frm.RecordWorkFlowData = dt;
                  frm.ShowDialog();
                 

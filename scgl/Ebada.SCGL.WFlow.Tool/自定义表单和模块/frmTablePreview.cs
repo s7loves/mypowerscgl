@@ -282,7 +282,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
             }
             InitEvent();
-            //InitData();
+            InitData();
 
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
@@ -715,31 +715,58 @@ namespace Ebada.SCGL.WFlow.Tool
             arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split(pchar);
             string[] extraWord = lp.ExtraWord.Split(pchar);
             IList<string> strList = new List<string>();
-            if (arrCellPos.Length == 5)
+            //if (arrCellPos.Length == 5)
+            //{
+            //    strList.Add(dt.Year.ToString()); strList.Add(dt.Month.ToString());
+            //    strList.Add(dt.Day.ToString()); strList.Add(dt.Hour.ToString()); strList.Add(dt.Minute.ToString());
+            //}
+            //else if (arrCellPos.Length == 4)
+            //{
+            //    strList.Add(dt.Day.ToString()); strList.Add(dt.Hour.ToString()); strList.Add(dt.Minute.ToString());
+            //}
+            //else if (arrCellPos.Length == 3)
+            //{
+            //    // strList.Add(dt.Year.ToString()); strList.Add(dt.Month.ToString());
+            //    //strList.Add(dt.Day.ToString()); strList.Add(dt.Hour.ToString()); strList.Add(dt.Minute.ToString());
+            //    strList.Add(dt.Year.ToString());
+            //    strList.Add(dt.Month.ToString());
+            //    strList.Add(dt.Day.ToString());
+            //}
+            //else if (arrCellPos.Length == 2)
+            //{
+            //    strList.Add(dt.Hour.ToString());
+            //    strList.Add(dt.Minute.ToString());
+            //}
+            //else if (arrCellPos.Length == 1)
+            //{
+            //    strList.Add(dt.ToString());
+            //}
+            switch (lp.WordCount)
             {
-                strList.Add(dt.Year.ToString()); strList.Add(dt.Month.ToString());
-                strList.Add(dt.Day.ToString()); strList.Add(dt.Hour.ToString()); strList.Add(dt.Minute.ToString());
-            }
-            else if (arrCellPos.Length == 4)
-            {
-                strList.Add(dt.Day.ToString()); strList.Add(dt.Hour.ToString()); strList.Add(dt.Minute.ToString());
-            }
-            else if (arrCellPos.Length == 3)
-            {
-                // strList.Add(dt.Year.ToString()); strList.Add(dt.Month.ToString());
-                //strList.Add(dt.Day.ToString()); strList.Add(dt.Hour.ToString()); strList.Add(dt.Minute.ToString());
-                strList.Add(dt.Year.ToString());
-                strList.Add(dt.Month.ToString());
-                strList.Add(dt.Day.ToString());
-            }
-            else if (arrCellPos.Length == 2)
-            {
-                strList.Add(dt.Hour.ToString());
-                strList.Add(dt.Minute.ToString());
-            }
-            else if (arrCellPos.Length == 1)
-            {
-                strList.Add(dt.ToString());
+                case "yyyy-MM-dd":
+                    strList.Add(dt.Year.ToString());
+                    strList.Add(dt.Month.ToString());
+                    strList.Add(dt.Day.ToString());
+                    break;
+                case "yyyy-MM-dd HH:mm:ss":
+                    strList.Add(dt.Year.ToString());
+                    strList.Add(dt.Month.ToString());
+                    strList.Add(dt.Day.ToString());
+                    strList.Add(dt.Hour.ToString());
+                    strList.Add(dt.Second.ToString());
+                    break;
+                case "HH:mm:ss":
+                    strList.Add(dt.Hour.ToString());
+                    strList.Add(dt.Minute.ToString());
+                    strList.Add(dt.Second.ToString());
+                    break;
+                default:
+                    strList.Add(dt.Year.ToString());
+                    strList.Add(dt.Month.ToString());
+                    strList.Add(dt.Day.ToString());
+                    strList.Add(dt.Hour.ToString());
+                    strList.Add(dt.Minute.ToString());
+                    break;
             }
             // int i = 0;
             for (int i = 0; i < strList.Count; i++)
@@ -886,11 +913,24 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
-                    //((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";                  
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd HH:mm";
+                    //((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";          
+                    //string[] arrCellPos = lp.CellPos.Split(pchar);
+                    //if (arrCellPos.Length == 5)
+                    //{
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd HH:mm";
+                    //}
+                    //else if (arrCellPos.Length == 3)
+                    //{
 
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd";
+                    //}
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = lp.WordCount;
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = lp.WordCount;
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
                     break;

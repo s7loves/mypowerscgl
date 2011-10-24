@@ -374,8 +374,21 @@ namespace Ebada.Scgl.Lcgl
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    //((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";
+                    string[] arrCellPos = lp.CellPos.Split(pchar);
+                    if (arrCellPos.Length == 5)
+                    {
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd HH:mm";
+                    }
+                    else if (arrCellPos.Length == 3)
+                    {
+
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd";
+                    }
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
                     break;

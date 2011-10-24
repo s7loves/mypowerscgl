@@ -92,6 +92,15 @@ namespace Ebada.SCGL.WFlow.Tool
             list.Add(new DicType("uc_gridcontrol", "uc_gridcontrol"));
             //list.Add(new DicType("xlqxp", "抢修票"));停电操作票
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);
+            comboBoxEdit5.Properties.Items.Clear();
+            ListItem lt = new ListItem("yyyy-MM-dd","年-月-日");
+            comboBoxEdit5.Properties.Items.Add(lt);
+            lt = new ListItem("yyyy-MM-dd HH:mm", "年-月-日 时:分");
+            comboBoxEdit5.Properties.Items.Add(lt);
+            lt = new ListItem("yyyy-MM-dd HH:mm:ss", "年-月-日 时:分:秒");
+            comboBoxEdit5.Properties.Items.Add(lt);
+            lt = new ListItem("HH:mm:ss", "时:分:秒");
+            comboBoxEdit5.Properties.Items.Add(lt);
 
             comboBoxEdit1.Properties.Items.Clear();
             comboBoxEdit1.Properties.Items.Add("table");
@@ -178,6 +187,10 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (comboBoxEdit5.Visible)
+            {
+                rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
+            }
             rowData.isExplorer = comboBoxEdit3.SelectedIndex;
         }
 
@@ -200,6 +213,48 @@ namespace Ebada.SCGL.WFlow.Tool
                
                 if (comboBoxEdit4.Properties.Items.Count > 0) rowData.KindTable = comboBoxEdit4.Properties.Items[0].ToString();
                 comboBoxEdit4.Text = rowData.KindTable;
+            }
+            if (rowData.CtrlType.IndexOf("DateEdit")>-1)
+            {
+                if (rowData.WordCount.IndexOf("|")==-1)
+                comboBoxEdit5.SelectedText = rowData.WordCount;
+                else
+                    comboBoxEdit5.SelectedIndex=0;
+
+                labelControl3.Visible = false;
+                textEdit7.Visible = false;
+
+                labelControl24.Visible = true;
+                comboBoxEdit5.Visible = true;
+            }
+            else
+            {
+                labelControl3.Visible = true;
+                textEdit7.Visible = true;
+
+                labelControl24.Visible = false;
+                comboBoxEdit5.Visible = false;
+            }
+        }
+
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lookUpEdit1.EditValue.ToString().IndexOf("DateEdit") > -1)
+            {
+
+                labelControl3.Visible = false;
+                textEdit7.Visible = false;
+
+                labelControl24.Visible = true;
+                comboBoxEdit5.Visible = true;
+            }
+            else
+            {
+                labelControl3.Visible = true;
+                textEdit7.Visible = true;
+
+                labelControl24.Visible = false;
+                comboBoxEdit5.Visible = false;
             }
         }
     }
