@@ -1017,12 +1017,24 @@ namespace Ebada.Scgl.WFlow
             object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskList", " where TaskCaption='" + newWorkTaskCap + "' and WorkFlowId='" + wf[0].WorkFlowId + "'  ");
             if (obj != null && operins != null)
             {
+
+
+
+                mUser fromuser = MainHelper.PlatformSqlMap.GetOneByKey<mUser>(userID);
                 nowtaskId = ((WF_WorkTask)obj).WorkTaskId;
+                workins.SuccessMsg = "跳转至状态(" + newWorkTaskCap + ")!";
+                workins.WorkTaskInsId = operins.WorkTaskInsId;
+                workins.OperatedDes = fromuser.UserName;
+                MainHelper.PlatformSqlMap.Update("UpdateWF_WorkTaskInstanceSuccessMsgByWorkTaskInsId", workins);
+                workins =new WF_WorkTaskInstance ();
+                //MainHelper.PlatformSqlMap.Delete<WF_WorkTaskInstance>(workins);
+                workins.WorkTaskInsId = Guid.NewGuid().ToString();
                 workins.WorkTaskId = nowtaskId;
                 workins.StartTime = DateTime.Now;
                 workins.TaskInsCaption = ((WF_WorkTask)obj).TaskCaption;
-                MainHelper.PlatformSqlMap.Delete<WF_WorkTaskInstance>(workins);
-                workins.WorkTaskInsId = Guid.NewGuid().ToString();
+                workins.WorkFlowId= ((WF_WorkTask)obj).WorkFlowId;
+                workins.WorkFlowInsId = wf[0].WorkFlowInsId;
+                workins.OperatedDes = userID;
                 workins.Status = "1";
                 //WF_Operator op = (WF_Operator)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorList", " where WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
                 IList<WF_Operator> li = MainHelper.PlatformSqlMap.GetList<WF_Operator>("SelectWF_OperatorList", " where  WorkTaskId='" + nowtaskId + "' and WorkFlowId='" + workins.WorkFlowId + "'");
