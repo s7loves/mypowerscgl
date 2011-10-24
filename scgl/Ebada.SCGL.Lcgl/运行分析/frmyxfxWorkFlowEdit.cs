@@ -282,10 +282,11 @@ namespace Ebada.Scgl.Lcgl
         private void btnOK_Click(object sender, EventArgs e)
         {
             string strmes = "";
-            if (recordStatus == 0)
+            PJ_03yxfx yxfx = RowData as PJ_03yxfx;
+            object obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_03yxfx>(yxfx.ID);
+            if (obj == null)
             {
 
-                PJ_03yxfx yxfx = RowData as PJ_03yxfx;
                 yxfx.CreateDate = DateTime.Now;
                 yxfx.CreateMan = MainHelper.User.UserName;
                 MainHelper.PlatformSqlMap.Create<PJ_03yxfx>(yxfx);
@@ -315,7 +316,7 @@ namespace Ebada.Scgl.Lcgl
             if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
             {
 
-                RecordWorkTask.CreatRiZhi(WorkFlowData,null ,currRecord.ID, currRecord);
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { yxfx, currRecord });
 
             }
             WF_WorkTaskCommands wt;
