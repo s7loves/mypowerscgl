@@ -131,22 +131,6 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_AfterAdd(PJ_yfsyhcjl obj)
         {
-
-            string slqwhere = " where OrgCode='" + obj.OrgCode + "' ";
-            if (isWorkfowCall)
-            {
-
-                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
-                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
-            }
-            slqwhere = slqwhere + " order by xh";
-            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyhcjl>(slqwhere);
-
-            MainHelper.PlatformSqlMap.Update<PJ_yfsyhcjl>(obj);
-
             if (isWorkfowCall)
             {
                 WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
@@ -160,6 +144,22 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.ModleTableName = obj.GetType().ToString();
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
+            string slqwhere = " where OrgCode='" + obj.OrgCode + "' ";
+            if (isWorkfowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
+            //slqwhere = slqwhere + " order by xh";
+            obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyhcjl>(slqwhere);
+
+            MainHelper.PlatformSqlMap.Update<PJ_yfsyhcjl>(obj);
+
+            
             RefreshData(" where OrgCode='" + ParentID + "'   ");
            
 
@@ -276,8 +276,9 @@ namespace Ebada.Scgl.Lcgl
                 slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
                 slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
                    + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+                  // + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                  // + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "' "
+                  + ")";
             }
             slqwhere = slqwhere + " order by xh";
             gridViewOperation.RefreshData(slqwhere);

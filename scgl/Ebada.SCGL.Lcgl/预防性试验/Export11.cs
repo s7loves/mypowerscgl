@@ -8,6 +8,9 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections;
 using Ebada.Scgl.Core;
 using System.Data;
+using Ebada.Client.Platform;
+using Ebada.Components;
+using System.Threading;
 namespace Ebada.Scgl.Lcgl
 {
     /// <summary>
@@ -55,6 +58,113 @@ namespace Ebada.Scgl.Lcgl
                
             }
         }
+        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid)
+        {
+            
+            string filter = "";
+            int i = 0;
+            if (orgid != "") filter = " and OrgCode='" + orgid + "'";
+            if (isWorkfowCall)
+            {
+                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='"
+                   + CurrRecord.ID + "' and   WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') ";
+            }
+            List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
+            IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            if (isWorkfowCall)
+            {
+                for (i = 0; i < byqdatalist.Count; i++)
+                {
+
+                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ModleRecordID = byqdatalist[i].ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.ModleTableName = byqdatalist[i].GetType().ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    mrwtlist.Add(mrwt);
+                }
+            }
+            
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'  and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            if (isWorkfowCall)
+            {
+                for (i = 0; i < byqdatalist.Count; i++)
+                {
+
+                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ModleRecordID = byqdatalist[i].ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.ModleTableName = byqdatalist[i].GetType().ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    mrwtlist.Add(mrwt);
+                }
+            }
+            
+
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'  and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            if (isWorkfowCall)
+            {
+                for (i = 0; i < byqdatalist.Count; i++)
+                {
+
+                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ModleRecordID = byqdatalist[i].ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.ModleTableName = byqdatalist[i].GetType().ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    mrwtlist.Add(mrwt);
+                }
+            }
+
+          
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'  and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            if (isWorkfowCall)
+            {
+                for (i = 0; i < byqdatalist.Count; i++)
+                {
+
+                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ModleRecordID = byqdatalist[i].ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.ModleTableName = byqdatalist[i].GetType().ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    mrwtlist.Add(mrwt);
+                }
+                List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+                if (mrwtlist.Count > 0)
+                {
+                    SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Insert, mrwtlist.ToArray());
+                    list3.Add(obj3);
+                }
+
+                MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+            }
+           
+
+         
+          
+
+        }
         public  void ExportExceljhbAllSubmit(ref LP_Temple parentTemple, string cellname, string sheetname, string orgid, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
@@ -74,42 +184,67 @@ namespace Ebada.Scgl.Lcgl
             ex.MyExcel = wb.Application;
             ExportExceljhbAllEx(ex, cellname, sheetname, orgid, isShow);
             string filter = "";
+            int i = 0;
             if (orgid != "") filter = " and OrgCode='" + orgid + "'";
             if (isWorkfowCall)
             {
-                filter =filter+ " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='"
-                   + CurrRecord.ID + "' and   WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') ";
+                filter = filter + "  and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                    + " and   WorkFlowInsId !='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + ")";
             }
-            IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'" + filter + " order by xh ");
+            List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
+            IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            
             Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid, isShow);
-            IList<PJ_yfsyjl> byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+           // IList<PJ_yfsyjl> byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            IList<PJ_yfsyjl> byqjhbdatalist = byqdatalist;
             Export11.ExportExcelbyqjhbEx(ex, byqdatalist, "变压器" + "预防性试验计划表", orgid, isShow);
-            //Export11.ExportExcelbyqssqkEx(ex, byqdatalist, "变压器" + "预防性试验实施情况记录", orgid, isShow);
-            //Export11.ExportExcelbyqwcqkEx(ex, byqdatalist, "变压器" + "预防性试验完成情况报表", orgid, isShow);
+            if (currRecord.Status != "申报")
+            {
+                Export11.ExportExcelbyqssqkEx(ex, byqdatalist, "变压器" + "预防性试验实施情况记录", orgid, isShow);
+                Export11.ExportExcelbyqwcqkEx(ex, byqdatalist, "变压器" + "预防性试验完成情况报表", orgid, isShow);
+            }
 
-            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'" + filter + " order by xh ");
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'  and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+           
             Export11.ExportExceldlqEx(ex, byqdatalist, "断路器" + "预防性试验记录", orgid, isShow);
-            byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            //byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            byqjhbdatalist = byqdatalist;
             Export11.ExportExceldlqjhbEx(ex, byqdatalist, "断路器" + "预防性试验计划表", orgid, isShow);
-            //Export11.ExportExceldlqssqkEx(ex, byqdatalist, "断路器" + "预防性试验实施情况记录", orgid, isShow);
-            //Export11.ExportExceldlqwcqkEx(ex, byqdatalist, "断路器" + "预防性试验完成情况报表", orgid, isShow);
+            if (currRecord.Status != "申报")
+            {
+                Export11.ExportExceldlqssqkEx(ex, byqdatalist, "断路器" + "预防性试验实施情况记录", orgid, isShow);
+                Export11.ExportExceldlqwcqkEx(ex, byqdatalist, "断路器" + "预防性试验完成情况报表", orgid, isShow);
+            }
 
-            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'" + filter + " order by xh ");
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'  and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+          
+            
             Export11.ExportExcelblqEx(ex, byqdatalist, "避雷器" + "预防性试验记录", orgid, isShow);
-            byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            //byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            byqjhbdatalist = byqdatalist;
             Export11.ExportExcelblqjhbEx(ex, byqdatalist, "避雷器" + "预防性试验计划表", orgid, isShow);
-            //Export11.ExportExcelblqssqkEx(ex, byqdatalist, "避雷器" + "预防性试验实施情况记录", orgid, isShow);
-            //Export11.ExportExcelblqwcqkEx(ex, byqdatalist, "避雷器" + "预防性试验完成情况报表", orgid, isShow);
+            if (currRecord.Status != "申报")
+            {
+                Export11.ExportExcelblqssqkEx(ex, byqdatalist, "避雷器" + "预防性试验实施情况记录", orgid, isShow);
+                Export11.ExportExcelblqwcqkEx(ex, byqdatalist, "避雷器" + "预防性试验完成情况报表", orgid, isShow);
+            }
 
-            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'" + filter + " order by xh ");
+            byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'  and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+           
             Export11.ExportExceldrqEx(ex, byqdatalist, "电容器" + "预防性试验记录", orgid, isShow);
-            byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            //byqjhbdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
+            byqjhbdatalist = byqdatalist;
             Export11.ExportExceldrqjhbEx(ex, byqjhbdatalist, "电容器" + "预防性试验计划表", orgid, isShow);
-            //Export11.ExportExceldrqssqkEx(ex, byqdatalist, "电容器" + "预防性试验实施情况记录", orgid, isShow);
-            //Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid, isShow);
+            if (currRecord.Status != "申报")
+            {
+                Export11.ExportExceldrqssqkEx(ex, byqdatalist, "电容器" + "预防性试验实施情况记录", orgid, isShow);
+                Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid, isShow);
+            }
 
-            //IList<PJ_yfsyhcjl> hcdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyhcjl>("SelectPJ_yfsyhcjlList", " where  1=1 " + filter + " order by xh ");
-            //Export11.ExportExcelhcEx(ex, hcdatalist, "设备维护实施记录", orgid, isShow);
+            IList<PJ_yfsyhcjl> hcdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyhcjl>("SelectPJ_yfsyhcjlList", " where  1=1 " + filter + " order by xh ");
+            Export11.ExportExcelhcEx(ex, hcdatalist, "设备维护实施记录", orgid, isShow);
             if (parentTemple == null)
             {
                 parentTemple = new LP_Temple();
@@ -135,8 +270,10 @@ namespace Ebada.Scgl.Lcgl
             if (orgid != "") filter = " and OrgCode='" + orgid + "'";
             if (isWorkfowCall)
             {
-                filter = filter + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='"
-                   + CurrRecord.ID + "' and   WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') ";
+                filter = filter + " and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+               + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and   WorkFlowInsId !='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                  + ")";
             }
             IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'" + filter + " order by xh ");
             Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid, isShow);
@@ -165,8 +302,17 @@ namespace Ebada.Scgl.Lcgl
             Export11.ExportExceldrqjhbEx(ex, byqdatalist, "电容器" + "预防性试验计划表", orgid, isShow);
             Export11.ExportExceldrqssqkEx(ex, byqdatalist, "电容器" + "预防性试验实施情况记录", orgid, isShow);
             Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid, isShow);
-
-            IList<PJ_yfsyhcjl> hcdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyhcjl>("SelectPJ_yfsyhcjlList", " where  1=1 " + filter + " order by xh ");
+            string filter2 = "";
+            if (orgid != "") filter2 = " and OrgCode='" + orgid + "'";
+            if (isWorkfowCall)
+            {
+                filter2 = filter2 + " and  id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+               + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and   WorkFlowInsId ='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and   RecordID ='" + currRecord.ID+ "'"
+                  + ")";
+            }
+            IList<PJ_yfsyhcjl> hcdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyhcjl>("SelectPJ_yfsyhcjlList", " where  1=1 " + filter2 + " order by xh ");
             Export11.ExportExcelhcEx(ex, hcdatalist, "设备维护实施记录", orgid, isShow); 
 
         }
@@ -192,8 +338,10 @@ namespace Ebada.Scgl.Lcgl
             if (orgid != "") filter = " and a.OrgCode='" + orgid + "' ";
             if (isWorkfowCall)
             {
-                filter = filter + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='"
-                   + CurrRecord.ID + "' and   WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') ";
+                filter = filter + "  and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+               + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and   WorkFlowInsId !='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                  + ")";
             }
             IList typelist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  type    from dbo.PJ_yfsyjl a  where 1=1 " + filter );
             Hashtable hmodnum = new Hashtable();

@@ -269,6 +269,7 @@ namespace Ebada.Scgl.Lcgl
             switch (status)
             {
                 case "add":
+                case "edit":
                     Button btn_Submit = new Button();
                     dockPanel1.Controls.Add(btn_Submit);
                     btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
