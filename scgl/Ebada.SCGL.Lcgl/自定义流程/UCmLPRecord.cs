@@ -576,9 +576,7 @@ namespace Ebada.Scgl.Lcgl {
                         {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
                              +" and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'"
-                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                               + " and  WorkTaskId='" + dt.Rows[0]["WorkTaskId"].ToString() + "'"
-                               + " and  WorkTaskInsId='" + dt.Rows[0]["WorkTaskInsId"].ToString() + "'");
+                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
                             PJ_03yxfx yxfx = new PJ_03yxfx();
                             if (li.Count > 0)
                             {
