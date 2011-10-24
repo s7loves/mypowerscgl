@@ -173,7 +173,7 @@ namespace Ebada.Scgl.WFlow
 
         }
         /// <summary>
-        /// 获得当前流程是否有输入名称的权限（像是否有导出，退回）
+        /// 获得当前流程是否有输入名称的权限（）
         /// </summary>
         /// <param name="TaskPower">控制权限名称</param>
         /// <param name="WorkFlowId">WorkFlowId</param>
@@ -545,7 +545,7 @@ namespace Ebada.Scgl.WFlow
             }
             if (wtc.ControlType == "绑定节点")
             {
-                DataTable ctrlTable = WorkFlowTask.GetTaskControls(wtc.WorktaskId);
+                DataTable ctrlTable = WorkFlowTask.GetTaskControls(wtc.UserControlId);
                 bool notable = true;
                 for (int i = 0; i < ctrlTable.Rows.Count; i++)
                 {

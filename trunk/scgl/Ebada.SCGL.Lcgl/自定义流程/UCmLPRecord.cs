@@ -1037,6 +1037,12 @@ namespace Ebada.Scgl.Lcgl {
                             if (taskTemple != null)
                             {
 
+                                WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + wf[0].WorkFlowId
+                                + "' and WorktaskId='" + wf[0].WorkTaskId + "'");
+                                if (wtc !=null)
+                                { 
+                                
+                                }
                                 RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, true);
                                 ds1.FileDataGzip = taskTemple.DocContent;
                                 ds1.FileSave(fname, true);
