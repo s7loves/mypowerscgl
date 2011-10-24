@@ -885,7 +885,7 @@ namespace Ebada.Scgl.Lcgl {
                 return;
 
             }//流程结束
-            if (currRecord.ID.IndexOf("N") == -1)
+            if (currRecord.ID.IndexOf("N") == -1 || parentObj.FlowCaption.IndexOf("定期分析") > -1 || parentObj.FlowCaption.IndexOf("专题分析") > -1)
             { 
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 string fname = "";
@@ -900,7 +900,7 @@ namespace Ebada.Scgl.Lcgl {
 
                         ds1.FileDataGzip = currRecord.DocContent;
                         ds1.FileSave(fname, true);
-
+                        ds1.FileClose();
                         if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
                             return;
 

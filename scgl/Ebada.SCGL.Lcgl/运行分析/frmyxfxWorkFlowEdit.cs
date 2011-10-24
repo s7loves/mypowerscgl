@@ -357,6 +357,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.SignImg = new byte[0];
             }
+            Export03.ExportExcelWorkFlow(ref  currRecord, (PJ_03yxfx)RowData);
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
             //this.Close(); 
         }
