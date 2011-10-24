@@ -5,6 +5,7 @@ using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
 using Ebada.Scgl.Core;
+using Excel = Microsoft.Office.Interop.Excel;
 namespace Ebada.Scgl.Lcgl
 {
     /// <summary>
@@ -227,6 +228,104 @@ namespace Ebada.Scgl.Lcgl
             //ex.CopySheet(1, 3);
             //ex.CopySheet(2, 4);
             ex.ShowExcel();
+
+        }
+        public static void ExportExcelWorkFlow(ref LP_Record currRecord, PJ_03yxfx obj)
+        {
+            DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
+            string fname = Application.StartupPath + "\\00记录模板\\03运行分析记录.xls";
+            dsoFramerWordControl1.FileOpen(fname);
+            if (currRecord == null)
+            {
+                currRecord = new LP_Record();
+                currRecord.Status = "文档生成";
+            }
+            currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+            dsoFramerWordControl1.FileClose();
+            dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+            ExcelAccess ex = new ExcelAccess();
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            ex.MyWorkBook = wb;
+            ex.MyExcel = wb.Application;
+
+
+            //与会人员之间的间隔符号
+            string jksign = "@";
+            int row = 1;
+            int col = 1;
+            //每行显示文字长度
+            int zc = 60;
+            //获得创建的工作表个数
+            // int pagemax = 1;
+            string zt = Ecommon.Comparestring(obj.zt, "主题") ? "" : "主题：";
+            List<string> listztstring = Ecommon.ResultStrList(zt + obj.zt, zc);
+
+            //if (pagemax < Ecommon.GetPagecount(listztstring.Count,2))
+            //{
+            //    pagemax = Ecommon.GetPagecount(listztstring.Count, 2);
+            //}
+            string jy = Ecommon.Comparestring(obj.jy, "纪要") ? "" : "纪要：";
+            List<string> listjy = Ecommon.ResultStrList(jy + obj.jy, zc);
+            //if (pagemax < Ecommon.GetPagecount(listjy.Count, 7))
+            //{
+            //    pagemax = Ecommon.GetPagecount(listjy.Count, 7);
+            //}
+            string jr = Ecommon.Comparestring(obj.jr, "结论及对策") ? "" : "结论及对策：";
+            List<string> listjldc = Ecommon.ResultStrList(jr + obj.jr, zc);
+            //if (pagemax < Ecommon.GetPagecount(listjldc.Count, 6))
+            //{
+            //    pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
+            //}
+            List<string> strcol = new List<string>();
+            Ecommon.addstring(listztstring, ref strcol);
+            Ecommon.addstring(listjy, ref strcol);
+            Ecommon.addstring(listjldc, ref strcol);
+            Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
+            ex.ActiveSheet(1);
+            //时间
+            ex.SetCellValue(obj.rq.Year.ToString(), 4, 5);
+            ex.SetCellValue(obj.rq.Month.ToString(), 4, 7);
+            ex.SetCellValue(obj.rq.Day.ToString(), 4, 9);
+
+            //出席人员
+            string[] ary = obj.cjry.Split(';');
+            int n = ary.Length % 5;
+            for (int i = 0; i < ary.Length; i++)
+            {
+                int tempcol = col + 1 + i % 5;
+                if (i % 5 == 1 || i % 5 == 2 || i % 5 == 3)
+                {
+                    tempcol = col + 1 + i % 5 + 1;
+                }
+                if (i % 5 == 4)
+                {
+                    tempcol = col + 1 + i % 5 + 2;
+                }
+                ex.SetCellValue(ary[i], row + 4 + i / 5, tempcol);
+            }
+            //主持人
+            ex.SetCellValue(obj.zcr, 5, 11);
+            //检查人签字
+            //ex.CopySheet(1, 2);
+            //ex.ActiveSheet(2);
+            //ex.SetCellValue("kakaka", 24, 4);
+            //ex.ActiveSheet(1);
+            ex.SetCellValue(obj.qz, 24, 4);
+            //签字时间
+            if (ComboBoxHelper.CompreDate(obj.qzrq))
+            {
+                ex.SetCellValue(obj.qzrq.Year.ToString(), 24, 5);
+                ex.SetCellValue(obj.qzrq.Month.ToString(), 24, 9);
+                ex.SetCellValue(obj.qzrq.Day.ToString(), 24, 11);
+            }
+            if (currRecord == null)
+            {
+                currRecord = new LP_Record();
+                currRecord.Status = "文档生成";
+            }
+            dsoFramerWordControl1.FileSave();
+            currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+            dsoFramerWordControl1.FileClose();
 
         }
     }
