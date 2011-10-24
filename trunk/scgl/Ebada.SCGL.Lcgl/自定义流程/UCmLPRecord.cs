@@ -1080,6 +1080,7 @@ namespace Ebada.Scgl.Lcgl {
             if (dt.Rows.Count > 0)
             {
                 frmWFChange fw = new frmWFChange();
+                fw.Text = dt.Rows[0]["FlowInsCaption"].ToString() + "流程跳转";
                 fw.groupBox1.Text = dt.Rows[0]["FlowInsCaption"].ToString();
                 fw.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
                 if (fw.ShowDialog() != DialogResult.OK)
