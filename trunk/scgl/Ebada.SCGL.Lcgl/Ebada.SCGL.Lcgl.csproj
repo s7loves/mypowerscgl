@@ -93,6 +93,18 @@
     <Compile Include="frmExploreSelect.Designer.cs">
       <DependentUpon>frmExploreSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorkFlowInquiry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkFlowInquiry.Designer.cs">
+      <DependentUpon>WorkFlowInquiry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\UCmLPInquiryRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\UCmLPInquiryRecord.designer.cs">
+      <DependentUpon>UCmLPInquiryRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="自定义流程\frmModleSubmit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -381,6 +393,12 @@
   <ItemGroup>
     <EmbeddedResource Include="frmExploreSelect.resx">
       <DependentUpon>frmExploreSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkFlowInquiry.resx">
+      <DependentUpon>WorkFlowInquiry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\UCmLPInquiryRecord.resx">
+      <DependentUpon>UCmLPInquiryRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\frmModleSubmit.resx">
       <DependentUpon>frmModleSubmit.cs</DependentUpon>
