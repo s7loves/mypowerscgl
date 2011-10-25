@@ -575,7 +575,7 @@ namespace Ebada.Scgl.Lcgl
                     currRecord.Kind = kind;
                     currRecord.Content = GetContent();
                     if (ctrlNumber!=null)
-                        currRecord.Number = ctrlNumber.Text; 
+                        currRecord.Number = ctrlNumber.Text;
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
                     currRecord.LastChangeTime= DateTime.Now.ToString();
@@ -1298,6 +1298,7 @@ namespace Ebada.Scgl.Lcgl
                         strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                     }
                     if (ctrlNumber!=null) ctrlNumber.Text = strNumber;
+                    if (currRecord!=null) currRecord.OrgName = str;
                     //ContentChanged(ctrlNumber);
                 }
 
@@ -1614,7 +1615,8 @@ namespace Ebada.Scgl.Lcgl
                                     strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                                 }
                             }
-                            if (ctrlNumber!=null) ctrlNumber.Text = strNumber;
+                            if (ctrlNumber != null) ctrlNumber.Text = strNumber;
+                            if (currRecord != null) currRecord.OrgName = ctrl.Text;
                             //ContentChanged(ctrlNumber);
                         }                     
 

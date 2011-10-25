@@ -786,6 +786,7 @@ namespace Ebada.Scgl.Lpgl
                         strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                     }
                     ctrlNumber.Text = strNumber;
+                    if (currRecord != null) currRecord.OrgName = str;
                     //ContentChanged(ctrlNumber);
                 }
 
@@ -1024,6 +1025,7 @@ namespace Ebada.Scgl.Lpgl
                                 }
                             }
                             ctrlNumber.Text = strNumber;
+                            if (currRecord != null) currRecord.OrgName = ctrl.Text;
                             //ContentChanged(ctrlNumber);
                         }                     
 
