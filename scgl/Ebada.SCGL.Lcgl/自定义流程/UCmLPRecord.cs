@@ -355,6 +355,7 @@ namespace Ebada.Scgl.Lcgl {
             object obj= RecordWorkTask.GetNewWorkTaskModle(strKind, MainHelper.User.UserID);
             if (obj == null)
             {
+                MsgBox.ShowWarningMessageBox("出错，未找到对应的模块，请检查模板设置!");
                 return;
             }
             LP_Record lpr = new LP_Record();
