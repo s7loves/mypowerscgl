@@ -38,7 +38,13 @@ namespace Ebada.Scgl.Sbgl {
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_sbcs>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_sbcs>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<PS_sbcs>(gridViewOperation_BeforeInsert);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
+        }
+
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<PS_sbcs> e) {
+            if(string.IsNullOrEmpty(e.Value.xh))
+                e.Value.ID = e.Value.bh;
         }
         private IViewOperation<PS_sbcs> childView;
         /// <summary>
