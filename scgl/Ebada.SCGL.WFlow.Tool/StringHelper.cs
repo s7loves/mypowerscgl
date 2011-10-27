@@ -204,7 +204,12 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 real++;
             }
-            string old = arrayText.Substring(0, real + 1);
+
+            string old = "";
+            if (real + 1 >= arrayText.Length)
+                return real;
+                old = arrayText.Substring(0, real + 1);
+           
             ChangeNum(arrayText[++real], ref old, ref real);
             return real;
         }

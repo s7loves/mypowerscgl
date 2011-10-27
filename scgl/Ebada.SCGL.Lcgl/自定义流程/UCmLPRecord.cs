@@ -280,27 +280,27 @@ namespace Ebada.Scgl.Lcgl {
                        strKind = null;
                     } else {
                       // ParentID = value.LPID;
-                        if (value.FlowCaption == "电力线路倒闸操作票")
-                        {
-                            strKind = "dzczp";
-                            InitData("dzczp");
-                        }
-                        else if (value.FlowCaption == "电力线路第一种工作票")
-                        {
-                            strKind = "yzgzp";
-                            InitData("yzgzp");
-                        }
-                        else if (value.FlowCaption == "电力线路第二种工作票")
-                        {
-                            strKind = "ezgzp";
-                            InitData("ezgzp");
-                        }
-                        else if (value.FlowCaption == "电力线路事故应急抢修单")
-                        {
-                            strKind = "xlqxp";
-                            InitData("xlqxp");
-                        }
-                        else
+                        //if (value.FlowCaption == "电力线路倒闸操作票")
+                        //{
+                        //    strKind = "dzczp";
+                        //    InitData("dzczp");
+                        //}
+                        //else if (value.FlowCaption == "电力线路第一种工作票")
+                        //{
+                        //    strKind = "yzgzp";
+                        //    InitData("yzgzp");
+                        //}
+                        //else if (value.FlowCaption == "电力线路第二种工作票")
+                        //{
+                        //    strKind = "ezgzp";
+                        //    InitData("ezgzp");
+                        //}
+                        //else if (value.FlowCaption == "电力线路事故应急抢修单")
+                        //{
+                        //    strKind = "xlqxp";
+                        //    InitData("xlqxp");
+                        //}
+                        //else
                         {
                             strKind = value.FlowCaption;
                             InitData(value.FlowCaption);
@@ -312,9 +312,28 @@ namespace Ebada.Scgl.Lcgl {
         }
         private void InitData(string kind)
         {
-            string str = string.Format("where kind='{0}'", kind);             
+            string str = "";             
             //gridViewOperation.RefreshData(str);
-
+            if (kind == "电力线路倒闸操作票")
+            {
+                strKind = "dzczp";
+                str = string.Format("where kind='{0}' or kind='dzczp' ", kind);    
+            }
+            else if (kind == "电力线路第一种工作票")
+            {
+                strKind = "yzgzp";
+                str = string.Format("where kind='{0}' or kind='yzgzp' ", kind);    
+            }
+            else if (kind == "电力线路第二种工作票")
+            {
+                strKind = "ezgzp";
+                str = string.Format("where kind='{0}' or kind='ezgzp' ", kind);    
+            }
+            else if (kind == "电力线路事故应急抢修单")
+            {
+                strKind = "xlqxp";
+                str = string.Format("where kind='{0}' or kind='xlqxp' ", kind); 
+            }
 
             if (gridtable != null) gridtable.Rows.Clear();
 
@@ -362,6 +381,7 @@ namespace Ebada.Scgl.Lcgl {
             lpr.ID = "N" + lpr.CreateID();
             lpr.Kind = strKind;
              lpr.CreateTime = DateTime.Now.ToString();
+             lpr.OrgName = MainHelper.UserOrg.OrgName;
             if (obj is frmLP)
             {
                 frmLP frm = new frmLP();

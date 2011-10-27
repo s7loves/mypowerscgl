@@ -93,10 +93,10 @@
     <Compile Include="frmExploreSelect.Designer.cs">
       <DependentUpon>frmExploreSelect.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorkFlowInquiry.cs">
+    <Compile Include="自定义流程\WorkFlowInquiry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WorkFlowInquiry.Designer.cs">
+    <Compile Include="自定义流程\WorkFlowInquiry.Designer.cs">
       <DependentUpon>WorkFlowInquiry.cs</DependentUpon>
     </Compile>
     <Compile Include="自定义流程\UCmLPInquiryRecord.cs">
@@ -394,7 +394,7 @@
     <EmbeddedResource Include="frmExploreSelect.resx">
       <DependentUpon>frmExploreSelect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WorkFlowInquiry.resx">
+    <EmbeddedResource Include="自定义流程\WorkFlowInquiry.resx">
       <DependentUpon>WorkFlowInquiry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\UCmLPInquiryRecord.resx">

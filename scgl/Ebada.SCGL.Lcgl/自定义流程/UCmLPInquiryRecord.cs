@@ -49,6 +49,16 @@ namespace Ebada.Scgl.Lcgl {
                 status = value;
             }
         }
+        private string strSQL = "";
+        public  string StrSQL
+        {
+         
+            set
+            {
+                strSQL = value;
+                InitData(strSQL);
+            }
+        }
         public event SendDataEventHandler<LP_Record> FocusedRowChanged;
         private string parentID;
         private WF_WorkFlow parentObj;
@@ -311,15 +321,15 @@ namespace Ebada.Scgl.Lcgl {
                     
             }
         }
-        private void InitData(string kind)
+        private void InitData(string strSQL)
         {
-            string str = string.Format("where kind='{0}'", kind);             
+                    
             //gridViewOperation.RefreshData(str);
 
 
             if (gridtable != null) gridtable.Rows.Clear();
 
-            IList<LP_Record> li = MainHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", str);
+            IList<LP_Record> li = MainHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", strSQL);
             if (li.Count != 0)
             {
                 gridtable = ConvertHelper.ToDataTable((IList)li);
