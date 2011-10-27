@@ -56,6 +56,7 @@ namespace Ebada.Scgl.Lcgl {
         private DataTable gridtable = null;
         //private RepositoryItemImageEdit imageEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit2;
         public UCmLPRecord() {
             InitializeComponent();
             initImageList();
@@ -156,7 +157,9 @@ namespace Ebada.Scgl.Lcgl {
                 ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
                 ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
                 this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+                this.repositoryItemHyperLinkEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
                 ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
+                ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit2)).BeginInit();
                 this.repositoryItemHyperLinkEdit1.AutoHeight = false;
                 this.repositoryItemHyperLinkEdit1.Caption = "查看";
                 this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
@@ -166,12 +169,22 @@ namespace Ebada.Scgl.Lcgl {
                 this.picview.VisibleIndex = 1;
                 picview.FieldName = "Image";
                 gridView1.Columns.Add(picview);
+                this.gridView1.Columns["Status"].ColumnEdit = this.repositoryItemHyperLinkEdit2;
+                this.repositoryItemHyperLinkEdit2.AutoHeight = false;
+                this.repositoryItemHyperLinkEdit2.Name = "repositoryItemHyperLinkEdit2";
+                this.repositoryItemHyperLinkEdit2.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit2_Click);
+                ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit2)).EndInit();
                 ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
 
                 gridView1.Columns.Add(picview);
                 ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
                 ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             }
+        }
+        private void repositoryItemHyperLinkEdit2_Click(object sender, EventArgs e)
+        {
+            btEditfrm_ItemClick(sender, null);
+
         }
         private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
         {
@@ -645,7 +658,7 @@ namespace Ebada.Scgl.Lcgl {
 
         private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
         {
-            if (gridView1.FocusedColumn.FieldName != "Image")
+            if (gridView1.FocusedColumn.FieldName != "Image" && gridView1.FocusedColumn.FieldName != "Status")
                 e.Cancel = true;
         }
 
