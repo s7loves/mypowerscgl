@@ -13,6 +13,7 @@ using Ebada.Scgl.WFlow;
 using Ebada.Client;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using DevExpress.Utils;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -27,6 +28,7 @@ namespace Ebada.Scgl.Lcgl
         {
             string strSQL = "where 1=1 ";
             int i = 0;
+            WaitDialogForm wdf = new WaitDialogForm("", "正在查询数据...");
             object workFlowId = MainHelper.PlatformSqlMap.GetObject("SelectOneStr", "select WorkFlowId from WF_WorkFlow  where FlowCaption='" + cbeWorkFlowCaption.Text + "'");
             if (workFlowId == null) return;
             string workTaskId = "";
@@ -134,7 +136,7 @@ namespace Ebada.Scgl.Lcgl
                     xtraTabControl1.TabPages.Add(modleTabPage);
                 }
             }
-
+            wdf.Close();
         }
         private void GetckField(ref string strSQL, CheckEdit ceField,ComboBoxEdit cbeField,ComboBoxEdit cbeFieldRule,TextEdit teField, string workFlowId, string workTaskId)
         {

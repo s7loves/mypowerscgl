@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WF_TableFieldValueView" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WF_TableFieldValueView"  type="Ebada.Scgl.Model.WF_TableFieldValueView,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WF_TableFieldValueView_AllColumns" class="WF_TableFieldValueView">
+        <result property="ID" column="ID" />
+        <result property="DocContent" column="DocContent" />
+        <result property="Kind" column="Kind" />
+        <result property="FlowCaption" column="FlowCaption" />
+        <result property="SignImg" column="SignImg" />
+        <result property="ImageAttachment" column="ImageAttachment" />
+        <result property="SortID" column="SortID" />
+        <result property="CreateTime" column="CreateTime" />
+        <result property="LastChangeTime" column="LastChangeTime" />
+        <result property="Status" column="Status" />
+        <result property="Number" column="Number" />
+        <result property="OrgName" column="OrgName" />
+        <result property="WorkFlowId" column="WorkFlowId" />
+        <result property="WorkFlowInsId" column="WorkFlowInsId" />
+        <result property="WorkTaskId" column="WorkTaskId" />
+        <result property="WorkTaskInsId" column="WorkTaskInsId" />
+        <result property="FieldId" column="FieldId" />
+        <result property="FieldName" column="FieldName" />
+        <result property="ControlValue" column="ControlValue" />
+        <result property="UserControlId" column="UserControlId" />
+        <result property="XExcelPos" column="XExcelPos" />
+        <result property="YExcelPos" column="YExcelPos" />
+        <result property="ExcelSheetName" column="ExcelSheetName" />
+        <result property="isExplorer" column="isExplorer" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWF_TableFieldValueViewList" resultMap="WF_TableFieldValueView_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [DocContent],
+         [Kind],
+         [FlowCaption],
+         [SignImg],
+         [ImageAttachment],
+         [SortID],
+         [CreateTime],
+         [LastChangeTime],
+         [Status],
+         [Number],
+         [OrgName],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [FieldId],
+         [FieldName],
+         [ControlValue],
+         [UserControlId],
+         [XExcelPos],
+         [YExcelPos],
+         [ExcelSheetName],
+         [isExplorer]
+          FROM WF_TableFieldValueView
+          $value$
+   </select>
+   <select id="GetWF_TableFieldValueViewRowCount" parameterClass="string">
+    select count(*) from WF_TableFieldValueView $value$
+   </select>
+  
+   <insert id="InsertWF_TableFieldValueView" parameterClass="WF_TableFieldValueView">
+        INSERT INTO WF_TableFieldValueView
+         (
+         [ID],
+         [DocContent],
+         [Kind],
+         [FlowCaption],
+         [SignImg],
+         [ImageAttachment],
+         [SortID],
+         [CreateTime],
+         [LastChangeTime],
+         [Status],
+         [Number],
+         [OrgName],
+         [WorkFlowId],
+         [WorkFlowInsId],
+         [WorkTaskId],
+         [WorkTaskInsId],
+         [FieldId],
+         [FieldName],
+         [ControlValue],
+         [UserControlId],
+         [XExcelPos],
+         [YExcelPos],
+         [ExcelSheetName],
+         [isExplorer]
+         )
+       VALUES
+         (
+         #ID#,
+         #DocContent#,
+         #Kind#,
+         #FlowCaption#,
+         #SignImg#,
+         #ImageAttachment#,
+         #SortID#,
+         #CreateTime#,
+         #LastChangeTime#,
+         #Status#,
+         #Number#,
+         #OrgName#,
+         #WorkFlowId#,
+         #WorkFlowInsId#,
+         #WorkTaskId#,
+         #WorkTaskInsId#,
+         #FieldId#,
+         #FieldName#,
+         #ControlValue#,
+         #UserControlId#,
+         #XExcelPos#,
+         #YExcelPos#,
+         #ExcelSheetName#,
+         #isExplorer#
+         )
+
+   </insert>
+   <update id="UpdateWF_TableFieldValueView" parameterClass="WF_TableFieldValueView" resultClass="int">
+          UPDATE WF_TableFieldValueView
+           SET
+             [ID]=#ID#,
+             [DocContent]=#DocContent#,
+             [Kind]=#Kind#,
+             [FlowCaption]=#FlowCaption#,
+             [SignImg]=#SignImg#,
+             [ImageAttachment]=#ImageAttachment#,
+             [SortID]=#SortID#,
+             [CreateTime]=#CreateTime#,
+             [LastChangeTime]=#LastChangeTime#,
+             [Status]=#Status#,
+             [Number]=#Number#,
+             [OrgName]=#OrgName#,
+             [WorkFlowId]=#WorkFlowId#,
+             [WorkFlowInsId]=#WorkFlowInsId#,
+             [WorkTaskId]=#WorkTaskId#,
+             [WorkTaskInsId]=#WorkTaskInsId#,
+             [FieldId]=#FieldId#,
+             [FieldName]=#FieldName#,
+             [ControlValue]=#ControlValue#,
+             [UserControlId]=#UserControlId#,
+             [XExcelPos]=#XExcelPos#,
+             [YExcelPos]=#YExcelPos#,
+             [ExcelSheetName]=#ExcelSheetName#,
+             [isExplorer]=#isExplorer#
+   </update>
+   <delete id="DeleteWF_TableFieldValueView" parameterClass="WF_TableFieldValueView">
+        DELETE FROM 
+         WF_TableFieldValueView
+
+   </delete>
+  </statements>
+</sqlMap>
+ 

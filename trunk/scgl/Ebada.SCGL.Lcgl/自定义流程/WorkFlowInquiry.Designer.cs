@@ -147,9 +147,9 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(881, 112);
+            this.simpleButton1.Location = new System.Drawing.Point(868, 112);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.Size = new System.Drawing.Size(88, 34);
             this.simpleButton1.TabIndex = 5;
             this.simpleButton1.Text = "查询";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
