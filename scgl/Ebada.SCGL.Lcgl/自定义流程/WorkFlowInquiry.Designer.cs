@@ -101,6 +101,10 @@
             this.xtraTabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // m_DefaultLookAndFeel
+            // 
+            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
+            // 
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.simpleButton1);
@@ -158,6 +162,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbeFieldTable1.Size = new System.Drawing.Size(64, 21);
             this.cbeFieldTable1.TabIndex = 1;
+            this.cbeFieldTable1.Visible = false;
             // 
             // teField3
             // 
@@ -186,6 +191,7 @@
             this.teModleTable.Name = "teModleTable";
             this.teModleTable.Size = new System.Drawing.Size(100, 21);
             this.teModleTable.TabIndex = 4;
+            this.teModleTable.Visible = false;
             // 
             // teNumber
             // 
@@ -456,7 +462,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1040, 239);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1040, 241);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1});
@@ -465,7 +471,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.uCmLPInquiryRecord1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1033, 209);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1035, 214);
             this.xtraTabPage1.Text = "流程信息";
             // 
             // uCmLPInquiryRecord1
@@ -473,7 +479,7 @@
             this.uCmLPInquiryRecord1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uCmLPInquiryRecord1.Location = new System.Drawing.Point(0, 0);
             this.uCmLPInquiryRecord1.Name = "uCmLPInquiryRecord1";
-            this.uCmLPInquiryRecord1.Size = new System.Drawing.Size(1033, 209);
+            this.uCmLPInquiryRecord1.Size = new System.Drawing.Size(1035, 214);
             this.uCmLPInquiryRecord1.TabIndex = 0;
             // 
             // WorkFlowInquiry

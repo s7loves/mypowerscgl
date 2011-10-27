@@ -133,6 +133,7 @@ namespace Ebada.Scgl.Lcgl
             if (ceField.Checked)
             {
                 string str1 = "";
+                index = cbeField.SelectedIndex;
                 strname = cbeFieldTable1.Properties.Items[index].ToString();
                 if (workTaskId != "")
                 {
@@ -150,7 +151,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else if (cbeFieldRule.Text == "不包含")
                     {
-                        strSQL = strSQL + " and  ID in  ( select RecordID from WF_TableFieldValueView where 1=1"
+                        strSQL = strSQL + " and  ID  not in  ( select RecordID from WF_TableFieldValueView where 1=1"
                          + " and WorkFlowId='" + workFlowId + "' " + str1
                          + "  and  " + ((ListItem)cbeField.SelectedItem).ValueMember + " like '%" + teField.Text + "%'"
                          + " ) ";
@@ -176,11 +177,11 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else if (cbeFieldRule.Text == "不包含")
                     {
-                        strSQL = strSQL + " and  ID in  ( select RecordID from WF_ModleRecordWorkTaskIns where 1=1"
+                        strSQL = strSQL + " and  ID not in  ( select RecordID from WF_ModleRecordWorkTaskIns where 1=1"
                     + " and WorkFlowId='" + workFlowId + "' " + str1
                     + " and ModleRecordID  in ("
                             +
-                            " select " + keyobj + " from " + strname + " where " + ((ListItem)cbeField.SelectedItem).ValueMember + " not like '%" + teField.Text + "%'"
+                            " select " + keyobj + " from " + strname + " where " + ((ListItem)cbeField.SelectedItem).ValueMember + "  like '%" + teField.Text + "%'"
                             + ") ) ";
                     }
 
