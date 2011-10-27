@@ -1272,15 +1272,20 @@ namespace Ebada.Scgl.Lcgl
                 {
                     switch (kind)
                     {
+
+                        case "电力线路第一种工作票":
                         case "yzgzp":
                             strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                             break;
+                        case "电力线路第二种工作票":
                         case "ezgzp":
                             strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                             break;
+                        case "电力线路倒闸操作票":
                         case "dzczp":
                             strNumber = "BJ" + System.DateTime.Now.Year.ToString();
                             break;
+                        case "电力线路事故应急抢修单":
                         case "xlqxp":
                             strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
                             break;
@@ -1624,21 +1629,33 @@ namespace Ebada.Scgl.Lcgl
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
                     //((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F"; 
-                    string[] arrCellPos = lp.CellPos.Split(pchar);
-                    if (arrCellPos.Length == 5)
+                    //string[] arrCellPos = lp.CellPos.Split(pchar);
+                    //if (arrCellPos.Length == 5)
+                    //{
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd HH:mm";
+                    //}
+                    //else if (arrCellPos.Length == 3)
+                    //{
+
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd";
+                    //}
+                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+
+                    if (lp.WordCount != "" && lp.WordCount.IndexOf("|") == -1)
                     {
-                        ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = lp.WordCount;
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = lp.WordCount;
+                    }
+                    else
+                    {
                         ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
                         ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd HH:mm";
-                    }
-                    else if (arrCellPos.Length == 3)
-                    {
 
-                        ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
-                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd";
                     }
-
                 
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":

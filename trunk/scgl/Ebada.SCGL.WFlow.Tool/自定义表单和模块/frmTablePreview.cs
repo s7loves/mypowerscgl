@@ -929,8 +929,18 @@ namespace Ebada.SCGL.WFlow.Tool
                     //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd";
                     //}
                     ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = lp.WordCount;
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = lp.WordCount;
+
+                    if (lp.WordCount != "" && lp.WordCount.IndexOf("|") == -1)
+                    {
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = lp.WordCount;
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = lp.WordCount;
+                    }
+                    else
+                    {
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd HH:mm";
+                        
+                    }
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
                     break;
@@ -944,18 +954,20 @@ namespace Ebada.SCGL.WFlow.Tool
         public int CalcWidth()
         {
             int wordcount = 0;
+
             foreach (LP_Temple lp in templeList)
             {
-                //if (lp.CellName.Length > wordcount)
-                //    wordcount = lp.CellName.Length;
-                Label l = new Label();
-                l.Text = lp.CellName;
-                if (l.Width > wordcount)
-                    wordcount = l.Width;
+                if (lp.CellName.Length > wordcount)
+                    wordcount = lp.CellName.Length;
+                //Label l = new Label();
+                //l.Text = lp.CellName;
+                //l.AutoSize = true;
+                //if (l.Width > wordcount)
+                //    wordcount = l.Width;
 
             }
-            return wordcount;
-            //return wordWidth * wordcount;
+            //return wordcount;
+            return wordWidth * wordcount;
         }
 
         public string[] SplitSQL(string sql)
