@@ -99,7 +99,11 @@ namespace Ebada.SCGL.WFlow.Tool
             comboBoxEdit5.Properties.Items.Add(lt);
             lt = new ListItem("yyyy-MM-dd HH:mm:ss", "年-月-日 时:分:秒");
             comboBoxEdit5.Properties.Items.Add(lt);
+            lt = new ListItem("dd日 HH:mm", "日 时:分");
+            comboBoxEdit5.Properties.Items.Add(lt);
             lt = new ListItem("HH:mm:ss", "时:分:秒");
+            comboBoxEdit5.Properties.Items.Add(lt);
+            lt = new ListItem("HH:mm", "时:分");
             comboBoxEdit5.Properties.Items.Add(lt);
 
             comboBoxEdit1.Properties.Items.Clear();

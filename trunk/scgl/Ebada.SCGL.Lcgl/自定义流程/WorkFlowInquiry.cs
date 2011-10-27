@@ -11,6 +11,7 @@ using Ebada.Scgl.Model;
 using Ebada.Client.Platform;
 using Ebada.Scgl.WFlow;
 using Ebada.Client;
+using DevExpress.XtraEditors;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -23,8 +24,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            string strSQL = "where 1=1 ",strname="";
-            int index = 0;
+            string strSQL = "where 1=1 ";
             object workFlowId = MainHelper.PlatformSqlMap.GetObject("SelectOneStr", "select WorkFlowId from WF_WorkFlow  where FlowCaption='" + cbeWorkFlowCaption.Text + "'");
             if (workFlowId == null) return;
             string workTaskId = "";
@@ -65,11 +65,21 @@ namespace Ebada.Scgl.Lcgl
             {
                 strSQL = strSQL + " and (Number='" + teNumber.Text + "' ) ";
             }
-            if (ceField1.Checked)
+            GetckField(ref  strSQL, ceField1, cbeField1, cbeFieldRule1, teField1, workFlowId.ToString(), workTaskId);
+            GetckField(ref  strSQL, ceField2, cbeField2, cbeFieldRule2, teField2, workFlowId.ToString(), workTaskId);
+            GetckField(ref  strSQL, ceField3, cbeField3, cbeFieldRule3, teField3, workFlowId.ToString(), workTaskId);
+            uCmLPInquiryRecord1.StrSQL = strSQL;
+            IList<LP_Record> li = MainHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", strSQL);
+
+        }
+        private void GetckField(ref string strSQL, CheckEdit ceField,ComboBoxEdit cbeField,ComboBoxEdit cbeFieldRule,TextEdit teField, string workFlowId, string workTaskId)
+        {
+            string  strname = "";
+            int index = 0;
+            if (ceField.Checked)
             {
                 string str1 = "";
-                index = cbeField1.SelectedIndex;
-                strname=cbeFieldTable1.Properties.Items[index].ToString();
+                strname = cbeFieldTable1.Properties.Items[index].ToString();
                 if (workTaskId != "")
                 {
 
@@ -77,52 +87,52 @@ namespace Ebada.Scgl.Lcgl
                 }
                 if (strname == "表单")
                 {
-                    if (cbeFieldRule1.Text == "包含")
+                    if (cbeFieldRule.Text == "包含")
                     {
                         strSQL = strSQL + " and  ID in  ( select RecordID from WF_TableFieldValueView where 1=1"
                          + " and WorkFlowId='" + workFlowId + "' " + str1
-                         + "  and  " + ((ListItem)cbeField1.SelectedItem).ValueMember + " like '%" + teField1.Text + "%'"
+                         + "  and  " + ((ListItem)cbeField.SelectedItem).ValueMember + " like '%" + teField.Text + "%'"
                           + ") ";
                     }
-                    else if (cbeFieldRule1.Text == "不包含")
+                    else if (cbeFieldRule.Text == "不包含")
                     {
                         strSQL = strSQL + " and  ID in  ( select RecordID from WF_TableFieldValueView where 1=1"
                          + " and WorkFlowId='" + workFlowId + "' " + str1
-                         +"  and  " + ((ListItem)cbeField1.SelectedItem).ValueMember + " like '%" + teField1.Text + "%'"
+                         + "  and  " + ((ListItem)cbeField.SelectedItem).ValueMember + " like '%" + teField.Text + "%'"
                          + " ) ";
                     }
                 }
                 else
                 {
-                    
+
                     object keyobj = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + strname + "'");
                     if (workTaskId != "")
                     {
 
                         str1 = "and WorkTaskId='" + workTaskId + "' ";
                     }
-                    if (cbeFieldRule1.Text == "包含")
+                    if (cbeFieldRule.Text == "包含")
                     {
                         strSQL = strSQL + " and  ID in  ( select RecordID from WF_ModleRecordWorkTaskIns where 1=1"
                         + " and WorkFlowId='" + workFlowId + "' " + str1
                     + " and  ModleRecordID  in ("
                             +
-                            " select " + keyobj + " from " + strname + " where " + ((ListItem)cbeField1.SelectedItem).ValueMember + " like '%" + teField1.Text + "%'"
+                            " select " + keyobj + " from " + strname + " where " + ((ListItem)cbeField.SelectedItem).ValueMember + " like '%" + teField.Text + "%'"
                             + ") ) ";
                     }
-                    else if (cbeFieldRule1.Text == "不包含")
+                    else if (cbeFieldRule.Text == "不包含")
                     {
                         strSQL = strSQL + " and  ID in  ( select RecordID from WF_ModleRecordWorkTaskIns where 1=1"
                     + " and WorkFlowId='" + workFlowId + "' " + str1
                     + " and ModleRecordID  in ("
                             +
-                            " select " + keyobj + " from " + strname + " where " + ((ListItem)cbeField1.SelectedItem).ValueMember + " not like '%" + teField1.Text + "%'"
+                            " select " + keyobj + " from " + strname + " where " + ((ListItem)cbeField.SelectedItem).ValueMember + " not like '%" + teField.Text + "%'"
                             + ") ) ";
                     }
 
                 }
             }
-            uCmLPInquiryRecord1.StrSQL = strSQL;
+        
         }
         private void IniData()
         {

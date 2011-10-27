@@ -135,6 +135,12 @@
     <Compile Include="自定义流程\UCmModelUI.designer.cs">
       <DependentUpon>UCmModelUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="自定义流程\UCmLPInquiryModleRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\UCmLPInquiryModleRecord.Designer.cs">
+      <DependentUpon>UCmLPInquiryModleRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="自定义流程\模板生成\UCmExcelTree.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -415,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\UCmModelUI.resx">
       <DependentUpon>UCmModelUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\UCmLPInquiryModleRecord.resx">
+      <DependentUpon>UCmLPInquiryModleRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\模板生成\UCmExcelTree.resx">
       <DependentUpon>UCmExcelTree.cs</DependentUpon>
