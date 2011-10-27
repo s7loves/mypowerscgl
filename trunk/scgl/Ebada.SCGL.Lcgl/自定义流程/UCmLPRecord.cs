@@ -345,7 +345,12 @@ namespace Ebada.Scgl.Lcgl {
             else if (kind == "电力线路事故应急抢修单")
             {
                 strKind = "xlqxp";
-                str = string.Format("where kind='{0}' or kind='xlqxp' ", kind); 
+                str = string.Format("where kind='{0}' or kind='xlqxp' ", kind);
+            }
+            else
+            {
+                strKind = kind;
+                str = string.Format("where kind='{0}'  ", kind);
             }
 
             if (gridtable != null) gridtable.Rows.Clear();
