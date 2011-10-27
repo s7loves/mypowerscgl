@@ -19,6 +19,7 @@ using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
+using Ebada.Components;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -41,13 +42,50 @@ namespace Ebada.SCGL.WFlow.Tool
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeAdd);
             gridViewOperation.AfterAdd += new ObjectEventHandler<LP_Temple>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<LP_Temple>(gridViewOperation_AfterDelete);
             gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeInsert);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeUpdate);
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeEdit);
             initColumns();
         }
+        void gridViewOperation_AfterDelete(LP_Temple obj)
+        {
+            string slqwhere = " where ParentID='" + obj.ParentID + "' ";
 
+            slqwhere = slqwhere + " order by SortID";
+            IList<LP_Temple> li = MainHelper.PlatformSqlMap.GetListByWhere<LP_Temple>(slqwhere);
+            int i = 1;
+            List<LP_Temple> list = new List<LP_Temple>();
+            foreach (LP_Temple ob in li)
+            {
+                ob.SortID= i;
+                if (ob.SignImg == null)
+                {
+                    ob.SignImg = new byte[0];
+                }
+                if (ob.ImageAttachment == null)
+                {
+                    ob.ImageAttachment = new byte[0];
+                }
+                if (ob.DocContent == null)
+                {
+                    ob.DocContent = new byte[0];
+                }
+                i++;
+                list.Add(ob);
+            }
+            List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+            if (list.Count > 0)
+            {
+                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
+                list3.Add(obj3);
+            }
+
+            MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+            string str = string.Format("where parentid='{0}' order by status,SortID", parentID);
+            gridViewOperation.RefreshData(str);
+        }
         void gridViewOperation_AfterAdd(LP_Temple obj)
         {
             parentID = ParentObj.LPID;
@@ -106,6 +144,10 @@ namespace Ebada.SCGL.WFlow.Tool
 
             }
             e.Value.DocContent = parentObj.DocContent;
+            string slqwhere = " where ParentID='" + e.Value.ParentID + "' ";
+
+            e.Value.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere)+1;
+
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();
@@ -156,7 +198,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     parentID = value;
 
                     if (!string.IsNullOrEmpty(parentID)) {
-                        str = string.Format("where parentid='{0}' order by status", parentID);
+                        str = string.Format("where parentid='{0}' order by status,SortID", parentID);
                     }
                 }
                 gridViewOperation.RefreshData(str);
