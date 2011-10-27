@@ -760,6 +760,15 @@ namespace Ebada.SCGL.WFlow.Tool
                     strList.Add(dt.Minute.ToString());
                     strList.Add(dt.Second.ToString());
                     break;
+                case "dd日 HH:mm":
+                    strList.Add(dt.Day.ToString());
+                    strList.Add(dt.Hour.ToString());
+                    strList.Add(dt.Minute.ToString());
+                    break;
+                case "HH:mm":
+                    strList.Add(dt.Hour.ToString());
+                    strList.Add(dt.Minute.ToString());
+                    break;
                 default:
                     strList.Add(dt.Year.ToString());
                     strList.Add(dt.Month.ToString());
