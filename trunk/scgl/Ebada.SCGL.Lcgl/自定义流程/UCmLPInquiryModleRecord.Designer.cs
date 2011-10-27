@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class XtraUserControl1
+    partial class UCmLPInquiryModleRecord
     {
         /// <summary> 
         /// Required designer variable.
