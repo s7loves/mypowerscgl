@@ -195,6 +195,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
             }
+            rowData.CellPos = rowData.CellPos.ToUpper();
             rowData.isExplorer = comboBoxEdit3.SelectedIndex;
         }
 
