@@ -81,6 +81,14 @@ namespace Ebada.Scgl.Lcgl
             GetckField(ref  strSQL, ceField1, cbeField1, cbeFieldRule1, teField1, workFlowId.ToString(), workTaskId);
             GetckField(ref  strSQL, ceField2, cbeField2, cbeFieldRule2, teField2, workFlowId.ToString(), workTaskId);
             GetckField(ref  strSQL, ceField3, cbeField3, cbeFieldRule3, teField3, workFlowId.ToString(), workTaskId);
+            if (checkEdit1.Checked)
+            {
+                strSQL = strSQL + " and (CreateTime between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+            }
+            if (checkEdit2.Checked)
+            {
+                strSQL = strSQL + " and (LastChangeTime between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+            }
             uCmLPInquiryRecord1.StrSQL = strSQL;
             if (teModleTable.Text != "")
             {
@@ -101,10 +109,10 @@ namespace Ebada.Scgl.Lcgl
                             + str1 + " and (RecordID='"+lp.ID+"' ";
                     else
                         strModleSQL = strModleSQL + " or RecordID='" + lp.ID + "' ";
-                    strModleSQL = strModleSQL + " )";
+                   
 
                 }
-
+                strModleSQL = strModleSQL + " )";
                 foreach (string strtable in strTableidli)
                 {
                     string str2 = "";
@@ -118,6 +126,8 @@ namespace Ebada.Scgl.Lcgl
                     XtraTabPage modleTabPage=new XtraTabPage ();
                     modleTabPage.Text = "表" + strtable+"相关记录";
                     UCmLPInquiryModleRecord modlerecord = new UCmLPInquiryModleRecord();
+                    modlerecord.TableName = strtable;
+                    modlerecord.StrSQL = str2;
                     modlerecord.Keyobj = keyobj.ToString();
                     modlerecord.Dock = DockStyle.Fill;
                     modleTabPage.Controls.Add(modlerecord);
