@@ -42,12 +42,23 @@ namespace Ebada.SCGL.WFlow.Tool
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeAdd);
             gridViewOperation.AfterAdd += new ObjectEventHandler<LP_Temple>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<LP_Temple>(gridViewOperation_AfterEdit);
             gridViewOperation.AfterDelete += new ObjectEventHandler<LP_Temple>(gridViewOperation_AfterDelete);
             gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeInsert);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeUpdate);
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeEdit);
             initColumns();
+        }
+        void inidata()
+        {
+            string str = string.Format("where parentid='{0}' order by status,SortID", parentID);
+            gridViewOperation.RefreshData(str);
+        
+        }
+        void gridViewOperation_AfterEdit(LP_Temple obj)
+        {
+            inidata();
         }
         void gridViewOperation_AfterDelete(LP_Temple obj)
         {
@@ -119,6 +130,27 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 e.Value.SignImg = bt;
             }
+            string slqwhere = " where ParentID='" + e.Value.ParentID + "' and SortID =" + e.Value.SortID + " and lpid!='" + e.Value.LPID+"'";
+            IList<LP_Temple> li = MainHelper.PlatformSqlMap.GetListByWhere<LP_Temple>(slqwhere);
+            if (li.Count > 0)
+            {
+                li[0].SortID = e.ValueOld.SortID;
+                if (li[0].DocContent == null)
+                {
+                    li[0].DocContent = bt;
+                }
+                if (li[0].ImageAttachment == null)
+                {
+                    li[0].ImageAttachment = bt;
+                }
+                if (li[0].SignImg == null)
+                {
+                    li[0].SignImg = bt;
+                }
+                MainHelper.PlatformSqlMap.Update<LP_Temple>(li[0]);
+            }
+
+           
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<LP_Temple> e) {
