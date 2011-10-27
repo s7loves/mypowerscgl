@@ -72,7 +72,7 @@ namespace Ebada.Scgl.Lcgl
             if (cbeStatus.Text != "全部")
             {
                 strSQL = strSQL + " and (Status='" + cbeStatus.Text + "' ) ";
-                workTaskId = ((ListItem)cbeStatus.SelectedItem).ValueMember;
+                //workTaskId = ((ListItem)cbeStatus.SelectedItem).ValueMember;
             }
             if (teNumber.Text != "")
             {
