@@ -12,6 +12,7 @@ using Ebada.Client.Platform;
 using Ebada.Scgl.WFlow;
 using Ebada.Client;
 using DevExpress.XtraEditors;
+using DevExpress.XtraTab;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -25,33 +26,45 @@ namespace Ebada.Scgl.Lcgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             string strSQL = "where 1=1 ";
+            int i = 0;
             object workFlowId = MainHelper.PlatformSqlMap.GetObject("SelectOneStr", "select WorkFlowId from WF_WorkFlow  where FlowCaption='" + cbeWorkFlowCaption.Text + "'");
             if (workFlowId == null) return;
             string workTaskId = "";
-            if (cbeWorkFlowCaption.Text != "全部")
-            { 
-              
-                    if (cbeWorkFlowCaption.Text  == "电力线路倒闸操作票")
-                        {
-                            strSQL = strSQL + " and (Kind='dzczp' or Kind='电力线路倒闸操作票') ";
-                        }
-                        else if (cbeWorkFlowCaption.Text  == "电力线路第一种工作票")
-                        {
-                            strSQL = strSQL + " and (Kind='yzgzp' or Kind='电力线路第一种工作票') ";
-                        }
-                        else if (cbeWorkFlowCaption.Text  == "电力线路第二种工作票")
-                        {
-                            strSQL = strSQL + " and (Kind='ezgzp' or Kind='电力线路第二种工作票') ";
-                        }
-                        else if (cbeWorkFlowCaption.Text  == "电力线路事故应急抢修单")
-                        {
-                            strSQL = strSQL + " and (Kind='xlqxp' or Kind='电力线路事故应急抢修单') ";
-                        }
-                        else
-                        {
-                            strSQL = strSQL + " and (Kind='" + cbeWorkFlowCaption.Text + "' ) ";
-                        }
+            for (i = 0; xtraTabControl1.TabPages.Count>1;)
+            {
+                if (xtraTabControl1.TabPages[i].Text != "流程信息")
+                {
+                    xtraTabControl1.TabPages.Remove(xtraTabControl1.TabPages[i]);
+                }
+                else
+                {
+                    i++;
+                }
             }
+                if (cbeWorkFlowCaption.Text != "全部")
+                {
+
+                    if (cbeWorkFlowCaption.Text == "电力线路倒闸操作票")
+                    {
+                        strSQL = strSQL + " and (Kind='dzczp' or Kind='电力线路倒闸操作票') ";
+                    }
+                    else if (cbeWorkFlowCaption.Text == "电力线路第一种工作票")
+                    {
+                        strSQL = strSQL + " and (Kind='yzgzp' or Kind='电力线路第一种工作票') ";
+                    }
+                    else if (cbeWorkFlowCaption.Text == "电力线路第二种工作票")
+                    {
+                        strSQL = strSQL + " and (Kind='ezgzp' or Kind='电力线路第二种工作票') ";
+                    }
+                    else if (cbeWorkFlowCaption.Text == "电力线路事故应急抢修单")
+                    {
+                        strSQL = strSQL + " and (Kind='xlqxp' or Kind='电力线路事故应急抢修单') ";
+                    }
+                    else
+                    {
+                        strSQL = strSQL + " and (Kind='" + cbeWorkFlowCaption.Text + "' ) ";
+                    }
+                }
             if (cbeOrg.Text != "全部")
             {
                 strSQL = strSQL + " and (OrgName='" + cbeOrg.Text + "' ) ";
@@ -69,7 +82,48 @@ namespace Ebada.Scgl.Lcgl
             GetckField(ref  strSQL, ceField2, cbeField2, cbeFieldRule2, teField2, workFlowId.ToString(), workTaskId);
             GetckField(ref  strSQL, ceField3, cbeField3, cbeFieldRule3, teField3, workFlowId.ToString(), workTaskId);
             uCmLPInquiryRecord1.StrSQL = strSQL;
-            IList<LP_Record> li = MainHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", strSQL);
+            if (teModleTable.Text != "")
+            {
+                string strModleSQL = "",str1="";
+                string[] strTableidli = teModleTable.Text.Split(',');
+                IList<LP_Record> li = MainHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", strSQL);
+                strModleSQL = "";
+                 if (workTaskId != "")
+                {
+                    str1 = "and WorkTaskId='" + workTaskId + "' ";
+                }
+               
+                foreach (LP_Record lp in li)
+                {
+                    if (strModleSQL == "")
+                        strModleSQL = " select ModleRecordID from WF_ModleRecordWorkTaskIns where   WorkFlowId='" 
+                            + workFlowId + "' "
+                            + str1 + " and (RecordID='"+lp.ID+"' ";
+                    else
+                        strModleSQL = strModleSQL + " or RecordID='" + lp.ID + "' ";
+                    strModleSQL = strModleSQL + " )";
+
+                }
+
+                foreach (string strtable in strTableidli)
+                {
+                    string str2 = "";
+                    if (strtable == "LP_Record")
+                    {
+                        continue;
+                    }
+                    object keyobj = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '"
+                        + strtable + "'");
+                    str2 = " select * from "+strtable+" where "+keyobj+" in ("+strModleSQL+")";
+                    XtraTabPage modleTabPage=new XtraTabPage ();
+                    modleTabPage.Text = "表" + strtable+"相关记录";
+                    UCmLPInquiryModleRecord modlerecord = new UCmLPInquiryModleRecord();
+                    modlerecord.Keyobj = keyobj.ToString();
+                    modlerecord.Dock = DockStyle.Fill;
+                    modleTabPage.Controls.Add(modlerecord);
+                    xtraTabControl1.TabPages.Add(modleTabPage);
+                }
+            }
 
         }
         private void GetckField(ref string strSQL, CheckEdit ceField,ComboBoxEdit cbeField,ComboBoxEdit cbeFieldRule,TextEdit teField, string workFlowId, string workTaskId)

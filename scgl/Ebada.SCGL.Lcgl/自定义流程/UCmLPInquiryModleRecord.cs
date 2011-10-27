@@ -9,11 +9,37 @@ using DevExpress.XtraEditors;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class XtraUserControl1 : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCmLPInquiryModleRecord : DevExpress.XtraEditors.XtraUserControl
     {
-        public XtraUserControl1()
+
+        public UCmLPInquiryModleRecord()
         {
             InitializeComponent();
+        }
+
+        private  string tableName;
+        public  string TableName
+        {
+            get
+            {
+                return tableName;
+            }
+            set
+            {
+                tableName = value;
+            }
+        }
+        private  string keyobj;
+        public  string Keyobj
+        {
+            get
+            {
+                return keyobj;
+            }
+            set
+            {
+                keyobj = value;
+            }
         }
     }
 }
