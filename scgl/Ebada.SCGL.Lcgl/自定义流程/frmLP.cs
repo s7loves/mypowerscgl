@@ -1302,7 +1302,11 @@ namespace Ebada.Scgl.Lcgl
                     {
                         strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                     }
-                    if (ctrlNumber!=null) ctrlNumber.Text = strNumber;
+                    if (ctrlNumber != null)
+                    {
+                        ctrlNumber.Text = strNumber;
+                        currRecord.Number = ctrlNumber.Text;
+                    }
                     if (currRecord!=null) currRecord.OrgName = str;
                     //ContentChanged(ctrlNumber);
                 }
@@ -1629,7 +1633,11 @@ namespace Ebada.Scgl.Lcgl
                                     strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                                 }
                             }
-                            if (ctrlNumber != null) ctrlNumber.Text = strNumber;
+                            if (ctrlNumber != null)
+                            {
+                                ctrlNumber.Text = strNumber;
+                                currRecord.Number = ctrlNumber.Text;
+                            }
                             if (currRecord != null) currRecord.OrgName = ctrl.Text;
                             //ContentChanged(ctrlNumber);
                         }                     

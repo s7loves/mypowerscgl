@@ -154,16 +154,16 @@ namespace Ebada.Scgl.Lcgl
                 {
                     if (cbeFieldRule.Text == "包含")
                     {
-                        strSQL = strSQL + " and  ID in  ( select RecordID from WF_TableFieldValueView where 1=1"
+                        strSQL = strSQL + " and  ID in  ( select ID from WF_TableFieldValueView where 1=1"
                          + " and WorkFlowId='" + workFlowId + "' " + str1
-                         + "  and  " + ((ListItem)cbeField.SelectedItem).ValueMember + " like '%" + teField.Text + "%'"
+                         + "  and  FieldName='" + ((ListItem)cbeField.SelectedItem).ValueMember + "' and ControlValue like '%" + teField.Text + "%'"
                           + ") ";
                     }
                     else if (cbeFieldRule.Text == "不包含")
                     {
-                        strSQL = strSQL + " and  ID  not in  ( select RecordID from WF_TableFieldValueView where 1=1"
+                        strSQL = strSQL + " and  ID  not in  ( select ID from WF_TableFieldValueView where 1=1"
                          + " and WorkFlowId='" + workFlowId + "' " + str1
-                         + "  and  " + ((ListItem)cbeField.SelectedItem).ValueMember + " like '%" + teField.Text + "%'"
+                         + "  and   FieldName='" + ((ListItem)cbeField.SelectedItem).ValueMember + "' and ControlValue  like '%" + teField.Text + "%'"
                          + " ) ";
                     }
                 }
