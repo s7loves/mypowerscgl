@@ -99,6 +99,8 @@ namespace Ebada.SCGL.WFlow.Tool
             comboBoxEdit5.Properties.Items.Add(lt);
             lt = new ListItem("yyyy-MM-dd HH:mm:ss", "年-月-日 时:分:秒");
             comboBoxEdit5.Properties.Items.Add(lt);
+            lt = new ListItem("MM-dd日 HH:mm", "月-日 时:分");
+            comboBoxEdit5.Properties.Items.Add(lt);
             lt = new ListItem("dd日 HH:mm", "日 时:分");
             comboBoxEdit5.Properties.Items.Add(lt);
             lt = new ListItem("HH:mm:ss", "时:分:秒");
@@ -221,10 +223,41 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             if (rowData.CtrlType.IndexOf("DateEdit")>-1)
             {
-                if (rowData.WordCount.IndexOf("|")==-1)
-                comboBoxEdit5.SelectedText = rowData.WordCount;
+                if (rowData.WordCount.IndexOf("|") == -1)
+                { 
+                    
+                switch (rowData.WordCount)
+                {
+                    case "yyyy-MM-dd":
+                comboBoxEdit5.SelectedIndex =0;
+                        break;
+                    case "yyyy-MM-dd HH:mm":
+                        comboBoxEdit5.SelectedIndex = 1;
+                        break;
+                    case "yyyy-MM-dd HH:mm:ss":
+                        comboBoxEdit5.SelectedIndex = 2;
+                        break;
+                    case "MM-dd日 HH:mm":
+                        comboBoxEdit5.SelectedIndex = 3;
+                        break;
+                    case "dd日 HH:mm":
+                        comboBoxEdit5.SelectedIndex = 4;
+                        break;
+                    case "HH:mm:ss":
+                        comboBoxEdit5.SelectedIndex = 4;
+                        break;
+                    case "HH:mm":
+                        comboBoxEdit5.SelectedIndex = 5;
+                        break;
+                    default:
+                        comboBoxEdit5.SelectedIndex = -1;
+                        break;
+                
+                }
+                
+                }
                 else
-                    comboBoxEdit5.SelectedIndex=0;
+                    comboBoxEdit5.SelectedIndex = 0;
 
                 labelControl3.Visible = false;
                 textEdit7.Visible = false;

@@ -1422,6 +1422,12 @@ namespace Ebada.Scgl.Lcgl
                     strList.Add(dt.Minute.ToString());
                     strList.Add(dt.Second.ToString());
                     break;
+                case "MM-dd日 HH:mm":
+                    strList.Add(dt.Month.ToString());
+                    strList.Add(dt.Day.ToString());
+                    strList.Add(dt.Hour.ToString());
+                    strList.Add(dt.Minute.ToString());
+                    break;
                 case "dd日 HH:mm":
                     strList.Add(dt.Day.ToString());
                     strList.Add(dt.Hour.ToString());

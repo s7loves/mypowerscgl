@@ -864,6 +864,8 @@ namespace Ebada.SCGL.WFlow.Tool
                 wt.WorktaskId = worktaskId;
                 wt.ControlType = "±Ìµ•";
                // if (MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskControls>(wt)==null)
+                wt.taskControlId = wt.CreateID();
+                Thread.Sleep(new TimeSpan(100000));//0.1∫¡√Î
                 MainHelper.PlatformSqlMap.Create<WF_WorkTaskControls>(wt);
                 //else
                 //MainHelper.PlatformSqlMap.Update <WF_WorkTaskControls>(wt);

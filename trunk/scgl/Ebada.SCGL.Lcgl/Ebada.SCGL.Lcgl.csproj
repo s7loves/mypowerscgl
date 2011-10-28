@@ -598,6 +598,10 @@
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ebada.SCGL.WFlow.Tool\Ebada.SCGL.WFlow.Tool.csproj">
+      <Project>{A3173743-90E7-4A97-867E-80353C694D91}</Project>
+      <Name>Ebada.SCGL.WFlow.Tool</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ebada.Scgl.WFlow\Ebada.Scgl.WFlow.csproj">
       <Project>{DB517AF8-551D-4C08-83BE-69D803C89173}</Project>
       <Name>Ebada.Scgl.WFlow</Name>

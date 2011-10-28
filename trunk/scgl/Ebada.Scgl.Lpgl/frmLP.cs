@@ -886,6 +886,12 @@ namespace Ebada.Scgl.Lpgl
                     strList.Add(dt.Hour.ToString());
                     strList.Add(dt.Minute.ToString());
                     break;
+                case "MM-dd日 HH:mm":
+                    strList.Add(dt.Month.ToString());
+                    strList.Add(dt.Day.ToString());
+                    strList.Add(dt.Hour.ToString());
+                    strList.Add(dt.Minute.ToString());
+                    break;
                 case "HH:mm":
                     strList.Add(dt.Hour.ToString());
                     strList.Add(dt.Minute.ToString());
