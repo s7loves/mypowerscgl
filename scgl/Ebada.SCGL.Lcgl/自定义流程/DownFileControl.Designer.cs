@@ -46,14 +46,15 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.FileListLable = new System.Windows.Forms.Label();
             this.openFolderButton = new DevExpress.XtraEditors.SimpleButton();
             this.downfileButton = new DevExpress.XtraEditors.SimpleButton();
-            this.upfileButton = new DevExpress.XtraEditors.SimpleButton();
             this.selctFileButton = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.tipLabelControl = new DevExpress.XtraEditors.LabelControl();
             this.progressBarControlTol = new DevExpress.XtraEditors.ProgressBarControl();
+            this.upfileButton = new DevExpress.XtraEditors.SimpleButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -69,6 +70,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControlTol.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,14 +102,7 @@
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.fjgridControl);
             this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.Controls.Add(this.FileListLable);
-            this.splitContainerControl1.Panel2.Controls.Add(this.openFolderButton);
-            this.splitContainerControl1.Panel2.Controls.Add(this.downfileButton);
-            this.splitContainerControl1.Panel2.Controls.Add(this.upfileButton);
-            this.splitContainerControl1.Panel2.Controls.Add(this.selctFileButton);
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl2);
-            this.splitContainerControl1.Panel2.Controls.Add(this.tipLabelControl);
-            this.splitContainerControl1.Panel2.Controls.Add(this.progressBarControlTol);
+            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(559, 273);
             this.splitContainerControl1.SplitterPosition = 63;
@@ -254,88 +250,101 @@
             // 
             this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
             // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.FileListLable);
+            this.panelControl1.Controls.Add(this.openFolderButton);
+            this.panelControl1.Controls.Add(this.downfileButton);
+            this.panelControl1.Controls.Add(this.selctFileButton);
+            this.panelControl1.Controls.Add(this.labelControl2);
+            this.panelControl1.Controls.Add(this.tipLabelControl);
+            this.panelControl1.Controls.Add(this.progressBarControlTol);
+            this.panelControl1.Controls.Add(this.upfileButton);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(559, 63);
+            this.panelControl1.TabIndex = 3;
+            // 
             // FileListLable
             // 
             this.FileListLable.AutoSize = true;
-            this.FileListLable.Location = new System.Drawing.Point(3, -3);
+            this.FileListLable.Location = new System.Drawing.Point(4, 0);
             this.FileListLable.Name = "FileListLable";
             this.FileListLable.Size = new System.Drawing.Size(11, 12);
-            this.FileListLable.TabIndex = 3;
+            this.FileListLable.TabIndex = 10;
             this.FileListLable.Text = "l";
             this.FileListLable.Visible = false;
             // 
             // openFolderButton
             // 
             this.openFolderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.openFolderButton.Location = new System.Drawing.Point(423, 37);
+            this.openFolderButton.Location = new System.Drawing.Point(424, 36);
             this.openFolderButton.Name = "openFolderButton";
             this.openFolderButton.Size = new System.Drawing.Size(69, 23);
-            this.openFolderButton.TabIndex = 2;
+            this.openFolderButton.TabIndex = 8;
             this.openFolderButton.Text = "浏览文件夹";
             this.openFolderButton.Visible = false;
-            this.openFolderButton.Click += new System.EventHandler(this.openFolderButton_Click);
             // 
             // downfileButton
             // 
             this.downfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.downfileButton.Location = new System.Drawing.Point(498, 37);
+            this.downfileButton.Location = new System.Drawing.Point(498, 35);
             this.downfileButton.Name = "downfileButton";
             this.downfileButton.Size = new System.Drawing.Size(55, 23);
-            this.downfileButton.TabIndex = 2;
+            this.downfileButton.TabIndex = 9;
             this.downfileButton.Text = "下载文件";
             this.downfileButton.Visible = false;
-            this.downfileButton.Click += new System.EventHandler(this.downfileButton_Click);
-            // 
-            // upfileButton
-            // 
-            this.upfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.upfileButton.Location = new System.Drawing.Point(498, 37);
-            this.upfileButton.Name = "upfileButton";
-            this.upfileButton.Size = new System.Drawing.Size(55, 23);
-            this.upfileButton.TabIndex = 2;
-            this.upfileButton.Text = "上传文件";
-            this.upfileButton.Click += new System.EventHandler(this.upfileButton_Click);
             // 
             // selctFileButton
             // 
             this.selctFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.selctFileButton.Location = new System.Drawing.Point(362, 37);
+            this.selctFileButton.Location = new System.Drawing.Point(363, 36);
             this.selctFileButton.Name = "selctFileButton";
             this.selctFileButton.Size = new System.Drawing.Size(55, 23);
-            this.selctFileButton.TabIndex = 2;
+            this.selctFileButton.TabIndex = 7;
             this.selctFileButton.Text = "设置路径";
             this.selctFileButton.Visible = false;
-            this.selctFileButton.Click += new System.EventHandler(this.selctFileButton_Click);
             // 
             // labelControl2
             // 
             this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelControl2.Location = new System.Drawing.Point(5, 4);
+            this.labelControl2.Location = new System.Drawing.Point(6, 4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(36, 14);
-            this.labelControl2.TabIndex = 1;
+            this.labelControl2.TabIndex = 5;
             this.labelControl2.Text = "总进度";
             // 
             // tipLabelControl
             // 
             this.tipLabelControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.tipLabelControl.Location = new System.Drawing.Point(43, 21);
+            this.tipLabelControl.Location = new System.Drawing.Point(44, 21);
             this.tipLabelControl.Name = "tipLabelControl";
             this.tipLabelControl.Size = new System.Drawing.Size(30, 14);
-            this.tipLabelControl.TabIndex = 1;
+            this.tipLabelControl.TabIndex = 6;
             this.tipLabelControl.Text = "0.0%";
             this.tipLabelControl.Visible = false;
             // 
             // progressBarControlTol
             // 
-            this.progressBarControlTol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.progressBarControlTol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBarControlTol.EditValue = "0";
-            this.progressBarControlTol.Location = new System.Drawing.Point(43, 3);
+            this.progressBarControlTol.Location = new System.Drawing.Point(44, 3);
             this.progressBarControlTol.Name = "progressBarControlTol";
             this.progressBarControlTol.Properties.ShowTitle = true;
             this.progressBarControlTol.Size = new System.Drawing.Size(510, 16);
-            this.progressBarControlTol.TabIndex = 0;
+            this.progressBarControlTol.TabIndex = 4;
+            // 
+            // upfileButton
+            // 
+            this.upfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.upfileButton.Location = new System.Drawing.Point(499, 35);
+            this.upfileButton.Name = "upfileButton";
+            this.upfileButton.Size = new System.Drawing.Size(55, 23);
+            this.upfileButton.TabIndex = 2;
+            this.upfileButton.Text = "上传文件";
+            this.upfileButton.Click += new System.EventHandler(this.upfileButton_Click);
             // 
             // openFileDialog1
             // 
@@ -361,6 +370,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControlTol.Properties)).EndInit();
             this.ResumeLayout(false);
 
@@ -376,25 +388,26 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
-        private DevExpress.XtraEditors.LabelControl tipLabelControl;
-        private DevExpress.XtraEditors.ProgressBarControl progressBarControlTol;
         private DevExpress.XtraEditors.SimpleButton upfileButton;
-        private DevExpress.XtraEditors.SimpleButton selctFileButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Label FileListLable;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar1;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit2;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraEditors.SimpleButton downfileButton;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
-        private DevExpress.XtraEditors.SimpleButton openFolderButton;
         private System.Windows.Forms.ToolTip toolTip1;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private System.Windows.Forms.Label FileListLable;
+        private DevExpress.XtraEditors.SimpleButton openFolderButton;
+        private DevExpress.XtraEditors.SimpleButton downfileButton;
+        private DevExpress.XtraEditors.SimpleButton selctFileButton;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl tipLabelControl;
+        private DevExpress.XtraEditors.ProgressBarControl progressBarControlTol;
     }
 }

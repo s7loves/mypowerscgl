@@ -119,6 +119,18 @@ namespace Ebada.Scgl.Xtgl {
                     md.ParentID = WFClassId;
                     md.Description = "工作流";
                     list2.Add(md);
+                    object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where PowerName='全程跟踪' and WorkFlowId='" + wf.WorkFlowId + "' and WorkTaskId='" + wf.WorkFlowId + "'");
+                    if (obj != null)
+                    {
+                        md = new mModule();
+                        md.Modu_ID = ((WF_WorkTaskPower)obj).Powerid;
+                        md.ModuName = "全程跟踪";
+                        md.ModuTypes = "hide";
+                        md.ParentID = wf.WorkFlowId;
+                        md.Description = "全程跟踪";
+                        list2.Add(md);
+                    
+                    }
                     //IList<WF_WorkTask> wftli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where WorkFlowId='" + wf.WorkFlowId + "' and  OperRule='1' order by TaskTypeId");
                     IList<WF_WorkTask> wftli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where WorkFlowId='" + wf.WorkFlowId + "' and  TaskTypeId!='2' order by TaskTypeId");
                     foreach (WF_WorkTask wft in wftli)

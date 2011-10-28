@@ -1129,7 +1129,16 @@ namespace Ebada.Scgl.WFlow
             //else
             //    return false;
         }
-
+        public static bool HaveRunRecordFollowRole(string recordID, string userID)
+        {
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
+            if (wf.Count == 0) return false;
+            object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where PowerName='全程跟踪' and WorkFlowId='" + wf[0].WorkFlowId + "' and WorkTaskId='" + wf[0].WorkFlowId + "'");
+                    if (obj == null)
+                        return false;
+            string strSQL = " where Modu_ID='" + ((WF_WorkTaskPower)obj).Powerid + "' and RoleID in ( select RoleID from rUserRole where UserID='" +userID+ "')";
+             return MainHelper.PlatformSqlMap.GetRowCount<rRoleModul>(strSQL) > 0 ? true : false;
+        }
         /// <summary>
         /// 获得当前用户是否可以运行当前记录权限
         /// </summary>

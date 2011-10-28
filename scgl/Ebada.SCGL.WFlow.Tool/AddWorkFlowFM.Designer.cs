@@ -34,6 +34,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.label4 = new System.Windows.Forms.Label();
             this.grpBase = new System.Windows.Forms.GroupBox();
             this.checkHuiQianYiJian = new System.Windows.Forms.CheckBox();
+            this.cbxExplore = new System.Windows.Forms.CheckBox();
             this.cbxFuJian = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tbxPath = new System.Windows.Forms.TextBox();
@@ -42,7 +43,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tbxDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.cbxExplore = new System.Windows.Forms.CheckBox();
+            this.checkFollow = new System.Windows.Forms.CheckBox();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.grpBase.SuspendLayout();
@@ -110,6 +111,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.grpBase.Controls.Add(this.label2);
             this.grpBase.Controls.Add(this.tbxPath);
             this.grpBase.Controls.Add(this.btnBussWebPage);
+            this.grpBase.Controls.Add(this.checkFollow);
             this.grpBase.Controls.Add(this.cbxStatus);
             this.grpBase.Controls.Add(this.label3);
             this.grpBase.Controls.Add(this.tbxWorkflowCaption);
@@ -118,7 +120,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.grpBase.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpBase.Location = new System.Drawing.Point(0, 0);
             this.grpBase.Name = "grpBase";
-            this.grpBase.Size = new System.Drawing.Size(426, 140);
+            this.grpBase.Size = new System.Drawing.Size(426, 150);
             this.grpBase.TabIndex = 14;
             this.grpBase.TabStop = false;
             this.grpBase.Text = "基本信息";
@@ -132,6 +134,16 @@ namespace Ebada.SCGL.WFlow.Tool
             this.checkHuiQianYiJian.TabIndex = 129;
             this.checkHuiQianYiJian.Text = "添加会签意见";
             this.checkHuiQianYiJian.UseVisualStyleBackColor = true;
+            // 
+            // cbxExplore
+            // 
+            this.cbxExplore.AutoSize = true;
+            this.cbxExplore.Location = new System.Drawing.Point(277, 109);
+            this.cbxExplore.Name = "cbxExplore";
+            this.cbxExplore.Size = new System.Drawing.Size(132, 16);
+            this.cbxExplore.TabIndex = 128;
+            this.cbxExplore.Text = "流程结束后允许导出";
+            this.cbxExplore.UseVisualStyleBackColor = true;
             // 
             // cbxFuJian
             // 
@@ -198,15 +210,15 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // cbxExplore
+            // checkFollow
             // 
-            this.cbxExplore.AutoSize = true;
-            this.cbxExplore.Location = new System.Drawing.Point(277, 109);
-            this.cbxExplore.Name = "cbxExplore";
-            this.cbxExplore.Size = new System.Drawing.Size(132, 16);
-            this.cbxExplore.TabIndex = 128;
-            this.cbxExplore.Text = "流程结束后允许导出";
-            this.cbxExplore.UseVisualStyleBackColor = true;
+            this.checkFollow.AutoSize = true;
+            this.checkFollow.Location = new System.Drawing.Point(23, 130);
+            this.checkFollow.Name = "checkFollow";
+            this.checkFollow.Size = new System.Drawing.Size(72, 16);
+            this.checkFollow.TabIndex = 7;
+            this.checkFollow.Text = "全程跟踪";
+            this.checkFollow.UseVisualStyleBackColor = true;
             // 
             // fmAddWorkFlow
             // 
@@ -238,5 +250,6 @@ namespace Ebada.SCGL.WFlow.Tool
         private System.Windows.Forms.CheckBox checkHuiQianYiJian;
         private System.Windows.Forms.CheckBox cbxFuJian;
         private System.Windows.Forms.CheckBox cbxExplore;
+        private System.Windows.Forms.CheckBox checkFollow;
     }
 }

@@ -28,6 +28,7 @@
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btAddfrm = new DevExpress.XtraBars.BarButtonItem();
+            this.barView = new DevExpress.XtraBars.BarButtonItem();
             this.btEditfrm = new DevExpress.XtraBars.BarButtonItem();
             this.btDeletefrm = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh1 = new DevExpress.XtraBars.BarButtonItem();
@@ -81,8 +82,9 @@
             this.barSus,
             this.barReExport,
             this.btReExport,
-            this.barReChange});
-            this.barManager1.MaxItemId = 20;
+            this.barReChange,
+            this.barView});
+            this.barManager1.MaxItemId = 21;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -94,6 +96,7 @@
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddfrm),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barView),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEditfrm),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletefrm),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh1),
@@ -118,6 +121,15 @@
             this.btAddfrm.Name = "btAddfrm";
             this.btAddfrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btAddfrm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddfrm_ItemClick);
+            // 
+            // barView
+            // 
+            this.barView.Caption = "全程跟踪";
+            this.barView.Id = 20;
+            this.barView.ImageIndex = 1;
+            this.barView.Name = "barView";
+            this.barView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barView_ItemClick);
             // 
             // btEditfrm
             // 
@@ -376,5 +388,6 @@
         private System.Windows.Forms.ImageList imageList1;
         private DevExpress.XtraBars.BarButtonItem btReExport;
         private DevExpress.XtraBars.BarButtonItem barReChange;
+        private DevExpress.XtraBars.BarButtonItem barView;
     }
 }
