@@ -94,8 +94,7 @@ namespace Ebada.SCGL.WFlow.Tool
             }
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            string str = string.Format("where parentid='{0}' order by status,SortID", parentID);
-            gridViewOperation.RefreshData(str);
+            inidata();
         }
         void gridViewOperation_AfterAdd(LP_Temple obj)
         {
@@ -134,20 +133,79 @@ namespace Ebada.SCGL.WFlow.Tool
             IList<LP_Temple> li = MainHelper.PlatformSqlMap.GetListByWhere<LP_Temple>(slqwhere);
             if (li.Count > 0)
             {
-                li[0].SortID = e.ValueOld.SortID;
-                if (li[0].DocContent == null)
+                //li[0].SortID = e.ValueOld.SortID;
+                //if (li[0].DocContent == null)
+                //{
+                //    li[0].DocContent = bt;
+                //}
+                //if (li[0].ImageAttachment == null)
+                //{
+                //    li[0].ImageAttachment = bt;
+                //}
+                //if (li[0].SignImg == null)
+                //{
+                //    li[0].SignImg = bt;
+                //}
+                //MainHelper.PlatformSqlMap.Update<LP_Temple>(li[0]);
+                slqwhere = " where ParentID='" + e.Value.ParentID + "' and SortID>" + e.ValueOld.SortID + " and lpid!='" + e.Value.LPID + "' and SortID<=" + e.Value.SortID;
+
+                slqwhere = slqwhere + " order by SortID";
+                 li = MainHelper.PlatformSqlMap.GetListByWhere<LP_Temple>(slqwhere);
+                int i = 1;
+                List<LP_Temple> list = new List<LP_Temple>();
+                foreach (LP_Temple ob in li)
                 {
-                    li[0].DocContent = bt;
+                    ob.SortID = ob.SortID-1;
+                    if (ob.SignImg == null)
+                    {
+                        ob.SignImg = new byte[0];
+                    }
+                    if (ob.ImageAttachment == null)
+                    {
+                        ob.ImageAttachment = new byte[0];
+                    }
+                    if (ob.DocContent == null)
+                    {
+                        ob.DocContent = new byte[0];
+                    }
+                    list.Add(ob);
                 }
-                if (li[0].ImageAttachment == null)
+                List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+                if (list.Count > 0)
                 {
-                    li[0].ImageAttachment = bt;
+                    SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
+                    list3.Add(obj3);
                 }
-                if (li[0].SignImg == null)
+                slqwhere = " where ParentID='" + e.Value.ParentID + "' and SortID<" + e.ValueOld.SortID + " and lpid!='" + e.Value.LPID + "' and SortID>=" + e.Value.SortID;
+
+                slqwhere = slqwhere + " order by SortID";
+                li = MainHelper.PlatformSqlMap.GetListByWhere<LP_Temple>(slqwhere);
+
+                foreach (LP_Temple ob in li)
                 {
-                    li[0].SignImg = bt;
+                    ob.SortID = ob.SortID + 1;
+                    if (ob.SignImg == null)
+                    {
+                        ob.SignImg = new byte[0];
+                    }
+                    if (ob.ImageAttachment == null)
+                    {
+                        ob.ImageAttachment = new byte[0];
+                    }
+                    if (ob.DocContent == null)
+                    {
+                        ob.DocContent = new byte[0];
+                    }
+                    list.Add(ob);
                 }
-                MainHelper.PlatformSqlMap.Update<LP_Temple>(li[0]);
+                 list3 = new List<SqlQueryObject>();
+                if (list.Count > 0)
+                {
+                    SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
+                    list3.Add(obj3);
+                }
+
+                MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
             }
 
            
