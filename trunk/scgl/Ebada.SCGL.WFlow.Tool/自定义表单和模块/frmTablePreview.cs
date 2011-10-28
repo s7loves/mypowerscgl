@@ -848,32 +848,90 @@ namespace Ebada.SCGL.WFlow.Tool
                 ctrltype = lp.CtrlType;
             else
                 ctrltype = lp.CtrlType.Substring(0, lp.CtrlType.IndexOf(','));
+            /*
+             * 
+             * SELECT   cellname,  SqlSentence,SqlColName
+                FROM         LP_Temple
+                where SqlSentence !=''
+             * 
+             * */
+            IList li = new ArrayList();
+            if (sqlSentence.IndexOf("Excel:") == 0)
+            {
+                int index1 = sqlSentence.LastIndexOf(":");
+                string tablename = sqlSentence.Substring(6, index1 - 6);
+                string cellpos = sqlSentence.Substring(index1);
+                string[] arrCellPos = cellpos.Split('|');
+                arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
+                string strcellvalue = "";
+                Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                ExcelAccess ea = new ExcelAccess();
+                ea.MyWorkBook = wb;
+                ea.MyExcel = wb.Application;
+                Excel.Worksheet sheet;
+                sheet = wb.Application.Sheets[tablename] as Excel.Worksheet;
+
+                for (int i = 0; i < arrCellPos.Length; i++)
+                {
+                    Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
+                    strcellvalue += range.Value2;
+                }
+                li.Add(strcellvalue);
+            }
+            else if (sqlSentence!= "")
+            {
+                if (sqlSentence.IndexOf("{recordid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{recordid}",currRecord.ID);
+                }
+                if (sqlSentence.IndexOf("{orgcode}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{userid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                try
+                {
+                    li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+                }
+                catch(Exception ex)
+                {
+                    li.Add( "出错:" + ex.Message);
+                }
+            }
             switch (ctrltype)
             {
                 case "DevExpress.XtraEditors.TextEdit":
+                    if(li.Count>0&&sqlSentence!= "")
+                    ((DevExpress.XtraEditors.TextEdit)ctrl).Text=li[0].ToString();
                     break;
                 case "DevExpress.XtraEditors.ComboBoxEdit":
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-                    if (sqlSentence != "")
-                    {
-                        try
-                        {
-                            IList list = ClientHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
-                            for (int i = 0; i < list.Count; i++)
-                            {
-                                ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i], null));
-                            }
-                        }
-                        catch
-                        {
-                            string sql = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
-                            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
-                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(list);
-                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedItem = MainHelper.User.OrgName;
-                        }
+                    //if (sqlSentence != "")
+                    //{
+                    //    try
+                    //    {
+                    //        IList list = ClientHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
+                    //        for (int i = 0; i < list.Count; i++)
+                    //        {
+                    //            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i], null));
+                    //        }
+                    //    }
+                    //    catch
+                    //    {
+                    //        string sql = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                    //        IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
+                    //        ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(list);
+                    //        ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedItem = MainHelper.User.OrgName;
+                    //    }
 
-                    }
+                    //}
+
+                    if (li.Count > 0 && sqlSentence != "")
+                        ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(li);
                     string[] comBoxItem = lp.ComBoxItem.Split(pcomboxchar);
                     comBoxItem = StringHelper.ReplaceEmpty(comBoxItem).Split(pchar);
                     for (int i = 0; i < comBoxItem.Length; i++)
@@ -928,6 +986,8 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
+                    if (li.Count > 0 && sqlSentence != "")
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).Text = li[0].ToString();
                     //((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";          
                     //string[] arrCellPos = lp.CellPos.Split(pchar);
                     //if (arrCellPos.Length == 5)
@@ -958,6 +1018,8 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
+                    if (li.Count > 0 && sqlSentence != "")
+                        ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
                     break;
                 case "uc_gridcontrol":
                     ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar));
