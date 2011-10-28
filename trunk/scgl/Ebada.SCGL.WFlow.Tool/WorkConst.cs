@@ -117,6 +117,10 @@ namespace Ebada.SCGL.WFlow.Tool
         /// </summary>
         public const string WorkTask_FlowEndExplore = "流程结束后允许导出";
         /// <summary>
+        /// 允许所有人导出
+        /// </summary>
+        public const string WorkTask_WorkFollow = "全程跟踪";
+        /// <summary>
         /// 动态指定一下任务处理人
         /// </summary>
         public const string WorkTask_DyAssignNext = "动态指定";

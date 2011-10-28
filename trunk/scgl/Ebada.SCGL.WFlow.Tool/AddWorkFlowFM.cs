@@ -89,6 +89,7 @@ namespace Ebada.SCGL.WFlow.Tool
             cbxFuJian.Checked = powerStr.IndexOf(WorkConst.WorkTask_FuJian) > -1;//附件
             checkHuiQianYiJian.Checked = powerStr.IndexOf(WorkConst.WorkTask_SPYJ) > -1;//审批意见
             cbxExplore.Checked = powerStr.IndexOf(WorkConst.WorkTask_FlowEndExplore) > -1;//流程结束后允许导出
+            checkFollow.Checked = powerStr.IndexOf(WorkConst.WorkTask_WorkFollow) > -1;//全程跟踪
         }
     
 
@@ -142,11 +143,18 @@ namespace Ebada.SCGL.WFlow.Tool
                             WorkFlowTask.SetTaskPower(WorkConst.WorkTask_SPYJ, tmpNodeInfo.NodeId, tmpNodeInfo.NodeId);
                             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                         }
+
                         if (cbxExplore.Checked)
                         {
                             WorkFlowTask.SetTaskPower(WorkConst.WorkTask_FlowEndExplore, tmpNodeInfo.NodeId, tmpNodeInfo.NodeId);
                             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                         }
+                        if (checkFollow.Checked)
+                        {
+                            WorkFlowTask.SetTaskPower(WorkConst.WorkTask_WorkFollow, tmpNodeInfo.NodeId, tmpNodeInfo.NodeId);
+                            Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        }
+                        
                     }
                
             }
@@ -176,6 +184,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (cbxExplore.Checked)
                 {
                     WorkFlowTask.SetTaskPower(WorkConst.WorkTask_FlowEndExplore, (nowTreeNode as WorkFlowTreeNode).NodeId, (nowTreeNode as WorkFlowTreeNode).NodeId);
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                }
+                if (checkFollow.Checked)
+                {
+                    WorkFlowTask.SetTaskPower(WorkConst.WorkTask_WorkFollow, (nowTreeNode as WorkFlowTreeNode).NodeId, (nowTreeNode as WorkFlowTreeNode).NodeId);
                     Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 }
                

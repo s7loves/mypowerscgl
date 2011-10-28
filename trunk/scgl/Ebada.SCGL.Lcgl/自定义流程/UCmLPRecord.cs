@@ -27,6 +27,7 @@ using Ebada.Scgl.Core;
 using DevExpress.Utils;
 using System.IO;
 using Ebada.UI.Base;
+using DevExpress.XtraBars;
 
 namespace Ebada.Scgl.Lcgl {
 
@@ -381,7 +382,16 @@ namespace Ebada.Scgl.Lcgl {
                 gridtable.Rows[i]["Image"] = "查看";
             }
 
-            gridControl1.DataSource = gridtable; 
+            gridControl1.DataSource = gridtable;
+            object obj = MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskPowerList", " where PowerName='全程跟踪' and WorkFlowId='" + parentObj.WorkFlowId + "' and WorkTaskId='" + parentObj.WorkFlowId + "'");
+            if (obj == null)
+            {
+                barView.Visibility = BarItemVisibility.Never;
+            }
+            else
+            {
+                barView.Visibility = BarItemVisibility.Always;
+            }
         }
         private void btAddfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -1168,6 +1178,121 @@ namespace Ebada.Scgl.Lcgl {
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as LP_Record);
             //获得编辑按钮的状态
             this.btEditfrm.Caption = (gridView1.GetFocusedRow() as LP_Record).Status;
+        }
+
+        private void barView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle < 0) return;
+            frmTemplate fm = new frmTemplate();
+            LP_Record currRecord = new LP_Record();
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData2(dr["ID"].ToString());
+            fm.RecordWorkFlowData = dt;
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+
+                }
+            }
+            if (!RecordWorkTask.HaveRunRecordFollowRole(currRecord.ID, MainHelper.User.UserID)) return;
+            object obj = RecordWorkTask.GetWorkTaskModle(dt);
+            if (obj == null)
+            {
+                return;
+            }
+
+            if (obj is frmLP)
+            {
+                fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+                fm.CurrRecord = currRecord;
+                fm.Kind = strKind;
+                fm.Status = "edit";
+                fm.ShowDialog();
+                InitData(strKind);
+            }
+            else
+            { 
+            if (obj.GetType().GetProperty("IsWorkfowCall") != null)
+                    obj.GetType().GetProperty("IsWorkfowCall").SetValue(obj, true, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj.GetType().GetProperty("CurrRecord") != null)
+                    obj.GetType().GetProperty("CurrRecord").SetValue(obj, currRecord, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
+                    obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj.GetType().GetProperty("ParentTemple") != null)
+                    obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(dt, currRecord), null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj is UserControl)
+                {
+                    
+                    FormBase dlg = new FormBase();
+                    dlg.Text = ((UserControl)obj).Name;
+                    dlg.MdiParent = MainHelper.MainForm;
+                    dlg.Controls.Add((UserControl)obj);
+                    ((UserControl)obj).Dock = DockStyle.Fill;
+                    dlg.Show();
+                }
+                else
+                    if (obj is Form)
+                    {
+                        if (obj is frmyxfxWorkFlowEdit)
+                        {
+                            IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
+                             +" and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'"
+                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                            PJ_03yxfx yxfx = new PJ_03yxfx();
+                            if (li.Count > 0)
+                            {
+                                yxfx = MainHelper.PlatformSqlMap.GetOneByKey<PJ_03yxfx>(li[0].ModleRecordID);
+
+                            }
+                            else
+                            {
+                                yxfx = new PJ_03yxfx();
+                                yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
+                                yxfx.OrgName = MainHelper.UserOrg.OrgName;
+                                if (parentObj.FlowCaption.IndexOf("定期分析") > 0)
+                                    yxfx.type = "定期分析";
+                                else
+                                    if (parentObj.FlowCaption.IndexOf("专题分析") > 0)
+                                        yxfx.type = "专题分析";
+                                ((frmyxfxWorkFlowEdit)obj).RecordStatus = 0;
+                                yxfx.rq = DateTime.Now;
+                                ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
+                            }
+                            ((frmyxfxWorkFlowEdit)obj).RecordStatus = -1;
+                            yxfx.rq = DateTime.Now;
+                            ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
+
+                        }
+                        ((Form)obj).ShowDialog();
+                    }
+                InitData(strKind);
+            
+            }
         }
 
     }
