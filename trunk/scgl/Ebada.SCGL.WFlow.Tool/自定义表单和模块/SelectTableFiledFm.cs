@@ -71,7 +71,7 @@ namespace Ebada.SCGL.WFlow.Tool
             treeList1.Nodes.Clear();
             treeList1.DataSource = null;
 
-            IList mlist = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", "where ParentID ='" + tableid + "' order by Status");
+            IList mlist = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", "where ParentID ='" + tableid + "' order by Sortid, Status");
             if (mlist.Count == 0)
             {
                 mdt = new DataTable();
