@@ -83,6 +83,7 @@ namespace Ebada.Scgl.Lcgl
             GetckField(ref  strSQL, ceField1, cbeField1, cbeFieldRule1, teField1, workFlowId.ToString(), workTaskId);
             GetckField(ref  strSQL, ceField2, cbeField2, cbeFieldRule2, teField2, workFlowId.ToString(), workTaskId);
             GetckField(ref  strSQL, ceField3, cbeField3, cbeFieldRule3, teField3, workFlowId.ToString(), workTaskId);
+            GetckField(ref  strSQL, ceField4, cbeField4, cbeFieldRule4, teField4, workFlowId.ToString(), workTaskId);
             if (checkEdit1.Checked)
             {
                 strSQL = strSQL + " and (CreateTime between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";

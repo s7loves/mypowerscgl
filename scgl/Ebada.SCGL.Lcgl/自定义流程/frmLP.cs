@@ -1826,11 +1826,11 @@ namespace Ebada.Scgl.Lcgl
             try
             { 
                 //base.Close();
-                currRecord = null;
                 //rowData = null;
                 
                 dockPanel1.ControlContainer.Controls.Clear();
                 templeList.Clear();
+                currRecord = null;
                     if (filecontrol != null)
                     {
 

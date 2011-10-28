@@ -21,7 +21,7 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
-        private string _id=Newid(); 
+        private string _id=Guid.NewGuid().ToString(); 
         private string _parentid=String.Empty; 
         private string _content=String.Empty; 
         private byte[] _doccontent=new byte[]{}; 

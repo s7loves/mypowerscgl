@@ -152,6 +152,8 @@ namespace Ebada.SCGL.WFlow.Tool
 
                
            }
+            dsoFramerWordControl1.FileClose();
+            dsoFramerWordControl1.Dispose();
            comboBoxEdit4.Text = xx.Name;
         }
 
@@ -197,6 +199,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
             }
+            rowData.IsVisible = checkEdit1.Checked ? 0 : 1;
             rowData.CellPos = rowData.CellPos.ToUpper();
             rowData.isExplorer = comboBoxEdit3.SelectedIndex;
         }
@@ -273,6 +276,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 labelControl24.Visible = false;
                 comboBoxEdit5.Visible = false;
             }
+            checkEdit1.Checked = rowData.IsVisible==0? true:false;
         }
 
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
@@ -293,6 +297,16 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 labelControl24.Visible = false;
                 comboBoxEdit5.Visible = false;
+            }
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            frmExcelEditSQLSet fees = new frmExcelEditSQLSet();
+            fees.RowData = rowData;
+            if (fees.ShowDialog() == DialogResult.OK)
+            {
+                textEdit3.Text = fees.StrSQL;
             }
         }
     }

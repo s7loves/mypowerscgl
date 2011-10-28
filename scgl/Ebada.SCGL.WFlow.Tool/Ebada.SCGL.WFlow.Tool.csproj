@@ -109,6 +109,12 @@
     </Compile>
     <Compile Include="Bounds.cs" />
     <Compile Include="BaseTreeNode.cs" />
+    <Compile Include="自定义表单和模块\frmExcelEditSQLSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义表单和模块\frmExcelEditSQLSet.Designer.cs">
+      <DependentUpon>frmExcelEditSQLSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="自定义表单和模块\frmTablePreview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -451,6 +457,9 @@
     <EmbeddedResource Include="Resources\自动节点.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="自定义表单和模块\frmExcelEditSQLSet.resx">
+      <DependentUpon>frmExcelEditSQLSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="自定义表单和模块\frmTablePreview.resx">
       <DependentUpon>frmTablePreview.cs</DependentUpon>
       <SubType>Designer</SubType>

@@ -64,6 +64,10 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.uCmLPInquiryRecord1 = new Ebada.Scgl.Lcgl.UCmLPInquiryRecord();
+            this.cbeField4 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbeFieldRule4 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.ceField4 = new DevExpress.XtraEditors.CheckEdit();
+            this.teField4 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbeFieldTable1.Properties)).BeginInit();
@@ -99,6 +103,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeField4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeFieldRule4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceField4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField4.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -109,11 +117,13 @@
             // 
             this.groupControl1.Controls.Add(this.simpleButton1);
             this.groupControl1.Controls.Add(this.cbeFieldTable1);
+            this.groupControl1.Controls.Add(this.teField4);
             this.groupControl1.Controls.Add(this.teField3);
             this.groupControl1.Controls.Add(this.teField2);
             this.groupControl1.Controls.Add(this.teField1);
             this.groupControl1.Controls.Add(this.teModleTable);
             this.groupControl1.Controls.Add(this.teNumber);
+            this.groupControl1.Controls.Add(this.ceField4);
             this.groupControl1.Controls.Add(this.ceField3);
             this.groupControl1.Controls.Add(this.ceField2);
             this.groupControl1.Controls.Add(this.checkEdit2);
@@ -125,12 +135,14 @@
             this.groupControl1.Controls.Add(this.deCreatTimeStart);
             this.groupControl1.Controls.Add(this.labelControl4);
             this.groupControl1.Controls.Add(this.cbeStatus);
+            this.groupControl1.Controls.Add(this.cbeFieldRule4);
             this.groupControl1.Controls.Add(this.cbeFieldRule3);
             this.groupControl1.Controls.Add(this.labelControl3);
             this.groupControl1.Controls.Add(this.cbeFieldRule2);
             this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.cbeFieldRule1);
             this.groupControl1.Controls.Add(this.cbeOrg);
+            this.groupControl1.Controls.Add(this.cbeField4);
             this.groupControl1.Controls.Add(this.cbeField3);
             this.groupControl1.Controls.Add(this.labelControl5);
             this.groupControl1.Controls.Add(this.cbeField2);
@@ -166,21 +178,21 @@
             // 
             // teField3
             // 
-            this.teField3.Location = new System.Drawing.Point(506, 90);
+            this.teField3.Location = new System.Drawing.Point(523, 90);
             this.teField3.Name = "teField3";
             this.teField3.Size = new System.Drawing.Size(100, 21);
             this.teField3.TabIndex = 4;
             // 
             // teField2
             // 
-            this.teField2.Location = new System.Drawing.Point(507, 63);
+            this.teField2.Location = new System.Drawing.Point(524, 63);
             this.teField2.Name = "teField2";
             this.teField2.Size = new System.Drawing.Size(100, 21);
             this.teField2.TabIndex = 4;
             // 
             // teField1
             // 
-            this.teField1.Location = new System.Drawing.Point(507, 34);
+            this.teField1.Location = new System.Drawing.Point(524, 34);
             this.teField1.Name = "teField1";
             this.teField1.Size = new System.Drawing.Size(100, 21);
             this.teField1.TabIndex = 4;
@@ -202,7 +214,7 @@
             // 
             // ceField3
             // 
-            this.ceField3.Location = new System.Drawing.Point(267, 93);
+            this.ceField3.Location = new System.Drawing.Point(265, 91);
             this.ceField3.Name = "ceField3";
             this.ceField3.Properties.Caption = "字段名称3";
             this.ceField3.Size = new System.Drawing.Size(76, 19);
@@ -210,7 +222,7 @@
             // 
             // ceField2
             // 
-            this.ceField2.Location = new System.Drawing.Point(266, 66);
+            this.ceField2.Location = new System.Drawing.Point(264, 64);
             this.ceField2.Name = "ceField2";
             this.ceField2.Properties.Caption = "字段名称2";
             this.ceField2.Size = new System.Drawing.Size(76, 19);
@@ -228,7 +240,7 @@
             // 
             this.ceField1.Location = new System.Drawing.Point(266, 33);
             this.ceField1.Name = "ceField1";
-            this.ceField1.Properties.Caption = "字段名称";
+            this.ceField1.Properties.Caption = "字段名称1";
             this.ceField1.Size = new System.Drawing.Size(75, 19);
             this.ceField1.TabIndex = 3;
             // 
@@ -309,7 +321,7 @@
             // cbeFieldRule3
             // 
             this.cbeFieldRule3.EditValue = "包含";
-            this.cbeFieldRule3.Location = new System.Drawing.Point(451, 91);
+            this.cbeFieldRule3.Location = new System.Drawing.Point(453, 91);
             this.cbeFieldRule3.Name = "cbeFieldRule3";
             this.cbeFieldRule3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -317,7 +329,7 @@
             "包含",
             "不包含"});
             this.cbeFieldRule3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbeFieldRule3.Size = new System.Drawing.Size(52, 21);
+            this.cbeFieldRule3.Size = new System.Drawing.Size(66, 21);
             this.cbeFieldRule3.TabIndex = 1;
             // 
             // labelControl3
@@ -331,7 +343,7 @@
             // cbeFieldRule2
             // 
             this.cbeFieldRule2.EditValue = "包含";
-            this.cbeFieldRule2.Location = new System.Drawing.Point(451, 64);
+            this.cbeFieldRule2.Location = new System.Drawing.Point(453, 64);
             this.cbeFieldRule2.Name = "cbeFieldRule2";
             this.cbeFieldRule2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -339,7 +351,7 @@
             "包含",
             "不包含"});
             this.cbeFieldRule2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbeFieldRule2.Size = new System.Drawing.Size(52, 21);
+            this.cbeFieldRule2.Size = new System.Drawing.Size(66, 21);
             this.cbeFieldRule2.TabIndex = 1;
             // 
             // labelControl6
@@ -353,7 +365,7 @@
             // cbeFieldRule1
             // 
             this.cbeFieldRule1.EditValue = "包含";
-            this.cbeFieldRule1.Location = new System.Drawing.Point(453, 34);
+            this.cbeFieldRule1.Location = new System.Drawing.Point(454, 34);
             this.cbeFieldRule1.Name = "cbeFieldRule1";
             this.cbeFieldRule1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -361,7 +373,7 @@
             "包含",
             "不包含"});
             this.cbeFieldRule1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbeFieldRule1.Size = new System.Drawing.Size(52, 21);
+            this.cbeFieldRule1.Size = new System.Drawing.Size(66, 21);
             this.cbeFieldRule1.TabIndex = 1;
             // 
             // cbeOrg
@@ -482,6 +494,45 @@
             this.uCmLPInquiryRecord1.Size = new System.Drawing.Size(1035, 214);
             this.uCmLPInquiryRecord1.TabIndex = 0;
             // 
+            // cbeField4
+            // 
+            this.cbeField4.Location = new System.Drawing.Point(348, 118);
+            this.cbeField4.Name = "cbeField4";
+            this.cbeField4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbeField4.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeField4.Size = new System.Drawing.Size(100, 21);
+            this.cbeField4.TabIndex = 1;
+            // 
+            // cbeFieldRule4
+            // 
+            this.cbeFieldRule4.EditValue = "包含";
+            this.cbeFieldRule4.Location = new System.Drawing.Point(453, 119);
+            this.cbeFieldRule4.Name = "cbeFieldRule4";
+            this.cbeFieldRule4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbeFieldRule4.Properties.Items.AddRange(new object[] {
+            "包含",
+            "不包含"});
+            this.cbeFieldRule4.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeFieldRule4.Size = new System.Drawing.Size(66, 21);
+            this.cbeFieldRule4.TabIndex = 1;
+            // 
+            // ceField4
+            // 
+            this.ceField4.Location = new System.Drawing.Point(265, 119);
+            this.ceField4.Name = "ceField4";
+            this.ceField4.Properties.Caption = "字段名称4";
+            this.ceField4.Size = new System.Drawing.Size(76, 19);
+            this.ceField4.TabIndex = 3;
+            // 
+            // teField4
+            // 
+            this.teField4.Location = new System.Drawing.Point(523, 118);
+            this.teField4.Name = "teField4";
+            this.teField4.Size = new System.Drawing.Size(100, 21);
+            this.teField4.TabIndex = 4;
+            // 
             // WorkFlowInquiry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -527,6 +578,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cbeField4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeFieldRule4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceField4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField4.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -569,5 +624,9 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private UCmLPInquiryRecord uCmLPInquiryRecord1;
         private DevExpress.XtraEditors.TextEdit teModleTable;
+        private DevExpress.XtraEditors.TextEdit teField4;
+        private DevExpress.XtraEditors.CheckEdit ceField4;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeFieldRule4;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeField4;
     }
 }
