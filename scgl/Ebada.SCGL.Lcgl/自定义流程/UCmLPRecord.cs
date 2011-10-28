@@ -28,6 +28,9 @@ using DevExpress.Utils;
 using System.IO;
 using Ebada.UI.Base;
 using DevExpress.XtraBars;
+using Ebada.Components;
+using Ebada.SCGL.WFlow.Tool;
+using System.Threading;
 
 namespace Ebada.Scgl.Lcgl {
 
@@ -1293,6 +1296,118 @@ namespace Ebada.Scgl.Lcgl {
                 InitData(strKind);
             
             }
+        }
+        void copyData(string flowid,IList<LP_Temple> templeList)
+        {
+            if (templeList.Count == 0) return;
+            int i = 1;
+            List<LP_Temple> list = new List<LP_Temple>();
+            string workflowid = flowid;
+            IList<WF_WorkTask> wftli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where WorkFlowId='" + workflowid + "' and  TaskTypeId!='2' order by TaskTypeId");
+            foreach (WF_WorkTask wft in wftli)
+            {
+                //保存关联模块
+                WorkFlowTask.DeleteAllModle(wft.WorkTaskId);
+                mModule mu = MainHelper.PlatformSqlMap.GetOne<mModule>("where ModuName='表单执行平台'  and ModuTypes='Ebada.Scgl.Lcgl.frmLP'");
+                WorkFlowTask.SetTaskUserModle(mu.Modu_ID, wft.WorkFlowId, wft.WorkTaskId);
+                //保存关联表单
+                WorkFlowTask.DeleteAllControls(wft.WorkTaskId);
+                WorkFlowTask.DeleteAllTableField(wft.WorkFlowId, wft.WorkTaskId);
+                string sqlStr = " where  WorkTaskId='" + wft.WorkTaskId + "'";
+
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskControls>(sqlStr);
+                WorkFlowTask.SetTaskUserCtrls(templeList[0].ParentID, workflowid, wft.WorkTaskId);
+            }
+            i = 1;
+            foreach (LP_Temple obj in templeList)
+            {
+                obj.SortID = i;
+                if (obj.SignImg == null)
+                {
+                    obj.SignImg = new byte[0];
+                }
+                if (obj.ImageAttachment == null)
+                {
+                    obj.ImageAttachment = new byte[0];
+                }
+                if (obj.DocContent == null)
+                {
+                    obj.DocContent = new byte[0];
+                }
+                i++;
+                if (obj.CellName == "6.3 其他安全措施和注意事项" && obj.Status=="")
+                {
+                    obj.Status = "填票";
+                }
+                
+                if (obj.CellName.IndexOf("终了时间") > -1)
+                {
+                    obj.WordCount = "dd日 HH:mm";
+                }
+                else
+                    if (obj.CellName.IndexOf("同意执行时间") > -1)
+                    {
+                        obj.WordCount = "MM-dd日 HH:mm";
+                    }
+                    else
+                    if (obj.CellName.IndexOf("时间") > -1)
+                        {
+                            obj.WordCount = "yyyy-MM-dd HH:mm";
+                        }
+                    
+                    
+                WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOne<WF_WorkTask>(
+                    "where WorkFlowId='" + workflowid + "'  and TaskCaption='" + obj.Status + "'");
+                if (wt == null)
+                {
+                    continue;
+                }
+                WF_TableUsedField tuf = MainHelper.PlatformSqlMap.GetOne<WF_TableUsedField>("where FieldName='" + obj.CellName +
+                    "'  and UserControlId='" + obj.ParentID + "'");
+                if (tuf == null)
+                {
+                    WF_TableUsedField um = new WF_TableUsedField();
+                    um.ID = um.CreateID();
+                    um.UserControlId = obj.ParentID;
+                    um.FieldName = obj.CellName;
+                    um.FieldId = obj.LPID;
+                    um.WorkflowId = workflowid;
+                    um.WorktaskId = wt.WorkTaskId;
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    MainHelper.PlatformSqlMap.Create<WF_TableUsedField>(um);
+                }
+                list.Add(obj);
+            }
+            List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+            if (list.Count > 0)
+            {
+                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
+                list3.Add(obj3);
+            }
+
+            MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+           
+        
+        }
+        private void barCopy_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+          LP_Temple temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路第一种工作票'  and Status=''");
+          IList<LP_Temple> templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
+              "where ParentID ='" + temple.LPID + "' Order by SortID");
+          copyData(temple.ParentID,templeList);
+        temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路第二种工作票'  and Status=''");
+        templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
+              "where ParentID ='" + temple.LPID + "' Order by SortID");
+        copyData(temple.ParentID,templeList);
+        temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路倒闸操作票'  and Status=''");
+        templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
+              "where ParentID ='" + temple.LPID + "' Order by SortID");
+        copyData(temple.ParentID,templeList);
+        temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路事故应急抢修单'  ");
+        templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
+              "where ParentID ='" + temple.LPID + "' Order by SortID");
+        copyData(temple.ParentID,templeList);
         }
 
     }
