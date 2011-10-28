@@ -20,6 +20,8 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Components;
+using DevExpress.XtraGrid;
+using DevExpress.Data;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -221,6 +223,9 @@ namespace Ebada.SCGL.WFlow.Tool
             gridView1.Columns["ParentID"].Visible = false;
             //gridView1.Columns["OrgName"].Visible = false;
             //gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
+            gridView1.Columns["CellName"].VisibleIndex = 1;
+            gridView1.Columns["SortID"].VisibleIndex = 0;
+            gridView1.Columns["SortID"].SortOrder = ColumnSortOrder.Ascending;
             repositoryItemTextEdit1.EditValueChanged += new EventHandler(repositoryItemTextEdit1_EditValueChanged);
         }
 
