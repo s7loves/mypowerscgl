@@ -50,7 +50,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.lookUpEdit5.DataBindings.Add("EditValue", rowData, "AffectLPID");
             this.textEdit8.DataBindings.Add("EditValue", rowData, "AffectEvent");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "Birthday");
-            this.checkEdit1.DataBindings.Add("EditValue", rowData, "IsVisible");
+            //this.checkEdit1.DataBindings.Add("EditValue", rowData, "IsVisible");
             this.textEdit9.DataBindings.Add("EditValue", rowData, "ColumnName");
             //this.textEdit10.DataBindings.Add("EditValue", rowData, "Status");
             this.lookUpEdit2.DataBindings.Add("EditValue", rowData, "Status");  
@@ -276,7 +276,8 @@ namespace Ebada.SCGL.WFlow.Tool
                 labelControl24.Visible = false;
                 comboBoxEdit5.Visible = false;
             }
-            checkEdit1.Checked = rowData.IsVisible==0? true:false;
+            checkEdit1.Checked= rowData.IsVisible==0? true:false;
+            
         }
 
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
@@ -307,6 +308,7 @@ namespace Ebada.SCGL.WFlow.Tool
             if (fees.ShowDialog() == DialogResult.OK)
             {
                 textEdit3.Text = fees.StrSQL;
+                rowData.SqlSentence = fees.StrSQL;
             }
         }
     }

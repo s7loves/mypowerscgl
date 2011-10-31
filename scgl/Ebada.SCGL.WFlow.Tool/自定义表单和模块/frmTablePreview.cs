@@ -18,6 +18,7 @@ using Ebada.Core;
 using DevExpress.XtraRichEdit.API.Word;
 using DevExpress.XtraGrid.Views.Base;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -860,7 +861,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 int index1 = sqlSentence.LastIndexOf(":");
                 string tablename = sqlSentence.Substring(6, index1 - 6);
-                string cellpos = sqlSentence.Substring(index1);
+                string cellpos = sqlSentence.Substring(index1+1);
                 string[] arrCellPos = cellpos.Split('|');
                 arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
                 string strcellvalue = "";
@@ -891,6 +892,23 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (sqlSentence.IndexOf("{userid}") > -1)
                 {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
+                while (r1.Match(sqlSentence).Value != "")
+                { 
+                    string sortid=r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count >0)
+                    {
+                       Control ct= FindCtrl(listLPID[0].LPID);
+                       if (ct != null)
+                       {
+                           sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
+                       }
+                    }
+
+
+                   
                 }
                 try
                 {
@@ -1134,10 +1152,10 @@ namespace Ebada.SCGL.WFlow.Tool
                 Control relateCtrl = FindCtrl((listLPID[0] as LP_Temple).LPID);
                 if (relateCtrl != null)
                 {
-                    int pos = sqlSentence.IndexOf("@" + lpid);
+                    int pos = sqlSentence.IndexOf("{" + lpid+"}");
                     if (pos != -1)
                     {
-                        sqlSentence = sqlSentence.Remove(pos, ("@" + lpid).Length);
+                        sqlSentence = sqlSentence.Remove(pos, ("{" + lpid+"}").Length);
                         sqlSentence = sqlSentence.Insert(pos, relateCtrl.Text);
                         //((LP_Temple)ctrl.Tag).SqlSentence = sqlSentence;
                     }

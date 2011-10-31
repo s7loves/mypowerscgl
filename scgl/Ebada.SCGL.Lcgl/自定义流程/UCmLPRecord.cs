@@ -1297,9 +1297,10 @@ namespace Ebada.Scgl.Lcgl {
             
             }
         }
-        void copyData(string flowid,IList<LP_Temple> templeList)
+        void copyData(LP_Temple lp,IList<LP_Temple> templeList)
         {
             if (templeList.Count == 0) return;
+             string flowid=lp.ParentID;
             int i = 1;
             List<LP_Temple> list = new List<LP_Temple>();
             string workflowid = flowid;
@@ -1354,8 +1355,56 @@ namespace Ebada.Scgl.Lcgl {
                         {
                             obj.WordCount = "yyyy-MM-dd HH:mm";
                         }
-                    
-                    
+
+                if (obj.SqlSentence == "SelectmOrgList where parentid='0'")
+                {
+                    obj.SqlSentence = "Select OrgName  from mOrg where parentid='0'";
+                    obj.SqlColName = "";
+                }
+
+                if (obj.SqlSentence.IndexOf( "SelectmUserList where  OrgName ='@1'")>-1)
+                {
+                    obj.SqlSentence = "Select UserName  from mUser where OrgName='{1}'";
+                    obj.SqlColName = "";
+                }
+                
+                if (lp.CellName == "电力线路第一种工作票")
+                {
+                    if (obj.KindTable == "")
+                    {
+                        obj.KindTable = "工作票";
+                    }
+                }
+                if (lp.CellName == "电力线路第二种工作票")
+                {
+                    if (obj.KindTable == "")
+                    {
+                        obj.KindTable = "Sheet1";
+                    }
+                }
+
+                if (lp.CellName == "电力线路倒闸操作票")
+                {
+                    if (obj.KindTable == "")
+                    {
+                        obj.KindTable = "Sheet1";
+                    }
+                }
+                if (lp.CellName == "电力线路事故应急抢修单")
+                {
+                    if (obj.KindTable == "")
+                    {
+                        obj.KindTable = "Sheet1";
+                    }
+                }
+
+
+                if (obj.SqlSentence == "SelectmOrgList where parentid=(select OrgID From mOrg where OrgName='@1')")
+                //if (obj.SqlSentence == "Select OrgName  from mOrg where  parentid=(select OrgID From mOrg where OrgName={1})")
+                {
+                    obj.SqlSentence = "Select OrgName  from mOrg where  parentid=(select OrgID From mOrg where OrgName='{1}')";
+                    obj.SqlColName = "";
+                }
                 WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOne<WF_WorkTask>(
                     "where WorkFlowId='" + workflowid + "'  and TaskCaption='" + obj.Status + "'");
                 if (wt == null)
@@ -1391,23 +1440,24 @@ namespace Ebada.Scgl.Lcgl {
         }
         private void barCopy_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            //CreatWF_TableFieldValueView
+            //MainHelper.PlatformSqlMap.Update("CreatWF_TableFieldValueView",null);
           LP_Temple temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路第一种工作票'  and Status=''");
           IList<LP_Temple> templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
               "where ParentID ='" + temple.LPID + "' Order by SortID");
-          copyData(temple.ParentID,templeList);
+          copyData(temple,templeList);
         temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路第二种工作票'  and Status=''");
         templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
               "where ParentID ='" + temple.LPID + "' Order by SortID");
-        copyData(temple.ParentID,templeList);
+        copyData(temple,templeList);
         temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路倒闸操作票'  and Status=''");
         templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
               "where ParentID ='" + temple.LPID + "' Order by SortID");
-        copyData(temple.ParentID,templeList);
+        copyData(temple,templeList);
         temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路事故应急抢修单'  ");
         templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
               "where ParentID ='" + temple.LPID + "' Order by SortID");
-        copyData(temple.ParentID,templeList);
+        copyData(temple,templeList);
         }
 
     }
