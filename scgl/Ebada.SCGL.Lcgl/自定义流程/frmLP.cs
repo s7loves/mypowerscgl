@@ -1633,8 +1633,17 @@ namespace Ebada.Scgl.Lcgl
                             {
                                 sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
                             }
+                            else {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                                break;
+                            }
                         }
-                        
+
+                    }
+                    else
+                    {
+                        sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                        break;
                     }
 
 

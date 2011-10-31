@@ -295,8 +295,8 @@ namespace Ebada.Scgl.Lcgl
 
                 }//节点关联的是模块表
                 else
-                { 
-                    fieldli = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "SELECT  distinct FieldName from WF_TableFieldValueView where "
+                {
+                    fieldli = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "SELECT  distinct FieldName from WF_TableUsedField where "
                         +" WorkFlowId='"+workFlowId+"' and WorkTaskId='"+strTaskidli[0]+"'");
                     foreach (string strfield in fieldli)
                     {

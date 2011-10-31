@@ -55,8 +55,8 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             else if (rbnWorkTable.Checked == true)
             {
-                strSQL = "select ControlValue from WF_TableFieldValueView where"
-                    + " UserControlId='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' "
+                strSQL = "select ControlValue from WF_TableFieldValueView where 2=2  "
+                    + "and UserControlId='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' "
                     + " and FieldId='" + ((ListItem)cbxWorkTableColumns.SelectedItem).ID + "' ";
                 if (ceBind.Checked)
                 {

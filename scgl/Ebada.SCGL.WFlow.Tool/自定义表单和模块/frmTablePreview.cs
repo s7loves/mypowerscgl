@@ -905,6 +905,27 @@ namespace Ebada.SCGL.WFlow.Tool
                        {
                            sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
                        }
+                       else
+                       {
+                           string strSQL = "select ControlValue from WF_TableFieldValueView where"
+                                 + " UserControlId='" + listLPID[0].ParentID + "' "
+                                 + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
+                           li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+                           if (li.Count > 0)
+                           {
+                               sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
+                           }
+                           else
+                           {
+                               sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                               break;
+                           }
+                       }
+                    }
+                    else
+                    {
+                        sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                        break;
                     }
 
 
