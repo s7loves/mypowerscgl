@@ -57,7 +57,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 strSQL = "select ControlValue from WF_TableFieldValueView where"
                     + " UserControlId='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' "
-                    + " FieldId='" + ((ListItem)cbxWorkTableColumns.SelectedItem).ID + "' ";
+                    + " and FieldId='" + ((ListItem)cbxWorkTableColumns.SelectedItem).ID + "' ";
                 if (ceBind.Checked)
                 {
                     strSQL = strSQL + " and id='{recordid}'";
@@ -77,13 +77,10 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void frmExcelEditSQLSet_Load(object sender, EventArgs e)
         {
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
+
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", " where ParentID not in (select LPID from LP_Temple where 1=1) ");
             DataTable dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxWorkDbTableColumns, dt, "Chars", "Chars");
-          
-            li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", " where ParentID not in (select LPID from LP_Temple where 1=1) ");
-            dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxWorkDbTableColumns, dt, "LPID", "CellName");
+            WinFormFun.LoadComboBox(cbxWorkDataTable, dt, "LPID", "CellName");
 
             LP_Temple tp = ClientHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(rowData.ParentID);
           
@@ -121,7 +118,19 @@ namespace Ebada.SCGL.WFlow.Tool
             dsoFramerWordControl1.FileClose();
             dsoFramerWordControl1.Dispose();
             cbxWorkExcelTable.Text = xx.Name;
-            memoEdit1.Text = "说明 SQL语句支持中的特殊代码\r\n {recordid}:票LP_Record的ID\r\n {orgcode}:用户单位编号\r\n {userid}:用户编号\r\n";
+
+             li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
+             //dt = ConvertHelper.ToDataTable(li);
+             dt = new DataTable();
+             dt.Columns.Add("name", typeof(string));
+             for (int i = 0; i < li.Count; i++)
+             {
+                 DataRow dr = dt.NewRow();
+                 dr["name"] = li[i];
+                 dt.Rows.Add(dr);
+             }
+             WinFormFun.LoadComboBox(cbxWorkDbTable, dt, "name", "name");
+             memoEdit1.Text = "说明 SQL语句支持中的特殊代码\r\n {sortid}:当前表单的序号为sortid的字段\r\n{recordid}:票LP_Record的ID\r\n{orgcode}:用户单位编号\r\n {userid}:用户编号\r\n";
             this.memoEdit1.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.memoEdit1_EditValueChanging);
         }
         private void SetDataBaseSQL(DevExpress.XtraEditors.TextEdit tetSQL, ComboBox cbxDbTable, ComboBox cbxDbTableColumns)
@@ -129,7 +138,7 @@ namespace Ebada.SCGL.WFlow.Tool
             if (cbxDbTable.SelectedIndex > 0 && cbxDbTableColumns.SelectedIndex > 0)
             {
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + ((ListItem)cbxDbTable.SelectedItem).ID + "'");
-                if (list.Count > 0)
+                if (list.Count > 0&&1==0)
                 {
                     tetSQL.Text = "select " + cbxDbTableColumns.Text + " from " + cbxDbTable.Text + " where 1=1 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
                 }
@@ -140,15 +149,15 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (ceBind.Checked)
                 {
                     if (cbxDbTable.Text == "WF_TableFieldValueView")
-                    strSQL =""+ strSQL + " and id='{recordid}'";
+                        tetSQL.Text = "" + tetSQL.Text + " and id='{recordid}'";
                     else
                         if (cbxDbTable.Text == "LP_Record")
-                            strSQL = "" + strSQL + " and id='{recordid}'";
+                            tetSQL.Text = "" + tetSQL.Text + " and id='{recordid}'";
                         else
                         {
 
 
-                            strSQL = "" + strSQL + " and " + list[0].ToString()
+                            tetSQL.Text = "" + tetSQL.Text + " and " + list[0].ToString()
                                 + " in (select ModleRecordID from WFP_RecordWorkTaskIns where  RecordID='{recordid}')";
                         }
 
@@ -181,6 +190,24 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             e.Cancel = true;
         }
+
+        private void cbxWorkDataTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxWorkDataTable.SelectedIndex == 0) return;
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList",
+                "where ParentID ='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' order by sortid");
+            DataTable dt = new DataTable();
+            if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
+            for (int i = 0; i < dt.Rows.Count&&li.Count>0; i++)
+            {
+                dt.Rows[i]["cellname"] = dt.Rows[i]["SortID"] + " " + dt.Rows[i]["cellname"];
+            
+            }
+                WinFormFun.LoadComboBox(cbxWorkTableColumns, dt, "LPID", "cellname");
+            cbxWorkTableColumns.SelectedIndex = 0;
+        }
+
+       
 
        
 
