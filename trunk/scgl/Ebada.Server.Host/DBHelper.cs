@@ -67,12 +67,12 @@ namespace Ebada.Server.Host {
             //    } catch (Exception e) { throw e; }
 
             //}
-            if (ver < 6) {
+            if (ver < 7) {
                 try {
-                    sqlMap.Update(mUpdate, string.Format(update_AndroidVer, 5));//更新android客户端，修正串号
-                    SqlMap.Update(mUpdate, string.Format(update_ver, 6));
-                    Console.WriteLine("更新数据库版本ver:{0}", 6);
-                    Console.WriteLine("更新手机服务器版本ver:{0}", 5);
+                    sqlMap.Update(mUpdate, string.Format(update_AndroidVer, 6));//5版本更新android客户端，修正串号
+                    SqlMap.Update(mUpdate, string.Format(update_ver, 7));
+                    Console.WriteLine("更新数据库版本ver:{0}", 7);
+                    Console.WriteLine("更新手机服务器版本ver:{0}", 6);
                 } catch (Exception e) { throw e; }
 
             }
