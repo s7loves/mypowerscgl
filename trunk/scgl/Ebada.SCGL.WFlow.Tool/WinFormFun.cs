@@ -79,6 +79,10 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 cb.SelectedIndex = focusindex;
             }
+            else
+            {
+                cb.SelectedIndex = 0;
+            }
         }
         public static bool ExistsListView(string listViewText, ListView listView)
         {
