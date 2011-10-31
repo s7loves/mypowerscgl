@@ -305,6 +305,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             frmExcelEditSQLSet fees = new frmExcelEditSQLSet();
             fees.RowData = rowData;
+            fees.StrSQL = textEdit3.Text;
             if (fees.ShowDialog() == DialogResult.OK)
             {
                 textEdit3.Text = fees.StrSQL;
