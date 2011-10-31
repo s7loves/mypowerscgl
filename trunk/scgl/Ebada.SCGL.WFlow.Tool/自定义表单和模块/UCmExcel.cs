@@ -101,6 +101,7 @@ namespace Ebada.SCGL.WFlow.Tool
         void gridViewOperation_AfterAdd(LP_Temple obj)
         {
             parentID = ParentObj.LPID;
+            inidata();
         }
 
         void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<LP_Temple> e)
@@ -178,7 +179,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
                     list3.Add(obj3);
                 }
-                slqwhere = " where ParentID='" + e.Value.ParentID + "' and SortID<" + e.ValueOld.SortID + " and lpid!='" + e.Value.LPID + "' and SortID>=" + e.Value.SortID;
+                slqwhere = " where ParentID='" + e.Value.ParentID + "' and SortID<=" + e.ValueOld.SortID + " and lpid!='" + e.Value.LPID + "' and SortID>=" + e.Value.SortID;
 
                 slqwhere = slqwhere + " order by SortID";
                 li = MainHelper.PlatformSqlMap.GetListByWhere<LP_Temple>(slqwhere);
@@ -215,6 +216,55 @@ namespace Ebada.SCGL.WFlow.Tool
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<LP_Temple> e) {
             //e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
+             string slqwhere = " where ParentID='" + e.Value.ParentID + "' and SortID =" + e.Value.SortID + " and lpid!='" + e.Value.LPID+"'";
+            IList<LP_Temple> li = MainHelper.PlatformSqlMap.GetListByWhere<LP_Temple>(slqwhere);
+            if (li.Count > 0)
+            {
+                //li[0].SortID = e.ValueOld.SortID;
+                //if (li[0].DocContent == null)
+                //{
+                //    li[0].DocContent = bt;
+                //}
+                //if (li[0].ImageAttachment == null)
+                //{
+                //    li[0].ImageAttachment = bt;
+                //}
+                //if (li[0].SignImg == null)
+                //{
+                //    li[0].SignImg = bt;
+                //}
+                //MainHelper.PlatformSqlMap.Update<LP_Temple>(li[0]);
+                slqwhere = " where ParentID='" + e.Value.ParentID + "' and SortID>=" + e.ValueOld.SortID + " and lpid!='" + e.Value.LPID + "'";
+
+                slqwhere = slqwhere + " order by SortID";
+                li = MainHelper.PlatformSqlMap.GetListByWhere<LP_Temple>(slqwhere);
+                int i = 1;
+                List<LP_Temple> list = new List<LP_Temple>();
+                foreach (LP_Temple ob in li)
+                {
+                    ob.SortID = ob.SortID + 1;
+                    if (ob.SignImg == null)
+                    {
+                        ob.SignImg = new byte[0];
+                    }
+                    if (ob.ImageAttachment == null)
+                    {
+                        ob.ImageAttachment = new byte[0];
+                    }
+                    if (ob.DocContent == null)
+                    {
+                        ob.DocContent = new byte[0];
+                    }
+                    list.Add(ob);
+                }
+                List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+                if (list.Count > 0)
+                {
+                    SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
+                    list3.Add(obj3);
+                    MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+                }
+            }
         }
         /// <summary>
         /// 设置隐藏列
