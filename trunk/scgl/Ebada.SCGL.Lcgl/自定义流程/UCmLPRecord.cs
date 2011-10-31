@@ -1458,6 +1458,7 @@ namespace Ebada.Scgl.Lcgl {
         templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
               "where ParentID ='" + temple.LPID + "' Order by SortID");
         copyData(temple,templeList);
+        MsgBox.ShowTipMessageBox("执行完毕");
         }
 
     }
