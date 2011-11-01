@@ -121,7 +121,7 @@
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 12;
-            this.labelControl4.Text = "线路名称";
+            this.labelControl4.Text = "流程节点";
             this.labelControl4.Click += new System.EventHandler(this.labelControl4_Click_1);
             // 
             // labelControl5
