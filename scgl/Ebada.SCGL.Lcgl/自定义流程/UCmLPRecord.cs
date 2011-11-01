@@ -1370,14 +1370,14 @@ namespace Ebada.Scgl.Lcgl {
                 
                 if (lp.CellName == "电力线路第一种工作票")
                 {
-                    if (obj.KindTable == "")
+                    //if (obj.KindTable == "")
                     {
                         obj.KindTable = "工作票";
                     }
                 }
                 if (lp.CellName == "电力线路第二种工作票")
                 {
-                    if (obj.KindTable == "")
+                    //if (obj.KindTable == "")
                     {
                         obj.KindTable = "Sheet1";
                     }
@@ -1385,7 +1385,7 @@ namespace Ebada.Scgl.Lcgl {
 
                 if (lp.CellName == "电力线路倒闸操作票")
                 {
-                    if (obj.KindTable == "")
+                    //if (obj.KindTable == "")
                     {
                         obj.KindTable = "Sheet1";
                     }
