@@ -139,9 +139,10 @@ namespace Ebada.Android.Service {
                 gt.gtLon = decimal.Parse(data.gtLon);
                 gt.gtHeight = decimal.Parse(data.gtHeight);
                 gt.gtJg = data.gtSpan == "是" ? "是" : "否";//借杆
-
-                int n = Ebada.Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
-                ncount += n;
+                if ((gt.gtLat + gt.gtLon) > 0) {
+                    int n = Ebada.Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
+                    ncount += n;
+                }
                 if (data.jsonData != null) {
                     Console.WriteLine(data.jsonData);
                     List<ps_gtsb> list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ps_gtsb>>(data.jsonData);
