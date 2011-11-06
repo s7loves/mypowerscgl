@@ -14,6 +14,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Ebada.Scgl.Model;
+using DevExpress.XtraBars;
 
 namespace Ebada.Scgl.Xtgl {
     /// <summary>
@@ -37,7 +38,9 @@ namespace Ebada.Scgl.Xtgl {
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             ucBottom.ParentID = "0";
+            ucBottom.barCopy.Visibility = BarItemVisibility.Always;
             ucBottom.InitColumns();
+            ucTop.barCopy.Visibility = BarItemVisibility.Never;
             ucTop.InitColumns();
             ucTop.InitData();
            ucTop.ChildView = ucBottom.GridViewOperation;

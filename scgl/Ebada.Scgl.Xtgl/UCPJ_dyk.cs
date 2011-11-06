@@ -20,6 +20,7 @@ using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
+using DevExpress.XtraBars;
 
 namespace Ebada.Scgl.Xtgl {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Ebada.Scgl.Xtgl {
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_dyk>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
+           
         }
         private IViewOperation<PJ_dyk> childView;
         /// <summary>
@@ -144,7 +146,9 @@ namespace Ebada.Scgl.Xtgl {
             set {
                 parentID = value;
                 if (!string.IsNullOrEmpty(value)) {
+                   
                     RefreshData(" where parentid='"+value+"'");
+
                 }
             }
         }
@@ -161,6 +165,14 @@ namespace Ebada.Scgl.Xtgl {
                     ParentID = value.ID;
                 }
             }
+        }
+
+        private void barCopy_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmdykCopy frm = new frmdykCopy();
+            frm.ParentObj = parentObj;
+            frm.ShowDialog();
+            RefreshData(" where parentid='" + parentObj.ID + "'");
         }
     }
 }

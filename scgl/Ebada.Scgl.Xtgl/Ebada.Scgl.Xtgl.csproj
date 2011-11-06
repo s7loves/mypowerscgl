@@ -110,6 +110,12 @@
     <Compile Include="frmOrgEdit.Designer.cs">
       <DependentUpon>frmOrgEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmdykCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmdykCopy.Designer.cs">
+      <DependentUpon>frmdykCopy.cs</DependentUpon>
+    </Compile>
     <Compile Include="mMudule\frmRoleModul.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +221,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOrgEdit.resx">
       <DependentUpon>frmOrgEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmdykCopy.resx">
+      <DependentUpon>frmdykCopy.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="mMudule\frmRoleModul.resx">

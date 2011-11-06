@@ -28,6 +28,7 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
+            this.barCopy = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
@@ -64,8 +65,9 @@
             this.btRefresh,
             this.btClose,
             this.bsItem1,
-            this.btExport});
-            this.barManager1.MaxItemId = 14;
+            this.btExport,
+            this.barCopy});
+            this.barManager1.MaxItemId = 15;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -78,6 +80,7 @@
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCopy),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
@@ -104,6 +107,15 @@
             this.btEdit.ImageIndex = 1;
             this.btEdit.Name = "btEdit";
             this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barCopy
+            // 
+            this.barCopy.Caption = "信息导入";
+            this.barCopy.Id = 14;
+            this.barCopy.ImageIndex = 2;
+            this.barCopy.Name = "barCopy";
+            this.barCopy.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barCopy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barCopy_ItemClick);
             // 
             // btDelete
             // 
@@ -257,5 +269,6 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraBars.BarSubItem btExport;
+        public DevExpress.XtraBars.BarButtonItem barCopy;
     }
 }
