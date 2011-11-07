@@ -35,6 +35,9 @@ namespace Ebada.Scgl.Sbgl {
 
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
             //选择数据目录
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK) {
+                buttonEdit1.Text = folderBrowserDialog1.SelectedPath;
+            }
         }
         string serverInfo = "";
         private void simpleButton4_Click(object sender, EventArgs e) {
