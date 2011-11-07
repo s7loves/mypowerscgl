@@ -37,6 +37,7 @@ namespace Ebada.Scgl.Xtgl {
             initImageList();
             gridViewOperation = new GridViewOperation<PJ_dyk>(gridControl1, gridView1, barManager1,new frmdykEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_dyk>(gridViewOperation_BeforeAdd);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_dyk>(gridViewOperation_AfterAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_dyk>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
@@ -62,7 +63,11 @@ namespace Ebada.Scgl.Xtgl {
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_dyk> e) {
             if (childView != null && childView.BindingList.Count > 0) e.Cancel = true;
         }
-
+        void gridViewOperation_AfterAdd(PJ_dyk obj)
+        {
+            obj.ID = obj.bh;
+            MainHelper.PlatformSqlMap.Update<PJ_dyk>(obj);
+        }
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_dyk> e) {
             if (parentID == null)
                 e.Cancel = true;
