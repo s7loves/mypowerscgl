@@ -74,12 +74,12 @@ namespace Ebada.Scgl.Xtgl
             List<PJ_dyk> list2 = new List<PJ_dyk>();
             this.getCheckList(this.treeList1.Nodes, list);
             long xhidex = 0;
-            IList<PJ_dyk> li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + parentObj.ID + "'  order by id desc");
+            IList<PJ_dyk> li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + parentObj.bh + "'  order by id desc");
             if (li.Count > 0)
-                xhidex = (Convert.ToInt64(li[0].ID) + 1);
+                xhidex = (Convert.ToInt64(li[0].bh) + 1);
             else
             {
-                xhidex =(Convert.ToInt64(parentObj.ID) * 10 + 1);
+                xhidex = (Convert.ToInt64(parentObj.bh) * 100 + 1);
             }
             foreach (string str in list)
             {
@@ -89,6 +89,7 @@ namespace Ebada.Scgl.Xtgl
 
 
                 dyk.ID = Convert.ToString(xhidex);
+                dyk.bh = dyk.ID;
                 xhidex++;
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 dyk.ParentID = parentObj.ID;
