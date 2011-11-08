@@ -35,6 +35,7 @@
             this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
@@ -50,6 +51,7 @@
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton5);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton3);
+            this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton6);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton2);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton4);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton1);
@@ -67,7 +69,7 @@
             // 
             // simpleButton5
             // 
-            this.simpleButton5.Location = new System.Drawing.Point(128, 106);
+            this.simpleButton5.Location = new System.Drawing.Point(345, 106);
             this.simpleButton5.Name = "simpleButton5";
             this.simpleButton5.Size = new System.Drawing.Size(75, 23);
             this.simpleButton5.TabIndex = 5;
@@ -80,8 +82,7 @@
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(104, 23);
             this.simpleButton3.TabIndex = 4;
-            this.simpleButton3.Text = "手机软件下载";
-            this.simpleButton3.Visible = false;
+            this.simpleButton3.Text = "下载手机软件";
             this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // simpleButton2
@@ -90,7 +91,7 @@
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(75, 23);
             this.simpleButton2.TabIndex = 3;
-            this.simpleButton2.Text = "数据上传";
+            this.simpleButton2.Text = "上传数据";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // simpleButton4
@@ -166,6 +167,15 @@
             this.memoEdit1.Size = new System.Drawing.Size(497, 262);
             this.memoEdit1.TabIndex = 0;
             // 
+            // simpleButton6
+            // 
+            this.simpleButton6.Location = new System.Drawing.Point(128, 106);
+            this.simpleButton6.Name = "simpleButton6";
+            this.simpleButton6.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton6.TabIndex = 3;
+            this.simpleButton6.Text = "上传图片";
+            this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
+            // 
             // frmUpload
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -197,5 +207,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraEditors.SimpleButton simpleButton5;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton6;
     }
 }

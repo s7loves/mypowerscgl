@@ -11,6 +11,7 @@ using Ebada.Scgl.Core;
 using System.Reflection;
 using Ebada.Scgl.Model;
 using Ebada.Components;
+using System.IO;
 
 namespace Ebada.Scgl.Sbgl {
     public partial class frmUpload : DevExpress.XtraEditors.XtraForm {
@@ -30,7 +31,9 @@ namespace Ebada.Scgl.Sbgl {
 
         private void simpleButton2_Click(object sender, EventArgs e) {
             //数据上传
+            enableUpload(false);
             upload();
+            enableUpload(true);
         }
 
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
@@ -55,8 +58,28 @@ namespace Ebada.Scgl.Sbgl {
 
         private void simpleButton3_Click(object sender, EventArgs e) {
             //手机软件下载
+            WebClient wb = new WebClient();
+            string filename = "scgl_client.apk";
+            string filepath=buttonEdit1.Text+"\\"+filename;
+            string url=string.Format("http://{0}/ScglUpdateService/{1}", textEdit1.Text,filename);
+            writeLine("下载更新地址："+url);
+            Application.DoEvents();
+            try {
+                wb.DownloadFile(url, filepath);
+                if (File.Exists(filepath)) {
+                    writeLine("更新包已下载到：" + filepath);
+                }
+            } catch (Exception err){
+                writeLine("下载失败：" + err.Message);
+            }
         }
+        private void simpleButton6_Click(object sender, EventArgs e) {
+            //上传图片
+            enableUpload(false);
+            UploadFile();
+            enableUpload(true);
 
+        }
         private void buttonEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e) {
             enableUpload(false);
         }
@@ -64,6 +87,7 @@ namespace Ebada.Scgl.Sbgl {
             simpleButton2.Enabled = flag;
             simpleButton3.Enabled = flag;
             simpleButton5.Enabled = flag;
+            simpleButton6.Enabled = flag;
         }
         private void upload() {
             DataTable dt = SqliteHelper.ExecuteDataTable("select * from ps_xl");
@@ -206,6 +230,67 @@ namespace Ebada.Scgl.Sbgl {
             
             return string.Format(str,textEdit1.Text,baseUrl,ret);
 
+        }
+
+        public string UpdateGtImage3(string id, byte[] data, string type) {
+
+            string msg = "";
+            PS_Image image = new PS_Image() { ImageID = id, ImageType = "gt" };
+            image.ImageData = data;
+            PS_Image image2 = new PS_Image() { ImageID = id };
+            PS_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_gt>(id);
+            object update = null;
+            object delete = image2;
+            if (gt != null && gt.ImageID != id) {
+                if (gt.ImageID != "") {
+                    delete = new PS_Image() { ImageID = gt.ImageID };
+                    delete = new object[] { image2, delete };
+                }
+                gt.ImageID = id;
+                update = gt;
+            }
+
+            Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, update, delete);
+            return msg;
+        }
+        private void UploadFile() {
+            DataTable dt = SqliteHelper.ExecuteDataTable("select gtid,gtcode from ps_gt");
+            int count = 0;
+            string str = "上传图片共{0}张";
+            memoEdit1.Text = "";
+            writeLine(string.Format(str, count));
+            foreach (DataRow row in dt.Rows) {
+                string file = buttonEdit1.Text + "\\" + row[1].ToString()+".jpg";
+                if (File.Exists(file)) {
+                    try {
+                        UpdateGtImage3(row[0].ToString(), File.ReadAllBytes(file), "gt");
+                        count++;
+                        memoEdit1.Text = "";
+                        writeLine(string.Format(str, count));
+                        Application.DoEvents();
+                    } catch {
+
+                    }
+                }
+            }
+            
+            
+        }
+        public string UploadFile(string id, string type, Stream fileContents) {
+            byte[] buffer = new byte[10000];
+            int bytesRead, totalBytesRead = 0;
+            MemoryStream ms = new MemoryStream();
+            do {
+                bytesRead = fileContents.Read(buffer, 0, buffer.Length);
+                ms.Write(buffer, 0, bytesRead);
+                totalBytesRead += bytesRead;
+            } while (bytesRead > 0);
+            UpdateGtImage3(id, ms.ToArray(), type);
+            ms.Close();
+            ms.Dispose();
+
+            //Console.WriteLine("Service: Received file {0} with {1} bytes", id, totalBytesRead);
+            return id;
         }
     }
 }
