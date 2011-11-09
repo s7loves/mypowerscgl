@@ -8,44 +8,47 @@ using System.Reflection;
 using System.ComponentModel;
 using Ebada.Components;
 using System.IO;
+using System.ServiceModel.Activation;
 
 namespace Ebada.Android.Service {
-    public class ScglService : IScglService {
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]  
+    public class ScglService : IScglService,IScglServiceXml {
         #region IScglService 成员
 
         public User GetUserData(string id, string pwd) {
             string str = MainHelper.EncryptoPassword(pwd);
             User user = new User();
             mUser muser = Client.ClientHelper.PlatformSqlMap.GetOne<mUser>(string.Format("where LoginID='{0}' and password='{1}' ", id, str));
-            Type t = user.GetType();/*
-            Type t2 = muser.GetType();
-            PropertyInfo[] infos=t2.GetProperties();
-            foreach (PropertyInfo info in t.GetProperties()) {
-                
-                    try {
-                        object obj=t2.GetProperty(info.Name).GetValue(muser,null);
-                        info.SetValue(t,(string)obj , null);
-                    } catch {
-                    }
-                
-            }*/
+            
 
             if (muser == null) {
                 user.UserName = "用户名或密码错误！";
             } else {
-                user.UserName = muser.UserName;
-                user.UserID = muser.UserID;
-                user.LoginID = muser.LoginID;
+                Type t = user.GetType();
+                Type t2 = muser.GetType();
+                foreach (FieldInfo info in t.GetFields()) {
+                    try {
+                        object obj = t2.GetProperty(info.Name).GetValue(muser, null);
+                        t.GetField(info.Name).SetValue(user, obj);
+                    } catch {
+                    }
+                }
+                //user.UserName = "";
+                //user.UserID = muser.UserID;
+                //user.LoginID = muser.LoginID;
                 user.PassWord = pwd;
-                user.OrgCode = muser.OrgCode;
-                user.OrgName = muser.OrgName;
-                user.UserCode = muser.UserCode;
+                //user.OrgCode = muser.OrgCode;
+                //user.OrgName = "";
+                //user.UserCode = muser.UserCode;
                 //Ebada.Core.ConvertHelper.CopyTo(muser, user);
             }
 
             return user;
         }
-
+        public User SetUserData(User user) {
+            Console.WriteLine("orgname:{0}", user.OrgName);
+            return user;
+        }
         public List<ps_xl> GetXlList(string gdscode) {
             List<ps_xl> list = new List<ps_xl>();
             IList<PS_xl> list2 = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + gdscode + "'");

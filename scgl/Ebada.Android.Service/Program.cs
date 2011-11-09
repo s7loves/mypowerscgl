@@ -11,6 +11,7 @@ namespace Ebada.Android.Service
     {
         static void Main(string[] args)
         {
+            //using (ServiceHost host = new ServiceHost(typeof(AccountService)))
             using (ServiceHost host = new ServiceHost(typeof(ScglService)))
             {
                 host.Open();
