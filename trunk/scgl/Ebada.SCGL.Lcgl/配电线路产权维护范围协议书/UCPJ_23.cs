@@ -66,6 +66,7 @@ namespace Ebada.Scgl.Lcgl
                         {
                             liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            if (wt.Description!="")
                             SubmitButton.Caption = wt.Description;
                         }
                         else
@@ -73,6 +74,7 @@ namespace Ebada.Scgl.Lcgl
                             {
                                 liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                                 TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                                if (wt.Description != "")
                                 TaskOverButton.Caption = wt.Description;
                             }
 
@@ -117,6 +119,7 @@ namespace Ebada.Scgl.Lcgl
             initImageList();
             gridViewOperation = new GridViewOperation<PJ_23>(gridControl1, gridView1, barManager1, new frm23Edit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_23>(gridViewOperation_BeforeAdd);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_23>(gridViewOperation_AfterAdd);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PJ_23>(gridViewOperation_BeforeUpdate);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_23>(gridViewOperation_BeforeDelete);
@@ -255,6 +258,10 @@ namespace Ebada.Scgl.Lcgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
+           
+        }
+        void gridViewOperation_AfterAdd(PJ_23 newobj)
+        {
             if (isWorkflowCall)
             {
                 WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
@@ -268,6 +275,7 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.CreatTime = DateTime.Now;
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                 currRecord.DocContent = newobj.BigData;
+                MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
             }
         }
         /// <summary>

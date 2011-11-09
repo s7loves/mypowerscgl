@@ -1221,8 +1221,24 @@ namespace Ebada.Scgl.Lcgl {
                 fm.ShowDialog();
                 InitData(strKind);
             }
+            if (obj is UCPJ_23)
+            {
+                fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+                fm.CurrRecord = currRecord;
+                fm.Kind = strKind;
+                fm.Status = "edit";
+                fm.ShowDialog();
+                InitData(strKind);
+            }
             else
-            { 
+            {
+                if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
+                    obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
             if (obj.GetType().GetProperty("IsWorkflowCall") != null)
                     obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
                 else
@@ -1237,13 +1253,7 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
-                if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
-                    obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
-                else
-                {
-                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
-                    return;
-                }
+               
                 if (obj.GetType().GetProperty("ParentTemple") != null)
                     obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(dt, currRecord), null);
                 else
