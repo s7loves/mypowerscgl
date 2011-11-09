@@ -18,7 +18,10 @@ namespace Ebada.Android.Service {
         /// <returns></returns>
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetUser/{id}/{pwd}", BodyStyle = WebMessageBodyStyle.Bare)]
-        User GetUserData(string id,string pwd);
+        User GetUserData(string id, string pwd);
+        [OperationContract]
+        [WebInvoke(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "SetUser", Method = "POST")]
+        User SetUserData(User user);
         /// <summary>
         /// 获取线路列表
         /// </summary>
@@ -51,20 +54,22 @@ namespace Ebada.Android.Service {
         [WebInvoke(UriTemplate = "UpdateGtList", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         string UpdateGt(List<ps_gt> data);
         [OperationContract]
-        [WebInvoke(UriTemplate = "UpdateGtOne", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        [WebInvoke(UriTemplate = "UpdateGtOne", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         string UpdateGtOne(ps_gt data);
-        //[OperationContract]
-        //[WebInvoke(UriTemplate = "UpdateImage", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
-        //string UpdateGtImage(List<ps_image> list);
-        //[OperationContract]
-        //[WebInvoke(UriTemplate = "UpdateImage2", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        //string UpdateGtImage2(string id,string data,string type,int flag);
-        //[OperationContract]
-        //[WebInvoke(UriTemplate = "upload_image", Method = "POST", ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Json)]
-        //string upload_image(ps_image list);
         [OperationContract]
         [WebInvoke(UriTemplate = "UploadFile/{id}/{type}",Method = "POST", ResponseFormat = WebMessageFormat.Json)]
         string UploadFile(string id,string type, Stream fileContents);
 
     }
+    [ServiceContract]
+    public interface IScglServiceXml {
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml, UriTemplate = "GetUser/{id}/{pwd}", BodyStyle = WebMessageBodyStyle.Bare)]
+        User GetUserData(string id, string pwd);
+        [OperationContract]
+        [WebInvoke(RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml, UriTemplate = "SetUser", Method = "POST")]
+        User SetUserData(User user);
+
+    }
+
 }

@@ -8,18 +8,18 @@ namespace Ebada.Android.Service {
     [DataContract]
     public class User {
         [DataMember]
-        public string UserName { get; set; }
+        public string UserName;
         [DataMember]
-        public string PassWord { get; set; }
+        public string PassWord;
         [DataMember]
-        public string OrgCode { get; set; }
+        public string OrgCode;
         [DataMember]
-        public string OrgName { get; set; }
+        public string OrgName;
         [DataMember]
-        public string LoginID { get; set; }
+        public string LoginID;
         [DataMember]
-        public string UserID { get; set; }
+        public string UserID;
         [DataMember]
-        public string UserCode { get; set; }
+        public string UserCode;
     }
 }
