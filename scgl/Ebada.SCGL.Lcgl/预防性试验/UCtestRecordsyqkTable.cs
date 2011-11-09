@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Lcgl
         private string parentID = null;
         private mOrg parentObj;
         private string _type = null;
-        private bool isWorkfowCall = false;
+        private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
@@ -60,12 +60,12 @@ namespace Ebada.Scgl.Lcgl
                 currRecord = value;
             }
         }
-        public bool IsWorkfowCall
+        public bool IsWorkflowCall
         {
             set
             {
 
-                isWorkfowCall = value;
+                isWorkflowCall = value;
             }
         }
         public DataTable RecordWorkFlowData
@@ -104,7 +104,7 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
             string slqwhere = " where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "'   and planExpTime like '%" + DateTime.Now.Year + "%' ";
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
 
                 slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -138,7 +138,7 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
             string slqwhere = " where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'";
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
 
                 slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -310,7 +310,7 @@ namespace Ebada.Scgl.Lcgl
         public void RefreshData(string slqwhere)
         {
 
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
 
                 slqwhere = slqwhere + " and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
@@ -325,7 +325,7 @@ namespace Ebada.Scgl.Lcgl
         public void RefreshData()
         {
             string slqwhere = " where OrgCode='" + ParentID + "'  and type='" + _type + "' ";
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
 
                 slqwhere = slqwhere + " and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
@@ -412,7 +412,7 @@ namespace Ebada.Scgl.Lcgl
 
             Export11 export = new Export11();
             export.CurrRecord = currRecord;
-            export.IsWorkfowCall = isWorkfowCall;
+            export.IsWorkflowCall = isWorkflowCall;
             export.ParentTemple = parentTemple;
             export.RecordWorkFlowData = WorkFlowData;
             switch (_type)

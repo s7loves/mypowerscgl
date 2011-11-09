@@ -18,7 +18,7 @@ namespace Ebada.Scgl.Lcgl
     /// 文档
     /// </summary>
     public class Export11 {
-        private bool isWorkfowCall = false;
+        private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
@@ -27,12 +27,12 @@ namespace Ebada.Scgl.Lcgl
             get { return parentTemple; }
             set { parentTemple = value; }
         }
-        public bool IsWorkfowCall
+        public bool IsWorkflowCall
         {
             set
             {
 
-                isWorkfowCall = value;
+                isWorkflowCall = value;
 
             }
         }
@@ -64,14 +64,14 @@ namespace Ebada.Scgl.Lcgl
             string filter = "";
             int i = 0;
             if (orgid != "") filter = " and OrgCode='" + orgid + "'";
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='"
                    + CurrRecord.ID + "' and   WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') ";
             }
             List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
             IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 for (i = 0; i < byqdatalist.Count; i++)
                 {
@@ -92,7 +92,7 @@ namespace Ebada.Scgl.Lcgl
             }
             
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='断路器'  and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 for (i = 0; i < byqdatalist.Count; i++)
                 {
@@ -114,7 +114,7 @@ namespace Ebada.Scgl.Lcgl
             
 
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='避雷器'  and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 for (i = 0; i < byqdatalist.Count; i++)
                 {
@@ -136,7 +136,7 @@ namespace Ebada.Scgl.Lcgl
 
           
             byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='电容器'  and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 for (i = 0; i < byqdatalist.Count; i++)
                 {
@@ -190,7 +190,7 @@ namespace Ebada.Scgl.Lcgl
             string filter = "";
             int i = 0;
             if (orgid != "") filter = " and OrgCode='" + orgid + "'";
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 filter = filter + "  and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                 + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
@@ -272,7 +272,7 @@ namespace Ebada.Scgl.Lcgl
             ExportExceljhbAllEx(ex, cellname, sheetname, orgid);
             string filter="";
             if (orgid != "") filter = " and OrgCode='" + orgid + "'";
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 filter = filter + " and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
@@ -308,7 +308,7 @@ namespace Ebada.Scgl.Lcgl
             Export11.ExportExceldrqwcqkEx(ex, byqdatalist, "电容器" + "预防性试验完成情况报表", orgid, isShow);
             string filter2 = "";
             if (orgid != "") filter2 = " and OrgCode='" + orgid + "'";
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 filter2 = filter2 + " and  id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
@@ -340,7 +340,7 @@ namespace Ebada.Scgl.Lcgl
             Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
             string filter = "";
             if (orgid != "") filter = " and a.OrgCode='" + orgid + "' ";
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 filter = filter + "  and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
