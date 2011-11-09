@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Lcgl
         private string parentID = null;
         private mOrg parentObj;
         private string _type = null;
-        private bool isWorkfowCall = false;
+        private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
@@ -49,12 +49,12 @@ namespace Ebada.Scgl.Lcgl
             get { return parentTemple; }
             set { parentTemple = value; }
         }
-        public bool IsWorkfowCall
+        public bool IsWorkflowCall
         {
             set
             {
 
-                isWorkfowCall = value;
+                isWorkflowCall = value;
 
             }
         }
@@ -109,7 +109,7 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
 
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID + "'"
@@ -119,7 +119,7 @@ namespace Ebada.Scgl.Lcgl
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
             string slqwhere = " where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' ";
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
 
             //    slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -158,7 +158,7 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
             string slqwhere = " where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' ";
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
 
             //    slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -170,7 +170,7 @@ namespace Ebada.Scgl.Lcgl
             //obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(slqwhere);
             //obj.CreateDate = DateTime.Now;
             //MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
             //    IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", "where xh='" + obj.xh + "'and type ='" + obj.type + "' order by CreateDate");
             //     if (li.Count == 2)
@@ -237,7 +237,7 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
         {
             string slqwhere ="where xh='" + e.Value.xh + "'and type ='" + e.Value.type + "' ";
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
 
             //    slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -357,7 +357,7 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
 
             //    slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -372,7 +372,7 @@ namespace Ebada.Scgl.Lcgl
         public void RefreshData()
         {
             string slqwhere = " where OrgCode='" + ParentID + "'  and type='" + _type + "' ";
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
 
             //    slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -455,7 +455,7 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>;
             Export11 export = new Export11();
             export.CurrRecord = currRecord;
-            export.IsWorkfowCall = isWorkfowCall;
+            export.IsWorkflowCall = isWorkflowCall;
             export.ParentTemple = parentTemple;
             export.RecordWorkFlowData = WorkFlowData;
             switch (_type)

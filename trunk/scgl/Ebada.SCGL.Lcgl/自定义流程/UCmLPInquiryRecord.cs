@@ -416,8 +416,8 @@ namespace Ebada.Scgl.Lcgl {
 
                 lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
                 MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
-                if (obj.GetType().GetProperty("IsWorkfowCall") != null)
-                    obj.GetType().GetProperty("IsWorkfowCall").SetValue(obj, true, null);
+                if (obj.GetType().GetProperty("IsWorkflowCall") != null)
+                    obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
                 else
                 {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
@@ -536,8 +536,8 @@ namespace Ebada.Scgl.Lcgl {
 
                 
                 
-                if (obj.GetType().GetProperty("IsWorkfowCall") != null)
-                    obj.GetType().GetProperty("IsWorkfowCall").SetValue(obj, true, null);
+                if (obj.GetType().GetProperty("IsWorkflowCall") != null)
+                    obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
                 else
                 {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");

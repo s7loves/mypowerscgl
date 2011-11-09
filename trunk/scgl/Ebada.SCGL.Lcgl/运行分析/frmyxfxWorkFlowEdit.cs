@@ -18,7 +18,7 @@ namespace Ebada.Scgl.Lcgl
 {
     public partial class frmyxfxWorkFlowEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_03yxfx> m_CityDic = new SortableSearchableBindingList<PJ_03yxfx>();
-        private bool isWorkfowCall = false;
+        private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
@@ -31,12 +31,12 @@ namespace Ebada.Scgl.Lcgl
                 parentTemple = value;
             }
         }
-        public bool IsWorkfowCall
+        public bool IsWorkflowCall
         {
             set
             {
 
-                isWorkfowCall = value;
+                isWorkflowCall = value;
             }
         }
         public LP_Record CurrRecord
@@ -290,7 +290,7 @@ namespace Ebada.Scgl.Lcgl
                 yxfx.CreateDate = DateTime.Now;
                 yxfx.CreateMan = MainHelper.User.UserName;
                 MainHelper.PlatformSqlMap.Create<PJ_03yxfx>(yxfx);
-                if (isWorkfowCall)
+                if (isWorkflowCall)
                 {
                     WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
                     mrwt.ModleRecordID = yxfx.ID;

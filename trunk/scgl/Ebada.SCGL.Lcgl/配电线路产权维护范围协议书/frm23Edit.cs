@@ -157,6 +157,7 @@ namespace Ebada.Scgl.Lcgl
             if (rowData.BigData.Length == 0)
             {
                 mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
+                string bhname=org.OrgName.Replace("供电所", "");
                 string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
                 DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
                 dsoFramerControl1.FileOpen(fname);
@@ -167,7 +168,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
                 }
-                string strname = SelectorHelper.GetPysm (org.OrgName,true );
+                string strname = SelectorHelper.GetPysm (bhname,true );
                 ExcelAccess ea = new ExcelAccess();
                 ea.MyWorkBook = wb;
                 ea.MyExcel = wb.Application;
@@ -181,7 +182,7 @@ namespace Ebada.Scgl.Lcgl
                 dsoFramerControl1.FileClose();
                 dsoFramerControl1.Dispose();
                 dsoFramerControl1 = null;
-                rowData.xybh = SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true).ToUpper() + "-" + DateTime.Now.Year.ToString() + "-" + string.Format("{0:D3}", icount);
+                rowData.xybh = SelectorHelper.GetPysm(bhname, true).ToUpper() + "-" + DateTime.Now.Year.ToString() + "-" + string.Format("{0:D3}", icount);
 
             }
             DSOFramerControl dsoFramerControl2 = new DSOFramerControl();

@@ -18,7 +18,7 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
         }
-        private bool isWorkfowCall = false;
+        private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
@@ -39,19 +39,19 @@ namespace Ebada.Scgl.Lcgl
                 uCtestHCRecord1.ParentTemple = value; 
             }
         }
-        public bool IsWorkfowCall
+        public bool IsWorkflowCall
         {
             set {
 
-                isWorkfowCall = value;
-                uCtestRecord1.IsWorkfowCall = value;
-                uCtestRecord2.IsWorkfowCall = value;
-                uCtestRecord3.IsWorkfowCall = value;
-                uCtestRecordssqkTable1.IsWorkfowCall = value;
-                uCtestRecordwcqkTable1.IsWorkfowCall = value;
-                uCtestRecordjhmxTable1.IsWorkfowCall = value;
-                uCtestRecord4.IsWorkfowCall = value;
-                uCtestHCRecord1.IsWorkfowCall = value; 
+                isWorkflowCall = value;
+                uCtestRecord1.IsWorkflowCall = value;
+                uCtestRecord2.IsWorkflowCall = value;
+                uCtestRecord3.IsWorkflowCall = value;
+                uCtestRecordssqkTable1.IsWorkflowCall = value;
+                uCtestRecordwcqkTable1.IsWorkflowCall = value;
+                uCtestRecordjhmxTable1.IsWorkflowCall = value;
+                uCtestRecord4.IsWorkflowCall = value;
+                uCtestHCRecord1.IsWorkflowCall = value; 
             }
         }
         public LP_Record CurrRecord

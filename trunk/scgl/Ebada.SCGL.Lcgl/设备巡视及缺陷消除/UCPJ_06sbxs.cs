@@ -36,7 +36,7 @@ namespace Ebada.Scgl.Lcgl
         private string parentID = null;
         private mOrg parentObj;
 
-        private bool isWorkfowCall = false;
+        private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
@@ -49,12 +49,12 @@ namespace Ebada.Scgl.Lcgl
                 parentTemple = value;
             }
         }
-        public bool IsWorkfowCall
+        public bool IsWorkflowCall
         {
             set
             {
 
-                isWorkfowCall = value;
+                isWorkflowCall = value;
             }
         }
         public LP_Record CurrRecord
@@ -100,7 +100,7 @@ namespace Ebada.Scgl.Lcgl
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_06sbxs> e)
         {
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
 
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + e.Value.ID + "' and RecordID='" + currRecord.ID + "'"
@@ -190,7 +190,7 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 if (slqwhere == "") slqwhere = " where 1=1";
                 slqwhere = slqwhere + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -223,7 +223,7 @@ namespace Ebada.Scgl.Lcgl
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
             newobj.xssj = DateTime.Now;
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
                 mrwt.ModleRecordID = newobj.ID;

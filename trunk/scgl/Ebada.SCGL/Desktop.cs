@@ -334,8 +334,8 @@ namespace Ebada.SCGL
 
 
 
-                 if (obj.GetType().GetProperty("IsWorkfowCall") != null)
-                     obj.GetType().GetProperty("IsWorkfowCall").SetValue(obj, true, null);
+                 if (obj.GetType().GetProperty("IsWorkflowCall") != null)
+                     obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
                  else
                  {
                      MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");

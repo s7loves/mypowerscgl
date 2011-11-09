@@ -46,7 +46,7 @@ namespace Ebada.Scgl.Lcgl
         private string parentID = null;
         private mOrg parentObj;
         private string _type = null;
-        private bool isWorkfowCall = false;
+        private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
@@ -56,11 +56,11 @@ namespace Ebada.Scgl.Lcgl
             get { return parentTemple; }
             set { parentTemple = value; }
         }
-        public bool IsWorkfowCall
+        public bool IsWorkflowCall
         {
             set {
 
-                isWorkfowCall = value;
+                isWorkflowCall = value;
                 
             }
         }
@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Lcgl
 
                 WorkFlowData = value;
 
-                if (isWorkfowCall)
+                if (isWorkflowCall)
                 {
                     IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                     foreach (WF_WorkTaskCommands wt in wtlist)
@@ -136,7 +136,7 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
 
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
 
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID+"'"
@@ -146,7 +146,7 @@ namespace Ebada.Scgl.Lcgl
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
             string slqwhere = " where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' ";
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
 
             //    slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -179,7 +179,7 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
             string slqwhere = " where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' ";
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
 
             //    slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -191,7 +191,7 @@ namespace Ebada.Scgl.Lcgl
             obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(slqwhere);
             obj.CreateDate = DateTime.Now;
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
             //    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
             //    mrwt.ModleRecordID = obj.ID;
@@ -355,7 +355,7 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
 
             //    slqwhere = slqwhere + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -370,7 +370,7 @@ namespace Ebada.Scgl.Lcgl
         public void RefreshData()
         {
             string slqwhere = " where OrgCode='" + ParentID + "'  and type='" + _type + "' ";
-            //if (isWorkfowCall)
+            //if (isWorkflowCall)
             //{
 
             //    slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -453,7 +453,7 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_yfsyjl> datalist = gridView1.DataSource as IList<PJ_yfsyjl>;
             Export11 export = new Export11();
             export.CurrRecord = currRecord;
-            export.IsWorkfowCall = isWorkfowCall;
+            export.IsWorkflowCall = isWorkflowCall;
             export.ParentTemple = parentTemple;
             export.RecordWorkFlowData = WorkFlowData;
             switch (_type)
@@ -486,7 +486,7 @@ namespace Ebada.Scgl.Lcgl
             fm.Kind = currRecord.Kind;
             Export11 export = new Export11();
             export.CurrRecord = currRecord;
-            export.IsWorkfowCall = isWorkfowCall;
+            export.IsWorkflowCall = isWorkflowCall;
             export.ParentTemple = parentTemple;
             export.RecordWorkFlowData = WorkFlowData;
             if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
@@ -512,7 +512,7 @@ namespace Ebada.Scgl.Lcgl
             //请求确认
             if (MsgBox.ShowAskMessageBox("是否确认此节点结束，并进入下一流程?") != DialogResult.OK)
             {
-                SendMessage(this.Handle, 0x0010, (IntPtr)0, (IntPtr)0);
+                //SendMessage(this.Handle, 0x0010, (IntPtr)0, (IntPtr)0);
                 return;
             }
             string strmes = "";

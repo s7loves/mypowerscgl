@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Lcgl
         private string parentID = null;
         private mOrg parentObj;
         private string _type = null;
-        private bool isWorkfowCall = false;
+        private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
@@ -49,12 +49,12 @@ namespace Ebada.Scgl.Lcgl
             get { return parentTemple; }
             set { parentTemple = value; }
         }
-        public bool IsWorkfowCall
+        public bool IsWorkflowCall
         {
             set
             {
 
-                isWorkfowCall = value;
+                isWorkflowCall = value;
 
             }
         }
@@ -100,7 +100,7 @@ namespace Ebada.Scgl.Lcgl
         {
 
             string slqwhere = " where OrgCode='" + obj.OrgCode +"' ";
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
 
                 slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -131,7 +131,7 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_AfterAdd(PJ_yfsyhcjl obj)
         {
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
                 WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
                 mrwt.ModleRecordID = obj.ID;
@@ -145,7 +145,7 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
             string slqwhere = " where OrgCode='" + obj.OrgCode + "' ";
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
 
                 slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -270,7 +270,7 @@ namespace Ebada.Scgl.Lcgl
         public void RefreshData(string slqwhere)
         {
 
-            if (isWorkfowCall)
+            if (isWorkflowCall)
             {
 
                 slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
@@ -349,7 +349,7 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_yfsyhcjl> datalist = gridView1.DataSource as IList<PJ_yfsyhcjl>;
             Export11 export = new Export11();
             export.CurrRecord = currRecord;
-            export.IsWorkfowCall = isWorkfowCall;
+            export.IsWorkflowCall = isWorkflowCall;
             export.ParentTemple = parentTemple;
             export.RecordWorkFlowData = WorkFlowData;
             export.ExportExcelhc(datalist, "设备维护实施记录", parentID); 

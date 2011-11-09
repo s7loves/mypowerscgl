@@ -46,14 +46,14 @@ namespace Ebada.Scgl.Lcgl
         private SPYJControl hqyjcontrol = null;
         private Hashtable valuehs = null;
         private DataTable WorkFlowData = null;//实例流程信息
-        private bool isWorkfowCall = false;
+        private bool isWorkflowCall = false;
         private string varDbTableName = "LP_Record";
-        public bool IsWorkfowCall
+        public bool IsWorkflowCall
         {
             set
             {
 
-                isWorkfowCall = value;
+                isWorkflowCall = value;
             }
         }
 
