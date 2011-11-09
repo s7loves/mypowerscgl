@@ -71,6 +71,10 @@ namespace Ebada.AutoUpdater.Config
             dr["FileName"] = f.Name;
             dr["FullFileName"] = f.FullName;
             dr["Version"] = GetAssemblyVersion(f.FullName);
+            if (dr["Version"].ToString() == "")
+            {
+                dr["Version"] = "1.0.0.0";
+            }
             dr["Size"] = f.Length;
             dr["NeedRestart"] = false;
             dt.Rows.Add(dr);
