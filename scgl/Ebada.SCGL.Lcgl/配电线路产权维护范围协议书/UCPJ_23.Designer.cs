@@ -129,6 +129,7 @@
             // 
             this.liuchbarSubItem.Caption = "流程命令";
             this.liuchbarSubItem.Id = 19;
+            this.liuchbarSubItem.LargeImageIndex = 7;
             this.liuchbarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.SubmitButton),
             new DevExpress.XtraBars.LinkPersistInfo(this.TaskOverButton)});
@@ -140,6 +141,7 @@
             // 
             this.SubmitButton.Caption = "提交审核";
             this.SubmitButton.Id = 20;
+            this.SubmitButton.LargeImageIndex = 6;
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -149,6 +151,7 @@
             // 
             this.TaskOverButton.Caption = "任务结束";
             this.TaskOverButton.Id = 21;
+            this.TaskOverButton.ImageIndex = 1;
             this.TaskOverButton.Name = "TaskOverButton";
             this.TaskOverButton.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;

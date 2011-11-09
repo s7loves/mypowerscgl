@@ -84,6 +84,7 @@ namespace Ebada.Scgl.WFlow
 
                 }
                 LP_Temple temp = GetWorkTaskTemple(currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, akeys[i].ToString());
+
                 if (temp != null && temp.Status == "节点审核")
                 {
                     if (!templehs.Contains(temp)) templehs.Add(temp, akeys[i].ToString());
@@ -91,6 +92,27 @@ namespace Ebada.Scgl.WFlow
                 else if (temp != null)
                 {
                     if (!templehs.Contains(temp.LPID)) templehs.Add(temp.LPID, akeys[i].ToString());
+                }
+                else
+                {
+                    IList<WF_ModleRecordWorkTaskIns> rwt = MainHelper.PlatformSqlMap.GetList<WF_ModleRecordWorkTaskIns>
+                        ("SelectWF_ModleRecordWorkTaskInsList",
+                        "where WorkFlowId='" + wf[0].WorkFlowId
+                        + "' and WorkFlowInsId='" + wf[0].WorkFlowInsId 
+                        + "'and RecordID='" + currRecord.ID + "'");
+                    foreach(WF_ModleRecordWorkTaskIns mrwt in rwt)
+                    {
+                        if (mrwt.ModleTableName.IndexOf("PJ_23") > -1)
+                        {
+                            PJ_23 pj23 = MainHelper.PlatformSqlMap.GetOneByKey<PJ_23>
+                            (mrwt.ModleRecordID);
+                            temp = new LP_Temple();
+                            temp.Status = "节点审核";
+                            temp.LPID = pj23.ID;
+                            temp.DocContent = pj23.BigData;
+                            if (!templehs.Contains(temp)) templehs.Add(temp, akeys[i].ToString());
+                        }
+                    }
                 }
             }
 
