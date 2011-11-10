@@ -4,6 +4,7 @@ using System.Text;
 using GMap.NET.WindowsForms;
 using System.Drawing;
 using GMap.NET;
+using System.Windows.Forms;
 
 namespace Ebada.Scgl.Gis.Markers {
 
@@ -60,7 +61,11 @@ namespace Ebada.Scgl.Gis.Markers {
         }
 
 
+        public virtual ContextMenu CreatePopuMenu() {
+            return new ContextMenu();
+        }
 
+        
         internal virtual void Update() {
             if (this.Overlay is IUpdateable)
                 (this.Overlay as IUpdateable).Update(this);
