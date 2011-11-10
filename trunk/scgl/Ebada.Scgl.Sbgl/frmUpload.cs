@@ -149,9 +149,9 @@ namespace Ebada.Scgl.Sbgl {
                     //ncount += n;
                 }
                 if (data.jsonData != null) {
-                    Console.WriteLine(data.jsonData);
+                    //Console.WriteLine(data.jsonData);
                     List<ps_gtsb> list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ps_gtsb>>(data.jsonData);
-                    if (list != null) {
+                    if (list != null && list.Count>0) {
                         List<SqlQueryObject> sqllist = new List<SqlQueryObject>();
                         SqlQueryObject sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from ps_gtsb where gtid='" + gt.gtID + "'");
                         sqllist.Add(sqo);
@@ -179,6 +179,7 @@ namespace Ebada.Scgl.Sbgl {
             try {
                 var client = new WebClient();
                 client.Headers.Add("content-type", "application/json;charset=utf-8");
+                client.Encoding = Encoding.UTF8;
                 ret = client.UploadString(url, "POST", data);
             } catch (Exception err) {
                 ret = err.Message;
