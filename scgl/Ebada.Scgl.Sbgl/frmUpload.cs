@@ -89,6 +89,7 @@ namespace Ebada.Scgl.Sbgl {
             simpleButton5.Enabled = flag;
             simpleButton6.Enabled = flag;
         }
+        int upCount = 0;
         private void upload() {
             DataTable dt = SqliteHelper.ExecuteDataTable("select * from ps_xl");
             string str = "开始上传数据：";
@@ -96,6 +97,7 @@ namespace Ebada.Scgl.Sbgl {
             str = "{0} {1} ，杆塔数:{2},实际上传数:{3}";
             int n1=0, n2=0;
             List<ps_gt> uplist = new List<ps_gt>();
+            upCount = 0;
             foreach (DataRow row in dt.Rows) {
                 string linecode = row["linecode"].ToString();
                 DataTable dt2 = SqliteHelper.ExecuteDataTable("select * from ps_gt where linecode='"+linecode+"'");
@@ -126,11 +128,13 @@ namespace Ebada.Scgl.Sbgl {
                 //    uplist.Clear();
                 //}
                 writeLine(string.Format(str, n2, row["linename"], n1, n3));
+                Application.DoEvents();
                 //if (ret.Contains("(")) break;
             }
+            writeLine(string.Format("共更新杆塔数：{0}", upCount));
         }
         private string UpdateGtOne(ps_gt data) {
-            PS_gt gt = Ebada.Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_gt>(data.gtID);
+            PS_gt gt = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_gt>(string.Format("where gtCode='{0}'",data.gtCode));
             if (gt != null) {
                 //foreach(FieldInfo fi in data.GetType().GetFields()){
                 //    try {
@@ -146,7 +150,7 @@ namespace Ebada.Scgl.Sbgl {
                 gt.gtJg = data.gtSpan == "是" ? "是" : "否";//借杆
                 if ((gt.gtLat + gt.gtLon) > 0) {
                     int n = Ebada.Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
-                    //ncount += n;
+                    upCount += n;
                 }
                 if (data.jsonData != null) {
                     //Console.WriteLine(data.jsonData);
