@@ -37,14 +37,17 @@ namespace Ebada.Scgl.Gis {
             set { allowEdit = value; }
         }
         public virtual ContextMenu CreatePopuMenu() {
-            if (contextMenu == null) {
-                contextMenu = new ContextMenu();
-                MenuItem item = new MenuItem();
-                item.Text = "变电所属性";
-                item.Click += new EventHandler(属性_Click);
-                contextMenu.MenuItems.Add(item);
-            }
-            return contextMenu;
+            //if (contextMenu == null) {
+            //    contextMenu = new ContextMenu();
+            //    MenuItem item = new MenuItem();
+            //    item.Text = "变电所属性";
+            //    item.Click += new EventHandler(属性_Click);
+            //    contextMenu.MenuItems.Add(item);
+            //}
+            GMapMarkerVector mv = selectedMarker as GMapMarkerVector;
+            ContextMenu menu = new ContextMenu();
+            if (mv != null) menu = mv.CreatePopuMenu();
+            return menu;
         }
 
         void 属性_Click(object sender, EventArgs e) {

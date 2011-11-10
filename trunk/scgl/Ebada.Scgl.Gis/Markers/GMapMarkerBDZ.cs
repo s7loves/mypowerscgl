@@ -5,6 +5,7 @@ using GMap.NET.WindowsForms;
 using System.Drawing;
 using GMap.NET;
 using Ebada.Scgl.Model;
+using System.Windows.Forms;
 
 namespace Ebada.Scgl.Gis.Markers {
     [Serializable]
@@ -13,7 +14,7 @@ namespace Ebada.Scgl.Gis.Markers {
         private Font mFont;
         public GMapMarkerBDZ(PointLatLng p)
             : base(p) {
-            Size=SizeSt = new Size(20, 20);
+            Size = SizeSt = new Size(20, 20);
             Offset = new Point(-10, -10);
             Text = string.Empty;
             mFont = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
@@ -25,12 +26,12 @@ namespace Ebada.Scgl.Gis.Markers {
             g.FillEllipse(Brushes.White, r);
             g.DrawEllipse(Pen, r);
             if (!string.IsNullOrEmpty(Text)) {
-                Size sf=g.MeasureString(Text, mFont).ToSize();
+                Size sf = g.MeasureString(Text, mFont).ToSize();
 
-                g.DrawString(Text, mFont,Brushes.MidnightBlue, LocalPosition.X + 10 - sf.Width / 2, LocalPosition.Y + 30);
+                g.DrawString(Text, mFont, Brushes.MidnightBlue, LocalPosition.X + 10 - sf.Width / 2, LocalPosition.Y + 30);
             }
         }
-        
+
         internal override void Update() {
             PointOverLay lay = this.Overlay as PointOverLay;
             if (lay != null && lay.AllowEdit) {
@@ -38,6 +39,25 @@ namespace Ebada.Scgl.Gis.Markers {
                 org.C1 = this.Position.Lat.ToString();
                 org.C2 = this.Position.Lng.ToString();
                 Client.ClientHelper.PlatformSqlMap.Update<mOrg>(org);
+            }
+        }
+
+        public override ContextMenu CreatePopuMenu() {
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem item = new MenuItem();
+            item.Text = "变电所属性";
+            item.Click += new EventHandler(属性_Click);
+            contextMenu.MenuItems.Add(item);
+            return contextMenu;
+        }
+
+        void 属性_Click(object sender, EventArgs e) {
+
+            frmBdsEdit dlg = new frmBdsEdit();
+
+            dlg.RowData = this.Tag;
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                Client.ClientHelper.PlatformSqlMap.Update<mOrg>(dlg.RowData);
             }
         }
     }
