@@ -455,7 +455,7 @@ namespace Ebada.Scgl.Lcgl
                 dockPanel1.Controls.Add(filecontrol);
                 currentPosY += 20;
             }
-            if (1==1||RecordWorkTask.HaveWorkFlowBackRole(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
+            if (currRecord.Status!="存档"||RecordWorkTask.HaveWorkFlowBackRole(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
             {
                 Button btn_Back = new Button();
                 dockPanel1.Controls.Add(btn_Back);
