@@ -120,7 +120,7 @@ namespace Ebada.Scgl.Gis {
                  LineRoute route = new LineRoute(points, linecode);
                  //route.Stroke.Color = Color.Black;
                  if (linecode.Length == 6)
-                     route.Stroke.Width = 3;
+                     route.Stroke.Width = 4;
                  else
                      route.Stroke.Width = 2;
                  foreach (PS_gt gt in list) {
@@ -153,7 +153,7 @@ namespace Ebada.Scgl.Gis {
                      if (box.Contains(pf)) {
                          PointLatLng point = new PointLatLng(Convert.ToDouble(gt.gtLat), Convert.ToDouble(gt.gtLon));
                          marker = new GMapMarkerBYQ(point);
-                         marker.IsHitTestVisible = false;
+                         //marker.IsHitTestVisible = false;
                          layer.Markers.Add(marker);
                      }
                  }
