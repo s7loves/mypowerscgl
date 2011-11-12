@@ -69,9 +69,10 @@ namespace Ebada.Scgl.Gis {
         }
         public void OnMarkerChanged(GMapMarker marker) {
             GMapMarkerVector markerv = marker as GMapMarkerVector;
-            markerv.Route.UpdateRoutePostion(markerv);
-            control.UpdateRouteLocalPosition(markerv.Route);
-
+            if (markerv.Route != null) {
+                markerv.Route.UpdateRoutePostion(markerv);
+                control.UpdateRouteLocalPosition(markerv.Route);
+            }
         }
         protected override void DrawRoutes(System.Drawing.Graphics g) {
             base.DrawRoutes(g);

@@ -47,9 +47,29 @@ namespace TLMapPlatform {
             treeList1.DataSource = mTable;
             treeList1.KeyFieldName = "ID";
             treeList1.ParentFieldName = "ParentID";
-
+            
             mTable.Rows.Add(hide, "0", "10kV线路", "10", "0");
+            mTable.Rows.Add(hide, "0", "0.4kV台区", "0.4", "0");
             mTable.Rows.Add(hide, "0", "变电所", "bdz", "0");
+            treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
+            treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
+        }
+
+        void treeList1_BeforeExpand(object sender, BeforeExpandEventArgs e) {
+            //DataRow row=treeList1.GetDataRecordByNode(e.Node) as DataRow;
+            string id = e.Node["ID"].ToString();
+            if (id.Contains("_")&& e.Node.Nodes.Count==1) {
+                e.Node.Nodes.Clear();
+                inittq(id.Substring(0, id.Length - 1));
+            }
+            e.CanExpand = true;
+        }
+
+        void treeList1_BeforeFocusNode(object sender, BeforeFocusNodeEventArgs e) {
+            string id = e.Node["ID"].ToString();
+            if (id.Contains("_") && !e.Node.HasChildren) {
+                mTable.Rows.Add(hide, "0", "_", id+"^", id);
+            }
         }
         private bool showToolbar;
 
@@ -88,13 +108,27 @@ namespace TLMapPlatform {
                 //    mTable.Rows.Add(layer.IsVisibile ? "1" : "0", "1", layer.ToString(), "1", layer.Id);
                 //}
             }
+            IList<mOrg> orgList = ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgtype='1'");
+            foreach (mOrg org in orgList) {
+                mTable.Rows.Add(hide, "0", org.OrgName, org.OrgCode, "10");
+                mTable.Rows.Add(hide, "0", org.OrgName, org.OrgCode+"_", "0.4");
+            }
             IList<PS_xl> list= ClientHelper.PlatformSqlMap.GetList<PS_xl>("where len(linecode)=6 order by linecode");
             foreach (PS_xl xl in list) {
-                mTable.Rows.Add(hide, "0", xl.LineName, xl.LineCode, "10");
+                mTable.Rows.Add(hide, "0", xl.LineName, xl.LineCode, xl.OrgCode);
             }
             
             treeList1.EndInit();
-            treeList1.ParentFieldName = "ParentID";
+            //treeList1.ParentFieldName = "ParentID";
+
+        }
+        private void inittq(string gdscode) {
+            treeList1.BeginInit();
+            IList<PS_tq> tqlist = ClientHelper.PlatformSqlMap.GetList<PS_tq>(string.Format("where left(tqcode,3)={0}",gdscode));
+            foreach (PS_tq tq in tqlist) {
+                mTable.Rows.Add(hide, "0", tq.tqName, tq.tqCode, tq.tqCode.Substring(0, 3) + "_");
+            }
+            treeList1.EndInit();
         }
         private void controlNavigator1_Click(object sender, EventArgs e) {
 
@@ -135,7 +169,11 @@ namespace TLMapPlatform {
 
             GMapOverlay lay = mRMap.FindOverlay(lineCode);
             if (lay == null) {
+                if (lineCode.Length == 10)
+                     lay = LineOverlay.CreateTQLine(mRMap, lineCode,"");
+                else   
                 lay = LineOverlay.CreateLine(mRMap, lineCode, "");
+                
                 mRMap.Overlays.Add(lay);
                 //mRMap.ZoomAndCenterRoutes(lineCode);
             }
@@ -163,7 +201,7 @@ namespace TLMapPlatform {
                     string code = hit.Node["ID"].ToString();
                     if (hit.Column.FieldName == "显示") {
                         
-                        if (code.Length == 6 || code=="bdz")
+                        if (code.Length >= 6 || code=="bdz")
                             showLayer(code, hit.Node["显示"].ToString() == "1");
 
                     } else if (hit.Column.FieldName == "编辑") {
