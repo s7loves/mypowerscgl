@@ -1221,6 +1221,7 @@ namespace Ebada.Scgl.Lcgl {
                 fm.ShowDialog();
                 InitData(strKind);
             }
+            else
             if (obj is UCPJ_23)
             {
                 fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
