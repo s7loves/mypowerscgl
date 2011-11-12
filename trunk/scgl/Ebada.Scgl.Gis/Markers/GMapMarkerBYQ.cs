@@ -13,18 +13,18 @@ namespace Ebada.Scgl.Gis.Markers {
         private Font mFont;
         public GMapMarkerBYQ(PointLatLng p)
             : base(p) {
-            Size=SizeSt = new Size(30, 20);
-            Offset = new Point(-15, -10);
+            Size=SizeSt = new Size(15, 10);
+            Offset = new Point(-7, -5);
             Text = string.Empty;
             mFont = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
         }
         public override void OnRender(Graphics g) {
             System.Drawing.Point p1 = new System.Drawing.Point(LocalPosition.X, LocalPosition.Y);
             //new Pen(Color.FromArgb(144, Color.MidnightBlue));
-            Rectangle r = new Rectangle(p1.X,p1.Y,20,20);
-            Rectangle r2 = new Rectangle(p1.X+10, p1.Y, 20, 20);
-            g.FillEllipse(Brushes.White, r);
-            g.FillEllipse(Brushes.White, r2);
+            Rectangle r = new Rectangle(p1.X,p1.Y,10,10);
+            Rectangle r2 = new Rectangle(p1.X+5, p1.Y, 10, 10);
+            //g.FillEllipse(Brushes.White, r);
+            //g.FillEllipse(Brushes.White, r2);
             g.DrawEllipse(Pens.Blue, r);
             g.DrawEllipse(Pens.Blue, r2);
             if (!string.IsNullOrEmpty(Text)) {
