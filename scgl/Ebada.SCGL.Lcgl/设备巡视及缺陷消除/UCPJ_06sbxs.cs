@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using Ebada.Scgl.WFlow;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -328,6 +329,75 @@ namespace Ebada.Scgl.Lcgl
             pd.parentobj = ParentObj;
             pd.ShowDialog();
           
+        }
+
+        private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmModleSubmit fm = new frmModleSubmit();
+            fm.RecordWorkFlowData = WorkFlowData;
+            fm.CurrRecord = currRecord;
+            if (currRecord.Status == "申报")
+                fm.Status = "add";
+            else
+                fm.Status = "edit";
+            fm.Kind = currRecord.Kind;
+            Export11 export = new Export11();
+            export.CurrRecord = currRecord;
+            export.IsWorkflowCall = isWorkflowCall;
+            export.ParentTemple = parentTemple;
+            export.RecordWorkFlowData = WorkFlowData;
+            if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
+                export.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", parentID, false);
+            else
+                export.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", "", false);
+            fm.ParentTemple = parentTemple;
+            if (fm.ShowDialog() == DialogResult.OK)
+            {
+
+                if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
+                    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
+                else
+                    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
+                gridControl1.FindForm().Close();
+            }
+        }
+
+        private void TaskOverButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认此节点结束，并进入下一流程?") != DialogResult.OK)
+            {
+                //SendMessage(this.Handle, 0x0010, (IntPtr)0, (IntPtr)0);
+                return;
+            }
+            string strmes = "";
+            WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                currRecord.Status = "存档";
+            }
+            else
+            {
+                currRecord.Status = strmes;
+            }
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+            gridControl1.FindForm().Close();
         }
     }
 }
