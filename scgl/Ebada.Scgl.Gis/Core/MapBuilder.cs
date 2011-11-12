@@ -118,6 +118,11 @@ namespace Ebada.Scgl.Gis {
                  GMapMarkerVector preMarker = null;
                  List<PointLatLng> points = new List<PointLatLng>();
                  LineRoute route = new LineRoute(points, linecode);
+                 //route.Stroke.Color = Color.Black;
+                 if (linecode.Length == 6)
+                     route.Stroke.Width = 3;
+                 else
+                     route.Stroke.Width = 2;
                  foreach (PS_gt gt in list) {
                      PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
                      if (box.Contains(pf)) {
@@ -139,6 +144,17 @@ namespace Ebada.Scgl.Gis {
                          layer.Markers.Add(marker);
                          route.Markers.Add(marker);
                          marker.Route = route;
+                     }
+                 }
+                 //变压器
+                 if (linecode.Length > 6 && list.Count > 0) {
+                     PS_gt gt = list[list.Count - 1];
+                     PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
+                     if (box.Contains(pf)) {
+                         PointLatLng point = new PointLatLng(Convert.ToDouble(gt.gtLat), Convert.ToDouble(gt.gtLon));
+                         marker = new GMapMarkerBYQ(point);
+                         marker.IsHitTestVisible = false;
+                         layer.Markers.Add(marker);
                      }
                  }
                  if (route.Points.Count > 0) {

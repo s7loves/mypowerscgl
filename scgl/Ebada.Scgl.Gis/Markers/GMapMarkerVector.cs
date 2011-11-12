@@ -13,7 +13,7 @@ namespace Ebada.Scgl.Gis.Markers {
 
         public float? Bearing;
 
-        public System.Drawing.Size SizeSt = new Size(8, 8);
+        public System.Drawing.Size SizeSt = new Size(6, 6);
         public Pen Pen;
         private List<GMapMarkerVector> items;
         private GMapMarkerVector parentMarker;
@@ -47,7 +47,7 @@ namespace Ebada.Scgl.Gis.Markers {
         public GMapMarkerVector(PointLatLng p)
             : base(p) {
             Size = SizeSt;
-            Offset = new Point(-4, -4);
+            Offset = new Point(-3, -3);
             Pen = new Pen(Color.Red, 2);
             items = new List<GMapMarkerVector>();
         }

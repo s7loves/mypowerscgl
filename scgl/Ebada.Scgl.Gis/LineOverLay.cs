@@ -78,7 +78,7 @@ namespace Ebada.Scgl.Gis {
         }
         public override void Render(System.Drawing.Graphics g) {
             bool flag=control.MarkersEnabled;
-            if (control.Zoom < 15)
+            if (control.Zoom < 14)
                 control.MarkersEnabled = false;
             base.Render(g);
             control.MarkersEnabled = flag;
