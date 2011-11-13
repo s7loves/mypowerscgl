@@ -39,7 +39,9 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbModle");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sl");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbCapacity");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
+            //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
+            textEdit1.DataBindings.Add("EditValue", rowData, "syPeriod");
+
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "syProject");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "preExpTime");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "planExpTime");
