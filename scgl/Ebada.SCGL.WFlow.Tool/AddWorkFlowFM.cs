@@ -115,24 +115,26 @@ namespace Ebada.SCGL.WFlow.Tool
                 else
                     tmpNodeInfo.Status = "0";
                 tmpNodeInfo.Description = tbxDescription.Text;
-                tmpNodeInfo.InsertWorkflowNode();
-                if (nowTreeNode.NodeType == WorkConst.WORKFLOW_CLASS)//点击的是分类节点
+                
+                if (tmpNodeInfo.NodeType == WorkConst.WORKFLOW_CLASS)//点击的是分类节点
                 {
+                    tmpNodeInfo.InsertWorkflowNode();
                     nowTreeNode.Nodes.Add(tmpNodeInfo);
                 }
                 else
-                    if (nowTreeNode.NodeType == WorkConst.WORKFLOW_FLOW)//点击的是流程节点
+                    if (tmpNodeInfo.NodeType == WorkConst.WORKFLOW_FLOW)//点击的是流程节点
                     {
-                        nowTreeNode.Parent.Nodes.Add(tmpNodeInfo);
-                        WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + tmpNodeInfo.Text + "'");
+                        //nowTreeNode.Parent.Nodes.Add(tmpNodeInfo);
+                        WF_WorkFlow wf = (WF_WorkFlow)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowList", " where FlowCaption='" + tbxWorkflowCaption.Text + "'");
                         if(wf!=null)
                         {
-                            MsgBox.ShowWarningMessageBox("流程名 " + tmpNodeInfo.Text + " 已经存在，不能重复");
+                            MsgBox.ShowWarningMessageBox("流程名 " + tbxWorkflowCaption.Text + " 已经存在，不能重复");
                             return;
                         }
-
+                        tmpNodeInfo.InsertWorkflowNode();
+                        nowTreeNode.Nodes.Add(tmpNodeInfo);
                         //保存控制权限
-                        WorkFlowTask.DeleteAllPower((nowTreeNode as WorkFlowTreeNode).NodeId, (nowTreeNode as WorkFlowTreeNode).NodeId);
+                        WorkFlowTask.DeleteAllPower((tmpNodeInfo as WorkFlowTreeNode).NodeId, (tmpNodeInfo as WorkFlowTreeNode).NodeId);
                         if (cbxFuJian.Checked)
                         {
                             WorkFlowTask.SetTaskPower(WorkConst.WorkTask_FuJian, tmpNodeInfo.NodeId, tmpNodeInfo.NodeId);
