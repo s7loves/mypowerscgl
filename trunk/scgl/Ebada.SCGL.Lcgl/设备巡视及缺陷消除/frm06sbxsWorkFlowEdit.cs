@@ -15,7 +15,7 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frm06sbxsEdit : FormBase, IPopupFormEdit
+    public partial class frm06sbxsWorkFlowEdit : FormBase, IPopupFormEdit
     {
         SortableSearchableBindingList<PJ_06sbxs> m_CityDic = new SortableSearchableBindingList<PJ_06sbxs>();
 
@@ -71,7 +71,7 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        public frm06sbxsEdit()
+        public frm06sbxsWorkFlowEdit()
         {
             InitializeComponent();
         }
@@ -347,11 +347,6 @@ namespace Ebada.Scgl.Lcgl
         private void dateEdit1_EditValueChanged(object sender, EventArgs e)
         {
             comboBoxEdit4_EditValueChanged(sender ,e);
-        }
-
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-
         }
 
 
