@@ -118,7 +118,7 @@
             // 
             // btAddfrm
             // 
-            this.btAddfrm.Caption = "增加";
+            this.btAddfrm.Caption = "新建";
             this.btAddfrm.Id = 0;
             this.btAddfrm.ImageIndex = 6;
             this.btAddfrm.Name = "btAddfrm";
