@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using Ebada.Scgl.WFlow;
 namespace Ebada.Scgl.Lcgl
 {
     public partial class frm06sbxsWorkFlowEdit : FormBase, IPopupFormEdit
@@ -347,6 +348,89 @@ namespace Ebada.Scgl.Lcgl
         private void dateEdit1_EditValueChanged(object sender, EventArgs e)
         {
             comboBoxEdit4_EditValueChanged(sender ,e);
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            string strmes = "";
+            PJ_06sbxs sbxs = RowData as PJ_06sbxs;
+            object obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_06sbxs>(sbxs.ID);
+            if (obj == null)
+            {
+
+                sbxs.CreateDate = DateTime.Now;
+                sbxs.CreateMan = MainHelper.User.UserName;
+                MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(sbxs);
+                if (isWorkflowCall)
+                {
+                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ModleRecordID = sbxs.ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.ModleTableName = sbxs.GetType().ToString();
+                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                }
+
+            }
+            else
+            {
+                MainHelper.PlatformSqlMap.Update<PJ_03yxfx>(RowData);
+
+            }
+            //currRecord.ImageAttachment = bt;
+            //currRecord.SignImg = bt;
+            currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { sbxs, currRecord });
+
+            }
+            WF_WorkTaskCommands wt;
+            //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
+            wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                currRecord.Status = "存档";
+            }
+            else
+            {
+                currRecord.Status = strmes;
+            }
+            if (currRecord.ImageAttachment == null)
+            {
+                currRecord.ImageAttachment = new byte[0];
+            }
+            if (currRecord.DocContent == null)
+            {
+                currRecord.DocContent = new byte[0];
+            }
+            if (currRecord.SignImg == null)
+            {
+                currRecord.SignImg = new byte[0];
+            }
+            Export03.ExportExcelWorkFlow(ref  currRecord, (PJ_03yxfx)RowData);
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
         }
 
 
