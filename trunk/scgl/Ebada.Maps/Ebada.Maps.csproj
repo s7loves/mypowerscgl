@@ -195,6 +195,9 @@
     <EmbeddedResource Include="WF_TableFieldValueView.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_qxfl.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
