@@ -114,3 +114,7 @@ execute sp_addextendedproperty 'MS_Description',
    'gzrjID',
    'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'gzrjID'
 go
+execute sp_addextendedproperty 'MS_Description', 
+   'È±ÏÝÀ´Ô´',
+   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 's1'
+go
