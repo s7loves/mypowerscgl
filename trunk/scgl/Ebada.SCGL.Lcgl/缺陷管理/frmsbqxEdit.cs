@@ -16,7 +16,7 @@ using System.Collections;
 using Ebada.Scgl.WFlow;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmsbqxWorkFlowEdit : FormBase, IPopupFormEdit
+    public partial class frmsbqxEdit : FormBase, IPopupFormEdit
     {
         SortableSearchableBindingList<PJ_qxfl> m_CityDic = new SortableSearchableBindingList<PJ_qxfl>();
 
@@ -72,7 +72,7 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        public frmsbqxWorkFlowEdit()
+        public frmsbqxEdit()
         {
             InitializeComponent();
         }

@@ -30,9 +30,9 @@ namespace Ebada.Scgl.Lcgl
     /// </summary>
     public partial class UCPJ_SBQX : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_06sbxs> gridViewOperation;
+        private GridViewOperation<PJ_qxfl> gridViewOperation;
 
-        public event SendDataEventHandler<PJ_06sbxs> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_qxfl> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
@@ -41,7 +41,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        private string varDbTableName = "PJ_06sbxs,LP_Record";
+        private string varDbTableName = "PJ_qxfl,LP_Record";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -92,14 +92,14 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_06sbxs>(gridControl1, gridView1, barManager1,new frm06sbxsEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_06sbxs>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<PJ_qxfl>(gridControl1, gridView1, barManager1, new frmsbqxEdit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_qxfl>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_06sbxs>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_qxfl>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
-        
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_06sbxs> e)
+
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_qxfl> e)
         {
             if (isWorkflowCall)
             {
@@ -112,7 +112,7 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_06sbxs> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_qxfl> e)
         {
             if (parentID == null)
                 e.Cancel = true;
@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Lcgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_06sbxs);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_qxfl);
         }
         private void hideColumn(string colname)
         {
@@ -184,6 +184,9 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("OrgCode");
             hideColumn("LineID");
             hideColumn("gzrjID");
+            hideColumn("s1");
+            hideColumn("s2");
+            hideColumn("s3");
         }
         /// <summary>
         /// 刷新数据
@@ -206,7 +209,7 @@ namespace Ebada.Scgl.Lcgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_06sbxs> GridViewOperation
+        public GridViewOperation<PJ_qxfl> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -215,7 +218,7 @@ namespace Ebada.Scgl.Lcgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_06sbxs newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_qxfl newobj)
         {
             if (parentID == null) return;
             newobj.OrgCode = parentID;
@@ -295,27 +298,27 @@ namespace Ebada.Scgl.Lcgl
             //    }
             //}
 
-            Dictionary<string, List<PJ_06sbxs>> diclist = new Dictionary<string, List<PJ_06sbxs>>();
+            Dictionary<string, List<PJ_qxfl>> diclist = new Dictionary<string, List<PJ_qxfl>>();
             for (int i = 0; i < gridView1.RowCount;i++ )
             {
-                PJ_06sbxs _pj = gridView1.GetRow(i) as PJ_06sbxs;
+                PJ_qxfl _pj = gridView1.GetRow(i) as PJ_qxfl;
                 if (diclist.ContainsKey(_pj.LineID))
                 {
                     diclist[_pj.LineID].Add(_pj);
                 }
                 else
                 {
-                    List<PJ_06sbxs> lispj = new List<PJ_06sbxs>();
+                    List<PJ_qxfl> lispj = new List<PJ_qxfl>();
                     lispj.Add(_pj);
                     diclist[_pj.LineID] = lispj;
                 }
             }
-            foreach (KeyValuePair<string, List<PJ_06sbxs>> pp in diclist)
+            foreach (KeyValuePair<string, List<PJ_qxfl>> pp in diclist)
             {
-                List<PJ_06sbxs> objlist = pp.Value;
+                List<PJ_qxfl> objlist = pp.Value;
                 if (objlist.Count > 0)
                 {
-                    Export06.ExportExcel(objlist);
+                    ExportQX.ExportExcel(objlist);
                 }
 
             }
