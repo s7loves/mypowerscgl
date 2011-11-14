@@ -26,6 +26,7 @@ namespace Ebada.Scgl.Lcgl
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PJ_qxfl,LP_Record";
+        public event SendDataEventHandler<mOrg> SelectGdsChanged;
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -88,11 +89,35 @@ namespace Ebada.Scgl.Lcgl
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr", false, DataSourceUpdateMode.OnPropertyChanged);
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xcr");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "xcrq");
-
+           
+            btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
             // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
+
+        }
+        void btGdsList_EditValueChanged(object sender, EventArgs e)
+        {
+            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
+            mOrg org = null;
+            if (list.Count > 0)
+                org = list[0];
+            rowData.OrgName = org.OrgName;
+            rowData.OrgCode = org.OrgCode;
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+
+            comboBoxEdit3.Properties.Items.AddRange(ryList);
+            comboBoxEdit5.Properties.Items.AddRange(ryList);
+            comboBoxEdit6.Properties.Items.AddRange(ryList);
+            comboBoxEdit7.Properties.Items.AddRange(ryList);
+            if (org != null)
+            {
+              
+                if (SelectGdsChanged != null)
+                    SelectGdsChanged(this, org);
+            }
+
 
         }
         #region IPopupFormEdit Members
@@ -130,19 +155,22 @@ namespace Ebada.Scgl.Lcgl
 
         private void InitComboBoxData()
         {
-            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            //ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
 
             //comboBoxEdit3.Properties.Items.AddRange(ryList);
-            comboBoxEdit5.Properties.Items.AddRange(ryList);
+           // comboBoxEdit5.Properties.Items.AddRange(ryList);
             //comboBoxEdit6.Properties.Items.AddRange(ryList);
-            comboBoxEdit7.Properties.Items.AddRange(ryList);
+            //comboBoxEdit7.Properties.Items.AddRange(ryList);
+            IList<ViewGds> gdslist = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+            SetComboBoxData(btGdsList, "OrgName", "OrgCode", "选择供电所", "", gdslist as IList);
 
             //ICollection linelist = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电线路名称
             ////线路名称
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
             IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'");
-            SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
+            SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit as IList);
 
+            
             //巡视区段
             // ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视区段", comboBoxEdit2.Properties);
 
@@ -165,7 +193,7 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_xl> post)
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList post)
         {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -433,6 +461,13 @@ namespace Ebada.Scgl.Lcgl
             Export03.ExportExcelWorkFlow(ref  currRecord, (PJ_03yxfx)RowData);
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
         }
+
+        private void frmsbqxWorkFlowEdit_Load(object sender, EventArgs e)
+        {
+            InitComboBoxData();
+        }
+
+       
 
         
 
