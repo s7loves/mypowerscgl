@@ -136,6 +136,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.TaskOverButton)});
             this.liuchbarSubItem.Name = "liuchbarSubItem";
             this.liuchbarSubItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // SubmitButton
             // 
@@ -143,6 +144,7 @@
             this.SubmitButton.Id = 19;
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.SubmitButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.SubmitButton_ItemClick);
             // 
             // TaskOverButton
@@ -151,6 +153,7 @@
             this.TaskOverButton.Id = 20;
             this.TaskOverButton.Name = "TaskOverButton";
             this.TaskOverButton.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
             // 
             // btAdd

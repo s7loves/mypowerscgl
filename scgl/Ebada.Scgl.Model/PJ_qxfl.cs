@@ -260,7 +260,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[xcqx],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("消除期限")]
         public string xcqx
         {
             get { return _xcqx; }
@@ -380,7 +380,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[qxly],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("缺陷来源")]
         public string qxly
         {
             get { return _qxly; }
@@ -401,7 +401,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[remark],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("说明")]
         public string remark
         {
             get { return _remark; }
