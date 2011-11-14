@@ -39,7 +39,9 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbModle");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sl");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbCapacity");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
+            //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
+            textEdit1.DataBindings.Add("EditValue", rowData, "syPeriod");
+
             //this.comboBoxEdit7.DataBindings.Add("EditValue", rowData2, "syPeriod");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "syProject");
             //this.memoEdit3.DataBindings.Add("EditValue", rowData2, "syProject");
@@ -120,7 +122,8 @@ namespace Ebada.Scgl.Lcgl
                         rowData2.ID = DateTime.Now.ToString("yyyyMMddHHmmssffffff");                      
                     }
                 }
-                comboBoxEdit7.Text=rowData2.syPeriod;
+                //comboBoxEdit7.Text=rowData2.syPeriod;
+                textEdit2.Text = rowData2.syPeriod;
                 memoEdit3.Text=rowData2.syProject;
                 comboBoxEdit9.Text=rowData2.charMan;
 
@@ -194,7 +197,8 @@ namespace Ebada.Scgl.Lcgl
             rowData2.sl = rowData.sl;
             rowData2.sbModle = rowData.sbModle;
             rowData2.Remark = rowData.Remark;
-            rowData2.syPeriod = comboBoxEdit7.Text ;
+           // rowData2.syPeriod = comboBoxEdit7.Text ;
+            rowData2.syPeriod = textEdit2.Text;
             rowData2.syProject = memoEdit3.Text;
             rowData2.preExpTime = Convert.ToDateTime(dateEdit4.Text);
             rowData2.planExpTime = Convert.ToDateTime(dateEdit1.Text);
