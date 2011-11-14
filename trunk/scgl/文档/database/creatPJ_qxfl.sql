@@ -40,81 +40,40 @@ execute sp_addextendedproperty 'MS_Description',
    'user', 'dbo', 'table', 'PJ_qxfl'
 go
 
-execute sp_addextendedproperty 'MS_Description', 
-   '记录ID',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'ID'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '供电所代码',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'OrgCode'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '供电所名称',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'OrgName'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '线路代码',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'LineID'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '线路名称',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'LineName'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '巡视区段',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'xlqd'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '巡视时间',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'xssj'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '巡视人',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'xsr'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '缺陷内容',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'qxnr'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '缺陷类别',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'qxlb'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '消除人',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'xcr'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '消除日期',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'xcrq'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '填写人',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'CreateMan'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   '填写日期',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'CreateDate'
-go
-
-execute sp_addextendedproperty 'MS_Description', 
-   'gzrjID',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 'gzrjID'
-go
-execute sp_addextendedproperty 'MS_Description', 
-   '缺陷来源',
-   'user', 'dbo', 'table', 'PJ_qxfl', 'column', 's1'
-go
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'记录ID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'ID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'供电所代码' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'OrgCode'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'供电所名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'OrgName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'线路代码' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'LineID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'线路名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'LineName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'巡视区段' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'xlqd'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'巡视时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'xssj'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'巡视人' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'xsr'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'缺陷内容' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'qxnr'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'缺陷类别' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'qxlb'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'消缺期限' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'xcqx'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'消除人' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'xcr'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'消除日期' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'xcrq'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'填写人' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'CreateMan'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'填写日期' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'CreateDate'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'gzrjID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'gzrjID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'缺陷来源' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'qxly'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'说明' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'remark'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'缺陷来源' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N's1'
