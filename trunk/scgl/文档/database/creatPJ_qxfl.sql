@@ -60,7 +60,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'缺陷内容' , @l
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'缺陷类别' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'qxlb'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'消缺期限' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'xcqx'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'消除期限' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'xcqx'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'消除人' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'PJ_qxfl', @level2type=N'COLUMN',@level2name=N'xcr'
 GO
