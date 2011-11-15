@@ -87,7 +87,7 @@ namespace Ebada.Scgl.Yxgl
         //}
         TreeViewOperation<PJ_17> treeViewOperator;
         private string parentID = "";
-
+        private mOrg parentObj = null;
         [Browsable(false)]
         public TreeViewOperation<PJ_17> TreeViewOperator
         {
@@ -114,8 +114,8 @@ namespace Ebada.Scgl.Yxgl
 
         void btGDS_EditValueChanged(object sender, EventArgs e)
         {
-            //parentID = btGDS.EditValue.ToString();
-            //InitData();
+            parentID = btGdsList.EditValue.ToString();
+            InitData();
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
             mOrg org = null;
             if (list.Count > 0)
@@ -123,8 +123,8 @@ namespace Ebada.Scgl.Yxgl
 
             if (org != null)
             {
-
-                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
+                parentObj = org;
+                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where LineVol='10' and OrgCode='" + org.OrgCode + "'");
                 repositoryItemLookUpEdit2.DataSource = xlList;
             }
         }
@@ -159,6 +159,14 @@ namespace Ebada.Scgl.Yxgl
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
+            if (this.Site != null) return;
+            btGdsList.Edit = DicTypeHelper.GdsDic;
+            btGdsList.EditValueChanged += new EventHandler(btGDS_EditValueChanged);
+            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1") {//如果是供电所人员，则锁定
+                btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
+                btGdsList.Edit.ReadOnly = true;
+            }
+
         }
         public void Init() {
 
@@ -179,11 +187,17 @@ namespace Ebada.Scgl.Yxgl
             //btGDS.Edit = DicTypeHelper.GdsDic;
 
             treeList1.Columns["gzrjID"].Visible = false;
+
             //btGdsList.Edit = DicTypeHelper.GdsDic;
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + MainHelper.User.OrgCode      + "'");
-            repositoryItemLookUpEdit2.DataSource = xlList;
-            if (this.Site == null)
-                InitData();
+            //IList<PS_xl> xlList = null;
+            //if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1") {
+            //    xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where LineVol='10' and OrgCode='" + MainHelper.User.OrgCode + "'");
+            //} else {
+            //    xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where LineVol='10' ");
+            //}
+            //repositoryItemLookUpEdit2.DataSource = xlList;
+            //if (this.Site == null)
+            //    InitData();
 
         }
         /// <summary>
@@ -191,7 +205,7 @@ namespace Ebada.Scgl.Yxgl
         /// </summary>
         public void InitData() {
             //treeViewOperator.RefreshData(" where OrgCode='" + parentID + "' order by linetype,linecode");
-            treeViewOperator.RefreshData(" where OrgCode='" + MainHelper.User.OrgCode + "' order by  CreateDate");
+            treeViewOperator.RefreshData(" where OrgCode='" + parentID + "' order by  CreateDate");
         }
 
         
@@ -205,11 +219,11 @@ namespace Ebada.Scgl.Yxgl
             PS_xl xl= btXlList.EditValue as PS_xl;
             PJ_17 pj = new PJ_17();
             pj.CreateDate = DateTime.Now;
-            pj.CreateMan = MainHelper.User.UserID;
+            pj.CreateMan = MainHelper.User.UserName;
             pj.LineName = xl.LineName;
             pj.LineCode = xl.LineCode;
             pj.OrgCode  = xl.OrgCode ;
-            pj.OrgName = MainHelper.UserOrg.OrgName;
+            pj.OrgName = parentObj.OrgName;
             pj.Remark ="";
             MainHelper.PlatformSqlMap.Create<PJ_17>(pj);
 
@@ -698,15 +712,17 @@ namespace Ebada.Scgl.Yxgl
             
             int liespan = 1,lieindex=0,itemp=0,spantemp=0 ;
             ihang = 7;
-            IList<PS_gt> gtlis = new List<PS_gt>();
+            IList<PS_gt> gtlis = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>( " Where LineCode='"+xl.LineCode +"'");
+            iend = gtlis.Count;
             int[] gtwidth = new int[iend];
             Hashtable hs = new Hashtable();
-            for (i = istart; i <= iend; i++)
+            
+            for (i = 1; i <= iend; i++)
             {
                 //杆塔数
-                PS_gt gtobj = Client.ClientHelper.PlatformSqlMap.GetOne <PS_gt>( " Where LineCode='"+xl.LineCode +"' and gth='"+i.ToString ()+"'") ;
-                if (gtobj == null) break ;
-                gtlis.Add(gtobj); 
+                PS_gt gtobj = gtlis[i - 1];
+                //if (gtobj == null) break ;
+                
                 //绝缘子
                 IList<PS_gtsb> jyuzlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gtsb>(" Where sbName='绝缘子' and gtID='" + gtobj.gtID + "'");
 
@@ -1051,10 +1067,16 @@ namespace Ebada.Scgl.Yxgl
             #region 画图形
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             dsoFramerWordControl1.FileOpen(outfname);
+             Microsoft.Office.Interop.Excel.Workbook wb;
+             Microsoft.Office.Interop.Excel.Worksheet xx;
+             try {
+                 wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+                 xx = wb.Application.Sheets[1] as Microsoft.Office.Interop.Excel.Worksheet;
 
-            Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-            Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.Sheets[1] as Microsoft.Office.Interop.Excel.Worksheet;
-
+             } catch (Exception err) {
+                 dsoFramerWordControl1.FileClose();
+                 throw new Exception("excel的打开方式不对，有可能装有wps", err);
+             }
             Excel.Range range;
             if (lieindex < 1)
                 range = (Excel.Range)xx.get_Range(xx.Cells[5, 1], xx.Cells[RowCount , ColumnCount]);
