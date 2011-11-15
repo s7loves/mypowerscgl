@@ -288,8 +288,13 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@workFlowInstanceId", workFlowInstanceId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //resultValue= agent.ExecuteScalar(sqlItem);
-                varSql = "select " + varFieldName + " as name from " + varTableName + " where id in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='" + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
-
+                if (varTableName == "LP_Record")
+                    varSql = "select " + varFieldName + " as name from " + varTableName + " where id in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='" + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
+                else
+                {
+                    varSql = "select " + varFieldName + " as name from " + varTableName + " where id in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='" + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
+                
+                }
                 //DataTable dt2 = null;
                 IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", varSql);
                 if (li.Count > 0)

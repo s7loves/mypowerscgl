@@ -112,6 +112,8 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit5.Properties.Items.AddRange(ryList);
             comboBoxEdit6.Properties.Items.AddRange(ryList);
             comboBoxEdit7.Properties.Items.AddRange(ryList);
+            IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'");
+            SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit as IList);
             if (org != null)
             {
               
@@ -384,6 +386,7 @@ namespace Ebada.Scgl.Lcgl
         {
             string strmes = "";
             PJ_qxfl sbxs = RowData as PJ_qxfl;
+
             object obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(sbxs.ID);
             if (obj == null&& isWorkflowCall)
             {
@@ -465,6 +468,10 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmsbqxWorkFlowEdit_Load(object sender, EventArgs e)
         {
+            if (rowData == null)
+            {
+                rowData = new PJ_qxfl();
+            }
             InitComboBoxData();
         }
 
