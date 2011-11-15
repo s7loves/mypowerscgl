@@ -43,6 +43,7 @@
             this.btAdd2 = new DevExpress.XtraBars.BarButtonItem();
             this.btReAdd = new DevExpress.XtraBars.BarButtonItem();
             this.barCreat = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
@@ -55,7 +56,6 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).BeginInit();
@@ -160,7 +160,6 @@
             this.btGdsList.Edit = this.repositoryItemLookUpEdit1;
             this.btGdsList.Id = 10;
             this.btGdsList.Name = "btGdsList";
-            this.btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btGdsList.EditValueChanged += new System.EventHandler(this.btGDS_EditValueChanged);
             // 
             // repositoryItemLookUpEdit1
@@ -228,6 +227,15 @@
             this.barCreat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barCreat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barCreat_ItemClick);
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "打开";
+            this.barButtonItem1.Id = 15;
+            this.barButtonItem1.ImageIndex = 2;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            // 
             // btEdit
             // 
             this.btEdit.Caption = "修改";
@@ -244,7 +252,6 @@
             this.btDelete.ImageIndex = 12;
             this.btDelete.Name = "btDelete";
             this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btRefresh
             // 
@@ -337,15 +344,6 @@
             this.imageList1.Images.SetKeyName(11, "exit1.png");
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "打开";
-            this.barButtonItem1.Id = 15;
-            this.barButtonItem1.ImageIndex = 2;
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // UCPJ_17
             // 

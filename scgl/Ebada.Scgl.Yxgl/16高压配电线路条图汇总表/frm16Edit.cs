@@ -79,7 +79,7 @@ namespace Ebada.Scgl.Yxgl
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
           
-            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode ='" + rowData.OrgCode + "'or OrgCode2='" + rowData.OrgCode + "'");
+            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where len(linecode)=6 and OrgCode ='" + rowData.OrgCode + "'or OrgCode2='" + rowData.OrgCode + "'");
             this.SetComboBoxData(this.lookUpEdit1, "LineName", "LineID", "请选择", "线路名称", list);
             this.buttonEdit1.Text = "";
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);
