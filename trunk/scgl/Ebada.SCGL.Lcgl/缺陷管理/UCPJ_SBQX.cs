@@ -280,23 +280,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //frm06sbxsLine frm = new frm06sbxsLine();
-            //frm.orgcode = btGdsList.EditValue.ToString();
-            //if (frm.ShowDialog()==DialogResult.OK)
-            //{
-
-            //    IList<PJ_06sbxs> pj06list = new List<PJ_06sbxs>();
-            //    pj06list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxs>(" where LineName='" + frm.linename + "'");
-            //    if (pj06list.Count>0)
-            //    {
-            //        Export06.ExportExcel(pj06list);
-            //    }
-            //   else
-            //    {
-            //        MsgBox.ShowTipMessageBox("此线路没有添加巡视情况。");
-            //        return;
-            //    }
-            //}
+            
 
             Dictionary<string, List<PJ_qxfl>> diclist = new Dictionary<string, List<PJ_qxfl>>();
             for (int i = 0; i < gridView1.RowCount;i++ )

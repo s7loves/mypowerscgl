@@ -179,7 +179,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：巡视时间
         /// 字段信息：[xssj],datetime
         /// </summary>
-        [DisplayNameAttribute("巡视时间")]
+        [DisplayNameAttribute("发现日期")]
         public DateTime xssj
         {
             get { return _xssj; }
