@@ -89,6 +89,7 @@ namespace Ebada.Scgl.Lcgl
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr", false, DataSourceUpdateMode.OnPropertyChanged);
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xcr");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "xcrq");
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "remark");
            
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
             //
@@ -458,7 +459,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.SignImg = new byte[0];
             }
-            Export03.ExportExcelWorkFlow(ref  currRecord, (PJ_03yxfx)RowData);
+            
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
         }
 

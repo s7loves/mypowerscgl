@@ -88,6 +88,7 @@ namespace Ebada.Scgl.Lcgl
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr", false, DataSourceUpdateMode.OnPropertyChanged);
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xcr");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "xcrq");
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "remark");
 
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
