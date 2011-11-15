@@ -521,6 +521,19 @@ namespace Ebada.Scgl.Lcgl {
                             ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
 
                         }
+                        else if (obj is frmsbqxWorkFlowEdit)
+                        {
+                           
+                            PJ_qxfl qxfl = new PJ_qxfl();
+                            
+                                qxfl = new PJ_qxfl();
+                                qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
+                                qxfl.OrgName = MainHelper.UserOrg.OrgName;
+
+
+                            ((frmsbqxWorkFlowEdit)obj).RowData = qxfl;
+
+                        }
                         ((Form)obj).ShowDialog();
                     }
                 InitData(strKind);
@@ -667,6 +680,28 @@ namespace Ebada.Scgl.Lcgl {
                             }
                             yxfx.rq = DateTime.Now;
                             ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
+
+                        }
+                        else if (obj is frmsbqxWorkFlowEdit)
+                        {
+                            IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
+                             +" and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'"
+                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                            PJ_qxfl qxfl = new PJ_qxfl();
+                            if (li.Count > 0)
+                            {
+                                qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
+
+                            }
+                            else
+                            {
+                                 qxfl = new PJ_qxfl();
+                                qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
+                                qxfl.OrgName = MainHelper.UserOrg.OrgName;
+
+                            }
+                            
+                            ((frmsbqxWorkFlowEdit)obj).RowData = qxfl;
 
                         }
                         ((Form)obj).ShowDialog();
@@ -1303,6 +1338,15 @@ namespace Ebada.Scgl.Lcgl {
                             ((frmyxfxWorkFlowEdit)obj).RecordStatus = -1;
                             yxfx.rq = DateTime.Now;
                             ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
+
+                        }
+                        else if (obj is frmsbqxWorkFlowEdit)
+                        {
+                            PJ_qxfl qxfl = new PJ_qxfl();
+                            qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
+                            qxfl.OrgName = MainHelper.UserOrg.OrgName;
+
+                            ((frmsbqxWorkFlowEdit)obj).RowData = qxfl;
 
                         }
                         ((Form)obj).ShowDialog();
