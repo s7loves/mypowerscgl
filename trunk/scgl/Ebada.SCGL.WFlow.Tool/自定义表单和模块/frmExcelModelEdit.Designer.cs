@@ -287,7 +287,7 @@
             // 
             // labelControl24
             // 
-            this.labelControl24.Location = new System.Drawing.Point(40, 110);
+            this.labelControl24.Location = new System.Drawing.Point(44, 110);
             this.labelControl24.Name = "labelControl24";
             this.labelControl24.Size = new System.Drawing.Size(48, 14);
             this.labelControl24.TabIndex = 1;
@@ -317,7 +317,7 @@
             // comboBoxEdit5
             // 
             this.comboBoxEdit5.EditValue = "";
-            this.comboBoxEdit5.Location = new System.Drawing.Point(113, 107);
+            this.comboBoxEdit5.Location = new System.Drawing.Point(113, 104);
             this.comboBoxEdit5.Name = "comboBoxEdit5";
             this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -338,7 +338,6 @@
             this.comboBoxEdit3.Properties.Items.AddRange(new object[] {
             "TextChanged",
             "SelectedIndexChanged"});
-            this.comboBoxEdit3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxEdit3.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit3.TabIndex = 17;
             // 
@@ -692,6 +691,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "单元格信息";
             this.Load += new System.EventHandler(this.frmExcelModelEdit_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmExcelModelEdit_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupControlOrg.PerformLayout();
