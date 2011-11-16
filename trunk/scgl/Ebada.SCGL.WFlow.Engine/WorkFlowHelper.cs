@@ -288,11 +288,23 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@workFlowInstanceId", workFlowInstanceId);
                 //ClientDBAgent agent = new ClientDBAgent();
                 //resultValue= agent.ExecuteScalar(sqlItem);
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                    "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" 
+                    + varTableName + "'");
                 if (varTableName == "LP_Record")
-                    varSql = "select " + varFieldName + " as name from " + varTableName + " where id in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='" + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
+
+                    varSql = "select " + varFieldName + " as name from " + varTableName + " where "
+                        + list[0]
+                        + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='" 
+                        + workFlowId + "' and WorkFlowInsId='"
+                        + workFlowInstanceId + "')";
                 else
                 {
-                    varSql = "select " + varFieldName + " as name from " + varTableName + " where id in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='" + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
+                    varSql = "select " + varFieldName + " as name from " + varTableName + " where  " 
+                        + list[0]
+                        + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='" 
+                        + workFlowId 
+                        + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
                 
                 }
                 //DataTable dt2 = null;
@@ -325,9 +337,26 @@ namespace Ebada.SCGL.WFlow.Engine
                     //sqlItem.AppendParameter("@WorkTaskInsId", WorkTaskInstanceId);
                     //ClientDBAgent agent = new ClientDBAgent();
                     //resultValue = agent.ExecuteScalar(sqlItem);
-                    varSql = "select " + varFieldName + " as name from " + varTableName + " where WorkFlowId='" + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "'" +
-                          " and WorkTaskInsId='" + WorkTaskInstanceId + "' ";
+                    //varSql = "select " + varFieldName + " as name from " + varTableName + " where WorkFlowId='" + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "'" +
+                    //      " and WorkTaskInsId='" + WorkTaskInstanceId + "' ";
 
+                    IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                   "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '"
+                   + varTableName + "'");
+                    if (varTableName == "LP_Record")
+
+                        varSql = "select " + varFieldName + " as name from " + varTableName + " where " 
+                            + list[0] 
+                            + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='" 
+                            + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
+                    else
+                    {
+                        varSql = "select " + varFieldName + " as name from " + varTableName + " where  " 
+                            + list[0]
+                            + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"
+                            + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
+
+                    }
                     DataTable dt2 = null;
                     IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", varSql);
                     if (li.Count > 0)
@@ -384,6 +413,7 @@ namespace Ebada.SCGL.WFlow.Engine
                     #region 配置了后续节点
                 int l = dt.Rows.Count;
                 string branchPriority = dt.Rows[0]["priority"].ToString();//优先级
+                bool isfind = false;
                 //遍历满足条件的所有任务节点
                 for (int i = 0; i < l; i++)
                 {
@@ -401,6 +431,7 @@ namespace Ebada.SCGL.WFlow.Engine
                     if (priority != branchPriority) break;//只执行优先级最高的分支
                     if (ExpressPass(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, condition))//满足条件的任务节点
                     {
+                        isfind = true;
                         switch (taskType)
                         {
 
@@ -645,8 +676,8 @@ namespace Ebada.SCGL.WFlow.Engine
                                         wfruntime.WorkFlowNo = "subWorkflow";
                                         wfruntime.CommandName = "提交";
                                         wfruntime.WorkflowInsCaption = subWorkflowCaption;
-                                        //wfruntime.IsDraft = true;//开始节点需要交互，草稿状态，暂不提交
-                                        wfruntime.IsDraft = false;//开始节点需要交互，草稿状态，暂不提交
+                                        wfruntime.IsDraft = true;//开始节点需要交互，草稿状态，暂不提交
+                                        //wfruntime.IsDraft = false;//开始节点需要交互，提交
                                         wfruntime.Start();
                                         //设置处理者实例正常结束
                                         OperatorInstance.SetOperatorInstanceOver(userId, operatorInstanceId);
@@ -665,6 +696,11 @@ namespace Ebada.SCGL.WFlow.Engine
                     }
                 }
                 #endregion
+                if (!isfind)
+                {
+                    //未配置后续节点
+                    return WorkFlowConst.NoFoundTaskCode;
+                }
             }
             else
             {   //未配置后续节点

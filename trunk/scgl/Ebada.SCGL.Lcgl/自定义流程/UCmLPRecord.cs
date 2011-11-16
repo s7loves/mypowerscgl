@@ -525,12 +525,9 @@ namespace Ebada.Scgl.Lcgl {
                         {
                            
                             PJ_qxfl qxfl = new PJ_qxfl();
-                            
-                                qxfl = new PJ_qxfl();
-                                qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
-                                qxfl.OrgName = MainHelper.UserOrg.OrgName;
-
-
+                            qxfl = new PJ_qxfl();
+                            qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
+                            qxfl.OrgName = MainHelper.UserOrg.OrgName;
                             ((frmsbqxWorkFlowEdit)obj).RowData = qxfl;
 
                         }

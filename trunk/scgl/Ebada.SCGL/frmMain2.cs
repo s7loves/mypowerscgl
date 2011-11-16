@@ -23,6 +23,9 @@ namespace Ebada.SCGL {
             iPaintStyle = new BarSubItem(barManager1, "皮肤");
             //InitMenu("");
             InitSkins();
+
+            helpitem = new BarButtonItem(barManager1, "帮助");
+            InitHelp();
         }
         #region Skins
         string skinMask = "Office 2010";
@@ -49,6 +52,31 @@ namespace Ebada.SCGL {
             iPaintStyle.Caption = "皮肤：" + e.Item.Caption;
             iPaintStyle.Hint = iPaintStyle.Caption;
             iPaintStyle.ImageIndex = -1;
+        }
+        #endregion
+        #region 帮助
+
+
+        BarButtonItem helpitem;
+        void InitHelp()
+        {
+            barManager1.ForceInitialize();
+            helpitem.Name = "help";
+            helpitem.ItemClick += new ItemClickEventHandler(OnHelpClick);
+          
+        }
+        void OnHelpClick(object sender, ItemClickEventArgs e)
+        {
+            string fname = Application.StartupPath + "\\00记录模板\\生产软件数据采集说明书.doc";
+            try
+            {
+                System.Diagnostics.Process.Start(fname);
+            }
+            catch
+            {
+
+
+            }
         }
         #endregion
         #region 模块调度
@@ -142,6 +170,8 @@ namespace Ebada.SCGL {
                 createMenu(bar2, rows, dt);
             }
             bar2.AddItem(iPaintStyle);
+            bar2.AddItem(helpitem);
+            
             //加载用户操作权限列表
             //ClientHelper.UserFuns = ClientHelper.PlatformSqlMap.GetList("SelectUserFuns", userid);
 

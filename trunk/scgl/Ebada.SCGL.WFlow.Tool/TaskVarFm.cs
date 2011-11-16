@@ -331,7 +331,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //WinFormFun.LoadComboBox(cbxDataTable, dt, "name", "name");
             //varDataBaseName = agent.GetCurrentDatabaseName();
             //DataTable dtrow = agent.GetDTColumnsDataTable(varDataTableName, varDataBaseName);
-            IList li = MainHelper.PlatformSqlMap.GetList("GetTableName", "  where type = 'U' and  1=1 ");
+            IList li = MainHelper.PlatformSqlMap.GetList("GetTableName", "  where type = 'U' and  1=1 order by name");
             DataTable dt = ConvertHelper.ToDataTable(li);
             WinFormFun.LoadComboBox(cbxDataTable, dt, "name", "name");
             if (varDataTableName != "")
