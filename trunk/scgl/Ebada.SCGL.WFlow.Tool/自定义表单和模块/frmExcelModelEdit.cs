@@ -18,6 +18,7 @@ namespace Ebada.SCGL.WFlow.Tool
     public partial class frmExcelModelEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<LP_Temple> m_CityDic = new SortableSearchableBindingList<LP_Temple>();
         private string parentID;
+        bool isclose = true;
         public string ParentID
         {
             get { return parentID; }
@@ -195,6 +196,20 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (textEdit7.Text == "" && textEdit7.Visible)
+            {
+                MsgBox.ShowWarningMessageBox("控件字数不能为空");
+                isclose = false;
+                return;
+            }
+            if (textEdit5.Text == "")
+            {
+                MsgBox.ShowWarningMessageBox("控件大小不能为空");
+                isclose = false;
+                
+                return;
+            }
+            isclose = true;
             object ob = new object();
            
             if (comboBoxEdit5.Visible)
@@ -204,6 +219,7 @@ namespace Ebada.SCGL.WFlow.Tool
             rowData.IsVisible = checkEdit1.Checked ? 0 : 1;
             rowData.CellPos = rowData.CellPos.ToUpper();
             rowData.isExplorer = comboBoxEdit3.SelectedIndex;
+            this.DialogResult = DialogResult.OK;
         }
 
         private void frmExcelModelEdit_Load(object sender, EventArgs e)
@@ -279,7 +295,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 comboBoxEdit5.Visible = false;
             }
             checkEdit1.Checked= rowData.IsVisible==0? true:false;
-            
+           
         }
 
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
@@ -329,15 +345,8 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void frmExcelModelEdit_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (textEdit5.Text == "")
+            if (!isclose)
             {
-                MsgBox.ShowAskMessageBox("控件大小不能为空");
-                e.Cancel = true ;
-                return;
-            }
-            if (textEdit7.Text == "" && textEdit7.Visible)
-            {
-                MsgBox.ShowAskMessageBox("控件字数不能为空");
                 e.Cancel = true;
                 return;
             }
