@@ -195,6 +195,12 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            object ob = new object();
+            if (textEdit5.Text == "")
+            {
+                return;
+            }
+
             if (comboBoxEdit5.Visible)
             {
                 rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
@@ -282,6 +288,10 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
+            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.Add("TextChanged");
+            comboBoxEdit3.Properties.Items.Add("GotFocus");
+            comboBoxEdit3.Properties.Items.Add("LostFocus");
             if (lookUpEdit1.EditValue.ToString().IndexOf("DateEdit") > -1)
             {
 
@@ -293,6 +303,14 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             else
             {
+                if (lookUpEdit1.EditValue.ToString().IndexOf("ComboBoxEdit") > -1)
+                {
+                    comboBoxEdit3.Properties.Items.Clear();
+                    comboBoxEdit3.Properties.Items.Add("SelectedIndexChanged");
+                    comboBoxEdit3.Properties.Items.Add("TextChanged");
+                    comboBoxEdit3.Properties.Items.Add("GotFocus");
+                    comboBoxEdit3.Properties.Items.Add("LostFocus");
+                }
                 labelControl3.Visible = true;
                 textEdit7.Visible = true;
 
