@@ -13,6 +13,8 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using System.IO;
+using System.Drawing.Imaging;
 namespace Ebada.Scgl.Sbgl
 {
     public partial class frmgtEdit : FormBase, IPopupFormEdit {
@@ -149,6 +151,37 @@ namespace Ebada.Scgl.Sbgl
 
             return imageData;
         }
-        
+        private void Rotate90() {
+            byte[] buff = (byte[])pictureEdit1.EditValue;
+            MemoryStream ms = new MemoryStream(buff);
+            Bitmap bt = new Bitmap(ms);
+            KiRotate90(bt);
+            if (bt == null) return;
+            string file = Path.GetTempFileName();
+            bt.Save(file, ImageFormat.Jpeg);
+            if (File.Exists(file)) {
+                pictureEdit1.EditValue = File.ReadAllBytes(file);
+                File.Delete(file);
+            }
+            
+            ms.Close();
+        }
+        //旋转
+        public static Bitmap KiRotate90(Bitmap img)
+        {
+            try
+            {                
+                img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                return img;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e) {
+            Rotate90();
+        } 
     }
 }
