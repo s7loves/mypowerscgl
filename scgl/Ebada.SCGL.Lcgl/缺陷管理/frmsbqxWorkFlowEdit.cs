@@ -416,6 +416,7 @@ namespace Ebada.Scgl.Lcgl
             }
             //currRecord.ImageAttachment = bt;
             //currRecord.SignImg = bt;
+            currRecord.OrgName = rowData.OrgName;
             currRecord.LastChangeTime = DateTime.Now.ToString();
             if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
             {
