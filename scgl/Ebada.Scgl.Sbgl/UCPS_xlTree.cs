@@ -106,7 +106,7 @@ namespace Ebada.Scgl.Sbgl {
                 newobj.LineType = Math.Min(3, treeList1.Selection[0].Level + 2).ToString();
             }
             
-            newobj.LineVol = "10";
+            //newobj.LineVol = "10";
             newobj.OrgCode = parentID;
         }
         string getcode(TreeListNode pnode, TreeListNodes nodes) {

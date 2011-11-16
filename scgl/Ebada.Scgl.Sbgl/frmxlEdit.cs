@@ -20,6 +20,7 @@ namespace Ebada.Scgl.Sbgl
 
         public frmxlEdit() {
             InitializeComponent();
+            
         }
         
         void dataBind() {
@@ -66,19 +67,33 @@ namespace Ebada.Scgl.Sbgl
                 if(rowData.LineType==""){
                     rowData.InDate = DateTime.Now;
                 }
-                
-                if (rowData.LineVol == "") rowData.LineVol = "10";
-                
+                isnew = false;
+                if (rowData.LineVol == "") {
+                    rowData.LineVol = "10";
+                    
+                }
+                if(rowData.LineName=="")
+                    isnew = true;
             }
         }
+        bool isnew = false;
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             this.Invoke(new MethodInvoker(initParentGtList));
-            groupControl1.Hide();
-            if ("rabbit赵建明".Contains(MainHelper.User.UserName)) {
+            if ("rabbit赵建明".Contains(MainHelper.User.UserName) && !isnew) {
                 simpleButton1.Show();
                 simpleButton2.Show();
+            } else {
+                simpleButton1.Hide();
+                simpleButton2.Hide();
             }
+            groupControl1.Hide();
+            groupBox1.Show();
+        }
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+
+            
         }
         #endregion
         private void initParentGtList() {
@@ -125,6 +140,11 @@ namespace Ebada.Scgl.Sbgl
             if (comboBoxEdit2.Text == "")
             {
                 MsgBox.ShowTipMessageBox("线路编号不能为空。");
+                comboBoxEdit2.Focus();
+                return;
+            }
+            if (comboBoxEdit3.Text == "") {
+                MsgBox.ShowTipMessageBox("线路名称不能为空。");
                 comboBoxEdit2.Focus();
                 return;
             }
