@@ -1247,6 +1247,9 @@
     <Content Include="00记录模板\临时停电流程.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="00记录模板\计划停电流程.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="测试记录（20110629）.xls" />
     <None Include="疑问或错误.txt" />
   </ItemGroup>

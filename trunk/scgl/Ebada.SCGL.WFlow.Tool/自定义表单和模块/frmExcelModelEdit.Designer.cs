@@ -330,14 +330,14 @@
             // 
             // comboBoxEdit3
             // 
-            this.comboBoxEdit3.EditValue = "是";
-            this.comboBoxEdit3.Location = new System.Drawing.Point(364, 222);
+            this.comboBoxEdit3.EditValue = "TextChanged";
+            this.comboBoxEdit3.Location = new System.Drawing.Point(364, 8);
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit3.Properties.Items.AddRange(new object[] {
-            "是",
-            "否"});
+            "TextChanged",
+            "SelectedIndexChanged"});
             this.comboBoxEdit3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxEdit3.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit3.TabIndex = 17;
@@ -394,7 +394,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(249, 30);
+            this.labelControl10.Location = new System.Drawing.Point(249, 32);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(96, 14);
             this.labelControl10.TabIndex = 6;
@@ -525,11 +525,11 @@
             // 
             // labelControl22
             // 
-            this.labelControl22.Location = new System.Drawing.Point(264, 224);
+            this.labelControl22.Location = new System.Drawing.Point(264, 10);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(48, 14);
             this.labelControl22.TabIndex = 1;
-            this.labelControl22.Text = "是否导出";
+            this.labelControl22.Text = "事件列表";
             this.labelControl22.UseWaitCursor = true;
             // 
             // labelControl6
@@ -598,7 +598,7 @@
             // 
             // lookUpEdit4
             // 
-            this.lookUpEdit4.Location = new System.Drawing.Point(364, 27);
+            this.lookUpEdit4.Location = new System.Drawing.Point(364, 29);
             this.lookUpEdit4.Name = "lookUpEdit4";
             this.lookUpEdit4.Properties.Mask.EditMask = "([0-9]{1,3}[|])+";
             this.lookUpEdit4.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
