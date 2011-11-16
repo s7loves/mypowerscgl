@@ -48,7 +48,11 @@ namespace Ebada.Scgl.Sbgl
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<PS_gt>(gridViewOperation_BeforeInsert);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PS_gt>(gridViewOperation_BeforeUpdate);
         }
-
+        public UCPS_GT(PS_xl xl):this() {
+            btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            ParentObj = xl;
+        }
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PS_gt> e) {
             e.Cancel = true;
             try {
@@ -114,13 +118,11 @@ namespace Ebada.Scgl.Sbgl
 
             InitColumns();//初始列
             //InitData();//初始数据
-            if (this.Site != null) return;
-            btGdsList.Edit = DicTypeHelper.GdsDic;
-            btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
+            if (this.Site != null && this.Site.DesignMode) return;
+            if (ParentObj != null) return;
             btXlList.EditValueChanged += new EventHandler(btXlList_EditValueChanged);
 
             //20110818改
-             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
 
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);

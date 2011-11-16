@@ -21,6 +21,7 @@ namespace Ebada.Scgl.Sbgl
         public frmxlEdit() {
             InitializeComponent();
         }
+        
         void dataBind() {
 
             
@@ -73,6 +74,11 @@ namespace Ebada.Scgl.Sbgl
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             this.Invoke(new MethodInvoker(initParentGtList));
+            groupControl1.Hide();
+            if ("rabbit赵建明".Contains(MainHelper.User.UserName)) {
+                simpleButton1.Show();
+                simpleButton2.Show();
+            }
         }
         #endregion
         private void initParentGtList() {
@@ -124,6 +130,23 @@ namespace Ebada.Scgl.Sbgl
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+        UCPS_GT gt = null;
+        private void simpleButton2_Click(object sender, EventArgs e) {
+            groupControl1.Text = rowData.LineName;
+            if (gt == null) {
+                gt = new UCPS_GT(rowData);
+                gt.Dock = DockStyle.Fill;
+                groupControl1.Controls.Add(gt);
+                
+            }
+            bool flag = groupBox1.Visible;
+            groupBox1.Visible = !flag;
+            groupControl1.Visible = flag;
+            if (flag)
+                simpleButton2.Text = "线路信息";
+            else
+                simpleButton2.Text = "杆塔信息";
         }
 
     }
