@@ -196,11 +196,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private void btnOK_Click(object sender, EventArgs e)
         {
             object ob = new object();
-            if (textEdit5.Text == "")
-            {
-                return;
-            }
-
+           
             if (comboBoxEdit5.Visible)
             {
                 rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
@@ -328,6 +324,22 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 textEdit3.Text = fees.StrSQL;
                 rowData.SqlSentence = fees.StrSQL;
+            }
+        }
+
+        private void frmExcelModelEdit_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (textEdit5.Text == "")
+            {
+                MsgBox.ShowAskMessageBox("控件大小不能为空");
+                e.Cancel = true ;
+                return;
+            }
+            if (textEdit7.Text == "" && textEdit7.Visible)
+            {
+                MsgBox.ShowAskMessageBox("控件字数不能为空");
+                e.Cancel = true;
+                return;
             }
         }
     }
