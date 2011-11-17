@@ -649,7 +649,7 @@
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(497, 14);
             this.labelControl19.TabIndex = 28;
-            this.labelControl19.Text = "combox集合:时间可以用{x}标示{月}{天}{时}{分}{秒}如天数:{天}(01-31) 分钟:{分}(00-59)";
+            this.labelControl19.Text = "combox集合:时间可以用{x}标示{月}{日}{时}{分}{秒}如天数:{日}(01-31) 分钟:{分}(00-59)";
             this.labelControl19.UseWaitCursor = true;
             // 
             // labelControl9
