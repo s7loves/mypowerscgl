@@ -11,7 +11,7 @@ namespace Ebada.Scgl.Yxgl {
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class ExportTDJH.  {
+    public class ExportTDJH  {
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>
