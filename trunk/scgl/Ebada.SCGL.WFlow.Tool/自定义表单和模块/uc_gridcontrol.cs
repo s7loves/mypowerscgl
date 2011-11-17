@@ -92,7 +92,45 @@ namespace Ebada.SCGL.WFlow.Tool
                     {
                         if (comItem[i]!="")
                         {
-                            combox.Items.Add(comItem[i]);
+                            switch(comItem[i])
+                            {
+                                case "时间-月":
+                                    combox.Items.Clear();
+                                    for (int j = 1; j <= 12; j++)
+                                    {
+                                        combox.Items.Add(string.Format("{0:D2}", j));
+
+                                    }
+                                    break;
+                                case "时间-天":
+                                    combox.Items.Clear();
+                                    for (int j = 1; j <=31; j++)
+                                    {
+                                        combox.Items.Add(string.Format("{0:D2}", j));
+
+                                    }
+                                    break;
+                                case "时间-小时":
+                                    combox.Items.Clear();
+                                    for (int j = 1; j <= 24; j++)
+                                    {
+                                        combox.Items.Add(string.Format("{0:D2}", j));
+
+                                    }
+                                    break;
+                                case "时间-分钟":
+                                case "时间-秒":
+                                    combox.Items.Clear();
+                                    for (int j = 1; j <= 59; j++)
+                                    {
+                                        combox.Items.Add(string.Format("{0:D2}", j));
+
+                                    }
+                                    break;
+                                default:
+                                combox.Items.Add(comItem[i]);
+                                break;
+                            }
                         }
                     }
                 }

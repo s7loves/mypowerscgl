@@ -172,12 +172,13 @@
             this.groupBox1.Controls.Add(this.textEdit11);
             this.groupBox1.Controls.Add(this.textEdit9);
             this.groupBox1.Controls.Add(this.labelControl18);
+            this.groupBox1.Controls.Add(this.comboBoxEdit3);
+            this.groupBox1.Controls.Add(this.labelControl22);
             this.groupBox1.Controls.Add(this.labelControl14);
             this.groupBox1.Controls.Add(this.labelControl24);
             this.groupBox1.Controls.Add(this.labelControl16);
             this.groupBox1.Controls.Add(this.labelControl17);
             this.groupBox1.Controls.Add(this.comboBoxEdit5);
-            this.groupBox1.Controls.Add(this.comboBoxEdit3);
             this.groupBox1.Controls.Add(this.comboBoxEdit4);
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
             this.groupBox1.Controls.Add(this.lookUpEdit1);
@@ -198,7 +199,6 @@
             this.groupBox1.Controls.Add(this.labelControl8);
             this.groupBox1.Controls.Add(this.labelControl7);
             this.groupBox1.Controls.Add(this.labelControl23);
-            this.groupBox1.Controls.Add(this.labelControl22);
             this.groupBox1.Controls.Add(this.labelControl6);
             this.groupBox1.Controls.Add(this.labelControl5);
             this.groupBox1.Controls.Add(this.textEdit6);
@@ -331,7 +331,7 @@
             // comboBoxEdit3
             // 
             this.comboBoxEdit3.EditValue = "TextChanged";
-            this.comboBoxEdit3.Location = new System.Drawing.Point(364, 8);
+            this.comboBoxEdit3.Location = new System.Drawing.Point(364, 65);
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -375,7 +375,7 @@
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(254, 83);
+            this.labelControl12.Location = new System.Drawing.Point(254, 90);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(72, 14);
             this.labelControl12.TabIndex = 11;
@@ -384,7 +384,7 @@
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(249, 57);
+            this.labelControl11.Location = new System.Drawing.Point(249, 46);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(108, 14);
             this.labelControl11.TabIndex = 8;
@@ -393,7 +393,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(249, 32);
+            this.labelControl10.Location = new System.Drawing.Point(249, 21);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(96, 14);
             this.labelControl10.TabIndex = 6;
@@ -524,7 +524,7 @@
             // 
             // labelControl22
             // 
-            this.labelControl22.Location = new System.Drawing.Point(264, 10);
+            this.labelControl22.Location = new System.Drawing.Point(264, 67);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(48, 14);
             this.labelControl22.TabIndex = 1;
@@ -597,7 +597,7 @@
             // 
             // lookUpEdit4
             // 
-            this.lookUpEdit4.Location = new System.Drawing.Point(364, 29);
+            this.lookUpEdit4.Location = new System.Drawing.Point(364, 18);
             this.lookUpEdit4.Name = "lookUpEdit4";
             this.lookUpEdit4.Properties.Mask.EditMask = "([0-9]{1,3}[|])+";
             this.lookUpEdit4.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -607,7 +607,7 @@
             // 
             // lookUpEdit5
             // 
-            this.lookUpEdit5.Location = new System.Drawing.Point(364, 54);
+            this.lookUpEdit5.Location = new System.Drawing.Point(364, 43);
             this.lookUpEdit5.Name = "lookUpEdit5";
             this.lookUpEdit5.Properties.Mask.EditMask = "([0-9]{1,3}[|])+";
             this.lookUpEdit5.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -618,7 +618,7 @@
             // textEdit8
             // 
             this.textEdit8.EditValue = "";
-            this.textEdit8.Location = new System.Drawing.Point(364, 81);
+            this.textEdit8.Location = new System.Drawing.Point(364, 87);
             this.textEdit8.Name = "textEdit8";
             this.textEdit8.Size = new System.Drawing.Size(100, 21);
             this.textEdit8.TabIndex = 10;
