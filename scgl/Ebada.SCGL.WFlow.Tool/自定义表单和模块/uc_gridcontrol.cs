@@ -94,6 +94,15 @@ namespace Ebada.SCGL.WFlow.Tool
                         {
                             switch(comItem[i])
                             {
+                                case "{年}":
+                                    combox.Items.Clear();
+                                    for (int j = 0; j <= 20; j++)
+                                    {
+                                        combox.Items.Add(string.Format("{0}", j+DateTime.Now.Year));
+
+                                    }
+
+                                    break;
                                 case "{月}":
                                     combox.Items.Clear();
                                     for (int j = 1; j <= 12; j++)
@@ -102,7 +111,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                                     }
                                     break;
-                                case "{天}":
+                                case "{日}":
                                     combox.Items.Clear();
                                     for (int j = 1; j <=31; j++)
                                     {
