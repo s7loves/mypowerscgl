@@ -136,7 +136,6 @@
             // 
             // groupControlOrg
             // 
-            this.groupControlOrg.Controls.Add(this.lookUpEdit2);
             this.groupControlOrg.Controls.Add(this.groupBox1);
             this.groupControlOrg.Controls.Add(this.btnCancel);
             this.groupControlOrg.Controls.Add(this.btnOK);
@@ -152,7 +151,7 @@
             // 
             // lookUpEdit2
             // 
-            this.lookUpEdit2.Location = new System.Drawing.Point(369, 26);
+            this.lookUpEdit2.Location = new System.Drawing.Point(415, -3);
             this.lookUpEdit2.Name = "lookUpEdit2";
             this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -165,6 +164,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lookUpEdit2);
             this.groupBox1.Controls.Add(this.simpleButton1);
             this.groupBox1.Controls.Add(this.labelControl21);
             this.groupBox1.Controls.Add(this.textEdit12);
@@ -244,7 +244,7 @@
             // 
             // labelControl20
             // 
-            this.labelControl20.Location = new System.Drawing.Point(261, 141);
+            this.labelControl20.Location = new System.Drawing.Point(257, 141);
             this.labelControl20.Name = "labelControl20";
             this.labelControl20.Size = new System.Drawing.Size(67, 14);
             this.labelControl20.TabIndex = 30;
@@ -254,7 +254,7 @@
             // textEdit11
             // 
             this.textEdit11.EditValue = "";
-            this.textEdit11.Location = new System.Drawing.Point(364, 141);
+            this.textEdit11.Location = new System.Drawing.Point(364, 138);
             this.textEdit11.Name = "textEdit11";
             this.textEdit11.Size = new System.Drawing.Size(100, 21);
             this.textEdit11.TabIndex = 29;
@@ -645,13 +645,12 @@
             // 
             // labelControl19
             // 
-            this.labelControl19.Location = new System.Drawing.Point(254, 23);
+            this.labelControl19.Location = new System.Drawing.Point(22, 26);
             this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(24, 14);
+            this.labelControl19.Size = new System.Drawing.Size(497, 14);
             this.labelControl19.TabIndex = 28;
-            this.labelControl19.Text = "状态";
+            this.labelControl19.Text = "combox集合:时间可以用{x}标示{月}{天}{时}{分}{秒}如天数:{天}(01-31) 分钟:{分}(00-59)";
             this.labelControl19.UseWaitCursor = true;
-            this.labelControl19.Visible = false;
             // 
             // labelControl9
             // 
