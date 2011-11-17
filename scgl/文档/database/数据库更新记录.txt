@@ -19,4 +19,5 @@
 2011.9.21  表PS_kg增加字段kgfgb(nvarchar(50)),表PJ_04sgzayc增加字段charMan(nvarchar(50)) 参考update0921.sql
 2011.10.06   增加附件表PJ_lcfj,审批意见表PJ_lcspyj
 2011.10.23   增加流程和模块记录关联表
-2011.10.31   增加流程表单字段值视图和修改Lp_Temple的SqlSentence字段大小 
+2011.10.31   增加流程表单字段值视图和修改Lp_Temple的SqlSentence字段大小
+2011.11.17   增加所月度停电计划表 
