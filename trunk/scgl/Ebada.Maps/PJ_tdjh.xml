@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_tdjh" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_tdjh"  type="Ebada.Scgl.Model.PJ_tdjh,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_tdjh_AllColumns" class="PJ_tdjh">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="SQOrgname" column="SQOrgname" />
+        <result property="JXSB" column="JXSB" />
+        <result property="TDtime" column="TDtime" />
+        <result property="SDtime" column="SDtime" />
+        <result property="ASSOrgname" column="ASSOrgname" />
+        <result property="Remark" column="Remark" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+        <result property="CreateDate" column="CreateDate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_tdjhList" resultMap="PJ_tdjh_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [SQOrgname],
+         [JXSB],
+         [TDtime],
+         [SDtime],
+         [ASSOrgname],
+         [Remark],
+         [S1],
+         [S2],
+         [S3],
+         [CreateDate]
+          FROM PJ_tdjh
+          $value$
+   </select>
+   
+   <select id="SelectPJ_tdjhByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [SQOrgname],
+         [JXSB],
+         [TDtime],
+         [SDtime],
+         [ASSOrgname],
+         [Remark],
+         [S1],
+         [S2],
+         [S3],
+         [CreateDate]
+          FROM PJ_tdjh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="SQOrgname">[SQOrgname]='$SQOrgname$'</isNotNull>
+       <isNotNull prepend="AND" property="JXSB">[JXSB]='$JXSB$'</isNotNull>
+       <isNotNull prepend="AND" property="TDtime">[TDtime]='$TDtime$'</isNotNull>
+       <isNotNull prepend="AND" property="SDtime">[SDtime]='$SDtime$'</isNotNull>
+       <isNotNull prepend="AND" property="ASSOrgname">[ASSOrgname]='$ASSOrgname$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_tdjhByKey" resultMap="PJ_tdjh_AllColumns" parameterClass="PJ_tdjh">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [SQOrgname],
+         [JXSB],
+         [TDtime],
+         [SDtime],
+         [ASSOrgname],
+         [Remark],
+         [S1],
+         [S2],
+         [S3],
+         [CreateDate]
+         FROM PJ_tdjh
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_tdjh" parameterClass="PJ_tdjh">
+        DELETE FROM 
+         PJ_tdjh
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_tdjhByWhere" parameterClass="string">
+     delete from PJ_tdjh $value$
+   </delete>
+   
+   <delete id="DeletePJ_tdjhByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_tdjh
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_tdjh" parameterClass="PJ_tdjh" resultClass="int">
+          UPDATE PJ_tdjh
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [SQOrgname]=#SQOrgname#,
+             [JXSB]=#JXSB#,
+             [TDtime]=#TDtime#,
+             [SDtime]=#SDtime#,
+             [ASSOrgname]=#ASSOrgname#,
+             [Remark]=#Remark#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#,
+             [CreateDate]=#CreateDate#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_tdjh" parameterClass="PJ_tdjh">
+        INSERT INTO PJ_tdjh
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [SQOrgname],
+         [JXSB],
+         [TDtime],
+         [SDtime],
+         [ASSOrgname],
+         [Remark],
+         [S1],
+         [S2],
+         [S3],
+         [CreateDate]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #SQOrgname#,
+         #JXSB#,
+         #TDtime#,
+         #SDtime#,
+         #ASSOrgname#,
+         #Remark#,
+         #S1#,
+         #S2#,
+         #S3#,
+         #CreateDate#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_tdjhRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_tdjh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="SQOrgname">[SQOrgname]='$SQOrgname$'</isNotNull>
+       <isNotNull prepend="AND" property="JXSB">[JXSB]='$JXSB$'</isNotNull>
+       <isNotNull prepend="AND" property="TDtime">[TDtime]='$TDtime$'</isNotNull>
+       <isNotNull prepend="AND" property="SDtime">[SDtime]='$SDtime$'</isNotNull>
+       <isNotNull prepend="AND" property="ASSOrgname">[ASSOrgname]='$ASSOrgname$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_tdjhRowCount" parameterClass="string">
+    select count(*) from PJ_tdjh $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

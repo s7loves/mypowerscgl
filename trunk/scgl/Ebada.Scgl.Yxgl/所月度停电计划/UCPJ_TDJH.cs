@@ -29,9 +29,9 @@ namespace Ebada.Scgl.Yxgl
     /// </summary>
     public partial class UCPJ_TDJH : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_02aqhd> gridViewOperation;
+        private GridViewOperation<PJ_tdjh> gridViewOperation;
 
-        public event SendDataEventHandler<PJ_02aqhd> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_tdjh> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
@@ -39,19 +39,19 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_02aqhd>(gridControl1, gridView1, barManager1,new frmaqhdEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_02aqhd>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<PJ_tdjh>(gridControl1, gridView1, barManager1, new frmTDJHEdit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_tdjh>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_02aqhd>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_tdjh>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
         
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_02aqhd> e)
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_tdjh> e)
         {
            
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_02aqhd> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_tdjh> e)
         {
             if (parentID == null)
                 e.Cancel = true;
@@ -98,7 +98,7 @@ namespace Ebada.Scgl.Yxgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_02aqhd);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_tdjh);
         }
         private void hideColumn(string colname)
         {
@@ -135,7 +135,7 @@ namespace Ebada.Scgl.Yxgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_02aqhd> GridViewOperation
+        public GridViewOperation<PJ_tdjh> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -144,16 +144,13 @@ namespace Ebada.Scgl.Yxgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_02aqhd newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_tdjh newobj)
         {
             if (parentID == null) return;
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
-            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
-            newobj.CreateMan = m_UserBase.RealName;
-            newobj.kssj = DateTime.Now;
-            newobj.jssj = DateTime.Now;
+          
         }
         /// <summary>
         /// 父表ID
@@ -196,7 +193,7 @@ namespace Ebada.Scgl.Yxgl
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle>=0)
             {
-                Export02.ExportExcel(gridView1.GetFocusedRow() as PJ_02aqhd);
+                ExportTDJH.ExportExcel(gridView1.GetFocusedRow() as PJ_tdjh);
             }
            
            
