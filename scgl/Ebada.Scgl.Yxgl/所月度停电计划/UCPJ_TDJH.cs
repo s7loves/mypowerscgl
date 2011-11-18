@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using DevExpress.Utils;
 
 namespace Ebada.Scgl.Yxgl
 {
@@ -125,6 +126,11 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("S1");
             hideColumn("S2");
             hideColumn("S3");
+
+            gridView1.Columns["TDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            gridView1.Columns["TDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            gridView1.Columns["SDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            gridView1.Columns["SDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
         }
         /// <summary>
         /// 刷新数据
@@ -153,6 +159,8 @@ namespace Ebada.Scgl.Yxgl
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
+            newobj.TDtime = newobj.CreateDate;
+            newobj.SDtime = newobj.CreateDate;
           
         }
         /// <summary>
@@ -194,12 +202,16 @@ namespace Ebada.Scgl.Yxgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (gridView1.FocusedRowHandle>=0)
-            {
-                ExportTDJH.ExportExcel(gridView1.GetFocusedRow() as PJ_tdjh);
-            }
+            IList<PJ_tdjh> datalist = gridView1.DataSource as IList<PJ_tdjh>;
+            ExportTDJH.ExportExcel(datalist);
            
            
+           
+        }
+
+        private void barWorkFlow_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }

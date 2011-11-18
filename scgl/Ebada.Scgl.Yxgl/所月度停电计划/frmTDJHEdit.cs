@@ -117,7 +117,21 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-
+            SelectorHelper.SelectDyk("所月度停电计划", "停电检修设备", memoEdit2);
         }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("所月度停电计划", "主要检修内容", memoEdit1);
+        }
+
+      
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("所月度停电计划", "备注", memoEdit3);
+        }
+
+       
     }
 }
