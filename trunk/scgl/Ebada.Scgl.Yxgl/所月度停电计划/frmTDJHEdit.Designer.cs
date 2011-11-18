@@ -182,6 +182,7 @@
             this.simpleButton3.Size = new System.Drawing.Size(34, 23);
             this.simpleButton3.TabIndex = 27;
             this.simpleButton3.Text = "…";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // memoEdit3
             // 
@@ -211,6 +212,7 @@
             this.simpleButton2.Size = new System.Drawing.Size(34, 23);
             this.simpleButton2.TabIndex = 27;
             this.simpleButton2.Text = "…";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // memoEdit1
             // 
@@ -240,6 +242,7 @@
             this.simpleButton1.Size = new System.Drawing.Size(34, 23);
             this.simpleButton1.TabIndex = 27;
             this.simpleButton1.Text = "…";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // memoEdit2
             // 
