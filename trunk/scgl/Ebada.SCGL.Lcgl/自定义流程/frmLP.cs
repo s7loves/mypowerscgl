@@ -365,6 +365,10 @@ namespace Ebada.Scgl.Lcgl
             int currentPosY = 10;
             int currentPosX = 10;
             int index = 0;
+            if (MaxWordWidth < 300)
+            {
+                MaxWordWidth = 300;
+            }
             if (parentTemple != null)
             {
                 foreach (LP_Temple lp in templeList)
@@ -1922,8 +1926,8 @@ namespace Ebada.Scgl.Lcgl
                 //base.Close();
                 //rowData = null;
                 
-                dockPanel1.ControlContainer.Controls.Clear();
-                templeList.Clear();
+                //dockPanel1.ControlContainer.Controls.Clear();
+                //templeList.Clear();
                 currRecord = null;
                     if (filecontrol != null)
                     {

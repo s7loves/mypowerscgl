@@ -278,12 +278,13 @@ namespace Ebada.SCGL.WFlow.Engine
                          "TaskCaption,UserId,WorkFlowId,WorkTaskId,WorkFlowInsId,WorkTaskInsId,OperType,TaskTypeId,operatorInsId," +
                           "OperatedDes,OperDateTime,taskEndTime,flowStartTime,flowEndTime,pOperatedDes,Description,OperStatus,taskInsType,TaskInsDescription";
 
-
+                string allworflowid = "";
+                GetAllWorkFlowID(WorkFlowInstanceId, ref allworflowid);
                 string sqlstr = "select top " + topsize + " * from (";
                 sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
                 sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') ) OR ";
                 sqlstr = sqlstr + " (OperContent = 'ALL')) and  (OperStatus='0') and ";
-                sqlstr = sqlstr + " (Status='1' ) and ( (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "' and WorkTaskId='" + NowTaskId + "')  or WorkFlowInsId in (select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + WorkFlowInstanceId + "' ))";
+                sqlstr = sqlstr + " (Status='1' ) and ( (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "' and WorkTaskId='" + NowTaskId + "')  or WorkFlowInsId in (select WorkFlowInsId from  WF_WorkFlowInstance where " + allworflowid + " ))";
                 sqlstr = sqlstr + "union  ";
                 sqlstr = sqlstr + " select " + filedstr + " from WF_WorkTaskInsAccreditView where ";
                 sqlstr = sqlstr + " AccreditToUserId='" + userId + "' and AccreditStatus='1'and status='1'  ";
@@ -304,6 +305,25 @@ namespace Ebada.SCGL.WFlow.Engine
                 throw ex;
             }
         }
+        public static void GetAllWorkFlowID(string workFlowInstanceId, ref string allworflowid)
+        {
+            IList<WF_WorkFlowInstance> wflist = MainHelper.PlatformSqlMap.GetListByWhere<WF_WorkFlowInstance>
+                        (" where MainWorkflowInsId ='" + workFlowInstanceId + "'");
+
+            if (wflist.Count > 0)
+            {
+               
+                for (int i = 0; i < wflist.Count; i++)
+                {
+                    if (allworflowid!="")
+                    allworflowid = allworflowid+ " or MainWorkflowInsId ='" + wflist[0].WorkFlowInsId + "' ";
+                    else
+                        allworflowid =   "  MainWorkflowInsId ='" + wflist[0].WorkFlowInsId + "' ";
+
+                    GetAllWorkFlowID(wflist[0].WorkFlowInsId, ref  allworflowid);
+                } 
+            }
+        }
         /// <summary>
         /// 指定的未认领的任务
         /// </summary>
@@ -322,6 +342,9 @@ namespace Ebada.SCGL.WFlow.Engine
                 //sqlItem.AppendParameter("@topsize", topsize,typeof(int));
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.ExecuteDataTable(sqlItem);
+                string allworflowid = "";
+                GetAllWorkFlowID(WorkFlowInstanceId, ref allworflowid);
+                
                 string filedstr = "Priority,WorkFlowNo,taskStartTime,TaskInsCaption,FlowInsCaption,OperContent,Status,FlowCaption," +
                          "TaskCaption,UserId,WorkFlowId,WorkTaskId,WorkFlowInsId,WorkTaskInsId,OperType,TaskTypeId,operatorInsId," +
                           "OperatedDes,OperDateTime,taskEndTime,flowStartTime,flowEndTime,pOperatedDes,Description,OperStatus,taskInsType,TaskInsDescription";
@@ -331,7 +354,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
                 sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') ) OR ";
                 sqlstr = sqlstr + " (OperContent = 'ALL')) and  (OperStatus='0' or OperStatus='3' ) and ";
-                sqlstr = sqlstr + " (Status='1' or OperStatus='2') and ( (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "')  or WorkFlowInsId in (select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + WorkFlowInstanceId + "' ))";
+                sqlstr = sqlstr + " (Status='1' or OperStatus='2') and ( (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "')  or WorkFlowInsId in (select WorkFlowInsId from  WF_WorkFlowInstance where " + allworflowid + "  ))";
                 sqlstr = sqlstr + "union  ";
                 sqlstr = sqlstr + " select " + filedstr + " from WF_WorkTaskInsAccreditView where ";
                 sqlstr = sqlstr + " AccreditToUserId='" + userId + "' and AccreditStatus='1'and status='1'  ";

@@ -217,6 +217,10 @@ namespace Ebada.SCGL.WFlow.Tool
             int currentPosY = 10;
             int currentPosX = 10;
             int index = 0;
+            if (MaxWordWidth < 300)
+            {
+                MaxWordWidth = 300;
+            }
             foreach (LP_Temple lp in templeList)
             {
                 bool flag = (lp.Status == CurrRecord.Status);
@@ -1199,8 +1203,8 @@ namespace Ebada.SCGL.WFlow.Tool
             //base.Close();
             currRecord = null;
             //rowData = null;
-            dockPanel1.ControlContainer.Controls.Clear();
-            templeList.Clear();
+            //dockPanel1.ControlContainer.Controls.Clear();
+            //templeList.Clear();
             dsoFramerWordControl1.FileClose();
         }
 
