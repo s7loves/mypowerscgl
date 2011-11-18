@@ -24,7 +24,13 @@ namespace Ebada.Scgl.Yxgl
         }
         void dataBind() {
 
-
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "SQOrgname");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "ASSOrgname");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "TDtime");
+            this.dateEdit2.DataBindings.Add("EditValue", rowData, "SDtime");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "JXNR");
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "JXSB");
+            this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
 
         }
@@ -51,15 +57,31 @@ namespace Ebada.Scgl.Yxgl
         }
 
         #endregion
-     
-     
-       
-      
 
+
+
+
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList post)
+        {
+            comboBox.Properties.Columns.Clear();
+            comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboBox.Properties.DataSource = post;
+            comboBox.Properties.DisplayMember = displayMember;
+            comboBox.Properties.ValueMember = valueMember;
+            comboBox.Properties.NullText = nullTest;
+            comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
+        }
 
         private void InitComboBoxData() {
            
             //填充下拉列表数据
+            IList<ViewGds> gdslist = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+            SetComboBoxData(comboBoxEdit1, "OrgName", "OrgName", "选择供电所", "", gdslist as IList);
+            SetComboBoxData(comboBoxEdit2, "OrgName", "OrgName", "选择供电所", "", gdslist as IList);
+            dateEdit1.DateTime = DateTime.Now;
+            dateEdit2.DateTime = DateTime.Now;
         }
 
         /// <summary>
@@ -95,9 +117,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            //SelectorHelper.SelectDyk("02安全活动记录簿", "安全活动内容", memoEdit1, memoEdit1,memoEdit2, memoEdit5);
-           
-            //memoEdit5.Update();
+
         }
     }
 }

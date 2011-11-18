@@ -26,6 +26,7 @@ namespace Ebada.Scgl.Model
         private string _orgname = "";
         private string _sqorgname = "";
         private string _jxsb = "";
+        private string _jxnr = "";
         private DateTime _tdtime = new DateTime(1900, 1, 1);
         private DateTime _sdtime = new DateTime(1900, 1, 1); 
         private string _assorgname = "";
@@ -131,6 +132,23 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
+      /// <summary>
+        /// 属性名称：JXNR
+        /// 属性描述：主要检修内容
+        /// 字段信息：[JXNR],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("主要检修内容")]
+        public string JXNR
+        {
+            get { return _jxnr; }
+            set
+            {
+                if (_jxnr as object == null || !_jxnr.Equals(value))
+                {
+                    _jxnr = value;
+                }
+            }			 
+        }
         /// <summary>
         /// 属性名称：TDtime
         /// 属性描述：停电时间
