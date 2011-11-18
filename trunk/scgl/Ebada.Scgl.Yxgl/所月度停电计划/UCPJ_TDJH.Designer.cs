@@ -36,7 +36,7 @@
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btExport0 = new DevExpress.XtraBars.BarSubItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
-            this.barWorkFlow = new DevExpress.XtraBars.BarButtonItem();
+            this.barExplorMonth = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -73,7 +73,7 @@
             this.btExport0,
             this.btGdsList,
             this.btView,
-            this.barWorkFlow});
+            this.barExplorMonth});
             this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
@@ -163,7 +163,7 @@
             this.btExport0.ImageIndex = 7;
             this.btExport0.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btView),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barWorkFlow)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barExplorMonth)});
             this.btExport0.Name = "btExport0";
             this.btExport0.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
@@ -176,12 +176,12 @@
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
-            // barWorkFlow
+            // barExplorMonth
             // 
-            this.barWorkFlow.Caption = "导出月计划";
-            this.barWorkFlow.Id = 16;
-            this.barWorkFlow.Name = "barWorkFlow";
-            this.barWorkFlow.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barWorkFlow_ItemClick);
+            this.barExplorMonth.Caption = "导出月计划";
+            this.barExplorMonth.Id = 16;
+            this.barExplorMonth.Name = "barExplorMonth";
+            this.barExplorMonth.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorMonth_ItemClick);
             // 
             // btClose
             // 
@@ -307,6 +307,6 @@
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
-        private DevExpress.XtraBars.BarButtonItem barWorkFlow;
+        private DevExpress.XtraBars.BarButtonItem barExplorMonth;
     }
 }

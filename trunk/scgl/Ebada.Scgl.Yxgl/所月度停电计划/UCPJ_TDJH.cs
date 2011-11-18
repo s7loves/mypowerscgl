@@ -203,15 +203,17 @@ namespace Ebada.Scgl.Yxgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             IList<PJ_tdjh> datalist = gridView1.DataSource as IList<PJ_tdjh>;
-            ExportTDJH.ExportExcel(datalist);
+            ExportTDJH etdjh = new ExportTDJH();
+            etdjh.ExportExcel(datalist);
            
            
            
         }
 
-        private void barWorkFlow_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void barExplorMonth_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            ExportTDJH etdjh = new ExportTDJH();
+            etdjh.ExportExcelMonth(parentObj.OrgCode);
         }
     }
 }
