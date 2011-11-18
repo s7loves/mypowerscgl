@@ -31,6 +31,8 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBoxEdit8 = new DevExpress.XtraEditors.LookUpEdit();
             this.comboBoxEdit7 = new DevExpress.XtraEditors.LookUpEdit();
@@ -70,11 +72,11 @@
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -124,6 +126,8 @@
             // groupControlOrg
             // 
             this.groupControlOrg.Controls.Add(this.simpleButton2);
+            this.groupControlOrg.Controls.Add(this.simpleButton4);
+            this.groupControlOrg.Controls.Add(this.simpleButton3);
             this.groupControlOrg.Controls.Add(this.simpleButton1);
             this.groupControlOrg.Controls.Add(this.groupBox1);
             this.groupControlOrg.Controls.Add(this.btnCancel);
@@ -135,6 +139,25 @@
             this.groupControlOrg.ShowCaption = false;
             this.groupControlOrg.Size = new System.Drawing.Size(697, 429);
             this.groupControlOrg.TabIndex = 9;
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(135, 382);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton2.TabIndex = 9;
+            this.simpleButton2.Text = "杆塔信息";
+            this.simpleButton2.Visible = false;
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(46, 382);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.TabIndex = 9;
+            this.simpleButton1.Text = "计算档距";
+            this.simpleButton1.Visible = false;
             // 
             // groupBox1
             // 
@@ -553,6 +576,15 @@
             this.labelControl3.TabIndex = 2;
             this.labelControl3.Text = "配出变电所";
             // 
+            // groupControl1
+            // 
+            this.groupControl1.Location = new System.Drawing.Point(28, 25);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(642, 351);
+            this.groupControl1.TabIndex = 8;
+            this.groupControl1.Text = "groupControl1";
+            this.groupControl1.VisibleChanged += new System.EventHandler(this.groupControl1_VisibleChanged);
+            // 
             // bar1
             // 
             this.bar1.BarName = "Tools";
@@ -569,32 +601,23 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // groupControl1
+            // simpleButton3
             // 
-            this.groupControl1.Location = new System.Drawing.Point(28, 25);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(642, 351);
-            this.groupControl1.TabIndex = 8;
-            this.groupControl1.Text = "groupControl1";
+            this.simpleButton3.Location = new System.Drawing.Point(229, 382);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton3.TabIndex = 9;
+            this.simpleButton3.Text = "备份经纬度";
+            this.simpleButton3.Visible = false;
             // 
-            // simpleButton1
+            // simpleButton4
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(46, 382);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 9;
-            this.simpleButton1.Text = "计算档距";
-            this.simpleButton1.Visible = false;
-            // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Location = new System.Drawing.Point(135, 382);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 9;
-            this.simpleButton2.Text = "杆塔信息";
-            this.simpleButton2.Visible = false;
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            this.simpleButton4.Location = new System.Drawing.Point(310, 382);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton4.TabIndex = 9;
+            this.simpleButton4.Text = "恢复经纬度";
+            this.simpleButton4.Visible = false;
             // 
             // frmxlEdit
             // 
@@ -686,6 +709,8 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
 
     }
 }
