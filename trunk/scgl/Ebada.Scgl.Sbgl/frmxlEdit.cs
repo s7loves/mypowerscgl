@@ -21,7 +21,11 @@ namespace Ebada.Scgl.Sbgl
         public frmxlEdit() {
             InitializeComponent();
             simpleButton1.Click += new EventHandler(simpleButton1_Click);
+            simpleButton3.Click += new EventHandler(simpleButton3_Click);
+            simpleButton4.Click += new EventHandler(simpleButton4_Click);
         }
+
+        
 
         
         
@@ -164,7 +168,9 @@ namespace Ebada.Scgl.Sbgl
                 gt = new UCPS_GT(rowData);
                 gt.Dock = DockStyle.Fill;
                 groupControl1.Controls.Add(gt);
-                
+
+            } else {
+                gt.ParentObj = rowData;
             }
             bool flag = groupBox1.Visible;
             groupBox1.Visible = !flag;
@@ -173,6 +179,19 @@ namespace Ebada.Scgl.Sbgl
                 simpleButton2.Text = "线路信息";
             else
                 simpleButton2.Text = "杆塔信息";
+        }
+        void simpleButton4_Click(object sender, EventArgs e) {
+            //恢复经纬度
+            SbFuns.RestoreGTLatLng(rowData.LineCode);
+        }
+
+        void simpleButton3_Click(object sender, EventArgs e) {
+            //备份经纬度
+            SbFuns.BackupGTLatLng(rowData.LineCode);
+        }
+        private void groupControl1_VisibleChanged(object sender, EventArgs e) {
+            simpleButton3.Visible = groupControl1.Visible;
+            simpleButton4.Visible = groupControl1.Visible;
         }
 
     }
