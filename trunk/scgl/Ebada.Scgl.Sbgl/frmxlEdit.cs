@@ -20,8 +20,10 @@ namespace Ebada.Scgl.Sbgl
 
         public frmxlEdit() {
             InitializeComponent();
-            
+            simpleButton1.Click += new EventHandler(simpleButton1_Click);
         }
+
+        
         
         void dataBind() {
 
@@ -134,7 +136,11 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
-
+        void simpleButton1_Click(object sender, EventArgs e) {
+            spinEdit2.Value = (int)SbFuns.CountLineLen(rowData);
+            spinEdit1.Value = rowData.WireLength;
+            
+        }
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (comboBoxEdit2.Text == "")
@@ -145,7 +151,7 @@ namespace Ebada.Scgl.Sbgl
             }
             if (comboBoxEdit3.Text == "") {
                 MsgBox.ShowTipMessageBox("线路名称不能为空。");
-                comboBoxEdit2.Focus();
+                comboBoxEdit3.Focus();
                 return;
             }
             this.DialogResult = DialogResult.OK;
