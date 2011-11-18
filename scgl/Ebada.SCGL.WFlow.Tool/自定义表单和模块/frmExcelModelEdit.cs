@@ -136,6 +136,7 @@ namespace Ebada.SCGL.WFlow.Tool
            Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
            Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
            comboBoxEdit4.Properties.Items.Clear();
+           int j = 0;
             for (int i = 1; i <= wb.Application.Sheets.Count; i++)
            {
 
@@ -145,7 +146,16 @@ namespace Ebada.SCGL.WFlow.Tool
                        if (tmpSheet != null)
                        {
                            //tmpSheet.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
-                           comboBoxEdit4.Properties.Items.Add(tmpSheet.Name);
+                          
+                           if (xx.Name == tmpSheet.Name)
+                           {
+                               j = comboBoxEdit4.Properties.Items.Add(tmpSheet.Name);
+                             
+                           }
+                           else
+                           {
+                                comboBoxEdit4.Properties.Items.Add(tmpSheet.Name);
+                           }
                        }
 
                    }
@@ -155,7 +165,8 @@ namespace Ebada.SCGL.WFlow.Tool
            }
             dsoFramerWordControl1.FileClose();
             dsoFramerWordControl1.Dispose();
-           comboBoxEdit4.Text = xx.Name;
+            comboBoxEdit4.SelectedIndex = j;
+           //comboBoxEdit4.Text = xx.Name;
         }
 
         /// <summary>
@@ -231,16 +242,19 @@ namespace Ebada.SCGL.WFlow.Tool
                 dsoFramerWordControl1.FileDataGzip = rowData.DocContent;
                 Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
                 Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
-                rowData.KindTable = xx.Name;
+                if (rowData.KindTable=="") rowData.KindTable = xx.Name;
                 
             
             }
             InitComboBoxData();
             if (rowData.KindTable == "")
             {
-               
-                if (comboBoxEdit4.Properties.Items.Count > 0) rowData.KindTable = comboBoxEdit4.Properties.Items[0].ToString();
-                comboBoxEdit4.Text = rowData.KindTable;
+
+                if (comboBoxEdit4.Properties.Items.Count > 0)
+                {
+                    rowData.KindTable = comboBoxEdit4.Properties.Items[0].ToString();
+                    comboBoxEdit4.Text = rowData.KindTable;
+                }
             }
             if (rowData.CtrlType.IndexOf("DateEdit")>-1)
             {

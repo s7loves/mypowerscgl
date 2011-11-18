@@ -224,7 +224,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
                             tetSQL.Text = "" + tetSQL.Text + " and " + list[0].ToString()
-                                + " in (select ModleRecordID from WFP_RecordWorkTaskIns where  RecordID='{recordid}')";
+                                + " in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  RecordID='{recordid}')";
                         }
 
                 }

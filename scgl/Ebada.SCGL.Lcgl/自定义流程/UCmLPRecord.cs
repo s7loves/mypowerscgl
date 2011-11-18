@@ -413,6 +413,7 @@ namespace Ebada.Scgl.Lcgl {
             lpr.Kind = strKind;
              lpr.CreateTime = DateTime.Now.ToString();
              lpr.OrgName = MainHelper.UserOrg.OrgName;
+             lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg);
             if (obj is frmLP)
             {
                 frmLP frm = new frmLP();
@@ -439,10 +440,8 @@ namespace Ebada.Scgl.Lcgl {
                 //frm.RowData = lpr;
                 frm.CurrRecord = lpr;
                 MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
+                frm.ShowDialog();
                     InitData(strKind);
-                }
             }
             else
             {

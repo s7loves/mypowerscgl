@@ -365,6 +365,10 @@ namespace Ebada.Scgl.Lcgl
             int currentPosY = 10;
             int currentPosX = 10;
             int index = 0;
+            if (MaxWordWidth < 300)
+            {
+                MaxWordWidth = 300;
+            }
             if (parentTemple != null && templeList!=null)
             {
                 foreach (LP_Temple lp in templeList)

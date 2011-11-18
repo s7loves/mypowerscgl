@@ -365,7 +365,8 @@ namespace Ebada.Scgl.Lcgl {
             LP_Record lpr = new LP_Record();
             lpr.ID = "N" + lpr.CreateID();
             lpr.Kind = strKind;
-             lpr.CreateTime = DateTime.Now.ToString();
+            lpr.CreateTime = DateTime.Now.ToString();
+            lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg);
             if (obj is frmLP)
             {
                 frmLP frm = new frmLP();

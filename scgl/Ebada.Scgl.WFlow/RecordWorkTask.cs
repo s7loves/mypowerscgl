@@ -1307,15 +1307,44 @@ namespace Ebada.Scgl.WFlow
             MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleCheckTable>(" where recordID='" + recordID + "'");
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
             if (wf.Count == 0) return;
-            {
-                MainHelper.PlatformSqlMap.Delete<WFP_RecordWorkTaskIns>(wf[0]);
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + recordID + "' and WorkFlowInsId='" + wf[0].WorkFlowInsId + "'");
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
-            }
+            
+                //MainHelper.PlatformSqlMap.Delete<WFP_RecordWorkTaskIns>(wf[0]);
+                //MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + recordID + "' and WorkFlowInsId='" + wf[0].WorkFlowInsId + "'");
+                //MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
+                //MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
+                //MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowInstance>(" where (WorkFlowInsId='" + wf[0].WorkFlowInsId + "' or  WorkFlowInsId in ( select WorkFlowInsId from  WF_WorkFlowInstance where MainWorkflowInsId ='" + wf[0].WorkFlowInsId + "' ) )");
+            DeleteWorkFlowRecord(recordID, wf[0].WorkFlowInsId);
+            MainHelper.PlatformSqlMap.Delete<WFP_RecordWorkTaskIns>(wf[0]);
 
             //return "";
+        }
+        public static void DeleteWorkFlowRecord(string recordID, string workFlowInsId)
+        {
+          
+                IList<WF_WorkFlowInstance> wf = MainHelper.PlatformSqlMap.GetListByWhere<WF_WorkFlowInstance>(" where MainWorkflowInsId ='" + workFlowInsId + "'");
+                if (wf.Count > 0)
+                {
+                    foreach(WF_WorkFlowInstance wfsub in wf)
+                        DeleteWorkFlowRecord(recordID, wfsub.WorkFlowInsId);
+                    WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(workFlowInsId);
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + recordID + "' and WorkFlowInsId='" + workFlowInsId + "'");
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where (WorkFlowInsId='" + workFlowInsId + "')");
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskInstance>(" where (WorkFlowInsId='" + workFlowInsId + "')");
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowInstance>(" where (WorkFlowInsId='" + workFlowInsId + "')");
+                }
+                else
+                {
+                    WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>( workFlowInsId );
+                   
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + recordID + "' and WorkFlowInsId='" + workFlowInsId + "'");
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where (WorkFlowInsId='" +workFlowInsId + "')");
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskInstance>(" where (WorkFlowInsId='" + workFlowInsId + "')");
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowInstance>(" where (WorkFlowInsId='" + workFlowInsId + "')");
+                
+                }
+
+
+            
         }
         /// <summary>
         /// 创建流程
@@ -1554,6 +1583,23 @@ namespace Ebada.Scgl.WFlow
 
             return TaskToWhoMsg = "成功提交至:" + TaskToWhoMsg + "。已完成该任务处理,可以关闭该窗口。";
         }
+        public static string CreatWorkFolwNo(mOrg org)
+        {
+            string number = "";
+            IList<LP_Record> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<LP_Record>(
+                " where Number like '%" + DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' order by Number desc");
+            if (datalist.Count > 0)
+            {
+                string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
+                number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + string.Format("{0:D4}", Convert.ToInt32(stri) + 1);
+            }
+            else
+            {
 
+                number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "0001";
+            }
+
+            return number;
+        }
     }
 }
