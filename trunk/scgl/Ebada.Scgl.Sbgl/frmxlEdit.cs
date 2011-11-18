@@ -143,7 +143,7 @@ namespace Ebada.Scgl.Sbgl
         void simpleButton1_Click(object sender, EventArgs e) {
             spinEdit2.Value = (int)SbFuns.CountLineLen(rowData);
             spinEdit1.Value = rowData.WireLength;
-            
+            MsgBox.ShowTipMessageBox("计算完成。");
         }
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -182,12 +182,15 @@ namespace Ebada.Scgl.Sbgl
         }
         void simpleButton4_Click(object sender, EventArgs e) {
             //恢复经纬度
+            
             SbFuns.RestoreGTLatLng(rowData.LineCode);
+            Client.MsgBox.ShowTipMessageBox("恢复完成。");
         }
 
         void simpleButton3_Click(object sender, EventArgs e) {
             //备份经纬度
             SbFuns.BackupGTLatLng(rowData.LineCode);
+            Client.MsgBox.ShowTipMessageBox("备份完成。");
         }
         private void groupControl1_VisibleChanged(object sender, EventArgs e) {
             simpleButton3.Visible = groupControl1.Visible;
