@@ -169,10 +169,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：PSafeTime
-        /// 属性描述：人生安全启始时间
+        /// 属性描述：人生安全起始时间
         /// 字段信息：[PSafeTime],datetime
         /// </summary>
-        [DisplayNameAttribute("人生安全启始时间")]
+        [DisplayNameAttribute("人生安全起始时间")]
         public DateTime PSafeTime
         {
             get { return _psafetime; }
@@ -187,10 +187,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：DSafeTime
-        /// 属性描述：设备安全启始时间
+        /// 属性描述：设备安全起始时间
         /// 字段信息：[DSafeTime],datetime
         /// </summary>
-        [DisplayNameAttribute("设备安全启始时间")]
+        [DisplayNameAttribute("设备安全起始时间")]
         public DateTime DSafeTime
         {
             get { return _dsafetime; }
