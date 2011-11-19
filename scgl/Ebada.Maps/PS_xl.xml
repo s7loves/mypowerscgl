@@ -30,69 +30,75 @@
         <result property="LineQ" column="LineQ" />
         <result property="K" column="K" />
         <result property="ParentGT" column="ParentGT" />
+        <result property="lineKind" column="lineKind" />
+        <result property="lineNum" column="lineNum" />
       </resultMap>
   </resultMaps>
 
   <statements>
    <select id="SelectPS_xlList" resultMap="PS_xl_AllColumns" parameterClass="string">
-        SELECT 
-         [LineID],
-         [ParentID],
-         [LineType],
-         [LineCode],
-         [LineName],
-         [LineNamePath],
-         [LineVol],
-         [OrgCode],
-         [OrgCode2],
-         [Owner],
-         [Contractor],
-         [RunState],
-         [InDate],
-         [LineGtbegin],
-         [LineGtend],
-         [WireType],
-         [WireLength],
-         [TotalLength],
-         [gdbj],
-         [TheoryLoss],
-         [ActualLoss],
-         [LineP],
-         [LineQ],
-         [K],
-         [ParentGT]
-          FROM PS_xl
-          $value$
+     SELECT
+     [LineID],
+     [ParentID],
+     [LineType],
+     [LineCode],
+     [LineName],
+     [LineNamePath],
+     [LineVol],
+     [OrgCode],
+     [OrgCode2],
+     [Owner],
+     [Contractor],
+     [RunState],
+     [InDate],
+     [LineGtbegin],
+     [LineGtend],
+     [WireType],
+     [WireLength],
+     [TotalLength],
+     [gdbj],
+     [TheoryLoss],
+     [ActualLoss],
+     [LineP],
+     [LineQ],
+     [K],
+     [ParentGT],
+     [lineKind],
+     [lineNum]
+     FROM PS_xl
+     $value$
    </select>
    
    <select id="SelectPS_xlByHash" parameterClass="Hashtable">
-         SELECT 
-         [LineID],
-         [ParentID],
-         [LineType],
-         [LineCode],
-         [LineName],
-         [LineNamePath],
-         [LineVol],
-         [OrgCode],
-         [OrgCode2],
-         [Owner],
-         [Contractor],
-         [RunState],
-         [InDate],
-         [LineGtbegin],
-         [LineGtend],
-         [WireType],
-         [WireLength],
-         [TotalLength],
-         [gdbj],
-         [TheoryLoss],
-         [ActualLoss],
-         [LineP],
-         [LineQ],
-         [K],
-         [ParentGT]
-          FROM PS_xl
+     SELECT
+     [LineID],
+     [ParentID],
+     [LineType],
+     [LineCode],
+     [LineName],
+     [LineNamePath],
+     [LineVol],
+     [OrgCode],
+     [OrgCode2],
+     [Owner],
+     [Contractor],
+     [RunState],
+     [InDate],
+     [LineGtbegin],
+     [LineGtend],
+     [WireType],
+     [WireLength],
+     [TotalLength],
+     [gdbj],
+     [TheoryLoss],
+     [ActualLoss],
+     [LineP],
+     [LineQ],
+     [K],
+     [ParentGT],
+     [lineKind],
+     [lineNum]
+     FROM PS_xl
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
@@ -119,38 +125,42 @@
        <isNotNull prepend="AND" property="LineQ">[LineQ]='$LineQ$'</isNotNull>
        <isNotNull prepend="AND" property="K">[K]='$K$'</isNotNull>
        <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
+       <isNotNull prepend="AND" property="lineKind">[lineKind]='$lineKind$'</isNotNull>
+       <isNotNull prepend="AND" property="lineNum">[lineNum]='$lineNum$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_xlByKey" resultMap="PS_xl_AllColumns" parameterClass="PS_xl">
-         SELECT 
-         [LineID],
-         [ParentID],
-         [LineType],
-         [LineCode],
-         [LineName],
-         [LineNamePath],
-         [LineVol],
-         [OrgCode],
-         [OrgCode2],
-         [Owner],
-         [Contractor],
-         [RunState],
-         [InDate],
-         [LineGtbegin],
-         [LineGtend],
-         [WireType],
-         [WireLength],
-         [TotalLength],
-         [gdbj],
-         [TheoryLoss],
-         [ActualLoss],
-         [LineP],
-         [LineQ],
-         [K],
-         [ParentGT]
-         FROM PS_xl
-         WHERE 
-           LineID = #LineID#
+     SELECT
+     [LineID],
+     [ParentID],
+     [LineType],
+     [LineCode],
+     [LineName],
+     [LineNamePath],
+     [LineVol],
+     [OrgCode],
+     [OrgCode2],
+     [Owner],
+     [Contractor],
+     [RunState],
+     [InDate],
+     [LineGtbegin],
+     [LineGtend],
+     [WireType],
+     [WireLength],
+     [TotalLength],
+     [gdbj],
+     [TheoryLoss],
+     [ActualLoss],
+     [LineP],
+     [LineQ],
+     [K],
+     [ParentGT],
+     [lineKind],
+     [lineNum]
+     FROM PS_xl
+     WHERE
+     LineID = #LineID#
 
    </select>
  
@@ -175,94 +185,100 @@
    </delete>
    
    <update id="UpdatePS_xl" parameterClass="PS_xl" resultClass="int">
-          UPDATE PS_xl
-           SET
-             [ParentID]=#ParentID#,
-             [LineType]=#LineType#,
-             [LineCode]=#LineCode#,
-             [LineName]=#LineName#,
-             [LineNamePath]=#LineNamePath#,
-             [LineVol]=#LineVol#,
-             [OrgCode]=#OrgCode#,
-             [OrgCode2]=#OrgCode2#,
-             [Owner]=#Owner#,
-             [Contractor]=#Contractor#,
-             [RunState]=#RunState#,
-             [InDate]=#InDate#,
-             [LineGtbegin]=#LineGtbegin#,
-             [LineGtend]=#LineGtend#,
-             [WireType]=#WireType#,
-             [WireLength]=#WireLength#,
-             [TotalLength]=#TotalLength#,
-             [gdbj]=#gdbj#,
-             [TheoryLoss]=#TheoryLoss#,
-             [ActualLoss]=#ActualLoss#,
-             [LineP]=#LineP#,
-             [LineQ]=#LineQ#,
-             [K]=#K#,
-             [ParentGT]=#ParentGT#
-            WHERE 
-              LineID = #LineID#
+     UPDATE PS_xl
+     SET
+     [ParentID]=#ParentID#,
+     [LineType]=#LineType#,
+     [LineCode]=#LineCode#,
+     [LineName]=#LineName#,
+     [LineNamePath]=#LineNamePath#,
+     [LineVol]=#LineVol#,
+     [OrgCode]=#OrgCode#,
+     [OrgCode2]=#OrgCode2#,
+     [Owner]=#Owner#,
+     [Contractor]=#Contractor#,
+     [RunState]=#RunState#,
+     [InDate]=#InDate#,
+     [LineGtbegin]=#LineGtbegin#,
+     [LineGtend]=#LineGtend#,
+     [WireType]=#WireType#,
+     [WireLength]=#WireLength#,
+     [TotalLength]=#TotalLength#,
+     [gdbj]=#gdbj#,
+     [TheoryLoss]=#TheoryLoss#,
+     [ActualLoss]=#ActualLoss#,
+     [LineP]=#LineP#,
+     [LineQ]=#LineQ#,
+     [K]=#K#,
+     [ParentGT]=#ParentGT#,
+     [lineKind]=#lineKind#,
+     [lineNum]=#lineNum#
+     WHERE
+     LineID = #LineID#
 
    </update>
   
    <insert id="InsertPS_xl" parameterClass="PS_xl">
-        INSERT INTO PS_xl
-         (
-         [LineID],
-         [ParentID],
-         [LineType],
-         [LineCode],
-         [LineName],
-         [LineNamePath],
-         [LineVol],
-         [OrgCode],
-         [OrgCode2],
-         [Owner],
-         [Contractor],
-         [RunState],
-         [InDate],
-         [LineGtbegin],
-         [LineGtend],
-         [WireType],
-         [WireLength],
-         [TotalLength],
-         [gdbj],
-         [TheoryLoss],
-         [ActualLoss],
-         [LineP],
-         [LineQ],
-         [K],
-         [ParentGT]
-         )
-       VALUES
-         (
-         #LineID#,
-         #ParentID#,
-         #LineType#,
-         #LineCode#,
-         #LineName#,
-         #LineNamePath#,
-         #LineVol#,
-         #OrgCode#,
-         #OrgCode2#,
-         #Owner#,
-         #Contractor#,
-         #RunState#,
-         #InDate#,
-         #LineGtbegin#,
-         #LineGtend#,
-         #WireType#,
-         #WireLength#,
-         #TotalLength#,
-         #gdbj#,
-         #TheoryLoss#,
-         #ActualLoss#,
-         #LineP#,
-         #LineQ#,
-         #K#,
-         #ParentGT#
-         )
+     INSERT INTO PS_xl
+     (
+     [LineID],
+     [ParentID],
+     [LineType],
+     [LineCode],
+     [LineName],
+     [LineNamePath],
+     [LineVol],
+     [OrgCode],
+     [OrgCode2],
+     [Owner],
+     [Contractor],
+     [RunState],
+     [InDate],
+     [LineGtbegin],
+     [LineGtend],
+     [WireType],
+     [WireLength],
+     [TotalLength],
+     [gdbj],
+     [TheoryLoss],
+     [ActualLoss],
+     [LineP],
+     [LineQ],
+     [K],
+     [ParentGT],
+     [lineKind],
+     [lineNum]
+     )
+     VALUES
+     (
+     #LineID#,
+     #ParentID#,
+     #LineType#,
+     #LineCode#,
+     #LineName#,
+     #LineNamePath#,
+     #LineVol#,
+     #OrgCode#,
+     #OrgCode2#,
+     #Owner#,
+     #Contractor#,
+     #RunState#,
+     #InDate#,
+     #LineGtbegin#,
+     #LineGtend#,
+     #WireType#,
+     #WireLength#,
+     #TotalLength#,
+     #gdbj#,
+     #TheoryLoss#,
+     #ActualLoss#,
+     #LineP#,
+     #LineQ#,
+     #K#,
+     #ParentGT#,
+     #lineKind#,
+     #lineNum#
+     )
 
    </insert>
    
@@ -295,6 +311,8 @@
        <isNotNull prepend="AND" property="LineQ">[LineQ]='$LineQ$'</isNotNull>
        <isNotNull prepend="AND" property="K">[K]='$K$'</isNotNull>
        <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
+       <isNotNull prepend="AND" property="lineKind">[lineKind]='$lineKind$'</isNotNull>
+       <isNotNull prepend="AND" property="lineNum">[lineNum]='$lineNum$'</isNotNull>
      </dynamic>
 
    </select>
