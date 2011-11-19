@@ -315,6 +315,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
             comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.Add("SelectedIndexChanged");
             comboBoxEdit3.Properties.Items.Add("TextChanged");
             comboBoxEdit3.Properties.Items.Add("GotFocus");
             comboBoxEdit3.Properties.Items.Add("LostFocus");
