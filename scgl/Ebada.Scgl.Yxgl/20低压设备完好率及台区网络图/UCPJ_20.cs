@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_20>(gridControl1, gridView1, barManager1, new frm20Edit());
+            gridViewOperation = new GridViewOperation<PJ_20>(gridControl1, gridView1, barManager1, new frmTemplate());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_20>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_20>(gridViewOperation_BeforeDelete);
@@ -71,6 +71,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (parentID == null)
                 e.Cancel = true;
+
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -125,6 +126,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
+            RefreshData(" where ParentID='" + parentID + "' order by CreateDate desc");
         }
         /// <summary>
         /// 初始化列,
@@ -171,6 +173,8 @@ namespace Ebada.Scgl.Yxgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
+            LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and CellName like '%低压线路完好率及台区网络图%'");
+            newobj.BigData = lp.DocContent;
         }
         /// <summary>
         /// 父表ID
@@ -217,6 +221,42 @@ namespace Ebada.Scgl.Yxgl
             }
            
            
+        }
+
+        private void btReAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PJ_20 newobj = new  PJ_20();
+            if (parentID == null) return;
+            newobj.ParentID = parentID;
+            newobj.OrgCode = parentObj.OrgCode;
+            newobj.OrgName = parentObj.OrgName;
+            if (btTQList.EditValue != null)
+            {
+                newobj.tqCode = btTQList.EditValue.ToString();
+                newobj.tqName = repositoryItemLookUpEdit3.GetDisplayText(btTQList.EditValue.ToString());
+            }
+            newobj.CreateDate = DateTime.Now;
+            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            newobj.CreateMan = m_UserBase.RealName;
+            frmTemplate frm = new frmTemplate();
+            frm.RowData = newobj;
+            frm.Status = "add";
+            frm.ShowDialog();
+            InitData();
+        }
+
+        private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle < 0)
+            {
+                return;
+            }
+            PJ_20 pj = gridView1.GetFocusedRow() as PJ_20;
+            frmTemplate frm = new frmTemplate();
+            frm.RowData = pj;
+            frm.Status = "edit";
+            frm.ShowDialog();
+            InitData();
         }
     }
 }
