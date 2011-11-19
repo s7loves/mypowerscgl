@@ -32,8 +32,8 @@
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btTQList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.btAdd = new DevExpress.XtraBars.BarButtonItem();
-            this.btEdit = new DevExpress.XtraBars.BarButtonItem();
+            this.btReAdd = new DevExpress.XtraBars.BarButtonItem();
+            this.btReEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
@@ -67,8 +67,8 @@
             this.barManager1.DockControls.Add(this.barDockControlRight);
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btAdd,
-            this.btEdit,
+            this.btReAdd,
+            this.btReEdit,
             this.btDelete,
             this.btFind,
             this.btRefresh,
@@ -97,8 +97,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btXlList, "", true, true, true, 123),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btTQList, "", false, true, true, 98),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReAdd),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
@@ -166,21 +166,23 @@
             this.repositoryItemLookUpEdit3.NullText = "请选择台区";
             this.repositoryItemLookUpEdit3.ValueMember = "tqCode";
             // 
-            // btAdd
+            // btReAdd
             // 
-            this.btAdd.Caption = "增加";
-            this.btAdd.Id = 0;
-            this.btAdd.ImageIndex = 6;
-            this.btAdd.Name = "btAdd";
-            this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReAdd.Caption = "增加";
+            this.btReAdd.Id = 0;
+            this.btReAdd.ImageIndex = 6;
+            this.btReAdd.Name = "btReAdd";
+            this.btReAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReAdd_ItemClick);
             // 
-            // btEdit
+            // btReEdit
             // 
-            this.btEdit.Caption = "修改";
-            this.btEdit.Id = 1;
-            this.btEdit.ImageIndex = 1;
-            this.btEdit.Name = "btEdit";
-            this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReEdit.Caption = "修改";
+            this.btReEdit.Id = 1;
+            this.btReEdit.ImageIndex = 1;
+            this.btReEdit.Name = "btReEdit";
+            this.btReEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReEdit_ItemClick);
             // 
             // btDelete
             // 
@@ -337,8 +339,8 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarButtonItem btAdd;
-        private DevExpress.XtraBars.BarButtonItem btEdit;
+        private DevExpress.XtraBars.BarButtonItem btReAdd;
+        private DevExpress.XtraBars.BarButtonItem btReEdit;
         private DevExpress.XtraBars.BarButtonItem btDelete;
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraBars.BarButtonItem btRefresh;

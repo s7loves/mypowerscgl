@@ -541,11 +541,24 @@
     <Compile Include="20低压设备完好率及台区网络图\frm20Edit.Designer.cs">
       <DependentUpon>frm20Edit.cs</DependentUpon>
     </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\frmTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\frmTemplate.Designer.cs">
+      <DependentUpon>frmTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\StringHelper.cs" />
     <Compile Include="20低压设备完好率及台区网络图\UCPJ_20.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="20低压设备完好率及台区网络图\UCPJ_20.Designer.cs">
       <DependentUpon>UCPJ_20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\uc_gridcontrol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\uc_gridcontrol.Designer.cs">
+      <DependentUpon>uc_gridcontrol.cs</DependentUpon>
     </Compile>
     <Compile Include="21电力故障电话接听记录\Export21.cs" />
     <Compile Include="21电力故障电话接听记录\frm21gzbxdhEdit.cs">
@@ -935,8 +948,16 @@
       <DependentUpon>frm20Edit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="20低压设备完好率及台区网络图\frmTemplate.resx">
+      <DependentUpon>frmTemplate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="20低压设备完好率及台区网络图\UCPJ_20.resx">
       <DependentUpon>UCPJ_20.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="20低压设备完好率及台区网络图\uc_gridcontrol.resx">
+      <DependentUpon>uc_gridcontrol.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="21电力故障电话接听记录\frm21gzbxdhEdit.resx">

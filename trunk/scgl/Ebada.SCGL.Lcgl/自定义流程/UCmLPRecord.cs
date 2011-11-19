@@ -1264,6 +1264,7 @@ namespace Ebada.Scgl.Lcgl {
             }
             else
             {
+                return;
                 if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
                     obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
                 else
