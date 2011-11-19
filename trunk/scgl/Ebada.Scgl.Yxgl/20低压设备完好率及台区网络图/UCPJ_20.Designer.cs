@@ -34,7 +34,7 @@
             this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btReAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btReEdit = new DevExpress.XtraBars.BarButtonItem();
-            this.btDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.btReDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
@@ -69,7 +69,7 @@
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btReAdd,
             this.btReEdit,
-            this.btDelete,
+            this.btReDelete,
             this.btFind,
             this.btRefresh,
             this.btClose,
@@ -99,7 +99,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btTQList, "", false, true, true, 98),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReEdit),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
@@ -184,13 +184,14 @@
             this.btReEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReEdit_ItemClick);
             // 
-            // btDelete
+            // btReDelete
             // 
-            this.btDelete.Caption = "删除";
-            this.btDelete.Id = 2;
-            this.btDelete.ImageIndex = 12;
-            this.btDelete.Name = "btDelete";
-            this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReDelete.Caption = "删除";
+            this.btReDelete.Id = 2;
+            this.btReDelete.ImageIndex = 12;
+            this.btReDelete.Name = "btReDelete";
+            this.btReDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReDelete_ItemClick);
             // 
             // btRefresh
             // 
@@ -341,7 +342,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem btReAdd;
         private DevExpress.XtraBars.BarButtonItem btReEdit;
-        private DevExpress.XtraBars.BarButtonItem btDelete;
+        private DevExpress.XtraBars.BarButtonItem btReDelete;
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraBars.BarButtonItem btRefresh;
         private DevExpress.XtraBars.BarButtonItem btClose;
