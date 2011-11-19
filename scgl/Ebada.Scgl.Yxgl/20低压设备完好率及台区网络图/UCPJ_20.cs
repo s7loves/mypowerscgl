@@ -161,7 +161,7 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_20 newobj)
         {
-            if (parentID == null) return;
+            if (parentID == null || btTQList.EditValue.ToString() == "") return;
             newobj.ParentID = parentID;
             newobj.OrgCode = parentObj.OrgCode;
             newobj.OrgName = parentObj.OrgName;
@@ -226,7 +226,7 @@ namespace Ebada.Scgl.Yxgl
         private void btReAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             PJ_20 newobj = new  PJ_20();
-            if (parentID == null) return;
+            if (parentID == null || btTQList.EditValue == null) return;
             newobj.ParentID = parentID;
             newobj.OrgCode = parentObj.OrgCode;
             newobj.OrgName = parentObj.OrgName;
