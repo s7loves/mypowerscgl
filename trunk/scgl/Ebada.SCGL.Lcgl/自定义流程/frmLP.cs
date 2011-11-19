@@ -257,7 +257,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     currRecord.DocContent = new byte[0];
                 }
-                    InitContorl();
+                   
                     if (currRecord.ID.IndexOf("N") == -1)
                     {
                         this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
@@ -268,11 +268,11 @@ namespace Ebada.Scgl.Lcgl
                         else
                             this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                     }
-                
+                    LoadContent();
+                    InitContorl();
 
 
                
-                LoadContent();
             }
             if ((parentTemple != null && parentTemple.DocContent != null) || (currRecord!=null&&currRecord.DocContent != null && currRecord.DocContent.Length > 0))
             {
@@ -374,7 +374,7 @@ namespace Ebada.Scgl.Lcgl
                 foreach (LP_Temple lp in templeList)
                 {
                     bool flag;//= (lp.Status == CurrRecord.Status);
-                    flag = true;
+                    flag = lp.IsVisible==0;
                     Label label = new Label();
                     label.Text = lp.CellName;
                     //string[] location = lp.CtrlLocation.Split(',');
@@ -419,10 +419,12 @@ namespace Ebada.Scgl.Lcgl
                     ctrl.Name = lp.LPID;
                     dockPanel1.Controls.Add(label);
                     dockPanel1.Controls.Add(ctrl);
+                    (ctrl).Focus();
                     if (lp.CellName == "编号")
                     {
                         ctrlNumber = ctrl;
                     }
+                    (ctrl).Focus();
                 }
             }
             InitEvent();
@@ -1925,9 +1927,9 @@ namespace Ebada.Scgl.Lcgl
             { 
                 //base.Close();
                 //rowData = null;
-                
-                //dockPanel1.ControlContainer.Controls.Clear();
-                //templeList.Clear();
+
+                dockPanel1.ControlContainer.Controls.Clear();
+                templeList.Clear();
                 currRecord = null;
                     if (filecontrol != null)
                     {

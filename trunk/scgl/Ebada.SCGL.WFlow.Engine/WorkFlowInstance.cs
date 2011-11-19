@@ -279,7 +279,9 @@ namespace Ebada.SCGL.WFlow.Engine
                           "OperatedDes,OperDateTime,taskEndTime,flowStartTime,flowEndTime,pOperatedDes,Description,OperStatus,taskInsType,TaskInsDescription";
 
                 string allworflowid = "";
+                
                 GetAllWorkFlowID(WorkFlowInstanceId, ref allworflowid);
+               
                 string sqlstr = "select top " + topsize + " * from (";
                 sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
                 sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') ) OR ";
@@ -309,6 +311,10 @@ namespace Ebada.SCGL.WFlow.Engine
         {
             IList<WF_WorkFlowInstance> wflist = MainHelper.PlatformSqlMap.GetListByWhere<WF_WorkFlowInstance>
                         (" where MainWorkflowInsId ='" + workFlowInstanceId + "'");
+            if (allworflowid != "")
+                allworflowid += " or MainWorkflowInsId='" + workFlowInstanceId + "'";
+            else
+                allworflowid = "MainWorkflowInsId='" + workFlowInstanceId + "'";
 
             if (wflist.Count > 0)
             {
@@ -344,7 +350,8 @@ namespace Ebada.SCGL.WFlow.Engine
                 //return agent.ExecuteDataTable(sqlItem);
                 string allworflowid = "";
                 GetAllWorkFlowID(WorkFlowInstanceId, ref allworflowid);
-                
+
+               
                 string filedstr = "Priority,WorkFlowNo,taskStartTime,TaskInsCaption,FlowInsCaption,OperContent,Status,FlowCaption," +
                          "TaskCaption,UserId,WorkFlowId,WorkTaskId,WorkFlowInsId,WorkTaskInsId,OperType,TaskTypeId,operatorInsId," +
                           "OperatedDes,OperDateTime,taskEndTime,flowStartTime,flowEndTime,pOperatedDes,Description,OperStatus,taskInsType,TaskInsDescription";

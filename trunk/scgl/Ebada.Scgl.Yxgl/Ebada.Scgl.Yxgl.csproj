@@ -1277,6 +1277,15 @@
     <Content Include="00记录模板\设备停电检修记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="00记录模板\事故障碍异常运行记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\电力故障电话接听记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\设备紧急重大缺陷报告.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="测试记录（20110629）.xls" />
     <None Include="疑问或错误.txt" />
   </ItemGroup>
