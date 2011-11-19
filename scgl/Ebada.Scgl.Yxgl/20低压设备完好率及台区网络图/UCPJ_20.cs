@@ -258,5 +258,34 @@ namespace Ebada.Scgl.Yxgl
             frm.ShowDialog();
             InitData();
         }
+
+        private void btReDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MainHelper.UserOrg == null) return;
+
+            if (gridView1.FocusedRowHandle < 0) return;
+            PJ_20 pj = gridView1.GetFocusedRow() as PJ_20;
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认删除选择的数据 ?") != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+
+
+
+                MainHelper.PlatformSqlMap.DeleteByWhere<PJ_20>(" where id ='" + pj.ID + "'");
+                LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and  CellName like '%低压线路完好率及台区网络图%'");
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where RecordId ='"
+                    + pj.ID + "' and UserControlId='" + parentTemple .LPID+ "'");
+                InitData();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }
