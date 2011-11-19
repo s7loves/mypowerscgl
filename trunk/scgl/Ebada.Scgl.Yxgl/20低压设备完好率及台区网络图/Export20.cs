@@ -4,6 +4,7 @@ using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
+using Ebada.Scgl.Core;
 namespace Ebada.Scgl.Yxgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
@@ -18,12 +19,37 @@ namespace Ebada.Scgl.Yxgl {
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = "20低压设备完好率及台区网络图";
-            Ecommon.WriteDoc(obj.BigData,ref fname);
-            ex.Open(fname);
+            string fname =Application.StartupPath + "\\00记录模板\\20低压设备完好率及台区网络图";
+            //Ecommon.WriteDoc(obj.BigData,ref fname);
+            
+            
+            saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                fname = saveFileDialog1.FileName;
+                try
+                {
+
+                    DSOFramerControl ds1 = new DSOFramerControl();
+
+                    ds1.FileDataGzip = obj.BigData;
+                    ds1.FileSave(fname, true);
+                    ds1.FileClose();
+                    if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
+                        return;
+
+                    System.Diagnostics.Process.Start(fname);
+                }
+                catch (Exception mex)
+                {
+                    Console.WriteLine(mex.Message);
+                    MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
+
+                }
+            }
             //此处写填充内容代码
 
-           ex.ShowExcel();
+           
         }
       
     }
