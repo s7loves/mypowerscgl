@@ -45,7 +45,9 @@ namespace Ebada.Scgl.Model
         private decimal _linep=0; 
         private decimal _lineq=0; 
         private decimal _k=0; 
-        private string _parentgt=String.Empty;   
+        private string _parentgt=String.Empty;
+        private string _lineKind = String.Empty;
+        private string _lineNum = String.Empty; 
         #endregion
   
   
@@ -551,7 +553,46 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        /// <summary>
+        /// 属性名称：lineKind
+        /// 属性描述：线路种类
+        /// 字段信息：[lineKind],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("线路种类")]
+        public string lineKind
+        {
+            get { return _lineKind; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[分支杆号]长度不能大于50!");
+                if (_lineKind as object == null || !_lineKind.Equals(value))
+                {
+                    _lineKind = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：lineNum
+        /// 属性描述：线路编号
+        /// 字段信息：[lineNum],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("线路编号")]
+        public string lineNum
+        {
+            get { return _lineNum; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[分支杆号]长度不能大于50!");
+                if (_lineNum as object == null || !_lineNum.Equals(value))
+                {
+                    _lineNum = value;
+                }
+            }
+        }
         #endregion 
   
         #region 方法
