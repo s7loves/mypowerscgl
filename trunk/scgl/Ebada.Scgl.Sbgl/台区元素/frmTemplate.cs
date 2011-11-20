@@ -23,7 +23,7 @@ using DevExpress.XtraTreeList;
 using System.Net;
 using System.Threading;
 
-namespace Ebada.Scgl.Yxgl
+namespace Ebada.Scgl.Sbgl
 {
     public partial class frmTemplate : Form,IPopupFormEdit
     {
