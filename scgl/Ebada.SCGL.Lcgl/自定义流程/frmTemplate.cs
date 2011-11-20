@@ -1142,6 +1142,34 @@ namespace Ebada.Scgl.Lcgl
             {
                 ea.ActiveSheet(1);
             }
+
+            if (lp.CellPos == "")
+            {
+                lp.CellPos = lp.CellPos;
+                if (valuehs.ContainsKey(lp.LPID))
+                {
+                    WF_TableFieldValue tfv = valuehs[lp.LPID] as WF_TableFieldValue;
+                    tfv.ControlValue = str;
+                    tfv.FieldId = lp.LPID;
+                    tfv.FieldName = lp.CellName;
+                    tfv.XExcelPos = -1;
+                    tfv.YExcelPos = -1;
+
+                }
+                else
+                {
+                    WF_TableFieldValue tfv = new WF_TableFieldValue();
+                    tfv.ControlValue = str;
+                    tfv.FieldId = lp.LPID;
+                    tfv.FieldName = lp.CellName;
+                    tfv.XExcelPos = -1;
+                    tfv.YExcelPos = -1;
+                    tfv.ExcelSheetName = xx.Name;
+
+                    valuehs.Add(lp.LPID, tfv);
+                }
+                return;
+            }
             unLockExcel(wb,xx);
             if (lp.CtrlType.Contains("uc_gridcontrol"))
             { 
