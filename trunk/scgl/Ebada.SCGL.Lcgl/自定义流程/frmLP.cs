@@ -149,7 +149,7 @@ namespace Ebada.Scgl.Lcgl
            
             xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
             xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
-            wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+            //wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
             //wb.SheetDeactivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetDeactivateEventHandler(Workbook_SheetDeactivate);
             //wb.SheetActivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetActivateEventHandler(Workbook_SheetActivate);
             //wb.SheetSelectionChange  += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);  
@@ -397,10 +397,10 @@ namespace Ebada.Scgl.Lcgl
                         ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
                     ctrl.Location = new Point(currentPosX, currentPosY);
                     ctrl.Size = new Size(int.Parse(size[0]), int.Parse(size[1]));
-                    if (flag)
-                    {
-                        currentPosY += int.Parse(size[1]) + 10;
-                    }
+                    //if (flag)
+                    //{
+                    //    currentPosY += int.Parse(size[1]) + 10;
+                    //}
 
                     if (flag)
                     {
@@ -1462,6 +1462,10 @@ namespace Ebada.Scgl.Lcgl
                     strList.Add(dt.Month.ToString());
                     strList.Add(dt.Day.ToString());
                     break;
+                case "MM-dd日":
+                    strList.Add(dt.Month.ToString());
+                    strList.Add(dt.Day.ToString());
+                    break;
                 case "yyyy-MM-dd HH:mm:ss":
                     strList.Add(dt.Year.ToString());
                     strList.Add(dt.Month.ToString());
@@ -1980,7 +1984,7 @@ namespace Ebada.Scgl.Lcgl
             { 
                 //base.Close();
                 //rowData = null;
-
+                this.dsoFramerWordControl1.FileClose();
                 dockPanel1.ControlContainer.Controls.Clear();
                 templeList.Clear();
                 currRecord = null;

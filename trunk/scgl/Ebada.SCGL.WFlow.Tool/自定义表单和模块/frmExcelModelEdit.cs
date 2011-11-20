@@ -96,6 +96,8 @@ namespace Ebada.SCGL.WFlow.Tool
             comboBoxEdit5.Properties.Items.Clear();
             ListItem lt = new ListItem("yyyy-MM-dd","年-月-日");
             comboBoxEdit5.Properties.Items.Add(lt);
+            lt = new ListItem("MM-dd日", "月-日");
+            comboBoxEdit5.Properties.Items.Add(lt);
             lt = new ListItem("yyyy-MM-dd HH:mm", "年-月-日 时:分");
             comboBoxEdit5.Properties.Items.Add(lt);
             lt = new ListItem("yyyy-MM-dd HH:mm:ss", "年-月-日 时:分:秒");
@@ -264,25 +266,28 @@ namespace Ebada.SCGL.WFlow.Tool
                 switch (rowData.WordCount)
                 {
                     case "yyyy-MM-dd":
-                comboBoxEdit5.SelectedIndex =0;
-                        break;
-                    case "yyyy-MM-dd HH:mm":
+                        comboBoxEdit5.SelectedIndex =0;
+                    break;
+                    case "MM-dd日":
                         comboBoxEdit5.SelectedIndex = 1;
-                        break;
-                    case "yyyy-MM-dd HH:mm:ss":
+                    break;
+                    case "yyyy-MM-dd HH:mm":
                         comboBoxEdit5.SelectedIndex = 2;
                         break;
-                    case "MM-dd日 HH:mm":
+                    case "yyyy-MM-dd HH:mm:ss":
                         comboBoxEdit5.SelectedIndex = 3;
                         break;
-                    case "dd日 HH:mm":
+                    case "MM-dd日 HH:mm":
                         comboBoxEdit5.SelectedIndex = 4;
+                        break;
+                    case "dd日 HH:mm":
+                        comboBoxEdit5.SelectedIndex = 5;
                         break;
                     case "HH:mm:ss":
-                        comboBoxEdit5.SelectedIndex = 4;
+                        comboBoxEdit5.SelectedIndex = 6;
                         break;
                     case "HH:mm":
-                        comboBoxEdit5.SelectedIndex = 5;
+                        comboBoxEdit5.SelectedIndex = 7;
                         break;
                     default:
                         comboBoxEdit5.SelectedIndex = -1;
