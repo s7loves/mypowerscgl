@@ -928,6 +928,7 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
                     tfv.ControlValue = str;
                     tfv.FieldId = lp.LPID;
+                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                     tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
 
@@ -937,6 +938,7 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = new WF_TableFieldValue ();
                     tfv.ControlValue = str;
                     tfv.FieldId = lp.LPID;
+                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                     tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
                     valuehs.Add(lp.LPID + "$" + lp.CellPos, tfv);
@@ -959,6 +961,7 @@ namespace Ebada.Scgl.Lcgl
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
                                 tfv.ControlValue = str;
                                 tfv.FieldId = lp.LPID;
+                                tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
                                 tfv.ExcelSheetName = sheet.Name;
@@ -968,6 +971,7 @@ namespace Ebada.Scgl.Lcgl
                                 WF_TableFieldValue tfv = new WF_TableFieldValue();
                                 tfv.ControlValue = str;
                                 tfv.FieldId = lp.LPID;
+                                tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
                                 tfv.ExcelSheetName = sheet.Name;
@@ -988,6 +992,7 @@ namespace Ebada.Scgl.Lcgl
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
                             tfv.ControlValue = str;
                             tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                             tfv.ExcelSheetName = sheet.Name;
@@ -998,6 +1003,7 @@ namespace Ebada.Scgl.Lcgl
                             WF_TableFieldValue tfv = new WF_TableFieldValue();
                             tfv.ControlValue = str;
                             tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                             tfv.ExcelSheetName = sheet.Name;
@@ -1014,6 +1020,7 @@ namespace Ebada.Scgl.Lcgl
                         tfv.ControlValue = str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
                         tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                         tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                         tfv.ExcelSheetName = sheet.Name;
@@ -1025,6 +1032,7 @@ namespace Ebada.Scgl.Lcgl
                         tfv.ControlValue = str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
                         tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                         tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                         tfv.ExcelSheetName = sheet.Name;
@@ -1155,6 +1163,7 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
                     tfv.ControlValue = str;
                     tfv.FieldId = lp.LPID;
+                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                     tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
                     tfv.ExcelSheetName = xx.Name;
@@ -1165,6 +1174,7 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = new WF_TableFieldValue();
                     tfv.ControlValue = str;
                     tfv.FieldId = lp.LPID;
+                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                     tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
                     tfv.ExcelSheetName = xx.Name;
@@ -1188,6 +1198,7 @@ namespace Ebada.Scgl.Lcgl
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
                                 tfv.ControlValue = strNew;
                                 tfv.FieldId = lp.LPID;
+                                tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
                                 tfv.ExcelSheetName = xx.Name;
@@ -1198,6 +1209,7 @@ namespace Ebada.Scgl.Lcgl
                                 WF_TableFieldValue tfv = new WF_TableFieldValue();
                                 tfv.ControlValue = strNew;
                                 tfv.FieldId = lp.LPID;
+                                tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
                                 tfv.ExcelSheetName = xx.Name;
@@ -1219,6 +1231,7 @@ namespace Ebada.Scgl.Lcgl
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
                             tfv.ControlValue = str;
                             tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                             tfv.ExcelSheetName = xx.Name;
@@ -1229,6 +1242,7 @@ namespace Ebada.Scgl.Lcgl
                             WF_TableFieldValue tfv = new WF_TableFieldValue();
                             tfv.ControlValue = str;
                             tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                             tfv.ExcelSheetName = xx.Name;
@@ -1247,6 +1261,7 @@ namespace Ebada.Scgl.Lcgl
                         tfv.ControlValue = (str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])));
                         tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                         tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                         tfv.ExcelSheetName = xx.Name;
@@ -1258,6 +1273,7 @@ namespace Ebada.Scgl.Lcgl
                         tfv.ControlValue = (str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])));
                         tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                         tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                         tfv.ExcelSheetName = xx.Name;
@@ -1358,6 +1374,7 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
                     tfv.ControlValue = arrRst[j];
                     tfv.FieldId = lp.LPID;
+                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                     tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                     tfv.ExcelSheetName = activeSheetName;
@@ -1368,6 +1385,7 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = new WF_TableFieldValue();
                     tfv.ControlValue = arrRst[j];
                     tfv.FieldId = lp.LPID;
+                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                     tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                     tfv.ExcelSheetName = activeSheetName;
@@ -1462,6 +1480,7 @@ namespace Ebada.Scgl.Lcgl
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
                         tfv.ControlValue = strList[i] + extraWord[i];
                         tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
@@ -1472,6 +1491,7 @@ namespace Ebada.Scgl.Lcgl
                         WF_TableFieldValue tfv = new WF_TableFieldValue();
                         tfv.ControlValue = strList[i] + extraWord[i];
                         tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
@@ -1486,6 +1506,7 @@ namespace Ebada.Scgl.Lcgl
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
                         tfv.ControlValue = strList[i] ;
                         tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
@@ -1496,6 +1517,7 @@ namespace Ebada.Scgl.Lcgl
                         WF_TableFieldValue tfv = new WF_TableFieldValue();
                         tfv.ControlValue = strList[i] ;
                         tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
@@ -1524,6 +1546,7 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]] as WF_TableFieldValue;
                     tfv.ControlValue = arrRst[i];
                     tfv.FieldId = lp.LPID;
+                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(arrCellPos)[0] + i;
                     tfv.YExcelPos = GetCellPos(arrCellPos)[1];
                     tfv.ExcelSheetName = activeSheetName;
@@ -1534,6 +1557,7 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = new WF_TableFieldValue();
                     tfv.ControlValue = arrRst[i];
                     tfv.FieldId = lp.LPID;
+                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(arrCellPos)[0] + i;
                     tfv.YExcelPos = GetCellPos(arrCellPos)[1];
                     tfv.ExcelSheetName = activeSheetName;

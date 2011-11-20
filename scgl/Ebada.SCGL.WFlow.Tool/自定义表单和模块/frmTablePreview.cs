@@ -851,7 +851,6 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             tempCtrlList.Add(ctrl);
             LP_Temple lp = (LP_Temple)ctrl.Tag;
-            bool flag = (lp.Status == CurrRecord.Status);
             string ctrltype = "";
             if (lp.CtrlType.IndexOf(',') == -1)
                 ctrltype = lp.CtrlType;
