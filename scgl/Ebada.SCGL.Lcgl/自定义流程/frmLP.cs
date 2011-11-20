@@ -1871,7 +1871,8 @@ namespace Ebada.Scgl.Lcgl
                     continue;
                 }
                 Control ctrl = FindCtrl((listLPID[0] as LP_Temple).LPID);
-                if (ctrl != null&&ctrl.Visible)
+                //if (ctrl != null && ctrl.Visible)
+                    if (ctrl != null )
                 {                    
                     UpdateRelateData(ctrl); 
                 }

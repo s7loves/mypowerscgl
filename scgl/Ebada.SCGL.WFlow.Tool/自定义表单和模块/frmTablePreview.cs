@@ -123,13 +123,16 @@ namespace Ebada.SCGL.WFlow.Tool
         private void LockExcel(Excel.Workbook wb, Excel.Worksheet xx)
         {
 
+            //try
+            //{
 
-            xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
-            xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
-            wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
-            //wb.SheetDeactivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetDeactivateEventHandler(Workbook_SheetDeactivate);
-            //wb.SheetActivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetActivateEventHandler(Workbook_SheetActivate);
-            //wb.SheetSelectionChange  += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);  
+            //xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
+            //xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+            //wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+            ////wb.SheetDeactivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetDeactivateEventHandler(Workbook_SheetDeactivate);
+            ////wb.SheetActivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetActivateEventHandler(Workbook_SheetActivate);
+            ////wb.SheetSelectionChange  += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);  }
+            //catch { }
         }
 
         protected void wb_SheetBeforeDoubleClick(object Sh, Microsoft.Office.Interop.Excel.Range Target, ref bool Cancel)
@@ -145,15 +148,15 @@ namespace Ebada.SCGL.WFlow.Tool
         /// </summary>
         private void unLockExcel(Excel.Workbook wb, Excel.Worksheet xx)
         {
-            try
-            {
+            //try
+            //{
 
 
-                xx.Unprotect("MyPassword");
-                xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
-                wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
-            }
-            catch { }
+            //    xx.Unprotect("MyPassword");
+            //    xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+            //    wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+            //}
+            //catch { }
         }
         private void LPFrm_Load(object sender, EventArgs e)
         {
@@ -543,6 +546,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
+            if (lp.CellPos == "") return;
             string str = (sender as Control).Text;
             if (dsoFramerWordControl1.MyExcel == null)
             {
@@ -1104,9 +1108,11 @@ namespace Ebada.SCGL.WFlow.Tool
             try
             {
                 LP_Temple lp = (LP_Temple)ctrl.Tag;
-                if (lp.AffectLPID != null && lp.AffectLPID != "")
+                if (lp.AffectLPID != null && lp.AffectLPID!="")
                 {
-                    string[] arrLPID = lp.AffectLPID.Split(pchar);
+
+                    string  strlpid = lp.AffectLPID;
+                    string[] arrLPID = strlpid.Split(pchar);
                     arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
                     string[] arrEvent = lp.AffectEvent.Split(pchar);
                     for (int i = 0; i < arrLPID.Length; i++)
@@ -1117,7 +1123,11 @@ namespace Ebada.SCGL.WFlow.Tool
                             continue;
                         }
                         Control ctrlTemp = FindCtrl((listLPID[0] as LP_Temple).LPID);
-                        if (!ctrlTemp.Visible)
+                        //if (!ctrlTemp.Visible)
+                        //{
+                        //    continue;
+                        //}
+                        if (ctrlTemp==null)
                         {
                             continue;
                         }
@@ -1129,6 +1139,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                     }
                 }
+               
 
             }
             catch (System.Exception e)
@@ -1141,7 +1152,14 @@ namespace Ebada.SCGL.WFlow.Tool
         public void TriggerRelateEvent(object sender, EventArgs e)
         {
             LP_Temple lp = (LP_Temple)((Control)sender).Tag;
-            string[] arrLPID = lp.AffectLPID.Split(pchar);
+            string strlpid = "";
+            if (lp.AffectLPID != "")
+            {
+                strlpid = lp.AffectLPID;
+            }
+            strlpid = strlpid + lp.RelateLPID;
+            string[] arrLPID = strlpid.Split(pchar);
+            //string[] arrLPID = lp.AffectLPID.Split(pchar);
             foreach (string lpid in arrLPID)
             {
                 IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + lpid + "' and parentid = '" + lp.ParentID + "'");
@@ -1150,6 +1168,8 @@ namespace Ebada.SCGL.WFlow.Tool
                     continue;
                 }
                 Control ctrl = FindCtrl((listLPID[0] as LP_Temple).LPID);
+                //if (ctrl != null && ctrl.Visible)
+                
                 if (ctrl != null && ctrl.Visible)
                 {
                     UpdateRelateData(ctrl);
