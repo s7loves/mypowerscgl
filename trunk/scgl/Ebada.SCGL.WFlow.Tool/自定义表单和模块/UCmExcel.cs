@@ -275,6 +275,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
             gridView1.Columns["CellName"].VisibleIndex = 1;
             gridView1.Columns["SortID"].VisibleIndex = 0;
+            gridView1.Columns["CellPos"].VisibleIndex = 1;
             gridView1.Columns["SortID"].SortOrder = ColumnSortOrder.Ascending;
             repositoryItemTextEdit1.EditValueChanged += new EventHandler(repositoryItemTextEdit1_EditValueChanged);
         }

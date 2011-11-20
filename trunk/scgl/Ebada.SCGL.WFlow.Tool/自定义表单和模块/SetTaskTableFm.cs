@@ -133,7 +133,6 @@ namespace Ebada.SCGL.WFlow.Tool
             frm.Status = "add";
             frm.Kind = rowData.Kind;
             frm.ParentTemple = rowData;
-
             lpr.Status = "测试";
             //lpr.Status = "填票";
             //frm.RowData = lpr;
