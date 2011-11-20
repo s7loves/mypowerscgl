@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Ebada.Scgl.Gis.Markers {
     [Serializable]
     internal class GMapMarkerBDZ : GMapMarkerVector {
-        public string Text;
+        
         private Font mFont;
         public GMapMarkerBDZ(PointLatLng p)
             : base(p) {

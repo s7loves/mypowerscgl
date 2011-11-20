@@ -19,7 +19,16 @@ namespace Ebada.Scgl.Gis.Markers {
         private GMapMarkerVector parentMarker;
         private string id;
         private LineRoute route;
-
+        private string text;
+        public virtual string Text {
+            get {
+                return text; 
+            }
+            set {
+                if (value == text) return;
+                text = value; 
+            }
+        }
         public LineRoute Route {
             get { return route; }
             set { route = value; }

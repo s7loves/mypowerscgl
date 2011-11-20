@@ -167,16 +167,8 @@ namespace TLMapPlatform {
         }
         private void showLayer(string lineCode,bool visible) {
 
-            GMapOverlay lay = mRMap.FindOverlay(lineCode);
-            if (lay == null) {
-                if (lineCode.Length == 10)
-                     lay = LineOverlay.CreateTQLine(mRMap, lineCode,"");
-                else   
-                lay = LineOverlay.CreateLine(mRMap, lineCode, "");
-                
-                mRMap.Overlays.Add(lay);
-                //mRMap.ZoomAndCenterRoutes(lineCode);
-            }
+            GMapOverlay lay = mRMap.FindCreateLine(lineCode);
+            
             lay.IsVisibile = visible;
             if (lineCode == "bdz")
                 showbdz(lay);
@@ -195,22 +187,51 @@ namespace TLMapPlatform {
             //查找单元格，改变状态
             TreeListHitInfo hit = treeList1.CalcHitInfo(e.Location);
             if (hit.Node != null && hit.Column != null) {
-                string value = hit.Node[hit.Column.FieldName].ToString();
-                if (hit.Column.VisibleIndex >0 && hit.Column.VisibleIndex<3) {
-                    hit.Node.SetValue(hit.Column.FieldName, (value == "1") ? 0 : 1);
-                    string code = hit.Node["ID"].ToString();
-                    if (hit.Column.FieldName == "显示") {
-                        
-                        if (code.Length >= 6 || code=="bdz")
-                            showLayer(code, hit.Node["显示"].ToString() == "1");
+                if (e.Button == MouseButtons.Left) {
+                    string value = hit.Node[hit.Column.FieldName].ToString();
+                    if (hit.Column.VisibleIndex > 0 && hit.Column.VisibleIndex < 3) {
+                        hit.Node.SetValue(hit.Column.FieldName, (value == "1") ? 0 : 1);
+                        string code = hit.Node["ID"].ToString();
+                        if (hit.Column.FieldName == "显示") {
 
-                    } else if (hit.Column.FieldName == "编辑") {
-                        setLayerAllowEdit(code, hit.Node["编辑"].ToString() == "1");
+                            if (code.Length >= 6 || code == "bdz")
+                                showLayer(code, hit.Node["显示"].ToString() == "1");
+
+                        } else if (hit.Column.FieldName == "编辑") {
+                            setLayerAllowEdit(code, hit.Node["编辑"].ToString() == "1");
+                        }
                     }
+                } else if (e.Button == MouseButtons.Right) {
+
+                    string code = hit.Node["ID"].ToString();
+                    showContextMenu(code,e.Location);
+                    
                 }
             } 
         }
+        ContextMenu contextMenu;
+        private void showContextMenu(string code,Point p) {
+            if (contextMenu == null) {
+                contextMenu= new ContextMenu();
+                MenuItem item = new MenuItem();
+                item.Text = "刷新";
+                item.Click += new EventHandler(刷新_Click);
+                contextMenu.MenuItems.Add(item);
+                item = new MenuItem("定位");
+                item.Click += new EventHandler(定位_Click);
+                contextMenu.MenuItems.Add(item);
+            }
+            contextMenu.Tag = code;
+            contextMenu.Show(treeList1, p);
+        }
 
+        void 定位_Click(object sender, EventArgs e) {
+            mRMap.LocationOverlay(contextMenu.Tag as string);
+        }
+
+        void 刷新_Click(object sender, EventArgs e) {
+            mRMap.RefreshOverlay(contextMenu.Tag as string);
+        }
         private void treeList1_CellValueChanging(object sender, DevExpress.XtraTreeList.CellValueChangedEventArgs e) {
 
         }

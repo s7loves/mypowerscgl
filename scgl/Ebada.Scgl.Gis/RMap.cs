@@ -53,6 +53,18 @@ namespace Ebada.Scgl.Gis {
             bdzLayer.Text = "变电所";
             this.Overlays.Add(bdzLayer);
         }
+        protected override void OnDoubleClick(EventArgs e) {
+            base.OnDoubleClick(e);
+            //测试
+            Point pt =this.PointToClient(new Point( MousePosition.X,MousePosition.Y));
+            //createMarker(rMap1.FromLocalToLatLng(pt.X, pt.Y));
+            frmText dlg = new frmText();
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                GMapMarkerText marker = new GMapMarkerText(this.FromLocalToLatLng(pt.X, pt.Y));
+                marker.Text = dlg.MarkerText;
+                bdzLayer.Markers.Add(marker);
+            }
+        }
         public GMapOverlay FindOverlay(string id) {
             GMapOverlay lay = null;
             foreach (GMapOverlay item in Overlays) {
@@ -121,6 +133,43 @@ namespace Ebada.Scgl.Gis {
                 bdzLayer.Markers.Add(marker);
             }
             return marker;
+        }
+
+        internal void RefreshOverlay(string p) {
+
+            GMapOverlay layer = FindOverlay(p);
+
+            if (p.Length >= 6) {
+                bool flag = false;
+                if (layer != null) {
+                    this.Overlays.Remove(layer);
+                    flag = (layer as IUpdateable).AllowEdit;
+                }
+
+                layer= FindCreateLine(p);
+                (layer as IUpdateable).AllowEdit = flag;
+            }
+        }
+
+        internal void LocationOverlay(string p) {
+            GMapOverlay layer= FindOverlay(p);
+            if (layer != null)
+                this.ZoomAndCenterRoutes(p);
+        }
+
+        internal GMapOverlay FindCreateLine(string lineCode) {
+
+            GMapOverlay lay = FindOverlay(lineCode);
+            if (lay == null) {
+                if (lineCode.Length == 10)
+                    lay = LineOverlay.CreateTQLine(this, lineCode, "");
+                else
+                    lay = LineOverlay.CreateLine(this, lineCode, "");
+
+                this.Overlays.Add(lay);
+                
+            }
+            return lay;
         }
     }
 }
