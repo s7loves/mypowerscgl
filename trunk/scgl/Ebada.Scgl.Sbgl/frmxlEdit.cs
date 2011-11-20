@@ -51,6 +51,8 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "LineGtend");
             this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "WireType");
             this.comboBoxEdit15.DataBindings.Add("EditValue", rowData, "ParentGT");//分支杆号
+            this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "lineKind");//线路种类
+            this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "lineNum");//线路号
         }
         #region IPopupFormEdit Members
         private PS_xl rowData = null;
@@ -116,7 +118,29 @@ namespace Ebada.Scgl.Sbgl
             comboBoxEdit8.Properties.DataSource = list2;
             pdsbModelHelper.FillCBox(comboBoxEdit14, pdsbModelHelper.dxxh);
             ComboBoxHelper.Fillgdsry(comboBoxEdit10, rowData.OrgCode);
-            this.comboBoxEdit14.Properties.Items.AddRange(ComboBoxHelper.GetLineTye());
+            this.comboBoxEdit14.Properties.Items.AddRange(ComboBoxHelper.GetLineTye()); 
+            ICollection strlist = new ArrayList();
+            comboBoxEdit16.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='线路' and sx like '%{0}%' and nr!=''", "线路种类"));
+            if (strlist.Count > 0)
+                comboBoxEdit16.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit16.Properties.Items.Add("一类");
+                comboBoxEdit16.Properties.Items.Add("二类");
+                comboBoxEdit16.Properties.Items.Add("三类");
+            }
+            comboBoxEdit17.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='线路' and sx like '%{0}%' and nr!=''", "线路号"));
+            if (strlist.Count > 0)
+                comboBoxEdit17.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit17.Properties.Items.Add("四线");
+                comboBoxEdit17.Properties.Items.Add("二线");
+            }
             //this.comboBoxEdit5.Properties.Items.AddRange(ComboBoxHelper.GetVoltage()); 
         }
 
