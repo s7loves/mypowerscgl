@@ -88,7 +88,7 @@ namespace Ebada.Scgl.Gis {
             PS_gt gt = marker.Tag as PS_gt;
             gt.gtLat = (decimal)marker.Position.Lat;
             gt.gtLon = (decimal)marker.Position.Lng;
-            Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
+            Client.ClientHelper.PlatformSqlMap.Update("UpdatePS_gtLatLng", gt);
         }
         public virtual ContextMenu CreatePopuMenu() {
             if (contextMenu == null) {

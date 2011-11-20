@@ -165,6 +165,12 @@
       <DependentUpon>frmMapView.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\MapBuilder.cs" />
+    <Compile Include="frmText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmText.Designer.cs">
+      <DependentUpon>frmText.cs</DependentUpon>
+    </Compile>
     <Compile Include="IPopuMenu.cs" />
     <Compile Include="IUpdateable.cs" />
     <Compile Include="LineOverLay.cs" />
@@ -174,6 +180,7 @@
     <Compile Include="Markers\GMapMarkerRect.cs" />
     <Compile Include="Markers\GMapMarkerBDZ.cs" />
     <Compile Include="Markers\GMapMarkerBYQ.cs" />
+    <Compile Include="Markers\GMapMarkerText.cs" />
     <Compile Include="Operation\OperationBase.cs" />
     <Compile Include="Operation\OperationDistance.cs" />
     <Compile Include="Operation\OperationInstance.cs" />
@@ -244,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMapView.resx">
       <DependentUpon>frmMapView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmText.resx">
+      <DependentUpon>frmText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

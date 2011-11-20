@@ -159,7 +159,14 @@
               gtID = #gtID#
 
    </update>
-  
+    <update id="UpdatePS_gtLatLng" parameterClass="PS_gt" resultClass="int">
+      UPDATE PS_gt
+      SET
+      [gtLon]=#gtLon#,
+      [gtLat]=#gtLat#
+      WHERE
+      gtID = #gtID#
+    </update>
    <insert id="InsertPS_gt" parameterClass="PS_gt">
         INSERT INTO PS_gt
          (
