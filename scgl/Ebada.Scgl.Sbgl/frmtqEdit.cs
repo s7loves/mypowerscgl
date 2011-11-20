@@ -163,6 +163,11 @@ namespace Ebada.Scgl.Sbgl
             lookUpEdit1.Properties.DataSource = ClientHelper.PlatformSqlMap.GetList<PS_gt>("Where linecode='" + linecode + "'"); 
         }
 
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
       
     }
 }
