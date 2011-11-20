@@ -92,7 +92,54 @@ namespace Ebada.Scgl.Lcgl
                     {
                         if (comItem[i]!="")
                         {
-                            combox.Items.Add(comItem[i]);
+                            switch (comItem[i])
+                            {
+                                case "{年}":
+                                    combox.Items.Clear();
+                                    for (int j = 0; j <= 20; j++)
+                                    {
+                                        combox.Items.Add(string.Format("{0}", j + DateTime.Now.Year));
+
+                                    }
+
+                                    break;
+                                case "{月}":
+                                    combox.Items.Clear();
+                                    for (int j = 1; j <= 12; j++)
+                                    {
+                                        combox.Items.Add(string.Format("{0:D2}", j));
+
+                                    }
+                                    break;
+                                case "{日}":
+                                    combox.Items.Clear();
+                                    for (int j = 1; j <= 31; j++)
+                                    {
+                                        combox.Items.Add(string.Format("{0:D2}", j));
+
+                                    }
+                                    break;
+                                case "{时}":
+                                    combox.Items.Clear();
+                                    for (int j = 1; j <= 24; j++)
+                                    {
+                                        combox.Items.Add(string.Format("{0:D2}", j));
+
+                                    }
+                                    break;
+                                case "{分}":
+                                case "{秒}":
+                                    combox.Items.Clear();
+                                    for (int j = 0; j <= 59; j++)
+                                    {
+                                        combox.Items.Add(string.Format("{0:D2}", j));
+
+                                    }
+                                    break;
+                                default:
+                                    combox.Items.Add(comItem[i]);
+                                    break;
+                            }
                         }
                     }
                 }

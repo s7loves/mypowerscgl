@@ -869,6 +869,10 @@ namespace Ebada.Scgl.Lpgl
                     strList.Add(dt.Month.ToString());
                     strList.Add(dt.Day.ToString());
                     break;
+                case "MM-dd日":
+                    strList.Add(dt.Month.ToString());
+                    strList.Add(dt.Day.ToString());
+                    break;
                 case "yyyy-MM-dd HH:mm:ss":
                     strList.Add(dt.Year.ToString());
                     strList.Add(dt.Month.ToString());
