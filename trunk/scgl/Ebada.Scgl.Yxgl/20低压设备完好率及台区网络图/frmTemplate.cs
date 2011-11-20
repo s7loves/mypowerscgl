@@ -1717,6 +1717,7 @@ namespace Ebada.Scgl.Yxgl
                 currRecord = null;
 
                 dsoFramerWordControl1.FileClose();
+                dsoFramerWordControl1.Dispose();
                 dockPanel1.ControlContainer.Controls.Clear();
                 templeList.Clear();
                     //if (filecontrol != null)
