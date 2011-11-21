@@ -459,6 +459,11 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
 
                 }
+                LP_Temple ParentTemple=RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr);
+                if(ParentTemple==null)
+                lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, "");
+                else
+                lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, ParentTemple.LPID);
 
                 lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
                 MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
@@ -470,7 +475,6 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
-
                 if (obj.GetType().GetProperty("IsWorkflowCall") != null)
                     obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
                 else
@@ -487,7 +491,7 @@ namespace Ebada.Scgl.Lcgl {
                 }
                
                 if (obj.GetType().GetProperty("ParentTemple") != null)
-                    obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr), null);
+                    obj.GetType().GetProperty("ParentTemple").SetValue(obj, ParentTemple, null);
                 else
                 {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
@@ -639,7 +643,7 @@ namespace Ebada.Scgl.Lcgl {
                         if (obj is frmyxfxWorkFlowEdit)
                         {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
-                             +" and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'"
+                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_03yxfx'"
                                + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
                             PJ_03yxfx yxfx = new PJ_03yxfx();
                             if (li.Count > 0)
@@ -681,7 +685,7 @@ namespace Ebada.Scgl.Lcgl {
                         else if (obj is frmsbqxWorkFlowEdit)
                         {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
-                             +" and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'"
+                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'" + " and ModleTableName='Ebada.Scgl.Model.PJ_qxfl'"
                                + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
                             PJ_qxfl qxfl = new PJ_qxfl();
                             if (li.Count > 0)
@@ -698,6 +702,102 @@ namespace Ebada.Scgl.Lcgl {
                             }
                             
                             ((frmsbqxWorkFlowEdit)obj).RowData = qxfl;
+
+                        }
+                        else if (obj is frm06sbxsEdit)
+                        {
+                            IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
+                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_qxfl'"
+                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                            PJ_06sbxs qxfl = new PJ_06sbxs();
+                            if (li.Count > 0)
+                            {
+                                PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
+                             
+                             
+                                qxfl = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxs>(" where CONVERT(varchar, CreateDate, 120 ) =  '" + qxfltemp.CreateDate + "'" 
+                                    + " and LineID='" + qxfltemp.LineID + "'"                                     
+                                    + " and OrgCode='" + qxfltemp.OrgCode + "'"
+                                     + " and qxlb='" + qxfltemp.qxlb + "'"
+                                     + " and xsr='" + qxfltemp.xsr + "'"
+                                     + " and xlqd='" + qxfltemp.xlqd + "'"
+                                    );
+                                if (qxfl == null)
+                                {
+                                    qxfl = new PJ_06sbxs();
+                                    qxfl.CreateDate = qxfltemp.CreateDate;
+                                    qxfl.LineID = qxfltemp.LineID;
+                                    qxfl.LineName = qxfltemp.LineName;
+                                    qxfl.OrgCode = qxfltemp.OrgCode;
+                                    qxfl.OrgName = qxfltemp.OrgName;
+                                    qxfl.qxlb = qxfltemp.qxlb;
+                                    qxfl.qxnr = qxfltemp.qxnr;
+                                    qxfl.xssj = qxfltemp.xssj;
+                                    qxfl.xsr = qxfltemp.xsr;
+                                    qxfl.xcqx = qxfltemp.xcqx;
+                                    qxfl.xlqd = qxfltemp.xlqd;
+                                    //MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(qxfl);
+                                }
+                            }
+                            else
+                            {
+                                qxfl = new PJ_06sbxs();
+                                qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
+                                qxfl.OrgName = MainHelper.UserOrg.OrgName;
+
+                            }
+
+                            ((frm06sbxsEdit)obj).RowData = qxfl;
+
+                        }
+                        else if (obj is frm08SBTDJXWorkFlowEdit)
+                        {
+                            IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
+                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_qxfl'"
+                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                            PJ_08sbtdjx qxfl = new PJ_08sbtdjx();
+                            if (li.Count > 0)
+                            {
+                                PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
+                                qxfl.OrgCode = qxfltemp.OrgCode;
+                                qxfl.OrgName = qxfltemp.OrgName;
+                                qxfl.LineID = qxfltemp.LineID;
+                                qxfl.LineName = qxfltemp.LineName;
+                                qxfl.jxnr = qxfltemp.qxnr;
+                            }
+                            else
+                            {
+                                qxfl = new PJ_08sbtdjx();
+                                qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
+                                qxfl.OrgName = MainHelper.UserOrg.OrgName;
+
+                            }
+
+                            ((frm08SBTDJXWorkFlowEdit)obj).RowData = qxfl;
+
+                        }
+                        else if (obj is frmsgzaycWorkFlowEdit)
+                        {
+                            IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
+                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_qxfl'"
+                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                            PJ_04sgzayc qxfl = new PJ_04sgzayc();
+                            if (li.Count > 0)
+                            {
+                                PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
+                                qxfl.OrgCode = qxfltemp.OrgCode;
+                                qxfl.OrgName = qxfltemp.OrgName;
+                                qxfl.fsdd= qxfltemp.qxnr;
+                            }
+                            else
+                            {
+                                qxfl = new PJ_04sgzayc();
+                                qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
+                                qxfl.OrgName = MainHelper.UserOrg.OrgName;
+
+                            }
+
+                            ((frmsgzaycWorkFlowEdit)obj).RowData = qxfl;
 
                         }
                         ((Form)obj).ShowDialog();

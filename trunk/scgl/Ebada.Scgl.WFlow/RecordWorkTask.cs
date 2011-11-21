@@ -1577,7 +1577,7 @@ namespace Ebada.Scgl.WFlow
                                 else
                                     if (wt.TaskTypeId == "2")
                                     {
-                                        TaskToWhoMsg = "流程结束!";
+                                        TaskToWhoMsg = "子流程结束!";
                                     }
 
 

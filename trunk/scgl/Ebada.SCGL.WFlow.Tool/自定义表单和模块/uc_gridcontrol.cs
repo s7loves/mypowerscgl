@@ -9,12 +9,13 @@ using DevExpress.XtraGrid;
 using System.Collections;
 using Ebada.Client.Platform;
 using DevExpress.XtraGrid.Views.Base;
+using Ebada.Scgl.Core;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
     public partial class uc_gridcontrol : UserControl
     {
-        private char pcomboxitem = '，';
+        private char pcomboxitem = ',';
         private IList<DevExpress.XtraEditors.Repository.RepositoryItemComboBox> colctrllist;
         string[] m_ColName;
         private bool gridFlag = false;
@@ -87,7 +88,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 if (comBoxItem.Length>k)
                 {
-                    string[] comItem = comBoxItem[k].Split(pcomboxitem);
+                    string[] comItem =SelectorHelper.ToDBC(comBoxItem[k]).Split(pcomboxitem);
                     for (int i = 0; i < comItem.Length;i++ )
                     {
                         if (comItem[i]!="")

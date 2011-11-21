@@ -14,6 +14,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
 using System.Threading;
+using Ebada.Scgl.WFlow;
 namespace Ebada.Scgl.Lcgl
 {
     public partial class frm06sbxsEdit : FormBase, IPopupFormEdit
@@ -353,15 +354,17 @@ namespace Ebada.Scgl.Lcgl
         private void btnOK_Click(object sender, EventArgs e)
         {
             PJ_06sbxs sbxs = RowData as PJ_06sbxs;
+            string strmes = "";
             object obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_06sbxs>(sbxs.ID);
+            PJ_qxfl qxfj = new PJ_qxfl();
             if (obj == null)
             {
-                PJ_qxfl qxfj = new PJ_qxfl();
                 qxfj.CreateDate = sbxs.CreateDate;
                 qxfj.CreateMan = sbxs.CreateMan;
                 qxfj.LineID = sbxs.LineID;
                 qxfj.LineName = sbxs.LineName;
                 qxfj.OrgCode = sbxs.OrgCode;
+                qxfj.OrgName = sbxs.OrgName;
                 qxfj.qxlb = sbxs.qxlb;
                 qxfj.qxly = "设备巡视";
                 qxfj.qxnr = sbxs.qxnr;
@@ -371,33 +374,109 @@ namespace Ebada.Scgl.Lcgl
                 qxfj.xsr = sbxs.xsr;
                 qxfj.xssj = sbxs.xssj;
                 MainHelper.PlatformSqlMap.Create<PJ_qxfl>(qxfj);
-                if (isWorkflowCall)
-                {
-                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                    mrwt.ModleRecordID = sbxs.ID;
-                    mrwt.RecordID = currRecord.ID;
-                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                    mrwt.ModleTableName = sbxs.GetType().ToString();
-                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                    mrwt.CreatTime = DateTime.Now;
-                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                LP_Record lpr = new LP_Record();
+                lpr.ID = "N" + lpr.CreateID();
+                lpr.Kind = "设备缺陷管理流程";
+                lpr.CreateTime = DateTime.Now.ToString();
+                lpr.OrgName = qxfj.OrgName;
 
-                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                    mrwt = new WF_ModleRecordWorkTaskIns();
-                    mrwt.ID = mrwt.CreateID();
-                    mrwt.ModleRecordID = qxfj.ID;
-                    mrwt.RecordID = currRecord.ID;
-                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                    mrwt.ModleTableName = qxfj.GetType().ToString();
-                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                    mrwt.CreatTime = DateTime.Now;
-                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                string[] strtemp = RecordWorkTask.RunNewGZPRecord(lpr.ID, "设备缺陷管理流程", MainHelper.User.UserID, false);
+                if (strtemp[0].IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                DataTable recordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
+                if (recordWorkFlowData == null)
+                {
+                    MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
+
+                }
+                LP_Temple ParentTemple = RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr);
+                if (ParentTemple == null)
+                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, "");
+                else
+                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, ParentTemple.LPID);
+                lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
+                MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
+                currRecord = lpr;
+                WorkFlowData = recordWorkFlowData;
+                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ModleRecordID = sbxs.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = sbxs.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ID = mrwt.CreateID();
+                mrwt.ModleRecordID = qxfj.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = qxfj.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+               
+
+            }
+            if (isWorkflowCall || obj == null)
+            {
+                currRecord.LastChangeTime = DateTime.Now.ToString();
+                if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+                {
+
+                    RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { sbxs, qxfj, currRecord });
+
+                }
+                WF_WorkTaskCommands wt;
+                //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
+                wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+                if (wt != null)
+                {
+                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+                }
+                else
+                {
+                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+                }
+                if (strmes.IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                else
+                    MsgBox.ShowTipMessageBox(strmes);
+                strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+                if (strmes == "结束节点1")
+                {
+                    currRecord.Status = "存档";
+                }
+                else
+                {
+                    currRecord.Status = strmes;
+                }
+                if (currRecord.ImageAttachment == null)
+                {
+                    currRecord.ImageAttachment = new byte[0];
+                }
+                if (currRecord.DocContent == null)
+                {
+                    currRecord.DocContent = new byte[0];
+                }
+                if (currRecord.SignImg == null)
+                {
+                    currRecord.SignImg = new byte[0];
                 }
 
+                MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
             }
         }
 
