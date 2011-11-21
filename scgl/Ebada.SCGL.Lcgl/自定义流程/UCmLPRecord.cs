@@ -413,7 +413,6 @@ namespace Ebada.Scgl.Lcgl {
             lpr.Kind = strKind;
              lpr.CreateTime = DateTime.Now.ToString();
              lpr.OrgName = MainHelper.UserOrg.OrgName;
-             lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg);
             if (obj is frmLP)
             {
                 frmLP frm = new frmLP();
@@ -435,6 +434,7 @@ namespace Ebada.Scgl.Lcgl {
                 {
                     MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
                 }
+                lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, frm.ParentTemple.LPID);
                 lpr.Status = frm.RecordWorkFlowData.Rows[0]["TaskCaption"].ToString();
                 //lpr.Status = "填票";
                 //frm.RowData = lpr;
