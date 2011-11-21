@@ -1973,7 +1973,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 //base.Close();
                 //rowData = null;
-
+                dsoFramerWordControl1.FileClose();
                 dockPanel1.ControlContainer.Controls.Clear();
                 templeList.Clear();
                 currRecord = null;
