@@ -25,16 +25,16 @@ using System.Threading;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmLP : Form,IPopupFormEdit
+    public partial class frmLP : Form, IPopupFormEdit
     {
         #region 字段
 
         const int wordWidth = 13;
         private LP_Temple parentTemple = null;
         private IList<LP_Temple> templeList;
-        private IList<Control> tempCtrlList=null;
+        private IList<Control> tempCtrlList = null;
         private LP_Record currRecord = null;
-        private string kind,status;
+        private string kind, status;
         private string plitchar = "|";
         private char pchar = '|';
         private char pcomboxchar = '，';
@@ -104,12 +104,12 @@ namespace Ebada.Scgl.Lcgl
                 if (value == null) return;
                 if (rowData == null)
                 {
-                    this.rowData = value as LP_Record;                  
+                    this.rowData = value as LP_Record;
                     dataBind();
                 }
                 else
                 {
-                    ConvertHelper.CopyTo<LP_Record>(value as LP_Record, rowData);                    
+                    ConvertHelper.CopyTo<LP_Record>(value as LP_Record, rowData);
                 }
             }
         }
@@ -117,11 +117,11 @@ namespace Ebada.Scgl.Lcgl
         #endregion
         public frmLP()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
         void dataBind()
-        {        
-            
+        {
+
         }
 
         public DataTable RecordWorkFlowData
@@ -140,16 +140,16 @@ namespace Ebada.Scgl.Lcgl
 
             }
         }
-       /// <summary>
+        /// <summary>
         ///设置保护工作表
-       /// </summary>
+        /// </summary>
         private void LockExcel(Excel.Workbook wb, Excel.Worksheet xx)
         {
-          
-           
+
+
             xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
             xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
-            //wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+            wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
             //wb.SheetDeactivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetDeactivateEventHandler(Workbook_SheetDeactivate);
             //wb.SheetActivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetActivateEventHandler(Workbook_SheetActivate);
             //wb.SheetSelectionChange  += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);  
@@ -166,7 +166,7 @@ namespace Ebada.Scgl.Lcgl
                 sheet.Name = activeSheetName;
 
             }
-           
+
         }
         protected void Workbook_SheetActivate(object Sh)
         {
@@ -188,14 +188,14 @@ namespace Ebada.Scgl.Lcgl
                 sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
                 sheet.Move(Type.Missing, wb.Application.Sheets[activeSheetIndex]);
             }
-           
-            
+
+
             ea.ActiveSheet(activeSheetName);
-           
+
         }
         protected void Workbook_SheetDeactivate(object Sh)
         {
-            Workbook_SheetActivate( Sh);
+            Workbook_SheetActivate(Sh);
         }
         protected void wb_SheetBeforeDoubleClick(object Sh, Microsoft.Office.Interop.Excel.Range Target, ref bool Cancel)
         {
@@ -212,25 +212,25 @@ namespace Ebada.Scgl.Lcgl
         {
             try
             {
-              
-                
+
+
                 xx.Unprotect("MyPassword");
                 xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
-                wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);  
+                wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
             }
             catch { }
         }
         private void LPFrm_Load(object sender, EventArgs e)
         {
-            if (tempCtrlList==null)
+            if (tempCtrlList == null)
             {
                 tempCtrlList = new List<Control>();
             }
             //InitializeComponent();
             if (valuehs == null)
                 valuehs = new Hashtable();
-            InitIndex();            
-                //InitContorl();
+            InitIndex();
+            //InitContorl();
             Excel.Workbook wb;
             Excel.Worksheet sheet;
             ExcelAccess ea = new ExcelAccess();
@@ -247,65 +247,65 @@ namespace Ebada.Scgl.Lcgl
             //    activeSheetName = parentTemple.KindTable.Substring(istart);
 
             if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
-            {              
+            {
                 this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
                 InitContorl();
             }
-            else if (status == "edit"   )
+            else if (status == "edit")
             {
                 if (currRecord.DocContent == null)
                 {
                     currRecord.DocContent = new byte[0];
                 }
-                   
-                    if (currRecord.ID.IndexOf("N") == -1)
-                    {
-                        this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
-                    }
+                InitContorl();
+                if (currRecord.ID.IndexOf("N") == -1)
+                {
+                    this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                }
+                else
+                {
+                    if (parentTemple != null) this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
                     else
-                    {
-                        if (parentTemple != null) this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
-                        else
-                            this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
-                    }
-                    LoadContent();
-                    InitContorl();
+                        this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                }
 
 
-               
+
+
+                LoadContent();
             }
-            if ((parentTemple != null && parentTemple.DocContent != null) || (currRecord!=null&&currRecord.DocContent != null && currRecord.DocContent.Length > 0))
+            if ((parentTemple != null && parentTemple.DocContent != null) || (currRecord != null && currRecord.DocContent != null && currRecord.DocContent.Length > 0))
             {
                 wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-                
-                //sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
-               
-                
-               
-                //activeSheetIndex = sheet.Index;
-                    for (int i = 1; i <= wb.Application.Sheets.Count; i++)
-                    {
-                        sheet = wb.Application.Sheets[i] as Excel.Worksheet;
-                         //保护工作表
-                         LockExcel(wb, sheet);
-                        //if (i != activeSheetIndex)
-                        //{
-                        //    Excel.Worksheet tmpSheet = (Excel.Worksheet)wb.Application.Sheets.get_Item(i);
-                        //    try
-                        //    {
-                        //        if (tmpSheet != null) tmpSheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
-                               
-                        //    }
-                        //    catch { }
 
-                   }
-               
-               }
-                //保护工作表
+                //sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
+
+
+
+                //activeSheetIndex = sheet.Index;
+                for (int i = 1; i <= wb.Application.Sheets.Count; i++)
+                {
+                    sheet = wb.Application.Sheets[i] as Excel.Worksheet;
+                    //保护工作表
+                    LockExcel(wb, sheet);
+                    //if (i != activeSheetIndex)
+                    //{
+                    //    Excel.Worksheet tmpSheet = (Excel.Worksheet)wb.Application.Sheets.get_Item(i);
+                    //    try
+                    //    {
+                    //        if (tmpSheet != null) tmpSheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
+
+                    //    }
+                    //    catch { }
+
+                }
+
+            }
+            //保护工作表
             //    LockExcel(wb,sheet);
             //}
         }
-       
+
         protected override void OnShown(EventArgs e)
         {
             //InitializeComponent();
@@ -326,7 +326,7 @@ namespace Ebada.Scgl.Lcgl
             //    LoadContent();
             //}
 
-           // this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
+            // this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
         }
         public void InitIndex()
         {
@@ -339,7 +339,7 @@ namespace Ebada.Scgl.Lcgl
             //IList<LP_Temple> parentlist = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID='0' and Kind='" + kind + "'");
             //if (parentlist.Count > 0)
             //    parentTemple = parentlist[0];
-           // dsoFramerWordControl1.
+            // dsoFramerWordControl1.
         }
         public static string GetWorkFlowNmae(string kind)
         {
@@ -365,16 +365,12 @@ namespace Ebada.Scgl.Lcgl
             int currentPosY = 10;
             int currentPosX = 10;
             int index = 0;
-            if (MaxWordWidth < 300)
-            {
-                MaxWordWidth = 300;
-            }
             if (parentTemple != null)
             {
                 foreach (LP_Temple lp in templeList)
                 {
                     bool flag;//= (lp.Status == CurrRecord.Status);
-                    flag = lp.IsVisible==0;
+                    flag = true;
                     Label label = new Label();
                     label.Text = lp.CellName;
                     //string[] location = lp.CtrlLocation.Split(',');
@@ -397,10 +393,10 @@ namespace Ebada.Scgl.Lcgl
                         ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
                     ctrl.Location = new Point(currentPosX, currentPosY);
                     ctrl.Size = new Size(int.Parse(size[0]), int.Parse(size[1]));
-                    //if (flag)
-                    //{
-                    //    currentPosY += int.Parse(size[1]) + 10;
-                    //}
+                    if (flag)
+                    {
+                        currentPosY += int.Parse(size[1]) + 10;
+                    }
 
                     if (flag)
                     {
@@ -419,12 +415,10 @@ namespace Ebada.Scgl.Lcgl
                     ctrl.Name = lp.LPID;
                     dockPanel1.Controls.Add(label);
                     dockPanel1.Controls.Add(ctrl);
-                    (ctrl).Focus();
                     if (lp.CellName == "编号")
                     {
                         ctrlNumber = ctrl;
                     }
-                    (ctrl).Focus();
                 }
             }
             InitEvent();
@@ -441,10 +435,10 @@ namespace Ebada.Scgl.Lcgl
 
             if (RecordWorkTask.HaveRunFuJianRole(kind))
             {
-                
-                if (filecontrol==null) filecontrol = new DownFileControl();
-                if(status=="add")
-                filecontrol.FormType = "上传";
+
+                if (filecontrol == null) filecontrol = new DownFileControl();
+                if (status == "add")
+                    filecontrol.FormType = "上传";
                 else if (status == "edit")
                 {
                     filecontrol.FormType = "下载";
@@ -453,7 +447,7 @@ namespace Ebada.Scgl.Lcgl
                 filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
                 currentPosY = currentPosY + filecontrol.Size.Height;
                 filecontrol.UpfilePath = GetWorkFlowNmae(kind);
-                if (currRecord==null)
+                if (currRecord == null)
                 {
                     currRecord = new LP_Record();
                 }
@@ -539,14 +533,14 @@ namespace Ebada.Scgl.Lcgl
                 {
                     MsgBox.ShowTipMessageBox("请稍后，正在上传文件");
                     return;
-                } 
+                }
                 if (filecontrol.Isdownfile)
                 {
                     if (MsgBox.ShowAskMessageBox("正在下载文件，确认提交?") != DialogResult.OK)
                     {
                         return;
                     }
-                   
+
                 }
             }
             for (int i = 1; i <= wb.Application.Sheets.Count; i++)
@@ -556,13 +550,13 @@ namespace Ebada.Scgl.Lcgl
                     Excel.Worksheet tmpSheet = (Excel.Worksheet)wb.Application.Sheets.get_Item(i);
                     try
                     {
-                        if (tmpSheet != null) tmpSheet.Visible = Excel.XlSheetVisibility.xlSheetVisible ;
+                        if (tmpSheet != null) tmpSheet.Visible = Excel.XlSheetVisibility.xlSheetVisible;
                     }
                     catch { }
 
                 }
             }
-            unLockExcel(wb,sheet);
+            unLockExcel(wb, sheet);
             for (int i = 1; sheet.Protection.AllowEditRanges.Count > 0; )
             {
                 Excel.AllowEditRange editRange = sheet.Protection.AllowEditRanges.get_Item(i);
@@ -580,11 +574,11 @@ namespace Ebada.Scgl.Lcgl
                     currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
                     currRecord.Kind = kind;
                     currRecord.Content = GetContent();
-                    if (ctrlNumber!=null)
+                    if (ctrlNumber != null)
                         currRecord.Number = ctrlNumber.Text;
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
-                    currRecord.LastChangeTime= DateTime.Now.ToString();
+                    currRecord.LastChangeTime = DateTime.Now.ToString();
 
                     //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
                     wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
@@ -626,24 +620,24 @@ namespace Ebada.Scgl.Lcgl
                         lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
                         lcyj.Creattime = DateTime.Now;
                         if (hqyjcontrol.nowMemoEdit.Text != "")
-                        MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
+                            MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
                     }
                     if (filecontrol != null)
                     {
                         for (int i = 0; i < filecontrol.FJtable.Rows.Count; i++)
                         {
 
-                             PJ_lcfj lcfu = new PJ_lcfj();
-                             lcfu.ID = lcfu.CreateID();
-                             lcfu.Filename = Path.GetFileName(filecontrol.FJtable.Rows[i]["FilePath"].ToString());
-                             lcfu.FileRelativePath =  filecontrol.FJtable.Rows[i]["SaveFileName"].ToString();
-                             lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
-                             lcfu.RecordID = currRecord.ID;
-                             lcfu.Creattime = DateTime.Now;
-                             Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
-                             MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
-                         }
-                    
+                            PJ_lcfj lcfu = new PJ_lcfj();
+                            lcfu.ID = lcfu.CreateID();
+                            lcfu.Filename = Path.GetFileName(filecontrol.FJtable.Rows[i]["FilePath"].ToString());
+                            lcfu.FileRelativePath = filecontrol.FJtable.Rows[i]["SaveFileName"].ToString();
+                            lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
+                            lcfu.RecordID = currRecord.ID;
+                            lcfu.Creattime = DateTime.Now;
+                            Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
+                            MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
+                        }
+
                     }
                     //currRecord = newRecord;
                     break;
@@ -662,7 +656,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else
                     {
-                        strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(),  "提交");
+                        strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
                     }
                     if (strmes.IndexOf("未提交至任何人") > -1)
                     {
@@ -691,7 +685,7 @@ namespace Ebada.Scgl.Lcgl
                         lcyj.Spyj = hqyjcontrol.nowMemoEdit.Text;
                         lcyj.Creattime = DateTime.Now;
                         if (hqyjcontrol.nowMemoEdit.Text != "")
-                        MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
+                            MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
 
                     }
                     if (filecontrol != null)
@@ -710,12 +704,12 @@ namespace Ebada.Scgl.Lcgl
                         }
 
                     }
-                    rowData = null;                   
+                    rowData = null;
                     break;
             }
-            ArrayList akeys=new ArrayList(valuehs.Keys);
+            ArrayList akeys = new ArrayList(valuehs.Keys);
             List<object> list = new List<object>();
-            for (int i = 0; i < akeys.Count;i++ )
+            for (int i = 0; i < akeys.Count; i++)
             {
                 WF_TableFieldValue wfv = valuehs[akeys[i]] as WF_TableFieldValue;
                 wfv.ID = wfv.CreateID();
@@ -805,12 +799,12 @@ namespace Ebada.Scgl.Lcgl
                     else
                     {
                         if (dict.ContainsKey(lp.LPID))
-                        ctrl.Text = dict[lp.LPID];
+                            ctrl.Text = dict[lp.LPID];
                     }
                     //ContentChanged(ctrl);
                 }
             }
-            if (parentTemple != null&& currRecord.ID.IndexOf("N") > -1)
+            if (parentTemple != null && currRecord.ID.IndexOf("N") > -1)
             {
                 IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                     " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + WorkFlowData.Rows[0]["WorkflowId"] + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "' ");
@@ -828,18 +822,18 @@ namespace Ebada.Scgl.Lcgl
                     xx = wb.Application.Sheets[i] as Excel.Worksheet;
                     if (!al.Contains(xx.Name)) al.Add(xx.Name);
                 }
-                for ( i = 0; i < tfvli.Count; i++)
+                for (i = 0; i < tfvli.Count; i++)
                 {
                     if (!al.Contains(tfvli[i].ExcelSheetName))
                     {
-                      
+
                         continue;
                     }
                     if (activeSheetName != tfvli[i].ExcelSheetName)
                     {
                         if (activeSheetName != "")
                         {
-                            
+
                             xx = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
                             LockExcel(wb, xx);
 
@@ -862,7 +856,7 @@ namespace Ebada.Scgl.Lcgl
         {
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
             {
-                if (ctrl.Tag != null) 
+                if (ctrl.Tag != null)
                 {
                     RelateEvent(ctrl);
                 }
@@ -874,7 +868,7 @@ namespace Ebada.Scgl.Lcgl
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
             {
                 //UpdateRelateData(ctrl);
-                if (ctrl.Tag != null&&(!tempCtrlList.Contains(ctrl)))
+                if (ctrl.Tag != null && (!tempCtrlList.Contains(ctrl)))
                     InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
             }
         }
@@ -886,7 +880,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 return;
             }
-            
+
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             Excel.Worksheet sheet;
             ExcelAccess ea = new ExcelAccess();
@@ -911,8 +905,8 @@ namespace Ebada.Scgl.Lcgl
             if (lp.CtrlType.Contains("uc_gridcontrol"))
             { FillTable(ea, lp, (ctrl as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar)))); return; }
             else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
-            { 
-                FillTime(ea, lp, (ctrl as DateEdit).DateTime); 
+            {
+                FillTime(ea, lp, (ctrl as DateEdit).DateTime);
                 return;
             }
             string[] arrCellpos = lp.CellPos.Split(pchar);
@@ -923,22 +917,20 @@ namespace Ebada.Scgl.Lcgl
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
             {
                 ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-                if (valuehs.ContainsKey(lp.LPID +"$" +lp.CellPos))
+                if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos))
                 {
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
                     tfv.ControlValue = str;
                     tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                     tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
 
                 }
                 else
                 {
-                    WF_TableFieldValue tfv = new WF_TableFieldValue ();
+                    WF_TableFieldValue tfv = new WF_TableFieldValue();
                     tfv.ControlValue = str;
                     tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                     tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
                     valuehs.Add(lp.LPID + "$" + lp.CellPos, tfv);
@@ -961,7 +953,6 @@ namespace Ebada.Scgl.Lcgl
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
                                 tfv.ControlValue = str;
                                 tfv.FieldId = lp.LPID;
-                                tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
                                 tfv.ExcelSheetName = sheet.Name;
@@ -971,7 +962,6 @@ namespace Ebada.Scgl.Lcgl
                                 WF_TableFieldValue tfv = new WF_TableFieldValue();
                                 tfv.ControlValue = str;
                                 tfv.FieldId = lp.LPID;
-                                tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
                                 tfv.ExcelSheetName = sheet.Name;
@@ -992,7 +982,6 @@ namespace Ebada.Scgl.Lcgl
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
                             tfv.ControlValue = str;
                             tfv.FieldId = lp.LPID;
-                            tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                             tfv.ExcelSheetName = sheet.Name;
@@ -1003,7 +992,6 @@ namespace Ebada.Scgl.Lcgl
                             WF_TableFieldValue tfv = new WF_TableFieldValue();
                             tfv.ControlValue = str;
                             tfv.FieldId = lp.LPID;
-                            tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                             tfv.ExcelSheetName = sheet.Name;
@@ -1020,7 +1008,6 @@ namespace Ebada.Scgl.Lcgl
                         tfv.ControlValue = str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
                         tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                         tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                         tfv.ExcelSheetName = sheet.Name;
@@ -1032,7 +1019,6 @@ namespace Ebada.Scgl.Lcgl
                         tfv.ControlValue = str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
                         tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                         tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                         tfv.ExcelSheetName = sheet.Name;
@@ -1047,11 +1033,11 @@ namespace Ebada.Scgl.Lcgl
                 FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
 
             }
-            LockExcel(wb,sheet);
+            LockExcel(wb, sheet);
         }
         void ctrl_Enter(object sender, EventArgs e)
         {
-           
+
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
             string str = (sender as Control).Text;
             if (dsoFramerWordControl1.MyExcel == null)
@@ -1077,7 +1063,7 @@ namespace Ebada.Scgl.Lcgl
                 activeSheetName = xx.Name;
             }
             ea.ActiveSheet(activeSheetIndex);
-            unLockExcel(wb,xx);
+            unLockExcel(wb, xx);
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
             if (arrCellpos.Length > 1)
@@ -1104,11 +1090,11 @@ namespace Ebada.Scgl.Lcgl
         }
         void ctrl_Leave(object sender, EventArgs e)
         {
-             
-            
+
+
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
             string str = (sender as Control).Text;
-            if (dsoFramerWordControl1.MyExcel==null)
+            if (dsoFramerWordControl1.MyExcel == null)
             {
                 return;
             }
@@ -1137,51 +1123,23 @@ namespace Ebada.Scgl.Lcgl
             {
                 ea.ActiveSheet(1);
             }
-
-            if (lp.CellPos == "")
-            {
-                lp.CellPos = lp.CellPos;
-                if (valuehs.ContainsKey(lp.LPID))
-                {
-                    WF_TableFieldValue tfv = valuehs[lp.LPID] as WF_TableFieldValue;
-                    tfv.ControlValue = str;
-                    tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
-                    tfv.XExcelPos = -1;
-                    tfv.YExcelPos = -1;
-
-                }
-                else
-                {
-                    WF_TableFieldValue tfv = new WF_TableFieldValue();
-                    tfv.ControlValue = str;
-                    tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
-                    tfv.XExcelPos = -1;
-                    tfv.YExcelPos = -1;
-                    tfv.ExcelSheetName = xx.Name;
-
-                    valuehs.Add(lp.LPID, tfv);
-                }
-                return;
-            }
-            unLockExcel(wb,xx);
+            unLockExcel(wb, xx);
             if (lp.CtrlType.Contains("uc_gridcontrol"))
-            { 
+            {
                 FillTable(ea, lp, (sender as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar))));
                 LockExcel(wb, xx);
-                return; 
+                return;
             }
             else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
-            { 
+            {
                 FillTime(ea, lp, (sender as DateEdit).DateTime);
                 LockExcel(wb, xx);
                 return;
-            }            
+            }
             string[] arrCellpos = lp.CellPos.Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
-            string[] extraWord = lp.ExtraWord.Split(pchar);  
+            string[] extraWord = lp.ExtraWord.Split(pchar);
             List<int> arrCellCount = String2Int(arrtemp);
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
             {
@@ -1191,7 +1149,6 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
                     tfv.ControlValue = str;
                     tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                     tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
                     tfv.ExcelSheetName = xx.Name;
@@ -1202,7 +1159,6 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = new WF_TableFieldValue();
                     tfv.ControlValue = str;
                     tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                     tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
                     tfv.ExcelSheetName = xx.Name;
@@ -1226,7 +1182,6 @@ namespace Ebada.Scgl.Lcgl
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
                                 tfv.ControlValue = strNew;
                                 tfv.FieldId = lp.LPID;
-                                tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
                                 tfv.ExcelSheetName = xx.Name;
@@ -1237,7 +1192,6 @@ namespace Ebada.Scgl.Lcgl
                                 WF_TableFieldValue tfv = new WF_TableFieldValue();
                                 tfv.ControlValue = strNew;
                                 tfv.FieldId = lp.LPID;
-                                tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
                                 tfv.ExcelSheetName = xx.Name;
@@ -1259,7 +1213,6 @@ namespace Ebada.Scgl.Lcgl
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
                             tfv.ControlValue = str;
                             tfv.FieldId = lp.LPID;
-                            tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                             tfv.ExcelSheetName = xx.Name;
@@ -1270,7 +1223,6 @@ namespace Ebada.Scgl.Lcgl
                             WF_TableFieldValue tfv = new WF_TableFieldValue();
                             tfv.ControlValue = str;
                             tfv.FieldId = lp.LPID;
-                            tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                             tfv.ExcelSheetName = xx.Name;
@@ -1289,7 +1241,6 @@ namespace Ebada.Scgl.Lcgl
                         tfv.ControlValue = (str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])));
                         tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                         tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                         tfv.ExcelSheetName = xx.Name;
@@ -1301,7 +1252,6 @@ namespace Ebada.Scgl.Lcgl
                         tfv.ControlValue = (str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])));
                         tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                         tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
                         tfv.ExcelSheetName = xx.Name;
@@ -1357,7 +1307,7 @@ namespace Ebada.Scgl.Lcgl
                         ctrlNumber.Text = strNumber;
                         currRecord.Number = ctrlNumber.Text;
                     }
-                    if (currRecord!=null) currRecord.OrgName = str;
+                    if (currRecord != null) currRecord.OrgName = str;
                     //ContentChanged(ctrlNumber);
                 }
 
@@ -1370,7 +1320,7 @@ namespace Ebada.Scgl.Lcgl
         {
             string[] arrCol = lp.CellPos.Split(pchar);
             arrCol = StringHelper.ReplaceEmpty(arrCol).Split(pchar);
-            string[] arrtemp=lp.WordCount.Split(pchar);
+            string[] arrtemp = lp.WordCount.Split(pchar);
             arrtemp = StringHelper.ReplaceEmpty(arrtemp).Split(pchar);
             List<int> arrCellCount = String2Int(arrtemp);
             for (int i = 0; i < arrCol.Length; i++)
@@ -1379,7 +1329,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     continue;
                 }
-                if(content[i]!=null)
+                if (content[i] != null)
                     FillMutilRowsT(ea, lp, content[i], arrCellCount[i], arrCol[i]);
             }
         }
@@ -1387,8 +1337,8 @@ namespace Ebada.Scgl.Lcgl
         public void FillMutilRows(ExcelAccess ea, int i, LP_Temple lp, string str, List<int> arrCellCount, string[] arrCellPos)
         {
             StringHelper help = new StringHelper();
-            str = help.GetPlitString(str, arrCellCount[1]);            
-            string[] extraWord = lp.ExtraWord.Split(pchar);          
+            str = help.GetPlitString(str, arrCellCount[1]);
+            string[] extraWord = lp.ExtraWord.Split(pchar);
 
             string[] arrRst = str.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             int j = 0;
@@ -1402,7 +1352,6 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
                     tfv.ControlValue = arrRst[j];
                     tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                     tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                     tfv.ExcelSheetName = activeSheetName;
@@ -1413,7 +1362,6 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = new WF_TableFieldValue();
                     tfv.ControlValue = arrRst[j];
                     tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                     tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                     tfv.ExcelSheetName = activeSheetName;
@@ -1423,12 +1371,12 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        public void FillTime(ExcelAccess ea, LP_Temple lp,DateTime dt)
+        public void FillTime(ExcelAccess ea, LP_Temple lp, DateTime dt)
         {
             string[] arrCellPos = lp.CellPos.Split(pchar);
             arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split(pchar);
-            string[] extraWord = lp.ExtraWord.Split(pchar);         
-            IList<string> strList=new List<string>();
+            string[] extraWord = lp.ExtraWord.Split(pchar);
+            IList<string> strList = new List<string>();
             //if (arrCellPos.Length == 5)
             //{
             //    strList.Add(dt.Year.ToString()); strList.Add(dt.Month.ToString());
@@ -1459,10 +1407,6 @@ namespace Ebada.Scgl.Lcgl
             {
                 case "yyyy-MM-dd":
                     strList.Add(dt.Year.ToString());
-                    strList.Add(dt.Month.ToString());
-                    strList.Add(dt.Day.ToString());
-                    break;
-                case "MM-dd日":
                     strList.Add(dt.Month.ToString());
                     strList.Add(dt.Day.ToString());
                     break;
@@ -1501,10 +1445,10 @@ namespace Ebada.Scgl.Lcgl
                     strList.Add(dt.Minute.ToString());
                     break;
             }
-           // int i = 0;
-            for (int i = 0; i < strList.Count;i++ )
+            // int i = 0;
+            for (int i = 0; i < strList.Count; i++)
             {
-                if (extraWord.Length>i)
+                if (extraWord.Length > i)
                 {
                     ea.SetCellValue(strList[i] + extraWord[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
@@ -1512,7 +1456,6 @@ namespace Ebada.Scgl.Lcgl
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
                         tfv.ControlValue = strList[i] + extraWord[i];
                         tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
@@ -1523,7 +1466,6 @@ namespace Ebada.Scgl.Lcgl
                         WF_TableFieldValue tfv = new WF_TableFieldValue();
                         tfv.ControlValue = strList[i] + extraWord[i];
                         tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
@@ -1536,9 +1478,8 @@ namespace Ebada.Scgl.Lcgl
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
-                        tfv.ControlValue = strList[i] ;
+                        tfv.ControlValue = strList[i];
                         tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
@@ -1547,16 +1488,15 @@ namespace Ebada.Scgl.Lcgl
                     else
                     {
                         WF_TableFieldValue tfv = new WF_TableFieldValue();
-                        tfv.ControlValue = strList[i] ;
+                        tfv.ControlValue = strList[i];
                         tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
                         valuehs.Add(lp.LPID + "$" + arrCellPos[i], tfv);
                     }
                 }
-                
+
             }
             //foreach (string str in strList)
             //{
@@ -1569,8 +1509,8 @@ namespace Ebada.Scgl.Lcgl
         {
             StringHelper help = new StringHelper();
             //str = help.GetPlitString(str, cellcount);
-            string[] arrRst = str.Split(new string[] { "\r\n" },StringSplitOptions.None);
-            for (int i=0; i < arrRst.Length; i++)
+            string[] arrRst = str.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < arrRst.Length; i++)
             {
                 ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
                 if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
@@ -1578,7 +1518,6 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]] as WF_TableFieldValue;
                     tfv.ControlValue = arrRst[i];
                     tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(arrCellPos)[0] + i;
                     tfv.YExcelPos = GetCellPos(arrCellPos)[1];
                     tfv.ExcelSheetName = activeSheetName;
@@ -1589,7 +1528,6 @@ namespace Ebada.Scgl.Lcgl
                     WF_TableFieldValue tfv = new WF_TableFieldValue();
                     tfv.ControlValue = arrRst[i];
                     tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
                     tfv.XExcelPos = GetCellPos(arrCellPos)[0] + i;
                     tfv.YExcelPos = GetCellPos(arrCellPos)[1];
                     tfv.ExcelSheetName = activeSheetName;
@@ -1600,7 +1538,7 @@ namespace Ebada.Scgl.Lcgl
 
         public int[] GetCellPos(string cellpos)
         {
-            cellpos = cellpos.Replace("|", "");          
+            cellpos = cellpos.Replace("|", "");
             return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
         }
 
@@ -1608,7 +1546,7 @@ namespace Ebada.Scgl.Lcgl
         {
             List<int> arrRst = new List<int>();
             for (int i = 0; i < temp.Length; i++)
-            {        
+            {
                 if (string.IsNullOrEmpty(temp[i]))
                 {
                     temp[i] = "0";
@@ -1695,7 +1633,8 @@ namespace Ebada.Scgl.Lcgl
                             {
                                 sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
                             }
-                            else {
+                            else
+                            {
                                 sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
                                 break;
                             }
@@ -1880,37 +1819,37 @@ namespace Ebada.Scgl.Lcgl
         {
             try
             {
-                    LP_Temple lp = (LP_Temple)ctrl.Tag;
-                    if (lp.AffectLPID != null && lp.AffectLPID != "")
-                    {                    
-                        string[] arrLPID = lp.AffectLPID.Split(pchar);
-                        arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
-                        string[] arrEvent = lp.AffectEvent.Split(pchar);
-                        for (int i = 0; i < arrLPID.Length; i++)
+                LP_Temple lp = (LP_Temple)ctrl.Tag;
+                if (lp.AffectLPID != null && lp.AffectLPID != "")
+                {
+                    string[] arrLPID = lp.AffectLPID.Split(pchar);
+                    arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
+                    string[] arrEvent = lp.AffectEvent.Split(pchar);
+                    for (int i = 0; i < arrLPID.Length; i++)
+                    {
+                        IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + arrLPID[i] + "' and parentid = '" + lp.ParentID + "'");
+                        if (listLPID.Count <= 0)
                         {
-                            IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + arrLPID[i] + "' and parentid = '" + lp.ParentID + "'");
-                            if (listLPID.Count <= 0)
-                            {
-                                continue;
-                            }
-                            Control ctrlTemp = FindCtrl((listLPID[0] as LP_Temple).LPID);
-                            if (!ctrlTemp.Visible)
-                            {
-                                continue;
-                            }
-                            if (string.IsNullOrEmpty(arrLPID[i]) || string.IsNullOrEmpty(arrEvent[i]))
-                            {
-                                continue;
-                            }                            
-                            ctrl.GetType().GetEvent(arrEvent[i]).AddEventHandler(ctrl, new EventHandler(TriggerRelateEvent));
-                            
+                            continue;
                         }
-                    }          
-               
+                        Control ctrlTemp = FindCtrl((listLPID[0] as LP_Temple).LPID);
+                        if (!ctrlTemp.Visible)
+                        {
+                            continue;
+                        }
+                        if (string.IsNullOrEmpty(arrLPID[i]) || string.IsNullOrEmpty(arrEvent[i]))
+                        {
+                            continue;
+                        }
+                        ctrl.GetType().GetEvent(arrEvent[i]).AddEventHandler(ctrl, new EventHandler(TriggerRelateEvent));
+
+                    }
+                }
+
             }
             catch (System.Exception e)
             {
-            	
+
             }
 
         }
@@ -1922,15 +1861,14 @@ namespace Ebada.Scgl.Lcgl
             foreach (string lpid in arrLPID)
             {
                 IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + lpid + "' and parentid = '" + lp.ParentID + "'");
-                if (listLPID.Count<=0)
+                if (listLPID.Count <= 0)
                 {
                     continue;
                 }
                 Control ctrl = FindCtrl((listLPID[0] as LP_Temple).LPID);
-                //if (ctrl != null && ctrl.Visible)
-                    if (ctrl != null )
-                {                    
-                    UpdateRelateData(ctrl); 
+                if (ctrl != null && ctrl.Visible)
+                {
+                    UpdateRelateData(ctrl);
                 }
             }
         }
@@ -1963,7 +1901,7 @@ namespace Ebada.Scgl.Lcgl
                         //((LP_Temple)ctrl.Tag).SqlSentence = sqlSentence;
                     }
                 }
-            }            
+            }
             InitCtrlData(ctrl, sqlSentence);
         }
 
@@ -1979,32 +1917,32 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmLP_FormClosed(object sender, FormClosedEventArgs e)
         {
-           
+
             try
-            { 
+            {
                 //base.Close();
                 //rowData = null;
-                this.dsoFramerWordControl1.FileClose();
+
                 dockPanel1.ControlContainer.Controls.Clear();
                 templeList.Clear();
                 currRecord = null;
-                    if (filecontrol != null)
+                if (filecontrol != null)
+                {
+
+                    if (filecontrol.upThread != null && filecontrol.upThread.ThreadState == ThreadState.Running)
                     {
 
-                        if (filecontrol.upThread != null && filecontrol.upThread.ThreadState == ThreadState.Running)
-                        {
-                            
-                                filecontrol.upThread.IsBackground = true;
-                                filecontrol.upThread.Abort();
-                           
-                        }
-                        if (filecontrol.Isdownfile)
-                        {
+                        filecontrol.upThread.IsBackground = true;
+                        filecontrol.upThread.Abort();
 
-                            if (filecontrol.webClient!=null) filecontrol.webClient.CancelAsync();
-
-                        }
                     }
+                    if (filecontrol.Isdownfile)
+                    {
+
+                        if (filecontrol.webClient != null) filecontrol.webClient.CancelAsync();
+
+                    }
+                }
             }
             catch { }
         }
@@ -2012,24 +1950,24 @@ namespace Ebada.Scgl.Lcgl
         private void frmLP_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (filecontrol != null)
+            {
+                if (filecontrol.Isupfile)
                 {
-                    if (filecontrol.Isupfile)
+                    if (MsgBox.ShowAskMessageBox("正在上传文件，确认退出?") != DialogResult.OK)
                     {
-                        if (MsgBox.ShowAskMessageBox("正在上传文件，确认退出?") != DialogResult.OK)
-                        {
-                            e.Cancel = true;
-                            return;
-                        }
-                    }
-                    if (filecontrol.Isdownfile)
-                    {
-                        if (MsgBox.ShowAskMessageBox("正在下载文件，确认退出?") != DialogResult.OK)
-                        {
-                            e.Cancel = true;
-                        }
-
+                        e.Cancel = true;
+                        return;
                     }
                 }
+                if (filecontrol.Isdownfile)
+                {
+                    if (MsgBox.ShowAskMessageBox("正在下载文件，确认退出?") != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                    }
+
+                }
+            }
         }
     }
 }
