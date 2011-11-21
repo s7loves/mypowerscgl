@@ -850,7 +850,46 @@ namespace Ebada.SCGL.WFlow.Tool
             return arrRst;
         }
 
+        public static string CreatWorkFolwNo(mOrg org, string parentID, string kind)
+        {
+            string number = "";
+            IList<WF_TableFieldValueView> datalist = null;
+            switch (kind)
+            {
+                case "编号规则一":
+                    datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<WF_TableFieldValueView>(
+               " where FieldName='编号' and UserControlId='" + parentID + "' and ControlValue like '%" + org.OrgCode.Substring(org.OrgCode.Length - 2) + "-%' order by Number desc");
+                    if (datalist.Count > 0)
+                    {
+                        string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
+                        number = org.OrgCode.Substring(org.OrgCode.Length - 2) + string.Format("-{0:D3}", Convert.ToInt32(stri) + 1);
+                    }
+                    else
+                    {
 
+                        number = org.OrgCode.Substring(org.OrgCode.Length - 2) + "-001";
+                    }
+
+                    break;
+                default:
+                    datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<WF_TableFieldValueView>(
+                        " where FieldName='编号' and UserControlId='" + parentID + "' and ControlValue like '%" +
+                        DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' order by Number desc");
+
+                    if (datalist.Count > 0)
+                    {
+                        string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
+                        number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + string.Format("{0:D4}", Convert.ToInt32(stri) + 1);
+                    }
+                    else
+                    {
+
+                        number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "0001";
+                    }
+                    break;
+            }
+            return number;
+        }
         public void InitCtrlData(Control ctrl, string sqlSentence)
         {
             tempCtrlList.Add(ctrl);
@@ -937,10 +976,38 @@ namespace Ebada.SCGL.WFlow.Tool
                     {
                         sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
                         break;
+                    }     
+                }
+                r1 = new Regex(@"(?<={编号规则一:)[0-9]+(?=})");
+                if (r1.Match(sqlSentence).Value != "")
+                {
+                    string sortid = r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count > 0)
+                    {
+                        Control ct = FindCtrl(listLPID[0].LPID);
+                        if (ct != null)
+                        {
+                            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("SelectmOrgList",
+                                "where OrgName='" + ct.Text + "'");
+                            if (list.Count > 0)
+                                sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", CreatWorkFolwNo(list[0], listLPID[0].ParentID, "编号规则一"));
+                            else
+                                sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "");
+
+                        }
+                        else
+                        {
+                            sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
+
+                        }
                     }
+                    else
+                    {
+                        sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
 
-
-                   
+                    }
+                    
                 }
                 try
                 {
@@ -1075,7 +1142,8 @@ namespace Ebada.SCGL.WFlow.Tool
                     ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar));
                     break;
             }
-
+            if (lp.CellName == "编号") strNumber = ctrl.Text;
+            if (ctrlNumber != null && strNumber!="") ctrlNumber.Text = strNumber;
         }
 
         public int CalcWidth()

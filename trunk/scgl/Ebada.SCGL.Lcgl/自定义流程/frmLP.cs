@@ -272,7 +272,7 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-                LoadContent();
+                //LoadContent();
             }
             if ((parentTemple != null && parentTemple.DocContent != null) || (currRecord != null && currRecord.DocContent != null && currRecord.DocContent.Length > 0))
             {
@@ -365,12 +365,13 @@ namespace Ebada.Scgl.Lcgl
             int currentPosY = 10;
             int currentPosX = 10;
             int index = 0;
+            if (MaxWordWidth < 300) MaxWordWidth = 300;
             if (parentTemple != null)
             {
                 foreach (LP_Temple lp in templeList)
                 {
                     bool flag;//= (lp.Status == CurrRecord.Status);
-                    flag = true;
+                    flag = lp.IsVisible==0;
                     Label label = new Label();
                     label.Text = lp.CellName;
                     //string[] location = lp.CtrlLocation.Split(',');
@@ -566,6 +567,7 @@ namespace Ebada.Scgl.Lcgl
             byte[] bt = new byte[0];
             string strmes = "";
             WF_WorkTaskCommands wt;
+            if (strNumber != "") currRecord.Number = strNumber;
             switch (status)
             {
                 case "add":
@@ -794,7 +796,23 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
                     {
-                        if (dict.ContainsKey(lp.LPID)) (ctrl as DevExpress.XtraEditors.DateEdit).DateTime = Convert.ToDateTime(dict[lp.LPID]);
+                        if (dict.ContainsKey(lp.LPID))
+                        {
+                            Regex r1 = new Regex(@"[0-9]+-[0-9]+日 [0-9]+:[0-9]+");
+                            if (r1.Match(dict[lp.LPID]).Value != "")
+                            {
+                                (ctrl as DevExpress.XtraEditors.DateEdit).DateTime = Convert.ToDateTime(DateTime.Now.Year +"-"+ dict[lp.LPID].Replace("日",""));
+                            }
+                            else
+                            {
+
+                                (ctrl as DevExpress.XtraEditors.DateEdit).DateTime = Convert.ToDateTime( dict[lp.LPID]);
+                            }
+                           
+
+                                
+                            
+                        }
                     }
                     else
                     {
@@ -1701,6 +1719,37 @@ namespace Ebada.Scgl.Lcgl
 
 
                 }
+                r1 = new Regex(@"(?<={编号规则一:)[0-9]+(?=})");
+                if (r1.Match(sqlSentence).Value != "")
+                {
+                    string sortid = r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count > 0)
+                    {
+                        Control ct = FindCtrl(listLPID[0].LPID);
+                        if (ct != null)
+                        {
+                            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("SelectmOrgList",
+                                "where OrgName='" + ct.Text + "'");
+                            if (list.Count > 0)
+                                sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", RecordWorkTask.CreatWorkFolwNo(list[0], listLPID[0].ParentID, "编号规则一"));
+                            else
+                                sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "");
+
+                        }
+                        else
+                        {
+                            sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
+
+                        }
+                    }
+                    else
+                    {
+                        sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
+
+                    }
+
+                }
                 try
                 {
                     li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
@@ -1834,6 +1883,8 @@ namespace Ebada.Scgl.Lcgl
                     ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar));
                     break;
             }
+            if (lp.CellName == "编号") strNumber = ctrl.Text;
+            if (ctrlNumber != null && strNumber != "") ctrlNumber.Text = strNumber;
         }
 
         public int CalcWidth()
