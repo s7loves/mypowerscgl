@@ -87,6 +87,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="04事故障碍异常\frmsgzaycWorkFlowEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="04事故障碍异常\frmsgzaycWorkFlowEdit.Designer.cs">
+      <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="缺陷管理\frmsbqxEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,12 @@
     </Compile>
     <Compile Include="自定义流程\模板生成\UCmExcelTree.Designer.cs">
       <DependentUpon>UCmExcelTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="08设备停电检修记录\frm08SBTDJXWorkFlowEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="08设备停电检修记录\frm08SBTDJXWorkFlowEdit.Designer.cs">
+      <DependentUpon>frm08SBTDJXWorkFlowEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="运行分析\frmyxfxWorkFlowEdit.cs">
       <SubType>Form</SubType>
@@ -422,6 +434,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="04事故障碍异常\frmsgzaycWorkFlowEdit.resx">
+      <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="缺陷管理\frmsbqxEdit.resx">
       <DependentUpon>frmsbqxEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -468,6 +484,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\模板生成\UCmExcelTree.resx">
       <DependentUpon>UCmExcelTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="08设备停电检修记录\frm08SBTDJXWorkFlowEdit.resx">
+      <DependentUpon>frm08SBTDJXWorkFlowEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="运行分析\frmyxfxWorkFlowEdit.resx">

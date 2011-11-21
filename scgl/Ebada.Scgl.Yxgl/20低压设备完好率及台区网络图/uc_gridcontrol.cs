@@ -105,7 +105,7 @@ namespace Ebada.Scgl.Yxgl
                                     break;
                                 case "{月}":
                                     combox.Items.Clear();
-                                    for (int j = 1; j <= 12; j++)
+                                    for (int j = 0; j <= 12; j++)
                                     {
                                         combox.Items.Add(string.Format("{0:D2}", j));
 
@@ -121,7 +121,7 @@ namespace Ebada.Scgl.Yxgl
                                     break;
                                 case "{时}":
                                     combox.Items.Clear();
-                                    for (int j = 1; j <= 24; j++)
+                                    for (int j = 0; j < 24; j++)
                                     {
                                         combox.Items.Add(string.Format("{0:D2}", j));
 

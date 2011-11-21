@@ -60,12 +60,12 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             else if (rbnWorkTable.Checked == true)
             {
-                strSQL = "select ControlValue from WF_TableFieldValueView where 10=10  "
+                strSQL = "select ControlValue from WF_TableFieldValue where 10=10  "
                     + "and UserControlId='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' "
                     + " and FieldId='" + ((ListItem)cbxWorkTableColumns.SelectedItem).ID + "' ";
                 if (ceBind.Checked)
                 {
-                    strSQL = strSQL + " and id='{recordid}'";
+                    strSQL = strSQL + " and RecordId='{recordid}'";
                 }
                
             }
