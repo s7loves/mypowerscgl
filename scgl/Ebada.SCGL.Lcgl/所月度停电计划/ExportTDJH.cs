@@ -107,12 +107,22 @@ namespace Ebada.Scgl.Lcgl
                 string.Format("select nr from pj_dyk where  dx='所月度停电计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
             if (list.Count > 0)
                 startday = list[0].ToString();
-            IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
-                 " where TDtime between '" + DateTime.Now.Year + "-"
+
+             filter = " where TDtime between '" + DateTime.Now.Year + "-"
                  + DateTime.Now.Month + "-" + startday
                  + " 00:00:00' and  '"
                  + DateTime.Now.Year + "-"
-                 + (DateTime.Now.Month + 1) + "-" + startday + " 00:00:00' and OrgCode='" + orgid + "'"
+                 + (DateTime.Now.Month + 1) + "-" + startday + " 00:00:00' and OrgCode='" + orgid + "'";
+            if (isWorkflowCall)
+            {
+                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
+                    + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                        + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                    + "    RecordID='" + currRecord.ID + "') "
+                    ;
+            }
+            IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
+                 filter
                  );
             List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
             
@@ -172,13 +182,21 @@ namespace Ebada.Scgl.Lcgl
             Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
-
+            string filter = " where TDtime between '" + DateTime.Now.Year + "-"
+                + DateTime.Now.Month + "-" + startday
+                + " 00:00:00' and  '"
+                + DateTime.Now.Year + "-"
+                + (DateTime.Now.Month + 1) + "-" + startday + " 00:00:00' and OrgCode='" + orgid + "'";
+            if (isWorkflowCall)
+            {
+                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where WorkFlowId='"
+                    + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                        + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                    + "    RecordID='" + currRecord.ID + "') "
+                    ;
+            }
             IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
-                  " where TDtime between '" + DateTime.Now.Year + "-"
-                  + DateTime.Now.Month + "-" + startday
-                  + " 00:00:00' and  '"
-                  + DateTime.Now.Year + "-"
-                  + (DateTime.Now.Month + 1) + "-" + startday + " 00:00:00' and OrgCode='" + orgid + "'"
+                 filter
                   );
             ExportExcel(ex, datalist);
             if (parentTemple == null)
@@ -212,6 +230,9 @@ namespace Ebada.Scgl.Lcgl
                     ex.CopySheet(1, 1);
                 }
             }
+   
+                ex.SetCellValue(DateTime.Now.Year+"年"+(DateTime.Now.Month+1)+"月份配电设备停电检修计划表", 1, 1);
+        
             for (int j = 0; j < datalist.Count; j++)
             {
 
