@@ -23,7 +23,7 @@ namespace Ebada.Scgl.Yxgl {
             ex.Open(fname);
             //此处写填充内容代码
             ex.SetCellValue(objorg.OrgName, 4, 2);
-            IList<PS_xl> objlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where OrgCode ='" + objorg.OrgCode + "'or OrgCode2='" + objorg.OrgCode + "'and LineType='1'");
+            IList<PS_xl> objlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where OrgCode ='" + objorg.OrgCode + "' and len(linecode)=6");
             //分页 将要变化的进行分页
             //建立一个求总和的
             PS_xl objz = new PS_xl();
@@ -42,7 +42,7 @@ namespace Ebada.Scgl.Yxgl {
             {
                 if (j > 1)
                 {
-                    ex.CopySheet(1, 1);
+                    ex.CopySheet(1, j);
                 }
             }
             ex.ShowExcel();
@@ -70,17 +70,20 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(obj.LineName,8+i,1);
                         //配电线路
                         string gtcon = " gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "' or ParentID='" + obj.LineCode + "'))";
-                        string length = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where LineID='" + obj.LineCode + "'or(ParentID='" + obj.LineCode + "')").ToString();
+                       
+                        object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode));
+                        string length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
                         string tqcon = "tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "'or xlCode2 in(select lineid from ps_xl where ParentID='" + obj.LineCode + "'))";
                         ex.SetCellValue(length,8+i,2);
                         xlsum += Convert.ToDouble(length);
-                        length = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where LineID='" + obj.LineCode + "'or(ParentID='" + obj.LineCode + "') and LineType='1'").ToString();
+                        nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode));
+                        length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
                         ex.SetCellValue(length,8+i,3);
                         xl1 += Convert.ToDouble(length);
-                        length = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where LineID='" + obj.LineCode + "'or(ParentID='" + obj.LineCode + "')and LineType='2'").ToString();
+                        length = "0";//二类
                         ex.SetCellValue(length,8+i,4);
                         xl2 += Convert.ToDouble(length);
-                        length = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where LineID='" + obj.LineCode + "'or(ParentID='" + obj.LineCode + "')and LineType='3'").ToString();
+                        length = "0";//三类
                         ex.SetCellValue(length,8+i,5);
                         xl3 += Convert.ToDouble(length);
                         ex.SetCellValue("100%",8+i,6);
@@ -259,18 +262,20 @@ namespace Ebada.Scgl.Yxgl {
                         //
                         ex.SetCellValue(obj.LineName, 8 + i, 1);
                         //配电线路
-                        string length = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where LineID='" + obj.LineCode + "'or(ParentID='" + obj.LineCode + "')").ToString();
+                        object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode));
+                        string length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
                         string gtcon = "gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))";
                         string tqcon = "tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "'or xlCode2 in(select lineid from ps_xl where ParentID='" + obj.LineCode + "'))";
                         ex.SetCellValue(length, 8 + i, 2);
                         xlsum += Convert.ToDouble(length);
-                        length = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where LineID='" + obj.LineCode + "'or(ParentID='" + obj.LineCode + "') and LineType='1'").ToString();
+                        nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode)).ToString();
+                        length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
                         ex.SetCellValue(length, 8 + i, 3);
                         xl1 += Convert.ToDouble(length);
-                        length = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where LineID='" + obj.LineCode + "'or(ParentID='" + obj.LineCode + "')and LineType='2'").ToString();
+                        length = "0";// Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where LineID='" + obj.LineCode + "'or(ParentID='" + obj.LineCode + "')and LineType='2'").ToString();
                         ex.SetCellValue(length, 8 + i, 4);
                         xl2 += Convert.ToDouble(length);
-                        length = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where LineID='" + obj.LineCode + "'or(ParentID='" + obj.LineCode + "')and LineType='3'").ToString();
+                        length = "0";// Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", "where LineID='" + obj.LineCode + "'or(ParentID='" + obj.LineCode + "')and LineType='3'").ToString();
                         ex.SetCellValue(length, 8 + i, 5);
                         xl3 += Convert.ToDouble(length);
                         ex.SetCellValue("100%", 8 + i, 6);
