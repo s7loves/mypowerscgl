@@ -597,7 +597,13 @@ namespace Ebada.Scgl.Lcgl {
             }
             else
             {
-
+                if (obj.GetType().GetProperty("IsWorkflowCall") != null)
+                    obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
 
                 if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
                     obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
@@ -606,13 +612,7 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
-                if (obj.GetType().GetProperty("IsWorkflowCall") != null)
-                    obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
-                else
-                {
-                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
-                    return;
-                }
+               
                 if (obj.GetType().GetProperty("CurrRecord") != null)
                     obj.GetType().GetProperty("CurrRecord").SetValue(obj, currRecord, null);
                 else
