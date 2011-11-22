@@ -86,6 +86,7 @@ namespace Ebada.Scgl.Lcgl
                             liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             SubmitButton.Caption = wt.Description;
+                            liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                         }
                         else
                             if (wt.CommandName == "02")
@@ -93,6 +94,7 @@ namespace Ebada.Scgl.Lcgl
                                 liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                                 TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                                 TaskOverButton.Caption = wt.Description;
+                                liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             }
 
                     }
@@ -316,6 +318,11 @@ namespace Ebada.Scgl.Lcgl
                     export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
                 gridControl1.FindForm().Close();
             }
+        }
+
+        private void liuchenBarClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }
