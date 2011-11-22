@@ -736,7 +736,20 @@ namespace Ebada.Scgl.Lcgl {
                                     qxfl.xsr = qxfltemp.xsr;
                                     qxfl.xcqx = qxfltemp.xcqx;
                                     qxfl.xlqd = qxfltemp.xlqd;
-                                    //MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(qxfl);
+                                    qxfl.CreateDate = DateTime.Now;
+                                    qxfl.CreateMan = MainHelper.User.UserName;
+                                    MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(qxfl);
+
+                                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                                    mrwt.ModleRecordID = qxfl.ID;
+                                    mrwt.RecordID = currRecord.ID;
+                                    mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                                    mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                                    mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                                    mrwt.ModleTableName = qxfl.GetType().ToString();
+                                    mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                                    mrwt.CreatTime = DateTime.Now;
+                                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                                 }
                             }
                             else
@@ -744,6 +757,20 @@ namespace Ebada.Scgl.Lcgl {
                                 qxfl = new PJ_06sbxs();
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
+                                qxfl.CreateDate = DateTime.Now;
+                                qxfl.CreateMan = MainHelper.User.UserName;
+                                MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(qxfl);
+
+                                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                                mrwt.ModleRecordID = qxfl.ID;
+                                mrwt.RecordID = currRecord.ID;
+                                mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                                mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                                mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                                mrwt.ModleTableName = qxfl.GetType().ToString();
+                                mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                                mrwt.CreatTime = DateTime.Now;
+                                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
 
                             }
 
@@ -759,17 +786,69 @@ namespace Ebada.Scgl.Lcgl {
                             if (li.Count > 0)
                             {
                                 PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
-                                qxfl.OrgCode = qxfltemp.OrgCode;
-                                qxfl.OrgName = qxfltemp.OrgName;
-                                qxfl.LineID = qxfltemp.LineID;
-                                qxfl.LineName = qxfltemp.LineName;
-                                qxfl.jxnr = qxfltemp.qxnr;
+                                li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
+                               + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_08sbtdjx'"
+                                 + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                                if (li.Count > 0)
+                                {
+                                    qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_08sbtdjx>(li[0].ModleRecordID);
+                                }
+                                else
+                                {
+                                    qxfl.OrgCode = qxfltemp.OrgCode;
+                                    qxfl.OrgName = qxfltemp.OrgName;
+                                    qxfl.LineID = qxfltemp.LineID;
+                                    qxfl.LineName = qxfltemp.LineName;
+                                    qxfl.jxnr = qxfltemp.qxnr;
+                                    if (qxfltemp.qxlb== "紧急缺陷")
+                                    {
+                                        qxfl.tdxz = "事故停电";
+                                    }
+                                    else
+                                        if (qxfltemp.qxlb == "重大缺陷")
+                                        {
+                                            qxfl.tdxz = "临时停电";
+                                        }
+                                        else
+                                            if (qxfltemp.qxlb == "一般缺陷")
+                                            {
+                                                qxfl.tdxz = "一般缺陷";
+                                            }
+                                    qxfl.CreateDate = DateTime.Now;
+                                    qxfl.CreateMan = MainHelper.User.UserName;
+                                    MainHelper.PlatformSqlMap.Create<PJ_08sbtdjx>(qxfl);
+
+                                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                                    mrwt.ModleRecordID = qxfl.ID;
+                                    mrwt.RecordID = currRecord.ID;
+                                    mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                                    mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                                    mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                                    mrwt.ModleTableName = qxfl.GetType().ToString();
+                                    mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                                    mrwt.CreatTime = DateTime.Now;
+                                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                                }
+                              
                             }
                             else
                             {
                                 qxfl = new PJ_08sbtdjx();
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
+                                qxfl.CreateDate = DateTime.Now;
+                                MainHelper.PlatformSqlMap.Create<PJ_08sbtdjx>(qxfl);
+
+                                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                                mrwt.ModleRecordID = qxfl.ID;
+                                mrwt.RecordID = currRecord.ID;
+                                mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                                mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                                mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                                mrwt.ModleTableName = qxfl.GetType().ToString();
+                                mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                                mrwt.CreatTime = DateTime.Now;
+                                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
 
                             }
 
@@ -779,15 +858,38 @@ namespace Ebada.Scgl.Lcgl {
                         else if (obj is frmsgzaycWorkFlowEdit)
                         {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
-                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_qxfl'"
+                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_08sbtdjx'"
                                + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
                             PJ_04sgzayc qxfl = new PJ_04sgzayc();
                             if (li.Count > 0)
                             {
-                                PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
+                                PJ_08sbtdjx qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_08sbtdjx>(li[0].ModleRecordID);
                                 qxfl.OrgCode = qxfltemp.OrgCode;
                                 qxfl.OrgName = qxfltemp.OrgName;
-                                qxfl.fsdd= qxfltemp.qxnr;
+                                qxfl.sdsj = qxfltemp.sdsj;
+                                qxfl.tdsj = qxfltemp.tdsj;
+                                TimeSpan span = qxfl.sdsj.Subtract(qxfl.tdsj);
+                                if (span.Days > 0)
+                                    qxfl.gtdsj += span.Days + "天";
+                                if (span.Hours > 0)
+                                    qxfl.gtdsj += span.Hours + "时";
+                                if (span.Minutes>-1)
+                                    qxfl.gtdsj += span.Minutes + "分";
+                                qxfl.fsdd = qxfltemp.jxnr;
+                                qxfl.CreateDate = DateTime.Now;
+                                MainHelper.PlatformSqlMap.Create<PJ_04sgzayc>(qxfl);
+
+                                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                                mrwt.ModleRecordID = qxfl.ID;
+                                mrwt.RecordID = currRecord.ID;
+                                mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                                mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                                mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                                mrwt.ModleTableName = qxfl.GetType().ToString();
+                                mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                                mrwt.CreatTime = DateTime.Now;
+                                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+
                             }
                             else
                             {

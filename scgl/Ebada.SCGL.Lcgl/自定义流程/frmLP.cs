@@ -431,6 +431,8 @@ namespace Ebada.Scgl.Lcgl
                 hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
                 currentPosY = currentPosY + hqyjcontrol.Size.Height;
                 hqyjcontrol.RecordID = CurrRecord.ID;
+                hqyjcontrol.TabIndex = index;
+                index++;
                 dockPanel1.Controls.Add(hqyjcontrol);
             }
 
@@ -453,6 +455,8 @@ namespace Ebada.Scgl.Lcgl
                     currRecord = new LP_Record();
                 }
                 filecontrol.RecordID = CurrRecord.ID;
+                filecontrol.TabIndex = index;
+                index++;
                 dockPanel1.Controls.Add(filecontrol);
                 currentPosY += 20;
             }
@@ -660,13 +664,7 @@ namespace Ebada.Scgl.Lcgl
                     {
                         strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
                     }
-                    if (strmes.IndexOf("未提交至任何人") > -1)
-                    {
-                        MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
-                        return;
-                    }
-                    else
-                        MsgBox.ShowTipMessageBox(strmes);
+                    string towho = strmes;
                     strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
                     if (strmes == "结束节点1")
                     {
@@ -677,6 +675,13 @@ namespace Ebada.Scgl.Lcgl
                         CurrRecord.Status = strmes;
                     }
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+                    if (towho.IndexOf("未提交至任何人") > -1)
+                    {
+                        MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                        return;
+                    }
+                    else
+                        MsgBox.ShowTipMessageBox(towho);
                     if (hqyjcontrol != null)
                     {
                         PJ_lcspyj lcyj = new PJ_lcspyj();
