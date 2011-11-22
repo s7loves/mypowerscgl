@@ -1524,8 +1524,12 @@ namespace Ebada.Scgl.WFlow
             WorkFlowRuntime wfruntime = new WorkFlowRuntime();
             //wfruntime.RunSuccess += new WorkFlowRuntime.RunSuccessEventHandler(wfruntime_RunSuccess);
             //wfruntime.RunFail += new WorkFlowRuntime.RunFailEventHandler(wfruntime_RunFail);
-            wfruntime.Run(userID, OperatorInsId, command);
-
+            string result = wfruntime.Run(userID, OperatorInsId, command);
+           
+           if (result != WorkFlowConst.SuccessCode)
+           {
+               return "未提交至任何人,请检查流程模板和组织机构配置是否正确!";
+           }
             return Toollips(WorkTaskInsId);
             //return "";
         }

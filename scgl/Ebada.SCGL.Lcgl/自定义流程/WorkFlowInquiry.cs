@@ -125,7 +125,13 @@ namespace Ebada.Scgl.Lcgl
                     }
                     object keyobj = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '"
                         + strtable + "'");
-                    str2 = " select * from "+strtable+" where "+keyobj+" in ("+strModleSQL+")";
+                    //str2 = " select * from "+strtable+" where "+keyobj+" in ("+strModleSQL+")";
+                    if (strtable != "PJ_tdjh")
+                        str2 = " where " + keyobj + " in (" + strModleSQL + ")";
+                    else
+                    {
+                        str2 = " where s1='缺陷管理流程'";
+                    }
                     XtraTabPage modleTabPage=new XtraTabPage ();
                     modleTabPage.Text = "表" + strtable+"相关记录";
                     UCmLPInquiryModleRecord modlerecord = new UCmLPInquiryModleRecord();
