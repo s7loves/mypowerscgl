@@ -66,8 +66,11 @@ namespace Ebada.Scgl.Lcgl
             if (orgid != "") filter = " and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
-                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='"
-                   + CurrRecord.ID + "' and   WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') ";
+                filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                    + "    WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                    + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                    + "    RecordID='" + currRecord.ID + "')) "
+                    ;
             }
             List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
             IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
@@ -192,10 +195,13 @@ namespace Ebada.Scgl.Lcgl
             if (orgid != "") filter = " and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
-                filter = filter + "  and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                filter = filter + "  and ( id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                 + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-                    + " and   WorkFlowInsId !='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                   + ")";
+                   + ") or id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                + " RecordID='" + currRecord.ID + "'))";
+                  
+                   
+                   
             }
             List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
             IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'   and planExpTime like '%" + DateTime.Now.Year + "%' " + filter + " order by xh ");
@@ -854,7 +860,7 @@ namespace Ebada.Scgl.Lcgl
 
             }
             ex.ActiveSheet(sheetname);
-            ex.ShowExcel();
+            if(isShow)ex.ShowExcel();
         }
         /// <summary>
         /// 文档格式预定义好的，只填写内容
