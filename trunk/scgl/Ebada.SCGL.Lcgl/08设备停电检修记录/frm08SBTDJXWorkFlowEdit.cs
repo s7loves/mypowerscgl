@@ -239,25 +239,20 @@ namespace Ebada.Scgl.Lcgl
             object obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_08sbtdjx>(sbxs.ID);
             if (obj == null)
             {
-                MainHelper.PlatformSqlMap.Create<PJ_qxfl>(obj);
+                MainHelper.PlatformSqlMap.Create<PJ_08sbtdjx>(sbxs);
             }
 
             else {
-                MainHelper.PlatformSqlMap.Update<PJ_qxfl>(obj);
+
+
+
+              
+                MainHelper.PlatformSqlMap.Update<PJ_08sbtdjx>(sbxs);
             
             }
             if (isWorkflowCall )
             {
-                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                mrwt.ModleRecordID = sbxs.ID;
-                mrwt.RecordID = currRecord.ID;
-                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                mrwt.ModleTableName = sbxs.GetType().ToString();
-                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                mrwt.CreatTime = DateTime.Now;
-                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+              
 
                 currRecord.LastChangeTime = DateTime.Now.ToString();
                 if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
@@ -308,7 +303,7 @@ namespace Ebada.Scgl.Lcgl
 
                 MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
             }
-          
+            this.DialogResult= DialogResult.OK;
         }
     }
 }

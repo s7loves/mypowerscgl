@@ -195,6 +195,41 @@ namespace Ebada.SCGL.WFlow.Engine
                 throw ex;
             }
         }
+        public static void GetAllWorkFlowID(string worktaskInsId, ref string allworflowid)
+        {
+            IList<WF_WorkTaskInstanceView> wtlist = MainHelper.PlatformSqlMap.GetListByWhere<WF_WorkTaskInstanceView>
+                        (" where WorkTaskInsId='" + worktaskInsId + "'");
+            //if (allworflowid != "")
+            //    allworflowid += " or MainWorkflowInsId='" + workFlowInstanceId + "'";
+            //else
+            //    allworflowid = "MainWorkflowInsId='" + workFlowInstanceId + "'";
+
+            if (wtlist.Count > 0 && wtlist[0].isSubWorkflow)
+            {
+
+                IList<WF_WorkFlowInstance> wflist = MainHelper.PlatformSqlMap.GetListByWhere<WF_WorkFlowInstance>
+                        (" where WorkFlowInsId='" + wtlist[0].WorkFlowInsId + "'");
+                
+                    wtlist = MainHelper.PlatformSqlMap.GetListByWhere<WF_WorkTaskInstanceView>
+                        (" where WorkflowId='" 
+                        + wflist[0].MainWorkflowId+"'"
+                        + " and WorkflowInsId='" + wflist[0].MainWorkflowInsId + "'"
+                        + " and WorktaskId='" + wflist[0].MainWorktaskId + "'"
+                        
+                        );
+
+                    if (wtlist.Count > 0)
+                    {
+                        allworflowid = allworflowid + " or previoustaskid ='" + wtlist[0].WorkTaskInsId + "' ";
+
+
+
+                        if (wtlist[0].isSubWorkflow)
+                            GetAllWorkFlowID(wtlist[0].WorkTaskInsId, ref  allworflowid);
+                    }
+                
+            }
+        }
         /**//// <summary>
         /// 获得任务实例成功提交信息
         /// </summary>
@@ -203,6 +238,8 @@ namespace Ebada.SCGL.WFlow.Engine
             try
             {
                 string result = "";
+                string allworflowid = "";
+                 GetAllWorkFlowID( worktaskInsId, ref  allworflowid);
                 //string sql = "select * from WorkTaskInstanceView  where previoustaskid= @worktaskInsId and operstatus='0' order by opertype";
                 //SqlDataItem sqlItem = new SqlDataItem();
                 //sqlItem.CommandText = sql;
@@ -211,7 +248,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //DataTable dt= agent.ExecuteDataTable(sqlItem);
                 string sql = "where (previoustaskid='" + worktaskInsId +"'"
                     + " or WorkTaskId in ( select NowTaskId  from WF_WorkFlowInstance where MainWorktaskInsId='" + worktaskInsId + "')"
-                    + " or previoustaskid  in ( select WorkFlowInsId  from WF_WorkTaskInstance where worktaskInsId='" + worktaskInsId + "')"
+                    + allworflowid
                     
                     +") and operstatus='0' order by opertype";
                  DataTable dt=null;
