@@ -191,49 +191,49 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(ts, 23, 8);
             //避雷器
             string blq = "0";
-            //ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='避雷器' and tqID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10') ))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))",obj.LineCode.Length,obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 14, 13);
-            //ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='避雷器'and sbModle='氧化锌硅胶' and tqID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%氧化锌硅胶%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))",obj.LineCode.Length,obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 15, 13);
-            //ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='避雷器'and sbModle='阀型' and tqID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%阀型%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))",obj.LineCode.Length,obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 16, 13);
-            //ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='避雷器'and sbModle='氧化锌硅胶带熔断器' and tqID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%氧化锌硅胶带熔断器%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 17, 13);
             //绝缘子
             string jyuz = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbType='绝缘子' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 21, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbType='绝缘子'and sbModle='XP-7C' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子'and sbModle='XP-7C' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 22, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbType='绝缘子'and sbModle='P-15T' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子'and sbModle='P-15T' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 23, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbType='绝缘子'and sbModle='FSW6-10/70' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子'and sbModle='FSW6-10/70' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 24, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbType='绝缘子'and sbModle='FPQ2W-10/3T20' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子'and sbModle='FPQ2W-10/3T20' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
