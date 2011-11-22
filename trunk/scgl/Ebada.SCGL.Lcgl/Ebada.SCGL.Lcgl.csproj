@@ -93,12 +93,6 @@
     <Compile Include="04事故障碍异常\frmsgzaycWorkFlowEdit.Designer.cs">
       <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="所月度停电计划\frmTDJHWorkFlowEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="所月度停电计划\frmTDJHWorkFlowEdit.Designer.cs">
-      <DependentUpon>frmTDJHWorkFlowEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="缺陷管理\frmsbqxEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -442,10 +436,6 @@
   <ItemGroup>
     <EmbeddedResource Include="04事故障碍异常\frmsgzaycWorkFlowEdit.resx">
       <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="所月度停电计划\frmTDJHWorkFlowEdit.resx">
-      <DependentUpon>frmTDJHWorkFlowEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="缺陷管理\frmsbqxEdit.resx">
