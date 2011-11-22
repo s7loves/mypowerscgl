@@ -220,11 +220,19 @@ namespace TLMapPlatform {
                 item = new MenuItem("定位");
                 item.Click += new EventHandler(定位_Click);
                 contextMenu.MenuItems.Add(item);
+                item = new MenuItem("条图汇总表");
+                item.Click += new EventHandler(条图汇总表17_Click);
+                contextMenu.MenuItems.Add(item);
             }
             contextMenu.Tag = code;
             contextMenu.Show(treeList1, p);
         }
+        void 条图汇总表17_Click(object sender, EventArgs e) {
+            PS_xl xl = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(string.Format("where linecode='{0}'",contextMenu.Tag));
 
+            if (xl != null)
+                Ebada.Client.Platform.MainHelper.Execute("Ebada.Scgl.Yxgl.dll", "Ebada.Scgl.Yxgl.Export16", "ExportExcel", new object[] { xl });
+        }
         void 定位_Click(object sender, EventArgs e) {
             mRMap.LocationOverlay(contextMenu.Tag as string);
         }
