@@ -78,7 +78,7 @@
             // 
             this.treeListColumn3.Caption = "层名";
             this.treeListColumn3.FieldName = "层";
-            this.treeListColumn3.Name = "treeListColumn3";
+            this.treeListColumn3.Name = "层";
             this.treeListColumn3.OptionsColumn.AllowEdit = false;
             this.treeListColumn3.OptionsColumn.AllowMove = false;
             this.treeListColumn3.OptionsColumn.AllowSort = false;
@@ -93,7 +93,7 @@
             this.treeListColumn1.ImageAlignment = System.Drawing.StringAlignment.Center;
             this.treeListColumn1.ImageIndex = 0;
             this.treeListColumn1.MinWidth = 22;
-            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.Name = "显示";
             this.treeListColumn1.OptionsColumn.AllowEdit = false;
             this.treeListColumn1.OptionsColumn.AllowFocus = false;
             this.treeListColumn1.OptionsColumn.AllowMove = false;
@@ -128,7 +128,7 @@
             this.treeListColumn2.ImageAlignment = System.Drawing.StringAlignment.Center;
             this.treeListColumn2.ImageIndex = 1;
             this.treeListColumn2.MinWidth = 22;
-            this.treeListColumn2.Name = "treeListColumn2";
+            this.treeListColumn2.Name = "编辑";
             this.treeListColumn2.OptionsColumn.AllowEdit = false;
             this.treeListColumn2.OptionsColumn.AllowFocus = false;
             this.treeListColumn2.OptionsColumn.AllowMove = false;
@@ -151,11 +151,11 @@
             // treeListColumn4
             // 
             this.treeListColumn4.ColumnEdit = this.repositoryItemImageComboBox3;
-            this.treeListColumn4.FieldName = "layer";
+            this.treeListColumn4.FieldName = "Layer";
             this.treeListColumn4.ImageAlignment = System.Drawing.StringAlignment.Center;
             this.treeListColumn4.ImageIndex = 2;
             this.treeListColumn4.MinWidth = 22;
-            this.treeListColumn4.Name = "treeListColumn4";
+            this.treeListColumn4.Name = "Layer";
             this.treeListColumn4.OptionsColumn.AllowEdit = false;
             this.treeListColumn4.OptionsColumn.AllowFocus = false;
             this.treeListColumn4.OptionsColumn.AllowMove = false;

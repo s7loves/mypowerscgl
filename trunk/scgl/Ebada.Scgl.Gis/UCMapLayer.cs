@@ -48,11 +48,15 @@ namespace TLMapPlatform {
             treeList1.KeyFieldName = "ID";
             treeList1.ParentFieldName = "ParentID";
             
-            mTable.Rows.Add(hide, "0", "10kV线路", "10", "0");
-            mTable.Rows.Add(hide, "0", "0.4kV台区", "0.4", "0");
+            mTable.Rows.Add(hide, "0", "高压线路", "10", "0");
+            mTable.Rows.Add(hide, "0", "低压台区", "0.4", "0");
             mTable.Rows.Add(hide, "0", "变电所", "bdz", "0");
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
+            if (!"rabbit赵建明付岩".Contains(Ebada.Client.Platform.MainHelper.User.UserName)) {
+                treeList1.Columns["编辑"].Visible = false;
+                this.treeList1.Columns["Layer"].Visible = false;
+            }
         }
 
         void treeList1_BeforeExpand(object sender, BeforeExpandEventArgs e) {
