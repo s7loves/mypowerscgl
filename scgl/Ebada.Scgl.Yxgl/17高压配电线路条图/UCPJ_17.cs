@@ -228,7 +228,7 @@ namespace Ebada.Scgl.Yxgl
             MainHelper.PlatformSqlMap.Create<PJ_17>(pj);
 
             InitData();
-            if (MsgBox.ShowAskMessageBox("是否马上生成条图") == DialogResult.OK)
+            //if (MsgBox.ShowAskMessageBox("是否马上生成条图") == DialogResult.OK)
             {
                 
                 try
@@ -240,7 +240,7 @@ namespace Ebada.Scgl.Yxgl
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
                         Client.ClientHelper.PlatformSqlMap.Update<PJ_17>(frm.pjobject);
-                        MessageBox.Show("保存成功");
+                        //MessageBox.Show("保存成功");
                     }
                 }
                 catch (Exception ex)
@@ -308,44 +308,82 @@ namespace Ebada.Scgl.Yxgl
             strname[0] = "";
             strname[1] = "";
             strname[2] = "";
+            //if (xl.LineName.IndexOf("线") > 0)
+            //{
+            //    strname[0] = xl.LineName.Split('线')[0];
+            //    strname[1] = xl.LineName.Replace(strname[0]+"线","");
+                
+               
+            //}
+            //else
+            //    strname[1] = xl.LineName;
+            //if (strname[1].IndexOf("支") > 0)
+            //{
+            //    str = strname[1];
+            //    strname[1] = strname[1].Split('支')[0];
+            //    strname[2] = str.Replace(strname[1] + "支", "");
+
+            //}
+            //else
+            //{
+
+            //    strname[2] = strname[1];
+            //    strname[1] = "";
+            //}
+            //if (strname[2].IndexOf("分") < 0)
+            //{
+            //    if (strname[1] != "")
+                
+            //        strname[1] = strname[1] + "支" + strname[2];
+                
+            //    else
+            //        strname[0] = strname[0] + "线" + strname[2];
+            //    strname[2] = "";
+            //}
+            //else
+            //{
+            //    strname[2] = strname[2].Split('分')[0];
+
+            //}
             if (xl.LineName.IndexOf("线") > 0)
             {
                 strname[0] = xl.LineName.Split('线')[0];
-                strname[1] = xl.LineName.Replace(strname[0]+"线","");
-                
-               
+                strname[1] = xl.LineName.Replace(strname[0] + "线", "");
+
+
             }
             else
+                if (xl.LineName.IndexOf("支") > 0)
+            {
+                PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + xl.ParentID + "'");
+                strname[0]=xltemp.LineName;
                 strname[1] = xl.LineName;
-            if (strname[1].IndexOf("支") > 0)
+            }
+                else if (xl.LineName.IndexOf("分") > 0)
             {
-                str = strname[1];
-                strname[1] = strname[1].Split('支')[0];
-                strname[2] = str.Replace(strname[1] + "支", "");
+                PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + xl.ParentID + "'");
+                if (xltemp != null)
+                {
+                    strname[1] = xltemp.LineName;
+                    xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + xltemp.ParentID + "'");
+                    if (xltemp != null) strname[0] = xltemp.LineName;
+                }
+            }
+            //if (strname[2].IndexOf("分") < 0)
+            //{
+            //    if (strname[1] != "")
 
-            }
-            else
-            {
+            //        strname[1] = strname[1] + "支" + strname[2];
 
-                strname[2] = strname[1];
-                strname[1] = "";
-            }
-            if (strname[2].IndexOf("分") < 0)
-            {
-                if (strname[1] != "")
-                
-                    strname[1] = strname[1] + "支" + strname[2];
-                
-                else
-                    strname[0] = strname[0] + "线" + strname[2];
-                strname[2] = "";
-            }
-            else
-            {
-                strname[2] = strname[2].Split('分')[0];
+            //    else
+            //        strname[0] = strname[0] + "线" + strname[2];
+            //    strname[2] = "";
+            //}
+            //else
+            //{
+            //    strname[2] = strname[2].Split('分')[0];
 
-            }
-            
+            //}
             jlie = 1;
             sv.Cells[ihang, jlie].Text = strname[0];
             sv.Cells[ihang, jlie].Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -358,7 +396,7 @@ namespace Ebada.Scgl.Yxgl
             sv.Cells[ihang, jlie].Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             sv.Cells[ihang, jlie].HorizontalAlignment = CellHorizontalAlignment.Left;
             sv.Cells[ihang, jlie].VerticalAlignment = CellVerticalAlignment.Center;
-            sv.Cells[ihang, jlie].Column.Width = 40;
+            sv.Cells[ihang, jlie].Column.Width = 30f;
 
             
             jlie++;
@@ -373,7 +411,7 @@ namespace Ebada.Scgl.Yxgl
             sv.Cells[ihang, jlie].Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             sv.Cells[ihang, jlie].HorizontalAlignment = CellHorizontalAlignment.Left;
             sv.Cells[ihang, jlie].VerticalAlignment = CellVerticalAlignment.Center;
-            sv.Cells[ihang, jlie].Column.Width = 40;
+            sv.Cells[ihang, jlie].Column.Width = 30f;
 
             jlie++;
             sv.Cells[ihang, jlie].Text = strname[2];
@@ -387,7 +425,7 @@ namespace Ebada.Scgl.Yxgl
             sv.Cells[ihang, jlie].Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             sv.Cells[ihang, jlie].HorizontalAlignment = CellHorizontalAlignment.Left;
             sv.Cells[ihang, jlie].VerticalAlignment = CellVerticalAlignment.Center;
-            sv.Cells[ihang, jlie].Column.Width = 40;
+            sv.Cells[ihang, jlie].Column.Width = 30f;
 
             jlie ++;
             sv.Cells[ihang, jlie].Text = "电压：";
@@ -395,20 +433,20 @@ namespace Ebada.Scgl.Yxgl
             sv.Cells[ihang, jlie].HorizontalAlignment = CellHorizontalAlignment.Right;
             sv.Cells[ihang, jlie].VerticalAlignment = CellVerticalAlignment.Center;
             //sv.Cells[ihang, jlie].ColumnSpan = 3;
-            sv.Cells[ihang, jlie].Column.Width =50;
+            sv.Cells[ihang, jlie].Column.Width = 30f;
 
             jlie++;
             sv.Cells[ihang, jlie].Text = xl.LineVol;
             sv.Cells[ihang, jlie].Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             sv.Cells[ihang, jlie].HorizontalAlignment = CellHorizontalAlignment.Right;
             sv.Cells[ihang, jlie].VerticalAlignment = CellVerticalAlignment.Center;
-            sv.Cells[ihang, jlie].Column.Width = 40;
+            sv.Cells[ihang, jlie].Column.Width = 30f;
 
             jlie ++;
             sv.Cells[ihang, jlie].Text = "kV";
             sv.Cells[ihang, jlie].HorizontalAlignment = CellHorizontalAlignment.Right;
             sv.Cells[ihang, jlie].VerticalAlignment = CellVerticalAlignment.Center;
-            sv.Cells[ihang, jlie].Column.Width = 20;
+            sv.Cells[ihang, jlie].Column.Width = 30f;
             #endregion
 
             #region 表格外框
@@ -905,9 +943,9 @@ namespace Ebada.Scgl.Yxgl
                     sv.Cells[ihang + 1, jlie + itemp].HorizontalAlignment = CellHorizontalAlignment.Center;
                     sv.Cells[ihang + 1, jlie + itemp].VerticalAlignment = CellVerticalAlignment.Center;
                     sv.Cells[ihang + 1, jlie + itemp].ColumnSpan = sv.Cells[ihang, jlie + itemp].ColumnSpan;
-                    //自动行宽
-                    fps.ActiveSheet.Columns[jlie + itemp].Width = fps.ActiveSheet.Columns[jlie + itemp].GetPreferredWidth();
-                  
+                    ////自动行宽30f;
+                    //fps.ActiveSheet.Columns[jlie + itemp].Width = fps.ActiveSheet.Columns[jlie + itemp].GetPreferredWidth();
+                    fps.ActiveSheet.Columns[jlie + itemp].Width = 30f;
                 }
 
                 for (itemp = 0; itemp < sv.Cells[ihang, 0].RowSpan; itemp++)
@@ -957,8 +995,9 @@ namespace Ebada.Scgl.Yxgl
                     sv.Cells[ihang + 3, jlie + itemp].HorizontalAlignment = CellHorizontalAlignment.Center;
                     sv.Cells[ihang + 3, jlie + itemp].VerticalAlignment = CellVerticalAlignment.Center;
                     sv.Cells[ihang + 3, jlie + itemp].ColumnSpan = sv.Cells[ihang+3, jlie + itemp].ColumnSpan;
-                    //自动行宽
-                    fps.ActiveSheet.Columns[jlie + itemp].Width = fps.ActiveSheet.Columns[jlie + itemp].GetPreferredWidth();
+                    ////自动行宽
+                    //fps.ActiveSheet.Columns[jlie + itemp].Width = fps.ActiveSheet.Columns[jlie + itemp].GetPreferredWidth();
+                    fps.ActiveSheet.Columns[jlie + itemp].Width = 30f;
                    
                 }
                 for (itemp = 0; itemp < sv.Cells[ihang, 0].RowSpan; itemp++)
@@ -989,8 +1028,9 @@ namespace Ebada.Scgl.Yxgl
                     sv.Cells[ihang + 1, jlie + itemp].VerticalAlignment = CellVerticalAlignment.Center;
                     //sv.Cells[ihang + 1, jlie + itemp].Column.Width = 80;
                     sv.Cells[ihang + 1, jlie + itemp].ColumnSpan = sv.Cells[ihang, jlie + itemp].ColumnSpan;
-                    //自动行宽
-                    fps.ActiveSheet.Columns[jlie + itemp].Width = fps.ActiveSheet.Columns[i].GetPreferredWidth();
+                    ////自动行宽
+                    //fps.ActiveSheet.Columns[jlie + itemp].Width = fps.ActiveSheet.Columns[i].GetPreferredWidth();
+                    fps.ActiveSheet.Columns[jlie + itemp].Width = 30f;
                 }
 
                 for (itemp = 0; itemp < sv.Cells[ihang, 0].RowSpan; itemp++)
@@ -1019,8 +1059,9 @@ namespace Ebada.Scgl.Yxgl
                     sv.Cells[ihang + 1, jlie + itemp].VerticalAlignment = CellVerticalAlignment.Center;
                     //sv.Cells[ihang + 1, jlie + itemp].Column.Width = 80;
                     sv.Cells[ihang + 1, jlie + itemp].ColumnSpan = sv.Cells[ihang+1, jlie + itemp].ColumnSpan;
-                    //自动行宽
-                    fps.ActiveSheet.Columns[jlie + itemp].Width = fps.ActiveSheet.Columns[i].GetPreferredWidth();
+                    ////自动行宽
+                    //fps.ActiveSheet.Columns[jlie + itemp].Width = fps.ActiveSheet.Columns[i].GetPreferredWidth();
+                    fps.ActiveSheet.Columns[jlie + itemp].Width = 30f;
                 }
 
                 for (itemp = 0; itemp < sv.Cells[ihang, 0].RowSpan; itemp++)
@@ -1030,8 +1071,9 @@ namespace Ebada.Scgl.Yxgl
                 }
 
 
-                //自动行宽
-                fps.ActiveSheet.Columns[jlie].Width = fps.ActiveSheet.Columns[jlie].GetPreferredWidth();
+                ////自动行宽
+                //fps.ActiveSheet.Columns[jlie].Width = fps.ActiveSheet.Columns[jlie].GetPreferredWidth();
+                fps.ActiveSheet.Columns[jlie + itemp].Width = 30f;
                 lieindex += liespan;
                 fwidth += fps.ActiveSheet.Columns[jlie].Width;
                 //for (itemp = 0; itemp < sv.Cells[8, jlie].ColumnSpan; itemp++)
@@ -1163,7 +1205,7 @@ namespace Ebada.Scgl.Yxgl
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     Client.ClientHelper.PlatformSqlMap.Update<PJ_17>(frm.pjobject);
-                    MessageBox.Show("保存成功");
+                    //MessageBox.Show("保存成功");
                 }
             }
             catch (Exception ex)
@@ -1219,7 +1261,7 @@ namespace Ebada.Scgl.Yxgl
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     Client.ClientHelper.PlatformSqlMap.Update<PJ_17>(frm.pjobject);
-                    MessageBox.Show("保存成功");
+                    //MessageBox.Show("保存成功");
                 }
             }
         }
