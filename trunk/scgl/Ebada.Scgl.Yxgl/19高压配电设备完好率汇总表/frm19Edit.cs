@@ -144,11 +144,11 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (buttonEdit1.Text == "")
-            {
-                MsgBox.ShowTipMessageBox("文档内容不能为空。");
-                return;
-            }
+            //if (buttonEdit1.Text == "")
+            //{
+            //    MsgBox.ShowTipMessageBox("文档内容不能为空。");
+            //    return;
+            //}
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

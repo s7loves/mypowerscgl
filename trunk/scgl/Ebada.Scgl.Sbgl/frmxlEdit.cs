@@ -165,7 +165,7 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
         void simpleButton1_Click(object sender, EventArgs e) {
-            spinEdit2.Value = (int)SbFuns.CountLineLen(rowData);
+            spinEdit2.Value = rowData.TotalLength=(int)SbFuns.CountLineLen(rowData);
             spinEdit1.Value = rowData.WireLength;
             MsgBox.ShowTipMessageBox("计算完成。");
         }
