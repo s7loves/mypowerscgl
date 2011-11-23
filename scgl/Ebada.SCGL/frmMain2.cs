@@ -208,8 +208,8 @@ namespace Ebada.SCGL {
             InitSkins();
             MethodInvoker m = delegate() {
                 mModule module = new mModule();
-                module.ModuTypes = "Ebada.Scgl.Gis.frmMap";
-                module.ModuName = "首页";
+                module.ModuTypes = "Ebada.Scgl.Gis.frmMapM";
+                module.ModuName = "地理信息";
                 module.AssemblyFileName = "Ebada.Scgl.Gis.dll";
                 OpenModule(module);
             };

@@ -56,14 +56,14 @@ namespace Ebada.Scgl.Gis {
         protected override void OnDoubleClick(EventArgs e) {
             base.OnDoubleClick(e);
             //测试
-            Point pt =this.PointToClient(new Point( MousePosition.X,MousePosition.Y));
-            //createMarker(rMap1.FromLocalToLatLng(pt.X, pt.Y));
-            frmText dlg = new frmText();
-            if (dlg.ShowDialog() == DialogResult.OK) {
-                GMapMarkerText marker = new GMapMarkerText(this.FromLocalToLatLng(pt.X, pt.Y));
-                marker.Text = dlg.MarkerText;
-                bdzLayer.Markers.Add(marker);
-            }
+            //Point pt =this.PointToClient(new Point( MousePosition.X,MousePosition.Y));
+            ////createMarker(rMap1.FromLocalToLatLng(pt.X, pt.Y));
+            //frmText dlg = new frmText();
+            //if (dlg.ShowDialog() == DialogResult.OK) {
+            //    GMapMarkerText marker = new GMapMarkerText(this.FromLocalToLatLng(pt.X, pt.Y));
+            //    marker.Text = dlg.MarkerText;
+            //    bdzLayer.Markers.Add(marker);
+            //}
         }
         public GMapOverlay FindOverlay(string id) {
             GMapOverlay lay = null;
