@@ -50,6 +50,7 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "Contractor");
             this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "Class");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "OrgCode");
+            this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "bttype");
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "Lowlossrate");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "tclr");
             this.spinEdit3.DataBindings.Add("EditValue", rowData, "hclr");
@@ -88,7 +89,21 @@ namespace Ebada.Scgl.Sbgl
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + gdsCode + "' and linevol='10'");
             comboBoxEdit4.Properties.DataSource = xlList;
             comboBoxEdit5.Properties.DataSource = xlList;
-            
+            comboBoxEdit12.Properties.Items.Clear();
+            ICollection list = new ArrayList();
+            comboBoxEdit12.Properties.Items.Clear();
+            //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where parentid in(select ID from pj_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc + "型号"));
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='台区管理' and sx = '{0}' and nr!=''",  "变台型号"));
+            if (list.Count > 0)
+                comboBoxEdit12.Properties.Items.AddRange(list);
+            else
+            {
+                comboBoxEdit12.Properties.Items.Add("砖台");
+                comboBoxEdit12.Properties.Items.Add("落地台");
+                comboBoxEdit12.Properties.Items.Add("H台");
+                comboBoxEdit12.Properties.Items.Add("箱式变");
+            }
         }
 
         /// <summary>
