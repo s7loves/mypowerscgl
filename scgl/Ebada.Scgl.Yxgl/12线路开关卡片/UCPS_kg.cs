@@ -46,6 +46,7 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_kg>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PS_kg>(gridViewOperation_AfterAdd);
+            bar3.Visible = false;
         }
 
         void gridViewOperation_AfterAdd(PS_kg obj)
@@ -90,8 +91,8 @@ namespace Ebada.Scgl.Yxgl
             if (org != null)
             {
                 ParentObj = org;
-                //if (SelectGdsChanged != null)
-                //    SelectGdsChanged(this, org);
+                if (SelectGdsChanged != null)
+                    SelectGdsChanged(this, org);
                 //RefreshData("select * from dbo.PS_kg a,dbo.PS_gt b ,dbo.PS_xl c where  a.gtID=b.gtID and b.LineCode=c.LineCode and c.OrgCode='" + org.OrgCode + "'");
                 //RefreshData(" where  PS_kg.gtID=PS_gt.gtID and PS_gt.LineCode=PS_xl.LineCode and PS_xl.OrgCode='" + org.OrgCode + "'");
                 IList<PS_kg> blist = Client.ClientHelper.PlatformSqlMap.GetList<PS_kg>("SelectPS_kgByStr", "select * from dbo.PS_kg a,dbo.PS_gt b ,dbo.PS_xl c where  a.gtID=b.gtID and b.LineCode=c.LineCode and c.OrgCode='" + org.OrgCode + "'");
@@ -157,11 +158,11 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PS_kg newobj)
         {
-            ////if (parentID == null) return;
-            ////newobj.OrgCode = parentID;
-            ////newobj.OrgName = parentObj.OrgName;
-            ////newobj.CreateDate = DateTime.Now;
-            ////newobj.CreateMan = MainHelper.LoginName;
+            //if (parentID == null) return;
+            //newobj.OrgCode = parentID;
+            //newobj.OrgName = parentObj.OrgName;
+            //newobj.CreateDate = DateTime.Now;
+            //newobj.CreateMan = MainHelper.LoginName;
             //if (PSObj==null)
             //{
             //    return;

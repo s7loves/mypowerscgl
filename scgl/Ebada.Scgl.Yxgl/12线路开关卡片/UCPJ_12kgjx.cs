@@ -47,7 +47,13 @@ namespace Ebada.Scgl.Yxgl
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_12kgjx>(gridViewOperation_AfterAdd);
         }
-
+        /// <summary>
+        /// 隐藏选择列表
+        /// </summary>
+        public void HideList() {
+            btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            bar3.Visible = false;
+        }
         void gridViewOperation_AfterAdd(PJ_12kgjx obj)
         {
             RefreshData(" where OrgCode='" + ParentID + "'  and kgID='" + PSObj.kgID + "'  order by id desc");
