@@ -9,13 +9,12 @@ namespace Ebada.Scgl.Yxgl {
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class Export19  {
+    public class Export19 {
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(PJ_19 objorg)
-        {
+        public static void ExportExcel(PJ_19 objorg) {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\19高压配电设备完好率汇总表.xls";
@@ -32,22 +31,18 @@ namespace Ebada.Scgl.Yxgl {
             double zskgsum = 0, zskg1 = 0, zskg2 = 0, zskg3 = 0;
             int pageindex = 1;
             //杆塔搜索语句
-            
-           
-            if (pageindex < Ecommon.GetPagecount(objlist.Count, 13))
-            {
+
+
+            if (pageindex < Ecommon.GetPagecount(objlist.Count, 13)) {
                 pageindex = Ecommon.GetPagecount(objlist.Count, 13);
             }
-            for (int j = 1; j <= pageindex; j++)
-            {
-                if (j > 1)
-                {
+            for (int j = 1; j <= pageindex; j++) {
+                if (j > 1) {
                     ex.CopySheet(1, j);
                 }
             }
             ex.ShowExcel();
-            for (int j = 1; j <= pageindex; j++)
-            {
+            for (int j = 1; j <= pageindex; j++) {
 
                 ex.ActiveSheet(j);
 
@@ -55,158 +50,132 @@ namespace Ebada.Scgl.Yxgl {
                 //主题
                 int starow = prepageindex * 13 + 1;
                 int endrow = j * 13;
-                if (objlist.Count > endrow)
-                {
-                    for (int i = 0; i < 13; i++)
-                    {
-                        PS_xl obj=objlist[starow - 1 + i];
-                        
-                        if (j==1&&i==0)
-                        {
+                if (objlist.Count > endrow) {
+                    for (int i = 0; i < 13; i++) {
+                        PS_xl obj = objlist[starow - 1 + i];
+
+                        if (j == 1 && i == 0) {
                             //合计的先跳过
                             continue;
                         }
                         //
-                        ex.SetCellValue(obj.LineName,8+i,1);
+                        ex.SetCellValue(obj.LineName, 8 + i, 1);
                         //配电线路
-                        string gtcon = " gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "' or ParentID='" + obj.LineCode + "'))";
-                       
+                        string gtcon = string.Format(" gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where left(LineCode,{0})='{1}' and linevol>=10.0))", obj.LineCode.Length, obj.LineCode);
+
                         object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode));
                         string length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
-                        string tqcon = "tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "'or xlCode2 in(select lineid from ps_xl where ParentID='" + obj.LineCode + "'))";
-                        ex.SetCellValue(length,8+i,2);
+                        string tqcon = "tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')";
+                        ex.SetCellValue(length, 8 + i, 2);
                         xlsum += Convert.ToDouble(length);
                         nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode));
                         length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
-                        ex.SetCellValue(length,8+i,3);
+                        ex.SetCellValue(length, 8 + i, 3);
                         xl1 += Convert.ToDouble(length);
                         length = "0";//二类
-                        ex.SetCellValue(length,8+i,4);
+                        ex.SetCellValue(length, 8 + i, 4);
                         xl2 += Convert.ToDouble(length);
                         length = "0";//三类
-                        ex.SetCellValue(length,8+i,5);
+                        ex.SetCellValue(length, 8 + i, 5);
                         xl3 += Convert.ToDouble(length);
-                        ex.SetCellValue("100%",8+i,6);
+                        ex.SetCellValue("100%", 8 + i, 6);
                         //配电变压器
                         string rl = "0";
-                        object ob= Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='变台'and " + tqcon);
-                        if (ob != null)
-                        {
+                        object ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where  " + tqcon);
+                        if (ob != null) {
                             rl = ob.ToString();
                         }
                         string ts = "0";
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='变台'and " + tqcon);
-                        if (ob != null)
-                        {
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where  " + tqcon);
+                        if (ob != null) {
                             ts = ob.ToString();
-                        } 
-                        ex.SetCellValue(rl+"/"+ts,8+i,7);
+                        }
+                        ex.SetCellValue(rl + "/" + ts, 8 + i, 7);
                         pdbysum += Convert.ToDouble(rl);
                         pdbyts += Convert.ToDouble(ts);
                         rl = "0";
                         ts = "0";
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='变台'and byqState='1'and " + tqcon);
-                        if (ob != null)
-                        {
-                            rl =ob.ToString();
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where  byqState='1'and " + tqcon);
+                        if (ob != null) {
+                            rl = ob.ToString();
                         }
 
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='变台'and byqState='1'and " + tqcon);
-                        if (ob != null)
-                        {
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where  byqState='1'and " + tqcon);
+                        if (ob != null) {
                             ts = ob.ToString();
                         }
-                        ex.SetCellValue(rl+"/"+ts,8+i,8);
+
+                        ex.SetCellValue(rl + "/" + ts, 8 + i, 8);
                         pdby1 += Convert.ToDouble(rl);
                         pdbyts1 += Convert.ToDouble(ts);
                         rl = "0";
                         ts = "0";
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='变台'and byqState='2'and " + tqcon);
-                        if (ob != null)
-                        {
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where  byqState='2'and " + tqcon);
+                        if (ob != null) {
                             rl = ob.ToString();
                         }
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='变台'and byqState='2'and " + tqcon);
-                        if (ob != null)
-                        {
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where  byqState='2'and " + tqcon);
+                        if (ob != null) {
                             ts = ob.ToString();
                         }
-                        ex.SetCellValue(rl+"/"+ts,8+i,9);
+                        ex.SetCellValue(rl + "/" + ts, 8 + i, 9);
                         pdby2 += Convert.ToDouble(rl);
                         pdbyts2 += Convert.ToDouble(ts);
                         rl = "0";
                         ts = "0";
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='变台'and byqState='3'and " + tqcon);
-                        if (ob != null)
-                        {
-                            rl =ob.ToString();
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqState='3'and " + tqcon);
+                        if (ob != null) {
+                            rl = ob.ToString();
                         }
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='变台'and byqState='3'and " + tqcon);
-                        if (ob != null)
-                        {
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqState='3'and " + tqcon);
+                        if (ob != null) {
                             ts = ob.ToString();
                         }
-                        ex.SetCellValue(rl+"/"+ts,8+i,10);
+                        ex.SetCellValue(rl + "/" + ts, 8 + i, 10);
                         pdby3 += Convert.ToDouble(rl);
                         pdbyts3 += Convert.ToDouble(ts);
                         ex.SetCellValue("100%", 8 + i, 11);
                         rl = "0";
                         ts = "0";
                         //配电站
-                         ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='配电站'or byqModle='配电亭' and " + tqcon);
-                         if (ob != null)
-                         {
-                             rl = ob.ToString();
-                         }
-                         ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='配电站'or byqModle='配电亭'and " + tqcon);
-                         if (ob != null)
-                         {
-                             ts = ob.ToString();
-                         }
-                        pdssum += Convert.ToDouble(rl);
-                        pdstssum += Convert.ToDouble(ts);
-                        ex.SetCellValue(rl + "/" + ts, 8 + i, 12);
-                        rl = "0";
-                        ts = "0";
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='配电站'or byqModle='配电亭' and byqState='1'and " + tqcon);
-                        if (ob != null)
-                        {
-                            rl = ob.ToString();
-                        }
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='配电站'or byqModle='配电亭' and byqState='1'and " + tqcon);
-                        if (ob != null)
-                        {
+                        
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqRowCount", "Where   xlCode ='" + obj.LineCode + "'");
+                        if (ob != null) {
                             ts = ob.ToString();
                         }
-                        ex.SetCellValue(rl+"/"+ts,8+i,13);
+                        pdssum += Convert.ToDouble(rl);
+                        pdstssum += Convert.ToDouble(ts);
+                        ex.SetCellValue(ts, 8 + i, 12);
+                        rl = "0";
+                        ts = "0";
+
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqRowCount", "Where   xlCode ='" + obj.LineCode + "'");
+                        if (ob != null) {
+                            ts = ob.ToString();
+                        }
+                        ex.SetCellValue( ts, 8 + i, 13);
                         pds1 += Convert.ToDouble(rl);
                         pdsts1 += Convert.ToDouble(ts);
 
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='配电站'or byqModle='配电亭' and byqState='2'and " + tqcon);
-                        if (ob != null)
-                        {
-                            rl = ob.ToString();
-                        }
+                        rl = "0";
+                        ts = "0";
+
                         ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='配电站'or byqModle='配电亭' and byqState='2'and " + tqcon);
-                        if (ob != null)
-                        {
+                        if (ob != null) {
                             ts = ob.ToString();
                         }
-                        ex.SetCellValue(rl+"/"+ts,8+i,14);
+                        ex.SetCellValue(ts, 8 + i, 14);
                         pds2 += Convert.ToDouble(rl);
                         pdsts2 += Convert.ToDouble(ts);
 
-                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='配电站'or byqModle='配电亭' and byqState='3'and " + tqcon);
-                        if (ob != null)
-                        {
-                            rl = ob.ToString();
-                        }
+                        rl = "0";
+                        ts = "0";
+
                         ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='配电站'or byqModle='配电亭' and byqState='3'and " + tqcon);
-                        if (ob != null)
-                        {
+                        if (ob != null) {
                             ts = ob.ToString();
                         }
-                        ex.SetCellValue(rl+"/"+ts,8+i,15);
+                        ex.SetCellValue( ts, 8 + i, 15);
                         pds3 += Convert.ToDouble(rl);
                         pdsts3 += Convert.ToDouble(ts);
                         ex.SetCellValue("100%", 8 + i, 16);
@@ -214,48 +183,41 @@ namespace Ebada.Scgl.Yxgl {
                         ts = "0";
                         //柱上开关
                         string kg = "0";
-                           ob=  Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where" + gtcon);
-                           if (ob != null) kg = ob.ToString();
-                          ex.SetCellValue(kg, 8 + i, 17);
-                          zskgsum += Convert.ToDouble(kg);
-                          kg = "0";
-                          ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgVol='1'and" + gtcon);
-                          if (ob != null)
-                          {
-                              kg = ob.ToString();
-                          }
-                          ex.SetCellValue(kg, 8 + i, 18);
-                          zskg1 += Convert.ToDouble(kg);
-                          kg = "0";
-                          ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgVol='2'and" + gtcon);
-                          if (ob != null)
-                          {
-                              kg = ob.ToString();
-                          }
-                          ex.SetCellValue(kg, 8 + i, 19);
-                          zskg2 += Convert.ToDouble(kg);
-                          kg = "0";
-                          ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgVol='3'and" + gtcon);
-                          if (ob != null)
-                          {
-                              kg = ob.ToString();
-                          }
-                          ex.SetCellValue(kg, 8 + i, 20);
-                          zskg3 += Convert.ToDouble(kg);
-                          ex.SetCellValue("100%", 8 + i, 21);
-                       
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where" + gtcon);
+                        if (ob != null) kg = ob.ToString();
+                        ex.SetCellValue(kg, 8 + i, 17);
+                        zskgsum += Convert.ToDouble(kg);
+                        kg = "0";
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where " + gtcon);
+                        if (ob != null) {
+                            kg = ob.ToString();
+                        }
+                        ex.SetCellValue(kg, 8 + i, 18);
+                        zskg1 += Convert.ToDouble(kg);
+                        kg = "0";
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgVol='2'and" + gtcon);
+                        if (ob != null) {
+                            kg = ob.ToString();
+                        }
+                        ex.SetCellValue(kg, 8 + i, 19);
+                        zskg2 += Convert.ToDouble(kg);
+                        kg = "0";
+                        ob = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgVol='3'and" + gtcon);
+                        if (ob != null) {
+                            kg = ob.ToString();
+                        }
+                        ex.SetCellValue(kg, 8 + i, 20);
+                        zskg3 += Convert.ToDouble(kg);
+                        ex.SetCellValue("100%", 8 + i, 21);
+
 
 
 
                     }
-                }
-                else if (objlist.Count <= endrow && objlist.Count >= starow)
-                {
-                    for (int i = 0; i < objlist.Count - starow + 1; i++)
-                    {
+                } else if (objlist.Count <= endrow && objlist.Count >= starow) {
+                    for (int i = 0; i < objlist.Count - starow + 1; i++) {
                         PS_xl obj = objlist[starow - 1 + i];
-                        if (j == 1 && i == 0)
-                        {
+                        if (j == 1 && i == 0) {
                             //合计的先跳过
                             continue;
                         }
@@ -264,8 +226,8 @@ namespace Ebada.Scgl.Yxgl {
                         //配电线路
                         object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode));
                         string length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
-                        string gtcon = "gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))";
-                        string tqcon = "tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "'or xlCode2 in(select lineid from ps_xl where ParentID='" + obj.LineCode + "'))";
+                        string gtcon = string.Format(" gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where left(LineCode,{0})='{1}' and linevol>=10.0))", obj.LineCode.Length, obj.LineCode);
+                        string tqcon = "tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')";
                         ex.SetCellValue(length, 8 + i, 2);
                         xlsum += Convert.ToDouble(length);
                         nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode)).ToString();
@@ -280,55 +242,54 @@ namespace Ebada.Scgl.Yxgl {
                         xl3 += Convert.ToDouble(length);
                         ex.SetCellValue("100%", 8 + i, 6);
                         //配电变压器
-                        object bj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='变台'and " + tqcon);
-                        string rl = "0",ts="0";
-                        if (bj!=null)
-                        {
-                             rl = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='变台'and " + tqcon).ToString();
-                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='变台'and " + tqcon).ToString();
+                        object bj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where  " + tqcon);
+                        string rl = "0", ts = "0";
+                        if (bj != null) {
+                            nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where " + tqcon);
+                            rl = nobj == null ? "0" : nobj.ToString();
+                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where  " + tqcon).ToString();
                             ex.SetCellValue(rl + "/" + ts, 8 + i, 7);
                             pdbysum += Convert.ToDouble(rl);
                             pdbyts += Convert.ToDouble(ts);
-                            rl = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='变台'and byqState='1'and " + tqcon).ToString();
-                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='变台'and byqState='1'and " + tqcon).ToString();
+                            nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where " + tqcon);
+                            rl = nobj == null ? "0" : nobj.ToString();
+                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where " + tqcon).ToString();
                             ex.SetCellValue(rl + "/" + ts, 8 + i, 8);
                             pdby1 += Convert.ToDouble(rl);
                             pdbyts1 += Convert.ToDouble(ts);
-                            rl = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='变台'and byqState='2'and " + tqcon).ToString();
-                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='变台'and byqState='2'and " + tqcon).ToString();
+                            nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where  byqState='2'and " + tqcon);
+                            rl = nobj == null ? "0" : nobj.ToString();
+                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where  byqState='2'and " + tqcon).ToString();
                             ex.SetCellValue(rl + "/" + ts, 8 + i, 9);
                             pdby2 += Convert.ToDouble(rl);
                             pdbyts2 += Convert.ToDouble(ts);
-                            rl = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='变台'and byqState='3'and " + tqcon).ToString();
-                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='变台'and byqState='3'and " + tqcon).ToString();
+                            nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqState='3'and " + tqcon);
+                            rl = nobj == null ? "0" : nobj.ToString();
+                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where  byqState='3'and " + tqcon).ToString();
                             ex.SetCellValue(rl + "/" + ts, 8 + i, 10);
                             pdby3 += Convert.ToDouble(rl);
                             pdbyts3 += Convert.ToDouble(ts);
                             ex.SetCellValue("100%", 8 + i, 11);
                             //配电站
-                            rl = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='配电站'orbyqModle='配电亭' and " + tqcon).ToString();
-                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='配电站'orbyqModle='配电亭'and " + tqcon).ToString();
+                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqRowCount", "Where " + tqcon).ToString();
                             pdssum += Convert.ToDouble(rl);
                             pdstssum += Convert.ToDouble(ts);
-                            ex.SetCellValue(rl + "/" + ts, 8 + i, 12);
-                            rl = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='配电站'or byqModle='配电亭' and byqState='1'and " + tqcon).ToString();
-                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='配电站'or byqModle='配电亭' and byqState='1'and " + tqcon).ToString();
-                            ex.SetCellValue(rl + "/" + ts, 8 + i, 13);
+                            ex.SetCellValue( ts, 8 + i, 12);
+                            ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqRowCount", "Where " + tqcon).ToString();
+                            ex.SetCellValue(ts, 8 + i, 13);
                             pds1 += Convert.ToDouble(rl);
                             pdsts1 += Convert.ToDouble(ts);
-                            rl = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='配电站'or byqModle='配电亭' and byqState='2'and " + tqcon).ToString();
                             ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='配电站'or byqModle='配电亭' and byqState='2'and " + tqcon).ToString();
-                            ex.SetCellValue(rl + "/" + ts, 8 + i, 14);
+                            ex.SetCellValue( ts, 8 + i, 14);
                             pds2 += Convert.ToDouble(rl);
                             pdsts2 += Convert.ToDouble(ts);
-                            rl = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqModle='配电站'or byqModle='配电亭' and byqState='3'and " + tqcon).ToString();
                             ts = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqModle='配电站'or byqModle='配电亭' and byqState='3'and " + tqcon).ToString();
-                            ex.SetCellValue(rl + "/" + ts, 8 + i, 15);
+                            ex.SetCellValue( ts, 8 + i, 15);
                             pds3 += Convert.ToDouble(rl);
                             pdsts3 += Convert.ToDouble(ts);
                             ex.SetCellValue("100%", 8 + i, 16);
                         }
-                
+
                         //柱上开关
                         string kg = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where " + gtcon).ToString();
                         ex.SetCellValue(kg, 8 + i, 17);
@@ -343,7 +304,7 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(kg, 8 + i, 20);
                         zskg3 += Convert.ToDouble(kg);
                         ex.SetCellValue("100%", 8 + i, 21);
-                       
+
 
                     }
                 }
@@ -355,18 +316,18 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(xl1.ToString(), 8, 3);
             ex.SetCellValue(xl2.ToString(), 8, 4);
             ex.SetCellValue(xl3.ToString(), 8, 5);
-            ex.SetCellValue("100%",8,6);
+            ex.SetCellValue("100%", 8, 6);
             //配电变压器
             ex.SetCellValue(pdbysum.ToString() + "/" + pdbyts.ToString(), 8, 7);
             ex.SetCellValue(pdby1.ToString() + "/" + pdbyts1.ToString(), 8, 8);
             ex.SetCellValue(pdby2.ToString() + "/" + pdbyts2.ToString(), 8, 9);
-            ex.SetCellValue(pdby3.ToString() + "/" + pdbyts3.ToString(), 8,10);
+            ex.SetCellValue(pdby3.ToString() + "/" + pdbyts3.ToString(), 8, 10);
             ex.SetCellValue("100%", 8, 11);
             //变台边亭
-            ex.SetCellValue(pdssum.ToString() + "/" + pdstssum.ToString(), 8, 12);
-            ex.SetCellValue(pds1.ToString() + "/" + pdsts1.ToString(), 8, 13);
-            ex.SetCellValue(pds2.ToString() + "/" + pdsts2.ToString(), 8, 14);
-            ex.SetCellValue(pds3.ToString() + "/" + pdsts3.ToString(), 8, 15);
+            ex.SetCellValue(pdstssum.ToString(), 8, 12);
+            ex.SetCellValue( pdsts1.ToString(), 8, 13);
+            ex.SetCellValue( pdsts2.ToString(), 8, 14);
+            ex.SetCellValue( pdsts3.ToString(), 8, 15);
             ex.SetCellValue("100%", 8, 16);
             //开关
             ex.SetCellValue(zskgsum.ToString(), 8, 17);
@@ -375,8 +336,8 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(zskg3.ToString(), 8, 20);
             ex.SetCellValue("100%", 8, 21);
             //在此处得到合计的内容
-           ex.ShowExcel();
+            ex.ShowExcel();
         }
-      
+
     }
 }
