@@ -1294,6 +1294,33 @@ namespace Ebada.Scgl.WFlow
 
             return strmes;
         }
+      /// <summary>
+        /// 删除指定节点的模块记录与流程的关联链接记录（表WF_ModleRecordWorkTaskIns里的记录）
+      /// </summary>
+      /// <param name="currRecord"></param>
+      /// <param name="WorkFlowData"></param>
+      /// <param name="strmess"></param>
+      /// <returns></returns>
+        public static bool DeleteModleRelationRecord(LP_Record currRecord, DataTable WorkFlowData,ref string  strmess)
+         {
+             try
+             {
+                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
+                        + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                        + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                        + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                        + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
+                 return true;
+             }
+             catch(Exception ex)
+             {
+                 strmess = ex.Message;
+                 return false;
+             
+             }
+         
+         }
+        ///
         /// <summary>
         /// 删除指定记录相关的记录
         /// </summary>

@@ -544,5 +544,19 @@ namespace Ebada.Scgl.Lcgl
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }
+
+        private void liuchenBarClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            string strmess = "";
+            if (RecordWorkTask.DeleteModleRelationRecord(currRecord, WorkFlowData, ref strmess))
+            {
+                MsgBox.ShowTipMessageBox("清除成功");
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("清除失败: " + strmess);
+            }
+        }
     }
 }
