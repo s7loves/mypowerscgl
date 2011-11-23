@@ -20,6 +20,7 @@
         <result property="Lowlossrate" column="Lowlossrate" />
         <result property="Class" column="Class" />
         <result property="tclr" column="tclr" />
+        <result property="bttype" column="bttype" />
         <result property="hclr" column="hclr" />
         <result property="OrgCode" column="OrgCode" />
         <result property="InDate" column="InDate" />
@@ -43,6 +44,7 @@
          [Contractor],
          [Lowlossrate],
          [Class],
+         [bttype],
          [tclr],
          [hclr],
          [OrgCode],
@@ -52,26 +54,27 @@
    </select>
    
    <select id="SelectPS_tqByHash" parameterClass="Hashtable">
-         SELECT 
-         [gtID],
-         [tqID],
-         [tqCode],
-         [tqName],
-         [Remark],
-         [Adress],
-         [xlCode],
-         [xlCode2],
-         [Owner],
-         [cby],
-         [cfy],
-         [Contractor],
-         [Lowlossrate],
-         [Class],
-         [tclr],
-         [hclr],
-         [OrgCode],
-         [InDate]
-          FROM PS_tq
+     SELECT
+     [gtID],
+     [tqID],
+     [tqCode],
+     [tqName],
+     [Remark],
+     [Adress],
+     [xlCode],
+     [xlCode2],
+     [Owner],
+     [cby],
+     [cfy],
+     [Contractor],
+     [Lowlossrate],
+     [Class],
+     [bttype],
+     [tclr],
+     [hclr],
+     [OrgCode],
+     [InDate]
+     FROM PS_tq
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
        <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
@@ -87,6 +90,7 @@
        <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
        <isNotNull prepend="AND" property="Lowlossrate">[Lowlossrate]='$Lowlossrate$'</isNotNull>
        <isNotNull prepend="AND" property="Class">[Class]='$Class$'</isNotNull>
+       <isNotNull prepend="AND" property="tclr">[bttype]='$bttype$'</isNotNull>
        <isNotNull prepend="AND" property="tclr">[tclr]='$tclr$'</isNotNull>
        <isNotNull prepend="AND" property="hclr">[hclr]='$hclr$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
@@ -94,28 +98,29 @@
      </dynamic>
    </select>
    <select id="SelectPS_tqByKey" resultMap="PS_tq_AllColumns" parameterClass="PS_tq">
-         SELECT 
-         [gtID],
-         [tqID],
-         [tqCode],
-         [tqName],
-         [Remark],
-         [Adress],
-         [xlCode],
-         [xlCode2],
-         [Owner],
-         [cby],
-         [cfy],
-         [Contractor],
-         [Lowlossrate],
-         [Class],
-         [tclr],
-         [hclr],
-         [OrgCode],
-         [InDate]
-         FROM PS_tq
-         WHERE 
-           tqID = #tqID#
+     SELECT
+     [gtID],
+     [tqID],
+     [tqCode],
+     [tqName],
+     [Remark],
+     [Adress],
+     [xlCode],
+     [xlCode2],
+     [Owner],
+     [cby],
+     [cfy],
+     [Contractor],
+     [Lowlossrate],
+     [Class],
+     [bttype],
+     [tclr],
+     [hclr],
+     [OrgCode],
+     [InDate]
+     FROM PS_tq
+     WHERE
+     tqID = #tqID#
 
    </select>
  
@@ -140,73 +145,76 @@
    </delete>
    
    <update id="UpdatePS_tq" parameterClass="PS_tq" resultClass="int">
-          UPDATE PS_tq
-           SET
-             [gtID]=#gtID#,
-             [tqCode]=#tqCode#,
-             [tqName]=#tqName#,
-             [Remark]=#Remark#,
-             [Adress]=#Adress#,
-             [xlCode]=#xlCode#,
-             [xlCode2]=#xlCode2#,
-             [Owner]=#Owner#,
-             [cby]=#cby#,
-             [cfy]=#cfy#,
-             [Contractor]=#Contractor#,
-             [Lowlossrate]=#Lowlossrate#,
-             [Class]=#Class#,
-             [tclr]=#tclr#,
-             [hclr]=#hclr#,
-             [OrgCode]=#OrgCode#,
-             [InDate]=#InDate#
-            WHERE 
-              tqID = #tqID#
+     UPDATE PS_tq
+     SET
+     [gtID]=#gtID#,
+     [tqCode]=#tqCode#,
+     [tqName]=#tqName#,
+     [Remark]=#Remark#,
+     [Adress]=#Adress#,
+     [xlCode]=#xlCode#,
+     [xlCode2]=#xlCode2#,
+     [Owner]=#Owner#,
+     [cby]=#cby#,
+     [cfy]=#cfy#,
+     [Contractor]=#Contractor#,
+     [Lowlossrate]=#Lowlossrate#,
+     [Class]=#Class#,
+     [bttype]=#bttype#,
+     [tclr]=#tclr#,
+     [hclr]=#hclr#,
+     [OrgCode]=#OrgCode#,
+     [InDate]=#InDate#
+     WHERE
+     tqID = #tqID#
 
    </update>
   
    <insert id="InsertPS_tq" parameterClass="PS_tq">
-        INSERT INTO PS_tq
-         (
-         [gtID],
-         [tqID],
-         [tqCode],
-         [tqName],
-         [Remark],
-         [Adress],
-         [xlCode],
-         [xlCode2],
-         [Owner],
-         [cby],
-         [cfy],
-         [Contractor],
-         [Lowlossrate],
-         [Class],
-         [tclr],
-         [hclr],
-         [OrgCode],
-         [InDate]
-         )
-       VALUES
-         (
-         #gtID#,
-         #tqID#,
-         #tqCode#,
-         #tqName#,
-         #Remark#,
-         #Adress#,
-         #xlCode#,
-         #xlCode2#,
-         #Owner#,
-         #cby#,
-         #cfy#,
-         #Contractor#,
-         #Lowlossrate#,
-         #Class#,
-         #tclr#,
-         #hclr#,
-         #OrgCode#,
-         #InDate#
-         )
+     INSERT INTO PS_tq
+     (
+     [gtID],
+     [tqID],
+     [tqCode],
+     [tqName],
+     [Remark],
+     [Adress],
+     [xlCode],
+     [xlCode2],
+     [Owner],
+     [cby],
+     [cfy],
+     [Contractor],
+     [Lowlossrate],
+     [Class],
+     [bttype],
+     [tclr],
+     [hclr],
+     [OrgCode],
+     [InDate]
+     )
+     VALUES
+     (
+     #gtID#,
+     #tqID#,
+     #tqCode#,
+     #tqName#,
+     #Remark#,
+     #Adress#,
+     #xlCode#,
+     #xlCode2#,
+     #Owner#,
+     #cby#,
+     #cfy#,
+     #Contractor#,
+     #Lowlossrate#,
+     #Class#,
+     #bttype#,
+     #tclr#,
+     #hclr#,
+     #OrgCode#,
+     #InDate#
+     )
 
    </insert>
    
@@ -228,6 +236,7 @@
        <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
        <isNotNull prepend="AND" property="Lowlossrate">[Lowlossrate]='$Lowlossrate$'</isNotNull>
        <isNotNull prepend="AND" property="Class">[Class]='$Class$'</isNotNull>
+       <isNotNull prepend="AND" property="tclr">[bttype]='$bttype$'</isNotNull>
        <isNotNull prepend="AND" property="tclr">[tclr]='$tclr$'</isNotNull>
        <isNotNull prepend="AND" property="hclr">[hclr]='$hclr$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>

@@ -33,8 +33,9 @@ namespace Ebada.Scgl.Model
         private string _cby=String.Empty; 
         private string _cfy=String.Empty; 
         private string _contractor=String.Empty; 
-        private decimal _lowlossrate=0; 
-        private string _class=String.Empty; 
+        private decimal _lowlossrate=0;
+        private string _class = String.Empty;
+        private string _bttype = String.Empty; 
         private short _tclr=0; 
         private short _hclr=0; 
         private string _orgcode=String.Empty; 
@@ -337,6 +338,23 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
+       /// <summary>
+        /// 属性名称：bttype
+        /// 属性描述：变台型号
+        /// 字段信息：[bttype],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("变台型号")]
+        public string  bttype
+        {
+            get { return _bttype; }
+            set
+            {
+                if (_bttype as object == null || !_bttype.Equals(value))
+                {
+                    _bttype = value;
+                }
+            }			 
+        }
         /// <summary>
         /// 属性名称：tclr
         /// 属性描述：台抄例日
@@ -347,12 +365,12 @@ namespace Ebada.Scgl.Model
         {
             get { return _tclr; }
             set
-            {			
+            {
                 if (_tclr as object == null || !_tclr.Equals(value))
                 {
                     _tclr = value;
                 }
-            }			 
+            }
         }
   
         /// <summary>

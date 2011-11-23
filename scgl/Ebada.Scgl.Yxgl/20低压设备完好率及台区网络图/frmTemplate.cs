@@ -226,7 +226,7 @@ namespace Ebada.Scgl.Yxgl
             {
                 tempCtrlList = new List<Control>();
             }
-            this.Text = "低压线路完好率及台区网络图";
+            this.Text = "20低压线路完好率及台区网络图";
             //InitializeComponent();
             if (valuehs == null)
                 valuehs = new Hashtable();
@@ -235,7 +235,11 @@ namespace Ebada.Scgl.Yxgl
             ExcelAccess ea = new ExcelAccess();
             parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and  CellName like '%低压线路完好率及台区网络图%'");
             currRecord = rowData;
-
+            if (parentTemple == null)
+            {
+                MsgBox.ShowWarningMessageBox("没有找到表单20低压线路完好率及台区网络图!");
+                return;
+            }
             if (currRecord.BigData == null || currRecord.BigData.Length == 0)
             {
 
