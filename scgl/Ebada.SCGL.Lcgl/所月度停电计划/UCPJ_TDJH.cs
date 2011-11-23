@@ -23,6 +23,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using DevExpress.Utils;
 using Ebada.Scgl.Lcgl;
+using Ebada.Scgl.WFlow;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -117,10 +118,35 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation = new GridViewOperation<PJ_tdjh>(gridControl1, gridView1, barManager1, new frmTDJHEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_tdjh>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_tdjh>(gridViewOperation_AfterDelete);
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_tdjh>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
-        
+        void gridViewOperation_AfterDelete(PJ_tdjh obj)
+        {
+
+            if (isWorkflowCall)
+            {
+
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID + "'"
+                    + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                    + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                    + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
+            }
+           
+            //if (isWorkflowCall)
+            //{
+
+            //    slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+            //    slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+            //       + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+            //       + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+            //       + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            //}
+
+            RefreshData(" where OrgCode='" + parentID + "' order by id desc");
+        }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_tdjh> e)
         {
            
@@ -322,7 +348,17 @@ namespace Ebada.Scgl.Lcgl
 
         private void liuchenBarClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            string strmess="";
+            if (RecordWorkTask.DeleteModleRelationRecord(currRecord, WorkFlowData,ref strmess))
+            {
+                MsgBox.ShowTipMessageBox("清除成功");
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("清除失败: " + strmess);
+            }
 
         }
+
     }
 }
