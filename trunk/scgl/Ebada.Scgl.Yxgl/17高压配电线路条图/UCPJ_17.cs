@@ -396,7 +396,7 @@ namespace Ebada.Scgl.Yxgl
             sv.Cells[ihang, jlie].Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             sv.Cells[ihang, jlie].HorizontalAlignment = CellHorizontalAlignment.Left;
             sv.Cells[ihang, jlie].VerticalAlignment = CellVerticalAlignment.Center;
-            sv.Cells[ihang, jlie].Column.Width = 30f;
+            sv.Cells[ihang, jlie].Column.Width = 60f;
 
             
             jlie++;
@@ -832,6 +832,10 @@ namespace Ebada.Scgl.Yxgl
                         sv.Cells[ihang, jlie].Text = gtobj.gtModle;
                     else if (gtobj.gtType != "" && gtobj.gtModle == "")
                         sv.Cells[ihang, jlie].Text = gtobj.gtType;
+                    if (sv.Cells[ihang, jlie].Text == "混凝土拔梢杆/直线杆")
+                    {
+                        sv.Cells[ihang, jlie].Text = "砼/直线杆";
+                    }
                 }
                 sv.Cells[ihang, jlie].Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                 sv.Cells[ihang, jlie].HorizontalAlignment = CellHorizontalAlignment.Center;
