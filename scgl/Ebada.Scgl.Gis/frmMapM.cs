@@ -314,7 +314,7 @@ namespace Ebada.Scgl.Gis {
                     rMap1.MapProvider = GoogleChinaHybridMap.Instance;
                     break;
                 default:
-                    rMap1.MapProvider = GoogleChinaMap.Instance;
+                    rMap1.MapProvider = GoogleChinaMapNull.Instance;
 
                     break;
             }
