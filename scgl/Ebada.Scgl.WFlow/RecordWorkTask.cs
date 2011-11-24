@@ -30,6 +30,12 @@ namespace Ebada.Scgl.WFlow
 
     public class RecordWorkTask
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="taskid"></param>
+        /// <param name="workFlowId"></param>
+        /// <param name="taskht"></param>
         public static void GetPreviousTask(string taskid, string workFlowId, ref Hashtable taskht)
         {
 
@@ -40,6 +46,39 @@ namespace Ebada.Scgl.WFlow
                 if (!taskht.ContainsKey(tl.StartTaskId))
                     taskht.Add(tl.StartTaskId, tl.startTaskCaption);
                 GetPreviousTask(tl.StartTaskId, workFlowId, ref  taskht);
+            }
+
+        }
+        public static void GetWorkFlowInsPreviousTask(string workTaskInsId, string WorkFlowInsId, ref Hashtable taskht)
+        {
+
+            string tmpStr = " where  WorkTaskInsId='" + workTaskInsId +  "' and( (OperStatus='1' and TaskTypeId!='2' ) or TaskTypeId='2'or TaskTypeId='6' )";
+            IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
+                "SelectWF_WorkTaskInstanceViewList", tmpStr);
+            foreach (WF_WorkTaskInstanceView tl in li)
+            {
+                //if (tl.SuccessMsg.IndexOf("退回") > -1)
+                //{
+                //    continue;
+                //}
+                if (tl.TaskTypeId != "6")
+                {
+                    if (!taskht.ContainsKey(tl.WorkTaskInsId) && tl.SuccessMsg.IndexOf("退回") == -1)
+                        taskht.Add(tl.WorkTaskInsId, tl.TaskInsCaption);
+                    if (tl.WorkTaskInsId == tl.PreviousTaskId) return;
+                    GetWorkFlowInsPreviousTask(tl.PreviousTaskId, tl.WorkFlowInsId, ref  taskht);
+                }
+                else
+                {
+                    string tmpStr2 = " where  TaskTypeId='2' and MainWorkflowInsId='" + tl.WorkFlowInsId + "'";
+                    IList<WF_WorkTaskInstanceView> li2 = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
+                        "SelectWF_WorkTaskInstanceViewList", tmpStr2);
+                    if (!taskht.ContainsKey(li2[0].WorkTaskInsId))
+                        taskht.Add(li2[0].WorkTaskInsId, li2[0].TaskInsCaption);
+
+                    GetWorkFlowInsPreviousTask(li2[0].PreviousTaskId, li2[0].WorkFlowInsId, ref  taskht);
+                    
+                }
             }
 
         }
@@ -56,34 +95,41 @@ namespace Ebada.Scgl.WFlow
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
             if (WorkFlowData.Rows.Count > 0)
             {
-                if (!hs.ContainsKey(WorkFlowData.Rows[0]["WorkTaskId"].ToString()))
-                    hs.Add(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["TaskCaption"].ToString());
-                GetPreviousTask(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), wf[0].WorkFlowId, ref hs);
+                if (!hs.ContainsKey(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString()))
+                    hs.Add(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), WorkFlowData.Rows[0]["TaskCaption"].ToString());
+                GetWorkFlowInsPreviousTask(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wf[0].WorkFlowId, ref hs);
             }
             else if (currRecord.Status == "存档")
             {
 
                 if (wf.Count > 0)
                 {
-                    IList<WF_WorkTask> tasklist = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where TaskTypeId='1' and WorkFlowId='" + wf[0].WorkFlowId + "'");
-                    if (!hs.ContainsKey(tasklist[0].WorkTaskId))
-                        hs.Add(tasklist[0].WorkTaskId, tasklist[0].TaskCaption);
-                    GetPreviousTask(tasklist[0].WorkTaskId, tasklist[0].TaskCaption, ref hs);
+                    IList<WF_WorkTaskInstanceView> tasklist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>
+                        ("SelectWF_WorkTaskInstanceViewList",
+                        "where TaskTypeId='2' and WorkFlowInsId='" + wf[0].WorkFlowInsId + "'");
+                    if (!hs.ContainsKey(tasklist[0].WorkTaskInsId))
+                        hs.Add(tasklist[0].WorkTaskInsId, tasklist[0].TaskCaption);
+                    GetWorkFlowInsPreviousTask(tasklist[0].WorkTaskInsId, tasklist[0].WorkFlowInsId, ref hs);
                 }
             }
             ArrayList akeys = new ArrayList(hs.Keys);
             for (int i = 0; i < akeys.Count; i++)
             {
-                if (!RecordWorkTask.HaveWorkFlowAllExploreRole(akeys[i].ToString(), wf[0].WorkFlowId))
+                WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(akeys[i].ToString());
+                WF_WorkFlowInstance workflowins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(worktaskins.WorkFlowInsId);
+                if (!HaveFlowEndExploreRole(workflowins.FlowInsCaption))
                 {
-
-                    if (!RecordWorkTask.HaveWorkFlowExploreRole(akeys[i].ToString(), wf[0].WorkFlowId))
+                    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(akeys[i].ToString(), workflowins.WorkFlowId))
                     {
-                        continue;
-                    }
 
+                        if (!RecordWorkTask.HaveWorkFlowExploreRole(akeys[i].ToString(), workflowins.WorkFlowId))
+                        {
+                            continue;
+                        }
+
+                    }
                 }
-                LP_Temple temp = GetWorkTaskTemple(currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, akeys[i].ToString());
+                LP_Temple temp = GetWorkTaskTemple(currRecord, workflowins.WorkFlowId, workflowins.WorkFlowInsId, worktaskins.WorkTaskId);
 
                 if (temp != null && temp.Status == "节点审核")
                 {
@@ -98,8 +144,10 @@ namespace Ebada.Scgl.WFlow
                     IList<WF_ModleRecordWorkTaskIns> rwt = MainHelper.PlatformSqlMap.GetList<WF_ModleRecordWorkTaskIns>
                         ("SelectWF_ModleRecordWorkTaskInsList",
                         "where WorkFlowId='" + wf[0].WorkFlowId
-                        + "' and WorkFlowInsId='" + wf[0].WorkFlowInsId 
-                        + "'and RecordID='" + currRecord.ID + "'");
+                        + "' and WorkFlowInsId='" + wf[0].WorkFlowInsId
+                        + "' and WorkTaskId='" +worktaskins.WorkTaskId
+                        + "'and RecordID='" + currRecord.ID + "'"
+                        );
                     foreach(WF_ModleRecordWorkTaskIns mrwt in rwt)
                     {
                         if (mrwt.ModleTableName.IndexOf("PJ_23") > -1)
