@@ -234,6 +234,7 @@
             this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemImageComboBox1.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+                new DevExpress.XtraEditors.Controls.ImageComboBoxItem("无地图", "0", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("城市地图", "1", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("卫星地图", "2", -1)});
             this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";

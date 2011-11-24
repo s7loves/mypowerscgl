@@ -195,6 +195,7 @@
     <Compile Include="Provider\GoogleChinaMap.cs" />
     <Compile Include="Provider\GoogleChinaSatelliteMap.cs" />
     <Compile Include="Provider\MapHelper.cs" />
+    <Compile Include="Provider\GoogleChinaMapNull.cs" />
     <Compile Include="RMap.cs">
       <SubType>UserControl</SubType>
     </Compile>
