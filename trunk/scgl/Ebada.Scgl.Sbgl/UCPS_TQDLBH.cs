@@ -152,6 +152,7 @@ namespace Ebada.Scgl.Sbgl
             btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btGtList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btTQList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            bar3.Visible = false;
         }
         /// <summary>
         /// 初始化列,
