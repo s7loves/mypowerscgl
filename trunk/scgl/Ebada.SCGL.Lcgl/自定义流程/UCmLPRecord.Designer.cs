@@ -132,6 +132,7 @@
             this.barView.ImageIndex = 1;
             this.barView.Name = "barView";
             this.barView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barView_ItemClick);
             // 
             // btEditfrm

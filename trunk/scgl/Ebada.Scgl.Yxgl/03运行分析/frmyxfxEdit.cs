@@ -272,46 +272,47 @@ namespace Ebada.Scgl.Yxgl
             if (recordStatus == 0)
             {
 
-                 //PJ_gzrjnr gzr = new PJ_gzrjnr();
+                 PJ_gzrjnr gzr = new PJ_gzrjnr();
                  PJ_03yxfx yxfx = RowData as PJ_03yxfx;
                 //rowData.gznrID =gzr.gznrID ;
-                //gzr.ParentID = yxfx.ID;
+                gzr.ParentID = yxfx.ID;
                 yxfx.CreateDate = DateTime.Now;
-                yxfx.CreateMan = MainHelper.User.UserName; 
-                //IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
-                //if (gzrj01.Count > 0)
-                //{
-                    //gzr.gzrjID = gzrj01[0].gzrjID;
-                    //IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
-                    //if (gzrlist.Count > 0)
-                    //{
-                    //    gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
-                    //}
-                    //else
-                    //    gzr.seq = 1;
-                    //gzr.gznr = yxfx.hydd + "运行分析-" + yxfx.type;
-                    //gzr.fzr = yxfx.zcr;
-                    //gzr.fssj = yxfx.rq;
-                    //string[] ss = yxfx.cjry.Split(';');
-                    //if (ss.Length >= 1)
-                    //{
+                yxfx.CreateMan = MainHelper.User.UserName;
+                IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
+                if (gzrj01.Count > 0)
+                {
+                    gzr.gzrjID = gzrj01[0].gzrjID;
+                    IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
+                    if (gzrlist.Count > 0)
+                    {
+                        gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
+                    }
+                    else
+                        gzr.seq = 1;
+                    gzr.gznr = yxfx.hydd + "运行分析-" + yxfx.type;
+                    gzr.fzr = yxfx.zcr;
+                    gzr.fssj = yxfx.rq;
+                    string[] ss = yxfx.cjry.Split(';');
+                    if (ss.Length >= 1)
+                    {
 
-                    //    gzr.cjry = gzr.fzr + "、" + ss[0];
-                    //    if (ss.Length > 2) gzr.cjry = gzr.cjry + "等";
-                    //    gzr.cjry = gzr.cjry + ss.Length + "人";
-                    //}
-                    //else
-                    //{
-                    //    gzr.cjry = gzr.fzr;
-                    //}
+                        gzr.cjry = gzr.fzr + "、" + ss[0];
+                        if (ss.Length > 2) gzr.cjry = gzr.cjry + "等";
+                        gzr.cjry = gzr.cjry + ss.Length + "人";
+                    }
+                    else
+                    {
+                        gzr.cjry = gzr.fzr;
+                    }
 
 
-                //}
-                //else
-                //{
-                //    MsgBox.ShowWarningMessageBox("未填写今日工作日记");   
-                //    return;
-                //}
+                }
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("未填写今日工作日记");
+                    return;
+                }
+
                 string strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, yxfx.type,MainHelper.User.UserID   );
                
                 if (strmes.IndexOf("未提交至任何人") > -1)
@@ -321,8 +322,8 @@ namespace Ebada.Scgl.Yxgl
                 }
                 else
                     MsgBox.ShowTipMessageBox(strmes);
-                //if (gzrj01.Count > 0)
-                    //MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
+                if (gzrj01.Count > 0)
+                    MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
                 MainHelper.PlatformSqlMap.Create<PJ_03yxfx>(yxfx);
                 //this.Close();
             }

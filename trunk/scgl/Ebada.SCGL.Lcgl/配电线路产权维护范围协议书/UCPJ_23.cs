@@ -365,33 +365,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmModleSubmit fm = new frmModleSubmit();
-            fm.RecordWorkFlowData = WorkFlowData;
-            fm.CurrRecord = currRecord;
-            if (currRecord.Status == "申报")
-                fm.Status = "add";
-            else
-                fm.Status = "edit";
-            fm.Kind = currRecord.Kind;
-            Export11 export = new Export11();
-            export.CurrRecord = currRecord;
-            export.IsWorkflowCall = isWorkflowCall;
-            export.ParentTemple = parentTemple;
-            export.RecordWorkFlowData = WorkFlowData;
-            if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                export.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", parentID, false);
-            else
-                export.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", "", false);
-            fm.ParentTemple = parentTemple;
-            if (fm.ShowDialog() == DialogResult.OK)
-            {
-
-                if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
-                else
-                    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
-                gridControl1.FindForm().Close();
-            }
+           
         }
 
         private void TaskOverButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -430,6 +404,20 @@ namespace Ebada.Scgl.Lcgl
             }
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
+        }
+
+        private void liuchenBarClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string strmess = "";
+            if (RecordWorkTask.DeleteModleRelationRecord(currRecord, WorkFlowData, ref strmess))
+            {
+                MsgBox.ShowTipMessageBox("清除成功");
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("清除失败: " + strmess);
+            }
+
         }
     }
 }

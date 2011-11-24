@@ -108,6 +108,12 @@ namespace Ebada.Scgl.Lcgl
                    + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                    + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>("where ModleRecordID='" + 
+                    obj.ID + "'"
+                    + " and ModleTableName='" + obj.GetType().ToString() + "'"
+                    + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                    + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
+                    );
             }
             slqwhere = slqwhere + " order by xh";
             IList<PJ_yfsyhcjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyhcjl>(slqwhere);

@@ -284,16 +284,23 @@ namespace Ebada.Scgl.WFlow
             if (gzrj01.Count > 0)
             {
                 gzr.gzrjID = gzrj01[0].gzrjID;
+                //gzrj01[0].GdsCode = MainHelper.User.OrgCode;
+                //gzrj01[0].GdsName = MainHelper.User.OrgName;
+                //MainHelper.PlatformSqlMap.Update<PJ_01gzrj>(gzrj01[0]);
             }
             else
             {
                 PJ_01gzrj pj = new PJ_01gzrj();
                 pj.gzrjID = pj.CreateID();
+                pj.GdsCode = MainHelper.User.OrgCode;
+                pj.GdsName = MainHelper.User.OrgName;
                 pj.CreateDate = DateTime.Now;
                 pj.CreateMan = MainHelper.User.UserName;
                 gzr.gzrjID = pj.gzrjID;
                 pj.rq = DateTime.Now.Date;
                 pj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+                pj.rsaqts = (DateTime.Today - MainHelper.UserOrg.PSafeTime.Date).Days;
+                pj.sbaqts = (DateTime.Today - MainHelper.UserOrg.DSafeTime.Date).Days;
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 MainHelper.PlatformSqlMap.Create<PJ_01gzrj>(pj);
 
@@ -314,6 +321,7 @@ namespace Ebada.Scgl.WFlow
             gzr.cjry = GetTaskVarRiZhiValue(tvAttendMan, dsoFramerWordControl1, recordID, GetModleRecordObj(tvAttendMan, modlecordlist));
             gzr.CreateDate = DateTime.Now;
             gzr.CreateMan = MainHelper.User.UserName;
+            gzr.fssj = DateTime.Now;
             MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
 
         }
@@ -449,7 +457,19 @@ namespace Ebada.Scgl.WFlow
                         {
                             for (int i = 0; i < list.Count; i++)
                             {
-                                strvalue += list[i].ToString();
+                                 if (tv.VarName == "参加人员")
+                                {
+                                    if (i > 1)
+                                    {
+                                        strvalue += "等人";
+                                    }
+                                }
+                                 if(strvalue =="")
+                                     strvalue += "、"+list[i].ToString();
+                                 else
+                                     strvalue += list[i].ToString();
+
+                               
                             }
                         }
                         else
