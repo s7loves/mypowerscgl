@@ -1279,10 +1279,10 @@ namespace Ebada.Scgl.Lcgl {
                     DataRow templedr = templedt.NewRow();
                     if (obj is LP_Temple)
                     {
-                        WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(templehs[akeys[i]]);
+                        WF_WorkTaskInstance wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(templehs[akeys[i]]);
                         if (wt != null)
                         {
-                            templedr["Name"] = wt.TaskCaption + "-申报表单";
+                            templedr["Name"] = wt.TaskInsCaption + "-申报表单";
                             templedr["Checked"] =1;
                             templedr["Index"] = i;
                             templedt.Rows.Add(templedr);
@@ -1293,7 +1293,7 @@ namespace Ebada.Scgl.Lcgl {
                     else if (obj is string)
                     {
 
-                        LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(templehs[akeys[i]]);
+                        LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(akeys[i]);
                         if (taskTemple != null)
                         {
                             templedr["Name"] = taskTemple.CellName;
@@ -1333,10 +1333,11 @@ namespace Ebada.Scgl.Lcgl {
                                 else if (obj is string)
                                 {
 
-                                    LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(templehs[akeys[i]]);
+                                    LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(akeys[i]);
                                     if (taskTemple != null)
                                     {
-                                        RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId,true);
+                                        WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(templehs[akeys[i]]);
+                                        RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, worktaskins.WorkFlowId, worktaskins.WorkFlowInsId, true);
                                         ds1.FileDataGzip = taskTemple.DocContent;
                                         //ds1.FileOpen(ds1.FileName);
                                         ds1.FileSave(CheckFileName(fname + taskTemple.CellName), true);
