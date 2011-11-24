@@ -592,7 +592,7 @@ namespace Ebada.Scgl.WFlow
                 }
                 dsoFramerWordControl1.FileSave();
                 temple.DocContent = dsoFramerWordControl1.FileDataGzip;
-
+                dsoFramerWordControl1.FileClose();
             }
         }
         /// <summary>
