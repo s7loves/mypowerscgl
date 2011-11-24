@@ -14,6 +14,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Ebada.Scgl.Model;
+using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -36,6 +37,8 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 parentTemple = value;
+                ucTop.ParentTemple = parentTemple;
+                ucBottom.ParentTemple = parentTemple;
             }
         }
         public bool IsWorkflowCall
@@ -44,6 +47,8 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 isWorkflowCall = value;
+                ucTop.IsWorkflowCall = isWorkflowCall;
+                ucBottom.IsWorkflowCall = isWorkflowCall;
             }
         }
         public LP_Record CurrRecord
@@ -52,6 +57,8 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 currRecord = value;
+                ucTop.CurrRecord = currRecord;
+                ucBottom.CurrRecord = currRecord;
 
             }
         }
@@ -65,14 +72,19 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 WorkFlowData = value;
+                ucTop.RecordWorkFlowData = WorkFlowData;
+                ucBottom.RecordWorkFlowData = WorkFlowData;
             }
+            
         }
         public string VarDbTableName
         {
             get { return varDbTableName; }
             set
             {
-                varDbTableName = value; ;
+                varDbTableName = value;
+                ucTop.VarDbTableName = varDbTableName;
+                ucBottom.VarDbTableName = varDbTableName;
             }
         }
         public UCPJ_13dlbhM()

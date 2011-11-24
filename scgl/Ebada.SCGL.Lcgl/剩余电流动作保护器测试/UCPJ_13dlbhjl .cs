@@ -95,8 +95,50 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_13dlbhjl>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_13dlbhjl>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_13dlbhjl>(gridViewOperation_AfterDelete);
         }
-        
+        void gridViewOperation_AfterDelete(PJ_13dlbhjl obj)
+        {
+
+            string slqwhere = "";
+            if (isWorkflowCall)
+            {
+
+
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>("where ModleRecordID='" +
+                   obj.ID + "'"
+                   + " and ModleTableName='" + obj.GetType().ToString() + "'"
+                   + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
+                   );
+            }
+
+            RefreshData(" where sbID='" + parentID + "' ");
+        }
+        void gridViewOperation_AfterAdd(PJ_13dlbhjl obj)
+        {
+            if (isWorkflowCall)
+            {
+                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ModleRecordID = obj.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                mrwt.ModleTableName = obj.GetType().ToString();
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            }
+
+
+
+
+
+            RefreshData(" where sbID='" + parentID + "' ");
+
+        }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_13dlbhjl> e)
         {
            
@@ -159,6 +201,19 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
+          
+
+            if (isWorkflowCall)
+            {
+
+                slqwhere = slqwhere + " and id in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+
+            }
+            slqwhere = slqwhere + "  order by CreateDate desc";
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
@@ -203,7 +258,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where sbID='" + value + "' order by CreateDate desc");
+                    RefreshData(" where sbID='" + value + "' ");
                 }
             }
         }
