@@ -46,7 +46,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.textEdit4.DataBindings.Add("EditValue", rowData, "SortID");       
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "CtrlType");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "EventName");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "SqlColName");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "ExtraWord");
             this.lookUpEdit4.DataBindings.Add("EditValue", rowData, "RelateLPID");
             this.lookUpEdit5.DataBindings.Add("EditValue", rowData, "AffectLPID");
             this.textEdit8.DataBindings.Add("EditValue", rowData, "AffectEvent");
@@ -56,7 +56,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //this.textEdit10.DataBindings.Add("EditValue", rowData, "Status");
             this.lookUpEdit2.DataBindings.Add("EditValue", rowData, "Status");  
             this.textEdit11.DataBindings.Add("EditValue", rowData, "ComBoxItem");
-            this.textEdit12.DataBindings.Add("EditValue", rowData, "ExtraWord");
+            this.textEdit12.DataBindings.Add("EditValue", rowData, "SqlColName");
             //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "isExplorer");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "KindTable");
             parentID = UCmExcel.GetParentID();

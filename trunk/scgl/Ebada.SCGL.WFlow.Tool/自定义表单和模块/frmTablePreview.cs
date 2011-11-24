@@ -230,11 +230,20 @@ namespace Ebada.SCGL.WFlow.Tool
                 flag = true;
                 Label label = new Label();
                 label.Text = lp.CellName;
+                Button btTip = null;
                 //string[] location = lp.CtrlLocation.Split(',');
                 string[] size = lp.CtrlSize.Split(',');
                 label.Location = new Point(currentPosX, currentPosY);
                 label.Size = new Size(MaxWordWidth, 14);
                 label.Visible = flag;
+                if (lp.CtrlType.Contains("MemoEdit"))
+                {
+                    btTip = new Button();
+                    btTip.Name = "bt" + lp.LPID;
+                    btTip.Location = new Point(currentPosX + label.Width + 10, currentPosY);
+                    btTip.Size = new Size(30, 14);
+                    btTip.Text = "...";
+                }
                 if (flag)
                 {
                     currentPosY += 20;
@@ -272,6 +281,10 @@ namespace Ebada.SCGL.WFlow.Tool
                 ctrl.Visible = flag;
                 ctrl.Tag = lp;
                 ctrl.TabIndex = index;
+                if (btTip != null)
+                { 
+                    
+                }
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
                 {
                     (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar));
@@ -279,6 +292,10 @@ namespace Ebada.SCGL.WFlow.Tool
                 index++;
                 ctrl.Name = lp.LPID;
                 dockPanel1.Controls.Add(label);
+                if (btTip != null)
+                {
+                    dockPanel1.Controls.Add(btTip);
+                }
                 dockPanel1.Controls.Add(ctrl);
                 if (lp.CellName == "编号")
                 {
@@ -299,6 +316,10 @@ namespace Ebada.SCGL.WFlow.Tool
             btn_Submit.Text = "关闭";
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
+        }
+        void btTip_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
         }
         void btn_Submit_Click(object sender, EventArgs e)
         {
@@ -593,12 +614,19 @@ namespace Ebada.SCGL.WFlow.Tool
             string[] arrCellpos = lp.CellPos.Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
-            string[] extraWord = lp.ExtraWord.Split(pchar);
+            //string[] extraWord = lp.ExtraWord.Split(pchar);
+            string value=lp.ExtraWord;
+            if (lp.ExtraWord != "")
+            {
+                str = value.Replace("{0}", str);
+               
+            }
             List<int> arrCellCount = String2Int(arrtemp);
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
             {
-                ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-               
+                
+                    ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+              
 
             }
             else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
@@ -797,20 +825,34 @@ namespace Ebada.SCGL.WFlow.Tool
                     break;
             }
             // int i = 0;
+            string value = lp.ExtraWord;
+            //value = "{0}年{1}月{2}日";
             for (int i = 0; i < strList.Count; i++)
             {
-                if (extraWord.Length > i)
-                {
-                    ea.SetCellValue(strList[i] + extraWord[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+            //    if (extraWord.Length > i)
+            //    {
+            //        ea.SetCellValue(strList[i] + extraWord[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                   
+            //    }
+            //    else
+            //    {
+                if (lp.ExtraWord == "")
+                {
+                    ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                 }
                 else
                 {
-                    ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
-                   
+                    value = value.Replace("{" + i + "}", strList[i]);
+                    if (i == strList.Count - 1)
+                    {
+                        ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                    }
                 }
+                   
+                //}
 
             }
+
             //foreach (string str in strList)
             //{
             //    ea.SetCellValue(str, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
