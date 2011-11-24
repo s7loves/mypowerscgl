@@ -319,11 +319,11 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
-            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit6.Properties.Items.Clear();
             //comboBoxEdit3.Properties.Items.Add("SelectedIndexChanged");
-            comboBoxEdit3.Properties.Items.Add("TextChanged");
-            comboBoxEdit3.Properties.Items.Add("GotFocus");
-            comboBoxEdit3.Properties.Items.Add("LostFocus");
+            comboBoxEdit6.Properties.Items.Add("TextChanged");
+            comboBoxEdit6.Properties.Items.Add("GotFocus");
+            comboBoxEdit6.Properties.Items.Add("LostFocus");
             if (lookUpEdit1.EditValue.ToString().IndexOf("DateEdit") > -1)
             {
 
@@ -337,11 +337,11 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 if (lookUpEdit1.EditValue.ToString().IndexOf("ComboBoxEdit") > -1)
                 {
-                    comboBoxEdit3.Properties.Items.Clear();
-                    comboBoxEdit3.Properties.Items.Add("SelectedIndexChanged");
-                    comboBoxEdit3.Properties.Items.Add("TextChanged");
-                    comboBoxEdit3.Properties.Items.Add("GotFocus");
-                    comboBoxEdit3.Properties.Items.Add("LostFocus");
+                    comboBoxEdit6.Properties.Items.Clear();
+                    comboBoxEdit6.Properties.Items.Add("SelectedIndexChanged");
+                    comboBoxEdit6.Properties.Items.Add("TextChanged");
+                    comboBoxEdit6.Properties.Items.Add("GotFocus");
+                    comboBoxEdit6.Properties.Items.Add("LostFocus");
                 }
                 labelControl3.Visible = true;
                 textEdit7.Visible = true;

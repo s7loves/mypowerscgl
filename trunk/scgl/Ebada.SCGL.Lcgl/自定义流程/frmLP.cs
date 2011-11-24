@@ -405,6 +405,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                     ctrl.Enter += new EventHandler(ctrl_Enter);
                     ctrl.Leave += new EventHandler(ctrl_Leave);
+                    ctrl.TextChanged += new EventHandler(ctrl_Leave);
                     ctrl.Visible = flag;
                     ctrl.Tag = lp;
                     ctrl.TabIndex = index;

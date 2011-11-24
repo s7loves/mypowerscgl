@@ -1171,11 +1171,11 @@ namespace Ebada.Scgl.Lcgl {
             }
             else
             {
-                for (int i = 0; ; i++)
+                for (int i = 2; ; i++)
                 {
-                    if (!File.Exists(filename + "(" + i.ToString() + ").xls"))
+                    if (!File.Exists(filename + "(" + string.Format("{0}",i) + ").xls"))
                     {
-                        return filename + "(" + i.ToString() + ").xls";
+                        return filename + "(" + string.Format("{0}", i) + ").xls";
                     }
                 }
 
@@ -1333,11 +1333,12 @@ namespace Ebada.Scgl.Lcgl {
                                 else if (obj is string)
                                 {
 
-                                    LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(akeys[i]);
+                                    LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(akeys[Convert.ToInt32(checkkeys[i])]);
                                     if (taskTemple != null)
                                     {
-                                        WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(templehs[akeys[i]]);
-                                        RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, worktaskins.WorkFlowId, worktaskins.WorkFlowInsId, true);
+                                        WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(templehs[akeys[Convert.ToInt32(checkkeys[i])]]);
+                                        RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, worktaskins.WorkFlowId,
+                                            worktaskins.WorkFlowInsId, true);
                                         ds1.FileDataGzip = taskTemple.DocContent;
                                         //ds1.FileOpen(ds1.FileName);
                                         ds1.FileSave(CheckFileName(fname + taskTemple.CellName), true);
