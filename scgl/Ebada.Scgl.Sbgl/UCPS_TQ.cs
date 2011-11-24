@@ -250,6 +250,7 @@ namespace Ebada.Scgl.Sbgl
             btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btGtList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            bar3.Visible = false;
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

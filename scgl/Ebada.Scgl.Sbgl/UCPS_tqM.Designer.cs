@@ -64,7 +64,7 @@
             this.splitCC1.Panel2.Text = "台区相关设备";
             this.splitCC1.ShowCaption = true;
             this.splitCC1.Size = new System.Drawing.Size(594, 437);
-            this.splitCC1.SplitterPosition = 219;
+            this.splitCC1.SplitterPosition = 244;
             this.splitCC1.TabIndex = 1;
             this.splitCC1.Text = "splitContainerControl1";
             // 
@@ -73,7 +73,7 @@
             this.ucpS_TQ1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucpS_TQ1.Location = new System.Drawing.Point(0, 0);
             this.ucpS_TQ1.Name = "ucpS_TQ1";
-            this.ucpS_TQ1.Size = new System.Drawing.Size(594, 214);
+            this.ucpS_TQ1.Size = new System.Drawing.Size(594, 189);
             this.ucpS_TQ1.TabIndex = 0;
             // 
             // xtraTabControl1
@@ -82,7 +82,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage2;
-            this.xtraTabControl1.Size = new System.Drawing.Size(590, 194);
+            this.xtraTabControl1.Size = new System.Drawing.Size(590, 219);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage2,
@@ -94,7 +94,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.ucpS_TQBYQ1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(585, 167);
+            this.xtraTabPage2.Size = new System.Drawing.Size(585, 192);
             this.xtraTabPage2.Text = "变压器";
             // 
             // ucpS_TQBYQ1
@@ -102,7 +102,7 @@
             this.ucpS_TQBYQ1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucpS_TQBYQ1.Location = new System.Drawing.Point(0, 0);
             this.ucpS_TQBYQ1.Name = "ucpS_TQBYQ1";
-            this.ucpS_TQBYQ1.Size = new System.Drawing.Size(585, 167);
+            this.ucpS_TQBYQ1.Size = new System.Drawing.Size(585, 192);
             this.ucpS_TQBYQ1.TabIndex = 0;
             // 
             // xtraTabPage3

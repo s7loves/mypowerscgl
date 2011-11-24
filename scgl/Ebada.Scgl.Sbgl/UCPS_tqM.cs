@@ -19,6 +19,7 @@ namespace Ebada.Scgl.Sbgl
             ucpS_TQSB1.HideList();
             ucpS_dyxlTree1.HideList();
             ucpS_TQ1.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_tq>(ucpS_TQ1_FocusedRowChanged);
+            
         }
 
         void ucpS_TQ1_FocusedRowChanged(object sender, Ebada.Scgl.Model.PS_tq obj) {
