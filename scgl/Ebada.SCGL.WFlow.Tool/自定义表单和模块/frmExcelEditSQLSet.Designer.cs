@@ -167,7 +167,7 @@
             this.cbxWorkDbTable.FormattingEnabled = true;
             this.cbxWorkDbTable.Location = new System.Drawing.Point(62, 146);
             this.cbxWorkDbTable.Name = "cbxWorkDbTable";
-            this.cbxWorkDbTable.Size = new System.Drawing.Size(99, 22);
+            this.cbxWorkDbTable.Size = new System.Drawing.Size(127, 22);
             this.cbxWorkDbTable.TabIndex = 60;
             this.cbxWorkDbTable.SelectedIndexChanged += new System.EventHandler(this.cbxWorkDbTable_SelectedIndexChanged);
             // 
@@ -237,7 +237,7 @@
             this.cbxWorkTableColumns.FormattingEnabled = true;
             this.cbxWorkTableColumns.Location = new System.Drawing.Point(62, 93);
             this.cbxWorkTableColumns.Name = "cbxWorkTableColumns";
-            this.cbxWorkTableColumns.Size = new System.Drawing.Size(99, 22);
+            this.cbxWorkTableColumns.Size = new System.Drawing.Size(126, 22);
             this.cbxWorkTableColumns.TabIndex = 48;
             // 
             // cbxWorkExcelTable
@@ -255,7 +255,7 @@
             this.cbxWorkDataTable.FormattingEnabled = true;
             this.cbxWorkDataTable.Location = new System.Drawing.Point(63, 69);
             this.cbxWorkDataTable.Name = "cbxWorkDataTable";
-            this.cbxWorkDataTable.Size = new System.Drawing.Size(99, 22);
+            this.cbxWorkDataTable.Size = new System.Drawing.Size(126, 22);
             this.cbxWorkDataTable.TabIndex = 49;
             this.cbxWorkDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxWorkDataTable_SelectedIndexChanged);
             // 

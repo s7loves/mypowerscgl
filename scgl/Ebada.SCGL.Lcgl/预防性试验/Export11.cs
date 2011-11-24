@@ -280,10 +280,11 @@ namespace Ebada.Scgl.Lcgl
             if (orgid != "") filter = " and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
-                filter = filter + " and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-               + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-                   + " and   WorkFlowInsId !='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                  + ")";
+                filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                      + "    WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                      + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                      + "    RecordID='" + currRecord.ID + "')) "
+                      ;
             }
             IList<PJ_yfsyjl> byqdatalist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", " where  type='变压器'" + filter + " order by xh ");
             Export11.ExportExcelbyqEx(ex, byqdatalist, "变压器预防性试验记录", orgid, isShow);
@@ -348,10 +349,11 @@ namespace Ebada.Scgl.Lcgl
             if (orgid != "") filter = " and a.OrgCode='" + orgid + "' ";
             if (isWorkflowCall)
             {
-                filter = filter + "  and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-               + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-                   + " and   WorkFlowInsId !='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                  + ")";
+                filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                    + "    WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                    + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                    + "    RecordID='" + currRecord.ID + "')) "
+                    ;
             }
             IList typelist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  type    from dbo.PJ_yfsyjl a  where 1=1 " + filter );
             Hashtable hmodnum = new Hashtable();
