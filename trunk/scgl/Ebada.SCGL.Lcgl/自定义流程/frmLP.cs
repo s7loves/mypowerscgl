@@ -257,7 +257,6 @@ namespace Ebada.Scgl.Lcgl
                 {
                     currRecord.DocContent = new byte[0];
                 }
-                InitContorl();
                 if (currRecord.ID.IndexOf("N") == -1)
                 {
                     this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
@@ -268,6 +267,7 @@ namespace Ebada.Scgl.Lcgl
                     else
                         this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                 }
+                InitContorl();
 
 
 

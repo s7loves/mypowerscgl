@@ -175,9 +175,9 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0)
             {
+                this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                 if (parentTemple != null)
-                    InitContorl();             
-                this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;               
+                    InitContorl();               
                 LoadContent();
             }
          
@@ -1223,14 +1223,8 @@ namespace Ebada.SCGL.WFlow.Tool
         public void TriggerRelateEvent(object sender, EventArgs e)
         {
             LP_Temple lp = (LP_Temple)((Control)sender).Tag;
-            string strlpid = "";
-            if (lp.AffectLPID != "")
-            {
-                strlpid = lp.AffectLPID;
-            }
-            strlpid = strlpid + lp.RelateLPID;
-            string[] arrLPID = strlpid.Split(pchar);
-            //string[] arrLPID = lp.AffectLPID.Split(pchar);
+          
+            string[] arrLPID = lp.AffectLPID.Split(pchar);
             foreach (string lpid in arrLPID)
             {
                 IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + lpid + "' and parentid = '" + lp.ParentID + "'");
