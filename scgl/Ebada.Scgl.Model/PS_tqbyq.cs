@@ -38,8 +38,9 @@ namespace Ebada.Scgl.Model
         private string _byqcycle=String.Empty; 
         private decimal _byqvolone=0; 
         private decimal _byqvoltwo=0; 
-        private decimal _byqcurrentone=0; 
-        private decimal _byqcurrenttwo=0; 
+        private decimal _byqcurrentone=0;
+        private decimal _byqcurrenttwo = 0;
+        private string _byqkind = String.Empty; 
         private DateTime _byqinstalldate=new DateTime(1900,1,1); 
         private string _byqinstalladress=String.Empty; 
         private string _byqstate=String.Empty; 
@@ -275,7 +276,24 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+
+        /// <summary>
+        /// 属性名称：byqKind
+        /// 属性描述：完好类型
+        /// 字段信息：[bttype],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("完好类型")]
+        public string byqkind
+        {
+            get { return _byqkind; }
+            set
+            {
+                if (_byqkind as object == null || !_byqkind.Equals(value))
+                {
+                    _byqkind = value;
+                }
+            }
+        }
         /// <summary>
         /// 属性名称：byqFactory
         /// 属性描述：制造厂

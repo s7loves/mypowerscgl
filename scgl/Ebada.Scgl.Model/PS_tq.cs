@@ -29,13 +29,14 @@ namespace Ebada.Scgl.Model
         private string _adress=String.Empty; 
         private string _xlcode=String.Empty; 
         private string _xlcode2=String.Empty; 
-        private string _owner=String.Empty; 
+        private string _owner=String.Empty;
         private string _cby=String.Empty; 
         private string _cfy=String.Empty; 
         private string _contractor=String.Empty; 
         private decimal _lowlossrate=0;
         private string _class = String.Empty;
-        private string _bttype = String.Empty; 
+        private string _bttype = String.Empty;
+        private string _btKind = String.Empty; 
         private short _tclr=0; 
         private short _hclr=0; 
         private string _orgcode=String.Empty; 
@@ -352,6 +353,24 @@ namespace Ebada.Scgl.Model
                 if (_bttype as object == null || !_bttype.Equals(value))
                 {
                     _bttype = value;
+                }
+            }			 
+        }
+        
+       /// <summary>
+        /// 属性名称：_btKind
+        /// 属性描述：完好类型
+        /// 字段信息：[bttype],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("完好类型")]
+        public string btKind
+        {
+            get { return _btKind; }
+            set
+            {
+                if (_btKind as object == null || !_btKind.Equals(value))
+                {
+                    _btKind = value;
                 }
             }			 
         }

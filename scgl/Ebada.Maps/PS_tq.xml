@@ -21,6 +21,7 @@
         <result property="Class" column="Class" />
         <result property="tclr" column="tclr" />
         <result property="bttype" column="bttype" />
+        <result property="btKind" column="btKind" />
         <result property="hclr" column="hclr" />
         <result property="OrgCode" column="OrgCode" />
         <result property="InDate" column="InDate" />
@@ -29,28 +30,29 @@
 
   <statements>
    <select id="SelectPS_tqList" resultMap="PS_tq_AllColumns" parameterClass="string">
-        SELECT 
-         [gtID],
-         [tqID],
-         [tqCode],
-         [tqName],
-         [Remark],
-         [Adress],
-         [xlCode],
-         [xlCode2],
-         [Owner],
-         [cby],
-         [cfy],
-         [Contractor],
-         [Lowlossrate],
-         [Class],
-         [bttype],
-         [tclr],
-         [hclr],
-         [OrgCode],
-         [InDate]
-          FROM PS_tq
-          $value$
+     SELECT
+     [gtID],
+     [tqID],
+     [tqCode],
+     [tqName],
+     [Remark],
+     [Adress],
+     [xlCode],
+     [xlCode2],
+     [Owner],
+     [cby],
+     [cfy],
+     [Contractor],
+     [Lowlossrate],
+     [Class],
+     [bttype],
+     [btKind],
+     [tclr],
+     [hclr],
+     [OrgCode],
+     [InDate]
+     FROM PS_tq
+     $value$
    </select>
    
    <select id="SelectPS_tqByHash" parameterClass="Hashtable">
@@ -70,6 +72,7 @@
      [Lowlossrate],
      [Class],
      [bttype],
+     [btKind],
      [tclr],
      [hclr],
      [OrgCode],
@@ -91,6 +94,7 @@
        <isNotNull prepend="AND" property="Lowlossrate">[Lowlossrate]='$Lowlossrate$'</isNotNull>
        <isNotNull prepend="AND" property="Class">[Class]='$Class$'</isNotNull>
        <isNotNull prepend="AND" property="tclr">[bttype]='$bttype$'</isNotNull>
+       <isNotNull prepend="AND" property="tclr">[btKind]='$btKind$'</isNotNull>
        <isNotNull prepend="AND" property="tclr">[tclr]='$tclr$'</isNotNull>
        <isNotNull prepend="AND" property="hclr">[hclr]='$hclr$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
@@ -114,6 +118,7 @@
      [Lowlossrate],
      [Class],
      [bttype],
+     [btKind],
      [tclr],
      [hclr],
      [OrgCode],
@@ -161,6 +166,7 @@
      [Lowlossrate]=#Lowlossrate#,
      [Class]=#Class#,
      [bttype]=#bttype#,
+     [btKind]=#btKind#,
      [tclr]=#tclr#,
      [hclr]=#hclr#,
      [OrgCode]=#OrgCode#,
@@ -188,6 +194,7 @@
      [Lowlossrate],
      [Class],
      [bttype],
+     [btKind],
      [tclr],
      [hclr],
      [OrgCode],
@@ -210,6 +217,7 @@
      #Lowlossrate#,
      #Class#,
      #bttype#,
+     #btKind#,
      #tclr#,
      #hclr#,
      #OrgCode#,
@@ -237,6 +245,7 @@
        <isNotNull prepend="AND" property="Lowlossrate">[Lowlossrate]='$Lowlossrate$'</isNotNull>
        <isNotNull prepend="AND" property="Class">[Class]='$Class$'</isNotNull>
        <isNotNull prepend="AND" property="tclr">[bttype]='$bttype$'</isNotNull>
+       <isNotNull prepend="AND" property="tclr">[btKind]='$btKind$'</isNotNull>
        <isNotNull prepend="AND" property="tclr">[tclr]='$tclr$'</isNotNull>
        <isNotNull prepend="AND" property="hclr">[hclr]='$hclr$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>

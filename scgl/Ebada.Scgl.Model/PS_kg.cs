@@ -38,7 +38,8 @@ namespace Ebada.Scgl.Model
         private string _kgfgb=String.Empty; 
         private DateTime _kginstalldate=new DateTime(1900,1,1); 
         private string _kginstalladress=String.Empty; 
-        private string _kgstate=String.Empty; 
+        private string _kgstate=String.Empty;
+        private string _kgkind = String.Empty; 
         private DateTime _indate=new DateTime(1900,1,1);   
         #endregion
   
@@ -212,6 +213,23 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
+        /// <summary>
+        /// 属性名称：byqKind
+        /// 属性描述：完好类型
+        /// 字段信息：[bttype],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("完好类型")]
+        public string kgkind
+        {
+            get { return _kgkind; }
+            set
+            {
+                if (_kgkind as object == null || !_kgkind.Equals(value))
+                {
+                    _kgkind = value;
+                }
+            }
+        }
         /// <summary>
         /// 属性名称：kgLineGroup
         /// 属性描述：重合装置

@@ -55,7 +55,8 @@ namespace Ebada.Scgl.Sbgl
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "tclr");
             this.spinEdit3.DataBindings.Add("EditValue", rowData, "hclr");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "InDate");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");         
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
+            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "btkind");       
 
 
         }
@@ -94,7 +95,7 @@ namespace Ebada.Scgl.Sbgl
             comboBoxEdit12.Properties.Items.Clear();
             //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where parentid in(select ID from pj_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc + "型号"));
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='台区管理' and sx = '{0}' and nr!=''",  "变台型号"));
+            string.Format("select nr from pj_dyk where  dx='台区' and sx = '{0}' and nr!=''",  "变台型号"));
             if (list.Count > 0)
                 comboBoxEdit12.Properties.Items.AddRange(list);
             else
@@ -103,6 +104,17 @@ namespace Ebada.Scgl.Sbgl
                 comboBoxEdit12.Properties.Items.Add("落地台");
                 comboBoxEdit12.Properties.Items.Add("H台");
                 comboBoxEdit12.Properties.Items.Add("箱式变");
+            }
+            comboBoxEdit13.Properties.Items.Clear();
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='台区' and sx like '%{0}%' and nr!=''", "完好类型"));
+            if (strlist.Count > 0)
+                comboBoxEdit13.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit13.Properties.Items.Add("一类");
+                comboBoxEdit13.Properties.Items.Add("二类");
+                comboBoxEdit13.Properties.Items.Add("三类");
             }
         }
 
