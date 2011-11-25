@@ -61,7 +61,7 @@ namespace Ebada.ScglUpFileService
                     string filefullpath = "";
                     int i = -1;
                     i = filename.LastIndexOf("/");
-                    if (i > -1)
+                    if (i > -1)  //不存在此字符
                         filefullpath = context.Server.MapPath(filename.Substring(0, i + 1)+"/" ) + filename.Substring(i + 1);
                     else
                         filefullpath = context.Server.MapPath("/") + filename;
