@@ -230,24 +230,37 @@ namespace Ebada.SCGL.WFlow.Tool
                 flag = true;
                 Label label = new Label();
                 label.Text = lp.CellName;
-                Button btTip = null;
+                ComboBoxEdit btTip = null;
                 //string[] location = lp.CtrlLocation.Split(',');
                 string[] size = lp.CtrlSize.Split(',');
                 label.Location = new Point(currentPosX, currentPosY);
                 label.Size = new Size(MaxWordWidth, 14);
                 label.Visible = flag;
-                if (lp.CtrlType.Contains("MemoEdit"))
-                {
-                    btTip = new Button();
-                    btTip.Name = "bt" + lp.LPID;
-                    btTip.Location = new Point(currentPosX + label.Width + 10, currentPosY);
-                    btTip.Size = new Size(30, 14);
-                    btTip.Text = "...";
-                }
                 if (flag)
                 {
                     currentPosY += 20;
-                }                
+                }
+                if (lp.CtrlType.Contains("MemoEdit") && flag&&lp.SqlSentence!="")
+                {
+                    btTip = new ComboBoxEdit();
+                    btTip.Name = "bt" + lp.LPID;
+                    btTip.Location = new Point(currentPosX, currentPosY);
+                    btTip.Size = new Size(300, 14);
+                    currentPosY += 30;
+                    btTip.Tag = lp;
+                }
+                else
+                    if (lp.CtrlType.Contains("TextEdit") && flag && lp.SqlSentence != "")
+                {
+                    btTip = new ComboBoxEdit();
+                    btTip.Name = "bt" + lp.LPID;
+                    btTip.Location = new Point(currentPosX , currentPosY);
+                    btTip.Size = new Size(300, 14);
+                    currentPosY += 30;
+                    btTip.Tag = lp;
+                }
+
+                     
                 Control ctrl ;
 
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
@@ -282,8 +295,8 @@ namespace Ebada.SCGL.WFlow.Tool
                 ctrl.Tag = lp;
                 ctrl.TabIndex = index;
                 if (btTip != null)
-                { 
-                    
+                {
+                    btTip.TextChanged += new EventHandler(btTip_Click);
                 }
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
                 {
@@ -317,10 +330,7 @@ namespace Ebada.SCGL.WFlow.Tool
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
         }
-        void btTip_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
+      
         void btn_Submit_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
@@ -421,8 +431,12 @@ namespace Ebada.SCGL.WFlow.Tool
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
             {
                 //UpdateRelateData(ctrl);
-                if (ctrl.Tag != null&&(!tempCtrlList.Contains(ctrl)))
+                if (ctrl.Tag != null && (!tempCtrlList.Contains(ctrl)))
+                {
+                    if (ctrl.Name.IndexOf("bt") > -1)
+                        continue;
                     InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
+                }
             }
         }
         void ContentChanged(Control ctrl)
@@ -511,6 +525,16 @@ namespace Ebada.SCGL.WFlow.Tool
 
             }
             LockExcel(wb, sheet);
+        }
+        void btTip_Click(object sender, EventArgs e)
+        {
+            LP_Temple lp = (LP_Temple)(sender as Control).Tag;
+            string str = (sender as Control).Text;
+            Control ct = FindCtrl(lp.LPID);
+            if (ct != null)
+            {
+                ct.Text = str;
+            }
         }
         void ctrl_Enter(object sender, EventArgs e)
         {
@@ -934,6 +958,7 @@ namespace Ebada.SCGL.WFlow.Tool
         }
         public void InitCtrlData(Control ctrl, string sqlSentence)
         {
+           
             tempCtrlList.Add(ctrl);
             LP_Temple lp = (LP_Temple)ctrl.Tag;
             string ctrltype = "";
@@ -1063,8 +1088,18 @@ namespace Ebada.SCGL.WFlow.Tool
             switch (ctrltype)
             {
                 case "DevExpress.XtraEditors.TextEdit":
-                    if(li.Count>0&&sqlSentence!= "")
-                    ((DevExpress.XtraEditors.TextEdit)ctrl).Text=li[0].ToString();
+                    if (li.Count > 0 && sqlSentence != "")
+                    {
+                        ((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
+                        Control bttip = FindCtrl("bt"+lp.LPID);
+                        if (bttip != null)
+                        {
+                            ((ComboBoxEdit)bttip).Properties.Items.Clear();
+                            ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
+                            if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
+                                ((ComboBoxEdit)bttip).SelectedIndex = 0;
+                        }
+                    }
                     break;
                 case "DevExpress.XtraEditors.ComboBoxEdit":
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();
@@ -1178,7 +1213,17 @@ namespace Ebada.SCGL.WFlow.Tool
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
                     if (li.Count > 0 && sqlSentence != "")
+                    {
                         ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
+                        Control bttip = FindCtrl("bt" + lp.LPID);
+                        if (bttip != null)
+                        {
+                            ((ComboBoxEdit)bttip).Properties.Items.Clear();
+                            ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
+                            if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
+                                ((ComboBoxEdit)bttip).SelectedIndex = 0;
+                        }
+                    }
                     break;
                 case "uc_gridcontrol":
                     ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar));

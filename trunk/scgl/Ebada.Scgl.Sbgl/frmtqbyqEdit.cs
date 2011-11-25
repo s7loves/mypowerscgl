@@ -45,6 +45,7 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqState");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "InDate");
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "tqID");
+            this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "byqkind");  
 
             this.lookUpEdit1.EditValueChanged += new EventHandler(lookUpEdit1_EditValueChanged);
 
@@ -102,7 +103,18 @@ namespace Ebada.Scgl.Sbgl
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "相别", comboBoxEdit8.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "结线组别", comboBoxEdit9.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "周  波", comboBoxEdit12.Properties);
-            this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetVoltage());   
+            this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetVoltage());
+            comboBoxEdit16.Properties.Items.Clear();
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='变压器' and sx like '%{0}%' and nr!=''", "完好类型"));
+            if (strlist.Count > 0)
+                comboBoxEdit16.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit16.Properties.Items.Add("一类");
+                comboBoxEdit16.Properties.Items.Add("二类");
+                comboBoxEdit16.Properties.Items.Add("三类");
+            }
 
         }
 

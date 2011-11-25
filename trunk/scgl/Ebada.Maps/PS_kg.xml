@@ -19,6 +19,7 @@
         <result property="kgMadeDate" column="kgMadeDate" />
         <result property="kgCloseVol" column="kgCloseVol" />
         <result property="kgOpenEle" column="kgOpenEle" />
+        <result property="kgkind" column="kgkind" />
         <result property="kgfgb" column="kgfgb" />
         <result property="kgInstallDate" column="kgInstallDate" />
         <result property="kgInstallAdress" column="kgInstallAdress" />
@@ -45,6 +46,7 @@
          [kgCloseVol],
          [kgOpenEle],
          [kgfgb],
+         [kgkind],
          [kgInstallDate],
          [kgInstallAdress],
          [kgState],
@@ -70,6 +72,7 @@
          [kgCloseVol],
          [kgOpenEle],
          [kgfgb],
+         [kgkind],
          [kgInstallDate],
          [kgInstallAdress],
          [kgState],
@@ -91,6 +94,7 @@
        <isNotNull prepend="AND" property="kgCloseVol">[kgCloseVol]='$kgCloseVol$'</isNotNull>
        <isNotNull prepend="AND" property="kgOpenEle">[kgOpenEle]='$kgOpenEle$'</isNotNull>
        <isNotNull prepend="AND" property="kgfgb">[kgfgb]='$kgfgb$'</isNotNull>
+       <isNotNull prepend="AND" property="kgOpenEle">[kgkind]='$kgkind$'</isNotNull>
        <isNotNull prepend="AND" property="kgInstallDate">[kgInstallDate]='$kgInstallDate$'</isNotNull>
        <isNotNull prepend="AND" property="kgInstallAdress">[kgInstallAdress]='$kgInstallAdress$'</isNotNull>
        <isNotNull prepend="AND" property="kgState">[kgState]='$kgState$'</isNotNull>
@@ -114,6 +118,7 @@
          [kgCloseVol],
          [kgOpenEle],
          [kgfgb],
+         [kgkind],
          [kgInstallDate],
          [kgInstallAdress],
          [kgState],
@@ -161,6 +166,7 @@
              [kgCloseVol]=#kgCloseVol#,
              [kgOpenEle]=#kgOpenEle#,
              [kgfgb]=#kgfgb#,
+             [kgkind]=#kgkind#,
              [kgInstallDate]=#kgInstallDate#,
              [kgInstallAdress]=#kgInstallAdress#,
              [kgState]=#kgState#,
@@ -188,6 +194,7 @@
          [kgCloseVol],
          [kgOpenEle],
          [kgfgb],
+         [kgkind],
          [kgInstallDate],
          [kgInstallAdress],
          [kgState],
@@ -210,6 +217,7 @@
          #kgCloseVol#,
          #kgOpenEle#,
          #kgfgb#,
+         #kgkind#,
          #kgInstallDate#,
          #kgInstallAdress#,
          #kgState#,
@@ -237,12 +245,12 @@
        <isNotNull prepend="AND" property="kgCloseVol">[kgCloseVol]='$kgCloseVol$'</isNotNull>
        <isNotNull prepend="AND" property="kgOpenEle">[kgOpenEle]='$kgOpenEle$'</isNotNull>
        <isNotNull prepend="AND" property="kgfgb">[kgfgb]='$kgfgb$'</isNotNull>
+       <isNotNull prepend="AND" property="kgfgb">[kgkind]='$kgkind$'</isNotNull>
        <isNotNull prepend="AND" property="kgInstallDate">[kgInstallDate]='$kgInstallDate$'</isNotNull>
        <isNotNull prepend="AND" property="kgInstallAdress">[kgInstallAdress]='$kgInstallAdress$'</isNotNull>
        <isNotNull prepend="AND" property="kgState">[kgState]='$kgState$'</isNotNull>
        <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
      </dynamic>
-
    </select>
    
    <select id="GetPS_kgRowCount" parameterClass="string">

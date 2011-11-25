@@ -28,6 +28,7 @@
         <result property="byqInstallDate" column="byqInstallDate" />
         <result property="byqInstallAdress" column="byqInstallAdress" />
         <result property="byqState" column="byqState" />
+        <result property="byqkind" column="byqkind" />
         <result property="InDate" column="InDate" />
       </resultMap>
     <resultMap id="PS_SheetTemp_AllColumns" class="PS_sheetTemp">
@@ -46,32 +47,33 @@
 
   <statements>
    <select id="SelectPS_tqbyqList" resultMap="PS_tqbyq_AllColumns" parameterClass="string">
-        SELECT 
-         [tqID],
-         [byqID],
-         [byqCode],
-         [byqName],
-         [byqModle],
-         [omniseal],
-         [byqOwner],
-         [byqVol],
-         [byqPhase],
-         [byqCapcity],
-         [byqLineGroup],
-         [byqFactory],
-         [byqNumber],
-         [byqMadeDate],
-         [byqCycle],
-         [byqVolOne],
-         [byqVolTwo],
-         [byqCurrentOne],
-         [byqCurrentTwo],
-         [byqInstallDate],
-         [byqInstallAdress],
-         [byqState],
-         [InDate]
-          FROM PS_tqbyq
-          $value$
+     SELECT
+     [tqID],
+     [byqID],
+     [byqCode],
+     [byqName],
+     [byqModle],
+     [omniseal],
+     [byqOwner],
+     [byqVol],
+     [byqPhase],
+     [byqCapcity],
+     [byqLineGroup],
+     [byqFactory],
+     [byqNumber],
+     [byqMadeDate],
+     [byqCycle],
+     [byqVolOne],
+     [byqVolTwo],
+     [byqCurrentOne],
+     [byqCurrentTwo],
+     [byqInstallDate],
+     [byqInstallAdress],
+     [byqState],
+     [byqkind],
+     [InDate]
+     FROM PS_tqbyq
+     $value$
    </select>
     <select id="SelectPS_tqbyqByGDS" resultMap="PS_tqbyq_AllColumns" parameterClass="string">
       SELECT
@@ -97,6 +99,7 @@
       d.[byqInstallDate],
       d.[byqInstallAdress],
       d.[byqState],
+      d.[byqkind],
       d.[InDate]
       FROM
       dbo.mOrg a, dbo.PS_xl b, dbo.PS_tq c,dbo.PS_tqbyq d
@@ -119,31 +122,32 @@
       where a.OrgCode=b.OrgCode and b.LineCode=c.xlCode and c.tqID=d.tqID and a.OrgCode=$value$
     </select>
    <select id="SelectPS_tqbyqByHash" parameterClass="Hashtable">
-         SELECT 
-         [tqID],
-         [byqID],
-         [byqCode],
-         [byqName],
-         [byqModle],
-         [omniseal],
-         [byqOwner],
-         [byqVol],
-         [byqPhase],
-         [byqCapcity],
-         [byqLineGroup],
-         [byqFactory],
-         [byqNumber],
-         [byqMadeDate],
-         [byqCycle],
-         [byqVolOne],
-         [byqVolTwo],
-         [byqCurrentOne],
-         [byqCurrentTwo],
-         [byqInstallDate],
-         [byqInstallAdress],
-         [byqState],
-         [InDate]
-          FROM PS_tqbyq
+     SELECT
+     [tqID],
+     [byqID],
+     [byqCode],
+     [byqName],
+     [byqModle],
+     [omniseal],
+     [byqOwner],
+     [byqVol],
+     [byqPhase],
+     [byqCapcity],
+     [byqLineGroup],
+     [byqFactory],
+     [byqNumber],
+     [byqMadeDate],
+     [byqCycle],
+     [byqVolOne],
+     [byqVolTwo],
+     [byqCurrentOne],
+     [byqCurrentTwo],
+     [byqInstallDate],
+     [byqInstallAdress],
+     [byqState],
+     [byqkind],
+     [InDate]
+     FROM PS_tqbyq
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
        <isNotNull prepend="AND" property="byqID">[byqID]='$byqID$'</isNotNull>
@@ -167,37 +171,39 @@
        <isNotNull prepend="AND" property="byqInstallDate">[byqInstallDate]='$byqInstallDate$'</isNotNull>
        <isNotNull prepend="AND" property="byqInstallAdress">[byqInstallAdress]='$byqInstallAdress$'</isNotNull>
        <isNotNull prepend="AND" property="byqState">[byqState]='$byqState$'</isNotNull>
+       <isNotNull prepend="AND" property="byqState">[byqkind]='$byqkind$'</isNotNull>
        <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_tqbyqByKey" resultMap="PS_tqbyq_AllColumns" parameterClass="PS_tqbyq">
-         SELECT 
-         [tqID],
-         [byqID],
-         [byqCode],
-         [byqName],
-         [byqModle],
-         [omniseal],
-         [byqOwner],
-         [byqVol],
-         [byqPhase],
-         [byqCapcity],
-         [byqLineGroup],
-         [byqFactory],
-         [byqNumber],
-         [byqMadeDate],
-         [byqCycle],
-         [byqVolOne],
-         [byqVolTwo],
-         [byqCurrentOne],
-         [byqCurrentTwo],
-         [byqInstallDate],
-         [byqInstallAdress],
-         [byqState],
-         [InDate]
-         FROM PS_tqbyq
-         WHERE 
-           byqID = #byqID#
+     SELECT
+     [tqID],
+     [byqID],
+     [byqCode],
+     [byqName],
+     [byqModle],
+     [omniseal],
+     [byqOwner],
+     [byqVol],
+     [byqPhase],
+     [byqCapcity],
+     [byqLineGroup],
+     [byqFactory],
+     [byqNumber],
+     [byqMadeDate],
+     [byqCycle],
+     [byqVolOne],
+     [byqVolTwo],
+     [byqCurrentOne],
+     [byqCurrentTwo],
+     [byqInstallDate],
+     [byqInstallAdress],
+     [byqState],
+     [byqkind],
+     [InDate]
+     FROM PS_tqbyq
+     WHERE
+     byqID = #byqID#
 
    </select>
  
@@ -222,88 +228,91 @@
    </delete>
    
    <update id="UpdatePS_tqbyq" parameterClass="PS_tqbyq" resultClass="int">
-          UPDATE PS_tqbyq
-           SET
-             [tqID]=#tqID#,
-             [byqCode]=#byqCode#,
-             [byqName]=#byqName#,
-             [byqModle]=#byqModle#,
-             [omniseal]=#omniseal#,
-             [byqOwner]=#byqOwner#,
-             [byqVol]=#byqVol#,
-             [byqPhase]=#byqPhase#,
-             [byqCapcity]=#byqCapcity#,
-             [byqLineGroup]=#byqLineGroup#,
-             [byqFactory]=#byqFactory#,
-             [byqNumber]=#byqNumber#,
-             [byqMadeDate]=#byqMadeDate#,
-             [byqCycle]=#byqCycle#,
-             [byqVolOne]=#byqVolOne#,
-             [byqVolTwo]=#byqVolTwo#,
-             [byqCurrentOne]=#byqCurrentOne#,
-             [byqCurrentTwo]=#byqCurrentTwo#,
-             [byqInstallDate]=#byqInstallDate#,
-             [byqInstallAdress]=#byqInstallAdress#,
-             [byqState]=#byqState#,
-             [InDate]=#InDate#
-            WHERE 
-              byqID = #byqID#
+     UPDATE PS_tqbyq
+     SET
+     [tqID]=#tqID#,
+     [byqCode]=#byqCode#,
+     [byqName]=#byqName#,
+     [byqModle]=#byqModle#,
+     [omniseal]=#omniseal#,
+     [byqOwner]=#byqOwner#,
+     [byqVol]=#byqVol#,
+     [byqPhase]=#byqPhase#,
+     [byqCapcity]=#byqCapcity#,
+     [byqLineGroup]=#byqLineGroup#,
+     [byqFactory]=#byqFactory#,
+     [byqNumber]=#byqNumber#,
+     [byqMadeDate]=#byqMadeDate#,
+     [byqCycle]=#byqCycle#,
+     [byqVolOne]=#byqVolOne#,
+     [byqVolTwo]=#byqVolTwo#,
+     [byqCurrentOne]=#byqCurrentOne#,
+     [byqCurrentTwo]=#byqCurrentTwo#,
+     [byqInstallDate]=#byqInstallDate#,
+     [byqInstallAdress]=#byqInstallAdress#,
+     [byqState]=#byqState#,
+     [byqkind]=#byqkind#,
+     [InDate]=#InDate#
+     WHERE
+     byqID = #byqID#
 
    </update>
   
    <insert id="InsertPS_tqbyq" parameterClass="PS_tqbyq">
-        INSERT INTO PS_tqbyq
-         (
-         [tqID],
-         [byqID],
-         [byqCode],
-         [byqName],
-         [byqModle],
-         [omniseal],
-         [byqOwner],
-         [byqVol],
-         [byqPhase],
-         [byqCapcity],
-         [byqLineGroup],
-         [byqFactory],
-         [byqNumber],
-         [byqMadeDate],
-         [byqCycle],
-         [byqVolOne],
-         [byqVolTwo],
-         [byqCurrentOne],
-         [byqCurrentTwo],
-         [byqInstallDate],
-         [byqInstallAdress],
-         [byqState],
-         [InDate]
-         )
-       VALUES
-         (
-         #tqID#,
-         #byqID#,
-         #byqCode#,
-         #byqName#,
-         #byqModle#,
-         #omniseal#,
-         #byqOwner#,
-         #byqVol#,
-         #byqPhase#,
-         #byqCapcity#,
-         #byqLineGroup#,
-         #byqFactory#,
-         #byqNumber#,
-         #byqMadeDate#,
-         #byqCycle#,
-         #byqVolOne#,
-         #byqVolTwo#,
-         #byqCurrentOne#,
-         #byqCurrentTwo#,
-         #byqInstallDate#,
-         #byqInstallAdress#,
-         #byqState#,
-         #InDate#
-         )
+     INSERT INTO PS_tqbyq
+     (
+     [tqID],
+     [byqID],
+     [byqCode],
+     [byqName],
+     [byqModle],
+     [omniseal],
+     [byqOwner],
+     [byqVol],
+     [byqPhase],
+     [byqCapcity],
+     [byqLineGroup],
+     [byqFactory],
+     [byqNumber],
+     [byqMadeDate],
+     [byqCycle],
+     [byqVolOne],
+     [byqVolTwo],
+     [byqCurrentOne],
+     [byqCurrentTwo],
+     [byqInstallDate],
+     [byqInstallAdress],
+     [byqState],
+     [byqkind],
+     [InDate]
+     )
+     VALUES
+     (
+     #tqID#,
+     #byqID#,
+     #byqCode#,
+     #byqName#,
+     #byqModle#,
+     #omniseal#,
+     #byqOwner#,
+     #byqVol#,
+     #byqPhase#,
+     #byqCapcity#,
+     #byqLineGroup#,
+     #byqFactory#,
+     #byqNumber#,
+     #byqMadeDate#,
+     #byqCycle#,
+     #byqVolOne#,
+     #byqVolTwo#,
+     #byqCurrentOne#,
+     #byqCurrentTwo#,
+     #byqInstallDate#,
+     #byqInstallAdress#,
+     #byqState#,
+     #byqkind#,
+     #InDate#
+     )
 
    </insert>
    
@@ -333,6 +342,7 @@
        <isNotNull prepend="AND" property="byqInstallDate">[byqInstallDate]='$byqInstallDate$'</isNotNull>
        <isNotNull prepend="AND" property="byqInstallAdress">[byqInstallAdress]='$byqInstallAdress$'</isNotNull>
        <isNotNull prepend="AND" property="byqState">[byqState]='$byqState$'</isNotNull>
+       <isNotNull prepend="AND" property="byqState">[byqkind]='$byqkind$'</isNotNull>
        <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
      </dynamic>
 

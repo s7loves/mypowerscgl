@@ -37,6 +37,7 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "kgNumber");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "kgInstallAdress");
             this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "kgState");
+            this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "kgkind");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "kgCapcity");
 
 
@@ -78,6 +79,17 @@ namespace Ebada.Scgl.Sbgl
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "遮断容量", comboBoxEdit4.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "合闸线圈电压", comboBoxEdit7.Properties);
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "跳闸电流", comboBoxEdit8.Properties);
+            comboBoxEdit17.Properties.Items.Clear();
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='开关' and sx like '%{0}%' and nr!=''", "完好类型"));
+            if (strlist.Count > 0)
+                comboBoxEdit17.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit17.Properties.Items.Add("一类");
+                comboBoxEdit17.Properties.Items.Add("二类");
+                comboBoxEdit17.Properties.Items.Add("三类");
+            }
 
  
         }

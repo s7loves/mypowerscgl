@@ -352,7 +352,7 @@ namespace Ebada.Scgl.Yxgl
                 foreach (LP_Temple lp in templeList)
                 {
                     bool flag;//= (lp.Status == CurrRecord.Status);
-                    flag = true;
+                    flag = lp.IsVisible==0;
                     Label label = new Label();
                     label.Text = lp.CellName;
                     //string[] location = lp.CtrlLocation.Split(',');
@@ -469,7 +469,7 @@ namespace Ebada.Scgl.Yxgl
             Excel.Workbook wb;
             Excel.Worksheet sheet;
             dsoFramerWordControl1.FileSave();
-            currRecord.BigData = this.dsoFramerWordControl1.FileDataGzip;
+            //currRecord.BigData = this.dsoFramerWordControl1.FileDataGzip;
             wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             if (activeSheetName != "")
             {
@@ -525,7 +525,38 @@ namespace Ebada.Scgl.Yxgl
                 wfv.UserControlId = parentTemple.LPID;
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 list.Add(wfv);
-            }       
+                for (int j = 0; j < templeList.Count; j++)
+                {
+                    if (templeList[j].LPID == wfv.FieldId)
+                    {
+                        templeList.RemoveAt(j);
+                        break;
+                    }
+                }
+            }
+            Control ct=null;
+            for (int i = 0; i < templeList.Count; i++)
+            {
+                WF_TableFieldValue wfv = new  WF_TableFieldValue();
+                wfv.ExcelSheetName = "";
+                wfv.XExcelPos = -1;
+                wfv.YExcelPos = -1;
+                wfv.FieldId = templeList[i].LPID;
+                wfv.FieldName = templeList[i].CellName;
+                ct = FindCtrl( templeList[i].LPID);
+                if(ct!=null)
+                wfv.ControlValue=ct.Text;
+
+                wfv.ID = wfv.CreateID();
+                wfv.RecordId = currRecord.ID;
+                wfv.WorkFlowId = currRecord.tqCode;
+                wfv.WorkFlowInsId = currRecord.tqName;
+                wfv.WorkTaskId = "20低压设备完好率及台区网络图";
+                wfv.WorkTaskInsId = "20低压设备完好率及台区网络图";
+                wfv.UserControlId = parentTemple.LPID;
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                list.Add(wfv);
+            }
             switch (status)
             {
                 case "add":

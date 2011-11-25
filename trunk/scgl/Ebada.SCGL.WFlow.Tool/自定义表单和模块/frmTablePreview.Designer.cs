@@ -64,9 +64,9 @@
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.AutoScroll = true;
-            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 24);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(467, 459);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(467, 460);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // dsoFramerWordControl1
@@ -77,14 +77,14 @@
             this.dsoFramerWordControl1.Size = new System.Drawing.Size(253, 487);
             this.dsoFramerWordControl1.TabIndex = 1;
             // 
-            // frmLP
+            // frmTablePreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(726, 487);
             this.Controls.Add(this.dsoFramerWordControl1);
             this.Controls.Add(this.dockPanel1);
-            this.Name = "frmLP";
+            this.Name = "frmTablePreview";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "工作票";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
