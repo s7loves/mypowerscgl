@@ -6,7 +6,7 @@ alter table [PS_xl] add
 go
 
 
-execute sp_addextendedproperty 'MS_Description', '线路种类' , 'user','dbo', 'TABLE','PS_xl', 'COLUMN','lineKind'
+execute sp_addextendedproperty 'MS_Description', '完好类型' , 'user','dbo', 'TABLE','PS_xl', 'COLUMN','lineKind'
 go
 
 
