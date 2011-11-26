@@ -19,7 +19,8 @@ namespace Ebada.SCGL
                 killmsg();
                 try {
                     fz.ExtractZip(zipFile, direct, ICSharpCode.SharpZipLib.Zip.FastZip.Overwrite.Always, null, null, null, false);
-                    System.IO.File.Delete(zipFile);
+                    if(!zipFile.Contains("output"))
+                        System.IO.File.Delete(zipFile);
                 } catch { }
             }
             Application.EnableVisualStyles();
