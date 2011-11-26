@@ -12,7 +12,16 @@ namespace Ebada.SCGL
         [STAThread]
         static void Main()
         {
-
+            ICSharpCode.SharpZipLib.Zip.FastZip fz=new ICSharpCode.SharpZipLib.Zip.FastZip();
+            string direct = AppDomain.CurrentDomain.BaseDirectory + "\\msg";
+            string zipFile = AppDomain.CurrentDomain.BaseDirectory+"\\msg\\msg.zip";
+            if (System.IO.File.Exists(zipFile)) {
+                killmsg();
+                try {
+                    fz.ExtractZip(zipFile, direct, ICSharpCode.SharpZipLib.Zip.FastZip.Overwrite.Always, null, null, null, false);
+                    System.IO.File.Delete(zipFile);
+                } catch { }
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DevExpress.UserSkins.OfficeSkins.Register();
@@ -39,11 +48,31 @@ namespace Ebada.SCGL
             //frmLogin dlg = new frmLogin(); 
             //if (dlg.ShowDialog() == DialogResult.OK)
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+            Application.ThreadExit += new EventHandler(Application_ThreadExit);
                 Application.Run(new frmMain2());
         }
 
+        static void Application_ThreadExit(object sender, EventArgs e) {
+            killmsg();
+        }
+
+        static void Application_ApplicationExit(object sender, EventArgs e) {
+            killmsg();
+        }
+        
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {
             Client.MsgBox.ShowException(e.Exception);
         }
+        public static void killmsg() {
+            System.Diagnostics.Process[] pTemp = System.Diagnostics.Process.GetProcesses();
+            int n = 0;
+
+            foreach (System.Diagnostics.Process pTempProcess in pTemp)
+                if ((pTempProcess.ProcessName.ToLower() == ("Ebada.MsgClient").ToLower()) || (pTempProcess.ProcessName.ToLower()) == ("Ebada.MsgClient.exe").ToLower()) {
+                    pTempProcess.Kill();
+                }
+        }
+
     }
 }

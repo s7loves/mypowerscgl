@@ -239,6 +239,10 @@ namespace Ebada.SCGL {
                 }
 
                 showMessage(3);
+                try {
+                    Program.killmsg();
+                    System.Diagnostics.Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\msg\\Ebada.MsgClient.exe",MainHelper.User.LoginID);
+                } catch { }
             } else {
                 if (MainHelper.User.LoginID == "rabbit") {
                     barButtonItem1.Visibility = BarItemVisibility.Always;
