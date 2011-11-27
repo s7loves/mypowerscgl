@@ -1269,14 +1269,14 @@ namespace Ebada.Scgl.Yxgl
                  for (m = 1; m <= pagecount; m++)
                  {
                      ex.ActiveSheet("Sheet" + m);
-                     ex.SetCellValue("线路名称：" + strname[0], 3, 1);
-                     ex.SetCellValue("" + strname[1], 3, 6);
-                     ex.SetCellValue("" + strname[2], 3, 2);
-                     ex.SetCellValue(xl.LineVol.ToString(), 3, 29);
+                     ex.SetCellValue( strname[0], 3, 2);
+                     ex.SetCellValue( strname[1], 3, 5);
+                     ex.SetCellValue( strname[2], 3, 11);
+                     ex.SetCellValue(xl.LineVol.ToString(), 3, 20);
 
                  }
                  ihang = 8;
-                 jlie = 2;
+                 jlie = 3;
                  int hdRowCount = 1;
                  int jyzRowCount = 1;
                  int dxRowCount = 1;
@@ -1284,13 +1284,14 @@ namespace Ebada.Scgl.Yxgl
                  int blqRowCount =1;
                  int kgRowCount = 1;
                  int lxRowCount = 1;
+                 int jstart = 3;
                  Excel.Range range;
                  for (i = 1; i <= gtlis.Count; i++)
                  {
                      if ((i + 0.0) % (jmax) == 1)
                      {
 
-                         jlie = 2;
+                         jlie = 3;
                          hdRowCount = 1;
                          jyzRowCount = 1;
                          dxRowCount = 1;
@@ -1349,7 +1350,7 @@ namespace Ebada.Scgl.Yxgl
                      IList jyuzlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
 
                      //变台
-                     IList btlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName='变台' and gtID='" + gtobj.gtID + "'");
+                     IList btlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName like '%变压器%' and gtID='" + gtobj.gtID + "'");
 
 
                      //避雷器
@@ -1431,28 +1432,9 @@ namespace Ebada.Scgl.Yxgl
                      ex.SetCellValue((i-1).ToString(), ihang, jlie);
                      ihang++;
 
-                     //电杆种类/杆型
-                     if (gtobj != null)
-                     {
-                         if (gtobj.gtModle == "混凝土拔梢杆/直线杆")
-                         {
-                             ex.SetCellValue("砼/直", ihang, jlie);
-                         }
-                         else
-                             if (gtobj.gtModle==("直线杆") )
-                             {
-                                 ex.SetCellValue("直", ihang, jlie);
-                             }
-                         else
-                             if (gtobj.gtModle.IndexOf("混凝土") > -1)
-                             {
-                                 ex.SetCellValue("砼", ihang, jlie);
-                             }
-                             else
-                         {
-                             ex.SetCellValue(gtobj.gtModle, ihang, jlie);
-                         }
-                     }
+                     //转角方向
+                    
+
                      ihang++;
 
                      //杆高（m）
@@ -1461,6 +1443,187 @@ namespace Ebada.Scgl.Yxgl
 
                          ex.SetCellValue(gtobj.gtHeight.ToString(), ihang, jlie);
 
+                     }
+                     ihang++;
+
+                     //电杆种类/杆型
+                     if (gtobj != null)
+                     {
+                         if (gtobj.gtModle == "混凝土拔梢杆/直线杆")
+                         {
+                             ex.SetCellValue("砼/直", ihang, jlie);
+                         }
+                         else
+                             if (gtobj.gtModle == ("直线杆"))
+                             {
+                                 ex.SetCellValue("直", ihang, jlie);
+                             }
+                             else
+                                 if (gtobj.gtModle.IndexOf("混凝土") > -1)
+                                 {
+                                     ex.SetCellValue("砼", ihang, jlie);
+                                 }
+                                 else
+                                 {
+                                     ex.SetCellValue(gtobj.gtModle, ihang, jlie);
+                                 }
+                     }
+                     ihang++;
+                     //导线排列方式
+
+                     //if (gtobj.dxplfs == "")
+                     //{
+
+                     //    ex.SetCellValue("水平", ihang, jlie);
+                     //}
+                     //else
+                     //{
+                     //    ex.SetCellValue(gtobj.dxplfs, ihang, jlie);
+                     //}
+                     if (((i + 0.0) % (jmax) == 0 && i > 1) || i == gtlis.Count)
+                     {
+                         //合并同类项
+                         string stplrname = "";
+                         int ista = i, item = i, jlietemp = jlie;
+                         for (item = i; item > 1; item--)
+                         {
+                             PS_gt gttemp = gtlis[item - 1];
+                             PS_gt gttemp2 = gtlis[item - 2];
+                             if (gttemp2 == null || gttemp2.dxplfs == gttemp.dxplfs)
+                             {
+                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang, jlietemp], xx.Cells[ihang, jlietemp - 2]);
+                                 range.Merge(Type.Missing);
+                                 if (item % jmax == 2 && ista != item)
+                                 {
+                                     if (gtobj != null && gtobj.dxplfs != "")
+                                         ex.SetCellValue(gtobj.dxplfs, ihang, jlietemp - 2);
+                                     else
+                                         ex.SetCellValue("水平", ihang, jlietemp - 2);
+
+                                 }
+                             }
+                             else
+                             {
+                                 ex.SetCellValue(gtobj.dxplfs, ihang, jlietemp);
+                             }
+                             jlietemp = jlietemp - 2;
+                             if (item % jmax == 2 && ista != item)
+                             {
+                                 break;
+                             }
+
+                         }
+                     }
+
+                     ihang++;
+                     //导线型号规格（mm2）
+                     if (dxlist != null && dxlist.Count > 0)
+                     {
+                         if (dxlist.Count > dxRowCount)
+                         {
+                             for (j = dxRowCount; j < dxlist.Count; j++)
+                             {
+                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang + dxRowCount, "A"], xx.Cells[ihang + dxRowCount, "A"]);
+                                 range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+
+                             }
+                             for (int jtem = 1; jtem < dxlist.Count; jtem++)
+                             {
+                                 for (int item = 0; item < 29; item += 2)
+                                 {
+                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
+                                     range.Merge(Type.Missing);
+                                 }
+                             }
+                             dxRowCount = dxlist.Count;
+                             range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + dxRowCount - 1, 1]);
+                             range.Merge(Type.Missing);
+                         }
+                         if (dxlist.Count > 0)
+                         {
+
+                             for (j = 0; j < dxlist.Count; j++)
+                                 ex.SetCellValue(dxlist[j].ToString(), ihang + j, jlie);
+                         }
+
+                     }
+
+                     ihang += dxRowCount;
+
+                     //档        距（m）
+                     if (gtobj != null)
+                     {
+                         if (jlie > 2)
+                             ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie - 1);
+                         else
+                             ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie);
+                     }
+                     ihang++;
+                     //累计长度
+
+
+                     if (((i + 0.0) % (jmax) == 0 && i > 1) || i == gtlis.Count)
+                     {
+                         //累计长度
+                         double sum = 0;
+                         int ista = i, item = i;
+                         for (item = i; item > 0; item--)
+                         {
+                             PS_gt gttemp = gtlis[item - 1];
+                             if (gttemp != null)
+                             {
+                                 sum += Convert.ToDouble(gttemp.gtSpan);
+                             }
+                             if (i < gtlis.Count)
+                             {
+                                 if (item % jmax == 1 && ista != item)
+                                 {
+                                     break;
+                                 }
+                             }
+                             else
+                             {
+                                 if (item % jmax == 1 && ista != item)
+                                 {
+                                     break;
+                                 }
+                             }
+                         }
+                         ex.SetCellValue(sum.ToString(), ihang, jstart);
+
+                         float gwidth = 13.50F, gheifht = 15.75F;
+                         Microsoft.Office.Interop.Excel.Shape activShape, oldShape = null;
+                         int icolor = (int)(((uint)Color.White.B << 16) | (ushort)(((ushort)Color.White.G << 8) | Color.White.R));
+                         range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
+                         fxstart = (float)Convert.ToDouble(range.Cells.Width);
+                         range = (Excel.Range)xx.get_Range(xx.Cells[6, 2], xx.Cells[6, 2]);
+                         fxstart += (float)Convert.ToDouble(range.Cells.Width)/2;
+                         range = (Excel.Range)xx.get_Range(xx.Cells[1, 1], xx.Cells[5, 1]);
+                         fystart = (float)Convert.ToDouble(range.Cells.Height);
+                         range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
+                         fystart = fystart + (float)(Convert.ToDouble(range.Cells.Height) / 2);
+                         for (int itemp = 0; itemp <= ista - item; itemp++)
+                         {
+
+                             range = (Excel.Range)xx.get_Range(xx.Cells[8, itemp + 2], xx.Cells[8, itemp + 3]);
+                             float width = (float)Convert.ToDouble(range.Cells.Width);
+
+
+                             activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
+                             //activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart, fystart, gwidth, gheifht);
+                             activShape.Fill.ForeColor.RGB = icolor;
+                             if (itemp > 0)
+                             {
+                                 //Texture Image Recognition Algorithm Based on Steerable Pyramid Transform
+
+                                 Microsoft.Office.Interop.Excel.Shape ln = xx.Shapes.AddLine(oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2, activShape.Left, activShape.Top + activShape.Height / 2);
+
+                           // ln.ShapeStyle = Microsoft.Office.Core.MsoArrowheadStyle.msoArrowheadNone;
+                             }
+                             //fxstart += gtwidth[itemp];
+                             fxstart += width;
+                             oldShape = activShape;
+                         }
                      }
                      ihang++;
 
@@ -1477,7 +1640,7 @@ namespace Ebada.Scgl.Yxgl
                                      range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
                                      for (int item = 0; item < 29; item += 2)
                                      {
-                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, 2 + item], xx.Cells[ihang + hdRowCount, 3 + item]);
+                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, jstart + item], xx.Cells[ihang + hdRowCount, jstart+1 + item]);
                                          range.Merge(Type.Missing);
                                      }
                                  }
@@ -1499,6 +1662,37 @@ namespace Ebada.Scgl.Yxgl
                          
                      }
                      ihang+=hdRowCount;
+                     //拉线规格/条数
+                     if (lxlist != null && lxlist.Count > 0)
+                     {
+
+                         if (lxlist.Count > lxRowCount)
+                         {
+                             for (j = lxRowCount; j < lxlist.Count; j++)
+                             {
+                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang + lxRowCount, "A"], xx.Cells[ihang + lxRowCount, "A"]);
+                                 range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+                                 for (int item = 0; item < 29; item += 2)
+                                 {
+                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + 1, jstart + item], xx.Cells[ihang + 1, jstart+1 + item]);
+                                     range.Merge(Type.Missing);
+                                 }
+                             }
+
+                             lxRowCount = lxlist.Count;
+                             range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + lxRowCount - 1, 1]);
+                             range.Merge(Type.Missing);
+                         }
+                         for (j = 0; j < lxlist.Count; j++)
+                         {
+                             int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                             ex.SetCellValue(lxlist[j].ToString() + "/" + icount, ihang + j, jlie);
+
+                         }
+
+
+                     }
+                     ihang += lxRowCount;
 
                      //绝缘子型号/数量
                      if (jyuzlist != null)
@@ -1517,7 +1711,7 @@ namespace Ebada.Scgl.Yxgl
                                  {
                                      for (int item = 0; item < 29; item += 2)
                                      {
-                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, 2 + item], xx.Cells[ihang + jtem, 3 + item]);
+                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart+1 + item]);
                                          range.Merge(Type.Missing);
                                      }
                                  }
@@ -1538,62 +1732,19 @@ namespace Ebada.Scgl.Yxgl
 
 
                     
-                     //导线型号规格（mm2）
-                     if (dxlist != null && dxlist.Count > 0)
-                     {
-                         if (dxlist.Count > dxRowCount)
-                         {
-                             for (j = dxRowCount; j < dxlist.Count; j++)
-                             {
-                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang + dxRowCount, "A"], xx.Cells[ihang + dxRowCount, "A"]);
-                                 range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-                               
-                             }
-                             for (int jtem = 1; jtem < dxlist.Count; jtem++)
-                             {
-                                 for (int item = 0; item < 29; item += 2)
-                                 {
-                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, 2 + item], xx.Cells[ihang + jtem, 3 + item]);
-                                     range.Merge(Type.Missing);
-                                 }
-                             }
-                             dxRowCount = dxlist.Count;
-                             range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + dxRowCount - 1, 1]);
-                             range.Merge(Type.Missing);
-                         }
-                         if (dxlist.Count > 0)
-                         {
-
-                             for (j = 0; j < dxlist.Count; j++)
-                             ex.SetCellValue(dxlist[j].ToString(), ihang+j, jlie);
-                         }
-
-                     }
-
-                     ihang += dxRowCount;
-                     //导线排列方式
-                     if (dxlist != null && dxlist.Count > 0)
-                     {
-                         if (dxlist.Count > 0)
-                         {
-
-                             ex.SetCellValue(dxlist[0].ToString(), ihang, 2);
-                         }
-
-                     }
-                     ihang++;
-
+                   
 
                      //变台型式
                      if (btlist != null)
                      {
                          if (btlist.Count > 0)
                          {
-                             if (btlist.Count > btRowCount)
+                             ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct sbCode from PS_gtsb  Where  sbModle = '" + btlist[0].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                             if (ilisttemp.Count > btRowCount)
                              {
                                  for (j = btRowCount; j < btlist.Count; j++)
                                  {
-                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + btRowCount, "A"], xx.Cells[ihang + btRowCount, "A"]);
+                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + btRowCount+1, "A"], xx.Cells[ihang + btRowCount+1, "A"]);
                                      range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
                                     
                                  }
@@ -1601,21 +1752,38 @@ namespace Ebada.Scgl.Yxgl
                                  {
                                      for (int item = 0; item < 29; item += 2)
                                      {
-                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, 2 + item], xx.Cells[ihang + jtem, 3 + item]);
+                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
                                          range.Merge(Type.Missing);
                                      }
                                  }
 
-                                 btRowCount = btlist.Count;
-                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + btRowCount - 1, 1]);
+                                 btRowCount = ilisttemp.Count;
+                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang+1, 1], xx.Cells[ihang + btRowCount+1 - 1, 1]);
                                  range.Merge(Type.Missing);
                              }
-                             for (j = 0; j < btlist.Count; j++)
-                             ex.SetCellValue(btlist[j].ToString(), ihang+j, jlie);
+                             if (btlist.Count == 1)
+                                 ex.SetCellValue(btlist[0].ToString(), ihang, jlie);
+                             else
+                             {
+                                 j = j;
+                             }
+                             for (j = 0; j < ilisttemp.Count; j++)
+                             {
+                                 int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                 PS_gtsb gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                 if (gtsbtemp != null)
+                                 {
+                                     PS_sbcs sbcstemp = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_sbcs>(gtsbtemp.sbType+ilisttemp[0].ToString());
+                                     if (sbcstemp != null)
+                                     {
+                                         ex.SetCellValue(sbcstemp.xh + "/" + icount.ToString(), ihang + j + 1, jlie);
+                                     }
+                                 }
+                             }
                          }
 
                      }
-                     ihang += btRowCount;
+                     ihang += btRowCount+1;
 
                      //避雷器型号/数量
                      if (blqlist != null && btlist.Count>0)
@@ -1634,7 +1802,7 @@ namespace Ebada.Scgl.Yxgl
                                  {
                                      for (int item = 0; item < 29; item += 2)
                                      {
-                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, 2 + item], xx.Cells[ihang + jtem, 3 + item]);
+                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
                                          range.Merge(Type.Missing);
                                      }
                                  }
@@ -1670,7 +1838,7 @@ namespace Ebada.Scgl.Yxgl
                                  {
                                      for (int item = 0; item < 29; item += 2)
                                      {
-                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, 2 + item], xx.Cells[ihang + jtem, 3 + item]);
+                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
                                          range.Merge(Type.Missing);
                                      }
                                  }
@@ -1689,122 +1857,8 @@ namespace Ebada.Scgl.Yxgl
                      }
                      ihang += kgRowCount;
 
-                     //拉线规格/条数
-                     if (lxlist != null && lxlist.Count>0)
-                     {
-                         
-                             if (lxlist.Count > lxRowCount)
-                             {
-                                 for (j = lxRowCount; j < lxlist.Count; j++)
-                                 {
-                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + lxRowCount, "A"], xx.Cells[ihang + lxRowCount, "A"]);
-                                     range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-                                     for (int item = 0; item < 29; item += 2)
-                                     {
-                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + 1, 2 + item], xx.Cells[ihang + 1, 3 + item]);
-                                         range.Merge(Type.Missing);
-                                     }
-                                 }
-
-                                 lxRowCount = lxlist.Count;
-                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + lxRowCount - 1, 1]);
-                                 range.Merge(Type.Missing);
-                             }
-                             for (j = 0; j < lxlist.Count; j++)
-                             {
-                                 int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                                 ex.SetCellValue(lxlist[j].ToString() + "/" + icount, ihang+j, jlie);
-                                 
-                             }
-                         
-
-                     }
-                     ihang += lxRowCount;
-                     //档        距（m）
-                     if (gtobj != null)
-                     {
-                         if (jlie > 2)
-                             ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie - 1);
-                         else
-                             ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie);
-                     }
-                     ihang++;
-                     //累计长度
-                     //if (gtobj != null)
-                     //{
-                     //    if (jlie > 2)
-                     //        ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie - 1);
-                     //    else
-                     //        ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie);
-
-                     //}
-                     //ihang++;
-                     if (((i + 0.0) % (jmax) == 0 && i > 1) || i == gtlis.Count)
-                     {
-                         //累计长度
-                         double sum = 0;
-                         int ista = i, item=i ;
-                         for ( item = i;; item--)
-                         {
-                             PS_gt gttemp = gtlis[item-1];
-                             if (gttemp != null)
-                             {
-                                 sum +=Convert.ToDouble( gttemp.gtSpan);
-                             }
-                             if (i < gtlis.Count)
-                             {
-                                 if (item % jmax == 1 && ista != item)
-                                 {
-                                     break;
-                                 }
-                             }
-                             else
-                             {
-                                 if (item % jmax == 1 && ista != item)
-                                 {
-                                     break;
-                                 }
-                             }
-                         }
-                         ex.SetCellValue(sum.ToString(), ihang, 2);
-
-                         float gwidth = 13.50F, gheifht = 15.75F;
-                         Microsoft.Office.Interop.Excel.Shape activShape, oldShape = null;
-                         int icolor = (int)(((uint)Color.White.B << 16) | (ushort)(((ushort)Color.White.G << 8) | Color.White.R));
-                         range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
-                         fxstart = (float)Convert.ToDouble(range.Cells.Width);
-                         range = (Excel.Range)xx.get_Range(xx.Cells[1, 1], xx.Cells[5,1]);
-                         fystart = (float)Convert.ToDouble(range.Cells.Height);
-                         range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
-                         fystart = fystart+ (float)(Convert.ToDouble(range.Cells.Height)/2);
-                         for (int itemp = 0; itemp <= ista - item; itemp++)
-                         {
-
-                             range = (Excel.Range)xx.get_Range(xx.Cells[8, itemp + 2], xx.Cells[8, itemp + 3]);
-                             float width = (float)Convert.ToDouble(range.Cells.Width);
-
-
-                             activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
-                             //activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart, fystart, gwidth, gheifht);
-                             activShape.Fill.ForeColor.RGB = icolor;
-                             if (itemp > 0)
-                             {
-                                 //Texture Image Recognition Algorithm Based on Steerable Pyramid Transform
-
-                                 xx.Shapes.AddLine(oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2, activShape.Left, activShape.Top + activShape.Height / 2);
-
-                             }
-
-
-                             //fxstart += gtwidth[itemp];
-                             fxstart += width;
-                             oldShape = activShape;
-                         }
-
-
-
-
-                     }
+                  
+                     
                      jlie += 2;
                  }
                 
