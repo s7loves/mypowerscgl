@@ -11,6 +11,7 @@
         <result property="gth" column="gth" />
         <result property="gtType" column="gtType" />
         <result property="gtModle" column="gtModle" />
+        <result property="dxplfs" column="dxplfs" />
         <result property="gtHeight" column="gtHeight" />
         <result property="gtLon" column="gtLon" />
         <result property="gtLat" column="gtLat" />
@@ -28,50 +29,52 @@
 
   <statements>
    <select id="SelectPS_gtList" resultMap="PS_gt_AllColumns" parameterClass="string">
-        SELECT 
-         [gtID],
-         [LineCode],
-         [gtCode],
-         [gth],
-         [gtType],
-         [gtModle],
-         [gtHeight],
-         [gtLon],
-         [gtLat],
-         [gtElev],
-         [X54],
-         [Y54],
-         [gtSpan],
-         [gtMs],
-         [gtZjfx],
-         [gtZj],
-         [gtJg],
-         [ImageID]
-          FROM PS_gt
-          $value$
+     SELECT
+     [gtID],
+     [LineCode],
+     [gtCode],
+     [gth],
+     [gtType],
+     [gtModle],
+     [dxplfs],
+     [gtHeight],
+     [gtLon],
+     [gtLat],
+     [gtElev],
+     [X54],
+     [Y54],
+     [gtSpan],
+     [gtMs],
+     [gtZjfx],
+     [gtZj],
+     [gtJg],
+     [ImageID]
+     FROM PS_gt
+     $value$
    </select>
    
    <select id="SelectPS_gtByHash" parameterClass="Hashtable">
-         SELECT 
-         [gtID],
-         [LineCode],
-         [gtCode],
-         [gth],
-         [gtType],
-         [gtModle],
-         [gtHeight],
-         [gtLon],
-         [gtLat],
-         [gtElev],
-         [X54],
-         [Y54],
-         [gtSpan],
-         [gtMs],
-         [gtZjfx],
-         [gtZj],
-         [gtJg],
-         [ImageID]
-          FROM PS_gt
+     SELECT
+     [gtID],
+     [LineCode],
+     [gtCode],
+     [gth],
+     [gtType],
+     [gtModle],
+     [dxplfs],
+     [gtHeight],
+     [gtLon],
+     [gtLat],
+     [gtElev],
+     [X54],
+     [Y54],
+     [gtSpan],
+     [gtMs],
+     [gtZjfx],
+     [gtZj],
+     [gtJg],
+     [ImageID]
+     FROM PS_gt
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
        <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
@@ -79,6 +82,7 @@
        <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
        <isNotNull prepend="AND" property="gtType">[gtType]='$gtType$'</isNotNull>
        <isNotNull prepend="AND" property="gtModle">[gtModle]='$gtModle$'</isNotNull>
+       <isNotNull prepend="AND" property="gtModle">[dxplfs]='$dxplfs$'</isNotNull>
        <isNotNull prepend="AND" property="gtHeight">[gtHeight]='$gtHeight$'</isNotNull>
        <isNotNull prepend="AND" property="gtLon">[gtLon]='$gtLon$'</isNotNull>
        <isNotNull prepend="AND" property="gtLat">[gtLat]='$gtLat$'</isNotNull>
@@ -94,28 +98,29 @@
      </dynamic>
    </select>
    <select id="SelectPS_gtByKey" resultMap="PS_gt_AllColumns" parameterClass="PS_gt">
-         SELECT 
-         [gtID],
-         [LineCode],
-         [gtCode],
-         [gth],
-         [gtType],
-         [gtModle],
-         [gtHeight],
-         [gtLon],
-         [gtLat],
-         [gtElev],
-         [X54],
-         [Y54],
-         [gtSpan],
-         [gtMs],
-         [gtZjfx],
-         [gtZj],
-         [gtJg],
-         [ImageID]
-         FROM PS_gt
-         WHERE 
-           gtID = #gtID#
+     SELECT
+     [gtID],
+     [LineCode],
+     [gtCode],
+     [gth],
+     [gtType],
+     [gtModle],
+     [dxplfs],
+     [gtHeight],
+     [gtLon],
+     [gtLat],
+     [gtElev],
+     [X54],
+     [Y54],
+     [gtSpan],
+     [gtMs],
+     [gtZjfx],
+     [gtZj],
+     [gtJg],
+     [ImageID]
+     FROM PS_gt
+     WHERE
+     gtID = #gtID#
 
    </select>
  
@@ -136,27 +141,28 @@
    </delete>
    
    <update id="UpdatePS_gt" parameterClass="PS_gt" resultClass="int">
-          UPDATE PS_gt
-           SET
-             [LineCode]=#LineCode#,
-             [gtCode]=#gtCode#,
-             [gth]=#gth#,
-             [gtType]=#gtType#,
-             [gtModle]=#gtModle#,
-             [gtHeight]=#gtHeight#,
-             [gtLon]=#gtLon#,
-             [gtLat]=#gtLat#,
-             [gtElev]=#gtElev#,
-             [X54]=#X54#,
-             [Y54]=#Y54#,
-             [gtSpan]=#gtSpan#,
-             [gtMs]=#gtMs#,
-             [gtZjfx]=#gtZjfx#,
-             [gtZj]=#gtZj#,
-             [gtJg]=#gtJg#,
-             [ImageID]=#ImageID#
-            WHERE 
-              gtID = #gtID#
+     UPDATE PS_gt
+     SET
+     [LineCode]=#LineCode#,
+     [gtCode]=#gtCode#,
+     [gth]=#gth#,
+     [gtType]=#gtType#,
+     [gtModle]=#gtModle#,
+     [dxplfs]=#dxplfs#,
+     [gtHeight]=#gtHeight#,
+     [gtLon]=#gtLon#,
+     [gtLat]=#gtLat#,
+     [gtElev]=#gtElev#,
+     [X54]=#X54#,
+     [Y54]=#Y54#,
+     [gtSpan]=#gtSpan#,
+     [gtMs]=#gtMs#,
+     [gtZjfx]=#gtZjfx#,
+     [gtZj]=#gtZj#,
+     [gtJg]=#gtJg#,
+     [ImageID]=#ImageID#
+     WHERE
+     gtID = #gtID#
 
    </update>
     <update id="UpdatePS_gtLatLng" parameterClass="PS_gt" resultClass="int">
@@ -168,48 +174,50 @@
       gtID = #gtID#
     </update>
    <insert id="InsertPS_gt" parameterClass="PS_gt">
-        INSERT INTO PS_gt
-         (
-         [gtID],
-         [LineCode],
-         [gtCode],
-         [gth],
-         [gtType],
-         [gtModle],
-         [gtHeight],
-         [gtLon],
-         [gtLat],
-         [gtElev],
-         [X54],
-         [Y54],
-         [gtSpan],
-         [gtMs],
-         [gtZjfx],
-         [gtZj],
-         [gtJg],
-         [ImageID]
-         )
-       VALUES
-         (
-         #gtID#,
-         #LineCode#,
-         #gtCode#,
-         #gth#,
-         #gtType#,
-         #gtModle#,
-         #gtHeight#,
-         #gtLon#,
-         #gtLat#,
-         #gtElev#,
-         #X54#,
-         #Y54#,
-         #gtSpan#,
-         #gtMs#,
-         #gtZjfx#,
-         #gtZj#,
-         #gtJg#,
-         #ImageID#
-         )
+     INSERT INTO PS_gt
+     (
+     [gtID],
+     [LineCode],
+     [gtCode],
+     [gth],
+     [gtType],
+     [gtModle],
+     [dxplfs],
+     [gtHeight],
+     [gtLon],
+     [gtLat],
+     [gtElev],
+     [X54],
+     [Y54],
+     [gtSpan],
+     [gtMs],
+     [gtZjfx],
+     [gtZj],
+     [gtJg],
+     [ImageID]
+     )
+     VALUES
+     (
+     #gtID#,
+     #LineCode#,
+     #gtCode#,
+     #gth#,
+     #gtType#,
+     #gtModle#,
+     #dxplfs#,
+     #gtHeight#,
+     #gtLon#,
+     #gtLat#,
+     #gtElev#,
+     #X54#,
+     #Y54#,
+     #gtSpan#,
+     #gtMs#,
+     #gtZjfx#,
+     #gtZj#,
+     #gtJg#,
+     #ImageID#
+     )
 
    </insert>   
      
