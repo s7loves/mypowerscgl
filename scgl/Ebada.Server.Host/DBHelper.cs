@@ -76,6 +76,7 @@ namespace Ebada.Server.Host {
                 } catch (Exception e) { throw e; }
 
             }
+            try { SqlMap.Update(mUpdate, "alter table ps_gt add dxplfs nvarchar(50) "); } catch { }//2011.11.27
         }
     }
 }
