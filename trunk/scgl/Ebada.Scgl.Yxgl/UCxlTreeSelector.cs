@@ -21,6 +21,8 @@ namespace Ebada.Scgl.Yxgl {
             treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(treeList1_FocusedNodeChanged);
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
+            mLines = new Dictionary<string, PS_xl>();
+            mOrgs = new Dictionary<string, mOrg>();
             initTree();
         }
         
@@ -43,36 +45,37 @@ namespace Ebada.Scgl.Yxgl {
             }
         }
         void treeList1_BeforeExpand(object sender, BeforeExpandEventArgs e) {
-            //DataRow row=treeList1.GetDataRecordByNode(e.Node) as DataRow;
-            string id = e.Node["ID"].ToString();
-            if (id.Contains("_") && e.Node.Nodes.Count == 1) {
-                e.Node.Nodes.Clear();
-                //inittq(id.Substring(0, id.Length - 1));
-            }
-            e.CanExpand = true;
+            
         }
 
         void treeList1_BeforeFocusNode(object sender, BeforeFocusNodeEventArgs e) {
             string id = e.Node["ID"].ToString();
             string type = e.Node["Type"].ToString();
             if (!e.Node.HasChildren) {
+                treeList1.BeginInit();
                 if (type == "gds") {
-                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + id + "'");
+                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + id + "' and len(linecode)=6");
                     foreach (PS_xl xl in list) {
-                        mTable.Rows.Add(xl.LineName, xl.LineID, "xl", id);
+                        mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl");
                         mLines.Add(xl.LineID, xl);
                     }
                 } else if (type == "xl") {
-                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "'");
+                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "' and linevol>=10.0");
                     foreach (PS_xl xl in list) {
-                        mTable.Rows.Add(xl.LineName, xl.LineID, "xl", id);
+                        mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl");
                         mLines.Add(xl.LineID, xl);
                     }
                 }
+                treeList1.EndInit();
             }
         }
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
-            
+            string id = e.Node["ID"].ToString();
+            string type = e.Node["Type"].ToString();
+            if (type == "xl") {
+                if (LineSelectionChanged != null)
+                    LineSelectionChanged(treeList1, mLines[id]);
+            }
         }
 
         /// <summary>
@@ -95,7 +98,7 @@ namespace Ebada.Scgl.Yxgl {
         /// 设置显示的所,可控制数据范围只显示单个所
         /// </summary>
         /// <returns></returns>
-        public void GetShowOrg(mOrg org) {
+        public void SetShowOrg(mOrg org) {
 
         }
     }
