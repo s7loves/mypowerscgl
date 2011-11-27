@@ -26,7 +26,8 @@ namespace Ebada.Scgl.Model
         private string _gtcode=String.Empty; 
         private string _gth=String.Empty; 
         private string _gttype=String.Empty; 
-        private string _gtmodle=String.Empty; 
+        private string _gtmodle=String.Empty;
+        private string _dxplfs = String.Empty; 
         private decimal _gtheight=0; 
         private decimal _gtlon=0; 
         private decimal _gtlat=0; 
@@ -172,6 +173,27 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
+        /// <summary>
+        /// 属性名称：dxplfs
+        /// 属性描述：导线排列方式
+        /// 字段信息：[gtModle],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("导线排列方式")]
+        public string dxplfs
+        {
+            get { return _dxplfs; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[型号]长度不能大于50!");
+                if (_dxplfs as object == null || !_dxplfs.Equals(value))
+                {
+                    _dxplfs = value;
+                }
+            }			 
+        }
+     
         /// <summary>
         /// 属性名称：gtHeight
         /// 属性描述：杆高
