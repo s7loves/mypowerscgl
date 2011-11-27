@@ -1449,7 +1449,7 @@ namespace Ebada.Scgl.Yxgl
                      //电杆种类/杆型
                      if (gtobj != null)
                      {
-                         if (gtobj.gtModle == "混凝土拔梢杆/直线杆")
+                         if (gtobj.gtType+"/" +gtobj.gtModle == "混凝土拔梢杆/直线杆")
                          {
                              ex.SetCellValue("砼/直", ihang, jlie);
                          }
@@ -1459,13 +1459,13 @@ namespace Ebada.Scgl.Yxgl
                                  ex.SetCellValue("直", ihang, jlie);
                              }
                              else
-                                 if (gtobj.gtModle.IndexOf("混凝土") > -1)
+                                 if (gtobj.gtType.IndexOf("混凝土") > -1)
                                  {
-                                     ex.SetCellValue("砼", ihang, jlie);
+                                     ex.SetCellValue("砼" + gtobj.gtModle, ihang, jlie);
                                  }
                                  else
                                  {
-                                     ex.SetCellValue(gtobj.gtModle, ihang, jlie);
+                                     ex.SetCellValue(gtobj.gtType+"/"+gtobj.gtModle, ihang, jlie);
                                  }
                      }
                      ihang++;
@@ -1591,7 +1591,7 @@ namespace Ebada.Scgl.Yxgl
                          }
                          ex.SetCellValue(sum.ToString(), ihang, jstart);
 
-                         float gwidth = 13.50F, gheifht = 15.75F;
+                         float gwidth = 13.50F, gheifht = 13.50F;
                          Microsoft.Office.Interop.Excel.Shape activShape, oldShape = null;
                          int icolor = (int)(((uint)Color.White.B << 16) | (ushort)(((ushort)Color.White.G << 8) | Color.White.R));
                          range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
@@ -1605,20 +1605,22 @@ namespace Ebada.Scgl.Yxgl
                          for (int itemp = 0; itemp <= ista - item; itemp++)
                          {
 
-                             range = (Excel.Range)xx.get_Range(xx.Cells[8, itemp + 2], xx.Cells[8, itemp + 3]);
+                             range = (Excel.Range)xx.get_Range(xx.Cells[6, itemp*2 + jstart], xx.Cells[6, itemp*2 + jstart+1]);
                              float width = (float)Convert.ToDouble(range.Cells.Width);
 
 
-                             activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
+                             activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width*3 /4, fystart, gwidth, gheifht);
                              //activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart, fystart, gwidth, gheifht);
                              activShape.Fill.ForeColor.RGB = icolor;
                              if (itemp > 0)
                              {
                                  //Texture Image Recognition Algorithm Based on Steerable Pyramid Transform
-
-                                 Microsoft.Office.Interop.Excel.Shape ln = xx.Shapes.AddLine(oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2, activShape.Left, activShape.Top + activShape.Height / 2);
-
-                           // ln.ShapeStyle = Microsoft.Office.Core.MsoArrowheadStyle.msoArrowheadNone;
+                                 xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                     oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                     activShape.Left - (oldShape.Left + oldShape.Width), 0);
+                                 //xx.Shapes.AddLine(
+                                 //      oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                 //      activShape.Left, activShape.Top + activShape.Height / 2);
                              }
                              //fxstart += gtwidth[itemp];
                              fxstart += width;
