@@ -1361,6 +1361,8 @@ namespace Ebada.Scgl.Yxgl
 
                      //导线型号
                      IList dxlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct sbModle from PS_gtsb  Where sbName like '%导线%' and gtID='" + gtobj.gtID + "'");
+                     //导线排列方式
+                     IList dxpllist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct C1 from PS_gtsb  Where sbName like '%导线%' and gtID='" + gtobj.gtID + "'");
 
                      //横担规格
                      IList hdobj = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName like '%横担%' and gtID='" + gtobj.gtID + "'");
@@ -1489,14 +1491,30 @@ namespace Ebada.Scgl.Yxgl
                          {
                              PS_gt gttemp = gtlis[item - 1];
                              PS_gt gttemp2 = gtlis[item - 2];
-                             if (gttemp2 == null || gttemp2.dxplfs == gttemp.dxplfs)
+                             IList dxpllist2 =null;
+                             IList dxpllist3 =null;
+                             string str1 = "", str2 = "";
+                             if (gttemp!=null)
+                             {
+                             dxpllist2 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                                 "select distinct C1 from PS_gtsb  Where sbName like '%导线%' and gtID='" + gttemp.gtID + "'");
+                             if (dxpllist2.Count > 0) str1 = dxpllist2[0].ToString();
+                             }
+                             if (gttemp2 != null)
+                             {
+                                 dxpllist3 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                                     "select distinct C1 from PS_gtsb  Where sbName like '%导线%' and gtID='" + gttemp2.gtID + "'");
+                                 if (dxpllist3.Count > 0) str2 = dxpllist3[0].ToString();
+                             }
+
+                             if (gttemp2 == null || str2 == str1)
                              {
                                  range = (Excel.Range)xx.get_Range(xx.Cells[ihang, jlietemp], xx.Cells[ihang, jlietemp - 2]);
                                  range.Merge(Type.Missing);
                                  if (item % jmax == 2 && ista != item)
                                  {
-                                     if (gtobj != null && gtobj.dxplfs != "")
-                                         ex.SetCellValue(gtobj.dxplfs, ihang, jlietemp - 2);
+                                     if (str1 != "")
+                                         ex.SetCellValue(str1, ihang, jlietemp - 2);
                                      else
                                          ex.SetCellValue("水平", ihang, jlietemp - 2);
 
@@ -1504,7 +1522,7 @@ namespace Ebada.Scgl.Yxgl
                              }
                              else
                              {
-                                 ex.SetCellValue(gtobj.dxplfs, ihang, jlietemp);
+                                 ex.SetCellValue(str1, ihang, jlietemp);
                              }
                              jlietemp = jlietemp - 2;
                              if (item % jmax == 2 && ista != item)
