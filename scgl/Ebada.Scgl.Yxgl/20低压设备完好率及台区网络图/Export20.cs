@@ -86,7 +86,7 @@ namespace Ebada.Scgl.Yxgl {
                                     else
                                         idw = 1;
 
-                                if (tfv.FieldName.IndexOf("时间") == -1)
+                                if (tfv.FieldName.IndexOf("时间") == -1&&lp.IsVisible==0)
                                 {
                                     valEX = "^[0-9]+(\\.)?[0-9]+";
                                     if (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value!="")
