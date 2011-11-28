@@ -24,13 +24,18 @@ namespace Ebada.Scgl.Sbgl
         Ebada.Scgl.Model.PS_gt mgt;
         void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e) {
             if (e.Page == xtraTabPage4) {
-                if (ucps_jcky == null)
+                if (ucps_jcky == null) {
                     ucps_jcky = new UCPS_jcky();
+                    ucps_jcky.Dock = DockStyle.Fill;
+                    xtraTabPage4.Controls.Add(ucps_jcky);
+                    ucps_jcky.HideList();
+                }
                 ucps_jcky.ParentObj = mgt;
             }
         }
 
         void ucpS_GT1_FocusedRowChanged(object sender, Ebada.Scgl.Model.PS_gt obj) {
+            
             if (obj!=null)
             {
                 mgt = obj;
@@ -45,7 +50,9 @@ namespace Ebada.Scgl.Sbgl
                 ucpS_KG1.ParentObj = null;
                 ucpS_GTSB1.ParentObj = null;
             }
-           
+            if (xtraTabControl1.SelectedTabPage == xtraTabPage4)
+                ucps_jcky.ParentObj = mgt;
+
             splitCC1.Panel2.Text = "杆塔编号：" + (obj != null ? obj.gtCode : "");
         }
     }

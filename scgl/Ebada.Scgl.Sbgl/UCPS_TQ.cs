@@ -268,6 +268,7 @@ namespace Ebada.Scgl.Sbgl
                 else
                 {
                     ParentID = value.gtID;
+                    frm.LineCode = value.LineCode;
                 }
             }
         }

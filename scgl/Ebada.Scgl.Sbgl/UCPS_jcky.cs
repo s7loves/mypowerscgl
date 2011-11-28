@@ -33,7 +33,7 @@ namespace Ebada.Scgl.Sbgl
 
         public event SendDataEventHandler<PJ_05jcky> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
-        frmgtsbEdit frm = new frmgtsbEdit();
+        frmjckyEdit frm = new frmjckyEdit();
         private string parentID = null;
         private PS_gt parentObj;
         public UCPS_jcky()
@@ -181,7 +181,7 @@ namespace Ebada.Scgl.Sbgl
         {
             if (parentID == null) return;
             newobj.gtID = parentID;
-            newobj.kygh = parentObj.gtCode;
+            newobj.kygh = parentObj.gth;
             newobj.LineID = parentObj.LineCode;
             newobj.OrgCode = parentObj.LineCode.Substring(0, 3);
             mOrg org = Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + newobj.OrgCode + "'");
