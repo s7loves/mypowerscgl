@@ -71,9 +71,9 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "所属单位", comboBoxEdit6);
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "级别", comboBoxEdit7);
 
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "' and linevol>=10.0");
             comboBoxEdit1.Properties.DataSource = xlList;
-           comboBoxEdit2.Properties.DataSource = xlList;
+           //comboBoxEdit2.Properties.DataSource = xlList;
 
 
         }
@@ -114,27 +114,29 @@ namespace Ebada.Scgl.Yxgl
             if (comboBoxEdit1.EditValue == null) return;
             IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
             
-            for (int i = 0; i < list.Count;i++ )
-            {
-                //comboBoxEdit2.Properties.Items.Add(list[i].LineID);
-                comboBoxEdit4.Properties.Items.Add(list[i].gtCode);
-            }
-         //  comboBoxEdit2.Properties.Items.Add().DataSource = list;
-        }
+            comboBoxEdit2.Properties.DataSource = list;
+            string linecode = comboBoxEdit1.EditValue.ToString();
+            int num=(linecode.Length - 3) / 3;
+            int len = 3;
+            string code;
+            List<string> codelist=new List<string>();
+            for (int i = 0; i < num; i++) {
+                if (i == 1)
+                    len += 4;
+                else
+                    len += 3;
+                codelist.Add("'" + linecode.Substring(0, len) + "'");
 
-        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void comboBoxEdit2_EditValueChanged_1(object sender, EventArgs e)
-        {
-            IList<PS_tq> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(" where gtID='" + comboBoxEdit2.EditValue.ToString() + "' order by tqName");
-            for (int i = 0; i < list.Count; i++)
-            {
-                comboBoxEdit3.Properties.Items.Add(list[i].Adress);
             }
-        }
+            code = string.Join(",", codelist.ToArray());
+            IList xllist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where linecode in ({0})",code));
+            code = "";
+            foreach (string str in xllist) {
+                code += str;
+            }
+            this.comboBoxEdit3.Text = rowData.kywz = code;
+        }       
+        
 
         private void comboBoxEdit2_EditValueChanged_2(object sender, EventArgs e)
         {
