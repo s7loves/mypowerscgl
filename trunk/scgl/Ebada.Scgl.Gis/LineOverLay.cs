@@ -132,9 +132,26 @@ namespace Ebada.Scgl.Gis {
             Ebada.Core.ConvertHelper.CopyTo(gt0, gt2);
             frm.RowData =  gt2;
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK && allowEdit) {
-                Ebada.Core.ConvertHelper.CopyTo(gt2, gt0);
-                PS_gt gt =marker.Tag as PS_gt;
-                Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(marker.Tag);
+                Ebada.Core.ConvertHelper.CopyTo(frm.RowData, gt0);
+                PS_gt gt = gt0;
+                PS_Image image = frm.GetPS_Image();
+                if (frm.GetImage() != null) {
+                    if (gt.ImageID == "" || image == null) {
+                        image = new PS_Image();
+                        image.ImageName = "杆塔照片";
+                        image.ImageType = "gt";
+                        image.ImageData = (byte[])frm.GetImage();
+                        gt.ImageID = image.ImageID;
+                        Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, gt, null);
+                    } else {
+
+                        Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, new object[] { gt, image }, null);
+                    }
+
+                } else {
+                    Client.ClientHelper.PlatformSqlMap.Update<PS_gt>(gt);
+                }
+                
                 marker.Position = new PointLatLng((double)gt.gtLat, (double)gt.gtLon);
                 OnMarkerChanged(marker as GMapMarkerVector);
             }

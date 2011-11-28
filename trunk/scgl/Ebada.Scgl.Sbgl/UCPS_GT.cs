@@ -58,9 +58,9 @@ namespace Ebada.Scgl.Sbgl
             try {
                 PS_gt gt =e.Value;
                 frmgtEdit frm = gridViewOperation.EditForm as frmgtEdit;
-                PS_Image image = null;
+                PS_Image image = frm.GetPS_Image();
                 if (frm.GetImage() != null ) {
-                    if (gt.ImageID == "") {
+                    if (gt.ImageID == "" || image==null) {
                         image = new PS_Image();
                         image.ImageName = "杆塔照片";
                         image.ImageType = "gt";
@@ -68,7 +68,7 @@ namespace Ebada.Scgl.Sbgl
                         gt.ImageID = image.ImageID;
                          Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, gt, null);
                     } else {
-                        image = frm.GetPS_Image();
+
                         Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null,new object[] { gt, image },  null);
                     }
                    
