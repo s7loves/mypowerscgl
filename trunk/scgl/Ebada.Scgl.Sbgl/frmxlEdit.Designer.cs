@@ -480,7 +480,7 @@
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(48, 14);
             this.labelControl12.TabIndex = 8;
-            this.labelControl12.Text = "线路类别";
+            this.labelControl12.Text = "线路类型";
             // 
             // labelControl1
             // 

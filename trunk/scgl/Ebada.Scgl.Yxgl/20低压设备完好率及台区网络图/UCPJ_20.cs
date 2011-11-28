@@ -215,11 +215,13 @@ namespace Ebada.Scgl.Yxgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (gridView1.FocusedRowHandle>=0)
-            {
-                Export20.ExportExcel(gridView1.GetFocusedRow() as PJ_20);
-            }
-           
+
+            if (parentID == null || btTQList.EditValue == null) return;
+            //if (gridView1.FocusedRowHandle>=0)
+            //{
+            //    Export20.ExportExcel(gridView1.GetFocusedRow() as PJ_20);
+            //}
+            Export20.ExportExcelTQ(btTQList.EditValue.ToString());
            
         }
 
