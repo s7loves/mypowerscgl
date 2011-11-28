@@ -111,5 +111,23 @@ namespace Ebada.Scgl.Sbgl
 
         }
 
+        private void comboBoxEdit4_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEdit4.Text.IndexOf("导线") > -1)
+            {
+                labelControl24.Text = "导线排列方式";
+                comboBoxEdit5.Properties.Items.Clear();
+                comboBoxEdit5.Properties.Items.Add("水平");
+                comboBoxEdit5.Properties.Items.Add("垂直");
+                comboBoxEdit5.Properties.Items.Add("三角");
+            }
+            else
+            {
+                labelControl24.Text = "设备参数";
+                comboBoxEdit5.Properties.Items.Clear();
+                comboBoxEdit5.Text = "";
+            }
+        }
+
     }
 }

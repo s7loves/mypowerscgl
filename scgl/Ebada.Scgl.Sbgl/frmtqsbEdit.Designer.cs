@@ -165,6 +165,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit4.TabIndex = 13;
+            this.comboBoxEdit4.TextChanged += new System.EventHandler(this.comboBoxEdit4_TextChanged);
             // 
             // comboBoxEdit3
             // 

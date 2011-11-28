@@ -11,7 +11,6 @@
         <result property="gth" column="gth" />
         <result property="gtType" column="gtType" />
         <result property="gtModle" column="gtModle" />
-        <result property="dxplfs" column="dxplfs" />
         <result property="gtHeight" column="gtHeight" />
         <result property="gtLon" column="gtLon" />
         <result property="gtLat" column="gtLat" />
@@ -36,7 +35,6 @@
      [gth],
      [gtType],
      [gtModle],
-     [dxplfs],
      [gtHeight],
      [gtLon],
      [gtLat],
@@ -61,7 +59,6 @@
      [gth],
      [gtType],
      [gtModle],
-     [dxplfs],
      [gtHeight],
      [gtLon],
      [gtLat],
@@ -82,7 +79,6 @@
        <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
        <isNotNull prepend="AND" property="gtType">[gtType]='$gtType$'</isNotNull>
        <isNotNull prepend="AND" property="gtModle">[gtModle]='$gtModle$'</isNotNull>
-       <isNotNull prepend="AND" property="gtModle">[dxplfs]='$dxplfs$'</isNotNull>
        <isNotNull prepend="AND" property="gtHeight">[gtHeight]='$gtHeight$'</isNotNull>
        <isNotNull prepend="AND" property="gtLon">[gtLon]='$gtLon$'</isNotNull>
        <isNotNull prepend="AND" property="gtLat">[gtLat]='$gtLat$'</isNotNull>
@@ -105,7 +101,6 @@
      [gth],
      [gtType],
      [gtModle],
-     [dxplfs],
      [gtHeight],
      [gtLon],
      [gtLat],
@@ -148,7 +143,6 @@
      [gth]=#gth#,
      [gtType]=#gtType#,
      [gtModle]=#gtModle#,
-     [dxplfs]=#dxplfs#,
      [gtHeight]=#gtHeight#,
      [gtLon]=#gtLon#,
      [gtLat]=#gtLat#,
@@ -182,7 +176,6 @@
      [gth],
      [gtType],
      [gtModle],
-     [dxplfs],
      [gtHeight],
      [gtLon],
      [gtLat],
@@ -204,7 +197,6 @@
      #gth#,
      #gtType#,
      #gtModle#,
-     #dxplfs#,
      #gtHeight#,
      #gtLon#,
      #gtLat#,
