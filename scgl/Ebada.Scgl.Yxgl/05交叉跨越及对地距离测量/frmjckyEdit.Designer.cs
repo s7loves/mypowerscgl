@@ -131,14 +131,13 @@
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit2.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineCode", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineName", "线路名称")});
-            this.comboBoxEdit2.Properties.DisplayMember = "LineName";
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gtID", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gtCode", "杆塔编号")});
+            this.comboBoxEdit2.Properties.DisplayMember = "gtCode";
             this.comboBoxEdit2.Properties.NullText = "";
-            this.comboBoxEdit2.Properties.ValueMember = "LineCode";
+            this.comboBoxEdit2.Properties.ValueMember = "gtID";
             this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit2.TabIndex = 3;
-            this.comboBoxEdit2.EditValueChanged += new System.EventHandler(this.comboBoxEdit2_EditValueChanged_2);
             // 
             // comboBoxEdit1
             // 
@@ -225,15 +224,15 @@
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 1;
-            this.labelControl2.Text = "分支线路";
+            this.labelControl2.Text = "所属杆塔";
             // 
             // labelControl3
             // 
             this.labelControl3.Location = new System.Drawing.Point(40, 84);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(72, 14);
+            this.labelControl3.Size = new System.Drawing.Size(48, 14);
             this.labelControl3.TabIndex = 1;
-            this.labelControl3.Text = "交叉跨越位置";
+            this.labelControl3.Text = "线路全名";
             // 
             // labelControl4
             // 
