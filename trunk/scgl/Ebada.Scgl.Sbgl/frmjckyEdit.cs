@@ -25,16 +25,23 @@ namespace Ebada.Scgl.Sbgl
             set { parentID = value; }
         }
 
+        private string lineCode;
 
+        public string LineCode {
+            get { return lineCode; }
+            set { lineCode = value;
+            
+            }
+        }
         public frmjckyEdit() {
             InitializeComponent();
         }
         void dataBind() {
 
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineID");
+            //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineID");
             //this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "LineID");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "gtID");
+            //this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "gtID");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "kywz");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "kygh");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "kymc");
@@ -71,9 +78,9 @@ namespace Ebada.Scgl.Sbgl
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "所属单位", comboBoxEdit6);
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "级别", comboBoxEdit7);
 
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
-            comboBoxEdit1.Properties.DataSource = xlList;
-           comboBoxEdit2.Properties.DataSource = xlList;
+            //IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
+            //comboBoxEdit1.Properties.DataSource = xlList;
+           //comboBoxEdit2.Properties.DataSource = xlList;
 
 
         }
