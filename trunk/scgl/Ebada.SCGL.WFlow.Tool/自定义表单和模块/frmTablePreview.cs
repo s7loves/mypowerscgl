@@ -1078,6 +1078,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 try
                 {
+                    sqlSentence = sqlSentence.Replace("\r\n", "");
                     li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
                 }
                 catch(Exception ex)

@@ -273,6 +273,7 @@ namespace Ebada.Scgl.Yxgl
                         if (ctl != null)
                         {
                             ctl.Text = tfvli[i].ControlValue;
+                            ctl.Focus();
                         }
                        
 
@@ -380,10 +381,9 @@ namespace Ebada.Scgl.Yxgl
                         currentPosY += int.Parse(size[1]) + 10;
                     }
 
-                    if (flag)
-                    {
-                        ctrl.TextChanged += new EventHandler(ctrl_Leave);
-                    }
+                   
+                     ctrl.TextChanged += new EventHandler(ctrl_Leave);
+                   
                     ctrl.Enter += new EventHandler(ctrl_Enter);
                     ctrl.Leave += new EventHandler(ctrl_Leave);
                     ctrl.Visible = flag;
@@ -401,11 +401,43 @@ namespace Ebada.Scgl.Yxgl
                     {
                         ctrl.Text=currRecord.tqName;
                     }
-                    //else
-                    //    if (lp.CellName.IndexOf("说明") > -1)
-                    //    {
-                    //        ctrl.Text = currRecord.Remark;
-                    //    }
+                    else
+                        if (lp.CellName.IndexOf("低压线路") > -1)
+                        {
+                            
+                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='"+currRecord.tqName+"'");
+                            lp.SqlSentence = "select cast(sum(wirelength) as varchar)  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
+                                + " and linevol='0.4'";
+                            ctrl.Tag = lp;
+                        }
+                        else
+                            if (lp.CellName.IndexOf("最大供电半径") > -1)
+                            {
+
+                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                lp.SqlSentence = "select cast(max(gdbj) as varchar)  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
+                                    + " and linevol='0.4'";
+                                ctrl.Tag = lp;
+                            }
+                            else
+                                if (lp.CellName.IndexOf("低压杆基数") > -1)
+                                {
+
+                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                    lp.SqlSentence = "select count(*) from dbo.PS_gt where  gtID in (select gtID" 
+                                                        +"from PS_tq where 5=5 and tqName='"+currRecord.tqName+"'";
+                                    ctrl.Tag = lp;
+                                }
+                                else
+                                    if (lp.CellName.IndexOf("表箱数") > -1)
+                                    {
+
+                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                        lp.SqlSentence = "select * from PS_sbcs where 5=5  and mc like '%表箱%'"
+                                            +" and ParentID in (select gtid from dbo.PS_gt where"
+                                            +"  gtID in (select gtID from PS_tq where 5=5 and tqName='"+currRecord.tqName+"'))";
+                                        ctrl.Tag = lp;
+                                    }
                 }
             }
             InitEvent();
@@ -538,9 +570,18 @@ namespace Ebada.Scgl.Yxgl
             for (int i = 0; i < templeList.Count; i++)
             {
                 WF_TableFieldValue wfv = new  WF_TableFieldValue();
-                wfv.ExcelSheetName = "";
-                wfv.XExcelPos = -1;
-                wfv.YExcelPos = -1;
+                wfv.ExcelSheetName = templeList[i].KindTable;
+                if (templeList[i].CellPos != "")
+                {
+                    wfv.XExcelPos = GetCellPos(templeList[i].CellPos)[0];
+                    wfv.YExcelPos = GetCellPos(templeList[i].CellPos)[1];
+                }
+                else
+                {
+
+                    wfv.XExcelPos = -1;
+                    wfv.YExcelPos = -1;
+                }
                 wfv.FieldId = templeList[i].LPID;
                 wfv.FieldName = templeList[i].CellName;
                 ct = FindCtrl( templeList[i].LPID);
@@ -1501,6 +1542,7 @@ namespace Ebada.Scgl.Yxgl
                 }
                 try
                 {
+                    sqlSentence = sqlSentence.Replace("\r\n", "");
                     li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
                 }
                 catch (Exception ex)
@@ -1511,7 +1553,7 @@ namespace Ebada.Scgl.Yxgl
             switch (ctrltype)
             {
                 case "DevExpress.XtraEditors.TextEdit":
-                    if (li.Count > 0 && sqlSentence != "")
+                    if (li.Count > 0 && sqlSentence != ""&&li[0]!=null)
                         ((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
                     break;
                 case "DevExpress.XtraEditors.ComboBoxEdit":
@@ -1538,7 +1580,13 @@ namespace Ebada.Scgl.Yxgl
                     //}
 
                     if (li.Count > 0 && sqlSentence != "")
-                        ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(li);
+                    {
+                        try
+                        {
+                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(li);
+                        }
+                        catch { }
+                    }
                     string[] comBoxItem = lp.ComBoxItem.Split(pcomboxchar);
                     comBoxItem = StringHelper.ReplaceEmpty(comBoxItem).Split(pchar);
                     for (int i = 0; i < comBoxItem.Length; i++)
