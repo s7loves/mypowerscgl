@@ -565,6 +565,10 @@ namespace Ebada.Scgl.Yxgl
                     {
                         Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
                     }
+                    if (currRecord.BigData == null)
+                    {
+                        currRecord.BigData = new byte[0];
+                    }
                      Client.ClientHelper.PlatformSqlMap.Create<PJ_20>(currRecord);
                     break;
 
@@ -572,7 +576,22 @@ namespace Ebada.Scgl.Yxgl
 
                     if (list.Count > 0)
                     {
+                        foreach (WF_TableFieldValue wfv in list)
+                        {
+                           WF_TableFieldValue wtfvtemp= Client.ClientHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
+                                + " and   WorkflowId='" + wfv.WorkFlowId + "'"
+                                + " and   RecordId='" + wfv.RecordId + "'"
+                                + " and   UserControlId='" + wfv.UserControlId + "'"
+                                + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
+                                + " and   FieldId='" + wfv.FieldId + "'"
+                                + " and WorkTaskInsId='20低压设备完好率及台区网络图'");
+                           wfv.ID = wtfvtemp.ID;
+                        }
                         Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, list, null);
+                    }
+                    if (currRecord.BigData == null)
+                    {
+                        currRecord.BigData = new byte[0];
                     }
                     Client.ClientHelper.PlatformSqlMap.Update<PJ_20>(currRecord);
                     break;
