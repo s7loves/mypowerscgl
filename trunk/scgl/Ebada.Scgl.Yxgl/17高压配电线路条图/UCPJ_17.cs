@@ -1597,7 +1597,7 @@ namespace Ebada.Scgl.Yxgl
                          range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
                          fxstart = (float)Convert.ToDouble(range.Cells.Width);
                          range = (Excel.Range)xx.get_Range(xx.Cells[6, 2], xx.Cells[6, 2]);
-                         fxstart += (float)Convert.ToDouble(range.Cells.Width)/2;
+                         fxstart += (float)Convert.ToDouble(range.Cells.Width);
                          range = (Excel.Range)xx.get_Range(xx.Cells[1, 1], xx.Cells[5, 1]);
                          fystart = (float)Convert.ToDouble(range.Cells.Height);
                          range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
@@ -1609,7 +1609,7 @@ namespace Ebada.Scgl.Yxgl
                              float width = (float)Convert.ToDouble(range.Cells.Width);
 
 
-                             activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width*3 /4, fystart, gwidth, gheifht);
+                             activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width /2, fystart, gwidth, gheifht);
                              //activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart, fystart, gwidth, gheifht);
                              activShape.Fill.ForeColor.RGB = icolor;
                              if (itemp > 0)
