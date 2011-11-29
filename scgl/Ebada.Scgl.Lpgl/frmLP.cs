@@ -218,6 +218,7 @@ namespace Ebada.Scgl.Lpgl
             {
                 bool flag = (lp.Status == CurrRecord.Status);
                 Label label = new Label();
+                ComboBoxEdit btTip = null;
                 label.Text = lp.CellName;
                 //string[] location = lp.CtrlLocation.Split(',');
                 string[] size = lp.CtrlSize.Split(',');
@@ -227,7 +228,26 @@ namespace Ebada.Scgl.Lpgl
                 if (flag)
                 {
                     currentPosY += 20;
-                }                
+                }
+                if (lp.CtrlType.Contains("MemoEdit") && flag && lp.SqlSentence != "")
+                {
+                    btTip = new ComboBoxEdit();
+                    btTip.Name = "bt" + lp.LPID;
+                    btTip.Location = new Point(currentPosX, currentPosY);
+                    btTip.Size = new Size(300, 14);
+                    currentPosY += 30;
+                    btTip.Tag = lp;
+                }
+                else
+                    if (lp.CtrlType.Contains("TextEdit") && flag && lp.SqlSentence != "")
+                    {
+                        btTip = new ComboBoxEdit();
+                        btTip.Name = "bt" + lp.LPID;
+                        btTip.Location = new Point(currentPosX, currentPosY);
+                        btTip.Size = new Size(300, 14);
+                        currentPosY += 30;
+                        btTip.Tag = lp;
+                    }       
                 Control ctrl ;
 
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
@@ -244,10 +264,8 @@ namespace Ebada.Scgl.Lpgl
                     currentPosY += int.Parse(size[1]) + 10; 
                 }
 
-                if (flag)
-                {
                     ctrl.TextChanged += new EventHandler(ctrl_Leave);
-                }                
+                          
                 ctrl.Leave += new EventHandler(ctrl_Leave);
                 ctrl.Enter += new EventHandler(ctrl_Enter);
                 ctrl.Visible = flag;

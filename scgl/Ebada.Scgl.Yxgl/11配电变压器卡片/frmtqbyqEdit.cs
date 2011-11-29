@@ -23,7 +23,7 @@ namespace Ebada.Scgl.Yxgl
         }
         void dataBind() {
 
-            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "tqID");
+            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "tqID");
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "byqCode");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "byqName");
@@ -80,7 +80,24 @@ namespace Ebada.Scgl.Yxgl
             IList<PS_tq> tqlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("");
 
             SetComboBoxData(lookUpEdit1, "tqName", "tqID", "选择台区", "", tqlist);
+            for (int i = 0; i < tqlist.Count; i++)
+            {
+                ListItem ot = new ListItem();
+                ot.DisplayMember = tqlist[i].tqName;
+                ot.ValueMember = tqlist[i].tqID;
+                comboBoxEdit4.Properties.Items.Add(ot);
+            }
 
+            if (rowData.tqID == "")
+            {
+                if (comboBoxEdit10.Properties.Items.Count > 0)
+                    comboBoxEdit10.SelectedIndex = 0;
+            }
+            else
+            {
+                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(rowData.tqID);
+                comboBoxEdit4.Text = tq.tqName;
+            }
 
 
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "型号", comboBoxEdit3.Properties);
@@ -122,11 +139,18 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (lookUpEdit1.EditValue==null||lookUpEdit1.EditValue.ToString()=="")
+            //if (lookUpEdit1.EditValue==null||lookUpEdit1.EditValue.ToString()=="")
+            //{
+            //    MsgBox.ShowTipMessageBox("请选择台区。");
+            //    return;
+            //}
+            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + comboBoxEdit4.Text + "'");
+            if (tq == null )
             {
                 MsgBox.ShowTipMessageBox("请选择台区。");
                 return;
             }
+            rowData.tqID = tq.tqID;
             if (comboBoxEdit1.Text == "")
             {
                 MsgBox.ShowTipMessageBox("变压器编号不能为空。");

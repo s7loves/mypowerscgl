@@ -373,6 +373,7 @@ namespace Ebada.Scgl.Lcgl
                     bool flag;//= (lp.Status == CurrRecord.Status);
                     flag = lp.IsVisible==0;
                     Label label = new Label();
+                    ComboBoxEdit btTip = null;
                     label.Text = lp.CellName;
                     //string[] location = lp.CtrlLocation.Split(',');
                     string[] size = lp.CtrlSize.Split(',');
@@ -383,6 +384,26 @@ namespace Ebada.Scgl.Lcgl
                     {
                         currentPosY += 20;
                     }
+                    if (lp.CtrlType.Contains("MemoEdit") && flag && lp.SqlSentence != "")
+                    {
+                        btTip = new ComboBoxEdit();
+                        btTip.Name = "bt" + lp.LPID;
+                        btTip.Location = new Point(currentPosX, currentPosY);
+                        btTip.Size = new Size(300, 14);
+                        currentPosY += 30;
+                        btTip.Tag = lp;
+                    }
+                    else
+                        if (lp.CtrlType.Contains("TextEdit") && flag && lp.SqlSentence != "")
+                        {
+                            btTip = new ComboBoxEdit();
+                            btTip.Name = "bt" + lp.LPID;
+                            btTip.Location = new Point(currentPosX, currentPosY);
+                            btTip.Size = new Size(300, 14);
+                            currentPosY += 30;
+                            btTip.Tag = lp;
+                        }
+
                     Control ctrl;
 
                     if (lp.CtrlType.Contains("uc_gridcontrol"))
@@ -399,16 +420,21 @@ namespace Ebada.Scgl.Lcgl
                         currentPosY += int.Parse(size[1]) + 10;
                     }
 
-                    if (flag)
-                    {
-                        ctrl.TextChanged += new EventHandler(ctrl_Leave);
-                    }
+                   
+                   
+                    
                     ctrl.Enter += new EventHandler(ctrl_Enter);
                     ctrl.Leave += new EventHandler(ctrl_Leave);
                     ctrl.TextChanged += new EventHandler(ctrl_Leave);
                     ctrl.Visible = flag;
                     ctrl.Tag = lp;
                     ctrl.TabIndex = index;
+                    if (btTip != null)
+                    {
+                        btTip.TabIndex = index;
+                        index++;
+                        btTip.TextChanged += new EventHandler(btTip_Click);
+                    }
                     if (lp.CtrlType.Contains("uc_gridcontrol"))
                     {
                         (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar));
@@ -416,6 +442,10 @@ namespace Ebada.Scgl.Lcgl
                     index++;
                     ctrl.Name = lp.LPID;
                     dockPanel1.Controls.Add(label);
+                    if (btTip != null)
+                    {
+                        dockPanel1.Controls.Add(btTip);
+                    }
                     dockPanel1.Controls.Add(ctrl);
                     if (lp.CellName == "编号")
                     {
@@ -476,6 +506,41 @@ namespace Ebada.Scgl.Lcgl
             btn_Submit.Click += new EventHandler(btn_Submit_Click);
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
+        }
+        void btTip_Click(object sender, EventArgs e)
+        {
+            LP_Temple lp = (LP_Temple)(sender as Control).Tag;
+            string str = (sender as Control).Text;
+            Control ct = FindCtrl(lp.LPID);
+            if (ct != null)
+            {
+                if (lp.CellName.Substring(lp.CellName.Length - 1) == "人" || lp.CellName.Substring(lp.CellName.Length - 2) == "人员")
+                {
+                    if (ct.Text == "")
+                        ct.Text = str;
+                    else
+                        ct.Text += "，" + str;
+                }
+                else
+                {
+                    if (lp.CtrlType.Contains("MemoEdit") )
+                    {
+                        if (ct.Text == "")
+                            ct.Text = str;
+                        else
+                            ct.Text += "\r\n" + str;
+                    }
+                    else
+                        if (lp.CtrlType.Contains("TextEdit") )
+                        {
+                            if (ct.Text == "")
+                                ct.Text = str;
+                            else
+                                ct.Text += "，" + str;
+                        }
+
+                }
+            }
         }
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
@@ -892,6 +957,8 @@ namespace Ebada.Scgl.Lcgl
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
             {
                 //UpdateRelateData(ctrl);
+                if (ctrl.Name.IndexOf("bt") > -1)
+                    continue;
                 if (ctrl.Tag != null && (!tempCtrlList.Contains(ctrl)))
                     InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
             }
@@ -1769,8 +1836,20 @@ namespace Ebada.Scgl.Lcgl
             switch (ctrltype)
             {
                 case "DevExpress.XtraEditors.TextEdit":
+                    //if (li.Count > 0 && sqlSentence != "")
+                    //    ((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
                     if (li.Count > 0 && sqlSentence != "")
+                    {
                         ((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
+                        Control bttip = FindCtrl("bt" + lp.LPID);
+                        if (bttip != null)
+                        {
+                            ((ComboBoxEdit)bttip).Properties.Items.Clear();
+                            ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
+                            if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
+                                ((ComboBoxEdit)bttip).SelectedIndex = 0;
+                        }
+                    }
                     break;
                 case "DevExpress.XtraEditors.ComboBoxEdit":
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();
@@ -1883,8 +1962,21 @@ namespace Ebada.Scgl.Lcgl
                     }
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
+                    //if (li.Count > 0 && sqlSentence != "")
+                    //    ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
+
                     if (li.Count > 0 && sqlSentence != "")
+                    {
                         ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
+                        Control bttip = FindCtrl("bt" + lp.LPID);
+                        if (bttip != null)
+                        {
+                            ((ComboBoxEdit)bttip).Properties.Items.Clear();
+                            ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
+                            if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
+                                ((ComboBoxEdit)bttip).SelectedIndex = 0;
+                        }
+                    }
                     break;
                 case "uc_gridcontrol":
                     ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar));

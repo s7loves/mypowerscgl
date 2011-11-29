@@ -27,7 +27,9 @@ namespace Ebada.Scgl.Yxgl
         {
 
 
-            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineID");
+            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineID");
+
+            //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineName");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "xlqd");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "xssj");
             //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "xsr");
@@ -89,14 +91,34 @@ namespace Ebada.Scgl.Yxgl
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
             IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'");
             SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
+            comboBoxEdit1.Properties.Items.Clear();
+            for (int i = 0; i < xllit.Count; i++)
+            {
+                ListItem ot = new ListItem();
+                ot.DisplayMember = xllit[i].LineName;
+                ot.ValueMember = xllit[i].LineCode;
+                comboBoxEdit1.Properties.Items.Add(ot);
+            }
+            if (rowData.LineName == "")
+            {
+                if (comboBoxEdit1.Properties.Items.Count > 0)
+                {
+                    comboBoxEdit1.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                comboBoxEdit1.Text = rowData.LineName;
+            }
 
-            //巡视区段
-            // ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视区段", comboBoxEdit2.Properties);
+
+                //巡视区段
+                // ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视区段", comboBoxEdit2.Properties);
 
 
-            //ICollection qxlist = ComboBoxHelper.GetQxlb();//获取缺陷类别
-            //缺陷类别GetQxlb
-            ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
+                //ICollection qxlist = ComboBoxHelper.GetQxlb();//获取缺陷类别
+                //缺陷类别GetQxlb
+                ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
 
             //ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视人", comboBoxEdit3.Properties);
 
@@ -228,8 +250,8 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
         {
-            string xsqdname = comboBoxEdit2.EditValue.ToString();
-           PJ_sbxsqd ps = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_sbxsqd>("where XsqdName='"+xsqdname+"'and LineCode='"+rowData.LineID+"' ");
+           
+           PJ_sbxsqd ps = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_sbxsqd>("where XsqdName='"+ comboBoxEdit2.EditValue+"'and LineCode='"+rowData.LineID+"' ");
             if (ps!=null)
             {
                 comboBoxEdit3.EditValue = ps.XSR1;
@@ -297,6 +319,23 @@ namespace Ebada.Scgl.Yxgl
                     break;
             }
 
+        }
+
+        private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            PS_xl xl = null;
+            xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='"+comboBoxEdit1.Text+"'");
+            if (xl != null)
+            {
+                rowData.LineID = xl.LineID;
+                rowData.LineName = xl.LineName;
+            }
         }
 
 
