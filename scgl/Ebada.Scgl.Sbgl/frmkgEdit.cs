@@ -81,7 +81,7 @@ namespace Ebada.Scgl.Sbgl
             ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "跳闸电流", comboBoxEdit8.Properties);
             comboBoxEdit17.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='开关' and sx like '%{0}%' and nr!=''", "完好类型"));
+            string.Format("select nr from pj_dyk where  dx='公共属性' and sx like '%{0}%' and nr!=''", "完好类型"));
             if (strlist.Count > 0)
                 comboBoxEdit17.Properties.Items.AddRange(strlist);
             else

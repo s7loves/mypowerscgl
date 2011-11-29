@@ -107,7 +107,7 @@ namespace Ebada.Scgl.Sbgl
             }
             comboBoxEdit13.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='台区' and sx like '%{0}%' and nr!=''", "完好类型"));
+            string.Format("select nr from pj_dyk where  dx='公共属性' and sx like '%{0}%' and nr!=''", "完好类型"));
             if (strlist.Count > 0)
                 comboBoxEdit13.Properties.Items.AddRange(strlist);
             else
