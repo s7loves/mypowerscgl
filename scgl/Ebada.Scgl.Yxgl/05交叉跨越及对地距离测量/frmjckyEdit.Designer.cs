@@ -230,9 +230,9 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(40, 84);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(48, 14);
+            this.labelControl3.Size = new System.Drawing.Size(72, 14);
             this.labelControl3.TabIndex = 1;
-            this.labelControl3.Text = "线路全名";
+            this.labelControl3.Text = "交叉跨越位置";
             // 
             // labelControl4
             // 
