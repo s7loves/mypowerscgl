@@ -240,16 +240,16 @@ namespace Ebada.Scgl.Yxgl
                 MsgBox.ShowWarningMessageBox("没有找到表单20低压线路完好率及台区网络图!");
                 return;
             }
-            if (currRecord.BigData == null || currRecord.BigData.Length == 0)
+            //if (currRecord.BigData == null || currRecord.BigData.Length == 0)
             {
 
                 this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
             }
-            else
-            {
+            //else
+            //{
 
-                this.dsoFramerWordControl1.FileDataGzip = currRecord.BigData;
-            }
+            //    this.dsoFramerWordControl1.FileDataGzip = currRecord.BigData;
+            //}
                 InitIndex();
                 InitContorl();
                 InitData();
@@ -406,7 +406,7 @@ namespace Ebada.Scgl.Yxgl
                         {
                             
                             PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='"+currRecord.tqName+"'");
-                            lp.SqlSentence = "select case  cast(sum(wirelength) as varchar) is null then '0' else cast(max(wirelength) as varchar)  end  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
+                            lp.SqlSentence = "select case  when  cast(sum(wirelength) as varchar) is null then '0' else cast(max(wirelength) as varchar)  end  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
                                 + " and linevol='0.4'";
                             ctrl.Tag = lp;
                         }
@@ -415,7 +415,7 @@ namespace Ebada.Scgl.Yxgl
                             {
 
                                 PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                lp.SqlSentence = "select case   cast(max(gdbj) as varchar) is null then '0' else cast(max(gdbj) as varchar)  end  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
+                                lp.SqlSentence = "select case when    cast(max(gdbj) as varchar) is null then '0' else cast(max(gdbj) as varchar)  end  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
                                     + " and linevol='0.4'";
                                 ctrl.Tag = lp;
                             }
@@ -424,7 +424,7 @@ namespace Ebada.Scgl.Yxgl
                                 {
 
                                     PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                    lp.SqlSentence = "select case cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID" 
+                                    lp.SqlSentence = "select case  when cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID" 
                                                         +"from PS_tq where 5=5 and tqName='"+currRecord.tqName+"'";
                                     ctrl.Tag = lp;
                                 }
