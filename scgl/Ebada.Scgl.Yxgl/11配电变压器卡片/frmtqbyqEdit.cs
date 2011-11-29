@@ -90,8 +90,8 @@ namespace Ebada.Scgl.Yxgl
 
             if (rowData.tqID == "")
             {
-                if (comboBoxEdit10.Properties.Items.Count > 0)
-                    comboBoxEdit10.SelectedIndex = 0;
+                if (comboBoxEdit4.Properties.Items.Count > 0)
+                    comboBoxEdit4.SelectedIndex = 0;
             }
             else
             {
@@ -184,6 +184,22 @@ namespace Ebada.Scgl.Yxgl
             //    comboBoxEdit1.Properties.Items.Add(byqlist[i].byqCode);
             //    comboBoxEdit2.Properties.Items.Add(byqlist[i].byqName);
             //}
+        }
+
+        private void comboBoxEdit4_TextChanged(object sender, EventArgs e)
+        {
+            PS_tq tq = null; 
+            tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + comboBoxEdit4.Text + "'");
+            if (tq != null)
+            {
+                rowData.tqID = tq.tqID;
+                PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(rowData.tqID);
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select byqName from PS_tqbyq where tqid ='" + rowData.tqID + "'");
+                rowData.byqCode = pt.tqCode + list.Count.ToString();
+                comboBoxEdit1.Text = rowData.byqCode;
+                comboBoxEdit2.Properties.Items.AddRange(list);
+                comboBoxEdit14.EditValue = pt.Adress;
+            }
         }
     
     }
