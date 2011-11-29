@@ -177,7 +177,7 @@ namespace Ebada.Scgl.Yxgl
             if (xl == null)
             {
                 MsgBox.ShowTipMessageBox("线路名称不能对，没找到线路。");
-                comboBoxEdit1.Focus();
+                comboBoxEdit10.Focus();
                 return;
             }
             if (xl != null)

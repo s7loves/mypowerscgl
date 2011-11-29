@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Yxgl
 
 
            
-            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineCode");
+            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineCode");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             this.buttonEdit1.DataBindings.Add("EditValue", rowData, "BigData");
            
@@ -80,7 +80,25 @@ namespace Ebada.Scgl.Yxgl
             //    this.cltCity.Properties.KeyValue = cityCode;
           
             IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where len(linecode)=6 and OrgCode ='" + rowData.OrgCode + "'or OrgCode2='" + rowData.OrgCode + "'");
-            this.SetComboBoxData(this.lookUpEdit1, "LineName", "LineID", "请选择", "线路名称", list);
+            //this.SetComboBoxData(this.lookUpEdit1, "LineName", "LineID", "请选择", "线路名称", list);
+            comboBoxEdit10.Properties.Items.Clear();
+            for (int i = 0; i < list.Count; i++)
+            {
+                ListItem ot = new ListItem();
+                ot.DisplayMember = list[i].LineName;
+                ot.ValueMember = list[i].LineCode;
+                comboBoxEdit10.Properties.Items.Add(ot);
+            }
+
+            if (rowData.LineName == "")
+            {
+                if (comboBoxEdit10.Properties.Items.Count > 0)
+                    comboBoxEdit10.SelectedIndex = 0;
+            }
+            else
+            {
+                comboBoxEdit10.Text = rowData.LineName;
+            }
             this.buttonEdit1.Text = "";
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);
         }
@@ -179,8 +197,37 @@ namespace Ebada.Scgl.Yxgl
             //    MsgBox.ShowTipMessageBox("文档内容不能为空。");
             //    return;
             //}
+            PS_xl xl = null;
+            xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit10.Text + "'");
+            if (xl == null)
+            {
+                MsgBox.ShowTipMessageBox("线路名称不能对，没找到线路。");
+                comboBoxEdit10.Focus();
+                return;
+            }
+            if (xl != null)
+            {
+                rowData.LineCode = xl.LineCode;
+                rowData.LineName = xl.LineName;
+            }
+            if (rowData.BigData == null)
+            {
+                rowData.BigData = new byte[0];
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void comboBoxEdit10_TextChanged(object sender, EventArgs e)
+        {
+            PS_xl xl = null;
+            xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit10.Text + "'");
+            if (xl!= null)
+            {
+                rowData.LineName = comboBoxEdit10.Text;
+                rowData.LineCode = xl.LineCode;
+
+            }
         }
 
     }
