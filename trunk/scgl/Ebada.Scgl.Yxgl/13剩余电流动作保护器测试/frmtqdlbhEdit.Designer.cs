@@ -42,6 +42,7 @@
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit9 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit8 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.comboBoxEdit10 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit7 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit11 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -75,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit9.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).BeginInit();
@@ -131,6 +133,7 @@
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
             this.groupBox1.Controls.Add(this.comboBoxEdit9);
             this.groupBox1.Controls.Add(this.comboBoxEdit8);
+            this.groupBox1.Controls.Add(this.comboBoxEdit10);
             this.groupBox1.Controls.Add(this.comboBoxEdit2);
             this.groupBox1.Controls.Add(this.comboBoxEdit7);
             this.groupBox1.Controls.Add(this.comboBoxEdit11);
@@ -158,7 +161,7 @@
             // 
             // comboBoxEdit5
             // 
-            this.comboBoxEdit5.Location = new System.Drawing.Point(123, 27);
+            this.comboBoxEdit5.Location = new System.Drawing.Point(259, 3);
             this.comboBoxEdit5.Name = "comboBoxEdit5";
             this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -168,6 +171,7 @@
             this.comboBoxEdit5.Properties.ValueMember = "tqID ";
             this.comboBoxEdit5.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit5.TabIndex = 18;
+            this.comboBoxEdit5.Visible = false;
             this.comboBoxEdit5.EditValueChanged += new System.EventHandler(this.comboBoxEdit5_EditValueChanged);
             // 
             // textEdit2
@@ -254,6 +258,16 @@
             this.comboBoxEdit8.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit8.TabIndex = 14;
             this.comboBoxEdit8.Visible = false;
+            // 
+            // comboBoxEdit10
+            // 
+            this.comboBoxEdit10.Location = new System.Drawing.Point(123, 31);
+            this.comboBoxEdit10.Name = "comboBoxEdit10";
+            this.comboBoxEdit10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit10.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit10.TabIndex = 14;
+            this.comboBoxEdit10.TextChanged += new System.EventHandler(this.comboBoxEdit10_TextChanged);
             // 
             // comboBoxEdit2
             // 
@@ -459,6 +473,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit9.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).EndInit();
@@ -507,6 +522,7 @@
         private DevExpress.XtraEditors.TextEdit textEdit2;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
         private DevExpress.XtraEditors.LookUpEdit comboBoxEdit5;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit10;
 
     }
 }
