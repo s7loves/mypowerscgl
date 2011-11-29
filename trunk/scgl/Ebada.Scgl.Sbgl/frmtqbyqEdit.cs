@@ -106,7 +106,7 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetVoltage());
             comboBoxEdit16.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='变压器' and sx like '%{0}%' and nr!=''", "完好类型"));
+            string.Format("select nr from pj_dyk where  dx='公共属性' and sx like '%{0}%' and nr!=''", "完好类型"));
             if (strlist.Count > 0)
                 comboBoxEdit16.Properties.Items.AddRange(strlist);
             else
