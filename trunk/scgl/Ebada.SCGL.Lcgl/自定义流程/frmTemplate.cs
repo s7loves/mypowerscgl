@@ -402,10 +402,8 @@ namespace Ebada.Scgl.Lcgl
                         currentPosY += int.Parse(size[1]) + 10;
                     }
 
-                    if (flag)
-                    {
-                        ctrl.TextChanged += new EventHandler(ctrl_Leave);
-                    }
+                   
+                    ctrl.TextChanged += new EventHandler(ctrl_Leave);
                     ctrl.Enter += new EventHandler(ctrl_Enter);
                     ctrl.Leave += new EventHandler(ctrl_Leave);
                     ctrl.Visible = flag;

@@ -285,24 +285,24 @@ namespace Ebada.SCGL.WFlow.Tool
                     currentPosY += int.Parse(size[1]) + 10; 
                 }
 
-                if (flag)
-                {
-                    ctrl.TextChanged += new EventHandler(ctrl_Leave);
-                }                
+               
+                ctrl.TextChanged += new EventHandler(ctrl_Leave);
                 ctrl.Leave += new EventHandler(ctrl_Leave);
                 ctrl.Enter += new EventHandler(ctrl_Enter);
                 ctrl.Visible = flag;
                 ctrl.Tag = lp;
                 ctrl.TabIndex = index;
+                index++;
                 if (btTip != null)
                 {
+                    btTip.TabIndex = index;
+                    index++;
                     btTip.TextChanged += new EventHandler(btTip_Click);
                 }
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
                 {
                     (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar));
                 }
-                index++;
                 ctrl.Name = lp.LPID;
                 dockPanel1.Controls.Add(label);
                 if (btTip != null)
@@ -323,6 +323,8 @@ namespace Ebada.SCGL.WFlow.Tool
             InitData();
 
             Button btn_Submit = new Button();
+            btn_Submit.TabIndex = index;
+            index++;
             dockPanel1.Controls.Add(btn_Submit);
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
             btn_Submit.Click += new EventHandler(btn_Submit_Click);
