@@ -129,6 +129,7 @@ namespace Ebada.Scgl.Sbgl {
             newobj.ParentID = pid;
             if (pid == "0") newobj.ParentID = tq.tqCode;
             newobj.LineID = newobj.LineCode = linecode;
+            newobj.LineID += new Random().Next(10, 99);
             newobj.LineVol = "0.4";
             newobj.LineName = "";
             newobj.ParentGT = "";
