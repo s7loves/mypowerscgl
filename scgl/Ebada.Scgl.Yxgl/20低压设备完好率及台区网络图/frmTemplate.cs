@@ -406,7 +406,7 @@ namespace Ebada.Scgl.Yxgl
                         {
                             
                             PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='"+currRecord.tqName+"'");
-                            lp.SqlSentence = "select cast(sum(wirelength) as varchar)  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
+                            lp.SqlSentence = "select case  cast(sum(wirelength) as varchar) is null then '0' else cast(max(wirelength) as varchar)  end  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
                                 + " and linevol='0.4'";
                             ctrl.Tag = lp;
                         }
@@ -415,7 +415,7 @@ namespace Ebada.Scgl.Yxgl
                             {
 
                                 PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                lp.SqlSentence = "select cast(max(gdbj) as varchar)  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
+                                lp.SqlSentence = "select case   cast(max(gdbj) as varchar) is null then '0' else cast(max(gdbj) as varchar)  end  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
                                     + " and linevol='0.4'";
                                 ctrl.Tag = lp;
                             }
@@ -424,7 +424,7 @@ namespace Ebada.Scgl.Yxgl
                                 {
 
                                     PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                    lp.SqlSentence = "select count(*) from dbo.PS_gt where  gtID in (select gtID" 
+                                    lp.SqlSentence = "select case cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID" 
                                                         +"from PS_tq where 5=5 and tqName='"+currRecord.tqName+"'";
                                     ctrl.Tag = lp;
                                 }
