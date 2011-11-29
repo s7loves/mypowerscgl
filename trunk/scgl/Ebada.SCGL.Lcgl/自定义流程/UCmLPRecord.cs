@@ -870,6 +870,7 @@ namespace Ebada.Scgl.Lcgl {
                                 qxfl.OrgName = qxfltemp.OrgName;
                                 qxfl.sdsj = qxfltemp.sdsj;
                                 qxfl.tdsj = qxfltemp.tdsj;
+                                qxfl.gtdsj = "";
                                 TimeSpan span = qxfl.sdsj.Subtract(qxfl.tdsj);
                                 if (span.Days > 0)
                                     qxfl.gtdsj += span.Days + "天";
