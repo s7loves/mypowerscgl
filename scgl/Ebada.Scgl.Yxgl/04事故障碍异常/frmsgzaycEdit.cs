@@ -81,6 +81,14 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+            rowData.gtdsj = "";
+            TimeSpan span = rowData.sdsj.Subtract(rowData.tdsj);
+            if (span.Days > 0)
+                rowData.gtdsj += span.Days + "天";
+            if (span.Hours > 0)
+                rowData.gtdsj += span.Hours + "时";
+            if (span.Minutes > -1)
+                rowData.gtdsj += span.Minutes + "分";
             PJ_dyk dyk = SelectorHelper.SelectDyk("04事故异常运行记录", "异常运行内容", memoEdit2, memoEdit1, memoEdit4);
             if (dyk != null) {
                 memoEdit2.Text = memoEdit2.Text + "处理人：" + comboBoxEdit1.Text; 
