@@ -222,9 +222,9 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(40, 58);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(48, 14);
+            this.labelControl2.Size = new System.Drawing.Size(36, 14);
             this.labelControl2.TabIndex = 1;
-            this.labelControl2.Text = "所属杆塔";
+            this.labelControl2.Text = "支线路";
             // 
             // labelControl3
             // 
