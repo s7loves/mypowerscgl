@@ -535,7 +535,32 @@ namespace Ebada.SCGL.WFlow.Tool
             Control ct = FindCtrl(lp.LPID);
             if (ct != null)
             {
-                ct.Text = str;
+                if (lp.CellName.Substring(lp.CellName.Length - 1) == "人" || lp.CellName.Substring(lp.CellName.Length - 2) == "人员")
+                {
+                    if (ct.Text == "")
+                        ct.Text = str;
+                    else
+                        ct.Text += "，" + str;
+                }
+                else
+                {
+                    if (lp.CtrlType.Contains("MemoEdit"))
+                    {
+                        if (ct.Text == "")
+                            ct.Text = str;
+                        else
+                            ct.Text += "\r\n" + str;
+                    }
+                    else
+                        if (lp.CtrlType.Contains("TextEdit"))
+                        {
+                            if (ct.Text == "")
+                                ct.Text = str;
+                            else
+                                ct.Text += "，" + str;
+                        }
+
+                }
             }
         }
         void ctrl_Enter(object sender, EventArgs e)
