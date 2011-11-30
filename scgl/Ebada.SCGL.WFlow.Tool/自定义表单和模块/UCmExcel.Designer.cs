@@ -27,7 +27,7 @@
             this.components = new System.ComponentModel.Container();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
-            this.btAdd = new DevExpress.XtraBars.BarButtonItem();
+            this.btReAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
@@ -60,7 +60,7 @@
             this.barManager1.DockControls.Add(this.barDockControlRight);
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btAdd,
+            this.btReAdd,
             this.btEdit,
             this.btDelete,
             this.btFind,
@@ -79,7 +79,7 @@
             this.bar1.DockRow = 0;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
@@ -92,13 +92,14 @@
             this.bar1.OptionsBar.UseWholeRow = true;
             this.bar1.Text = "Tools";
             // 
-            // btAdd
+            // btReAdd
             // 
-            this.btAdd.Caption = "增加";
-            this.btAdd.Id = 0;
-            this.btAdd.ImageIndex = 6;
-            this.btAdd.Name = "btAdd";
-            this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReAdd.Caption = "增加";
+            this.btReAdd.Id = 0;
+            this.btReAdd.ImageIndex = 6;
+            this.btReAdd.Name = "btReAdd";
+            this.btReAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReAdd_ItemClick);
             // 
             // btEdit
             // 
@@ -261,7 +262,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarButtonItem btAdd;
+        private DevExpress.XtraBars.BarButtonItem btReAdd;
         private DevExpress.XtraBars.BarButtonItem btEdit;
         private DevExpress.XtraBars.BarButtonItem btDelete;
         private DevExpress.XtraBars.BarButtonItem btFind;
