@@ -36,6 +36,7 @@ namespace Ebada.Scgl.Sbgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private PS_xl parentObj;
+        Random mRandom = new Random();
         public UCPS_GT()
         {
             InitializeComponent();
@@ -231,7 +232,7 @@ namespace Ebada.Scgl.Sbgl
             
             newobj.gtCode = ParentObj.LineCode + newobj.gth;
             newobj.gtID = newobj.gtCode;
-
+            newobj.gtID += mRandom.Next(10, 99);
             newobj.gtSpan = 50;
             newobj.gtMs = 1.7m;
             newobj.gtHeight = 10m;
@@ -333,6 +334,7 @@ namespace Ebada.Scgl.Sbgl
                     gts[count - 1] = image;
                 gt.LineCode = ParentObj.LineCode;
                 string id = DateTime.Now.ToString("yyyyMMddHHmmss");
+                
                 for (int i = 0; i < num; i++) {
                     PS_gt newgt = new PS_gt();
                     Ebada.Core.ConvertHelper.CopyTo(gt, newgt);
@@ -340,6 +342,7 @@ namespace Ebada.Scgl.Sbgl
                     string gth = (gh + 10 * i).ToString("0000");
                     newgt.gth = gth;
                     newgt.gtID=newgt.gtCode = newgt.LineCode + gth;
+                    newgt.gtID+= mRandom.Next(10, 99);
                     gts[i] = newgt;
                 }
                 Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(gts, null, null);

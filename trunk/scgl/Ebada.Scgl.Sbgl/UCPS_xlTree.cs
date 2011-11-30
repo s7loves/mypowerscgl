@@ -97,12 +97,17 @@ namespace Ebada.Scgl.Sbgl {
             if (treeList1.Selection[0] != null)
             {
                  pnode = treeList1.Selection[0].ParentNode;
+                 
             }
             if (newobj.ParentID == pid) {//同级
+                if(pnode!=null)
+                    Ebada.Core.ConvertHelper.CopyTo(pnode, newobj);
                 newobj.LineCode = newobj.LineID = getcode(pnode, pnode!=null?pnode.Nodes:treeList1.Nodes);
+                newobj.LineID += new Random().Next(10, 99);
                newobj.LineType =pnode==null?"1": Math.Min(3, pnode.Level + 2).ToString();
             } else {
                 newobj.LineCode = newobj.LineID = getcode(treeList1.Selection[0], treeList1.Selection[0].Nodes);
+                newobj.LineID += new Random().Next(10, 99);
                 newobj.LineType = Math.Min(3, treeList1.Selection[0].Level + 2).ToString();
             }
             
@@ -114,7 +119,7 @@ namespace Ebada.Scgl.Sbgl {
             int levenum = 3;
             if (pnode!=null && pnode.Level == 0) levenum = 4;
             string linecode = "";// pnode["LineCode"].ToString();
-            if (pnode != null && pnode.Level > 0) {//可能与低压线路重号
+            if (pnode != null ) {//可能与低压线路重号
                 linecode = pnode["LineCode"].ToString();
                 string sql = string.Format("Select max(linecode) as LineCode from ps_xl where len(linecode)={2} and Left(linecode,{0})='{1}'", linecode.Length,linecode,linecode.Length+levenum);
                 Hashtable ht = Client.ClientHelper.PlatformSqlMap.GetObject("Select", sql) as Hashtable;
@@ -131,21 +136,20 @@ namespace Ebada.Scgl.Sbgl {
                 }
             } 
            if(code==""){
-                if (nodes.Count > 0) {
-                    int maxcode = 0;
-                    linecode = nodes[0]["LineCode"].ToString();
-                    foreach (TreeListNode node in nodes) {
-                        linecode = node["LineCode"].ToString();
-                        maxcode = Math.Max(maxcode, int.Parse(linecode.Substring(linecode.Length - levenum, levenum)));
-                    }
+               if (nodes.Count > 0) {
+                   int maxcode = 0;
+                   foreach (TreeListNode node in nodes) {
+                       linecode = node["LineCode"].ToString();
+                       maxcode = Math.Max(maxcode, int.Parse(linecode.Substring(linecode.Length - levenum, levenum)));
+                   }
+                   if (levenum == 4) {
+                       code = linecode.Substring(0, linecode.Length - levenum) + (maxcode + 10).ToString("0000");
+                   } else {
+                       code = linecode.Substring(0, linecode.Length - levenum) + (maxcode + 1).ToString("000");
+                   }
 
-                    if (levenum == 4) {
-                        code = linecode.Substring(0, linecode.Length - levenum) + (maxcode + 10).ToString("0000");
-                    } else {
-                        code = linecode.Substring(0, linecode.Length - levenum) + (maxcode + 1).ToString("000");
-                    }
-
-                } else {
+               } else 
+               {
                     if (pnode != null) {
                         if (pnode.Level == 0)
                             code = pnode["LineCode"].ToString() + "0010";
