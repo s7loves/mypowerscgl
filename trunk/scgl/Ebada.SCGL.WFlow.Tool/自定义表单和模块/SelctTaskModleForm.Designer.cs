@@ -42,6 +42,7 @@
             this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn11 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn12 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.RemoveMoudle = new DevExpress.XtraEditors.SimpleButton();
             this.AddMoudle = new DevExpress.XtraEditors.SimpleButton();
@@ -53,7 +54,6 @@
             this.treeListColumn8 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
-            this.treeListColumn12 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -72,6 +72,10 @@
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList2)).BeginInit();
             this.SuspendLayout();
+            // 
+            // m_DefaultLookAndFeel
+            // 
+            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
             // 
             // groupControl1
             // 
@@ -112,7 +116,7 @@
             this.splitContainerControl2.Panel2.Controls.Add(this.panelControl1);
             this.splitContainerControl2.Panel2.Controls.Add(this.groupControl4);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(750, 305);
+            this.splitContainerControl2.Size = new System.Drawing.Size(750, 307);
             this.splitContainerControl2.SplitterPosition = 256;
             this.splitContainerControl2.TabIndex = 1;
             this.splitContainerControl2.Text = "splitContainerControl2";
@@ -125,7 +129,7 @@
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl2.Location = new System.Drawing.Point(0, 0);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(256, 305);
+            this.groupControl2.Size = new System.Drawing.Size(256, 307);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "模块列表";
             // 
@@ -150,7 +154,7 @@
             this.treeList1.OptionsBehavior.Editable = false;
             this.treeList1.OptionsSelection.InvertSelection = true;
             this.treeList1.OptionsSelection.UseIndicatorForSelection = true;
-            this.treeList1.Size = new System.Drawing.Size(252, 280);
+            this.treeList1.Size = new System.Drawing.Size(252, 282);
             this.treeList1.TabIndex = 1;
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
             // 
@@ -173,7 +177,7 @@
             this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl3.Location = new System.Drawing.Point(232, 0);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(256, 305);
+            this.groupControl3.Size = new System.Drawing.Size(258, 307);
             this.groupControl3.TabIndex = 3;
             this.groupControl3.Text = "可以操作的功能";
             // 
@@ -203,7 +207,7 @@
             this.treeList3.OptionsBehavior.Editable = false;
             this.treeList3.OptionsSelection.InvertSelection = true;
             this.treeList3.OptionsSelection.UseIndicatorForSelection = true;
-            this.treeList3.Size = new System.Drawing.Size(252, 280);
+            this.treeList3.Size = new System.Drawing.Size(254, 282);
             this.treeList3.TabIndex = 1;
             this.treeList3.DoubleClick += new System.EventHandler(this.treeList3_DoubleClick);
             // 
@@ -248,6 +252,14 @@
             this.treeListColumn11.FieldName = "Modu_ID";
             this.treeListColumn11.Name = "treeListColumn11";
             // 
+            // treeListColumn12
+            // 
+            this.treeListColumn12.Caption = "treeListColumn12";
+            this.treeListColumn12.FieldName = "ID";
+            this.treeListColumn12.Name = "treeListColumn12";
+            this.treeListColumn12.Visible = true;
+            this.treeListColumn12.VisibleIndex = 1;
+            // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.RemoveMoudle);
@@ -255,7 +267,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl1.Location = new System.Drawing.Point(196, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(36, 305);
+            this.panelControl1.Size = new System.Drawing.Size(36, 307);
             this.panelControl1.TabIndex = 5;
             // 
             // RemoveMoudle
@@ -286,7 +298,7 @@
             this.groupControl4.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupControl4.Location = new System.Drawing.Point(0, 0);
             this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(196, 305);
+            this.groupControl4.Size = new System.Drawing.Size(196, 307);
             this.groupControl4.TabIndex = 4;
             this.groupControl4.Text = "功能列表";
             // 
@@ -314,7 +326,7 @@
             this.treeList2.OptionsBehavior.Editable = false;
             this.treeList2.OptionsSelection.InvertSelection = true;
             this.treeList2.OptionsSelection.UseIndicatorForSelection = true;
-            this.treeList2.Size = new System.Drawing.Size(192, 280);
+            this.treeList2.Size = new System.Drawing.Size(192, 282);
             this.treeList2.TabIndex = 0;
             this.treeList2.DoubleClick += new System.EventHandler(this.treeList2_DoubleClick);
             // 
@@ -367,14 +379,6 @@
             this.btnOK.TabIndex = 10;
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // treeListColumn12
-            // 
-            this.treeListColumn12.Caption = "treeListColumn12";
-            this.treeListColumn12.FieldName = "ID";
-            this.treeListColumn12.Name = "treeListColumn12";
-            this.treeListColumn12.Visible = true;
-            this.treeListColumn12.VisibleIndex = 1;
             // 
             // SelctTaskModleForm
             // 

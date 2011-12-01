@@ -291,6 +291,10 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             e.Value.DocContent = parentObj.DocContent;
             string slqwhere = " where ParentID='" + e.Value.ParentID + "' ";
+            e.Value.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere) + 1;
+            e.Value.WordCount = "15";
+            e.Value.CtrlSize = "200,20";
+            slqwhere = " where ParentID='" + e.Value.ParentID + "' ";
 
             e.Value.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere)+1;
 
@@ -369,24 +373,24 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btReAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (string.IsNullOrEmpty(parentID))
-            {
+            //if (string.IsNullOrEmpty(parentID))
+            //{
                
-                MsgBox.ShowWarningMessageBox("请先选择模板后再修改模板！");
-                return;
-            }
-            frmExcelModelEdit frm = new frmExcelModelEdit();
-            LP_Temple lpr = new LP_Temple();
-            lpr.ParentID = ParentObj.LPID;
-            string slqwhere = " where ParentID='" +lpr.ParentID + "' ";
-            lpr.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere) + 1;
-            lpr.DocContent = parentObj.DocContent;
-            frm.RowData = lpr;
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                MainHelper.PlatformSqlMap.Create<LP_Temple>(lpr);
-                inidata();
-            }
+            //    MsgBox.ShowWarningMessageBox("请先选择模板后再修改模板！");
+            //    return;
+            //}
+            //frmExcelModelEdit frm = new frmExcelModelEdit();
+            //LP_Temple lpr = new LP_Temple();
+            //lpr.ParentID = ParentObj.LPID;
+            //string slqwhere = " where ParentID='" +lpr.ParentID + "' ";
+            //lpr.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere) + 1;
+            //lpr.DocContent = parentObj.DocContent;
+            //frm.RowData = lpr;
+            //if (frm.ShowDialog() == DialogResult.OK)
+            //{
+            //    MainHelper.PlatformSqlMap.Create<LP_Temple>(lpr);
+            //    inidata();
+            //}
         }
 
     }
