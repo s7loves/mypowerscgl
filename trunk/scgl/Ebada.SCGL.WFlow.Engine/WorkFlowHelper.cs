@@ -268,9 +268,10 @@ namespace Ebada.SCGL.WFlow.Engine
             string tmpVarName = "";
             tmpVarName = varName.Substring(2, varName.Length - 4);//去掉两头的<%%>
 
-            DataTable dt = TaskVar.GetTaskVarByName(tmpVarName);
+            DataTable dt = TaskVar.GetTaskVarByName(tmpVarName,workFlowId);
             if (dt != null && dt.Rows.Count > 0)
             {
+                
                 varDataBase  = dt.Rows[0]["DataBaseName"].ToString();
                 varTableName = dt.Rows[0]["TableName"].ToString();
                 varFieldName = dt.Rows[0]["TableField"].ToString();
@@ -296,6 +297,13 @@ namespace Ebada.SCGL.WFlow.Engine
                     varSql = "select " + varFieldName + " as name from " + varTableName + " where "
                         + list[0]
                         + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='" 
+                        + workFlowId + "' and WorkFlowInsId='"
+                        + workFlowInstanceId + "')";
+                else if (varTableName == "WF_TableFieldValue")
+
+                    varSql = "select " + varFieldName + " as name from " + varTableName + " where "
+                        + list[0]
+                        + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='"
                         + workFlowId + "' and WorkFlowInsId='"
                         + workFlowInstanceId + "')";
                 else

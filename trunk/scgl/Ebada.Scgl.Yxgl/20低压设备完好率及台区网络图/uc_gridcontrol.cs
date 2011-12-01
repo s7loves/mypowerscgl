@@ -15,7 +15,7 @@ namespace Ebada.Scgl.Yxgl
 {
     public partial class uc_gridcontrol : UserControl
     {
-        private char pcomboxitem = '，';
+        private char pcomboxitem = ',';
         private IList<DevExpress.XtraEditors.Repository.RepositoryItemComboBox> colctrllist;
         string[] m_ColName;
         private bool gridFlag = false;

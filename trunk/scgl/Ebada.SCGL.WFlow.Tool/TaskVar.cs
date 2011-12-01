@@ -281,11 +281,11 @@ namespace Ebada.SCGL.WFlow.Tool
         /// </summary>
         /// <param name="taskName">变量名</param>
         /// <returns>任务变量列表</returns>
-        public static DataTable GetTaskVarByName(string varName)
+        public static DataTable GetTaskVarByName(string varName, string workFlowId)
         {
             try
             {
-                string tmpSql = " where VarName ='" + varName + "'";
+                string tmpSql = " where VarName ='" + varName + "' and workFlowId='"+workFlowId+"'";
                 //SqlDataItem sqlItem = new SqlDataItem();
                 //sqlItem.CommandText = tmpSql;
                 //sqlItem.AppendParameter("@VarName", varName);
