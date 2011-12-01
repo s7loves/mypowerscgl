@@ -23,6 +23,30 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             InitializeComponent();
             uCmExcel1.gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeAdd);
+            uCmExcel1.gridViewOperation.AfterAdd += new ObjectEventHandler<LP_Temple>(gridViewOperation_AfterAdd);
+            uCmExcel1.gridViewOperation.AfterEdit += new ObjectEventHandler<LP_Temple>(gridViewOperation_AfterEdit);
+        }
+        void gridViewOperation_AfterEdit(LP_Temple e)
+        {
+
+            this.dsoFramerWordControl1.FileSave();
+            this.dsoFramerWordControl1.Refresh();
+            this.Refresh();
+            this.Update();
+            this.Hide();
+            this.Show();
+
+        }
+        void gridViewOperation_AfterAdd(LP_Temple e)
+        {
+
+            this.dsoFramerWordControl1.FileSave();
+            this.dsoFramerWordControl1.Refresh();
+            this.Refresh();
+            this.Update();
+            this.Hide();
+            this.Show();
+            this.Show();
         }
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<LP_Temple> e)
         {
