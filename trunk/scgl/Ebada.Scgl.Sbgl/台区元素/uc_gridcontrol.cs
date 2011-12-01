@@ -9,6 +9,7 @@ using DevExpress.XtraGrid;
 using System.Collections;
 using Ebada.Client.Platform;
 using DevExpress.XtraGrid.Views.Base;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -87,7 +88,8 @@ namespace Ebada.Scgl.Sbgl
                 }
                 if (comBoxItem.Length>k)
                 {
-                    string[] comItem = comBoxItem[k].Split(pcomboxitem);
+                    //string[] comItem = comBoxItem[k].Split(pcomboxitem);
+                    string[] comItem = SelectorHelper.ToDBC(comBoxItem[k]).Split(pcomboxitem);
                     for (int i = 0; i < comItem.Length;i++ )
                     {
                         if (comItem[i]!="")
