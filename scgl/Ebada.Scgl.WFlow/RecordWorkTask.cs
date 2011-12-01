@@ -55,6 +55,12 @@ namespace Ebada.Scgl.WFlow
             string tmpStr = " where  WorkTaskInsId='" + workTaskInsId +  "' and( (OperStatus='1' and TaskTypeId!='2' ) or TaskTypeId='2'or TaskTypeId='6' )";
             IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
                 "SelectWF_WorkTaskInstanceViewList", tmpStr);
+            if (li.Count == 0)
+            {
+                tmpStr = " where  WorkTaskInsId='" + workTaskInsId + "' and( (OperStatus='0' and TaskTypeId!='2' ) or TaskTypeId='2'or TaskTypeId='6' )";
+                li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
+                   "SelectWF_WorkTaskInstanceViewList", tmpStr);
+            }
             foreach (WF_WorkTaskInstanceView tl in li)
             {
                 //if (tl.SuccessMsg.IndexOf("退回") > -1)
@@ -715,7 +721,10 @@ namespace Ebada.Scgl.WFlow
                     tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(wtc.UserControlId);
                     if (tp != null)
                     {
-
+                        if (HaveRunPowerRole(WorkConst.WorkTask_BindTable, workflowId,  worktaskId))
+                        {
+                            iniTableRecordData(ref  tp, record, workflowId, workFlowInsId);
+                        }
                         return tp;
                     }
                 }

@@ -171,7 +171,9 @@ namespace Ebada.SCGL.WFlow.Tool
                     int index1 = strSQL.ToLower().IndexOf("select");
                     int index2 = strSQL.ToLower().IndexOf("from");
                     int index3 = strSQL.ToLower().IndexOf("where");
-                    string tablename = strSQL.Substring(index2 + 4, index3 - (index2 + 4)).Trim();
+                    string tablename = "";
+                    if (index1 == -1 || index2 == -1 || index3 == -1) return;
+                    tablename=strSQL.Substring(index2 + 4, index3 - (index2 + 4)).Trim();
                     string cellpos = strSQL.Substring(index1 + 6, index2 - (index1 + 6)).Trim();
                     //cbxWorkDbTable.SelectedItem = tablename;
                     //cbxWorkTableColumns.Text = cellpos;
