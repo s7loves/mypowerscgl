@@ -655,11 +655,7 @@ namespace Ebada.Scgl.Lcgl
             }
             if (list.Count > 0)
             {
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where RecordId='" + currRecord.ID + "'"
-                    + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                    + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
-                    
-                    );
+               
                 Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
             }
 
@@ -1348,7 +1344,7 @@ namespace Ebada.Scgl.Lcgl
                     return;
                 }
                 int i = 0;
-                if (arrCellCount[0] != arrCellCount[1])
+                if (arrCellCount.Count>1&&arrCellCount[0] != arrCellCount[1])
                 {
                     if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
                     {
@@ -1409,9 +1405,10 @@ namespace Ebada.Scgl.Lcgl
                     str = str.Substring(help.GetFristLen(str, arrCellCount[0]) >= str.IndexOf("\r\n") &&
                         str.IndexOf("\r\n") != -1 ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
                     i++;
+
+                    str = help.GetPlitString(str, arrCellCount[1]);
+                    FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
                 }
-                str = help.GetPlitString(str, arrCellCount[1]);
-                FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
 
             }
             if (lp.CellName == "单位")
