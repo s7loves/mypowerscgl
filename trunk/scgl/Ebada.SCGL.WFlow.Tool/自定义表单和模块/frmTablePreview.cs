@@ -698,11 +698,12 @@ namespace Ebada.SCGL.WFlow.Tool
                     return;
                 }
                 int i = 0;
-                if (arrCellCount[0] != arrCellCount[1])
+                //if (arrCellCount.Count > 1 && arrCellCount[0] != arrCellCount[1])
+                if (arrCellCount.Count>1)
                 {
-                    if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
+                    if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[i]))
                     {
-                        ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                       
 
                         LockExcel(wb, xx);
@@ -715,9 +716,9 @@ namespace Ebada.SCGL.WFlow.Tool
                     str = str.Substring(help.GetFristLen(str, arrCellCount[0]) >= str.IndexOf("\r\n") &&
                         str.IndexOf("\r\n") != -1 ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
                     i++;
+                    str = help.GetPlitString(str, arrCellCount[1]);
+                    FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
                 }
-                str = help.GetPlitString(str, arrCellCount[1]);
-                FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
 
             }
             if (lp.CellName == "单位")
