@@ -7,6 +7,7 @@ using System.Collections;
 using Ebada.Client.Platform;
 using Ebada.Core;
 using Ebada.Scgl.Model;
+using System.Text.RegularExpressions;
 namespace Ebada.SCGL.WFlow.Engine
 {
     public  class  WorkFlowHelper
@@ -151,7 +152,64 @@ namespace Ebada.SCGL.WFlow.Engine
             }
             return WorkFlowConst.SuccessCode;
         }
-        private  static string GetExpressResult(string userId, string workFlowId, string workTaskId, string workFlowInstanceId, string WorkTaskInstanceId, string condition)
+        //private  static string GetExpressResult(string userId, string workFlowId, string workTaskId, string workFlowInstanceId, string WorkTaskInstanceId, string condition)
+        //{
+        //    string varName = "";//变量名<%当前用户%>
+        //    string varValue = "";
+        //    string expressText = "";//解析前表达式
+        //    int len = 0;//表达式长度
+        //    char firstchar;
+        //    char secondchar;
+        //    char startVar = '2';//0开始取变量的，1 取变量结束，2空闲
+        //    expressText = condition;//解析前表达式
+        //    len = expressText.Length;
+        //    if (expressText.Trim().Length == 0) { expressText = "1=1"; }//无条件
+        //    else
+        //        for (int i = 0; i < len - 1; i++)
+        //        {
+
+        //            firstchar = expressText[i];
+        //            if (i + 1 < len) { secondchar = expressText[i + 1]; }
+        //            else secondchar = firstchar;
+        //            if (firstchar == '<' && secondchar == '%') startVar = '0';
+        //            else
+        //                if (firstchar == '%' && secondchar == '>') startVar = '1';
+
+        //            if (startVar == '0')
+        //            {
+        //                varName = varName + firstchar;
+        //            }
+        //            else//结束取varname
+        //                if (startVar == '1')
+        //                {
+        //                    string varflag = "";
+        //                    varName = varName + firstchar + secondchar;
+        //                    if (varName.Length >= 6)
+        //                    {
+        //                        varflag = varName.Substring(2, 4);
+        //                    }
+        //                    if (varflag==WorkFlowConst.SYS_VarFlag)//系统变量
+        //                    {
+        //                        varValue = getSysVarValue(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, varName);
+        //                    }
+        //                    else
+        //                    {
+        //                        varValue = getWorkTaskVarValue(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, varName);
+        //                    }
+        //                    expressText = expressText.Replace(varName, varValue);
+        //                    return GetExpressResult(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, expressText);
+
+        //                }
+        //        }
+        //    return expressText;
+
+        //}
+        private static string GetExpressResult(string userId, string workFlowId, string workTaskId, string workFlowInstanceId, string WorkTaskInstanceId, string condition)
+        {
+            int isort = 0;
+            return GetExpressResult(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, condition,ref isort);
+        }
+        private static string GetExpressResult(string userId, string workFlowId, string workTaskId, string workFlowInstanceId, string WorkTaskInstanceId, string condition,ref int isort)
         {
             string varName = "";//变量名<%当前用户%>
             string varValue = "";
@@ -160,6 +218,7 @@ namespace Ebada.SCGL.WFlow.Engine
             char firstchar;
             char secondchar;
             char startVar = '2';//0开始取变量的，1 取变量结束，2空闲
+            
             expressText = condition;//解析前表达式
             len = expressText.Length;
             if (expressText.Trim().Length == 0) { expressText = "1=1"; }//无条件
@@ -183,27 +242,52 @@ namespace Ebada.SCGL.WFlow.Engine
                         {
                             string varflag = "";
                             varName = varName + firstchar + secondchar;
+                            string realexpressText1 = "";//查找变量的关联信息
+                            Regex r1 = new Regex(@"(?<='" + isort + "').*?(?=\\))");
+                            if (r1.Match(expressText).Value != "")
+                            {
+                                realexpressText1 = r1.Match(expressText).Value;
+                            }
+                            if (realexpressText1!="") realexpressText1 = " and  '" + isort + "'" + realexpressText1;
                             if (varName.Length >= 6)
                             {
                                 varflag = varName.Substring(2, 4);
                             }
-                            if (varflag==WorkFlowConst.SYS_VarFlag)//系统变量
+                            //if (varflag == WorkFlowConst.SYS_VarFlag)//系统变量
+                            //{
+                            //    varValue = getSysVarValue(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, varName);
+                            //}
+                            //else
+                            //{
+
+                                varValue = getWorkTaskVarValue2(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, varName, realexpressText1);
+                            //}
+                            if (realexpressText1 != "")
                             {
-                                varValue = getSysVarValue(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, varName);
+                                r1 = new Regex(@"(?<='" + isort + "').*?(?=\\))");
+                                if (r1.Match(expressText).Value != "")
+                                {
+                                    realexpressText1 = r1.Match(expressText).Value;
+                                }
+                                if (realexpressText1.Substring(0, 1) == "=")
+                                {
+                                    expressText = expressText.Replace(varName, "'"+varValue+"'");
+                                    expressText = expressText.Replace(realexpressText1.Substring(1),"'" +isort+"'");
+                                }
                             }
                             else
                             {
-                                varValue = getWorkTaskVarValue(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, varName);
+                                expressText = expressText.Replace(varName,varValue);
                             }
-                            expressText = expressText.Replace(varName, varValue);
-                            return GetExpressResult(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, expressText);
+
+                            isort++;
+                            return GetExpressResult(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, expressText,ref isort);
 
                         }
                 }
             return expressText;
 
         }
-
         /**//// <summary>
         /// 返回一个表达式的值
         /// </summary>
@@ -268,15 +352,15 @@ namespace Ebada.SCGL.WFlow.Engine
             string tmpVarName = "";
             tmpVarName = varName.Substring(2, varName.Length - 4);//去掉两头的<%%>
 
-            DataTable dt = TaskVar.GetTaskVarByName(tmpVarName,workFlowId);
+            DataTable dt = TaskVar.GetTaskVarByName(tmpVarName, workFlowId);
             if (dt != null && dt.Rows.Count > 0)
             {
-                
-                varDataBase  = dt.Rows[0]["DataBaseName"].ToString();
+
+                varDataBase = dt.Rows[0]["DataBaseName"].ToString();
                 varTableName = dt.Rows[0]["TableName"].ToString();
                 varFieldName = dt.Rows[0]["TableField"].ToString();
                 varInitValue = dt.Rows[0]["InitValue"].ToString();
-                varAccessType= dt.Rows[0]["AccessType"].ToString();
+                varAccessType = dt.Rows[0]["AccessType"].ToString();
                 varType = dt.Rows[0]["varType"].ToString();
             }
 
@@ -290,37 +374,41 @@ namespace Ebada.SCGL.WFlow.Engine
                 //ClientDBAgent agent = new ClientDBAgent();
                 //resultValue= agent.ExecuteScalar(sqlItem);
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                    "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" 
+                    "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '"
                     + varTableName + "'");
                 if (varTableName == "LP_Record")
-
-                    varSql = "select " + varFieldName + " as name from " + varTableName + " where "
-                        + list[0]
-                        + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='" 
-                        + workFlowId + "' and WorkFlowInsId='"
-                        + workFlowInstanceId + "')";
-                else if (varTableName == "WF_TableFieldValue")
 
                     varSql = "select " + varFieldName + " as name from " + varTableName + " where "
                         + list[0]
                         + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='"
                         + workFlowId + "' and WorkFlowInsId='"
                         + workFlowInstanceId + "')";
+                else if (varTableName == "WF_TableFieldValue")
+
+                    varSql = "select " + varFieldName + " as name from " + varTableName + " where "
+                        + list[0]
+                        + " in (select id  from WF_TableFieldValue where WorkFlowId='"
+                        + workFlowId + "' and WorkFlowInsId='"
+                        + workFlowInstanceId + "')";
                 else
                 {
-                    varSql = "select " + varFieldName + " as name from " + varTableName + " where  " 
+                    varSql = "select " + varFieldName + " as name from " + varTableName + " where  "
                         + list[0]
-                        + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='" 
-                        + workFlowId 
+                        + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"
+                        + workFlowId
                         + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
-                
+
                 }
                 //DataTable dt2 = null;
                 IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", varSql);
-                if (li.Count > 0)
+                if (li.Count == 1)
                 {
-                     //dt2 = new DataTable();
+                    //dt2 = new DataTable();
                     resultValue = ((WF_WorkFlow)li[0]).Name;
+                }
+                else
+                {
+                    resultValue = varFieldName;
                 }
                 //else
                 //dt2 = ConvertHelper.ToDataTable(li);
@@ -330,7 +418,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //{
                 //    dt2.Rows[i][varFieldName] = dt2.Rows[i]["name"];
                 //}
-                
+
             }
             else
                 if (varAccessType == WorkFlowConst.Access_WorkTask)//流程变量
@@ -353,13 +441,13 @@ namespace Ebada.SCGL.WFlow.Engine
                    + varTableName + "'");
                     if (varTableName == "LP_Record")
 
-                        varSql = "select " + varFieldName + " as name from " + varTableName + " where " 
-                            + list[0] 
-                            + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='" 
+                        varSql = "select " + varFieldName + " as name from " + varTableName + " where "
+                            + list[0]
+                            + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='"
                             + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
                     else
                     {
-                        varSql = "select " + varFieldName + " as name from " + varTableName + " where  " 
+                        varSql = "select " + varFieldName + " as name from " + varTableName + " where  "
                             + list[0]
                             + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"
                             + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "')";
@@ -390,7 +478,109 @@ namespace Ebada.SCGL.WFlow.Engine
             if (string.IsNullOrEmpty(resultValue)) resultValue = "'" + resultValue + "'";//默认返回带引号的空字符串
             return resultValue;
         }       
+        private static string getWorkTaskVarValue2(string userId, string workFlowId, string workTaskId, string workFlowInstanceId, string WorkTaskInstanceId, string varName, string filterExpressText)
+        {
+            string varDataBase = "";
+            string varTableName = "";
+            string varFieldName = "";
+            string varInitValue = "";
+            string varAccessType = "";//变量类型
+            string varType = "";
+            string varSql = "";
+            string resultValue = "";
 
+            DataTable dt = TaskVar.GetTaskVarByName(varName.Substring(2, varName.Length - 4), workFlowId);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+
+                varDataBase = dt.Rows[0]["DataBaseName"].ToString();
+                varTableName = dt.Rows[0]["TableName"].ToString();
+                varFieldName = dt.Rows[0]["TableField"].ToString();
+                varInitValue = dt.Rows[0]["InitValue"].ToString();
+                varAccessType = dt.Rows[0]["AccessType"].ToString();
+                varType = dt.Rows[0]["varType"].ToString();
+            }
+            if (varAccessType == WorkFlowConst.Access_WorkFlow)//流程变量
+            {
+               
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                    "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '"
+                    + varTableName + "'");
+                if (varTableName == "LP_Record")
+
+                    varSql = "select " + varFieldName + " as name from " + varTableName + " where "
+                        + list[0]
+                        + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='"
+                        + workFlowId + "' and WorkFlowInsId='"
+                        + workFlowInstanceId + "' " + filterExpressText + ")";
+                else if (varTableName == "WF_TableFieldValue")
+
+                    varSql = "select " + varFieldName + " as name from " + varTableName + " where "
+                        + list[0]
+                        + " in (select id  from WF_TableFieldValue where WorkFlowId='"
+                        + workFlowId + "' and WorkFlowInsId='"
+                        + workFlowInstanceId + "' " + filterExpressText + ")";
+                else
+                {
+                    varSql = "select " + varFieldName + " as name from " + varTableName + " where  "
+                        + list[0]
+                        + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"
+                        + workFlowId
+                        + "' and WorkFlowInsId='" + workFlowInstanceId + "'  " + filterExpressText + ")";
+
+                }
+                IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", varSql);
+                if (li.Count > 0)
+                {
+                  
+                    resultValue = ((WF_WorkFlow)li[0]).Name;
+                }
+               
+               
+
+            }
+            else
+                if (varAccessType == WorkFlowConst.Access_WorkTask)//流程变量
+                {
+                    IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                   "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '"
+                   + varTableName + "'");
+                    if (varTableName == "LP_Record")
+
+                        varSql = "select " + varFieldName + " as name from " + varTableName + " where "
+                            + list[0]
+                            + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='"
+                            + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "' " + filterExpressText + ")";
+                    else if (varTableName == "WF_TableFieldValue")
+
+                        varSql = "select " + varFieldName + " as name from " + varTableName + " where "
+                            + list[0]
+                            + " in (select id  from WF_TableFieldValue where WorkFlowId='"
+                            + workFlowId + "' and WorkFlowInsId='"
+                            + workFlowInstanceId + "' " + filterExpressText + ")";
+                    else
+                    {
+                        varSql = "select " + varFieldName + " as name from " + varTableName + " where  "
+                            + list[0]
+                            + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"
+                            + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "'" + filterExpressText + ")";
+
+                    }
+                    DataTable dt2 = null;
+                    IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", varSql);
+                    if (li.Count > 0)
+                    {
+                      
+                        resultValue = ((WF_WorkFlow)li[0]).Name;
+                    }
+                  
+                }
+
+            if (string.IsNullOrEmpty(resultValue)) resultValue = varInitValue;
+            if (varType == WorkFlowConst.SYSVarType_string) resultValue = "'" + resultValue + "'";//字符型要加单引号
+            if (string.IsNullOrEmpty(resultValue)) resultValue = "'" + resultValue + "'";//默认返回带引号的空字符串
+            return resultValue;
+        }       
             /**//// <summary>
             /// 创建所有符合条件的任务实例
             /// </summary>

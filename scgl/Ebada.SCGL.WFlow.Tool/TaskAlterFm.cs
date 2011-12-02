@@ -2928,7 +2928,9 @@ namespace Ebada.SCGL.WFlow.Tool
             foreach (WF_WorkTaskLinkView tl in li)
             {
                 if (!taskht.ContainsKey(tl.StartTaskId))
-                taskht.Add(tl.StartTaskId, tl.startTaskCaption);
+                    taskht.Add(tl.StartTaskId, tl.startTaskCaption);
+                else
+                    return;
                 GetPreviousTask(tl.StartTaskId, workFlowId, ref  taskht);
             }
             

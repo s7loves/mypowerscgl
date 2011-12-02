@@ -638,6 +638,31 @@ namespace Ebada.Scgl.Lcgl
             string strmes = "";
             WF_WorkTaskCommands wt;
             if (strNumber != "") currRecord.Number = strNumber;
+              ArrayList akeys = new ArrayList(valuehs.Keys);
+            List<object> list = new List<object>();
+            for (int i = 0; i < akeys.Count; i++)
+            {
+                WF_TableFieldValue wfv = valuehs[akeys[i]] as WF_TableFieldValue;
+                wfv.ID = wfv.CreateID();
+                wfv.RecordId = currRecord.ID;
+                wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                wfv.UserControlId = parentTemple.LPID;
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                list.Add(wfv);
+            }
+            if (list.Count > 0)
+            {
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where RecordId='" + currRecord.ID + "'"
+                    + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                    + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
+                    
+                    );
+                Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
+            }
+
             switch (status)
             {
                 case "add":
@@ -645,7 +670,8 @@ namespace Ebada.Scgl.Lcgl
                     dsoFramerWordControl1.FileSave();
                     currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
                     currRecord.Kind = kind;
-                    currRecord.Content = GetContent();
+                    currRecord.Content = GetContent(); 
+                    dsoFramerWordControl1.FileClose();
                     if (ctrlNumber != null)
                         currRecord.Number = ctrlNumber.Text;
                     //currRecord.ImageAttachment = bt;
@@ -721,6 +747,7 @@ namespace Ebada.Scgl.Lcgl
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
                     currRecord.Content = GetContent();
+                    dsoFramerWordControl1.FileClose();
                     wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                     if (wt != null)
                     {
@@ -740,7 +767,6 @@ namespace Ebada.Scgl.Lcgl
                     {
                         CurrRecord.Status = strmes;
                     }
-                    MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
                     if (towho.IndexOf("未提交至任何人") > -1)
                     {
                         MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
@@ -748,6 +774,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else
                         MsgBox.ShowTipMessageBox(towho);
+                    MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
                     if (hqyjcontrol != null)
                     {
                         PJ_lcspyj lcyj = new PJ_lcspyj();
@@ -780,26 +807,8 @@ namespace Ebada.Scgl.Lcgl
                     rowData = null;
                     break;
             }
-            ArrayList akeys = new ArrayList(valuehs.Keys);
-            List<object> list = new List<object>();
-            for (int i = 0; i < akeys.Count; i++)
-            {
-                WF_TableFieldValue wfv = valuehs[akeys[i]] as WF_TableFieldValue;
-                wfv.ID = wfv.CreateID();
-                wfv.RecordId = currRecord.ID;
-                wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                wfv.UserControlId = parentTemple.LPID;
-                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                list.Add(wfv);
-            }
-            if (list.Count > 0)
-            {
-                Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
-            }
-            dsoFramerWordControl1.FileClose();
+          
+           
             this.DialogResult = DialogResult.OK;
         }
 
@@ -1645,7 +1654,7 @@ namespace Ebada.Scgl.Lcgl
                 //}
                 if (lp.ExtraWord == "")
                 {
-                    ea.SetCellValue(strList[i] + extraWord[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    ea.SetCellValue(strList[i] , GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
@@ -1660,7 +1669,7 @@ namespace Ebada.Scgl.Lcgl
                     else
                     {
                         WF_TableFieldValue tfv = new WF_TableFieldValue();
-                        tfv.ControlValue = strList[i] + extraWord[i];
+                        tfv.ControlValue = strList[i] ;
                         tfv.FieldId = lp.LPID;
                         tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
