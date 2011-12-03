@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0D4A51D4-E72E-4423-A308-F35291195DFD}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -236,9 +236,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Device\frmBaseSelector.resx">
       <DependentUpon>frmBaseSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Device\frmLineSelector.resx">
       <DependentUpon>frmLineSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Device\frmBdsEdit.resx">
       <DependentUpon>frmBdsEdit.cs</DependentUpon>
@@ -246,26 +248,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Device\frmTQSelector.resx">
       <DependentUpon>frmTQSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Device\frmBDSSelector.resx">
       <DependentUpon>frmBDSSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMapView.resx">
       <DependentUpon>frmMapView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmText.resx">
       <DependentUpon>frmText.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="RMap.resx">
       <DependentUpon>RMap.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UCLayerManager.resx">
       <DependentUpon>UCLayerManager.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UCMapBox.resx">
       <DependentUpon>UCMapBox.cs</DependentUpon>
@@ -273,12 +282,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMap.resx">
       <DependentUpon>frmMap.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UCMapLayer.resx">
       <DependentUpon>UCMapLayer.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMapM.resx">
       <DependentUpon>frmMapM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
