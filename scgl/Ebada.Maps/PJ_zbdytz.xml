@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_zbdytz" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_zbdytz"  type="Ebada.Scgl.Model.PJ_zbdytz,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_zbdytz_AllColumns" class="PJ_zbdytz">
+        <result property="ID" column="ID" />
+        <result property="khmc" column="khmc" />
+        <result property="khdd" column="khdd" />
+        <result property="zdyOrgName" column="zdyOrgName" />
+        <result property="zdyLineName" column="zdyLineName" />
+        <result property="zdykgModle" column="zdykgModle" />
+        <result property="zbdytype" column="zbdytype" />
+        <result property="zbdyModle" column="zbdyModle" />
+        <result property="zbdyrl" column="zbdyrl" />
+        <result property="kgfs" column="kgfs" />
+        <result property="Remark" column="Remark" />
+        <result property="zbr" column="zbr" />
+        <result property="chargeman" column="chargeman" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_zbdytzList" resultMap="PJ_zbdytz_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [khmc],
+         [khdd],
+         [zdyOrgName],
+         [zdyLineName],
+         [zdykgModle],
+         [zbdytype],
+         [zbdyModle],
+         [zbdyrl],
+         [kgfs],
+         [Remark],
+         [zbr],
+         [chargeman]
+          FROM PJ_zbdytz
+          $value$
+   </select>
+   
+   <select id="SelectPJ_zbdytzByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [khmc],
+         [khdd],
+         [zdyOrgName],
+         [zdyLineName],
+         [zdykgModle],
+         [zbdytype],
+         [zbdyModle],
+         [zbdyrl],
+         [kgfs],
+         [Remark],
+         [zbr],
+         [chargeman]
+          FROM PJ_zbdytz
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="khmc">[khmc]='$khmc$'</isNotNull>
+       <isNotNull prepend="AND" property="khdd">[khdd]='$khdd$'</isNotNull>
+       <isNotNull prepend="AND" property="zdyOrgName">[zdyOrgName]='$zdyOrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="zdyLineName">[zdyLineName]='$zdyLineName$'</isNotNull>
+       <isNotNull prepend="AND" property="zdykgModle">[zdykgModle]='$zdykgModle$'</isNotNull>
+       <isNotNull prepend="AND" property="zbdytype">[zbdytype]='$zbdytype$'</isNotNull>
+       <isNotNull prepend="AND" property="zbdyModle">[zbdyModle]='$zbdyModle$'</isNotNull>
+       <isNotNull prepend="AND" property="zbdyrl">[zbdyrl]='$zbdyrl$'</isNotNull>
+       <isNotNull prepend="AND" property="kgfs">[kgfs]='$kgfs$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="zbr">[zbr]='$zbr$'</isNotNull>
+       <isNotNull prepend="AND" property="chargeman">[chargeman]='$chargeman$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_zbdytzByKey" resultMap="PJ_zbdytz_AllColumns" parameterClass="PJ_zbdytz">
+         SELECT 
+         [ID],
+         [khmc],
+         [khdd],
+         [zdyOrgName],
+         [zdyLineName],
+         [zdykgModle],
+         [zbdytype],
+         [zbdyModle],
+         [zbdyrl],
+         [kgfs],
+         [Remark],
+         [zbr],
+         [chargeman]
+         FROM PJ_zbdytz
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_zbdytz" parameterClass="PJ_zbdytz">
+        DELETE FROM 
+         PJ_zbdytz
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_zbdytzByWhere" parameterClass="string">
+     delete from PJ_zbdytz $value$
+   </delete>
+   
+   <delete id="DeletePJ_zbdytzByKey" parameterClass="PJ_zbdytz">
+        DELETE FROM 
+         PJ_zbdytz
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_zbdytz" parameterClass="PJ_zbdytz" resultClass="int">
+          UPDATE PJ_zbdytz
+           SET
+             [khmc]=#khmc#,
+             [khdd]=#khdd#,
+             [zdyOrgName]=#zdyOrgName#,
+             [zdyLineName]=#zdyLineName#,
+             [zdykgModle]=#zdykgModle#,
+             [zbdytype]=#zbdytype#,
+             [zbdyModle]=#zbdyModle#,
+             [zbdyrl]=#zbdyrl#,
+             [kgfs]=#kgfs#,
+             [Remark]=#Remark#,
+             [zbr]=#zbr#,
+             [chargeman]=#chargeman#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_zbdytz" parameterClass="PJ_zbdytz">
+        INSERT INTO PJ_zbdytz
+         (
+         [ID],
+         [khmc],
+         [khdd],
+         [zdyOrgName],
+         [zdyLineName],
+         [zdykgModle],
+         [zbdytype],
+         [zbdyModle],
+         [zbdyrl],
+         [kgfs],
+         [Remark],
+         [zbr],
+         [chargeman]
+         )
+       VALUES
+         (
+         #ID#,
+         #khmc#,
+         #khdd#,
+         #zdyOrgName#,
+         #zdyLineName#,
+         #zdykgModle#,
+         #zbdytype#,
+         #zbdyModle#,
+         #zbdyrl#,
+         #kgfs#,
+         #Remark#,
+         #zbr#,
+         #chargeman#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_zbdytzRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_zbdytz
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="khmc">[khmc]='$khmc$'</isNotNull>
+       <isNotNull prepend="AND" property="khdd">[khdd]='$khdd$'</isNotNull>
+       <isNotNull prepend="AND" property="zdyOrgName">[zdyOrgName]='$zdyOrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="zdyLineName">[zdyLineName]='$zdyLineName$'</isNotNull>
+       <isNotNull prepend="AND" property="zdykgModle">[zdykgModle]='$zdykgModle$'</isNotNull>
+       <isNotNull prepend="AND" property="zbdytype">[zbdytype]='$zbdytype$'</isNotNull>
+       <isNotNull prepend="AND" property="zbdyModle">[zbdyModle]='$zbdyModle$'</isNotNull>
+       <isNotNull prepend="AND" property="zbdyrl">[zbdyrl]='$zbdyrl$'</isNotNull>
+       <isNotNull prepend="AND" property="kgfs">[kgfs]='$kgfs$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="zbr">[zbr]='$zbr$'</isNotNull>
+       <isNotNull prepend="AND" property="chargeman">[chargeman]='$chargeman$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_zbdytzRowCount" parameterClass="string">
+    select count(*) from PJ_zbdytz $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
