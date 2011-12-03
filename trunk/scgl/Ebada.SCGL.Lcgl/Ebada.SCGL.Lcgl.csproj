@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1F5C3A84-EA23-43A1-B888-4C4BF2C68905}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -459,12 +459,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="所月度停电计划\frmTDJHEdit.resx">
       <DependentUpon>frmTDJHEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="所月度停电计划\frmTDJHWorkFlowEdit.resx">
       <DependentUpon>frmTDJHWorkFlowEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="所月度停电计划\UCPJ_TDJH.resx">
       <DependentUpon>UCPJ_TDJH.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="缺陷管理\frmsbqxEdit.resx">
       <DependentUpon>frmsbqxEdit.cs</DependentUpon>
@@ -480,6 +483,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmExploreSelect.resx">
       <DependentUpon>frmExploreSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\frmTemplate.resx">
       <DependentUpon>frmTemplate.cs</DependentUpon>
@@ -487,9 +491,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\WorkFlowInquiry.resx">
       <DependentUpon>WorkFlowInquiry.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\UCmLPInquiryRecord.resx">
       <DependentUpon>UCmLPInquiryRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\frmModleSubmit.resx">
       <DependentUpon>frmModleSubmit.cs</DependentUpon>
@@ -497,18 +503,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\SPYJControl.resx">
       <DependentUpon>SPYJControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\DownFileControl.resx">
       <DependentUpon>DownFileControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\UCmLPRecord.resx">
       <DependentUpon>UCmLPRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\UCmModelUI.resx">
       <DependentUpon>UCmModelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\UCmLPInquiryModleRecord.resx">
       <DependentUpon>UCmLPInquiryModleRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\模板生成\UCmExcelTree.resx">
       <DependentUpon>UCmExcelTree.cs</DependentUpon>
@@ -524,48 +535,63 @@
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestRecorddrqwcqkEdit.resx">
       <DependentUpon>frmtestRecorddrqwcqkEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestRecorddrqjhmxEdit.resx">
       <DependentUpon>frmtestRecorddrqjhmxEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestRecorddrqsyqkEdit.resx">
       <DependentUpon>frmtestRecorddrqsyqkEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\UCtestdrqRecord.resx">
       <DependentUpon>UCtestdrqRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestRecorddrqEdit.resx">
       <DependentUpon>frmtestRecorddrqEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestRecordsyqkEdit.resx">
       <DependentUpon>frmtestRecordsyqkEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestRecordwcqkEdit.resx">
       <DependentUpon>frmtestRecordwcqkEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestRecordjhmxEdit.resx">
       <DependentUpon>frmtestRecordjhmxEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\UCtestRecordsyqkTable.resx">
       <DependentUpon>UCtestRecordsyqkTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\UCtestRecordwcqkTable.resx">
       <DependentUpon>UCtestRecordwcqkTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\UCtestRecordjhmxTable.resx">
       <DependentUpon>UCtestRecordjhmxTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestHCRecordEdit.resx">
       <DependentUpon>frmtestHCRecordEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\UCtestHCRecord.resx">
       <DependentUpon>UCtestHCRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\UCtestRecord.resx">
       <DependentUpon>UCtestRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\UCtestRecordM.resx">
       <DependentUpon>UCtestRecordM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="剩余电流动作保护器测试\frm13dlbhjlEdit.resx">
       <DependentUpon>frm13dlbhjlEdit.cs</DependentUpon>
@@ -662,6 +688,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="预防性试验\frmtestRecordEdit.resx">
       <DependentUpon>frmtestRecordEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
