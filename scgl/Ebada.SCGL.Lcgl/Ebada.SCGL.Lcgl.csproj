@@ -93,6 +93,25 @@
     <Compile Include="04事故障碍异常\frmsgzaycWorkFlowEdit.Designer.cs">
       <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="双电源流程\ExportSDY.cs" />
+    <Compile Include="双电源流程\frmSDYEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="双电源流程\frmSDYEdit.Designer.cs">
+      <DependentUpon>frmSDYEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="双电源流程\frmSDYWorkFlowEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="双电源流程\frmSDYWorkFlowEdit.Designer.cs">
+      <DependentUpon>frmSDYWorkFlowEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="双电源流程\UCPJ_SDY.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="双电源流程\UCPJ_SDY.Designer.cs">
+      <DependentUpon>UCPJ_SDY.cs</DependentUpon>
+    </Compile>
     <Compile Include="所月度停电计划\ExportTDJH.cs" />
     <Compile Include="所月度停电计划\frmTDJHEdit.cs">
       <SubType>Form</SubType>
@@ -455,6 +474,18 @@
   <ItemGroup>
     <EmbeddedResource Include="04事故障碍异常\frmsgzaycWorkFlowEdit.resx">
       <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="双电源流程\frmSDYEdit.resx">
+      <DependentUpon>frmSDYEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="双电源流程\frmSDYWorkFlowEdit.resx">
+      <DependentUpon>frmSDYWorkFlowEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="双电源流程\UCPJ_SDY.resx">
+      <DependentUpon>UCPJ_SDY.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="所月度停电计划\frmTDJHEdit.resx">
