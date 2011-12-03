@@ -7,7 +7,7 @@
       <resultMap id="PJ_zbdytz_AllColumns" class="PJ_zbdytz">
         <result property="ID" column="ID" />
         <result property="khmc" column="khmc" />
-        <result property="khdd" column="khdd" />
+        <result property="khdz" column="khdz" />
         <result property="zdyOrgName" column="zdyOrgName" />
         <result property="zdyLineName" column="zdyLineName" />
         <result property="zdykgModle" column="zdykgModle" />
@@ -26,7 +26,7 @@
         SELECT 
          [ID],
          [khmc],
-         [khdd],
+         [khdz],
          [zdyOrgName],
          [zdyLineName],
          [zdykgModle],
@@ -45,7 +45,7 @@
          SELECT 
          [ID],
          [khmc],
-         [khdd],
+         [khdz],
          [zdyOrgName],
          [zdyLineName],
          [zdykgModle],
@@ -60,7 +60,7 @@
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="khmc">[khmc]='$khmc$'</isNotNull>
-       <isNotNull prepend="AND" property="khdd">[khdd]='$khdd$'</isNotNull>
+       <isNotNull prepend="AND" property="khdz">[khdz]='$khdz$'</isNotNull>
        <isNotNull prepend="AND" property="zdyOrgName">[zdyOrgName]='$zdyOrgName$'</isNotNull>
        <isNotNull prepend="AND" property="zdyLineName">[zdyLineName]='$zdyLineName$'</isNotNull>
        <isNotNull prepend="AND" property="zdykgModle">[zdykgModle]='$zdykgModle$'</isNotNull>
@@ -77,7 +77,7 @@
          SELECT 
          [ID],
          [khmc],
-         [khdd],
+         [khdz],
          [zdyOrgName],
          [zdyLineName],
          [zdykgModle],
@@ -118,7 +118,7 @@
           UPDATE PJ_zbdytz
            SET
              [khmc]=#khmc#,
-             [khdd]=#khdd#,
+             [khdz]=#khdz#,
              [zdyOrgName]=#zdyOrgName#,
              [zdyLineName]=#zdyLineName#,
              [zdykgModle]=#zdykgModle#,
@@ -139,7 +139,7 @@
          (
          [ID],
          [khmc],
-         [khdd],
+         [khdz],
          [zdyOrgName],
          [zdyLineName],
          [zdykgModle],
@@ -155,7 +155,7 @@
          (
          #ID#,
          #khmc#,
-         #khdd#,
+         #khdz#,
          #zdyOrgName#,
          #zdyLineName#,
          #zdykgModle#,
@@ -176,7 +176,7 @@
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="khmc">[khmc]='$khmc$'</isNotNull>
-       <isNotNull prepend="AND" property="khdd">[khdd]='$khdd$'</isNotNull>
+       <isNotNull prepend="AND" property="khdz">[khdz]='$khdz$'</isNotNull>
        <isNotNull prepend="AND" property="zdyOrgName">[zdyOrgName]='$zdyOrgName$'</isNotNull>
        <isNotNull prepend="AND" property="zdyLineName">[zdyLineName]='$zdyLineName$'</isNotNull>
        <isNotNull prepend="AND" property="zdykgModle">[zdykgModle]='$zdykgModle$'</isNotNull>
