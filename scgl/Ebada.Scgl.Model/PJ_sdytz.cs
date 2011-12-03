@@ -23,7 +23,7 @@ namespace Ebada.Scgl.Model
         #region Private 成员
         private string _id=Newid();
         private string _khmc = String.Empty; 
-        private string _khdd=String.Empty; 
+        private string _khdz=String.Empty; 
         private string _zdyorgname=String.Empty; 
         private string _zdylinename=String.Empty; 
         private string _zdykgmodle=String.Empty; 
@@ -77,19 +77,19 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：khdd
+        /// 属性名称：khdz
         /// 属性描述：
-        /// 字段信息：[khdd],nvarchar
+        /// 字段信息：[khdz],nvarchar
         /// </summary>
         [DisplayNameAttribute("客户地址")]
-        public string khdd
+        public string khdz
         {
-            get { return _khdd; }
+            get { return _khdz; }
             set
             {			
-                if (_khdd as object == null || !_khdd.Equals(value))
+                if (_khdz as object == null || !_khdz.Equals(value))
                 {
-                    _khdd = value;
+                    _khdz = value;
                 }
             }			 
         }
