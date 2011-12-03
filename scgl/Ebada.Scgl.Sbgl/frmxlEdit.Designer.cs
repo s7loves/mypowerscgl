@@ -358,7 +358,7 @@
             // 
             // comboBoxEdit17
             // 
-            this.comboBoxEdit17.Location = new System.Drawing.Point(107, 313);
+            this.comboBoxEdit17.Location = new System.Drawing.Point(411, 289);
             this.comboBoxEdit17.Name = "comboBoxEdit17";
             this.comboBoxEdit17.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -367,7 +367,7 @@
             // 
             // comboBoxEdit16
             // 
-            this.comboBoxEdit16.Location = new System.Drawing.Point(412, 289);
+            this.comboBoxEdit16.Location = new System.Drawing.Point(107, 313);
             this.comboBoxEdit16.Name = "comboBoxEdit16";
             this.comboBoxEdit16.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
