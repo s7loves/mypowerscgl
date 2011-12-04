@@ -204,7 +204,9 @@ namespace Ebada.Scgl.Lcgl
                 }
                 real++;
             }
-            string old = arrayText.Substring(0, real + 1);
+            string old = arrayText;
+            if (real+1 >= old.Length) return real;
+            old=arrayText.Substring(0, real + 1);
             ChangeNum(arrayText[++real], ref old, ref real);
             return real;
         }

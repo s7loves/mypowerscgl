@@ -1344,7 +1344,8 @@ namespace Ebada.Scgl.Lcgl
                     return;
                 }
                 int i = 0;
-                if (arrCellCount.Count>1&&arrCellCount[0] != arrCellCount[1])
+                //if (arrCellCount.Count>1&&arrCellCount[0] != arrCellCount[1])
+                if (arrCellCount.Count > 1 )
                 {
                     if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
                     {
