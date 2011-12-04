@@ -17,7 +17,7 @@ namespace Ebada.Scgl.Lcgl
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class ExportSDY
+    public class ExportZBDY
     {
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
@@ -63,12 +63,12 @@ namespace Ebada.Scgl.Lcgl
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public  void ExportExcel(IList<PJ_sdytz> datalist)
+        public  void ExportExcel(IList<PJ_zbdytz> datalist)
         {
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\双电源台账.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\自备电源台账.xls";
             ex.Open(fname);
             ExportExcel(ex, datalist);
             ex.ShowExcel();
@@ -77,7 +77,7 @@ namespace Ebada.Scgl.Lcgl
      
       
       
-        public void ExportExcel(ExcelAccess ex, IList<PJ_sdytz> datalist)
+        public void ExportExcel(ExcelAccess ex, IList<PJ_zbdytz> datalist)
         {
             //此处写填充内容代码
             int row = 5;
@@ -112,9 +112,9 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[j].zdyOrgName, row + j % rowcount, col + 3);
                 ex.SetCellValue(datalist[j].zdyLineName, row + j % rowcount, col + 4);
                 ex.SetCellValue(datalist[j].zdykgModle, row + j % rowcount, col + 5);
-                ex.SetCellValue(datalist[j].fdyOrgName, row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].fdyLineName, row + j % rowcount, col + 7);
-                ex.SetCellValue(datalist[j].fdykgModle, row + j % rowcount, col + 8);
+                ex.SetCellValue(datalist[j].zbdytype, row + j % rowcount, col + 6);
+                ex.SetCellValue(datalist[j].zdykgModle, row + j % rowcount, col + 7);
+                ex.SetCellValue(datalist[j].zbdyrl, row + j % rowcount, col + 8);
                 ex.SetCellValue(datalist[j].kgfs, row + j % rowcount, col + 9);
                 ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 10);
 

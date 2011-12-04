@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class frmSDYEdit
+    partial class frmZBDYEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -256,9 +256,9 @@
             // 
             this.labelControl8.Location = new System.Drawing.Point(270, 117);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(84, 14);
+            this.labelControl8.Size = new System.Drawing.Size(72, 14);
             this.labelControl8.TabIndex = 1;
-            this.labelControl8.Text = "副电源开关型号";
+            this.labelControl8.Text = "自备电源容量";
             // 
             // labelControl9
             // 
@@ -266,7 +266,7 @@
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(132, 14);
             this.labelControl9.TabIndex = 1;
-            this.labelControl9.Text = "与电网电源开关是否互锁";
+            this.labelControl9.Text = "与自备电源开关是否互锁";
             // 
             // labelControl5
             // 
@@ -280,17 +280,17 @@
             // 
             this.labelControl7.Location = new System.Drawing.Point(12, 117);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(84, 14);
+            this.labelControl7.Size = new System.Drawing.Size(72, 14);
             this.labelControl7.TabIndex = 1;
-            this.labelControl7.Text = "副电源所属线路";
+            this.labelControl7.Text = "自备电源型号";
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(258, 85);
+            this.labelControl6.Location = new System.Drawing.Point(282, 85);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(96, 14);
+            this.labelControl6.Size = new System.Drawing.Size(72, 14);
             this.labelControl6.TabIndex = 1;
-            this.labelControl6.Text = "副电源所属变电所";
+            this.labelControl6.Text = "自备电源类型";
             // 
             // labelControl2
             // 
@@ -332,7 +332,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // frmSDYEdit
+            // frmZBDYEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -340,9 +340,9 @@
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmSDYEdit";
+            this.Name = "frmZBDYEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "双电源设备台账";
+            this.Text = "自备电源设备台账";
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupControlOrg.PerformLayout();
