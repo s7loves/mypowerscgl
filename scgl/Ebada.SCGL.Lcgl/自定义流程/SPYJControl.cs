@@ -40,7 +40,7 @@ namespace Ebada.Scgl.Lcgl
         private void inidata()
         {
             preMemoEdit.Text = "";
-            IList<PJ_lcspyj>spyjlist = MainHelper.PlatformSqlMap.GetList<PJ_lcspyj>("SelectPJ_lcspyjList", "where RecordID='" + recordID + "' order by creattime");
+            IList<PJ_lcspyj>spyjlist = MainHelper.PlatformSqlMap.GetList<PJ_lcspyj>("SelectPJ_lcspyjList", "where RecordID='" + recordID + "' order by creattime desc");
             
             for (int i = 0; i < spyjlist.Count; i++)
             {
