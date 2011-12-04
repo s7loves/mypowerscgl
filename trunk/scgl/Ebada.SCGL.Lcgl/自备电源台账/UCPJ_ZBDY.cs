@@ -30,11 +30,11 @@ namespace Ebada.Scgl.Lcgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPJ_SDY : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPJ_ZBDY : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_sdytz> gridViewOperation;
+        private GridViewOperation<PJ_zbdytz> gridViewOperation;
 
-        public event SendDataEventHandler<PJ_sdytz> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_zbdytz> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
@@ -43,7 +43,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        private string varDbTableName = "PJ_sdytz,LP_Record";
+        private string varDbTableName = "PJ_zbdytz,LP_Record";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -111,18 +111,18 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value;
             }
         }
-        public UCPJ_SDY()
+        public UCPJ_ZBDY()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_sdytz>(gridControl1, gridView1, barManager1, new frmSDYEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_sdytz>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<PJ_zbdytz>(gridControl1, gridView1, barManager1, new frmZBDYEdit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_zbdytz>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_sdytz>(gridViewOperation_AfterDelete);
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_sdytz>(gridViewOperation_BeforeDelete);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_zbdytz>(gridViewOperation_AfterDelete);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_zbdytz>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
-        void gridViewOperation_AfterDelete(PJ_sdytz obj)
+        void gridViewOperation_AfterDelete(PJ_zbdytz obj)
         {
 
             if (isWorkflowCall)
@@ -147,12 +147,12 @@ namespace Ebada.Scgl.Lcgl
 
             RefreshData("");
         }
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sdytz> e)
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_zbdytz> e)
         {
            
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_sdytz> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_zbdytz> e)
         {
             //if (parentID == null)
             //    e.Cancel = true;
@@ -199,7 +199,7 @@ namespace Ebada.Scgl.Lcgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_sdytz);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_zbdytz);
         }
         private void hideColumn(string colname)
         {
@@ -238,7 +238,7 @@ namespace Ebada.Scgl.Lcgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_sdytz> GridViewOperation
+        public GridViewOperation<PJ_zbdytz> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -247,7 +247,7 @@ namespace Ebada.Scgl.Lcgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_sdytz newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_zbdytz newobj)
         {
             //if (parentID == null) return;
          
@@ -292,8 +292,8 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            IList<PJ_sdytz> datalist = gridView1.DataSource as IList<PJ_sdytz>;
-            ExportSDY etdjh = new ExportSDY();
+            IList<PJ_zbdytz> datalist = gridView1.DataSource as IList<PJ_zbdytz>;
+            ExportZBDY etdjh = new ExportZBDY();
             etdjh.ExportExcel(datalist);
            
            

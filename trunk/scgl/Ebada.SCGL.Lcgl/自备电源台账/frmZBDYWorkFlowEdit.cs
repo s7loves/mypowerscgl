@@ -16,8 +16,7 @@ using System.Collections;
 using Ebada.Scgl.WFlow;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmSDYWorkFlowEdit : FormBase, IPopupFormEdit
-    {
+    public partial class frmZBDYWorkFlowEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_sdytz> m_CityDic = new SortableSearchableBindingList<PJ_sdytz>();
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
@@ -69,7 +68,7 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value; ;
             }
         }
-        public frmSDYWorkFlowEdit()
+        public frmZBDYWorkFlowEdit()
         {
             InitializeComponent();
         }
