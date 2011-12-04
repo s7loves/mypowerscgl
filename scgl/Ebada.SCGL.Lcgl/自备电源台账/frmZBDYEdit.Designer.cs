@@ -138,7 +138,7 @@
             // 
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(74, -4);
+            this.simpleButton1.Location = new System.Drawing.Point(38, -4);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(34, 23);
             this.simpleButton1.TabIndex = 27;
