@@ -35,11 +35,12 @@ namespace Ebada.Scgl.Lcgl
         private string kind,status;
         private string plitchar = "|";
         private char pchar = '|';
-        private char pcomboxchar = '，';
+        private char pcomboxchar = ',';
         private string strNumber = "";
         private Control ctrlNumber = null;
         private Control ctrlOrgName = null;
-        private string varDbTableName = "LP_Record";
+        private string varDbTableName = "WF_ModleCheckTable,LP_Record";
+        private bool isWorkflowCall = false;
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -55,6 +56,14 @@ namespace Ebada.Scgl.Lcgl
         {
             get { return status; }
             set { status = value; }
+        }
+        public bool IsWorkflowCall
+        {
+            set
+            {
+
+                isWorkflowCall = value;
+            }
         }
 
         public LP_Record CurrRecord
@@ -96,6 +105,17 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value;
             }
         }
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+                return WorkFlowData;
+            }
+            set
+            {
+                WorkFlowData = value;
+            }
+        }
         #endregion
         public frmModleSubmit()
         {
@@ -109,22 +129,7 @@ namespace Ebada.Scgl.Lcgl
         private SPYJControl hqyjcontrol = null;
         private DataTable WorkFlowData = null;//实例流程信息
 
-        public DataTable RecordWorkFlowData
-        {
-            get
-            {
-
-                return WorkFlowData;
-            }
-            set
-            {
-
-
-                WorkFlowData = value;
-
-
-            }
-        }
+       
        /// <summary>
         ///设置保护工作表
        /// </summary>
