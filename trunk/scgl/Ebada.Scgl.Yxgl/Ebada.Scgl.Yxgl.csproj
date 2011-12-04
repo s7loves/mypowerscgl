@@ -1298,11 +1298,20 @@
     </Content>
     <None Include="00记录模板\供用电合同.xls" />
     <None Include="00记录模板\供电方案答复通知单.xls" />
+    <Content Include="00记录模板\双电源台账.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="00记录模板\客户用电申请单.xls" />
+    <Content Include="00记录模板\工程验收工作单.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="00记录模板\用电检查工作单.xls" />
     <None Include="00记录模板\用电检查结果通知单.xls" />
     <None Include="00记录模板\用电汇签单.xls" />
     <None Include="00记录模板\用电登记契约书.xls" />
+    <Content Include="00记录模板\自备电源台账.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="00记录模板\营销传票.xls" />
     <None Include="测试记录（20110629）.xls" />
     <None Include="疑问或错误.txt" />

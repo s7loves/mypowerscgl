@@ -82,7 +82,7 @@ namespace Ebada.Scgl.Lcgl
             //此处写填充内容代码
             int row = 5;
             int col = 1;
-            int rowcount =2;
+            int rowcount =14;
 
             //
 
