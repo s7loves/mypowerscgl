@@ -75,7 +75,6 @@
             this.textEdit7 = new DevExpress.XtraEditors.TextEdit();
             this.lookUpEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit8 = new DevExpress.XtraEditors.TextEdit();
-            this.comboBoxEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
@@ -83,6 +82,7 @@
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -106,10 +106,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -172,6 +172,7 @@
             this.groupBox1.Controls.Add(this.labelControl24);
             this.groupBox1.Controls.Add(this.labelControl16);
             this.groupBox1.Controls.Add(this.labelControl17);
+            this.groupBox1.Controls.Add(this.comboBoxEdit2);
             this.groupBox1.Controls.Add(this.comboBoxEdit5);
             this.groupBox1.Controls.Add(this.comboBoxEdit4);
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
@@ -199,7 +200,6 @@
             this.groupBox1.Controls.Add(this.textEdit7);
             this.groupBox1.Controls.Add(this.lookUpEdit5);
             this.groupBox1.Controls.Add(this.textEdit8);
-            this.groupBox1.Controls.Add(this.comboBoxEdit2);
             this.groupBox1.Location = new System.Drawing.Point(16, 39);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(498, 301);
@@ -367,7 +367,7 @@
             // comboBoxEdit5
             // 
             this.comboBoxEdit5.EditValue = "";
-            this.comboBoxEdit5.Location = new System.Drawing.Point(113, 104);
+            this.comboBoxEdit5.Location = new System.Drawing.Point(113, 107);
             this.comboBoxEdit5.Name = "comboBoxEdit5";
             this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -632,13 +632,6 @@
             this.textEdit8.Size = new System.Drawing.Size(100, 21);
             this.textEdit8.TabIndex = 10;
             // 
-            // comboBoxEdit2
-            // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(113, 160);
-            this.comboBoxEdit2.Name = "comboBoxEdit2";
-            this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit2.TabIndex = 18;
-            // 
             // dateEdit1
             // 
             this.dateEdit1.EditValue = null;
@@ -708,6 +701,20 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // comboBoxEdit2
+            // 
+            this.comboBoxEdit2.EditValue = "";
+            this.comboBoxEdit2.Location = new System.Drawing.Point(113, 161);
+            this.comboBoxEdit2.Name = "comboBoxEdit2";
+            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit2.Properties.Items.AddRange(new object[] {
+            "是",
+            "否"});
+            this.comboBoxEdit2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit2.TabIndex = 17;
+            // 
             // frmExcelModelEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -746,10 +753,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -800,7 +807,6 @@
         private DevExpress.XtraEditors.TextEdit textEdit11;
         private DevExpress.XtraEditors.LabelControl labelControl19;
         private DevExpress.XtraEditors.TextEdit textEdit8;
-        private DevExpress.XtraEditors.TextEdit comboBoxEdit2;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl22;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit3;
@@ -811,6 +817,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit6;
         private DevExpress.XtraEditors.LabelControl labelControl25;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
 
     }
 }

@@ -332,6 +332,8 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 labelControl24.Visible = true;
                 comboBoxEdit5.Visible = true;
+                comboBoxEdit2.Properties.Items.Clear();
+                comboBoxEdit2.Properties.Items.Add("{0}年{1}月{2}日");
             }
             else
             {
@@ -348,6 +350,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 labelControl24.Visible = false;
                 comboBoxEdit5.Visible = false;
+                comboBoxEdit2.Properties.Items.Clear();
             }
         }
 
