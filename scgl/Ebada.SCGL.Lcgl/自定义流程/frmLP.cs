@@ -1752,8 +1752,24 @@ namespace Ebada.Scgl.Lcgl
 
         public int[] GetCellPos(string cellpos)
         {
+
             cellpos = cellpos.Replace("|", "");
-            return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
+            Regex r1 = new Regex(@"[0-9]+");
+            string str = r1.Match(cellpos).Value;
+            int ix = 0;
+            int iy = 0;
+            ix = int.Parse(str);
+            r1 = new Regex(@"[A-Z]+");
+            str = r1.Match(cellpos).Value;
+            if (str.Length == 2)
+            {
+                iy = ((int)str[0] - 64) * 26 + ((int)str[1] - 64);
+            }
+            else
+            {
+                iy = (int)cellpos[0] - 64;
+            }
+            return new int[] { ix, iy };
         }
 
         public List<int> String2Int(string[] temp)
