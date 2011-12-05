@@ -1555,11 +1555,18 @@ namespace Ebada.Scgl.WFlow
                                 {
                                     while (wt.TaskTypeId == "2" && mainwf!=null)
                                     {
-                                        mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList",
-                                        "where  WorkflowInsId='" + mainwf.MainWorkflowInsId + "'");
+                                        if (mainwf.MainWorkflowInsId != "")
+                                        {
+                                            mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList",
+                                            "where  WorkflowInsId='" + mainwf.MainWorkflowInsId + "'");
 
 
-                                        wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
+                                            wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
                                     }
                                 }
 
