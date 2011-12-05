@@ -111,7 +111,7 @@ namespace Ebada.Scgl.Yxgl
             //this.Close();
             DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
             Microsoft.Office.Interop.Excel.Workbook wb;
-            if (rowData.BigData.Length == 0)
+            if (rowData.BigData ==null|| rowData.BigData.Length == 0)
             {
                 string fname = Application.StartupPath + "\\00记录模板\\24设备变更通知书.xls";
                 dsoFramerControl1.FileOpen(fname);
