@@ -14,6 +14,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Threading;
 namespace Ebada.SCGL.WFlow.Tool
 {
     public partial class SetTaskTableFm : FormBase, IPopupFormEdit {
@@ -45,7 +46,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.Refresh();
             this.Update();
             this.Hide();
-            this.Show();
+            Thread.Sleep(10);
             this.Show();
         }
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<LP_Temple> e)
