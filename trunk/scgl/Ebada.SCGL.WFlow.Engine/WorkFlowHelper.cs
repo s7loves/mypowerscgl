@@ -271,13 +271,21 @@ namespace Ebada.SCGL.WFlow.Engine
                                 }
                                 if (realexpressText1.Substring(0, 1) == "=")
                                 {
+                                    if (varValue[0].ToString()!="'")
                                     expressText = expressText.Replace(varName, "'"+varValue+"'");
+                                    else
+                                        expressText = expressText.Replace(varName,  varValue );
+
                                     expressText = expressText.Replace(realexpressText1.Substring(1),"'" +isort+"'");
                                 }
                             }
                             else
                             {
-                                expressText = expressText.Replace(varName,varValue);
+
+                                if (varValue[0].ToString() != "'")
+                                    expressText = expressText.Replace(varName, "'" + varValue + "'");
+                                else
+                                    expressText = expressText.Replace(varName, varValue);
                             }
 
                             isort++;
@@ -500,6 +508,11 @@ namespace Ebada.SCGL.WFlow.Engine
                 varAccessType = dt.Rows[0]["AccessType"].ToString();
                 varType = dt.Rows[0]["varType"].ToString();
             }
+            WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
+            while (wfi.isSubWorkflow == true)
+            {
+                wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + wfi.MainWorkflowInsId + "'");
+            }
             if (varAccessType == WorkFlowConst.Access_WorkFlow)//流程变量
             {
                
@@ -511,22 +524,22 @@ namespace Ebada.SCGL.WFlow.Engine
                     varSql = "select " + varFieldName + " as name from " + varTableName + " where "
                         + list[0]
                         + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='"
-                        + workFlowId + "' and WorkFlowInsId='"
-                        + workFlowInstanceId + "' " + filterExpressText + ") order by " + list[0] + " desc";
+                        + wfi.WorkFlowId + "' and WorkFlowInsId='"
+                        + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by " + list[0] + " desc";
                 else if (varTableName == "WF_TableFieldValue")
 
                     varSql = "select " + varFieldName + " as name from " + varTableName + " where "
                         + list[0]
                         + " in (select id  from WF_TableFieldValue where WorkFlowId='"
-                        + workFlowId + "' and WorkFlowInsId='"
-                        + workFlowInstanceId + "' " + filterExpressText + ") order by " + list[0] + " desc";
+                        + wfi.WorkFlowId + "' and WorkFlowInsId='"
+                        + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by " + list[0] + " desc";
                 else
                 {
                     varSql = "select " + varFieldName + " as name from " + varTableName + " where  "
                         + list[0]
                         + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"
-                        + workFlowId
-                        + "' and WorkFlowInsId='" + workFlowInstanceId + "'  " + filterExpressText + ") order by " + list[0] + " desc";
+                        + wfi.WorkFlowId
+                        + "' and WorkFlowInsId='" + wfi.WorkFlowInsId + "'  " + filterExpressText + ") order by " + list[0] + " desc";
 
                 }
                 IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", varSql);
@@ -550,20 +563,20 @@ namespace Ebada.SCGL.WFlow.Engine
                         varSql = "select " + varFieldName + " as name from " + varTableName + " where "
                             + list[0]
                             + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='"
-                            + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "' " + filterExpressText + ") order by " + list[0] + " desc";
+                            + wfi.WorkFlowId + "' and WorkFlowInsId='" + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by " + list[0] + " desc";
                     else if (varTableName == "WF_TableFieldValue")
 
                         varSql = "select " + varFieldName + " as name from " + varTableName + " where "
                             + list[0]
                             + " in (select id  from WF_TableFieldValue where WorkFlowId='"
-                            + workFlowId + "' and WorkFlowInsId='"
-                            + workFlowInstanceId + "' " + filterExpressText + ") order by " + list[0] + " desc";
+                            + wfi.WorkFlowId + "' and WorkFlowInsId='"
+                            + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by " + list[0] + " desc";
                     else
                     {
                         varSql = "select " + varFieldName + " as name from " + varTableName + " where  "
                             + list[0]
                             + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"
-                            + workFlowId + "' and WorkFlowInsId='" + workFlowInstanceId + "'" + filterExpressText + ") order by " + list[0] + " desc";
+                            + wfi.WorkFlowId + "' and WorkFlowInsId='" + wfi.WorkFlowInsId + "'" + filterExpressText + ") order by " + list[0] + " desc";
 
                     }
                     DataTable dt2 = null;

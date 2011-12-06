@@ -295,8 +295,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 200)
-                throw new Exception("[sql语句，用于从数据库中取数据，如果受其他控件影响，用@号表示控件值，与RelateLPID顺序对应]长度不能大于200!");
+                //if( value.ToString().Length > 200)
+                //throw new Exception("[sql语句，用于从数据库中取数据，如果受其他控件影响，用@号表示控件值，与RelateLPID顺序对应]长度不能大于200!");
                 if (_sqlsentence as object == null || !_sqlsentence.Equals(value))
                 {
                     _sqlsentence = value;
