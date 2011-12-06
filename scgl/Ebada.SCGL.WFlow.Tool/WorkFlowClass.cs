@@ -83,7 +83,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                string tmpStr = "where  FatherId='" + fatherClassId + "'";//有效的树信息
+                string tmpStr = "where  FatherId='" + fatherClassId + "' order by Caption";//有效的树信息
                 IList li = (IList)MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", tmpStr);
                 if (li.Count == 0)
                 {
