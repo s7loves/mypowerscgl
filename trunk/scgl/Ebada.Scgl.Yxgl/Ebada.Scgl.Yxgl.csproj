@@ -662,6 +662,12 @@
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
     </Compile>
+    <Compile Include="27设备统计表\UCPJ_sbtj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="27设备统计表\UCPJ_sbtj.Designer.cs">
+      <DependentUpon>UCPJ_sbtj.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ecommon.cs" />
     <Compile Include="06设备巡视及缺陷消除\Export06.cs" />
     <Compile Include="IExport.cs" />
@@ -1017,6 +1023,10 @@
       <DependentUpon>UCPJ_26.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="27设备统计表\UCPJ_sbtj.resx">
+      <DependentUpon>UCPJ_sbtj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1073,6 +1083,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="线损分析\UCmLineTree.resx">
       <DependentUpon>UCmLineTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="线损分析\UCPS_LineLoss.resx">
+      <DependentUpon>UCPS_LineLoss.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -1244,6 +1258,12 @@
     <Compile Include="线损分析\UCmLineTree.designer.cs">
       <DependentUpon>UCmLineTree.cs</DependentUpon>
     </Compile>
+    <Compile Include="线损分析\UCPS_LineLoss.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="线损分析\UCPS_LineLoss.Designer.cs">
+      <DependentUpon>UCPS_LineLoss.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ebada.Scgl.Core\Ebada.Scgl.Core.csproj">
@@ -1253,6 +1273,10 @@
     <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ebada.Scgl.Sbgl\Ebada.Scgl.Sbgl.csproj">
+      <Project>{890818B2-EE50-4CB2-9C85-BAA60730CAAB}</Project>
+      <Name>Ebada.Scgl.Sbgl</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ebada.Scgl.WFlow\Ebada.Scgl.WFlow.csproj">
       <Project>{DB517AF8-551D-4C08-83BE-69D803C89173}</Project>

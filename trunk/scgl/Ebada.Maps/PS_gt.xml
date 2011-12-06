@@ -219,6 +219,19 @@
     <select id="SelectPS_gtByStr" resultMap="PS_gt_AllColumns" parameterClass="string">
       $value$
     </select>
+    <select id="GetPS_tqcountbyProc" parameterClass="Hashtable">
+      DECLARE	@return_value int,
+      @gtcount int
+
+      EXEC	@return_value = [dbo].[proc_gt_count]
+      @orgCode = '$orgCode$',
+      @lineCode = '$lineCode$',
+      @selectType = $selectType$,
+      @lineVol = '$lineVol$',
+      @gtcount = @gtcount OUTPUT
+
+      SELECT	@gtcount as N'@gtcount'
+    </select>
   </statements>
 </sqlMap>
  

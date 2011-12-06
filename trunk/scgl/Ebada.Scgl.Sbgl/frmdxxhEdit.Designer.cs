@@ -101,7 +101,7 @@
             // 
             // labelControl14
             // 
-            this.labelControl14.Location = new System.Drawing.Point(29, 103);
+            this.labelControl14.Location = new System.Drawing.Point(40, 103);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(48, 14);
             this.labelControl14.TabIndex = 8;
@@ -109,7 +109,7 @@
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(29, 69);
+            this.labelControl7.Location = new System.Drawing.Point(40, 69);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(48, 14);
             this.labelControl7.TabIndex = 8;
@@ -117,7 +117,7 @@
             // 
             // labelControl19
             // 
-            this.labelControl19.Location = new System.Drawing.Point(29, 135);
+            this.labelControl19.Location = new System.Drawing.Point(40, 135);
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(36, 14);
             this.labelControl19.TabIndex = 9;
@@ -125,7 +125,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(29, 38);
+            this.labelControl2.Location = new System.Drawing.Point(40, 38);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 2;
@@ -134,14 +134,14 @@
             // textEdit1
             // 
             this.textEdit1.EditValue = "";
-            this.textEdit1.Location = new System.Drawing.Point(205, 31);
+            this.textEdit1.Location = new System.Drawing.Point(175, 35);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Size = new System.Drawing.Size(100, 21);
             this.textEdit1.TabIndex = 17;
             // 
             // textEdit2
             // 
-            this.textEdit2.Location = new System.Drawing.Point(205, 62);
+            this.textEdit2.Location = new System.Drawing.Point(175, 66);
             this.textEdit2.Name = "textEdit2";
             this.textEdit2.Size = new System.Drawing.Size(100, 21);
             this.textEdit2.TabIndex = 17;
@@ -153,7 +153,7 @@
             0,
             0,
             0});
-            this.spinEdit1.Location = new System.Drawing.Point(205, 96);
+            this.spinEdit1.Location = new System.Drawing.Point(175, 100);
             this.spinEdit1.Name = "spinEdit1";
             this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -169,7 +169,7 @@
             0,
             0,
             0});
-            this.spinEdit2.Location = new System.Drawing.Point(205, 128);
+            this.spinEdit2.Location = new System.Drawing.Point(175, 132);
             this.spinEdit2.Name = "spinEdit2";
             this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});

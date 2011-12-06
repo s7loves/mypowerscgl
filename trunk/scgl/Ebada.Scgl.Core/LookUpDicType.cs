@@ -100,6 +100,52 @@ namespace Ebada.Scgl.Core {
                 return DicTypeHelper.gdsDic; 
             }
         }
+
+        static RepositoryItem gdsDic2;
+        /// <summary>
+        /// 添加绥化电业局选项
+        /// </summary>
+        public static RepositoryItem GdsDic2 {
+            get
+            {
+                //if (gdsDic == null) {
+                if (gdsDic2 == null || gdsDic2.LinkCount == 1)
+                {
+                    IList<ViewGds> list = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                    IList<DicType> dic = new List<DicType>();
+                    dic.Add(new DicType("0", "所有供电所"));
+                    foreach (ViewGds gds in list)
+                    {
+                        dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                    }
+                    gdsDic2 = new LookUpDicType(dic);
+                }
+                return DicTypeHelper.gdsDic2;
+            }
+        }
+
+        static RepositoryItem tjDic;
+        /// <summary>
+        /// 添加统计方式
+        /// </summary>
+        public static RepositoryItem TjDic
+        {
+            get
+            {
+                //if (gdsDic == null) {
+                if (tjDic == null || tjDic.LinkCount == 1)
+                {
+                    //IList<ViewGds> list = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                    IList<DicType> dic = new List<DicType>();
+                    dic.Add(new DicType("0","按局"));
+                    dic.Add(new DicType("1", "按供电所"));
+                    dic.Add(new DicType("2", "按线路"));
+                    tjDic = new LookUpDicType(dic);
+                }
+                return DicTypeHelper.tjDic;
+            }
+        }
+
         static RepositoryItem bdsDic;
 
         public static RepositoryItem BdsDic {

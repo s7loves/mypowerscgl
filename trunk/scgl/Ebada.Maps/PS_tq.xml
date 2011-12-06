@@ -253,10 +253,23 @@
      </dynamic>
 
    </select>
-   
+    <select id ="GetPS_tqRowCountbyProc" paramenterClass="Hashtable">
+      DECLARE	@return_value int,
+      @tqCount int
+
+      EXEC	@return_value = [dbo].[proc_tq_count]
+      @orgCode = '$orgCode$',
+      @lineCode = '$lineCode$',
+      @owner = '$owner$',
+      @selectType = $selectType$,
+      @tqCount = @tqCount OUTPUT
+
+      SELECT	@tqCount as N'@tqCount'
+    </select>
    <select id="GetPS_tqRowCount" parameterClass="string">
     select count(*) from PS_tq $value$
    </select>
+
   </statements>
 </sqlMap>
  
