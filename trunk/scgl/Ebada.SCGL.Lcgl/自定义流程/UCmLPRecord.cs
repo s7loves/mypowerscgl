@@ -839,6 +839,15 @@ namespace Ebada.Scgl.Lcgl {
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
                                 qxfl.CreateDate = DateTime.Now;
+                                string str = " where RecordID='" + currRecord.ID + "'"
+                             + " and  FieldName='类别' order by id";
+                             WF_TableFieldValue mrv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(str
+                              );
+                                //qxfl = new PJ_24();
+                                if (mrv != null)
+                                {
+                                    qxfl.tdxz = mrv.ControlValue;
+                                }
                                 MainHelper.PlatformSqlMap.Create<PJ_08sbtdjx>(qxfl);
 
                                 WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
@@ -962,6 +971,62 @@ namespace Ebada.Scgl.Lcgl {
                             }
 
                             ((frmTDJHWorkFlowEdit)obj).RowData = qxfl;
+
+                        }
+                        else if (obj is frm24WorkFlowEdit)
+                        {
+                            IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
+                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_24'"
+                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                            PJ_24 qxfl = new PJ_24();
+                            if (li.Count > 0)
+                            {
+                                qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_24>(li[0].ModleRecordID);
+
+                            }
+                            else
+                            {
+                                string str = " where RecordID='" + currRecord.ID + "'"
+                             + " and  FieldName='申请原因' order by id";
+                                WF_TableFieldValue mrv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(str
+                              );
+                                //qxfl = new PJ_24();
+                                if (mrv != null)
+                                {
+                                    qxfl.nr = mrv.ControlValue;
+                                } 
+                                str = " where RecordID='" + currRecord.ID + "'"
+                              + " and  FieldName='供电所名称' order by id";
+                               mrv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(str
+                              );
+                                //qxfl = new PJ_24();
+                                if (mrv != null)
+                                {
+                                    mOrg org = MainHelper.PlatformSqlMap.GetOne<mOrg>(" where orgname='" + mrv.ControlValue + "'");
+                                    if(org!=null)
+                                        qxfl.ParentID = org.OrgID;
+                                }
+                                qxfl.CreateDate = DateTime.Now;
+                                qxfl.CreateMan = MainHelper.User.UserName;
+                                if (qxfl.BigData == null || qxfl.BigData.Length == 0)
+                                {
+                                    qxfl.BigData = new byte[0];
+                                }
+                                MainHelper.PlatformSqlMap.Create<PJ_24>(qxfl);
+
+                                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                                mrwt.ModleRecordID = qxfl.ID;
+                                mrwt.RecordID = currRecord.ID;
+                                mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                                mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                                mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                                mrwt.ModleTableName = qxfl.GetType().ToString();
+                                mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                                mrwt.CreatTime = DateTime.Now;
+                                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                            }
+
+                            ((frm24WorkFlowEdit)obj).RowData = qxfl;
 
                         }
                         ((Form)obj).ShowDialog();

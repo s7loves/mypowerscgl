@@ -1913,7 +1913,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 try
                 {
-                    sqlSentence = sqlSentence.Replace("\r\n", "");
+                    sqlSentence = sqlSentence.Replace("\r\n", " ");
                     li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
                 }
                 catch (Exception ex)
