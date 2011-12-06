@@ -93,6 +93,92 @@
     <Compile Include="04事故障碍异常\frmsgzaycWorkFlowEdit.Designer.cs">
       <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="11配电变压器卡片\Export11.cs" />
+    <Compile Include="11配电变压器卡片\frm11byqbdEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frm11byqbdEdit.Designer.cs">
+      <DependentUpon>frm11byqbdEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frm11byqdydlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frm11byqdydlEdit.Designer.cs">
+      <DependentUpon>frm11byqdydlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frm11byqdzclEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frm11byqdzclEdit.Designer.cs">
+      <DependentUpon>frm11byqdzclEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frmtqbyqEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\frmtqbyqEdit.Designer.cs">
+      <DependentUpon>frmtqbyqEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqbd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqbd.Designer.cs">
+      <DependentUpon>UCPJ_11byqbd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqdy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqdy.Designer.cs">
+      <DependentUpon>UCPJ_11byqdy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqdzcl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPJ_11byqdzcl.Designer.cs">
+      <DependentUpon>UCPJ_11byqdzcl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPS_byqM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPS_byqM.Designer.cs">
+      <DependentUpon>UCPS_byqM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPS_tqbyq.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="11配电变压器卡片\UCPS_tqbyq.Designer.cs">
+      <DependentUpon>UCPS_tqbyq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="24设备变更通知书\Export24.cs" />
+    <Compile Include="24设备变更通知书\frm24Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="24设备变更通知书\frm24Edit.Designer.cs">
+      <DependentUpon>frm24Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="24设备变更通知书\frm24Template.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="24设备变更通知书\frm24Template.Designer.cs">
+      <DependentUpon>frm24Template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="24设备变更通知书\UCPJ_24.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="24设备变更通知书\UCPJ_24.Designer.cs">
+      <DependentUpon>UCPJ_24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="24设备变更通知书\frm24WorkFlowEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="24设备变更通知书\frm24WorkFlowEdit.Designer.cs">
+      <DependentUpon>frm24WorkFlowEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义流程\WorkFlowLineSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义流程\WorkFlowLineSelectForm.Designer.cs">
+      <DependentUpon>WorkFlowLineSelectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="自备电源台账\ExportZBDY.cs" />
     <Compile Include="自备电源台账\frmZBDYEdit.cs">
       <SubType>Form</SubType>
@@ -493,6 +579,62 @@
   <ItemGroup>
     <EmbeddedResource Include="04事故障碍异常\frmsgzaycWorkFlowEdit.resx">
       <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\frm11byqbdEdit.resx">
+      <DependentUpon>frm11byqbdEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\frm11byqdydlEdit.resx">
+      <DependentUpon>frm11byqdydlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\frm11byqdzclEdit.resx">
+      <DependentUpon>frm11byqdzclEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\frmtqbyqEdit.resx">
+      <DependentUpon>frmtqbyqEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\UCPJ_11byqbd.resx">
+      <DependentUpon>UCPJ_11byqbd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\UCPJ_11byqdy.resx">
+      <DependentUpon>UCPJ_11byqdy.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\UCPJ_11byqdzcl.resx">
+      <DependentUpon>UCPJ_11byqdzcl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\UCPS_byqM.resx">
+      <DependentUpon>UCPS_byqM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11配电变压器卡片\UCPS_tqbyq.resx">
+      <DependentUpon>UCPS_tqbyq.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="24设备变更通知书\frm24Edit.resx">
+      <DependentUpon>frm24Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="24设备变更通知书\frm24Template.resx">
+      <DependentUpon>frm24Template.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="24设备变更通知书\UCPJ_24.resx">
+      <DependentUpon>UCPJ_24.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="24设备变更通知书\frm24WorkFlowEdit.resx">
+      <DependentUpon>frm24WorkFlowEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\WorkFlowLineSelectForm.resx">
+      <DependentUpon>WorkFlowLineSelectForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自备电源台账\frmZBDYEdit.resx">
