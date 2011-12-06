@@ -117,12 +117,15 @@ namespace Ebada.Scgl.Yxgl
                 ParentObj = org;
                 IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
                 PS_xl xlTemp = new PS_xl();
+                xlTemp.LineCode = "0";
+                xlTemp.LineID = "0";
                 xlTemp.LineName = "所有线路";
                 xlList.Insert(0,xlTemp);
                 repositoryItemLookUpEdit2.DataSource = xlList;                
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
+            RefreshData();
         }
         private void initImageList()
         {
@@ -154,6 +157,7 @@ namespace Ebada.Scgl.Yxgl
         public void InitColumns()
         {
             dt.Clear();
+            dt = new DataTable();
            // dt.Columns.Add();
             //需要隐藏列时在这写代码
             int selectType = 0; 
@@ -235,7 +239,8 @@ namespace Ebada.Scgl.Yxgl
             //gridViewOperation.RefreshData(slqwhere);
         }
         public void RefreshData()
-        {            
+        {
+            gridViewOperation.BindingList.Clear();
             InitColumns();
             dt.Rows.Clear();
             //gridControl1.DataSource = null;
@@ -359,7 +364,7 @@ namespace Ebada.Scgl.Yxgl
                         ht.Add("lineCode", "");
                         ht.Add("selectType", 1);
                         object byqCount = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCountbyProc", ht);
-                        dr["SbName"] = btGdsList.Edit.Name;
+                        dr["SbName"] = DicTypeHelper.GdsDic2.GetDisplayText(btGdsList.EditValue);
                         dr["ByqNumber"] = byqCount;
                         ht.Add("owner", "");
                         object byqSum = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity_sumbyProc", ht);
@@ -578,7 +583,7 @@ namespace Ebada.Scgl.Yxgl
                          ht.Add("lineCode", lineCode);
                          ht.Add("selectType", 2);
                          object byqCount = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCountbyProc", ht);
-                         dr["SbName"] = btXlList.Edit.Name;
+                         dr["SbName"] = repositoryItemLookUpEdit2.GetDisplayText(btXlList.EditValue);
                          dr["ByqNumber"] = byqCount;
                          ht.Add("owner", "");
                          object byqSum = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity_sumbyProc", ht);
@@ -780,6 +785,7 @@ namespace Ebada.Scgl.Yxgl
             //gridControl1.DataSource = dt;
          
             gridControl1.DataSource = dt;
+            
             gridView1.RefreshData();
             foreach (GridColumn gc in gridView1.Columns)
             {
