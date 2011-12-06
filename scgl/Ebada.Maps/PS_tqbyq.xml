@@ -357,6 +357,31 @@
     <select id="GetPS_tqbyqbyqCapcitybywhere" parameterClass="string">
       select sum(byqCapcity) from PS_tqbyq where tqID in(select tqID from ps_tq where $value$) 
     </select>
+    <select id="GetPS_tqbyqbyqCountbyProc" parameterClass="Hashtable">
+      DECLARE	@return_value int,
+      @bytCount int
+
+      EXEC	@return_value = proc_byq_count
+      @orgCode = '$orgCode$',
+      @lineCode = '$lineCode$',
+      @selectType = $selectType$,
+      @bytCount = @bytCount OUTPUT
+
+      SELECT	@bytCount as N'@bytCount'      
+    </select>
+    <select id="GetPS_tqbyqbyqCapcity_sumbyProc" parameterClass="Hashtable">
+      DECLARE	@return_value int,
+      @bytCapcitySum decimal(18, 0)
+
+      EXEC	@return_value = [dbo].[proc_byqCapcity_sum]
+      @orgCode = '$orgCode$',
+      @lineCode = '$lineCode$',
+      @owner = '$owner$',
+      @selectType = $selectType$,
+      @bytCapcitySum = @bytCapcitySum OUTPUT
+
+      SELECT	@bytCapcitySum as N'@bytCapcitySum'
+    </select>
   </statements>
 </sqlMap>
  

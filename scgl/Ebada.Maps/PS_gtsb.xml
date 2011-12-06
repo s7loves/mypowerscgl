@@ -185,6 +185,27 @@
    <select id="GetPS_gtsbRowCount" parameterClass="string">
     select count(*) from PS_gtsb $value$
    </select>
+    <select id="GetPS_gtsbName" parameterClass="Hashtable" >
+      DECLARE	@return_value int
+
+      EXEC	@return_value = [dbo].[proc_gtsb]
+      @orgCode = '$orgCode$',
+      @lineCode = '$lineCode$',
+      @selectType = $selectType$     
+    </select>
+    <select id="GetPS_gtsbCount" parameterClass="Hashtable" >
+      DECLARE	@return_value int,
+      @gtsbCount int
+
+      EXEC	@return_value = [dbo].[proc_gtsb_count]
+      @orgCode = '$orgCode$',
+      @lineCode = '$lineCode$',
+      @selectType = $selectType$,
+      @sbName = '$sbName$',
+      @gtsbCount = @gtsbCount OUTPUT
+
+      SELECT	@gtsbCount as N'@gtsbCount'
+    </select>
   </statements>
 </sqlMap>
  

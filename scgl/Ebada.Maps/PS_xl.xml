@@ -323,6 +323,46 @@
     <select id="GetPS_xllength" parameterClass="string">
       select sum(WireLength) from PS_xl $value$
     </select>
+    <select id="GetPS_xlmaxgdbjbyProc" parameterClass="Hashtable">
+      DECLARE	@return_value int,
+      @xlMaxgdbj int
+
+      EXEC	@return_value = [dbo].[proc_xl_maxgdbj]
+      @orgCode = '$orgCode$',
+      @lineCode = '$lineCode$',
+      @selectType = $selectType$,
+      @xlMaxgdbj = @xlMaxgdbj OUTPUT
+
+      SELECT	@xlMaxgdbj as N'@xlMaxgdbj'
+    </select>
+    <select id="GetPS_xlcountbyProc" parameterClass="Hashtable">
+      DECLARE	@return_value int,
+      @xlCount int
+
+      EXEC	@return_value = [dbo].[proc_xl_count]
+      @orgCode = '$orgCode$',
+      @lineCode = '$lineCode$',
+      @selectType = $selectType$,
+      @lineVol = '$lineVol$',
+      @lineType = '$lineType$',
+      @xlCount = @xlCount OUTPUT
+
+      SELECT	@xlCount as N'@xlCount'
+    </select>
+    <select id="GetPS_xllengthbyProc" parameterClass="Hashtable">
+      DECLARE	@return_value int,
+      @xlLength int
+
+      EXEC	@return_value = [dbo].[proc_xl_length]
+      @orgCode = '$orgCode$',
+      @lineCode = '$lineCode$',
+      @selectType = $selectType$,
+      @lineVol = '$lineVol$',
+      @lineType = '$lineType$',
+      @xlLength = @xlLength OUTPUT
+
+      SELECT	@xlLength as N'@xlLength'
+    </select>
   </statements>
 </sqlMap>
  

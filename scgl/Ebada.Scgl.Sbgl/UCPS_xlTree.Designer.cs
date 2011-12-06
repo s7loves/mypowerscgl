@@ -35,6 +35,8 @@
             this.typeLookUp = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
+            this.btGdsList = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd2 = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
@@ -49,8 +51,6 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btGdsList = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).BeginInit();
@@ -139,6 +139,20 @@
             this.bar1.OptionsBar.DisableCustomization = true;
             this.bar1.OptionsBar.DrawDragBorder = false;
             this.bar1.Text = "Tools";
+            // 
+            // btGdsList
+            // 
+            this.btGdsList.Caption = "barEditItem1";
+            this.btGdsList.Edit = this.repositoryItemComboBox1;
+            this.btGdsList.Id = 10;
+            this.btGdsList.Name = "btGdsList";
+            // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             // 
             // btAdd
             // 
@@ -263,20 +277,6 @@
             this.imageList1.Images.SetKeyName(11, "exit1.png");
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
-            // 
-            // btGdsList
-            // 
-            this.btGdsList.Caption = "barEditItem1";
-            this.btGdsList.Edit = this.repositoryItemComboBox1;
-            this.btGdsList.Id = 10;
-            this.btGdsList.Name = "btGdsList";
-            // 
-            // repositoryItemComboBox1
-            // 
-            this.repositoryItemComboBox1.AutoHeight = false;
-            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             // 
             // UCPS_xlTree
             // 

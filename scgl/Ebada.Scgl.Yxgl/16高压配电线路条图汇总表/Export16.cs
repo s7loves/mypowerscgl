@@ -26,6 +26,14 @@ namespace Ebada.Scgl.Yxgl {
             
             object ot = new object();
             ex.Open(fname);
+            //设置格式      
+            try
+            {
+                ex.MyExcel.get_Range("A1", "T35").NumberFormat = "@";//文本格式
+            }
+            catch
+            { }
+            
             //此处写填充内容代码
             //线路名称
             ex.SetCellValue(obj.LineName, 4, 2);
@@ -140,7 +148,7 @@ namespace Ebada.Scgl.Yxgl {
                     if (ot != null) {
                         ts = ot.ToString();
                     }
-                    ex.SetCellValue(rl + "/" + ts, 15, 5);
+                    ex.SetCellValue((rl + "/" + ts).ToString(), 15, 5);
                 }
 
             }

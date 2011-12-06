@@ -151,6 +151,7 @@
     <Compile Include="WF_WorkTaskModle.cs" />
     <Compile Include="WF_WorkTaskPower.cs" />
     <Compile Include="WF_WorkTaskView.cs" />
+    <Compile Include="PS_tjsb.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
