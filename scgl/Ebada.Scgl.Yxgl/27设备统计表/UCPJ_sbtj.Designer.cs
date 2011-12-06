@@ -33,8 +33,8 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btXlList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.btExport0 = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
+            this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -81,8 +81,8 @@
             this.btGdsList,
             this.btXlList,
             this.btSelectList,
-            this.btExport0});
-            this.barManager1.MaxItemId = 23;
+            this.btExport});
+            this.barManager1.MaxItemId = 24;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
@@ -104,7 +104,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btSelectList, "", false, true, true, 88),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btXlList, "", true, true, true, 127),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExport0),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExport),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -163,15 +163,6 @@
             this.repositoryItemLookUpEdit2.NullText = "请选择线路";
             this.repositoryItemLookUpEdit2.ValueMember = "LineCode";
             // 
-            // btExport0
-            // 
-            this.btExport0.Caption = "导出";
-            this.btExport0.Id = 22;
-            this.btExport0.ImageIndex = 7;
-            this.btExport0.Name = "btExport0";
-            this.btExport0.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btExport0.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btExport0_ItemClick);
-            // 
             // btClose
             // 
             this.btClose.Caption = "关闭";
@@ -179,6 +170,14 @@
             this.btClose.ImageIndex = 11;
             this.btClose.Name = "btClose";
             this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btExport
+            // 
+            this.btExport.Caption = "导出";
+            this.btExport.Id = 23;
+            this.btExport.ImageIndex = 7;
+            this.btExport.Name = "btExport";
+            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // bar3
             // 
@@ -369,8 +368,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox 请选择统方式;
         private DevExpress.XtraBars.BarEditItem btSelectList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit4;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;      
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
         private System.Windows.Forms.ImageList imageList1;
-        private DevExpress.XtraBars.BarButtonItem btExport0;
+        private DevExpress.XtraBars.BarSubItem btExport;
     }
 }
