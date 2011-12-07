@@ -32,6 +32,7 @@
             this.TaskRLChangeButton = new DevExpress.XtraBars.BarButtonItem();
             this.TaskPlanChangeButton = new DevExpress.XtraBars.BarButtonItem();
             this.TaskPlanChangeOverButton = new DevExpress.XtraBars.BarButtonItem();
+            this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
             this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
@@ -49,7 +50,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -165,6 +165,14 @@
             this.TaskPlanChangeOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.TaskPlanChangeOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskPlanChangeOverButton_ItemClick);
             // 
+            // TaskOverButton
+            // 
+            this.TaskOverButton.Caption = "结束";
+            this.TaskOverButton.Id = 21;
+            this.TaskOverButton.Name = "TaskOverButton";
+            this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
+            // 
             // liuchenBarClear
             // 
             this.liuchenBarClear.Caption = "清除关联信息";
@@ -264,7 +272,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(536, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(536, 25);
             // 
             // barDockControlBottom
             // 
@@ -275,14 +283,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 281);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 280);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(536, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 281);
+            this.barDockControlRight.Location = new System.Drawing.Point(536, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 280);
             // 
             // gridControl1
             // 
@@ -292,11 +300,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 25);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(536, 281);
+            this.gridControl1.Size = new System.Drawing.Size(536, 280);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -314,13 +322,6 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // TaskOverButton
-            // 
-            this.TaskOverButton.Caption = "结束";
-            this.TaskOverButton.Id = 21;
-            this.TaskOverButton.Name = "TaskOverButton";
-            this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
             // 
             // UCPS_tqbyq
             // 

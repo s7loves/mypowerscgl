@@ -204,29 +204,28 @@ namespace Ebada.SCGL.WFlow.Engine
             //else
             //    allworflowid = "MainWorkflowInsId='" + workFlowInstanceId + "'";
 
-            if (wtlist.Count > 0 && wtlist[0].isSubWorkflow)
+            //if (wtlist.Count > 0 && wtlist[0].isSubWorkflow)
+            foreach(WF_WorkTaskInstanceView wt in wtlist)
             {
-
+                //if (!wt.isSubWorkflow) continue;
                 IList<WF_WorkFlowInstance> wflist = MainHelper.PlatformSqlMap.GetListByWhere<WF_WorkFlowInstance>
-                        (" where WorkFlowInsId='" + wtlist[0].WorkFlowInsId + "'");
-                
-                    wtlist = MainHelper.PlatformSqlMap.GetListByWhere<WF_WorkTaskInstanceView>
-                        (" where WorkflowId='" 
-                        + wflist[0].MainWorkflowId+"'"
-                        + " and WorkflowInsId='" + wflist[0].MainWorkflowInsId + "'"
-                        + " and WorktaskId='" + wflist[0].MainWorktaskId + "'"
-                        
-                        );
+                        (" where WorkFlowInsId='" + wt.WorkFlowInsId + "'");
+                foreach (WF_WorkFlowInstance wf in wflist)
+                {
+                    IList<WF_WorkTaskInstanceView> wtlist2 = MainHelper.PlatformSqlMap.GetListByWhere<WF_WorkTaskInstanceView>
+                            (" where WorkflowId='"
+                            + wf.MainWorkflowId + "'"
+                            + " and WorkflowInsId='" + wf.MainWorkflowInsId + "'"
+                            + " and WorktaskId='" + wf.MainWorktaskId + "'"
 
-                    if (wtlist.Count > 0)
+                            );
+                    foreach (WF_WorkTaskInstanceView wt2 in wtlist2)
                     {
-                        allworflowid = allworflowid + " or previoustaskid ='" + wtlist[0].WorkTaskInsId + "' ";
-
-
-
-                        if (wtlist[0].isSubWorkflow)
-                            GetAllWorkFlowID(wtlist[0].WorkTaskInsId, ref  allworflowid);
+                        allworflowid = allworflowid + " or previoustaskid ='" + wt2.WorkTaskInsId + "' ";
+                            //if (!wt2.isSubWorkflow) continue;
+                            GetAllWorkFlowID(wt2.WorkTaskInsId, ref  allworflowid);
                     }
+                }
                 
             }
         }

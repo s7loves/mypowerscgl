@@ -326,7 +326,7 @@ namespace Ebada.SCGL.WFlow.Engine
                     else
                         allworflowid =   "  MainWorkflowInsId ='" + wflist[0].WorkFlowInsId + "' ";
 
-                    GetAllWorkFlowID(wflist[0].WorkFlowInsId, ref  allworflowid);
+                    GetAllWorkFlowID(wflist[i].WorkFlowInsId, ref  allworflowid);
                 } 
             }
         }
