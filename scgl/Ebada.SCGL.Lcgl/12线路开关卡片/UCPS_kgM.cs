@@ -35,6 +35,9 @@ namespace Ebada.Scgl.Lcgl
             {
                 parentTemple = value;
                 ucpS_kg1.ParentTemple = value;
+                ucpJ_12kgbd1.ParentTemple = value;
+                ucpJ_12kgjx1.ParentTemple = value;
+                ucpJ_12kgsy1.ParentTemple = value;
             }
         }
         public bool IsWorkflowCall
@@ -44,6 +47,9 @@ namespace Ebada.Scgl.Lcgl
 
                 isWorkflowCall = value;
                 ucpS_kg1.IsWorkflowCall = value;
+                ucpJ_12kgbd1.IsWorkflowCall = value;
+                ucpJ_12kgjx1.IsWorkflowCall = value;
+                ucpJ_12kgsy1.IsWorkflowCall = value;
 
 
             }
@@ -55,6 +61,9 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord = value;
                 ucpS_kg1.CurrRecord = value;
+                ucpJ_12kgbd1.CurrRecord = value;
+                ucpJ_12kgjx1.CurrRecord = value;
+                ucpJ_12kgsy1.CurrRecord = value;
 
             }
         }
@@ -69,6 +78,9 @@ namespace Ebada.Scgl.Lcgl
             {
                 WorkFlowData = value;
                 ucpS_kg1.RecordWorkFlowData = value;
+                ucpJ_12kgbd1.RecordWorkFlowData = value;
+                ucpJ_12kgjx1.RecordWorkFlowData = value;
+                ucpJ_12kgsy1.RecordWorkFlowData = value;
             }
         }
         public string VarDbTableName
@@ -78,6 +90,9 @@ namespace Ebada.Scgl.Lcgl
             {
                 varDbTableName = value; ;
                 ucpS_kg1.VarDbTableName = value;
+                ucpJ_12kgbd1.VarDbTableName = value;
+                ucpJ_12kgjx1.VarDbTableName = value;
+                ucpJ_12kgsy1.VarDbTableName = value;
             }
         }
 

@@ -75,7 +75,7 @@ namespace Ebada.Scgl.Lcgl
         public static void GetNextTask(string taskid, string workFlowId, ref Hashtable taskht)
         {
 
-            string tmpStr = " where  StartTaskId='" + taskid + "' and WorkFlowId='" + workFlowId + "'";
+            string tmpStr = " where  StartTaskId='" + taskid + "' and WorkFlowId='" + workFlowId + "' order by startTaskCaption";
             IList<WF_WorkTaskLinkView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskLinkView>("SelectWF_WorkTaskLinkViewList", tmpStr);
             foreach (WF_WorkTaskLinkView tl in li)
             {
@@ -106,6 +106,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void btCancel_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 

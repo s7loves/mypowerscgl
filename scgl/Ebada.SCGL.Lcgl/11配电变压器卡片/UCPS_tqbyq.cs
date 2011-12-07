@@ -78,6 +78,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 WorkFlowData = value;
+
             }
         }
         public string VarDbTableName
@@ -104,6 +105,20 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterAdd(PS_tqbyq obj)
         {
             //RefreshData("where byqID='" + PSObj.byqID + "'");
+            if (isWorkflowCall)
+            {
+                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ModleRecordID = obj.byqID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = obj.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+            }
            
         }
         //public PS_tqbyq PSObj
@@ -121,7 +136,16 @@ namespace Ebada.Scgl.Lcgl
         //}
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_tqbyq> e)
         {
-           
+
+            if (isWorkflowCall)
+            {
+
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + e.Value.byqID + "' and RecordID='" + currRecord.ID + "'"
+                    + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                    + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                    + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
+            }
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_tqbyq> e)
@@ -287,30 +311,55 @@ namespace Ebada.Scgl.Lcgl
 
         private void UCPS_tqbyq_Load(object sender, EventArgs e)
         {
-            if ( (WorkFlowData.Rows[0]["TaskTypeId"].ToString() == "1"))
+            if (isWorkflowCall)
             {
-                liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                TaskPlanChangeButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                TaskRLChangeButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+                foreach (WF_WorkTaskCommands wt in wtlist)
+                {
+                    if (wt.CommandName == "01")
+                    {
+                        liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                        liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    }
+                    else
+                        if (wt.CommandName == "02")
+                        {
+                            liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            if (wt.Description != "")
+                                TaskOverButton.Caption = wt.Description;
+                            liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                        }
 
-            }
-            else
-            {
-                WF_ModleRecordWorkTaskIns mrwt = null;
-                mrwt = MainHelper.PlatformSqlMap.GetOne<WF_ModleRecordWorkTaskIns>(" where RecordID='" + CurrRecord.ID + "'"
-                + " and  ModleTableName='Ebada.Scgl.Model.PJ_24'");
-                if (mrwt == null)
-                {
-                    liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                    TaskPlanChangeButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                    TaskPlanChangeOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                    liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                 }
-                else
+                if (wtlist.Count == 0)
                 {
-                    liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                    TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    if ((WorkFlowData.Rows[0]["TaskTypeId"].ToString() == "1"))
+                    {
+                        liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                        TaskPlanChangeButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                        TaskRLChangeButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                        liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+
+                    }
+                    else
+                    {
+                        WF_ModleRecordWorkTaskIns mrwt = null;
+                        mrwt = MainHelper.PlatformSqlMap.GetOne<WF_ModleRecordWorkTaskIns>(" where RecordID='" + CurrRecord.ID + "'"
+                        + " and  ModleTableName='Ebada.Scgl.Model.PJ_24'");
+                        if (mrwt == null)
+                        {
+                            liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            TaskPlanChangeButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            TaskPlanChangeOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                        }
+                        else
+                        {
+                            liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                        }
+                    }
                 }
             }
         }

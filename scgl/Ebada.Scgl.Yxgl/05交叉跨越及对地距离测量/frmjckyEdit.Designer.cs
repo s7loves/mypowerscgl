@@ -131,11 +131,11 @@
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit2.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gtID", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("gtCode", "杆塔编号")});
-            this.comboBoxEdit2.Properties.DisplayMember = "gtCode";
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineCode", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineName", "线路名称")});
+            this.comboBoxEdit2.Properties.DisplayMember = "LineName";
             this.comboBoxEdit2.Properties.NullText = "";
-            this.comboBoxEdit2.Properties.ValueMember = "gtID";
+            this.comboBoxEdit2.Properties.ValueMember = "LineCode";
             this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit2.TabIndex = 3;
             // 

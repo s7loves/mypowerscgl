@@ -28,6 +28,10 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btGdsList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.liuchbarSubItem = new DevExpress.XtraBars.BarSubItem();
+            this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
+            this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
+            this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
@@ -70,7 +74,11 @@
             this.bsItem1,
             this.btExport,
             this.btGdsList,
-            this.btView});
+            this.btView,
+            this.liuchbarSubItem,
+            this.SubmitButton,
+            this.TaskOverButton,
+            this.liuchenBarClear});
             this.barManager1.MaxItemId = 16;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
@@ -86,6 +94,7 @@
             this.bar1.FloatLocation = new System.Drawing.Point(556, 208);
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
+             new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
@@ -114,6 +123,41 @@
             this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            // 
+            // liuchbarSubItem
+            // 
+            this.liuchbarSubItem.Caption = "流程命令";
+            this.liuchbarSubItem.Id = 16;
+            this.liuchbarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.SubmitButton),
+            new DevExpress.XtraBars.LinkPersistInfo(this.TaskOverButton),
+            new DevExpress.XtraBars.LinkPersistInfo(this.liuchenBarClear)});
+            this.liuchbarSubItem.Name = "liuchbarSubItem";
+            this.liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // SubmitButton
+            // 
+            this.SubmitButton.Caption = "提交审核";
+            this.SubmitButton.Id = 17;
+            this.SubmitButton.Name = "SubmitButton";
+            this.SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.SubmitButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.SubmitButton_ItemClick);
+            // 
+            // TaskOverButton
+            // 
+            this.TaskOverButton.Caption = "任务结束";
+            this.TaskOverButton.Id = 18;
+            this.TaskOverButton.Name = "TaskOverButton";
+            this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
+            // 
+            // liuchenBarClear
+            // 
+            this.liuchenBarClear.Caption = "清除关联信息";
+            this.liuchenBarClear.Id = 19;
+            this.liuchenBarClear.Name = "liuchenBarClear";
+            this.liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.liuchenBarClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.liuchenBarClear_ItemClick);
             // 
             // btAdd
             // 
@@ -298,5 +342,9 @@
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
+        private DevExpress.XtraBars.BarSubItem liuchbarSubItem;
+        private DevExpress.XtraBars.BarButtonItem SubmitButton;
+        private DevExpress.XtraBars.BarButtonItem TaskOverButton;
+        private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
     }
 }

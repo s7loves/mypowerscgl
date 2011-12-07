@@ -361,10 +361,28 @@ namespace Ebada.Scgl.Lcgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
-            frmTemplate frm = new frmTemplate();
+            frm20Template frm = new frm20Template();
+            frm.CurrRecord = newobj;
             frm.RowData = newobj;
             frm.Status = "add";
-            frm.ShowDialog();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+
+                if (isWorkflowCall)
+                {
+                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ModleRecordID = newobj.ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.ModleTableName = newobj.GetType().ToString();
+                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                    MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+                }
+            }
             InitData();
         }
 
@@ -402,7 +420,16 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.DeleteByWhere<PJ_20>(" where id ='" + pj.ID + "'");
                 LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and  CellName like '%低压线路完好率及台区网络图%'");
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where RecordId ='"
-                    + pj.ID + "' and UserControlId='" + parentTemple .LPID+ "'");
+                    + pj.ID + "' and UserControlId='" + parentTemple.LPID + "'"); 
+                if (isWorkflowCall)
+                {
+
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + pj.ID + "' and RecordID='" + currRecord.ID + "'"
+                        + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                        + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                        + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                        + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
+                }
                 InitData();
             }
             catch (Exception ex)
