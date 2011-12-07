@@ -1320,9 +1320,15 @@
     <Content Include="00记录模板\设备紧急重大缺陷报告.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="00记录模板\三相负荷情况调查表.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="00记录模板\供用电合同.xls" />
     <None Include="00记录模板\供电方案答复通知单.xls" />
     <Content Include="00记录模板\双电源台账.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\变压器容量变更申请表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="00记录模板\客户用电申请单.xls" />
