@@ -193,7 +193,18 @@ namespace Ebada.Scgl.Lcgl
             
             if (org != null)
             {
-                IList<PS_tqbyq> blist= Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("SelectPS_tqbyqByGDS","'"+org.OrgCode+"'");
+                string slqwhere = "'"+org.OrgCode+"'";
+                //if (isWorkflowCall)
+                //{
+                //    if (slqwhere == "") slqwhere = " where 1=1";
+                //    slqwhere = slqwhere + " and byqID  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                //    slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                //       + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                //       + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                //       + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+                //}
+                slqwhere = slqwhere + " order by byqID desc";
+                IList<PS_tqbyq> blist = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("SelectPS_tqbyqByGDS", slqwhere);
                 gridControl1.DataSource = blist;
                 //ParentObj = org;
                 //if (SelectGdsChanged != null)

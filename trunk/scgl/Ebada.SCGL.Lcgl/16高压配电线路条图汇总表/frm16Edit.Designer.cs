@@ -32,23 +32,23 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxEdit10 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.comboBoxEdit10 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -104,6 +104,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "高压配电线路条图汇总表";
             // 
+            // comboBoxEdit10
+            // 
+            this.comboBoxEdit10.Location = new System.Drawing.Point(95, 25);
+            this.comboBoxEdit10.Name = "comboBoxEdit10";
+            this.comboBoxEdit10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit10.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxEdit10.TabIndex = 16;
+            this.comboBoxEdit10.TextChanged += new System.EventHandler(this.comboBoxEdit10_TextChanged);
+            // 
             // buttonEdit1
             // 
             this.buttonEdit1.Location = new System.Drawing.Point(95, 49);
@@ -121,19 +131,6 @@
             this.labelControl3.Size = new System.Drawing.Size(24, 14);
             this.labelControl3.TabIndex = 17;
             this.labelControl3.Text = "文档";
-            // 
-            // lookUpEdit1
-            // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(135, 12);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Properties.NullText = "";
-            this.lookUpEdit1.Properties.EditValueChanged += new System.EventHandler(this.lookUpEdit1_Properties_EditValueChanged);
-            this.lookUpEdit1.Size = new System.Drawing.Size(150, 21);
-            this.lookUpEdit1.TabIndex = 15;
-            this.lookUpEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.lookUpEdit1_ButtonClick);
-            this.lookUpEdit1.EditValueChanged += new System.EventHandler(this.lookUpEdit1_EditValueChanged);
             // 
             // memoEdit1
             // 
@@ -159,6 +156,20 @@
             this.labelControl5.TabIndex = 7;
             this.labelControl5.Text = "备注";
             // 
+            // lookUpEdit1
+            // 
+            this.lookUpEdit1.Location = new System.Drawing.Point(135, 12);
+            this.lookUpEdit1.Name = "lookUpEdit1";
+            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit1.Properties.NullText = "";
+            this.lookUpEdit1.Properties.EditValueChanged += new System.EventHandler(this.lookUpEdit1_Properties_EditValueChanged);
+            this.lookUpEdit1.Size = new System.Drawing.Size(150, 21);
+            this.lookUpEdit1.TabIndex = 15;
+            this.lookUpEdit1.Visible = false;
+            this.lookUpEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.lookUpEdit1_ButtonClick);
+            this.lookUpEdit1.EditValueChanged += new System.EventHandler(this.lookUpEdit1_EditValueChanged);
+            // 
             // bar1
             // 
             this.bar1.BarName = "Tools";
@@ -179,16 +190,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // comboBoxEdit10
-            // 
-            this.comboBoxEdit10.Location = new System.Drawing.Point(95, 25);
-            this.comboBoxEdit10.Name = "comboBoxEdit10";
-            this.comboBoxEdit10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit10.Size = new System.Drawing.Size(150, 21);
-            this.comboBoxEdit10.TabIndex = 16;
-            this.comboBoxEdit10.TextChanged += new System.EventHandler(this.comboBoxEdit10_TextChanged);
-            // 
             // frm16Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -205,10 +206,10 @@
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

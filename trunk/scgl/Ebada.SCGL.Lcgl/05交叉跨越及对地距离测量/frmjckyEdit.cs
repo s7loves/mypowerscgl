@@ -56,7 +56,10 @@ namespace Ebada.Scgl.Lcgl
                     this.rowData = value as PJ_05jcky;
                     this.InitComboBoxData();
                     dataBind();
-                } else {
+                }
+                else
+                {
+                    this.InitComboBoxData();
                     ConvertHelper.CopyTo<PJ_05jcky>(value as PJ_05jcky, rowData);
                 }
             }
@@ -112,7 +115,9 @@ namespace Ebada.Scgl.Lcgl
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
             if (comboBoxEdit1.EditValue == null) return;
-            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit1.Text+"'");
+            if (xl == null) return;
+            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where ParentID='" + xl.LineCode + "'");
             
             comboBoxEdit2.Properties.DataSource = list;
             string linecode = comboBoxEdit1.EditValue.ToString();
@@ -129,6 +134,7 @@ namespace Ebada.Scgl.Lcgl
 
             }
             code = string.Join(",", codelist.ToArray());
+            if (code == "") return;
             IList xllist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where linecode in ({0})",code));
             code = "";
             foreach (string str in xllist) {

@@ -112,7 +112,9 @@ namespace Ebada.Scgl.Yxgl
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
             if (comboBoxEdit1.EditValue == null) return;
-            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit1.Text + "'");
+            if (xl == null) return;
+            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where ParentID='" + xl.LineCode + "'");
             
             comboBoxEdit2.Properties.DataSource = list;
             string linecode = comboBoxEdit1.EditValue.ToString();

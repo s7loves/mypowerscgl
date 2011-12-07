@@ -340,6 +340,20 @@ namespace Ebada.Scgl.Lcgl
             pj.OrgName = parentObj.OrgName;
             pj.Remark ="";
             MainHelper.PlatformSqlMap.Create<PJ_17>(pj);
+            if (isWorkflowCall)
+            {
+                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ModleRecordID = pj.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = pj.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+            }
 
             InitData();
             //if (MsgBox.ShowAskMessageBox("是否马上生成条图") == DialogResult.OK)
