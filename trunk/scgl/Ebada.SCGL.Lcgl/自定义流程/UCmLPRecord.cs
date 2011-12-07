@@ -544,26 +544,8 @@ namespace Ebada.Scgl.Lcgl {
             //获得编辑按钮的状态
             this.btEditfrm.Caption = lpr.Status;
         }
-       
-        private void btEditfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void workFlowFormShow(LP_Record currRecord)
         {
-            if (gridView1.FocusedRowHandle<0)
-            {
-                return;
-            }
-            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
-            LP_Record currRecord = new LP_Record();
-            foreach (DataColumn dc in gridtable.Columns)
-            {
-                if (dc.ColumnName != "Image")
-                {
-                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
-                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
-                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
-                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
-
-                }
-            }
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
 
             if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
@@ -577,8 +559,8 @@ namespace Ebada.Scgl.Lcgl {
             {
                 frmLP frm = new frmLP();
                 frm.Status = "edit";
-                
-                
+
+
                 frm.CurrRecord = currRecord;
 
 
@@ -613,7 +595,7 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
-               
+
                 if (obj.GetType().GetProperty("CurrRecord") != null)
                     obj.GetType().GetProperty("CurrRecord").SetValue(obj, currRecord, null);
                 else
@@ -621,7 +603,7 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
-                
+
                 if (obj.GetType().GetProperty("ParentTemple") != null)
                     obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(dt, currRecord), null);
                 else
@@ -631,7 +613,7 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 if (obj is UserControl)
                 {
-                    
+
                     FormBase dlg = new FormBase();
                     dlg.Text = ((UserControl)obj).Name;
                     dlg.MdiParent = MainHelper.MainForm;
@@ -697,12 +679,12 @@ namespace Ebada.Scgl.Lcgl {
                             }
                             else
                             {
-                                 qxfl = new PJ_qxfl();
+                                qxfl = new PJ_qxfl();
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
 
                             }
-                            
+
                             ((frmsbqxWorkFlowEdit)obj).RowData = qxfl;
 
                         }
@@ -715,10 +697,10 @@ namespace Ebada.Scgl.Lcgl {
                             if (li.Count > 0)
                             {
                                 PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
-                             
-                             
-                                qxfl = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxs>(" where CONVERT(varchar, CreateDate, 120 ) =  '" + qxfltemp.CreateDate + "'" 
-                                    + " and LineID='" + qxfltemp.LineID + "'"                                     
+
+
+                                qxfl = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxs>(" where CONVERT(varchar, CreateDate, 120 ) =  '" + qxfltemp.CreateDate + "'"
+                                    + " and LineID='" + qxfltemp.LineID + "'"
                                     + " and OrgCode='" + qxfltemp.OrgCode + "'"
                                      + " and qxlb='" + qxfltemp.qxlb + "'"
                                      + " and xsr='" + qxfltemp.xsr + "'"
@@ -802,7 +784,7 @@ namespace Ebada.Scgl.Lcgl {
                                     qxfl.LineID = qxfltemp.LineID;
                                     qxfl.LineName = qxfltemp.LineName;
                                     qxfl.jxnr = qxfltemp.qxnr;
-                                    if (qxfltemp.qxlb== "紧急缺陷")
+                                    if (qxfltemp.qxlb == "紧急缺陷")
                                     {
                                         qxfl.tdxz = "事故停电";
                                     }
@@ -831,7 +813,7 @@ namespace Ebada.Scgl.Lcgl {
                                     mrwt.CreatTime = DateTime.Now;
                                     MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                                 }
-                              
+
                             }
                             else
                             {
@@ -841,8 +823,8 @@ namespace Ebada.Scgl.Lcgl {
                                 qxfl.CreateDate = DateTime.Now;
                                 string str = " where RecordID='" + currRecord.ID + "'"
                              + " and  FieldName='类别' order by id";
-                             WF_TableFieldValue mrv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(str
-                              );
+                                WF_TableFieldValue mrv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(str
+                                 );
                                 //qxfl = new PJ_24();
                                 if (mrv != null)
                                 {
@@ -885,7 +867,7 @@ namespace Ebada.Scgl.Lcgl {
                                     qxfl.gtdsj += span.Days + "天";
                                 if (span.Hours > 0)
                                     qxfl.gtdsj += span.Hours + "时";
-                                if (span.Minutes>-1)
+                                if (span.Minutes > -1)
                                     qxfl.gtdsj += span.Minutes + "分";
                                 qxfl.fsdd = qxfltemp.jxnr;
                                 qxfl.CreateDate = DateTime.Now;
@@ -933,7 +915,7 @@ namespace Ebada.Scgl.Lcgl {
                             PJ_tdjh qxfl = new PJ_tdjh();
                             if (li.Count > 0)
                             {
-                                 qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_tdjh>(li[0].ModleRecordID);
+                                qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_tdjh>(li[0].ModleRecordID);
 
                             }
                             else
@@ -949,7 +931,7 @@ namespace Ebada.Scgl.Lcgl {
                                     qxfl.SQOrgname = qxfltemp.OrgName;
                                     qxfl.OrgName = qxfltemp.OrgName;
                                     qxfl.JXNR = qxfltemp.qxnr;
-                                    qxfl.S1= "缺陷管理流程";
+                                    qxfl.S1 = "缺陷管理流程";
                                 }
                                 else
                                 {
@@ -994,16 +976,16 @@ namespace Ebada.Scgl.Lcgl {
                                 if (mrv != null)
                                 {
                                     qxfl.nr = mrv.ControlValue;
-                                } 
+                                }
                                 str = " where RecordID='" + currRecord.ID + "'"
                               + " and  FieldName='供电所名称' order by id";
-                               mrv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(str
-                              );
+                                mrv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(str
+                               );
                                 //qxfl = new PJ_24();
                                 if (mrv != null)
                                 {
                                     mOrg org = MainHelper.PlatformSqlMap.GetOne<mOrg>(" where orgname='" + mrv.ControlValue + "'");
-                                    if(org!=null)
+                                    if (org != null)
                                         qxfl.ParentID = org.OrgID;
                                 }
                                 qxfl.CreateDate = DateTime.Now;
@@ -1030,11 +1012,36 @@ namespace Ebada.Scgl.Lcgl {
 
                         }
                         ((Form)obj).ShowDialog();
+                        if (obj is WorkFlowLineSelectForm)
+                        {
+                            workFlowFormShow(currRecord);
+                        }
                     }
                 InitData(strKind);
             }
             //获得编辑按钮的状态
-            this.btEditfrm.Caption= currRecord.Status;
+            this.btEditfrm.Caption = currRecord.Status;
+        }
+        private void btEditfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle<0)
+            {
+                return;
+            }
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            LP_Record currRecord = new LP_Record();
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+
+                }
+            }
+            workFlowFormShow(currRecord);
         }
 
         private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
