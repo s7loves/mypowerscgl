@@ -287,20 +287,31 @@ namespace Ebada.Scgl.Lcgl
 
         private void UCPS_tqbyq_Load(object sender, EventArgs e)
         {
-             WF_ModleRecordWorkTaskIns mrwt = null;
-                mrwt = MainHelper.PlatformSqlMap.GetOne<WF_ModleRecordWorkTaskIns>(" where RecordID='" + CurrRecord.ID + "'"
-                +" and  ModleTableName='Ebada.Scgl.Model.PJ_24'" );
-                if (mrwt == null)
+            if ( (WorkFlowData.Rows[0]["TaskTypeId"].ToString() == "1"))
             {
                 liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                 TaskPlanChangeButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                TaskPlanChangeOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                TaskRLChangeButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                 liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+
             }
             else
             {
-                liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                WF_ModleRecordWorkTaskIns mrwt = null;
+                mrwt = MainHelper.PlatformSqlMap.GetOne<WF_ModleRecordWorkTaskIns>(" where RecordID='" + CurrRecord.ID + "'"
+                + " and  ModleTableName='Ebada.Scgl.Model.PJ_24'");
+                if (mrwt == null)
+                {
+                    liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    TaskPlanChangeButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    TaskPlanChangeOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                }
+                else
+                {
+                    liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                }
             }
         }
 
@@ -372,8 +383,10 @@ namespace Ebada.Scgl.Lcgl
                 PS_tqbyq obj = gridView1.GetFocusedRow() as PS_tqbyq;
                 WF_ModleRecordWorkTaskIns mrwt = null;
                 mrwt = MainHelper.PlatformSqlMap.GetOne<WF_ModleRecordWorkTaskIns>(" where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"] + "'"
-                        + "and WorkFlowInsId" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "'"
-                        + "and ModleRecordID" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "'"
+                        + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "'"
+                        + " and ModleRecordID='" + obj.byqID + "'"
+                        + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
+                        + " and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
 
                 );
                 if (mrwt == null)
@@ -390,14 +403,78 @@ namespace Ebada.Scgl.Lcgl
                     MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                 }
             }
+            string statustemp = currRecord.Status;
             currRecord.Status = "方案调整";
             MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+            string strmes = "";
+            WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                currRecord.Status = statustemp;
+                MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                currRecord.Status = "存档";
+            }
+            else
+            {
+                currRecord.Status = strmes;
+            }
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+            gridControl1.FindForm().Close();
 
         }
 
         private void TaskPlanChangeOverButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+            string statustemp = currRecord.Status;
+            currRecord.Status = "调整结束";
+            MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+            string strmes = "";
+            WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                currRecord.Status = statustemp;
+                MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                currRecord.Status = "存档";
+            }
+            else
+            {
+                currRecord.Status = strmes;
+            }
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+            gridControl1.FindForm().Close();
         }
 
         private void liuchenBarClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
