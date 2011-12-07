@@ -93,6 +93,75 @@
     <Compile Include="04事故障碍异常\frmsgzaycWorkFlowEdit.Designer.cs">
       <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\Export05.cs" />
+    <Compile Include="05交叉跨越及对地距离测量\frmjckyEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\frmjckyEdit.Designer.cs">
+      <DependentUpon>frmjckyEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\frmjckyjlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\frmjckyjlEdit.Designer.cs">
+      <DependentUpon>frmjckyjlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jcky.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jcky.Designer.cs">
+      <DependentUpon>UCPJ_05jcky.cs</DependentUpon>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyjl.Designer.cs">
+      <DependentUpon>UCPJ_05jckyjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
+      <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="07接地装置检测\Export07.cs" />
+    <Compile Include="07接地装置检测\frm07JDZZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="07接地装置检测\frm07JDZZEdit.Designer.cs">
+      <DependentUpon>frm07JDZZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="07接地装置检测\frm07JDZZJlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="07接地装置检测\frm07JDZZJlEdit.Designer.cs">
+      <DependentUpon>frm07JDZZJlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzz.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzz.Designer.cs">
+      <DependentUpon>UCPJ_07jdzz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzzjl .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzzjl .Designer.cs">
+      <DependentUpon>UCPJ_07jdzzjl .cs</DependentUpon>
+    </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzzM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="07接地装置检测\UCPJ_07jdzzM.Designer.cs">
+      <DependentUpon>UCPJ_07jdzzM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="10配电变压器汇总表\Export10.cs" />
+    <Compile Include="10配电变压器汇总表\UCPJ_10.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="10配电变压器汇总表\UCPJ_10.Designer.cs">
+      <DependentUpon>UCPJ_10.cs</DependentUpon>
+    </Compile>
     <Compile Include="11配电变压器卡片\Export11.cs" />
     <Compile Include="11配电变压器卡片\frm11byqbdEdit.cs">
       <SubType>Form</SubType>
@@ -148,6 +217,112 @@
     <Compile Include="11配电变压器卡片\UCPS_tqbyq.Designer.cs">
       <DependentUpon>UCPS_tqbyq.cs</DependentUpon>
     </Compile>
+    <Compile Include="12线路开关卡片\Export12.cs" />
+    <Compile Include="12线路开关卡片\frm12kgbdEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\frm12kgbdEdit.Designer.cs">
+      <DependentUpon>frm12kgbdEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\frm12kgjxEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\frm12kgjxEdit.Designer.cs">
+      <DependentUpon>frm12kgjxEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\frm12kgsyEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\frm12kgsyEdit.Designer.cs">
+      <DependentUpon>frm12kgsyEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\frmkgEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\frmkgEdit.Designer.cs">
+      <DependentUpon>frmkgEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgbd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgbd.Designer.cs">
+      <DependentUpon>UCPJ_12kgbd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgjx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgjx.Designer.cs">
+      <DependentUpon>UCPJ_12kgjx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgsy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgsy.Designer.cs">
+      <DependentUpon>UCPJ_12kgsy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPS_kg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPS_kg.Designer.cs">
+      <DependentUpon>UCPS_kg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPS_kgM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPS_kgM.Designer.cs">
+      <DependentUpon>UCPS_kgM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="16高压配电线路条图汇总表\Export16.cs" />
+    <Compile Include="16高压配电线路条图汇总表\frm16Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="16高压配电线路条图汇总表\frm16Edit.Designer.cs">
+      <DependentUpon>frm16Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="16高压配电线路条图汇总表\UCPJ_16.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="16高压配电线路条图汇总表\UCPJ_16.Designer.cs">
+      <DependentUpon>UCPJ_16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="17高压配电线路条图\Export17.cs" />
+    <Compile Include="17高压配电线路条图\frm17Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="17高压配电线路条图\frm17Edit.Designer.cs">
+      <DependentUpon>frm17Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="17高压配电线路条图\frm17Template.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="17高压配电线路条图\frm17Template.Designer.cs">
+      <DependentUpon>frm17Template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="17高压配电线路条图\UCPJ_17.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="17高压配电线路条图\UCPJ_17.Designer.cs">
+      <DependentUpon>UCPJ_17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\Export20.cs" />
+    <Compile Include="20低压设备完好率及台区网络图\frm20Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\frm20Edit.Designer.cs">
+      <DependentUpon>frm20Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\frm20Template.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\frm20Template.Designer.cs">
+      <DependentUpon>frm20Template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\UCPJ_20.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="20低压设备完好率及台区网络图\UCPJ_20.Designer.cs">
+      <DependentUpon>UCPJ_20.cs</DependentUpon>
+    </Compile>
     <Compile Include="24设备变更通知书\Export24.cs" />
     <Compile Include="24设备变更通知书\frm24Edit.cs">
       <SubType>Form</SubType>
@@ -172,6 +347,25 @@
     </Compile>
     <Compile Include="24设备变更通知书\frm24WorkFlowEdit.Designer.cs">
       <DependentUpon>frm24WorkFlowEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\Export25.cs" />
+    <Compile Include="25双%28自备%29电源协议书\frm25Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\frm25Edit.Designer.cs">
+      <DependentUpon>frm25Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\frm25Template.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\frm25Template.Designer.cs">
+      <DependentUpon>frm25Template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\UCPJ_25.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\UCPJ_25.Designer.cs">
+      <DependentUpon>UCPJ_25.cs</DependentUpon>
     </Compile>
     <Compile Include="自定义流程\WorkFlowLineSelectForm.cs">
       <SubType>Form</SubType>
@@ -418,35 +612,35 @@
     <Compile Include="预防性试验\UCtestRecordM.Designer.cs">
       <DependentUpon>UCtestRecordM.cs</DependentUpon>
     </Compile>
-    <Compile Include="剩余电流动作保护器测试\Export13.cs" />
-    <Compile Include="剩余电流动作保护器测试\frm13dlbhjlEdit.cs">
+    <Compile Include="13剩余电流动作保护器测试\Export13.cs" />
+    <Compile Include="13剩余电流动作保护器测试\frm13dlbhjlEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="剩余电流动作保护器测试\frm13dlbhjlEdit.Designer.cs">
+    <Compile Include="13剩余电流动作保护器测试\frm13dlbhjlEdit.Designer.cs">
       <DependentUpon>frm13dlbhjlEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="剩余电流动作保护器测试\frmtqdlbhEdit.cs">
+    <Compile Include="13剩余电流动作保护器测试\frmtqdlbhEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="剩余电流动作保护器测试\frmtqdlbhEdit.Designer.cs">
+    <Compile Include="13剩余电流动作保护器测试\frmtqdlbhEdit.Designer.cs">
       <DependentUpon>frmtqdlbhEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="剩余电流动作保护器测试\UCPJ_13dlbh.cs">
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbh.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="剩余电流动作保护器测试\UCPJ_13dlbh.Designer.cs">
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbh.Designer.cs">
       <DependentUpon>UCPJ_13dlbh.cs</DependentUpon>
     </Compile>
-    <Compile Include="剩余电流动作保护器测试\UCPJ_13dlbhjl .cs">
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbhjl .cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="剩余电流动作保护器测试\UCPJ_13dlbhjl .Designer.cs">
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbhjl .Designer.cs">
       <DependentUpon>UCPJ_13dlbhjl .cs</DependentUpon>
     </Compile>
-    <Compile Include="剩余电流动作保护器测试\UCPJ_13dlbhM.cs">
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbhM.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="剩余电流动作保护器测试\UCPJ_13dlbhM.Designer.cs">
+    <Compile Include="13剩余电流动作保护器测试\UCPJ_13dlbhM.Designer.cs">
       <DependentUpon>UCPJ_13dlbhM.cs</DependentUpon>
     </Compile>
     <Compile Include="自定义流程\frmLP.cs">
@@ -524,23 +718,23 @@
       <DependentUpon>UCXSQD.cs</DependentUpon>
     </Compile>
     <Compile Include="Ecommon.cs" />
-    <Compile Include="配电线路产权维护范围协议书\Export23.cs" />
-    <Compile Include="配电线路产权维护范围协议书\frm23Edit.cs">
+    <Compile Include="23配电线路产权维护范围协议书\Export23.cs" />
+    <Compile Include="23配电线路产权维护范围协议书\frm23Edit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="配电线路产权维护范围协议书\frm23Edit.Designer.cs">
+    <Compile Include="23配电线路产权维护范围协议书\frm23Edit.Designer.cs">
       <DependentUpon>frm23Edit.cs</DependentUpon>
     </Compile>
-    <Compile Include="配电线路产权维护范围协议书\frm23Template.cs">
+    <Compile Include="23配电线路产权维护范围协议书\frm23Template.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="配电线路产权维护范围协议书\frm23Template.Designer.cs">
+    <Compile Include="23配电线路产权维护范围协议书\frm23Template.Designer.cs">
       <DependentUpon>frm23Template.cs</DependentUpon>
     </Compile>
-    <Compile Include="配电线路产权维护范围协议书\UCPJ_23.cs">
+    <Compile Include="23配电线路产权维护范围协议书\UCPJ_23.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="配电线路产权维护范围协议书\UCPJ_23.Designer.cs">
+    <Compile Include="23配电线路产权维护范围协议书\UCPJ_23.Designer.cs">
       <DependentUpon>UCPJ_23.cs</DependentUpon>
     </Compile>
     <Compile Include="运行分析\Export03.cs" />
@@ -581,6 +775,50 @@
       <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="05交叉跨越及对地距离测量\frmjckyEdit.resx">
+      <DependentUpon>frmjckyEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="05交叉跨越及对地距离测量\frmjckyjlEdit.resx">
+      <DependentUpon>frmjckyjlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jcky.resx">
+      <DependentUpon>UCPJ_05jcky.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jckyjl.resx">
+      <DependentUpon>UCPJ_05jckyjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.resx">
+      <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="07接地装置检测\frm07JDZZEdit.resx">
+      <DependentUpon>frm07JDZZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="07接地装置检测\frm07JDZZJlEdit.resx">
+      <DependentUpon>frm07JDZZJlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="07接地装置检测\UCPJ_07jdzz.resx">
+      <DependentUpon>UCPJ_07jdzz.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="07接地装置检测\UCPJ_07jdzzjl .resx">
+      <DependentUpon>UCPJ_07jdzzjl .cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="07接地装置检测\UCPJ_07jdzzM.resx">
+      <DependentUpon>UCPJ_07jdzzM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="10配电变压器汇总表\UCPJ_10.resx">
+      <DependentUpon>UCPJ_10.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="11配电变压器卡片\frm11byqbdEdit.resx">
       <DependentUpon>frm11byqbdEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -617,6 +855,74 @@
       <DependentUpon>UCPS_tqbyq.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\frm12kgbdEdit.resx">
+      <DependentUpon>frm12kgbdEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\frm12kgjxEdit.resx">
+      <DependentUpon>frm12kgjxEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\frm12kgsyEdit.resx">
+      <DependentUpon>frm12kgsyEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\frmkgEdit.resx">
+      <DependentUpon>frmkgEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPJ_12kgbd.resx">
+      <DependentUpon>UCPJ_12kgbd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPJ_12kgjx.resx">
+      <DependentUpon>UCPJ_12kgjx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPJ_12kgsy.resx">
+      <DependentUpon>UCPJ_12kgsy.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPS_kg.resx">
+      <DependentUpon>UCPS_kg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPS_kgM.resx">
+      <DependentUpon>UCPS_kgM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="16高压配电线路条图汇总表\frm16Edit.resx">
+      <DependentUpon>frm16Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="16高压配电线路条图汇总表\UCPJ_16.resx">
+      <DependentUpon>UCPJ_16.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="17高压配电线路条图\frm17Edit.resx">
+      <DependentUpon>frm17Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="17高压配电线路条图\frm17Template.resx">
+      <DependentUpon>frm17Template.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="17高压配电线路条图\UCPJ_17.resx">
+      <DependentUpon>UCPJ_17.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="20低压设备完好率及台区网络图\frm20Edit.resx">
+      <DependentUpon>frm20Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="20低压设备完好率及台区网络图\frm20Template.resx">
+      <DependentUpon>frm20Template.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="20低压设备完好率及台区网络图\UCPJ_20.resx">
+      <DependentUpon>UCPJ_20.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="24设备变更通知书\frm24Edit.resx">
       <DependentUpon>frm24Edit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -631,6 +937,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="24设备变更通知书\frm24WorkFlowEdit.resx">
       <DependentUpon>frm24WorkFlowEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="25双%28自备%29电源协议书\frm25Edit.resx">
+      <DependentUpon>frm25Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="25双%28自备%29电源协议书\frm25Template.resx">
+      <DependentUpon>frm25Template.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="25双%28自备%29电源协议书\UCPJ_25.resx">
+      <DependentUpon>UCPJ_25.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\WorkFlowLineSelectForm.resx">
@@ -797,23 +1115,23 @@
       <DependentUpon>UCtestRecordM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="剩余电流动作保护器测试\frm13dlbhjlEdit.resx">
+    <EmbeddedResource Include="13剩余电流动作保护器测试\frm13dlbhjlEdit.resx">
       <DependentUpon>frm13dlbhjlEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="剩余电流动作保护器测试\frmtqdlbhEdit.resx">
+    <EmbeddedResource Include="13剩余电流动作保护器测试\frmtqdlbhEdit.resx">
       <DependentUpon>frmtqdlbhEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="剩余电流动作保护器测试\UCPJ_13dlbh.resx">
+    <EmbeddedResource Include="13剩余电流动作保护器测试\UCPJ_13dlbh.resx">
       <DependentUpon>UCPJ_13dlbh.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="剩余电流动作保护器测试\UCPJ_13dlbhjl .resx">
+    <EmbeddedResource Include="13剩余电流动作保护器测试\UCPJ_13dlbhjl .resx">
       <DependentUpon>UCPJ_13dlbhjl .cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="剩余电流动作保护器测试\UCPJ_13dlbhM.resx">
+    <EmbeddedResource Include="13剩余电流动作保护器测试\UCPJ_13dlbhM.resx">
       <DependentUpon>UCPJ_13dlbhM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -866,15 +1184,15 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="配电线路产权维护范围协议书\frm23Edit.resx">
+    <EmbeddedResource Include="23配电线路产权维护范围协议书\frm23Edit.resx">
       <DependentUpon>frm23Edit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="配电线路产权维护范围协议书\frm23Template.resx">
+    <EmbeddedResource Include="23配电线路产权维护范围协议书\frm23Template.resx">
       <DependentUpon>frm23Template.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="配电线路产权维护范围协议书\UCPJ_23.resx">
+    <EmbeddedResource Include="23配电线路产权维护范围协议书\UCPJ_23.resx">
       <DependentUpon>UCPJ_23.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
