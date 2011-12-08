@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_cysbmfdtz" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_cysbmfdtz"  type="Ebada.Scgl.Model.PJ_cysbmfdtz,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_cysbmfdtz_AllColumns" class="PJ_cysbmfdtz">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="sbmc" column="sbmc" />
+        <result property="InstallPlace" column="InstallPlace" />
+        <result property="sbModle" column="sbModle" />
+        <result property="sbCapcity" column="sbCapcity" />
+        <result property="cysbmc" column="cysbmc" />
+        <result property="cysbFactory" column="cysbFactory" />
+        <result property="inDate" column="inDate" />
+        <result property="changeDate" column="changeDate" />
+        <result property="mfStatus" column="mfStatus" />
+        <result property="jcr" column="jcr" />
+        <result property="jcDate" column="jcDate" />
+        <result property="remark" column="remark" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_cysbmfdtzList" resultMap="PJ_cysbmfdtz_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [sbmc],
+         [InstallPlace],
+         [sbModle],
+         [sbCapcity],
+         [cysbmc],
+         [cysbFactory],
+         [inDate],
+         [changeDate],
+         [mfStatus],
+         [jcr],
+         [jcDate],
+         [remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_cysbmfdtz
+          $value$
+   </select>
+   
+   <select id="SelectPJ_cysbmfdtzByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [sbmc],
+         [InstallPlace],
+         [sbModle],
+         [sbCapcity],
+         [cysbmc],
+         [cysbFactory],
+         [inDate],
+         [changeDate],
+         [mfStatus],
+         [jcr],
+         [jcDate],
+         [remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_cysbmfdtz
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="sbmc">[sbmc]='$sbmc$'</isNotNull>
+       <isNotNull prepend="AND" property="InstallPlace">[InstallPlace]='$InstallPlace$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCapcity">[sbCapcity]='$sbCapcity$'</isNotNull>
+       <isNotNull prepend="AND" property="cysbmc">[cysbmc]='$cysbmc$'</isNotNull>
+       <isNotNull prepend="AND" property="cysbFactory">[cysbFactory]='$cysbFactory$'</isNotNull>
+       <isNotNull prepend="AND" property="inDate">[inDate]='$inDate$'</isNotNull>
+       <isNotNull prepend="AND" property="changeDate">[changeDate]='$changeDate$'</isNotNull>
+       <isNotNull prepend="AND" property="mfStatus">[mfStatus]='$mfStatus$'</isNotNull>
+       <isNotNull prepend="AND" property="jcr">[jcr]='$jcr$'</isNotNull>
+       <isNotNull prepend="AND" property="jcDate">[jcDate]='$jcDate$'</isNotNull>
+       <isNotNull prepend="AND" property="remark">[remark]='$remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_cysbmfdtzByKey" resultMap="PJ_cysbmfdtz_AllColumns" parameterClass="PJ_cysbmfdtz">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [sbmc],
+         [InstallPlace],
+         [sbModle],
+         [sbCapcity],
+         [cysbmc],
+         [cysbFactory],
+         [inDate],
+         [changeDate],
+         [mfStatus],
+         [jcr],
+         [jcDate],
+         [remark],
+         [S1],
+         [S2],
+         [S3]
+         FROM PJ_cysbmfdtz
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_cysbmfdtz" parameterClass="PJ_cysbmfdtz">
+        DELETE FROM 
+         PJ_cysbmfdtz
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_cysbmfdtzByWhere" parameterClass="string">
+     delete from PJ_cysbmfdtz $value$
+   </delete>
+   
+   <delete id="DeletePJ_cysbmfdtzByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_cysbmfdtz
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_cysbmfdtz" parameterClass="PJ_cysbmfdtz" resultClass="int">
+          UPDATE PJ_cysbmfdtz
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [sbmc]=#sbmc#,
+             [InstallPlace]=#InstallPlace#,
+             [sbModle]=#sbModle#,
+             [sbCapcity]=#sbCapcity#,
+             [cysbmc]=#cysbmc#,
+             [cysbFactory]=#cysbFactory#,
+             [inDate]=#inDate#,
+             [changeDate]=#changeDate#,
+             [mfStatus]=#mfStatus#,
+             [jcr]=#jcr#,
+             [jcDate]=#jcDate#,
+             [remark]=#remark#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_cysbmfdtz" parameterClass="PJ_cysbmfdtz">
+        INSERT INTO PJ_cysbmfdtz
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [sbmc],
+         [InstallPlace],
+         [sbModle],
+         [sbCapcity],
+         [cysbmc],
+         [cysbFactory],
+         [inDate],
+         [changeDate],
+         [mfStatus],
+         [jcr],
+         [jcDate],
+         [remark],
+         [S1],
+         [S2],
+         [S3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #sbmc#,
+         #InstallPlace#,
+         #sbModle#,
+         #sbCapcity#,
+         #cysbmc#,
+         #cysbFactory#,
+         #inDate#,
+         #changeDate#,
+         #mfStatus#,
+         #jcr#,
+         #jcDate#,
+         #remark#,
+         #S1#,
+         #S2#,
+         #S3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_cysbmfdtzRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_cysbmfdtz
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="sbmc">[sbmc]='$sbmc$'</isNotNull>
+       <isNotNull prepend="AND" property="InstallPlace">[InstallPlace]='$InstallPlace$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCapcity">[sbCapcity]='$sbCapcity$'</isNotNull>
+       <isNotNull prepend="AND" property="cysbmc">[cysbmc]='$cysbmc$'</isNotNull>
+       <isNotNull prepend="AND" property="cysbFactory">[cysbFactory]='$cysbFactory$'</isNotNull>
+       <isNotNull prepend="AND" property="inDate">[inDate]='$inDate$'</isNotNull>
+       <isNotNull prepend="AND" property="changeDate">[changeDate]='$changeDate$'</isNotNull>
+       <isNotNull prepend="AND" property="mfStatus">[mfStatus]='$mfStatus$'</isNotNull>
+       <isNotNull prepend="AND" property="jcr">[jcr]='$jcr$'</isNotNull>
+       <isNotNull prepend="AND" property="jcDate">[jcDate]='$jcDate$'</isNotNull>
+       <isNotNull prepend="AND" property="remark">[remark]='$remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_cysbmfdtzRowCount" parameterClass="string">
+    select count(*) from PJ_cysbmfdtz $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
