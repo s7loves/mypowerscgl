@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -77,10 +77,14 @@
     <Compile Include="PJ_24.cs" />
     <Compile Include="PJ_25.cs" />
     <Compile Include="PJ_26.cs" />
+    <Compile Include="PJ_cysbmfdtz.cs" />
+    <Compile Include="PJ_dlxldrqtz.cs" />
     <Compile Include="PJ_dyk.cs" />
     <Compile Include="PJ_gzrjnr.cs" />
+    <Compile Include="PJ_khdldrqtz.cs" />
     <Compile Include="PJ_lcfj.cs" />
     <Compile Include="PJ_lcspyj.cs" />
+    <Compile Include="PJ_pbdldrqtz.cs" />
     <Compile Include="PJ_qxfl.cs" />
     <Compile Include="PJ_sbxsqd.cs" />
     <Compile Include="PJ_sdytz.cs" />
