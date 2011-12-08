@@ -367,6 +367,58 @@
     <Compile Include="25双%28自备%29电源协议书\UCPJ_25.Designer.cs">
       <DependentUpon>UCPJ_25.cs</DependentUpon>
     </Compile>
+    <Compile Include="配变电力电容器台帐\ExportPBDLDRQTZ.cs" />
+    <Compile Include="配变电力电容器台帐\frmPBDLDRQTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="配变电力电容器台帐\frmPBDLDRQTZEdit.Designer.cs">
+      <DependentUpon>frmPBDLDRQTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="配变电力电容器台帐\UCPJ_PBDLDRQTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="配变电力电容器台帐\UCPJ_PBDLDRQTZ.Designer.cs">
+      <DependentUpon>UCPJ_PBDLDRQTZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="客户电力电容器台帐\ExportKHDLDRQTZ.cs" />
+    <Compile Include="客户电力电容器台帐\frmKHDLDRQTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="客户电力电容器台帐\frmKHDLDRQTZEdit.Designer.cs">
+      <DependentUpon>frmKHDLDRQTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="客户电力电容器台帐\UCPJ_KHDLDRQTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="客户电力电容器台帐\UCPJ_KHDLDRQTZ.Designer.cs">
+      <DependentUpon>UCPJ_KHDLDRQTZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="线路电力电容器台帐\ExportDLXLDRQTZ.cs" />
+    <Compile Include="线路电力电容器台帐\frmDLXLDRQTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="线路电力电容器台帐\frmDLXLDRQTZEdit.Designer.cs">
+      <DependentUpon>frmDLXLDRQTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="线路电力电容器台帐\UCPJ_DLXLDRQTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="线路电力电容器台帐\UCPJ_DLXLDRQTZ.Designer.cs">
+      <DependentUpon>UCPJ_DLXLDRQTZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="充油设备密封点台账\ExportCYSBMFDTZ.cs" />
+    <Compile Include="充油设备密封点台账\frmCYSBMFDTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="充油设备密封点台账\frmCYSBMFDTZEdit.Designer.cs">
+      <DependentUpon>frmCYSBMFDTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="充油设备密封点台账\UCPJ_CYSBMFDTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="充油设备密封点台账\UCPJ_CYSBMFDTZ.Designer.cs">
+      <DependentUpon>UCPJ_CYSBMFDTZ.cs</DependentUpon>
+    </Compile>
     <Compile Include="自定义流程\WorkFlowLineSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -949,6 +1001,38 @@
     </EmbeddedResource>
     <EmbeddedResource Include="25双%28自备%29电源协议书\UCPJ_25.resx">
       <DependentUpon>UCPJ_25.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="配变电力电容器台帐\frmPBDLDRQTZEdit.resx">
+      <DependentUpon>frmPBDLDRQTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="配变电力电容器台帐\UCPJ_PBDLDRQTZ.resx">
+      <DependentUpon>UCPJ_PBDLDRQTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="客户电力电容器台帐\frmKHDLDRQTZEdit.resx">
+      <DependentUpon>frmKHDLDRQTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="客户电力电容器台帐\UCPJ_KHDLDRQTZ.resx">
+      <DependentUpon>UCPJ_KHDLDRQTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="线路电力电容器台帐\frmDLXLDRQTZEdit.resx">
+      <DependentUpon>frmDLXLDRQTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="线路电力电容器台帐\UCPJ_DLXLDRQTZ.resx">
+      <DependentUpon>UCPJ_DLXLDRQTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="充油设备密封点台账\frmCYSBMFDTZEdit.resx">
+      <DependentUpon>frmCYSBMFDTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="充油设备密封点台账\UCPJ_CYSBMFDTZ.resx">
+      <DependentUpon>UCPJ_CYSBMFDTZ.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\WorkFlowLineSelectForm.resx">

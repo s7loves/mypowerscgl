@@ -56,7 +56,10 @@ namespace Ebada.Scgl.Yxgl
                     this.rowData = value as PJ_05jcky;
                     this.InitComboBoxData();
                     dataBind();
-                } else {
+                }
+                else
+                {
+                    this.InitComboBoxData();
                     ConvertHelper.CopyTo<PJ_05jcky>(value as PJ_05jcky, rowData);
                 }
             }
@@ -131,6 +134,7 @@ namespace Ebada.Scgl.Yxgl
 
             }
             code = string.Join(",", codelist.ToArray());
+            if (code == "") return;
             IList xllist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where linecode in ({0})",code));
             code = "";
             foreach (string str in xllist) {

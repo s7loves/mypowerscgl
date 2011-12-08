@@ -12,13 +12,14 @@
         <result property="hm" column="hm" />
         <result property="pdrl" column="pdrl" />
         <result property="drqModle" column="drqModle" />
+        <result property="sbFactory" column="sbFactory" />
         <result property="Capcity" column="Capcity" />
         <result property="sbnum" column="sbnum" />
         <result property="sbsumFactory" column="sbsumFactory" />
         <result property="tqfs" column="tqfs" />
         <result property="khVol" column="khVol" />
         <result property="tyStatus" column="tyStatus" />
-        <result property="Reamrk" column="Reamrk" />
+        <result property="Remark" column="Remark" />
         <result property="S1" column="S1" />
         <result property="S2" column="S2" />
         <result property="S3" column="S3" />
@@ -27,48 +28,50 @@
 
   <statements>
    <select id="SelectPJ_khdldrqtzList" resultMap="PJ_khdldrqtz_AllColumns" parameterClass="string">
-        SELECT 
-         [ID],
-         [OrgCode],
-         [OrgName],
-         [zhm],
-         [hm],
-         [pdrl],
-         [drqModle],
-         [Capcity],
-         [sbnum],
-         [sbsumFactory],
-         [tqfs],
-         [khVol],
-         [tyStatus],
-         [Reamrk],
-         [S1],
-         [S2],
-         [S3]
-          FROM PJ_khdldrqtz
-          $value$
+     SELECT
+     [ID],
+     [OrgCode],
+     [OrgName],
+     [zhm],
+     [hm],
+     [pdrl],
+     [drqModle],
+     [sbFactory],
+     [Capcity],
+     [sbnum],
+     [sbsumFactory],
+     [tqfs],
+     [khVol],
+     [tyStatus],
+     [Remark],
+     [S1],
+     [S2],
+     [S3]
+     FROM PJ_khdldrqtz
+     $value$
    </select>
    
    <select id="SelectPJ_khdldrqtzByHash" parameterClass="Hashtable">
-         SELECT 
-         [ID],
-         [OrgCode],
-         [OrgName],
-         [zhm],
-         [hm],
-         [pdrl],
-         [drqModle],
-         [Capcity],
-         [sbnum],
-         [sbsumFactory],
-         [tqfs],
-         [khVol],
-         [tyStatus],
-         [Reamrk],
-         [S1],
-         [S2],
-         [S3]
-          FROM PJ_khdldrqtz
+     SELECT
+     [ID],
+     [OrgCode],
+     [OrgName],
+     [zhm],
+     [hm],
+     [pdrl],
+     [drqModle],
+     [sbFactory],
+     [Capcity],
+     [sbnum],
+     [sbsumFactory],
+     [tqfs],
+     [khVol],
+     [tyStatus],
+     [Remark],
+     [S1],
+     [S2],
+     [S3]
+     FROM PJ_khdldrqtz
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
@@ -77,40 +80,42 @@
        <isNotNull prepend="AND" property="hm">[hm]='$hm$'</isNotNull>
        <isNotNull prepend="AND" property="pdrl">[pdrl]='$pdrl$'</isNotNull>
        <isNotNull prepend="AND" property="drqModle">[drqModle]='$drqModle$'</isNotNull>
+       <isNotNull prepend="AND" property="drqModle">[sbFactory]='$sbFactory$'</isNotNull>
        <isNotNull prepend="AND" property="Capcity">[Capcity]='$Capcity$'</isNotNull>
        <isNotNull prepend="AND" property="sbnum">[sbnum]='$sbnum$'</isNotNull>
        <isNotNull prepend="AND" property="sbsumFactory">[sbsumFactory]='$sbsumFactory$'</isNotNull>
        <isNotNull prepend="AND" property="tqfs">[tqfs]='$tqfs$'</isNotNull>
        <isNotNull prepend="AND" property="khVol">[khVol]='$khVol$'</isNotNull>
        <isNotNull prepend="AND" property="tyStatus">[tyStatus]='$tyStatus$'</isNotNull>
-       <isNotNull prepend="AND" property="Reamrk">[Reamrk]='$Reamrk$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
        <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_khdldrqtzByKey" resultMap="PJ_khdldrqtz_AllColumns" parameterClass="PJ_khdldrqtz">
-         SELECT 
-         [ID],
-         [OrgCode],
-         [OrgName],
-         [zhm],
-         [hm],
-         [pdrl],
-         [drqModle],
-         [Capcity],
-         [sbnum],
-         [sbsumFactory],
-         [tqfs],
-         [khVol],
-         [tyStatus],
-         [Reamrk],
-         [S1],
-         [S2],
-         [S3]
-         FROM PJ_khdldrqtz
-         WHERE 
-           ID = #ID#
+     SELECT
+     [ID],
+     [OrgCode],
+     [OrgName],
+     [zhm],
+     [hm],
+     [pdrl],
+     [drqModle],
+     [sbFactory],
+     [Capcity],
+     [sbnum],
+     [sbsumFactory],
+     [tqfs],
+     [khVol],
+     [tyStatus],
+     [Remark],
+     [S1],
+     [S2],
+     [S3]
+     FROM PJ_khdldrqtz
+     WHERE
+     ID = #ID#
 
    </select>
  
@@ -135,70 +140,73 @@
    </delete>
    
    <update id="UpdatePJ_khdldrqtz" parameterClass="PJ_khdldrqtz" resultClass="int">
-          UPDATE PJ_khdldrqtz
-           SET
-             [OrgCode]=#OrgCode#,
-             [OrgName]=#OrgName#,
-             [zhm]=#zhm#,
-             [hm]=#hm#,
-             [pdrl]=#pdrl#,
-             [drqModle]=#drqModle#,
-             [Capcity]=#Capcity#,
-             [sbnum]=#sbnum#,
-             [sbsumFactory]=#sbsumFactory#,
-             [tqfs]=#tqfs#,
-             [khVol]=#khVol#,
-             [tyStatus]=#tyStatus#,
-             [Reamrk]=#Reamrk#,
-             [S1]=#S1#,
-             [S2]=#S2#,
-             [S3]=#S3#
-            WHERE 
-              ID = #ID#
+     UPDATE PJ_khdldrqtz
+     SET
+     [OrgCode]=#OrgCode#,
+     [OrgName]=#OrgName#,
+     [zhm]=#zhm#,
+     [hm]=#hm#,
+     [pdrl]=#pdrl#,
+     [drqModle]=#drqModle#,
+     [sbFactory]=#sbFactory#,
+     [Capcity]=#Capcity#,
+     [sbnum]=#sbnum#,
+     [sbsumFactory]=#sbsumFactory#,
+     [tqfs]=#tqfs#,
+     [khVol]=#khVol#,
+     [tyStatus]=#tyStatus#,
+     [Remark]=#Remark#,
+     [S1]=#S1#,
+     [S2]=#S2#,
+     [S3]=#S3#
+     WHERE
+     ID = #ID#
 
    </update>
   
    <insert id="InsertPJ_khdldrqtz" parameterClass="PJ_khdldrqtz">
-        INSERT INTO PJ_khdldrqtz
-         (
-         [ID],
-         [OrgCode],
-         [OrgName],
-         [zhm],
-         [hm],
-         [pdrl],
-         [drqModle],
-         [Capcity],
-         [sbnum],
-         [sbsumFactory],
-         [tqfs],
-         [khVol],
-         [tyStatus],
-         [Reamrk],
-         [S1],
-         [S2],
-         [S3]
-         )
-       VALUES
-         (
-         #ID#,
-         #OrgCode#,
-         #OrgName#,
-         #zhm#,
-         #hm#,
-         #pdrl#,
-         #drqModle#,
-         #Capcity#,
-         #sbnum#,
-         #sbsumFactory#,
-         #tqfs#,
-         #khVol#,
-         #tyStatus#,
-         #Reamrk#,
-         #S1#,
-         #S2#,
-         #S3#
-         )
+     INSERT INTO PJ_khdldrqtz
+     (
+     [ID],
+     [OrgCode],
+     [OrgName],
+     [zhm],
+     [hm],
+     [pdrl],
+     [drqModle],
+     [sbFactory],
+     [Capcity],
+     [sbnum],
+     [sbsumFactory],
+     [tqfs],
+     [khVol],
+     [tyStatus],
+     [Remark],
+     [S1],
+     [S2],
+     [S3]
+     )
+     VALUES
+     (
+     #ID#,
+     #OrgCode#,
+     #OrgName#,
+     #zhm#,
+     #hm#,
+     #pdrl#,
+     #drqModle#,
+     #sbFactory#,
+     #Capcity#,
+     #sbnum#,
+     #sbsumFactory#,
+     #tqfs#,
+     #khVol#,
+     #tyStatus#,
+     #Remark#,
+     #S1#,
+     #S2#,
+     #S3#
+     )
 
    </insert>
    
@@ -213,13 +221,14 @@
        <isNotNull prepend="AND" property="hm">[hm]='$hm$'</isNotNull>
        <isNotNull prepend="AND" property="pdrl">[pdrl]='$pdrl$'</isNotNull>
        <isNotNull prepend="AND" property="drqModle">[drqModle]='$drqModle$'</isNotNull>
+       <isNotNull prepend="AND" property="drqModle">[sbFactory]='$sbFactory$'</isNotNull>
        <isNotNull prepend="AND" property="Capcity">[Capcity]='$Capcity$'</isNotNull>
        <isNotNull prepend="AND" property="sbnum">[sbnum]='$sbnum$'</isNotNull>
        <isNotNull prepend="AND" property="sbsumFactory">[sbsumFactory]='$sbsumFactory$'</isNotNull>
        <isNotNull prepend="AND" property="tqfs">[tqfs]='$tqfs$'</isNotNull>
        <isNotNull prepend="AND" property="khVol">[khVol]='$khVol$'</isNotNull>
        <isNotNull prepend="AND" property="tyStatus">[tyStatus]='$tyStatus$'</isNotNull>
-       <isNotNull prepend="AND" property="Reamrk">[Reamrk]='$Reamrk$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
        <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>

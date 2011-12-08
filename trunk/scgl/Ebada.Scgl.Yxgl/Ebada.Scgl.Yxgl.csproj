@@ -1341,6 +1341,9 @@
     <Content Include="00记录模板\工程信息.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="00记录模板\客户电力电容器台帐.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="00记录模板\用电检查工作单.xls" />
     <None Include="00记录模板\用电检查结果通知单.xls" />
     <None Include="00记录模板\用电汇签单.xls" />
@@ -1353,6 +1356,9 @@
     </Content>
     <None Include="00记录模板\营销传票.xls" />
     <Content Include="00记录模板\高压配电线路技术档案.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\配变电力电容器台帐.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="测试记录（20110629）.xls" />

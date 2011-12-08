@@ -31,9 +31,9 @@ namespace Ebada.Scgl.Model
         private string _capcity=String.Empty; 
         private string _sbnum=String.Empty; 
         private string _sbfactory=String.Empty; 
-        private string _tqfs=String.Empty; 
-        private string _indate=String.Empty; 
-        private string _reamrk=String.Empty; 
+        private string _tqfs=String.Empty;
+        private DateTime _indate = new DateTime(1900, 1, 1); 
+        private string _remark=String.Empty; 
         private string _s1=String.Empty; 
         private string _s2=String.Empty; 
         private string _s3=String.Empty;   
@@ -153,7 +153,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[drqModle],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("电容器型号")]
         public string drqModle
         {
             get { return _drqmodle; }
@@ -234,10 +234,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：sbFactory
-        /// 属性描述：
+        /// 属性描述：制造厂
         /// 字段信息：[sbFactory],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("制造厂")]
         public string sbFactory
         {
             get { return _sbfactory; }
@@ -280,7 +280,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[inDate],nvarchar
         /// </summary>
         [DisplayNameAttribute("投运日期")]
-        public string inDate
+        public DateTime inDate
         {
             get { return _indate; }
             set
@@ -296,22 +296,22 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：Reamrk
+        /// 属性名称：Remark
         /// 属性描述：
-        /// 字段信息：[Reamrk],nvarchar
+        /// 字段信息：[remark],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string Reamrk
+        public string Remark
         {
-            get { return _reamrk; }
+            get { return _remark; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
                 throw new Exception("[]长度不能大于50!");
-                if (_reamrk as object == null || !_reamrk.Equals(value))
+                if (_remark as object == null || !_remark.Equals(value))
                 {
-                    _reamrk = value;
+                    _remark = value;
                 }
             }			 
         }

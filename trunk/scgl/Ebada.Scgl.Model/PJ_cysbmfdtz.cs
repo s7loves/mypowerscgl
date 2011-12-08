@@ -33,8 +33,8 @@ namespace Ebada.Scgl.Model
         private DateTime _indate=new DateTime(1900,1,1); 
         private DateTime _changedate=new DateTime(1900,1,1); 
         private string _mfstatus=String.Empty; 
-        private string _jcr=String.Empty; 
-        private string _jcdate=String.Empty; 
+        private string _jcr=String.Empty;
+        private DateTime _jcdate = new DateTime(1900, 1, 1);
         private string _remark=String.Empty; 
         private string _s1=String.Empty; 
         private string _s2=String.Empty; 
@@ -318,7 +318,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[jcDate],nvarchar
         /// </summary>
         [DisplayNameAttribute("检查日期")]
-        public string jcDate
+        public DateTime jcDate
         {
             get { return _jcdate; }
             set
@@ -334,7 +334,7 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：remark
+        /// 属性名称：Remark
         /// 属性描述：备注
         /// 字段信息：[remark],nvarchar
         /// </summary>
