@@ -28,13 +28,14 @@ namespace Ebada.Scgl.Model
         private string _hm=String.Empty; 
         private string _pdrl=String.Empty; 
         private string _drqmodle=String.Empty; 
-        private string _capcity=String.Empty; 
+        private string _capcity=String.Empty;
+        private string _sbfactory = String.Empty; 
         private string _sbnum=String.Empty; 
         private string _sbsumfactory=String.Empty; 
         private string _tqfs=String.Empty; 
         private string _khvol=String.Empty; 
         private string _tystatus=String.Empty; 
-        private string _reamrk=String.Empty; 
+        private string _remark=String.Empty; 
         private string _s1=String.Empty; 
         private string _s2=String.Empty; 
         private string _s3=String.Empty;   
@@ -175,7 +176,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[drqModle],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("电容器型号")]
         public string drqModle
         {
             get { return _drqmodle; }
@@ -189,6 +190,28 @@ namespace Ebada.Scgl.Model
                     _drqmodle = value;
                 }
             }			 
+        }
+
+
+        /// <summary>
+        /// 属性名称：sbFactory
+        /// 属性描述：制造厂
+        /// 字段信息：[sbFactory],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("制造厂")]
+        public string sbFactory
+        {
+            get { return _sbfactory; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[]长度不能大于50!");
+                if (_sbfactory as object == null || !_sbfactory.Equals(value))
+                {
+                    _sbfactory = value;
+                }
+            }
         }
   
         /// <summary>
@@ -298,10 +321,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：tyStatus
-        /// 属性描述：
+        /// 属性描述：投运状况
         /// 字段信息：[tyStatus],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("投运状况")]
         public string tyStatus
         {
             get { return _tystatus; }
@@ -318,22 +341,22 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：Reamrk
-        /// 属性描述：
+        /// 属性名称：Remark
+        /// 属性描述：备注
         /// 字段信息：[Reamrk],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
-        public string Reamrk
+        [DisplayNameAttribute("备注")]
+        public string Remark
         {
-            get { return _reamrk; }
+            get { return _remark; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
                 throw new Exception("[]长度不能大于50!");
-                if (_reamrk as object == null || !_reamrk.Equals(value))
+                if (_remark as object == null || !_remark.Equals(value))
                 {
-                    _reamrk = value;
+                    _remark = value;
                 }
             }			 
         }

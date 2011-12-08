@@ -33,7 +33,7 @@ namespace Ebada.Scgl.Model
         private string _sbfactory=String.Empty; 
         private string _tqfs=String.Empty; 
         private string _indate=String.Empty; 
-        private string _reamrk=String.Empty; 
+        private string _remark=String.Empty; 
         private string _s1=String.Empty; 
         private string _s2=String.Empty; 
         private string _s3=String.Empty;   
@@ -301,17 +301,17 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[Reamrk],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string Reamrk
+        public string Remark
         {
-            get { return _reamrk; }
+            get { return _remark; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
                 throw new Exception("[]长度不能大于50!");
-                if (_reamrk as object == null || !_reamrk.Equals(value))
+                if (_remark as object == null || !_remark.Equals(value))
                 {
-                    _reamrk = value;
+                    _remark = value;
                 }
             }			 
         }
