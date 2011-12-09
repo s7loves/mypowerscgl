@@ -784,22 +784,7 @@ namespace Ebada.Scgl.Lcgl
                             MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
 
                     }
-                    if (filecontrol != null)
-                    {
-                        for (int i = 0; i < filecontrol.FJtable.Rows.Count; i++)
-                        {
-
-                            PJ_lcfj lcfu = new PJ_lcfj();
-                            lcfu.ID = lcfu.CreateID();
-                            lcfu.Filename = Path.GetFileName(filecontrol.FJtable.Rows[i]["FilePath"].ToString());
-                            lcfu.FileRelativePath = filecontrol.UpfilePath + "/" + filecontrol.FJtable.Rows[i]["SaveFileName"].ToString();
-                            lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
-                            lcfu.RecordID = currRecord.ID;
-                            lcfu.Creattime = DateTime.Now;
-                            MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
-                        }
-
-                    }
+                  
                     rowData = null;
                     break;
             }
