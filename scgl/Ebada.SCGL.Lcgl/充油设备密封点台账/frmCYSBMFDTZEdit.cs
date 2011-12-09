@@ -199,7 +199,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("所月度停电计划", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("充油设备密封点台帐", "备注", memoEdit3);
         }
 
       
