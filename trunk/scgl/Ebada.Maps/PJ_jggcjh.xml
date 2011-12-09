@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_jggcjh" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_jggcjh"  type="Ebada.Scgl.Model.PJ_jggcjh,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_jggcjh_AllColumns" class="PJ_jggcjh">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="ProjectName" column="ProjectName" />
+        <result property="ProjecNR" column="ProjecNR" />
+        <result property="Planenddate" column="Planenddate" />
+        <result property="NeedFunds" column="NeedFunds" />
+        <result property="Remark" column="Remark" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_jggcjhList" resultMap="PJ_jggcjh_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [ProjectName],
+         [ProjecNR],
+         [Planenddate],
+         [NeedFunds],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_jggcjh
+          $value$
+   </select>
+   
+   <select id="SelectPJ_jggcjhByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [ProjectName],
+         [ProjecNR],
+         [Planenddate],
+         [NeedFunds],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_jggcjh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="ProjectName">[ProjectName]='$ProjectName$'</isNotNull>
+       <isNotNull prepend="AND" property="ProjecNR">[ProjecNR]='$ProjecNR$'</isNotNull>
+       <isNotNull prepend="AND" property="Planenddate">[Planenddate]='$Planenddate$'</isNotNull>
+       <isNotNull prepend="AND" property="NeedFunds">[NeedFunds]='$NeedFunds$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_jggcjhByKey" resultMap="PJ_jggcjh_AllColumns" parameterClass="PJ_jggcjh">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [ProjectName],
+         [ProjecNR],
+         [Planenddate],
+         [NeedFunds],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+         FROM PJ_jggcjh
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_jggcjh" parameterClass="PJ_jggcjh">
+        DELETE FROM 
+         PJ_jggcjh
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_jggcjhByWhere" parameterClass="string">
+     delete from PJ_jggcjh $value$
+   </delete>
+   
+   <delete id="DeletePJ_jggcjhByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_jggcjh
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_jggcjh" parameterClass="PJ_jggcjh" resultClass="int">
+          UPDATE PJ_jggcjh
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [ProjectName]=#ProjectName#,
+             [ProjecNR]=#ProjecNR#,
+             [Planenddate]=#Planenddate#,
+             [NeedFunds]=#NeedFunds#,
+             [Remark]=#Remark#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_jggcjh" parameterClass="PJ_jggcjh">
+        INSERT INTO PJ_jggcjh
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [ProjectName],
+         [ProjecNR],
+         [Planenddate],
+         [NeedFunds],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #ProjectName#,
+         #ProjecNR#,
+         #Planenddate#,
+         #NeedFunds#,
+         #Remark#,
+         #S1#,
+         #S2#,
+         #S3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_jggcjhRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_jggcjh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="ProjectName">[ProjectName]='$ProjectName$'</isNotNull>
+       <isNotNull prepend="AND" property="ProjecNR">[ProjecNR]='$ProjecNR$'</isNotNull>
+       <isNotNull prepend="AND" property="Planenddate">[Planenddate]='$Planenddate$'</isNotNull>
+       <isNotNull prepend="AND" property="NeedFunds">[NeedFunds]='$NeedFunds$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_jggcjhRowCount" parameterClass="string">
+    select count(*) from PJ_jggcjh $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

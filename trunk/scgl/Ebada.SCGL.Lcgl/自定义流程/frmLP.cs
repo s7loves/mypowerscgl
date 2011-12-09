@@ -1678,10 +1678,44 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else
                 {
-                    value = value.Replace("{" + i + "}", strList[i]);
-                    if (i == strList.Count - 1)
+                    if (lp.ExtraWord.IndexOf("|") == -1)
                     {
-                        ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                        value = value.Replace("{" + i + "}", strList[i]);
+                        if (i == strList.Count - 1)
+                        {
+                            ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                            if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
+                            {
+                                WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[0]] as WF_TableFieldValue;
+                                tfv.ControlValue = value;
+                                tfv.FieldId = lp.LPID;
+                                tfv.FieldName = lp.CellName;
+                                tfv.XExcelPos = GetCellPos(arrCellPos[0])[0];
+                                tfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
+                                tfv.ExcelSheetName = activeSheetName;
+
+                            }
+                            else
+                            {
+                                WF_TableFieldValue tfv = new WF_TableFieldValue();
+                                tfv.ControlValue = value;
+                                tfv.FieldId = lp.LPID;
+                                tfv.FieldName = lp.CellName;
+                                tfv.XExcelPos = GetCellPos(arrCellPos[0])[0];
+                                tfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
+                                tfv.ExcelSheetName = activeSheetName;
+                                valuehs.Add(lp.LPID + "$" + arrCellPos[0], tfv);
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        string[] strextrlist = lp.ExtraWord.Split('|');
+                        value = strList[i];
+                        if (strextrlist.Length > i )
+                            value += strextrlist[i];
+                        ea.SetCellValue(value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[0]] as WF_TableFieldValue;
