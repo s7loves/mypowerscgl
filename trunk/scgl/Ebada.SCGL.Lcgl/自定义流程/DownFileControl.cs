@@ -125,13 +125,33 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="strUrlDirPath">Web服务器文件夹路径</param>
         public void DownFile(string fileNameFullPath, string strUrlDirPath)
         {
+            string filename = "";
+            string suffix = "";
+            string filenametemp = ""; 
+            int i = -1;
+            i = fileNameFullPath.LastIndexOf(".");
+            if (i > -1)  //存在此字符
+            {
+                filename = fileNameFullPath.Substring(0, i );
+                suffix = fileNameFullPath.Substring(i );
+            }
+            else
+            {
+                filename = fileNameFullPath;
+            }
             DirectoryInfo di = Directory.GetParent(fileNameFullPath);
             if (!di.Exists) di.Create();
+            i=1;
+            while (File.Exists(filename + filenametemp + suffix))
+            {
+                filenametemp = "(" + i + ")";
+                i++;
+            }
             webClient = new WebClient();  //再次new 避免WebClient不能I/O并发   
             webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
             webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
 
-            webClient.DownloadFileAsync(new Uri(strUrlDirPath), fileNameFullPath); 
+            webClient.DownloadFileAsync(new Uri(strUrlDirPath), filename + filenametemp + suffix); 
         
         }
         void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
