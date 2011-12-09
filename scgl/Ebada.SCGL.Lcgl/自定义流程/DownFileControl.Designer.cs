@@ -285,6 +285,7 @@
             this.openFolderButton.TabIndex = 8;
             this.openFolderButton.Text = "浏览文件夹";
             this.openFolderButton.Visible = false;
+            this.openFolderButton.Click += new System.EventHandler(this.openFolderButton_Click);
             // 
             // downfileButton
             // 
@@ -295,6 +296,7 @@
             this.downfileButton.TabIndex = 9;
             this.downfileButton.Text = "下载文件";
             this.downfileButton.Visible = false;
+            this.downfileButton.Click += new System.EventHandler(this.downfileButton_Click);
             // 
             // selctFileButton
             // 
@@ -305,6 +307,7 @@
             this.selctFileButton.TabIndex = 7;
             this.selctFileButton.Text = "设置路径";
             this.selctFileButton.Visible = false;
+            this.selctFileButton.Click += new System.EventHandler(this.selctFileButton_Click);
             // 
             // labelControl2
             // 

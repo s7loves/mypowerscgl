@@ -367,6 +367,19 @@
     <Compile Include="25双%28自备%29电源协议书\UCPJ_25.Designer.cs">
       <DependentUpon>UCPJ_25.cs</DependentUpon>
     </Compile>
+    <Compile Include="年度技改工程计划\ExportJGGCJH.cs" />
+    <Compile Include="年度技改工程计划\frmJGGCJHEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="年度技改工程计划\frmJGGCJHEdit.Designer.cs">
+      <DependentUpon>frmJGGCJHEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="年度技改工程计划\UCPJ_JGGCJH.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="年度技改工程计划\UCPJ_JGGCJH.Designer.cs">
+      <DependentUpon>UCPJ_JGGCJH.cs</DependentUpon>
+    </Compile>
     <Compile Include="配变电力电容器台帐\ExportPBDLDRQTZ.cs" />
     <Compile Include="配变电力电容器台帐\frmPBDLDRQTZEdit.cs">
       <SubType>Form</SubType>
@@ -1001,6 +1014,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="25双%28自备%29电源协议书\UCPJ_25.resx">
       <DependentUpon>UCPJ_25.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="年度技改工程计划\frmJGGCJHEdit.resx">
+      <DependentUpon>frmJGGCJHEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="年度技改工程计划\UCPJ_JGGCJH.resx">
+      <DependentUpon>UCPJ_JGGCJH.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="配变电力电容器台帐\frmPBDLDRQTZEdit.resx">

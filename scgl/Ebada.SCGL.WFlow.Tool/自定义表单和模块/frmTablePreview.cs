@@ -894,10 +894,22 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else
                 {
-                    value = value.Replace("{" + i + "}", strList[i]);
-                    if (i == strList.Count - 1)
+                    if (lp.ExtraWord.IndexOf("|") == -1)
                     {
-                        ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                        value = value.Replace("{" + i + "}", strList[i]);
+                        if (i == strList.Count - 1)
+                        {
+                            ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                        }
+                    }
+                    else
+                    {
+                        string[] strextrlist = lp.ExtraWord.Split('|');
+                        value = strList[i];
+                        if (strextrlist.Length > i)
+                            value += strextrlist[i];
+                        ea.SetCellValue(value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                       
                     }
                 }
                    

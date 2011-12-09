@@ -1344,6 +1344,21 @@
     <Content Include="00记录模板\客户电力电容器台帐.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="00记录模板\工程评价效益分析.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\年度技改工程计划.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\所技改工程总结.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\技改工程项目申请表.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\技改管理工作会议记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="00记录模板\用电检查工作单.xls" />
     <None Include="00记录模板\用电检查结果通知单.xls" />
     <None Include="00记录模板\用电汇签单.xls" />
