@@ -245,8 +245,8 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("S2");
             hideColumn("S3");
 
-            //gridView1.Columns["TDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            //gridView1.Columns["TDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            gridView1.Columns["inDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            gridView1.Columns["inDate"].DisplayFormat.FormatString = "yyyy-MM-dd";
             //gridView1.Columns["SDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             //gridView1.Columns["SDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
         }

@@ -16,7 +16,7 @@ using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
     public partial class frmDLXLDRQTZEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_tdjh> m_CityDic = new SortableSearchableBindingList<PJ_tdjh>();
+        SortableSearchableBindingList<PJ_dlxldrqtz> m_CityDic = new SortableSearchableBindingList<PJ_dlxldrqtz>();
 
         public frmDLXLDRQTZEdit()
         {
@@ -24,18 +24,23 @@ namespace Ebada.Scgl.Lcgl
         }
         void dataBind() {
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "SQOrgname");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "ASSOrgname");
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "TDtime");
-            this.dateEdit2.DataBindings.Add("EditValue", rowData, "SDtime");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "JXNR");
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "JXSB");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "lineName");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "gtNumber");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "edVol");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "drqModle");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbFactory");
+            this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "sbnum");
+            this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "Capcity");
+            this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "tqfs");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "inDate");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
+           
+           
            
 
         }
         #region IPopupFormEdit Members
-        private PJ_tdjh rowData = null;
+        private PJ_dlxldrqtz rowData = null;
 
         public object RowData {
             get {
@@ -46,11 +51,11 @@ namespace Ebada.Scgl.Lcgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_tdjh;
+                    this.rowData = value as PJ_dlxldrqtz;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_tdjh>(value as PJ_tdjh, rowData);
+                    ConvertHelper.CopyTo<PJ_dlxldrqtz>(value as PJ_dlxldrqtz, rowData);
                 }
             
             }
@@ -77,11 +82,49 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
            
             //填充下拉列表数据
-            IList<ViewGds> gdslist = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
-            SetComboBoxData(comboBoxEdit1, "OrgName", "OrgName", "选择供电所", "", gdslist as IList);
-            SetComboBoxData(comboBoxEdit2, "OrgName", "OrgName", "选择供电所", "", gdslist as IList);
+            comboBoxEdit5.Properties.Items.Clear();
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "电容器型号"));
+            if (strlist.Count > 0)
+                comboBoxEdit5.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit5.Properties.Items.Add("15GH-F");
+                comboBoxEdit5.Properties.Items.Add("BFFR11-100-3W");
+            }
+            comboBoxEdit10.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "容量"));
+            if (strlist.Count > 0)
+                comboBoxEdit10.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit10.Properties.Items.Add("100");
+                comboBoxEdit10.Properties.Items.Add("120");
+                comboBoxEdit10.Properties.Items.Add("150");
+            }
+            comboBoxEdit4.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
+            if (strlist.Count > 0)
+                comboBoxEdit4.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit4.Properties.Items.Add("闽东电机厂");
+                comboBoxEdit4.Properties.Items.Add("指月集团有限公司");
+            }
+            comboBoxEdit8.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "投切方式"));
+            if (strlist.Count > 0)
+                comboBoxEdit8.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit8.Properties.Items.Add("手动");
+                comboBoxEdit8.Properties.Items.Add("自动");
+            }
             dateEdit1.DateTime = DateTime.Now;
-            dateEdit2.DateTime = DateTime.Now;
+           
         }
 
         /// <summary>
@@ -115,15 +158,7 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            SelectorHelper.SelectDyk("所月度停电计划", "停电检修设备", memoEdit2);
-        }
-
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
-            SelectorHelper.SelectDyk("所月度停电计划", "主要检修内容", memoEdit1);
-        }
+     
 
       
 
