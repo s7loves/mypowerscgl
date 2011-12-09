@@ -24,8 +24,9 @@ namespace Ebada.Scgl.Lcgl
         }
         void dataBind() {
 
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "NeedFunds");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "ProjectName");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "OrgName");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "OrgName"); ;
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "Planenddate");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "ProjecNR");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
@@ -124,8 +125,15 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("所月度停电计划", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("年度技改工程计划", "备注", memoEdit3);
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("年度技改工程计划", "主要内容及措施", memoEdit1);
+        }
+
+        
 
 
        

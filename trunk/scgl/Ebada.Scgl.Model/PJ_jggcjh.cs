@@ -184,10 +184,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：Remark
-        /// 属性描述：
+        /// 属性描述：备注
         /// 字段信息：[Remark],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("备注")]
         public string Remark
         {
             get { return _remark; }

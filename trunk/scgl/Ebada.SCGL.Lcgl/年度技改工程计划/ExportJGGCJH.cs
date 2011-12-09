@@ -68,7 +68,7 @@ namespace Ebada.Scgl.Lcgl
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\配变电力电容器台帐.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\年度技改工程计划.xls";
             ex.Open(fname);
             ExportExcel(ex, datalist);
             ex.ShowExcel();
@@ -110,22 +110,32 @@ namespace Ebada.Scgl.Lcgl
                     ex.CopySheet(1, 1);
                 }
             }
-        
+            int year = DateTime.Now.Year;
+            string str = "零一二三四五六七八九";
+            string stryear = "";
+            while (year > 0)
+            {
+                
+                stryear = str[year % 10]+stryear;
+                year = year / 10;
+            }
             for (int j = 0; j < datalist.Count; j++)
             {
 
                 if (j % rowcount == 0)
                 {
                     ex.ActiveSheet(j / rowcount + 1);
-                    ex.SetCellValue(datalist[j].OrgName, 3, 3);
+                    ex.SetCellValue(datalist[j].OrgName,4, 3);
+                    //年技术改造工程计划
+                    ex.SetCellValue(stryear + "年技术改造工程计划", 2, 1);
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
                 ex.SetCellValue(datalist[j].ProjectName, row + j % rowcount, col + 1);
-                ex.SetCellValue(datalist[j].ProjecNR, row + j % rowcount, col + 2);
-                ex.SetCellValue(datalist[j].Planenddate.ToString("yyyy年MM月"), row + j % rowcount, col + 3);
+                ex.SetCellValue(datalist[j].ProjecNR, row + j % rowcount, col + 5);
+                ex.SetCellValue(datalist[j].Planenddate.ToString("yyyy年MM月"), row + j % rowcount, col + 9);
 
-                ex.SetCellValue(datalist[j].NeedFunds, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 5);
+                ex.SetCellValue(datalist[j].NeedFunds, row + j % rowcount, col + 10);
+                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 11);
 
             }
         }

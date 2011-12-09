@@ -172,15 +172,15 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_jggcjh> e)
         {
-            if (parentID == null)
-                e.Cancel = true;
+            //if (parentID == null)
+            //    e.Cancel = true;
         }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
             InitColumns();//初始列
-            //InitData();//初始数据
+            InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -230,6 +230,7 @@ namespace Ebada.Scgl.Lcgl
         {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
+            RefreshData("");
         }
         /// <summary>
         /// 初始化列,
@@ -245,8 +246,8 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("S2");
             hideColumn("S3");
 
-            gridView1.Columns["inDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            gridView1.Columns["inDate"].DisplayFormat.FormatString = "yyyy-MM-dd";
+            gridView1.Columns["Planenddate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            gridView1.Columns["Planenddate"].DisplayFormat.FormatString = "yyyy-MM";
             //gridView1.Columns["SDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             //gridView1.Columns["SDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
         }
