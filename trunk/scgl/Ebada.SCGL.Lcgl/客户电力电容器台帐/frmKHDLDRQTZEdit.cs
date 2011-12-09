@@ -79,8 +79,64 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void InitComboBoxData() {
-           
+
             //填充下拉列表数据
+            comboBoxEdit5.Properties.Items.Clear();
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "电容器型号"));
+            if (strlist.Count > 0)
+                comboBoxEdit5.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit5.Properties.Items.Add("BSMJ-12-3");
+                comboBoxEdit5.Properties.Items.Add("BSMJ-15-3");
+                comboBoxEdit5.Properties.Items.Add("BSMJ-14-3");
+                comboBoxEdit5.Properties.Items.Add("BSMJ-20-3");
+                comboBoxEdit5.Properties.Items.Add("BSMJ-16-3");
+                comboBoxEdit5.Properties.Items.Add("DSZK1型");
+            }
+            //comboBoxEdit10.Properties.Items.Clear();
+            //IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            //string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "容量"));
+            //if (strlist.Count > 0)
+            //    comboBoxEdit10.Properties.Items.AddRange(strlist);
+            //else
+            //{
+            //    comboBoxEdit10.Properties.Items.Add("15");
+            //    comboBoxEdit10.Properties.Items.Add("50");
+            //}
+            comboBoxEdit4.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
+            if (strlist.Count > 0)
+                comboBoxEdit4.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit4.Properties.Items.Add("正泰");
+                comboBoxEdit4.Properties.Items.Add("德力西");
+                comboBoxEdit4.Properties.Items.Add("沈阳");
+            }
+            comboBoxEdit8.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "投切方式"));
+            if (strlist.Count > 0)
+                comboBoxEdit8.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit8.Properties.Items.Add("手动");
+                comboBoxEdit8.Properties.Items.Add("自动");
+            }
+            comboBoxEdit7.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "投运状况"));
+            if (strlist.Count > 0)
+                comboBoxEdit7.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit7.Properties.Items.Add("运行");
+                comboBoxEdit7.Properties.Items.Add("脱运");
+            }
+           
         }
 
      

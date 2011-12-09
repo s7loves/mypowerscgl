@@ -235,11 +235,11 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("S3");
 
             gridView1.Columns["inDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            gridView1.Columns["inDate"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            gridView1.Columns["inDate"].DisplayFormat.FormatString = "yyyy-MM-dd";
             gridView1.Columns["changeDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            gridView1.Columns["changeDate"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            gridView1.Columns["changeDate"].DisplayFormat.FormatString = "yyyy-MM-dd";
             gridView1.Columns["jcDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            gridView1.Columns["jcDate"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            gridView1.Columns["jcDate"].DisplayFormat.FormatString = "yyyy-MM-dd";
         }
         /// <summary>
         /// 刷新数据

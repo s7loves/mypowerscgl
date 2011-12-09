@@ -78,8 +78,48 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void InitComboBoxData() {
-           
+
             //填充下拉列表数据
+            comboBoxEdit5.Properties.Items.Clear();
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='配变电力电容器台帐' and sx like '%{0}%' and nr!=''", "电容器型号"));
+            if (strlist.Count > 0)
+                comboBoxEdit5.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit5.Properties.Items.Add("15GH-F");
+                comboBoxEdit5.Properties.Items.Add("BFFR11-100-3W");
+            }
+            comboBoxEdit10.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='配变电力电容器台帐' and sx like '%{0}%' and nr!=''", "容量"));
+            if (strlist.Count > 0)
+                comboBoxEdit10.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit10.Properties.Items.Add("15");
+                comboBoxEdit10.Properties.Items.Add("50");
+            }
+            comboBoxEdit4.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='配变电力电容器台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
+            if (strlist.Count > 0)
+                comboBoxEdit4.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit4.Properties.Items.Add("闽东电机厂");
+                comboBoxEdit4.Properties.Items.Add("指月集团有限公司");
+            }
+            comboBoxEdit8.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='配变电力电容器台帐' and sx like '%{0}%' and nr!=''", "投切方式"));
+            if (strlist.Count > 0)
+                comboBoxEdit8.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit8.Properties.Items.Add("手动");
+                comboBoxEdit8.Properties.Items.Add("自动");
+            }
             dateEdit1.DateTime = DateTime.Now;
         }
 
