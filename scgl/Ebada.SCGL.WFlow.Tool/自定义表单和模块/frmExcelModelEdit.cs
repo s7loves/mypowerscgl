@@ -94,21 +94,23 @@ namespace Ebada.SCGL.WFlow.Tool
             //list.Add(new DicType("xlqxp", "抢修票"));停电操作票
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);
             comboBoxEdit5.Properties.Items.Clear();
-            ListItem lt = new ListItem("yyyy-MM-dd","年-月-日");
+            ListItem lt = new ListItem("yyyy-MM-dd", "yyyy-MM-dd");
             comboBoxEdit5.Properties.Items.Add(lt);
-            lt = new ListItem("MM-dd日", "月-日");
+            lt = new ListItem("MM-dd日", "MM-dd日");
             comboBoxEdit5.Properties.Items.Add(lt);
-            lt = new ListItem("yyyy-MM-dd HH:mm", "年-月-日 时:分");
+            lt = new ListItem("yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm");
             comboBoxEdit5.Properties.Items.Add(lt);
-            lt = new ListItem("yyyy-MM-dd HH:mm:ss", "年-月-日 时:分:秒");
+            lt = new ListItem("yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss");
             comboBoxEdit5.Properties.Items.Add(lt);
-            lt = new ListItem("MM-dd日 HH:mm", "月-日 时:分");
+            lt = new ListItem("MM-dd日 HH:mm", "MM-dd日 HH:mm");
             comboBoxEdit5.Properties.Items.Add(lt);
-            lt = new ListItem("dd日 HH:mm", "日 时:分");
+            lt = new ListItem("dd日 HH:mm", "dd日 HH:mm");
             comboBoxEdit5.Properties.Items.Add(lt);
-            lt = new ListItem("HH:mm:ss", "时:分:秒");
+            lt = new ListItem("HH:mm:ss", "HH:mm:ss");
             comboBoxEdit5.Properties.Items.Add(lt);
-            lt = new ListItem("HH:mm", "时:分");
+            lt = new ListItem("HH:mm", "HH:mm");
+            comboBoxEdit5.Properties.Items.Add(lt);
+            lt = new ListItem("yyyy", "yyyy");
             comboBoxEdit5.Properties.Items.Add(lt);
 
             comboBoxEdit1.Properties.Items.Clear();
@@ -194,9 +196,39 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void textEdit1_EditValueChanged(object sender, EventArgs e)
         {
-
+            string strpos = textEdit1.Text;
+            if(strpos=="")return;
+            setWordLen();
         }
+        private void setWordLen()
+        {
+            if (textEdit7.Visible == false) return;
+            string strpos = textEdit1.Text;
+            string strlen = textEdit7.Text;
+            if (strpos.Substring(strpos.Length - 1) != "|")
+                strpos = strpos + "|";
+            if (strlen.Length> 0)
+            {
+                if (strlen.Substring(strlen.Length - 1) != "|")
+                    strlen = strlen + "|";
+            }
+            string[] celpos = strpos.Split('|');
+            string[] cellen = strlen.Split('|');
+            //位置比大小限制多
+            if (celpos.Length != cellen.Length)
+            {
+                if (strlen.Length > 0)
+                labelTip.Text = (celpos.Length - cellen.Length).ToString();
+                else
+                    labelTip.Text = (celpos.Length - cellen.Length+1).ToString();
 
+            }
+           
+            else
+            {
+                labelTip.Text ="";
+            }
+        }
         private void groupControlOrg_Paint(object sender, PaintEventArgs e)
         {
 
@@ -227,7 +259,8 @@ namespace Ebada.SCGL.WFlow.Tool
            
             if (comboBoxEdit5.Visible)
             {
-                rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
+                //rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
+                rowData.WordCount = comboBoxEdit5.Text;
             }
             rowData.IsVisible = checkEdit1.Checked ? 0 : 1;
             rowData.CellPos = rowData.CellPos.ToUpper();
@@ -290,7 +323,7 @@ namespace Ebada.SCGL.WFlow.Tool
                         comboBoxEdit5.SelectedIndex = 7;
                         break;
                     default:
-                        comboBoxEdit5.SelectedIndex = -1;
+                        comboBoxEdit5.Text = rowData.WordCount;
                         break;
                 
                 }
@@ -356,13 +389,20 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            frmExcelEditSQLSet fees = new frmExcelEditSQLSet();
-            fees.RowData = rowData;
-            fees.StrSQL = textEdit3.Text;
-            if (fees.ShowDialog() == DialogResult.OK)
+            if (rowData.CtrlType.IndexOf("uc_gridcontrol") == -1)
             {
-                textEdit3.Text = fees.StrSQL;
-                rowData.SqlSentence = fees.StrSQL;
+                frmExcelEditSQLSet fees = new frmExcelEditSQLSet();
+                fees.RowData = rowData;
+                fees.StrSQL = textEdit3.Text;
+                if (fees.ShowDialog() == DialogResult.OK)
+                {
+                    textEdit3.Text = fees.StrSQL;
+                    rowData.SqlSentence = fees.StrSQL;
+                }
+            }
+            else
+            {
+                simpleButton2_Click(sender, e);
             }
         }
 
@@ -374,5 +414,116 @@ namespace Ebada.SCGL.WFlow.Tool
                 return;
             }
         }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            frmGridcontrolSQLSet fees = new frmGridcontrolSQLSet();
+            fees.RowData = rowData;
+            fees.StrSQL = textEdit3.Text;
+            if (fees.ShowDialog() == DialogResult.OK)
+            {
+                textEdit3.Text = fees.StrSQL;
+                rowData.SqlSentence = fees.StrSQL;
+            }
+        }
+
+        private void labelTip_Click(object sender, EventArgs e)
+        {
+            string strpos = textEdit1.Text;
+            string strlen = textEdit7.Text;
+            if (strpos.Substring(strpos.Length-1) != "|")
+                strpos = strpos + "|";
+            if (strlen.Substring(strlen.Length - 1) != "|")
+                strlen = strlen + "|";
+            string[] celpos = strpos.Split('|');
+            string[] cellen = strlen.Split('|');
+            //位置比大小限制多
+            if (celpos.Length > cellen.Length)
+            {
+                for(int i=0;i<celpos.Length - cellen.Length;i++)
+                {
+                    strlen += "50|";
+                }
+                textEdit7.Text = strlen;
+                rowData.WordCount = textEdit7.Text;
+            }
+            else if (celpos.Length < cellen.Length)//位置比大小限制少
+            {
+                int j = 0;
+                string strtemp = strlen.Substring(0, strlen.Length-1);
+                for (int i = 0; i <cellen.Length- celpos.Length  ; i++)
+                {
+                    j = strtemp.LastIndexOf("|");
+                    strtemp=strtemp.Substring(0,j);
+                }
+                textEdit7.Text = strtemp;
+                rowData.WordCount = textEdit7.Text;
+            }
+        }
+
+        private void textEdit7_EditValueChanged(object sender, EventArgs e)
+        {
+            string strpos = textEdit1.Text;
+            if (strpos == "") return;
+            setWordLen();
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            frmGridcontrolColumnSet fees = new frmGridcontrolColumnSet();
+            fees.RowData = rowData;
+            fees.StrSQL = textEdit11.Text;
+            if (fees.ShowDialog() == DialogResult.OK)
+            {
+                textEdit11.Text = fees.StrSQL;
+                rowData.ComBoxItem = fees.StrSQL;
+            }
+        }
+
+        private void textEdit9_EditValueChanged(object sender, EventArgs e)
+        {
+           
+            string strcolumn = textEdit9.Text;
+            if (strcolumn == "") return;
+            if (strcolumn.Substring(strcolumn.Length - 1) != "|")
+                strcolumn = strcolumn + "|";
+            string strlen = textEdit11.Text;
+            if (strlen.Length > 0)
+            {
+                if (strlen.Substring(strlen.Length - 1) != "|")
+                    strlen = strlen + "|";
+            }
+            string[] celcolumn = strcolumn.Split('|');
+            string[] cellen = strlen.Split('|');
+            //位置比大小限制多
+            if (celcolumn.Length > cellen.Length)
+            {
+                if (cellen.Length == 1 && cellen[0].ToString() == "")
+                {
+                    strlen = "[0:RepositoryItemComboBox]|";
+                }
+
+                for (int i = cellen.Length-1; i <cellen.Length+ celcolumn.Length - cellen.Length; i++)
+                {
+                    strlen += "[" + i + ":RepositoryItemComboBox]|";
+                }
+                textEdit11.Text = strlen;
+                rowData.ComBoxItem = textEdit11.Text;
+            }
+            else if (celcolumn.Length < cellen.Length)//位置比大小限制少
+            {
+                int j = 0;
+                string strtemp = strlen.Substring(0, strlen.Length - 1);
+                for (int i = 0; i < cellen.Length - celcolumn.Length; i++)
+                {
+                    j = strtemp.LastIndexOf("|");
+                    strtemp = strtemp.Substring(0, j);
+                }
+                textEdit11.Text = strtemp;
+                rowData.ComBoxItem = textEdit11.Text;
+            }
+        }
+
+       
     }
 }

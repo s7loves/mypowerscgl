@@ -231,6 +231,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 Label label = new Label();
                 label.Text = lp.CellName;
                 ComboBoxEdit btTip = null;
+                CheckEdit ceTip = null;
                 //string[] location = lp.CtrlLocation.Split(',');
                 string[] size = lp.CtrlSize.Split(',');
                 label.Location = new Point(currentPosX, currentPosY);
@@ -246,8 +247,16 @@ namespace Ebada.SCGL.WFlow.Tool
                     btTip.Name = "bt" + lp.LPID;
                     btTip.Location = new Point(currentPosX, currentPosY);
                     btTip.Size = new Size(300, 14);
-                    currentPosY += 30;
                     btTip.Tag = lp;
+
+                    ceTip = new CheckEdit();
+                    ceTip.Name = "ce" + lp.LPID;
+                    ceTip.Location = new Point(currentPosX +btTip.Width+ 10, currentPosY);
+                    ceTip.Size = new Size(80, 14);
+                    ceTip.Text = "累加";
+                    ceTip.Checked = false;
+
+                    currentPosY += 30;
                 }
                 else
                     if (lp.CtrlType.Contains("TextEdit") && flag && lp.SqlSentence != "")
@@ -258,6 +267,14 @@ namespace Ebada.SCGL.WFlow.Tool
                     btTip.Size = new Size(300, 14);
                     currentPosY += 30;
                     btTip.Tag = lp;
+
+                    ceTip = new CheckEdit();
+                    ceTip.Name = "ce" + lp.LPID;
+                    ceTip.Location = new Point(currentPosX + btTip.Width + 10, currentPosY);
+                    ceTip.Size = new Size(80, 14);
+                    ceTip.Text = "累加";
+                    ceTip.Checked = false;
+
                 }
 
                      
@@ -301,13 +318,14 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
                 {
-                    (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar));
+                    (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar),lp);
                 }
                 ctrl.Name = lp.LPID;
                 dockPanel1.Controls.Add(label);
                 if (btTip != null)
                 {
                     dockPanel1.Controls.Add(btTip);
+                    dockPanel1.Controls.Add(ceTip);
                 }
                 dockPanel1.Controls.Add(ctrl);
                 if (lp.CellName == "编号")
@@ -533,11 +551,12 @@ namespace Ebada.SCGL.WFlow.Tool
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
             string str = (sender as Control).Text;
             Control ct = FindCtrl(lp.LPID);
-            if (ct != null)
+            Control ce = FindCtrl("ce"+lp.LPID);
+            if (ct != null && ct.Text.IndexOf(str) == -1)
             {
                 if (lp.CellName.Substring(lp.CellName.Length - 1) == "人" || lp.CellName.Substring(lp.CellName.Length - 2) == "人员")
                 {
-                    if (ct.Text == "")
+                    if (ct.Text == "" || !((CheckEdit)ce).Checked)
                         ct.Text = str;
                     else
                         ct.Text += "，" + str;
@@ -546,7 +565,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 {
                     if (lp.CtrlType.Contains("MemoEdit"))
                     {
-                        if (ct.Text == "")
+                        if (ct.Text == "" || !((CheckEdit)ce).Checked)
                             ct.Text = str;
                         else
                             ct.Text += "\r\n" + str;
@@ -554,7 +573,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     else
                         if (lp.CtrlType.Contains("TextEdit"))
                         {
-                            if (ct.Text == "")
+                            if (ct.Text == "" || !((CheckEdit)ce).Checked)
                                 ct.Text = str;
                             else
                                 ct.Text += "，" + str;
@@ -804,32 +823,7 @@ namespace Ebada.SCGL.WFlow.Tool
             arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split(pchar);
             string[] extraWord = lp.ExtraWord.Split(pchar);
             IList<string> strList = new List<string>();
-            //if (arrCellPos.Length == 5)
-            //{
-            //    strList.Add(dt.Year.ToString()); strList.Add(dt.Month.ToString());
-            //    strList.Add(dt.Day.ToString()); strList.Add(dt.Hour.ToString()); strList.Add(dt.Minute.ToString());
-            //}
-            //else if (arrCellPos.Length == 4)
-            //{
-            //    strList.Add(dt.Day.ToString()); strList.Add(dt.Hour.ToString()); strList.Add(dt.Minute.ToString());
-            //}
-            //else if (arrCellPos.Length == 3)
-            //{
-            //    // strList.Add(dt.Year.ToString()); strList.Add(dt.Month.ToString());
-            //    //strList.Add(dt.Day.ToString()); strList.Add(dt.Hour.ToString()); strList.Add(dt.Minute.ToString());
-            //    strList.Add(dt.Year.ToString());
-            //    strList.Add(dt.Month.ToString());
-            //    strList.Add(dt.Day.ToString());
-            //}
-            //else if (arrCellPos.Length == 2)
-            //{
-            //    strList.Add(dt.Hour.ToString());
-            //    strList.Add(dt.Minute.ToString());
-            //}
-            //else if (arrCellPos.Length == 1)
-            //{
-            //    strList.Add(dt.ToString());
-            //}
+            
             switch (lp.WordCount)
             {
                 case "yyyy-MM-dd":
@@ -869,11 +863,54 @@ namespace Ebada.SCGL.WFlow.Tool
                     strList.Add(dt.Minute.ToString());
                     break;
                 default:
-                    strList.Add(dt.Year.ToString());
-                    strList.Add(dt.Month.ToString());
-                    strList.Add(dt.Day.ToString());
-                    strList.Add(dt.Hour.ToString());
-                    strList.Add(dt.Minute.ToString());
+                    if (lp.WordCount.IndexOf("yyyy") > -1)
+                    {
+                        if (lp.WordCount.IndexOf("yyyy年") > -1)
+                            strList.Add(dt.Year.ToString() + "年");
+                        else
+                            strList.Add(dt.Year.ToString() );
+
+                    }
+                    if (lp.WordCount.IndexOf("MM") > -1)
+                    {
+                        if (lp.WordCount.IndexOf("MM月") > -1)
+                            strList.Add(dt.Month.ToString() + "月");
+                        else
+                            strList.Add(dt.Month.ToString());
+                    }
+                    if (lp.WordCount.IndexOf("dd") > -1)
+                    {
+                        if (lp.WordCount.IndexOf("dd日") > -1)
+                            strList.Add(dt.Day.ToString() + "日");
+                        else
+                            strList.Add(dt.Day.ToString());
+                    }
+                    if (lp.WordCount.IndexOf("HH") > -1)
+                    {
+                        if (lp.WordCount.IndexOf("HH时") > -1)
+                            strList.Add(dt.Hour.ToString() + "时");
+                        else
+                            strList.Add(dt.Hour.ToString());
+                    }
+                    if (lp.WordCount.IndexOf("mm") > -1)
+                    {
+                        if (lp.WordCount.IndexOf("mm分") > -1)
+                            strList.Add(dt.Minute.ToString() + "分");
+                        else
+                            strList.Add(dt.Minute.ToString());
+                    }
+                    if (lp.WordCount.IndexOf("ss") > -1)
+                    {
+                        if (lp.WordCount.IndexOf("ss秒")>-1)
+                            strList.Add(dt.Second.ToString() + "秒");
+                        else
+                            strList.Add(dt.Second.ToString());
+                    }
+                    //strList.Add(dt.Year.ToString());
+                    //strList.Add(dt.Month.ToString());
+                    //strList.Add(dt.Day.ToString());
+                    //strList.Add(dt.Hour.ToString());
+                    //strList.Add(dt.Minute.ToString());
                     break;
             }
             // int i = 0;
@@ -881,16 +918,18 @@ namespace Ebada.SCGL.WFlow.Tool
             //value = "{0}年{1}月{2}日";
             for (int i = 0; i < strList.Count; i++)
             {
-            //    if (extraWord.Length > i)
-            //    {
-            //        ea.SetCellValue(strList[i] + extraWord[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
-                  
-            //    }
-            //    else
-            //    {
+           
                 if (lp.ExtraWord == "")
                 {
-                    ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    if (arrCellPos.Length > 1)
+                        ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    else
+                    {
+                        
+                            value += strList[i];
+                            if (strList.Count == i)
+                            ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                    }
                 }
                 else
                 {
@@ -913,15 +952,11 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                 }
                    
-                //}
+               
 
             }
 
-            //foreach (string str in strList)
-            //{
-            //    ea.SetCellValue(str, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
-            //    i++;
-            //}
+         
         }
 
         public void FillMutilRowsT(ExcelAccess ea, LP_Temple lp, string str, int cellcount, string arrCellPos)
@@ -1283,7 +1318,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     break;
                 case "uc_gridcontrol":
-                    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar));
+                    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar),dsoFramerWordControl1,lp,currRecord);
                     break;
             }
             if (lp.CellName == "编号") strNumber = ctrl.Text;

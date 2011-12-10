@@ -10,6 +10,12 @@ using System.Collections;
 using Ebada.Client.Platform;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Core;
+using Ebada.Scgl.Model;
+using Excel = Microsoft.Office.Interop.Excel;
+using Ebada.Client;
+using Ebada.Core;
+using System.Text.RegularExpressions;
+using DevExpress.XtraEditors.Repository;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -25,6 +31,7 @@ namespace Ebada.SCGL.WFlow.Tool
         }
         public DataTable GetDS()
         {
+            gridControl1.RefreshDataSource();
             return gridControl1.DataSource as DataTable;
         }
         public void SetDs(DataTable ds)
@@ -44,12 +51,13 @@ namespace Ebada.SCGL.WFlow.Tool
             
         }
 
-        public void InitCol(string[] arrCol)
+        public void InitCol(string[] arrCol,LP_Temple lp)
         {
             m_ColName = arrCol;
             DataTable ds = new DataTable();
             for (int i = 0; i < arrCol.Length;i++ )
             {
+                if (arrCol[i].ToString() == "") continue;
                 ds.Columns.Add(arrCol[i]);
                 ds.Columns[i].Caption = arrCol[i];
             }    
@@ -58,48 +66,204 @@ namespace Ebada.SCGL.WFlow.Tool
             grid.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             grid.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;           
             grid.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            grid.OptionsView.ShowGroupPanel = false;            
+            grid.OptionsView.ShowGroupPanel = false;
+            string[] comItem = SelectorHelper.ToDBC(lp.ComBoxItem).Split('|');          
             for (int i = 0; i < grid.Columns.Count; i++)
             {
-                DevExpress.XtraEditors.Repository.RepositoryItemComboBox lue1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-                grid.Columns[i].ColumnEdit = lue1;
-                lue1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-                colctrllist.Add(lue1);
+                
+                Regex r1 = new Regex(@"(?<=" + i + ":).*?(?=])");
+                string strcom = r1.Match(comItem[i]).Value;
+               
+                if (strcom.IndexOf("RepositoryItemDateEdit") > -1)
+                {
+                    r1 = new Regex(@"(?<=:).*");
+                    DevExpress.XtraEditors.Repository.RepositoryItemDateEdit date =
+                             new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+                    if (r1.Match(strcom).Value != "")
+                    {
+                        date.Properties.EditMask = r1.Match(strcom).Value;
+                        date.Mask.UseMaskAsDisplayFormat =true;
+                    }
+                    grid.Columns[i].ColumnEdit = date;
+                    grid.Columns[i].DisplayFormat.FormatString = date.Properties.EditMask;
+                    grid.Columns[i].ColumnEdit.EditFormat.FormatString = date.Properties.EditMask;
+                }
+                else if (strcom.IndexOf("RepositoryItemCalcEdit") > -1)
+                {
+                    r1 = new Regex(@"(?<=:).*");
+                    DevExpress.XtraEditors.Repository.RepositoryItemDateEdit date =
+                             new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+                    if (r1.Match(strcom).Value != "")
+                        date.Properties.EditMask = r1.Match(strcom).Value;
+
+                    grid.Columns[i].ColumnEdit = date;
+                }
+                 else
+                    {
+                       
+                        DevExpress.XtraEditors.Repository.RepositoryItemComboBox lue1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+                        
+                        lue1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+                        grid.Columns[i].ColumnEdit = lue1;
+                        colctrllist.Add(lue1);
+
+                    }
+                
             }           
         }
-
-        public void InitData(string[] sql,string[] sqlColName,string[] comBoxItem)
+        public int[] GetCellPos(string cellpos)
+        {
+            cellpos = cellpos.Replace("|", "");
+            Regex r1 = new Regex(@"[0-9]+");
+            string str = r1.Match(cellpos).Value;
+            int ix = 0;
+            int iy = 0;
+            ix = int.Parse(str);
+            r1 = new Regex(@"[A-Z]+");
+            str = r1.Match(cellpos).Value;
+            if (str.Length == 2)
+            {
+                iy = ((int)str[0] - 64) * 26 + ((int)str[1] - 64);
+            }
+            else
+            {
+                iy = (int)cellpos[0] - 64;
+            }
+            return new int[] { ix, iy };
+            //return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
+        }
+        public void InitCtrlData(RepositoryItemComboBox combox,int index,LP_Temple lp, string sqlSentence, DSOFramerControl dsoFramerWordControl1, LP_Record currRecord)
         {
 
-            int k = 0;
-            foreach (DevExpress.XtraEditors.Repository.RepositoryItemComboBox combox in colctrllist)
+            
+            string ctrltype = "";
+            if (lp.CtrlType.IndexOf(',') == -1)
+                ctrltype = lp.CtrlType;
+            else
+                ctrltype = lp.CtrlType.Substring(0, lp.CtrlType.IndexOf(','));
+            /*
+             * 
+             * SELECT   cellname,  SqlSentence,SqlColName
+                FROM         LP_Temple
+                where SqlSentence !=''
+             * 
+             * */
+            IList li = new ArrayList();
+            if (sqlSentence.IndexOf("Excel:") == 0)
             {
-                combox.Items.Clear();
-                if (sql.Length != 0)
+                int index1 = sqlSentence.LastIndexOf(":");
+                string tablename = sqlSentence.Substring(6, index1 - 6);
+                string cellpos = sqlSentence.Substring(index1 + 1);
+                string[] arrCellPos = cellpos.Split('|');
+                arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
+                string strcellvalue = "";
+                Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                ExcelAccess ea = new ExcelAccess();
+                ea.MyWorkBook = wb;
+                ea.MyExcel = wb.Application;
+                Excel.Worksheet sheet;
+                sheet = wb.Application.Sheets[tablename] as Excel.Worksheet;
+
+                for (int i = 0; i < arrCellPos.Length; i++)
                 {
-                    if (sql[k] != "")
+                    Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
+                    strcellvalue += range.Value2;
+                }
+                li.Add(strcellvalue);
+            }
+            else if (sqlSentence != "")
+            {
+                if (sqlSentence.IndexOf("{recordid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);
+                }
+                if (sqlSentence.IndexOf("{orgcode}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{userid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
+                while (r1.Match(sqlSentence).Value != "")
+                {
+                    string sortid = r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count > 0)
                     {
-                        IList rstlist = MainHelper.PlatformSqlMap.GetList(SplitSQL(sql[k])[0], SplitSQL(sql[k])[1]);
-                        for (int i = 0; i < rstlist.Count; i++)
-                        {
-                            combox.Items.Add(rstlist[i].GetType().GetProperty(sqlColName[k]).GetValue(rstlist[i], null));
-                        }
+                       
+                        
+                        
+                            string strSQL = "select ControlValue from WF_TableFieldValueView where"
+                                  + " UserControlId='" + listLPID[0].ParentID + "' "
+                                  + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
+                            li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+                            if (li.Count > 0)
+                            {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
+                            }
+                            else
+                            {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                                break;
+                            }
+                        
+                    }
+                    else
+                    {
+                        sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                        break;
                     }
                 }
-                if (comBoxItem.Length>k)
+                r1 = new Regex(@"(?<={编号规则一:)[0-9]+(?=})");
+                if (r1.Match(sqlSentence).Value != "")
                 {
-                    string[] comItem =SelectorHelper.ToDBC(comBoxItem[k]).Split(pcomboxitem);
-                    for (int i = 0; i < comItem.Length;i++ )
+                    string sortid = r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count > 0)
                     {
-                        if (comItem[i]!="")
+                        
+                            sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
+
+                        
+                    }
+                    else
+                    {
+                        sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
+
+                    }
+
+                }
+               
+                    sqlSentence = sqlSentence.Replace("\r\n", "");
+
+                    try
+                    {
+                        li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+                    }
+                    catch (Exception ex)
+                    {
+                        li.Add(sqlSentence+"出错:" + ex.Message);
+
+                    }
+                        if (sqlSentence.IndexOf("where 9=9") == -1)
                         {
-                            switch(comItem[i])
+                            foreach (string strname in li)
+                            {
+                                combox.Items.Add(strname);
+                            }
+                        }
+                        else
+                        {
+                           
+                            switch (li[0].ToString())
                             {
                                 case "{年}":
                                     combox.Items.Clear();
                                     for (int j = 0; j <= 20; j++)
                                     {
-                                        combox.Items.Add(string.Format("{0}", j+DateTime.Now.Year));
+                                        combox.Items.Add(string.Format("{0}", j + DateTime.Now.Year));
 
                                     }
 
@@ -114,7 +278,7 @@ namespace Ebada.SCGL.WFlow.Tool
                                     break;
                                 case "{日}":
                                     combox.Items.Clear();
-                                    for (int j = 1; j <=31; j++)
+                                    for (int j = 1; j <= 31; j++)
                                     {
                                         combox.Items.Add(string.Format("{0:D2}", j));
 
@@ -138,13 +302,65 @@ namespace Ebada.SCGL.WFlow.Tool
                                     }
                                     break;
                                 default:
-                                combox.Items.Add(comItem[i]);
-                                break;
+                                    string strexpress = li[0].ToString();
+                                    r1 = new Regex(@"[0-9]+\+[0-9]+");
+                                    if (r1.Match(strexpress).Value != "")
+                                    {
+                                        int istart = 1;
+                                        int ilen = 10;
+                                        r1 = new Regex(@"[0-9]+(?=\+)");
+                                        if (r1.Match(strexpress).Value != "")
+                                        {
+                                            istart = Convert.ToInt32(r1.Match(strexpress).Value);
+                                        }
+                                        r1 = new Regex(@"(?<=\+)[0-9]+");
+                                        if (r1.Match(strexpress).Value != "")
+                                        {
+                                            ilen = Convert.ToInt32(r1.Match(strexpress).Value); ;
+                                        }
+                                        for (int i = istart; i <= ilen; i++)
+                                        {
+                                            combox.Items.Add(string.Format("{0}", i));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        string[] strItem = SelectorHelper.ToDBC(strexpress).Split(',');
+                                        for (int i = 0; i < strItem.Length; i++)
+                                        {
+                                            combox.Items.Add(strItem[i]);
+                                        }
+
+                                    }
+                                    break;
                             }
+
                         }
-                    }
+            }
+        }
+        public void InitData(string[] sql,string[] sqlColName,string[] comBoxItem,DSOFramerControl dsoFramerWordControl1,LP_Temple lp,LP_Record currRecord)
+        {
+
+           
+            //foreach (DevExpress.XtraEditors.Repository.RepositoryItemComboBox combox in colctrllist)
+            for (int i = 0; i < gridView1.Columns.Count; i++)
+            {
+                if (gridView1.Columns[i].ColumnEdit is RepositoryItemComboBox)
+                {
+                    RepositoryItemComboBox combox = gridView1.Columns[i].ColumnEdit as RepositoryItemComboBox;
+                    combox.Items.Clear();
+                   
+                        Regex r1 = new Regex(@"(?<=\[" + i + ":).*?(?=\\])");
+                        string sqlSentence = "";
+                        if (r1.Match(lp.SqlSentence).Value != "")
+                        {
+                            sqlSentence = r1.Match(lp.SqlSentence).Value;
+                        }
+                        if (sqlSentence != "")
+                            InitCtrlData(combox, i, lp, sqlSentence, dsoFramerWordControl1, currRecord);
+
+                   
                 }
-                k++;
             }
            
         }
@@ -164,23 +380,41 @@ namespace Ebada.SCGL.WFlow.Tool
             string[] useforadd = new string[m_ColName.Length];
             int[] rows = new int[m_ColName.Length];
             int max = 1;
+            string newrow = "";
             DataTable dt=GetDS();
             for (int j = 0; j < dt.Rows.Count; j++)
             {
                 max = 1; 
+                
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
+                    //DataRow dr= gridView1.GetDataRow(j);
                     string oneCol = dt.Rows[j][i].ToString();
-                    string splitRst = sh.GetPlitStringN(oneCol, wcount[i]);
-                    if (GetPlitLen(splitRst) > max)
-                        max = GetPlitLen(splitRst);
-                    colArr[i] += splitRst;
-                    useforadd[i] = splitRst;
-                    if (i == dt.Columns.Count - 1 && max != 1)
+                    if (gridView1.Columns[i].ColumnEdit is RepositoryItemDateEdit && oneCol!="")
                     {
-                        AddMauRow(ref colArr,useforadd, max);
+                        DevExpress.XtraEditors.DateEdit de = new DevExpress.XtraEditors.DateEdit();
+                        de.DateTime = Convert.ToDateTime(oneCol);
+                        de.Properties.Mask.EditMask = gridView1.Columns[i].ColumnEdit.EditFormat.FormatString;
+                        de.Properties.Mask.UseMaskAsDisplayFormat = true;
+                        oneCol = de.Text;
+                    }
+                    if (oneCol != "")
+                    {
+                        //string splitRst = sh.GetPlitStringN(oneCol, wcount[i]);
+                            
+                        string splitRst = oneCol;
+                        if (oneCol.Length > wcount[i]) splitRst = oneCol.Substring(0, wcount[i]);
+                        //if (GetPlitLen(splitRst) > max)
+                        //    max = GetPlitLen(splitRst);
+                        colArr[i] += newrow+splitRst;
+                        useforadd[i] = newrow + splitRst;
+                        if (i == dt.Columns.Count - 1 && max != 1)
+                        {
+                            AddMauRow(ref colArr, useforadd, max);
+                        }
                     }
                 }
+                newrow = "\r\n";
             }
             RomoveEnd(ref colArr);
             
@@ -205,7 +439,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             for (int i = 0; i < useforadd.Length; i++)
             {
-                for (int j = 0; j < max - GetPlitLen(useforadd[i].Substring(0, useforadd[i].Length - 2)); j++)
+                for (int j = 0;useforadd[i]!=null && j < max - GetPlitLen(useforadd[i].Substring(0, useforadd[i].Length - 2)); j++)
                 {
                     colArr[i] += "\r\n";
                 }

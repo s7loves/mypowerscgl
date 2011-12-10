@@ -292,7 +292,7 @@ namespace Ebada.SCGL.WFlow.Tool
             e.Value.DocContent = parentObj.DocContent;
             string slqwhere = " where ParentID='" + e.Value.ParentID + "' ";
             e.Value.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere) + 1;
-            e.Value.WordCount = "15";
+            e.Value.WordCount = "50";
             e.Value.CtrlSize = "200,20";
             slqwhere = " where ParentID='" + e.Value.ParentID + "' ";
 
