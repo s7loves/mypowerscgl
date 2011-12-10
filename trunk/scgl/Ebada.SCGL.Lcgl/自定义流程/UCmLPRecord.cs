@@ -860,7 +860,7 @@ namespace Ebada.Scgl.Lcgl {
                             ((frm24WorkFlowEdit)obj).RowData = qxfl;
 
                         }
-                        ((Form)obj).ShowDialog();
+                        
 
                         if (((Form)obj).ShowDialog() == DialogResult.OK)
                         {

@@ -391,7 +391,7 @@ namespace Ebada.Scgl.Lcgl
                     ctrl.TabIndex = index;
                     if (lp.CtrlType.Contains("uc_gridcontrol"))
                     {
-                        (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar));
+                        (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar),lp);
                     }
                     index++;
                     ctrl.Name = lp.LPID;
@@ -1692,9 +1692,9 @@ namespace Ebada.Scgl.Lcgl
                     if (li.Count > 0 && sqlSentence != "")
                         ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
                     break;
-                case "uc_gridcontrol":
-                    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar));
-                    break;
+                //case "uc_gridcontrol":
+                //    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
+                //    break;
             }
         
         }

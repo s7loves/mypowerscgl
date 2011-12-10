@@ -337,11 +337,11 @@ namespace Ebada.SCGL.WFlow.Tool
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.rbnAttendManExcel = new System.Windows.Forms.RadioButton();
             this.rbnAttendManTable = new System.Windows.Forms.RadioButton();
-            this.menuItem8 = new System.Windows.Forms.MenuItem();
-            this.contextMenu3 = new System.Windows.Forms.ContextMenu();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.cbxTaskAllExplore = new System.Windows.Forms.CheckBox();
             this.cbxTaskExplore = new System.Windows.Forms.CheckBox();
+            this.menuItem8 = new System.Windows.Forms.MenuItem();
+            this.contextMenu3 = new System.Windows.Forms.ContextMenu();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1689,16 +1689,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.rbnAttendManTable.Text = "从表单取";
             this.rbnAttendManTable.UseVisualStyleBackColor = true;
             // 
-            // menuItem8
-            // 
-            this.menuItem8.Index = 0;
-            this.menuItem8.Text = "删除";
-            // 
-            // contextMenu3
-            // 
-            this.contextMenu3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem8});
-            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.cbxTaskAllExplore);
@@ -1730,6 +1720,16 @@ namespace Ebada.SCGL.WFlow.Tool
             this.cbxTaskExplore.TabIndex = 1;
             this.cbxTaskExplore.Text = "允许导出";
             this.cbxTaskExplore.UseVisualStyleBackColor = true;
+            // 
+            // menuItem8
+            // 
+            this.menuItem8.Index = 0;
+            this.menuItem8.Text = "删除";
+            // 
+            // contextMenu3
+            // 
+            this.contextMenu3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem8});
             // 
             // fmTaskStart
             // 
