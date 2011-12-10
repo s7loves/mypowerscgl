@@ -1359,6 +1359,9 @@
     <Content Include="00记录模板\技改管理工作会议记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="00记录模板\火灾事故记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="00记录模板\用电检查工作单.xls" />
     <None Include="00记录模板\用电检查结果通知单.xls" />
     <None Include="00记录模板\用电汇签单.xls" />
