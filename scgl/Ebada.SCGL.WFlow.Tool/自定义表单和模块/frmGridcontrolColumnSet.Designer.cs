@@ -167,7 +167,7 @@
             this.MaximizeBox = false;
             this.Name = "frmGridcontrolColumnSet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "设置Gridcontrol控件SQL语句";
+            this.Text = "设置Gridcontrol列的控件格式";
             this.Load += new System.EventHandler(this.frmExcelEditSQLSet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
