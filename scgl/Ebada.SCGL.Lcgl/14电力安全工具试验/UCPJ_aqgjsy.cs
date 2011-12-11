@@ -117,7 +117,7 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.ModleTableName = obj.GetType().ToString();
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
-            RefreshData(" where OrgCode='" + parentID + "' and sbID='" + PSObj.sbID );
+            RefreshData(" where OrgCode='" + parentID + "' and sbID='" + PSObj.sbID+"'" );
         }
         public PS_aqgj PSObj
         {
