@@ -67,14 +67,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Ebada.Scgl.Lcgl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>obj\Debug\Ebada.Scgl.Lcgl.dll</HintPath>
-    </Reference>
-    <Reference Include="Ebada.Scgl.Lpgl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Ebada.Scgl.Lpgl\obj\Debug\Ebada.Scgl.Lpgl.dll</HintPath>
-    </Reference>
     <Reference Include="Ebada.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.UI.dll</HintPath>

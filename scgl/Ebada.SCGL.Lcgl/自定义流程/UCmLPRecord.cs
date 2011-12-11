@@ -890,8 +890,8 @@ namespace Ebada.Scgl.Lcgl {
             if (obj is frmLP)
             {
                 frmLP frm = new frmLP();
-                frm.Status = "edit";
-
+                //frm.Status = "edit";
+                frm.Status = RecordWorkTask.GetWorkTaskStatus(dt, currRecord);
 
                 frm.CurrRecord = currRecord;
 

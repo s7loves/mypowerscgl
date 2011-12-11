@@ -30,6 +30,37 @@ namespace Ebada.Scgl.WFlow
 
     public class RecordWorkTask
     {
+
+        public static string  GetWorkTaskStatus(DataTable workflowData, LP_Record record)
+        {
+            if (workflowData.Rows[0]["TaskTypeId"].ToString() == "1") return "add";
+            string tmpStr = " where  WorkTaskInsId='" + workflowData.Rows[0]["WorkTaskInsId"] + "' and( (OperStatus='1' and TaskTypeId!='2' ) or TaskTypeId='2'or TaskTypeId='6' )";
+            IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
+                "SelectWF_WorkTaskInstanceViewList", tmpStr);
+            if (li.Count == 0)
+            {
+                tmpStr = " where  WorkTaskInsId='" + workflowData.Rows[0]["WorkTaskInsId"] + "' and( (OperStatus='0' and TaskTypeId!='2' ) or TaskTypeId='2'or TaskTypeId='6' )";
+                li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
+                   "SelectWF_WorkTaskInstanceViewList", tmpStr);
+            }
+            if (li.Count > 0 )
+            {
+
+                tmpStr = " where  WorkTaskInsId='" + li[0].PreviousTaskId + "' and( (OperStatus='1' and TaskTypeId!='2' ) or TaskTypeId='2'or TaskTypeId='6' )";
+                    li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
+                "SelectWF_WorkTaskInstanceViewList", tmpStr);
+
+                    if (li.Count > 0 && li[0].TaskTypeId == "1" )
+                    {
+                        if (GetWorkTaskModle(li[0].WorkFlowId, li[0].WorkTaskId).ToString().IndexOf("Ebada.Scgl.Lcgl.WorkFlowLineSelectForm") > -1)
+                            return "add";
+                    
+                    }
+            }
+
+            return "edit";
+
+        }
         /// <summary>
         /// 
         /// </summary>
