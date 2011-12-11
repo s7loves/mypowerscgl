@@ -22,6 +22,7 @@ using System.Text.RegularExpressions;
 using DevExpress.XtraTreeList;
 using System.Net;
 using System.Threading;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -2031,6 +2032,16 @@ namespace Ebada.Scgl.Lcgl
                 {
                     sqlSentence = sqlSentence.Replace("\r\n", " ");
                     li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+                    if (sqlSentence.IndexOf("where 9=9") > -1)
+                    {
+                        string strtemp = li[0].ToString();
+                        li.Clear();
+                        string[] strli = SelectorHelper.ToDBC(strtemp).Split(',');
+                        foreach (string ss in strli)
+                        {
+                            li.Add(ss);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {

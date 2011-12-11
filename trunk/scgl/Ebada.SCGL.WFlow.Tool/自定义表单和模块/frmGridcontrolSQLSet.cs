@@ -134,6 +134,7 @@ namespace Ebada.SCGL.WFlow.Tool
             foreach (string strname in comItem)
             {
                 DataRow dr = griddt.NewRow();
+                if (strname == "") continue;
                 dr["name"] = strname;
                 Regex r1 = new Regex(@"(?<=\["+i+":).*?(?=\\])");
                 if (r1.Match(rowData.SqlSentence).Value!="")
@@ -247,6 +248,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             string strSQLtemp = "";
+            simpleButton3.Text = "修改";
             if (rbnWorkFixValue.Checked == true)
             {
 
@@ -339,7 +341,8 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             else
             {
-
+                tetWorkFixValue.Text = "";
+                tetWorkSQL.Text = "";
                 simpleButton3.Text = "添加";
             }
         }

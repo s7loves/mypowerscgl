@@ -94,7 +94,9 @@ namespace Ebada.SCGL.WFlow.Tool
             //list.Add(new DicType("xlqxp", "抢修票"));停电操作票
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);
             comboBoxEdit5.Properties.Items.Clear();
-            ListItem lt = new ListItem("yyyy-MM-dd", "yyyy-MM-dd");
+            ListItem lt = new ListItem("yyyy年MM月dd日", "yyyy年MM月dd日");
+            comboBoxEdit5.Properties.Items.Add(lt);
+            lt = new ListItem("yyyy-MM-dd", "yyyy-MM-dd");
             comboBoxEdit5.Properties.Items.Add(lt);
             lt = new ListItem("MM-dd日", "MM-dd日");
             comboBoxEdit5.Properties.Items.Add(lt);
@@ -218,9 +220,9 @@ namespace Ebada.SCGL.WFlow.Tool
             if (celpos.Length != cellen.Length)
             {
                 if (strlen.Length > 0)
-                labelTip.Text = (celpos.Length - cellen.Length).ToString();
+                labelTip.Text = (celpos.Length - cellen.Length).ToString()+"   ";
                 else
-                    labelTip.Text = (celpos.Length - cellen.Length+1).ToString();
+                    labelTip.Text = (celpos.Length - cellen.Length + 1).ToString() + "   ";
 
             }
            
@@ -252,6 +254,13 @@ namespace Ebada.SCGL.WFlow.Tool
                 MsgBox.ShowWarningMessageBox("控件大小不能为空");
                 isclose = false;
                 
+                return;
+            }
+            if (lookUpEdit1.EditValue==null || lookUpEdit1.EditValue.ToString() == "")
+            {
+                MsgBox.ShowWarningMessageBox("控件类型不能为空");
+                isclose = false;
+
                 return;
             }
             isclose = true;
