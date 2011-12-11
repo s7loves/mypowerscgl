@@ -67,6 +67,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Ebada.Scgl.Lcgl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>obj\Debug\Ebada.Scgl.Lcgl.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Scgl.Lpgl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Ebada.Scgl.Lpgl\obj\Debug\Ebada.Scgl.Lpgl.dll</HintPath>
+    </Reference>
     <Reference Include="Ebada.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.UI.dll</HintPath>
@@ -271,6 +279,50 @@
     </Compile>
     <Compile Include="12线路开关卡片\UCPS_kgM.Designer.cs">
       <DependentUpon>UCPS_kgM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14电力安全工具试验\Export14.cs" />
+    <Compile Include="14电力安全工具试验\frm14aqgjsyEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="14电力安全工具试验\frm14aqgjsyEdit.Designer.cs">
+      <DependentUpon>frm14aqgjsyEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14电力安全工具试验\frmaqgjEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="14电力安全工具试验\frmaqgjEdit.Designer.cs">
+      <DependentUpon>frmaqgjEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_14aqgj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_14aqgj.Designer.cs">
+      <DependentUpon>UCPJ_14aqgj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_14aqgjM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_14aqgjM.Designer.cs">
+      <DependentUpon>UCPJ_14aqgjM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_aqgjsy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="14电力安全工具试验\UCPJ_aqgjsy.Designer.cs">
+      <DependentUpon>UCPJ_aqgjsy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="15工具仪表台账\Export15.cs" />
+    <Compile Include="15工具仪表台账\frm16gjybEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="15工具仪表台账\frm16gjybEdit.Designer.cs">
+      <DependentUpon>frm16gjybEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="15工具仪表台账\UCPS_gjyb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="15工具仪表台账\UCPS_gjyb.Designer.cs">
+      <DependentUpon>UCPS_gjyb.cs</DependentUpon>
     </Compile>
     <Compile Include="16高压配电线路条图汇总表\Export16.cs" />
     <Compile Include="16高压配电线路条图汇总表\frm16Edit.cs">
@@ -960,6 +1012,34 @@
     </EmbeddedResource>
     <EmbeddedResource Include="12线路开关卡片\UCPS_kgM.resx">
       <DependentUpon>UCPS_kgM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14电力安全工具试验\frm14aqgjsyEdit.resx">
+      <DependentUpon>frm14aqgjsyEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14电力安全工具试验\frmaqgjEdit.resx">
+      <DependentUpon>frmaqgjEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14电力安全工具试验\UCPJ_14aqgj.resx">
+      <DependentUpon>UCPJ_14aqgj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14电力安全工具试验\UCPJ_14aqgjM.resx">
+      <DependentUpon>UCPJ_14aqgjM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14电力安全工具试验\UCPJ_aqgjsy.resx">
+      <DependentUpon>UCPJ_aqgjsy.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="15工具仪表台账\frm16gjybEdit.resx">
+      <DependentUpon>frm16gjybEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="15工具仪表台账\UCPS_gjyb.resx">
+      <DependentUpon>UCPS_gjyb.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="16高压配电线路条图汇总表\frm16Edit.resx">

@@ -1725,7 +1725,7 @@ namespace Ebada.Scgl.Lcgl
                     {
 
                         value += strList[i];
-                        if (strList.Count == i)
+                        if (strList.Count == i+1)
                         {
                             ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
