@@ -532,7 +532,7 @@ namespace Ebada.Scgl.Lcgl
             Control ce = FindCtrl("ce" + lp.LPID);
             if (ct != null && ct.Text.IndexOf(str) == -1)
             {
-                if (lp.CellName.Substring(lp.CellName.Length - 1) == "人" || lp.CellName.Substring(lp.CellName.Length - 2) == "人员")
+                if (lp.CellName.Substring(lp.CellName.Length - 1) == "人" || lp.CellName.Substring(lp.CellName.Length - 2) == "人员" || lp.CellName.Substring(lp.CellName.Length - 2) == "成员")
                 {
                     if (ct.Text == "" || !((CheckEdit)ce).Checked)
                         ct.Text = str;
@@ -1907,7 +1907,54 @@ namespace Ebada.Scgl.Lcgl
             string ctrltype = "";
             if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1)
             {
-                ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
+                if (sqlSentence.IndexOf("{recordid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);
+                }
+                if (sqlSentence.IndexOf("{orgcode}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{userid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
+                while (r1.Match(sqlSentence).Value != "")
+                {
+                    string sortid = r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count > 0)
+                    {
+                        Control ct = FindCtrl(listLPID[0].LPID);
+                        if (ct != null)
+                        {
+                            sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
+                        }
+                        else
+                        {
+                            string strSQL = "select ControlValue from WF_TableFieldValueView where"
+                                  + " UserControlId='" + listLPID[0].ParentID + "' "
+                                  + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
+                            IList li2 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+                            if (li2.Count > 0)
+                            {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", li2[0].ToString());
+                            }
+                            else
+                            {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                        break;
+                    }
+                }
+                ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence, lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
                 return;
             }
             if (lp.CtrlType.IndexOf(',') == -1)
@@ -2036,10 +2083,34 @@ namespace Ebada.Scgl.Lcgl
                     {
                         string strtemp = li[0].ToString();
                         li.Clear();
-                        string[] strli = SelectorHelper.ToDBC(strtemp).Split(',');
-                        foreach (string ss in strli)
+                        r1 = new Regex(@"[0-9]+\+[0-9]+");
+                        if (r1.Match(strtemp).Value != "")
                         {
-                            li.Add(ss);
+                            int istart = 1;
+                            int ilen = 10;
+                            r1 = new Regex(@"[0-9]+(?=\+)");
+                            if (r1.Match(strtemp).Value != "")
+                            {
+                                istart = Convert.ToInt32(r1.Match(strtemp).Value);
+                            }
+                            r1 = new Regex(@"(?<=\+)[0-9]+");
+                            if (r1.Match(strtemp).Value != "")
+                            {
+                                ilen = Convert.ToInt32(r1.Match(strtemp).Value); ;
+                            }
+                            for (int i = istart; i <= ilen; i++)
+                            {
+                                li.Add(string.Format("{0}", i));
+                            }
+                        }
+                        else
+                        {
+                            string[] strli = SelectorHelper.ToDBC(strtemp).Split(',');
+                            foreach (string ss in strli)
+                            {
+                                li.Add(ss);
+                            }
+
                         }
                     }
                 }
@@ -2194,7 +2265,54 @@ namespace Ebada.Scgl.Lcgl
                     }
                     break;
                 case "uc_gridcontrol":
-                    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
+                    if (sqlSentence.IndexOf("{recordid}") > -1)
+                    {
+                        sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);
+                    }
+                    if (sqlSentence.IndexOf("{orgcode}") > -1)
+                    {
+                        sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                    }
+                    if (sqlSentence.IndexOf("{userid}") > -1)
+                    {
+                        sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                    }
+                    Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
+                    while (r1.Match(sqlSentence).Value != "")
+                    {
+                        string sortid = r1.Match(sqlSentence).Value;
+                        IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                        if (listLPID.Count > 0)
+                        {
+                            Control ct = FindCtrl(listLPID[0].LPID);
+                            if (ct != null)
+                            {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
+                            }
+                            else
+                            {
+                                string strSQL = "select ControlValue from WF_TableFieldValueView where"
+                                      + " UserControlId='" + listLPID[0].ParentID + "' "
+                                      + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
+                                IList li2 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+                                if (li2.Count > 0)
+                                {
+                                    sqlSentence = sqlSentence.Replace("{" + sortid + "}", li2[0].ToString());
+                                }
+                                else
+                                {
+                                    sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                            break;
+                        }
+                    }
+                    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence, lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
                     break;
             }
             if (lp.CellName == "编号") strNumber = ctrl.Text;
@@ -2318,7 +2436,59 @@ namespace Ebada.Scgl.Lcgl
                     }
                 }
             }
-            InitCtrlData(ctrl, sqlSentence);
+            if (lp.CtrlType.IndexOf("uc_gridcontrol") == -1)
+                InitCtrlData(ctrl, sqlSentence);
+            else
+            {
+                if (sqlSentence.IndexOf("{recordid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);
+                }
+                if (sqlSentence.IndexOf("{orgcode}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{userid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
+                while (r1.Match(sqlSentence).Value != "")
+                {
+                    string sortid = r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count > 0)
+                    {
+                        Control ct = FindCtrl(listLPID[0].LPID);
+                        if (ct != null)
+                        {
+                            sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
+                        }
+                        else
+                        {
+                            string strSQL = "select ControlValue from WF_TableFieldValueView where"
+                                  + " UserControlId='" + listLPID[0].ParentID + "' "
+                                  + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
+                            IList li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+                            if (li.Count > 0)
+                            {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
+                            }
+                            else
+                            {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                        break;
+                    }
+                }
+                ((uc_gridcontrol)ctrl).InitData(sqlSentence, lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
+            }
         }
 
         public Control FindCtrl(string name)

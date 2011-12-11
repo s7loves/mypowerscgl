@@ -2808,6 +2808,8 @@ namespace Ebada.SCGL.WFlow.Tool
                     tbxFiledName.Tag = null;
                     tbxFiledName.Text = "不可用";
                     label2.Text = "处理(任务命令可用代码{01：提交文件模块，02：手动结束}):";
+                    btnSelectCtrls.Enabled = false;
+                    btnSelctField.Enabled = false;
                 }
                 else
                 {
@@ -2819,7 +2821,10 @@ namespace Ebada.SCGL.WFlow.Tool
                         tbxFiledName.Tag = null;
                         tbxFiledName.Text = "";
                         label2.Text = "处理";
+
                     }
+                    btnSelectCtrls.Enabled = true;
+                    btnSelctField.Enabled = true;
                 }
               
                 object fromCtrl = CreatNewMoldeIns(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.ModuName);

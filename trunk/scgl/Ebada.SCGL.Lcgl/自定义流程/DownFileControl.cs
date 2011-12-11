@@ -518,7 +518,8 @@ namespace Ebada.Scgl.Lcgl
                    dr["Kind"] = "等待上传中...";
                    //savefilename = DateTime.Now.ToString("yyyyMMddHHmmssffffff") + "-" + Path.GetFileName(strFileName);
                    string strtime =(string) ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select replace(replace(replace(replace(CONVERT(varchar, getdate(), 121 ),'-',''),' ',''),':',''),'.','')");
-                   savefilename = HttpUtility.UrlEncode(upfileRoot + upfilePath + "/" + strtime + "-" + Path.GetFileName(strFileName));
+                   //savefilename = upfileRoot + upfilePath + "/" + HttpUtility.UrlEncode(strtime + "-" + Path.GetFileName(strFileName));
+                   savefilename = upfileRoot + upfilePath + "/" + strtime + "-" + Path.GetFileName(strFileName);
                    dr["SaveFileName"] = savefilename;
                    dr["FileSize"] = fileStreamtemp.Length;
                    fjtable.Rows.Add(dr);
@@ -631,8 +632,9 @@ namespace Ebada.Scgl.Lcgl
                         break;
                     }
                 }
+                
                 if (itablecurrent!=-1)
-                DownFile(filepath, downfileurl+ savefilename);
+                DownFile(filepath, downfileurl+  savefilename);
                 //downcomEvent.WaitOne();
                 
             }
