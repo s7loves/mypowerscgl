@@ -19,6 +19,7 @@ using DevExpress.XtraRichEdit.API.Word;
 using DevExpress.XtraGrid.Views.Base;
 using System.Threading;
 using System.Text.RegularExpressions;
+using Ebada.Scgl.Core;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -927,7 +928,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     {
                         
                             value += strList[i];
-                            if (strList.Count == i)
+                            if (strList.Count == i+1)
                             ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
                     }
                 }
@@ -1171,6 +1172,16 @@ namespace Ebada.SCGL.WFlow.Tool
                 {
                     sqlSentence = sqlSentence.Replace("\r\n", "");
                     li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+                    if (sqlSentence.IndexOf("where 9=9") > -1)
+                    {
+                        string strtemp = li[0].ToString();
+                        li.Clear();
+                        string[] strli = SelectorHelper.ToDBC(strtemp).Split(',');
+                        foreach (string ss in strli)
+                        {
+                            li.Add(ss);
+                        }
+                    }
                 }
                 catch(Exception ex)
                 {

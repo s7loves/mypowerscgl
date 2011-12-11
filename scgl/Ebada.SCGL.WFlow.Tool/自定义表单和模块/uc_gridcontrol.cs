@@ -91,8 +91,8 @@ namespace Ebada.SCGL.WFlow.Tool
                 else if (strcom.IndexOf("RepositoryItemCalcEdit") > -1)
                 {
                     r1 = new Regex(@"(?<=:).*");
-                    DevExpress.XtraEditors.Repository.RepositoryItemDateEdit date =
-                             new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+                    DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit date =
+                             new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
                     if (r1.Match(strcom).Value != "")
                         date.Properties.EditMask = r1.Match(strcom).Value;
 

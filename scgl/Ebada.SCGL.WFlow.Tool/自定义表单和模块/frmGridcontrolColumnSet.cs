@@ -80,6 +80,7 @@ namespace Ebada.SCGL.WFlow.Tool
             foreach (string strname in comItem)
             {
                 DataRow dr = griddt.NewRow();
+                if (strname == "") continue;
                 dr["name"] = strname;
                 Regex r1 = new Regex(@"(?<=\["+i+":).*?(?=\\])");
                 if (r1.Match(rowData.ComBoxItem).Value!="")
@@ -104,6 +105,9 @@ namespace Ebada.SCGL.WFlow.Tool
             comboBox1.Items.Add(lt);
             lt = new ListItem("RepositoryItemCalcEdit", "计算器");
             comboBox1.Items.Add(lt);
+
+            lt = new ListItem("yyyy年MM月dd日", "yyyy年MM月dd日");
+            comboBox2.Items.Add(lt);
 
             lt = new ListItem("yyyy-MM-dd", "yyyy-MM-dd");
             comboBox2.Items.Add(lt);
