@@ -30,7 +30,12 @@ namespace Ebada.Scgl.WFlow
 
     public class RecordWorkTask
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="workflowData"></param>
+        /// <param name="record"></param>
+        /// <returns></returns>
         public static string  GetWorkTaskStatus(DataTable workflowData, LP_Record record)
         {
             if (workflowData.Rows[0]["TaskTypeId"].ToString() == "1") return "add";

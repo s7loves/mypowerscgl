@@ -137,9 +137,9 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (strname == "") continue;
                 dr["name"] = strname;
                 Regex r1 = new Regex(@"(?<=\["+i+":).*?(?=\\])");
-                if (r1.Match(rowData.SqlSentence).Value!="")
+                if (r1.Match(rowData.SqlSentence.Replace("\r\n"," ")).Value!="")
                 {
-                    dr["sql"] = r1.Match(rowData.SqlSentence).Value;
+                    dr["sql"] = r1.Match(rowData.SqlSentence.Replace("\r\n", " ")).Value;
                 }
                 griddt.Rows.Add(dr);
                 i++;

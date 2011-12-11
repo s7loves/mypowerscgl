@@ -296,11 +296,11 @@ namespace Ebada.SCGL.WFlow.Tool
         /// <returns></returns>
         public static DataTable GetWorkflowsByCaption(string workflowCaption)
         {
-           
-            string tmpStr = "where FlowCaption like '%"+workflowCaption+"%'";
+
+            string tmpStr = "where FlowCaption like '%" + workflowCaption + "%' order by FlowCaption";
             if (workflowCaption == "")
             {
-                tmpStr = "where 1=1";
+                tmpStr = "where 1=1 order by FlowCaption";
             }
             try
             {

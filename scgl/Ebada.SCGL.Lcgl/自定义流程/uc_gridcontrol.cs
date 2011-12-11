@@ -338,7 +338,7 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         }
-        public void InitData(string[] sql, string[] sqlColName, string[] comBoxItem, DSOFramerControl dsoFramerWordControl1, LP_Temple lp, LP_Record currRecord)
+        public void InitData(string sql, string[] sqlColName, string[] comBoxItem, DSOFramerControl dsoFramerWordControl1, LP_Temple lp, LP_Record currRecord)
         {
 
 
@@ -352,9 +352,9 @@ namespace Ebada.Scgl.Lcgl
 
                     Regex r1 = new Regex(@"(?<=\[" + i + ":).*?(?=\\])");
                     string sqlSentence = "";
-                    if (r1.Match(lp.SqlSentence).Value != "")
+                    if (r1.Match(sql).Value != "")
                     {
-                        sqlSentence = r1.Match(lp.SqlSentence).Value;
+                        sqlSentence = r1.Match(sql).Value;
                     }
                     if (sqlSentence != "")
                         InitCtrlData(combox, i, lp, sqlSentence, dsoFramerWordControl1, currRecord);
