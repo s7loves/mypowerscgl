@@ -28,6 +28,11 @@ namespace Ebada.Scgl.Gis {
             : base() {
             InitializeComponent();
         }
+        protected override void OnPaint(PaintEventArgs e) {
+            base.OnPaint(e);
+            //if(!SelectedArea.IsEmpty)
+            //    e.Graphics.DrawRectangle(SelectionPen,
+        }
         /// <summary>
         /// any custom drawing here
         /// </summary>
@@ -40,7 +45,19 @@ namespace Ebada.Scgl.Gis {
             //g.DrawString("render: " + counter++ + ", load: " + ElapsedMilliseconds + "ms", DebugFont, Brushes.Blue, 36, 36);
             g.DrawString(debugMsg, DebugFont, Brushes.Blue, 36, 36);
 #endif
+            if (!Bounds.IsEmpty) {
+                GPoint p1 = FromLatLngToLocal(Bounds.LocationTopLeft);
+                GPoint p2 = FromLatLngToLocal(Bounds.LocationRightBottom);
+
+                int x1 = p1.X;
+                int y1 = p1.Y;
+                int x2 = p2.X;
+                int y2 = p2.Y;
+
+                g.DrawRectangle(SelectionPen, x1, y1, x2 - x1, y2 - y1);
+            }
         }
+        public GMap.NET.RectLatLng Bounds = RectLatLng.Empty;
         public string debugMsg = "";
         private void InitializeComponent() {
             

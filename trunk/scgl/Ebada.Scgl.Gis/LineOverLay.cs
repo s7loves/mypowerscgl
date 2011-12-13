@@ -79,8 +79,16 @@ namespace Ebada.Scgl.Gis {
         }
         public override void Render(System.Drawing.Graphics g) {
             bool flag=control.MarkersEnabled;
-            if (control.Zoom < 14)
+            if (control.Zoom < 14) {
                 control.MarkersEnabled = false;
+            }
+            int count = 0;
+            foreach (IText marker in Markers) {
+                
+                marker.ShowText =count%3==0? control.MarkersEnabled:false;
+                count++;
+            }
+
             base.Render(g);
             control.MarkersEnabled = flag;
         }

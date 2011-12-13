@@ -10,6 +10,11 @@ namespace Ebada.Scgl.Gis.Markers {
     [Serializable]
     internal class GMapMarkerText : GMapMarkerVector {
         private Font mFont;
+
+        public Font Font {
+            get { return mFont; }
+            set { mFont = value; }
+        }
         public GMapMarkerText(PointLatLng p)
             : base(p) {
             Size = SizeSt = new Size(20, 20);
@@ -24,18 +29,19 @@ namespace Ebada.Scgl.Gis.Markers {
             set {
                 if(base.Text == value) return;
                 base.Text = value;
+                Size = SizeSt = new Control().CreateGraphics().MeasureString(Text, mFont).ToSize();
+
+                Offset = new Point(-Size.Width / 2, -Size.Height / 2);
             }
         }
         public override void OnRender(Graphics g) {
 
-            Size = SizeSt = g.MeasureString(Text, mFont).ToSize();
             
-            //Offset = new Point(-Size.Width / 2, -Size.Height / 2);
             
             System.Drawing.Point p1 = new System.Drawing.Point(LocalPosition.X, LocalPosition.Y);
 
-            Rectangle r = new Rectangle(p1, SizeSt);
-            g.DrawRectangle(Pen, r);
+            //Rectangle r = new Rectangle(p1, SizeSt);
+            //g.DrawRectangle(Pen, r);
 
             g.DrawString(Text, mFont, Brushes.Black, p1);
         }
