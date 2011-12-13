@@ -82,7 +82,12 @@ namespace Ebada.SCGL.WFlow.Tool
                     if (r1.Match(strcom).Value != "")
                     {
                         date.Properties.EditMask = r1.Match(strcom).Value;
-                        date.Mask.UseMaskAsDisplayFormat =true;
+                        date.Mask.UseMaskAsDisplayFormat = true;
+                        if (r1.Match(strcom).Value.ToLower().IndexOf("hh") > -1)
+                        {
+                            date.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+                            date.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+                        }
                     }
                     grid.Columns[i].ColumnEdit = date;
                     grid.Columns[i].DisplayFormat.FormatString = date.Properties.EditMask;

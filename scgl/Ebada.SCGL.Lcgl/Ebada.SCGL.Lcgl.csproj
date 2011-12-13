@@ -411,6 +411,31 @@
     <Compile Include="25双%28自备%29电源协议书\UCPJ_25.Designer.cs">
       <DependentUpon>UCPJ_25.cs</DependentUpon>
     </Compile>
+    <Compile Include="26电力线路防护通知书\frm26WorkFlowEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="26电力线路防护通知书\frm26WorkFlowEdit.Designer.cs">
+      <DependentUpon>frm26WorkFlowEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="26电力线路防护通知书\Export26.cs" />
+    <Compile Include="26电力线路防护通知书\frm26Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="26电力线路防护通知书\frm26Edit.Designer.cs">
+      <DependentUpon>frm26Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="26电力线路防护通知书\frm26Template.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="26电力线路防护通知书\frm26Template.Designer.cs">
+      <DependentUpon>frm26Template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="26电力线路防护通知书\UCPJ_26.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
+      <DependentUpon>UCPJ_26.cs</DependentUpon>
+    </Compile>
     <Compile Include="年度技改工程计划\frmJGGCJHWorkFlowEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1092,6 +1117,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="25双%28自备%29电源协议书\UCPJ_25.resx">
       <DependentUpon>UCPJ_25.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="26电力线路防护通知书\frm26WorkFlowEdit.resx">
+      <DependentUpon>frm26WorkFlowEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="26电力线路防护通知书\frm26Edit.resx">
+      <DependentUpon>frm26Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="26电力线路防护通知书\frm26Template.resx">
+      <DependentUpon>frm26Template.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="26电力线路防护通知书\UCPJ_26.resx">
+      <DependentUpon>UCPJ_26.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="年度技改工程计划\frmJGGCJHWorkFlowEdit.resx">

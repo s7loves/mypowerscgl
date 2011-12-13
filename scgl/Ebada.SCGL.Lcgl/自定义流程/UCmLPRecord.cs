@@ -1388,6 +1388,28 @@ namespace Ebada.Scgl.Lcgl {
                             ((frmJGGCJHWorkFlowEdit)obj).RowData = qxfl;
 
                         }
+                        //26电力线路防护通知书
+                        else if (obj is frm26WorkFlowEdit)
+                        {
+                            IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
+                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'" + " and ModleTableName='Ebada.Scgl.Model.PJ_26'"
+                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                            PJ_26 qxfl = new PJ_26();
+                            if (li.Count > 0)
+                            {
+                                qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_26>(li[0].ModleRecordID);
+
+                            }
+                            else
+                            {
+                                qxfl = new PJ_26();
+                                
+
+                            }
+
+                            ((frm26WorkFlowEdit)obj).RowData = qxfl;
+                        
+                        }
                         if (((Form)obj).ShowDialog() == DialogResult.OK)
                         {
                             if (obj is WorkFlowLineSelectForm)

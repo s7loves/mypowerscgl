@@ -83,6 +83,11 @@ namespace Ebada.Scgl.Lcgl
                     {
                         date.Properties.EditMask = r1.Match(strcom).Value;
                         date.Mask.UseMaskAsDisplayFormat = true;
+                        if (r1.Match(strcom).Value.ToLower().IndexOf("hh") > -1)
+                        {
+                            date.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+                            date.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+                        }
                     }
                     grid.Columns[i].ColumnEdit = date;
                     grid.Columns[i].DisplayFormat.FormatString = date.Properties.EditMask;
@@ -94,6 +99,7 @@ namespace Ebada.Scgl.Lcgl
                     DevExpress.XtraEditors.Repository.RepositoryItemDateEdit date =
                              new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
                     if (r1.Match(strcom).Value != "")
+
                         date.Properties.EditMask = r1.Match(strcom).Value;
 
                     grid.Columns[i].ColumnEdit = date;
