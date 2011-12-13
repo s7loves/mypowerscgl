@@ -133,11 +133,15 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            string strname = "";
+            string fname = "";
+            string bhname="";
+            int icount = 1;
+
+           
             DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
             Microsoft.Office.Interop.Excel.Workbook wb;
             ExcelAccess ea = new ExcelAccess();
-            string strname = "";
-            string fname = "";
             if (rowData.BigData == null || rowData.BigData.Length == 0)
             {
                  fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
@@ -151,25 +155,46 @@ namespace Ebada.Scgl.Yxgl
             if (rowData.BigData == null || rowData.BigData.Length == 0)
             {
                 fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
+
+
+
                 mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
-                string bhname = org.OrgName.Replace("供电所", "");
+                bhname = org.OrgName.Replace("供电所", "");
                 PJ_26 obj = (PJ_26)MainHelper.PlatformSqlMap.GetObject("SelectPJ_26List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
-                int icount = 1;
+
                 if (obj != null && obj.xybh != "")
                 {
                     icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
                 }
+                rowData.xybh = SelectorHelper.GetPysm(bhname, true).ToUpper() + "-" + DateTime.Now.Year.ToString() + "-" + string.Format("{0:D3}", icount);
                 strname = SelectorHelper.GetPysm(bhname, true);
-                ea.SetCellValue(strname, 4, 9);
+                ea.SetCellValue(strname.ToUpper(), 4, 9);
                 strname = DateTime.Now.Year.ToString();
                 ea.SetCellValue(strname, 4, 11);
                 strname = string.Format("{0:D3}", icount);
-                ea.SetCellValue(strname, 4, 12);
+                ea.SetCellValue(strname, 4, 13);
                
             }
-            ea.SetCellValue(comboBoxEdit1.Text + ":", 5, 2);
+            ea.SetCellValue(comboBoxEdit1.Text + "：", 5, 2);
             ea.SetCellValue(comboBoxEdit3.Text, 6, 11);
-            ea.SetCellValue(comboBoxEdit3.Text, 7, 3);
+            if (memoEdit2.Text.Length > 25)
+            {
+                ea.SetCellValue(memoEdit2.Text.Substring(0, 25), 7, 3);
+                ea.SetCellValue(memoEdit2.Text.Substring(26), 8, 2);
+            }
+            else
+                {
+                    ea.SetCellValue(memoEdit2.Text, 7, 3);
+                }
+            if (memoEdit3.Text.Length > 23)
+            {
+                ea.SetCellValue(memoEdit3.Text.Substring(0, 23), 13, 4);
+                ea.SetCellValue(memoEdit3.Text.Substring(24), 14, 2);
+            }
+            else
+                {
+                    ea.SetCellValue(memoEdit3.Text, 13, 4);
+                }
             dsoFramerControl1.FileSave();
             rowData.BigData = dsoFramerControl1.FileData;
             dsoFramerControl1.FileClose();

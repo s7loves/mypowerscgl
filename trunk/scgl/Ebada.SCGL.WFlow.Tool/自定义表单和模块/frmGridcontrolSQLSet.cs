@@ -147,12 +147,14 @@ namespace Ebada.SCGL.WFlow.Tool
             WinFormFun.LoadComboBox(columnBox, griddt, "sql", "name");
             gridControl1.DataSource = griddt;
             gridView1.Columns["name"].Caption = "列名";
+            gridView1.Columns["name"].OptionsColumn.AllowEdit = false;
             gridView1.Columns["name"].AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
              gridView1.Columns["name"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            gridView1.Columns["sql"].Caption = "SQL语句";
+             gridView1.Columns["sql"].Caption = "SQL语句";
+             gridView1.Columns["sql"].OptionsColumn.AllowEdit = true;
             gridView1.Columns["sql"].AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             gridView1.Columns["sql"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            gridView1.OptionsBehavior.Editable = false;
+            //gridView1.OptionsBehavior.Editable = true;
            
         }
         void setComoboxFocusIndex(ComboBox cbx,string text)
