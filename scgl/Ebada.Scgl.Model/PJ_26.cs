@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-10 14:57:59
+生成时间:2011-12-13 14:08:38
 ***********************************************/
 
 using System;
@@ -23,8 +23,12 @@ namespace Ebada.Scgl.Model
         #region Private 成员
         private string _id=Newid(); 
         private string _parentid=String.Empty; 
+        private string _xybh=String.Empty; 
         private string _tzdw=String.Empty; 
         private DateTime _tzrq=new DateTime(1900,1,1); 
+        private string _linevol=String.Empty; 
+        private string _fxwt=String.Empty; 
+        private string _clcs=String.Empty; 
         private string _remark=String.Empty; 
         private string _gzrjid=String.Empty; 
         private string _createman=String.Empty; 
@@ -79,6 +83,27 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
+        /// 属性名称：xybh
+        /// 属性描述：协议编号
+        /// 字段信息：[xybh],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("协议编号")]
+        public string xybh
+        {
+            get { return _xybh; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[]长度不能大于50!");
+                if (_xybh as object == null || !_xybh.Equals(value))
+                {
+                    _xybh = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
         /// 属性名称：tzdw
         /// 属性描述：通知单位
         /// 字段信息：[tzdw],nvarchar
@@ -113,6 +138,69 @@ namespace Ebada.Scgl.Model
                 if (_tzrq as object == null || !_tzrq.Equals(value))
                 {
                     _tzrq = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：lineVol
+        /// 属性描述：线路电压
+        /// 字段信息：[lineVol],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("线路电压")]
+        public string lineVol
+        {
+            get { return _linevol; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[线路电压]长度不能大于50!");
+                if (_linevol as object == null || !_linevol.Equals(value))
+                {
+                    _linevol = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：fxwt
+        /// 属性描述：发现问题
+        /// 字段信息：[fxwt],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("发现问题")]
+        public string fxwt
+        {
+            get { return _fxwt; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 500)
+                throw new Exception("[发现问题]长度不能大于500!");
+                if (_fxwt as object == null || !_fxwt.Equals(value))
+                {
+                    _fxwt = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：clcs
+        /// 属性描述：处理措施
+        /// 字段信息：[clcs],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("处理措施")]
+        public string clcs
+        {
+            get { return _clcs; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 500)
+                throw new Exception("[处理措施]长度不能大于500!");
+                if (_clcs as object == null || !_clcs.Equals(value))
+                {
+                    _clcs = value;
                 }
             }			 
         }

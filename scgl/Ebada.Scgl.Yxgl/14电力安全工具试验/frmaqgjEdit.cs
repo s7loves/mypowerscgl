@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using System.Text.RegularExpressions;
 namespace Ebada.Scgl.Yxgl
 {
     public partial class frmaqgjEdit : FormBase, IPopupFormEdit {
@@ -131,6 +132,17 @@ namespace Ebada.Scgl.Yxgl
         private void labelControl7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            Regex r1 = new Regex(@"[[0-9]+.[0-9]+|[0-9]+]");
+            string strvalue = r1.Match(comboBoxEdit7.Text).Value;
+            if (strvalue == "")
+            {
+                MsgBox.ShowWarningMessageBox("试验周期格式不对");
+                return;
+            }
         }
     }
 }

@@ -24,8 +24,8 @@ namespace Ebada.Scgl.Model
         private string _sbid=Newid(); 
         private string _orgid=String.Empty; 
         private string _sbcode=String.Empty; 
-        private string _sbname=String.Empty; 
-        private int _syzq=0; 
+        private string _sbname=String.Empty;
+        private string _syzq = String.Empty; 
         private string _syxm=String.Empty; 
         private DateTime _syrq=new DateTime(1900,1,1); 
         private DateTime _syrq2=new DateTime(1900,1,1); 
@@ -128,7 +128,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[syzq],int
         /// </summary>
         [DisplayNameAttribute("试验周期")]
-        public int syzq
+        public string syzq
         {
             get { return _syzq; }
             set

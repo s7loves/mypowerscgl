@@ -41,7 +41,7 @@
             this.splitCC1.Panel1.CaptionLocation = DevExpress.Utils.Locations.Top;
             this.splitCC1.Panel1.Controls.Add(this.ucpJ_14aqgj1);
             this.splitCC1.Panel1.ShowCaption = true;
-            this.splitCC1.Panel1.Text = "全安工具";
+            this.splitCC1.Panel1.Text = "安全工具";
             this.splitCC1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitCC1.Panel2.Controls.Add(this.ucpJ_14aqgjsy1);
             this.splitCC1.Panel2.ShowCaption = true;

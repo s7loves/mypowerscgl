@@ -178,7 +178,7 @@ namespace Ebada.Scgl.Lcgl
                 strname = string.Format("{0:D3}", icount);
                 ea.SetCellValue(strname, 4, 10);
                 dsoFramerControl1.FileSave();
-                rowData.BigData = dsoFramerControl1.FileDataGzip;
+                rowData.BigData = dsoFramerControl1.FileData;
                 dsoFramerControl1.FileClose();
                 dsoFramerControl1.Dispose();
                 dsoFramerControl1 = null;
@@ -186,14 +186,14 @@ namespace Ebada.Scgl.Lcgl
 
             }
             DSOFramerControl dsoFramerControl2 = new DSOFramerControl();
-            dsoFramerControl2.FileDataGzip = rowData.BigData;
+            dsoFramerControl2.FileData = rowData.BigData;
             Microsoft.Office.Interop.Excel.Workbook wb2 = dsoFramerControl2.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
             ExcelAccess ea2 = new ExcelAccess();
             ea2.MyWorkBook = wb2;
             ea2.MyExcel = wb2.Application;
             ea2.SetCellValue(comboBoxEdit1.Text, 11, 4);
             dsoFramerControl2.FileSave();
-            rowData.BigData = dsoFramerControl2.FileDataGzip;
+            rowData.BigData = dsoFramerControl2.FileData;
             dsoFramerControl2.FileClose();
             dsoFramerControl2.Dispose();
             dsoFramerControl2 = null;

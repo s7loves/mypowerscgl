@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Yxgl
     {
         private GridViewOperation<PS_aqgj> gridViewOperation;
         //记录当前安全工具的实验周期
-        public static int Syzq = 0;
+        public static string Syzq = "0";
         public event SendDataEventHandler<PS_aqgj> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
