@@ -6,29 +6,34 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraTreeList.Columns;
-using TLVector.Core.Figure;
 using DevExpress.XtraTreeList;
 using System.Xml;
-using TLVector.Core.Interface.Figure;
 using Ebada.Scgl.Gis;
 using GMap.NET.WindowsForms;
+using GMap.NET;
 using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Collections;
 using DevExpress.Utils;
+using Ebada.Scgl.Gis.Markers;
 
-namespace TLMapPlatform {
+namespace Ebada.Scgl.Gis {
     /// <summary>
-    /// 图层管理控件
+    /// 配电图形-网络图
     /// </summary>
-    public partial class UCMapLayer : UserControl {
+    public partial class UCSharpeNetwork : UserControl {
 
-        public UCMapLayer() {
-            createWaitDlg();
+        WaitDialogForm waitdlg;
+        public UCSharpeNetwork() {
+            
             InitializeComponent();
             //mRMap = map;
             //mRMap.Overlays.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Overlays_CollectionChanged);
             InitTree();
+            
+        }
+
+        void Overlays_CollectionChanged(object sender, GMap.NET.ObjectModel.NotifyCollectionChangedEventArgs e) {
             
         }
         void createWaitDlg() {
@@ -49,17 +54,9 @@ namespace TLMapPlatform {
                 waitdlg.SetCaption(str);
             }
         }
-        void Overlays_CollectionChanged(object sender, GMap.NET.ObjectModel.NotifyCollectionChangedEventArgs e) {
-            
-        }
-        protected override void OnLoad(EventArgs e) {
-            base.OnLoad(e);
-            closeWaitDlg();
-        }
         DataTable mTable;
         const string visible="1";
         const string hide = "0";
-        WaitDialogForm waitdlg;
         protected void InitTree() {
             mTable = new DataTable();
             mTable.Columns.Add("显示");
@@ -67,35 +64,45 @@ namespace TLMapPlatform {
             mTable.Columns.Add("层");
             mTable.Columns.Add("ID");
             mTable.Columns.Add("ParentID");
-            mTable.Columns.Add("Layer");//打开层属性
+            mTable.Columns.Add("type");//打开层属性
             treeList1.DataSource = mTable;
             treeList1.KeyFieldName = "ID";
             treeList1.ParentFieldName = "ParentID";
             
-            mTable.Rows.Add(hide, "0", "高压线路", "10", "0");
-            mTable.Rows.Add(hide, "0", "低压台区", "0.4", "0");
-            mTable.Rows.Add(hide, "0", "变电所", "bdz", "0");
+            mTable.Rows.Add(hide, "0", "全局配电线路网络图", "all", "0","1");
+            mTable.Rows.Add(hide, "0", "供电所网络图", "gds", "0","0");
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
+            //treeList1.Columns["层"].Visible = false;
+            treeList1.Columns["Layer"].Visible = false;
             if (!"rabbit赵建明付岩".Contains(Ebada.Client.Platform.MainHelper.User.UserName)) {
-                treeList1.Columns["编辑"].Visible = false;
-                this.treeList1.Columns["Layer"].Visible = false;
+                
             }
+            treeList1.Columns["编辑"].Visible = false;
+            treeList1.Columns["显示"].Visible = false;
         }
 
         void treeList1_BeforeExpand(object sender, BeforeExpandEventArgs e) {
             //DataRow row=treeList1.GetDataRecordByNode(e.Node) as DataRow;
             string id = e.Node["ID"].ToString();
-            if (id.Contains("_")&& e.Node.Nodes.Count==1) {
+            if (id.Contains("gds")&& e.Node.Nodes.Count==1) {
                 e.Node.Nodes.Clear();
-                inittq(id.Substring(0, id.Length - 1));
+                initgds(id);
             }
             e.CanExpand = true;
         }
 
+        private void initgds(string pid) {
+            IList<mOrg> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgtype='1'");
+            foreach (mOrg gds in list) {
+                mTable.Rows.Add(hide, "0", gds.OrgName, gds.OrgCode, pid, "1");
+            }
+        }
+
         void treeList1_BeforeFocusNode(object sender, BeforeFocusNodeEventArgs e) {
             string id = e.Node["ID"].ToString();
-            if (id.Contains("_") && !e.Node.HasChildren) {
+            string type = e.Node["type"].ToString();
+            if (!e.Node.HasChildren && type=="0") {
                 mTable.Rows.Add(hide, "0", "_", id+"^", id);
             }
         }
@@ -129,22 +136,7 @@ namespace TLMapPlatform {
         public void InitLayer()
         {
             treeList1.BeginInit();
-            //mTable.Rows.Clear();
-            if (mRMap != null)
-            {
-                //foreach (GMapOverlay layer in mRMap.Overlays) {
-                //    mTable.Rows.Add(layer.IsVisibile ? "1" : "0", "1", layer.ToString(), "1", layer.Id);
-                //}
-            }
-            IList<mOrg> orgList = ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgtype='1'");
-            foreach (mOrg org in orgList) {
-                mTable.Rows.Add(hide, "0", org.OrgName, org.OrgCode, "10");
-                mTable.Rows.Add(hide, "0", org.OrgName, org.OrgCode+"_", "0.4");
-            }
-            IList<PS_xl> list= ClientHelper.PlatformSqlMap.GetList<PS_xl>("where len(linecode)=6 order by linecode");
-            foreach (PS_xl xl in list) {
-                mTable.Rows.Add(hide, "0", xl.LineName, xl.LineCode, xl.OrgCode);
-            }
+           
             
             treeList1.EndInit();
             //treeList1.ParentFieldName = "ParentID";
@@ -194,9 +186,9 @@ namespace TLMapPlatform {
             }
         }
         private void showLayer(string lineCode,bool visible) {
-            setWaitMsg("");
+
             GMapOverlay lay = mRMap.FindCreateLine(lineCode);
-            setWaitMsg(null);
+            
             lay.IsVisibile = visible;
             if (lineCode == "bdz")
                 showbdz(lay);
@@ -230,9 +222,10 @@ namespace TLMapPlatform {
                         }
                     }
                 } else if (e.Button == MouseButtons.Right) {
-
-                    string code = hit.Node["ID"].ToString();
-                    showContextMenu(code,e.Location);
+                    if (hit.Node["type"].ToString() == "1") {
+                        string code = hit.Node["ID"].ToString();
+                        showContextMenu(code, e.Location);
+                    }
                     
                 }
             } 
@@ -245,11 +238,8 @@ namespace TLMapPlatform {
                 item.Text = "刷新";
                 item.Click += new EventHandler(刷新_Click);
                 contextMenu.MenuItems.Add(item);
-                item = new MenuItem("定位");
-                item.Click += new EventHandler(定位_Click);
-                contextMenu.MenuItems.Add(item);
-                item = new MenuItem("条图汇总表");
-                item.Click += new EventHandler(条图汇总表17_Click);
+                item = new MenuItem("打开");
+                item.Click += new EventHandler(打开_Click);
                 contextMenu.MenuItems.Add(item);
             }
             contextMenu.Tag = code;
@@ -258,12 +248,95 @@ namespace TLMapPlatform {
         void 条图汇总表17_Click(object sender, EventArgs e) {
             PS_xl xl = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(string.Format("where linecode='{0}'",contextMenu.Tag));
 
-            if (xl != null) {
-                setWaitMsg("汇总“"+xl.LineName+"”数据");
-                waitdlg.TopMost = false;
+            if (xl != null)
                 Ebada.Client.Platform.MainHelper.Execute("Ebada.Scgl.Yxgl.dll", "Ebada.Scgl.Yxgl.Export16", "ExportExcel", new object[] { xl });
-                setWaitMsg(null);
+        }
+
+        void 打开_Click(object sender, EventArgs e) {
+            MethodInvoker m = delegate() {
+                clearMapData();
+                if (contextMenu.Tag.ToString() == "all") {
+                    buildLineMapAll();
+                } else {
+                    buildLineMapGds(contextMenu.Tag.ToString());
+                }
+            };
+            Invoke( m);
+        }
+
+        private void clearMapData() {
+            //MapControl.
+            foreach (GMapOverlay lay in MapControl.Overlays) {
+                if (lay.Id == "bdz") lay.Markers.Clear();
+                else
+                    lay.IsVisibile = false;
             }
+        }
+        private Dictionary<string, mOrg> bdsList;
+
+        public Dictionary<string, mOrg> BdsList {
+            get {
+                if (bdsList == null) {
+                    bdsList = new Dictionary<string, mOrg>();
+                    IList<mOrg> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgtype='2'");
+                    foreach (mOrg bds in list) {
+                        bdsList.Add(bds.OrgCode, bds);
+                    }
+                }
+                return bdsList; }
+        }
+        public void buildLineMapGds(string gdscode) {
+
+            setWaitMsg("");
+
+            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where len(linecode)=6 and orgcode='" + gdscode + "'");
+            List<string> lines = new List<string>();
+            foreach (PS_xl xl in list) {
+                setWaitMsg("生成“" + xl.LineName + "”信息");
+                showLayer(xl.LineCode, true);
+                if (lines.Contains(xl.OrgCode2)) continue;
+                lines.Add(xl.OrgCode2);
+                if (BdsList.ContainsKey(xl.OrgCode2))
+                    MapControl.FindMarker(bdsList[xl.OrgCode2]).IsVisible=true;
+            }
+            buildTitleInfo(gdscode);
+            setWaitMsg(null);
+        }
+
+        private void buildTitleInfo(string gdscode) {
+            GMap.NET.RectLatLng? r1= MapControl.GetRectOfAllMarkers(null);
+            GMap.NET.RectLatLng? r2=MapControl.GetRectOfAllRoutes(null);
+            GMap.NET.RectLatLng rect = GMap.NET.RectLatLng.Empty;
+            if (r1.HasValue) rect = r1.Value;
+            if (r2.HasValue) rect.Intersect(r2.Value);
+            if (!rect.IsEmpty) {
+                MapControl.SetZoomToFitRect(rect);
+                rect.Inflate(.002d, .001d);
+                mOrg org=Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + gdscode + "'");
+                if (org != null) {
+                    GMapMarkerText text = new GMapMarkerText(new PointLatLng( rect.Top - .002 ,rect.Left +rect.WidthLng/2));
+                    text.Font = new Font(FontFamily.GenericSansSerif, 32, FontStyle.Bold);
+                    text.Text = org.OrgName+"配电线路网络图";
+                    MapControl.FindOverlay("bdz").Markers.Add(text);
+                }
+            }
+            MapControl.Bounds = rect;
+        }
+
+
+        private void buildLineMapAll() {
+            setWaitMsg("");
+            IList<PS_xl> list=Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where len(linecode)=6");
+            List<string> lines = new List<string>();
+            foreach (PS_xl xl in list) {
+                setWaitMsg("生成“" + xl.LineName + "”信息");
+                showLayer(xl.LineCode, true);
+                if (lines.Contains(xl.OrgCode2)) continue;
+                lines.Add(xl.OrgCode2);
+                if (BdsList.ContainsKey(xl.OrgCode2))
+                    MapControl.FindMarker(bdsList[xl.OrgCode2]).IsVisible = true;
+            }
+            setWaitMsg(null);
         }
         void 定位_Click(object sender, EventArgs e) {
             mRMap.LocationOverlay(contextMenu.Tag as string);

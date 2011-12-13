@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace Ebada.Scgl.Gis.Markers {
 
     [Serializable]
-    public class GMapMarkerVector : GMapMarker,ICloneable {
+    public class GMapMarkerVector : GMapMarker,ICloneable, IText {
 
         public float? Bearing;
 
@@ -20,8 +20,21 @@ namespace Ebada.Scgl.Gis.Markers {
         private string id;
         private LineRoute route;
         private string text;
+        private bool showText;
+        private Font font;
+
+        public Font Font {
+            get { return font; }
+            set { font = value; }
+        }
+        public bool ShowText {
+            get { return showText; }
+            set { showText = value; }
+        }
+
         public virtual string Text {
             get {
+                
                 return text; 
             }
             set {
@@ -59,6 +72,7 @@ namespace Ebada.Scgl.Gis.Markers {
             Offset = new Point(-3, -3);
             Pen = new Pen(Color.Red, 2);
             items = new List<GMapMarkerVector>();
+            font = new Font(FontFamily.GenericSansSerif, 9);
         }
         public override void OnRender(Graphics g) {
            
@@ -67,6 +81,9 @@ namespace Ebada.Scgl.Gis.Markers {
             Rectangle r = new Rectangle(p1, SizeSt);
             g.FillEllipse(Brushes.White, r);
             g.DrawEllipse(Pen, r);
+            if (showText && !string.IsNullOrEmpty(Text)) {
+                g.DrawString(Text,font , Brushes.Black, r.Right + 3, r.Top - 3);
+            }
         }
 
 

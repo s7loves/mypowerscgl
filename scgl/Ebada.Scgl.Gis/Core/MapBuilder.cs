@@ -77,8 +77,13 @@ namespace Ebada.Scgl.Gis {
                  GMapMarkerVector preMarker = null;
                  List<PointLatLng> points = new List<PointLatLng>();
                  LineRoute route = new LineRoute(points, linecode);
+                 int count = 0;
                  foreach (PS_gt gt in list) {
                      PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
+                     if (count == 0) {
+                         int.TryParse(gt.gth, out count);
+                         count /= 10;
+                     }
                      if (box.Contains(pf)) {
                          PointLatLng point = new PointLatLng(Convert.ToDouble(gt.gtLat), Convert.ToDouble(gt.gtLon));
                          route.Points.Add(point);
@@ -93,12 +98,14 @@ namespace Ebada.Scgl.Gis {
                          
                          preMarker = marker;
                          marker.ToolTipText = gt.gth + "\n" + line.LineName;
+                         marker.Text = count+"#";
                          marker.Tag = gt;
                          marker.Id = gt.gtID;
                          layer.Markers.Add(marker);
                          route.Markers.Add(marker);
                          marker.Route = route;
                      }
+                     count++;
                  }
                  if (route.Points.Count > 0) {
                      
@@ -123,8 +130,14 @@ namespace Ebada.Scgl.Gis {
                      route.Stroke.Width = 4;
                  else
                      route.Stroke.Width = 2;
+                 int count = 0;
                  foreach (PS_gt gt in list) {
                      PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
+                     if (count == 0) {
+                         int.TryParse(gt.gth, out count);
+                         count /= 10;
+                     }
+                     
                      if (box.Contains(pf)) {
                          PointLatLng point = new PointLatLng(Convert.ToDouble(gt.gtLat), Convert.ToDouble(gt.gtLon));
                          route.Points.Add(point);
@@ -140,11 +153,13 @@ namespace Ebada.Scgl.Gis {
                          preMarker = marker;
                          marker.ToolTipText = gt.gth + "\n" + line.LineName;
                          marker.Tag = gt;
+                         marker.Text = count+"#";
                          marker.Id = gt.gtID;
                          layer.Markers.Add(marker);
                          route.Markers.Add(marker);
                          marker.Route = route;
                      }
+                     count++;
                  }
                  //变压器
                  if (linecode.Length > 6 && list.Count > 0) {
