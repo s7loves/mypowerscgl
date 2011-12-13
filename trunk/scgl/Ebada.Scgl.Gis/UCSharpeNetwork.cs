@@ -320,7 +320,7 @@ namespace Ebada.Scgl.Gis {
                     MapControl.FindOverlay("bdz").Markers.Add(text);
                 }
             }
-            MapControl.Bounds = rect;
+            MapControl.MapBounds = rect;
         }
 
 

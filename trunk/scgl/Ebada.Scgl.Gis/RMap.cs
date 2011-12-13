@@ -45,9 +45,9 @@ namespace Ebada.Scgl.Gis {
             //g.DrawString("render: " + counter++ + ", load: " + ElapsedMilliseconds + "ms", DebugFont, Brushes.Blue, 36, 36);
             g.DrawString(debugMsg, DebugFont, Brushes.Blue, 36, 36);
 #endif
-            if (!Bounds.IsEmpty) {
-                GPoint p1 = FromLatLngToLocal(Bounds.LocationTopLeft);
-                GPoint p2 = FromLatLngToLocal(Bounds.LocationRightBottom);
+            if (!MapBounds.IsEmpty) {
+                GPoint p1 = FromLatLngToLocal(MapBounds.LocationTopLeft);
+                GPoint p2 = FromLatLngToLocal(MapBounds.LocationRightBottom);
 
                 int x1 = p1.X;
                 int y1 = p1.Y;
@@ -57,7 +57,7 @@ namespace Ebada.Scgl.Gis {
                 g.DrawRectangle(SelectionPen, x1, y1, x2 - x1, y2 - y1);
             }
         }
-        public GMap.NET.RectLatLng Bounds = RectLatLng.Empty;
+        public GMap.NET.RectLatLng MapBounds = RectLatLng.Empty;
         public string debugMsg = "";
         private void InitializeComponent() {
             
