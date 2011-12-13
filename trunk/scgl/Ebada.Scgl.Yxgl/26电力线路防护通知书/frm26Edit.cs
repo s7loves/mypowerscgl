@@ -25,8 +25,11 @@ namespace Ebada.Scgl.Yxgl
 
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "tzdw");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "lineVol");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "tzrq");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "fxwt");
+            this.memoEdit3.DataBindings.Add("EditValue", rowData, "clcs");
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -132,18 +135,41 @@ namespace Ebada.Scgl.Yxgl
         {
             DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
             Microsoft.Office.Interop.Excel.Workbook wb;
+            ExcelAccess ea = new ExcelAccess();
+            string strname = "";
+            string fname = "";
             if (rowData.BigData == null || rowData.BigData.Length == 0)
             {
-                string fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
+                 fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
                 dsoFramerControl1.FileOpen(fname);
             }
             else
                 dsoFramerControl1.FileData = rowData.BigData;
             wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-            ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
-            ea.SetCellValue(comboBoxEdit1.Text , 5, 2);
+            if (rowData.BigData == null || rowData.BigData.Length == 0)
+            {
+                fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
+                mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
+                string bhname = org.OrgName.Replace("供电所", "");
+                PJ_26 obj = (PJ_26)MainHelper.PlatformSqlMap.GetObject("SelectPJ_26List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
+                int icount = 1;
+                if (obj != null && obj.xybh != "")
+                {
+                    icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
+                }
+                strname = SelectorHelper.GetPysm(bhname, true);
+                ea.SetCellValue(strname, 4, 9);
+                strname = DateTime.Now.Year.ToString();
+                ea.SetCellValue(strname, 4, 11);
+                strname = string.Format("{0:D3}", icount);
+                ea.SetCellValue(strname, 4, 12);
+               
+            }
+            ea.SetCellValue(comboBoxEdit1.Text + ":", 5, 2);
+            ea.SetCellValue(comboBoxEdit3.Text, 6, 11);
+            ea.SetCellValue(comboBoxEdit3.Text, 7, 3);
             dsoFramerControl1.FileSave();
             rowData.BigData = dsoFramerControl1.FileData;
             dsoFramerControl1.FileClose();

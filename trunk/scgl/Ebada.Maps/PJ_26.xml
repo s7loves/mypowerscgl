@@ -7,8 +7,12 @@
       <resultMap id="PJ_26_AllColumns" class="PJ_26">
         <result property="ID" column="ID" />
         <result property="ParentID" column="ParentID" />
+        <result property="xybh" column="xybh" />
         <result property="tzdw" column="tzdw" />
         <result property="tzrq" column="tzrq" />
+        <result property="lineVol" column="lineVol" />
+        <result property="fxwt" column="fxwt" />
+        <result property="clcs" column="clcs" />
         <result property="Remark" column="Remark" />
         <result property="gzrjID" column="gzrjID" />
         <result property="CreateMan" column="CreateMan" />
@@ -22,8 +26,12 @@
         SELECT 
          [ID],
          [ParentID],
+         [xybh],
          [tzdw],
          [tzrq],
+         [lineVol],
+         [fxwt],
+         [clcs],
          [Remark],
          [gzrjID],
          [CreateMan],
@@ -37,8 +45,12 @@
          SELECT 
          [ID],
          [ParentID],
+         [xybh],
          [tzdw],
          [tzrq],
+         [lineVol],
+         [fxwt],
+         [clcs],
          [Remark],
          [gzrjID],
          [CreateMan],
@@ -48,8 +60,12 @@
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="xybh">[xybh]='$xybh$'</isNotNull>
        <isNotNull prepend="AND" property="tzdw">[tzdw]='$tzdw$'</isNotNull>
        <isNotNull prepend="AND" property="tzrq">[tzrq]='$tzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="lineVol">[lineVol]='$lineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="fxwt">[fxwt]='$fxwt$'</isNotNull>
+       <isNotNull prepend="AND" property="clcs">[clcs]='$clcs$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
@@ -61,8 +77,12 @@
          SELECT 
          [ID],
          [ParentID],
+         [xybh],
          [tzdw],
          [tzrq],
+         [lineVol],
+         [fxwt],
+         [clcs],
          [Remark],
          [gzrjID],
          [CreateMan],
@@ -98,8 +118,12 @@
           UPDATE PJ_26
            SET
              [ParentID]=#ParentID#,
+             [xybh]=#xybh#,
              [tzdw]=#tzdw#,
              [tzrq]=#tzrq#,
+             [lineVol]=#lineVol#,
+             [fxwt]=#fxwt#,
+             [clcs]=#clcs#,
              [Remark]=#Remark#,
              [gzrjID]=#gzrjID#,
              [CreateMan]=#CreateMan#,
@@ -115,8 +139,12 @@
          (
          [ID],
          [ParentID],
+         [xybh],
          [tzdw],
          [tzrq],
+         [lineVol],
+         [fxwt],
+         [clcs],
          [Remark],
          [gzrjID],
          [CreateMan],
@@ -127,8 +155,12 @@
          (
          #ID#,
          #ParentID#,
+         #xybh#,
          #tzdw#,
          #tzrq#,
+         #lineVol#,
+         #fxwt#,
+         #clcs#,
          #Remark#,
          #gzrjID#,
          #CreateMan#,
@@ -144,8 +176,12 @@
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="xybh">[xybh]='$xybh$'</isNotNull>
        <isNotNull prepend="AND" property="tzdw">[tzdw]='$tzdw$'</isNotNull>
        <isNotNull prepend="AND" property="tzrq">[tzrq]='$tzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="lineVol">[lineVol]='$lineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="fxwt">[fxwt]='$fxwt$'</isNotNull>
+       <isNotNull prepend="AND" property="clcs">[clcs]='$clcs$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>

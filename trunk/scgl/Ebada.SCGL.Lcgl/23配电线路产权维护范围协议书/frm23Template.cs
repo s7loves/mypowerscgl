@@ -49,7 +49,7 @@ namespace Ebada.Scgl.Lcgl
                     // dsoFramerControl1.FileSave(filename, true);
                     //dsoFramerControl1.FileName = filename;
                    dsoFramerControl1.FileSave();
-                   pjobject.BigData = dsoFramerControl1.FileDataGzip;
+                   pjobject.BigData = dsoFramerControl1.FileData;
                     Client.ClientHelper.PlatformSqlMap.Update<PJ_23>(pjobject);
                 }
                 catch (System.Exception ex)
@@ -139,7 +139,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 if (pjobject.BigData.Length!=0)
                 {
-                    dsoFramerControl1.FileDataGzip = pjobject.BigData;
+                    dsoFramerControl1.FileData = pjobject.BigData;
                 }
                 else
                 {
@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Lcgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             dsoFramerControl1.FileSave();
-            pjobject.BigData = dsoFramerControl1.FileDataGzip;
+            pjobject.BigData = dsoFramerControl1.FileData;
             dsoFramerControl1.FileClose();
             dsoFramerControl1.Dispose();
             dsoFramerControl1 = null;

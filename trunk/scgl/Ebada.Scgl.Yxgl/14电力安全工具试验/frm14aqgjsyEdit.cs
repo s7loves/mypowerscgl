@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using System.Text.RegularExpressions;
 namespace Ebada.Scgl.Yxgl
 {
     public partial class frm14aqgjsyEdit : FormBase, IPopupFormEdit {
@@ -131,8 +132,24 @@ namespace Ebada.Scgl.Yxgl
 
         private void dateEdit1_EditValueChanged(object sender, EventArgs e)
         {
+            if (UCPJ_14aqgj.Syzq.IndexOf(".") == -1)
+            {
+                dateEdit2.EditValue = ((DateTime)dateEdit1.EditValue).AddYears(Convert.ToInt32(UCPJ_14aqgj.Syzq));
+            }
+            else
+            {
 
-            dateEdit2.EditValue = ((DateTime)dateEdit1.EditValue).AddYears(UCPJ_14aqgj.Syzq);
+                Regex r1 = new Regex(@"[0-9]+(?=.)");
+                string year = r1.Match(UCPJ_14aqgj.Syzq).Value;
+                r1 = new Regex(@"(?<=.)[0-9]+");
+                string month = r1.Match(UCPJ_14aqgj.Syzq).Value;
+                if (year == "") year = "0";
+                if (month == "") month = "0";
+                else
+                    month =(Math.Floor( Convert.ToDouble( "0." + month)*12)).ToString();
+                dateEdit2.EditValue = ((DateTime)dateEdit1.EditValue).AddYears(Convert.ToInt32(year));
+                dateEdit2.EditValue = ((DateTime)dateEdit2.EditValue).AddMonths(Convert.ToInt32(month));
+            }
             rowData.xcsyrq = (DateTime)dateEdit2.EditValue;
         }
 
