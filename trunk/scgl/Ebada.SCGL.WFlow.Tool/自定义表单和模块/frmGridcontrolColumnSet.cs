@@ -184,7 +184,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 i++;
             }
 
-            ((ListItem)columnBox.Items[i]).ID = strSQLtemp;
+            ((ListItem)columnBox.SelectedItem).ID = strSQLtemp;
         }
 
         private void columnBox_SelectedIndexChanged(object sender, EventArgs e)

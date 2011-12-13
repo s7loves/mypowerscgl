@@ -532,8 +532,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[excel中表格的列名，用|线分开，如：工作地点|工作内容]长度不能大于50!");
+                if( value.ToString().Length > 250)
+                throw new Exception("[excel中表格的列名，用|线分开，如：工作地点|工作内容]长度不能大于250!");
                 if (_columnname as object == null || !_columnname.Equals(value))
                 {
                     _columnname = value;

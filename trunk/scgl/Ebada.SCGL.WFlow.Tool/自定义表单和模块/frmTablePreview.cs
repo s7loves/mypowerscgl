@@ -1170,7 +1170,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 try
                 {
-                    sqlSentence = sqlSentence.Replace("\r\n", "");
+                    sqlSentence = sqlSentence.Replace("\r\n", " ");
                     li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
                     if (sqlSentence.IndexOf("where 9=9") > -1)
                     {
