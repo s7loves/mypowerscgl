@@ -191,30 +191,71 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            mOrg org = MainHelper.PlatformSqlMap.GetOne<mOrg>(" where OrgName='" + comboBoxEdit4.Text + "'");
-            if (org == null)
-            {
-                MsgBox.ShowWarningMessageBox("供电所名称不对");
-                return;
-            }
+
+            string strname = "";
+            string fname = "";
+            string bhname = "";
+            int icount = 1;
+
 
             DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
             Microsoft.Office.Interop.Excel.Workbook wb;
+            ExcelAccess ea = new ExcelAccess();
             if (rowData.BigData == null || rowData.BigData.Length == 0)
             {
-                string fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
+                fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
                 dsoFramerControl1.FileOpen(fname);
             }
             else
                 dsoFramerControl1.FileData = rowData.BigData;
             wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-            ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
-            ea.SetCellValue(comboBoxEdit1.Text , 5, 2);
+            if (rowData.BigData == null || rowData.BigData.Length == 0)
+            {
+                fname = Application.StartupPath + "\\00记录模板\\26防护通知书.xls";
+
+
+
+                mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
+                bhname = org.OrgName.Replace("供电所", "");
+                PJ_26 objtemp = (PJ_26)MainHelper.PlatformSqlMap.GetObject("SelectPJ_26List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
+
+                if (objtemp != null && objtemp.xybh != "")
+                {
+                    icount = Convert.ToInt32(objtemp.xybh.Split('-')[2]) + 1;
+                }
+                rowData.xybh = SelectorHelper.GetPysm(bhname, true).ToUpper() + "-" + DateTime.Now.Year.ToString() + "-" + string.Format("{0:D3}", icount);
+                strname = SelectorHelper.GetPysm(bhname, true);
+                ea.SetCellValue(strname.ToUpper(), 4, 9);
+                strname = DateTime.Now.Year.ToString();
+                ea.SetCellValue(strname, 4, 11);
+                strname = string.Format("{0:D3}", icount);
+                ea.SetCellValue(strname, 4, 13);
+
+            }
+            ea.SetCellValue(comboBoxEdit1.Text + "：", 5, 2);
+            ea.SetCellValue(comboBoxEdit3.Text, 6, 11);
+            if (memoEdit2.Text.Length > 25)
+            {
+                ea.SetCellValue(memoEdit2.Text.Substring(0, 25), 7, 3);
+                ea.SetCellValue(memoEdit2.Text.Substring(26), 8, 2);
+            }
+            else
+            {
+                ea.SetCellValue(memoEdit2.Text, 7, 3);
+            }
+            if (memoEdit3.Text.Length > 23)
+            {
+                ea.SetCellValue(memoEdit3.Text.Substring(0, 23), 13, 4);
+                ea.SetCellValue(memoEdit3.Text.Substring(24), 14, 2);
+            }
+            else
+            {
+                ea.SetCellValue(memoEdit3.Text, 13, 4);
+            }
             dsoFramerControl1.FileSave();
             rowData.BigData = dsoFramerControl1.FileData;
-            rowData.ParentID=org.OrgCode;
             dsoFramerControl1.FileClose();
             dsoFramerControl1.Dispose();
             dsoFramerControl1 = null;
