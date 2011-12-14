@@ -555,7 +555,9 @@ namespace Ebada.SCGL.WFlow.Tool
             Control ce = FindCtrl("ce"+lp.LPID);
             if (ct != null && ct.Text.IndexOf(str) == -1)
             {
-                if (lp.CellName.Substring(lp.CellName.Length - 1) == "人" || lp.CellName.Substring(lp.CellName.Length - 2) == "人员" || lp.CellName.Substring(lp.CellName.Length - 2) == "成员")
+                if (lp.CellName.Replace(" ", "").Substring(lp.CellName.Replace(" ", "").Length - 1) == "人"
+                    || lp.CellName.Replace(" ", "").Substring(0, 2) == "人员"
+                    || lp.CellName.Replace(" ", "").Substring(0, 2) == "成员")
                 {
                     if (ct.Text == "" || !((CheckEdit)ce).Checked)
                         ct.Text = str;
