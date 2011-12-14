@@ -317,6 +317,9 @@ namespace Ebada.Scgl.Yxgl
                 case "一般缺陷":
                     rowData.xcqx = dt.AddDays(dayspan3).ToShortDateString();
                     break;
+                default:
+                    rowData.xcqx = "";
+                    break;
             }
 
         }
