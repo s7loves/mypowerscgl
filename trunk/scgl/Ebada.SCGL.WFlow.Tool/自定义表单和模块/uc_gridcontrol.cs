@@ -70,7 +70,11 @@ namespace Ebada.SCGL.WFlow.Tool
             string[] comItem = SelectorHelper.ToDBC(lp.ComBoxItem).Split('|');          
             for (int i = 0; i < grid.Columns.Count; i++)
             {
-                
+
+                if (grid.Columns[i].FieldName == "序号" || grid.Columns[i].FieldName == "月份" || grid.Columns[i].FieldName == "季度")
+                {
+                    grid.Columns[i].Width = 20;
+                }
                 Regex r1 = new Regex(@"(?<=" + i + ":).*?(?=])");
                 string strcom = r1.Match(comItem[i]).Value;
                

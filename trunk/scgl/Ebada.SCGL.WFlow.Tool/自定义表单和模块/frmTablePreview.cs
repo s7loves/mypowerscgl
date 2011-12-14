@@ -556,8 +556,8 @@ namespace Ebada.SCGL.WFlow.Tool
             if (ct != null && ct.Text.IndexOf(str) == -1)
             {
                 if (lp.CellName.Replace(" ", "").Substring(lp.CellName.Replace(" ", "").Length - 1) == "人"
-                    || lp.CellName.Replace(" ", "").Substring(0, 2) == "人员"
-                    || lp.CellName.Replace(" ", "").Substring(0, 2) == "成员")
+                    || lp.CellName.Replace(" ", "").IndexOf("人员")>-1 
+                    || lp.CellName.Replace(" ", "").IndexOf("成员")>-1)
                 {
                     if (ct.Text == "" || !((CheckEdit)ce).Checked)
                         ct.Text = str;
@@ -723,7 +723,8 @@ namespace Ebada.SCGL.WFlow.Tool
                 //if (arrCellCount.Count > 1 && arrCellCount[0] != arrCellCount[1])
                 if (arrCellCount.Count>1)
                 {
-                    if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[i]))
+
+                    if ((lp.CtrlType.IndexOf("uc_gridcontrol") == -1  && str.Length <= help.GetFristLen(str, arrCellCount[i])) || (lp.CtrlType.IndexOf("uc_gridcontrol") > -1 && str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[i])))
                     {
                         ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                       
@@ -731,14 +732,25 @@ namespace Ebada.SCGL.WFlow.Tool
                         LockExcel(wb, xx);
                         return;
                     }
-                    ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
-                        str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
-                        GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
-                  
-                    str = str.Substring(help.GetFristLen(str, arrCellCount[0]) >= str.IndexOf("\r\n") &&
-                        str.IndexOf("\r\n") != -1 ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
-                    i++;
-                    str = help.GetPlitString(str, arrCellCount[1]);
+                    if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1)
+                    {
+                        ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                            str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
+                            GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+
+                        str = str.Substring(help.GetFristLen(str, arrCellCount[0]) >= str.IndexOf("\r\n") &&
+                            str.IndexOf("\r\n") != -1 ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
+                        i++;
+                        str = help.GetPlitString(str, arrCellCount[1]);
+                    }
+                    else
+                    {
+                        ea.SetCellValue(str.Substring(0, help.GetFristLen(str, arrCellCount[0])), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+
+                        str = str.Substring( help.GetFristLen(str, arrCellCount[0]));
+                        i++;
+                        str = help.GetPlitString(str, arrCellCount[1]);
+                    }
                     FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
                 }
 
@@ -807,16 +819,38 @@ namespace Ebada.SCGL.WFlow.Tool
             StringHelper help = new StringHelper();
             str = help.GetPlitString(str, arrCellCount[1]);
             string[] extraWord = lp.ExtraWord.Split(pchar);
-
-            string[] arrRst = str.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-            int j = 0;
-            for (; i < arrCellPos.Length; i++)
+            if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1)
             {
-                if (j >= arrRst.Length)
-                    break;
-                ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
-               
-                j++;
+                string[] arrRst = str.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                int j = 0;
+                for (; i < arrCellPos.Length; i++)
+                {
+                    if (j >= arrRst.Length)
+                        break;
+                    ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+
+                    j++;
+                }
+            }
+            else
+            {
+                string strarrRst = str;
+                
+                for (; i < arrCellPos.Length; i++)
+                {
+
+                    if (strarrRst.Length <= help.GetFristLen(str, arrCellCount[i]))
+                        ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    else
+                    {
+                        ea.SetCellValue(strarrRst.Substring(0, help.GetFristLen(strarrRst, arrCellCount[i])), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        strarrRst = strarrRst.Substring(help.GetFristLen(strarrRst, arrCellCount[i]));
+                        i++;
+                        strarrRst = help.GetPlitString(strarrRst, arrCellCount[i]);
+                    }
+
+                   
+                }
             }
         }
 

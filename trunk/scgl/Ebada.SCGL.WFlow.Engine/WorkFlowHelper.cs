@@ -312,7 +312,8 @@ namespace Ebada.SCGL.WFlow.Engine
                 //return agent.RecordExists(sqlItem);
                 string sql = "select '1' as Name from WF_WorkTaskView where " + expressText; 
                 IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", sql);
-                if (li.Count == 0) return false;
+                if (li.Count == 0) 
+                    return false;
                 return true;
             }
             catch (Exception ex)
