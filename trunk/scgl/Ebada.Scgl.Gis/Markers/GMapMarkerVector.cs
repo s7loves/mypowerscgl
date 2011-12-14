@@ -23,7 +23,7 @@ namespace Ebada.Scgl.Gis.Markers {
         private bool showText;
         private Font font;
 
-        public Font Font {
+        public virtual Font Font {
             get { return font; }
             set { font = value; }
         }
@@ -72,16 +72,17 @@ namespace Ebada.Scgl.Gis.Markers {
             Offset = new Point(-3, -3);
             Pen = new Pen(Color.Red, 2);
             items = new List<GMapMarkerVector>();
-            font = new Font(FontFamily.GenericSansSerif, 9);
+            font = new Font(FontFamily.GenericSerif, 9);
         }
         public override void OnRender(Graphics g) {
-           
+            //g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             System.Drawing.Point p1 = new System.Drawing.Point(LocalPosition.X, LocalPosition.Y);
 
             Rectangle r = new Rectangle(p1, SizeSt);
             g.FillEllipse(Brushes.White, r);
             g.DrawEllipse(Pen, r);
             if (showText && !string.IsNullOrEmpty(Text)) {
+
                 g.DrawString(Text,font , Brushes.Black, r.Right + 3, r.Top - 3);
             }
         }

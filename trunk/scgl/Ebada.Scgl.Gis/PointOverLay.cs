@@ -8,6 +8,7 @@ using Ebada.Scgl.Sbgl;
 using System.Data;
 using Ebada.Scgl.Gis.Markers;
 using System.Windows.Forms;
+using System.Drawing;
 namespace Ebada.Scgl.Gis {
     public class PointOverLay : GMapOverlay, IUpdateable, IPopuMenu {
 
@@ -20,7 +21,15 @@ namespace Ebada.Scgl.Gis {
             control = map;
             map.OnMarkerEnter += new MarkerEnter(map_OnMarkerEnter);
             map.OnMarkerLeave += new MarkerLeave(map_OnMarkerLeave);
-            
+            map.OnMapZoomChanged += new MapZoomChanged(map_OnMapZoomChanged);
+        }
+        
+        void map_OnMapZoomChanged() {
+            foreach (GMapMarker m in Markers) {
+                if (m is GMapMarkerText)
+                    (m as IText).Font = new System.Drawing.Font(FontFamily.GenericSerif, (int)Math.Max(9, 32 - Math.Max(14 - control.Zoom, 0) * 13), FontStyle.Bold);
+            }
+            control.Invalidate();
         }
         
         void map_OnMarkerLeave(GMapMarker item) {
@@ -37,13 +46,7 @@ namespace Ebada.Scgl.Gis {
             set { allowEdit = value; }
         }
         public virtual ContextMenu CreatePopuMenu() {
-            //if (contextMenu == null) {
-            //    contextMenu = new ContextMenu();
-            //    MenuItem item = new MenuItem();
-            //    item.Text = "变电所属性";
-            //    item.Click += new EventHandler(属性_Click);
-            //    contextMenu.MenuItems.Add(item);
-            //}
+            
             GMapMarkerVector mv = selectedMarker as GMapMarkerVector;
             ContextMenu menu = new ContextMenu();
             if (mv != null) menu = mv.CreatePopuMenu();
@@ -63,7 +66,9 @@ namespace Ebada.Scgl.Gis {
             base.DrawRoutes(g);
         }
         public override void Render(System.Drawing.Graphics g) {
+            
             base.Render(g);
+            
         }
         public void Update(GMapMarker marker) {
 
