@@ -314,9 +314,9 @@ namespace Ebada.Scgl.Gis {
                 rect.Inflate(.002d, .001d);
                 mOrg org=Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + gdscode + "'");
                 if (org != null) {
-                    GMapMarkerText text = new GMapMarkerText(new PointLatLng( rect.Top - .002 ,rect.Left +rect.WidthLng/2));
-                    text.Font = new Font(FontFamily.GenericSansSerif, 32, FontStyle.Bold);
-                    text.Text = org.OrgName+"配电线路网络图";
+                    GMapMarkerText text = new GMapMarkerText(new PointLatLng( rect.Top - .0025 ,rect.Left +rect.WidthLng/2));
+                    text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
+                    text.Text = org.OrgName+"高压配电线路网络图 - "+DateTime.Now.Year+"年";
                     MapControl.FindOverlay("bdz").Markers.Add(text);
                 }
             }
