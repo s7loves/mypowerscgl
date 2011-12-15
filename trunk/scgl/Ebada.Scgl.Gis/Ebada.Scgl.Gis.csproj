@@ -172,6 +172,7 @@
       <DependentUpon>frmText.cs</DependentUpon>
     </Compile>
     <Compile Include="IPopuMenu.cs" />
+    <Compile Include="IUCLayer.cs" />
     <Compile Include="IUpdateable.cs" />
     <Compile Include="LineOverLay.cs" />
     <Compile Include="LineRoute.cs" />
@@ -245,6 +246,12 @@
     <Compile Include="frmMapNetwork.Designer.cs">
       <DependentUpon>frmMapNetwork.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCSharpeDxt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCSharpeDxt.Designer.cs">
+      <DependentUpon>UCSharpeDxt.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Device\frmBaseSelector.resx">
@@ -311,6 +318,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMapNetwork.resx">
       <DependentUpon>frmMapNetwork.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCSharpeDxt.resx">
+      <DependentUpon>UCSharpeDxt.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
