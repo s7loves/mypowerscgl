@@ -332,7 +332,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (MainHelper.UserOrg == null) return;
             if (btGdsList.EditValue == null) return;
-            if (!RecordWorkTask.HaveRewNewYXFXRole(recordIkind, MainHelper.User.UserID)) return;
+            //if (!RecordWorkTask.HaveRewNewYXFXRole(recordIkind, MainHelper.User.UserID)) return;
             frmyxfxEdit fm = new frmyxfxEdit();
             PJ_03yxfx yxfx = new PJ_03yxfx();
             //yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
@@ -346,7 +346,7 @@ namespace Ebada.Scgl.Yxgl
             yxfx.type = recordIkind;
             yxfx.rq = DateTime.Now;
             fm.RowData = yxfx;
-            fm.RecordStatus = 0;
+            //fm.RecordStatus = 0;
             fm.ShowDialog();
             InitData();
         }
@@ -362,20 +362,20 @@ namespace Ebada.Scgl.Yxgl
                 {
                     if (dc.ColumnName != "Image") yxfx.GetType().GetProperty(dc.ColumnName).SetValue(yxfx, dr[dc.ColumnName], null);
                 }
-                if (!RecordWorkTask.HaveRunRecordRole(yxfx.ID ,MainHelper.User.UserID   )) return;
-                DataTable dt = RecordWorkTask.GetRecordWorkFlowData(yxfx.ID, MainHelper.User.UserID);
+                //if (!RecordWorkTask.HaveRunRecordRole(yxfx.ID ,MainHelper.User.UserID   )) return;
+                //DataTable dt = RecordWorkTask.GetRecordWorkFlowData(yxfx.ID, MainHelper.User.UserID);
                 frmyxfxEdit fm = new frmyxfxEdit();
-                switch (dt.Rows[0]["TaskInsCaption"].ToString())
-                {
-                    case "领导检查":
-                        fm.RecordStatus = 1;
-                        break;
-                    case "检查人检查":
-                        fm.RecordStatus = 2;
-                        break;
+                //switch (dt.Rows[0]["TaskInsCaption"].ToString())
+                //{
+                //    case "领导检查":
+                //        fm.RecordStatus = 1;
+                //        break;
+                //    case "检查人检查":
+                //        fm.RecordStatus = 2;
+                //        break;
 
-                }
-                fm.RecordWorkFlowData = dt;
+                //}
+                //fm.RecordWorkFlowData = dt;
                 fm.RowData = yxfx;
                 
                 fm.ShowDialog();
