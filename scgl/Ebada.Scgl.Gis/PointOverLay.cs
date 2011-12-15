@@ -23,13 +23,18 @@ namespace Ebada.Scgl.Gis {
             map.OnMarkerLeave += new MarkerLeave(map_OnMarkerLeave);
             map.OnMapZoomChanged += new MapZoomChanged(map_OnMapZoomChanged);
         }
-        
+        private bool firstload = true;
+        private int fontsize = 0;
         void map_OnMapZoomChanged() {
+            int fs=(int)Math.Max(9, 32 - Math.Max(14 - control.Zoom, 0) * 13);
+            if(fs==fontsize)return;
+            fontsize=fs;
             foreach (GMapMarker m in Markers) {
                 if (m is GMapMarkerText)
-                    (m as IText).Font = new System.Drawing.Font(FontFamily.GenericSerif, (int)Math.Max(9, 32 - Math.Max(14 - control.Zoom, 0) * 13), FontStyle.Bold);
+
+                    (m as IText).Font = new System.Drawing.Font(FontFamily.GenericSerif,fontsize , FontStyle.Bold);
             }
-            control.Invalidate();
+            
         }
         
         void map_OnMarkerLeave(GMapMarker item) {
