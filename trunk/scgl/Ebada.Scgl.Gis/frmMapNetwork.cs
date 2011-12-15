@@ -90,7 +90,7 @@ namespace Ebada.Scgl.Gis {
             barButtonItem4.DownChanged += new DevExpress.XtraBars.ItemClickEventHandler(测距_DownChanged);
             barButtonItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
-
+        
         void 测距_DownChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (barButtonItem4.Down)
                 CurOperation = oInstances.DistanceOperation;
@@ -296,7 +296,8 @@ namespace Ebada.Scgl.Gis {
          #endregion
        protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-
+            dockPanel1.Text = "网络图图纸库";
+            barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
         
         void rMap1_OnMapZoomChanged() {

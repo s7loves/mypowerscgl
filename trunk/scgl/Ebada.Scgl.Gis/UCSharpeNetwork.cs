@@ -73,7 +73,7 @@ namespace Ebada.Scgl.Gis {
             mTable.Rows.Add(hide, "0", "供电所网络图", "gds", "0","0");
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
-            //treeList1.Columns["层"].Visible = false;
+            treeList1.Columns["层"].Caption = "图纸名称";
             treeList1.Columns["Layer"].Visible = false;
             if (!"rabbit赵建明付岩".Contains(Ebada.Client.Platform.MainHelper.User.UserName)) {
                 
@@ -235,9 +235,9 @@ namespace Ebada.Scgl.Gis {
             if (contextMenu == null) {
                 contextMenu= new ContextMenu();
                 MenuItem item = new MenuItem();
-                item.Text = "刷新";
-                item.Click += new EventHandler(刷新_Click);
-                contextMenu.MenuItems.Add(item);
+                //item.Text = "刷新";
+                //item.Click += new EventHandler(刷新_Click);
+                //contextMenu.MenuItems.Add(item);
                 item = new MenuItem("打开");
                 item.Click += new EventHandler(打开_Click);
                 contextMenu.MenuItems.Add(item);
@@ -253,19 +253,21 @@ namespace Ebada.Scgl.Gis {
         }
 
         void 打开_Click(object sender, EventArgs e) {
-            MethodInvoker m = delegate() {
-                clearMapData();
-                if (contextMenu.Tag.ToString() == "all") {
-                    buildLineMapAll();
-                } else {
-                    buildLineMapGds(contextMenu.Tag.ToString());
-                }
-            };
-            Invoke( m);
+            //MethodInvoker m = delegate() {
+                
+            //};
+            //Invoke( m);
+            clearMapData();
+            if (contextMenu.Tag.ToString() == "all") {
+                buildLineMapAll();
+            } else {
+                buildLineMapGds(contextMenu.Tag.ToString());
+            }
         }
 
         private void clearMapData() {
             //MapControl.
+            MapControl.MapBounds = RectLatLng.Empty;
             foreach (GMapOverlay lay in MapControl.Overlays) {
                 if (lay.Id == "bdz") lay.Markers.Clear();
                 else
@@ -302,25 +304,39 @@ namespace Ebada.Scgl.Gis {
             buildTitleInfo(gdscode);
             setWaitMsg(null);
         }
-
+        private RectLatLng union(RectLatLng r1,RectLatLng r2) {
+            
+            double l = Math.Min(r1.Left, r2.Left);
+            double t = Math.Max(r1.Top, r2.Top);
+            double r = Math.Max(r2.Right, r1.Right);
+            double b = Math.Min(r1.Bottom, r2.Bottom);
+            return new RectLatLng(t, l, r - l, t - b);
+        }
         private void buildTitleInfo(string gdscode) {
             GMap.NET.RectLatLng? r1= MapControl.GetRectOfAllMarkers(null);
             GMap.NET.RectLatLng? r2=MapControl.GetRectOfAllRoutes(null);
-            GMap.NET.RectLatLng rect = GMap.NET.RectLatLng.Empty;
+            GMap.NET.RectLatLng rect = RectLatLng.Empty;
             if (r1.HasValue) rect = r1.Value;
-            if (r2.HasValue) rect.Intersect(r2.Value);
+            if (r2.HasValue) rect = union(rect, r2.Value);
             if (!rect.IsEmpty) {
-                MapControl.SetZoomToFitRect(rect);
+                
                 rect.Inflate(.002d, .001d);
-                mOrg org=Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + gdscode + "'");
-                if (org != null) {
-                    GMapMarkerText text = new GMapMarkerText(new PointLatLng( rect.Top - .0025 ,rect.Left +rect.WidthLng/2));
-                    text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
-                    text.Text = org.OrgName+"高压配电线路网络图 - "+DateTime.Now.Year+"年";
-                    MapControl.FindOverlay("bdz").Markers.Add(text);
+                string name = "绥化农电局";
+                if (gdscode != null) {
+                    mOrg org = Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + gdscode + "'");
+
+                    if (org != null) {
+                        name = org.OrgName;
+                    }
                 }
+                GMapMarkerText text = new GMapMarkerText(new PointLatLng(rect.Top - .0025, rect.Left + rect.WidthLng / 2));
+                text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
+                text.Text = name + "高压配电线路网络图 - " + DateTime.Now.Year + "年";
+                MapControl.FindOverlay("bdz").Markers.Add(text);
+                MapControl.MapBounds = rect;
+                MapControl.SetZoomToFitRect(rect);
             }
-            MapControl.MapBounds = rect;
+            
         }
 
 
@@ -336,6 +352,7 @@ namespace Ebada.Scgl.Gis {
                 if (BdsList.ContainsKey(xl.OrgCode2))
                     MapControl.FindMarker(bdsList[xl.OrgCode2]).IsVisible = true;
             }
+            buildTitleInfo(null);
             setWaitMsg(null);
         }
         void 定位_Click(object sender, EventArgs e) {

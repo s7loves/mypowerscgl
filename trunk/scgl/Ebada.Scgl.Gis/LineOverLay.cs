@@ -23,7 +23,46 @@ namespace Ebada.Scgl.Gis {
             : base(map, lineCode) {
             map.OnMarkerEnter += new MarkerEnter(map_OnMarkerEnter);
             map.OnMarkerLeave += new MarkerLeave(map_OnMarkerLeave);
+            map.OnMapZoomChanged += new MapZoomChanged(map_OnMapZoomChanged);
+            this.Markers.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Markers_CollectionChanged);
             control = map;
+        }
+
+        void Markers_CollectionChanged(object sender, GMap.NET.ObjectModel.NotifyCollectionChangedEventArgs e) {
+            firstload = true;
+        }
+        private bool markervisible=true;
+        private bool firstload = true;
+        private bool showMarker = true;
+
+        public bool ShowMarker {
+            get { return showMarker; }
+            set { showMarker = value; }
+        }
+        void map_OnMapZoomChanged() {
+            
+            if (control.Zoom >= 14 ) {
+                if (!markervisible ) {
+                    markervisible = true;
+                    foreach (GMapMarker marker in Markers) {
+                        marker.IsVisible = true;
+                    }
+                    int count = 0;
+                    foreach (IText marker in Markers) {
+                        marker.ShowText = count % 3 == 0 ? true : false;
+                        count++;
+                    }
+                }
+            } else {
+                if (markervisible || firstload) {
+                    firstload=markervisible=false;
+                    
+                    foreach (GMapMarker marker in Markers) {
+                        marker.IsVisible = false;
+                    }
+                }
+
+            }
         }
         
         void map_OnMarkerLeave(GMapMarker item) {
@@ -79,14 +118,8 @@ namespace Ebada.Scgl.Gis {
         }
         public override void Render(System.Drawing.Graphics g) {
             bool flag=control.MarkersEnabled;
-            if (control.Zoom < 14) {
-                control.MarkersEnabled = false;
-            }
-            int count = 0;
-            foreach (IText marker in Markers) {
-                
-                marker.ShowText =count%3==0? control.MarkersEnabled:false;
-                count++;
+            if (firstload) {
+                map_OnMapZoomChanged();
             }
 
             base.Render(g);

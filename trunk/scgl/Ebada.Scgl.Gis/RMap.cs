@@ -53,10 +53,15 @@ namespace Ebada.Scgl.Gis {
                 int y1 = p1.Y;
                 int x2 = p2.X;
                 int y2 = p2.Y;
-
-                g.DrawRectangle(SelectionPen, x1, y1, x2 - x1, y2 - y1);
+                Rectangle r1 = new Rectangle(x1, y1, x2 - x1, y2 - y1);
+                Rectangle r2 = r1;
+                r2.Inflate(5, 5);
+                g.DrawRectangle(penin, x1, y1, x2 - x1, y2 - y1);
+                g.DrawRectangle(penout, r2);
             }
         }
+        private Pen penin = new Pen(Color.Black, 2);
+        private Pen penout = new Pen(Color.Black, 4);
         public GMap.NET.RectLatLng MapBounds = RectLatLng.Empty;
         public string debugMsg = "";
         private void InitializeComponent() {
