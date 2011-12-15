@@ -33,7 +33,7 @@ namespace Ebada.Scgl.Gis {
         internal GMapOverlay objects;//杆塔
         internal GMapOverlay routes;//线路
         OperationBase curOperation;
-
+        IUCLayer ucLayer;
         internal OperationBase CurOperation {
             get { return curOperation; }
             set {
@@ -89,8 +89,23 @@ namespace Ebada.Scgl.Gis {
             barButtonItem4.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
             barButtonItem4.DownChanged += new DevExpress.XtraBars.ItemClickEventHandler(测距_DownChanged);
             barButtonItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            ucLayer = ucMapLayer1;
+            dockPanel1.Text = "网络图图纸库";
+            barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
-        
+        public void showNectwork() {
+
+        }
+        public frmMapNetwork showDxt(){
+            dockPanel1.Text = "配电线路单线图";
+            UCSharpeDxt dxt = new UCSharpeDxt();
+            dxt.Dock = DockStyle.Fill;
+            dockPanel1_Container.Controls.Remove(ucMapLayer1);
+            dockPanel1_Container.Controls.Add(dxt);
+            ucLayer = dxt;
+            this.Show();
+            return this;
+        }
         void 测距_DownChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (barButtonItem4.Down)
                 CurOperation = oInstances.DistanceOperation;
@@ -122,9 +137,9 @@ namespace Ebada.Scgl.Gis {
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
             mapview.FullView();
-            ucMapLayer1.MapControl = rMap1;
-            ucMapLayer1.ShowToolbar = false;
-            ucMapLayer1.InitLayer();
+            ucLayer.MapControl = rMap1;
+            ucLayer.ShowToolbar = false;
+            ucLayer.InitLayer();
         }
         public void FullScrean() {
             FormState formState = new FormState();
@@ -296,8 +311,7 @@ namespace Ebada.Scgl.Gis {
          #endregion
        protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            dockPanel1.Text = "网络图图纸库";
-            barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            
         }
         
         void rMap1_OnMapZoomChanged() {

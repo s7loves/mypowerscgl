@@ -19,12 +19,12 @@ using Ebada.Scgl.Gis.Markers;
 
 namespace Ebada.Scgl.Gis {
     /// <summary>
-    /// 配电图形-网络图
+    /// 配电图形-单线图
     /// </summary>
-    public partial class UCSharpeNetwork : UserControl, IUCLayer {
+    public partial class UCSharpeDxt : UserControl, IUCLayer {
 
         WaitDialogForm waitdlg;
-        public UCSharpeNetwork() {
+        public UCSharpeDxt() {
             
             InitializeComponent();
             //mRMap = map;
@@ -69,8 +69,9 @@ namespace Ebada.Scgl.Gis {
             treeList1.KeyFieldName = "ID";
             treeList1.ParentFieldName = "ParentID";
             
-            mTable.Rows.Add(hide, "0", "全局配电线路网络图", "all", "0","1");
-            mTable.Rows.Add(hide, "0", "供电所网络图", "gds", "0","0");
+            //mTable.Rows.Add(hide, "0", "全局配电线路网络图", "all", "0","1");
+            //mTable.Rows.Add(hide, "0", "供电所网络图", "gds", "0","0");
+            mTable.Rows.Add(hide, "0", "高压配电线路", "all", "0", "0");
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
             treeList1.Columns["层"].Caption = "图纸名称";
@@ -95,7 +96,7 @@ namespace Ebada.Scgl.Gis {
         private void initgds(string pid) {
             IList<mOrg> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgtype='1'");
             foreach (mOrg gds in list) {
-                mTable.Rows.Add(hide, "0", gds.OrgName, gds.OrgCode, pid, "1");
+                mTable.Rows.Add(hide, "0", gds.OrgName, gds.OrgCode, pid, "0");
             }
         }
 
@@ -136,11 +137,18 @@ namespace Ebada.Scgl.Gis {
         public void InitLayer()
         {
             treeList1.BeginInit();
-           
-            
-            treeList1.EndInit();
-            //treeList1.ParentFieldName = "ParentID";
 
+            initxl("all");
+            treeList1.EndInit();
+            treeList1.ExpandAll();
+        }
+        private void initxl(string pid) {
+            if (pid == "all") {
+                IList<PS_xl> list = ClientHelper.PlatformSqlMap.GetList<PS_xl>("where len(linecode)=6 order by linecode");
+                foreach (PS_xl xl in list) {
+                    mTable.Rows.Add(hide, "0", xl.LineName, xl.LineCode, pid,"1");
+                }
+            }
         }
         private void inittq(string gdscode) {
             treeList1.BeginInit();
@@ -238,8 +246,11 @@ namespace Ebada.Scgl.Gis {
                 //item.Text = "刷新";
                 //item.Click += new EventHandler(刷新_Click);
                 //contextMenu.MenuItems.Add(item);
-                item = new MenuItem("打开");
-                item.Click += new EventHandler(打开_Click);
+                //item = new MenuItem("打开网络图");
+                //item.Click += new EventHandler(打开_Click);
+                //contextMenu.MenuItems.Add(item);
+                item = new MenuItem("打开单线图");
+                item.Click += new EventHandler(单线图_Click);
                 contextMenu.MenuItems.Add(item);
             }
             contextMenu.Tag = code;
@@ -251,7 +262,50 @@ namespace Ebada.Scgl.Gis {
             if (xl != null)
                 Ebada.Client.Platform.MainHelper.Execute("Ebada.Scgl.Yxgl.dll", "Ebada.Scgl.Yxgl.Export16", "ExportExcel", new object[] { xl });
         }
+        void 单线图_Click(object sender, EventArgs e) {
+            clearMapData();
+            
+             buildLineMap(contextMenu.Tag.ToString());
+            
+        }
 
+        private void buildLineMap(string p) {
+            setWaitMsg("生成“" + p + "”信息");
+            showLayer(p, true);
+            buildTitleInfoXl(p);
+            setWaitMsg(null);
+        }
+        private void buildTitleInfoXl(string xlcode) {
+            GMap.NET.RectLatLng? r1 = MapControl.GetRectOfAllMarkers(null);
+            GMap.NET.RectLatLng? r2 = MapControl.GetRectOfAllRoutes(null);
+            GMap.NET.RectLatLng rect = RectLatLng.Empty;
+            if (r1.HasValue) {
+                rect = r1.Value;
+                if (r2.HasValue) rect = union(rect, r2.Value);
+            } else if (r2.HasValue) {
+                rect = r2.Value;
+            }
+            if (!rect.IsEmpty) {
+
+                rect.Inflate(.002d, .001d);
+                string name=getxlname(xlcode);
+                GMapMarkerText text = new GMapMarkerText(new PointLatLng(rect.Top - .0025, rect.Left + rect.WidthLng / 2));
+                text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
+                text.Text ="10kV"+ name + "网络图 - " + DateTime.Now.Year + "年";
+                MapControl.FindOverlay("bdz").Markers.Add(text);
+                MapControl.MapBounds = rect;
+                MapControl.SetZoomToFitRect(rect);
+            }
+
+        }
+
+        private string getxlname(string xlcode) {
+            string name = xlcode;
+           DataRow[] rows= mTable.Select("id='" + xlcode + "'");
+           if (rows.Length > 0)
+               name = rows[0]["层"].ToString();
+           return name;
+        }
         #region 网络图
         void 打开_Click(object sender, EventArgs e) {
             //MethodInvoker m = delegate() {
@@ -317,8 +371,12 @@ namespace Ebada.Scgl.Gis {
             GMap.NET.RectLatLng? r1= MapControl.GetRectOfAllMarkers(null);
             GMap.NET.RectLatLng? r2=MapControl.GetRectOfAllRoutes(null);
             GMap.NET.RectLatLng rect = RectLatLng.Empty;
-            if (r1.HasValue) rect = r1.Value;
-            if (r2.HasValue) rect = union(rect, r2.Value);
+            if (r1.HasValue) {
+                rect = r1.Value;
+                if (r2.HasValue) rect = union(rect, r2.Value);
+            } else if (r2.HasValue) {
+                rect = r2.Value;
+            }
             if (!rect.IsEmpty) {
                 
                 rect.Inflate(.002d, .001d);
