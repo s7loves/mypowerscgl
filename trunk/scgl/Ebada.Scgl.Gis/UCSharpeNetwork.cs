@@ -252,6 +252,7 @@ namespace Ebada.Scgl.Gis {
                 Ebada.Client.Platform.MainHelper.Execute("Ebada.Scgl.Yxgl.dll", "Ebada.Scgl.Yxgl.Export16", "ExportExcel", new object[] { xl });
         }
 
+        #region 网络图
         void 打开_Click(object sender, EventArgs e) {
             //MethodInvoker m = delegate() {
                 
@@ -355,6 +356,8 @@ namespace Ebada.Scgl.Gis {
             buildTitleInfo(null);
             setWaitMsg(null);
         }
+        #endregion
+
         void 定位_Click(object sender, EventArgs e) {
             mRMap.LocationOverlay(contextMenu.Tag as string);
         }
