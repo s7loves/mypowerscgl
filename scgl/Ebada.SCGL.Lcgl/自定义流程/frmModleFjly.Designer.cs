@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class frmLP
+    partial class frmModleFjly
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,6 @@
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.dsoFramerWordControl1 = new Ebada.Scgl.Core.DSOFramerControl();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -57,36 +56,26 @@
             this.dockPanel1.ID = new System.Guid("fcd8e35e-d579-45cc-ae9c-18f4bd63c9f5");
             this.dockPanel1.Location = new System.Drawing.Point(0, 0);
             this.dockPanel1.Name = "dockPanel1";
-            this.dockPanel1.OriginalSize = new System.Drawing.Size(473, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(473, 487);
-            this.dockPanel1.Text = "操作栏";
+            this.dockPanel1.OriginalSize = new System.Drawing.Size(465, 200);
+            this.dockPanel1.Size = new System.Drawing.Size(465, 487);
             // 
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.AutoScroll = true;
             this.dockPanel1_Container.Location = new System.Drawing.Point(3, 24);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(467, 460);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(459, 460);
             this.dockPanel1_Container.TabIndex = 0;
             // 
-            // dsoFramerWordControl1
-            // 
-            this.dsoFramerWordControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsoFramerWordControl1.Location = new System.Drawing.Point(473, 0);
-            this.dsoFramerWordControl1.Name = "dsoFramerWordControl1";
-            this.dsoFramerWordControl1.Size = new System.Drawing.Size(253, 487);
-            this.dsoFramerWordControl1.TabIndex = 1;
-            // 
-            // frmLP
+            // frmModleFjly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(726, 487);
-            this.Controls.Add(this.dsoFramerWordControl1);
+            this.ClientSize = new System.Drawing.Size(465, 487);
             this.Controls.Add(this.dockPanel1);
-            this.Name = "frmLP";
+            this.Name = "frmModleFjly";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "流程表单";
+            this.Text = "流程附件";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.LPFrm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmLP_FormClosed);
@@ -102,6 +91,5 @@
         private DevExpress.XtraBars.Docking.DockManager dockManager1;
         private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
-        private new Ebada.Scgl.Core.DSOFramerControl dsoFramerWordControl1;
     }
 }

@@ -468,6 +468,12 @@
     <Compile Include="年度技改工程计划\UCPJ_JGGCJH.Designer.cs">
       <DependentUpon>UCPJ_JGGCJH.cs</DependentUpon>
     </Compile>
+    <Compile Include="自定义流程\frmModleFjly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义流程\frmModleFjly.Designer.cs">
+      <DependentUpon>frmModleFjly.cs</DependentUpon>
+    </Compile>
     <Compile Include="配变电力电容器台帐\ExportPBDLDRQTZ.cs" />
     <Compile Include="配变电力电容器台帐\frmPBDLDRQTZEdit.cs">
       <SubType>Form</SubType>
@@ -1166,6 +1172,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="年度技改工程计划\UCPJ_JGGCJH.resx">
       <DependentUpon>UCPJ_JGGCJH.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\frmModleFjly.resx">
+      <DependentUpon>frmModleFjly.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="配变电力电容器台帐\frmPBDLDRQTZEdit.resx">
