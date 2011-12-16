@@ -96,7 +96,7 @@ namespace Ebada.Scgl.Lcgl
 
 
             filter = " where jhnf = '" + (DateTime.Now.Year + 1) + "'";
-            if (orgid != "") filter = " and OrgCode='" + orgid + "'";
+            if (orgid != "") filter += " and OrgCode='" + orgid + "'";
                
             if (isWorkflowCall)
             {
@@ -165,13 +165,13 @@ namespace Ebada.Scgl.Lcgl
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
             string filter = " where jhnf = '" + (DateTime.Now.Year + 1) + "'";
-            if (orgid != "") filter = " and OrgCode='" + orgid + "'";
+            if (orgid != "") filter += " and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
-                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where WorkFlowId='"
+                filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where WorkFlowId='"
                     + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                         + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                    + "    RecordID='" + currRecord.ID + "') "
+                    + "    RecordID='" + currRecord.ID + "')) "
                     ;
             }
             IList<PJ_bpbjjhb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_bpbjjhb>(

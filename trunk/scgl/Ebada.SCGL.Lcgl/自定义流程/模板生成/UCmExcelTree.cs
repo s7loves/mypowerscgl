@@ -129,7 +129,7 @@ namespace Ebada.Scgl.Lcgl
         }
         public void InitWorkFlowData(string WFClassId)
         {
-            IList<WF_WorkFlow> li = MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", " where  WFClassId ='" + WFClassId + "' and Status='1'");
+            IList<WF_WorkFlow> li = MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", " where  WFClassId ='" + WFClassId + "' and Status='1' order by FlowCaption");
             for (int i = 0; i < li.Count; i++)
             {
                 DataRow dr = dt.NewRow();
@@ -147,7 +147,8 @@ namespace Ebada.Scgl.Lcgl
         /// </summary>
         public void InitData() {
             //treeViewOperator.RefreshData("where 1=1");
-            IList<WF_WorkFlowClass> li = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", " where 1=1");
+            IList<WF_WorkFlowClass> li = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList",
+                " where 1=1 order by Caption");
            
                 for (int i = 0; i < li.Count;i++ )
                 {

@@ -115,10 +115,10 @@ namespace Ebada.Scgl.Lcgl
                  + (DateTime.Now.Month + 1) + "-" + startday + " 00:00:00' and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
-                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
+                filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
                     + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
                         + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                    + "    RecordID='" + currRecord.ID + "') "
+                    + "    RecordID='" + currRecord.ID + "')) "
                     ;
             }
             IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
@@ -189,10 +189,10 @@ namespace Ebada.Scgl.Lcgl
                 + (DateTime.Now.Month + 1) + "-" + startday + " 00:00:00' and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
-                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where WorkFlowId='"
+                filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where WorkFlowId='"
                     + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                         + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                    + "    RecordID='" + currRecord.ID + "') "
+                    + "    RecordID='" + currRecord.ID + "')) "
                     ;
             }
             IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(

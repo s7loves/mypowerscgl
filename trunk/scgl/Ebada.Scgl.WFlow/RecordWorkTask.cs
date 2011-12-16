@@ -695,13 +695,14 @@ namespace Ebada.Scgl.WFlow
                           + " and WorkFlowInsId='" + workFlowInsId + "'"
 
                           + " and RecordId='" + record.ID + "' order by Creattime desc";
-                    WF_ModleCheckTable mct = MainHelper.PlatformSqlMap.GetOne<WF_ModleCheckTable>(strsql);
-                    if (mct != null)
+                    IList< WF_ModleCheckTable> mctli = MainHelper.PlatformSqlMap.GetList<WF_ModleCheckTable>(strsql);
+                    //WF_ModleCheckTable mct = MainHelper.PlatformSqlMap.GetOne<WF_ModleCheckTable>(strsql);
+                    if (mctli.Count>0)
                     {
                         tp = new LP_Temple();
                         tp.Status = "节点审核";
-                        tp.LPID = mct.ID;
-                        tp.DocContent = mct.DocContent;
+                        tp.LPID = mctli[0].ID;
+                        tp.DocContent = mctli[0].DocContent;
                         return tp;
                     }
 
