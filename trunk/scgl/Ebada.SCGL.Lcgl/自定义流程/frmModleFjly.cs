@@ -247,11 +247,11 @@ namespace Ebada.Scgl.Lcgl
                 currentPosY += 20;
             }
             
-            Button btn_Submit = new Button();
-            dockPanel1.Controls.Add(btn_Submit);
-            btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
-            btn_Submit.Text = "提交";
-            btn_Submit.Click += new EventHandler(btn_Submit_Click);
+            //Button btn_Submit = new Button();
+            //dockPanel1.Controls.Add(btn_Submit);
+            //btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
+            //btn_Submit.Text = "提交";
+            //btn_Submit.Click += new EventHandler(btn_Submit_Click);
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
         }

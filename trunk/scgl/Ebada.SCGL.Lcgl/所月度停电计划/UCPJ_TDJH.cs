@@ -348,7 +348,12 @@ namespace Ebada.Scgl.Lcgl
 
         private void liuchenBarClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string strmess="";
+            string strmess = "";
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认清除关联信息?") != DialogResult.OK)
+            {
+                return;
+            }
             if (RecordWorkTask.DeleteModleRelationRecord(currRecord, WorkFlowData,ref strmess))
             {
                 MsgBox.ShowTipMessageBox("清除成功");

@@ -56,27 +56,38 @@
             this.dockPanel1.ID = new System.Guid("fcd8e35e-d579-45cc-ae9c-18f4bd63c9f5");
             this.dockPanel1.Location = new System.Drawing.Point(0, 0);
             this.dockPanel1.Name = "dockPanel1";
-            this.dockPanel1.OriginalSize = new System.Drawing.Size(465, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(465, 487);
+            this.dockPanel1.Options.AllowDockBottom = false;
+            this.dockPanel1.Options.AllowDockFill = false;
+            this.dockPanel1.Options.AllowDockRight = false;
+            this.dockPanel1.Options.AllowDockTop = false;
+            this.dockPanel1.Options.AllowFloating = false;
+            this.dockPanel1.Options.FloatOnDblClick = false;
+            this.dockPanel1.Options.ShowAutoHideButton = false;
+            this.dockPanel1.Options.ShowCloseButton = false;
+            this.dockPanel1.Options.ShowMaximizeButton = false;
+            this.dockPanel1.OriginalSize = new System.Drawing.Size(430, 200);
+            this.dockPanel1.Size = new System.Drawing.Size(430, 559);
             // 
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.AutoScroll = true;
-            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 24);
+            this.dockPanel1_Container.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(459, 460);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(424, 531);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // frmModleFjly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 487);
+            this.ClientSize = new System.Drawing.Size(430, 559);
             this.Controls.Add(this.dockPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "frmModleFjly";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "流程附件";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.LPFrm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmLP_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLP_FormClosing);
