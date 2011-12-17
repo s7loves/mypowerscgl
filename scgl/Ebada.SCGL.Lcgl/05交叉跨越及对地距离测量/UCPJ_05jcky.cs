@@ -378,6 +378,11 @@ namespace Ebada.Scgl.Lcgl
         {
 
             string strmess = "";
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认清除关联信息?") != DialogResult.OK)
+            {
+                return;
+            }
             if (RecordWorkTask.DeleteModleRelationRecord(currRecord, WorkFlowData, ref strmess))
             {
                 MsgBox.ShowTipMessageBox("清除成功");

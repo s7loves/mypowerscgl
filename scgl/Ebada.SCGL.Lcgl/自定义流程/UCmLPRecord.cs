@@ -469,13 +469,6 @@ namespace Ebada.Scgl.Lcgl {
                 lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
                 MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
 
-                if (obj.GetType().GetProperty("IsWorkflowCall") != null)
-                    obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
-                else
-                {
-                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
-                    return;
-                }
                 if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
                     obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, recordWorkFlowData, null);
                 else
@@ -483,7 +476,7 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
-               
+
                 if (obj.GetType().GetProperty("CurrRecord") != null)
                     obj.GetType().GetProperty("CurrRecord").SetValue(obj, lpr, null);
                 else
@@ -491,9 +484,16 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
-               
+
                 if (obj.GetType().GetProperty("ParentTemple") != null)
                     obj.GetType().GetProperty("ParentTemple").SetValue(obj, ParentTemple, null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+                if (obj.GetType().GetProperty("IsWorkflowCall") != null)
+                    obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
                 else
                 {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
@@ -919,15 +919,6 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
-
-                if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
-                    obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
-                else
-                {
-                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
-                    return;
-                }
-
                 if (obj.GetType().GetProperty("CurrRecord") != null)
                     obj.GetType().GetProperty("CurrRecord").SetValue(obj, currRecord, null);
                 else
@@ -936,8 +927,17 @@ namespace Ebada.Scgl.Lcgl {
                     return;
                 }
 
+
                 if (obj.GetType().GetProperty("ParentTemple") != null)
                     obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(dt, currRecord), null);
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    return;
+                }
+
+                if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
+                    obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
                 else
                 {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
