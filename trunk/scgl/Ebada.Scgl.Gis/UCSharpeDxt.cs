@@ -291,7 +291,7 @@ namespace Ebada.Scgl.Gis {
                 string name=getxlname(xlcode);
                 GMapMarkerText text = new GMapMarkerText(new PointLatLng(rect.Top - .0025, rect.Left + rect.WidthLng / 2));
                 text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
-                text.Text ="10kV"+ name + "网络图 - " + DateTime.Now.Year + "年";
+                text.Text ="10kV"+ name + "系统图 - " + DateTime.Now.Year + "年";
                 MapControl.FindOverlay("bdz").Markers.Add(text);
                 MapControl.MapBounds = rect;
                 MapControl.SetZoomToFitRect(rect);

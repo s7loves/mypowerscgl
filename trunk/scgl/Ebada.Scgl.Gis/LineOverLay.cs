@@ -132,36 +132,16 @@ namespace Ebada.Scgl.Gis {
             Client.ClientHelper.PlatformSqlMap.Update("UpdatePS_gtLatLng", gt);
         }
         public virtual ContextMenu CreatePopuMenu() {
-            if (contextMenu == null) {
-                contextMenu = new ContextMenu();
-                MenuItem item = new MenuItem();
-                item.Text = "杆塔属性";
-                item.Click += new EventHandler(杆塔属性_Click);
-                contextMenu.MenuItems.Add(item);
-                item = new MenuItem();
-                item.Text = "线路属性";
-                item.Click += new EventHandler(线路属性_Click);
-                contextMenu.MenuItems.Add(item);
-
-            }
-            return contextMenu;
+            GMapMarkerVector mv = selectedMarker as GMapMarkerVector;
+            ContextMenu menu = new ContextMenu();
+            if (mv != null) menu = mv.CreatePopuMenu();
+            return menu;
+            
 
         }
 
-        void 线路属性_Click(object sender, EventArgs e) {
-            if (selectedMarker != null) {
-                this.ShowLineinfo(selectedMarker, allowEdit);
-            }
-        }
-
-        void 杆塔属性_Click(object sender, EventArgs e) {
-
-            if (selectedMarker != null ) {
-                this.ShowDialog(selectedMarker, allowEdit);
-            }
-
-        }
-        public void ShowDialog(GMapMarker marker, bool canEdit) { 
+       
+        public void ShowDialog(GMapMarker marker) { 
             
             frmgtEdit frm = new frmgtEdit();            
             PS_gt gt0 = marker.Tag as PS_gt;
@@ -198,7 +178,7 @@ namespace Ebada.Scgl.Gis {
             }
         }
 
-        public void ShowLineinfo(GMapMarker selectedMarker, bool canEditMarker) {
+        public void ShowLineinfo(GMapMarker selectedMarker) {
             PS_gt gt = selectedMarker.Tag as PS_gt;
             string linecode=gt.gtCode.Substring(0, gt.gtCode.Length - 4);
             PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='" + linecode + "'");
