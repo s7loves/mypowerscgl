@@ -74,6 +74,7 @@ go
 create table dbo.PX_Objects (
    layerid              nvarchar(50)         null,
    id                   nvarchar(50)         not null,
+   sbid                 nvarchar(50)         null,
    symbolid             nvarchar(50)         null,
    seq                  int                  null,
    text                 nvarchar(250)        null,
@@ -88,6 +89,7 @@ create table dbo.PX_Objects (
    constraint PK_PX_OBJECTS primary key (id)
 )
 go
+
 
 /*==============================================================*/
 /* Table: TX_Layer                                              */
