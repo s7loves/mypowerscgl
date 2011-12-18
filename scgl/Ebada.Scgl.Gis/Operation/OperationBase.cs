@@ -161,28 +161,28 @@ namespace Ebada.Scgl.Gis {
         }
         public virtual ContextMenu CreatePopuMenu() {
             ContextMenu menu = new ContextMenu();
-            MenuItem item = new MenuItem();
-            item.Text = "杆塔属性";
-            item.Click += new EventHandler(杆塔属性_Click);
-            menu.MenuItems.Add(item);
-            item = new MenuItem();
-            item.Text = "线路属性";
-            item.Click += new EventHandler(线路属性_Click);
-            menu.MenuItems.Add(item);
+            //MenuItem item = new MenuItem();
+            //item.Text = "杆塔属性";
+            //item.Click += new EventHandler(杆塔属性_Click);
+            //menu.MenuItems.Add(item);
+            //item = new MenuItem();
+            //item.Text = "线路属性";
+            //item.Click += new EventHandler(线路属性_Click);
+            //menu.MenuItems.Add(item);
             return menu;
 
         }
 
         void 线路属性_Click(object sender, EventArgs e) {
             if (selectedMarker != null && selectedMarker.Overlay is LineOverlay) {
-                (selectedMarker.Overlay as LineOverlay).ShowLineinfo(selectedMarker, canEditMarker);
+                (selectedMarker.Overlay as LineOverlay).ShowLineinfo(selectedMarker);
             }
         }
 
         void 杆塔属性_Click(object sender, EventArgs e) {
 
             if (selectedMarker != null && selectedMarker.Overlay is LineOverlay) {
-                (selectedMarker.Overlay as LineOverlay).ShowDialog(selectedMarker,canEditMarker);
+                (selectedMarker.Overlay as LineOverlay).ShowDialog(selectedMarker);
             }
                 
         }

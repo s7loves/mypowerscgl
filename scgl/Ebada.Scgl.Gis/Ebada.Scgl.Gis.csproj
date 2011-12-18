@@ -183,6 +183,7 @@
     <Compile Include="Markers\GMapMarkerBYQ.cs" />
     <Compile Include="Markers\GMapMarkerText.cs" />
     <Compile Include="IText.cs" />
+    <Compile Include="Markers\GMapMarkerKG.cs" />
     <Compile Include="Operation\OperationBase.cs" />
     <Compile Include="Operation\OperationDistance.cs" />
     <Compile Include="Operation\OperationInstance.cs" />

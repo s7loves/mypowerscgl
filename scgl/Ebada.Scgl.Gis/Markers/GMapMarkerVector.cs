@@ -87,9 +87,33 @@ namespace Ebada.Scgl.Gis.Markers {
             }
         }
 
+        void 线路属性_Click(object sender, EventArgs e) {
+            //if (selectedMarker != null) {
+            //    this.ShowLineinfo(selectedMarker, allowEdit);
+            //}
+            (this.Overlay as LineOverlay).ShowLineinfo(this);
+        }
 
+        void 杆塔属性_Click(object sender, EventArgs e) {
+
+            //if (selectedMarker != null) {
+            //    this.ShowDialog(selectedMarker, allowEdit);
+            //}
+            (this.Overlay as LineOverlay).ShowDialog(this);
+        }
         public virtual ContextMenu CreatePopuMenu() {
-            return new ContextMenu();
+           
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem item = new MenuItem();
+            item.Text = "杆塔属性";
+            item.Click += new EventHandler(杆塔属性_Click);
+            contextMenu.MenuItems.Add(item);
+            item = new MenuItem();
+            item.Text = "线路属性";
+            item.Click += new EventHandler(线路属性_Click);
+            contextMenu.MenuItems.Add(item);
+
+            return contextMenu;
         }
 
         

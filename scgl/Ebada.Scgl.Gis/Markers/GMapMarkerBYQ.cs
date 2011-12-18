@@ -5,6 +5,7 @@ using GMap.NET.WindowsForms;
 using System.Drawing;
 using GMap.NET;
 using Ebada.Scgl.Model;
+using System.Windows.Forms;
 
 namespace Ebada.Scgl.Gis.Markers {
     [Serializable]
@@ -37,11 +38,24 @@ namespace Ebada.Scgl.Gis.Markers {
         internal override void Update() {
             PointOverLay lay = this.Overlay as PointOverLay;
             if (lay != null && lay.AllowEdit) {
-                mOrg org = this.Tag as mOrg;
-                org.C1 = this.Position.Lat.ToString();
-                org.C2 = this.Position.Lng.ToString();
+                //mOrg org = this.Tag as mOrg;
+                //org.C1 = this.Position.Lat.ToString();
+                //org.C2 = this.Position.Lng.ToString();
                 //Client.ClientHelper.PlatformSqlMap.Update<mOrg>(org);
             }
+        }
+        public override ContextMenu CreatePopuMenu() {
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem item = new MenuItem();
+            item.Text = "属性";
+            item.Click += new EventHandler(属性_Click);
+            contextMenu.MenuItems.Add(item);
+            return contextMenu;
+        }
+
+        void 属性_Click(object sender, EventArgs e) {
+
+            
         }
     }
 }
