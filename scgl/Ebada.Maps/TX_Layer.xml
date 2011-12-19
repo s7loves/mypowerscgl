@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="TX_Layer" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="TX_Layer"  type="Itop.YHPC.Model.TX_Layer,Itop.YHPC.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="TX_Layer_AllColumns" class="TX_Layer">
+        <result property="ProID" column="ProID" />
+        <result property="LayerID" column="LayerID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="LayerName" column="LayerName" />
+        <result property="Description" column="Description" />
+        <result property="LayerOrder" column="LayerOrder" />
+        <result property="LayerType" column="LayerType" />
+        <result property="ExAttribute" column="ExAttribute" />
+        <result property="ExData" column="ExData" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectTX_LayerList" resultMap="TX_Layer_AllColumns" parameterClass="string">
+        SELECT 
+         [ProID],
+         [LayerID],
+         [ParentID],
+         [LayerName],
+         [Description],
+         [LayerOrder],
+         [LayerType],
+         [ExAttribute],
+         [ExData]
+          FROM TX_Layer
+          $value$
+   </select>
+   
+   <select id="SelectTX_LayerByHash" parameterClass="Hashtable">
+         SELECT 
+         [ProID],
+         [LayerID],
+         [ParentID],
+         [LayerName],
+         [Description],
+         [LayerOrder],
+         [LayerType],
+         [ExAttribute],
+         [ExData]
+          FROM TX_Layer
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ProID">[ProID]='$ProID$'</isNotNull>
+       <isNotNull prepend="AND" property="LayerID">[LayerID]='$LayerID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="LayerName">[LayerName]='$LayerName$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="LayerOrder">[LayerOrder]='$LayerOrder$'</isNotNull>
+       <isNotNull prepend="AND" property="LayerType">[LayerType]='$LayerType$'</isNotNull>
+       <isNotNull prepend="AND" property="ExAttribute">[ExAttribute]='$ExAttribute$'</isNotNull>
+       <isNotNull prepend="AND" property="ExData">[ExData]='$ExData$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectTX_LayerByKey" resultMap="TX_Layer_AllColumns" parameterClass="TX_Layer">
+         SELECT 
+         [ProID],
+         [LayerID],
+         [ParentID],
+         [LayerName],
+         [Description],
+         [LayerOrder],
+         [LayerType],
+         [ExAttribute],
+         [ExData]
+         FROM TX_Layer
+         WHERE 
+           LayerID = #LayerID#
+
+   </select>
+ 
+   <delete id="DeleteTX_Layer" parameterClass="TX_Layer">
+        DELETE FROM 
+         TX_Layer
+           WHERE
+         LayerID = #LayerID#
+
+   </delete>
+   
+   <delete id="DeleteTX_LayerByWhere" parameterClass="string">
+     delete from TX_Layer $value$
+   </delete>
+   
+   <delete id="DeleteTX_LayerByKey" parameterClass="string">
+        DELETE FROM 
+         TX_Layer
+           WHERE
+         LayerID = #LayerID#
+    
+   </delete>
+   
+   <update id="UpdateTX_Layer" parameterClass="TX_Layer" resultClass="int">
+          UPDATE TX_Layer
+           SET
+             [ProID]=#ProID#,
+             [ParentID]=#ParentID#,
+             [LayerName]=#LayerName#,
+             [Description]=#Description#,
+             [LayerOrder]=#LayerOrder#,
+             [LayerType]=#LayerType#,
+             [ExAttribute]=#ExAttribute#,
+             [ExData]=#ExData#
+            WHERE 
+              LayerID = #LayerID#
+
+   </update>
+  
+   <insert id="InsertTX_Layer" parameterClass="TX_Layer">
+        INSERT INTO TX_Layer
+         (
+         [ProID],
+         [LayerID],
+         [ParentID],
+         [LayerName],
+         [Description],
+         [LayerOrder],
+         [LayerType],
+         [ExAttribute],
+         [ExData]
+         )
+       VALUES
+         (
+         #ProID#,
+         #LayerID#,
+         #ParentID#,
+         #LayerName#,
+         #Description#,
+         #LayerOrder#,
+         #LayerType#,
+         #ExAttribute#,
+         #ExData#
+         )
+
+   </insert>
+   
+   <select id="GetTX_LayerRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM TX_Layer
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ProID">[ProID]='$ProID$'</isNotNull>
+       <isNotNull prepend="AND" property="LayerID">[LayerID]='$LayerID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="LayerName">[LayerName]='$LayerName$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="LayerOrder">[LayerOrder]='$LayerOrder$'</isNotNull>
+       <isNotNull prepend="AND" property="LayerType">[LayerType]='$LayerType$'</isNotNull>
+       <isNotNull prepend="AND" property="ExAttribute">[ExAttribute]='$ExAttribute$'</isNotNull>
+       <isNotNull prepend="AND" property="ExData">[ExData]='$ExData$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetTX_LayerRowCount" parameterClass="string">
+    select count(*) from TX_Layer $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

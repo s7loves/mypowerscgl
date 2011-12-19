@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="TX_Project" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="TX_Project"  type="Itop.YHPC.Model.TX_Project,Itop.YHPC.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="TX_Project_AllColumns" class="TX_Project">
+        <result property="ProID" column="ProID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="ProjectName" column="ProjectName" />
+        <result property="ProjectCode" column="ProjectCode" />
+        <result property="Description" column="Description" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="ExAttribute" column="ExAttribute" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectTX_ProjectList" resultMap="TX_Project_AllColumns" parameterClass="string">
+        SELECT 
+         [ProID],
+         [ParentID],
+         [ProjectName],
+         [ProjectCode],
+         [Description],
+         [CreateDate],
+         [CreateMan],
+         [ExAttribute]
+          FROM TX_Project
+          $value$
+   </select>
+   
+   <select id="SelectTX_ProjectByHash" parameterClass="Hashtable">
+         SELECT 
+         [ProID],
+         [ParentID],
+         [ProjectName],
+         [ProjectCode],
+         [Description],
+         [CreateDate],
+         [CreateMan],
+         [ExAttribute]
+          FROM TX_Project
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ProID">[ProID]='$ProID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="ProjectName">[ProjectName]='$ProjectName$'</isNotNull>
+       <isNotNull prepend="AND" property="ProjectCode">[ProjectCode]='$ProjectCode$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="ExAttribute">[ExAttribute]='$ExAttribute$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectTX_ProjectByKey" resultMap="TX_Project_AllColumns" parameterClass="TX_Project">
+         SELECT 
+         [ProID],
+         [ParentID],
+         [ProjectName],
+         [ProjectCode],
+         [Description],
+         [CreateDate],
+         [CreateMan],
+         [ExAttribute]
+         FROM TX_Project
+         WHERE 
+           ProID = #ProID#
+
+   </select>
+ 
+   <delete id="DeleteTX_Project" parameterClass="TX_Project">
+        DELETE FROM 
+         TX_Project
+           WHERE
+         ProID = #ProID#
+
+   </delete>
+   
+   <delete id="DeleteTX_ProjectByWhere" parameterClass="string">
+     delete from TX_Project $value$
+   </delete>
+   
+   <delete id="DeleteTX_ProjectByKey" parameterClass="string">
+        DELETE FROM 
+         TX_Project
+           WHERE
+         ProID = #ProID#
+    
+   </delete>
+   
+   <update id="UpdateTX_Project" parameterClass="TX_Project" resultClass="int">
+          UPDATE TX_Project
+           SET
+             [ParentID]=#ParentID#,
+             [ProjectName]=#ProjectName#,
+             [ProjectCode]=#ProjectCode#,
+             [Description]=#Description#,
+             [CreateDate]=#CreateDate#,
+             [CreateMan]=#CreateMan#,
+             [ExAttribute]=#ExAttribute#
+            WHERE 
+              ProID = #ProID#
+
+   </update>
+  
+   <insert id="InsertTX_Project" parameterClass="TX_Project">
+        INSERT INTO TX_Project
+         (
+         [ProID],
+         [ParentID],
+         [ProjectName],
+         [ProjectCode],
+         [Description],
+         [CreateDate],
+         [CreateMan],
+         [ExAttribute]
+         )
+       VALUES
+         (
+         #ProID#,
+         #ParentID#,
+         #ProjectName#,
+         #ProjectCode#,
+         #Description#,
+         #CreateDate#,
+         #CreateMan#,
+         #ExAttribute#
+         )
+
+   </insert>
+   
+   <select id="GetTX_ProjectRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM TX_Project
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ProID">[ProID]='$ProID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="ProjectName">[ProjectName]='$ProjectName$'</isNotNull>
+       <isNotNull prepend="AND" property="ProjectCode">[ProjectCode]='$ProjectCode$'</isNotNull>
+       <isNotNull prepend="AND" property="Description">[Description]='$Description$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="ExAttribute">[ExAttribute]='$ExAttribute$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetTX_ProjectRowCount" parameterClass="string">
+    select count(*) from TX_Project $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

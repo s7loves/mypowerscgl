@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="TX_Polygon" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="TX_Polygon"  type="Itop.YHPC.Model.TX_Polygon,Itop.YHPC.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="TX_Polygon_AllColumns" class="TX_Polygon">
+        <result property="LayerID" column="LayerID" />
+        <result property="ID" column="ID" />
+        <result property="Seq" column="Seq" />
+        <result property="Text" column="Text" />
+        <result property="Points" column="Points" />
+        <result property="Type" column="Type" />
+        <result property="ExAttribute" column="ExAttribute" />
+        <result property="x" column="x" />
+        <result property="y" column="y" />
+        <result property="width" column="width" />
+        <result property="height" column="height" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectTX_PolygonList" resultMap="TX_Polygon_AllColumns" parameterClass="string">
+        SELECT 
+         [LayerID],
+         [ID],
+         [Seq],
+         [Text],
+         [Points],
+         [Type],
+         [ExAttribute],
+         [x],
+         [y],
+         [width],
+         [height]
+          FROM TX_Polygon
+          $value$
+   </select>
+   
+   <select id="SelectTX_PolygonByHash" parameterClass="Hashtable">
+         SELECT 
+         [LayerID],
+         [ID],
+         [Seq],
+         [Text],
+         [Points],
+         [Type],
+         [ExAttribute],
+         [x],
+         [y],
+         [width],
+         [height]
+          FROM TX_Polygon
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LayerID">[LayerID]='$LayerID$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Seq">[Seq]='$Seq$'</isNotNull>
+       <isNotNull prepend="AND" property="Text">[Text]='$Text$'</isNotNull>
+       <isNotNull prepend="AND" property="Points">[Points]='$Points$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="ExAttribute">[ExAttribute]='$ExAttribute$'</isNotNull>
+       <isNotNull prepend="AND" property="x">[x]='$x$'</isNotNull>
+       <isNotNull prepend="AND" property="y">[y]='$y$'</isNotNull>
+       <isNotNull prepend="AND" property="width">[width]='$width$'</isNotNull>
+       <isNotNull prepend="AND" property="height">[height]='$height$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectTX_PolygonByKey" resultMap="TX_Polygon_AllColumns" parameterClass="TX_Polygon">
+         SELECT 
+         [LayerID],
+         [ID],
+         [Seq],
+         [Text],
+         [Points],
+         [Type],
+         [ExAttribute],
+         [x],
+         [y],
+         [width],
+         [height]
+         FROM TX_Polygon
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteTX_Polygon" parameterClass="TX_Polygon">
+        DELETE FROM 
+         TX_Polygon
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteTX_PolygonByWhere" parameterClass="string">
+     delete from TX_Polygon $value$
+   </delete>
+   
+   <delete id="DeleteTX_PolygonByKey" parameterClass="string">
+        DELETE FROM 
+         TX_Polygon
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateTX_Polygon" parameterClass="TX_Polygon" resultClass="int">
+          UPDATE TX_Polygon
+           SET
+             [LayerID]=#LayerID#,
+             [Seq]=#Seq#,
+             [Text]=#Text#,
+             [Points]=#Points#,
+             [Type]=#Type#,
+             [ExAttribute]=#ExAttribute#,
+             [x]=#x#,
+             [y]=#y#,
+             [width]=#width#,
+             [height]=#height#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertTX_Polygon" parameterClass="TX_Polygon">
+        INSERT INTO TX_Polygon
+         (
+         [LayerID],
+         [ID],
+         [Seq],
+         [Text],
+         [Points],
+         [Type],
+         [ExAttribute],
+         [x],
+         [y],
+         [width],
+         [height]
+         )
+       VALUES
+         (
+         #LayerID#,
+         #ID#,
+         #Seq#,
+         #Text#,
+         #Points#,
+         #Type#,
+         #ExAttribute#,
+         #x#,
+         #y#,
+         #width#,
+         #height#
+         )
+
+   </insert>
+   
+   <select id="GetTX_PolygonRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM TX_Polygon
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LayerID">[LayerID]='$LayerID$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Seq">[Seq]='$Seq$'</isNotNull>
+       <isNotNull prepend="AND" property="Text">[Text]='$Text$'</isNotNull>
+       <isNotNull prepend="AND" property="Points">[Points]='$Points$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="ExAttribute">[ExAttribute]='$ExAttribute$'</isNotNull>
+       <isNotNull prepend="AND" property="x">[x]='$x$'</isNotNull>
+       <isNotNull prepend="AND" property="y">[y]='$y$'</isNotNull>
+       <isNotNull prepend="AND" property="width">[width]='$width$'</isNotNull>
+       <isNotNull prepend="AND" property="height">[height]='$height$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetTX_PolygonRowCount" parameterClass="string">
+    select count(*) from TX_Polygon $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
