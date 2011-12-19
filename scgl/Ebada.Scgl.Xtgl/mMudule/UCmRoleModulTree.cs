@@ -106,8 +106,8 @@ namespace Ebada.Scgl.Xtgl {
 
         }
         private void IniWFTData(string WFClassId,ref List<mModule> list2)
-        { 
-                IList<WF_WorkFlow> wfli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", "where WFClassId='" + WFClassId+"'");
+        {
+            IList<WF_WorkFlow> wfli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", "where WFClassId='" + WFClassId + "'  order by FlowCaption");
                 foreach (WF_WorkFlow wf in wfli)
                 {
                    
@@ -149,13 +149,9 @@ namespace Ebada.Scgl.Xtgl {
         }
         private void ReWFData(string WFClassId,ref List<mModule> list2)
         {
-            IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where FatherId='" + WFClassId +"'");
+            IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where FatherId='" + WFClassId + "' order by Caption");
             foreach (WF_WorkFlowClass wfc in wfcli)
             {
-                
-                IniWFTData(wfc.WFClassId, ref list2);
-                ReWFData(wfc.WFClassId, ref list2);
-
                 mModule md = new mModule();
                 md.Modu_ID = wfc.WFClassId;
                 md.ModuName = wfc.Caption;
@@ -163,12 +159,16 @@ namespace Ebada.Scgl.Xtgl {
                 md.ModuTypes = "hide";
                 md.Description = "工作流";
                 list2.Add(md); 
+                IniWFTData(wfc.WFClassId, ref list2);
+                ReWFData(wfc.WFClassId, ref list2);
+
+                
             }
         }
         private void IniWFData(string parentid)
         {
             List<mModule> list2 = new List<mModule>();
-            IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where clLevel='0'");
+            IList<WF_WorkFlowClass> wfcli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowClass>("SelectWF_WorkFlowClassList", "where clLevel='0' order by Caption");
             foreach (WF_WorkFlowClass wfc in wfcli)
             {
 

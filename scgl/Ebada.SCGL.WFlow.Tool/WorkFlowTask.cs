@@ -783,6 +783,12 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 
                 }
+                if (li.Count == 0 )
+                {
+                    DataTable dt = new DataTable();
+                    return dt; 
+                    
+                }
                 return ConvertHelper.ToDataTable(li); 
                
             }

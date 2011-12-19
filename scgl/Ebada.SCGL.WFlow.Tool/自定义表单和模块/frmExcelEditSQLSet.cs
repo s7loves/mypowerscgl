@@ -56,7 +56,7 @@ namespace Ebada.SCGL.WFlow.Tool
             if (rbnWorkFixValue.Checked == true)
             {
 
-                strSQL = "select top 1 '" + tetWorkFixValue.Text + "' from LP_Temple where 9=9";
+                strSQL = "select top 1 '" + tetWorkFixValue.Text.Replace("\r\n"," ") + "' from LP_Temple where 9=9";
             }
             else if (rbnWorkTable.Checked == true)
             {

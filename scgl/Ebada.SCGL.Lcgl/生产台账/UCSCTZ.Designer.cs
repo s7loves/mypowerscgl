@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class UCBPBJJHB
+    partial class UCSCTZ
     {
         /// <summary> 
         /// Required designer variable.
@@ -220,6 +220,7 @@
             this.barCopy.Caption = "拷贝计划";
             this.barCopy.Id = 21;
             this.barCopy.Name = "barCopy";
+            this.barCopy.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barCopy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barCopy_ItemClick);
             // 
             // btExport0
@@ -244,7 +245,7 @@
             // 
             // barExplorYear
             // 
-            this.barExplorYear.Caption = "导出明年计划";
+            this.barExplorYear.Caption = "导出台账";
             this.barExplorYear.Id = 16;
             this.barExplorYear.Name = "barExplorYear";
             this.barExplorYear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorYear_ItemClick);
@@ -332,7 +333,7 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UCBPBJJHB
+            // UCSCTZ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -341,7 +342,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCBPBJJHB";
+            this.Name = "UCSCTZ";
             this.Size = new System.Drawing.Size(606, 328);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();

@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class frmWFChange
+    partial class frmYearSelect
     {
         /// <summary>
         /// Required designer variable.
@@ -93,7 +93,7 @@
             this.groupBox1.Size = new System.Drawing.Size(375, 129);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "流程跳转";
+            this.groupBox1.Text = "年份选择";
             // 
             // comboBoxEdit2
             // 
@@ -117,11 +117,11 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(71, 56);
+            this.labelControl4.Location = new System.Drawing.Point(95, 56);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(48, 14);
+            this.labelControl4.Size = new System.Drawing.Size(24, 14);
             this.labelControl4.TabIndex = 12;
-            this.labelControl4.Text = "流程节点";
+            this.labelControl4.Text = "年份";
             this.labelControl4.Click += new System.EventHandler(this.labelControl4_Click_1);
             // 
             // labelControl5
@@ -149,7 +149,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // frmWFChange
+            // frmYearSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -157,9 +157,9 @@
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmWFChange";
+            this.Name = "frmYearSelect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "流程跳转";
+            this.Text = "导出年份选择";
             this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
