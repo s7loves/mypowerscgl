@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="TX_Point" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="TX_Point"  type="Itop.YHPC.Model.TX_Point,Itop.YHPC.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="TX_Point_AllColumns" class="TX_Point">
+        <result property="LayerID" column="LayerID" />
+        <result property="ID" column="ID" />
+        <result property="Seq" column="Seq" />
+        <result property="Text" column="Text" />
+        <result property="Points" column="Points" />
+        <result property="Type" column="Type" />
+        <result property="ExAttribute" column="ExAttribute" />
+        <result property="x" column="x" />
+        <result property="y" column="y" />
+        <result property="width" column="width" />
+        <result property="height" column="height" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectTX_PointList" resultMap="TX_Point_AllColumns" parameterClass="string">
+        SELECT 
+         [LayerID],
+         [ID],
+         [Seq],
+         [Text],
+         [Points],
+         [Type],
+         [ExAttribute],
+         [x],
+         [y],
+         [width],
+         [height]
+          FROM TX_Point
+          $value$
+   </select>
+   
+   <select id="SelectTX_PointByHash" parameterClass="Hashtable">
+         SELECT 
+         [LayerID],
+         [ID],
+         [Seq],
+         [Text],
+         [Points],
+         [Type],
+         [ExAttribute],
+         [x],
+         [y],
+         [width],
+         [height]
+          FROM TX_Point
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LayerID">[LayerID]='$LayerID$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Seq">[Seq]='$Seq$'</isNotNull>
+       <isNotNull prepend="AND" property="Text">[Text]='$Text$'</isNotNull>
+       <isNotNull prepend="AND" property="Points">[Points]='$Points$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="ExAttribute">[ExAttribute]='$ExAttribute$'</isNotNull>
+       <isNotNull prepend="AND" property="x">[x]='$x$'</isNotNull>
+       <isNotNull prepend="AND" property="y">[y]='$y$'</isNotNull>
+       <isNotNull prepend="AND" property="width">[width]='$width$'</isNotNull>
+       <isNotNull prepend="AND" property="height">[height]='$height$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectTX_PointByKey" resultMap="TX_Point_AllColumns" parameterClass="TX_Point">
+         SELECT 
+         [LayerID],
+         [ID],
+         [Seq],
+         [Text],
+         [Points],
+         [Type],
+         [ExAttribute],
+         [x],
+         [y],
+         [width],
+         [height]
+         FROM TX_Point
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteTX_Point" parameterClass="TX_Point">
+        DELETE FROM 
+         TX_Point
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteTX_PointByWhere" parameterClass="string">
+     delete from TX_Point $value$
+   </delete>
+   
+   <delete id="DeleteTX_PointByKey" parameterClass="string">
+        DELETE FROM 
+         TX_Point
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateTX_Point" parameterClass="TX_Point" resultClass="int">
+          UPDATE TX_Point
+           SET
+             [LayerID]=#LayerID#,
+             [Seq]=#Seq#,
+             [Text]=#Text#,
+             [Points]=#Points#,
+             [Type]=#Type#,
+             [ExAttribute]=#ExAttribute#,
+             [x]=#x#,
+             [y]=#y#,
+             [width]=#width#,
+             [height]=#height#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertTX_Point" parameterClass="TX_Point">
+        INSERT INTO TX_Point
+         (
+         [LayerID],
+         [ID],
+         [Seq],
+         [Text],
+         [Points],
+         [Type],
+         [ExAttribute],
+         [x],
+         [y],
+         [width],
+         [height]
+         )
+       VALUES
+         (
+         #LayerID#,
+         #ID#,
+         #Seq#,
+         #Text#,
+         #Points#,
+         #Type#,
+         #ExAttribute#,
+         #x#,
+         #y#,
+         #width#,
+         #height#
+         )
+
+   </insert>
+   
+   <select id="GetTX_PointRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM TX_Point
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LayerID">[LayerID]='$LayerID$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Seq">[Seq]='$Seq$'</isNotNull>
+       <isNotNull prepend="AND" property="Text">[Text]='$Text$'</isNotNull>
+       <isNotNull prepend="AND" property="Points">[Points]='$Points$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="ExAttribute">[ExAttribute]='$ExAttribute$'</isNotNull>
+       <isNotNull prepend="AND" property="x">[x]='$x$'</isNotNull>
+       <isNotNull prepend="AND" property="y">[y]='$y$'</isNotNull>
+       <isNotNull prepend="AND" property="width">[width]='$width$'</isNotNull>
+       <isNotNull prepend="AND" property="height">[height]='$height$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetTX_PointRowCount" parameterClass="string">
+    select count(*) from TX_Point $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

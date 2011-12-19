@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PX_Objects" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PX_Objects"  type="Itop.YHPC.Model.PX_Objects,Itop.YHPC.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PX_Objects_AllColumns" class="PX_Objects">
+        <result property="layerid" column="layerid" />
+        <result property="id" column="id" />
+        <result property="sbid" column="sbid" />
+        <result property="symbolid" column="symbolid" />
+        <result property="seq" column="seq" />
+        <result property="text" column="text" />
+        <result property="type" column="type" />
+        <result property="points" column="points" />
+        <result property="ExData" column="ExData" />
+        <result property="X" column="X" />
+        <result property="Y" column="Y" />
+        <result property="Width" column="Width" />
+        <result property="Height" column="Height" />
+        <result property="Rowstate" column="Rowstate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPX_ObjectsList" resultMap="PX_Objects_AllColumns" parameterClass="string">
+        SELECT 
+         [layerid],
+         [id],
+         [sbid],
+         [symbolid],
+         [seq],
+         [text],
+         [type],
+         [points],
+         [ExData],
+         [X],
+         [Y],
+         [Width],
+         [Height],
+         [Rowstate]
+          FROM PX_Objects
+          $value$
+   </select>
+   
+   <select id="SelectPX_ObjectsByHash" parameterClass="Hashtable">
+         SELECT 
+         [layerid],
+         [id],
+         [sbid],
+         [symbolid],
+         [seq],
+         [text],
+         [type],
+         [points],
+         [ExData],
+         [X],
+         [Y],
+         [Width],
+         [Height],
+         [Rowstate]
+          FROM PX_Objects
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="layerid">[layerid]='$layerid$'</isNotNull>
+       <isNotNull prepend="AND" property="id">[id]='$id$'</isNotNull>
+       <isNotNull prepend="AND" property="sbid">[sbid]='$sbid$'</isNotNull>
+       <isNotNull prepend="AND" property="symbolid">[symbolid]='$symbolid$'</isNotNull>
+       <isNotNull prepend="AND" property="seq">[seq]='$seq$'</isNotNull>
+       <isNotNull prepend="AND" property="text">[text]='$text$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="points">[points]='$points$'</isNotNull>
+       <isNotNull prepend="AND" property="ExData">[ExData]='$ExData$'</isNotNull>
+       <isNotNull prepend="AND" property="X">[X]='$X$'</isNotNull>
+       <isNotNull prepend="AND" property="Y">[Y]='$Y$'</isNotNull>
+       <isNotNull prepend="AND" property="Width">[Width]='$Width$'</isNotNull>
+       <isNotNull prepend="AND" property="Height">[Height]='$Height$'</isNotNull>
+       <isNotNull prepend="AND" property="Rowstate">[Rowstate]='$Rowstate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPX_ObjectsByKey" resultMap="PX_Objects_AllColumns" parameterClass="PX_Objects">
+         SELECT 
+         [layerid],
+         [id],
+         [sbid],
+         [symbolid],
+         [seq],
+         [text],
+         [type],
+         [points],
+         [ExData],
+         [X],
+         [Y],
+         [Width],
+         [Height],
+         [Rowstate]
+         FROM PX_Objects
+         WHERE 
+           id = #id#
+
+   </select>
+ 
+   <delete id="DeletePX_Objects" parameterClass="PX_Objects">
+        DELETE FROM 
+         PX_Objects
+           WHERE
+         id = #id#
+
+   </delete>
+   
+   <delete id="DeletePX_ObjectsByWhere" parameterClass="string">
+     delete from PX_Objects $value$
+   </delete>
+   
+   <delete id="DeletePX_ObjectsByKey" parameterClass="string">
+        DELETE FROM 
+         PX_Objects
+           WHERE
+         id = #id#
+    
+   </delete>
+   
+   <update id="UpdatePX_Objects" parameterClass="PX_Objects" resultClass="int">
+          UPDATE PX_Objects
+           SET
+             [layerid]=#layerid#,
+             [sbid]=#sbid#,
+             [symbolid]=#symbolid#,
+             [seq]=#seq#,
+             [text]=#text#,
+             [type]=#type#,
+             [points]=#points#,
+             [ExData]=#ExData#,
+             [X]=#X#,
+             [Y]=#Y#,
+             [Width]=#Width#,
+             [Height]=#Height#,
+             [Rowstate]=#Rowstate#
+            WHERE 
+              id = #id#
+
+   </update>
+  
+   <insert id="InsertPX_Objects" parameterClass="PX_Objects">
+        INSERT INTO PX_Objects
+         (
+         [layerid],
+         [id],
+         [sbid],
+         [symbolid],
+         [seq],
+         [text],
+         [type],
+         [points],
+         [ExData],
+         [X],
+         [Y],
+         [Width],
+         [Height],
+         [Rowstate]
+         )
+       VALUES
+         (
+         #layerid#,
+         #id#,
+         #sbid#,
+         #symbolid#,
+         #seq#,
+         #text#,
+         #type#,
+         #points#,
+         #ExData#,
+         #X#,
+         #Y#,
+         #Width#,
+         #Height#,
+         #Rowstate#
+         )
+
+   </insert>
+   
+   <select id="GetPX_ObjectsRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PX_Objects
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="layerid">[layerid]='$layerid$'</isNotNull>
+       <isNotNull prepend="AND" property="id">[id]='$id$'</isNotNull>
+       <isNotNull prepend="AND" property="sbid">[sbid]='$sbid$'</isNotNull>
+       <isNotNull prepend="AND" property="symbolid">[symbolid]='$symbolid$'</isNotNull>
+       <isNotNull prepend="AND" property="seq">[seq]='$seq$'</isNotNull>
+       <isNotNull prepend="AND" property="text">[text]='$text$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="points">[points]='$points$'</isNotNull>
+       <isNotNull prepend="AND" property="ExData">[ExData]='$ExData$'</isNotNull>
+       <isNotNull prepend="AND" property="X">[X]='$X$'</isNotNull>
+       <isNotNull prepend="AND" property="Y">[Y]='$Y$'</isNotNull>
+       <isNotNull prepend="AND" property="Width">[Width]='$Width$'</isNotNull>
+       <isNotNull prepend="AND" property="Height">[Height]='$Height$'</isNotNull>
+       <isNotNull prepend="AND" property="Rowstate">[Rowstate]='$Rowstate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPX_ObjectsRowCount" parameterClass="string">
+    select count(*) from PX_Objects $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
