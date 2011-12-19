@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <sqlMap namespace="TX_Project" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="TX_Project"  type="Itop.YHPC.Model.TX_Project,Itop.YHPC.Model" />
+  <typeAlias alias="TX_Project"  type="Ebada.Scgl.Model.TX_Project,Ebada.Scgl.Model" />
   </alias>
   <resultMaps>
       <resultMap id="TX_Project_AllColumns" class="TX_Project">

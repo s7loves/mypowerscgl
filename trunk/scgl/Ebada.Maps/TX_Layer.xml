@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <sqlMap namespace="TX_Layer" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="TX_Layer"  type="Itop.YHPC.Model.TX_Layer,Itop.YHPC.Model" />
+  <typeAlias alias="TX_Layer"  type="Ebada.Scgl.Model.TX_Layer,Ebada.Scgl.Model" />
   </alias>
   <resultMaps>
       <resultMap id="TX_Layer_AllColumns" class="TX_Layer">
