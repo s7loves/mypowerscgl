@@ -1,16 +1,16 @@
 /**********************************************
 这是代码自动生成的，如果重新生成，所做的改动将会丢失
-系统:Itop隐患排查
+系统:Ebada农电局生产管理
 模块:系统平台
-Itop.com 版权所有
+Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-12-19 17:01:32
+生成时间:2011-12-19 21:04:16
 ***********************************************/
 
 using System;
 using System.Threading;
 using System.ComponentModel;
-namespace Itop.YHPC.Model
+namespace Ebada.Scgl.Model
 {
     /// <summary>
     ///[TX_Polygon]业务实体类

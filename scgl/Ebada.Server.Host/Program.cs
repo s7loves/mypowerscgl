@@ -26,7 +26,8 @@ namespace Ebada.Server.Host
                 dbhelper.UpdateDatabase();
 
                 Console.ReadLine();
-            } catch (Exception er) { Console.WriteLine(er.Message); Console.ReadLine(); }
+            } catch (Exception er) { 
+                Console.WriteLine(er.Message); Console.ReadLine(); }
         }
     }
 }
