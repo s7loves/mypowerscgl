@@ -66,7 +66,7 @@
             this.dockPanel1.Options.ShowCloseButton = false;
             this.dockPanel1.Options.ShowMaximizeButton = false;
             this.dockPanel1.OriginalSize = new System.Drawing.Size(430, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(430, 559);
+            this.dockPanel1.Size = new System.Drawing.Size(430, 596);
             // 
             // dockPanel1_Container
             // 
@@ -74,14 +74,14 @@
             this.dockPanel1_Container.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(424, 531);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(424, 568);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // frmModleFjly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(430, 559);
+            this.ClientSize = new System.Drawing.Size(430, 596);
             this.Controls.Add(this.dockPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;

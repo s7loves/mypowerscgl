@@ -44,7 +44,6 @@
             this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkDatabase = new System.Windows.Forms.RadioButton();
-            this.tetWorkFixValue = new DevExpress.XtraEditors.TextEdit();
             this.tetWorkPos = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.cbxWorkTableColumns = new System.Windows.Forms.ComboBox();
@@ -58,6 +57,7 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkExcel = new System.Windows.Forms.RadioButton();
             this.rbnWorkTable = new System.Windows.Forms.RadioButton();
+            this.tetWorkFixValue = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -65,8 +65,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -82,6 +82,7 @@
             this.groupControl1.Controls.Add(this.ceBind);
             this.groupControl1.Controls.Add(this.simpleButton2);
             this.groupControl1.Controls.Add(this.simpleButton1);
+            this.groupControl1.Controls.Add(this.tetWorkFixValue);
             this.groupControl1.Controls.Add(this.tetWorkSQL);
             this.groupControl1.Controls.Add(this.cbxWorkDbTableColumns);
             this.groupControl1.Controls.Add(this.cbxWorkDbTable);
@@ -89,7 +90,6 @@
             this.groupControl1.Controls.Add(this.labelControl23);
             this.groupControl1.Controls.Add(this.labelControl24);
             this.groupControl1.Controls.Add(this.rbnWorkDatabase);
-            this.groupControl1.Controls.Add(this.tetWorkFixValue);
             this.groupControl1.Controls.Add(this.tetWorkPos);
             this.groupControl1.Controls.Add(this.labelControl7);
             this.groupControl1.Controls.Add(this.cbxWorkTableColumns);
@@ -241,13 +241,6 @@
             this.rbnWorkDatabase.Text = "从数据库取";
             this.rbnWorkDatabase.UseVisualStyleBackColor = true;
             // 
-            // tetWorkFixValue
-            // 
-            this.tetWorkFixValue.Location = new System.Drawing.Point(69, 47);
-            this.tetWorkFixValue.Name = "tetWorkFixValue";
-            this.tetWorkFixValue.Size = new System.Drawing.Size(395, 21);
-            this.tetWorkFixValue.TabIndex = 53;
-            // 
             // tetWorkPos
             // 
             this.tetWorkPos.Location = new System.Drawing.Point(299, 115);
@@ -369,6 +362,13 @@
             this.rbnWorkTable.Text = "从表单取";
             this.rbnWorkTable.UseVisualStyleBackColor = true;
             // 
+            // tetWorkFixValue
+            // 
+            this.tetWorkFixValue.Location = new System.Drawing.Point(69, 46);
+            this.tetWorkFixValue.Name = "tetWorkFixValue";
+            this.tetWorkFixValue.Size = new System.Drawing.Size(395, 23);
+            this.tetWorkFixValue.TabIndex = 61;
+            // 
             // frmGridcontrolSQLSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -389,8 +389,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -405,7 +405,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl23;
         private DevExpress.XtraEditors.LabelControl labelControl24;
         private System.Windows.Forms.RadioButton rbnWorkDatabase;
-        private DevExpress.XtraEditors.TextEdit tetWorkFixValue;
         private DevExpress.XtraEditors.TextEdit tetWorkPos;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private System.Windows.Forms.ComboBox cbxWorkTableColumns;
@@ -427,5 +426,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.MemoEdit tetWorkFixValue;
     }
 }

@@ -81,6 +81,7 @@
     <Compile Include="PJ_cysbmfdtz.cs" />
     <Compile Include="PJ_dlxldrqtz.cs" />
     <Compile Include="PJ_dyk.cs" />
+    <Compile Include="PJ_fsctz.cs" />
     <Compile Include="PJ_gzrjnr.cs" />
     <Compile Include="PJ_jggcjh.cs" />
     <Compile Include="PJ_khdldrqtz.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="PJ_pbdldrqtz.cs" />
     <Compile Include="PJ_qxfl.cs" />
     <Compile Include="PJ_sbxsqd.cs" />
+    <Compile Include="PJ_sctz.cs" />
     <Compile Include="PJ_sdytz.cs" />
     <Compile Include="PJ_sheetTemp.cs" />
     <Compile Include="PJ_tdjh.cs" />

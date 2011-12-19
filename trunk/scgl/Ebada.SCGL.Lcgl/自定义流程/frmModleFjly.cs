@@ -246,17 +246,20 @@ namespace Ebada.Scgl.Lcgl
                 dockPanel1.Controls.Add(filecontrol);
                 currentPosY += 20;
             }
-            
-            //Button btn_Submit = new Button();
-            //dockPanel1.Controls.Add(btn_Submit);
-            //btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
-            //btn_Submit.Text = "提交";
-            //btn_Submit.Click += new EventHandler(btn_Submit_Click);
+
+            Button btn_Submit = new Button();
+            dockPanel1.Controls.Add(btn_Submit);
+            btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
+            btn_Submit.Text = "关闭";
+            btn_Submit.Click += new EventHandler(btn_Hide);
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
         }
-   
-        
+
+        public void btn_Hide(object sender, EventArgs e)
+        {
+            this.Close();
+        }
        public void btn_Submit_Click(object sender, EventArgs e)
         {
             

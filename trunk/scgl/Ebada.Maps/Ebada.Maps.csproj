@@ -222,6 +222,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_fsctz.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PJ_sctz.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

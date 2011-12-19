@@ -32,11 +32,11 @@ namespace Ebada.Scgl.Lcgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCBPBJJHB : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCSCTZ : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_bpbjjhb> gridViewOperation;
+        private GridViewOperation<PJ_sctz> gridViewOperation;
 
-        public event SendDataEventHandler<PJ_bpbjjhb> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_sctz> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
@@ -46,7 +46,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        private string varDbTableName = "PJ_bpbjjhb,LP_Record";
+        private string varDbTableName = "PJ_sctz,LP_Record";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -85,6 +85,7 @@ namespace Ebada.Scgl.Lcgl
                     if (RecordWorkTask.HaveRunSPYJRole(currRecord.Kind) || RecordWorkTask.HaveRunFuJianRole(currRecord.Kind))
                     {
                         barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                        if (fjly == null) fjly = new frmModleFjly();
                     }
                     liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                     liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
@@ -116,23 +117,23 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value;
             }
         }
-        public UCBPBJJHB()
+        public UCSCTZ()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_bpbjjhb>(gridControl1, gridView1, barManager1, new frmBPBJJHBEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_bpbjjhb>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<PJ_sctz>(gridControl1, gridView1, barManager1, new frmSCTZEdit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_sctz>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_bpbjjhb>(gridViewOperation_AfterAdd);
-            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_bpbjjhb>(gridViewOperation_AfterDelete);
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_bpbjjhb>(gridViewOperation_BeforeDelete);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_sctz>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_sctz>(gridViewOperation_AfterDelete);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_sctz>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             if (isWorkflowCall && fjly==null)
             {
                 fjly = new frmModleFjly();
             }
         }
-        void gridViewOperation_AfterDelete(PJ_bpbjjhb obj)
+        void gridViewOperation_AfterDelete(PJ_sctz obj)
         {
 
             if (isWorkflowCall)
@@ -147,7 +148,7 @@ namespace Ebada.Scgl.Lcgl
 
             RefreshData(" where OrgCode='" + parentID + "' ");
         }
-        void gridViewOperation_AfterAdd(PJ_bpbjjhb newobj)
+        void gridViewOperation_AfterAdd(PJ_sctz newobj)
         {
             if (isWorkflowCall)
             {
@@ -163,12 +164,12 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
         }
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_bpbjjhb> e)
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sctz> e)
         {
            
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_bpbjjhb> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_sctz> e)
         {
             if (parentID == null)
                 e.Cancel = true;
@@ -215,7 +216,7 @@ namespace Ebada.Scgl.Lcgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_bpbjjhb);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_sctz);
         }
         private void hideColumn(string colname)
         {
@@ -267,7 +268,7 @@ namespace Ebada.Scgl.Lcgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_bpbjjhb> GridViewOperation
+        public GridViewOperation<PJ_sctz> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -276,13 +277,12 @@ namespace Ebada.Scgl.Lcgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_bpbjjhb newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_sctz newobj)
         {
             if (parentID == null) return;
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
-            newobj.jhnf = (DateTime.Now.Year + 1).ToString() ;
-            newobj.CreateDate = DateTime.Now;
+            newobj.indate = DateTime.Now;
           
         }
         /// <summary>
@@ -324,9 +324,15 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            IList<PJ_bpbjjhb> datalist = gridView1.DataSource as IList<PJ_bpbjjhb>;
-            ExportBPBJJHBEdit etdjh = new ExportBPBJJHBEdit();
-            etdjh.ExportExcel(datalist);
+            //IList<PJ_sctz> datalist = gridView1.DataSource as IList<PJ_sctz>;
+            frmYearSelect fys = new frmYearSelect();
+            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_sctz";
+            if (fys.ShowDialog() == DialogResult.OK)
+            {
+
+                ExportSCTZEdit etdjh = new ExportSCTZEdit();
+                etdjh.ExportExcel(parentID,fys.strYear);
+            }
            
            
            
@@ -344,23 +350,29 @@ namespace Ebada.Scgl.Lcgl
             else
                 fm.Status = "edit";
             fm.Kind = currRecord.Kind;
-            ExportBPBJJHBEdit export = new ExportBPBJJHBEdit();
-            export.CurrRecord = currRecord;
-            export.IsWorkflowCall = isWorkflowCall;
-            export.ParentTemple = parentTemple;
-            export.RecordWorkFlowData = WorkFlowData;
-
-            export.ExportExcelSubmit(ref parentTemple, parentID, false);
-
-            fm.ParentTemple = parentTemple;
-            if (fm.ShowDialog() == DialogResult.OK)
+            frmYearSelect fys = new frmYearSelect();
+            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_sctz";
+            if (fys.ShowDialog() == DialogResult.OK)
             {
-                fjly.btn_Submit_Click(sender,e);
-                if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
-                else
-                    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
-                gridControl1.FindForm().Close();
+                ExportSCTZEdit export = new ExportSCTZEdit();
+                export.CurrRecord = currRecord;
+                export.IsWorkflowCall = isWorkflowCall;
+                export.ParentTemple = parentTemple;
+                export.RecordWorkFlowData = WorkFlowData;
+
+                export.ExportExcelSubmit(ref parentTemple, parentID, fys.strYear, false);
+
+                fm.ParentTemple = parentTemple;
+                if (fm.ShowDialog() == DialogResult.OK)
+                {
+                    if (fjly == null) fjly = new frmModleFjly();
+                    fjly.btn_Submit_Click(sender, e);
+                    if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID, fys.strYear);
+                    else
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID, fys.strYear);
+                    gridControl1.FindForm().Close();
+                }
             }
         }
 
@@ -385,36 +397,40 @@ namespace Ebada.Scgl.Lcgl
 
         private void barCopy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认复制去年计划生成今年计划 ?") != DialogResult.OK)
-            {
-                return;
-            }
-            IList<PJ_bpbjjhb> bjlist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_bpbjjhb>("where orgcode='" + btGdsList.EditValue + "' AND jhnf='"+DateTime.Now.Year+"'");
-            List<PJ_bpbjjhb> list = new List<PJ_bpbjjhb>();
-            foreach (PJ_bpbjjhb bj in bjlist)
-            {
-                bj.ID = bj.CreateID();
-                bj.jhnf = (DateTime.Now.Year+1).ToString();
-                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                list.Add(bj);
-            } 
-            List<SqlQueryObject> list3 = new List<SqlQueryObject>();
-            if (list.Count > 0)
-            {
-                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Insert, list.ToArray());
-                list3.Add(obj3);
-            }
+            ////请求确认
+            //if (MsgBox.ShowAskMessageBox("是否确认复制去年计划生成今年计划 ?") != DialogResult.OK)
+            //{
+            //    return;
+            //}
+            //IList<PJ_sctz> bjlist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sctz>("where orgcode='" + btGdsList.EditValue + "' AND jhnf='"+DateTime.Now.Year+"'");
+            //List<PJ_sctz> list = new List<PJ_sctz>();
+            //foreach (PJ_sctz bj in bjlist)
+            //{
+            //    bj.ID = bj.CreateID();
+            //    bj.jhnf = (DateTime.Now.Year+1).ToString();
+            //    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+            //    list.Add(bj);
+            //} 
+            //List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+            //if (list.Count > 0)
+            //{
+            //    SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Insert, list.ToArray());
+            //    list3.Add(obj3);
+            //}
 
-            MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            RefreshData(" where OrgCode='" + parentID + "' ");
+            //MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+            //RefreshData(" where OrgCode='" + parentID + "' ");
         }
 
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
-            ExportBPBJJHBEdit etdjh = new ExportBPBJJHBEdit();
-            etdjh.ExportExcelYear(parentID);
+             frmYearSelect fys = new frmYearSelect();
+            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_sctz";
+            if (fys.ShowDialog() == DialogResult.OK)
+            {
+                ExportSCTZEdit etdjh = new ExportSCTZEdit();
+                etdjh.ExportExcelYear(parentID, fys.strYear);
+            }
         }
 
       

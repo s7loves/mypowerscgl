@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_fsctz" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_fsctz"  type="Ebada.Scgl.Model.PJ_fsctz,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_fsctz_AllColumns" class="PJ_fsctz">
+        <result property="ID" column="ID" />
+        <result property="OrgName" column="OrgName" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="wpmc" column="wpmc" />
+        <result property="wpgg" column="wpgg" />
+        <result property="wpdw" column="wpdw" />
+        <result property="wpsl" column="wpsl" />
+        <result property="indate" column="indate" />
+        <result property="Remark" column="Remark" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_fsctzList" resultMap="PJ_fsctz_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [indate],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_fsctz
+          $value$
+   </select>
+   
+   <select id="SelectPJ_fsctzByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [indate],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_fsctz
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="wpmc">[wpmc]='$wpmc$'</isNotNull>
+       <isNotNull prepend="AND" property="wpgg">[wpgg]='$wpgg$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
+       <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
+       <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_fsctzByKey" resultMap="PJ_fsctz_AllColumns" parameterClass="PJ_fsctz">
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [indate],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+         FROM PJ_fsctz
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_fsctz" parameterClass="PJ_fsctz">
+        DELETE FROM 
+         PJ_fsctz
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_fsctzByWhere" parameterClass="string">
+     delete from PJ_fsctz $value$
+   </delete>
+   
+   <delete id="DeletePJ_fsctzByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_fsctz
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_fsctz" parameterClass="PJ_fsctz" resultClass="int">
+          UPDATE PJ_fsctz
+           SET
+             [OrgName]=#OrgName#,
+             [OrgCode]=#OrgCode#,
+             [wpmc]=#wpmc#,
+             [wpgg]=#wpgg#,
+             [wpdw]=#wpdw#,
+             [wpsl]=#wpsl#,
+             [indate]=#indate#,
+             [Remark]=#Remark#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_fsctz" parameterClass="PJ_fsctz">
+        INSERT INTO PJ_fsctz
+         (
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [indate],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgName#,
+         #OrgCode#,
+         #wpmc#,
+         #wpgg#,
+         #wpdw#,
+         #wpsl#,
+         #indate#,
+         #Remark#,
+         #S1#,
+         #S2#,
+         #S3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_fsctzRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_fsctz
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="wpmc">[wpmc]='$wpmc$'</isNotNull>
+       <isNotNull prepend="AND" property="wpgg">[wpgg]='$wpgg$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
+       <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
+       <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_fsctzRowCount" parameterClass="string">
+    select count(*) from PJ_fsctz $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
