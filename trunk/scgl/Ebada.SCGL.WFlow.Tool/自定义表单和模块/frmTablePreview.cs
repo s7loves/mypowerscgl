@@ -826,7 +826,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 {
                     continue;
                 }
-                if (content[i] != null)
+                if (content.Length>i&&content[i] != null)
                     FillMutilRowsT(ea, lp, content[i], arrCellCount[i], arrCol[i]);
             }
         }

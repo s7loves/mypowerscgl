@@ -73,7 +73,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 if (grid.Columns[i].FieldName == "序号" || grid.Columns[i].FieldName == "月份" || grid.Columns[i].FieldName == "季度")
                 {
-                    grid.Columns[i].Width = 20;
+                    grid.Columns[i].MinWidth = 20;
                 }
                 Regex r1 = new Regex(@"(?<=" + i + ":).*?(?=])");
                 string strcom = r1.Match(comItem[i]).Value;
