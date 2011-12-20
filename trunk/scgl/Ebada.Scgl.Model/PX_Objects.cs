@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-12-19 21:04:15
+生成时间:2011-12-19 21:30:27
 ***********************************************/
 
 using System;
@@ -33,8 +33,7 @@ namespace Ebada.Scgl.Model
         private double _x=0; 
         private double _y=0; 
         private double _width=0; 
-        private double _height=0; 
-        private byte[] _rowstate=new byte[]{};   
+        private double _height=0;   
         #endregion
   
   
@@ -292,24 +291,6 @@ namespace Ebada.Scgl.Model
                 if (_height as object == null || !_height.Equals(value))
                 {
                     _height = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：Rowstate
-        /// 属性描述：
-        /// 字段信息：[Rowstate],timestamp
-        /// </summary>
-        [DisplayNameAttribute("")]
-        public byte[] Rowstate
-        {
-            get { return _rowstate; }
-            set
-            {			
-                if (_rowstate as object == null || !_rowstate.Equals(value))
-                {
-                    _rowstate = value;
                 }
             }			 
         }
