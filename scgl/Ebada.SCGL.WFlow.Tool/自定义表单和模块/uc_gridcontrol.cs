@@ -407,10 +407,10 @@ namespace Ebada.SCGL.WFlow.Tool
                         de.Properties.Mask.UseMaskAsDisplayFormat = true;
                         oneCol = de.Text;
                     }
-                    if (oneCol != "")
+                    //if (oneCol != "")
                     {
                         //string splitRst = sh.GetPlitStringN(oneCol, wcount[i]);
-                            
+                        if (oneCol == "") oneCol = " ";
                         string splitRst = oneCol;
                         if (oneCol.Length > wcount[i]) splitRst = oneCol.Substring(0, wcount[i]);
                         //if (GetPlitLen(splitRst) > max)

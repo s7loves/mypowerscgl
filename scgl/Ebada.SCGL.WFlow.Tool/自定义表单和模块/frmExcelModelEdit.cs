@@ -376,6 +376,12 @@ namespace Ebada.SCGL.WFlow.Tool
                 comboBoxEdit5.Visible = true;
                 comboBoxEdit2.Properties.Items.Clear();
                 comboBoxEdit2.Properties.Items.Add("{0}年{1}月{2}日");
+                comboBoxEdit2.Properties.Items.Add("合同编号");
+            }
+                 else  if (lookUpEdit1.EditValue.ToString().IndexOf("uc_gridcontrol") > -1)
+            {
+                   comboBoxEdit2.Properties.Items.Clear();
+                   comboBoxEdit2.Properties.Items.Add("横向");
             }
             else
             {
@@ -387,6 +393,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     comboBoxEdit6.Properties.Items.Add("GotFocus");
                     comboBoxEdit6.Properties.Items.Add("LostFocus");
                 }
+                comboBoxEdit2.Properties.Items.Add("合同编号");
                 labelControl3.Visible = true;
                 textEdit7.Visible = true;
 
@@ -440,9 +447,9 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             string strpos = textEdit1.Text;
             string strlen = textEdit7.Text;
-            if (strpos.Substring(strpos.Length-1) != "|")
+            if (strpos.Length > 1 && strpos.Substring(strpos.Length - 1) != "|")
                 strpos = strpos + "|";
-            if (strlen.Substring(strlen.Length - 1) != "|")
+            if (strlen.Length>1&&strlen.Substring(strlen.Length - 1) != "|")
                 strlen = strlen + "|";
             string[] celpos = strpos.Split('|');
             string[] cellen = strlen.Split('|');
