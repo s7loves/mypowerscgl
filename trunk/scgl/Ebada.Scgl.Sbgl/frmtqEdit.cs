@@ -44,6 +44,7 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "Adress");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "xlCode");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xlCode2");
+            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "gtID");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "Owner");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "cby");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "cfy");
