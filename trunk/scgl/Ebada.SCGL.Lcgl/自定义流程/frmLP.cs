@@ -1278,6 +1278,46 @@ namespace Ebada.Scgl.Lcgl
             string[] extraWord = lp.ExtraWord.Split(pchar);
             List<int> arrCellCount = String2Int(arrtemp);
             string value = lp.ExtraWord;
+            if (lp.ExtraWord == "合同编号")
+            {
+                for (int j = 0; j < arrCellpos.Length; j++)
+                {
+                    if (str.Length > j)
+                    {
+                        string strNew = str.Substring(j, 1);
+                        ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                        if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
+                        {
+                            WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
+                            tfv.ControlValue = strNew;
+                            tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
+                            tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
+                            tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
+                            tfv.ExcelSheetName = xx.Name;
+
+                        }
+                        else
+                        {
+                            WF_TableFieldValue tfv = new WF_TableFieldValue();
+                            tfv.ControlValue = strNew;
+                            tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
+                            tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
+                            tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
+                            tfv.ExcelSheetName = xx.Name;
+                            valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
+                        }
+
+                    }
+                    else
+                        break;
+
+                }
+                LockExcel(wb, xx);
+                return;
+            }
+            else
             if (lp.ExtraWord != "")
             {
                 str = value.Replace("{0}", str);
@@ -1937,31 +1977,63 @@ namespace Ebada.Scgl.Lcgl
             StringHelper help = new StringHelper();
             //str = help.GetPlitString(str, cellcount);
             string[] arrRst = str.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int i = 0; i < arrRst.Length; i++)
+            if (lp.ExtraWord == "横向")
             {
-                
-                ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
-                if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
+                for (int i = 0; i < arrRst.Length; i++)
                 {
-                    WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]] as WF_TableFieldValue;
-                    tfv.ControlValue = arrRst[i];
-                    tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName + "-" + coltemp;
-                    tfv.XExcelPos = GetCellPos(arrCellPos)[0] + i;
-                    tfv.YExcelPos = GetCellPos(arrCellPos)[1];
-                    tfv.ExcelSheetName = activeSheetName;
+                    ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
+                    if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
+                    {
+                        WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]] as WF_TableFieldValue;
+                        tfv.ControlValue = arrRst[i];
+                        tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName + "-" + coltemp;
+                        tfv.XExcelPos = GetCellPos(arrCellPos)[0] + i;
+                        tfv.YExcelPos = GetCellPos(arrCellPos)[1];
+                        tfv.ExcelSheetName = activeSheetName;
 
+                    }
+                    else
+                    {
+                        WF_TableFieldValue tfv = new WF_TableFieldValue();
+                        tfv.ControlValue = arrRst[i];
+                        tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName + "-" + coltemp;
+                        tfv.XExcelPos = GetCellPos(arrCellPos)[0] + i;
+                        tfv.YExcelPos = GetCellPos(arrCellPos)[1];
+                        tfv.ExcelSheetName = activeSheetName;
+                        valuehs.Add(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1], tfv);
+                    }
                 }
-                else
+            }
+            else
+            {
+                for (int i = 0; i < arrRst.Length; i++)
                 {
-                    WF_TableFieldValue tfv = new WF_TableFieldValue();
-                    tfv.ControlValue = arrRst[i];
-                    tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName + "-" + coltemp;
-                    tfv.XExcelPos = GetCellPos(arrCellPos)[0] + i;
-                    tfv.YExcelPos = GetCellPos(arrCellPos)[1];
-                    tfv.ExcelSheetName = activeSheetName;
-                    valuehs.Add(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1], tfv);
+
+                    ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
+                    if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
+                    {
+                        WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]] as WF_TableFieldValue;
+                        tfv.ControlValue = arrRst[i];
+                        tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName + "-" + coltemp;
+                        tfv.XExcelPos = GetCellPos(arrCellPos)[0] + i;
+                        tfv.YExcelPos = GetCellPos(arrCellPos)[1];
+                        tfv.ExcelSheetName = activeSheetName;
+
+                    }
+                    else
+                    {
+                        WF_TableFieldValue tfv = new WF_TableFieldValue();
+                        tfv.ControlValue = arrRst[i];
+                        tfv.FieldId = lp.LPID;
+                        tfv.FieldName = lp.CellName + "-" + coltemp;
+                        tfv.XExcelPos = GetCellPos(arrCellPos)[0] + i;
+                        tfv.YExcelPos = GetCellPos(arrCellPos)[1];
+                        tfv.ExcelSheetName = activeSheetName;
+                        valuehs.Add(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1], tfv);
+                    }
                 }
             }
         }

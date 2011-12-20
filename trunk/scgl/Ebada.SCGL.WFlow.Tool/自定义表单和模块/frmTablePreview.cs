@@ -689,6 +689,23 @@ namespace Ebada.SCGL.WFlow.Tool
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
             //string[] extraWord = lp.ExtraWord.Split(pchar);
             string value=lp.ExtraWord;
+            if (lp.ExtraWord == "合同编号")
+            {
+                for (int j = 0; j < arrCellpos.Length; j++)
+                {
+                    if (str.Length > j)
+                    {
+                        string strNew = str.Substring(j, 1);
+                        ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                    }
+                    else
+                        break;
+
+                }
+                LockExcel(wb, xx);
+                return;
+            }
+            else
             if (lp.ExtraWord != "")
             {
                 str = value.Replace("{0}", str);
@@ -1001,10 +1018,21 @@ namespace Ebada.SCGL.WFlow.Tool
             StringHelper help = new StringHelper();
             //str = help.GetPlitString(str, cellcount);
             string[] arrRst = str.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int i = 0; i < arrRst.Length; i++)
+            if (lp.ExtraWord == "横向")
             {
-                ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
-                
+                for (int i = 0; i < arrRst.Length; i++)
+                {
+                    ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
+
+                }
+            }
+            else
+            {
+                for (int i = 0; i < arrRst.Length; i++)
+                {
+                    ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
+
+                }
             }
         }
 
