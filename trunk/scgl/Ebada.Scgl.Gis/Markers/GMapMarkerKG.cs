@@ -17,19 +17,19 @@ namespace Ebada.Scgl.Gis.Markers {
             Size = SizeSt = new Size(10, 6);
             Offset = new Point(-5, -3);
             Text = string.Empty;
-            mFont = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
+            mFont = new Font(FontFamily.GenericSansSerif, 9, FontStyle.Bold);
         }
         public override void OnRender(Graphics g) {
             System.Drawing.Point p1 = new System.Drawing.Point(LocalPosition.X, LocalPosition.Y);
             //new Pen(Color.FromArgb(144, Color.MidnightBlue));
             Rectangle r = new Rectangle(p1, SizeSt);
-            g.FillEllipse(Brushes.White, r);
-            g.DrawEllipse(Pen, r);
-            //if (!string.IsNullOrEmpty(Text)) {
-            //    Size sf = g.MeasureString(Text, mFont).ToSize();
+            g.FillRectangle(Brushes.White, r);
+            g.DrawRectangle(Pen, r);
+            if (!string.IsNullOrEmpty(Text)) {
+                Size sf = g.MeasureString(Text, mFont).ToSize();
 
-            //    g.DrawString(Text, mFont, Brushes.MidnightBlue, LocalPosition.X + 10 - sf.Width / 2, LocalPosition.Y + 30);
-            //}
+                g.DrawString(Text, mFont, Brushes.MidnightBlue, LocalPosition.X + 10 , LocalPosition.Y );
+            }
         }
 
         internal override void Update() {
