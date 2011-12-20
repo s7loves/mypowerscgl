@@ -13,6 +13,8 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using System.Drawing;
 using Ebada.Scgl.Gis.Markers;
+using System.Collections;
+using System.Data;
 namespace Ebada.Scgl.Gis {
      class MapBuilder {
          static RectangleF box = new RectangleF( 126.98f-10,46.63f-5, 20, 10);
@@ -116,11 +118,19 @@ namespace Ebada.Scgl.Gis {
          internal static void Build10kVLines(ref LineOverlay layer, string lineCode) {
              IList<PS_xl> xllist = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(string.Format("where left(Linecode,{0})='{1}' and LineVol = '10'", lineCode.Length, lineCode));
              string linecode = "";
+             string kgfilter = " where gtid in (select gtid from ps_gt  where Linecode='{0}')";
+             string byqfilter = " tqid  in (select a.tqid from ps_tq a, ps_gt b  where a.gtid=b.gtid and b.Linecode='{0}') ";
+             string byqfilter2 = "select a.*,b.gtid from ps_tqbyq a ,ps_tq b,ps_gt c  where a.tqid=b.tqid and  b.gtid=c.gtid and c.Linecode='{0}' ";
+             Dictionary<string, PointLatLng> gtdic = new Dictionary<string, PointLatLng>();
+             IList<PS_gt> list;
+             IList<PS_kg> kglist;
+             IList byqlist;
              foreach (PS_xl line in xllist) {
                  linecode = line.LineCode;
-                 IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(string.Format("where Linecode='{0}' order by gtcode", linecode));
-
-
+                 list= Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(string.Format("where Linecode='{0}' order by gtcode", linecode));
+                 kglist = Client.ClientHelper.PlatformSqlMap.GetList<PS_kg>(string.Format(kgfilter, linecode));
+                 byqlist = Client.ClientHelper.PlatformSqlMap.GetList("Select",string.Format(byqfilter2, linecode));
+                 DataTable byqtable = DataConvert.HashTablesToDataTable(byqlist);
                  GMapMarkerVector marker = null;
                  GMapMarkerVector preMarker = null;
                  List<PointLatLng> points = new List<PointLatLng>();
@@ -131,6 +141,7 @@ namespace Ebada.Scgl.Gis {
                  else
                      route.Stroke.Width = 2;
                  int count = 0;
+                 gtdic.Clear();
                  foreach (PS_gt gt in list) {
                      PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
                      if (count == 0) {
@@ -139,7 +150,9 @@ namespace Ebada.Scgl.Gis {
                      }
                      
                      if (box.Contains(pf)) {
+                         
                          PointLatLng point = new PointLatLng(Convert.ToDouble(gt.gtLat), Convert.ToDouble(gt.gtLon));
+                         gtdic.Add(gt.gtID, point);//放入字典供杆塔设备定位
                          route.Points.Add(point);
                          if (gt.gtType.Contains("方杆"))
                              marker = new GMapMarkerRect(point);
@@ -162,12 +175,28 @@ namespace Ebada.Scgl.Gis {
                      count++;
                  }
                  //变压器
-                 if (linecode.Length > 6 && list.Count > 0) {
-                     PS_gt gt = list[list.Count - 1];
-                     PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
-                     if (box.Contains(pf)) {
-                         PointLatLng point = new PointLatLng(Convert.ToDouble(gt.gtLat), Convert.ToDouble(gt.gtLon));
+                 if (byqtable!=null && byqtable.Rows.Count>0) {
+                     foreach (DataRow row in byqtable.Rows) {
+                         if (!gtdic.ContainsKey(row["gtid"].ToString())) continue;
+
+                         PointLatLng point = gtdic[row["gtid"].ToString()];
                          marker = new GMapMarkerBYQ(point);
+                         //marker.Text = string.Format("{0}-{1}", row["byqModle"], row["byqCapcity"]);
+                         marker.ToolTipText = string.Format("安装地点：{0}\r\n型号：{1}\r\n容量：{2}", row["byqName"], row["byqModle"], row["byqCapcity"]);
+                         marker.Tag = row["byqID"];
+                         //marker.IsHitTestVisible = false;
+                         layer.Markers.Add(marker);
+                     }
+                 }
+                 if (kglist != null && kglist.Count > 0) {
+                     foreach (PS_kg row in kglist) {
+                         if (!gtdic.ContainsKey(row.gtID)) continue;
+
+                         PointLatLng point = gtdic[row.gtID];
+                         marker = new GMapMarkerKG(point);
+                         //marker.Text = string.Format("{0}", row.kgModle);
+                         marker.ToolTipText = string.Format("安装地点：{0}\r\n型号：{1}\r\n容量：{2}", row.kgInstallAdress, row.kgModle, row.kgCapcity);
+                         marker.Tag = row;
                          //marker.IsHitTestVisible = false;
                          layer.Markers.Add(marker);
                      }

@@ -10,14 +10,14 @@ using System.Windows.Forms;
 namespace Ebada.Scgl.Gis.Markers {
     [Serializable]
     internal class GMapMarkerBYQ : GMapMarkerVector {
-        public string Text;
+        
         private Font mFont;
         public GMapMarkerBYQ(PointLatLng p)
             : base(p) {
             Size=SizeSt = new Size(15, 10);
             Offset = new Point(-7, -5);
             Text = string.Empty;
-            mFont = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
+            mFont = new Font(FontFamily.GenericSansSerif, 9, FontStyle.Bold);
         }
         public override void OnRender(Graphics g) {
             System.Drawing.Point p1 = new System.Drawing.Point(LocalPosition.X, LocalPosition.Y);
@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Gis.Markers {
             if (!string.IsNullOrEmpty(Text)) {
                 Size sf=g.MeasureString(Text, mFont).ToSize();
 
-                g.DrawString(Text, mFont,Brushes.MidnightBlue, LocalPosition.X + 10 - sf.Width / 2, LocalPosition.Y + 30);
+                g.DrawString(Text, mFont,Brushes.MidnightBlue, LocalPosition.X + 10 , LocalPosition.Y );
             }
         }
         
