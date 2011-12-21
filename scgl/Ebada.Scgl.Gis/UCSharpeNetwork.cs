@@ -27,8 +27,6 @@ namespace Ebada.Scgl.Gis {
         public UCSharpeNetwork() {
             
             InitializeComponent();
-            //mRMap = map;
-            //mRMap.Overlays.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Overlays_CollectionChanged);
             InitTree();
             createCheckGroup();
         }
@@ -131,14 +129,6 @@ namespace Ebada.Scgl.Gis {
             set {
                 if (value == mRMap) return;
                 mRMap = value;
-                treeList1.BeginInit();
-                //mTable.Rows.Clear();
-                if (value != null) {
-                    //foreach (GMapOverlay layer in mRMap.Overlays) {
-                    //    mTable.Rows.Add(layer.IsVisibile ? "1" : "0", "1", layer.Text, layer.Id, "0");
-                    //}
-                }
-                treeList1.EndInit();
             }
         }
         public void InitLayer()
@@ -147,7 +137,6 @@ namespace Ebada.Scgl.Gis {
            
             
             treeList1.EndInit();
-            //treeList1.ParentFieldName = "ParentID";
 
         }
         private void inittq(string gdscode) {

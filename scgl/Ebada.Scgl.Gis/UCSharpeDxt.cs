@@ -29,8 +29,6 @@ namespace Ebada.Scgl.Gis {
         public UCSharpeDxt() {
             
             InitializeComponent();
-            //mRMap = map;
-            //mRMap.Overlays.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Overlays_CollectionChanged);
             InitTree();
             createCheckGroup();
         }
@@ -78,8 +76,6 @@ namespace Ebada.Scgl.Gis {
             treeList1.KeyFieldName = "ID";
             treeList1.ParentFieldName = "ParentID";
             
-            //mTable.Rows.Add(hide, "0", "全局配电线路网络图", "all", "0","1");
-            //mTable.Rows.Add(hide, "0", "供电所网络图", "gds", "0","0");
             mTable.Rows.Add(hide, "0", "高压配电线路", "all", "0", "0");
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
@@ -133,14 +129,6 @@ namespace Ebada.Scgl.Gis {
             set {
                 if (value == mRMap) return;
                 mRMap = value;
-                treeList1.BeginInit();
-                //mTable.Rows.Clear();
-                if (value != null) {
-                    //foreach (GMapOverlay layer in mRMap.Overlays) {
-                    //    mTable.Rows.Add(layer.IsVisibile ? "1" : "0", "1", layer.Text, layer.Id, "0");
-                    //}
-                }
-                treeList1.EndInit();
             }
         }
         public void InitLayer()
@@ -303,7 +291,10 @@ namespace Ebada.Scgl.Gis {
                 text.Text ="10kV"+ name + "系统图 - " + DateTime.Now.Year + "年";
                 MapControl.FindOverlay("bdz").Markers.Add(text);
                 MapControl.MapBounds = rect;
+                setWaitMsg("统计线路设备信息");
+                MapControl.CreateSbtjInfoLine(xlcode);
                 MapControl.SetZoomToFitRect(rect);
+
             }
 
         }
