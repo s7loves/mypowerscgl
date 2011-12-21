@@ -436,6 +436,32 @@
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电所电力电容器台帐\ExportBDSDLDRQTZ.cs" />
+    <Compile Include="变电所电力电容器台帐\frmBDSDLDRQTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电所电力电容器台帐\frmBDSDLDRQTZEdit.Designer.cs">
+      <DependentUpon>frmBDSDLDRQTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电所电力电容器台帐\UCPJ_BDSDLDRQTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电所电力电容器台帐\UCPJ_BDSDLDRQTZ.Designer.cs">
+      <DependentUpon>UCPJ_BDSDLDRQTZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="电压监测装置设置台帐\ExportDYJCZZSZTZEdit.cs" />
+    <Compile Include="电压监测装置设置台帐\frmDYJCZZSZTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="电压监测装置设置台帐\frmDYJCZZSZTZEdit.Designer.cs">
+      <DependentUpon>frmDYJCZZSZTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="电压监测装置设置台帐\UCDYJCZZSZTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="电压监测装置设置台帐\UCDYJCZZSZTZ.Designer.cs">
+      <DependentUpon>UCDYJCZZSZTZ.cs</DependentUpon>
+    </Compile>
     <Compile Include="非生产台账\ExportFSCTZEdit.cs" />
     <Compile Include="非生产台账\frmFSCTZEdit.cs">
       <SubType>Form</SubType>
@@ -1184,6 +1210,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="26电力线路防护通知书\UCPJ_26.resx">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电所电力电容器台帐\frmBDSDLDRQTZEdit.resx">
+      <DependentUpon>frmBDSDLDRQTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电所电力电容器台帐\UCPJ_BDSDLDRQTZ.resx">
+      <DependentUpon>UCPJ_BDSDLDRQTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="电压监测装置设置台帐\frmDYJCZZSZTZEdit.resx">
+      <DependentUpon>frmDYJCZZSZTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="电压监测装置设置台帐\UCDYJCZZSZTZ.resx">
+      <DependentUpon>UCDYJCZZSZTZ.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="非生产台账\frmFSCTZEdit.resx">
