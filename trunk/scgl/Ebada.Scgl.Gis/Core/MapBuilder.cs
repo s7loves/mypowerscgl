@@ -97,7 +97,7 @@ namespace Ebada.Scgl.Gis {
                              marker.ParentMarker = preMarker;
                              preMarker.NextMarker = marker;
                          }
-                         
+                         marker.MarkerType = MarkerEnum.gt;
                          preMarker = marker;
                          marker.ToolTipText = gt.gth + "\n" + line.LineName;
                          marker.Text = count+"#";
@@ -108,6 +108,14 @@ namespace Ebada.Scgl.Gis {
                          marker.Route = route;
                      }
                      count++;
+                 }
+                 //线路名文字
+                 if (route.Points.Count > 0) {
+                     GMapMarkerText text = new GMapMarkerText(route.Points[0]);
+                     text.Text = line.LineName;
+                     text.MarkerType = MarkerEnum.xlmc;
+                     text.IsVisible = false;
+                     layer.Markers.Add(text);
                  }
                  if (route.Points.Count > 0) {
                      
@@ -162,7 +170,7 @@ namespace Ebada.Scgl.Gis {
                              marker.ParentMarker = preMarker;
                              preMarker.NextMarker = marker;
                          }
-                         
+                         marker.MarkerType = MarkerEnum.gt;
                          preMarker = marker;
                          marker.ToolTipText = gt.gth + "\n" + line.LineName;
                          marker.Tag = gt;
@@ -178,6 +186,8 @@ namespace Ebada.Scgl.Gis {
                  if (route.Points.Count > 0) {
                      GMapMarkerText text = new GMapMarkerText(route.Points[0]);
                      text.Text = line.LineName;
+                     text.IsVisible = false;
+                     text.MarkerType = MarkerEnum.xlmc;
                      layer.Markers.Add(text);
                  }
                  //变压器
@@ -187,6 +197,8 @@ namespace Ebada.Scgl.Gis {
 
                          PointLatLng point = gtdic[row["gtid"].ToString()];
                          marker = new GMapMarkerBYQ(point);
+                         marker.MarkerType = MarkerEnum.byq;
+                         marker.ShowText = true;
                          marker.Text = string.Format("{0}",  row["byqCapcity"]);
                          marker.ToolTipText = string.Format("安装地点：{0}\r\n型号：{1}\r\n容量：{2}", row["byqName"], row["byqModle"], row["byqCapcity"]);
                          marker.Tag = row["byqID"];
@@ -200,6 +212,8 @@ namespace Ebada.Scgl.Gis {
 
                          PointLatLng point = gtdic[row.gtID];
                          marker = new GMapMarkerKG(point);
+                         marker.IsVisible = false;
+                         marker.MarkerType = MarkerEnum.kg;
                          //marker.Text = string.Format("{0}", row.kgModle);
                          marker.ToolTipText = string.Format("安装地点：{0}\r\n型号：{1}\r\n容量：{2}", row.kgInstallAdress, row.kgModle, row.kgCapcity);
                          marker.Tag = row;

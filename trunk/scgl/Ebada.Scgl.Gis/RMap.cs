@@ -193,5 +193,131 @@ namespace Ebada.Scgl.Gis {
             }
             return lay;
         }
+        #region 图层信息
+        bool showgt=true;
+        bool showgth;
+        bool showbyq=true;
+        bool showbyqrl=true;
+        bool showkg;
+        bool showxlmc;
+        public bool Showgt{
+            get {
+                return showgt;
+            }
+            set {
+                if (value == showgt) return;
+                showgt = value;
+                foreach (GMapOverlay lay in Overlays) {
+                    foreach (GMapMarkerVector marker in lay.Markers) {
+                        try {
+                            if (marker.MarkerType == MarkerEnum.gt) {
+                                marker.IsVisible = showgt;
+                            }
+                        } catch { }
+                    }
+
+                }
+            }
+        }
+        public bool Showgth {
+            get {
+                return showgth;
+            }
+            set {
+                if (value == showgth) return;
+                showgth = value;
+                foreach (GMapOverlay lay in Overlays) {
+                    foreach (GMapMarkerVector marker in lay.Markers) {
+                        try {
+                            if (marker.MarkerType == MarkerEnum.gt) {
+                                marker.ShowText = showgth;
+                            }
+                        } catch { }
+                    }
+
+                }
+                this.Invalidate();
+            }
+        }
+        public bool Showbyq{
+            get {
+                return showbyq;
+            }
+            set {
+                if (value == showbyq) return;
+                showbyq = value;
+                foreach (GMapOverlay lay in Overlays) {
+                    foreach (GMapMarkerVector marker in lay.Markers) {
+                        try {
+                            if (marker.MarkerType == MarkerEnum.byq) {
+                                marker.IsVisible = value;
+                            }
+                        } catch { }
+                    }
+
+                }
+            }
+
+        }
+        public bool Showbyqrl{
+            get {
+                return showbyqrl;
+            }
+            set {
+                if (value == showbyqrl) return;
+                showbyqrl = value;
+                foreach (GMapOverlay lay in Overlays) {
+                    foreach (GMapMarkerVector marker in lay.Markers) {
+                        try {
+                            if (marker.MarkerType == MarkerEnum.byq) {
+                                marker.ShowText = value;
+                            }
+                        } catch { }
+                    }
+
+                }
+                this.Invalidate();
+            }
+
+        }
+        public bool Showkg{
+            get {
+                return showkg;
+            }
+            set {
+                if (value == showkg) return;
+                showkg = value;
+                foreach (GMapOverlay lay in Overlays) {
+                    foreach (GMapMarkerVector marker in lay.Markers) {
+                        try {
+                            if (marker.MarkerType == MarkerEnum.kg) {
+                                marker.IsVisible = value;
+                            }
+                        } catch { }
+                    }
+
+                }
+            }
+        }
+        public bool Showxlmc {
+            get {
+                return showxlmc;
+            }
+            set {
+                if (value == showxlmc) return;
+                showxlmc = value;
+                foreach (GMapOverlay lay in Overlays) {
+                    foreach (GMapMarkerVector marker in lay.Markers) {
+                        try {
+                            if (marker.MarkerType == MarkerEnum.xlmc) {
+                                marker.IsVisible = value;
+                            }
+                        } catch { }
+                    }
+
+                }
+            }
+        }
+        #endregion
     }
 }

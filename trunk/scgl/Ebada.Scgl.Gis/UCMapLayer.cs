@@ -290,5 +290,31 @@ namespace TLMapPlatform {
         private void treeList1_NodeChanged(object sender, NodeChangedEventArgs e) {
 
         }
+        #region 图层信息
+        
+        private void checkgt_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showgt = checkgt.Checked;
+            checkgth.Enabled = checkgt.Checked;
+        }
+        
+
+        private void checkgth_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showgth = checkgth.Checked;
+        }
+        private void checkbyq_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showbyq = checkbyq.Checked;
+            checkbyqrl.Enabled = checkbyq.Checked;
+        }
+        private void checkbyqrl_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showbyqrl = checkbyqrl.Checked;
+        }
+        private void checkkg_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showkg = checkkg.Checked;
+        }
+        private void checkxlmc_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showxlmc = checkxlmc.Checked;
+        }
+        #endregion
+
     }
 }

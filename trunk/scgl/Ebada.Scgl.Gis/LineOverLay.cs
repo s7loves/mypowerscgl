@@ -44,22 +44,22 @@ namespace Ebada.Scgl.Gis {
             if (control.Zoom >= 14 ) {
                 if (!markervisible ) {
                     markervisible = true;
-                    foreach (GMapMarker marker in Markers) {
-                        marker.IsVisible = true;
-                    }
-                    int count = 0;
-                    foreach (IText marker in Markers) {
-                        marker.ShowText = count % 3 == 0 ? true : false;
-                        count++;
-                    }
+                    //foreach (GMapMarker marker in Markers) {
+                    //    marker.IsVisible = true;
+                    //}
+                    //int count = 0;
+                    //foreach (IText marker in Markers) {
+                    //    marker.ShowText = count % 3 == 0 ? true : false;
+                    //    count++;
+                    //}
                 }
             } else {
                 if (markervisible || firstload) {
                     firstload=markervisible=false;
                     
-                    foreach (GMapMarker marker in Markers) {
-                        marker.IsVisible = false;
-                    }
+                    //foreach (GMapMarker marker in Markers) {
+                    //    marker.IsVisible = false;
+                    //}
                 }
 
             }
@@ -127,9 +127,11 @@ namespace Ebada.Scgl.Gis {
         }
         public void Update(GMapMarker marker) {
             PS_gt gt = marker.Tag as PS_gt;
-            gt.gtLat = (decimal)marker.Position.Lat;
-            gt.gtLon = (decimal)marker.Position.Lng;
-            Client.ClientHelper.PlatformSqlMap.Update("UpdatePS_gtLatLng", gt);
+            if (gt != null) {
+                gt.gtLat = (decimal)marker.Position.Lat;
+                gt.gtLon = (decimal)marker.Position.Lng;
+                Client.ClientHelper.PlatformSqlMap.Update("UpdatePS_gtLatLng", gt);
+            }
         }
         public virtual ContextMenu CreatePopuMenu() {
             GMapMarkerVector mv = selectedMarker as GMapMarkerVector;
