@@ -187,7 +187,7 @@ namespace Ebada.Scgl.Gis {
 
                          PointLatLng point = gtdic[row["gtid"].ToString()];
                          marker = new GMapMarkerBYQ(point);
-                         //marker.Text = string.Format("{0}-{1}", row["byqModle"], row["byqCapcity"]);
+                         marker.Text = string.Format("{0}",  row["byqCapcity"]);
                          marker.ToolTipText = string.Format("安装地点：{0}\r\n型号：{1}\r\n容量：{2}", row["byqName"], row["byqModle"], row["byqCapcity"]);
                          marker.Tag = row["byqID"];
                          //marker.IsHitTestVisible = false;
