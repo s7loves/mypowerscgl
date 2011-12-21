@@ -26,8 +26,6 @@ namespace TLMapPlatform {
         public UCMapLayer() {
             createWaitDlg();
             InitializeComponent();
-            //mRMap = map;
-            //mRMap.Overlays.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Overlays_CollectionChanged);
             InitTree();
             
         }
