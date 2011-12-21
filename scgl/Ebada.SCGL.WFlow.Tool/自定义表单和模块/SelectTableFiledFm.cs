@@ -14,6 +14,7 @@ using DevExpress.XtraTreeList.Nodes;
 using Ebada.Components;
 using DevExpress.XtraGrid.Columns;
 using Ebada.UI.Base;
+using System.Threading;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -201,6 +202,79 @@ namespace Ebada.SCGL.WFlow.Tool
                     strfieldnamelist += "," + udt.Rows[i]["FieldName"];
 
             
+            }
+        }
+
+        private void RemoveAllMoudle_Click(object sender, EventArgs e)
+        {
+           
+            try
+            {
+                for (int i = 0; gridView1.RowCount>0; )
+                {
+                    DataRow udr = gridView1.GetDataRow(i);
+                    if (udr == null) return;
+                    string umid = udr["ID"].ToString();
+                    LP_Temple obj = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(udr["FieldId"]);
+
+                    DataRow dr = mdt.NewRow();
+                    dr["LPID"] = obj.LPID;
+                    dr["CellName"] = obj.CellName;
+                    dr["ParentID"] = obj.ParentID;
+                    mdt.Rows.Add(dr);
+                    udt.Rows.Remove(udr);
+                    MainHelper.PlatformSqlMap.DeleteByKey<WF_TableUsedField>(umid);
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    //IList<WF_TableUsedField> il = MainHelper.PlatformSqlMap.GetList<WF_TableUsedField>("SelectWF_TableUsedFieldList", "where UserControlId ='" + tableid + "' and WorktaskId='" + taskid + "' and WorkflowId='" + Workflowid + "'");
+
+                    //SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, "UpdateWF_TableUsedField", il);
+                    //List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+                    //list3.Add(obj3);
+                    //MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+                }
+                    treeList1.Refresh();
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void AddAllMoudle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; mdt.Rows.Count > 0; )
+                {
+                    LP_Temple obj = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(mdt.Rows[i]["LPID"]);
+
+
+                    WF_TableUsedField um = new WF_TableUsedField();
+                    
+                    um.UserControlId = tableid;
+                    um.FieldName = obj.CellName;
+                    um.FieldId = obj.LPID;
+                    um.WorkflowId = workflowId;
+                    um.WorktaskId = worktaskId;
+                    DataRow dr = udt.NewRow();
+                    dr["ID"] = um.ID;
+                    dr["UserControlId"] = um.UserControlId;
+                    dr["FieldName"] = um.FieldName;
+                    dr["FieldId"] = um.FieldId;
+                    dr["WorkflowId"] = um.WorkflowId;
+                    dr["WorktaskId"] = um.WorktaskId;
+
+                    udt.Rows.Add(dr);
+                    mdt.Rows.Remove(mdt.Rows[i]);
+                    //treeList1.FocusedNode = treeList1.FocusedNode.NextVisibleNode;
+                    MainHelper.PlatformSqlMap.Create<WF_TableUsedField>(um);
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

@@ -67,7 +67,9 @@ namespace Ebada.SCGL.WFlow.Tool
             grid.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;           
             grid.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             grid.OptionsView.ShowGroupPanel = false;
-            string[] comItem = SelectorHelper.ToDBC(lp.ComBoxItem).Split('|');          
+            string[] comItem = SelectorHelper.ToDBC(lp.ComBoxItem).Split('|');
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();        
             for (int i = 0; i < grid.Columns.Count; i++)
             {
 
@@ -99,6 +101,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 else if (strcom.IndexOf("RepositoryItemCalcEdit") > -1)
                 {
+                    
                     r1 = new Regex(@"(?<=:).*");
                     DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit date =
                              new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
@@ -106,6 +109,33 @@ namespace Ebada.SCGL.WFlow.Tool
                         date.Properties.EditMask = r1.Match(strcom).Value;
 
                     grid.Columns[i].ColumnEdit = date;
+                }
+                else if (strcom.IndexOf("RepositoryItemSpinEdit") > -1)
+                {
+                    r1 = new Regex(@"(?<=:).*");
+                    DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit lue1 =
+                             new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+                    ((System.ComponentModel.ISupportInitialize)(lue1)).BeginInit();   
+                    if (r1.Match(strcom).Value != "")
+                    {
+                        if (r1.Match(strcom).Value.IndexOf("p") > -1 || r1.Match(strcom).Value.IndexOf("%") > -1)
+                        {
+                            lue1.Increment = (decimal)0.0001;
+                            lue1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                        }
+                        lue1.Properties.EditMask = r1.Match(strcom).Value;
+                        lue1.DisplayFormat.FormatString = r1.Match(strcom).Value;
+                        lue1.Properties.DisplayFormat.FormatString = r1.Match(strcom).Value;
+                    }
+                    gridView1.Columns[i].ColumnEdit = lue1;
+                    if (lue1.Properties.EditMask.IndexOf("p") > -1 || lue1.Properties.EditMask.IndexOf("%") > -1)
+                    {
+                        gridView1.Columns[i].DisplayFormat.FormatString = "p";
+                        gridView1.Columns[i].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                        
+                        
+                    }
+                    ((System.ComponentModel.ISupportInitialize)(lue1)).EndInit();   
                 }
                  else
                     {
@@ -117,8 +147,10 @@ namespace Ebada.SCGL.WFlow.Tool
                         colctrllist.Add(lue1);
 
                     }
-                
-            }           
+
+            }
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();   
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();       
         }
         public int[] GetCellPos(string cellpos)
         {
