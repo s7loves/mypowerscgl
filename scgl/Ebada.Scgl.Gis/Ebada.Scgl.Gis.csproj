@@ -177,6 +177,7 @@
     <Compile Include="IUpdateable.cs" />
     <Compile Include="LineOverLay.cs" />
     <Compile Include="LineRoute.cs" />
+    <Compile Include="MarkerEnum.cs" />
     <Compile Include="Markers\GMapMarkerVector.cs" />
     <Compile Include="Markers\GMapMarkerImage.cs" />
     <Compile Include="Markers\GMapMarkerRect.cs" />

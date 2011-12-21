@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Gis.Markers {
             //g.FillEllipse(Brushes.White, r2);
             g.DrawEllipse(Pens.Blue, r);
             g.DrawEllipse(Pens.Blue, r2);
-            if (!string.IsNullOrEmpty(Text)) {
+            if (ShowText && !string.IsNullOrEmpty(Text)) {
                 Size sf=g.MeasureString(Text, mFont).ToSize();
 
                 g.DrawString(Text, mFont, Brushes.Black, LocalPosition.X + 10 - sf.Width / 2, LocalPosition.Y - 15);

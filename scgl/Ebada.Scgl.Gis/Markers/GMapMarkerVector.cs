@@ -22,7 +22,12 @@ namespace Ebada.Scgl.Gis.Markers {
         private string text;
         private bool showText;
         private Font font;
+        private MarkerEnum markerType= MarkerEnum.none;
 
+        public MarkerEnum MarkerType {
+            get { return markerType; }
+            set { markerType = value; }
+        }
         public virtual Font Font {
             get { return font; }
             set { font = value; }
