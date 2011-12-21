@@ -173,19 +173,7 @@ namespace Ebada.Scgl.Gis {
 
         }
 
-        void 线路属性_Click(object sender, EventArgs e) {
-            if (selectedMarker != null && selectedMarker.Overlay is LineOverlay) {
-                (selectedMarker.Overlay as LineOverlay).ShowLineinfo(selectedMarker);
-            }
-        }
-
-        void 杆塔属性_Click(object sender, EventArgs e) {
-
-            if (selectedMarker != null && selectedMarker.Overlay is LineOverlay) {
-                (selectedMarker.Overlay as LineOverlay).ShowDialog(selectedMarker);
-            }
-                
-        }
+        
         GMapMarker createMarker(PointLatLng pos) {
             GMapMarkerVector marker = new GMapMarkerVector(pos);
             marker.Pen = new Pen(Color.FromArgb(144, Color.MidnightBlue), 2);

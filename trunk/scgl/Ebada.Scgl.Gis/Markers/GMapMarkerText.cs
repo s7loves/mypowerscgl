@@ -35,6 +35,8 @@ namespace Ebada.Scgl.Gis.Markers {
                 MeasureRect();
             }
         }
+        internal override void Update() {
+        }
         private void MeasureRect() {
             Size = SizeSt = new Control().CreateGraphics().MeasureString(Text, Font).ToSize();
 
