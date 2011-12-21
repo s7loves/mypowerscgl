@@ -14,10 +14,11 @@ namespace Ebada.Scgl.Gis.Markers {
         private Font mFont;
         public GMapMarkerKG(PointLatLng p)
             : base(p) {
-            Size = SizeSt = new Size(10, 6);
-            Offset = new Point(-5, -3);
+            Size = SizeSt = new Size(8, 8);
+            Offset = new Point(-4, -4);
             Text = string.Empty;
-            mFont = new Font(FontFamily.GenericSansSerif, 9, FontStyle.Bold);
+            mFont = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Bold);
+            Pen = new Pen(Color.Green, 2);
         }
         public override void OnRender(Graphics g) {
             System.Drawing.Point p1 = new System.Drawing.Point(LocalPosition.X, LocalPosition.Y);
@@ -28,7 +29,7 @@ namespace Ebada.Scgl.Gis.Markers {
             if (!string.IsNullOrEmpty(Text)) {
                 Size sf = g.MeasureString(Text, mFont).ToSize();
 
-                g.DrawString(Text, mFont, Brushes.MidnightBlue, LocalPosition.X + 10 , LocalPosition.Y );
+                g.DrawString(Text, mFont, Brushes.Black, LocalPosition.X + 10 , LocalPosition.Y -2 );
             }
         }
 
