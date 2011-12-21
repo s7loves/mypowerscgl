@@ -82,7 +82,7 @@ namespace Ebada.Scgl.Lcgl
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='备品备件计划表' and sx like '%{0}%' and nr!=''", "材料名称"));
             if (strlist.Count > 0)
-                comboBoxEdit2.Properties.Items.AddRange(strlist);
+                comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
             {
                 comboBoxEdit1.Properties.Items.Add("水泥杆");
@@ -154,7 +154,7 @@ namespace Ebada.Scgl.Lcgl
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='备品备件计划表' and sx like '%{0}%' and nr!=''", "材料规格"));
             if (strlist.Count > 0)
-                comboBoxEdit3.Properties.Items.AddRange(strlist);
+                comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
             {
                 comboBoxEdit2.Properties.Items.Add("YB-15-8");

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_bdsdldrqtz" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_bdsdldrqtz"  type="Ebada.Scgl.Model.PJ_bdsdldrqtz,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_bdsdldrqtz_AllColumns" class="PJ_bdsdldrqtz">
+        <result property="ID" column="ID" />
+        <result property="OrgName" column="OrgName" />
+        <result property="zzdz" column="zzdz" />
+        <result property="drqModle" column="drqModle" />
+        <result property="edVol" column="edVol" />
+        <result property="Capcity" column="Capcity" />
+        <result property="sbnum" column="sbnum" />
+        <result property="sbFactory" column="sbFactory" />
+        <result property="tqfs" column="tqfs" />
+        <result property="inDate" column="inDate" />
+        <result property="Remark" column="Remark" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_bdsdldrqtzList" resultMap="PJ_bdsdldrqtz_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgName],
+         [zzdz],
+         [drqModle],
+         [edVol],
+         [Capcity],
+         [sbnum],
+         [sbFactory],
+         [tqfs],
+         [inDate],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_bdsdldrqtz
+          $value$
+   </select>
+   
+   <select id="SelectPJ_bdsdldrqtzByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgName],
+         [zzdz],
+         [drqModle],
+         [edVol],
+         [Capcity],
+         [sbnum],
+         [sbFactory],
+         [tqfs],
+         [inDate],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_bdsdldrqtz
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="zzdz">[zzdz]='$zzdz$'</isNotNull>
+       <isNotNull prepend="AND" property="drqModle">[drqModle]='$drqModle$'</isNotNull>
+       <isNotNull prepend="AND" property="edVol">[edVol]='$edVol$'</isNotNull>
+       <isNotNull prepend="AND" property="Capcity">[Capcity]='$Capcity$'</isNotNull>
+       <isNotNull prepend="AND" property="sbnum">[sbnum]='$sbnum$'</isNotNull>
+       <isNotNull prepend="AND" property="sbFactory">[sbFactory]='$sbFactory$'</isNotNull>
+       <isNotNull prepend="AND" property="tqfs">[tqfs]='$tqfs$'</isNotNull>
+       <isNotNull prepend="AND" property="inDate">[inDate]='$inDate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_bdsdldrqtzByKey" resultMap="PJ_bdsdldrqtz_AllColumns" parameterClass="PJ_bdsdldrqtz">
+         SELECT 
+         [ID],
+         [OrgName],
+         [zzdz],
+         [drqModle],
+         [edVol],
+         [Capcity],
+         [sbnum],
+         [sbFactory],
+         [tqfs],
+         [inDate],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+         FROM PJ_bdsdldrqtz
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_bdsdldrqtz" parameterClass="PJ_bdsdldrqtz">
+        DELETE FROM 
+         PJ_bdsdldrqtz
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_bdsdldrqtzByWhere" parameterClass="string">
+     delete from PJ_bdsdldrqtz $value$
+   </delete>
+   
+   <delete id="DeletePJ_bdsdldrqtzByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_bdsdldrqtz
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_bdsdldrqtz" parameterClass="PJ_bdsdldrqtz" resultClass="int">
+          UPDATE PJ_bdsdldrqtz
+           SET
+             [OrgName]=#OrgName#,
+             [zzdz]=#zzdz#,
+             [drqModle]=#drqModle#,
+             [edVol]=#edVol#,
+             [Capcity]=#Capcity#,
+             [sbnum]=#sbnum#,
+             [sbFactory]=#sbFactory#,
+             [tqfs]=#tqfs#,
+             [inDate]=#inDate#,
+             [Remark]=#Remark#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_bdsdldrqtz" parameterClass="PJ_bdsdldrqtz">
+        INSERT INTO PJ_bdsdldrqtz
+         (
+         [ID],
+         [OrgName],
+         [zzdz],
+         [drqModle],
+         [edVol],
+         [Capcity],
+         [sbnum],
+         [sbFactory],
+         [tqfs],
+         [inDate],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgName#,
+         #zzdz#,
+         #drqModle#,
+         #edVol#,
+         #Capcity#,
+         #sbnum#,
+         #sbFactory#,
+         #tqfs#,
+         #inDate#,
+         #Remark#,
+         #S1#,
+         #S2#,
+         #S3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_bdsdldrqtzRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_bdsdldrqtz
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="zzdz">[zzdz]='$zzdz$'</isNotNull>
+       <isNotNull prepend="AND" property="drqModle">[drqModle]='$drqModle$'</isNotNull>
+       <isNotNull prepend="AND" property="edVol">[edVol]='$edVol$'</isNotNull>
+       <isNotNull prepend="AND" property="Capcity">[Capcity]='$Capcity$'</isNotNull>
+       <isNotNull prepend="AND" property="sbnum">[sbnum]='$sbnum$'</isNotNull>
+       <isNotNull prepend="AND" property="sbFactory">[sbFactory]='$sbFactory$'</isNotNull>
+       <isNotNull prepend="AND" property="tqfs">[tqfs]='$tqfs$'</isNotNull>
+       <isNotNull prepend="AND" property="inDate">[inDate]='$inDate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_bdsdldrqtzRowCount" parameterClass="string">
+    select count(*) from PJ_bdsdldrqtz $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

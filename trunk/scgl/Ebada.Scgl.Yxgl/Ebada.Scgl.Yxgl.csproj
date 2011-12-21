@@ -1815,6 +1815,9 @@
     <Content Include="00记录模板\黑龙江省电压质量与无功电力管理办法.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="00记录模板\变电所电力电容器台帐.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="测试记录（20110629）.xls" />
     <None Include="疑问或错误.txt" />
   </ItemGroup>
