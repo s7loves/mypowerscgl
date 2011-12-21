@@ -105,6 +105,8 @@ namespace Ebada.SCGL.WFlow.Tool
             comboBox1.Items.Add(lt);
             lt = new ListItem("RepositoryItemCalcEdit", "计算器");
             comboBox1.Items.Add(lt);
+            lt = new ListItem("RepositoryItemSpinEdit", "数字控件");
+            comboBox1.Items.Add(lt);
 
             lt = new ListItem("yyyy年MM月dd日", "yyyy年MM月dd日");
             comboBox2.Items.Add(lt);
@@ -128,6 +130,19 @@ namespace Ebada.SCGL.WFlow.Tool
             lt = new ListItem("yyyy", "yyyy");
             comboBox2.Items.Add(lt);
 
+            lt = new ListItem("yyyy年MM月dd日", "yyyy年MM月dd日");
+            comboBox2.Items.Add(lt);
+
+            lt = new ListItem("p", "p");
+            comboBox3.Items.Add(lt);
+            lt = new ListItem("c", "c");
+            comboBox3.Items.Add(lt);
+            lt = new ListItem("n0", "n0");
+            comboBox3.Items.Add(lt);
+            lt = new ListItem("###.00", "###.00");
+            comboBox3.Items.Add(lt);
+            lt = new ListItem("000.##", "000.##");
+            comboBox3.Items.Add(lt);
 
         }
         void setComoboxFocusIndex(ComboBox cbx,string text)
@@ -173,6 +188,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 //strSQLtemp += ":" + ((ListItem)comboBox2.SelectedItem).ID;
                 strSQLtemp += ":" + comboBox2.Text;
             }
+            if (comboBox3.Visible)
+            {
+                //strSQLtemp += ":" + ((ListItem)comboBox2.SelectedItem).ID;
+                strSQLtemp += ":" + comboBox3.Text;
+            }
             int i = 0;
             foreach (DataRow dr in griddt.Rows)
             {
@@ -191,7 +211,9 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             string strSQLtemp = ((ListItem)columnBox.SelectedItem).ID;
             if (columnBox.SelectedIndex < 1) return;
-            int i=-1;
+            int i = -1;
+            comboBox2.Visible = false;
+            comboBox3.Visible = false;
             if (strSQLtemp != "")
             {
                 i = -1;
@@ -205,17 +227,28 @@ namespace Ebada.SCGL.WFlow.Tool
                         break;
                     }
                 }
-                if (strSQLtemp.IndexOf("RepositoryItemDateEdit") == -1)
-                {
-                    comboBox2.Visible = false;
-                }
-                else
+                if (strSQLtemp.IndexOf("RepositoryItemDateEdit") > -1)
                 {
                     i = -1;
                     comboBox2.Visible = true;
                     Regex r1 = new Regex(@"(?<=:).*");
                     if (r1.Match(strSQLtemp).Value != "")
                         comboBox2.Text = r1.Match(strSQLtemp).Value;
+                }
+                else
+                    if (strSQLtemp.IndexOf("RepositoryItemSpinEdit") > -1)
+                {
+                    i = -1;
+                    comboBox3.Visible = true;
+                    Regex r1 = new Regex(@"(?<=:).*");
+                    if (r1.Match(strSQLtemp).Value != "")
+                        comboBox3.Text = r1.Match(strSQLtemp).Value;
+                }
+                else
+                {
+
+                    comboBox2.Visible = false;
+                    comboBox3.Visible = false;
                     //foreach (ListItem ittemp in comboBox2.Items)
                     //{
                     //    i++;
@@ -237,15 +270,24 @@ namespace Ebada.SCGL.WFlow.Tool
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string strSQLtemp = ((ListItem)comboBox1.SelectedItem).ID;
-            if (strSQLtemp.IndexOf("RepositoryItemDateEdit") == -1)
+            comboBox2.Visible = false;
+            comboBox3.Visible = false;
+            if (strSQLtemp.IndexOf("RepositoryItemDateEdit") > -1)
             {
-                comboBox2.Visible = false;
-            }
-            else
-            {
-
                 comboBox2.Visible = true;
             }
+            else
+                if (strSQLtemp.IndexOf("RepositoryItemSpinEdit") > -1)
+                {
+
+                    comboBox3.Visible = true;
+                }
+                else
+                {
+                    comboBox2.Visible = false;
+                    comboBox3.Visible = false;
+
+                }
         }
 
        

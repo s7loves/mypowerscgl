@@ -34,6 +34,7 @@
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.columnBox = new System.Windows.Forms.ComboBox();
@@ -55,6 +56,7 @@
             this.groupControl1.Controls.Add(this.simpleButton3);
             this.groupControl1.Controls.Add(this.simpleButton2);
             this.groupControl1.Controls.Add(this.simpleButton1);
+            this.groupControl1.Controls.Add(this.comboBox3);
             this.groupControl1.Controls.Add(this.comboBox2);
             this.groupControl1.Controls.Add(this.comboBox1);
             this.groupControl1.Controls.Add(this.columnBox);
@@ -111,6 +113,15 @@
             this.simpleButton1.TabIndex = 62;
             this.simpleButton1.Text = "确定";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(294, 61);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(126, 22);
+            this.comboBox3.TabIndex = 49;
+            this.comboBox3.Visible = false;
             // 
             // comboBox2
             // 
@@ -191,5 +202,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }

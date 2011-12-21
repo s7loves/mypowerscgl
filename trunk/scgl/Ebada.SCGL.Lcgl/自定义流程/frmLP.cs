@@ -2105,6 +2105,12 @@ namespace Ebada.Scgl.Lcgl
                         Control ct = FindCtrl(listLPID[0].LPID);
                         if (ct != null)
                         {
+
+                            if (ct is DateEdit)
+                            {
+                                ((DateEdit)ct).Properties.EditMask = listLPID[0].WordCount;
+                                ((DateEdit)ct).Properties.DisplayFormat.FormatString = listLPID[0].WordCount;
+                            }
                             sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
                         }
                         else

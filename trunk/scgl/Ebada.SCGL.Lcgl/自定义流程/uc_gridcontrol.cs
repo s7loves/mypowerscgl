@@ -107,6 +107,33 @@ namespace Ebada.Scgl.Lcgl
 
                     grid.Columns[i].ColumnEdit = date;
                 }
+                else if (strcom.IndexOf("RepositoryItemSpinEdit") > -1)
+                {
+                    r1 = new Regex(@"(?<=:).*");
+                    DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit lue1 =
+                             new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+                    ((System.ComponentModel.ISupportInitialize)(lue1)).BeginInit();
+                    if (r1.Match(strcom).Value != "")
+                    {
+                        if (r1.Match(strcom).Value.IndexOf("p") > -1 || r1.Match(strcom).Value.IndexOf("%") > -1)
+                        {
+                            lue1.Increment = (decimal)0.0001;
+                            lue1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                        }
+                        lue1.Properties.EditMask = r1.Match(strcom).Value;
+                        lue1.DisplayFormat.FormatString = r1.Match(strcom).Value;
+                        lue1.Properties.DisplayFormat.FormatString = r1.Match(strcom).Value;
+                    }
+                    gridView1.Columns[i].ColumnEdit = lue1;
+                    if (lue1.Properties.EditMask.IndexOf("p") > -1 || lue1.Properties.EditMask.IndexOf("%") > -1)
+                    {
+                        gridView1.Columns[i].DisplayFormat.FormatString = "p";
+                        gridView1.Columns[i].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+
+
+                    }
+                    ((System.ComponentModel.ISupportInitialize)(lue1)).EndInit();
+                }
                 else
                 {
 

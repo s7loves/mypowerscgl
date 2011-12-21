@@ -266,7 +266,6 @@ namespace Ebada.SCGL.WFlow.Tool
                     btTip.Name = "bt" + lp.LPID;
                     btTip.Location = new Point(currentPosX , currentPosY);
                     btTip.Size = new Size(300, 14);
-                    currentPosY += 30;
                     btTip.Tag = lp;
 
                     ceTip = new CheckEdit();
@@ -275,6 +274,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     ceTip.Size = new Size(80, 14);
                     ceTip.Text = "累加";
                     ceTip.Checked = false;
+                    currentPosY += 30;
 
                 }
 
@@ -1176,6 +1176,11 @@ namespace Ebada.SCGL.WFlow.Tool
                        Control ct= FindCtrl(listLPID[0].LPID);
                        if (ct != null)
                        {
+                           if (ct is DateEdit)
+                           {
+                               ((DateEdit)ct).Properties.EditMask = listLPID[0].WordCount;
+                               ((DateEdit)ct).Properties.DisplayFormat.FormatString = listLPID[0].WordCount;
+                           }
                            sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
                        }
                        else

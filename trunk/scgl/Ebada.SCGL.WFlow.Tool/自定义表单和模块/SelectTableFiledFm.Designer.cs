@@ -31,7 +31,9 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.RemoveMoudle = new DevExpress.XtraEditors.SimpleButton();
+            this.RemoveAllMoudle = new DevExpress.XtraEditors.SimpleButton();
             this.AddMoudle = new DevExpress.XtraEditors.SimpleButton();
+            this.AddAllMoudle = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -87,7 +89,9 @@
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.RemoveMoudle);
+            this.panelControl1.Controls.Add(this.RemoveAllMoudle);
             this.panelControl1.Controls.Add(this.AddMoudle);
+            this.panelControl1.Controls.Add(this.AddAllMoudle);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl1.Location = new System.Drawing.Point(323, 0);
             this.panelControl1.Name = "panelControl1";
@@ -96,23 +100,47 @@
             // 
             // RemoveMoudle
             // 
-            this.RemoveMoudle.Location = new System.Drawing.Point(1, 201);
+            this.RemoveMoudle.Location = new System.Drawing.Point(1, 193);
             this.RemoveMoudle.Name = "RemoveMoudle";
             this.RemoveMoudle.Size = new System.Drawing.Size(33, 27);
             this.RemoveMoudle.TabIndex = 1;
-            this.RemoveMoudle.Text = "<<";
+            this.RemoveMoudle.Text = "<";
+            this.RemoveMoudle.ToolTip = "去除";
             this.RemoveMoudle.Click += new System.EventHandler(this.RemoveMoudle_Click);
+            // 
+            // RemoveAllMoudle
+            // 
+            this.RemoveAllMoudle.Location = new System.Drawing.Point(2, 235);
+            this.RemoveAllMoudle.Name = "RemoveAllMoudle";
+            this.RemoveAllMoudle.Size = new System.Drawing.Size(33, 27);
+            this.RemoveAllMoudle.TabIndex = 1;
+            this.RemoveAllMoudle.Text = "<<";
+            this.RemoveAllMoudle.ToolTip = "去除所有";
+            this.RemoveAllMoudle.Click += new System.EventHandler(this.RemoveAllMoudle_Click);
             // 
             // AddMoudle
             // 
             this.AddMoudle.Appearance.Font = new System.Drawing.Font("Tahoma", 8F);
             this.AddMoudle.Appearance.Options.UseFont = true;
-            this.AddMoudle.Location = new System.Drawing.Point(1, 155);
+            this.AddMoudle.Location = new System.Drawing.Point(2, 140);
             this.AddMoudle.Name = "AddMoudle";
             this.AddMoudle.Size = new System.Drawing.Size(33, 27);
             this.AddMoudle.TabIndex = 0;
-            this.AddMoudle.Text = ">>";
+            this.AddMoudle.Text = ">";
+            this.AddMoudle.ToolTip = "添加";
             this.AddMoudle.Click += new System.EventHandler(this.AddMoudle_Click);
+            // 
+            // AddAllMoudle
+            // 
+            this.AddAllMoudle.Appearance.Font = new System.Drawing.Font("Tahoma", 8F);
+            this.AddAllMoudle.Appearance.Options.UseFont = true;
+            this.AddAllMoudle.Location = new System.Drawing.Point(1, 89);
+            this.AddAllMoudle.Name = "AddAllMoudle";
+            this.AddAllMoudle.Size = new System.Drawing.Size(33, 27);
+            this.AddAllMoudle.TabIndex = 0;
+            this.AddAllMoudle.Text = ">>";
+            this.AddAllMoudle.ToolTip = "添加所有";
+            this.AddAllMoudle.Click += new System.EventHandler(this.AddAllMoudle_Click);
             // 
             // groupControl2
             // 
@@ -124,7 +152,7 @@
             this.groupControl2.Controls.Add(this.gridControl1);
             this.groupControl2.Location = new System.Drawing.Point(364, 3);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(380, 409);
+            this.groupControl2.Size = new System.Drawing.Size(380, 413);
             this.groupControl2.TabIndex = 4;
             this.groupControl2.Text = "操作字段";
             // 
@@ -134,7 +162,7 @@
             this.gridControl1.Location = new System.Drawing.Point(2, 23);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(376, 384);
+            this.gridControl1.Size = new System.Drawing.Size(376, 388);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -311,8 +339,8 @@
 
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton RemoveMoudle;
-        private DevExpress.XtraEditors.SimpleButton AddMoudle;
+        private DevExpress.XtraEditors.SimpleButton RemoveAllMoudle;
+        private DevExpress.XtraEditors.SimpleButton AddAllMoudle;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -328,6 +356,8 @@
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnOK;
+        private DevExpress.XtraEditors.SimpleButton RemoveMoudle;
+        private DevExpress.XtraEditors.SimpleButton AddMoudle;
 
     }
 }
