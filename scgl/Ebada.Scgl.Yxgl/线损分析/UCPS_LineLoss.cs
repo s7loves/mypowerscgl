@@ -245,5 +245,28 @@ namespace Ebada.Scgl.Yxgl{
                 }
             }
         }
+
+        private void btLineLoss_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PS_xl currentLine = null;
+            if (treeList1.Selection.Count > 0)
+            {
+                currentLine = treeList1.GetDataRecordByNode(treeList1.Selection[0]) as PS_xl;
+                if (currentLine != null)
+                {
+                    List<PS_xl> list = LineLossHelper.GetChildrenList(currentLine.LineID);
+                    foreach (PS_xl line in list)
+                    {
+                        line.TheoryLoss = LineLossHelper.Loss(line);
+                        Client.ClientHelper.PlatformSqlMap.Update<PS_xl>(line);
+                    }
+                }
+            }
+
+            RefreshData(" where orgcode='" + btGdsList.EditValue + "' and linevol='10'  order by linecode");
+            //string str = " where 1>1";
+            //str = string.Format("where LineID='{0}'", parentID);
+            //treeList1.RefreshData(str);
+        }
     }
 }

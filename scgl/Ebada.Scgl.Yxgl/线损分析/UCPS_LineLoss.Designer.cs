@@ -37,6 +37,7 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btGdsList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.btLineLoss = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btExport = new DevExpress.XtraBars.BarButtonItem();
@@ -63,7 +64,7 @@
             this.treeList1.AllowDrop = true;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.KeyFieldName = "LineID";
-            this.treeList1.Location = new System.Drawing.Point(0, 25);
+            this.treeList1.Location = new System.Drawing.Point(0, 26);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.treeList1.OptionsBehavior.DragNodes = true;
@@ -72,7 +73,7 @@
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.typeCBox,
             this.typeLookUp});
-            this.treeList1.Size = new System.Drawing.Size(651, 327);
+            this.treeList1.Size = new System.Drawing.Size(651, 326);
             this.treeList1.TabIndex = 0;
             // 
             // typeCBox
@@ -112,8 +113,9 @@
             this.btClose,
             this.btExport,
             this.btFind,
-            this.btGdsList});
-            this.barManager1.MaxItemId = 11;
+            this.btGdsList,
+            this.btLineLoss});
+            this.barManager1.MaxItemId = 12;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
             this.barManager1.StatusBar = this.bar3;
@@ -126,8 +128,9 @@
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 112),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btLineLoss, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btFind),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
@@ -149,6 +152,15 @@
             this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            // 
+            // btLineLoss
+            // 
+            this.btLineLoss.Caption = "计算线损";
+            this.btLineLoss.Id = 11;
+            this.btLineLoss.ImageIndex = 3;
+            this.btLineLoss.Name = "btLineLoss";
+            this.btLineLoss.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btLineLoss.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btLineLoss_ItemClick);
             // 
             // btRefresh
             // 
@@ -201,7 +213,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(651, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(651, 26);
             // 
             // barDockControlBottom
             // 
@@ -212,14 +224,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 327);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 326);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(651, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 327);
+            this.barDockControlRight.Location = new System.Drawing.Point(651, 26);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
             // 
             // imageList1
             // 
@@ -320,5 +332,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit typeLookUp;
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraBars.BarButtonItem btLineLoss;
     }
 }
