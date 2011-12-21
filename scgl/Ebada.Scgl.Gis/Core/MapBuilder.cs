@@ -174,6 +174,12 @@ namespace Ebada.Scgl.Gis {
                      }
                      count++;
                  }
+                 //线路名文字
+                 if (route.Points.Count > 0) {
+                     GMapMarkerText text = new GMapMarkerText(route.Points[0]);
+                     text.Text = line.LineName;
+                     layer.Markers.Add(text);
+                 }
                  //变压器
                  if (byqtable!=null && byqtable.Rows.Count>0) {
                      foreach (DataRow row in byqtable.Rows) {

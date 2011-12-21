@@ -33,13 +33,7 @@ namespace Ebada.Scgl.Gis.Markers {
         }
 
         internal override void Update() {
-            //PointOverLay lay = this.Overlay as PointOverLay;
-            //if (lay != null && lay.AllowEdit) {
-            //    mOrg org = this.Tag as mOrg;
-            //    org.C1 = this.Position.Lat.ToString();
-            //    org.C2 = this.Position.Lng.ToString();
-            //    Client.ClientHelper.PlatformSqlMap.Update<mOrg>(org);
-            //}
+            
         }
 
         public override ContextMenu CreatePopuMenu() {
@@ -53,7 +47,14 @@ namespace Ebada.Scgl.Gis.Markers {
 
         void 属性_Click(object sender, EventArgs e) {
 
-           
+            PS_kg obj = this.Tag as PS_kg;
+            if (obj == null) return;
+            Ebada.Scgl.Sbgl.frmkgEdit dlg = new Ebada.Scgl.Sbgl.frmkgEdit();
+            dlg.RowData = obj;
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                Client.ClientHelper.PlatformSqlMap.Update<PS_kg>(dlg.RowData);
+                this.Tag = dlg.RowData;
+            }
         }
     }
 }
