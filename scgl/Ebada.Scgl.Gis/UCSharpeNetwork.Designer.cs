@@ -31,30 +31,45 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCSharpeNetwork));
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.层 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.显示 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
-            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.编辑 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
-            this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.Layer = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemImageComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.controlNavigator1 = new DevExpress.XtraEditors.ControlNavigator();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.checkxlmc = new DevExpress.XtraEditors.CheckEdit();
+            this.checkgth = new DevExpress.XtraEditors.CheckEdit();
+            this.checkbyqrl = new DevExpress.XtraEditors.CheckEdit();
+            this.checkkg = new DevExpress.XtraEditors.CheckEdit();
+            this.checkbyq = new DevExpress.XtraEditors.CheckEdit();
+            this.checkgt = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkxlmc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkgth.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkbyqrl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkkg.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkbyq.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkgt.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // treeList1
             // 
             this.treeList1.BestFitVisibleOnly = true;
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn3,
-            this.treeListColumn1,
-            this.treeListColumn2,
-            this.treeListColumn4});
+            this.层,
+            this.显示,
+            this.编辑,
+            this.Layer});
             this.treeList1.ColumnsImageList = this.imageCollection1;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.Location = new System.Drawing.Point(0, 25);
@@ -66,7 +81,7 @@
             this.repositoryItemImageComboBox1,
             this.repositoryItemImageComboBox2,
             this.repositoryItemImageComboBox3});
-            this.treeList1.Size = new System.Drawing.Size(198, 151);
+            this.treeList1.Size = new System.Drawing.Size(198, 134);
             this.treeList1.TabIndex = 0;
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
             this.treeList1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseClick);
@@ -74,35 +89,35 @@
             this.treeList1.CellValueChanged += new DevExpress.XtraTreeList.CellValueChangedEventHandler(this.treeList1_CellValueChanged);
             this.treeList1.NodeChanged += new DevExpress.XtraTreeList.NodeChangedEventHandler(this.treeList1_NodeChanged);
             // 
-            // treeListColumn3
+            // 层
             // 
-            this.treeListColumn3.Caption = "层名";
-            this.treeListColumn3.FieldName = "层";
-            this.treeListColumn3.Name = "层";
-            this.treeListColumn3.OptionsColumn.AllowEdit = false;
-            this.treeListColumn3.OptionsColumn.AllowMove = false;
-            this.treeListColumn3.OptionsColumn.AllowSort = false;
-            this.treeListColumn3.Visible = true;
-            this.treeListColumn3.VisibleIndex = 0;
-            this.treeListColumn3.Width = 125;
+            this.层.Caption = "层名";
+            this.层.FieldName = "层";
+            this.层.Name = "层";
+            this.层.OptionsColumn.AllowEdit = false;
+            this.层.OptionsColumn.AllowMove = false;
+            this.层.OptionsColumn.AllowSort = false;
+            this.层.Visible = true;
+            this.层.VisibleIndex = 0;
+            this.层.Width = 125;
             // 
-            // treeListColumn1
+            // 显示
             // 
-            this.treeListColumn1.ColumnEdit = this.repositoryItemImageComboBox1;
-            this.treeListColumn1.FieldName = "显示";
-            this.treeListColumn1.ImageAlignment = System.Drawing.StringAlignment.Center;
-            this.treeListColumn1.ImageIndex = 0;
-            this.treeListColumn1.MinWidth = 22;
-            this.treeListColumn1.Name = "显示";
-            this.treeListColumn1.OptionsColumn.AllowEdit = false;
-            this.treeListColumn1.OptionsColumn.AllowFocus = false;
-            this.treeListColumn1.OptionsColumn.AllowMove = false;
-            this.treeListColumn1.OptionsColumn.AllowSize = false;
-            this.treeListColumn1.OptionsColumn.AllowSort = false;
-            this.treeListColumn1.OptionsColumn.FixedWidth = true;
-            this.treeListColumn1.Visible = true;
-            this.treeListColumn1.VisibleIndex = 1;
-            this.treeListColumn1.Width = 26;
+            this.显示.ColumnEdit = this.repositoryItemImageComboBox1;
+            this.显示.FieldName = "显示";
+            this.显示.ImageAlignment = System.Drawing.StringAlignment.Center;
+            this.显示.ImageIndex = 0;
+            this.显示.MinWidth = 22;
+            this.显示.Name = "显示";
+            this.显示.OptionsColumn.AllowEdit = false;
+            this.显示.OptionsColumn.AllowFocus = false;
+            this.显示.OptionsColumn.AllowMove = false;
+            this.显示.OptionsColumn.AllowSize = false;
+            this.显示.OptionsColumn.AllowSort = false;
+            this.显示.OptionsColumn.FixedWidth = true;
+            this.显示.Visible = true;
+            this.显示.VisibleIndex = 1;
+            this.显示.Width = 26;
             // 
             // repositoryItemImageComboBox1
             // 
@@ -121,22 +136,22 @@
             this.imageCollection1.Images.SetKeyName(1, "edit_16x16.bmp");
             this.imageCollection1.Images.SetKeyName(2, "table_(edit)_16x16.bmp");
             // 
-            // treeListColumn2
+            // 编辑
             // 
-            this.treeListColumn2.ColumnEdit = this.repositoryItemImageComboBox2;
-            this.treeListColumn2.FieldName = "编辑";
-            this.treeListColumn2.ImageAlignment = System.Drawing.StringAlignment.Center;
-            this.treeListColumn2.ImageIndex = 1;
-            this.treeListColumn2.MinWidth = 22;
-            this.treeListColumn2.Name = "编辑";
-            this.treeListColumn2.OptionsColumn.AllowEdit = false;
-            this.treeListColumn2.OptionsColumn.AllowFocus = false;
-            this.treeListColumn2.OptionsColumn.AllowMove = false;
-            this.treeListColumn2.OptionsColumn.AllowSize = false;
-            this.treeListColumn2.OptionsColumn.FixedWidth = true;
-            this.treeListColumn2.Visible = true;
-            this.treeListColumn2.VisibleIndex = 2;
-            this.treeListColumn2.Width = 26;
+            this.编辑.ColumnEdit = this.repositoryItemImageComboBox2;
+            this.编辑.FieldName = "编辑";
+            this.编辑.ImageAlignment = System.Drawing.StringAlignment.Center;
+            this.编辑.ImageIndex = 1;
+            this.编辑.MinWidth = 22;
+            this.编辑.Name = "编辑";
+            this.编辑.OptionsColumn.AllowEdit = false;
+            this.编辑.OptionsColumn.AllowFocus = false;
+            this.编辑.OptionsColumn.AllowMove = false;
+            this.编辑.OptionsColumn.AllowSize = false;
+            this.编辑.OptionsColumn.FixedWidth = true;
+            this.编辑.Visible = true;
+            this.编辑.VisibleIndex = 2;
+            this.编辑.Width = 26;
             // 
             // repositoryItemImageComboBox2
             // 
@@ -148,23 +163,23 @@
             this.repositoryItemImageComboBox2.Name = "repositoryItemImageComboBox2";
             this.repositoryItemImageComboBox2.SmallImages = this.imageCollection1;
             // 
-            // treeListColumn4
+            // Layer
             // 
-            this.treeListColumn4.ColumnEdit = this.repositoryItemImageComboBox3;
-            this.treeListColumn4.FieldName = "Layer";
-            this.treeListColumn4.ImageAlignment = System.Drawing.StringAlignment.Center;
-            this.treeListColumn4.ImageIndex = 2;
-            this.treeListColumn4.MinWidth = 22;
-            this.treeListColumn4.Name = "Layer";
-            this.treeListColumn4.OptionsColumn.AllowEdit = false;
-            this.treeListColumn4.OptionsColumn.AllowFocus = false;
-            this.treeListColumn4.OptionsColumn.AllowMove = false;
-            this.treeListColumn4.OptionsColumn.AllowSize = false;
-            this.treeListColumn4.OptionsColumn.AllowSort = false;
-            this.treeListColumn4.OptionsColumn.FixedWidth = true;
-            this.treeListColumn4.Visible = true;
-            this.treeListColumn4.VisibleIndex = 3;
-            this.treeListColumn4.Width = 26;
+            this.Layer.ColumnEdit = this.repositoryItemImageComboBox3;
+            this.Layer.FieldName = "Layer";
+            this.Layer.ImageAlignment = System.Drawing.StringAlignment.Center;
+            this.Layer.ImageIndex = 2;
+            this.Layer.MinWidth = 22;
+            this.Layer.Name = "Layer";
+            this.Layer.OptionsColumn.AllowEdit = false;
+            this.Layer.OptionsColumn.AllowFocus = false;
+            this.Layer.OptionsColumn.AllowMove = false;
+            this.Layer.OptionsColumn.AllowSize = false;
+            this.Layer.OptionsColumn.AllowSort = false;
+            this.Layer.OptionsColumn.FixedWidth = true;
+            this.Layer.Visible = true;
+            this.Layer.VisibleIndex = 3;
+            this.Layer.Width = 26;
             // 
             // repositoryItemImageComboBox3
             // 
@@ -210,19 +225,94 @@
             this.controlNavigator1.Click += new System.EventHandler(this.controlNavigator1_Click);
             this.controlNavigator1.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.controlNavigator1_ButtonClick);
             // 
-            // UCMapLayer
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.checkxlmc);
+            this.groupControl1.Controls.Add(this.checkgth);
+            this.groupControl1.Controls.Add(this.checkbyqrl);
+            this.groupControl1.Controls.Add(this.checkkg);
+            this.groupControl1.Controls.Add(this.checkbyq);
+            this.groupControl1.Controls.Add(this.checkgt);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupControl1.Location = new System.Drawing.Point(0, 159);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(198, 116);
+            this.groupControl1.TabIndex = 5;
+            this.groupControl1.Text = "图层信息";
+            // 
+            // checkxlmc
+            // 
+            this.checkxlmc.Location = new System.Drawing.Point(24, 88);
+            this.checkxlmc.Name = "checkxlmc";
+            this.checkxlmc.Properties.Caption = "线路名称";
+            this.checkxlmc.Size = new System.Drawing.Size(86, 19);
+            this.checkxlmc.TabIndex = 2;
+            // 
+            // checkgth
+            // 
+            this.checkgth.Location = new System.Drawing.Point(91, 34);
+            this.checkgth.Name = "checkgth";
+            this.checkgth.Properties.Caption = "杆塔号";
+            this.checkgth.Size = new System.Drawing.Size(65, 19);
+            this.checkgth.TabIndex = 1;
+            // 
+            // checkbyqrl
+            // 
+            this.checkbyqrl.EditValue = true;
+            this.checkbyqrl.Location = new System.Drawing.Point(91, 51);
+            this.checkbyqrl.Name = "checkbyqrl";
+            this.checkbyqrl.Properties.Caption = "变压器容器";
+            this.checkbyqrl.Size = new System.Drawing.Size(83, 19);
+            this.checkbyqrl.TabIndex = 0;
+            // 
+            // checkkg
+            // 
+            this.checkkg.Location = new System.Drawing.Point(24, 68);
+            this.checkkg.Name = "checkkg";
+            this.checkkg.Properties.Caption = "开关";
+            this.checkkg.Size = new System.Drawing.Size(61, 19);
+            this.checkkg.TabIndex = 0;
+            // 
+            // checkbyq
+            // 
+            this.checkbyq.EditValue = true;
+            this.checkbyq.Location = new System.Drawing.Point(24, 50);
+            this.checkbyq.Name = "checkbyq";
+            this.checkbyq.Properties.Caption = "变压器";
+            this.checkbyq.Size = new System.Drawing.Size(61, 19);
+            this.checkbyq.TabIndex = 0;
+            // 
+            // checkgt
+            // 
+            this.checkgt.EditValue = true;
+            this.checkgt.Location = new System.Drawing.Point(24, 34);
+            this.checkgt.Name = "checkgt";
+            this.checkgt.Properties.Caption = "杆塔";
+            this.checkgt.Size = new System.Drawing.Size(61, 19);
+            this.checkgt.TabIndex = 0;
+            // 
+            // UCSharpeNetwork
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.treeList1);
+            this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.controlNavigator1);
-            this.Name = "UCMapLayer";
-            this.Size = new System.Drawing.Size(198, 176);
+            this.Name = "UCSharpeNetwork";
+            this.Size = new System.Drawing.Size(198, 275);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkxlmc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkgth.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkbyqrl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkkg.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkbyq.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkgt.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -239,5 +329,16 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox2;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox3;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn 层;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn 显示;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn 编辑;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn Layer;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.CheckEdit checkxlmc;
+        private DevExpress.XtraEditors.CheckEdit checkgth;
+        private DevExpress.XtraEditors.CheckEdit checkbyqrl;
+        private DevExpress.XtraEditors.CheckEdit checkkg;
+        private DevExpress.XtraEditors.CheckEdit checkbyq;
+        private DevExpress.XtraEditors.CheckEdit checkgt;
     }
 }

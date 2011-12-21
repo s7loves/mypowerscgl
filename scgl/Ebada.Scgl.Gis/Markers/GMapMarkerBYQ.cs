@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Gis.Markers {
             if (ShowText && !string.IsNullOrEmpty(Text)) {
                 Size sf=g.MeasureString(Text, mFont).ToSize();
 
-                g.DrawString(Text, mFont, Brushes.Black, LocalPosition.X + 10 - sf.Width / 2, LocalPosition.Y - 15);
+                g.DrawString(Text, mFont, Brushes.Black, LocalPosition.X+7  - sf.Width / 2, LocalPosition.Y - 15);
             }
         }
         

@@ -16,6 +16,7 @@ using Ebada.Scgl.Model;
 using System.Collections;
 using DevExpress.Utils;
 using Ebada.Scgl.Gis.Markers;
+using DevExpress.XtraEditors;
 
 namespace Ebada.Scgl.Gis {
     /// <summary>
@@ -24,15 +25,23 @@ namespace Ebada.Scgl.Gis {
     public partial class UCSharpeDxt : UserControl, IUCLayer {
 
         WaitDialogForm waitdlg;
+        
         public UCSharpeDxt() {
             
             InitializeComponent();
             //mRMap = map;
             //mRMap.Overlays.CollectionChanged += new GMap.NET.ObjectModel.NotifyCollectionChangedEventHandler(Overlays_CollectionChanged);
             InitTree();
-            
+            createCheckGroup();
         }
-
+        private void createCheckGroup() {
+            checkxlmc.CheckedChanged += checkxlmc_CheckedChanged;
+            checkgth.CheckedChanged += checkgth_CheckedChanged;
+            checkbyqrl.CheckedChanged += checkbyqrl_CheckedChanged;
+            checkkg.CheckedChanged += checkkg_CheckedChanged;
+            checkbyq.CheckedChanged += checkbyq_CheckedChanged;
+            checkgt.CheckedChanged += checkgt_CheckedChanged;
+        }
         void Overlays_CollectionChanged(object sender, GMap.NET.ObjectModel.NotifyCollectionChangedEventArgs e) {
             
         }
@@ -441,5 +450,30 @@ namespace Ebada.Scgl.Gis {
         private void treeList1_NodeChanged(object sender, NodeChangedEventArgs e) {
 
         }
+        #region 图层信息
+
+        private void checkgt_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showgt = checkgt.Checked;
+            checkgth.Enabled = checkgt.Checked;
+        }
+
+
+        private void checkgth_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showgth = checkgth.Checked;
+        }
+        private void checkbyq_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showbyq = checkbyq.Checked;
+            checkbyqrl.Enabled = checkbyq.Checked;
+        }
+        private void checkbyqrl_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showbyqrl = checkbyqrl.Checked;
+        }
+        private void checkkg_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showkg = checkkg.Checked;
+        }
+        private void checkxlmc_CheckedChanged(object sender, EventArgs e) {
+            mRMap.Showxlmc = checkxlmc.Checked;
+        }
+        #endregion
     }
 }
