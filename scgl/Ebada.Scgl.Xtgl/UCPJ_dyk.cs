@@ -90,6 +90,7 @@ namespace Ebada.Scgl.Xtgl {
                 //obj.ID = obj.bh;
                 Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}' WHERE ID='{1}'", obj.bh, obj.ID));
                 obj.ID = obj.bh;
+                
             }
         }
         void gridViewOperation_AfterEdit(PJ_dyk obj)
@@ -105,6 +106,7 @@ namespace Ebada.Scgl.Xtgl {
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_dyk> e) {
             if (parentID == null)
                 e.Cancel = true;
+            if (parentObj!=null&&parentID != parentObj.ID) ParentID = parentObj.ID;
             if (parentID != "")
             {
                 long xhidex = 0;
@@ -115,6 +117,7 @@ namespace Ebada.Scgl.Xtgl {
                 {
                     xhidex = (Convert.ToInt64(parentObj.bh) * 100 + 1);
                 }
+                e.Value.ParentID = parentID;
                 e.Value.ID = Convert.ToString(xhidex);
                 e.Value.bh= Convert.ToString(xhidex);
             }
