@@ -159,6 +159,10 @@
     <Compile Include="Device\frmBDSSelector.Designer.cs">
       <DependentUpon>frmBDSSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drawing\DrawingBase.cs" />
+    <Compile Include="Drawing\DrawingDxt.cs" />
+    <Compile Include="Drawing\DrawingNetwork.cs" />
+    <Compile Include="Drawing\DrawingDyt.cs" />
     <Compile Include="frmMapView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +176,7 @@
     <Compile Include="frmText.Designer.cs">
       <DependentUpon>frmText.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drawing\IDrawing.cs" />
     <Compile Include="IPopuMenu.cs" />
     <Compile Include="IUCLayer.cs" />
     <Compile Include="IUpdateable.cs" />
