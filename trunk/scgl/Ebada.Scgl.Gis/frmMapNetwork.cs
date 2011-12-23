@@ -106,6 +106,16 @@ namespace Ebada.Scgl.Gis {
             this.Show();
             return this;
         }
+        public frmMapNetwork showDyt() {
+            dockPanel1.Text = "配电低压台区图";
+            UCSharpeDyt dxt = new UCSharpeDyt();
+            dxt.Dock = DockStyle.Fill;
+            dockPanel1_Container.Controls.Remove(ucMapLayer1);
+            dockPanel1_Container.Controls.Add(dxt);
+            ucLayer = dxt;
+            this.Show();
+            return this;
+        }
         void 测距_DownChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (barButtonItem4.Down)
                 CurOperation = oInstances.DistanceOperation;
