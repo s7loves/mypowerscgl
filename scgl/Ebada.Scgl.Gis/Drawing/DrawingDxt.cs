@@ -69,7 +69,7 @@ namespace Ebada.Scgl.Gis {
             sbrows.Add("其它杆", new sbrow() { zl = "杆塔", xh = "其它" });
             sbrows.Add("S7", new sbrow() { zl = "变压器", xh = "S7" });
             sbrows.Add("S9", new sbrow() { zl = "变压器", xh = "S9" });
-            sbrows.Add("S10", new sbrow() { zl = "变压器", xh = "S10" });
+            sbrows.Add("S10", new sbrow() { zl = "变压器", xh = "S11" });
             sbrows.Add("其它", new sbrow() { zl = "变压器", xh = "其它" });
             sbrows.Add("kg", new sbrow() { zl = "开关", xh = "全部" });
 
