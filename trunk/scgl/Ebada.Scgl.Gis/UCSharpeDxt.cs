@@ -286,10 +286,10 @@ namespace Ebada.Scgl.Gis {
 
                 rect.Inflate(.002d, .001d);
                 string name=getxlname(xlcode);
-                GMapMarkerText text = new GMapMarkerText(new PointLatLng(rect.Top - .0025, rect.Left + rect.WidthLng / 2));
-                text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
-                text.Text ="10kV"+ name + "系统图 - " + DateTime.Now.Year + "年";
-                MapControl.FindOverlay("bdz").Markers.Add(text);
+                //GMapMarkerText text = new GMapMarkerText(new PointLatLng(rect.Top - .0025, rect.Left + rect.WidthLng / 2));
+                //text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
+                MapControl.MapTitle ="10kV"+ name + "系统图 - " + DateTime.Now.Year + "年";
+                //MapControl.FindOverlay("bdz").Markers.Add(text);
                 MapControl.MapBounds = rect;
                 setWaitMsg("统计线路设备信息");
                 MapControl.CreateSbtjInfoLine(xlcode);
