@@ -24,6 +24,7 @@ namespace Ebada.Scgl.Gis {
     public partial class UCSharpeNetwork : UserControl, IUCLayer {
 
         WaitDialogForm waitdlg;
+        DrawingNetwork dxt;
         public UCSharpeNetwork() {
             
             InitializeComponent();
@@ -129,6 +130,8 @@ namespace Ebada.Scgl.Gis {
             set {
                 if (value == mRMap) return;
                 mRMap = value;
+                dxt = new DrawingNetwork(mRMap);
+
             }
         }
         public void InitLayer()
@@ -265,7 +268,7 @@ namespace Ebada.Scgl.Gis {
 
         private void clearMapData() {
             //MapControl.
-            MapControl.MapBounds = RectLatLng.Empty;
+            dxt.Bounds = RectLatLng.Empty;
             foreach (GMapOverlay lay in MapControl.Overlays) {
                 if (lay.Id == "bdz") lay.Markers.Clear();
                 else
@@ -326,12 +329,13 @@ namespace Ebada.Scgl.Gis {
                     if (org != null) {
                         name = org.OrgName;
                     }
-                }
-                GMapMarkerText text = new GMapMarkerText(new PointLatLng(rect.Top - .0025, rect.Left + rect.WidthLng / 2));
-                text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
-                text.Text = name + "高压配电线路网络图 - " + DateTime.Now.Year + "年";
-                MapControl.FindOverlay("bdz").Markers.Add(text);
-                MapControl.MapBounds = rect;
+                } 
+                //GMapMarkerText text = new GMapMarkerText(new PointLatLng(rect.Top - .0025, rect.Left + rect.WidthLng / 2));
+                //text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
+                name = name + "高压配电线路网络图 - " + DateTime.Now.Year + "年";
+
+                dxt.Title = name;
+                dxt.Bounds = rect;
                 MapControl.SetZoomToFitRect(rect);
             }
             

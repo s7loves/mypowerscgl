@@ -25,12 +25,13 @@ namespace Ebada.Scgl.Gis {
     public partial class UCSharpeDxt : UserControl, IUCLayer {
 
         WaitDialogForm waitdlg;
-        
+        DrawingDxt dxt;
         public UCSharpeDxt() {
             
             InitializeComponent();
             InitTree();
             createCheckGroup();
+            
         }
         private void createCheckGroup() {
             checkxlmc.CheckedChanged += checkxlmc_CheckedChanged;
@@ -129,6 +130,7 @@ namespace Ebada.Scgl.Gis {
             set {
                 if (value == mRMap) return;
                 mRMap = value;
+                dxt = new DrawingDxt(value);
             }
         }
         public void InitLayer()
@@ -284,15 +286,18 @@ namespace Ebada.Scgl.Gis {
             }
             if (!rect.IsEmpty) {
 
+                setWaitMsg("统计线路设备信息");
+
                 rect.Inflate(.002d, .001d);
                 string name=getxlname(xlcode);
-                //GMapMarkerText text = new GMapMarkerText(new PointLatLng(rect.Top - .0025, rect.Left + rect.WidthLng / 2));
-                //text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
-                MapControl.MapTitle ="10kV"+ name + "系统图 - " + DateTime.Now.Year + "年";
-                //MapControl.FindOverlay("bdz").Markers.Add(text);
-                MapControl.MapBounds = rect;
-                setWaitMsg("统计线路设备信息");
-                MapControl.CreateSbtjInfoLine(xlcode);
+                string title ="10kV"+ name + "系统图 - " + DateTime.Now.Year + "年";
+                
+                dxt.Bounds = rect;
+               
+                dxt.Title = title;
+                
+                dxt.Create(xlcode);
+               
                 MapControl.SetZoomToFitRect(rect);
 
             }
@@ -322,7 +327,7 @@ namespace Ebada.Scgl.Gis {
 
         private void clearMapData() {
             //MapControl.
-            MapControl.MapBounds = RectLatLng.Empty;
+            dxt.Bounds = RectLatLng.Empty;
             foreach (GMapOverlay lay in MapControl.Overlays) {
                 if (lay.Id == "bdz") lay.Markers.Clear();
                 else
@@ -392,7 +397,7 @@ namespace Ebada.Scgl.Gis {
                 text.Font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
                 text.Text = name + "高压配电线路网络图 - " + DateTime.Now.Year + "年";
                 MapControl.FindOverlay("bdz").Markers.Add(text);
-                MapControl.MapBounds = rect;
+                //MapControl.MapBounds = rect;
                 MapControl.SetZoomToFitRect(rect);
             }
             
