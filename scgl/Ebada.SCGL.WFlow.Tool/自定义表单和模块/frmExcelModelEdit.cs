@@ -89,8 +89,10 @@ namespace Ebada.SCGL.WFlow.Tool
             list.Add(new DicType("DevExpress.XtraEditors.TextEdit,DevExpress.XtraEditors,Version=10.1.7.0,Culture=neutral,PublicKeyToken=b88d1754d700e49a", "DevExpress.XtraEditors.TextEdit"));
             list.Add(new DicType("DevExpress.XtraEditors.ComboBoxEdit,DevExpress.XtraEditors,Version=10.1.7.0,Culture=neutral,PublicKeyToken=b88d1754d700e49a", "DevExpress.XtraEditors.ComboBoxEdit"));
             list.Add(new DicType("DevExpress.XtraEditors.DateEdit,DevExpress.XtraEditors,Version=10.1.7.0,Culture=neutral,PublicKeyToken=b88d1754d700e49a", "DevExpress.XtraEditors.DateEdit"));
+            list.Add(new DicType("DevExpress.XtraEditors.SpinEdit,DevExpress.XtraEditors,Version=10.1.7.0,Culture=neutral,PublicKeyToken=b88d1754d700e49a", "DevExpress.XtraEditors.SpinEdit"));
             list.Add(new DicType("DevExpress.XtraEditors.MemoEdit,DevExpress.XtraEditors,Version=10.1.7.0,Culture=neutral,PublicKeyToken=b88d1754d700e49a", "DevExpress.XtraEditors.MemoEdit"));
             list.Add(new DicType("uc_gridcontrol", "uc_gridcontrol"));
+           
             //list.Add(new DicType("xlqxp", "抢修票"));停电操作票
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);
             comboBoxEdit5.Properties.Items.Clear();
@@ -271,6 +273,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 //rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
                 rowData.WordCount = comboBoxEdit5.Text;
             }
+            if (comboBoxEdit7.Visible)
+            {
+                //rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
+                rowData.WordCount = comboBoxEdit7.Text;
+            }
             rowData.IsVisible = checkEdit1.Checked ? 0 : 1;
             rowData.CellPos = rowData.CellPos.ToUpper();
             rowData.isExplorer = comboBoxEdit3.SelectedIndex;
@@ -344,17 +351,39 @@ namespace Ebada.SCGL.WFlow.Tool
                 labelControl3.Visible = false;
                 textEdit7.Visible = false;
 
+                labelControl26.Visible = false;
+                comboBoxEdit7.Visible = false;
+
                 labelControl24.Visible = true;
                 comboBoxEdit5.Visible = true;
             }
             else
-            {
-                labelControl3.Visible = true;
-                textEdit7.Visible = true;
+                if (rowData.CtrlType.IndexOf("SpinEdit") > -1)
+                {
+                    comboBoxEdit7.Text = rowData.WordCount;
 
-                labelControl24.Visible = false;
-                comboBoxEdit5.Visible = false;
-            }
+                    labelControl3.Visible = false;
+                    textEdit7.Visible = false;
+
+                    labelControl24.Visible = false;
+                    comboBoxEdit5.Visible = false;
+
+                    labelControl26.Visible = true;
+                    comboBoxEdit7.Visible = true;
+                }
+                else
+                {
+                    labelControl3.Visible = true;
+                    textEdit7.Visible = true;
+
+                    labelControl24.Visible = false;
+                    comboBoxEdit5.Visible = false;
+
+                    labelControl26.Visible = false;
+                    comboBoxEdit7.Visible = false;
+
+                  
+                }
             checkEdit1.Checked= rowData.IsVisible==0? true:false;
            
         }
@@ -366,17 +395,60 @@ namespace Ebada.SCGL.WFlow.Tool
             comboBoxEdit6.Properties.Items.Add("TextChanged");
             comboBoxEdit6.Properties.Items.Add("GotFocus");
             comboBoxEdit6.Properties.Items.Add("LostFocus");
+
+            labelControl26.Visible = false;
+            comboBoxEdit7.Visible = false;
+
+            labelControl24.Visible = false;
+            comboBoxEdit5.Visible = false;
+
             if (lookUpEdit1.EditValue.ToString().IndexOf("DateEdit") > -1)
             {
 
                 labelControl3.Visible = false;
                 textEdit7.Visible = false;
 
+                labelControl26.Visible = false;
+                comboBoxEdit7.Visible = false;
+
                 labelControl24.Visible = true;
                 comboBoxEdit5.Visible = true;
+
                 comboBoxEdit2.Properties.Items.Clear();
                 comboBoxEdit2.Properties.Items.Add("{0}年{1}月{2}日");
                 comboBoxEdit2.Properties.Items.Add("合同编号");
+            }
+            else if (lookUpEdit1.EditValue.ToString().IndexOf("SpinEdit") > -1)
+            {
+
+                labelControl3.Visible = false;
+                textEdit7.Visible = false;
+
+
+                labelControl24.Visible = false;
+                comboBoxEdit5.Visible = false;
+
+                labelControl26.Visible = true;
+                comboBoxEdit7.Visible = true;
+
+                comboBoxEdit7.Properties.Items.Clear();
+
+                ListItem lt = new ListItem("0.0000", "0.0000");
+                comboBoxEdit7.Properties.Items.Add(lt);
+                lt = new ListItem("#########0.0000", "#########0.0000");
+                comboBoxEdit7.Properties.Items.Add(lt);
+                lt = new ListItem("##########.0000", "##########.0000");
+                comboBoxEdit7.Properties.Items.Add(lt);
+                lt = new ListItem("p", "p");
+                comboBoxEdit7.Properties.Items.Add(lt);
+                lt = new ListItem("c", "c");
+                comboBoxEdit7.Properties.Items.Add(lt);
+                lt = new ListItem("n0", "n0");
+                comboBoxEdit7.Properties.Items.Add(lt);
+                lt = new ListItem("##########.##", "##########.##");
+                comboBoxEdit7.Properties.Items.Add(lt);
+                lt = new ListItem("000.##", "000.##");
+                comboBoxEdit7.Properties.Items.Add(lt);
             }
                  else  if (lookUpEdit1.EditValue.ToString().IndexOf("uc_gridcontrol") > -1)
             {

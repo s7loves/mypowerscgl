@@ -118,11 +118,21 @@ namespace Ebada.SCGL.WFlow.Tool
                     ((System.ComponentModel.ISupportInitialize)(lue1)).BeginInit();   
                     if (r1.Match(strcom).Value != "")
                     {
-                        if (r1.Match(strcom).Value.IndexOf("p") > -1 || r1.Match(strcom).Value.IndexOf("%") > -1)
+                        if (r1.Match(strcom).Value.IndexOf("p") > -1  )
                         {
                             lue1.Increment = (decimal)0.0001;
                             lue1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                         }
+                        else
+                        if ( r1.Match(strcom).Value.IndexOf(".") > -1)
+                        {
+                            Regex  r2 = new Regex(@"(?<=\.).*");
+
+                            lue1.Increment = (decimal)Math.Pow(0.1, r2.Match(strcom).Value.Length / 2);
+                            lue1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                           
+                        }
+                       
                         lue1.Properties.EditMask = r1.Match(strcom).Value;
                         lue1.DisplayFormat.FormatString = r1.Match(strcom).Value;
                         lue1.Properties.DisplayFormat.FormatString = r1.Match(strcom).Value;

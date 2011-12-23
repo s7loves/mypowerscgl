@@ -85,12 +85,13 @@ namespace Ebada.Scgl.Lcgl
                 string.Format("select nr from pj_dyk where  dx='所月度停电计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
             if (list.Count > 0)
                 startday=list[0].ToString();
-            IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
-                " where TDtime between '" + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-"+startday
-                + " 00:00:00' and  '" 
+            string str = " where TDtime between '" + DateTime.Now.Year + "-"
+                + DateTime.Now.Month + "-" + startday
+                + " 00:00:00' and  dateadd(m,1,cast('"
                 + DateTime.Now.Year + "-"
-                + (DateTime.Now.Month + 1) + "-" + startday + " 00:00:00' and OrgCode='"+orgid+"'"
+                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) ) and OrgCode='" + orgid + "'";
+            IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
+               str
                 );
             ExportExcel(ex, datalist);
             ex.ShowExcel();
@@ -110,9 +111,9 @@ namespace Ebada.Scgl.Lcgl
 
              filter = " where TDtime between '" + DateTime.Now.Year + "-"
                  + DateTime.Now.Month + "-" + startday
-                 + " 00:00:00' and  '"
-                 + DateTime.Now.Year + "-"
-                 + (DateTime.Now.Month + 1) + "-" + startday + " 00:00:00' and OrgCode='" + orgid + "'";
+                 + " 00:00:00' and    dateadd(m,1,cast('"
+                + DateTime.Now.Year + "-"
+                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) )  and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
                 filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
@@ -184,9 +185,9 @@ namespace Ebada.Scgl.Lcgl
             ex.MyExcel = wb.Application;
             string filter = " where TDtime between '" + DateTime.Now.Year + "-"
                 + DateTime.Now.Month + "-" + startday
-                + " 00:00:00' and  '"
+                + " 00:00:00' and    dateadd(m,1,cast('"
                 + DateTime.Now.Year + "-"
-                + (DateTime.Now.Month + 1) + "-" + startday + " 00:00:00' and OrgCode='" + orgid + "'";
+                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) )  and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
                 filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where WorkFlowId='"
@@ -230,8 +231,9 @@ namespace Ebada.Scgl.Lcgl
                     ex.CopySheet(1, 1);
                 }
             }
-   
-                ex.SetCellValue(DateTime.Now.Year+"年"+(DateTime.Now.Month+1)+"月份配电设备停电检修计划表", 1, 1);
+            DateTime dt = DateTime.Now;
+            dt=dt.AddMonths(1);
+            ex.SetCellValue(dt.Year + "年" + (dt.Month) + "月份配电设备停电检修计划表", 1, 1);
         
             for (int j = 0; j < datalist.Count; j++)
             {

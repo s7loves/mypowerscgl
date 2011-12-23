@@ -140,11 +140,11 @@ namespace Ebada.Scgl.Lcgl
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "客户电压等级"));
             if (strlist.Count > 0)
-                comboBoxEdit7.Properties.Items.AddRange(strlist);
+                comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit7.Properties.Items.Add("10KV");
-                comboBoxEdit7.Properties.Items.Add("0.38KV");
+                comboBoxEdit1.Properties.Items.Add("10KV");
+                comboBoxEdit1.Properties.Items.Add("0.38KV");
             }
            
         }
