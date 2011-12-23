@@ -13,7 +13,7 @@ namespace Ebada.Scgl.Gis.Markers {
 
         public float? Bearing;
 
-        public System.Drawing.Size SizeSt = new Size(6, 6);
+        public System.Drawing.Size SizeSt = new Size(4, 4);
         public Pen Pen;
         private List<GMapMarkerVector> items;
         private GMapMarkerVector parentMarker;
@@ -74,10 +74,10 @@ namespace Ebada.Scgl.Gis.Markers {
         public GMapMarkerVector(PointLatLng p)
             : base(p) {
             Size = SizeSt;
-            Offset = new Point(-3, -3);
-            Pen = new Pen(Color.Red, 2);
+            Offset = new Point(-2, -2);
+            Pen = new Pen(Color.Black, 1);
             items = new List<GMapMarkerVector>();
-            font = new Font(FontFamily.GenericSerif, 9);
+            font = new Font(FontFamily.GenericSerif, 8);
         }
         public override void OnRender(Graphics g) {
             //g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;

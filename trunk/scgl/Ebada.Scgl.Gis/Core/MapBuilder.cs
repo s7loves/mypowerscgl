@@ -79,6 +79,7 @@ namespace Ebada.Scgl.Gis {
                  GMapMarkerVector preMarker = null;
                  List<PointLatLng> points = new List<PointLatLng>();
                  LineRoute route = new LineRoute(points, linecode);
+                 route.Stroke.Width = 1;
                  int count = 0;
                  foreach (PS_gt gt in list) {
                      PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
@@ -145,9 +146,9 @@ namespace Ebada.Scgl.Gis {
                  LineRoute route = new LineRoute(points, linecode);
                  //route.Stroke.Color = Color.Black;
                  if (linecode.Length == 6)
-                     route.Stroke.Width = 4;
-                 else
                      route.Stroke.Width = 2;
+                 else
+                     route.Stroke.Width = 1;
                  int count = 0;
                  gtdic.Clear();
                  foreach (PS_gt gt in list) {
@@ -174,6 +175,7 @@ namespace Ebada.Scgl.Gis {
                          preMarker = marker;
                          marker.ToolTipText = gt.gth + "\n" + line.LineName;
                          marker.Tag = gt;
+                         if(count%2==1)
                          marker.Text = count+"#";
                          marker.Id = gt.gtID;
                          layer.Markers.Add(marker);
