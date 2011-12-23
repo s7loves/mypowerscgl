@@ -649,7 +649,7 @@ namespace Ebada.Scgl.WFlow
                         ea.ActiveSheet(xx.Index);
                     }
 
-                    ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
+                    if (tfvli[i].XExcelPos > -1 && tfvli[i].YExcelPos > -1) ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
 
                 }
                 dsoFramerWordControl1.FileSave();

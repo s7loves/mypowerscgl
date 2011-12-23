@@ -574,8 +574,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 500)
-                throw new Exception("[combox集合]长度不能大于500!");
+                //if( value.ToString().Length > 500)
+                //throw new Exception("[combox集合]长度不能大于500!");
                 if (_comboxitem as object == null || !_comboxitem.Equals(value))
                 {
                     _comboxitem = value;

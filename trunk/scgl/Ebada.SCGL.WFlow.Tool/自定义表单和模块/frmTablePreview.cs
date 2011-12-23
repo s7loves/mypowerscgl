@@ -337,6 +337,28 @@ namespace Ebada.SCGL.WFlow.Tool
                 {
                     ctrlOrgName = ctrl;
                 }
+                if (lp.CtrlType.Contains("SpinEdit")&&lp.WordCount!="")
+                {
+                    SpinEdit lue1 = (SpinEdit)ctrl;
+                    if (lp.WordCount.IndexOf("p") > -1)
+                    {
+                        lue1.Properties.Increment= (decimal)0.0001;
+                        lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                    }
+                    else
+                        if (lp.WordCount.IndexOf(".") > -1)
+                        {
+                            Regex  r2 = new Regex(@"(?<=\.).*");
+                            lue1.Properties.Increment = (decimal)Math.Pow(0.1, r2.Match(lp.WordCount).Value.Length / 2);
+                            lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+
+                        }
+                    lue1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                    lue1.Properties.EditFormat.FormatString = lp.WordCount;
+                    lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                    lue1.Properties.DisplayFormat.FormatString = lp.WordCount;
+                    lue1.Properties.EditMask = lp.WordCount;
+                }
             }
             InitEvent();
             InitData();
@@ -684,6 +706,12 @@ namespace Ebada.SCGL.WFlow.Tool
                 LockExcel(wb, xx);
                 return;
             }
+            else if (lp.CtrlType.Contains("DevExpress.XtraEditors.SpinEdit"))
+            {
+                FillDoubleValue(ea, lp, (sender as SpinEdit));
+                LockExcel(wb, xx);
+                return;
+            }
             string[] arrCellpos = lp.CellPos.Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
@@ -766,7 +794,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                         str = str.Substring( help.GetFristLen(str, arrCellCount[0]));
                         i++;
-                        str = help.GetPlitString(str, arrCellCount[1]);
+                        //str = help.GetPlitString(str, arrCellCount[1]);
                     }
                     FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
                 }
@@ -834,10 +862,11 @@ namespace Ebada.SCGL.WFlow.Tool
         public void FillMutilRows(ExcelAccess ea, int i, LP_Temple lp, string str, List<int> arrCellCount, string[] arrCellPos)
         {
             StringHelper help = new StringHelper();
-            str = help.GetPlitString(str, arrCellCount[1]);
+            
             string[] extraWord = lp.ExtraWord.Split(pchar);
             if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1)
             {
+                str = help.GetPlitString(str, arrCellCount[1]);
                 string[] arrRst = str.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 int j = 0;
                 for (; i < arrCellPos.Length; i++)
@@ -857,20 +886,40 @@ namespace Ebada.SCGL.WFlow.Tool
                 {
 
                     if (strarrRst.Length <= help.GetFristLen(str, arrCellCount[i]))
+                    {
                         ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        break;
+                    }
                     else
                     {
                         ea.SetCellValue(strarrRst.Substring(0, help.GetFristLen(strarrRst, arrCellCount[i])), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                         strarrRst = strarrRst.Substring(help.GetFristLen(strarrRst, arrCellCount[i]));
-                        i++;
-                        strarrRst = help.GetPlitString(strarrRst, arrCellCount[i]);
+                        
+                        //strarrRst = help.GetPlitString(strarrRst, arrCellCount[i]);
                     }
 
                    
                 }
             }
         }
+        public void FillDoubleValue(ExcelAccess ea, LP_Temple lp, SpinEdit se)
+        {
+            string[] arrCellpos = lp.CellPos.Split(pchar);
+            arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+            string[] extraWord = lp.ExtraWord.Split(pchar);
+            IList<string> strList = new List<string>();
+            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
+            {
+                ea.SetCellValue(se.Text, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
 
+            }
+            else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
+            {
+               
+                ea.SetCellValue(se.Text, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+            }
+        }
+    
         public void FillTime(ExcelAccess ea, LP_Temple lp, DateTime dt)
         {
             string[] arrCellPos = lp.CellPos.Split(pchar);
@@ -1289,6 +1338,20 @@ namespace Ebada.SCGL.WFlow.Tool
                     {
                         ((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
                         Control bttip = FindCtrl("bt"+lp.LPID);
+                        if (bttip != null)
+                        {
+                            ((ComboBoxEdit)bttip).Properties.Items.Clear();
+                            ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
+                            if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
+                                ((ComboBoxEdit)bttip).SelectedIndex = 0;
+                        }
+                    }
+                    break;
+                case "DevExpress.XtraEditors.SpinEdit":
+                    if (li.Count > 0 && sqlSentence != "")
+                    {
+                        ((DevExpress.XtraEditors.SpinEdit)ctrl).Text = li[0].ToString();
+                        Control bttip = FindCtrl("bt" + lp.LPID);
                         if (bttip != null)
                         {
                             ((ComboBoxEdit)bttip).Properties.Items.Clear();

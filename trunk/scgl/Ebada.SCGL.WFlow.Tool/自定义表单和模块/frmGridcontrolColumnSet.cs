@@ -95,10 +95,12 @@ namespace Ebada.SCGL.WFlow.Tool
             gridView1.Columns["name"].Caption = "列名";
             gridView1.Columns["name"].AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             gridView1.Columns["name"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridView1.Columns["name"].OptionsColumn.AllowEdit = false;
             gridView1.Columns["sql"].Caption = "绑定控件";
             gridView1.Columns["sql"].AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             gridView1.Columns["sql"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            gridView1.OptionsBehavior.Editable = false;
+            gridView1.Columns["sql"].OptionsColumn.AllowEdit = true;
+            //gridView1.OptionsBehavior.Editable = false;
             ListItem lt = new ListItem("RepositoryItemComboBox", "下拉控件");
             comboBox1.Items.Add(lt);
             lt = new ListItem("RepositoryItemDateEdit", "时间控件");
@@ -133,13 +135,20 @@ namespace Ebada.SCGL.WFlow.Tool
             lt = new ListItem("yyyy年MM月dd日", "yyyy年MM月dd日");
             comboBox2.Items.Add(lt);
 
+           
+            lt = new ListItem("0.0000", "0.0000");
+            comboBox3.Items.Add(lt);
+            lt = new ListItem("#########0.0000", "#########0.0000");
+            comboBox3.Items.Add(lt);
+            lt = new ListItem("##########.0000", "##########.0000");
+            comboBox3.Items.Add(lt);
             lt = new ListItem("p", "p");
             comboBox3.Items.Add(lt);
             lt = new ListItem("c", "c");
             comboBox3.Items.Add(lt);
             lt = new ListItem("n0", "n0");
             comboBox3.Items.Add(lt);
-            lt = new ListItem("###.00", "###.00");
+            lt = new ListItem("##########.##", "##########.##");
             comboBox3.Items.Add(lt);
             lt = new ListItem("000.##", "000.##");
             comboBox3.Items.Add(lt);

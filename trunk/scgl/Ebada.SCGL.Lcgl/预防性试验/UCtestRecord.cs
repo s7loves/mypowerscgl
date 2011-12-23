@@ -99,7 +99,7 @@ namespace Ebada.Scgl.Lcgl
                             {
                                 liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                                 TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                                TaskOverButton.Caption = wt.Description;
+                                if (wt.Description != "") TaskOverButton.Caption = wt.Description;
                             }
                         
                     }

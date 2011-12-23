@@ -45,12 +45,58 @@ namespace Ebada.Scgl.Lcgl
             gridControl1.UseEmbeddedNavigator = true;
             gridControl1.Dock = DockStyle.Fill;
         }
+      
 
         private void uc_gridcontrol_Load(object sender, EventArgs e)
         {
 
         }
+        public  void iniTableRecordData(LP_Record currRecord, LP_Temple lp, string WorkflowId, string WorkFlowInsId)
+        {
+            if (lp != null)
+            {
+                DataTable ds = gridControl1.DataSource as DataTable;
+             
 
+                string[] arrCellpos = lp.CellPos.Split('|');
+                int i=0;
+               
+                for ( i = 0; ; i++)
+                {
+                      IList<WF_TableFieldValue> tfvli;
+                      if (lp.ExtraWord == "横向")
+                      {
+                          string strtemp =  " where RecordId='" + currRecord.ID
+                        + "' and FieldId='" + lp.LPID
+                        + "' and   WorkflowId='" + WorkflowId
+                        + "' and   YExcelPos='" + (GetCellPos(arrCellpos[0])[1]+i)
+                        + "' and WorkFlowInsId='" + WorkFlowInsId + "'   order by XExcelPos,id ";
+                          tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList", strtemp
+                       );
+                      }
+                      else
+                      {
+                          string strtemp =  " where RecordId='" + currRecord.ID
+                        + "' and FieldId='" + lp.LPID
+                        + "' and   WorkflowId='" + WorkflowId
+                        + "' and   XExcelPos='" + (GetCellPos(arrCellpos[0])[0]+i)
+                        + "' and WorkFlowInsId='" + WorkFlowInsId + "'  order by YExcelPos,id ";
+                          tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList", strtemp
+                       );
+                      }
+                      if (tfvli.Count == 0) break;
+                      ds.Rows.Add(ds.NewRow());
+                      foreach (WF_TableFieldValue tfv in tfvli)
+                      {
+                              Regex r2 = new Regex(@"(?<=-).*");
+                          string strname=r2.Match(tfv.FieldName).Value;
+                          if (strname != "") ds.Rows[i][strname] = tfv.ControlValue;
+                     }
+                 
+                }
+               
+            }
+        }
         public void InitCol(string[] arrCol, LP_Temple lp)
         {
             m_ColName = arrCol;
@@ -70,9 +116,11 @@ namespace Ebada.Scgl.Lcgl
             string[] comItem = SelectorHelper.ToDBC(lp.ComBoxItem).Split('|');
             for (int i = 0; i < grid.Columns.Count; i++)
             {
+                grid.Columns[i].OptionsColumn.AllowShowHide = false;
+                grid.Columns[i].OptionsColumn.AllowMove = false;
                 if (grid.Columns[i].FieldName == "序号" || grid.Columns[i].FieldName == "月份" || grid.Columns[i].FieldName == "季度")
                 {
-                    grid.Columns[i].Width = 20;
+                    grid.Columns[i].MinWidth = 20;
                 }
                 Regex r1 = new Regex(@"(?<=" + i + ":).*?(?=])");
                 string strcom = "";
@@ -99,8 +147,8 @@ namespace Ebada.Scgl.Lcgl
                 else if (strcom.IndexOf("RepositoryItemCalcEdit") > -1)
                 {
                     r1 = new Regex(@"(?<=:).*");
-                    DevExpress.XtraEditors.Repository.RepositoryItemDateEdit date =
-                             new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+                    DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit date =
+                             new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
                     if (r1.Match(strcom).Value != "")
 
                         date.Properties.EditMask = r1.Match(strcom).Value;
@@ -115,11 +163,21 @@ namespace Ebada.Scgl.Lcgl
                     ((System.ComponentModel.ISupportInitialize)(lue1)).BeginInit();
                     if (r1.Match(strcom).Value != "")
                     {
-                        if (r1.Match(strcom).Value.IndexOf("p") > -1 || r1.Match(strcom).Value.IndexOf("%") > -1)
+                        if (r1.Match(strcom).Value.IndexOf("p") > -1 )
                         {
                             lue1.Increment = (decimal)0.0001;
                             lue1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                         }
+                        else
+                            if (r1.Match(strcom).Value.IndexOf(".") > -1)
+                            {
+                                Regex r2 = new Regex(@"(?<=\.).*");
+
+                                lue1.Increment = (decimal)Math.Pow(0.1, r2.Match(strcom).Value.Length/2);
+                                lue1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+
+                            }
+                       
                         lue1.Properties.EditMask = r1.Match(strcom).Value;
                         lue1.DisplayFormat.FormatString = r1.Match(strcom).Value;
                         lue1.Properties.DisplayFormat.FormatString = r1.Match(strcom).Value;
@@ -429,6 +487,10 @@ namespace Ebada.Scgl.Lcgl
                     if (gridView1.Columns[i].ColumnEdit is RepositoryItemDateEdit && oneCol != "")
                     {
                         DevExpress.XtraEditors.DateEdit de = new DevExpress.XtraEditors.DateEdit();
+                        if (oneCol.Trim() == "")
+                        {
+                            oneCol = de.Text;
+                        }
                         de.DateTime = Convert.ToDateTime(oneCol);
                         de.Properties.Mask.EditMask = gridView1.Columns[i].ColumnEdit.EditFormat.FormatString;
                         de.Properties.Mask.UseMaskAsDisplayFormat = true;

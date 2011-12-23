@@ -119,7 +119,7 @@
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(294, 61);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(126, 22);
+            this.comboBox3.Size = new System.Drawing.Size(295, 22);
             this.comboBox3.TabIndex = 49;
             this.comboBox3.Visible = false;
             // 

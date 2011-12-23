@@ -100,7 +100,7 @@ namespace Ebada.Scgl.Lcgl
                             {
                                 
                                 TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                                TaskOverButton.Caption = wt.Description;
+                                if (wt.Description!="") TaskOverButton.Caption = wt.Description;
                                 liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             }
 
@@ -408,7 +408,8 @@ namespace Ebada.Scgl.Lcgl
             }
             else
                 MsgBox.ShowTipMessageBox(strmes);
-            fjly.btn_Submit_Click(sender, e);
+            if (fjly == null) fjly = new frmModleFjly();
+                fjly.btn_Submit_Click(sender, e);
             strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
             if (strmes == "结束节点1")
             {

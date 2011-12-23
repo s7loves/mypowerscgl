@@ -244,6 +244,7 @@
             this.simpleButton3.Size = new System.Drawing.Size(34, 23);
             this.simpleButton3.TabIndex = 27;
             this.simpleButton3.Text = "…";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // memoEdit3
             // 

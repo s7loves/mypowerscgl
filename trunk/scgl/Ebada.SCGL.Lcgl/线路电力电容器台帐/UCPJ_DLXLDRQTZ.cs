@@ -40,6 +40,7 @@ namespace Ebada.Scgl.Lcgl
         private mOrg parentObj;
 
         private bool isWorkflowCall = false;
+        private frmModleFjly fjly = null;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
@@ -79,6 +80,10 @@ namespace Ebada.Scgl.Lcgl
 
                 if (isWorkflowCall)
                 {
+                    if (RecordWorkTask.HaveRunSPYJRole(currRecord.Kind) || RecordWorkTask.HaveRunFuJianRole(currRecord.Kind))
+                    {
+                        barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    }
                     IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                     foreach (WF_WorkTaskCommands wt in wtlist)
                     {
@@ -94,7 +99,7 @@ namespace Ebada.Scgl.Lcgl
                             {
                                 liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                                 TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                                TaskOverButton.Caption = wt.Description;
+                                if (wt.Description != "") TaskOverButton.Caption = wt.Description;
                                 liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             }
 
@@ -365,6 +370,57 @@ namespace Ebada.Scgl.Lcgl
                 MsgBox.ShowTipMessageBox("清除失败: " + strmess);
             }
 
+        }
+
+        private void barFJLY_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fjly == null) fjly = new frmModleFjly();
+            fjly.CurrRecord = currRecord;
+            fjly.RecordWorkFlowData = WorkFlowData;
+            fjly.Kind = currRecord.Kind;
+            fjly.Status = RecordWorkTask.GetWorkTaskStatus(WorkFlowData, currRecord);
+            fjly.ShowDialog();
+        }
+
+        private void TaskOverButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认此节点结束，并进入下一流程?") != DialogResult.OK)
+            {
+                //SendMessage(this.Handle, 0x0010, (IntPtr)0, (IntPtr)0);
+                return;
+            }
+            string strmes = "";
+            WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            if (fjly == null) fjly = new frmModleFjly();
+            fjly.btn_Submit_Click(sender, e);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                currRecord.Status = "存档";
+            }
+            else
+            {
+                currRecord.Status = strmes;
+            }
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+            gridControl1.FindForm().Close();
         }
 
     }
