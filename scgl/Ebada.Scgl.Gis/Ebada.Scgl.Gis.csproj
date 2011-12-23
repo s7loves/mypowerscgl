@@ -260,6 +260,12 @@
     <Compile Include="UCSharpeDxt.Designer.cs">
       <DependentUpon>UCSharpeDxt.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCSharpeDyt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCSharpeDyt.Designer.cs">
+      <DependentUpon>UCSharpeDyt.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Device\frmBaseSelector.resx">
@@ -330,6 +336,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCSharpeDxt.resx">
       <DependentUpon>UCSharpeDxt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCSharpeDyt.resx">
+      <DependentUpon>UCSharpeDyt.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

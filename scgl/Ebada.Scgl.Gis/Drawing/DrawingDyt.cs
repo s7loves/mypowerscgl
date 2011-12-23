@@ -67,11 +67,6 @@ namespace Ebada.Scgl.Gis {
             sbrows.Add("木杆", new sbrow() { zl = "杆塔", xh = "木杆" });
             sbrows.Add("铁塔", new sbrow() { zl = "杆塔", xh = "铁塔" });
             sbrows.Add("其它杆", new sbrow() { zl = "杆塔", xh = "其它" });
-            sbrows.Add("S7", new sbrow() { zl = "变压器", xh = "S7" });
-            sbrows.Add("S9", new sbrow() { zl = "变压器", xh = "S9" });
-            sbrows.Add("S10", new sbrow() { zl = "变压器", xh = "S10" });
-            sbrows.Add("其它", new sbrow() { zl = "变压器", xh = "其它" });
-            sbrows.Add("kg", new sbrow() { zl = "开关", xh = "全部" });
 
             if (sbTable == null) {
                 sbTable = new DataTable();
@@ -82,7 +77,7 @@ namespace Ebada.Scgl.Gis {
             sbTable.Rows.Clear();
 
             string gtfilter = string.Format("select gttype zl,gtheight xh,count(gtid) sl from ps_gt "
-            + "where gtjg='否' and  linecode in (select linecode from ps_xl  where left(Linecode,{0})='{1}' and LineVol = '10')"
+            + "where gtjg='否' and  linecode in (select linecode from ps_xl  where left(Linecode,{0})='{1}' and LineVol = '0.4')"
             + " group by gttype,gtheight", p.Length, p);
             IList gtlist = Client.ClientHelper.PlatformSqlMap.GetList("Select", gtfilter);
             DataTable dt = null;
@@ -104,38 +99,10 @@ namespace Ebada.Scgl.Gis {
             }
 
             //变压器
-            string byqf = string.Format("select left(byqmodle,2) zl,byqcapcity xh,count(byqid) sl from ps_tqbyq where left(byqcode,6)='{0}' group by byqmodle,byqcapcity", p);
-            IList byqlist = Client.ClientHelper.PlatformSqlMap.GetList("Select", byqf);
-
-            dt = DataConvert.HashTablesToDataTable(byqlist);
-            if (dt != null) {
-
-                foreach (DataRow row in dt.Rows) {
-                    string zl = row["zl"].ToString();
-                    if (zl.Contains("S7")) {
-                        sbrows["S7"].sl += Convert.ToInt32(row["sl"]);
-                    } else if (zl.Contains("S9")) {
-                        sbrows["S9"].sl += Convert.ToInt32(row["sl"]);
-                    } else if (zl.Contains("S1")) {
-                        sbrows["S10"].sl += Convert.ToInt32(row["sl"]);
-                    } else {
-                        sbrows["其它"].sl += Convert.ToInt32(row["sl"]);
-                    }
-                }
-
-            }
-
+            
             //开关
 
-            string kgf = string.Format("select kgmodle zl,kgcapcity xh,count(kgid) sl from ps_kg where gtid in (select gtid from ps_gt where left(gtcode,{0})='{1}') group by kgmodle,kgcapcity", p.Length, p);
-            IList kglist = Client.ClientHelper.PlatformSqlMap.GetList("Select", kgf);
-
-            dt = DataConvert.HashTablesToDataTable(kglist);
-            if (dt != null) {
-                foreach (DataRow row in dt.Rows) {
-                    sbrows["kg"].sl += Convert.ToInt32(row["sl"]);
-                }
-            }
+            
             /*            */
             //绝缘子
             //避雷器
