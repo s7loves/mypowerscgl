@@ -55,10 +55,23 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             m_ColName = arrCol;
             DataTable ds = new DataTable();
+            string[] arrColtype = lp.ComBoxItem.Split('|');
             for (int i = 0; i < arrCol.Length;i++ )
             {
                 if (arrCol[i].ToString() == "") continue;
-                ds.Columns.Add(arrCol[i]);
+                if (arrColtype[i].IndexOf("RepositoryItemCalcEdit") > -1 || arrColtype[i].IndexOf("RepositoryItemSpinEdit") > -1)
+                {
+                    ds.Columns.Add(arrCol[i], typeof(double));
+                }
+                else
+                    if (arrColtype[i].IndexOf("RepositoryItemDateEdit") > -1)
+                    {
+                        ds.Columns.Add(arrCol[i], typeof(DateTime));
+                    }
+                    else
+                    {
+                        ds.Columns.Add(arrCol[i], typeof(string));
+                    }
                 ds.Columns[i].Caption = arrCol[i];
             }    
             gridControl1.DataSource = ds;
@@ -132,16 +145,20 @@ namespace Ebada.SCGL.WFlow.Tool
                             lue1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                            
                         }
-                       
+                        lue1.Name = ("lue1" + i.ToString());
+
                         lue1.Properties.EditMask = r1.Match(strcom).Value;
                         lue1.DisplayFormat.FormatString = r1.Match(strcom).Value;
                         lue1.Properties.DisplayFormat.FormatString = r1.Match(strcom).Value;
+                        lue1.EditMask = r1.Match(strcom).Value;
                     }
                     gridView1.Columns[i].ColumnEdit = lue1;
-                    if (lue1.Properties.EditMask.IndexOf("p") > -1 || lue1.Properties.EditMask.IndexOf("%") > -1)
+                    //if (lue1.Properties.EditMask.IndexOf("p") > -1 || lue1.Properties.EditMask.IndexOf("%") > -1)
                     {
-                        gridView1.Columns[i].DisplayFormat.FormatString = "p";
                         gridView1.Columns[i].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                        gridView1.Columns[i].DisplayFormat.FormatString = lue1.Properties.EditMask.ToString();
+                        
+                        
                         
                         
                     }
@@ -449,10 +466,21 @@ namespace Ebada.SCGL.WFlow.Tool
                         de.Properties.Mask.UseMaskAsDisplayFormat = true;
                         oneCol = de.Text;
                     }
+                    else if (gridView1.Columns[i].ColumnEdit is RepositoryItemBaseSpinEdit && oneCol!="")
+                    {
+                        DevExpress.XtraEditors.SpinEdit de = new DevExpress.XtraEditors.SpinEdit();
+                        de.Text = oneCol;
+                        de.Properties.EditMask = gridView1.Columns[i].ColumnEdit.DisplayFormat.FormatString;
+                        de.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                        de.Properties.DisplayFormat.FormatString = gridView1.Columns[i].ColumnEdit.DisplayFormat.FormatString;
+                        oneCol = de.Text;
+                    }
+
                     //if (oneCol != "")
                     {
                         //string splitRst = sh.GetPlitStringN(oneCol, wcount[i]);
-                        if (oneCol == "") oneCol = " ";
+                        if (oneCol == "") 
+                            oneCol = " ";
                         string splitRst = oneCol;
                         if (oneCol.Length > wcount[i]) splitRst = oneCol.Substring(0, wcount[i]);
                         //if (GetPlitLen(splitRst) > max)
@@ -468,7 +496,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 newrow = "\r\n";
             }
             RomoveEnd(ref colArr);
-            
+            Console.WriteLine("1");
             return colArr;
         }
 
@@ -517,13 +545,14 @@ namespace Ebada.SCGL.WFlow.Tool
             return dtReturn;
         }
         public event CellValueChangedEventHandler CellValueChanged;
+        public event FocusedColumnChangedEventHandler FocusedColumnChanged;
         private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             sender = this;
             int i = 0;
             i = e.RowHandle;
             DataView dt = gridView1.DataSource as DataView;
-            if (i<0)
+            if (i < 0)
             {
                 //gridView1.UpdateCurrentRow();
                 //CellValueChanged(this, e);               
@@ -562,6 +591,43 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                              
             }
+        }
+
+        private void gridView1_FocusedColumnChanged(object sender, FocusedColumnChangedEventArgs e)
+        {
+            sender = this;
+            e.FocusedColumn.Tag = gridView1.FocusedRowHandle;
+            FocusedColumnChanged(sender,e);
+        }
+
+        private void gridView1_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            sender = this;
+            int i = 0;
+            i = e.RowHandle;
+            DataView dt = gridView1.DataSource as DataView;
+            if (i < 0)
+            {
+                //gridView1.UpdateCurrentRow();
+                //CellValueChanged(this, e);               
+                return;
+            }
+            if (dt.Table.Columns[e.Column.FieldName].DataType.Name.ToLower().IndexOf("double") > -1)
+            {
+                if (e.Value.ToString().Trim() == "")
+                {
+                    dt.Table.Rows[i][e.Column.FieldName] = e.Value;
+                }
+                else
+                    dt.Table.Rows[i][e.Column.FieldName] = e.Value;
+            }
+            else
+            {
+
+                dt.Table.Rows[i][e.Column.FieldName] = e.Value;
+            }
+
+            CellValueChanged(this, e);
         }
 
     }

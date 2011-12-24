@@ -151,7 +151,7 @@ namespace Ebada.Scgl.Lcgl
 
             xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
             xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
-            wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+            //wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
             //wb.SheetDeactivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetDeactivateEventHandler(Workbook_SheetDeactivate);
             //wb.SheetActivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetActivateEventHandler(Workbook_SheetActivate);
             //wb.SheetSelectionChange  += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);  
@@ -218,7 +218,7 @@ namespace Ebada.Scgl.Lcgl
 
                 xx.Unprotect("MyPassword");
                 xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
-                wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+                //wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
             }
             catch { }
         }
@@ -427,6 +427,7 @@ namespace Ebada.Scgl.Lcgl
                     {
                         ctrl = new uc_gridcontrol();
                         ((uc_gridcontrol)ctrl).CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridView1_CellValueChanged);
+                        ((uc_gridcontrol)ctrl).FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(gridView1_FocusedColumnChanged);
                     }
                     else
                         ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
@@ -691,11 +692,15 @@ namespace Ebada.Scgl.Lcgl
             List<object> list = new List<object>();
            
             DateTime dt= DateTime.Now;
+            Random rd = new Random();
             decimal dtemp = Convert.ToDecimal(dt.ToString("yyyyMMddHHmmssffffff"));
             for (int i = 0; i < akeys.Count; i++)
             {
                 WF_TableFieldValue wfv = valuehs[akeys[i]] as WF_TableFieldValue;
+                if (wfv.XExcelPos != -1 && wfv.YExcelPos!=-1)
                 wfv.ID = Convert.ToString((dtemp+wfv.YExcelPos + wfv.XExcelPos * 10000));
+                else
+                    wfv.ID = Convert.ToString((dtemp + rd.Next()*10000));
                 wfv.RecordId = currRecord.ID;
                 wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
                 wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
@@ -1181,6 +1186,76 @@ namespace Ebada.Scgl.Lcgl
             }
             LockExcel(wb, sheet);
         }
+        private void gridView1_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
+        {
+
+
+            LP_Temple lp = (LP_Temple)(sender as Control).Tag;
+            if (lp == null) return;
+            //string str = (sender as Control).Text;
+            if (dsoFramerWordControl1.MyExcel == null)
+            {
+                return;
+            }
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            Excel.Worksheet xx;
+
+            if (lp.KindTable != "")
+            {
+                activeSheetName = lp.KindTable;
+                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                activeSheetIndex = xx.Index;
+            }
+            else
+            {
+
+                xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                activeSheetIndex = xx.Index;
+                activeSheetName = xx.Name;
+            }
+
+            unLockExcel(wb, xx);
+            string[] arrCellpos = lp.CellPos.Split(pchar);
+            arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+            int i = e.FocusedColumn.VisibleIndex, j = Convert.ToInt32(e.FocusedColumn.Tag);
+            if (i > arrCellpos.Length || i < 0) i = 0;
+            if (j < 0) j = 0;
+            if (arrCellpos.Length > 1)
+            {
+                //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                Excel.Range range;
+                if (lp.ExtraWord == "横向")
+                {
+                    range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[i])[0],
+                    GetCellPos(arrCellpos[i])[1] + j],
+                    xx.Cells[GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1] + j]);
+                }
+                else
+                {
+
+                    range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[i])[0] + j,
+                    GetCellPos(arrCellpos[i])[1]],
+                    xx.Cells[GetCellPos(arrCellpos[i])[0] + j, GetCellPos(arrCellpos[i])[1]]);
+                }
+                range.Select();
+                bool isfind = false;
+                for (i = 1; i <= xx.Protection.AllowEditRanges.Count; i++)
+                {
+                    Excel.AllowEditRange editRange = xx.Protection.AllowEditRanges.get_Item(i);
+                    if (editRange.Title == lp.CellPos.Replace("|", ""))
+                    {
+                        isfind = true;
+                        break;
+                    }
+                }
+                if (!isfind)
+                {
+                    xx.Protection.AllowEditRanges.Add(lp.CellPos.Replace("|", ""), range, Type.Missing);
+                }
+            }
+            LockExcel(wb, xx);
+        }
+
         void ctrl_Enter(object sender, EventArgs e)
         {
 

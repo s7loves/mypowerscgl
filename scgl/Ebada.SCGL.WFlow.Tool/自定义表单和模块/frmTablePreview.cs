@@ -285,6 +285,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 {
                     ctrl = new uc_gridcontrol();
                     ((uc_gridcontrol)ctrl).CellValueChanged += new CellValueChangedEventHandler(gridView1_CellValueChanged);
+                    ((uc_gridcontrol)ctrl).FocusedColumnChanged += new FocusedColumnChangedEventHandler(gridView1_FocusedColumnChanged);
                 }
                 else
                     ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
@@ -383,7 +384,75 @@ namespace Ebada.SCGL.WFlow.Tool
             ctrl_Leave(sender, e);
 
         }
-   
+        private void gridView1_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
+        {
+
+
+            LP_Temple lp = (LP_Temple)(sender as  Control).Tag;
+            if (lp == null) return;
+            //string str = (sender as Control).Text;
+            if (dsoFramerWordControl1.MyExcel == null)
+            {
+                return;
+            }
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            Excel.Worksheet xx;
+            
+            if (lp.KindTable != "")
+            {
+                activeSheetName = lp.KindTable;
+                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                activeSheetIndex = xx.Index;
+            }
+            else
+            {
+
+                xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                activeSheetIndex = xx.Index;
+                activeSheetName = xx.Name;
+            }
+
+            unLockExcel(wb, xx);
+            string[] arrCellpos = lp.CellPos.Split(pchar);
+            arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+            int i = e.FocusedColumn.VisibleIndex,j=Convert.ToInt32( e.FocusedColumn.Tag);
+            if (i > arrCellpos.Length || i < 0) i = 0;
+            if (j< 0) j = 0;
+            if (arrCellpos.Length > 1)
+            {
+                //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                Excel.Range range;
+                if (lp.ExtraWord == "横向")
+                {
+                    range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[i])[0],
+                    GetCellPos(arrCellpos[i])[1] + j],
+                    xx.Cells[GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1] + j]);
+                }
+                else
+                {
+
+                    range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[i])[0]+j,
+                    GetCellPos(arrCellpos[i])[1]],
+                    xx.Cells[GetCellPos(arrCellpos[i])[0] + j, GetCellPos(arrCellpos[i])[1]]);
+                }
+                range.Select();
+                bool isfind = false;
+                for ( i = 1; i <= xx.Protection.AllowEditRanges.Count; i++)
+                {
+                    Excel.AllowEditRange editRange = xx.Protection.AllowEditRanges.get_Item(i);
+                    if (editRange.Title == lp.CellPos.Replace("|", ""))
+                    {
+                        isfind = true;
+                        break;
+                    }
+                }
+                if (!isfind)
+                {
+                    xx.Protection.AllowEditRanges.Add(lp.CellPos.Replace("|", ""), range, Type.Missing);
+                }
+            }
+            LockExcel(wb, xx);
+        }
 
         public string GetContent()
         {
@@ -633,9 +702,10 @@ namespace Ebada.SCGL.WFlow.Tool
             }
 
             unLockExcel(wb, xx);
+            if (lp.CellPos == "") return;
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
-            if (arrCellpos.Length > 1)
+            if (arrCellpos.Length >= 1)
             {
                 //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]], xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]]);
@@ -1089,6 +1159,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             cellpos = cellpos.Replace("|", "");
             Regex r1 = new Regex(@"[0-9]+");
+            if (cellpos == "") return new int[] { 0, 0 };
             string str = r1.Match(cellpos).Value;
             int ix = 0;
             int iy = 0;

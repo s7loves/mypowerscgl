@@ -193,8 +193,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[单元格位置，与CellName顺序对应]长度不能大于50!");
+                //if( value.ToString().Length > 50)
+                //throw new Exception("[单元格位置，与CellName顺序对应]长度不能大于50!");
                 if (_cellpos as object == null || !_cellpos.Equals(value))
                 {
                     _cellpos = value;
@@ -214,8 +214,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[单元格对应的字数，与CellName和CellPos对应]长度不能大于50!");
+                //if( value.ToString().Length > 50)
+                //throw new Exception("[单元格对应的字数，与CellName和CellPos对应]长度不能大于50!");
                 if (_wordcount as object == null || !_wordcount.Equals(value))
                 {
                     _wordcount = value;
