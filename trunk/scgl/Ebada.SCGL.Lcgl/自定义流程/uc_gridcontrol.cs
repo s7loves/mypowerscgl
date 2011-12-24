@@ -59,8 +59,8 @@ namespace Ebada.Scgl.Lcgl
              
 
                 string[] arrCellpos = lp.CellPos.Split('|');
-                int i=0;
-               
+
+                int i = 0;
                 for ( i = 0; ; i++)
                 {
                       IList<WF_TableFieldValue> tfvli;
@@ -90,7 +90,17 @@ namespace Ebada.Scgl.Lcgl
                       {
                               Regex r2 = new Regex(@"(?<=-).*");
                           string strname=r2.Match(tfv.FieldName).Value;
-                          if (strname != "") ds.Rows[i][strname] = tfv.ControlValue;
+                          if (tfv.ControlValue.Trim() != "")
+                              ds.Rows[i][strname] = tfv.ControlValue;
+                          else
+                          {
+                              try
+                              {
+                                  ds.Rows[i][strname] = "";
+                              }
+                              catch { }
+                          }
+                          //gridView1.SetRowCellValue(i, strname, tfv.ControlValue);
                      }
                  
                 }
@@ -101,10 +111,23 @@ namespace Ebada.Scgl.Lcgl
         {
             m_ColName = arrCol;
             DataTable ds = new DataTable();
+            string[] arrColtype = lp.ComBoxItem.Split('|');
             for (int i = 0; i < arrCol.Length; i++)
             {
                 if (arrCol[i].ToString() == "") continue;
-                ds.Columns.Add(arrCol[i]);
+                if (arrColtype[i].IndexOf("RepositoryItemCalcEdit") > -1 || arrColtype[i].IndexOf("RepositoryItemSpinEdit") > -1)
+                {
+                    ds.Columns.Add(arrCol[i], typeof(double));
+                }
+                else
+                    if (arrColtype[i].IndexOf("RepositoryItemDateEdit") > -1)
+                    {
+                        ds.Columns.Add(arrCol[i], typeof(DateTime));
+                    }
+                    else
+                    {
+                        ds.Columns.Add(arrCol[i], typeof(string));
+                    }
                 ds.Columns[i].Caption = arrCol[i];
             }
             gridControl1.DataSource = ds;
@@ -496,6 +519,15 @@ namespace Ebada.Scgl.Lcgl
                         de.Properties.Mask.UseMaskAsDisplayFormat = true;
                         oneCol = de.Text;
                     }
+                    else if (gridView1.Columns[i].ColumnEdit is RepositoryItemBaseSpinEdit && oneCol != "")
+                    {
+                        DevExpress.XtraEditors.SpinEdit de = new DevExpress.XtraEditors.SpinEdit();
+                        de.Text = oneCol;
+                        de.Properties.EditMask = gridView1.Columns[i].ColumnEdit.DisplayFormat.FormatString;
+                        de.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                        de.Properties.DisplayFormat.FormatString = gridView1.Columns[i].ColumnEdit.DisplayFormat.FormatString;
+                        oneCol = de.Text;
+                    }
                     //if (oneCol != "")
                     {
                         //string splitRst = sh.GetPlitStringN(oneCol, wcount[i]);
@@ -563,7 +595,9 @@ namespace Ebada.Scgl.Lcgl
             dtReturn.ReadXml(trDataTable);
             return dtReturn;
         }
+      
         public event CellValueChangedEventHandler CellValueChanged;
+        public event FocusedColumnChangedEventHandler FocusedColumnChanged;
         private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             sender = this;
@@ -576,7 +610,11 @@ namespace Ebada.Scgl.Lcgl
                 //CellValueChanged(this, e);               
                 return;
             }
-            dt.Table.Rows[i][e.Column.FieldName] = e.Value;
+            try
+            {
+                dt.Table.Rows[i][e.Column.FieldName] = e.Value;
+            }
+            catch { }
             CellValueChanged(this, e);
         }
 
@@ -609,6 +647,29 @@ namespace Ebada.Scgl.Lcgl
                 }
 
             }
+        }
+
+        private void gridView1_FocusedColumnChanged(object sender, FocusedColumnChangedEventArgs e)
+        {
+            sender = this;
+            e.FocusedColumn.Tag = gridView1.FocusedRowHandle;
+            FocusedColumnChanged(sender, e);
+        }
+
+        private void gridView1_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            sender = this;
+            int i = 0;
+            i = e.RowHandle;
+            DataView dt = gridView1.DataSource as DataView;
+            if (i < 0)
+            {
+                //gridView1.UpdateCurrentRow();
+                //CellValueChanged(this, e);               
+                return;
+            }
+            dt.Table.Rows[i][e.Column.FieldName] = e.Value;
+            CellValueChanged(this, e);
         }
 
     }

@@ -238,10 +238,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
         }
 
-        private void lookUpEdit3_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -610,6 +607,98 @@ namespace Ebada.SCGL.WFlow.Tool
                 textEdit11.Text = strtemp;
                 rowData.ComBoxItem = textEdit11.Text;
             }
+        }
+
+        private void lookUpEdit5_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelEffTip_Click(object sender, EventArgs e)
+        {
+            string strcolumn = lookUpEdit5.EditValue.ToString();
+            if (strcolumn == "") return;
+            if (strcolumn.Substring(strcolumn.Length - 1) != "|")
+                strcolumn = strcolumn + "|";
+            string strlen = textEdit8.Text;
+            if (strlen.Length > 0)
+            {
+                if (strlen.Substring(strlen.Length - 1) != "|")
+                    strlen = strlen + "|";
+            }
+            string[] celcolumn = strcolumn.Split('|');
+            string[] cellen = strlen.Split('|');
+            //位置比大小限制多
+            if (celcolumn.Length > cellen.Length)
+            {
+                //if (cellen.Length == 1 && cellen[0].ToString() == "")
+                //{
+                //    strlen =comboBoxEdit6.Text+ "|";
+                //}
+
+                for (int i = 0; i <  celcolumn.Length - cellen.Length; i++)
+                {
+                    strlen += comboBoxEdit6.Text +"|";
+                }
+                textEdit8.Text = strlen;
+                rowData.AffectEvent = textEdit8.Text;
+            }
+            else if (celcolumn.Length < cellen.Length)//位置比大小限制少
+            {
+                int j = 0;
+                string strtemp = strlen.Substring(0, strlen.Length - 1);
+                for (int i = 0; i < cellen.Length - celcolumn.Length; i++)
+                {
+                    j = strtemp.LastIndexOf("|");
+                    strtemp = strtemp.Substring(0, j);
+                }
+                textEdit8.Text = strtemp+"|";
+                rowData.AffectEvent = textEdit8.Text;
+            }
+           
+        }
+
+        private void lookUpEdit5_EditValueChanged(object sender, EventArgs e)
+        {
+            //if (lookUpEdit5.EditValue.ToString() == "") return;
+            setWordEff();
+        }
+        private void setWordEff()
+        {
+            string strpos = lookUpEdit5.EditValue.ToString();
+            string strlen = textEdit8.Text;
+            if (strpos.Length > 0)
+            {
+                if (strpos.Substring(strpos.Length - 1) != "|")
+                    strpos = strpos + "|";
+            }
+            if (strlen.Length > 0)
+            {
+                if (strlen.Substring(strlen.Length - 1) != "|")
+                    strlen = strlen + "|";
+            }
+            string[] celpos = strpos.Split('|');
+            string[] cellen = strlen.Split('|');
+            //位置比大小限制多
+            if (celpos.Length != cellen.Length)
+            {
+                if (cellen.Length > 0)
+                    labelEffTip.Text = (celpos.Length - cellen.Length).ToString() + "   ";
+                else
+                    labelEffTip.Text = (celpos.Length - cellen.Length + 1).ToString() + "   ";
+
+            }
+
+            else
+            {
+                labelEffTip.Text = "";
+            }
+        }
+        private void textEdit8_EditValueChanged(object sender, EventArgs e)
+        {
+
+            //if (textEdit8.Text == "") return;
+            setWordEff();
         }
 
        
