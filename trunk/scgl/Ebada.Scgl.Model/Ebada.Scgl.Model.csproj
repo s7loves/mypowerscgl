@@ -85,6 +85,7 @@
     <Compile Include="PJ_dyk.cs" />
     <Compile Include="PJ_fsctz.cs" />
     <Compile Include="PJ_gzrjnr.cs" />
+    <Compile Include="PJ_gzzdtl.cs" />
     <Compile Include="PJ_jggcjh.cs" />
     <Compile Include="PJ_khdldrqtz.cs" />
     <Compile Include="PJ_lcfj.cs" />
