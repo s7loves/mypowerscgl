@@ -644,6 +644,7 @@ namespace Ebada.Scgl.Lcgl
                              lcfu.RecordID = currRecord.ID;
                              lcfu.Creattime = DateTime.Now;
                              Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
+                             if (filecontrol.FJtable.Rows[i]["Kind"].ToString() != "已上传")
                              MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
                          }
                     
@@ -709,6 +710,7 @@ namespace Ebada.Scgl.Lcgl
                             lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
                             lcfu.RecordID = currRecord.ID;
                             lcfu.Creattime = DateTime.Now;
+                            if (filecontrol.FJtable.Rows[i]["Kind"].ToString() != "已上传")
                             MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
                         }
 

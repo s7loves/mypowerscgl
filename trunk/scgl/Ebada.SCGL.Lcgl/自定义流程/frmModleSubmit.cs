@@ -252,9 +252,10 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 if (filecontrol == null) filecontrol = new DownFileControl();
-                if (status == "add")
+                string statusstemp = RecordWorkTask.GetWorkTaskStatus(WorkFlowData, currRecord);
+                if (statusstemp == "add")
                     filecontrol.FormType = "上传";
-                else if (status == "edit")
+                else if (statusstemp == "edit")
                 {
                     filecontrol.FormType = "下载";
                 }
@@ -398,8 +399,8 @@ namespace Ebada.Scgl.Lcgl
                     lcfu.FileSize = Convert.ToInt64(filecontrol.FJtable.Rows[i]["FileSize"]);
                     lcfu.RecordID = currRecord.ID;
                     lcfu.Creattime = DateTime.Now;
-                    Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
-                    if (hqyjcontrol.nowMemoEdit.Text != "")
+                    Thread.Sleep((new TimeSpan(100000)));//0.1毫秒已上传
+                    if ( filecontrol.FJtable.Rows[i]["Kind"].ToString() != "已上传")
                     MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
                 }
 
