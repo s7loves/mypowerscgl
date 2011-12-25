@@ -127,6 +127,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.ScglUpFileService", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Scgl.Outer", "Ebada.Scgl.Outer\Ebada.Scgl.Outer.csproj", "{865AA81D-02C6-4563-8562-6A77E93DAE73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.SCGL.ExpressCalculate", "TONLI.Client.ExpressCalculate\Ebada.SCGL.ExpressCalculate.csproj", "{3850C013-73AA-4C2A-8C2C-16D75DB6494F}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -227,6 +229,10 @@ Global
 		{865AA81D-02C6-4563-8562-6A77E93DAE73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{865AA81D-02C6-4563-8562-6A77E93DAE73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{865AA81D-02C6-4563-8562-6A77E93DAE73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3850C013-73AA-4C2A-8C2C-16D75DB6494F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3850C013-73AA-4C2A-8C2C-16D75DB6494F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3850C013-73AA-4C2A-8C2C-16D75DB6494F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3850C013-73AA-4C2A-8C2C-16D75DB6494F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

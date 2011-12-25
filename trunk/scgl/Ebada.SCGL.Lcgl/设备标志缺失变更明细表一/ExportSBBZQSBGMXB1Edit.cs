@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Lcgl
                  filter
                  
                    );
-                ExportExcel(ex, datalist,orgid);
+                ExportExcel(ex, datalist, orgid, "设备标志缺失变更明细表一");
            
            
             ex.ShowExcel();
@@ -107,7 +107,7 @@ namespace Ebada.Scgl.Lcgl
                 IList<PJ_sbbzqsbgmxb1> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb1>(
                  filter
                    );
-                ExportExcel(ex, datalist,orgid);
+                ExportExcel(ex, datalist, orgid, "设备标志缺失变更明细表一");
             
           
           
@@ -206,7 +206,7 @@ namespace Ebada.Scgl.Lcgl
                 IList<PJ_sbbzqsbgmxb1> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb1>(
                  filter
                    );
-                ExportExcel(ex, datalist, orgid);
+                ExportExcel(ex, datalist, orgid, "设备标志缺失变更明细表一");
             
           
             
@@ -235,47 +235,148 @@ namespace Ebada.Scgl.Lcgl
             dsoFramerWordControl1.FileClose();
         }
 
-        public void ExportExcel(ExcelAccess ex, IList<PJ_sbbzqsbgmxb1> datalist, string orgid)
+        public void ExportExcel(ExcelAccess ex, Object datalist, string orgid, string sheetname)
         {
             //此处写填充内容代码
             int row = 6;
             int col = 1;
             int rowcount = 15;
-
+            int i = 0, sheetindex = 0;
             //
-
+            Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
             //加页
             int pageindex = 1;
-            if (pageindex < Ecommon.GetPagecount(datalist.Count, rowcount))
+            if (pageindex < Ecommon.GetPagecount(((IList)datalist).Count, rowcount))
             {
-                pageindex = Ecommon.GetPagecount(datalist.Count, rowcount);
+                pageindex = Ecommon.GetPagecount(((IList)datalist).Count, rowcount);
             }
-            for (int j = 1; j <pageindex; j++)
+            for (i = 1; i <= wb.Application.Worksheets.Count; i++)
+            {
+                Excel.Worksheet sheet = wb.Application.Worksheets[i] as Excel.Worksheet;
+                if (sheet.Name == sheetname)
+                {
+                    sheetindex = sheet.Index;
+                    break;
+                }
+            }
+            int itemp = sheetindex;
+            //for (int j = 1; j <pageindex; j++)
+            //{
+
+            //    ex.CopySheet(1, j);
+               
+            //}
+            for (i = 1; i < pageindex; i++)
             {
 
-                ex.CopySheet(1, j);
-               
+                ex.CopySheet(sheetindex, itemp);
+                ex.ReNameWorkSheet(itemp + 1, sheetname + (i + 1));
+                itemp++;
+
             }
-            for (int j = 0; j < datalist.Count; j++)
+            for (int j = 0; j < ((IList)datalist).Count; j++)
             {
 
                 if (j % rowcount == 0)
                 {
-                    if(j==0)ex.ActiveSheet(1);
-                    else ex.ActiveSheet((j / rowcount+1) );
-                    if (orgid!="") ex.SetCellValue(datalist[j].OrgName, 4, 2);
+                    if (j == 0) ex.ActiveSheet(sheetname);
+                    else ex.ActiveSheet(sheetname+(j / rowcount + 1));
+
+                    if (orgid != "")
+                    {
+                        if (datalist is IList<PJ_sbbzqsbgmxb1>)
+                        {
+                            ex.SetCellValue(((PJ_sbbzqsbgmxb1)((IList)datalist)[j]).OrgName, 4, 2);
+                        }
+                        else if (datalist is IList<PJ_sbbzqsbgmxb2>)
+                        {
+                            ex.SetCellValue(((PJ_sbbzqsbgmxb2)((IList)datalist)[j]).OrgName, 4, 2);
+                        }
+                        else if (datalist is IList<PJ_sbbzqsbgmxb3>)
+                        {
+                            ex.SetCellValue(((PJ_sbbzqsbgmxb3)((IList)datalist)[j]).OrgName, 4, 2);
+                        }
+                        else if (datalist is IList<PJ_sbbzqsbgmxb4>)
+                        {
+                            ex.SetCellValue(((PJ_sbbzqsbgmxb4)((IList)datalist)[j]).OrgName, 4, 2);
+                        }
+                        else if (datalist is IList<PJ_sbbzqsbgmxb5>)
+                        {
+                            ex.SetCellValue(((PJ_sbbzqsbgmxb5)((IList)datalist)[j]).OrgName, 4, 2);
+                        }
+
+                    }
+
                     else
                         ex.SetCellValue("全局", 4, 2);
+                  
                     ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 4,5);
 
                 }
+                
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
-                ex.SetCellValue(datalist[j].sssbmc, row + j % rowcount, col + 1);
-                ex.SetCellValue(datalist[j].sssswz, row + j % rowcount, col + 2);
+                if (datalist is IList<PJ_sbbzqsbgmxb1>)
+                {
 
-                ex.SetCellValue(datalist[j].sssbbh, row + j % rowcount, col + 3);
-                ex.SetCellValue(datalist[j].statuts, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 5);
+                    ex.SetCellValue(((PJ_sbbzqsbgmxb1)((IList)datalist)[j]).sssbmc, row + j % rowcount, col + 1);
+                    ex.SetCellValue(((PJ_sbbzqsbgmxb1)((IList)datalist)[j]).sssswz, row + j % rowcount, col + 2);
+
+                    ex.SetCellValue(((PJ_sbbzqsbgmxb1)((IList)datalist)[j]).sssbbh, row + j % rowcount, col + 3);
+                    ex.SetCellValue(((PJ_sbbzqsbgmxb1)((IList)datalist)[j]).statuts, row + j % rowcount, col + 4);
+                    ex.SetCellValue(((PJ_sbbzqsbgmxb1)((IList)datalist)[j]).Remark, row + j % rowcount, col + 5);
+                }
+                else
+                    if (datalist is IList<PJ_sbbzqsbgmxb2>)
+                    {
+
+                        ex.SetCellValue(((PJ_sbbzqsbgmxb2)((IList)datalist)[j]).sssbmc, row + j % rowcount, col + 1);
+                        ex.SetCellValue(((PJ_sbbzqsbgmxb2)((IList)datalist)[j]).sssswz, row + j % rowcount, col + 2);
+
+                        ex.SetCellValue(((PJ_sbbzqsbgmxb2)((IList)datalist)[j]).sssbbh, row + j % rowcount, col + 3);
+                        ex.SetCellValue(((PJ_sbbzqsbgmxb2)((IList)datalist)[j]).statuts, row + j % rowcount, col + 4);
+                        ex.SetCellValue(((PJ_sbbzqsbgmxb2)((IList)datalist)[j]).Remark, row + j % rowcount, col + 5);
+                    }
+                    else
+                        if (datalist is IList<PJ_sbbzqsbgmxb3>)
+                        {
+
+                            ex.SetCellValue(((PJ_sbbzqsbgmxb3)((IList)datalist)[j]).sssbmc, row + j % rowcount, col + 1);
+                            ex.SetCellValue(((PJ_sbbzqsbgmxb3)((IList)datalist)[j]).sssswz, row + j % rowcount, col + 2);
+
+                            ex.SetCellValue(((PJ_sbbzqsbgmxb3)((IList)datalist)[j]).sssbbh, row + j % rowcount, col + 3);
+                            ex.SetCellValue(((PJ_sbbzqsbgmxb3)((IList)datalist)[j]).statuts, row + j % rowcount, col + 4);
+                            ex.SetCellValue(((PJ_sbbzqsbgmxb3)((IList)datalist)[j]).Remark, row + j % rowcount, col + 5);
+                        }
+
+                        else
+                            if (datalist is IList<PJ_sbbzqsbgmxb4>)
+                            {
+
+                                ex.SetCellValue(((PJ_sbbzqsbgmxb4)((IList)datalist)[j]).sssbmc, row + j % rowcount, col + 1);
+                                ex.SetCellValue(((PJ_sbbzqsbgmxb4)((IList)datalist)[j]).sssswz, row + j % rowcount, col + 2);
+
+                                ex.SetCellValue(((PJ_sbbzqsbgmxb4)((IList)datalist)[j]).sssbbh, row + j % rowcount, col + 3);
+                                ex.SetCellValue(((PJ_sbbzqsbgmxb4)((IList)datalist)[j]).statuts, row + j % rowcount, col + 4);
+                                ex.SetCellValue(((PJ_sbbzqsbgmxb4)((IList)datalist)[j]).statuts, row + j % rowcount, col + 5);
+                                ex.SetCellValue(((PJ_sbbzqsbgmxb4)((IList)datalist)[j]).xw, row + j % rowcount, col + 6);
+                                ex.SetCellValue(((PJ_sbbzqsbgmxb4)((IList)datalist)[j]).hj.Replace(((PJ_sbbzqsbgmxb4)((IList)datalist)[j]).xw, ""), row + j % rowcount, col + 7);
+                            }
+
+                            else
+                                if (datalist is IList<PJ_sbbzqsbgmxb5>)
+                                {
+
+                                    ex.SetCellValue(((PJ_sbbzqsbgmxb5)((IList)datalist)[j]).sssbmc, row + j % rowcount, col + 1);
+                                    ex.SetCellValue(((PJ_sbbzqsbgmxb5)((IList)datalist)[j]).sssswz, row + j % rowcount, col + 2);
+
+                                    ex.SetCellValue(((PJ_sbbzqsbgmxb5)((IList)datalist)[j]).sssbbh, row + j % rowcount, col + 3);
+                                    ex.SetCellValue(((PJ_sbbzqsbgmxb5)((IList)datalist)[j]).statuts, row + j % rowcount, col + 4);
+                                    ex.SetCellValue(((PJ_sbbzqsbgmxb5)((IList)datalist)[j]).statuts, row + j % rowcount, col + 5);
+                                    ex.SetCellValue(((PJ_sbbzqsbgmxb5)((IList)datalist)[j]).xw, row + j % rowcount, col + 6);
+                                    ex.SetCellValue(((PJ_sbbzqsbgmxb5)((IList)datalist)[j]).hj.Replace(((PJ_sbbzqsbgmxb4)((IList)datalist)[j]).xw, ""), row + j % rowcount, col + 7);
+                                }
+
+
                 //ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
 
 
