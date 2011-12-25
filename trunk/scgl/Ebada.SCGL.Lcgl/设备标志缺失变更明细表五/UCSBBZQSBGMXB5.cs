@@ -150,19 +150,19 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_AfterAdd(PJ_sbbzqsbgmxb4 newobj)
         {
-            if (isWorkflowCall)
-            {
-                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                mrwt.ModleRecordID = newobj.ID;
-                mrwt.RecordID = currRecord.ID;
-                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                mrwt.ModleTableName = newobj.GetType().ToString();
-                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                mrwt.CreatTime = DateTime.Now;
-                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-            }
+            //if (isWorkflowCall)
+            //{
+            //    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+            //    mrwt.ModleRecordID = newobj.ID;
+            //    mrwt.RecordID = currRecord.ID;
+            //    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+            //    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+            //    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+            //    mrwt.ModleTableName = newobj.GetType().ToString();
+            //    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+            //    mrwt.CreatTime = DateTime.Now;
+            //    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            //}
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sbbzqsbgmxb4> e)
         {

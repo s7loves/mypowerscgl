@@ -150,19 +150,19 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_AfterAdd(PJ_sbbzqsbgmxb1 newobj)
         {
-            if (isWorkflowCall)
-            {
-                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                mrwt.ModleRecordID = newobj.ID;
-                mrwt.RecordID = currRecord.ID;
-                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                mrwt.ModleTableName = newobj.GetType().ToString();
-                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                mrwt.CreatTime = DateTime.Now;
-                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-            }
+            //if (isWorkflowCall)
+            //{
+            //    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+            //    mrwt.ModleRecordID = newobj.ID;
+            //    mrwt.RecordID = currRecord.ID;
+            //    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+            //    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+            //    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+            //    mrwt.ModleTableName = newobj.GetType().ToString();
+            //    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+            //    mrwt.CreatTime = DateTime.Now;
+            //    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            //}
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sbbzqsbgmxb1> e)
         {
@@ -357,17 +357,17 @@ namespace Ebada.Scgl.Lcgl
                 export.ParentTemple = parentTemple;
                 export.RecordWorkFlowData = WorkFlowData;
 
-                export.ExportExcelSubmit(ref parentTemple, parentID, false);
+                export.ExportExcelSubmit(ref parentTemple, "", false);
 
                 fm.ParentTemple = parentTemple;
                 if (fm.ShowDialog() == DialogResult.OK)
                 {
                     if (fjly == null) fjly = new frmModleFjly();
                     fjly.btn_Submit_Click(sender, e);
-                    if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
-                    else
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
+                    //if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
+                    //    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
+                    //else
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("");
                     gridControl1.FindForm().Close();
                 }
             
