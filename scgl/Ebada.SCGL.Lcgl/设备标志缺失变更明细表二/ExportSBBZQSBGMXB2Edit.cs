@@ -212,19 +212,19 @@ namespace Ebada.Scgl.Lcgl
             
             //ex.ActiveSheet(1);
             //ex.DeleteWorkSheet(1);
-            Excel.Worksheet sheet;
-            for (int i = 1; i <= wb.Application.Sheets.Count; i++)
-            {
-                sheet = wb.Application.Sheets[i] as Excel.Worksheet;
-                sheet.Cells.Clear();
-                sheet.Cells.ClearContents();
-                sheet.Cells.ClearOutline();
-                sheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
-                dsoFramerWordControl1.FileSave();
+            //Excel.Worksheet sheet;
+            //for (int i = 1; i <= wb.Application.Sheets.Count; i++)
+            //{
+            //    sheet = wb.Application.Sheets[i] as Excel.Worksheet;
+            //    sheet.Cells.Clear();
+            //    sheet.Cells.ClearContents();
+            //    sheet.Cells.ClearOutline();
+            //    sheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
+            //    dsoFramerWordControl1.FileSave();
 
                 
-                break;
-            }
+            //    break;
+            //}
             if (parentTemple == null)
             {
                 parentTemple = new LP_Temple();

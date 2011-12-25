@@ -173,7 +173,7 @@ namespace Ebada.Scgl.Lcgl
         public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
-            string fname = Application.StartupPath + "\\00记录模板\\设备标志缺失变更明细表一.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\设备标志缺失变更明细表.xls";
             dsoFramerWordControl1.FileOpen(fname);
 
             if (parentTemple == null)
@@ -203,28 +203,45 @@ namespace Ebada.Scgl.Lcgl
                         + "    RecordID='" + currRecord.ID + "') "
                         ;
                 }
-                IList<PJ_sbbzqsbgmxb1> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb1>(
+               Object datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb1>(
                  filter
                    );
                 ExportExcel(ex, datalist, orgid, "设备标志缺失变更明细表一");
-            
+                datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb2>(
+                    filter
+                      );
+                ExportExcel(ex, datalist, orgid, "设备标志缺失变更明细表二");
+                datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb3>(
+                    filter
+                      );
+                ExportExcel(ex, datalist, orgid, "设备标志缺失变更明细表三");
+                datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
+                    filter
+                      );
+                ExportExcel(ex, datalist, orgid, "设备标志缺失变更明细表四");
+
+                datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb5>(
+                    filter
+                      );
+                ExportExcel(ex, datalist, orgid, "设备标志缺失变更明细表五");
+          
           
             
             //ex.ActiveSheet(1);
             //ex.DeleteWorkSheet(1);
-            Excel.Worksheet sheet;
-            for (int i = 1; i <= wb.Application.Sheets.Count; i++)
-            {
-                sheet = wb.Application.Sheets[i] as Excel.Worksheet;
-                sheet.Cells.Clear();
-                sheet.Cells.ClearContents();
-                sheet.Cells.ClearOutline();
-                sheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
-                dsoFramerWordControl1.FileSave();
+            //Excel.Worksheet sheet;
+            //for (int i = 1; i <= wb.Application.Sheets.Count; i++)
+            //{
+            //    sheet = wb.Application.Sheets[i] as Excel.Worksheet;
+            //    sheet.Cells.Clear();
+            //    sheet.Cells.ClearContents();
+            //    sheet.Cells.ClearOutline();
+            //    sheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
+            //    dsoFramerWordControl1.FileSave();
 
                 
-                break;
-            }
+            //    break;
+            //}
             if (parentTemple == null)
             {
                 parentTemple = new LP_Temple();
@@ -240,7 +257,7 @@ namespace Ebada.Scgl.Lcgl
             //此处写填充内容代码
             int row = 6;
             int col = 1;
-            int rowcount = 15;
+            int rowcount = 2;
             int i = 0, sheetindex = 0;
             //
             Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
