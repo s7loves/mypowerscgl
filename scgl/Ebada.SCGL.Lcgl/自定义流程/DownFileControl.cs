@@ -202,7 +202,7 @@ namespace Ebada.Scgl.Lcgl
         }
         private void iniData()
         {
-            if (formtype == "下载")
+            //if (formtype == "下载")
             {
                 IList<PJ_lcfj> lifjlis = MainHelper.PlatformSqlMap.GetList<PJ_lcfj>("SelectPJ_lcfjList", "where RecordID='"+recordID+"'");
                 for (int i = 0; i < lifjlis.Count; i++)
@@ -217,6 +217,11 @@ namespace Ebada.Scgl.Lcgl
                     dr["SlectFile"] = 1;
                     dr["SaveFileName"] = lifjlis[i].FileRelativePath;
                     dr["FileSize"] = lifjlis[i].FileSize;
+                    if (formtype == "上传")
+                    {
+                        dr["Progress"] = 100;
+                        dr["Kind"] = "已上传";
+                    }
                     fjtable.Rows.Add(dr);
                 }
             }

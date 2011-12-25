@@ -98,8 +98,8 @@ namespace Ebada.Scgl.Lcgl
 
                 if (isWorkflowCall)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
-                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                             + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                         + "    RecordID='" + currRecord.ID + "') "
                         ;
@@ -127,27 +127,111 @@ namespace Ebada.Scgl.Lcgl
                 if (orgid != "") filter += " and OrgCode='" + orgid + "'";
                 if (isWorkflowCall)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
-                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                             + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                         + "    RecordID='" + currRecord.ID + "') ";
                 }
-                IList<PJ_sbbzqsbgmxb1> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb1>(
+                Object datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb1>(
                  filter
                    );
                 if (isWorkflowCall)
                 {
-                    for (i = 0; i < datalist.Count; i++)
+                    for (i = 0; i < ((IList)datalist).Count; i++)
                     {
                         WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
                         mrwt.ID = mrwt.CreateID();
-                        mrwt.ModleRecordID = datalist[i].ID;
+                        mrwt.ModleRecordID = (((IList<PJ_sbbzqsbgmxb1>)datalist)[i]).ID;
                         mrwt.RecordID = currRecord.ID;
                         mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
                         mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
                         mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
                         mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                        mrwt.ModleTableName = datalist[i].GetType().ToString();
+                        mrwt.ModleTableName = (((IList<PJ_sbbzqsbgmxb1>)datalist)[i]).GetType().ToString();
+                        mrwt.CreatTime = DateTime.Now;
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        mrwtlist.Add(mrwt);
+                    }
+                }
+                datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb2>(
+                 filter
+                   );
+                if (isWorkflowCall)
+                {
+                    for (i = 0; i < ((IList)datalist).Count; i++)
+                    {
+                        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                        mrwt.ID = mrwt.CreateID();
+                        mrwt.ModleRecordID = (((IList<PJ_sbbzqsbgmxb2>)datalist)[i]).ID;
+                        mrwt.RecordID = currRecord.ID;
+                        mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                        mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                        mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                        mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        mrwt.ModleTableName = (((IList<PJ_sbbzqsbgmxb2>)datalist)[i]).GetType().ToString();
+                        mrwt.CreatTime = DateTime.Now;
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        mrwtlist.Add(mrwt);
+                    }
+                }
+                datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb3>(
+                 filter
+                   );
+                if (isWorkflowCall)
+                {
+                    for (i = 0; i < ((IList)datalist).Count; i++)
+                    {
+                        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                        mrwt.ID = mrwt.CreateID();
+                        mrwt.ModleRecordID = (((IList<PJ_sbbzqsbgmxb3>)datalist)[i]).ID;
+                        mrwt.RecordID = currRecord.ID;
+                        mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                        mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                        mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                        mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        mrwt.ModleTableName = (((IList<PJ_sbbzqsbgmxb3>)datalist)[i]).GetType().ToString();
+                        mrwt.CreatTime = DateTime.Now;
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        mrwtlist.Add(mrwt);
+                    }
+                }
+                datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
+                 filter
+                   );
+                if (isWorkflowCall)
+                {
+                    for (i = 0; i < ((IList)datalist).Count; i++)
+                    {
+                        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                        mrwt.ID = mrwt.CreateID();
+                        mrwt.ModleRecordID = (((IList<PJ_sbbzqsbgmxb4>)datalist)[i]).ID;
+                        mrwt.RecordID = currRecord.ID;
+                        mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                        mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                        mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                        mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        mrwt.ModleTableName = (((IList<PJ_sbbzqsbgmxb4>)datalist)[i]).GetType().ToString();
+                        mrwt.CreatTime = DateTime.Now;
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        mrwtlist.Add(mrwt);
+                    }
+                }
+                datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb5>(
+                 filter
+                   );
+                if (isWorkflowCall)
+                {
+                    for (i = 0; i < ((IList)datalist).Count; i++)
+                    {
+                        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                        mrwt.ID = mrwt.CreateID();
+                        mrwt.ModleRecordID = (((IList<PJ_sbbzqsbgmxb5>)datalist)[i]).ID;
+                        mrwt.RecordID = currRecord.ID;
+                        mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                        mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                        mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                        mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        mrwt.ModleTableName = (((IList<PJ_sbbzqsbgmxb5>)datalist)[i]).GetType().ToString();
                         mrwt.CreatTime = DateTime.Now;
                         Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                         mrwtlist.Add(mrwt);
@@ -197,8 +281,8 @@ namespace Ebada.Scgl.Lcgl
 
                 if (isWorkflowCall)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
-                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                             + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                         + "    RecordID='" + currRecord.ID + "') "
                         ;

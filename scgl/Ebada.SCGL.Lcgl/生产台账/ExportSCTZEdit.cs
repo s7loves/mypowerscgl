@@ -101,8 +101,8 @@ namespace Ebada.Scgl.Lcgl
 
                 if (isWorkflowCall)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
-                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                             + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                         + "    RecordID='" + currRecord.ID + "') "
                         ;
@@ -121,8 +121,8 @@ namespace Ebada.Scgl.Lcgl
 
                 if (isWorkflowCall)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
-                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                             + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                         + "    RecordID='" + currRecord.ID + "') "
                         ;
@@ -150,8 +150,8 @@ namespace Ebada.Scgl.Lcgl
                 if (orgid != "") filter += " and OrgCode='" + orgid + "'";
                 if (isWorkflowCall)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
-                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                             + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                         + "    RecordID='" + currRecord.ID + "') ";
                 }
@@ -187,8 +187,8 @@ namespace Ebada.Scgl.Lcgl
                 if (orgid != "") filter += " and OrgCode='" + orgid + "'";
                 if (isWorkflowCall)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
-                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                             + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                         + "    RecordID='" + currRecord.ID + "') ";
                 }
@@ -258,8 +258,8 @@ namespace Ebada.Scgl.Lcgl
 
                 if (isWorkflowCall)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
-                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                             + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                         + "    RecordID='" + currRecord.ID + "') "
                         ;
@@ -278,8 +278,8 @@ namespace Ebada.Scgl.Lcgl
 
                 if (isWorkflowCall)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
-                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                             + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                         + "    RecordID='" + currRecord.ID + "') "
                         ;
