@@ -30,3 +30,4 @@
 2011.12.18 增加表文件2011-12-18.sql
 2011.12.19	修改表LP_Temple的ComBoxItem ColumnName字段大小
 2011.12.21	增加电压监测装置设置台帐PJ_dyjczzsztz 变电所电力电容器台帐PJ_bdsdldrqtz
+2011.12.23	增加设备标志缺失变更明细表一、二、三、四、五
