@@ -242,6 +242,13 @@
     <EmbeddedResource Include="PJ_bdsdldrqtz.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_sbbzqsbgmxb1.xml" />
+    <EmbeddedResource Include="PJ_sbbzqsbgmxb2.xml" />
+    <EmbeddedResource Include="PJ_sbbzqsbgmxb3.xml" />
+    <EmbeddedResource Include="PJ_sbbzqsbgmxb4.xml" />
+    <EmbeddedResource Include="PJ_sbbzqsbgmxb5.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
