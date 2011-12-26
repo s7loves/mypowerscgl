@@ -430,8 +430,8 @@ namespace Ebada.Scgl.Lcgl
                                 {
 
                                     PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                    lp.SqlSentence = "select case  when cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID" 
-                                                        +"from PS_tq where 5=5 and tqName='"+currRecord.tqName+"'";
+                                    lp.SqlSentence = "select case  when cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID " 
+                                                        +" from PS_tq where 5=5 and tqName='"+currRecord.tqName+"')";
                                     ctrl.Tag = lp;
                                 }
                                 else

@@ -2014,7 +2014,7 @@ namespace Ebada.Scgl.Lcgl
                 //}
                 if (lp.ExtraWord == "")
                 {
-                    if (arrCellPos.Length >= 1)
+                    if (arrCellPos.Length > 1)
                     {
                         ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))

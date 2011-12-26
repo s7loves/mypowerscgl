@@ -224,7 +224,10 @@ namespace Ebada.Scgl.Yxgl
             Export20.ExportExcelTQ(btTQList.EditValue.ToString());
            
         }
-
+        private void btReExportAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Export20.ExportExcelAll(parentID);
+        }
         private void btReAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             PJ_20 newobj = new  PJ_20();
@@ -289,5 +292,9 @@ namespace Ebada.Scgl.Yxgl
                 Console.WriteLine(ex.Message);
             }
         }
+
+     
+
+
     }
 }

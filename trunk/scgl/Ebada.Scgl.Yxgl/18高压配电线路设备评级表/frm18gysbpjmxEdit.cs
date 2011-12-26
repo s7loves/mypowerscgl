@@ -34,6 +34,7 @@ namespace Ebada.Scgl.Yxgl
             this.spinEdit5.DataBindings.Add("EditValue", rowData, "whl");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbdy");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "fzdw");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "qxlb");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr", false, DataSourceUpdateMode.OnPropertyChanged);
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -74,6 +75,7 @@ namespace Ebada.Scgl.Yxgl
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
             ComboBoxHelper.FillCBoxByDyk("18高压配电设备评级表", "设备单元名称", comboBoxEdit1);
+            ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
             
         }
 
