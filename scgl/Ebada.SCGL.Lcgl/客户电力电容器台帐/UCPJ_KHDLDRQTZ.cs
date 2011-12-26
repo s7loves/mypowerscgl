@@ -93,6 +93,7 @@ namespace Ebada.Scgl.Lcgl
                             SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             SubmitButton.Caption = wt.Description;
                             liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                         }
                         else
                             if (wt.CommandName == "02")

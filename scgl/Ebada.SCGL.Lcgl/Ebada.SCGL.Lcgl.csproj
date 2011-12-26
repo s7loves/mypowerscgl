@@ -436,6 +436,32 @@
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
     </Compile>
+    <Compile Include="高压配电线路技术资料\ExportGYPDXLJSZL.cs" />
+    <Compile Include="高压配电线路技术资料\frmGYPDXLJSZLTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="高压配电线路技术资料\frmGYPDXLJSZLTemplate.Designer.cs">
+      <DependentUpon>frmGYPDXLJSZLTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="高压配电线路技术资料\UCPJ_GYPDXLJSZL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="高压配电线路技术资料\UCPJ_GYPDXLJSZL.Designer.cs">
+      <DependentUpon>UCPJ_GYPDXLJSZL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="规程规则制度条例\ExportGZZD.cs" />
+    <Compile Include="规程规则制度条例\frmGZZDEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="规程规则制度条例\frmGZZDEdit.Designer.cs">
+      <DependentUpon>frmGZZDEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="规程规则制度条例\UCPJ_GZZD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="规程规则制度条例\UCPJ_GZZD.Designer.cs">
+      <DependentUpon>UCPJ_GZZD.cs</DependentUpon>
+    </Compile>
     <Compile Include="设备标志缺失变更明细表\UCSBBZQSBGMXBM.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1281,6 +1307,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="26电力线路防护通知书\UCPJ_26.resx">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="高压配电线路技术资料\frmGYPDXLJSZLTemplate.resx">
+      <DependentUpon>frmGYPDXLJSZLTemplate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="高压配电线路技术资料\UCPJ_GYPDXLJSZL.resx">
+      <DependentUpon>UCPJ_GYPDXLJSZL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="规程规则制度条例\frmGZZDEdit.resx">
+      <DependentUpon>frmGZZDEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="规程规则制度条例\UCPJ_GZZD.resx">
+      <DependentUpon>UCPJ_GZZD.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="设备标志缺失变更明细表\UCSBBZQSBGMXBM.resx">
