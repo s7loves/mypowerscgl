@@ -458,7 +458,7 @@ namespace Ebada.Scgl.Lcgl
                         (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar),lp);
                         if (RecordWorkTask.HaveRunPowerRole(WorkConst.WorkTask_BindTable, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkTaskId"].ToString()))
                         {
-                            (ctrl as uc_gridcontrol).iniTableRecordData(currRecord, lp, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkFlowInsId"].ToString());
+                            (ctrl as uc_gridcontrol).iniTableRecordData(currRecord.ID, lp, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkFlowInsId"].ToString());
                         }
                     }
                    
@@ -1221,7 +1221,7 @@ namespace Ebada.Scgl.Lcgl
             int i = e.FocusedColumn.VisibleIndex, j = Convert.ToInt32(e.FocusedColumn.Tag);
             if (i > arrCellpos.Length || i < 0) i = 0;
             if (j < 0) j = 0;
-            if (arrCellpos.Length > 1)
+            if (arrCellpos.Length >= 1)
             {
                 //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 Excel.Range range;
@@ -2014,7 +2014,7 @@ namespace Ebada.Scgl.Lcgl
                 //}
                 if (lp.ExtraWord == "")
                 {
-                    if (arrCellPos.Length > 1)
+                    if (arrCellPos.Length >= 1)
                     {
                         ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))

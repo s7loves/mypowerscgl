@@ -436,6 +436,18 @@
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
     </Compile>
+    <Compile Include="安全运行记录板\frmAQYXJLMBTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="安全运行记录板\frmAQYXJLMBTemplate.Designer.cs">
+      <DependentUpon>frmAQYXJLMBTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="安全运行记录板\UCPJ_AQYXJLM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="安全运行记录板\UCPJ_AQYXJLM.Designer.cs">
+      <DependentUpon>UCPJ_AQYXJLM.cs</DependentUpon>
+    </Compile>
     <Compile Include="高压配电线路技术资料\ExportGYPDXLJSZL.cs" />
     <Compile Include="高压配电线路技术资料\frmGYPDXLJSZLTemplate.cs">
       <SubType>Form</SubType>
@@ -1307,6 +1319,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="26电力线路防护通知书\UCPJ_26.resx">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="安全运行记录板\frmAQYXJLMBTemplate.resx">
+      <DependentUpon>frmAQYXJLMBTemplate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="安全运行记录板\UCPJ_AQYXJLM.resx">
+      <DependentUpon>UCPJ_AQYXJLM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="高压配电线路技术资料\frmGYPDXLJSZLTemplate.resx">
