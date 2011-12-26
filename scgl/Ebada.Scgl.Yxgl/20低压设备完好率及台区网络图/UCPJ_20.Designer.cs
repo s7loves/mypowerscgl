@@ -37,8 +37,9 @@
             this.btReDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
+            this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
-            this.btExport0 = new DevExpress.XtraBars.BarSubItem();
+            this.btReExportAll = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -74,12 +75,13 @@
             this.btRefresh,
             this.btClose,
             this.bsItem1,
-            this.btExport0,
+            this.btExport,
             this.btGdsList,
             this.btView,
             this.btXlList,
-            this.btTQList});
-            this.barManager1.MaxItemId = 18;
+            this.btTQList,
+            this.btReExportAll});
+            this.barManager1.MaxItemId = 19;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
@@ -102,8 +104,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btReDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExport0),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -209,23 +210,32 @@
             this.btFind.Name = "btFind";
             this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
+            // btExport
+            // 
+            this.btExport.Caption = "导出";
+            this.btExport.Id = 8;
+            this.btExport.ImageIndex = 7;
+            this.btExport.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btView),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReExportAll)});
+            this.btExport.Name = "btExport";
+            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // btView
             // 
-            this.btView.Caption = "导出";
+            this.btView.Caption = "导出台区";
             this.btView.Id = 15;
             this.btView.ImageIndex = 7;
             this.btView.Name = "btView";
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
-            // btExport0
+            // btReExportAll
             // 
-            this.btExport0.Caption = "导出";
-            this.btExport0.Id = 8;
-            this.btExport0.ImageIndex = 7;
-            this.btExport0.Name = "btExport0";
-            this.btExport0.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btExport0.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btReExportAll.Caption = "导出全所";
+            this.btReExportAll.Id = 18;
+            this.btReExportAll.Name = "btReExportAll";
+            this.btReExportAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReExportAll_ItemClick);
             // 
             // btClose
             // 
@@ -259,7 +269,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(653, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(653, 24);
             // 
             // barDockControlBottom
             // 
@@ -270,14 +280,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 278);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 279);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(653, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 278);
+            this.barDockControlRight.Location = new System.Drawing.Point(653, 24);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 279);
             // 
             // gridControl1
             // 
@@ -287,11 +297,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 25);
+            this.gridControl1.Location = new System.Drawing.Point(0, 24);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(653, 278);
+            this.gridControl1.Size = new System.Drawing.Size(653, 279);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -349,7 +359,7 @@
         private DevExpress.XtraBars.BarStaticItem bsItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraBars.BarSubItem btExport0;
+        private DevExpress.XtraBars.BarSubItem btExport;
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
@@ -357,5 +367,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraBars.BarEditItem btTQList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
+        private DevExpress.XtraBars.BarButtonItem btReExportAll;
     }
 }

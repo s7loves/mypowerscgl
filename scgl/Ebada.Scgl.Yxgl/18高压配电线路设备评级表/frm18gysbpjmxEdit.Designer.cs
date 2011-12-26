@@ -51,6 +51,8 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBoxEdit4 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -62,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -102,7 +105,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelControl13);
             this.groupBox1.Controls.Add(this.simpleButton1);
+            this.groupBox1.Controls.Add(this.comboBoxEdit4);
             this.groupBox1.Controls.Add(this.comboBoxEdit3);
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
             this.groupBox1.Controls.Add(this.spinEdit2);
@@ -129,9 +134,9 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(42, 190);
+            this.simpleButton1.Location = new System.Drawing.Point(42, 202);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(35, 23);
             this.simpleButton1.TabIndex = 23;
@@ -228,7 +233,7 @@
             // 
             // memoEdit1
             // 
-            this.memoEdit1.Location = new System.Drawing.Point(106, 168);
+            this.memoEdit1.Location = new System.Drawing.Point(106, 180);
             this.memoEdit1.Name = "memoEdit1";
             this.memoEdit1.Size = new System.Drawing.Size(325, 107);
             this.memoEdit1.TabIndex = 18;
@@ -285,7 +290,7 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(29, 170);
+            this.labelControl9.Location = new System.Drawing.Point(29, 182);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(48, 14);
             this.labelControl9.TabIndex = 2;
@@ -316,6 +321,23 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // labelControl13
+            // 
+            this.labelControl13.Location = new System.Drawing.Point(28, 154);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(48, 14);
+            this.labelControl13.TabIndex = 34;
+            this.labelControl13.Text = "缺陷类别";
+            // 
+            // comboBoxEdit4
+            // 
+            this.comboBoxEdit4.Location = new System.Drawing.Point(106, 151);
+            this.comboBoxEdit4.Name = "comboBoxEdit4";
+            this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit4.TabIndex = 35;
+            // 
             // frm18gysbpjmxEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -340,6 +362,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -370,6 +393,8 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit3;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit4;
 
     }
 }
