@@ -418,7 +418,7 @@ namespace Ebada.SCGL.WFlow.Tool
             int i = e.FocusedColumn.VisibleIndex,j=Convert.ToInt32( e.FocusedColumn.Tag);
             if (i > arrCellpos.Length || i < 0) i = 0;
             if (j< 0) j = 0;
-            if (arrCellpos.Length > 1)
+            if (arrCellpos.Length >= 1)
             {
                 //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 Excel.Range range;
@@ -1094,7 +1094,7 @@ namespace Ebada.SCGL.WFlow.Tool
            
                 if (lp.ExtraWord == "")
                 {
-                    if (arrCellPos.Length > 1)
+                    if (arrCellPos.Length >= 1)
                         ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                     else
                     {

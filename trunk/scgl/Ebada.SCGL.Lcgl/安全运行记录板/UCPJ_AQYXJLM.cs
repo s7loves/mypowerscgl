@@ -32,7 +32,7 @@ namespace Ebada.Scgl.Lcgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPJ_GYPDXLJSZL : DevExpress.XtraEditors.XtraUserControl {
+    public partial class UCPJ_AQYXJLM : DevExpress.XtraEditors.XtraUserControl {
 
     
         TreeViewOperation<PJ_17> treeViewOperator;
@@ -40,12 +40,8 @@ namespace Ebada.Scgl.Lcgl
         private DataTable dt = null;
         private mOrg parentObj = null;
         [Browsable(false)]
-        public TreeViewOperation<PJ_17> TreeViewOperator
-        {
-            get { return treeViewOperator; }
-            set { treeViewOperator = value; }
-        }
-        private string modleGuid = "DAB4FE1C-10C4-484E-A954-A1A9085F1BDD"; 
+
+        private string modleGuid = "CF3CFA77-9A7F-4FA8-AC75-2ADF0F82F045"; 
   
         LP_Temple Temple=null;
         private bool isWorkflowCall = false;
@@ -126,7 +122,7 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value; ;
             }
         }
-        public UCPJ_GYPDXLJSZL()
+        public UCPJ_AQYXJLM()
         {
             InitializeComponent();
            
@@ -167,53 +163,80 @@ namespace Ebada.Scgl.Lcgl
 
             if (dt == null) dt = new DataTable();
             dt.Columns.Clear();
-            dt.Columns.Add("LineName", typeof(string));
+            dt.Columns.Add("Question", typeof(string));
+            dt.Columns.Add("Answer", typeof(string));
+            dt.Columns.Add("Rsaqts", typeof(string));
+            dt.Columns.Add("Sbaqts", typeof(string));
             dt.Columns.Add("RecordId", typeof(string));
-            dt.Columns.Add("Remark", typeof(string));
 
         }
         /// <summary>
         /// 初始化数据
         /// </summary>
         public void InitData() {
-            Temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and  CellName = '高压配电线路技术档案'");
-
+            Temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and  CellName = '安全运行记录板'");
+            string slqwhere = " ";
             if (Temple == null)
             {
-                MsgBox.ShowWarningMessageBox("没有找到表单高压配电线路技术档案!");
+                MsgBox.ShowWarningMessageBox("没有找到表单安全运行记录板!");
                 return;
             }
-            string slqwhere = " ";
             IList recordlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct RecordId from WF_TableFieldValue where  UserControlId='" + Temple.LPID + "' and   WorkflowId='" + modleGuid + "' and WorkFlowInsId='" + parentObj.OrgName + "' ");
             
             IList<LP_Temple> templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
                "where ParentID ='" + Temple.LPID + "' order by SortID");
             dt.Rows.Clear();
+
             for (int i = 0; i < recordlist.Count; )
             { 
                 slqwhere = " where RecordId='"+recordlist[i]
                     + "' and  UserControlId='" + Temple.LPID 
-                    + "' and   WorkflowId='"  + modleGuid 
-                    + "' and   fieldname='"  + "高压配电线路名称" 
+                    + "' and   WorkflowId='"  + modleGuid
+                    + "' and   fieldname='" + "问题" 
                     + "' and WorkFlowInsId='" + parentObj.OrgName + "' ";
                 WF_TableFieldValue value = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(slqwhere);
-                DataRow dr =dt.NewRow();
+                DataRow dr = dt.NewRow();
+                dr["RecordId"] = recordlist[i];
+
                 if(value!=null)
                 {
-                    dr["LineName"]=value.ControlValue;
+                    dr["Question"] = value.ControlValue;
                 }
                   slqwhere = " where RecordId='"+recordlist[i]
                     + "' and  UserControlId='" + Temple.LPID 
                     + "' and   WorkflowId='"  + modleGuid
-                    + "' and   fieldname='" + "线路信息" 
+                    + "' and   fieldname='" + "答案" 
                     + "' and WorkFlowInsId='" + parentObj.OrgName + "' ";
                 value = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(slqwhere);
                
                 if(value!=null)
                 {
-                    dr["Remark"] = value.ControlValue;
+                    dr["Answer"] = value.ControlValue;
+                } 
+                slqwhere = " where RecordId='" + recordlist[i]
+                  + "' and  UserControlId='" + Temple.LPID
+                  + "' and   WorkflowId='" + modleGuid
+                  + "' and   fieldname='" + "人身安全生产天数"
+                  + "' and WorkFlowInsId='" + parentObj.OrgName + "' ";
+                value = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(slqwhere);
+
+                if (value != null)
+                {
+                    dr["Rsaqts"] = value.ControlValue;
                 }
-                dr["RecordId"] = recordlist[i];
+               
+
+                slqwhere = " where RecordId='" + recordlist[i]
+                  + "' and  UserControlId='" + Temple.LPID
+                  + "' and   WorkflowId='" + modleGuid
+                  + "' and   fieldname='" + "设备安全生产天数"
+                  + "' and WorkFlowInsId='" + parentObj.OrgName + "' ";
+                value = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(slqwhere);
+
+                if (value != null)
+                {
+                    dr["Sbaqts"] = value.ControlValue;
+                }
                 dt.Rows.Add(dr);
                 i++;
             }
@@ -230,7 +253,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 return;
             }
-            frmGYPDXLJSZLTemplate fm = new frmGYPDXLJSZLTemplate();
+            frmAQYXJLMBTemplate fm = new frmAQYXJLMBTemplate();
             fm.Status = "add";
             fm.ModleGuid = modleGuid;
             fm.OrgName = parentObj.OrgName;
@@ -248,7 +271,7 @@ namespace Ebada.Scgl.Lcgl
            
             WF_TableFieldValue tf = new WF_TableFieldValue();
             tf.ID= dr["RecordId"].ToString();
-            frmGYPDXLJSZLTemplate fm = new frmGYPDXLJSZLTemplate();
+            frmAQYXJLMBTemplate fm = new frmAQYXJLMBTemplate();
             fm.Status = "edit";
             fm.ModleGuid = modleGuid;
             fm.OrgName = parentObj.OrgName;
@@ -265,7 +288,7 @@ namespace Ebada.Scgl.Lcgl
             if (gridView1.FocusedRowHandle < 0) return;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认删除 【" + dr["LineName"].ToString() + "】?") != DialogResult.OK)
+            if (MsgBox.ShowAskMessageBox("是否确认删除 【" + dr["Question"].ToString() + "】?") != DialogResult.OK)
             {
                 return;
             }
@@ -306,67 +329,67 @@ namespace Ebada.Scgl.Lcgl
                 {
 
 
-                    string slqwhere = " where RecordId='" + dr["recordID"]
-                     + "' and  UserControlId='" + Temple.LPID
-                     + "' and   WorkflowId='" + modleGuid
-                     + "' and WorkFlowInsId='" + parentObj.OrgName + "' ";
+                  string  slqwhere = " where RecordId='" + dr["recordID"]
+                   + "' and  UserControlId='" + Temple.LPID
+                   + "' and   WorkflowId='" + modleGuid
+                   + "' and WorkFlowInsId='" + parentObj.OrgName + "' ";
                     IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>(slqwhere);
                     DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
                     dsoFramerWordControl1.FileDataGzip = Temple.DocContent;
+                   
+                   Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                   Excel.Worksheet xx;
+                   ExcelAccess ea = new ExcelAccess();
+                   ea.MyWorkBook = wb;
+                   ea.MyExcel = wb.Application;
+                   string activeSheetName = "";
+                   xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                   int i = 0;
+                   ArrayList al = new ArrayList();
+                   for (i = 1; i <= wb.Application.Sheets.Count; i++)
+                   {
+                       xx = wb.Application.Sheets[i] as Excel.Worksheet;
+                       if (!al.Contains(xx.Name)) al.Add(xx.Name);
+                   }
+                   for (i = 0; i < tfvli.Count; i++)
+                   {
+                       if (!al.Contains(tfvli[i].ExcelSheetName))
+                       {
 
-                    Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-                    Excel.Worksheet xx;
-                    ExcelAccess ea = new ExcelAccess();
-                    ea.MyWorkBook = wb;
-                    ea.MyExcel = wb.Application;
-                    string activeSheetName = "";
-                    xx = wb.Application.Sheets[1] as Excel.Worksheet;
-                    int i = 0;
-                    ArrayList al = new ArrayList();
-                    for (i = 1; i <= wb.Application.Sheets.Count; i++)
-                    {
-                        xx = wb.Application.Sheets[i] as Excel.Worksheet;
-                        if (!al.Contains(xx.Name)) al.Add(xx.Name);
-                    }
-                    for (i = 0; i < tfvli.Count; i++)
-                    {
-                        if (!al.Contains(tfvli[i].ExcelSheetName))
-                        {
+                           continue;
+                       }
+                           LP_Temple field = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tfvli[i].FieldId);
+                           if (field != null)
+                           {
+                               if (field.isExplorer == 1)
+                               {
+                                   continue;
+                               }
+                           }
+                     
+                       if (activeSheetName != tfvli[i].ExcelSheetName)
+                       {
+                           if (activeSheetName != "")
+                           {
 
-                            continue;
-                        }
-                        LP_Temple field = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tfvli[i].FieldId);
-                        if (field != null)
-                        {
-                            if (field.isExplorer == 1)
-                            {
-                                continue;
-                            }
-                        }
-
-                        if (activeSheetName != tfvli[i].ExcelSheetName)
-                        {
-                            if (activeSheetName != "")
-                            {
-
-                                xx = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
+                               xx = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
 
 
-                            }
-                            xx = wb.Application.Sheets[tfvli[i].ExcelSheetName] as Excel.Worksheet;
+                           }
+                           xx = wb.Application.Sheets[tfvli[i].ExcelSheetName] as Excel.Worksheet;
 
-                            activeSheetName = tfvli[i].ExcelSheetName;
+                           activeSheetName = tfvli[i].ExcelSheetName;
 
-                            ea.ActiveSheet(xx.Index);
-                        }
+                           ea.ActiveSheet(xx.Index);
+                       }
 
-                        if (tfvli[i].XExcelPos > -1 && tfvli[i].YExcelPos > -1) ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
+                       if (tfvli[i].XExcelPos > -1 && tfvli[i].YExcelPos > -1) ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
 
-                    }
-                    dsoFramerWordControl1.FileDataGzip = Temple.DocContent;
-                    dsoFramerWordControl1.FileSave(fname, true);
-                    dsoFramerWordControl1.FileClose();
-
+                   }
+                   dsoFramerWordControl1.FileDataGzip = Temple.DocContent;
+                   dsoFramerWordControl1.FileSave(fname, true);
+                   dsoFramerWordControl1.FileClose();
+                   
                     if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
                         return;
 

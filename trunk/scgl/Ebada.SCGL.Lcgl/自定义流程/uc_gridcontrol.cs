@@ -51,7 +51,7 @@ namespace Ebada.Scgl.Lcgl
         {
 
         }
-        public  void iniTableRecordData(LP_Record currRecord, LP_Temple lp, string WorkflowId, string WorkFlowInsId)
+        public void iniTableRecordData(string recordId, LP_Temple lp, string WorkflowId, string WorkFlowInsId)
         {
             if (lp != null)
             {
@@ -66,7 +66,7 @@ namespace Ebada.Scgl.Lcgl
                       IList<WF_TableFieldValue> tfvli;
                       if (lp.ExtraWord == "横向")
                       {
-                          string strtemp =  " where RecordId='" + currRecord.ID
+                          string strtemp = " where RecordId='" + recordId
                         + "' and FieldId='" + lp.LPID
                         + "' and   WorkflowId='" + WorkflowId
                         + "' and   YExcelPos='" + (GetCellPos(arrCellpos[0])[1]+i)
@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Lcgl
                       }
                       else
                       {
-                          string strtemp =  " where RecordId='" + currRecord.ID
+                          string strtemp = " where RecordId='" + recordId
                         + "' and FieldId='" + lp.LPID
                         + "' and   WorkflowId='" + WorkflowId
                         + "' and   XExcelPos='" + (GetCellPos(arrCellpos[0])[0]+i)
@@ -652,6 +652,7 @@ namespace Ebada.Scgl.Lcgl
         private void gridView1_FocusedColumnChanged(object sender, FocusedColumnChangedEventArgs e)
         {
             sender = this;
+            if (gridView1.FocusedRowHandle < 0) return;
             e.FocusedColumn.Tag = gridView1.FocusedRowHandle;
             FocusedColumnChanged(sender, e);
         }
