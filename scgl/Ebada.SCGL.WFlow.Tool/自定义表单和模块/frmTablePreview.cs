@@ -1094,7 +1094,7 @@ namespace Ebada.SCGL.WFlow.Tool
            
                 if (lp.ExtraWord == "")
                 {
-                    if (arrCellPos.Length >= 1)
+                    if (arrCellPos.Length > 1)
                         ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                     else
                     {
