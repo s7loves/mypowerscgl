@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-16 21:40:42
+生成时间:2011-12-26 20:53:32
 ***********************************************/
 
 using System;
@@ -29,6 +29,7 @@ namespace Ebada.Scgl.Model
         private int _two=0; 
         private int _three=0; 
         private decimal _whl=0; 
+        private string _qxlb=String.Empty; 
         private string _qxnr=String.Empty; 
         private string _fzdw=String.Empty; 
         private string _createman=String.Empty; 
@@ -189,6 +190,27 @@ namespace Ebada.Scgl.Model
                 if (_whl as object == null || !_whl.Equals(value))
                 {
                     _whl = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：qxlb
+        /// 属性描述：缺陷类别
+        /// 字段信息：[qxlb],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("缺陷类别")]
+        public string qxlb
+        {
+            get { return _qxlb; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[缺陷类别]长度不能大于50!");
+                if (_qxlb as object == null || !_qxlb.Equals(value))
+                {
+                    _qxlb = value;
                 }
             }			 
         }
