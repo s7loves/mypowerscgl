@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_jsbpjjh" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_jsbpjjh"  type="Ebada.Scgl.Model.PJ_jsbpjjh,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_jsbpjjh_AllColumns" class="PJ_jsbpjjh">
+        <result property="ID" column="ID" />
+        <result property="gzxm" column="gzxm" />
+        <result property="wcsj" column="wcsj" />
+        <result property="lsr" column="lsr" />
+        <result property="dbr" column="dbr" />
+        <result property="lsyq" column="lsyq" />
+        <result property="Remark" column="Remark" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_jsbpjjhList" resultMap="PJ_jsbpjjh_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [gzxm],
+         [wcsj],
+         [lsr],
+         [dbr],
+         [lsyq],
+         [Remark]
+          FROM PJ_jsbpjjh
+          $value$
+   </select>
+   
+   <select id="SelectPJ_jsbpjjhByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [gzxm],
+         [wcsj],
+         [lsr],
+         [dbr],
+         [lsyq],
+         [Remark]
+          FROM PJ_jsbpjjh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="gzxm">[gzxm]='$gzxm$'</isNotNull>
+       <isNotNull prepend="AND" property="wcsj">[wcsj]='$wcsj$'</isNotNull>
+       <isNotNull prepend="AND" property="lsr">[lsr]='$lsr$'</isNotNull>
+       <isNotNull prepend="AND" property="dbr">[dbr]='$dbr$'</isNotNull>
+       <isNotNull prepend="AND" property="lsyq">[lsyq]='$lsyq$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_jsbpjjhByKey" resultMap="PJ_jsbpjjh_AllColumns" parameterClass="PJ_jsbpjjh">
+         SELECT 
+         [ID],
+         [gzxm],
+         [wcsj],
+         [lsr],
+         [dbr],
+         [lsyq],
+         [Remark]
+         FROM PJ_jsbpjjh
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_jsbpjjh" parameterClass="PJ_jsbpjjh">
+        DELETE FROM 
+         PJ_jsbpjjh
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_jsbpjjhByWhere" parameterClass="string">
+     delete from PJ_jsbpjjh $value$
+   </delete>
+   
+   <delete id="DeletePJ_jsbpjjhByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_jsbpjjh
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_jsbpjjh" parameterClass="PJ_jsbpjjh" resultClass="int">
+          UPDATE PJ_jsbpjjh
+           SET
+             [gzxm]=#gzxm#,
+             [wcsj]=#wcsj#,
+             [lsr]=#lsr#,
+             [dbr]=#dbr#,
+             [lsyq]=#lsyq#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_jsbpjjh" parameterClass="PJ_jsbpjjh">
+        INSERT INTO PJ_jsbpjjh
+         (
+         [ID],
+         [gzxm],
+         [wcsj],
+         [lsr],
+         [dbr],
+         [lsyq],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #gzxm#,
+         #wcsj#,
+         #lsr#,
+         #dbr#,
+         #lsyq#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_jsbpjjhRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_jsbpjjh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="gzxm">[gzxm]='$gzxm$'</isNotNull>
+       <isNotNull prepend="AND" property="wcsj">[wcsj]='$wcsj$'</isNotNull>
+       <isNotNull prepend="AND" property="lsr">[lsr]='$lsr$'</isNotNull>
+       <isNotNull prepend="AND" property="dbr">[dbr]='$dbr$'</isNotNull>
+       <isNotNull prepend="AND" property="lsyq">[lsyq]='$lsyq$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_jsbpjjhRowCount" parameterClass="string">
+    select count(*) from PJ_jsbpjjh $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

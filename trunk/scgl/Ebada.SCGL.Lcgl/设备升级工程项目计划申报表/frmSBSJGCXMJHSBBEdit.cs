@@ -256,6 +256,16 @@ namespace Ebada.Scgl.Lcgl
             SelectorHelper.SelectDyk("设备升级工程项目计划申报表", "备注", memoEdit3);
         }
 
+        private void spinEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            spinEdit2_EditValueChanged(sender,e);
+        }
+
+        private void spinEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            spinEdit3.Value = spinEdit1.Value + spinEdit2.Value;
+        }
+
       
     }
 }

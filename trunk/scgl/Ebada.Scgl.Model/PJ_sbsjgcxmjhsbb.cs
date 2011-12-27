@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-12-27 11:21:27
+生成时间:2011-12-27 21:06:18
 ***********************************************/
 
 using System;
@@ -72,8 +72,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 500)
-                throw new Exception("[县（市）局]长度不能大于500!");
+                if( value.ToString().Length > 50)
+                throw new Exception("[县（市）局]长度不能大于50!");
                 if (_xsjmc as object == null || !_xsjmc.Equals(value))
                 {
                     _xsjmc = value;
@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：gcmc
-        /// 属性描述：
+        /// 属性描述：工程项目名称
         /// 字段信息：[gcmc],nvarchar
         /// </summary>
         [DisplayNameAttribute("工程项目名称")]
@@ -93,8 +93,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                if( value.ToString().Length > 500)
+                throw new Exception("[工程项目名称]长度不能大于500!");
                 if (_gcmc as object == null || !_gcmc.Equals(value))
                 {
                     _gcmc = value;
@@ -114,8 +114,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[主要内容及措施]长度不能大于50!");
+                if( value.ToString().Length > 500)
+                throw new Exception("[主要内容及措施]长度不能大于500!");
                 if (_zybr as object == null || !_zybr.Equals(value))
                 {
                     _zybr = value;
@@ -125,7 +125,7 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：wcsj
-        /// 属性描述：
+        /// 属性描述：完成时间
         /// 字段信息：[wcsj],nvarchar
         /// </summary>
         [DisplayNameAttribute("完成时间")]
@@ -136,7 +136,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[完成时间]长度不能大于50!");
                 if (_wcsj as object == null || !_wcsj.Equals(value))
                 {
                     _wcsj = value;
@@ -219,8 +219,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[备注]长度不能大于50!");
+                if( value.ToString().Length > 500)
+                throw new Exception("[备注]长度不能大于500!");
                 if (_remark as object == null || !_remark.Equals(value))
                 {
                     _remark = value;
