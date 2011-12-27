@@ -26,10 +26,15 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "wdmc");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "wdlx");
-            
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "xsjmc");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gcmc");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "zybr");
+            this.spinEdit1.DataBindings.Add("EditValue", rowData, "dgzj");
+            this.spinEdit2.DataBindings.Add("EditValue", rowData, "qtzj");
+            this.spinEdit3.DataBindings.Add("EditValue", rowData, "sxzjsum");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "wcsj");
+
+            this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
 
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -61,86 +66,99 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='规程规则制度条例' and sx like '%{0}%' and nr!=''", "文档名称"));
+            string.Format("select nr from pj_dyk where  dx='设备升级工程项目计划申报表' and sx like '%{0}%' and nr!=''", "县（市）局"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
             {
 
-
-
-
-                comboBoxEdit1.Properties.Items.Add("1电力法");
-                comboBoxEdit1.Properties.Items.Add("2安全生产法");
-                comboBoxEdit1.Properties.Items.Add("3[2009]664号《国家电网公司电力安全工作规程(线路部分)》2009版");
-                comboBoxEdit1.Properties.Items.Add("4电力安全工作规程热力和机械部分");
-                comboBoxEdit1.Properties.Items.Add("5国网公司电力安全工作规程（变电站和发电厂电气部分）（试行）");
-                comboBoxEdit1.Properties.Items.Add("6国网公司农电事故调查与统计规定2007");
-                comboBoxEdit1.Properties.Items.Add("7电力安全工器具预防性试验规程");
-                comboBoxEdit1.Properties.Items.Add("8架空绝缘配电线路设计技术规程");
-                comboBoxEdit1.Properties.Items.Add("9架空绝缘配电线路施工及验收规范");
-
-                comboBoxEdit1.Properties.Items.Add("10架空配电线路设计技术规程");
-                comboBoxEdit1.Properties.Items.Add("11电力设备接地设计技术规程");
-                comboBoxEdit1.Properties.Items.Add("12高压配电装置设计技术规程");
-                comboBoxEdit1.Properties.Items.Add("13电力设备过电压保护设计技术规程");
-                comboBoxEdit1.Properties.Items.Add("14架空配电线路安装检修规程");
-                comboBoxEdit1.Properties.Items.Add("15架空电力线路爆炸压接施工工艺规程");
-                comboBoxEdit1.Properties.Items.Add("1610KV及以下电力电缆安装与检修工艺规程");
-                comboBoxEdit1.Properties.Items.Add("17电气装置安装工程35KV及以下架空电力线路施工及验收规范");
-                comboBoxEdit1.Properties.Items.Add("18关于对电力线、通信线、广播电视线交越和搭挂进行整治的通知");
-                comboBoxEdit1.Properties.Items.Add("19架空配电线路及设备运行规程");
-                comboBoxEdit1.Properties.Items.Add("2010KV及以下电力电缆运行规程");
-                comboBoxEdit1.Properties.Items.Add("21电力变压器运行规程");
-                comboBoxEdit1.Properties.Items.Add("22电力设备预防性试验规程");
-                comboBoxEdit1.Properties.Items.Add("23电力设施保护条例");
-                comboBoxEdit1.Properties.Items.Add("24电力设施保护条例实施细则");
-                comboBoxEdit1.Properties.Items.Add("25架空电力线路与弱电线路接近和交叉装置规定");
-                comboBoxEdit1.Properties.Items.Add("26关于电线与行道树互相妨碍的规定");
-                comboBoxEdit1.Properties.Items.Add("27农村低压电气安全工作规程");
-                comboBoxEdit1.Properties.Items.Add("28农村低压电力技术规程");
-                comboBoxEdit1.Properties.Items.Add("29农村安全用电规程");
-                comboBoxEdit1.Properties.Items.Add("30黑龙江省电网调度规范用语");
-                comboBoxEdit1.Properties.Items.Add("31剩余电流动保护器农村安装运行规程");
-                comboBoxEdit1.Properties.Items.Add("32黑龙江省农电系统两票实施细则");
-                comboBoxEdit1.Properties.Items.Add("33供电所规范化管理读本");
-                comboBoxEdit1.Properties.Items.Add("34黑龙江省农电系统配电管理制度");
+                comboBoxEdit1.Properties.Items.Add("绥化农电局");
+              
 
             }
 
-            
+
+
+            comboBoxEdit5.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='设备升级工程项目计划申报表' and sx like '%{0}%' and nr!=''", "工程项目名称"));
+            if (strlist.Count > 0)
+                comboBoxEdit5.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit5.Properties.Items.Add("变电所试验、整定");
+                comboBoxEdit5.Properties.Items.Add("春检");
+                comboBoxEdit5.Properties.Items.Add("调度所办公用品");
+                comboBoxEdit5.Properties.Items.Add("变电所低值易耗品");
+                comboBoxEdit5.Properties.Items.Add("新华等3所办公用品、生产用具等");
+                comboBoxEdit5.Properties.Items.Add("工区检修工具购置");
+                comboBoxEdit5.Properties.Items.Add("线路及变电所备品备件");
+                comboBoxEdit5.Properties.Items.Add("标示牌");
+                comboBoxEdit5.Properties.Items.Add("秋检");
+                comboBoxEdit5.Properties.Items.Add("建设供电所");
+                comboBoxEdit5.Properties.Items.Add("变电安全运行奖");
+                comboBoxEdit5.Properties.Items.Add("空气开关更换");
+                comboBoxEdit5.Properties.Items.Add("变压器检修及油");
+                comboBoxEdit5.Properties.Items.Add("供电所线路维修");
+
+            }
+
+
 
             comboBoxEdit3.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select nr from pj_dyk where  dx='规程规则制度条例' and sx like '%{0}%' and nr!=''", "文档类型"));
+           string.Format("select nr from pj_dyk where  dx='设备升级工程项目计划申报表' and sx like '%{0}%' and nr!=''", "主要内容及措施"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit3.Properties.Items.Add("国务院颁布");
-                comboBoxEdit3.Properties.Items.Add("国务院安委办");
-                comboBoxEdit3.Properties.Items.Add("三部颁");
-                comboBoxEdit3.Properties.Items.Add("电力部颁");
-                comboBoxEdit3.Properties.Items.Add("水电部颁");
-                comboBoxEdit3.Properties.Items.Add("电力部94年");
-                comboBoxEdit3.Properties.Items.Add("国电公司颁布");
-                comboBoxEdit3.Properties.Items.Add("东电颁");
-                comboBoxEdit3.Properties.Items.Add("黑龙江省公司");
-                comboBoxEdit3.Properties.Items.Add("省电力工业局");
-                comboBoxEdit3.Properties.Items.Add("国电农电部");
-                comboBoxEdit3.Properties.Items.Add("黑省农电局");
+                comboBoxEdit3.Properties.Items.Add("变电所试验、整定");
+                comboBoxEdit3.Properties.Items.Add("春检");
+                comboBoxEdit3.Properties.Items.Add("调度所办公用品");
+                comboBoxEdit3.Properties.Items.Add("变电所低值易耗品");
+                comboBoxEdit3.Properties.Items.Add("新华等3所办公用品、生产用具等");
+                comboBoxEdit3.Properties.Items.Add("工区检修工具购置");
+                comboBoxEdit3.Properties.Items.Add("10kv真空开关");
+                comboBoxEdit3.Properties.Items.Add("电流互感器");
+                comboBoxEdit3.Properties.Items.Add("三河、长发主控屏");
+                comboBoxEdit3.Properties.Items.Add("66kv高压熔断器1组");
+                comboBoxEdit3.Properties.Items.Add("四方台10kv刀闸支持绝缘子");
+                comboBoxEdit3.Properties.Items.Add("标示牌");
+                comboBoxEdit3.Properties.Items.Add("秋检");
+                comboBoxEdit3.Properties.Items.Add("建设供电所");
+                comboBoxEdit3.Properties.Items.Add("变电安全运行奖");
+                comboBoxEdit3.Properties.Items.Add("空气开关更换");
+                comboBoxEdit3.Properties.Items.Add("变压器检修及油");
+                comboBoxEdit3.Properties.Items.Add("供电所线路维修");
 
-                comboBoxEdit3.Properties.Items.Add("DL|T596-1996");
-                comboBoxEdit3.Properties.Items.Add("DL|T601-1996");
-                comboBoxEdit3.Properties.Items.Add("DL|T602-1996");
-                comboBoxEdit3.Properties.Items.Add("DL|T449-2001");
-                comboBoxEdit3.Properties.Items.Add("DL|T736-2000");
-                comboBoxEdit3.Properties.Items.Add("DLJ206-1987");
-                comboBoxEdit3.Properties.Items.Add("GB50173-92");
-                comboBoxEdit3.Properties.Items.Add("SD292-88");
-                comboBoxEdit3.Properties.Items.Add("DL447-2001");
-                comboBoxEdit3.Properties.Items.Add("DL493-2001");
-                comboBoxEdit3.Properties.Items.Add("DL572-95");
+            }
+
+
+            comboBoxEdit4.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='设备升级工程项目计划申报表' and sx like '%{0}%' and nr!=''", "完成时间"));
+            if (strlist.Count > 0)
+                comboBoxEdit4.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit4.Properties.Items.Add("1月");
+                comboBoxEdit4.Properties.Items.Add("2月");
+                comboBoxEdit4.Properties.Items.Add("3月");
+                comboBoxEdit4.Properties.Items.Add("4月");
+                comboBoxEdit4.Properties.Items.Add("5月");
+                comboBoxEdit4.Properties.Items.Add("6月");
+                comboBoxEdit4.Properties.Items.Add("7月");
+                comboBoxEdit4.Properties.Items.Add("8月");
+                comboBoxEdit4.Properties.Items.Add("9月");
+                comboBoxEdit4.Properties.Items.Add("10月");
+                comboBoxEdit4.Properties.Items.Add("11月");
+                comboBoxEdit4.Properties.Items.Add("12月");
+                comboBoxEdit4.Properties.Items.Add("秋检");
+                comboBoxEdit4.Properties.Items.Add("建设供电所");
+                comboBoxEdit4.Properties.Items.Add("变电安全运行奖");
+                comboBoxEdit4.Properties.Items.Add("空气开关更换");
+                comboBoxEdit4.Properties.Items.Add("变压器检修及油");
+                comboBoxEdit4.Properties.Items.Add("供电所线路维修");
 
             }
 
@@ -231,6 +249,11 @@ namespace Ebada.Scgl.Lcgl
             //    string Exc = System.Text.Encoding.Default.GetString(Excbyte);
             //    rowData.S1 ="."+ Exc;
             //}
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("设备升级工程项目计划申报表", "备注", memoEdit3);
         }
 
       
