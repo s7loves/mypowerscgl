@@ -10,7 +10,7 @@ namespace Ebada.Scgl.Lcgl {
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class ExportSBSJGCXMJHSBB
+    public class ExportJSBPJJH
     {
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Lcgl {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\局设备设备升级计划.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\局设备评级计划.xls";
             ex.Open(fname);
 
             string strfirst = "";
@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Lcgl {
                     + "    RecordID='" + currRecord.ID + "') "
                     ;
             }
-            IList<PJ_sbsjgcxmjhsbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbsjgcxmjhsbb>(
+            IList<PJ_jsbpjjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_jsbpjjh>(
              filter
                );
             ExportExcel(ex, datalist);
@@ -86,12 +86,12 @@ namespace Ebada.Scgl.Lcgl {
 
             ex.ShowExcel();
         }
-        public void ExportExcel(ExcelAccess ex, IList<PJ_sbsjgcxmjhsbb> datalist)
+        public void ExportExcel(ExcelAccess ex, IList<PJ_jsbpjjh> datalist)
         {
             //此处写填充内容代码
-            int row = 6;
+            int row = 4;
             int col = 1;
-            int rowcount = 20;
+            int rowcount = 4;
 
             //
 
@@ -121,13 +121,13 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
-                ex.SetCellValue(datalist[j].gcmc, row + j % rowcount, col + 2);
-                ex.SetCellValue(datalist[j].zybr, row + j % rowcount, col + 3);
+                ex.SetCellValue(datalist[j].gzxm, row + j % rowcount, col + 1);
+                ex.SetCellValue(datalist[j].wcsj.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 2);
 
-                ex.SetCellValue(datalist[j].wcsj, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].dgzj, row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].qtzj, row + j % rowcount, col + 7);
-                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col +8);
+                ex.SetCellValue(datalist[j].lsr, row + j % rowcount, col +3);
+                ex.SetCellValue(datalist[j].dbr, row + j % rowcount, col + 4);
+                ex.SetCellValue(datalist[j].lsyq, row + j % rowcount, col + 5);
+                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col +6);
 
 
             }
