@@ -32,6 +32,7 @@
             this.liuchbarSubItem = new DevExpress.XtraBars.BarSubItem();
             this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
             this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
+            this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
             this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
@@ -50,7 +51,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -120,6 +120,7 @@
             this.btGdsList.Edit = this.repositoryItemLookUpEdit1;
             this.btGdsList.Id = 14;
             this.btGdsList.Name = "btGdsList";
+            this.btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -155,6 +156,14 @@
             this.TaskOverButton.Name = "TaskOverButton";
             this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
+            // 
+            // barFJLY
+            // 
+            this.barFJLY.Caption = "附件留言";
+            this.barFJLY.Id = 21;
+            this.barFJLY.Name = "barFJLY";
+            this.barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.barFJLY.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barFJLY_ItemClick);
             // 
             // liuchenBarClear
             // 
@@ -315,15 +324,7 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // barFJLY
-            // 
-            this.barFJLY.Caption = "附件留言";
-            this.barFJLY.Id = 21;
-            this.barFJLY.Name = "barFJLY";
-            this.barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.barFJLY.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barFJLY_ItemClick);
-            // 
-            // UCPJ_GZZD
+            // UCPJ_SBSJGCXMJHSBB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -332,7 +333,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCPJ_GZZD";
+            this.Name = "UCPJ_SBSJGCXMJHSBB";
             this.Size = new System.Drawing.Size(579, 330);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();

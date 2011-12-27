@@ -179,8 +179,8 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_sbsjgcxmjhsbb> e)
         {
-            if (parentID == null)
-                e.Cancel = true;
+            //if (parentID == null)
+            //    e.Cancel = true;
             //e.Value.CreateDate = DateTime.Now;
             //Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             //e.Value.CreateMan = m_UserBase.RealName;
@@ -243,7 +243,7 @@ namespace Ebada.Scgl.Lcgl
             //RefreshData("");
             if (MainHelper.UserOrg != null)
             {
-                string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' ";
+                string strSQL = "where 1=1 ";
                 RefreshData(strSQL);
             }
         }
@@ -256,12 +256,11 @@ namespace Ebada.Scgl.Lcgl
             //需要隐藏列时在这写代码
 
 
-            hideColumn("OrgName");
-            hideColumn("OrgCode");
+       
             hideColumn("S1");
             hideColumn("S2");
             hideColumn("S3");
-            hideColumn("BigData");
+            
         }
         /// <summary>
         /// 刷新数据
@@ -360,32 +359,8 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //if (gridView1.FocusedRowHandle > -1)
-            //{
-            //    PJ_sbsjgcxmjhsbb OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_sbsjgcxmjhsbb;
-            //    if (OBJECT.BigData != null)
-            //    {
-            //        if (OBJECT.BigData.Length != 0)
-            //        {
-            //            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            //            string fname = "";
-            //            saveFileDialog1.Filter = "Microsoft Excel (*." + OBJECT.S1 + ")|*." + OBJECT.S1 + "";
-            //            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            //            {
-            //                fname = saveFileDialog1.FileName;
-            //                WriteDoc(OBJECT.BigData, fname );
-                        
-            //                if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
-            //                    return;
-
-            //                System.Diagnostics.Process.Start(fname);
-            //            }
-            //        }
-                   
-
-            //    }
-                
-            //}
+            ExportSBSJGCXMJHSBB ex = new ExportSBSJGCXMJHSBB();
+            ex.ExportExcel();
         }
         public static void WriteDoc(byte[] img,  string filename)
         {

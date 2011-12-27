@@ -86,7 +86,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[gcmc],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("工程项目名称")]
         public string gcmc
         {
             get { return _gcmc; }
@@ -128,7 +128,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[wcsj],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("完成时间")]
         public string wcsj
         {
             get { return _wcsj; }
