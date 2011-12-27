@@ -39,7 +39,7 @@
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
-            this.btReExportAll = new DevExpress.XtraBars.BarButtonItem();
+            this.btReExportOrg = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -49,6 +49,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btReExportAll = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -80,8 +81,9 @@
             this.btView,
             this.btXlList,
             this.btTQList,
+            this.btReExportOrg,
             this.btReExportAll});
-            this.barManager1.MaxItemId = 19;
+            this.barManager1.MaxItemId = 20;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
@@ -217,6 +219,7 @@
             this.btExport.ImageIndex = 7;
             this.btExport.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btView),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReExportOrg),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReExportAll)});
             this.btExport.Name = "btExport";
             this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
@@ -230,12 +233,12 @@
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
-            // btReExportAll
+            // btReExportOrg
             // 
-            this.btReExportAll.Caption = "导出全所";
-            this.btReExportAll.Id = 18;
-            this.btReExportAll.Name = "btReExportAll";
-            this.btReExportAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReExportAll_ItemClick);
+            this.btReExportOrg.Caption = "导出全所";
+            this.btReExportOrg.Id = 18;
+            this.btReExportOrg.Name = "btReExportOrg";
+            this.btReExportOrg.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReExportOrg_ItemClick);
             // 
             // btClose
             // 
@@ -269,7 +272,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(653, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(653, 25);
             // 
             // barDockControlBottom
             // 
@@ -280,14 +283,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 279);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 278);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(653, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 279);
+            this.barDockControlRight.Location = new System.Drawing.Point(653, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 278);
             // 
             // gridControl1
             // 
@@ -297,11 +300,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 25);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(653, 279);
+            this.gridControl1.Size = new System.Drawing.Size(653, 278);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -319,6 +322,13 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // btReExportAll
+            // 
+            this.btReExportAll.Caption = "导出全局";
+            this.btReExportAll.Id = 19;
+            this.btReExportAll.Name = "btReExportAll";
+            this.btReExportAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReExportAll_ItemClick);
             // 
             // UCPJ_20
             // 
@@ -367,6 +377,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraBars.BarEditItem btTQList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
+        private DevExpress.XtraBars.BarButtonItem btReExportOrg;
         private DevExpress.XtraBars.BarButtonItem btReExportAll;
     }
 }

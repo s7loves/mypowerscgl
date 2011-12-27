@@ -226,6 +226,11 @@ namespace Ebada.Scgl.Yxgl
         }
         private void btReExportAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            Export20.ExportExcelAll("");
+        }
+
+        private void btReExportOrg_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
             Export20.ExportExcelAll(parentID);
         }
         private void btReAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

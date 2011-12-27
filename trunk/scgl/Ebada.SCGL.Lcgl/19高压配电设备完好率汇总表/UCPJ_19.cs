@@ -28,11 +28,11 @@ namespace Ebada.Scgl.Lcgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPJ_20 : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPJ_19 : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_20> gridViewOperation;
+        private GridViewOperation<PJ_19> gridViewOperation;
 
-        public event SendDataEventHandler<PJ_20> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_19> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
@@ -121,21 +121,19 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value; ;
             }
         }
-        public UCPJ_20()
+        public UCPJ_19()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_20>(gridControl1, gridView1, barManager1, new frm20Template());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_20>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<PJ_19>(gridControl1, gridView1, barManager1, new frm19Edit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_19>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_20>(gridViewOperation_BeforeDelete);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_19>(gridViewOperation_AfterAdd);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_19>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
-            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_20>(gridViewOperation_AfterAdd);
-            btXlList.EditValueChanged += new EventHandler(repositoryItemLookUpEdit2_EditValueChanged);
-            btTQList.EditValueChanged += new EventHandler(repositoryItemLookUpEdit3_EditValueChanged);
         }
 
-        void gridViewOperation_AfterAdd(PJ_20 obj)
+        void gridViewOperation_AfterAdd(PJ_19 obj)
         {
             //RefreshData("where byqID='" + PSObj.byqID + "'");
             if (isWorkflowCall)
@@ -153,22 +151,8 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
             }
         }
-   
-        void repositoryItemLookUpEdit3_EditValueChanged(object sender, EventArgs e)
-        {
-            //this.ParentID = barEditItem2.EditValue.ToString();
-        }
-
-        void repositoryItemLookUpEdit2_EditValueChanged(object sender, EventArgs e) {
-            //
-            string linecode = btXlList.EditValue==null?"":btXlList.EditValue.ToString();
-            IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqcode,{0})='{1}'", linecode.Length, linecode));
-            repositoryItemLookUpEdit3.DataSource = xlList;
-            RefreshData(string.Format("where left(tqcode,{0})='{1}'", linecode.Length, linecode));
-
-        }
         
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_20> e)
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_19> e)
         {
 
 
@@ -183,18 +167,17 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_20> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_19> e)
         {
             if (parentID == null)
                 e.Cancel = true;
-
         }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
             InitColumns();//初始列
-            //InitData();//初始数据
+            InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -206,19 +189,21 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-        void btGdsList_EditValueChanged(object sender, EventArgs e) {
+        void btGdsList_EditValueChanged(object sender, EventArgs e)
+        {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org = null;
+            mOrg org=null;
             if (list.Count > 0)
                 org = list[0];
-
-            if (org != null) {
+            
+            if (org != null)
+            {
                 ParentObj = org;
-                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
-                repositoryItemLookUpEdit2.DataSource = xlList;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
+            
+
         }
         private void initImageList()
         {
@@ -229,7 +214,7 @@ namespace Ebada.Scgl.Lcgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_20);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_19);
         }
         private void hideColumn(string colname)
         {
@@ -242,7 +227,11 @@ namespace Ebada.Scgl.Lcgl
         {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
-            RefreshData(" where ParentID='" + parentID + "' ");
+            if (MainHelper.UserOrg != null)
+            {
+                string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "'";
+                RefreshData(strSQL);
+            }
         }
         /// <summary>
         /// 初始化列,
@@ -251,8 +240,12 @@ namespace Ebada.Scgl.Lcgl
         {
 
             //需要隐藏列时在这写代码
+
+            //hideColumn("OrgID");
+            hideColumn("OrgCode");
             hideColumn("ParentID");
             hideColumn("gzrjID");
+            hideColumn("BigData");
         }
         /// <summary>
         /// 刷新数据
@@ -269,15 +262,14 @@ namespace Ebada.Scgl.Lcgl
                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                    + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
             }
-            slqwhere = slqwhere + " order by CreateDate desc";
-
+            slqwhere = slqwhere + " order by ID desc";
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_20> GridViewOperation
+        public GridViewOperation<PJ_19> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -286,29 +278,20 @@ namespace Ebada.Scgl.Lcgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_20 newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_19 newobj)
         {
-            if (parentID == null || btTQList.EditValue.ToString() == "") return;
-            newobj.ParentID = parentID;
-            newobj.OrgCode = parentObj.OrgCode;
+            if (parentID == null) return;
+            newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
-            if (btTQList.EditValue != null)
-            {
-                newobj.tqCode = btTQList.EditValue.ToString();
-                newobj.tqName = repositoryItemLookUpEdit3.GetDisplayText(btTQList.EditValue.ToString());
-            }
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
-            LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and CellName like '%低压线路完好率及台区网络图%'");
-            newobj.BigData = lp.DocContent;
         }
         /// <summary>
         /// 父表ID
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        //[DesignTimeVisible(false)]
         public string ParentID
         {
             get { return parentID; }
@@ -317,7 +300,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where ParentID='" + value + "' ");
+                    RefreshData(" where OrgCode ='" + value + "' ");
                 }
             }
         }
@@ -341,116 +324,17 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-
-            if (parentID == null || btTQList.EditValue == null) return;
-            //if (gridView1.FocusedRowHandle>=0)
-            //{
-            //    Export20.ExportExcel(gridView1.GetFocusedRow() as PJ_20);
-            //}
-            Export20.ExportExcelTQ(btTQList.EditValue.ToString());
-           
-        }
-
-        private void btReAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            PJ_20 newobj = new  PJ_20();
-            if (parentID == null || btTQList.EditValue == null) return;
-            newobj.ParentID = parentID;
-            newobj.OrgCode = parentObj.OrgCode;
-            newobj.OrgName = parentObj.OrgName;
-            if (btTQList.EditValue != null)
+            if (gridView1.FocusedRowHandle > -1)
             {
-                newobj.tqCode = btTQList.EditValue.ToString();
-                newobj.tqName = repositoryItemLookUpEdit3.GetDisplayText(btTQList.EditValue.ToString());
+                PJ_19 p19 = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_19;
+                Export19.ExportExcel(p19);
             }
-            newobj.CreateDate = DateTime.Now;
-            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
-            newobj.CreateMan = m_UserBase.RealName;
-            frm20Template frm = new frm20Template();
-            frm.CurrRecord = newobj;
-            frm.RowData = newobj;
-            frm.Status = "add";
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-
-                if (isWorkflowCall)
-                {
-                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                    mrwt.ModleRecordID = newobj.ID;
-                    mrwt.RecordID = currRecord.ID;
-                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                    mrwt.ModleTableName = newobj.GetType().ToString();
-                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                    mrwt.CreatTime = DateTime.Now;
-                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-                    MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
-                }
-            }
-            InitData();
-        }
-
-        private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (gridView1.FocusedRowHandle < 0)
+            else
             {
                 return;
             }
-            PJ_20 pj = gridView1.GetFocusedRow() as PJ_20;
-            frmTemplate frm = new frmTemplate();
-            frm.RowData = pj;
-            frm.Status = "edit";
-            frm.ShowDialog();
-            InitData();
-        }
-
-        private void btReDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (MainHelper.UserOrg == null) return;
-
-            if (gridView1.FocusedRowHandle < 0) return;
-            PJ_20 pj = gridView1.GetFocusedRow() as PJ_20;
-            //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认删除选择的数据 ?") != DialogResult.OK)
-            {
-                return;
-            }
-
-            try
-            {
-
-
-
-                MainHelper.PlatformSqlMap.DeleteByWhere<PJ_20>(" where id ='" + pj.ID + "'");
-                LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and  CellName like '%低压线路完好率及台区网络图%'");
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where RecordId ='"
-                    + pj.ID + "' and UserControlId='" + parentTemple.LPID + "'"); 
-                if (isWorkflowCall)
-                {
-
-                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + pj.ID + "' and RecordID='" + currRecord.ID + "'"
-                        + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-                        + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                        + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-                        + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
-                }
-                InitData();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-        private void btReExportOrg_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Export20.ExportExcelAll("");
-        }
-
-        private void btReExportAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Export20.ExportExcelAll(parentID);
         }
 
 
@@ -521,7 +405,7 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-        
+
 
         private void barFJLY_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

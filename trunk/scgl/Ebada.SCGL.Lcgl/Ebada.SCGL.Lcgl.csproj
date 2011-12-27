@@ -348,6 +348,19 @@
     <Compile Include="17高压配电线路条图\UCPJ_17.Designer.cs">
       <DependentUpon>UCPJ_17.cs</DependentUpon>
     </Compile>
+    <Compile Include="19高压配电设备完好率汇总表\Export19.cs" />
+    <Compile Include="19高压配电设备完好率汇总表\frm19Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="19高压配电设备完好率汇总表\frm19Edit.Designer.cs">
+      <DependentUpon>frm19Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="19高压配电设备完好率汇总表\UCPJ_19.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="19高压配电设备完好率汇总表\UCPJ_19.Designer.cs">
+      <DependentUpon>UCPJ_19.cs</DependentUpon>
+    </Compile>
     <Compile Include="20低压设备完好率及台区网络图\Export20.cs" />
     <Compile Include="20低压设备完好率及台区网络图\frm20Edit.cs">
       <SubType>Form</SubType>
@@ -435,6 +448,19 @@
     </Compile>
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="设备升级工程项目计划申报表\ExportSBSJGCXMJHSBB.cs" />
+    <Compile Include="设备升级工程项目计划申报表\frmSBSJGCXMJHSBBEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="设备升级工程项目计划申报表\frmSBSJGCXMJHSBBEdit.Designer.cs">
+      <DependentUpon>frmSBSJGCXMJHSBBEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="设备升级工程项目计划申报表\UCPJ_SBSJGCXMJHSBB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="设备升级工程项目计划申报表\UCPJ_SBSJGCXMJHSBB.Designer.cs">
+      <DependentUpon>UCPJ_SBSJGCXMJHSBB.cs</DependentUpon>
     </Compile>
     <Compile Include="安全运行记录板\frmAQYXJLMBTemplate.cs">
       <SubType>Form</SubType>
@@ -1265,6 +1291,14 @@
       <DependentUpon>UCPJ_17.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="19高压配电设备完好率汇总表\frm19Edit.resx">
+      <DependentUpon>frm19Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="19高压配电设备完好率汇总表\UCPJ_19.resx">
+      <DependentUpon>UCPJ_19.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="20低压设备完好率及台区网络图\frm20Edit.resx">
       <DependentUpon>frm20Edit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1319,6 +1353,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="26电力线路防护通知书\UCPJ_26.resx">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设备升级工程项目计划申报表\frmSBSJGCXMJHSBBEdit.resx">
+      <DependentUpon>frmSBSJGCXMJHSBBEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设备升级工程项目计划申报表\UCPJ_SBSJGCXMJHSBB.resx">
+      <DependentUpon>UCPJ_SBSJGCXMJHSBB.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="安全运行记录板\frmAQYXJLMBTemplate.resx">
