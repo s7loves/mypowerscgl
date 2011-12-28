@@ -26,12 +26,21 @@ namespace Ebada.Scgl.Gis {
 
         WaitDialogForm waitdlg;
         IDrawing dxt;
+        PS_tq _tq;
         public UCSharpeDyt() {
             
             InitializeComponent();
             InitTree();
             createCheckGroup();
             
+        }
+        public UCSharpeDyt(string tqCode) {
+
+            InitializeComponent();
+            _tq = ClientHelper.PlatformSqlMap.GetOne<PS_tq>("where tqcode='" + tqCode + "'");
+            InitTree();
+            createCheckGroup();
+
         }
         private void createCheckGroup() {
             checkxlmc.CheckedChanged += checkxlmc_CheckedChanged;
@@ -76,9 +85,11 @@ namespace Ebada.Scgl.Gis {
             treeList1.DataSource = mTable;
             treeList1.KeyFieldName = "ID";
             treeList1.ParentFieldName = "ParentID";
-            
-            //mTable.Rows.Add(hide, "0", "高压配电线路", "all", "0", "0");
-            initgds("0");
+
+            if (_tq != null)
+                mTable.Rows.Add(hide, "0",_tq.tqName, _tq.tqCode, "0", "1");
+            else
+                initgds("0");
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
             treeList1.Columns["层"].Caption = "图纸名称";
@@ -137,8 +148,10 @@ namespace Ebada.Scgl.Gis {
         public void InitLayer()
         {
             treeList1.BeginInit();
-
-            initxl("all");
+            if (_tq == null)
+                initxl("all");
+            else
+                buildTqMap(_tq.tqCode);
             treeList1.EndInit();
             treeList1.ExpandAll();
         }

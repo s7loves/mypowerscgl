@@ -26,11 +26,22 @@ namespace Ebada.Scgl.Gis {
 
         WaitDialogForm waitdlg;
         DrawingDxt dxt;
+        PS_xl _xl;
         public UCSharpeDxt() {
             
             InitializeComponent();
             InitTree();
             createCheckGroup();
+            
+        }
+        public UCSharpeDxt(string lineCode) {
+
+            InitializeComponent();
+            createCheckGroup();
+            PS_xl xl= ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='" + lineCode + "'");
+            if (xl != null)
+                _xl = xl;
+            InitTree();
             
         }
         private void createCheckGroup() {
@@ -76,8 +87,12 @@ namespace Ebada.Scgl.Gis {
             treeList1.DataSource = mTable;
             treeList1.KeyFieldName = "ID";
             treeList1.ParentFieldName = "ParentID";
+            if (_xl == null) {
+                mTable.Rows.Add(hide, "0", "高压配电线路", "all", "0", "0");
+            } else {
+                mTable.Rows.Add(visible, "0", _xl.LineName, _xl.LineCode, "0", "1");
+            }
             
-            mTable.Rows.Add(hide, "0", "高压配电线路", "all", "0", "0");
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
             treeList1.Columns["层"].Caption = "图纸名称";
@@ -136,8 +151,10 @@ namespace Ebada.Scgl.Gis {
         public void InitLayer()
         {
             treeList1.BeginInit();
-
-            initxl("all");
+            if (_xl == null)
+                initxl("all");
+            else
+                buildLineMap(_xl.LineCode);
             treeList1.EndInit();
             treeList1.ExpandAll();
         }

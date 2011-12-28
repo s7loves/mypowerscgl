@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Gis {
             //rMap1.Position = new PointLatLng(46.6, 130);
             rMap1.MaxZoom = 16;
             rMap1.MinZoom = 9;
-            mapServer = ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>();
+            //mapServer = ClientServer.PlatformServer.GetService<TONLI.MapCore.IMapServer>();
 
             objects = new GMapOverlay(rMap1, "objects");
             routes = new GMapOverlay(rMap1, "LineCode");
@@ -93,8 +93,17 @@ namespace Ebada.Scgl.Gis {
             dockPanel1.Text = "网络图图纸库";
             barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
-        public void showNectwork() {
-
+        public frmMapNetwork showDlt() {
+            ShowDlt("204");
+            return this;
+        }
+        public void ShowDlt(string gdsCode) {
+            UCSharpeNetwork dxt = new UCSharpeNetwork(gdsCode);
+            dxt.Dock = DockStyle.Fill;
+            dockPanel1_Container.Controls.Remove(ucMapLayer1);
+            dockPanel1_Container.Controls.Add(dxt);
+            ucLayer = dxt;
+            this.Show();
         }
         public frmMapNetwork showDxt(){
             dockPanel1.Text = "配电线路单线图";
@@ -106,6 +115,15 @@ namespace Ebada.Scgl.Gis {
             this.Show();
             return this;
         }
+        public void ShowDxt(string lineCode) {
+            dockPanel1.Text = "配电线路单线图";
+            UCSharpeDxt dxt = new UCSharpeDxt(lineCode);
+            dxt.Dock = DockStyle.Fill;
+            dockPanel1_Container.Controls.Remove(ucMapLayer1);
+            dockPanel1_Container.Controls.Add(dxt);
+            ucLayer = dxt;
+            this.Show();
+        }
         public frmMapNetwork showDyt() {
             dockPanel1.Text = "配电低压台区图";
             UCSharpeDyt dxt = new UCSharpeDyt();
@@ -115,6 +133,16 @@ namespace Ebada.Scgl.Gis {
             ucLayer = dxt;
             this.Show();
             return this;
+        }
+        //"2040090120"
+        public void ShowDyt(string tqcode) {
+            dockPanel1.Text = "配电低压台区图";
+            UCSharpeDyt dxt = new UCSharpeDyt(tqcode);
+            dxt.Dock = DockStyle.Fill;
+            dockPanel1_Container.Controls.Remove(ucMapLayer1);
+            dockPanel1_Container.Controls.Add(dxt);
+            ucLayer = dxt;
+            this.Show();
         }
         void 测距_DownChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (barButtonItem4.Down)
