@@ -732,6 +732,7 @@ namespace Ebada.Scgl.Lcgl {
                 else
                 {
 
+                    currRecord.LastChangeTime = DateTime.Now.ToString();
                     currRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(dt.Rows[0]["WorkTaskInsId"].ToString());
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
                     InitData(strSQL);

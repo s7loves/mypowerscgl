@@ -265,6 +265,7 @@ namespace Ebada.Scgl.Lcgl
                     currRecord.SignImg = new byte[0];
                 }
 
+                currRecord.LastChangeTime = DateTime.Now.ToString();
                 MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
             }
         }
@@ -287,6 +288,7 @@ namespace Ebada.Scgl.Lcgl
             else
             {
 
+                currRecord.LastChangeTime = DateTime.Now.ToString();
                 currRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
                 MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
                 MsgBox.ShowTipMessageBox(strmes);

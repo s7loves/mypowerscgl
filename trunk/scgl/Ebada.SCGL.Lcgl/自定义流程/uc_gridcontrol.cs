@@ -115,12 +115,12 @@ namespace Ebada.Scgl.Lcgl
             for (int i = 0; i < arrCol.Length; i++)
             {
                 if (arrCol[i].ToString() == "") continue;
-                if (arrColtype[i].IndexOf("RepositoryItemCalcEdit") > -1 || arrColtype[i].IndexOf("RepositoryItemSpinEdit") > -1)
+                if (arrColtype.Length>i &&( arrColtype[i].IndexOf("RepositoryItemCalcEdit") > -1 || arrColtype[i].IndexOf("RepositoryItemSpinEdit") > -1))
                 {
                     ds.Columns.Add(arrCol[i], typeof(double));
                 }
                 else
-                    if (arrColtype[i].IndexOf("RepositoryItemDateEdit") > -1)
+                    if (arrColtype.Length > i && arrColtype[i].IndexOf("RepositoryItemDateEdit") > -1)
                     {
                         ds.Columns.Add(arrCol[i], typeof(DateTime));
                     }

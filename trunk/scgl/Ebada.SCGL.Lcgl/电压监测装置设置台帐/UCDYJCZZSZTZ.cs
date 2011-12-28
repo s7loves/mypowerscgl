@@ -84,6 +84,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     if (RecordWorkTask.HaveRunSPYJRole(currRecord.Kind) || RecordWorkTask.HaveRunFuJianRole(currRecord.Kind))
                     {
+                        if (fjly == null) fjly = new frmModleFjly();
                         barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                     }
                     liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
@@ -479,6 +480,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.Status = strmes;
             }
+            currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }

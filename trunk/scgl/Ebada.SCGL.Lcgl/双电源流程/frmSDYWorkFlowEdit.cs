@@ -242,6 +242,7 @@ namespace Ebada.Scgl.Lcgl
                     currRecord.SignImg = new byte[0];
                 }
 
+                currRecord.LastChangeTime = DateTime.Now.ToString();
                 MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
             }
         }
