@@ -259,6 +259,10 @@
     <EmbeddedResource Include="PJ_jsbpjjh.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_sbdxgggcxmjhsbb.xml">
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
