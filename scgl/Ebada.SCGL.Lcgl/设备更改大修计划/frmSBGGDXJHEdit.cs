@@ -15,10 +15,10 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmSBSJGCXMJHSBBEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_sbsjgcxmjhsbb> m_CityDic = new SortableSearchableBindingList<PJ_sbsjgcxmjhsbb>();
+    public partial class frmSBGGDXJHEdit : FormBase, IPopupFormEdit {
+        SortableSearchableBindingList<PJ_sbdxgggcxmjhsbb> m_CityDic = new SortableSearchableBindingList<PJ_sbdxgggcxmjhsbb>();
 
-        public frmSBSJGCXMJHSBBEdit()
+        public frmSBGGDXJHEdit()
         {
             InitializeComponent();
         }
@@ -43,7 +43,7 @@ namespace Ebada.Scgl.Lcgl
 
         }
         #region IPopupFormEdit Members
-        private PJ_sbsjgcxmjhsbb rowData = null;
+        private PJ_sbdxgggcxmjhsbb rowData = null;
 
         public object RowData {
             get {
@@ -52,11 +52,11 @@ namespace Ebada.Scgl.Lcgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_sbsjgcxmjhsbb;
+                    this.rowData = value as PJ_sbdxgggcxmjhsbb;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_sbsjgcxmjhsbb>(value as PJ_sbsjgcxmjhsbb, rowData);
+                    ConvertHelper.CopyTo<PJ_sbdxgggcxmjhsbb>(value as PJ_sbdxgggcxmjhsbb, rowData);
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='设备升级工程项目计划申报表' and sx like '%{0}%' and nr!=''", "县（市）局"));
+            string.Format("select nr from pj_dyk where  dx='设备更改大修计划' and sx like '%{0}%' and nr!=''", "县（市）局"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
@@ -81,7 +81,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit5.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select nr from pj_dyk where  dx='设备升级工程项目计划申报表' and sx like '%{0}%' and nr!=''", "工程项目名称"));
+           string.Format("select nr from pj_dyk where  dx='设备更改大修计划' and sx like '%{0}%' and nr!=''", "工程项目名称"));
             if (strlist.Count > 0)
                 comboBoxEdit5.Properties.Items.AddRange(strlist);
             else
@@ -107,7 +107,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit3.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select nr from pj_dyk where  dx='设备升级工程项目计划申报表' and sx like '%{0}%' and nr!=''", "主要内容及措施"));
+           string.Format("select nr from pj_dyk where  dx='设备更改大修计划' and sx like '%{0}%' and nr!=''", "主要内容及措施"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
@@ -136,7 +136,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit4.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select nr from pj_dyk where  dx='设备升级工程项目计划申报表' and sx like '%{0}%' and nr!=''", "完成时间"));
+           string.Format("select nr from pj_dyk where  dx='设备更改大修计划' and sx like '%{0}%' and nr!=''", "完成时间"));
             if (strlist.Count > 0)
                 comboBoxEdit4.Properties.Items.AddRange(strlist);
             else
@@ -154,7 +154,7 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit4.Properties.Items.Add("10月");
                 comboBoxEdit4.Properties.Items.Add("11月");
                 comboBoxEdit4.Properties.Items.Add("12月");
-
+               
             }
 
 
@@ -248,7 +248,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("设备升级工程项目计划申报表", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("设备更改大修计划", "备注", memoEdit3);
         }
 
         private void spinEdit1_EditValueChanged(object sender, EventArgs e)
@@ -258,9 +258,8 @@ namespace Ebada.Scgl.Lcgl
 
         private void spinEdit2_EditValueChanged(object sender, EventArgs e)
         {
-
             rowData.sxzjsum = (spinEdit1.Value + spinEdit2.Value).ToString();
-            spinEdit3.Value = spinEdit1.Value + spinEdit2.Value;
+            spinEdit3.Text= (spinEdit1.Value + spinEdit2.Value).ToString();
         }
 
       

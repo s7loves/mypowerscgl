@@ -63,6 +63,7 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         private void InitComboBoxData() {
+       
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='局设备评级计划' and sx like '%{0}%' and nr!=''", "工作项目"));

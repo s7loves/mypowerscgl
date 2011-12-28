@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-12-27 21:46:10
+生成时间:2011-12-27 22:19:26
 ***********************************************/
 
 using System;
@@ -13,20 +13,22 @@ using System.ComponentModel;
 namespace Ebada.Scgl.Model
 {
     /// <summary>
-    ///[PJ_jsbpjjh]业务实体类
-    ///对应表名:PJ_jsbpjjh
+    ///[PJ_sbdxgggcxmjhsbb]业务实体类
+    ///对应表名:PJ_sbdxgggcxmjhsbb
     /// </summary>
     [Serializable]
-    public class PJ_jsbpjjh
+    public class PJ_sbdxgggcxmjhsbb
     {
         
         #region Private 成员
         private string _id=Newid(); 
-        private string _gzxm=String.Empty; 
-        private DateTime _wcsj=new DateTime(1900,1,1); 
-        private string _lsr=String.Empty; 
-        private string _dbr=String.Empty; 
-        private string _lsyq=String.Empty; 
+        private string _xsjmc=String.Empty; 
+        private string _gcmc=String.Empty; 
+        private string _zybr=String.Empty; 
+        private string _wcsj=String.Empty; 
+        private string _dgzj=String.Empty; 
+        private string _qtzj=String.Empty; 
+        private string _sxzjsum=String.Empty; 
         private string _remark=String.Empty; 
         private string _s1=String.Empty; 
         private string _s2=String.Empty; 
@@ -59,22 +61,64 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：gzxm
-        /// 属性描述：工作项目
-        /// 字段信息：[gzxm],nvarchar
+        /// 属性名称：xsjmc
+        /// 属性描述：县（市）局
+        /// 字段信息：[xsjmc],nvarchar
         /// </summary>
-        [DisplayNameAttribute("工作项目")]
-        public string gzxm
+        [DisplayNameAttribute("县（市）局")]
+        public string xsjmc
         {
-            get { return _gzxm; }
+            get { return _xsjmc; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[县（市）局]长度不能大于50!");
+                if (_xsjmc as object == null || !_xsjmc.Equals(value))
+                {
+                    _xsjmc = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：gcmc
+        /// 属性描述：工程项目名称
+        /// 字段信息：[gcmc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("工程项目名称")]
+        public string gcmc
+        {
+            get { return _gcmc; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 500)
-                throw new Exception("[工作项目]长度不能大于500!");
-                if (_gzxm as object == null || !_gzxm.Equals(value))
+                throw new Exception("[工程项目名称]长度不能大于500!");
+                if (_gcmc as object == null || !_gcmc.Equals(value))
                 {
-                    _gzxm = value;
+                    _gcmc = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：zybr
+        /// 属性描述：主要内容及措施
+        /// 字段信息：[zybr],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("主要内容及措施")]
+        public string zybr
+        {
+            get { return _zybr; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 500)
+                throw new Exception("[主要内容及措施]长度不能大于500!");
+                if (_zybr as object == null || !_zybr.Equals(value))
+                {
+                    _zybr = value;
                 }
             }			 
         }
@@ -82,14 +126,17 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：wcsj
         /// 属性描述：完成时间
-        /// 字段信息：[wcsj],datetime
+        /// 字段信息：[wcsj],nvarchar
         /// </summary>
         [DisplayNameAttribute("完成时间")]
-        public DateTime wcsj
+        public string wcsj
         {
             get { return _wcsj; }
             set
             {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[完成时间]长度不能大于50!");
                 if (_wcsj as object == null || !_wcsj.Equals(value))
                 {
                     _wcsj = value;
@@ -98,64 +145,64 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：lsr
-        /// 属性描述：落实人
-        /// 字段信息：[lsr],nvarchar
+        /// 属性名称：dgzj
+        /// 属性描述：所需资金（万元）大改资金
+        /// 字段信息：[dgzj],nvarchar
         /// </summary>
-        [DisplayNameAttribute("落实人")]
-        public string lsr
+        [DisplayNameAttribute("所需资金（万元）大改资金")]
+        public string dgzj
         {
-            get { return _lsr; }
+            get { return _dgzj; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[落实人]长度不能大于50!");
-                if (_lsr as object == null || !_lsr.Equals(value))
+                throw new Exception("[所需资金（万元）大改资金]长度不能大于50!");
+                if (_dgzj as object == null || !_dgzj.Equals(value))
                 {
-                    _lsr = value;
+                    _dgzj = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：dbr
-        /// 属性描述：督办人
-        /// 字段信息：[dbr],nvarchar
+        /// 属性名称：qtzj
+        /// 属性描述：所需资金（万元）其他
+        /// 字段信息：[qtzj],nvarchar
         /// </summary>
-        [DisplayNameAttribute("督办人")]
-        public string dbr
+        [DisplayNameAttribute("所需资金（万元）其他")]
+        public string qtzj
         {
-            get { return _dbr; }
+            get { return _qtzj; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[督办人]长度不能大于50!");
-                if (_dbr as object == null || !_dbr.Equals(value))
+                throw new Exception("[所需资金（万元）其他]长度不能大于50!");
+                if (_qtzj as object == null || !_qtzj.Equals(value))
                 {
-                    _dbr = value;
+                    _qtzj = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：lsyq
-        /// 属性描述：落实要求
-        /// 字段信息：[lsyq],nvarchar
+        /// 属性名称：sxzjsum
+        /// 属性描述：所需资金（万元）合计
+        /// 字段信息：[sxzjsum],nvarchar
         /// </summary>
-        [DisplayNameAttribute("落实要求")]
-        public string lsyq
+        [DisplayNameAttribute("所需资金（万元）合计")]
+        public string sxzjsum
         {
-            get { return _lsyq; }
+            get { return _sxzjsum; }
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 500)
-                throw new Exception("[落实要求]长度不能大于500!");
-                if (_lsyq as object == null || !_lsyq.Equals(value))
+                if( value.ToString().Length > 50)
+                throw new Exception("[所需资金（万元）合计]长度不能大于50!");
+                if (_sxzjsum as object == null || !_sxzjsum.Equals(value))
                 {
-                    _lsyq = value;
+                    _sxzjsum = value;
                 }
             }			 
         }

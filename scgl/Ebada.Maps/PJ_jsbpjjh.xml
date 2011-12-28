@@ -12,6 +12,9 @@
         <result property="dbr" column="dbr" />
         <result property="lsyq" column="lsyq" />
         <result property="Remark" column="Remark" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
       </resultMap>
   </resultMaps>
 
@@ -24,7 +27,10 @@
          [lsr],
          [dbr],
          [lsyq],
-         [Remark]
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
           FROM PJ_jsbpjjh
           $value$
    </select>
@@ -37,7 +43,10 @@
          [lsr],
          [dbr],
          [lsyq],
-         [Remark]
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
           FROM PJ_jsbpjjh
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -47,6 +56,9 @@
        <isNotNull prepend="AND" property="dbr">[dbr]='$dbr$'</isNotNull>
        <isNotNull prepend="AND" property="lsyq">[lsyq]='$lsyq$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_jsbpjjhByKey" resultMap="PJ_jsbpjjh_AllColumns" parameterClass="PJ_jsbpjjh">
@@ -57,7 +69,10 @@
          [lsr],
          [dbr],
          [lsyq],
-         [Remark]
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
          FROM PJ_jsbpjjh
          WHERE 
            ID = #ID#
@@ -92,7 +107,10 @@
              [lsr]=#lsr#,
              [dbr]=#dbr#,
              [lsyq]=#lsyq#,
-             [Remark]=#Remark#
+             [Remark]=#Remark#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
             WHERE 
               ID = #ID#
 
@@ -107,7 +125,10 @@
          [lsr],
          [dbr],
          [lsyq],
-         [Remark]
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
          )
        VALUES
          (
@@ -117,7 +138,10 @@
          #lsr#,
          #dbr#,
          #lsyq#,
-         #Remark#
+         #Remark#,
+         #S1#,
+         #S2#,
+         #S3#
          )
 
    </insert>
@@ -133,6 +157,9 @@
        <isNotNull prepend="AND" property="dbr">[dbr]='$dbr$'</isNotNull>
        <isNotNull prepend="AND" property="lsyq">[lsyq]='$lsyq$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
      </dynamic>
 
    </select>

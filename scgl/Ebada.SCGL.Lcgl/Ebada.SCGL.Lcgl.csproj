@@ -449,6 +449,13 @@
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
     </Compile>
+    <Compile Include="设备更改大修计划\ExportSBGGDXJH.cs" />
+    <Compile Include="设备更改大修计划\frmSBGGDXJHEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="设备更改大修计划\frmSBGGDXJHEdit.Designer.cs">
+      <DependentUpon>frmSBGGDXJHEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="局设备评级计划\ExportJSBPJJH.cs" />
     <Compile Include="局设备评级计划\frmJSBPJJHEdit.cs">
       <SubType>Form</SubType>
@@ -486,6 +493,12 @@
     </Compile>
     <Compile Include="安全运行记录板\UCPJ_AQYXJLM.Designer.cs">
       <DependentUpon>UCPJ_AQYXJLM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="设备更改大修计划\UCPJ_SBGGDXJH.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="设备更改大修计划\UCPJ_SBGGDXJH.Designer.cs">
+      <DependentUpon>UCPJ_SBGGDXJH.cs</DependentUpon>
     </Compile>
     <Compile Include="高压配电线路技术资料\ExportGYPDXLJSZL.cs" />
     <Compile Include="高压配电线路技术资料\frmGYPDXLJSZLTemplate.cs">
@@ -1368,6 +1381,10 @@
       <DependentUpon>UCPJ_26.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="设备更改大修计划\frmSBGGDXJHEdit.resx">
+      <DependentUpon>frmSBGGDXJHEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="局设备评级计划\frmJSBPJJHEdit.resx">
       <DependentUpon>frmJSBPJJHEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1390,6 +1407,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="安全运行记录板\UCPJ_AQYXJLM.resx">
       <DependentUpon>UCPJ_AQYXJLM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设备更改大修计划\UCPJ_SBGGDXJH.resx">
+      <DependentUpon>UCPJ_SBGGDXJH.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="高压配电线路技术资料\frmGYPDXLJSZLTemplate.resx">

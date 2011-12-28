@@ -10,7 +10,7 @@ namespace Ebada.Scgl.Lcgl {
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class ExportSBSJGCXMJHSBB
+    public class ExportSBGGDXJH
     {
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Lcgl {
                     + "    RecordID='" + currRecord.ID + "') "
                     ;
             }
-            IList<PJ_sbsjgcxmjhsbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbsjgcxmjhsbb>(
+            IList<PJ_sbdxgggcxmjhsbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbdxgggcxmjhsbb>(
              filter
                );
             ExportExcel(ex, datalist);
@@ -86,7 +86,7 @@ namespace Ebada.Scgl.Lcgl {
 
             ex.ShowExcel();
         }
-        public void ExportExcel(ExcelAccess ex, IList<PJ_sbsjgcxmjhsbb> datalist)
+        public void ExportExcel(ExcelAccess ex, IList<PJ_sbdxgggcxmjhsbb> datalist)
         {
             //此处写填充内容代码
             int row = 6;
@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Lcgl {
                     if (j == 0) ex.ActiveSheet(1);
                     else ex.ActiveSheet( (j / rowcount + 1));
 
-                    ex.SetCellValue(DateTime.Now.ToString("yyyy年") + "设备升级工程项目计划申报表", 2, 1);
+                    ex.SetCellValue(DateTime.Now.ToString("yyyy年") + "设备更改大修计划", 2, 1);
 
                     ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日") , 3, 8);
 

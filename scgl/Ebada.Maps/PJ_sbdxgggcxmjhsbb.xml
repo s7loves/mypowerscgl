@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_sbdxgggcxmjhsbb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_sbdxgggcxmjhsbb"  type="Ebada.Scgl.Model.PJ_sbdxgggcxmjhsbb,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_sbdxgggcxmjhsbb_AllColumns" class="PJ_sbdxgggcxmjhsbb">
+        <result property="ID" column="ID" />
+        <result property="xsjmc" column="xsjmc" />
+        <result property="gcmc" column="gcmc" />
+        <result property="zybr" column="zybr" />
+        <result property="wcsj" column="wcsj" />
+        <result property="dgzj" column="dgzj" />
+        <result property="qtzj" column="qtzj" />
+        <result property="sxzjsum" column="sxzjsum" />
+        <result property="Remark" column="Remark" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_sbdxgggcxmjhsbbList" resultMap="PJ_sbdxgggcxmjhsbb_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [xsjmc],
+         [gcmc],
+         [zybr],
+         [wcsj],
+         [dgzj],
+         [qtzj],
+         [sxzjsum],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_sbdxgggcxmjhsbb
+          $value$
+   </select>
+   
+   <select id="SelectPJ_sbdxgggcxmjhsbbByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [xsjmc],
+         [gcmc],
+         [zybr],
+         [wcsj],
+         [dgzj],
+         [qtzj],
+         [sxzjsum],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_sbdxgggcxmjhsbb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="xsjmc">[xsjmc]='$xsjmc$'</isNotNull>
+       <isNotNull prepend="AND" property="gcmc">[gcmc]='$gcmc$'</isNotNull>
+       <isNotNull prepend="AND" property="zybr">[zybr]='$zybr$'</isNotNull>
+       <isNotNull prepend="AND" property="wcsj">[wcsj]='$wcsj$'</isNotNull>
+       <isNotNull prepend="AND" property="dgzj">[dgzj]='$dgzj$'</isNotNull>
+       <isNotNull prepend="AND" property="qtzj">[qtzj]='$qtzj$'</isNotNull>
+       <isNotNull prepend="AND" property="sxzjsum">[sxzjsum]='$sxzjsum$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_sbdxgggcxmjhsbbByKey" resultMap="PJ_sbdxgggcxmjhsbb_AllColumns" parameterClass="PJ_sbdxgggcxmjhsbb">
+         SELECT 
+         [ID],
+         [xsjmc],
+         [gcmc],
+         [zybr],
+         [wcsj],
+         [dgzj],
+         [qtzj],
+         [sxzjsum],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+         FROM PJ_sbdxgggcxmjhsbb
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_sbdxgggcxmjhsbb" parameterClass="PJ_sbdxgggcxmjhsbb">
+        DELETE FROM 
+         PJ_sbdxgggcxmjhsbb
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_sbdxgggcxmjhsbbByWhere" parameterClass="string">
+     delete from PJ_sbdxgggcxmjhsbb $value$
+   </delete>
+   
+   <delete id="DeletePJ_sbdxgggcxmjhsbbByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_sbdxgggcxmjhsbb
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_sbdxgggcxmjhsbb" parameterClass="PJ_sbdxgggcxmjhsbb" resultClass="int">
+          UPDATE PJ_sbdxgggcxmjhsbb
+           SET
+             [xsjmc]=#xsjmc#,
+             [gcmc]=#gcmc#,
+             [zybr]=#zybr#,
+             [wcsj]=#wcsj#,
+             [dgzj]=#dgzj#,
+             [qtzj]=#qtzj#,
+             [sxzjsum]=#sxzjsum#,
+             [Remark]=#Remark#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_sbdxgggcxmjhsbb" parameterClass="PJ_sbdxgggcxmjhsbb">
+        INSERT INTO PJ_sbdxgggcxmjhsbb
+         (
+         [ID],
+         [xsjmc],
+         [gcmc],
+         [zybr],
+         [wcsj],
+         [dgzj],
+         [qtzj],
+         [sxzjsum],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+         )
+       VALUES
+         (
+         #ID#,
+         #xsjmc#,
+         #gcmc#,
+         #zybr#,
+         #wcsj#,
+         #dgzj#,
+         #qtzj#,
+         #sxzjsum#,
+         #Remark#,
+         #S1#,
+         #S2#,
+         #S3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_sbdxgggcxmjhsbbRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_sbdxgggcxmjhsbb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="xsjmc">[xsjmc]='$xsjmc$'</isNotNull>
+       <isNotNull prepend="AND" property="gcmc">[gcmc]='$gcmc$'</isNotNull>
+       <isNotNull prepend="AND" property="zybr">[zybr]='$zybr$'</isNotNull>
+       <isNotNull prepend="AND" property="wcsj">[wcsj]='$wcsj$'</isNotNull>
+       <isNotNull prepend="AND" property="dgzj">[dgzj]='$dgzj$'</isNotNull>
+       <isNotNull prepend="AND" property="qtzj">[qtzj]='$qtzj$'</isNotNull>
+       <isNotNull prepend="AND" property="sxzjsum">[sxzjsum]='$sxzjsum$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_sbdxgggcxmjhsbbRowCount" parameterClass="string">
+    select count(*) from PJ_sbdxgggcxmjhsbb $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
