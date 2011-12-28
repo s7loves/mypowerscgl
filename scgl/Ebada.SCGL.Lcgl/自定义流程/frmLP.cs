@@ -614,6 +614,8 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 currRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+
+                currRecord.LastChangeTime = DateTime.Now.ToString(); 
                 MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
                 MsgBox.ShowTipMessageBox(strmes);
 

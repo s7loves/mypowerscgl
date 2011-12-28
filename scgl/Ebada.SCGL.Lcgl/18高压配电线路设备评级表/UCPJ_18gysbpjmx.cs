@@ -22,6 +22,8 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Components;
+using System.Threading;
+using Ebada.Scgl.WFlow;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -37,6 +39,62 @@ namespace Ebada.Scgl.Lcgl
         private string parentID = null;
         private mOrg parentObj;
         private PJ_18gysbpj _parentobj;
+
+        private bool isWorkflowCall = false;
+        private frmModleFjly fjly = null;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        private string varDbTableName = "PJ_18gysbpjmx,LP_Record";
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set
+            {
+                parentTemple = value;
+            }
+        }
+        public bool IsWorkflowCall
+        {
+            set
+            {
+
+                isWorkflowCall = value;
+
+
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set
+            {
+                currRecord = value;
+
+            }
+        }
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+                return WorkFlowData;
+            }
+            set
+            {
+                WorkFlowData = value;
+                
+            }
+        }
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value; ;
+            }
+        }
+      
         public UCPJ_18gysbpjmx()
         {
             InitializeComponent();
@@ -52,6 +110,15 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterDelete(PJ_18gysbpjmx obj)
         {
 
+            if (isWorkflowCall)
+            {
+
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.PJ_ID + "' and RecordID='" + currRecord.ID + "'"
+                    + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                    + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                    + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
+            }
             IList<PJ_18gysbpjmx> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_18gysbpjmx>(" where PJ_ID='" + PSObj.PJ_ID + "' order by xh ");
             List<PJ_18gysbpjmx> list2 = new List<PJ_18gysbpjmx>();
             for (int i = 0; i < list.Count; i++)
@@ -83,7 +150,79 @@ namespace Ebada.Scgl.Lcgl
         {
             //RefreshData(" where PJ_ID='" + PSObj.PJ_ID + "' order by id desc");
             RefreshData(" where PJ_ID='" + PSObj.PJ_ID + "' order by xh ");
-          
+
+            if (isWorkflowCall)
+            {
+                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ModleRecordID = obj.PJ_ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = obj.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+                PJ_qxfl qxfj = new PJ_qxfl();
+                qxfj.CreateDate = PSObj.CreateDate;
+                qxfj.CreateMan = PSObj.CreateMan;
+                qxfj.LineID ="";
+                qxfj.LineName ="";
+                qxfj.OrgCode = PSObj.OrgCode;
+                qxfj.OrgName = PSObj.OrgName;
+                qxfj.qxlb = obj.qxlb;
+                qxfj.qxly = "高压配电设备评级表";
+                qxfj.qxnr = obj.qxnr;
+                qxfj.xcqx = "";
+                qxfj.xcr = "";
+                qxfj.xlqd = "";
+                qxfj.xsr = "";
+                qxfj.xssj = new DateTime(1900, 1, 1);
+                MainHelper.PlatformSqlMap.Create<PJ_qxfl>(qxfj);
+                LP_Record lpr = new LP_Record();
+                lpr.ID = "N" + lpr.CreateID();
+                lpr.Kind = "设备缺陷管理流程";
+                lpr.CreateTime = DateTime.Now.ToString();
+                lpr.OrgName = qxfj.OrgName;
+
+                string[] strtemp = RecordWorkTask.RunNewGZPRecord(lpr.ID, "设备缺陷管理流程", MainHelper.User.UserID, false);
+                if (strtemp[0].IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                DataTable recordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
+                if (recordWorkFlowData == null)
+                {
+                    MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
+
+                }
+                LP_Temple ParentTemple = RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr);
+                if (ParentTemple == null)
+                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, "");
+                else
+                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, ParentTemple.LPID);
+                lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
+                MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
+                currRecord = lpr;
+                WorkFlowData = recordWorkFlowData;
+
+              
+
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ID = mrwt.CreateID();
+                mrwt.ModleRecordID = qxfj.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = qxfj.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            }
         }
       
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_18gysbpjmx> e)

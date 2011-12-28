@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Lcgl {
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        private string varDbTableName = "PJ_18gysbpj,LP_Record";
+        private string varDbTableName = "PJ_18gysbpj,PJ_18gysbpjmx,LP_Record";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -35,7 +35,7 @@ namespace Ebada.Scgl.Lcgl {
             {
                 parentTemple = value;
                 ucpJ_18gysbpj1.ParentTemple = value;
-
+                ucpJ_18gysbpjmx1.ParentTemple = value;
             }
         }
         public bool IsWorkflowCall
@@ -45,6 +45,7 @@ namespace Ebada.Scgl.Lcgl {
 
                 isWorkflowCall = value;
                 ucpJ_18gysbpj1.IsWorkflowCall = value;
+                ucpJ_18gysbpjmx1.IsWorkflowCall = value;
 
 
 
@@ -57,6 +58,7 @@ namespace Ebada.Scgl.Lcgl {
             {
                 currRecord = value;
                 ucpJ_18gysbpj1.CurrRecord = value;
+                ucpJ_18gysbpjmx1.CurrRecord = value;
 
             }
         }
@@ -71,6 +73,7 @@ namespace Ebada.Scgl.Lcgl {
             {
                 WorkFlowData = value;
                 ucpJ_18gysbpj1.RecordWorkFlowData = value;
+                ucpJ_18gysbpjmx1.RecordWorkFlowData = value;
             }
         }
         public string VarDbTableName
@@ -80,6 +83,7 @@ namespace Ebada.Scgl.Lcgl {
             {
                 varDbTableName = value;
                 ucpJ_18gysbpj1.VarDbTableName = value;
+                ucpJ_18gysbpjmx1.VarDbTableName = value;
             }
         }
       

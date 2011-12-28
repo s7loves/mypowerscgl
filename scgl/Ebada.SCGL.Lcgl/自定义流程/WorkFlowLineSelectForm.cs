@@ -163,6 +163,8 @@ namespace Ebada.Scgl.Lcgl
             {
                 MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
                 currRecord.Status = statustem;
+
+                currRecord.LastChangeTime = DateTime.Now.ToString();
                 MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
                 return;
             }
@@ -177,6 +179,8 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.Status = strmes;
             }
+
+            currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             this.DialogResult = DialogResult.OK;
         }

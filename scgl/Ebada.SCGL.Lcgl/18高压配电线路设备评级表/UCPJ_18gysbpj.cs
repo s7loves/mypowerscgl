@@ -87,6 +87,7 @@ namespace Ebada.Scgl.Lcgl
                     {
                         if (RecordWorkTask.HaveRunSPYJRole(currRecord.Kind) || RecordWorkTask.HaveRunFuJianRole(currRecord.Kind))
                         {
+                            if (fjly == null) fjly = new frmModleFjly();
                             barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                         }
                         if (wt.CommandName == "01")
@@ -136,7 +137,6 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_AfterAdd(PJ_18gysbpj obj)
         {
-            RefreshData(" where OrgCode='" + parentID + "'");
             if (isWorkflowCall)
             {
                 WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
@@ -151,6 +151,7 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                 MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
             }
+            RefreshData(" where OrgCode='" + parentID + "'");
           
         }
       
@@ -249,7 +250,7 @@ namespace Ebada.Scgl.Lcgl
             if (isWorkflowCall)
             {
                 if (slqwhere == "") slqwhere = " where 1=1";
-                slqwhere = slqwhere + " and id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and PJ_ID  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
                 slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
                    + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
@@ -370,6 +371,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.Status = strmes;
             }
+            currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }

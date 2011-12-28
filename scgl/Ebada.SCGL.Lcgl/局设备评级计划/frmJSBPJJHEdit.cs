@@ -208,7 +208,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("局设备评级计划", "落实要求", memoEdit3);
+            SelectorHelper.SelectDyk("局设备评级计划", "落实要求", memoEdit1);
         }
 
       

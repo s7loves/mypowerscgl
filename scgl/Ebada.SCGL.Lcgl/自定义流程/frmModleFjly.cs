@@ -344,8 +344,8 @@ namespace Ebada.Scgl.Lcgl
                 //rowData = null;
                
                 dockPanel1.ControlContainer.Controls.Clear();
-                templeList.Clear();
-                currRecord = null;
+                
+                //currRecord = null;
                 if (filecontrol != null)
                 {
 
@@ -353,6 +353,8 @@ namespace Ebada.Scgl.Lcgl
                     {
                         filecontrol.upThread.IsBackground = true;
                         filecontrol.upThread.Abort();
+                        filecontrol.upThread = null;
+                        filecontrol.Isupfile = false;
                     }
                     if (filecontrol.Isdownfile)
                     {

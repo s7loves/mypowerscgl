@@ -257,7 +257,7 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：xcqx
-        /// 属性描述：
+        /// 属性描述：消除期限
         /// 字段信息：[xcqx],nvarchar
         /// </summary>
         [DisplayNameAttribute("消除期限")]

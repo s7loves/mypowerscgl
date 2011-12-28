@@ -420,6 +420,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.Status = strmes;
             }
+            currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }
@@ -430,26 +431,29 @@ namespace Ebada.Scgl.Lcgl
             if (isWorkflowCall)
             {
                 PS_tqbyq obj = gridView1.GetFocusedRow() as PS_tqbyq;
-                WF_ModleRecordWorkTaskIns mrwt = null;
-                mrwt = MainHelper.PlatformSqlMap.GetOne<WF_ModleRecordWorkTaskIns>(" where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"] + "'"
-                        + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "'"
-                        + " and ModleRecordID='" + obj.byqID + "'"
-                        + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
-                        + " and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-
-                );
-                if (mrwt == null)
+                if (obj != null)
                 {
-                    mrwt = new WF_ModleRecordWorkTaskIns();
-                    mrwt.ModleRecordID = obj.byqID;
-                    mrwt.RecordID = currRecord.ID;
-                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                    mrwt.ModleTableName = obj.GetType().ToString();
-                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                    mrwt.CreatTime = DateTime.Now;
-                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                    WF_ModleRecordWorkTaskIns mrwt = null;
+                    mrwt = MainHelper.PlatformSqlMap.GetOne<WF_ModleRecordWorkTaskIns>(" where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"] + "'"
+                            + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "'"
+                            + " and ModleRecordID='" + obj.byqID + "'"
+                            + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
+                            + " and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+
+                    );
+                    if (mrwt == null)
+                    {
+                        mrwt = new WF_ModleRecordWorkTaskIns();
+                        mrwt.ModleRecordID = obj.byqID;
+                        mrwt.RecordID = currRecord.ID;
+                        mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                        mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                        mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                        mrwt.ModleTableName = obj.GetType().ToString();
+                        mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        mrwt.CreatTime = DateTime.Now;
+                        MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                    }
                 }
             }
             string statustemp = currRecord.Status;
@@ -483,6 +487,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.Status = strmes;
             }
+            currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
 
@@ -522,6 +527,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.Status = strmes;
             }
+            currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }
@@ -580,6 +586,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.Status = strmes;
             }
+            currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }

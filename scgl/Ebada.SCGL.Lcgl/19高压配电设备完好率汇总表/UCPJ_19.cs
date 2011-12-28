@@ -82,30 +82,30 @@ namespace Ebada.Scgl.Lcgl
                 WorkFlowData = value;
                 if (isWorkflowCall)
                 {
+                    liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    if (RecordWorkTask.HaveRunSPYJRole(currRecord.Kind) )
+                    {
+                        if (fjly == null) fjly = new frmModleFjly();
+                        barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    }
                     IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                     foreach (WF_WorkTaskCommands wt in wtlist)
                     {
-                        if (RecordWorkTask.HaveRunSPYJRole(currRecord.Kind) || RecordWorkTask.HaveRunFuJianRole(currRecord.Kind))
-                        {
-                            barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-                        }
+                       
                         if (wt.CommandName == "01")
                         {
-                            liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             if (wt.Description != "")
                                 SubmitButton.Caption = wt.Description;
-                            liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                         }
                         else
                             if (wt.CommandName == "02")
                             {
-                                liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                                 TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                                 if (wt.Description != "")
                                     TaskOverButton.Caption = wt.Description;
-                                liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             }
 
                     }
@@ -381,7 +381,8 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.Status = strmes;
             }
-            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+            currRecord.LastChangeTime = DateTime.Now.ToString();
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
             gridControl1.FindForm().Close();
         }
 
