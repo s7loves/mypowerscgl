@@ -25,9 +25,20 @@ namespace Ebada.Scgl.Gis {
 
         WaitDialogForm waitdlg;
         DrawingNetwork dxt;
+        mOrg _gds;
         public UCSharpeNetwork() {
             
             InitializeComponent();
+            InitTree();
+            createCheckGroup();
+        }
+        public UCSharpeNetwork(string gdscode) {
+
+            InitializeComponent();
+            if (gdscode == "all")
+                _gds = new mOrg() { OrgCode = gdscode, OrgName = "全局配电线路网络图" };
+            else
+                _gds = ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + gdscode + "'");
             InitTree();
             createCheckGroup();
         }
@@ -75,9 +86,13 @@ namespace Ebada.Scgl.Gis {
             treeList1.DataSource = mTable;
             treeList1.KeyFieldName = "ID";
             treeList1.ParentFieldName = "ParentID";
-            
-            mTable.Rows.Add(hide, "0", "全局配电线路网络图", "all", "0","1");
-            mTable.Rows.Add(hide, "0", "供电所网络图", "gds", "0","0");
+
+            if (_gds == null) {
+                mTable.Rows.Add(hide, "0", "全局配电线路网络图", "all", "0", "1");
+                mTable.Rows.Add(hide, "0", "供电所网络图", "gds", "0", "0");
+            } else {
+                mTable.Rows.Add(visible, "0", _gds.OrgName, _gds.OrgCode, "0", "1");
+            }
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
             treeList1.Columns["层"].Caption = "图纸名称";
@@ -136,10 +151,9 @@ namespace Ebada.Scgl.Gis {
         }
         public void InitLayer()
         {
-            treeList1.BeginInit();
-           
-            
-            treeList1.EndInit();
+
+            if (_gds != null)
+                buildLineMapGds(_gds.OrgCode);
 
         }
         private void inittq(string gdscode) {
@@ -289,7 +303,10 @@ namespace Ebada.Scgl.Gis {
                 return bdsList; }
         }
         public void buildLineMapGds(string gdscode) {
-
+            if (gdscode == "all") {
+                buildLineMapAll();
+                return;
+            }
             setWaitMsg("");
 
             IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where len(linecode)=6 and orgcode='" + gdscode + "'");

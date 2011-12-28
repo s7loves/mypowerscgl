@@ -16,7 +16,7 @@ namespace Ebada.Scgl.Lcgl {
         /// <summary>
         /// 显示地理图
         /// </summary>
-        /// <param name="gdsCode">供电所代码，为null时显示全局</param>
+        /// <param name="gdsCode">供电所代码，值为all时显示全局</param>
         internal static void ShowDlt(string gdsCode) {
             Ebada.Client.Platform.MainHelper.Execute(gislib, gisclass, "ShowDlt", new object[] { gdsCode });
         }
