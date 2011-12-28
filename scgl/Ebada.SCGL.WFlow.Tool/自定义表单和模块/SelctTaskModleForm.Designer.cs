@@ -257,8 +257,6 @@
             this.treeListColumn12.Caption = "treeListColumn12";
             this.treeListColumn12.FieldName = "ID";
             this.treeListColumn12.Name = "treeListColumn12";
-            this.treeListColumn12.Visible = true;
-            this.treeListColumn12.VisibleIndex = 1;
             // 
             // panelControl1
             // 

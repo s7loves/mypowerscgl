@@ -66,8 +66,8 @@ namespace Ebada.SCGL.WFlow.Tool
             treeList1.Nodes.Clear();
             treeList1.DataSource = null;
             string sqlwhere = " where 1=0";
-            
-            sqlwhere = "where ModuTypes != 'hide' order by Sequence";
+
+            sqlwhere = "where ModuTypes != 'hide' order by ModuName";
             IList mlist = MainHelper.PlatformSqlMap.GetList("SelectmModuleList", sqlwhere);
             if (mlist.Count == 0)
             {
@@ -79,15 +79,31 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             treeList1.DataSource = mdt;
             treeList1.EndInit();
-            if(strmodleid!="")
+            treeList1.CollapseAll();
+            if (strmodleid != "")
             {
                 mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(strmodleid);
-                if (obj!=null)
+                if (obj != null)
                 {
-                    if (treeList1.FindNodeByKeyID(strmodleid)!=null) treeList1.SetFocusedNode(treeList1.FindNodeByKeyID(strmodleid));
+                    if (treeList1.FindNodeByKeyID(strmodleid) != null)
+                    {
+                        
+                        treeList1.SetFocusedNode(treeList1.FindNodeByKeyID(strmodleid));
+                    }
                 }
             }
-            
+            else
+            {
+                mModule obj = MainHelper.PlatformSqlMap.GetOne<mModule>(" where ModuName='流程调用' ");
+                if (obj != null)
+                {
+                    if (treeList1.FindNodeByKeyID(obj.Modu_ID) != null)
+                    {
+                        treeList1.FindNodeByKeyID(obj.Modu_ID).Expanded = true;
+                        treeList1.SetFocusedNode(treeList1.FindNodeByKeyID(obj.Modu_ID));
+                    }
+                }
+            }
         }
 
         private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
