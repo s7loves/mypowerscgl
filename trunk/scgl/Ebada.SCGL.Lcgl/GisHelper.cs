@@ -5,7 +5,7 @@ using System.Text;
 namespace Ebada.Scgl.Lcgl {
     class GisHelper {
         const string gislib = "Ebada.Sclg.Gis.dll";
-        const string gisclass = "GMapHelper";
+        const string gisclass = "Ebada.Scgl.Gis.GMapHelper";
         /// <summary>
         /// 显示单线图
         /// </summary>
