@@ -11,6 +11,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Ebada.Client.Platform;
 using Ebada.Components;
 using System.Threading;
+using System.Text.RegularExpressions;
 namespace Ebada.Scgl.Lcgl
 {
     /// <summary>
@@ -67,8 +68,41 @@ namespace Ebada.Scgl.Lcgl
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
             ex.Open(fname);
-            string str = " where 1=1 and  TDtime between '" + DateTime.Now.Year + "-3-1 00:00:00' and  cast('"
-                + DateTime.Now.Year + "-5-31 23:59:59' as datetime) ";
+            string startmonth = "3", startday= "1", endmonth = "5", endtday = "31";
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select nr  from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "春查停电检修开始日期"));
+            if (list.Count > 0)
+            {
+
+                Regex r1 = new Regex(@"[0-9]+(?=月)");
+                if(r1.Match(list[0].ToString()).Value!="")
+                {
+                    startmonth = r1.Match(list[0].ToString()).Value;
+                }
+                r1 = new Regex(@"(?<=月)[0-9]+");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    startday = r1.Match(list[0].ToString()).Value;
+                }
+            }
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+               string.Format("select nr  from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "春查停电检修截止日期"));
+            if (list.Count > 0)
+            {
+
+                Regex r1 = new Regex(@"[0-9]+(?=月)");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    endmonth = r1.Match(list[0].ToString()).Value;
+                }
+                r1 = new Regex(@"(?<=月)[0-9]+");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    endtday = r1.Match(list[0].ToString()).Value;
+                }
+            }
+            string str = " where 1=1 and  TDtime between '" + DateTime.Now.Year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
+                + DateTime.Now.Year + "-" + endmonth + "-" + endtday + " 23:59:59' as datetime) ";
             if (orgid != "") str += " and OrgCode='" + orgid + "' ";
             IList<PJ_cqctdjxjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_cqctdjxjh>(
                str
@@ -84,8 +118,41 @@ namespace Ebada.Scgl.Lcgl
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
             ex.Open(fname);
-            string str = " where 1=1 and  TDtime between '" + DateTime.Now.Year + "-9-1 00:00:00' and  cast('"
-                + DateTime.Now.Year + "-11-30 23:59:59' as datetime) ";
+            string startmonth = "9", startday = "1", endmonth = "11", endtday = "30";
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select nr  from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "秋查停电检修开始日期"));
+            if (list.Count > 0)
+            {
+
+                Regex r1 = new Regex(@"[0-9]+(?=月)");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    startmonth= r1.Match(list[0].ToString()).Value;
+                }
+                r1 = new Regex(@"(?<=月)[0-9]+");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    startday = r1.Match(list[0].ToString()).Value;
+                }
+            }
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+               string.Format("select nr  from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "秋查停电检修截止日期"));
+            if (list.Count > 0)
+            {
+
+                Regex r1 = new Regex(@"[0-9]+(?=月)");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    endmonth = r1.Match(list[0].ToString()).Value;
+                }
+                r1 = new Regex(@"(?<=月)[0-9]+");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    endtday= r1.Match(list[0].ToString()).Value;
+                }
+            }
+            string str = " where 1=1 and  TDtime between '" + DateTime.Now.Year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
+                + DateTime.Now.Year + "-" + endmonth + "-" + endtday + " 23:59:59' as datetime) ";
             if (orgid != "") str += " and OrgCode='" + orgid + "' ";
             IList<PJ_cqctdjxjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_cqctdjxjh>(
                str
