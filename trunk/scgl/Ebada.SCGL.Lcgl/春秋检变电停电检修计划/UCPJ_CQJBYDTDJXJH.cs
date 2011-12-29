@@ -302,9 +302,9 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            IList<PJ_cqctdjxjh> datalist = gridView1.DataSource as IList<PJ_cqctdjxjh>;
+            
             ExportCQJBYDTDJXJH etdjh = new ExportCQJBYDTDJXJH();
-            etdjh.ExportExcel(datalist);
+            etdjh.ExportExcel(parentID);
            
            
            
@@ -363,6 +363,31 @@ namespace Ebada.Scgl.Lcgl
                 MsgBox.ShowTipMessageBox("清除失败: " + strmess);
             }
 
+        }
+
+        private void barExplorAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportCQJBYDTDJXJH etdjh = new ExportCQJBYDTDJXJH();
+            etdjh.ExportExcel("");
+        }
+
+        private void barExplorOrgCun_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportCQJBYDTDJXJH etdjh = new ExportCQJBYDTDJXJH();
+            etdjh.ExportExcelCunJian(parentID);
+        }
+
+        private void barExplorJuCun_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportCQJBYDTDJXJH etdjh = new ExportCQJBYDTDJXJH();
+            etdjh.ExportExcelCunJian("");
+        }
+
+        private void barExplorOrgQiu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            ExportCQJBYDTDJXJH etdjh = new ExportCQJBYDTDJXJH();
+            etdjh.ExportExcelQiuJian(parentID);
         }
 
     }

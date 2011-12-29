@@ -59,38 +59,76 @@ namespace Ebada.Scgl.Lcgl
 
             }
         }
+        public void ExportExcelCunJian(string orgid)
+        {
+
+            
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
+            ex.Open(fname);
+            string str = " where 1=1 and  TDtime between '" + DateTime.Now.Year + "-3-1 00:00:00' and  cast('"
+                + DateTime.Now.Year + "-5-31 23:59:59' as datetime) ";
+            if (orgid != "") str += " and OrgCode='" + orgid + "' ";
+            IList<PJ_cqctdjxjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_cqctdjxjh>(
+               str
+                );
+            ExportExcel(ex, datalist);
+            ex.ShowExcel();
+        }
+        public void ExportExcelQiuJian(string orgid)
+        {
+
+
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
+            ex.Open(fname);
+            string str = " where 1=1 and  TDtime between '" + DateTime.Now.Year + "-9-1 00:00:00' and  cast('"
+                + DateTime.Now.Year + "-11-30 23:59:59' as datetime) ";
+            if (orgid != "") str += " and OrgCode='" + orgid + "' ";
+            IList<PJ_cqctdjxjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_cqctdjxjh>(
+               str
+                );
+            ExportExcel(ex, datalist);
+            ex.ShowExcel();
+        }
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public  void ExportExcel(IList<PJ_cqctdjxjh> datalist)
+        public  void ExportExcel(string orgid)
         {
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
             ex.Open(fname);
+            string str = " where 1=1 ";
+            IList<PJ_cqctdjxjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_cqctdjxjh>(
+               str
+                );
             ExportExcel(ex, datalist);
             ex.ShowExcel();
            
         }
-        public void ExportExcelMonth(string orgid)
+        public void ExportExcelChunQiu(string orgid)
         {
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\所月度停电计划.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
             ex.Open(fname);
             string startday = "20";
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr from pj_dyk where  dx='所月度停电计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
+                string.Format("select nr from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
             if (list.Count > 0)
                 startday=list[0].ToString();
             string str = " where TDtime between '" + DateTime.Now.Year + "-"
                 + DateTime.Now.Month + "-" + startday
                 + " 00:00:00' and  dateadd(m,1,cast('"
                 + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) ) and OrgCode='" + orgid + "'";
+                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) ) ";
             IList<PJ_cqctdjxjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_cqctdjxjh>(
                str
                 );
@@ -106,7 +144,7 @@ namespace Ebada.Scgl.Lcgl
             if (orgid != "") filter = " and OrgCode='" + orgid + "'";
             string startday = "20";
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr from pj_dyk where  dx='所月度停电计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
+                string.Format("select nr from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
             if (list.Count > 0)
                 startday = list[0].ToString();
 
@@ -165,11 +203,11 @@ namespace Ebada.Scgl.Lcgl
         public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
-            string fname = Application.StartupPath + "\\00记录模板\\所月度停电计划.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
             dsoFramerWordControl1.FileOpen(fname);
             string startday = "20";
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr from pj_dyk where  dx='所月度停电计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
+                string.Format("select nr from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
             if (list.Count > 0)
                 startday = list[0].ToString();
             if (parentTemple == null)
@@ -213,7 +251,7 @@ namespace Ebada.Scgl.Lcgl
         public void ExportExcel(ExcelAccess ex ,IList<PJ_cqctdjxjh> datalist)
         {
             //此处写填充内容代码
-            int row = 6;
+            int row = 8;
             int col = 1;
             int rowcount = 8;
 
@@ -232,9 +270,9 @@ namespace Ebada.Scgl.Lcgl
                     ex.CopySheet(1, 1);
                 }
             }
-            DateTime dt = DateTime.Now;
-            dt=dt.AddMonths(1);
-            ex.SetCellValue(dt.Year + "年" + (dt.Month) + "月份配电设备停电检修计划表", 1, 1);
+            //DateTime dt = DateTime.Now;
+            //dt=dt.AddMonths(1);
+            //ex.SetCellValue(dt.Year + "年" + (dt.Month) + "月份配电设备停电检修计划表", 1, 1);
         
             for (int j = 0; j < datalist.Count; j++)
             {
@@ -242,10 +280,11 @@ namespace Ebada.Scgl.Lcgl
                 if (j % rowcount == 0)
                 {
                     ex.ActiveSheet(j / rowcount + 1);
-                    ex.SetCellValue(datalist[j].OrgName, 2, 3);
-                    ex.SetCellValue(DateTime.Now.Year.ToString(), 2, 9);
-                    ex.SetCellValue(DateTime.Now.Month.ToString(), 2, 11);
-                    ex.SetCellValue(DateTime.Now.Day.ToString(), 2, 13);
+                    //ex.SetCellValue(datalist[j].OrgName, 2, 3);
+                    //ex.SetCellValue(DateTime.Now.Year.ToString(), 2, 9);
+                    //ex.SetCellValue(DateTime.Now.Month.ToString(), 2, 11);
+                    //ex.SetCellValue(DateTime.Now.Day.ToString(), 2, 13);
+                    ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 4, 13);
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
                 ex.SetCellValue(datalist[j].SQOrgname, row + j % rowcount, col + 1);

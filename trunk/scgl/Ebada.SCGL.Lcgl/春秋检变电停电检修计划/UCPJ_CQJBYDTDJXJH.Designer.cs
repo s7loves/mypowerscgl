@@ -41,7 +41,7 @@
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btExport0 = new DevExpress.XtraBars.BarSubItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
-            this.barExplorMonth = new DevExpress.XtraBars.BarButtonItem();
+            this.barExplorAll = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -51,6 +51,10 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.barExplorOrgCun = new DevExpress.XtraBars.BarButtonItem();
+            this.barExplorJuCun = new DevExpress.XtraBars.BarButtonItem();
+            this.barExplorOrgQiu = new DevExpress.XtraBars.BarButtonItem();
+            this.barExplorJuQiu = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -78,12 +82,16 @@
             this.btExport0,
             this.btGdsList,
             this.btView,
-            this.barExplorMonth,
+            this.barExplorAll,
             this.liuchbarSubItem,
             this.SubmitButton,
             this.TaskOverButton,
-            this.liuchenBarClear});
-            this.barManager1.MaxItemId = 21;
+            this.liuchenBarClear,
+            this.barExplorOrgCun,
+            this.barExplorJuCun,
+            this.barExplorOrgQiu,
+            this.barExplorJuQiu});
+            this.barManager1.MaxItemId = 25;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
             this.barManager1.StatusBar = this.bar3;
@@ -207,7 +215,11 @@
             this.btExport0.ImageIndex = 7;
             this.btExport0.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btView),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barExplorMonth)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barExplorAll),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barExplorOrgCun),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barExplorJuCun),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barExplorOrgQiu),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barExplorJuQiu)});
             this.btExport0.Name = "btExport0";
             this.btExport0.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
@@ -220,12 +232,12 @@
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
-            // barExplorMonth
+            // barExplorAll
             // 
-            this.barExplorMonth.Caption = "导出月计划";
-            this.barExplorMonth.Id = 16;
-            this.barExplorMonth.Name = "barExplorMonth";
-            this.barExplorMonth.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorMonth_ItemClick);
+            this.barExplorAll.Caption = "导出全局";
+            this.barExplorAll.Id = 16;
+            this.barExplorAll.Name = "barExplorAll";
+            this.barExplorAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorAll_ItemClick);
             // 
             // btClose
             // 
@@ -259,7 +271,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(508, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(508, 24);
             // 
             // barDockControlBottom
             // 
@@ -270,14 +282,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 278);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 279);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(508, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 278);
+            this.barDockControlRight.Location = new System.Drawing.Point(508, 24);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 279);
             // 
             // gridControl1
             // 
@@ -287,11 +299,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 25);
+            this.gridControl1.Location = new System.Drawing.Point(0, 24);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(508, 278);
+            this.gridControl1.Size = new System.Drawing.Size(508, 279);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -310,7 +322,34 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UCPJ_TDJH
+            // barExplorOrgCun
+            // 
+            this.barExplorOrgCun.Caption = "导出所春检计划";
+            this.barExplorOrgCun.Id = 21;
+            this.barExplorOrgCun.Name = "barExplorOrgCun";
+            this.barExplorOrgCun.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorOrgCun_ItemClick);
+            // 
+            // barExplorJuCun
+            // 
+            this.barExplorJuCun.Caption = "导出局春检计划";
+            this.barExplorJuCun.Id = 22;
+            this.barExplorJuCun.Name = "barExplorJuCun";
+            this.barExplorJuCun.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorJuCun_ItemClick);
+            // 
+            // barExplorOrgQiu
+            // 
+            this.barExplorOrgQiu.Caption = "导出所秋检计划";
+            this.barExplorOrgQiu.Id = 23;
+            this.barExplorOrgQiu.Name = "barExplorOrgQiu";
+            this.barExplorOrgQiu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorOrgQiu_ItemClick);
+            // 
+            // barExplorJuQiu
+            // 
+            this.barExplorJuQiu.Caption = "导出局秋春计划";
+            this.barExplorJuQiu.Id = 24;
+            this.barExplorJuQiu.Name = "barExplorJuQiu";
+            // 
+            // UCPJ_CQJBYDTDJXJH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -319,7 +358,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCPJ_TDJH";
+            this.Name = "UCPJ_CQJBYDTDJXJH";
             this.Size = new System.Drawing.Size(508, 328);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
@@ -351,10 +390,14 @@
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
-        private DevExpress.XtraBars.BarButtonItem barExplorMonth;
+        private DevExpress.XtraBars.BarButtonItem barExplorAll;
         private DevExpress.XtraBars.BarSubItem liuchbarSubItem;
         private DevExpress.XtraBars.BarButtonItem SubmitButton;
         private DevExpress.XtraBars.BarButtonItem TaskOverButton;
         private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
+        private DevExpress.XtraBars.BarButtonItem barExplorOrgCun;
+        private DevExpress.XtraBars.BarButtonItem barExplorJuCun;
+        private DevExpress.XtraBars.BarButtonItem barExplorOrgQiu;
+        private DevExpress.XtraBars.BarButtonItem barExplorJuQiu;
     }
 }
