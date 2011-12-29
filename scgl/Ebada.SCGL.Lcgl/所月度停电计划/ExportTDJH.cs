@@ -89,7 +89,8 @@ namespace Ebada.Scgl.Lcgl
                 + DateTime.Now.Month + "-" + startday
                 + " 00:00:00' and  dateadd(m,1,cast('"
                 + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) ) and OrgCode='" + orgid + "'";
+                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) ) ";
+            if (orgid != "") str += " and OrgCode='" + orgid + "'";
             IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
                str
                 );
@@ -113,7 +114,8 @@ namespace Ebada.Scgl.Lcgl
                  + DateTime.Now.Month + "-" + startday
                  + " 00:00:00' and    dateadd(m,1,cast('"
                 + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) )  and OrgCode='" + orgid + "'";
+                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) )  ";
+             if (orgid != "") filter += " and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
                 filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
@@ -187,7 +189,8 @@ namespace Ebada.Scgl.Lcgl
                 + DateTime.Now.Month + "-" + startday
                 + " 00:00:00' and    dateadd(m,1,cast('"
                 + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) )  and OrgCode='" + orgid + "'";
+                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) ) ";
+            if (orgid != "") filter += " and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
                 filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where WorkFlowId='"
