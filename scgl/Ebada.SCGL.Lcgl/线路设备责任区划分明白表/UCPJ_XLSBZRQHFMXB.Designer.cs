@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class UCPJ_CQJBYDTDJXJH
+    partial class UCPJ_XLSBZRQHFMXB
     {
         /// <summary> 
         /// Required designer variable.
@@ -349,7 +349,7 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UCPJ_CQJBYDTDJXJH
+            // UCPJ_XLSBZRQHFMXB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -358,7 +358,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCPJ_CQJBYDTDJXJH";
+            this.Name = "UCPJ_XLSBZRQHFMXB";
             this.Size = new System.Drawing.Size(508, 328);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();

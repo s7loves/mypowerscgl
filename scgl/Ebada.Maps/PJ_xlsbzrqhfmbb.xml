@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_xlsbzrqhfmbb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_xlsbzrqhfmbb"  type="Ebada.Scgl.Model.PJ_xlsbzrqhfmbb,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_xlsbzrqhfmbb_AllColumns" class="PJ_xlsbzrqhfmbb">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="jsxl" column="jsxl" />
+        <result property="zjxl" column="zjxl" />
+        <result property="gytq" column="gytq" />
+        <result property="zytq" column="zytq" />
+        <result property="zrr" column="zrr" />
+        <result property="Remark" column="Remark" />
+        <result property="Creattime" column="Creattime" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_xlsbzrqhfmbbList" resultMap="PJ_xlsbzrqhfmbb_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [jsxl],
+         [zjxl],
+         [gytq],
+         [zytq],
+         [zrr],
+         [Remark],
+         [Creattime],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_xlsbzrqhfmbb
+          $value$
+   </select>
+   
+   <select id="SelectPJ_xlsbzrqhfmbbByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [jsxl],
+         [zjxl],
+         [gytq],
+         [zytq],
+         [zrr],
+         [Remark],
+         [Creattime],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_xlsbzrqhfmbb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="jsxl">[jsxl]='$jsxl$'</isNotNull>
+       <isNotNull prepend="AND" property="zjxl">[zjxl]='$zjxl$'</isNotNull>
+       <isNotNull prepend="AND" property="gytq">[gytq]='$gytq$'</isNotNull>
+       <isNotNull prepend="AND" property="zytq">[zytq]='$zytq$'</isNotNull>
+       <isNotNull prepend="AND" property="zrr">[zrr]='$zrr$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_xlsbzrqhfmbbByKey" resultMap="PJ_xlsbzrqhfmbb_AllColumns" parameterClass="PJ_xlsbzrqhfmbb">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [jsxl],
+         [zjxl],
+         [gytq],
+         [zytq],
+         [zrr],
+         [Remark],
+         [Creattime],
+         [S1],
+         [S2],
+         [S3]
+         FROM PJ_xlsbzrqhfmbb
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_xlsbzrqhfmbb" parameterClass="PJ_xlsbzrqhfmbb">
+        DELETE FROM 
+         PJ_xlsbzrqhfmbb
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_xlsbzrqhfmbbByWhere" parameterClass="string">
+     delete from PJ_xlsbzrqhfmbb $value$
+   </delete>
+   
+   <delete id="DeletePJ_xlsbzrqhfmbbByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_xlsbzrqhfmbb
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_xlsbzrqhfmbb" parameterClass="PJ_xlsbzrqhfmbb" resultClass="int">
+          UPDATE PJ_xlsbzrqhfmbb
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [jsxl]=#jsxl#,
+             [zjxl]=#zjxl#,
+             [gytq]=#gytq#,
+             [zytq]=#zytq#,
+             [zrr]=#zrr#,
+             [Remark]=#Remark#,
+             [Creattime]=#Creattime#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_xlsbzrqhfmbb" parameterClass="PJ_xlsbzrqhfmbb">
+        INSERT INTO PJ_xlsbzrqhfmbb
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [jsxl],
+         [zjxl],
+         [gytq],
+         [zytq],
+         [zrr],
+         [Remark],
+         [Creattime],
+         [S1],
+         [S2],
+         [S3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #jsxl#,
+         #zjxl#,
+         #gytq#,
+         #zytq#,
+         #zrr#,
+         #Remark#,
+         #Creattime#,
+         #S1#,
+         #S2#,
+         #S3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_xlsbzrqhfmbbRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_xlsbzrqhfmbb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="jsxl">[jsxl]='$jsxl$'</isNotNull>
+       <isNotNull prepend="AND" property="zjxl">[zjxl]='$zjxl$'</isNotNull>
+       <isNotNull prepend="AND" property="gytq">[gytq]='$gytq$'</isNotNull>
+       <isNotNull prepend="AND" property="zytq">[zytq]='$zytq$'</isNotNull>
+       <isNotNull prepend="AND" property="zrr">[zrr]='$zrr$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_xlsbzrqhfmbbRowCount" parameterClass="string">
+    select count(*) from PJ_xlsbzrqhfmbb $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
