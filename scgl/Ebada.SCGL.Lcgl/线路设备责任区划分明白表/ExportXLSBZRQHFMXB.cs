@@ -60,106 +60,7 @@ namespace Ebada.Scgl.Lcgl
 
             }
         }
-        public void ExportExcelCunJian(string orgid)
-        {
-
-            
-            ExcelAccess ex = new ExcelAccess();
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
-            ex.Open(fname);
-            string startmonth = "3", startday= "1", endmonth = "5", endtday = "31";
-            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr  from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "春查停电检修开始日期"));
-            if (list.Count > 0)
-            {
-
-                Regex r1 = new Regex(@"[0-9]+(?=月)");
-                if(r1.Match(list[0].ToString()).Value!="")
-                {
-                    startmonth = r1.Match(list[0].ToString()).Value;
-                }
-                r1 = new Regex(@"(?<=月)[0-9]+");
-                if (r1.Match(list[0].ToString()).Value != "")
-                {
-                    startday = r1.Match(list[0].ToString()).Value;
-                }
-            }
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-               string.Format("select nr  from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "春查停电检修截止日期"));
-            if (list.Count > 0)
-            {
-
-                Regex r1 = new Regex(@"[0-9]+(?=月)");
-                if (r1.Match(list[0].ToString()).Value != "")
-                {
-                    endmonth = r1.Match(list[0].ToString()).Value;
-                }
-                r1 = new Regex(@"(?<=月)[0-9]+");
-                if (r1.Match(list[0].ToString()).Value != "")
-                {
-                    endtday = r1.Match(list[0].ToString()).Value;
-                }
-            }
-            string str = " where 1=1 and  TDtime between '" + DateTime.Now.Year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
-                + DateTime.Now.Year + "-" + endmonth + "-" + endtday + " 23:59:59' as datetime) ";
-            if (orgid != "") str += " and OrgCode='" + orgid + "' ";
-            IList<PJ_xlsbzrqhfmbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_xlsbzrqhfmbb>(
-               str
-                );
-            ExportExcel(ex, datalist);
-            ex.ShowExcel();
-        }
-        public void ExportExcelQiuJian(string orgid)
-        {
-
-
-            ExcelAccess ex = new ExcelAccess();
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
-            ex.Open(fname);
-            string startmonth = "9", startday = "1", endmonth = "11", endtday = "30";
-            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr  from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "秋查停电检修开始日期"));
-            if (list.Count > 0)
-            {
-
-                Regex r1 = new Regex(@"[0-9]+(?=月)");
-                if (r1.Match(list[0].ToString()).Value != "")
-                {
-                    startmonth= r1.Match(list[0].ToString()).Value;
-                }
-                r1 = new Regex(@"(?<=月)[0-9]+");
-                if (r1.Match(list[0].ToString()).Value != "")
-                {
-                    startday = r1.Match(list[0].ToString()).Value;
-                }
-            }
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-               string.Format("select nr  from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "秋查停电检修截止日期"));
-            if (list.Count > 0)
-            {
-
-                Regex r1 = new Regex(@"[0-9]+(?=月)");
-                if (r1.Match(list[0].ToString()).Value != "")
-                {
-                    endmonth = r1.Match(list[0].ToString()).Value;
-                }
-                r1 = new Regex(@"(?<=月)[0-9]+");
-                if (r1.Match(list[0].ToString()).Value != "")
-                {
-                    endtday= r1.Match(list[0].ToString()).Value;
-                }
-            }
-            string str = " where 1=1 and  TDtime between '" + DateTime.Now.Year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
-                + DateTime.Now.Year + "-" + endmonth + "-" + endtday + " 23:59:59' as datetime) ";
-            if (orgid != "") str += " and OrgCode='" + orgid + "' ";
-            IList<PJ_xlsbzrqhfmbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_xlsbzrqhfmbb>(
-               str
-                );
-            ExportExcel(ex, datalist);
-            ex.ShowExcel();
-        }
+     
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>
@@ -171,85 +72,81 @@ namespace Ebada.Scgl.Lcgl
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
             ex.Open(fname);
-            string str = " where 1=1 ";
-            IList<PJ_xlsbzrqhfmbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_xlsbzrqhfmbb>(
-               str
-                );
-            ExportExcel(ex, datalist);
+            string sdtrorg=" ";
+            if (orgid != "")
+            {
+                
+                sdtrorg += "  and OrgCode='" + orgid + "'";
+            }
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct zrr  from PJ_xlsbzrqhfmbb where  1=1 " + sdtrorg);
+            foreach (string mc in mclist)
+            {
+                string str = " where 1=1 and zrr='"+mc+"' ";
+                if (orgid != "")
+                {
+                    str += "  and OrgCode='" + orgid + "'";
+                }
+                IList<PJ_xlsbzrqhfmbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_xlsbzrqhfmbb>(
+                   str
+                    );
+                ExportExcel(ex, datalist,mc);
+            }
+            ex.DeleteSheet(1);
             ex.ShowExcel();
            
         }
-        public void ExportExcelChunQiu(string orgid)
-        {
-            //lgm
-            ExcelAccess ex = new ExcelAccess();
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
-            ex.Open(fname);
-            string startday = "20";
-            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
-            if (list.Count > 0)
-                startday=list[0].ToString();
-            string str = " where TDtime between '" + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday
-                + " 00:00:00' and  dateadd(m,1,cast('"
-                + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) ) ";
-            IList<PJ_xlsbzrqhfmbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_xlsbzrqhfmbb>(
-               str
-                );
-            ExportExcel(ex, datalist);
-            ex.ShowExcel();
-
-        }
+        
         public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid)
         {
 
             string filter = "";
             int i = 0;
-            if (orgid != "") filter = " and OrgCode='" + orgid + "'";
-            string startday = "20";
-            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
-            if (list.Count > 0)
-                startday = list[0].ToString();
 
-             filter = " where TDtime between '" + DateTime.Now.Year + "-"
-                 + DateTime.Now.Month + "-" + startday
-                 + " 00:00:00' and    dateadd(m,1,cast('"
-                + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) )  and OrgCode='" + orgid + "'";
-            if (isWorkflowCall)
+
+            string sdtrorg = " ";
+            if (orgid != "")
             {
-                filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
-                    + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
-                        + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                    + "    RecordID='" + currRecord.ID + "')) "
-                    ;
+
+                sdtrorg += "  and OrgCode='" + orgid + "'";
             }
-            IList<PJ_xlsbzrqhfmbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_xlsbzrqhfmbb>(
-                 filter
-                 );
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct zrr  from PJ_xlsbzrqhfmbb where  1=1 " + sdtrorg);
             List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
-            
-            if (isWorkflowCall)
+            foreach (string mc in mclist)
             {
-                for (i = 0; i < datalist.Count; i++)
+                filter = " where 1=1 and zrr='" + mc + "' ";
+                if (orgid != "") filter = " and OrgCode='" + orgid + "'";
+                if (isWorkflowCall)
                 {
+                    filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
+                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                        + "    RecordID='" + currRecord.ID + "')) "
+                        ;
+                }
 
-                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                    mrwt.ID = mrwt.CreateID();
-                    mrwt.ModleRecordID = datalist[i].ID;
-                    mrwt.RecordID = currRecord.ID;
-                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                    mrwt.ModleTableName = datalist[i].GetType().ToString();
-                    mrwt.CreatTime = DateTime.Now;
-                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                    mrwtlist.Add(mrwt);
+                IList<PJ_xlsbzrqhfmbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_xlsbzrqhfmbb>(
+                     filter
+                     );
+                
+
+                if (isWorkflowCall)
+                {
+                    for (i = 0; i < datalist.Count; i++)
+                    {
+
+                        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                        mrwt.ID = mrwt.CreateID();
+                        mrwt.ModleRecordID = datalist[i].ID;
+                        mrwt.RecordID = currRecord.ID;
+                        mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                        mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                        mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                        mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        mrwt.ModleTableName = datalist[i].GetType().ToString();
+                        mrwt.CreatTime = DateTime.Now;
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        mrwtlist.Add(mrwt);
+                    }
                 }
             }
 
@@ -272,11 +169,8 @@ namespace Ebada.Scgl.Lcgl
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
             dsoFramerWordControl1.FileOpen(fname);
-            string startday = "20";
-            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
-            if (list.Count > 0)
-                startday = list[0].ToString();
+            
+        
             if (parentTemple == null)
             {
                 parentTemple = new LP_Temple();
@@ -289,23 +183,37 @@ namespace Ebada.Scgl.Lcgl
             Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
-            string filter = " where TDtime between '" + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday
-                + " 00:00:00' and    dateadd(m,1,cast('"
-                + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) )  and OrgCode='" + orgid + "'";
-            if (isWorkflowCall)
+           string filter = "";
+            int i = 0;
+
+
+            string sdtrorg = " ";
+            if (orgid != "")
             {
-                filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where WorkFlowId='"
-                    + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                        + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                    + "    RecordID='" + currRecord.ID + "')) "
-                    ;
+
+                sdtrorg += "  and OrgCode='" + orgid + "'";
             }
-            IList<PJ_xlsbzrqhfmbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_xlsbzrqhfmbb>(
-                 filter
-                  );
-            ExportExcel(ex, datalist);
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct zrr  from PJ_xlsbzrqhfmbb where  1=1 " + sdtrorg);
+            List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
+            foreach (string mc in mclist)
+            {
+                filter = " where 1=1 and zrr='" + mc + "' ";
+                if (orgid != "") filter = " and OrgCode='" + orgid + "'";
+                if (isWorkflowCall)
+                {
+                    filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
+                        + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "') "
+                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                        + "    RecordID='" + currRecord.ID + "')) "
+                        ;
+                }
+
+                IList<PJ_xlsbzrqhfmbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_xlsbzrqhfmbb>(
+                     filter
+                     );
+                ExportExcel(ex, datalist,mc);
+            }
+            ex.DeleteSheet(1);
             if (parentTemple == null)
             {
                 parentTemple = new LP_Temple();
@@ -315,12 +223,14 @@ namespace Ebada.Scgl.Lcgl
             parentTemple.DocContent = dsoFramerWordControl1.FileDataGzip;
             dsoFramerWordControl1.FileClose();
         }
-        public void ExportExcel(ExcelAccess ex ,IList<PJ_xlsbzrqhfmbb> datalist)
+        public void ExportExcel(ExcelAccess ex, IList<PJ_xlsbzrqhfmbb> datalist, string wpmc)
         {
             //此处写填充内容代码
-            int row = 8;
+            int row = 5;
             int col = 1;
-            int rowcount = 8;
+            int rowcount = 6;
+            int rowspan = 8;
+
 
             //
 
@@ -330,12 +240,20 @@ namespace Ebada.Scgl.Lcgl
             {
                 pageindex = Ecommon.GetPagecount(datalist.Count, rowcount);
             }
+            //for (int j = 1; j <= pageindex; j++)
+            //{
+            //    if (j > 1)
+            //    {
+            //        ex.CopySheet(1, 1);
+            //    }
+            //}
             for (int j = 1; j <= pageindex; j++)
             {
-                if (j > 1)
-                {
-                    ex.CopySheet(1, 1);
-                }
+
+                ex.CopySheet(1, j);
+                if (j == 1) ex.ReNameWorkSheet(j + 1, wpmc);
+                else
+                    ex.ReNameWorkSheet(j + 1, wpmc + (j));
             }
             //DateTime dt = DateTime.Now;
             //dt=dt.AddMonths(1);
@@ -353,10 +271,12 @@ namespace Ebada.Scgl.Lcgl
                     //ex.SetCellValue(DateTime.Now.Day.ToString(), 2, 13);
                     ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 4, 13);
                 }
-                //ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
-                //ex.SetCellValue(datalist[j].SQOrgname, row + j % rowcount, col + 1);
-                //ex.SetCellValue(datalist[j].JXSB, row + j % rowcount, col + 2);
-                //ex.SetCellValue(datalist[j].JXNR, row + j % rowcount, col + 3);
+               
+                ex.SetCellValue(datalist[j].jsxl, row + j % rowcount, col );
+                ex.SetCellValue(datalist[j].zjxl, row + j % rowcount, col + 1);
+
+                ex.SetCellValue(datalist[j].gytq, row + j % rowcount + rowspan, col);
+                ex.SetCellValue(datalist[j].zytq, row + j % rowcount + rowspan, col + 1);
                 ////停送电时间
                 //ex.SetCellValue(datalist[j].TDtime.Month.ToString(), row + j % rowcount, col + 4);
                 //ex.SetCellValue(datalist[j].TDtime.Day.ToString(), row + j % rowcount, col + 5);

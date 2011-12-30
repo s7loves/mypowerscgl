@@ -24,6 +24,7 @@ using Ebada.Scgl.Core;
 using DevExpress.Utils;
 using Ebada.Scgl.Lcgl;
 using Ebada.Scgl.WFlow;
+using System.Collections;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -38,7 +39,7 @@ namespace Ebada.Scgl.Lcgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-
+        private string parentUserName = null;
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
@@ -154,7 +155,7 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_xlsbzrqhfmbb> e)
         {
-            if (parentID == null)
+            if (parentID == null || parentUserName == null || parentUserName == "")
                 e.Cancel = true;
         }
         protected override void OnLoad(EventArgs e)
@@ -174,16 +175,40 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
+        private void barEditItem1_EditValueChanged(object sender, EventArgs e)
+        {
+            if (barEditItem1.EditValue == null) return;
+            parentUserName = barEditItem1.EditValue.ToString();
+            if (!string.IsNullOrEmpty(parentUserName))
+            {
+                RefreshData(" where OrgCode='" + parentID + "' and zrr='" + parentUserName + "' order by id desc");
+            }
+        }
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
             mOrg org=null;
             if (list.Count > 0)
                 org = list[0];
-            
+
+            repositoryItemComboBox1.Items.Clear();
+            barEditItem1.EditValue = null;
             if (org != null)
             {
                 ParentObj = org;
+                repositoryItemComboBox1.Properties.Items.Clear();
+                IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "负责人"));
+                if (strlist.Count > 0)
+                    repositoryItemComboBox1.Properties.Items.AddRange(strlist);
+                else
+                {
+                    strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                    string.Format("select UserName from mUser where  OrgCode = '{0}'", parentID));
+                    repositoryItemComboBox1.Properties.Items.AddRange(strlist);
+
+
+                }
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
@@ -227,10 +252,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("S2");
             hideColumn("S3");
 
-            gridView1.Columns["TDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            gridView1.Columns["TDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
-            gridView1.Columns["SDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            gridView1.Columns["SDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+           
         }
         /// <summary>
         /// 刷新数据
@@ -255,11 +277,11 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_xlsbzrqhfmbb newobj)
         {
-            if (parentID == null) return;
+            if (parentID == null || parentUserName == null || parentUserName=="") return;
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.Creattime = DateTime.Now;
-          
+            newobj.zrr = parentUserName;
           
         }
         /// <summary>
@@ -301,8 +323,8 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            
-            ExportCQJBYDTDJXJH etdjh = new ExportCQJBYDTDJXJH();
+
+            ExportXLSBZRQHFMXB etdjh = new ExportXLSBZRQHFMXB();
             etdjh.ExportExcel(parentID);
            
            
@@ -388,6 +410,9 @@ namespace Ebada.Scgl.Lcgl
             ExportCQJBYDTDJXJH etdjh = new ExportCQJBYDTDJXJH();
             etdjh.ExportExcelQiuJian(parentID);
         }
+
+       
+
 
     }
 }
