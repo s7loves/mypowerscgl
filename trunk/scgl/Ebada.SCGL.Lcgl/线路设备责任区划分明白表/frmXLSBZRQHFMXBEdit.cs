@@ -24,12 +24,13 @@ namespace Ebada.Scgl.Lcgl
         }
         void dataBind() {
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "SQOrgname");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "ASSOrgname");
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "TDtime");
-            this.dateEdit2.DataBindings.Add("EditValue", rowData, "SDtime");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "JXNR");
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "JXSB");
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "jsxl");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "zjxl");
+
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "gytq");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "zytq");
+            //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "zrr");
+         
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
 
@@ -75,13 +76,77 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void InitComboBoxData() {
-           
-            //填充下拉列表数据
-            IList<ViewGds> gdslist = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
-            SetComboBoxData(comboBoxEdit1, "OrgName", "OrgName", "选择供电所", "", gdslist as IList);
-            SetComboBoxData(comboBoxEdit2, "OrgName", "OrgName", "选择供电所", "", gdslist as IList);
-            dateEdit1.DateTime = DateTime.Now;
-            dateEdit2.DateTime = DateTime.Now;
+
+
+            comboBoxEdit1.Properties.Items.Clear();
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "局属线路"));
+            if (strlist.Count > 0)
+                comboBoxEdit1.Properties.Items.AddRange(strlist);
+            else
+            {
+                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select LineName from PS_xl where  Owner='局属' and LineCode like '{0}%'", rowData.OrgCode));
+                comboBoxEdit1.Properties.Items.AddRange(strlist);
+
+
+            }
+            
+            comboBoxEdit2.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "自建线路"));
+            if (strlist.Count > 0)
+                comboBoxEdit2.Properties.Items.AddRange(strlist);
+            else
+            {
+                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select LineName from PS_xl where  Owner!='局属' and LineCode like '{0}%'", rowData.OrgCode));
+                comboBoxEdit2.Properties.Items.AddRange(strlist);
+
+
+            }
+            comboBoxEdit3.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "公用台区"));
+            if (strlist.Count > 0)
+                comboBoxEdit3.Properties.Items.AddRange(strlist);
+            else
+            {
+                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select tqName from PS_tq where  Owner='局属' and tqCode like '{0}%'", rowData.OrgCode));
+                comboBoxEdit3.Properties.Items.AddRange(strlist);
+
+
+            }
+            comboBoxEdit4.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "专业台区"));
+            if (strlist.Count > 0)
+                comboBoxEdit4.Properties.Items.AddRange(strlist);
+            else
+            {
+                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select tqName from PS_tq where  Owner!='局属' and tqCode like '{0}%'", rowData.OrgCode));
+                comboBoxEdit4.Properties.Items.AddRange(strlist);
+
+
+            }
+
+            //comboBoxEdit5.Properties.Items.Clear();
+            // strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            //string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "负责人"));
+            //if (strlist.Count > 0)
+            //    comboBoxEdit5.Properties.Items.AddRange(strlist);
+            //else
+            //{
+            //    strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            //    string.Format("select UserName from mUser where  OrgCode = '{0}'", rowData.OrgCode));
+            //    comboBoxEdit5.Properties.Items.AddRange(strlist);
+
+
+            //}
+
+
         }
 
         /// <summary>
@@ -113,16 +178,6 @@ namespace Ebada.Scgl.Lcgl
         private void groupControlOrg_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            SelectorHelper.SelectDyk("线路设备责任区划分明白表", "停电检修设备", memoEdit2);
-        }
-
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
-            SelectorHelper.SelectDyk("线路设备责任区划分明白表", "主要检修内容", memoEdit1);
         }
 
       

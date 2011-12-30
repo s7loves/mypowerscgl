@@ -55,10 +55,13 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -90,10 +93,12 @@
             this.barExplorOrgCun,
             this.barExplorJuCun,
             this.barExplorOrgQiu,
-            this.barExplorJuQiu});
-            this.barManager1.MaxItemId = 25;
+            this.barExplorJuQiu,
+            this.barEditItem1});
+            this.barManager1.MaxItemId = 26;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemLookUpEdit1});
+            this.repositoryItemLookUpEdit1,
+            this.repositoryItemComboBox1});
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -105,7 +110,8 @@
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
-            new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEditItem1, "", true, true, true, 71),
+            new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
@@ -237,6 +243,7 @@
             this.barExplorAll.Caption = "导出全局";
             this.barExplorAll.Id = 16;
             this.barExplorAll.Name = "barExplorAll";
+            this.barExplorAll.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barExplorAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorAll_ItemClick);
             // 
             // barExplorOrgCun
@@ -244,6 +251,7 @@
             this.barExplorOrgCun.Caption = "导出所春检计划";
             this.barExplorOrgCun.Id = 21;
             this.barExplorOrgCun.Name = "barExplorOrgCun";
+            this.barExplorOrgCun.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barExplorOrgCun.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorOrgCun_ItemClick);
             // 
             // barExplorJuCun
@@ -251,6 +259,7 @@
             this.barExplorJuCun.Caption = "导出局春检计划";
             this.barExplorJuCun.Id = 22;
             this.barExplorJuCun.Name = "barExplorJuCun";
+            this.barExplorJuCun.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barExplorJuCun.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorJuCun_ItemClick);
             // 
             // barExplorOrgQiu
@@ -258,6 +267,7 @@
             this.barExplorOrgQiu.Caption = "导出所秋检计划";
             this.barExplorOrgQiu.Id = 23;
             this.barExplorOrgQiu.Name = "barExplorOrgQiu";
+            this.barExplorOrgQiu.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barExplorOrgQiu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorOrgQiu_ItemClick);
             // 
             // barExplorJuQiu
@@ -265,6 +275,7 @@
             this.barExplorJuQiu.Caption = "导出局秋春计划";
             this.barExplorJuQiu.Id = 24;
             this.barExplorJuQiu.Name = "barExplorJuQiu";
+            this.barExplorJuQiu.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btClose
             // 
@@ -298,13 +309,13 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(508, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(619, 24);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 303);
-            this.barDockControlBottom.Size = new System.Drawing.Size(508, 25);
+            this.barDockControlBottom.Size = new System.Drawing.Size(619, 25);
             // 
             // barDockControlLeft
             // 
@@ -315,7 +326,7 @@
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(508, 24);
+            this.barDockControlRight.Location = new System.Drawing.Point(619, 24);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 279);
             // 
             // gridControl1
@@ -330,7 +341,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(508, 279);
+            this.gridControl1.Size = new System.Drawing.Size(619, 279);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -349,6 +360,23 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // barEditItem1
+            // 
+            this.barEditItem1.Caption = "barEditItem1";
+            this.barEditItem1.Edit = this.repositoryItemComboBox1;
+            this.barEditItem1.Id = 25;
+            this.barEditItem1.Name = "barEditItem1";
+            this.barEditItem1.EditValueChanged += new System.EventHandler(this.barEditItem1_EditValueChanged);
+            // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            
+            // 
             // UCPJ_XLSBZRQHFMXB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -359,11 +387,12 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "UCPJ_XLSBZRQHFMXB";
-            this.Size = new System.Drawing.Size(508, 328);
+            this.Size = new System.Drawing.Size(619, 328);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -399,5 +428,7 @@
         private DevExpress.XtraBars.BarButtonItem barExplorJuCun;
         private DevExpress.XtraBars.BarButtonItem barExplorOrgQiu;
         private DevExpress.XtraBars.BarButtonItem barExplorJuQiu;
+        private DevExpress.XtraBars.BarEditItem barEditItem1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
     }
 }
