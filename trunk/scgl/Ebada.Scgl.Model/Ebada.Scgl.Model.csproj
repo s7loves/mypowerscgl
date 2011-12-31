@@ -79,6 +79,7 @@
     <Compile Include="PJ_26.cs" />
     <Compile Include="PJ_bdsdldrqtz.cs" />
     <Compile Include="PJ_bpbjjhb.cs" />
+    <Compile Include="PJ_ccxqjh.cs" />
     <Compile Include="PJ_cqctdjxjh.cs" />
     <Compile Include="PJ_cysbmfdtz.cs" />
     <Compile Include="PJ_dlxldrqtz.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="PJ_lcfj.cs" />
     <Compile Include="PJ_lcspyj.cs" />
     <Compile Include="PJ_pbdldrqtz.cs" />
+    <Compile Include="PJ_qcxqjh.cs" />
     <Compile Include="PJ_qxfl.cs" />
     <Compile Include="PJ_sbbzqsbgmxb1.cs" />
     <Compile Include="PJ_sbbzqsbgmxb2.cs" />
