@@ -70,7 +70,7 @@ namespace Ebada.Scgl.Lcgl
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\线路设备责任区划分明白表.xls";
             ex.Open(fname);
             string sdtrorg=" ";
             if (orgid != "")
@@ -167,7 +167,7 @@ namespace Ebada.Scgl.Lcgl
         public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
-            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\线路设备责任区划分明白表.xls";
             dsoFramerWordControl1.FileOpen(fname);
             
         
@@ -247,13 +247,14 @@ namespace Ebada.Scgl.Lcgl
             //        ex.CopySheet(1, 1);
             //    }
             //}
+            Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
             for (int j = 1; j <= pageindex; j++)
             {
 
-                ex.CopySheet(1, j);
-                if (j == 1) ex.ReNameWorkSheet(j + 1, wpmc);
+                ex.CopySheet(1, wb.Application.Worksheets.Count);
+                if (j == 1) ex.ReNameWorkSheet( wb.Application.Worksheets.Count, wpmc);
                 else
-                    ex.ReNameWorkSheet(j + 1, wpmc + (j));
+                    ex.ReNameWorkSheet( wb.Application.Worksheets.Count, wpmc + (j));
             }
             //DateTime dt = DateTime.Now;
             //dt=dt.AddMonths(1);
@@ -264,7 +265,8 @@ namespace Ebada.Scgl.Lcgl
 
                 if (j % rowcount == 0)
                 {
-                    ex.ActiveSheet(j / rowcount + 1);
+                    if (j == 0) ex.ActiveSheet(wpmc);
+                    else ex.ActiveSheet(wpmc + (j / rowcount + 1));
                     //ex.SetCellValue(datalist[j].OrgName, 2, 3);
                     //ex.SetCellValue(DateTime.Now.Year.ToString(), 2, 9);
                     //ex.SetCellValue(DateTime.Now.Month.ToString(), 2, 11);
