@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-12-31 21:18:08
+生成时间:2012-1-1 10:12:46
 ***********************************************/
 
 using System;
@@ -22,6 +22,8 @@ namespace Ebada.Scgl.Model
         
         #region Private 成员
         private string _id=Newid(); 
+        private string _orgcode=String.Empty; 
+        private string _orgname=String.Empty; 
         private string _xqlr=String.Empty; 
         private string _xqbz=String.Empty; 
         private string _qxlb=String.Empty; 
@@ -54,6 +56,48 @@ namespace Ebada.Scgl.Model
                 if (_id as object == null || !_id.Equals(value))
                 {
                     _id = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：OrgCode
+        /// 属性描述：供电所代码
+        /// 字段信息：[OrgCode],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("供电所代码")]
+        public string OrgCode
+        {
+            get { return _orgcode; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[供电所代码]长度不能大于50!");
+                if (_orgcode as object == null || !_orgcode.Equals(value))
+                {
+                    _orgcode = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：OrgName
+        /// 属性描述：供电所名称
+        /// 字段信息：[OrgName],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("供电所名称")]
+        public string OrgName
+        {
+            get { return _orgname; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[供电所名称]长度不能大于50!");
+                if (_orgname as object == null || !_orgname.Equals(value))
+                {
+                    _orgname = value;
                 }
             }			 
         }

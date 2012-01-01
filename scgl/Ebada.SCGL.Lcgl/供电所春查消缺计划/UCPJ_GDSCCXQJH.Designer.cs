@@ -120,7 +120,6 @@
             this.btGdsList.Edit = this.repositoryItemLookUpEdit1;
             this.btGdsList.Id = 14;
             this.btGdsList.Name = "btGdsList";
-            this.btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // repositoryItemLookUpEdit1
             // 
