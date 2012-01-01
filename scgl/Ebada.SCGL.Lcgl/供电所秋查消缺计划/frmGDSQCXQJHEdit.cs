@@ -15,10 +15,10 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmGDSCCXQJHEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_ccxqjh> m_CityDic = new SortableSearchableBindingList<PJ_ccxqjh>();
+    public partial class frmGDSQCXQJHEdit : FormBase, IPopupFormEdit {
+        SortableSearchableBindingList<PJ_qcxqjh> m_CityDic = new SortableSearchableBindingList<PJ_qcxqjh>();
 
-        public frmGDSCCXQJHEdit()
+        public frmGDSQCXQJHEdit()
         {
             InitializeComponent();
         }
@@ -47,7 +47,7 @@ namespace Ebada.Scgl.Lcgl
 
         }
         #region IPopupFormEdit Members
-        private PJ_ccxqjh rowData = null;
+        private PJ_qcxqjh rowData = null;
 
         public object RowData {
             get {
@@ -56,11 +56,11 @@ namespace Ebada.Scgl.Lcgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_ccxqjh;
+                    this.rowData = value as PJ_qcxqjh;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_ccxqjh>(value as PJ_ccxqjh, rowData);
+                    ConvertHelper.CopyTo<PJ_qcxqjh>(value as PJ_qcxqjh, rowData);
                 }
             }
         }
@@ -68,11 +68,12 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         private void InitComboBoxData() {
-           
 
+
+            ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit1.Properties);
            // comboBoxEdit4.Properties.Items.Clear();
            // strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           //string.Format("select nr from pj_dyk where  dx='供电所春查消缺计划' and sx like '%{0}%' and nr!=''", "完成时间"));
+           //string.Format("select nr from pj_dyk where  dx='供电所秋查消缺计划' and sx like '%{0}%' and nr!=''", "完成时间"));
            // if (strlist.Count > 0)
            //     comboBoxEdit4.Properties.Items.AddRange(strlist);
            // else
@@ -93,7 +94,6 @@ namespace Ebada.Scgl.Lcgl
                
            // }
 
-            ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit1.Properties);
 
 
 
@@ -171,17 +171,17 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("供电所春查消缺计划", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("供电所秋查消缺计划", "备注", memoEdit3);
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("供电所春查消缺计划", "消缺工作内容", memoEdit1);
+            SelectorHelper.SelectDyk("供电所秋查消缺计划", "消缺工作内容", memoEdit1);
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("供电所春查消缺计划", "措施、步骤及要求", memoEdit3);
+            SelectorHelper.SelectDyk("供电所秋查消缺计划", "措施、步骤及要求", memoEdit3);
         }
 
       
