@@ -182,7 +182,7 @@ namespace Ebada.Scgl.Lcgl
         {
             if (parentID == null)
                 e.Cancel = true;
-            //e.Value.CreateDate = DateTime.Now;
+            e.Value.wcsj = DateTime.Now;
             //Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             //e.Value.CreateMan = m_UserBase.RealName;
         }
@@ -191,7 +191,7 @@ namespace Ebada.Scgl.Lcgl
             base.OnLoad(e);
 
             InitColumns();//初始列
-            InitData();//初始数据
+            //InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -257,10 +257,14 @@ namespace Ebada.Scgl.Lcgl
             //需要隐藏列时在这写代码
 
 
-       
+
+            hideColumn("OrgCode");
+            hideColumn("OrgName");
             hideColumn("S1");
             hideColumn("S2");
             hideColumn("S3");
+            gridView1.Columns["wcsj"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            gridView1.Columns["wcsj"].DisplayFormat.FormatString = "MM月dd日";
             
         }
         /// <summary>

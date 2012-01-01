@@ -26,7 +26,7 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-            //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "xsjmc");
+            
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gcmc");
             //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "zybr");
             //this.spinEdit1.DataBindings.Add("EditValue", rowData, "dgzj");
@@ -34,8 +34,12 @@ namespace Ebada.Scgl.Lcgl
             //this.spinEdit3.DataBindings.Add("EditValue", rowData, "sxzjsum");
             //this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "wcsj");
 
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "qxlb");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "lsr");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "xqlr");
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "xqbz");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
-
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "wcsj");  
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -179,6 +183,9 @@ namespace Ebada.Scgl.Lcgl
             SelectorHelper.SelectDyk("供电所春查消缺计划", "措施、步骤及要求", memoEdit3);
         }
 
+      
+
+       
      
        
 

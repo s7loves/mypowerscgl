@@ -117,14 +117,14 @@ namespace Ebada.Scgl.Lcgl {
 
                     ex.SetCellValue(DateTime.Now.ToString("yyyy年") + "春查线路设备消缺计划表", 2, 1);
 
-                    ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日") , 3, 8);
+                    
 
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
                 ex.SetCellValue(datalist[j].xqlr, row + j % rowcount, col + 1);
                 ex.SetCellValue(datalist[j].xqbz, row + j % rowcount, col + 2);
                 ex.SetCellValue(datalist[j].wcsj.ToString("MM月dd日"), row + j % rowcount, col + 3);
-                ex.SetCellValue(datalist[j].lsr, row + j % rowcount, col + 3);
+                ex.SetCellValue(datalist[j].lsr, row + j % rowcount, col + 4);
 
                 
 
