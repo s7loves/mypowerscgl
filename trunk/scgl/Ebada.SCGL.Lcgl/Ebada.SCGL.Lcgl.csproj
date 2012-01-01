@@ -480,6 +480,19 @@
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
     </Compile>
+    <Compile Include="供电所春查消缺计划\ExportGDSCCXQJH.cs" />
+    <Compile Include="供电所春查消缺计划\frmGDSCCXQJHEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="供电所春查消缺计划\frmGDSCCXQJHEdit.Designer.cs">
+      <DependentUpon>frmGDSCCXQJHEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="供电所春查消缺计划\UCPJ_GDSCCXQJH.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="供电所春查消缺计划\UCPJ_GDSCCXQJH.Designer.cs">
+      <DependentUpon>UCPJ_GDSCCXQJH.cs</DependentUpon>
+    </Compile>
     <Compile Include="线路设备责任区划分明白表\ExportXLSBZRQHFMXB.cs" />
     <Compile Include="线路设备责任区划分明白表\frmXLSBZRQHFMXBEdit.cs">
       <SubType>Form</SubType>
@@ -1457,6 +1470,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="26电力线路防护通知书\UCPJ_26.resx">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="供电所春查消缺计划\frmGDSCCXQJHEdit.resx">
+      <DependentUpon>frmGDSCCXQJHEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="供电所春查消缺计划\UCPJ_GDSCCXQJH.resx">
+      <DependentUpon>UCPJ_GDSCCXQJH.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="线路设备责任区划分明白表\frmXLSBZRQHFMXBEdit.resx">
