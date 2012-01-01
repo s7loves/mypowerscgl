@@ -39,11 +39,11 @@ namespace Ebada.SCGL.WFlow.Tool
             this.label2 = new System.Windows.Forms.Label();
             this.tbxPath = new System.Windows.Forms.TextBox();
             this.btnBussWebPage = new System.Windows.Forms.Button();
+            this.checkFollow = new System.Windows.Forms.CheckBox();
             this.cbxStatus = new System.Windows.Forms.CheckBox();
             this.tbxDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.checkFollow = new System.Windows.Forms.CheckBox();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.grpBase.SuspendLayout();
@@ -54,6 +54,9 @@ namespace Ebada.SCGL.WFlow.Tool
             this.plclassFill.Controls.Add(this.label1);
             this.plclassFill.Controls.Add(this.tbxDescription);
             this.plclassFill.Controls.Add(this.grpBase);
+            this.plclassFill.Controls.Add(this.btnBussWebPage);
+            this.plclassFill.Controls.Add(this.label2);
+            this.plclassFill.Controls.Add(this.tbxPath);
             this.plclassFill.Size = new System.Drawing.Size(426, 287);
             // 
             // plclassBottom
@@ -72,7 +75,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // tbxClassCaption
             // 
             this.tbxClassCaption.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.tbxClassCaption.Location = new System.Drawing.Point(84, 19);
+            this.tbxClassCaption.Location = new System.Drawing.Point(79, 33);
             this.tbxClassCaption.Name = "tbxClassCaption";
             this.tbxClassCaption.ReadOnly = true;
             this.tbxClassCaption.Size = new System.Drawing.Size(289, 21);
@@ -80,7 +83,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // tbxWorkflowCaption
             // 
-            this.tbxWorkflowCaption.Location = new System.Drawing.Point(84, 50);
+            this.tbxWorkflowCaption.Location = new System.Drawing.Point(77, 69);
             this.tbxWorkflowCaption.Name = "tbxWorkflowCaption";
             this.tbxWorkflowCaption.Size = new System.Drawing.Size(289, 21);
             this.tbxWorkflowCaption.TabIndex = 5;
@@ -88,7 +91,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 22);
+            this.label3.Location = new System.Drawing.Point(14, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 12);
             this.label3.TabIndex = 6;
@@ -97,7 +100,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 53);
+            this.label4.Location = new System.Drawing.Point(14, 72);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 12);
             this.label4.TabIndex = 6;
@@ -108,9 +111,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.grpBase.Controls.Add(this.checkHuiQianYiJian);
             this.grpBase.Controls.Add(this.cbxExplore);
             this.grpBase.Controls.Add(this.cbxFuJian);
-            this.grpBase.Controls.Add(this.label2);
-            this.grpBase.Controls.Add(this.tbxPath);
-            this.grpBase.Controls.Add(this.btnBussWebPage);
             this.grpBase.Controls.Add(this.checkFollow);
             this.grpBase.Controls.Add(this.cbxStatus);
             this.grpBase.Controls.Add(this.label3);
@@ -120,7 +120,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.grpBase.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpBase.Location = new System.Drawing.Point(0, 0);
             this.grpBase.Name = "grpBase";
-            this.grpBase.Size = new System.Drawing.Size(426, 150);
+            this.grpBase.Size = new System.Drawing.Size(426, 146);
             this.grpBase.TabIndex = 14;
             this.grpBase.TabStop = false;
             this.grpBase.Text = "基本信息";
@@ -128,7 +128,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // checkHuiQianYiJian
             // 
             this.checkHuiQianYiJian.AutoSize = true;
-            this.checkHuiQianYiJian.Location = new System.Drawing.Point(82, 111);
+            this.checkHuiQianYiJian.Location = new System.Drawing.Point(82, 105);
             this.checkHuiQianYiJian.Name = "checkHuiQianYiJian";
             this.checkHuiQianYiJian.Size = new System.Drawing.Size(96, 16);
             this.checkHuiQianYiJian.TabIndex = 129;
@@ -138,7 +138,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // cbxExplore
             // 
             this.cbxExplore.AutoSize = true;
-            this.cbxExplore.Location = new System.Drawing.Point(277, 109);
+            this.cbxExplore.Location = new System.Drawing.Point(277, 103);
             this.cbxExplore.Name = "cbxExplore";
             this.cbxExplore.Size = new System.Drawing.Size(132, 16);
             this.cbxExplore.TabIndex = 128;
@@ -148,7 +148,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // cbxFuJian
             // 
             this.cbxFuJian.AutoSize = true;
-            this.cbxFuJian.Location = new System.Drawing.Point(179, 110);
+            this.cbxFuJian.Location = new System.Drawing.Point(179, 104);
             this.cbxFuJian.Name = "cbxFuJian";
             this.cbxFuJian.Size = new System.Drawing.Size(96, 16);
             this.cbxFuJian.TabIndex = 128;
@@ -158,31 +158,44 @@ namespace Ebada.SCGL.WFlow.Tool
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 87);
+            this.label2.Location = new System.Drawing.Point(132, 149);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 122;
             this.label2.Text = "选择模块:";
+            this.label2.Visible = false;
             // 
             // tbxPath
             // 
-            this.tbxPath.Location = new System.Drawing.Point(84, 82);
+            this.tbxPath.Location = new System.Drawing.Point(195, 144);
             this.tbxPath.Name = "tbxPath";
             this.tbxPath.Size = new System.Drawing.Size(242, 21);
             this.tbxPath.TabIndex = 121;
+            this.tbxPath.Visible = false;
             // 
             // btnBussWebPage
             // 
-            this.btnBussWebPage.Location = new System.Drawing.Point(332, 82);
+            this.btnBussWebPage.Location = new System.Drawing.Point(368, 144);
             this.btnBussWebPage.Name = "btnBussWebPage";
             this.btnBussWebPage.Size = new System.Drawing.Size(41, 23);
             this.btnBussWebPage.TabIndex = 120;
+            this.btnBussWebPage.Visible = false;
             this.btnBussWebPage.Click += new System.EventHandler(this.btnBussWebPage_Click);
+            // 
+            // checkFollow
+            // 
+            this.checkFollow.AutoSize = true;
+            this.checkFollow.Location = new System.Drawing.Point(23, 130);
+            this.checkFollow.Name = "checkFollow";
+            this.checkFollow.Size = new System.Drawing.Size(72, 16);
+            this.checkFollow.TabIndex = 7;
+            this.checkFollow.Text = "全程跟踪";
+            this.checkFollow.UseVisualStyleBackColor = true;
             // 
             // cbxStatus
             // 
             this.cbxStatus.AutoSize = true;
-            this.cbxStatus.Location = new System.Drawing.Point(23, 111);
+            this.cbxStatus.Location = new System.Drawing.Point(23, 105);
             this.cbxStatus.Name = "cbxStatus";
             this.cbxStatus.Size = new System.Drawing.Size(48, 16);
             this.cbxStatus.TabIndex = 7;
@@ -209,16 +222,6 @@ namespace Ebada.SCGL.WFlow.Tool
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // checkFollow
-            // 
-            this.checkFollow.AutoSize = true;
-            this.checkFollow.Location = new System.Drawing.Point(23, 130);
-            this.checkFollow.Name = "checkFollow";
-            this.checkFollow.Size = new System.Drawing.Size(72, 16);
-            this.checkFollow.TabIndex = 7;
-            this.checkFollow.Text = "全程跟踪";
-            this.checkFollow.UseVisualStyleBackColor = true;
             // 
             // fmAddWorkFlow
             // 
