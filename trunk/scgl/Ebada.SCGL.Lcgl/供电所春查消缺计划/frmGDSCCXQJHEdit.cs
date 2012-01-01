@@ -68,7 +68,7 @@ namespace Ebada.Scgl.Lcgl
 
            // comboBoxEdit4.Properties.Items.Clear();
            // strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           //string.Format("select nr from pj_dyk where  dx='设备更改大修计划' and sx like '%{0}%' and nr!=''", "完成时间"));
+           //string.Format("select nr from pj_dyk where  dx='供电所春查消缺计划' and sx like '%{0}%' and nr!=''", "完成时间"));
            // if (strlist.Count > 0)
            //     comboBoxEdit4.Properties.Items.AddRange(strlist);
            // else
@@ -162,25 +162,21 @@ namespace Ebada.Scgl.Lcgl
            
         }
 
-        private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            //OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            //openFileDialog1.Filter = "Excel文件(*.xls)|*.xls|Word文件(*.doc)|*.doc";
-            //if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            //{
-            //    buttonEdit1.Text = openFileDialog1.FileName;
-            //    rowData.BigData = Ecommon.GetImageBate(openFileDialog1.FileName);
-            //    string[] str_name =  buttonEdit1.Text.Split("\\".ToCharArray());
-            //    string[] filename = str_name[str_name.Length - 1].Split(".".ToCharArray());
-            //    byte[] Excbyte = System.Text.Encoding.Default.GetBytes(filename[filename.Length - 1]);
-            //    string Exc = System.Text.Encoding.Default.GetString(Excbyte);
-            //    rowData.S1 ="."+ Exc;
-            //}
-        }
+    
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("设备更改大修计划", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("供电所春查消缺计划", "备注", memoEdit3);
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("供电所春查消缺计划", "消缺工作内容", memoEdit1);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("供电所春查消缺计划", "措施、步骤及要求", memoEdit3);
         }
 
      

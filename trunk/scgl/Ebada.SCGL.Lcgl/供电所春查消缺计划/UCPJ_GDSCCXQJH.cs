@@ -31,9 +31,9 @@ namespace Ebada.Scgl.Lcgl
     /// </summary>
     public partial class UCPJ_GDSCCXQJH : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_sbdxgggcxmjhsbb> gridViewOperation;
+        private GridViewOperation<PJ_ccxqjh> gridViewOperation;
 
-        public event SendDataEventHandler<PJ_sbdxgggcxmjhsbb> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_ccxqjh> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
@@ -43,7 +43,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        private string varDbTableName = "PJ_sbdxgggcxmjhsbb,LP_Record";
+        private string varDbTableName = "PJ_ccxqjh,LP_Record";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -128,16 +128,16 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_sbdxgggcxmjhsbb>(gridControl1, gridView1, barManager1, new frmGDSCCXQJHEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_sbdxgggcxmjhsbb>(gridViewOperation_BeforeAdd);
-            gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PJ_sbdxgggcxmjhsbb>(gridViewOperation_BeforeUpdate);
+            gridViewOperation = new GridViewOperation<PJ_ccxqjh>(gridControl1, gridView1, barManager1, new frmGDSCCXQJHEdit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_ccxqjh>(gridViewOperation_BeforeAdd);
+            gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PJ_ccxqjh>(gridViewOperation_BeforeUpdate);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_sbdxgggcxmjhsbb>(gridViewOperation_AfterAdd);
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_sbdxgggcxmjhsbb>(gridViewOperation_BeforeDelete);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_ccxqjh>(gridViewOperation_AfterAdd);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_ccxqjh>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
 
-        void gridViewOperation_AfterAdd(PJ_sbdxgggcxmjhsbb newobj)
+        void gridViewOperation_AfterAdd(PJ_ccxqjh newobj)
         {
             if (isWorkflowCall)
             {
@@ -155,7 +155,7 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
             }
         }
-        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_sbdxgggcxmjhsbb> e)
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_ccxqjh> e)
         {
             //if (e.Value.BigData == null)
             //{
@@ -163,7 +163,7 @@ namespace Ebada.Scgl.Lcgl
             //}
 
         }
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sbdxgggcxmjhsbb> e)
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_ccxqjh> e)
         {
 
 
@@ -178,10 +178,10 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_sbdxgggcxmjhsbb> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_ccxqjh> e)
         {
-            //if (parentID == null)
-            //    e.Cancel = true;
+            if (parentID == null)
+                e.Cancel = true;
             //e.Value.CreateDate = DateTime.Now;
             //Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             //e.Value.CreateMan = m_UserBase.RealName;
@@ -228,7 +228,7 @@ namespace Ebada.Scgl.Lcgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_sbdxgggcxmjhsbb);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_ccxqjh);
         }
         private void hideColumn(string colname)
         {
@@ -286,7 +286,7 @@ namespace Ebada.Scgl.Lcgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_sbdxgggcxmjhsbb> GridViewOperation
+        public GridViewOperation<PJ_ccxqjh> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -295,11 +295,11 @@ namespace Ebada.Scgl.Lcgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_sbdxgggcxmjhsbb newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_ccxqjh newobj)
         {
            if (parentID == null) return;
-            //newobj.OrgCode = parentID;
-            //newobj.OrgName = parentObj.OrgName;
+           newobj.OrgCode = parentID;
+           newobj.OrgName = parentObj.OrgName;
             //newobj.CreateDate = DateTime.Now;
             //Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             //newobj.CreateMan = m_UserBase.RealName;
@@ -346,10 +346,10 @@ namespace Ebada.Scgl.Lcgl
             //if (gridView1.FocusedRowHandle > -1)
             //{
             //    frm25Template frm = new frm25Template();
-            //    frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_sbdxgggcxmjhsbb;
+            //    frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_ccxqjh;
             //    if (frm.ShowDialog() == DialogResult.OK)
             //    {
-            //        Client.ClientHelper.PlatformSqlMap.Update<PJ_sbdxgggcxmjhsbb>(frm.pjobject);
+            //        Client.ClientHelper.PlatformSqlMap.Update<PJ_ccxqjh>(frm.pjobject);
             //       MessageBox.Show("保存成功");
             //    }
             //}
