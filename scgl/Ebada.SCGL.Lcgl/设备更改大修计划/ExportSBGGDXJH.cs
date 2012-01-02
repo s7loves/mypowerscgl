@@ -56,7 +56,7 @@ namespace Ebada.Scgl.Lcgl {
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public void ExportExcel()
+        public void ExportExcel(string year)
         {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
@@ -68,6 +68,7 @@ namespace Ebada.Scgl.Lcgl {
             string filter = "";
 
             filter = "  where 1=1 ";
+            if (year != "全部") filter += "    and wcsj like '" + year + "%' ";
             if (isWorkflowCall)
             {
                 filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"

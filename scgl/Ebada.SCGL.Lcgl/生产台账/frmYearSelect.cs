@@ -41,8 +41,9 @@ namespace Ebada.Scgl.Lcgl
             //this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "Remark");
 
             IList wflist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", StrSQL);
-           
 
+            this.comboBoxEdit1.Properties.Items.Clear();
+            this.comboBoxEdit1.Properties.Items.Add("全部");  
             foreach (string  str in wflist)
             {
                 this.comboBoxEdit1.Properties.Items.Add(str);  

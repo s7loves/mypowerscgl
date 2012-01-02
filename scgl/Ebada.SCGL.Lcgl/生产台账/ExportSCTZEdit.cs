@@ -71,12 +71,19 @@ namespace Ebada.Scgl.Lcgl
             string fname = Application.StartupPath + "\\00记录模板\\生产台账.xls";
             ex.Open(fname);
             IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_sctz order by wpmc");
-            string  strfirst = "";
+            string  strfirst = "",str="";
             foreach (string mc in mclist)
             {
+                if (year == "全部")
+                    str = "  where 1=1 and wpmc='" + mc + "' ";
+                else
+                    str = " where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "' ";
+                if (orgid != "")
+                    str+= " and OrgCode='" + orgid + "' ";
+
+                str +=  "' order by wpmc";
                 IList<PJ_sctz> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sctz>(
-                   " where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'"
-                   + " and OrgCode='" + orgid + "' order by wpmc"
+                  str
                    );
                 ExportExcel(ex, datalist, mc);
             }
@@ -96,7 +103,11 @@ namespace Ebada.Scgl.Lcgl
             string filter = "";
             foreach (string mc in mclist)
             {
-                filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
+                if (year=="全部")
+                    filter = "  where 1=1 and wpmc='" + mc + "'";
+                else
+                    filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "' ";
+
                 if (orgid != "") filter += " and OrgCode='" + orgid + "'";
 
                 if (isWorkflowCall)
@@ -116,7 +127,9 @@ namespace Ebada.Scgl.Lcgl
             strfirst = "";
             foreach (string mc in mclist)
             {
-                filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
+                filter = "  where 1=1 and wpmc='" + mc + "'";
+                if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%'";
+                
                 if (orgid != "") filter += " and OrgCode='" + orgid + "'";
 
                 if (isWorkflowCall)
@@ -146,7 +159,8 @@ namespace Ebada.Scgl.Lcgl
             List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
             foreach (string mc in mclist)
             {
-                filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
+                filter = "  where 1=1  and wpmc='" + mc + "'";
+                if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' ";
                 if (orgid != "") filter += " and OrgCode='" + orgid + "'";
                 if (isWorkflowCall)
                 {
@@ -183,8 +197,11 @@ namespace Ebada.Scgl.Lcgl
            
             foreach (string mc in mclist)
             {
-                filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
-                if (orgid != "") filter += " and OrgCode='" + orgid + "'";
+            //    filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
+            //    if (orgid != "") filter += " and OrgCode='" + orgid + "'";
+                filter = "  where 1=1  and wpmc='" + mc + "'";
+                if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' ";
+                if (orgid != "") filter += " and OrgCode='" + orgid + "' ";
                 if (isWorkflowCall)
                 {
                     filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
@@ -253,7 +270,10 @@ namespace Ebada.Scgl.Lcgl
             
             foreach (string mc in mclist)
             {
-                filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
+                filter = "  where 1=1  and wpmc='" + mc + "' ";
+                if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' ";
+               
+                //filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
                 if (orgid != "") filter += " and OrgCode='" + orgid + "'";
 
                 if (isWorkflowCall)
@@ -273,7 +293,12 @@ namespace Ebada.Scgl.Lcgl
 
             foreach (string mc in mclist)
             {
-                filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
+                //filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
+                filter = "  where 1=1  and wpmc='" + mc + "' ";
+                if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' ";
+
+                //filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
+                if (orgid != "") filter += " and OrgCode='" + orgid + "'";
                 if (orgid != "") filter += " and OrgCode='" + orgid + "'";
 
                 if (isWorkflowCall)

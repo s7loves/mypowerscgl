@@ -425,7 +425,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-             frmYearSelect fys = new frmYearSelect();
+            frmYearSelect fys = new frmYearSelect();
             fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_sctz";
             if (fys.ShowDialog() == DialogResult.OK)
             {
