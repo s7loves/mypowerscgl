@@ -5,6 +5,8 @@ using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
 using System.Data;
+using System.Text.RegularExpressions;
+using System.Collections;
 namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
@@ -56,7 +58,7 @@ namespace Ebada.Scgl.Lcgl {
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public void ExportExcel()
+        public void ExportExcel(string orgid, string year)
         {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
@@ -64,10 +66,47 @@ namespace Ebada.Scgl.Lcgl {
             string fname = Application.StartupPath + "\\00记录模板\\供电所秋查消缺计划表.xls";
             ex.Open(fname);
 
+
+            string startmonth = "9", startday = "1", endmonth = "11", endtday = "30";
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select nr  from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "春查停电检修开始日期"));
+            if (list.Count > 0)
+            {
+
+                Regex r1 = new Regex(@"[0-9]+(?=月)");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    startmonth = r1.Match(list[0].ToString()).Value;
+                }
+                r1 = new Regex(@"(?<=月)[0-9]+");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    startday = r1.Match(list[0].ToString()).Value;
+                }
+            }
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+               string.Format("select nr  from pj_dyk where  dx='供电所春秋查停电检修计划' and sx like '%{0}%' and nr!=''", "春查停电检修截止日期"));
+            if (list.Count > 0)
+            {
+
+                Regex r1 = new Regex(@"[0-9]+(?=月)");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    endmonth = r1.Match(list[0].ToString()).Value;
+                }
+                r1 = new Regex(@"(?<=月)[0-9]+");
+                if (r1.Match(list[0].ToString()).Value != "")
+                {
+                    endtday = r1.Match(list[0].ToString()).Value;
+                }
+            }
             string strfirst = "";
             string filter = "";
 
-            filter = "  where 1=1 ";
+            filter = "  where 1=1";
+            if (year != "") filter += "   jhwcsj between '" + year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
+                + year + "-" + endmonth + "-" + endtday + " 23:59:59' as datetime) ";
+            if (orgid != "") filter += " and OrgCode='" + orgid + "' ";
             if (isWorkflowCall)
             {
                 filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"

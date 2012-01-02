@@ -364,8 +364,20 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ExportGDSCCXQJH ex = new ExportGDSCCXQJH();
-            ex.ExportExcel();
+            ExportGDSQCXQJH ex = new ExportGDSQCXQJH();
+            ex.ExportExcel(parentID, "全部");
+        }
+
+        private void btExplorerYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            frmYearSelect fys = new frmYearSelect();
+            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , wcsj, 112 ),4 )  from PJ_qcxqjh";
+            if (fys.ShowDialog() == DialogResult.OK)
+            {
+                ExportGDSCCXQJH etdjh = new ExportGDSCCXQJH();
+                etdjh.ExportExcel(parentID, fys.strYear);
+            }
         }
         public static void WriteDoc(byte[] img,  string filename)
         {

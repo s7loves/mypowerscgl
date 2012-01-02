@@ -77,6 +77,36 @@ namespace Ebada.Scgl.Lcgl
 
 
             }
+            comboBoxEdit2.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "落实人"));
+            if (strlist.Count > 0)
+                comboBoxEdit2.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit2.Properties.Items.Add("所长");
+                comboBoxEdit2.Properties.Items.Add("班长");
+                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select UserName from mUser where 5=5    AND OrgCode IN ( select OrgCode from mOrg where 5=5  AND OrgName ='{0}' )", rowData.OrgName));
+                comboBoxEdit2.Properties.Items.AddRange(strlist);
+            }
+            comboBoxEdit3.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "督办人"));
+            if (strlist.Count > 0)
+                comboBoxEdit3.Properties.Items.AddRange(strlist);
+            else
+            {
+                
+                comboBoxEdit3.Properties.Items.Add("全所职工");
+                comboBoxEdit3.Properties.Items.Add("所长");
+                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select UserName from mUser where 5=5    AND OrgCode IN ( select OrgCode from mOrg where 5=5  AND OrgName ='{0}' )", rowData.OrgName));
+                comboBoxEdit3.Properties.Items.AddRange(strlist);
+
+            }
+
+
             comboBoxEdit4.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "检查类型"));

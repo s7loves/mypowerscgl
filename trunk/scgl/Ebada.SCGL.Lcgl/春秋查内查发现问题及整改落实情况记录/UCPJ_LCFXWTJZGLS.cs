@@ -180,18 +180,27 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_lcfxwtjzgls> e)
         {
-            //if (parentID == null)
-            //    e.Cancel = true;
-            //e.Value.CreateDate = DateTime.Now;
-            //Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
-            //e.Value.CreateMan = m_UserBase.RealName;
+            if (parentID == null)
+                e.Cancel = true;
+            e.Value.OrgCode = parentID;
+            e.Value.OrgName = parentObj.OrgName;
+            e.Value.jhwcsj = DateTime.Now;
+            e.Value.lszgsj= DateTime.Now;
+            if (DateTime.Now.Month < 7)
+            {
+                e.Value.jclx = "春查";
+            }
+            else
+            {
+                e.Value.jclx = "秋查";
+            }
         }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
             InitColumns();//初始列
-            InitData();//初始数据
+            //InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -257,7 +266,8 @@ namespace Ebada.Scgl.Lcgl
             //需要隐藏列时在这写代码
 
 
-       
+            hideColumn("OrgName");
+            hideColumn("OrgCode");
             hideColumn("S1");
             hideColumn("S2");
             hideColumn("S3");
@@ -363,6 +373,38 @@ namespace Ebada.Scgl.Lcgl
             ExportLCFXWTJZGLS ex = new ExportLCFXWTJZGLS();
             ex.ExportExcel();
         }
+
+
+        private void btExplorercc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmYearSelect fys = new frmYearSelect();
+            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , jhwcsj, 112 ),4 )  from PJ_lcfxwtjzgls";
+            if (fys.ShowDialog() == DialogResult.OK)
+            {
+                ExportLCFXWTJZGLS etdjh = new ExportLCFXWTJZGLS();
+                etdjh.ExportExcelCunChaYear(parentID, fys.strYear);
+            }
+        }
+
+        private void btExplorerqc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmYearSelect fys = new frmYearSelect();
+            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , jhwcsj, 112 ),4 )  from PJ_lcfxwtjzgls";
+            if (fys.ShowDialog() == DialogResult.OK)
+            {
+                ExportLCFXWTJZGLS etdjh = new ExportLCFXWTJZGLS();
+                etdjh.ExportExcelQiuChaYear(parentID, fys.strYear);
+            }
+        }
+        private void barFJLY_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fjly == null) fjly = new frmModleFjly();
+            fjly.CurrRecord = currRecord;
+            fjly.RecordWorkFlowData = WorkFlowData;
+            fjly.Kind = currRecord.Kind;
+            fjly.Status = RecordWorkTask.GetWorkTaskStatus(WorkFlowData, currRecord);
+            fjly.ShowDialog();
+        }
         public static void WriteDoc(byte[] img,  string filename)
         {
             BinaryWriter bw;
@@ -460,16 +502,6 @@ namespace Ebada.Scgl.Lcgl
             }
 
 
-        }
-
-        private void barFJLY_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (fjly == null) fjly = new frmModleFjly();
-            fjly.CurrRecord = currRecord;
-            fjly.RecordWorkFlowData = WorkFlowData;
-            fjly.Kind = currRecord.Kind;
-            fjly.Status = RecordWorkTask.GetWorkTaskStatus(WorkFlowData, currRecord);
-            fjly.ShowDialog();
         }
     }
 }
