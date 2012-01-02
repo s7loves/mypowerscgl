@@ -98,6 +98,8 @@ namespace Ebada.Scgl.Xtgl {
             if (obj.bh != "" && obj.bh != obj.ID)
             {
                 //obj.ID = obj.bh;
+                Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ParentID='{0}' WHERE ParentID='{1}'", obj.bh, obj.ID));
+                
                 Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}', bh='{1}' WHERE ID='{2}'", obj.bh, obj.bh, obj.ID));
                 obj.ID = obj.bh;
                 MainHelper.PlatformSqlMap.Update<PJ_dyk>(obj);
