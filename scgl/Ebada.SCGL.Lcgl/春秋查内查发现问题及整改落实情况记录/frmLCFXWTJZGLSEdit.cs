@@ -30,9 +30,9 @@ namespace Ebada.Scgl.Lcgl
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "jhwcsj");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "lszgsj");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "lsqk");
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "lsr");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "dbr");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "jclx");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "lsr");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "dbr");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "jclx");
 
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
 
@@ -206,6 +206,16 @@ namespace Ebada.Scgl.Lcgl
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("春秋查内查发现问题及整改落实情况记录", "备注", memoEdit3);
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("春秋查内查发现问题及整改落实情况记录", "查出的问题", memoEdit1);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("春秋查内查发现问题及整改落实情况记录", "整改措施", memoEdit2);
         }
 
        

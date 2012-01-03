@@ -31,7 +31,9 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.comboBoxEdit3 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -40,22 +42,20 @@
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.memoEdit3 = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -85,9 +85,9 @@
             // 
             // groupControlOrg
             // 
-            this.groupControlOrg.Controls.Add(this.simpleButton3);
+            this.groupControlOrg.Controls.Add(this.simpleButton2);
             this.groupControlOrg.Controls.Add(this.dateEdit1);
-            this.groupControlOrg.Controls.Add(this.memoEdit3);
+            this.groupControlOrg.Controls.Add(this.memoEdit2);
             this.groupControlOrg.Controls.Add(this.simpleButton1);
             this.groupControlOrg.Controls.Add(this.comboBoxEdit3);
             this.groupControlOrg.Controls.Add(this.comboBoxEdit2);
@@ -108,6 +108,17 @@
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(47, 196);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(34, 25);
+            this.simpleButton2.TabIndex = 27;
+            this.simpleButton2.Text = "…";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // dateEdit1
             // 
             this.dateEdit1.EditValue = null;
@@ -120,6 +131,14 @@
             this.dateEdit1.Size = new System.Drawing.Size(133, 21);
             this.dateEdit1.TabIndex = 39;
             // 
+            // memoEdit2
+            // 
+            this.memoEdit2.Location = new System.Drawing.Point(102, 194);
+            this.memoEdit2.Name = "memoEdit2";
+            this.memoEdit2.Properties.LookAndFeel.SkinName = "Office 2007 Green";
+            this.memoEdit2.Size = new System.Drawing.Size(402, 80);
+            this.memoEdit2.TabIndex = 12;
+            // 
             // simpleButton1
             // 
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
@@ -129,6 +148,7 @@
             this.simpleButton1.Size = new System.Drawing.Size(34, 23);
             this.simpleButton1.TabIndex = 27;
             this.simpleButton1.Text = "…";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // comboBoxEdit3
             // 
@@ -189,25 +209,6 @@
             this.labelControl4.TabIndex = 32;
             this.labelControl4.Text = "主持人";
             // 
-            // simpleButton3
-            // 
-            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.simpleButton3.Appearance.Options.UseFont = true;
-            this.simpleButton3.Location = new System.Drawing.Point(47, 196);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(34, 25);
-            this.simpleButton3.TabIndex = 27;
-            this.simpleButton3.Text = "…";
-            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
-            // 
-            // memoEdit3
-            // 
-            this.memoEdit3.Location = new System.Drawing.Point(102, 194);
-            this.memoEdit3.Name = "memoEdit3";
-            this.memoEdit3.Properties.LookAndFeel.SkinName = "Office 2007 Green";
-            this.memoEdit3.Size = new System.Drawing.Size(402, 80);
-            this.memoEdit3.TabIndex = 12;
-            // 
             // labelControl9
             // 
             this.labelControl9.Location = new System.Drawing.Point(33, 102);
@@ -215,6 +216,14 @@
             this.labelControl9.Size = new System.Drawing.Size(48, 14);
             this.labelControl9.TabIndex = 32;
             this.labelControl9.Text = "实施时间";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(33, 176);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(24, 14);
+            this.labelControl1.TabIndex = 30;
+            this.labelControl1.Text = "记事";
             // 
             // labelControl2
             // 
@@ -240,15 +249,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(33, 176);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(24, 14);
-            this.labelControl1.TabIndex = 30;
-            this.labelControl1.Text = "记事";
-            // 
-            // frmLCFXWTJZGLSEdit
+            // frmCQCSSQKEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -256,7 +257,7 @@
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmLCFXWTJZGLSEdit";
+            this.Name = "frmCQCSSQKEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "供电所春秋查实施情况记录";
             this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
@@ -265,11 +266,11 @@
             this.groupControlOrg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -281,8 +282,8 @@
         private DevExpress.XtraEditors.GroupControl groupControlOrg;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.MemoEdit memoEdit3;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.MemoEdit memoEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
