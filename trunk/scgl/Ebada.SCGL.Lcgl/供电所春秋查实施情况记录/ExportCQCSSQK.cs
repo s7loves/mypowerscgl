@@ -257,11 +257,11 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
                 ex.SetCellValue(datalist[j].ssrq.ToString("MM月dd日"), row + j % rowcount, col + 1);
-                ex.SetCellValue(datalist[j].kzlr, row + j % rowcount, col + 2);
-                ex.SetCellValue(datalist[j].zcr, row + j % rowcount, col + 3);
+                ex.SetCellValue(datalist[j].kzlr, row + j % rowcount, col + 7);
+                ex.SetCellValue(datalist[j].zcr, row + j % rowcount, col + 8);
 
-                ex.SetCellValue(datalist[j].cjr, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].js, row + j % rowcount, col + 5);
+                ex.SetCellValue(datalist[j].cjr, row + j % rowcount, col + 9);
+                ex.SetCellValue(datalist[j].js, row + j % rowcount, col + 10);
 
             }
         
