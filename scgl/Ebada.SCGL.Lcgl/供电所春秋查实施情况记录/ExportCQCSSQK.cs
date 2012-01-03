@@ -12,7 +12,7 @@ namespace Ebada.Scgl.Lcgl {
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class ExportLCFXWTJZGLS
+    public class ExportCQCSSQK
     {
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
@@ -59,7 +59,7 @@ namespace Ebada.Scgl.Lcgl {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\春秋查内查发现问题及整改落实情况记录.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查实施情况记录.xls";
             ex.Open(fname);
 
             string startmonth = "3", startday = "1", endmonth = "5", endtday = "31";
@@ -109,10 +109,10 @@ namespace Ebada.Scgl.Lcgl {
                     + "    RecordID='" + currRecord.ID + "') "
                     ;
             }
-            IList<PJ_lcfxwtjzgls> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_lcfxwtjzgls>(
+            IList<PJ_cqcssqk> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_cqcssqk>(
              filter
                );
-            ExportExcel(ex, datalist);
+            ExportExcel(ex, datalist,orgid);
 
 
 
@@ -124,7 +124,7 @@ namespace Ebada.Scgl.Lcgl {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\春秋查内查发现问题及整改落实情况记录.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查实施情况记录.xls";
             ex.Open(fname);
 
             string startmonth = "9", startday = "1", endmonth = "11", endtday = "30";
@@ -164,7 +164,7 @@ namespace Ebada.Scgl.Lcgl {
             string filter = "";
 
             filter = "  where 1=1";
-            if (year != "全部") filter += " and  ssrq between '" + year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
+            if (year != "全部") filter += " and  jhwcsj between '" + year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
                 + year + "-" + endmonth + "-" + endtday + " 23:59:59' as datetime) ";
             if (orgid != "") filter += " and OrgCode='" + orgid + "' ";
             if (isWorkflowCall)
@@ -175,10 +175,10 @@ namespace Ebada.Scgl.Lcgl {
                     + "    RecordID='" + currRecord.ID + "') "
                     ;
             }
-            IList<PJ_lcfxwtjzgls> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_lcfxwtjzgls>(
+            IList<PJ_cqcssqk> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_cqcssqk>(
              filter
                );
-            ExportExcel(ex, datalist);
+            ExportExcel(ex, datalist,orgid);
 
 
 
@@ -189,18 +189,19 @@ namespace Ebada.Scgl.Lcgl {
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public void ExportExcel()
+        public void ExportExcel(string orgid)
         {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\春秋查内查发现问题及整改落实情况记录.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查实施情况记录.xls";
             ex.Open(fname);
 
             string strfirst = "";
             string filter = "";
 
             filter = "  where 1=1 ";
+            if (orgid != "") filter += " and OrgCode='" + orgid + "' ";
             if (isWorkflowCall)
             {
                 filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
@@ -209,22 +210,22 @@ namespace Ebada.Scgl.Lcgl {
                     + "    RecordID='" + currRecord.ID + "') "
                     ;
             }
-            IList<PJ_lcfxwtjzgls> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_lcfxwtjzgls>(
+            IList<PJ_cqcssqk> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_cqcssqk>(
              filter
                );
-            ExportExcel(ex, datalist);
+            ExportExcel(ex, datalist,orgid);
 
 
 
 
             ex.ShowExcel();
         }
-        public void ExportExcel(ExcelAccess ex, IList<PJ_lcfxwtjzgls> datalist)
+        public void ExportExcel(ExcelAccess ex, IList<PJ_cqcssqk> datalist, string orgid)
         {
             //此处写填充内容代码
             int row = 4;
             int col = 1;
-            int rowcount = 3;
+            int rowcount = 4;
 
             //
 
@@ -248,22 +249,19 @@ namespace Ebada.Scgl.Lcgl {
                     if (j == 0) ex.ActiveSheet(1);
                     else ex.ActiveSheet( (j / rowcount + 1));
 
-                    //ex.SetCellValue(DateTime.Now.ToString("yyyy年") + "春秋查内查发现问题及整改落实情况记录", 2, 1);
+                    //ex.SetCellValue(DateTime.Now.ToString("yyyy年") + "供电所春秋查实施情况记录", 2, 1);
 
-                    //ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日") , 3, 8);
-
+                    if(orgid!="")ex.SetCellValue(datalist[0].OrgName, 2, 2);
+                    else
+                        ex.SetCellValue("全局", 2, 2);
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
-                ex.SetCellValue(datalist[j].ccwt, row + j % rowcount, col + 1);
-                ex.SetCellValue(datalist[j].zgcs, row + j % rowcount, col + 2);
-                ex.SetCellValue(datalist[j].jhwcsj.ToString("MM月dd日"), row + j % rowcount, col + 3);
+                ex.SetCellValue(datalist[j].ssrq.ToString("MM月dd日"), row + j % rowcount, col + 1);
+                ex.SetCellValue(datalist[j].kzlr, row + j % rowcount, col + 2);
+                ex.SetCellValue(datalist[j].zcr, row + j % rowcount, col + 3);
 
-                ex.SetCellValue(datalist[j].lszgsj.ToString("MM月dd日"), row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].lsqk, row + j % rowcount, col + 5);
-                ex.SetCellValue(datalist[j].lsr, row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].dbr, row + j % rowcount, col + 7);
-                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col +8);
-
+                ex.SetCellValue(datalist[j].cjr, row + j % rowcount, col + 4);
+                ex.SetCellValue(datalist[j].js, row + j % rowcount, col + 5);
 
             }
         

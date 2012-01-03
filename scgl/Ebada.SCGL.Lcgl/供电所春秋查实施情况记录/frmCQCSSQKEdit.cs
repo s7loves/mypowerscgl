@@ -15,26 +15,23 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmLCFXWTJZGLSEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_lcfxwtjzgls> m_CityDic = new SortableSearchableBindingList<PJ_lcfxwtjzgls>();
+    public partial class frmCQCSSQKEdit : FormBase, IPopupFormEdit {
+        SortableSearchableBindingList<PJ_cqcssqk> m_CityDic = new SortableSearchableBindingList<PJ_cqcssqk>();
 
-        public frmLCFXWTJZGLSEdit()
+        public frmCQCSSQKEdit()
         {
             InitializeComponent();
         }
         void dataBind() {
 
 
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "ccwt");
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "zgcs");
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "jhwcsj");
-            this.dateEdit2.DataBindings.Add("EditValue", rowData, "lszgsj");
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "lsqk");
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "lsr");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "dbr");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "kzlr");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "ssrq");
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "zcr");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "cjr");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "jclx");
 
-            this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
+            this.memoEdit3.DataBindings.Add("EditValue", rowData, "js");
 
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -43,7 +40,7 @@ namespace Ebada.Scgl.Lcgl
 
         }
         #region IPopupFormEdit Members
-        private PJ_lcfxwtjzgls rowData = null;
+        private PJ_cqcssqk rowData = null;
 
         public object RowData {
             get {
@@ -52,11 +49,11 @@ namespace Ebada.Scgl.Lcgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_lcfxwtjzgls;
+                    this.rowData = value as PJ_cqcssqk;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_lcfxwtjzgls>(value as PJ_lcfxwtjzgls, rowData);
+                    ConvertHelper.CopyTo<PJ_cqcssqk>(value as PJ_cqcssqk, rowData);
                 }
             }
         }
