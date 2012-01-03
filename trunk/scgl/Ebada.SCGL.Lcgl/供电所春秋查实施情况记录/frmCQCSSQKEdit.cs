@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "cjr");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "jclx");
 
-            this.memoEdit3.DataBindings.Add("EditValue", rowData, "js");
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "js");
 
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -200,9 +200,16 @@ namespace Ebada.Scgl.Lcgl
 
        
 
-        private void simpleButton3_Click(object sender, EventArgs e)
+       
+
+        private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("春秋查内查发现问题及整改落实情况记录", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("供电所春秋查实施情况记录", "开展内容", memoEdit1);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("供电所春秋查实施情况记录", "记事", memoEdit2);
         }
 
        
