@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_cqcssqk" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_cqcssqk"  type="Ebada.Scgl.Model.PJ_cqcssqk,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_cqcssqk_AllColumns" class="PJ_cqcssqk">
+        <result property="ID" column="ID" />
+        <result property="OrgName" column="OrgName" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="jclx" column="jclx" />
+        <result property="ssrq" column="ssrq" />
+        <result property="kzlr" column="kzlr" />
+        <result property="zcr" column="zcr" />
+        <result property="cjr" column="cjr" />
+        <result property="js" column="js" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_cqcssqkList" resultMap="PJ_cqcssqk_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [jclx],
+         [ssrq],
+         [kzlr],
+         [zcr],
+         [cjr],
+         [js],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_cqcssqk
+          $value$
+   </select>
+   
+   <select id="SelectPJ_cqcssqkByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [jclx],
+         [ssrq],
+         [kzlr],
+         [zcr],
+         [cjr],
+         [js],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_cqcssqk
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="jclx">[jclx]='$jclx$'</isNotNull>
+       <isNotNull prepend="AND" property="ssrq">[ssrq]='$ssrq$'</isNotNull>
+       <isNotNull prepend="AND" property="kzlr">[kzlr]='$kzlr$'</isNotNull>
+       <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
+       <isNotNull prepend="AND" property="cjr">[cjr]='$cjr$'</isNotNull>
+       <isNotNull prepend="AND" property="js">[js]='$js$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_cqcssqkByKey" resultMap="PJ_cqcssqk_AllColumns" parameterClass="PJ_cqcssqk">
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [jclx],
+         [ssrq],
+         [kzlr],
+         [zcr],
+         [cjr],
+         [js],
+         [S1],
+         [S2],
+         [S3]
+         FROM PJ_cqcssqk
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_cqcssqk" parameterClass="PJ_cqcssqk">
+        DELETE FROM 
+         PJ_cqcssqk
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_cqcssqkByWhere" parameterClass="string">
+     delete from PJ_cqcssqk $value$
+   </delete>
+   
+   <delete id="DeletePJ_cqcssqkByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_cqcssqk
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_cqcssqk" parameterClass="PJ_cqcssqk" resultClass="int">
+          UPDATE PJ_cqcssqk
+           SET
+             [OrgName]=#OrgName#,
+             [OrgCode]=#OrgCode#,
+             [jclx]=#jclx#,
+             [ssrq]=#ssrq#,
+             [kzlr]=#kzlr#,
+             [zcr]=#zcr#,
+             [cjr]=#cjr#,
+             [js]=#js#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_cqcssqk" parameterClass="PJ_cqcssqk">
+        INSERT INTO PJ_cqcssqk
+         (
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [jclx],
+         [ssrq],
+         [kzlr],
+         [zcr],
+         [cjr],
+         [js],
+         [S1],
+         [S2],
+         [S3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgName#,
+         #OrgCode#,
+         #jclx#,
+         #ssrq#,
+         #kzlr#,
+         #zcr#,
+         #cjr#,
+         #js#,
+         #S1#,
+         #S2#,
+         #S3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_cqcssqkRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_cqcssqk
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="jclx">[jclx]='$jclx$'</isNotNull>
+       <isNotNull prepend="AND" property="ssrq">[ssrq]='$ssrq$'</isNotNull>
+       <isNotNull prepend="AND" property="kzlr">[kzlr]='$kzlr$'</isNotNull>
+       <isNotNull prepend="AND" property="zcr">[zcr]='$zcr$'</isNotNull>
+       <isNotNull prepend="AND" property="cjr">[cjr]='$cjr$'</isNotNull>
+       <isNotNull prepend="AND" property="js">[js]='$js$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_cqcssqkRowCount" parameterClass="string">
+    select count(*) from PJ_cqcssqk $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

@@ -480,6 +480,19 @@
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
     </Compile>
+    <Compile Include="供电所春秋查实施情况记录\ExportCQCSSQK.cs" />
+    <Compile Include="供电所春秋查实施情况记录\frmCQCSSQKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="供电所春秋查实施情况记录\frmCQCSSQKEdit.Designer.cs">
+      <DependentUpon>frmCQCSSQKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="供电所春秋查实施情况记录\UCPJ_CQCSSQK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="供电所春秋查实施情况记录\UCPJ_CQCSSQK.Designer.cs">
+      <DependentUpon>UCPJ_CQCSSQK.cs</DependentUpon>
+    </Compile>
     <Compile Include="春秋查内查发现问题及整改落实情况记录\ExportLCFXWTJZGLS.cs" />
     <Compile Include="春秋查内查发现问题及整改落实情况记录\frmLCFXWTJZGLSEdit.cs">
       <SubType>Form</SubType>
@@ -1496,6 +1509,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="26电力线路防护通知书\UCPJ_26.resx">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="供电所春秋查实施情况记录\frmCQCSSQKEdit.resx">
+      <DependentUpon>frmCQCSSQKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="供电所春秋查实施情况记录\UCPJ_CQCSSQK.resx">
+      <DependentUpon>UCPJ_CQCSSQK.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="春秋查内查发现问题及整改落实情况记录\frmLCFXWTJZGLSEdit.resx">
