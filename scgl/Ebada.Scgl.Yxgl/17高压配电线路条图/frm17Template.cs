@@ -39,7 +39,10 @@ namespace Ebada.Scgl.Yxgl
                 _pjobject = value;
             }
         }
-
+        public void Show(PJ_17 obj) {
+            _pjobject = obj;
+            //this.Show();
+        }
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (pjobject!=null)
