@@ -246,14 +246,54 @@ namespace TLMapPlatform {
                 item = new MenuItem("定位");
                 item.Click += new EventHandler(定位_Click);
                 contextMenu.MenuItems.Add(item);
-                item = new MenuItem("条图汇总表");
-                item.Click += new EventHandler(条图汇总表17_Click);
+                item = new MenuItem("高压线路条图汇总表");
+                item.Click += new EventHandler(条图汇总表16_Click);
+                contextMenu.MenuItems.Add(item);
+                item = new MenuItem("高压线路条图");
+                item.Click += new EventHandler(高压线路条图17_Click);
                 contextMenu.MenuItems.Add(item);
             }
             contextMenu.Tag = code;
             contextMenu.Show(treeList1, p);
         }
-        void 条图汇总表17_Click(object sender, EventArgs e) {
+        void 高压线路条图17_Click(object sender, EventArgs e) {
+            PS_xl xl = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(string.Format("where linecode='{0}'", contextMenu.Tag));
+            if (xl != null) {
+                PJ_17 pj17 = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_17>(xl.LineID);
+                DialogResult result = DialogResult.No;
+                if (pj17 == null) {
+                    pj17 = new PJ_17() { LineCode = xl.LineCode, LineName = xl.LineName, OrgCode = xl.OrgCode, CreateMan = "system" };
+                } else {
+                    result=MsgBox.ShowAskMessageBox(xl.LineName + "已经存在，是否要重新生成。\n生成条图需要几分钟，建议没有修改数据前不要重新生成。");
+                }
+                if (pj17.ID != xl.LineID || result == DialogResult.OK) {
+                    setWaitMsg("正在生成“" + xl.LineName + "”条图数据");
+                    waitdlg.TopMost = false;
+                    Ebada.Client.Platform.MainHelper.Execute("Ebada.Scgl.Yxgl.dll", "Ebada.Scgl.Yxgl.UCPJ_17", "ExportToExcel", new object[] { "高压配电线路条图", "", pj17 });
+
+                    setWaitMsg(null);
+                }
+                if (pj17.ID == xl.LineID ) {
+                    if(result== DialogResult.OK)
+                    ClientHelper.PlatformSqlMap.Update<PJ_17>(pj17);
+                } else {
+                    pj17.ID = xl.LineID;
+                    ClientHelper.PlatformSqlMap.Create<PJ_17>(pj17);
+                }
+                object instance = null;
+                
+                Ebada.Client.Platform.MainHelper.Execute("Ebada.Scgl.Yxgl.dll", "Ebada.Scgl.Yxgl.frm17Template", "Show", new object[]{pj17},null,ref instance);
+                Form frm = instance as Form;
+                if(frm.ShowDialog()== DialogResult.OK){
+                    object value=instance.GetType().GetProperty("pjobject").GetValue(instance, null);
+                    if (value is PJ_17) {
+                        ClientHelper.PlatformSqlMap.Update<PJ_17>(value);
+                    }
+                }
+                
+            }
+        }
+        void 条图汇总表16_Click(object sender, EventArgs e) {
             PS_xl xl = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(string.Format("where linecode='{0}'",contextMenu.Tag));
 
             if (xl != null) {
