@@ -526,7 +526,7 @@
             this.checkEdit1.Properties.Caption = "是否可见";
             this.checkEdit1.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEdit1.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit1.TabIndex = 5;
+            this.checkEdit1.TabIndex = 19;
             // 
             // textEdit4
             // 
