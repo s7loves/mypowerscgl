@@ -32,6 +32,7 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelEffTip = new DevExpress.XtraEditors.LabelControl();
             this.labelTip = new DevExpress.XtraEditors.LabelControl();
             this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
@@ -88,7 +89,6 @@
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.labelEffTip = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -220,6 +220,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单元格信息";
             // 
+            // labelEffTip
+            // 
+            this.labelEffTip.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelEffTip.Appearance.Options.UseForeColor = true;
+            this.labelEffTip.Location = new System.Drawing.Point(500, 76);
+            this.labelEffTip.Name = "labelEffTip";
+            this.labelEffTip.Size = new System.Drawing.Size(0, 14);
+            this.labelEffTip.TabIndex = 34;
+            this.labelEffTip.ToolTip = "单击可自动调整";
+            this.labelEffTip.Click += new System.EventHandler(this.labelEffTip_Click);
+            // 
             // labelTip
             // 
             this.labelTip.Appearance.ForeColor = System.Drawing.Color.Red;
@@ -287,7 +298,7 @@
             this.textEdit12.Name = "textEdit12";
             this.textEdit12.Properties.MaxLength = 200;
             this.textEdit12.Size = new System.Drawing.Size(143, 21);
-            this.textEdit12.TabIndex = 31;
+            this.textEdit12.TabIndex = 16;
             // 
             // labelControl20
             // 
@@ -304,7 +315,7 @@
             this.textEdit11.Location = new System.Drawing.Point(351, 124);
             this.textEdit11.Name = "textEdit11";
             this.textEdit11.Size = new System.Drawing.Size(143, 21);
-            this.textEdit11.TabIndex = 29;
+            this.textEdit11.TabIndex = 15;
             // 
             // textEdit9
             // 
@@ -312,7 +323,7 @@
             this.textEdit9.Name = "textEdit9";
             this.textEdit9.Properties.EditValueChanged += new System.EventHandler(this.textEdit9_EditValueChanged);
             this.textEdit9.Size = new System.Drawing.Size(143, 21);
-            this.textEdit9.TabIndex = 26;
+            this.textEdit9.TabIndex = 14;
             this.textEdit9.EditValueChanged += new System.EventHandler(this.textEdit9_EditValueChanged);
             // 
             // labelControl18
@@ -335,7 +346,7 @@
             "TextChanged",
             "SelectedIndexChanged"});
             this.comboBoxEdit6.Size = new System.Drawing.Size(143, 21);
-            this.comboBoxEdit6.TabIndex = 17;
+            this.comboBoxEdit6.TabIndex = 12;
             // 
             // comboBoxEdit3
             // 
@@ -349,7 +360,7 @@
             "否"});
             this.comboBoxEdit3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxEdit3.Size = new System.Drawing.Size(143, 21);
-            this.comboBoxEdit3.TabIndex = 17;
+            this.comboBoxEdit3.TabIndex = 18;
             // 
             // labelControl25
             // 
@@ -429,7 +440,7 @@
             "是",
             "否"});
             this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit2.TabIndex = 17;
+            this.comboBoxEdit2.TabIndex = 6;
             // 
             // comboBoxEdit7
             // 
@@ -442,7 +453,7 @@
             "是",
             "否"});
             this.comboBoxEdit7.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit7.TabIndex = 17;
+            this.comboBoxEdit7.TabIndex = 4;
             this.comboBoxEdit7.Visible = false;
             // 
             // comboBoxEdit5
@@ -466,7 +477,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit4.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit4.TabIndex = 17;
+            this.comboBoxEdit4.TabIndex = 1;
             // 
             // comboBoxEdit1
             // 
@@ -475,7 +486,7 @@
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit1.TabIndex = 17;
+            this.comboBoxEdit1.TabIndex = 9;
             // 
             // lookUpEdit1
             // 
@@ -487,7 +498,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CtrlType", "代码"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name2", "名称")});
             this.lookUpEdit1.Size = new System.Drawing.Size(100, 21);
-            this.lookUpEdit1.TabIndex = 12;
+            this.lookUpEdit1.TabIndex = 5;
             this.lookUpEdit1.EditValueChanged += new System.EventHandler(this.lookUpEdit1_EditValueChanged);
             // 
             // labelControl12
@@ -523,21 +534,21 @@
             this.textEdit4.Location = new System.Drawing.Point(351, 181);
             this.textEdit4.Name = "textEdit4";
             this.textEdit4.Size = new System.Drawing.Size(143, 21);
-            this.textEdit4.TabIndex = 4;
+            this.textEdit4.TabIndex = 17;
             // 
             // textEdit3
             // 
             this.textEdit3.Location = new System.Drawing.Point(113, 270);
             this.textEdit3.Name = "textEdit3";
             this.textEdit3.Size = new System.Drawing.Size(100, 21);
-            this.textEdit3.TabIndex = 4;
+            this.textEdit3.TabIndex = 10;
             // 
             // textEdit2
             // 
             this.textEdit2.Location = new System.Drawing.Point(113, 83);
             this.textEdit2.Name = "textEdit2";
             this.textEdit2.Size = new System.Drawing.Size(100, 21);
-            this.textEdit2.TabIndex = 4;
+            this.textEdit2.TabIndex = 3;
             // 
             // textEdit1
             // 
@@ -548,7 +559,7 @@
             this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.textEdit1.Properties.EditValueChanged += new System.EventHandler(this.textEdit1_EditValueChanged);
             this.textEdit1.Size = new System.Drawing.Size(100, 21);
-            this.textEdit1.TabIndex = 4;
+            this.textEdit1.TabIndex = 2;
             this.textEdit1.EditValueChanged += new System.EventHandler(this.textEdit1_EditValueChanged);
             // 
             // labelControl1
@@ -665,7 +676,7 @@
             this.textEdit6.Properties.Mask.ShowPlaceHolders = false;
             this.textEdit6.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.textEdit6.Size = new System.Drawing.Size(100, 21);
-            this.textEdit6.TabIndex = 20;
+            this.textEdit6.TabIndex = 7;
             // 
             // textEdit5
             // 
@@ -682,7 +693,7 @@
             this.textEdit5.Properties.Mask.ShowPlaceHolders = false;
             this.textEdit5.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.textEdit5.Size = new System.Drawing.Size(100, 21);
-            this.textEdit5.TabIndex = 21;
+            this.textEdit5.TabIndex = 8;
             // 
             // textEdit7
             // 
@@ -706,7 +717,7 @@
             this.lookUpEdit5.Properties.NullText = "[EditValue is null]";
             this.lookUpEdit5.Properties.EditValueChanged += new System.EventHandler(this.lookUpEdit5_Properties_EditValueChanged);
             this.lookUpEdit5.Size = new System.Drawing.Size(143, 21);
-            this.lookUpEdit5.TabIndex = 16;
+            this.lookUpEdit5.TabIndex = 11;
             this.lookUpEdit5.EditValueChanged += new System.EventHandler(this.lookUpEdit5_EditValueChanged);
             // 
             // textEdit8
@@ -715,7 +726,7 @@
             this.textEdit8.Location = new System.Drawing.Point(351, 73);
             this.textEdit8.Name = "textEdit8";
             this.textEdit8.Size = new System.Drawing.Size(143, 21);
-            this.textEdit8.TabIndex = 10;
+            this.textEdit8.TabIndex = 13;
             this.textEdit8.EditValueChanged += new System.EventHandler(this.textEdit8_EditValueChanged);
             // 
             // dateEdit1
@@ -787,17 +798,6 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
-            // 
-            // labelEffTip
-            // 
-            this.labelEffTip.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.labelEffTip.Appearance.Options.UseForeColor = true;
-            this.labelEffTip.Location = new System.Drawing.Point(500, 76);
-            this.labelEffTip.Name = "labelEffTip";
-            this.labelEffTip.Size = new System.Drawing.Size(0, 14);
-            this.labelEffTip.TabIndex = 34;
-            this.labelEffTip.ToolTip = "单击可自动调整";
-            this.labelEffTip.Click += new System.EventHandler(this.labelEffTip_Click);
             // 
             // frmExcelModelEdit
             // 
