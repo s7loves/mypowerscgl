@@ -108,7 +108,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             try
             {
-                string tmpStr = " where WFClassId='"+classId+"'";
+                string tmpStr = " where WFClassId='" + classId + "' order by FlowCaption";
                 IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkFlowList", tmpStr);
                 if (li.Count  == 0)
                 {
