@@ -353,6 +353,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 labelControl24.Visible = true;
                 comboBoxEdit5.Visible = true;
+                comboBoxEdit5.TabIndex = 4;
             }
             else
                 if (rowData.CtrlType.IndexOf("SpinEdit") > -1)
@@ -367,11 +368,13 @@ namespace Ebada.SCGL.WFlow.Tool
 
                     labelControl26.Visible = true;
                     comboBoxEdit7.Visible = true;
+                    comboBoxEdit7.TabIndex = 4;
                 }
                 else
                 {
                     labelControl3.Visible = true;
                     textEdit7.Visible = true;
+                    textEdit7.TabIndex = 4;
 
                     labelControl24.Visible = false;
                     comboBoxEdit5.Visible = false;
@@ -410,6 +413,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 labelControl24.Visible = true;
                 comboBoxEdit5.Visible = true;
+                comboBoxEdit5.TabIndex = 4;
 
                 comboBoxEdit2.Properties.Items.Clear();
                 comboBoxEdit2.Properties.Items.Add("{0}年{1}月{2}日");
@@ -427,6 +431,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 labelControl26.Visible = true;
                 comboBoxEdit7.Visible = true;
+                comboBoxEdit7.TabIndex = 4;
 
                 comboBoxEdit7.Properties.Items.Clear();
 
@@ -465,6 +470,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 comboBoxEdit2.Properties.Items.Add("合同编号");
                 labelControl3.Visible = true;
                 textEdit7.Visible = true;
+                textEdit7.TabIndex = 4;
 
                 labelControl24.Visible = false;
                 comboBoxEdit5.Visible = false;
