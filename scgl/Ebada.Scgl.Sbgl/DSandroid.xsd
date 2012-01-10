@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSandroid" targetNamespace="http://tempuri.org/DSandroid.xsd" xmlns:mstns="http://tempuri.org/DSandroid.xsd" xmlns="http://tempuri.org/DSandroid.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSandroid" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DSandroid" msprop:Generator_DataSetName="DSandroid" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ps_xl" msprop:Generator_UserTableName="ps_xl" msprop:Generator_RowDeletedName="ps_xlRowDeleted" msprop:Generator_RowChangedName="ps_xlRowChanged" msprop:Generator_RowClassName="ps_xlRow" msprop:Generator_RowChangingName="ps_xlRowChanging" msprop:Generator_RowEvArgName="ps_xlRowChangeEvent" msprop:Generator_RowEvHandlerName="ps_xlRowChangeEventHandler" msprop:Generator_TableClassName="ps_xlDataTable" msprop:Generator_TableVarName="tableps_xl" msprop:Generator_RowDeletingName="ps_xlRowDeleting" msprop:Generator_TablePropName="ps_xl">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LineID" msprop:Generator_UserColumnName="LineID" msprop:Generator_ColumnVarNameInTable="columnLineID" msprop:Generator_ColumnPropNameInRow="LineID" msprop:Generator_ColumnPropNameInTable="LineIDColumn" type="xs:string" />
+              <xs:element name="ParentID" msprop:Generator_UserColumnName="ParentID" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="LineCode" msprop:Generator_UserColumnName="LineCode" msprop:Generator_ColumnVarNameInTable="columnLineCode" msprop:Generator_ColumnPropNameInRow="LineCode" msprop:Generator_ColumnPropNameInTable="LineCodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="LineName" msprop:Generator_UserColumnName="LineName" msprop:Generator_ColumnVarNameInTable="columnLineName" msprop:Generator_ColumnPropNameInRow="LineName" msprop:Generator_ColumnPropNameInTable="LineNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="LineVol" msprop:Generator_UserColumnName="LineVol" msprop:Generator_ColumnVarNameInTable="columnLineVol" msprop:Generator_ColumnPropNameInRow="LineVol" msprop:Generator_ColumnPropNameInTable="LineVolColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="OrgCode" msprop:Generator_UserColumnName="OrgCode" msprop:Generator_ColumnVarNameInTable="columnOrgCode" msprop:Generator_ColumnPropNameInRow="OrgCode" msprop:Generator_ColumnPropNameInTable="OrgCodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Contractor" msprop:Generator_UserColumnName="Contractor" msprop:Generator_ColumnVarNameInTable="columnContractor" msprop:Generator_ColumnPropNameInRow="Contractor" msprop:Generator_ColumnPropNameInTable="ContractorColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="WireType" msprop:Generator_UserColumnName="WireType" msprop:Generator_ColumnVarNameInTable="columnWireType" msprop:Generator_ColumnPropNameInRow="WireType" msprop:Generator_ColumnPropNameInTable="WireTypeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="WireLength" msprop:Generator_UserColumnName="WireLength" msprop:Generator_ColumnVarNameInTable="columnWireLength" msprop:Generator_ColumnPropNameInRow="WireLength" msprop:Generator_ColumnPropNameInTable="WireLengthColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ps_gt" msprop:Generator_UserTableName="ps_gt" msprop:Generator_RowDeletedName="ps_gtRowDeleted" msprop:Generator_TableClassName="ps_gtDataTable" msprop:Generator_RowChangedName="ps_gtRowChanged" msprop:Generator_RowClassName="ps_gtRow" msprop:Generator_RowChangingName="ps_gtRowChanging" msprop:Generator_RowEvArgName="ps_gtRowChangeEvent" msprop:Generator_RowEvHandlerName="ps_gtRowChangeEventHandler" msprop:Generator_TablePropName="ps_gt" msprop:Generator_TableVarName="tableps_gt" msprop:Generator_RowDeletingName="ps_gtRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="gtID" msdata:Caption="LineID" msprop:Generator_UserColumnName="gtID" msprop:Generator_ColumnPropNameInRow="gtID" msprop:Generator_ColumnVarNameInTable="columngtID" msprop:Generator_ColumnPropNameInTable="gtIDColumn" type="xs:string" />
+              <xs:element name="gtCode" msdata:Caption="ParentID" msprop:Generator_UserColumnName="gtCode" msprop:Generator_ColumnPropNameInRow="gtCode" msprop:Generator_ColumnVarNameInTable="columngtCode" msprop:Generator_ColumnPropNameInTable="gtCodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="LineCode" msprop:Generator_UserColumnName="LineCode" msprop:Generator_ColumnPropNameInRow="LineCode" msprop:Generator_ColumnVarNameInTable="columnLineCode" msprop:Generator_ColumnPropNameInTable="LineCodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="gth" msdata:Caption="LineName" msprop:Generator_UserColumnName="gth" msprop:Generator_ColumnPropNameInRow="gth" msprop:Generator_ColumnVarNameInTable="columngth" msprop:Generator_ColumnPropNameInTable="gthColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="gtType" msdata:Caption="LineVol" msprop:Generator_UserColumnName="gtType" msprop:Generator_ColumnPropNameInRow="gtType" msprop:Generator_ColumnVarNameInTable="columngtType" msprop:Generator_ColumnPropNameInTable="gtTypeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="gtModle" msdata:Caption="OrgCode" msprop:Generator_UserColumnName="gtModle" msprop:Generator_ColumnPropNameInRow="gtModle" msprop:Generator_ColumnVarNameInTable="columngtModle" msprop:Generator_ColumnPropNameInTable="gtModleColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="gtHeight" msdata:Caption="Contractor" msprop:Generator_UserColumnName="gtHeight" msprop:Generator_ColumnPropNameInRow="gtHeight" msprop:Generator_ColumnVarNameInTable="columngtHeight" msprop:Generator_ColumnPropNameInTable="gtHeightColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="gtLon" msdata:Caption="WireType" msprop:Generator_UserColumnName="gtLon" msprop:Generator_ColumnPropNameInRow="gtLon" msprop:Generator_ColumnVarNameInTable="columngtLon" msprop:Generator_ColumnPropNameInTable="gtLonColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="gtLat" msdata:Caption="WireLength" msprop:Generator_UserColumnName="gtLat" msprop:Generator_ColumnPropNameInRow="gtLat" msprop:Generator_ColumnVarNameInTable="columngtLat" msprop:Generator_ColumnPropNameInTable="gtLatColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="gtElev" msprop:Generator_UserColumnName="gtElev" msprop:Generator_ColumnPropNameInRow="gtElev" msprop:Generator_ColumnVarNameInTable="columngtElev" msprop:Generator_ColumnPropNameInTable="gtElevColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="gtSpan" msprop:Generator_UserColumnName="gtSpan" msprop:Generator_ColumnPropNameInRow="gtSpan" msprop:Generator_ColumnVarNameInTable="columngtSpan" msprop:Generator_ColumnPropNameInTable="gtSpanColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="jsonData" msprop:Generator_UserColumnName="jsonData" msprop:Generator_ColumnPropNameInRow="jsonData" msprop:Generator_ColumnVarNameInTable="columnjsonData" msprop:Generator_ColumnPropNameInTable="jsonDataColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ps_gtsbzl" msprop:Generator_UserTableName="ps_gtsbzl" msprop:Generator_RowDeletedName="ps_gtsbzlRowDeleted" msprop:Generator_TableClassName="ps_gtsbzlDataTable" msprop:Generator_RowChangedName="ps_gtsbzlRowChanged" msprop:Generator_RowClassName="ps_gtsbzlRow" msprop:Generator_RowChangingName="ps_gtsbzlRowChanging" msprop:Generator_RowEvArgName="ps_gtsbzlRowChangeEvent" msprop:Generator_RowEvHandlerName="ps_gtsbzlRowChangeEventHandler" msprop:Generator_TablePropName="ps_gtsbzl" msprop:Generator_TableVarName="tableps_gtsbzl" msprop:Generator_RowDeletingName="ps_gtsbzlRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:Caption="LineID" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:string" />
+              <xs:element name="bh" msdata:Caption="ParentID" msprop:Generator_UserColumnName="bh" msprop:Generator_ColumnPropNameInRow="bh" msprop:Generator_ColumnVarNameInTable="columnbh" msprop:Generator_ColumnPropNameInTable="bhColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="mc" msdata:Caption="LineCode" msprop:Generator_UserColumnName="mc" msprop:Generator_ColumnPropNameInRow="mc" msprop:Generator_ColumnVarNameInTable="columnmc" msprop:Generator_ColumnPropNameInTable="mcColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="xh" msdata:Caption="LineName" msprop:Generator_UserColumnName="xh" msprop:Generator_ColumnPropNameInRow="xh" msprop:Generator_ColumnVarNameInTable="columnxh" msprop:Generator_ColumnPropNameInTable="xhColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="parentid" msdata:Caption="LineVol" msprop:Generator_UserColumnName="parentid" msprop:Generator_ColumnPropNameInRow="parentid" msprop:Generator_ColumnVarNameInTable="columnparentid" msprop:Generator_ColumnPropNameInTable="parentidColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="ps_xlKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ps_xl" />
+      <xs:field xpath="mstns:LineID" />
+    </xs:unique>
+    <xs:unique name="ps_gt_ps_xlKey1" msdata:ConstraintName="ps_xlKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ps_gt" />
+      <xs:field xpath="mstns:gtID" />
+    </xs:unique>
+    <xs:unique name="ps_gtsbzl_ps_xlKey1" msdata:ConstraintName="ps_xlKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ps_gtsbzl" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

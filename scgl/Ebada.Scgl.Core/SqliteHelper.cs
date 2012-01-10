@@ -19,18 +19,21 @@ namespace Ebada.Scgl.Core {
         /// 修改数据表记录
         /// </summary>
         /// <returns></returns>
-        public bool UpdateTable(DataTable srcTable, string tableName) {
+        public static bool UpdateTable(DataTable srcTable, string tableName) {
             bool isok = false;
             try {
                 SQLiteCommand command = new SQLiteCommand();
-                command.CommandText = "SELECT * FROM " + tableName;
-                SQLiteDataAdapter SQLiteDA = new SQLiteDataAdapter(command);
-                SQLiteCommandBuilder SQLiteCB = new SQLiteCommandBuilder(SQLiteDA);
-                SQLiteDA.InsertCommand = SQLiteCB.GetInsertCommand();
-                SQLiteDA.DeleteCommand = SQLiteCB.GetDeleteCommand();
-                SQLiteDA.UpdateCommand = SQLiteCB.GetUpdateCommand();
-                SQLiteDA.Update(srcTable);
-
+                using (SQLiteConnection conn = GetSQLiteConnection()) {
+                    if (conn.State != ConnectionState.Open) conn.Open();
+                    command.Connection = conn;
+                    command.CommandText = "SELECT * FROM " + tableName;
+                    SQLiteDataAdapter SQLiteDA = new SQLiteDataAdapter(command);
+                    SQLiteCommandBuilder SQLiteCB = new SQLiteCommandBuilder(SQLiteDA);
+                    SQLiteDA.InsertCommand = SQLiteCB.GetInsertCommand();
+                    SQLiteDA.DeleteCommand = SQLiteCB.GetDeleteCommand();
+                    SQLiteDA.UpdateCommand = SQLiteCB.GetUpdateCommand();
+                    SQLiteDA.Update(srcTable);
+                }
                 isok = true;
             } catch { ;}
             return isok;

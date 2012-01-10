@@ -12,18 +12,96 @@ using System.Reflection;
 using Ebada.Scgl.Model;
 using Ebada.Components;
 using System.IO;
+using System.Collections;
 
 namespace Ebada.Scgl.Sbgl {
-    public partial class frmUpload : DevExpress.XtraEditors.XtraForm {
-        public frmUpload() {
+    public partial class frmDownload : DevExpress.XtraEditors.XtraForm {
+        public frmDownload() {
             InitializeComponent();
 
             enableUpload(false);
             memoEdit1.Properties.ReadOnly = true;
 #if DEBUG
             textEdit1.Text = "10.166.137.29";
+            textEdit1.Text = "192.168.238.129";
 #endif
             simpleButton5.Click += new EventHandler(simpleButton5_Click);
+            simpleButton7.Click += new EventHandler(simpleButton7_Click);
+            labelControl3.Text = "数据下载操作会消除现有数据，请谨慎使用";
+            baseUrl = string.Format("http://{0}:83/ScglService/", textEdit1.Text);
+        }
+
+        void simpleButton7_Click(object sender, EventArgs e) {
+            //数据检查
+            memoEdit1.Text = serverInfo;
+            writeLine(getClientinfo());
+        }
+        
+        public const int WM_DEVICECHANGE = 0x219;
+        public const int DBT_DEVICEARRIVAL = 0x8000;    //如果m.Msg的值为0x8000那么表示有U盘插入
+        public const int DBT_CONFIGCHANGECANCELED = 0x0019;
+        public const int DBT_CONFIGCHANGED = 0x0018;
+        public const int DBT_CUSTOMEVENT = 0x8006;
+        public const int DBT_DEVICEQUERYREMOVE = 0x8001;
+        public const int DBT_DEVICEQUERYREMOVEFAILED = 0x8002;
+        public const int DBT_DEVICEREMOVECOMPLETE = 0X8004;
+        public const int DBT_DEVICEREMOVEPENDING = 0x8003;
+        public const int DBT_DEVICETYPESPECIFIC = 0x8005;
+        public const int DBT_DEVNODES_CHANGED = 0x0007;
+        public const int DBT_QUERYCHANGECONFIG = 0x0017;
+        public const int DBT_USERDEFINED = 0xFFFF;
+
+
+        public Message mm;
+
+        /// <summary>
+        /// 监视Windows消息
+        /// </summary>
+        /// <param name="m"></param>
+        protected override void WndProc(ref Message m)
+        {
+            try
+            {
+                if (m.Msg == WM_DEVICECHANGE)
+                {
+                    switch (m.WParam.ToInt32())
+                    {
+                        case WM_DEVICECHANGE:
+                            break;
+                        case DBT_DEVICEARRIVAL:         //U盘插入
+                            String[] strDrivers = Environment.GetLogicalDrives();
+                            writeLine("U盘已插入,盘符为:" + strDrivers[strDrivers.Length-1]);
+                            break;
+                        case DBT_CONFIGCHANGECANCELED:
+                            break;
+                        case DBT_CONFIGCHANGED:
+                            break;
+                        case DBT_CUSTOMEVENT:
+                            break;
+                        case DBT_DEVICEQUERYREMOVE:
+                            break;
+                        case DBT_DEVICEQUERYREMOVEFAILED:
+                            break;
+                        case DBT_DEVICEREMOVECOMPLETE:   //U盘卸载
+                            break;
+                        case DBT_DEVICEREMOVEPENDING:
+                            break;
+                        case DBT_DEVNODES_CHANGED:
+                            break;
+                        case DBT_QUERYCHANGECONFIG:
+                            break;
+                        case DBT_USERDEFINED:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            base.WndProc(ref m); //将系统消息传递自父类的WndProc
         }
 
         void simpleButton5_Click(object sender, EventArgs e) {
@@ -31,15 +109,85 @@ namespace Ebada.Scgl.Sbgl {
             download();
             enableUpload(true);
         }
-
+        #region 下载
         private void download() {
-            //string str = "开始下载数据：";
-            //writeLine(str);
-            //str = "{0} {1} ，杆塔数:{2}";
+            string str = "开始下载数据：";
+            string username = "于静淼";// Client.Platform.MainHelper.User.UserName;
+            writeLine(str);
+            writeLine("当前用户：" +username );
+            db3Helper.Clear();
+            List<ps_xl> xllist=getxl(username);
+            db3Helper.Insert(xllist);
+            str = "{0} {1} ，杆塔数:{2}";
+            int i = 0;
+            foreach (ps_xl item in xllist) {
+                i++;
+                List<ps_gt> gtlist = getgt(item.LineCode);
 
-            //writeLine(string.Format(str, n2, row["linename"], n1));
+                db3Helper.Insert(gtlist);
+                writeLine(string.Format(str, i, item.LineName, gtlist.Count));
+                Application.DoEvents();
+            }
+            List<ps_gtsbzl> zllist = getgtsbzl();
+            db3Helper.Insert(zllist);
+            writeLine("设备参数:" + zllist.Count);
+            writeLine("下载完成");
+            writeLine(getClientinfo());
         }
 
+        private List<ps_gtsbzl> getgtsbzl() {
+            string ret;
+            List<ps_gtsbzl> list = new List<ps_gtsbzl>();
+            string url = baseUrl + "GetzlList" ;
+            try {
+                using (var client = new WebClient()) {
+                    client.Headers.Add("content-type", "application/json;charset=utf-8");
+                    client.Encoding = Encoding.UTF8;
+                    ret = client.DownloadString(url);
+                    list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ps_gtsbzl>>(ret);
+                }
+            } catch (Exception err) {
+                writeLine(err.Message);
+            }
+
+            return list;
+        }
+
+        private List<ps_gt> getgt(string p) {
+            string ret;
+            List<ps_gt> list = new List<ps_gt>();
+            string url = baseUrl + "GetGtList/" + p;
+            try {
+                using (var client = new WebClient()) {
+                    client.Headers.Add("content-type", "application/json;charset=utf-8");
+                    client.Encoding = Encoding.UTF8;
+                    ret = client.DownloadString(url);
+                    list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ps_gt>>(ret);
+                }
+            } catch (Exception err) {
+                writeLine(err.Message);
+            }
+
+            return list;
+        }
+        private List<ps_xl> getxl(string username) {
+            string ret;
+            List<ps_xl> list = new List<ps_xl>();
+            string url = baseUrl + "GetXlList2/"+username;
+            //var data = Newtonsoft.Json.JsonConvert.SerializeObject(list);
+            try {
+                var client = new WebClient();
+                client.Headers.Add("content-type", "application/json;charset=utf-8");
+                client.Encoding = Encoding.UTF8;
+                ret = client.DownloadString(url);
+                list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ps_xl>>(ret);
+            } catch (Exception err) {
+                writeLine( err.Message);
+            }
+
+            return list;
+        }
+        #endregion 
         private void labelControl1_Click(object sender, EventArgs e) {
 
         }
@@ -66,9 +214,26 @@ namespace Ebada.Scgl.Sbgl {
         }
 
         private void simpleButton1_Click(object sender, EventArgs e) {
-            //数据检查
-            memoEdit1.Text = serverInfo;
-            writeLine( getClientinfo());
+            
+            //自动搜索
+            DriveInfo[] drives = DriveInfo.GetDrives();
+            string filepath = "";
+            foreach (DriveInfo item in drives) {
+                if (item.DriveType == DriveType.Removable) 
+                {                    
+                    if(File.Exists(item.Name+"scgl\\scgl.db")){
+                        filepath = item.Name + "scgl";
+                        break;
+                    }
+                }
+                
+            }
+            if (filepath == "") {
+                writeLine("没有找到手机数据库");
+            } else {
+                buttonEdit1.Text = filepath;
+                writeLine("找到手机数据库位置：" + filepath);                
+            }
         }
 
         private void simpleButton3_Click(object sender, EventArgs e) {
@@ -213,17 +378,19 @@ namespace Ebada.Scgl.Sbgl {
             
         }
         private string getClientinfo() {
-            string str = "\r\n采集数据目录：{0}\r\n数据库位置：{1}\r\n数据库检查结果：{2}";
+            string str = "手机数据目录：{0}\r\n数据库位置：{1}\r\n数据库检查结果：{2}";
             dataPath = buttonEdit1.Text + "\\scgl.db";
             string ret = "";
             try {
                 SqliteHelper.ConnStr = "Data Source=" + dataPath;
-                ret = SqliteHelper.ExecuteScalar("select orgname||','||username from user").ToString();
+                var user=SqliteHelper.ExecuteScalar("select orgname||','||username from user");
+                if(user==null)user="操作员：无";
+                ret = user.ToString();
 
                 ret += "\r\n线路数："+SqliteHelper.ExecuteScalar("select count(*) from ps_xl").ToString();
                 ret += "\r\n杆塔数：" + SqliteHelper.ExecuteScalar("select count(*) from ps_gt").ToString();
-                ret += "\r\n可以上传的杆塔数：" + SqliteHelper.ExecuteScalar("select count(*) from ps_gt where gtlon>0 and gtlat>0").ToString();
-                ret += "\r\n没有经纬度数据的杆塔不能上传更新！！！"; 
+                ret += "\r\n已采集的杆塔数：" + SqliteHelper.ExecuteScalar("select count(*) from ps_gt where gtlon>0 and gtlat>0").ToString();
+                //ret += "\r\n没有经纬度数据的杆塔不计算在内."; 
                 enableUpload(true);
             } catch (Exception err) {
                 ret = err.Message;
