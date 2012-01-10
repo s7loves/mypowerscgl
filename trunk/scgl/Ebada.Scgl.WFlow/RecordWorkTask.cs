@@ -17,6 +17,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Ebada.Client;
 using Ebada.Scgl.Core;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace Ebada.Scgl.WFlow
 {
@@ -1767,38 +1768,79 @@ namespace Ebada.Scgl.WFlow
         {
             string number = "";
             IList<WF_TableFieldValueView> datalist = null;
+            IList<LP_Record> datalist2 = null;
+            Regex r1 = new Regex(@"[0-9]+");
             switch (kind)
             {
                 case "编号规则一":
-                    datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<WF_TableFieldValueView>(
-               " where FieldName='编号' and UserControlId='" + parentID + "' and ControlValue like '%" + org.OrgCode.Substring(org.OrgCode.Length - 2) + "-%' order by Number desc");
-                    if (datalist.Count > 0)
+                    if (r1.Match(parentID).Value == "")
                     {
-                        string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
-                        number = org.OrgCode.Substring(org.OrgCode.Length - 2) + string.Format("-{0:D3}", Convert.ToInt32(stri) + 1);
+                        datalist2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<LP_Record>(
+                   " where  Kind='" + parentID + "' and Number like '%" + org.OrgCode.Substring(org.OrgCode.Length - 2) + "-%' order by Number desc");
+                        if (datalist2.Count > 0)
+                        {
+                            string stri = datalist2[0].Number.Substring(datalist2[0].Number.Length - 3);
+                            number = org.OrgCode.Substring(org.OrgCode.Length - 2) + string.Format("-{0:D3}", Convert.ToInt32(stri) + 1);
+                        }
+                        else
+                        {
+
+                            number = org.OrgCode.Substring(org.OrgCode.Length - 2) + "-001";
+                        }
                     }
                     else
                     {
+                        datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<WF_TableFieldValueView>(
+                   " where FieldName='编号' and UserControlId='" + parentID + "' and ControlValue like '%" + org.OrgCode.Substring(org.OrgCode.Length - 2) + "-%' order by Number desc");
+                        if (datalist.Count > 0)
+                        {
+                            string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
+                            number = org.OrgCode.Substring(org.OrgCode.Length - 2) + string.Format("-{0:D3}", Convert.ToInt32(stri) + 1);
+                        }
+                        else
+                        {
 
-                        number = org.OrgCode.Substring(org.OrgCode.Length - 2) + "-001";
+                            number = org.OrgCode.Substring(org.OrgCode.Length - 2) + "-001";
+                        }
                     }
 
                     break;
                 default:
-                    datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<WF_TableFieldValueView>(
-                        " where FieldName='编号' and UserControlId='" + parentID + "' and ControlValue like '%" +
-                        DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' order by Number desc");
-
-                    if (datalist.Count > 0)
+                    if (r1.Match(parentID).Value == "")
                     {
-                        string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
-                        number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + string.Format("{0:D4}", Convert.ToInt32(stri) + 1);
+                        datalist2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<LP_Record>(
+                            " where  Kind='" + parentID + "' and Number like '%" +
+                            DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' order by Number desc");
+
+                        if (datalist2.Count > 0)
+                        {
+                            string stri = datalist2[0].Number.Substring(datalist2[0].Number.Length - 3);
+                            number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + string.Format("{0:D4}", Convert.ToInt32(stri) + 1);
+                        }
+                        else
+                        {
+
+                            number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "0001";
+                        }
                     }
                     else
                     {
+                        datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<WF_TableFieldValueView>(
+                             " where FieldName='编号' and UserControlId='" + parentID + "' and ControlValue like '%" +
+                             DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' order by Number desc");
 
-                        number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "0001";
+                        if (datalist.Count > 0)
+                        {
+                            string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
+                            number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + string.Format("{0:D4}", Convert.ToInt32(stri) + 1);
+                        }
+                        else
+                        {
+
+                            number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "0001";
+                        }
                     }
+
                     break;
             }
             return number;
