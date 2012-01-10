@@ -1288,10 +1288,12 @@ namespace Ebada.Scgl.Lcgl
             }
             ea.ActiveSheet(activeSheetIndex);
             unLockExcel(wb, xx);
+            if (lp.CellPos == "") return;
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
             if (arrCellpos.Length >= 1)
             {
+                if (arrCellpos[0] == "") return;
                 //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]], xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]]);
                 range.Select();
@@ -2220,6 +2222,7 @@ namespace Ebada.Scgl.Lcgl
 
             cellpos = cellpos.Replace("|", "");
             Regex r1 = new Regex(@"[0-9]+");
+            if (cellpos == "") return new int[] { 0, 0 };
             string str = r1.Match(cellpos).Value;
             int ix = 0;
             int iy = 0;
