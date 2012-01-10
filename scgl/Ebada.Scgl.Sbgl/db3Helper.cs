@@ -4,6 +4,7 @@ using System.Text;
 using Ebada.Scgl.Core;
 using System.Data;
 using System.Collections;
+using System.Reflection;
 
 namespace Ebada.Scgl.Sbgl {
     internal class db3Helper {
@@ -63,6 +64,20 @@ namespace Ebada.Scgl.Sbgl {
                 dt.Rows.Add(row);
             }
             SqliteHelper.UpdateTable(dt, "ps_gtsbzl");
+        }
+
+        internal static void Insert(Ebada.Scgl.Model.mUser mUser) {
+            User user = new User();
+            FieldInfo[] fields= user.GetType().GetFields();
+            foreach (FieldInfo f in fields) {
+                try {
+                    f.SetValue(user, mUser.GetType().GetProperty(f.Name).GetValue(mUser,null));
+                } catch { }
+            }
+            //user.PassWord = Ebada.Client.Platform.MainHelper.Password;
+            string sql = "insert into user(userid,username,loginid,orgcode,orgname,password)values(?,?,?,?,?,?)";
+            object[] ps = new object[] { user.UserID, user.UserName, user.LoginID, user.OrgCode, user.OrgName, user.PassWord };
+            SqliteHelper.ExecuteNonQuery(sql, ps);
         }
     }
 }
