@@ -462,7 +462,7 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 LP_Temple ParentTemple=RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr);
                 if(ParentTemple==null)
-                lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, "");
+                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, strKind);
                 else
                 lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, ParentTemple.LPID);
 
