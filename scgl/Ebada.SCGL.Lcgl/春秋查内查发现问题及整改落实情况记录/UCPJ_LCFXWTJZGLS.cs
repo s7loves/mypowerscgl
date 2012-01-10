@@ -368,8 +368,14 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ExportLCFXWTJZGLS ex = new ExportLCFXWTJZGLS();
-            ex.ExportExcel();
+            ExportLCFXWTJZGLS etdjh = new ExportLCFXWTJZGLS();
+
+
+            etdjh.CurrRecord = currRecord;
+            etdjh.IsWorkflowCall = isWorkflowCall;
+            etdjh.ParentTemple = parentTemple;
+            etdjh.RecordWorkFlowData = WorkFlowData;
+            etdjh.ExportExcel();
         }
 
 

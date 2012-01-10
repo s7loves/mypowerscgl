@@ -78,20 +78,31 @@ namespace Ebada.Scgl.Lcgl
                 
                 sdtrorg += "  and OrgCode='" + orgid + "'";
             }
+            bool iszero = true;
             IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct zrr  from PJ_xlsbzrqhfmbb where  1=1 " + sdtrorg);
             foreach (string mc in mclist)
             {
                 string str = " where 1=1 and zrr='"+mc+"' ";
                 if (orgid != "")
                 {
-                    str += "  and OrgCode='" + orgid + "'";
+                    str += "  and OrgCode='" + orgid + "' ";
+                }
+                if (isWorkflowCall)
+                {
+                    str = str + " and ( id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                        + "    RecordID='" + currRecord.ID + "')) "
+                        ;
                 }
                 IList<PJ_xlsbzrqhfmbb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_xlsbzrqhfmbb>(
                    str
                     );
-                ExportExcel(ex, datalist,mc);
+                if (datalist.Count > 0)
+                {
+                    iszero = false;
+                    ExportExcel(ex, datalist, mc);
+                }
             }
-            ex.DeleteSheet(1);
+            if (!iszero) ex.DeleteSheet(1);
             ex.ShowExcel();
            
         }

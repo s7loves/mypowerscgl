@@ -203,9 +203,7 @@ namespace Ebada.Scgl.Lcgl {
             filter = "  where 1=1 ";
             if (isWorkflowCall)
             {
-                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                    + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                        + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                filter = filter + " and id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                     + "    RecordID='" + currRecord.ID + "') "
                     ;
             }
