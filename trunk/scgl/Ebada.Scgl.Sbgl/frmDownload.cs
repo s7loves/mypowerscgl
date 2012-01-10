@@ -23,7 +23,7 @@ namespace Ebada.Scgl.Sbgl {
             memoEdit1.Properties.ReadOnly = true;
 #if DEBUG
             textEdit1.Text = "10.166.137.29";
-            textEdit1.Text = "192.168.238.129";
+            //textEdit1.Text = "192.168.238.129";
 #endif
             simpleButton5.Click += new EventHandler(simpleButton5_Click);
             simpleButton7.Click += new EventHandler(simpleButton7_Click);
@@ -112,7 +112,7 @@ namespace Ebada.Scgl.Sbgl {
         #region 下载
         private void download() {
             string str = "开始下载数据：";
-            string username = "于静淼";// Client.Platform.MainHelper.User.UserName;
+            string username =  Client.Platform.MainHelper.User.UserName;
             writeLine(str);
             writeLine("当前用户：" +username );
             db3Helper.Clear();
@@ -131,6 +131,9 @@ namespace Ebada.Scgl.Sbgl {
             List<ps_gtsbzl> zllist = getgtsbzl();
             db3Helper.Insert(zllist);
             writeLine("设备参数:" + zllist.Count);
+            ;
+
+            db3Helper.Insert(Client.Platform.MainHelper.User);
             writeLine("下载完成");
             writeLine(getClientinfo());
         }
@@ -187,7 +190,30 @@ namespace Ebada.Scgl.Sbgl {
 
             return list;
         }
-        #endregion 
+        
+        private void simpleButton1_Click(object sender, EventArgs e) {
+
+            //自动搜索
+            DriveInfo[] drives = DriveInfo.GetDrives();
+            string filepath = "";
+            foreach (DriveInfo item in drives) {
+                if (item.DriveType == DriveType.Removable) 
+                {
+                    if (File.Exists(item.Name + "scgl\\scgl.db")) {
+                        filepath = item.Name + "scgl";
+                        break;
+                    }
+                }
+
+            }
+            if (filepath == "") {
+                writeLine("没有找到手机数据库");
+            } else {
+                buttonEdit1.Text = filepath;
+                writeLine("找到手机数据库位置：" + filepath);
+            }
+        }
+        #endregion
         private void labelControl1_Click(object sender, EventArgs e) {
 
         }
@@ -213,28 +239,7 @@ namespace Ebada.Scgl.Sbgl {
 
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e) {
-            
-            //自动搜索
-            DriveInfo[] drives = DriveInfo.GetDrives();
-            string filepath = "";
-            foreach (DriveInfo item in drives) {
-                if (item.DriveType == DriveType.Removable) 
-                {                    
-                    if(File.Exists(item.Name+"scgl\\scgl.db")){
-                        filepath = item.Name + "scgl";
-                        break;
-                    }
-                }
-                
-            }
-            if (filepath == "") {
-                writeLine("没有找到手机数据库");
-            } else {
-                buttonEdit1.Text = filepath;
-                writeLine("找到手机数据库位置：" + filepath);                
-            }
-        }
+        
 
         private void simpleButton3_Click(object sender, EventArgs e) {
             //手机软件下载

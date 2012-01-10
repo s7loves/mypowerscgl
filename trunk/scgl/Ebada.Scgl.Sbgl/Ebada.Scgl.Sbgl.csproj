@@ -125,6 +125,7 @@
     <Compile Include="frmDownload.Designer.cs">
       <DependentUpon>frmDownload.cs</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
     <Compile Include="台区元素\frmTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
