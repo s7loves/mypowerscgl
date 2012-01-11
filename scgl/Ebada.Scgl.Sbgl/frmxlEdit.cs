@@ -141,6 +141,24 @@ namespace Ebada.Scgl.Sbgl
                 comboBoxEdit17.Properties.Items.Add("四线");
                 comboBoxEdit17.Properties.Items.Add("二线");
             }
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+             string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "产权"));
+            if (strlist.Count > 0)
+                comboBoxEdit9.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit9.Properties.Items.Add("局属");
+                comboBoxEdit9.Properties.Items.Add("自备");
+            }
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+             string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "运行状态"));
+            if (strlist.Count > 0)
+                comboBoxEdit11.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit11.Properties.Items.Add("运行");
+                comboBoxEdit11.Properties.Items.Add("暂停");
+            }
             //this.comboBoxEdit5.Properties.Items.AddRange(ComboBoxHelper.GetVoltage()); 
         }
 
