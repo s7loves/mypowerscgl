@@ -68,7 +68,7 @@ namespace Ebada.Scgl.Yxgl
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
             comboBoxEdit3.Properties.Items.AddRange(ryList);
             comboBoxEdit4.Properties.Items.AddRange(ryList);
-            ComboBoxHelper.FillCBoxByDyk("公共属性", "签字人", comboBoxEdit5);
+            ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", comboBoxEdit5);
             //comboBoxEdit5.Properties.Items.AddRange(ryList);
             for (int i = 1; i < 24; i++)
             {

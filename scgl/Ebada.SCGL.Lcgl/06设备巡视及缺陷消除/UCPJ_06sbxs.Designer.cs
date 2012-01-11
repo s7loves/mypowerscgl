@@ -32,6 +32,7 @@
             this.liuchbarSubItem = new DevExpress.XtraBars.BarSubItem();
             this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
             this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
+            this.barxqjh = new DevExpress.XtraBars.BarButtonItem();
             this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
             this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
@@ -51,7 +52,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.barxqjh = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -151,6 +151,7 @@
             this.SubmitButton.Id = 19;
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.SubmitButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.SubmitButton_ItemClick);
             // 
             // TaskOverButton
@@ -159,7 +160,16 @@
             this.TaskOverButton.Id = 20;
             this.TaskOverButton.Name = "TaskOverButton";
             this.TaskOverButton.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
+            // 
+            // barxqjh
+            // 
+            this.barxqjh.Caption = "生成消缺计划";
+            this.barxqjh.Id = 23;
+            this.barxqjh.Name = "barxqjh";
+            this.barxqjh.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.barxqjh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barxqjh_ItemClick);
             // 
             // barFJLY
             // 
@@ -275,7 +285,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(615, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(615, 25);
             // 
             // barDockControlBottom
             // 
@@ -286,14 +296,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 281);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 280);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(615, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 281);
+            this.barDockControlRight.Location = new System.Drawing.Point(615, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 280);
             // 
             // gridControl1
             // 
@@ -303,11 +313,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 25);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(615, 281);
+            this.gridControl1.Size = new System.Drawing.Size(615, 280);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -325,13 +335,6 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // barxqjh
-            // 
-            this.barxqjh.Caption = "生成消缺计划";
-            this.barxqjh.Id = 23;
-            this.barxqjh.Name = "barxqjh";
-            this.barxqjh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barxqjh_ItemClick);
             // 
             // UCPJ_06sbxs
             // 
