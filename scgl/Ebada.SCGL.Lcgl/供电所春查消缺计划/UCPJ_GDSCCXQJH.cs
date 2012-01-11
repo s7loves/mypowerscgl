@@ -138,8 +138,18 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_ccxqjh>(gridViewOperation_AfterAdd);
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_ccxqjh>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_ccxqjh>(gridViewOperation_AfterEdit);
         }
 
+        void gridViewOperation_AfterEdit(PJ_ccxqjh newobj)
+        {
+            PJ_qxfl qxfj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(newobj.ID);
+            if (qxfj != null)
+            {
+                qxfj.qxnr = newobj.xqlr;
+                MainHelper.PlatformSqlMap.Update<PJ_qxfl>(qxfj);
+            }
+        }
         void gridViewOperation_AfterAdd(PJ_ccxqjh newobj)
         {
             WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
