@@ -126,6 +126,16 @@ namespace Ebada.Scgl.Sbgl
                 comboBoxEdit6.Properties.Items.Add("局属");
                 comboBoxEdit6.Properties.Items.Add("自备");
             }
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+             string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "运行班次"));
+            if (strlist.Count > 0)
+                comboBoxEdit10.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit10.Properties.Items.Add("一班");
+                comboBoxEdit10.Properties.Items.Add("二班");
+                comboBoxEdit10.Properties.Items.Add("三班");
+            }
         }
 
         /// <summary>
