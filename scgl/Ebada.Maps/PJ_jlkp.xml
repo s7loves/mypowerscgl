@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_jlkp" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_jlkp"  type="Ebada.Scgl.Model.PJ_jlkp,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_jlkp_AllColumns" class="PJ_jlkp">
+        <result property="ID" column="ID" />
+        <result property="OrgName" column="OrgName" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="wdmc" column="wdmc" />
+        <result property="wdlx" column="wdlx" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="Remark" column="Remark" />
+        <result property="BigData" column="BigData" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_jlkpList" resultMap="PJ_jlkp_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wdmc],
+         [wdlx],
+         [CreateMan],
+         [CreateDate],
+         [Remark],
+         [BigData],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_jlkp
+          $value$
+   </select>
+   
+   <select id="SelectPJ_jlkpByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wdmc],
+         [wdlx],
+         [CreateMan],
+         [CreateDate],
+         [Remark],
+         [BigData],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_jlkp
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="wdmc">[wdmc]='$wdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="wdlx">[wdlx]='$wdlx$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_jlkpByKey" resultMap="PJ_jlkp_AllColumns" parameterClass="PJ_jlkp">
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wdmc],
+         [wdlx],
+         [CreateMan],
+         [CreateDate],
+         [Remark],
+         [BigData],
+         [S1],
+         [S2],
+         [S3]
+         FROM PJ_jlkp
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_jlkp" parameterClass="PJ_jlkp">
+        DELETE FROM 
+         PJ_jlkp
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_jlkpByWhere" parameterClass="string">
+     delete from PJ_jlkp $value$
+   </delete>
+   
+   <delete id="DeletePJ_jlkpByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_jlkp
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_jlkp" parameterClass="PJ_jlkp" resultClass="int">
+          UPDATE PJ_jlkp
+           SET
+             [OrgName]=#OrgName#,
+             [OrgCode]=#OrgCode#,
+             [wdmc]=#wdmc#,
+             [wdlx]=#wdlx#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [Remark]=#Remark#,
+             [BigData]=#BigData#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_jlkp" parameterClass="PJ_jlkp">
+        INSERT INTO PJ_jlkp
+         (
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wdmc],
+         [wdlx],
+         [CreateMan],
+         [CreateDate],
+         [Remark],
+         [BigData],
+         [S1],
+         [S2],
+         [S3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgName#,
+         #OrgCode#,
+         #wdmc#,
+         #wdlx#,
+         #CreateMan#,
+         #CreateDate#,
+         #Remark#,
+         #BigData#,
+         #S1#,
+         #S2#,
+         #S3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_jlkpRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_jlkp
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="wdmc">[wdmc]='$wdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="wdlx">[wdlx]='$wdlx$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_jlkpRowCount" parameterClass="string">
+    select count(*) from PJ_jlkp $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
