@@ -235,6 +235,10 @@ namespace Ebada.Scgl.Lcgl
         {
             if (isWorkflowCall)
             {
+                
+                string str = "1900-1-1";
+                
+
                 if (slqwhere == "") slqwhere = " where 1=1";
                 slqwhere = slqwhere + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where 1=1 ";
                 slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
@@ -245,8 +249,7 @@ namespace Ebada.Scgl.Lcgl
                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' "
                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "' "
                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "')) "
-                  +")"
-                  
+                  + ") and DATEDIFF(day,cast('" + str + "'  as datetime ) ,cast(xcrq  as datetime) )<1 "
                   ;
             }
             slqwhere += " order by id desc";
@@ -471,8 +474,8 @@ namespace Ebada.Scgl.Lcgl
             slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
                    + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
-            
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')"
+             + " and DATEDIFF(day,cast('1900-1-1'  as datetime ) ,cast(xcrq  as datetime) )<1 ";
             slqwhere += " order by id desc";
             dalist = MainHelper.PlatformSqlMap.GetListByWhere<PJ_06sbxs>(slqwhere);
             string strmes = "";

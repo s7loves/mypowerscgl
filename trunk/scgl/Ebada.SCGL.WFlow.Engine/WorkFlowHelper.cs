@@ -518,17 +518,19 @@ namespace Ebada.SCGL.WFlow.Engine
             if (varAccessType == WorkFlowConst.Access_WorkFlow || varAccessType=="-1" || 1==1)//流程变量
             {
                
-                     wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
+                     //wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                     "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '"
                     + varTableName + "'");
                 if (varTableName == "LP_Record")
-
+                {
+                    //wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
                     varSql = "select " + varFieldName + " as name from " + varTableName + " where "
                         + list[0]
                         + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='"
                         + wfi.WorkFlowId + "' and WorkFlowInsId='"
                         + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by " + list[0] + " desc";
+                }
                 else if (varTableName == "WF_TableFieldValue")
                 {
 
