@@ -23,6 +23,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Scgl.WFlow;
 using System.IO;
+using System.Threading;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -88,26 +89,27 @@ namespace Ebada.Scgl.Lcgl
                         if (fjly == null) fjly = new frmModleFjly();
                         barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                     }
+                    barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                     IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                     foreach (WF_WorkTaskCommands wt in wtlist)
                     {
                         if (wt.CommandName == "01")
                         {
-                            liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            
                             SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             if (wt.Description != "")
                                 SubmitButton.Caption = wt.Description;
-                            liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                         }
                         else
                             if (wt.CommandName == "02")
                             {
-                                liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                               
                                 TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                                 if (wt.Description != "")
                                     TaskOverButton.Caption = wt.Description;
-                                liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                                
                             }
 
                     }
@@ -139,9 +141,10 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_AfterAdd(PJ_ccxqjh newobj)
         {
+            WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
             if (isWorkflowCall)
             {
-                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                
                 mrwt.ModleRecordID = newobj.ID;
                 mrwt.RecordID = currRecord.ID;
                 mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
@@ -152,7 +155,63 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.CreatTime = DateTime.Now;
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                 //currRecord.DocContent = newobj.BigData;
-                MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+                //MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+
+            }
+            if (newobj.xqlr != "")
+            {
+                PJ_qxfl qxfj = new PJ_qxfl();
+                qxfj.ID = newobj.ID;
+                qxfj.CreateDate = DateTime.Now;
+                qxfj.CreateMan = MainHelper.User.UserName;
+                qxfj.OrgCode = newobj.OrgCode;
+                qxfj.OrgName = newobj.OrgName;
+                qxfj.qxlb = newobj.qxlb;
+                qxfj.qxly = "春检消缺计划";
+                qxfj.qxnr = newobj.xqlr;
+                MainHelper.PlatformSqlMap.Create<PJ_qxfl>(qxfj);
+                LP_Record lpr = new LP_Record();
+                lpr.ID = "N" + lpr.CreateID();
+                lpr.Kind = "设备缺陷管理流程";
+                lpr.CreateTime = DateTime.Now.ToString();
+                lpr.OrgName = qxfj.OrgName;
+
+                string[] strtemp = RecordWorkTask.RunNewGZPRecord(lpr.ID, "设备缺陷管理流程", MainHelper.User.UserID, false);
+                if (strtemp[0].IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                DataTable recordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
+                if (recordWorkFlowData == null)
+                {
+                    MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
+
+                }
+                LP_Temple ParentTemple = RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr);
+                if (ParentTemple == null)
+                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, "设备缺陷管理流程");
+                else
+                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, ParentTemple.LPID);
+                lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
+                MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
+                currRecord = lpr;
+
+
+
+
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ID = mrwt.CreateID();
+                mrwt.ModleRecordID = qxfj.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = qxfj.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
         }
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_ccxqjh> e)
@@ -273,15 +332,15 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
-            //if (isWorkflowCall)
-            //{
-            //    if (slqwhere == "") slqwhere = " where 1=1";
-            //    slqwhere = slqwhere + " and id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
-            //    slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-            //       + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-            //       + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-            //       + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
-            //}
+            if (isWorkflowCall)
+            {
+                if (slqwhere == "") slqwhere = " where 1=1";
+                slqwhere = slqwhere + " and id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            }
             slqwhere = slqwhere + " order by ID desc";
 
             gridViewOperation.RefreshData(slqwhere);

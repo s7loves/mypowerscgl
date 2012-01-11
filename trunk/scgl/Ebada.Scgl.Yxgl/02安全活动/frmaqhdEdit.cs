@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Yxgl
             //string zhi = "领导";
             // ICollection   list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select UserName from mUser where Type like'%" + zhi + "%'");
             //((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 6]).Properties.Items.AddRange(list);
-            ComboBoxHelper.FillCBoxByDyk("公共属性", "签字人", ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 6]));
+            ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 6]));
 
             //填充下拉列表数据
         }

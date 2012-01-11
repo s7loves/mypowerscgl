@@ -22,6 +22,7 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Scgl.WFlow;
+using System.Threading;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -43,6 +44,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Temple parentTemple = null;
         private frmModleFjly fjly = null;
         private string varDbTableName = "PJ_06sbxs,LP_Record";
+        private IList<PJ_06sbxs> dalist = null;
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -86,26 +88,32 @@ namespace Ebada.Scgl.Lcgl
                         if (fjly == null) fjly = new frmModleFjly();
                         barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                     }
+                    if (WorkFlowData.Rows[0]["flowcaption"].ToString() == "春查消缺外查" || WorkFlowData.Rows[0]["flowcaption"].ToString() == "秋查消缺外查")
+                    {
+                        barxqjh.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    }
+                    liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                     IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                     foreach (WF_WorkTaskCommands wt in wtlist)
                     {
                         if (wt.CommandName == "01")
                         {
-                            liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            
                             SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                             if (wt.Description != "")
                                 SubmitButton.Caption = wt.Description;
-                            liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            
                             barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                         }
                         else
                             if (wt.CommandName == "02")
                             {
-                                liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                               
                                 TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                                 if (wt.Description != "")
                                     TaskOverButton.Caption = wt.Description;
-                                liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                                
                             }
 
                     }
@@ -228,12 +236,20 @@ namespace Ebada.Scgl.Lcgl
             if (isWorkflowCall)
             {
                 if (slqwhere == "") slqwhere = " where 1=1";
-                slqwhere = slqwhere + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                slqwhere = slqwhere + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where 1=1 ";
                 slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+                  
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "') "
+                   +" or (id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where 1=1 ";
+                slqwhere = slqwhere + " and  RecordID='" + currRecord.ID + "'"
+                  + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' "
+                  + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "' "
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "')) "
+                  +")"
+                  
+                  ;
             }
+            slqwhere += " order by id desc";
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
@@ -285,7 +301,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where OrgCode='" + value + "' ");
                 }
             }
         }
@@ -444,7 +460,171 @@ namespace Ebada.Scgl.Lcgl
 
         private void barxqjh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认此节点结束，生成消缺计划并进入下一流程?") != DialogResult.OK)
+            {
+                //SendMessage(this.Handle, 0x0010, (IntPtr)0, (IntPtr)0);
+                return;
+            }
+            string slqwhere = "where OrgCode='" + parentID + "' ";
+            slqwhere = slqwhere + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+            slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            
+            slqwhere += " order by id desc";
+            dalist = MainHelper.PlatformSqlMap.GetListByWhere<PJ_06sbxs>(slqwhere);
+            string strmes = "";
+            WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            if (fjly == null) fjly = new frmModleFjly();
+            fjly.btn_Submit_Click(sender, e);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                currRecord.Status = "存档";
+            }
+            else
+            {
+                currRecord.Status = strmes;
+            }
+            currRecord.LastChangeTime = DateTime.Now.ToString();
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
 
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+            slqwhere = "where OrgCode='" + parentID + "' ";
+              slqwhere = slqwhere + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where 1=1 ";
+                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                  
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "') "
+                   +" or (id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where 1=1 ";
+                slqwhere = slqwhere + " and  RecordID='" + currRecord.ID + "'"
+                  + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' "
+                  + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "' "
+                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "')) "
+                  +")"
+                  ;
+            
+            slqwhere += " order by id desc";
+            dalist = MainHelper.PlatformSqlMap.GetListByWhere<PJ_06sbxs>(slqwhere);
+            foreach (PJ_06sbxs sbxs in dalist)
+            {
+                if (sbxs.qxnr == "") continue;
+                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                PJ_qxfl qxfj = new PJ_qxfl();
+                if (WorkFlowData.Rows[0]["flowcaption"].ToString() == "春查消缺外查") 
+                {
+                    PJ_ccxqjh ccxqjh = new PJ_ccxqjh();
+                    ccxqjh.ID = ccxqjh.CreateID();
+                    ccxqjh.OrgCode = sbxs.OrgCode;
+                    ccxqjh.OrgName = sbxs.OrgName;
+                    ccxqjh.qxlb = sbxs.qxlb;
+                    ccxqjh.xqlr = sbxs.qxnr;
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    MainHelper.PlatformSqlMap.Create<PJ_ccxqjh>(ccxqjh);
+                    qxfj.ID = ccxqjh.ID;
+
+                    mrwt.ID = mrwt.CreateID();
+                    mrwt.ModleRecordID = ccxqjh.ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.ModleTableName = ccxqjh.GetType().ToString();
+                    mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+
+                }
+                else
+                    if (WorkFlowData.Rows[0]["flowcaption"].ToString() == "秋查消缺外查")
+                    {
+
+                        PJ_qcxqjh qcxqjh = new PJ_qcxqjh();
+                        qcxqjh.ID = qcxqjh.CreateID();
+                        qcxqjh.OrgCode = sbxs.OrgCode;
+                        qcxqjh.OrgName = sbxs.OrgName;
+                        qcxqjh.qxlb = sbxs.qxlb;
+                        qcxqjh.xqlr = sbxs.qxnr;
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        MainHelper.PlatformSqlMap.Create<PJ_qcxqjh>(qcxqjh);
+                        qxfj.ID = qcxqjh.ID;
+
+
+                        mrwt.ID = mrwt.CreateID();
+                        mrwt.ModleRecordID = qcxqjh.ID;
+                        mrwt.RecordID = currRecord.ID;
+                        mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                        mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                        mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                        mrwt.ModleTableName = qcxqjh.GetType().ToString();
+                        mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                        mrwt.CreatTime = DateTime.Now;
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    }
+                
+                qxfj.CreateDate = sbxs.CreateDate;
+                qxfj.CreateMan = sbxs.CreateMan;
+                qxfj.LineID = sbxs.LineID;
+                qxfj.LineName = sbxs.LineName;
+                qxfj.OrgCode = sbxs.OrgCode;
+                qxfj.OrgName = sbxs.OrgName;
+                qxfj.qxlb = sbxs.qxlb;
+                qxfj.qxly = "设备巡视";
+                qxfj.qxnr = sbxs.qxnr;
+                qxfj.xcqx = sbxs.xcqx;
+                qxfj.xcr = sbxs.xcr;
+                qxfj.xlqd = sbxs.xlqd;
+                qxfj.xsr = sbxs.xsr;
+                qxfj.xssj = sbxs.xssj;
+                MainHelper.PlatformSqlMap.Create<PJ_qxfl>(qxfj);
+
+
+
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ID = mrwt.CreateID();
+                mrwt.ModleRecordID = qxfj.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = qxfj.GetType().ToString();
+                mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+
+                mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ID = mrwt.CreateID();
+                mrwt.ModleRecordID = sbxs.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = sbxs.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            }
+            gridControl1.FindForm().Close();
         }
 
     }

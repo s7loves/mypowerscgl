@@ -122,7 +122,7 @@ namespace Ebada.Scgl.Sbgl
             ICollection strlist = new ArrayList();
             comboBoxEdit16.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='公共属性' and sx like '%{0}%' and nr!=''", "完好类型"));
+            string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "完好类型"));
             if (strlist.Count > 0)
                 comboBoxEdit16.Properties.Items.AddRange(strlist);
             else
@@ -133,7 +133,7 @@ namespace Ebada.Scgl.Sbgl
             }
             comboBoxEdit17.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='公共属性' and sx like '%{0}%' and nr!=''", "线路类型"));
+            string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "线路类型"));
             if (strlist.Count > 0)
                 comboBoxEdit17.Properties.Items.AddRange(strlist);
             else

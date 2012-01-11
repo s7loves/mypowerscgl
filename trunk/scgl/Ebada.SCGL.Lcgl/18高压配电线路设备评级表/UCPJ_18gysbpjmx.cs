@@ -200,7 +200,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 LP_Temple ParentTemple = RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr);
                 if (ParentTemple == null)
-                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, "");
+                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, "设备缺陷管理流程");
                 else
                     lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, ParentTemple.LPID);
                 lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
