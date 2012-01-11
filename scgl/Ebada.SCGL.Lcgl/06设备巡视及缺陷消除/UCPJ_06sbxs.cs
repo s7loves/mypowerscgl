@@ -524,19 +524,23 @@ namespace Ebada.Scgl.Lcgl
             dalist = MainHelper.PlatformSqlMap.GetListByWhere<PJ_06sbxs>(slqwhere);
             foreach (PJ_06sbxs sbxs in dalist)
             {
-                if (sbxs.qxnr == "") continue;
+                if (sbxs.qxlb == "") continue;
                 WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
                 PJ_qxfl qxfj = new PJ_qxfl();
                 if (WorkFlowData.Rows[0]["flowcaption"].ToString() == "春查消缺外查") 
                 {
                     PJ_ccxqjh ccxqjh = new PJ_ccxqjh();
-                    ccxqjh.ID = ccxqjh.CreateID();
+                    ccxqjh.ID = sbxs.ID;
                     ccxqjh.OrgCode = sbxs.OrgCode;
                     ccxqjh.OrgName = sbxs.OrgName;
                     ccxqjh.qxlb = sbxs.qxlb;
                     ccxqjh.xqlr = sbxs.qxnr;
                     Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                    MainHelper.PlatformSqlMap.Create<PJ_ccxqjh>(ccxqjh);
+                    try
+                    {
+                        MainHelper.PlatformSqlMap.Create<PJ_ccxqjh>(ccxqjh);
+                    }
+                    catch { }
                     qxfj.ID = ccxqjh.ID;
 
                     mrwt.ID = mrwt.CreateID();
@@ -556,13 +560,17 @@ namespace Ebada.Scgl.Lcgl
                     {
 
                         PJ_qcxqjh qcxqjh = new PJ_qcxqjh();
-                        qcxqjh.ID = qcxqjh.CreateID();
+                        qcxqjh.ID = sbxs.ID;
                         qcxqjh.OrgCode = sbxs.OrgCode;
                         qcxqjh.OrgName = sbxs.OrgName;
                         qcxqjh.qxlb = sbxs.qxlb;
                         qcxqjh.xqlr = sbxs.qxnr;
                         Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    try
+                    {
                         MainHelper.PlatformSqlMap.Create<PJ_qcxqjh>(qcxqjh);
+                    }
+                    catch { }
                         qxfj.ID = qcxqjh.ID;
 
 
@@ -592,24 +600,28 @@ namespace Ebada.Scgl.Lcgl
                 qxfj.xlqd = sbxs.xlqd;
                 qxfj.xsr = sbxs.xsr;
                 qxfj.xssj = sbxs.xssj;
-                MainHelper.PlatformSqlMap.Create<PJ_qxfl>(qxfj);
+                try
+                {
+                    MainHelper.PlatformSqlMap.Create<PJ_qxfl>(qxfj);
+                }
+                catch { }
 
 
 
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                 //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                mrwt = new WF_ModleRecordWorkTaskIns();
-                mrwt.ID = mrwt.CreateID();
-                mrwt.ModleRecordID = qxfj.ID;
-                mrwt.RecordID = currRecord.ID;
-                mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
-                mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
-                mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
-                mrwt.ModleTableName = qxfj.GetType().ToString();
-                mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
-                mrwt.CreatTime = DateTime.Now;
-                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                //mrwt = new WF_ModleRecordWorkTaskIns();
+                //mrwt.ID = mrwt.CreateID();
+                //mrwt.ModleRecordID = qxfj.ID;
+                //mrwt.RecordID = currRecord.ID;
+                //mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                //mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                //mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                //mrwt.ModleTableName = qxfj.GetType().ToString();
+                //mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                //mrwt.CreatTime = DateTime.Now;
+                //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                //MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
 
                 mrwt = new WF_ModleRecordWorkTaskIns();
                 mrwt.ID = mrwt.CreateID();

@@ -303,7 +303,7 @@ namespace Ebada.SCGL.WFlow.Engine
         {
             try
             {
-                string expressText = GetExpressResult(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, condition);
+                 string expressText = GetExpressResult(userId, workFlowId, workTaskId, workFlowInstanceId, WorkTaskInstanceId, condition);
                 //DebugHF.WriteErrorLog("条件"+condition+":" + expressText, workFlowInstanceId);
                 //string sqlStr = "select 1 where " + expressText;
                 //SqlDataItem sqlItem = new SqlDataItem();
@@ -514,7 +514,8 @@ namespace Ebada.SCGL.WFlow.Engine
             {
                 wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + wfi.MainWorkflowInsId + "'");
             }
-            if (varAccessType == WorkFlowConst.Access_WorkFlow)//流程变量
+
+            if (varAccessType == WorkFlowConst.Access_WorkFlow || varAccessType=="-1")//流程变量
             {
                
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
@@ -536,6 +537,7 @@ namespace Ebada.SCGL.WFlow.Engine
                         + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by " + list[0] + " desc";
                 else
                 {
+                     wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
                     varSql = "select " + varFieldName + " as name from " + varTableName + " where  "
                         + list[0]
                         + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"
@@ -574,6 +576,7 @@ namespace Ebada.SCGL.WFlow.Engine
                             + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by " + list[0] + " desc";
                     else
                     {
+                        wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
                         varSql = "select " + varFieldName + " as name from " + varTableName + " where  "
                             + list[0]
                             + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"

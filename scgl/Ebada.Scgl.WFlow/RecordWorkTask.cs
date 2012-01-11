@@ -1558,6 +1558,7 @@ namespace Ebada.Scgl.WFlow
                     wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(li[0].WorkFlowInsId);
                     foreach (WF_WorkTaskInstanceView wti in li)
                     {
+                        if (wfi == null) break;
                         if (wfi.NowTaskId == wti.WorkTaskId)
                             return wti.TaskInsCaption;
 
