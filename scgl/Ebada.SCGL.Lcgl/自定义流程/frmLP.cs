@@ -802,7 +802,7 @@ namespace Ebada.Scgl.Lcgl
                     break;
                 case "edit":
                     currRecord.LastChangeTime = DateTime.Now.ToString();
-                    dsoFramerWordControl1.FileSave();
+                     dsoFramerWordControl1.FileSave();
                     currRecord.DocContent = this.dsoFramerWordControl1.FileDataGzip;
                     //byte[] bt = new byte[0];
                     //currRecord.ImageAttachment = bt;
