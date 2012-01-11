@@ -1673,7 +1673,8 @@ namespace Ebada.Scgl.Lcgl
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + str + "'");
                 if (list.Count > 0)
                 {
-                    switch (kind)
+                    
+                    switch (parentTemple.CellName)
                     {
 
                         case "电力线路第一种工作票":
@@ -1696,8 +1697,10 @@ namespace Ebada.Scgl.Lcgl
                             strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                             break;
                     }
-                    IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
-                    if (kind == "yzgzp")
+                    
+                    //IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
+                    IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select * from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' ", parentTemple.LPID));
+                    if (kind == "yzgzp" || parentTemple.CellName=="电力线路第一种工作票")
                     {
                         strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
                     }
