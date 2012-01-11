@@ -117,6 +117,15 @@ namespace Ebada.Scgl.Sbgl
                 comboBoxEdit13.Properties.Items.Add("二类");
                 comboBoxEdit13.Properties.Items.Add("三类");
             }
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+             string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "产权"));
+            if (strlist.Count > 0)
+                comboBoxEdit6.Properties.Items.AddRange(strlist);
+            else
+            {
+                comboBoxEdit6.Properties.Items.Add("局属");
+                comboBoxEdit6.Properties.Items.Add("自备");
+            }
         }
 
         /// <summary>
