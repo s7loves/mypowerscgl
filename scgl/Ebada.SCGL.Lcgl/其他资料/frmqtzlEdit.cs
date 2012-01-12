@@ -15,10 +15,10 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmJLKPEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_jlkp> m_CityDic = new SortableSearchableBindingList<PJ_jlkp>();
+    public partial class frmqtzlEdit : FormBase, IPopupFormEdit {
+        SortableSearchableBindingList<PJ_qtzl> m_CityDic = new SortableSearchableBindingList<PJ_qtzl>();
 
-        public frmJLKPEdit()
+        public frmqtzlEdit()
         {
             InitializeComponent();
         }
@@ -38,7 +38,7 @@ namespace Ebada.Scgl.Lcgl
 
         }
         #region IPopupFormEdit Members
-        private PJ_jlkp rowData = null;
+        private PJ_qtzl rowData = null;
 
         public object RowData {
             get {
@@ -47,11 +47,11 @@ namespace Ebada.Scgl.Lcgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_jlkp;
+                    this.rowData = value as PJ_qtzl;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_jlkp>(value as PJ_jlkp, rowData);
+                    ConvertHelper.CopyTo<PJ_qtzl>(value as PJ_qtzl, rowData);
                 }
             }
         }

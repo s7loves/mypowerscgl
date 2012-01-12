@@ -291,6 +291,9 @@
     <EmbeddedResource Include="PJ_gypdxldxxtt.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_qtzl.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
