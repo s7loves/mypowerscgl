@@ -480,6 +480,19 @@
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
     </Compile>
+    <Compile Include="高压配电线路地理位置图\Exportdlwzt.cs" />
+    <Compile Include="高压配电线路地理位置图\frmdlwztEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="高压配电线路地理位置图\frmdlwztEdit.Designer.cs">
+      <DependentUpon>frmdlwztEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="高压配电线路地理位置图\UCPJ_dlwzt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="高压配电线路地理位置图\UCPJ_dlwzt.Designer.cs">
+      <DependentUpon>UCPJ_dlwzt.cs</DependentUpon>
+    </Compile>
     <Compile Include="两措计划\Exportlcjh.cs" />
     <Compile Include="两措计划\frmlcjhEdit.cs">
       <SubType>Form</SubType>
@@ -1535,6 +1548,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="26电力线路防护通知书\UCPJ_26.resx">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="高压配电线路地理位置图\frmdlwztEdit.resx">
+      <DependentUpon>frmdlwztEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="高压配电线路地理位置图\UCPJ_dlwzt.resx">
+      <DependentUpon>UCPJ_dlwzt.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="两措计划\frmlcjhEdit.resx">
