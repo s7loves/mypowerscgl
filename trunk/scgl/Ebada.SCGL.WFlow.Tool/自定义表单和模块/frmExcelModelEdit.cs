@@ -589,12 +589,12 @@ namespace Ebada.SCGL.WFlow.Tool
             //位置比大小限制多
             if (celcolumn.Length > cellen.Length)
             {
-                if (cellen.Length == 1 && cellen[0].ToString() == "")
-                {
-                    strlen = "[0:RepositoryItemComboBox]|";
-                }
-
-                for (int i = cellen.Length-1; i <cellen.Length+ celcolumn.Length - cellen.Length; i++)
+                //if (cellen.Length == 1 && cellen[0].ToString() == "")
+                //{
+                //    strlen = "[0:RepositoryItemComboBox]|";
+                //}
+                strlen = "";
+                for (int i = cellen.Length-1; i <celcolumn.Length - cellen.Length; i++)
                 {
                     strlen += "[" + i + ":RepositoryItemComboBox]|";
                 }
