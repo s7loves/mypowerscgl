@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2012-1-11 21:27:57
+生成时间:2012-1-12 8:52:37
 ***********************************************/
 
 using System;
@@ -146,10 +146,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：CreateMan
-        /// 属性描述：
+        /// 属性描述：创建人
         /// 字段信息：[CreateMan],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("创建人")]
         public string CreateMan
         {
             get { return _createman; }
@@ -157,7 +157,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[创建人]长度不能大于50!");
                 if (_createman as object == null || !_createman.Equals(value))
                 {
                     _createman = value;
@@ -167,10 +167,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：CreateDate
-        /// 属性描述：
+        /// 属性描述：创建日期
         /// 字段信息：[CreateDate],datetime
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("创建日期")]
         public DateTime CreateDate
         {
             get { return _createdate; }
