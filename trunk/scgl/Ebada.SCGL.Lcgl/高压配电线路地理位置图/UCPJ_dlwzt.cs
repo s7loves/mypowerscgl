@@ -23,6 +23,8 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Scgl.WFlow;
 using System.IO;
+using DevExpress.Utils;
+using Ebada.Core;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -37,8 +39,10 @@ namespace Ebada.Scgl.Lcgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-        private DataTable dt = null;
+        private DataTable gridtable = null;
         private bool isWorkflowCall = false;
+        private GridColumn picview;
+        private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
         private frmModleFjly fjly = null;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
@@ -189,8 +193,10 @@ namespace Ebada.Scgl.Lcgl
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if (dt == null) dt = new DataTable();
-            dt.Columns.Clear();
+            if (gridtable == null)
+            {
+                gridtable = new DataTable();
+            }
             //dt.Columns.Add
             InitColumns();//初始列
             InitData();//初始数据
@@ -244,11 +250,48 @@ namespace Ebada.Scgl.Lcgl
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
             //RefreshData("");
-            if (MainHelper.UserOrg != null)
+            //if (MainHelper.UserOrg != null)
+            //{
+            //    string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' ";
+            //    RefreshData(strSQL);
+            //}
+
+
+            string str = " where  1=1 ";   
+            if (gridtable != null) gridtable.Rows.Clear();
+
+            IList<PJ_gypdxldlwzt> li = MainHelper.PlatformSqlMap.GetList<PJ_gypdxldlwzt>("SelectPJ_gypdxldlwztList", str);
+            if (li.Count != 0)
             {
-                string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' ";
-                RefreshData(strSQL);
+                gridtable = ConvertHelper.ToDataTable((System.Collections.IList)li);
+
             }
+            else
+            {
+                if (gridtable == null) gridtable = new DataTable();
+                gridtable.Columns.Clear();
+                gridtable.Columns.Add("OrgName");
+                gridtable.Columns.Add("OrgCode");
+                gridtable.Columns.Add("CreateMan");
+                gridtable.Columns.Add("CreateDate", typeof(DateTime));
+                gridtable.Columns.Add("Remark");
+            }
+            foreach (DevExpress.XtraGrid.Columns.GridColumn gc in gridView1.Columns)
+            {
+                gc.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
+                gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
+
+            }
+            if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image");
+            int i = 0;
+            for (i = 0; i < gridtable.Rows.Count; i++)
+            {
+
+                //gridtable.Rows[i]["Image"] = RecordWorkTask.WorkFlowBitmap(gridtable.Rows[i]["ID"].ToString(), imageEdit1.PopupFormSize);
+                gridtable.Rows[i]["Image"] = "查看";
+            }
+
+            gridControl1.DataSource = gridtable;
         }
         /// <summary>
         /// 初始化列,
@@ -257,11 +300,50 @@ namespace Ebada.Scgl.Lcgl
         {
 
             //需要隐藏列时在这写代码
-            
+            for (int i = 0; i < gridView1.Columns.Count; i++)
+            {
+                gridView1.Columns[i].Caption = AttributeHelper.GetDisplayName(typeof(PJ_gypdxldlwzt), gridView1.Columns[i].FieldName);
+            }
 
-            hideColumn("OrgName");
+            picview = new DevExpress.XtraGrid.Columns.GridColumn();
+            picview.Caption = "流程图";
+            picview.Visible = true;
+            //picview.MaxWidth = 300;
+            //picview.MinWidth = 300;
+            //gridControl1.RepositoryItems.Add(imageEdit1);
+
+            //picview.ColumnEdit = imageEdit1;
+            //DevExpress.XtraEditors.Repository.RepositoryItem
+
+            //this.picview.VisibleIndex =1;
+            //picview.FieldName = "Image";
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+           
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
+            this.repositoryItemHyperLinkEdit1.AutoHeight = false;
+            this.repositoryItemHyperLinkEdit1.Caption = "查看";
+            this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
+            this.repositoryItemHyperLinkEdit1.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit1_Click);
+            this.picview.Caption = "流程图";
+            this.picview.ColumnEdit = this.repositoryItemHyperLinkEdit1;
+            this.picview.VisibleIndex = 1;
+            picview.FieldName = "Image";
+            gridView1.Columns.Add(picview);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
+
+            gridView1.Columns.Add(picview);
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+
+          
+            
+            
+           
+            //hideColumn("OrgName");
             hideColumn("OrgCode");
-            hideColumn("wdlx");
+
             hideColumn("S1");
             hideColumn("S2");
             hideColumn("S3");
@@ -391,6 +473,102 @@ namespace Ebada.Scgl.Lcgl
                 
             }
         }
+
+        private void btReAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PJ_gypdxldlwzt newobj = new PJ_gypdxldlwzt();
+            newobj.CreateDate = DateTime.Now;
+            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            newobj.CreateMan = m_UserBase.RealName;
+            frmdlwztEdit frm = new frmdlwztEdit();
+            frm.RowData = newobj;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                MainHelper.PlatformSqlMap.Create<PJ_gypdxldlwzt>(newobj);
+                InitData();
+            }
+        }
+
+        private void btReRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            InitData();
+        }
+        private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            if (gridView1.FocusedRowHandle < 0) return;
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            PJ_gypdxldlwzt currRecord = new PJ_gypdxldlwzt();
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+
+                }
+            }
+            frmdlwztEdit frm = new frmdlwztEdit();
+            frm.RowData = currRecord;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                MainHelper.PlatformSqlMap.Update<PJ_gypdxldlwzt>(currRecord);
+                InitData();
+            }
+        }
+        private void btReDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MainHelper.UserOrg == null) return;
+
+            if (gridView1.FocusedRowHandle < 0) return;
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认删除 【" + dr["OrgName"].ToString() + "】?") != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                RecordWorkTask.DeleteRecord(dr["ID"].ToString());
+                MainHelper.PlatformSqlMap.DeleteByWhere<PJ_gypdxldlwzt>(" where id ='" + dr["ID"].ToString() + "'");
+                InitData();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
+        {
+            int ihand = gridView1.FocusedRowHandle;
+            if (ihand < 0)
+                return;
+            DataRow dr = gridView1.GetDataRow(ihand);
+            //Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(), new Size(1024, 768));
+            //string tempPath = Path.GetTempPath();
+            //string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".png";
+            //if (objBitmap != null)
+            //{
+
+
+                //objBitmap.Save(tempfile, System.Drawing.Imaging.ImageFormat.Png);
+                try
+                {
+                    //System.Diagnostics.Process.Start("explorer.exe", tempfile);
+                    //SelectorHelper.Execute("rundll32.exe %Systemroot%\\System32\\shimgvw.dll,ImageView_Fullscreen " + tempfile);
+                    GisHelper.ShowDlt(dr["OrgCode"].ToString());
+                }
+                catch(Exception ex)
+                {
+
+                    MsgBox.ShowWarningMessageBox("出错："+ex.Message);
+                }
+            //}
+        }
         public static void WriteDoc(byte[] img,  string filename)
         {
             BinaryWriter bw;
@@ -499,5 +677,13 @@ namespace Ebada.Scgl.Lcgl
             fjly.Status = RecordWorkTask.GetWorkTaskStatus(WorkFlowData, currRecord);
             fjly.ShowDialog();
         }
+
+        private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (gridView1.FocusedColumn.FieldName != "Image" && gridView1.FocusedColumn.FieldName != "Status")
+                e.Cancel = true;
+
+        }
+
     }
 }

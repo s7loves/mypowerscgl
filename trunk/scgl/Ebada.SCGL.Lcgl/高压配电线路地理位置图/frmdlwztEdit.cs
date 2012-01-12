@@ -60,8 +60,16 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
             comboBoxEdit1.Properties.Items.Clear();
             comboBoxEdit3.Properties.Items.Clear();
-            
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select OrgName from mOrg where 5=5  AND ORGTYPE='1' order by OrgName"));
+            if (strlist.Count > 0)
+                comboBoxEdit1.Properties.Items.AddRange(strlist);
+            else
+            {
 
+            }
+
+            comboBoxEdit1.Properties.Items.Add("全局");
 
 
 
@@ -95,7 +103,18 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-           
+            mOrg org=MainHelper.PlatformSqlMap.GetOne<mOrg>(" where OrgName='"+rowData.OrgName+"' ");
+            if (org == null)
+            {
+                if (rowData.OrgName == "全局")
+                {
+                    rowData.OrgCode = "all";
+                }
+            }
+            else
+            {
+                rowData.OrgCode = org.OrgCode;
+            }
         }
 
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

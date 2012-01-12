@@ -34,10 +34,10 @@
             this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
             this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
             this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
-            this.btAdd = new DevExpress.XtraBars.BarButtonItem();
-            this.btEdit = new DevExpress.XtraBars.BarButtonItem();
-            this.btDelete = new DevExpress.XtraBars.BarButtonItem();
-            this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
+            this.btReAdd = new DevExpress.XtraBars.BarButtonItem();
+            this.btReEdit = new DevExpress.XtraBars.BarButtonItem();
+            this.btReDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.btReRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
@@ -68,11 +68,11 @@
             this.barManager1.DockControls.Add(this.barDockControlRight);
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btAdd,
-            this.btEdit,
-            this.btDelete,
+            this.btReAdd,
+            this.btReEdit,
+            this.btReDelete,
             this.btFind,
-            this.btRefresh,
+            this.btReRefresh,
             this.btClose,
             this.bsItem1,
             this.btExport,
@@ -99,10 +99,10 @@
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
             new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReAdd),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReEdit),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
@@ -120,6 +120,7 @@
             this.btGdsList.Edit = this.repositoryItemLookUpEdit1;
             this.btGdsList.Id = 14;
             this.btGdsList.Name = "btGdsList";
+            this.btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -172,37 +173,41 @@
             this.liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.liuchenBarClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.liuchenBarClear_ItemClick);
             // 
-            // btAdd
+            // btReAdd
             // 
-            this.btAdd.Caption = "增加";
-            this.btAdd.Id = 0;
-            this.btAdd.ImageIndex = 6;
-            this.btAdd.Name = "btAdd";
-            this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReAdd.Caption = "增加";
+            this.btReAdd.Id = 0;
+            this.btReAdd.ImageIndex = 6;
+            this.btReAdd.Name = "btReAdd";
+            this.btReAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReAdd_ItemClick);
             // 
-            // btEdit
+            // btReEdit
             // 
-            this.btEdit.Caption = "修改";
-            this.btEdit.Id = 1;
-            this.btEdit.ImageIndex = 1;
-            this.btEdit.Name = "btEdit";
-            this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReEdit.Caption = "修改";
+            this.btReEdit.Id = 1;
+            this.btReEdit.ImageIndex = 1;
+            this.btReEdit.Name = "btReEdit";
+            this.btReEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReEdit_ItemClick);
             // 
-            // btDelete
+            // btReDelete
             // 
-            this.btDelete.Caption = "删除";
-            this.btDelete.Id = 2;
-            this.btDelete.ImageIndex = 12;
-            this.btDelete.Name = "btDelete";
-            this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReDelete.Caption = "删除";
+            this.btReDelete.Id = 2;
+            this.btReDelete.ImageIndex = 12;
+            this.btReDelete.Name = "btReDelete";
+            this.btReDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReDelete_ItemClick);
             // 
-            // btRefresh
+            // btReRefresh
             // 
-            this.btRefresh.Caption = "刷新";
-            this.btRefresh.Id = 4;
-            this.btRefresh.ImageIndex = 9;
-            this.btRefresh.Name = "btRefresh";
-            this.btRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReRefresh.Caption = "刷新";
+            this.btReRefresh.Id = 4;
+            this.btReRefresh.ImageIndex = 9;
+            this.btReRefresh.Name = "btReRefresh";
+            this.btReRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReRefresh_ItemClick);
             // 
             // btFind
             // 
@@ -315,13 +320,12 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
-            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
             this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
             // 
             // UCPJ_dlwzt
             // 
@@ -351,11 +355,11 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarButtonItem btAdd;
-        private DevExpress.XtraBars.BarButtonItem btEdit;
-        private DevExpress.XtraBars.BarButtonItem btDelete;
+        private DevExpress.XtraBars.BarButtonItem btReAdd;
+        private DevExpress.XtraBars.BarButtonItem btReEdit;
+        private DevExpress.XtraBars.BarButtonItem btReDelete;
         private DevExpress.XtraBars.BarButtonItem btFind;
-        private DevExpress.XtraBars.BarButtonItem btRefresh;
+        private DevExpress.XtraBars.BarButtonItem btReRefresh;
         private DevExpress.XtraBars.BarButtonItem btClose;
         private DevExpress.XtraBars.BarStaticItem bsItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;

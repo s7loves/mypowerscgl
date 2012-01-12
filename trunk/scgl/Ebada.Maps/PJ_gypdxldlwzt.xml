@@ -8,8 +8,6 @@
         <result property="ID" column="ID" />
         <result property="OrgName" column="OrgName" />
         <result property="OrgCode" column="OrgCode" />
-        <result property="wdmc" column="wdmc" />
-        <result property="wdlx" column="wdlx" />
         <result property="CreateMan" column="CreateMan" />
         <result property="CreateDate" column="CreateDate" />
         <result property="Remark" column="Remark" />
@@ -26,8 +24,6 @@
          [ID],
          [OrgName],
          [OrgCode],
-         [wdmc],
-         [wdlx],
          [CreateMan],
          [CreateDate],
          [Remark],
@@ -44,8 +40,6 @@
          [ID],
          [OrgName],
          [OrgCode],
-         [wdmc],
-         [wdlx],
          [CreateMan],
          [CreateDate],
          [Remark],
@@ -58,8 +52,6 @@
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
-       <isNotNull prepend="AND" property="wdmc">[wdmc]='$wdmc$'</isNotNull>
-       <isNotNull prepend="AND" property="wdlx">[wdlx]='$wdlx$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
@@ -74,8 +66,6 @@
          [ID],
          [OrgName],
          [OrgCode],
-         [wdmc],
-         [wdlx],
          [CreateMan],
          [CreateDate],
          [Remark],
@@ -114,8 +104,6 @@
            SET
              [OrgName]=#OrgName#,
              [OrgCode]=#OrgCode#,
-             [wdmc]=#wdmc#,
-             [wdlx]=#wdlx#,
              [CreateMan]=#CreateMan#,
              [CreateDate]=#CreateDate#,
              [Remark]=#Remark#,
@@ -134,8 +122,6 @@
          [ID],
          [OrgName],
          [OrgCode],
-         [wdmc],
-         [wdlx],
          [CreateMan],
          [CreateDate],
          [Remark],
@@ -149,8 +135,6 @@
          #ID#,
          #OrgName#,
          #OrgCode#,
-         #wdmc#,
-         #wdlx#,
          #CreateMan#,
          #CreateDate#,
          #Remark#,
@@ -169,8 +153,6 @@
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
-       <isNotNull prepend="AND" property="wdmc">[wdmc]='$wdmc$'</isNotNull>
-       <isNotNull prepend="AND" property="wdlx">[wdlx]='$wdlx$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
