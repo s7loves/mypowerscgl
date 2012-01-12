@@ -124,6 +124,19 @@
     <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
     </Compile>
+    <Compile Include="设备年报\Exportsbnb.cs" />
+    <Compile Include="设备年报\frmsbnbEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="设备年报\frmsbnbEdit.Designer.cs">
+      <DependentUpon>frmsbnbEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="设备年报\UCPJ_sbnb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="设备年报\UCPJ_sbnb.Designer.cs">
+      <DependentUpon>UCPJ_sbnb.cs</DependentUpon>
+    </Compile>
     <Compile Include="其他资料\Exportqtzl.cs" />
     <Compile Include="其他资料\frmqtzlEdit.cs">
       <SubType>Form</SubType>
@@ -1346,6 +1359,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.resx">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设备年报\frmsbnbEdit.resx">
+      <DependentUpon>frmsbnbEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设备年报\UCPJ_sbnb.resx">
+      <DependentUpon>UCPJ_sbnb.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="其他资料\frmqtzlEdit.resx">

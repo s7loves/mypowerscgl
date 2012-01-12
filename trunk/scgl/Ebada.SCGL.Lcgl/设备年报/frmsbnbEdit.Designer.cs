@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class frmqtzlEdit
+    partial class frmsbnbEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -103,7 +103,7 @@
             this.groupBox1.Size = new System.Drawing.Size(476, 229);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "其他资料";
+            this.groupBox1.Text = "设备年报";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // buttonEdit1
@@ -190,7 +190,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // frmqtzlEdit
+            // frmsbnbEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -198,9 +198,9 @@
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmqtzlEdit";
+            this.Name = "frmsbnbEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "其他资料";
+            this.Text = "设备年报";
             this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
