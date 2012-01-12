@@ -306,7 +306,11 @@ namespace Ebada.SCGL.WFlow.Tool
             {
 
                 IList list = (IList)MainHelper.PlatformSqlMap.GetList("SelectWF_WorkFlowList", tmpStr);
-
+                if (list.Count == 0)
+                {
+                    DataTable dt = new DataTable();
+                    return dt;
+                }
                 return ConvertHelper.ToDataTable(list);
                
             }
