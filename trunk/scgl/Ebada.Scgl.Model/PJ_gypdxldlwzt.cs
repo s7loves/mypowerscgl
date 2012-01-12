@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2012-1-12 12:06:57
+生成时间:2012-1-12 14:03:39
 ***********************************************/
 
 using System;
@@ -24,8 +24,6 @@ namespace Ebada.Scgl.Model
         private string _id=Newid(); 
         private string _orgname=String.Empty; 
         private string _orgcode=String.Empty; 
-        private string _wdmc=String.Empty; 
-        private string _wdlx=String.Empty; 
         private string _createman=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
         private string _remark=String.Empty; 
@@ -98,48 +96,6 @@ namespace Ebada.Scgl.Model
                 if (_orgcode as object == null || !_orgcode.Equals(value))
                 {
                     _orgcode = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：wdmc
-        /// 属性描述：
-        /// 字段信息：[wdmc],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("")]
-        public string wdmc
-        {
-            get { return _wdmc; }
-            set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 500)
-                throw new Exception("[]长度不能大于500!");
-                if (_wdmc as object == null || !_wdmc.Equals(value))
-                {
-                    _wdmc = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：wdlx
-        /// 属性描述：
-        /// 字段信息：[wdlx],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("")]
-        public string wdlx
-        {
-            get { return _wdlx; }
-            set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 100)
-                throw new Exception("[]长度不能大于100!");
-                if (_wdlx as object == null || !_wdlx.Equals(value))
-                {
-                    _wdlx = value;
                 }
             }			 
         }
