@@ -95,6 +95,7 @@
     <Compile Include="PJ_khdldrqtz.cs" />
     <Compile Include="PJ_lcfj.cs" />
     <Compile Include="PJ_lcfxwtjzgls.cs" />
+    <Compile Include="PJ_lcjh.cs" />
     <Compile Include="PJ_lcspyj.cs" />
     <Compile Include="PJ_pbdldrqtz.cs" />
     <Compile Include="PJ_qcxqjh.cs" />

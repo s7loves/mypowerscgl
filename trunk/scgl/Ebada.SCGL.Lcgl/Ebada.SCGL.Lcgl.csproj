@@ -480,6 +480,19 @@
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
     </Compile>
+    <Compile Include="两措计划\Exportlcjh.cs" />
+    <Compile Include="两措计划\frmlcjhEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="两措计划\frmlcjhEdit.Designer.cs">
+      <DependentUpon>frmlcjhEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="两措计划\UCPJ_lcjh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="两措计划\UCPJ_lcjh.Designer.cs">
+      <DependentUpon>UCPJ_lcjh.cs</DependentUpon>
+    </Compile>
     <Compile Include="记录、卡片\ExportJLKP.cs" />
     <Compile Include="记录、卡片\frmJLKPEdit.cs">
       <SubType>Form</SubType>
@@ -1522,6 +1535,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="26电力线路防护通知书\UCPJ_26.resx">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="两措计划\frmlcjhEdit.resx">
+      <DependentUpon>frmlcjhEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="两措计划\UCPJ_lcjh.resx">
+      <DependentUpon>UCPJ_lcjh.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="记录、卡片\frmJLKPEdit.resx">
