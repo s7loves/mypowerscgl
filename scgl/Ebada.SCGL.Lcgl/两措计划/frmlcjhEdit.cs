@@ -15,10 +15,11 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmJLKPEdit : FormBase, IPopupFormEdit {
+    public partial class frmlcjhEdit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<PJ_lcjh> m_CityDic = new SortableSearchableBindingList<PJ_lcjh>();
 
-        public frmJLKPEdit()
+        public frmlcjhEdit()
         {
             InitializeComponent();
         }
@@ -61,7 +62,7 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='记录、卡片' and sx like '%{0}%' and nr!=''", "文档名称"));
+            string.Format("select nr from pj_dyk where  dx='两措计划' and sx like '%{0}%' and nr!=''", "文档名称"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
@@ -70,33 +71,8 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-                comboBoxEdit1.Properties.Items.Add("01工作日志");
-                comboBoxEdit1.Properties.Items.Add("02安全活动记录");
-                comboBoxEdit1.Properties.Items.Add("03运行分析记录");
-                comboBoxEdit1.Properties.Items.Add("04事故、障碍、异常运行记录");
-                comboBoxEdit1.Properties.Items.Add("05交叉跨越及对地距离测量记录");
-                comboBoxEdit1.Properties.Items.Add("06设备巡视及缺陷消除记录");
-                comboBoxEdit1.Properties.Items.Add("07接地装置检测记录");
-                comboBoxEdit1.Properties.Items.Add("08设备停电检修记录");
-                comboBoxEdit1.Properties.Items.Add("09培训记录");
-
-                comboBoxEdit1.Properties.Items.Add("10配电变压器汇总表");
-                comboBoxEdit1.Properties.Items.Add("11配电变压器卡片");
-                comboBoxEdit1.Properties.Items.Add("12线路开关卡片");
-                comboBoxEdit1.Properties.Items.Add("13剩余电流动作保护器测试记录");
-                comboBoxEdit1.Properties.Items.Add("14电力工器具测试记录");
-                comboBoxEdit1.Properties.Items.Add("15工具、仪表台张");
-                comboBoxEdit1.Properties.Items.Add("16高压配电线路条图");
-                comboBoxEdit1.Properties.Items.Add("17高压配电线路条图汇总表");
-                comboBoxEdit1.Properties.Items.Add("18高压配电设备评级表");
-                comboBoxEdit1.Properties.Items.Add("19高压配电设备完好率汇总表");
-                comboBoxEdit1.Properties.Items.Add("20低压线路完好率及台区网络图");
-                comboBoxEdit1.Properties.Items.Add("21电力故障报修电话接听记录");
-                comboBoxEdit1.Properties.Items.Add("22报修服务修理票");
-                comboBoxEdit1.Properties.Items.Add("23配电设备产权产权及维护范围协议书");
-                comboBoxEdit1.Properties.Items.Add("24设备变更通知书");
-                comboBoxEdit1.Properties.Items.Add("25双电源协议书");
-                comboBoxEdit1.Properties.Items.Add("26电力线路防护通知书");
+                comboBoxEdit1.Properties.Items.Add("两措计划");
+               
 
             }
 
@@ -104,7 +80,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit3.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select nr from pj_dyk where  dx='记录、卡片' and sx like '%{0}%' and nr!=''", "文档类型"));
+           string.Format("select nr from pj_dyk where  dx='两措计划' and sx like '%{0}%' and nr!=''", "文档类型"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
