@@ -260,6 +260,7 @@
             this.btReAdd.ImageIndex = 8;
             this.btReAdd.Name = "btReAdd";
             this.btReAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btReAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReAdd_ItemClick);
             // 
             // barCreat
@@ -269,6 +270,7 @@
             this.barCreat.ImageIndex = 3;
             this.barCreat.Name = "barCreat";
             this.barCreat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barCreat.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barCreat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barCreat_ItemClick);
             // 
             // barButtonItem1
@@ -296,6 +298,7 @@
             this.btDelete.ImageIndex = 12;
             this.btDelete.Name = "btDelete";
             this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btRefresh
             // 
