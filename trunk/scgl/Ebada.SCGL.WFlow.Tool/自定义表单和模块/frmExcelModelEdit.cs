@@ -623,7 +623,12 @@ namespace Ebada.SCGL.WFlow.Tool
         private void labelEffTip_Click(object sender, EventArgs e)
         {
             string strcolumn = lookUpEdit5.EditValue.ToString();
-            if (strcolumn == "") return;
+            if (strcolumn == "")
+            {
+                textEdit8.Text = "";
+                rowData.AffectEvent = textEdit8.Text;
+                return;
+            }
             if (strcolumn.Substring(strcolumn.Length - 1) != "|")
                 strcolumn = strcolumn + "|";
             string strlen = textEdit8.Text;
