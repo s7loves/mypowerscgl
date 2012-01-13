@@ -441,11 +441,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 comboBoxEdit7.Properties.Items.Add(lt);
                 lt = new ListItem("##########.0000", "##########.0000");
                 comboBoxEdit7.Properties.Items.Add(lt);
+                lt = new ListItem("n0", "n0");
+                comboBoxEdit7.Properties.Items.Add(lt);
                 lt = new ListItem("p", "p");
                 comboBoxEdit7.Properties.Items.Add(lt);
                 lt = new ListItem("c", "c");
-                comboBoxEdit7.Properties.Items.Add(lt);
-                lt = new ListItem("n0", "n0");
                 comboBoxEdit7.Properties.Items.Add(lt);
                 lt = new ListItem("##########.##", "##########.##");
                 comboBoxEdit7.Properties.Items.Add(lt);
