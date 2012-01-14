@@ -113,7 +113,7 @@
             this.ceQuick.Properties.Caption = "多条录入";
             this.ceQuick.Size = new System.Drawing.Size(75, 19);
             this.ceQuick.TabIndex = 9;
-            this.ceQuick.ToolTip = "每一段话将创建一条记录";
+            this.ceQuick.ToolTip = "每一行话将创建一条记录";
             // 
             // groupBox5
             // 
