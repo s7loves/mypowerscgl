@@ -94,69 +94,58 @@ namespace Ebada.Scgl.Xtgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
+      
 
-        }
-
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
 
         private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
         {
-
+           // PJ_dyk dyk = MainHelper.PlatformSqlMap.GetOneByKey<PJ_dyk>(rowData.ID);
+           // ceQuick.Visible = false;
+           //if (dyk == null)
+           //{
+            ceQuick.Checked = false;
+           //    ceQuick.Visible = true;
+           //}
         }
 
-        private void labelControl4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit8_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateEdit3_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit16_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEdit4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void btnOK_Click(object sender, EventArgs e)
         {
-            
+            if (ceQuick.Visible && ceQuick.Checked)
+            {
+                string[] nr = rowData.nr.Split(new string[] { "\r\n" },StringSplitOptions.None);
+                string[] nr2 = rowData.nr2.Split(new string[] { "\r\n" },StringSplitOptions.None);
+                string[] nr3 = rowData.nr3.Split(new string[] { "\r\n" },StringSplitOptions.None);
+                string[] nr4 = rowData.nr4.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                long index = Convert.ToInt64(rowData.ID);
+                IList<PJ_dyk> li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + rowData.ParentID + "'  order by id desc");
+                if (li.Count > 0)
+                    index = (Convert.ToInt64(li[0].bh) );
+                else
+                {
+                    index = (Convert.ToInt64(rowData.ParentID) * 100 + 1);
+                }
+                rowData.nr = nr[0];
+                rowData.nr2 = nr2[0];
+                rowData.nr3 = nr3[0];
+                rowData.nr4 = nr4[0];
+                for (int i = 1; i < nr.Length; i++)
+                {
+                    if (nr[i] == "") continue;
+                    PJ_dyk dyk = new PJ_dyk();
+                    dyk.ID = (index + i).ToString();
+                    dyk.dx = rowData.dx;
+                    dyk.sx = rowData.sx;
+                    dyk.bh = dyk.ID;
+                    dyk.nr = nr[i];
+                    dyk.ParentID = rowData.ParentID;
+                    if ( nr2.Length >i) dyk.nr2 = nr2[i];
+                    if (nr3.Length > i) dyk.nr3 = nr3[i];
+                    if (nr4.Length > i) dyk.nr4 = nr4[i];
+                    MainHelper.PlatformSqlMap.Create<PJ_dyk>(dyk);
+                }
+            }
         }
     }
 }

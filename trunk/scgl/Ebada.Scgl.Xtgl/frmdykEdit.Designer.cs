@@ -31,6 +31,7 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
+            this.ceQuick = new DevExpress.XtraEditors.CheckEdit();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.memoEdit4 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -52,6 +53,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ceQuick.Properties)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit4.Properties)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -90,6 +92,7 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.ceQuick);
             this.groupControlOrg.Controls.Add(this.groupBox5);
             this.groupControlOrg.Controls.Add(this.groupBox4);
             this.groupControlOrg.Controls.Add(this.groupBox3);
@@ -102,7 +105,15 @@
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.Size = new System.Drawing.Size(886, 528);
             this.groupControlOrg.TabIndex = 9;
-            this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
+            // 
+            // ceQuick
+            // 
+            this.ceQuick.Location = new System.Drawing.Point(76, 24);
+            this.ceQuick.Name = "ceQuick";
+            this.ceQuick.Properties.Caption = "多条录入";
+            this.ceQuick.Size = new System.Drawing.Size(75, 19);
+            this.ceQuick.TabIndex = 9;
+            this.ceQuick.ToolTip = "每一段话将创建一条记录";
             // 
             // groupBox5
             // 
@@ -197,7 +208,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit4.TabIndex = 13;
-            this.comboBoxEdit4.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit4_SelectedIndexChanged);
             // 
             // comboBoxEdit3
             // 
@@ -216,7 +226,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit2.TabIndex = 13;
-            this.comboBoxEdit2.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit8_SelectedIndexChanged);
             // 
             // comboBoxEdit1
             // 
@@ -234,7 +243,6 @@
             this.labelControl20.Size = new System.Drawing.Size(36, 14);
             this.labelControl20.TabIndex = 12;
             this.labelControl20.Text = "助记码";
-            this.labelControl20.Click += new System.EventHandler(this.labelControl4_Click_1);
             // 
             // labelControl21
             // 
@@ -243,7 +251,6 @@
             this.labelControl21.Size = new System.Drawing.Size(48, 14);
             this.labelControl21.TabIndex = 12;
             this.labelControl21.Text = "短语编号";
-            this.labelControl21.Click += new System.EventHandler(this.labelControl4_Click_1);
             // 
             // labelControl22
             // 
@@ -252,7 +259,6 @@
             this.labelControl22.Size = new System.Drawing.Size(24, 14);
             this.labelControl22.TabIndex = 8;
             this.labelControl22.Text = "属性";
-            this.labelControl22.Click += new System.EventHandler(this.labelControl7_Click);
             // 
             // labelControl25
             // 
@@ -261,7 +267,6 @@
             this.labelControl25.Size = new System.Drawing.Size(48, 14);
             this.labelControl25.TabIndex = 2;
             this.labelControl25.Text = "簿册对象";
-            this.labelControl25.Click += new System.EventHandler(this.labelControl2_Click);
             // 
             // bar1
             // 
@@ -293,6 +298,7 @@
             this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ceQuick.Properties)).EndInit();
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit4.Properties)).EndInit();
             this.groupBox4.ResumeLayout(false);
@@ -336,6 +342,7 @@
         private DevExpress.XtraEditors.MemoEdit memoEdit3;
         private DevExpress.XtraEditors.MemoEdit memoEdit2;
         private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.CheckEdit ceQuick;
 
     }
 }

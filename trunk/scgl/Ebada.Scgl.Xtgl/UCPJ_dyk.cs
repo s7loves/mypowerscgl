@@ -92,6 +92,8 @@ namespace Ebada.Scgl.Xtgl {
                 obj.ID = obj.bh;
                 
             }
+            if(parentObj!=null)
+                RefreshData(" where parentid='" + parentObj.ID + "'");
         }
         void gridViewOperation_AfterEdit(PJ_dyk obj)
         {
