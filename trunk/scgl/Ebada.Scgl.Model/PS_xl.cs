@@ -47,7 +47,8 @@ namespace Ebada.Scgl.Model
         private decimal _k=0; 
         private string _parentgt=String.Empty;
         private string _lineKind = String.Empty;
-        private string _lineNum = String.Empty; 
+        private string _lineNum = String.Empty;
+        private decimal _totalt = 0; 
         #endregion
   
   
@@ -591,6 +592,24 @@ namespace Ebada.Scgl.Model
                 if (_lineKind as object == null || !_lineKind.Equals(value))
                 {
                     _lineKind = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：TotalT
+        /// 属性描述：投入运行时间
+        /// 字段信息：[TotalT],decimal
+        /// </summary>
+        [DisplayNameAttribute("投入运行时间")]
+        public decimal TotalT
+        {
+            get { return _totalt; }
+            set
+            {
+                if (_totalt as object == null || !_totalt.Equals(value))
+                {
+                    _totalt = value;
                 }
             }
         }

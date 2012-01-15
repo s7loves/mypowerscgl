@@ -254,12 +254,12 @@ namespace Ebada.Scgl.Yxgl{
                 currentLine = treeList1.GetDataRecordByNode(treeList1.Selection[0]) as PS_xl;
                 if (currentLine != null)
                 {
-                    List<PS_xl> list = LineLossHelper.GetChildrenList(currentLine.LineID);
-                    foreach (PS_xl line in list)
-                    {
-                        line.TheoryLoss = LineLossHelper.Loss(line);
-                        Client.ClientHelper.PlatformSqlMap.Update<PS_xl>(line);
-                    }
+                    //List<PS_xl> list = LineLossHelper.GetChildrenList(currentLine.LineID);
+                    //foreach (PS_xl line in list)
+                    //{
+                    currentLine.TheoryLoss = LineLossHelper.Loss(currentLine);
+                    Client.ClientHelper.PlatformSqlMap.Update<PS_xl>(currentLine);
+                    //}
                 }
             }
 

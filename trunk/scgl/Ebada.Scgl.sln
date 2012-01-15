@@ -61,7 +61,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{FF3DC5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ibatis", "ibatis", "{A2487F78-4862-4224-9C4B-90455531A102}"
 	ProjectSection(SolutionItems) = preProject
-		output\Server\config\ibatis\properties.config = output\Server\config\ibatis\properties.config
 		output\Server\config\ibatis\SqlMap.config = output\Server\config\ibatis\SqlMap.config
 	EndProjectSection
 EndProject
