@@ -268,5 +268,54 @@ namespace Ebada.Scgl.Yxgl{
             //str = string.Format("where LineID='{0}'", parentID);
             //treeList1.RefreshData(str);
         }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PS_xl currentLine = null;
+            if (treeList1.Selection.Count > 0)
+            {
+                currentLine = treeList1.GetDataRecordByNode(treeList1.Selection[0]) as PS_xl;
+                if (currentLine != null)
+                {
+                    List<string> strList = new List<string>();
+                    LineAnaly lineAnaly = LineLossHelper.LineLossAnaly(currentLine);
+                    if (currentLine != null)
+                    {
+                        if (currentLine.TheoryLoss == 0)
+                        {
+                            MessageBox.Show("请进行线损计算后再运行线损分析！");
+                            return;
+                        }
+                        else
+                        {
+                            if ((currentLine.ActualLoss - currentLine.TheoryLoss) / currentLine.LineP > Convert.ToDecimal(0.05))
+                            {
+                                strList.Add("管理线损过大，存在偷、漏、差、误等不良现象。");
+                            }
+                            else if (lineAnaly.FixLossWeight - lineAnaly.VariableLossWeight > Convert.ToDecimal(0.1) || lineAnaly.LossRate - lineAnaly.EconomyLossRate > Convert.ToDecimal(0.1))
+                            {
+                                strList.Add("轻载，应积极发展用电负荷，更换高能耗变压器，调整大马拉小车的变压器，降低电压运行水平，减少变压器层次等措施。");
+                            }
+                            else if (lineAnaly.FixLossWeight - lineAnaly.VariableLossWeight < -Convert.ToDecimal(0.1) || lineAnaly.LossRate - lineAnaly.EconomyLossRate < -Convert.ToDecimal(0.1))
+                            {
+                                strList.Add("超负荷运行，应改造卡脖子和迂回线路，缩短供电半径，提高电压运行水平，无功补偿，调整负荷曲线，减小峰谷差，三相平衡，更换过载变压器等措施。");
+                            }
+                        }
+                        if (strList.Count > 0)
+                        {
+                            ExcelAccess ex = new ExcelAccess();                            
+                            // ex.ActiveSheet(0);
+                            ex.CreateExcel();
+                            //ex.CreateWorkSheet("线损分析");
+                            Ecommon.CreatandWritesheet(ex, strList, strList.Count, 1, 1);
+                        }
+                    }
+
+                }
+            }
+          
+           
+            
+        }
     }
 }

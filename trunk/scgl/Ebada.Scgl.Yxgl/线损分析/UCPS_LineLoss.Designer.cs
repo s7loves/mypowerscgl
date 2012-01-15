@@ -52,6 +52,7 @@
             this.btAdd2 = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).BeginInit();
@@ -114,8 +115,9 @@
             this.btExport,
             this.btFind,
             this.btGdsList,
-            this.btLineLoss});
-            this.barManager1.MaxItemId = 12;
+            this.btLineLoss,
+            this.barButtonItem1});
+            this.barManager1.MaxItemId = 13;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
             this.barManager1.StatusBar = this.bar3;
@@ -132,7 +134,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
             this.bar1.OptionsBar.DisableCustomization = true;
@@ -289,6 +292,15 @@
             this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "线损分析";
+            this.barButtonItem1.Id = 12;
+            this.barButtonItem1.ImageIndex = 8;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            // 
             // UCPS_LineLoss
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -333,5 +345,6 @@
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraBars.BarButtonItem btLineLoss;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }
