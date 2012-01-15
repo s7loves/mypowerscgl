@@ -32,6 +32,7 @@
         <result property="ParentGT" column="ParentGT" />
         <result property="lineKind" column="lineKind" />
         <result property="lineNum" column="lineNum" />
+        <result property="TotalT" column="TotalT" />
       </resultMap>
   </resultMaps>
 
@@ -64,7 +65,8 @@
      [K],
      [ParentGT],
      [lineKind],
-     [lineNum]
+     [lineNum],
+     [TotalT]
      FROM PS_xl
      $value$
    </select>
@@ -97,7 +99,8 @@
      [K],
      [ParentGT],
      [lineKind],
-     [lineNum]
+     [lineNum],
+     [TotalT]
      FROM PS_xl
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
@@ -127,6 +130,7 @@
        <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
        <isNotNull prepend="AND" property="lineKind">[lineKind]='$lineKind$'</isNotNull>
        <isNotNull prepend="AND" property="lineNum">[lineNum]='$lineNum$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalT">[TotalT]='$TotalT$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_xlByKey" resultMap="PS_xl_AllColumns" parameterClass="PS_xl">
@@ -157,7 +161,8 @@
      [K],
      [ParentGT],
      [lineKind],
-     [lineNum]
+     [lineNum],
+     [TotalT]
      FROM PS_xl
      WHERE
      LineID = #LineID#
@@ -212,7 +217,8 @@
      [K]=#K#,
      [ParentGT]=#ParentGT#,
      [lineKind]=#lineKind#,
-     [lineNum]=#lineNum#
+     [lineNum]=#lineNum#,
+     [TotalT]=#TotalT#
      WHERE
      LineID = #LineID#
 
@@ -247,7 +253,8 @@
      [K],
      [ParentGT],
      [lineKind],
-     [lineNum]
+     [lineNum],
+     [TotalT]
      )
      VALUES
      (
@@ -277,7 +284,8 @@
      #K#,
      #ParentGT#,
      #lineKind#,
-     #lineNum#
+     #lineNum#,
+     #TotalT#
      )
 
    </insert>
@@ -313,6 +321,7 @@
        <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
        <isNotNull prepend="AND" property="lineKind">[lineKind]='$lineKind$'</isNotNull>
        <isNotNull prepend="AND" property="lineNum">[lineNum]='$lineNum$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalT">[TotalT]='$TotalT$'</isNotNull>
      </dynamic>
 
    </select>

@@ -137,12 +137,12 @@ namespace Ebada.Scgl.Yxgl{
             PS_xl currentLine = gridView1.GetFocusedRow() as PS_xl;
             if (currentLine!=null)
             {
-                List<PS_xl> list = LineLossHelper.GetChildrenList(currentLine.LineID);
-                foreach (PS_xl line in list)
-                {
-                    line.TheoryLoss = LineLossHelper.Loss(line);
-                    Client.ClientHelper.PlatformSqlMap.Update<PS_xl>(line);
-                }
+                //List<PS_xl> list = LineLossHelper.GetChildrenList(currentLine.LineID);
+                //foreach (PS_xl line in list)
+                //{
+                currentLine.TheoryLoss = LineLossHelper.Loss(currentLine);
+                Client.ClientHelper.PlatformSqlMap.Update<PS_xl>(currentLine);
+                //}
             }
             string str = " where 1>1";
             str = string.Format("where LineID='{0}'", parentID);

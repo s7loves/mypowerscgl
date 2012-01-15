@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Ebada.Scgl.Model;
 using System.Collections;
+using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Core
 {
@@ -75,17 +76,11 @@ namespace Ebada.Scgl.Core
         /// </summary>
         /// <param name="id">线路父ID</param>
         /// <returns>指定ID的所有子线路集合</returns>
-        public static List<PS_xl> GetChildrenList(string id)//所有子线路
-        {
-            List<PS_xl> list = new List<PS_xl>();
+        public static IList<PS_xl> GetChildrenList(string id)//所有子线路
+        {          
             IList<PS_xl> list1 = new List<PS_xl>();
             list1 = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("SelectPS_xlList"," where ParentID = '" + id + "'");
-            list.AddRange(list1);
-            foreach (PS_xl xl in list1)
-            {
-                list.AddRange(GetChildrenList(xl.LineID));
-            }
-            return list;
+            return list1;
         }
         /// <summary>
         /// 线路线损
@@ -105,7 +100,24 @@ namespace Ebada.Scgl.Core
         /// <returns></returns>
         public static decimal LineLoss(PS_xl line)//线路可变损耗
         {
-            decimal lineLoss = (LineR(line) + ByqR(line)) * line.K * line.K * (line.LineP * line.LineP + line.LineQ * line.LineQ) / (Convert.ToDecimal(line.LineVol) * Convert.ToDecimal(line.LineVol));
+            
+            IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "' order by gtCode");
+            decimal capSum = ByqCapcity(listGT);
+            decimal lineLoss = 0;
+            if (capSum!=0)
+            {
+                if (string.IsNullOrEmpty(line.LineVol))
+                {
+                    MainHelper.ShowWarningMessageBox("线路" + line.LineName + "的电压等级不存在！");
+                    return 0;
+                }
+                if (line.TotalT==0)
+                {
+                    MainHelper.ShowWarningMessageBox("线路" + line.LineName + "的投入运行时间为0！");
+                    return 0;
+                }
+                lineLoss = (LineR(line) / (capSum * capSum) + ByqR(line)) * line.K * line.K * (line.LineP * line.LineP + line.LineQ * line.LineQ) / (Convert.ToDecimal(line.LineVol) * Convert.ToDecimal(line.LineVol) * line.TotalT * 1000);
+            }           
             return lineLoss;
         }
         /// <summary>
@@ -118,7 +130,7 @@ namespace Ebada.Scgl.Core
             decimal byqloss = 0;
             IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "'");
 
-            byqloss = ByqP0(listGT);
+            byqloss = ByqP0(listGT)*line.TotalT/1000;
             return byqloss;
         }
         /// <summary>
@@ -129,22 +141,33 @@ namespace Ebada.Scgl.Core
         public static decimal LineR(PS_xl line)//线路等值电阻
         {
             decimal lineloss = 0;
-            IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList","where LineCode ='" + line.LineCode + "'");
+            IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "' order by gtCode");
             IList<PS_dxxh> listxh = Client.ClientHelper.PlatformSqlMap.GetList<PS_dxxh>("SelectPS_dxxhList", "where dydj = '" + line.LineVol + "' and dxxh = '" + line.WireType + "'");
             if (listxh.Count<=0)
-            {
+            {               
                 return 0;
             }
             PS_dxxh xh = listxh[0];
-            IList<PS_gt> listGTAfterRemove = listGT;
-            decimal capSum = ByqCapcity(listGT);
+            IList<PS_gt> listGTAfterRemove = new List<PS_gt>(); ;
+            foreach (PS_gt gt in listGT)
+            {
+                listGTAfterRemove.Add(gt);
+            }
+           // decimal capSum = ByqCapcity(listGT);
             foreach (PS_gt gt in listGT)
             {
                 decimal cap = ByqCapcity(listGTAfterRemove);
                 lineloss += xh.dwdz * gt.gtSpan * cap * cap;
                 listGTAfterRemove.Remove(gt);
             }
-            return lineloss/(capSum*capSum);
+
+            IList<PS_xl> listXL = GetChildrenList(line.LineID);
+            foreach (PS_xl linexl in listXL)
+            {
+                lineloss += LineR(linexl);
+            }
+            return lineloss;
+            
         }
         /// <summary>
         /// 变压器等值电阻
@@ -154,9 +177,12 @@ namespace Ebada.Scgl.Core
         public static decimal ByqR(PS_xl line)//变压器等值电阻
         {
             decimal byqloss = 0;
-            IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "'");
+            IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "' order by gtCode");
             decimal cap = ByqCapcity(listGT);
-            byqloss = Convert.ToDecimal(line.LineVol) * Convert.ToDecimal(line.LineVol) * ByqPk(listGT) / (cap * cap);
+            if (cap!=0)
+            {
+                byqloss = Convert.ToDecimal(line.LineVol) * Convert.ToDecimal(line.LineVol) * ByqPk(listGT) / (cap * cap);
+            }            
             return byqloss;
         }
         /// <summary>
@@ -179,6 +205,16 @@ namespace Ebada.Scgl.Core
             return byqCap;
         }
         /// <summary>
+        /// 线路变压器容量
+        /// </summary>
+        /// <param name="gt"></param>
+        /// <returns></returns>
+        public static decimal ByqCapcityByLine(PS_xl line)//变压器容量
+        {            
+            IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "'");
+            return ByqCapcity(listGT);
+        }
+        /// <summary>
         /// 杆塔集合的变压器容量
         /// </summary>
         /// <param name="listgt"></param>
@@ -188,6 +224,11 @@ namespace Ebada.Scgl.Core
             decimal byqCap = 0;
             foreach (PS_gt gt in listgt)
             {
+                IList<PS_xl> listXL = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("SelectPS_xlList", " where ParentGT = '" + gt.gtCode + "'");
+                foreach (PS_xl line in listXL)
+                {
+                    byqCap += ByqCapcityByLine(line);
+                }
                 IList<PS_tq> listTQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("SelectPS_tqList", "where gtID = '" + gt.gtID + "'");
                 foreach (PS_tq tq in listTQ)
                 {
@@ -210,13 +251,19 @@ namespace Ebada.Scgl.Core
             decimal byqpk = 0;
             foreach (PS_gt gt in listgt)
             {
+                IList<PS_xl> listXL = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("SelectPS_xlList", " where ParentGT = '" + gt.gtCode + "'");
+                foreach (PS_xl line in listXL)
+                {
+                    IList<PS_gt> listFZXLGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "'");
+                    byqpk += ByqPk(listFZXLGT);
+                }
                 IList<PS_tq> listTQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("SelectPS_tqList", "where gtID = '" + gt.gtID + "'");
                 foreach (PS_tq tq in listTQ)
                 {
                     IList<PS_tqbyq> listTQBYQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("SelectPS_tqbyqList", "where tqID = '" + tq.tqID + "'");
                     foreach (PS_tqbyq tqbyq in listTQBYQ)
                     {
-                        IList<PS_byqxh> listByqxh = Client.ClientHelper.PlatformSqlMap.GetList<PS_byqxh>("SelectPS_byqxhList","where byqModel = '" +tqbyq.byqModle +"' and byqVol = '" + tqbyq.byqVol +"'");
+                        IList<PS_byqxh> listByqxh = Client.ClientHelper.PlatformSqlMap.GetList<PS_byqxh>("SelectPS_byqxhList","where byqModle = '" +tqbyq.byqModle +"' and byqVol = '" + tqbyq.byqVol +"'");
                         if (listByqxh.Count>0)
                         {
                             byqpk += (listByqxh[0] as PS_byqxh).Loss1;
@@ -233,24 +280,30 @@ namespace Ebada.Scgl.Core
         /// <returns></returns>
         public static decimal ByqP0(IList<PS_gt> listgt)//变压器开路损耗
         {
-            decimal byqpk = 0;
+            decimal byqp0 = 0;
             foreach (PS_gt gt in listgt)
             {
+                IList<PS_xl> listXL = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("SelectPS_xlList", " where ParentGT = '" + gt.gtCode + "'");
+                foreach (PS_xl line in listXL)
+                {
+                    IList<PS_gt> listFZXLGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "'");
+                    byqp0 += ByqP0(listFZXLGT);
+                }
                 IList<PS_tq> listTQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("SelectPS_tqList", "where gtID = '" + gt.gtID + "'");
                 foreach (PS_tq tq in listTQ)
                 {
                     IList<PS_tqbyq> listTQBYQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("SelectPS_tqbyqList", "where tqID = '" + tq.tqID + "'");
                     foreach (PS_tqbyq tqbyq in listTQBYQ)
                     {
-                        IList<PS_byqxh> listByqxh = Client.ClientHelper.PlatformSqlMap.GetList<PS_byqxh>("SelectPS_byqxhList", "where byqModel = '" + tqbyq.byqModle + "' and byqVol = '" + tqbyq.byqVol + "'");
+                        IList<PS_byqxh> listByqxh = Client.ClientHelper.PlatformSqlMap.GetList<PS_byqxh>("SelectPS_byqxhList", "where byqModle = '" + tqbyq.byqModle + "' and byqVol = '" + tqbyq.byqVol + "'");
                         if (listByqxh.Count > 0)
                         {
-                            byqpk += (listByqxh[0] as PS_byqxh).Loss2;
+                            byqp0 += (listByqxh[0] as PS_byqxh).Loss2;
                         }
                     }
                 }
             }
-            return byqpk;
+            return byqp0;
         }
         /// <summary>
         /// 线路的变压器开路损耗

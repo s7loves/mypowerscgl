@@ -37,6 +37,10 @@ namespace Ebada.Scgl.Sbgl
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "TotalLength");
             this.spinEdit3.DataBindings.Add("EditValue", rowData, "TheoryLoss");
             this.spinEdit4.DataBindings.Add("EditValue", rowData, "ActualLoss");
+            this.spinEdit5.DataBindings.Add("EditValue", rowData, "K");
+            this.spinEdit6.DataBindings.Add("EditValue", rowData, "LineP");
+            this.spinEdit8.DataBindings.Add("EditValue", rowData, "LineQ");
+            this.spinEdit7.DataBindings.Add("EditValue", rowData, "TotalT");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineType");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "LineCode");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "LineName");
@@ -53,6 +57,7 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit15.DataBindings.Add("EditValue", rowData, "ParentGT");//分支杆号
             this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "lineKind");//完好类型
             this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "lineNum");//线路类型
+            
         }
         #region IPopupFormEdit Members
         private PS_xl rowData = null;
@@ -237,6 +242,11 @@ namespace Ebada.Scgl.Sbgl
         private void groupControl1_VisibleChanged(object sender, EventArgs e) {
             simpleButton3.Visible = groupControl1.Visible;
             simpleButton4.Visible = groupControl1.Visible;
+        }
+
+        private void labelControl17_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

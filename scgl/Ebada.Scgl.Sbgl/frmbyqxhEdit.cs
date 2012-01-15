@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Sbgl
 
 
             this.textEdit1.DataBindings.Add("EditValue", rowData, "byqModle");
-            this.textEdit2.DataBindings.Add("EditValue", rowData, "byqVol");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "byqVol");
 
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "byqCapcity");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "Loss1");
@@ -56,7 +56,7 @@ namespace Ebada.Scgl.Sbgl
         #endregion
 
         private void InitComboBoxData() {
-            
+            this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetVoltage());
         }
 
     }
