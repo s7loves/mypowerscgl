@@ -292,11 +292,11 @@ namespace Ebada.Scgl.Yxgl{
                             {
                                 strList.Add("管理线损过大，存在偷、漏、差、误等不良现象。");
                             }
-                            else if (lineAnaly.FixLossWeight - lineAnaly.VariableLossWeight > Convert.ToDecimal(0.1) || lineAnaly.LossRate - lineAnaly.EconomyLossRate > Convert.ToDecimal(0.1))
+                            if (lineAnaly.FixLossWeight - lineAnaly.VariableLossWeight > Convert.ToDecimal(0.1) || lineAnaly.LossRate - lineAnaly.EconomyLossRate > Convert.ToDecimal(0.1))
                             {
                                 strList.Add("轻载，应积极发展用电负荷，更换高能耗变压器，调整大马拉小车的变压器，降低电压运行水平，减少变压器层次等措施。");
                             }
-                            else if (lineAnaly.FixLossWeight - lineAnaly.VariableLossWeight < -Convert.ToDecimal(0.1) || lineAnaly.LossRate - lineAnaly.EconomyLossRate < -Convert.ToDecimal(0.1))
+                            if (lineAnaly.FixLossWeight - lineAnaly.VariableLossWeight < -Convert.ToDecimal(0.1) || lineAnaly.LossRate - lineAnaly.EconomyLossRate < -Convert.ToDecimal(0.1))
                             {
                                 strList.Add("超负荷运行，应改造卡脖子和迂回线路，缩短供电半径，提高电压运行水平，无功补偿，调整负荷曲线，减小峰谷差，三相平衡，更换过载变压器等措施。");
                             }
