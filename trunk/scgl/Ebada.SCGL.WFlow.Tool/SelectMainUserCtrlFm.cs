@@ -92,7 +92,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //fmMainUserControl f = new fmMainUserControl(UserId, UserName, WorkConst.STATE_ADD, "");
             //f.ShowDialog();
             FormBase dlg = new FormBase();
-            UCmExcelTableControl tc = new UCmExcelTableControl();
+            UCmExcelTableTreeControl tc = new UCmExcelTableTreeControl();
             dlg.Text = "表单管理";
             dlg.WindowState = FormWindowState.Maximized;
             //dlg.MdiParent = MainHelper.MainForm;
