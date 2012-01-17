@@ -85,7 +85,7 @@
             this.typeCBox,
             this.typeLookUp});
             this.treeList1.SelectImageList = this.imageList2;
-            this.treeList1.Size = new System.Drawing.Size(760, 328);
+            this.treeList1.Size = new System.Drawing.Size(760, 327);
             this.treeList1.TabIndex = 0;
             this.treeList1.AfterDragNode += new DevExpress.XtraTreeList.NodeEventHandler(this.treeList1_AfterDragNode);
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
@@ -116,8 +116,6 @@
             this.treeListColumn2.Caption = "类型";
             this.treeListColumn2.FieldName = "CtrlSize";
             this.treeListColumn2.Name = "treeListColumn2";
-            this.treeListColumn2.Visible = true;
-            this.treeListColumn2.VisibleIndex = 3;
             // 
             // treeListColumn1
             // 
@@ -315,20 +313,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 353);
-            this.barDockControlBottom.Size = new System.Drawing.Size(760, 21);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 352);
+            this.barDockControlBottom.Size = new System.Drawing.Size(760, 22);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 328);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 327);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(760, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 328);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 327);
             // 
             // imageList1
             // 
