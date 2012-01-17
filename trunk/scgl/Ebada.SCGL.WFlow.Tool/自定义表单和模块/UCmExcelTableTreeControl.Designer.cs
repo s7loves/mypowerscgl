@@ -33,6 +33,8 @@
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.typeCBox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.typeLookUp = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
@@ -55,7 +57,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
-            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).BeginInit();
@@ -68,6 +69,7 @@
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumn4,
             this.treeListColumn3,
+            this.treeListColumn2,
             this.treeListColumn1});
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.KeyFieldName = "LPID";
@@ -83,7 +85,7 @@
             this.typeCBox,
             this.typeLookUp});
             this.treeList1.SelectImageList = this.imageList2;
-            this.treeList1.Size = new System.Drawing.Size(760, 327);
+            this.treeList1.Size = new System.Drawing.Size(760, 328);
             this.treeList1.TabIndex = 0;
             this.treeList1.AfterDragNode += new DevExpress.XtraTreeList.NodeEventHandler(this.treeList1_AfterDragNode);
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
@@ -105,10 +107,25 @@
             this.treeListColumn3.MinWidth = 35;
             this.treeListColumn3.Name = "treeListColumn3";
             this.treeListColumn3.OptionsColumn.AllowSize = false;
-            this.treeListColumn3.SortOrder = System.Windows.Forms.SortOrder.Ascending;
             this.treeListColumn3.Visible = true;
             this.treeListColumn3.VisibleIndex = 1;
             this.treeListColumn3.Width = 35;
+            // 
+            // treeListColumn2
+            // 
+            this.treeListColumn2.Caption = "类型";
+            this.treeListColumn2.FieldName = "CtrlSize";
+            this.treeListColumn2.Name = "treeListColumn2";
+            this.treeListColumn2.Visible = true;
+            this.treeListColumn2.VisibleIndex = 3;
+            // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.Caption = "说明";
+            this.treeListColumn1.FieldName = "CtrlType";
+            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.Visible = true;
+            this.treeListColumn1.VisibleIndex = 2;
             // 
             // typeCBox
             // 
@@ -298,20 +315,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 352);
-            this.barDockControlBottom.Size = new System.Drawing.Size(760, 22);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 353);
+            this.barDockControlBottom.Size = new System.Drawing.Size(760, 21);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 327);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 328);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(760, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 327);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 328);
             // 
             // imageList1
             // 
@@ -338,14 +355,6 @@
             this.imageList3.TransparentColor = System.Drawing.Color.Magenta;
             this.imageList3.Images.SetKeyName(0, "");
             this.imageList3.Images.SetKeyName(1, "");
-            // 
-            // treeListColumn1
-            // 
-            this.treeListColumn1.Caption = "说明";
-            this.treeListColumn1.FieldName = "CtrlType";
-            this.treeListColumn1.Name = "treeListColumn1";
-            this.treeListColumn1.Visible = true;
-            this.treeListColumn1.VisibleIndex = 2;
             // 
             // UCmExcelTableTreeControl
             // 
@@ -394,5 +403,6 @@
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.ImageList imageList3;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
     }
 }
