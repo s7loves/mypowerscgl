@@ -228,7 +228,15 @@ namespace Ebada.SCGL {
 
         private void btLogin_ItemClick(object sender, ItemClickEventArgs e) {
             frmLogin dlg = new frmLogin();
-            if (dlg.ShowDialog() == DialogResult.OK) {
+            if (dlg.ShowDialog() == DialogResult.OK) { sqlwhere = "where ModuTypes != 'hide' order by ModuName";
+            IList mlist = MainHelper.PlatformSqlMap.GetList("SelectmModuleList", sqlwhere);
+            sqlwhere = "where ModuTypes = 'Ebada.SCGL.WFlow.Tool.UCmExcelTableControl' order by ModuName";
+            IList<mModule> mlisttemp = MainHelper.PlatformSqlMap.GetList<mModule>("SelectmModuleList", sqlwhere);
+            foreach (mModule md in mlisttemp)
+            {
+                md.ModuTypes = "Ebada.SCGL.WFlow.Tool.UCmExcelTableTreeControl";
+                MainHelper.PlatformSqlMap.Update<mModule>(md);
+            }
                 barStaticItem2.Caption = string.Format("部门：{0}  操作员：{1}", MainHelper.User.OrgName, MainHelper.User.UserName);
                 InitMenu(MainHelper.User.UserID);
                 ucModulBar1.RefreshData(sqlwhere);

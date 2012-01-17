@@ -175,8 +175,9 @@ namespace Ebada.SCGL.WFlow.Tool
             frmTableMulu frm = new frmTableMulu();
             LP_Temple lp = new LP_Temple();
             string slqwhere = " where CtrlSize='目录'  and ParentID not in (select LPID from LP_Temple where 1=1 )  ";
-            
+
             lp.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere) + 1;
+            lp.CtrlSize = "目录";
             frm.RowData = lp;
             if (frm.ShowDialog() == DialogResult.OK)
             {
