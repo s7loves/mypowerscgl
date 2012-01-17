@@ -151,6 +151,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 lp.SignImg = new byte[0];
                 lp.ImageAttachment = new byte[0];
+                lp.DocContent = new byte[0];
             }
             this.treeList1.BeginUpdate();
             treeList1.DataSource = list;
@@ -214,8 +215,8 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 return;
             }
-            //LP_Temple lp = treeList1.GetDataRecordByNode(treeList1.FocusedNode) as LP_Temple;
-            LP_Temple lp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(treeList1.FocusedNode["lpid"]);
+            LP_Temple lp = treeList1.GetDataRecordByNode(treeList1.FocusedNode) as LP_Temple;
+            //LP_Temple lp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(treeList1.FocusedNode["lpid"]);
             frmTableMulu frm = new frmTableMulu();
             if (lp == null)
             {
@@ -229,6 +230,9 @@ namespace Ebada.SCGL.WFlow.Tool
             lp.CtrlType = "目录";
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                lp.SignImg = new byte[0];
+                lp.ImageAttachment = new byte[0];
+                lp.DocContent = new byte[0];
                 MainHelper.PlatformSqlMap.Update<LP_Temple>(lp);
                 InitData();
             }
@@ -242,12 +246,13 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             LP_Temple lp = treeList1.GetDataRecordByNode(treeList1.FocusedNode) as LP_Temple;
             LP_Temple parentlp = treeList1.GetDataRecordByNode(treeList1.FocusedNode.ParentNode) as LP_Temple;
+            lp.SignImg = new byte[0];
+            lp.ImageAttachment = new byte[0];
+            lp.DocContent = new byte[0];
             //LP_Temple lp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(treeList1.FocusedNode["lpid"]);
             //LP_Temple parentlp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(treeList1.FocusedNode.ParentNode["lpid"]);
             if (parentlp.CtrlType != "目录")
             {
-                lp.SignImg = new byte[0];
-                lp.ImageAttachment = new byte[0];
                 InitData();
                 return;
             }
