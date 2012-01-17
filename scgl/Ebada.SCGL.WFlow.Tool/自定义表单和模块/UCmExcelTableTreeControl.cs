@@ -58,13 +58,41 @@ namespace Ebada.SCGL.WFlow.Tool
             treeViewOperator = new TreeViewOperation<LP_Temple>(treeList1, barManager1, new SetTaskTableFm());
             
             treeViewOperator.CreatingObjectEvent += treeViewOperator_CreatingObject;
+            treeViewOperator.BeforeAdd += new ObjectOperationEventHandler<LP_Temple>(treeViewOperator_BeforeAdd);
+            treeViewOperator.BeforeEdit += new ObjectOperationEventHandler<LP_Temple>(treeViewOperator_BeforeEdit);
             treeViewOperator.AfterAdd += treeViewOperator_AfterAdd;
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete += treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
             
         }
-
+        void treeViewOperator_BeforeEdit(object render, ObjectOperationEventArgs<LP_Temple> e)
+        {
+            if (treeList1.FocusedNode == null)
+            {
+                return;
+            }
+            LP_Temple lp = treeList1.GetDataRecordByNode(treeList1.FocusedNode) as LP_Temple;
+            if (lp.CtrlType == "目录")
+            {
+                e.Cancel=true;
+            }
+            
+        }
+        void treeViewOperator_BeforeAdd(object render, ObjectOperationEventArgs<LP_Temple> e)
+        {
+            if (treeList1.FocusedNode != null)
+            {
+                LP_Temple parentlp = treeList1.GetDataRecordByNode(treeList1.FocusedNode) as LP_Temple;
+                if (parentlp != null)
+                {
+                    e.Value.ParentID = parentlp.LPID;
+                    string slqwhere = " where   ParentID='" + parentlp.LPID + "'";
+                        slqwhere += " and CtrlType != '目录'";
+                        e.Value.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere) + 1;
+                }
+            }
+        }
         void treeViewOperator_AfterDelete(LP_Temple newobj) {
             if (AfterDelete != null)
                 AfterDelete(treeList1, newobj);                
@@ -78,6 +106,7 @@ namespace Ebada.SCGL.WFlow.Tool
         void treeViewOperator_AfterAdd(LP_Temple newobj) {
             if (AfterAdd != null)
                 AfterAdd(treeList1, newobj);
+            InitData();
         }
         
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
@@ -91,6 +120,7 @@ namespace Ebada.SCGL.WFlow.Tool
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             Init();
+            InitData();
         }
         public void Init() {
             //foreach (TreeListColumn tc in treeList1.Columns)
@@ -99,14 +129,14 @@ namespace Ebada.SCGL.WFlow.Tool
             //}
             //treeList1.Columns["CellName"].Visible = true;
             //treeList1.Columns["OrgType"].ColumnEdit = DicTypeHelper.OrgTypeDic;
-            if (this.Site == null)
-                InitData();
+            //if (this.Site == null)
+            //    InitData();
             //treeList1.Columns["CellName"].Caption = "表名";
             //treeList1.Columns["CellName"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             //treeList1.Columns["CellName"].AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 
-            this.treeList1.KeyFieldName = "lpid";
-            this.treeList1.ParentFieldName = "ParentID";
+            this.treeList1.KeyFieldName = "LPID";
+            //this.treeList1.ParentFieldName = "ParentID";
         }
         /// <summary>
         /// 初始化数据
@@ -114,7 +144,7 @@ namespace Ebada.SCGL.WFlow.Tool
         public void InitData() {
             //treeViewOperator.RefreshData("where parentid = '0' order by cellname");
             //treeViewOperator.RefreshData("where CtrlType='目录' or ParentID not in (select LPID from LP_Temple where 1=1) order by cellname");
-            string slqwhere = "where CtrlType='目录' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlType!='目录') order by cellname";
+            string slqwhere = "where CtrlType='目录' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlType!='目录') order by sortid";
 
             IList<LP_Temple> list = MainHelper.PlatformSqlMap.GetList<LP_Temple>(slqwhere);
             foreach (LP_Temple lp in list)
@@ -122,7 +152,9 @@ namespace Ebada.SCGL.WFlow.Tool
                 lp.SignImg = new byte[0];
                 lp.ImageAttachment = new byte[0];
             }
+            this.treeList1.BeginUpdate();
             treeList1.DataSource = list;
+            this.treeList1.EndUpdate();
         }
         public bool BarManagerVisible
         {            
@@ -151,21 +183,23 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 return;
             }
-            //LP_Temple lp = treeList1.GetDataRecordByNode(treeList1.FocusedNode) as LP_Temple;
-            LP_Temple lp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(treeList1.FocusedNode["lpid"]);
+            LP_Temple parentlp = treeList1.GetDataRecordByNode(treeList1.FocusedNode) as LP_Temple;
+            //LP_Temple lp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(treeList1.FocusedNode["lpid"]);
             frmTableMulu frm = new frmTableMulu();
-            if (lp == null)
+            if (parentlp == null)
             {
                 return;
             }
-            if (lp.CtrlType != "目录")
+            if (parentlp.CtrlType != "目录")
             {
                 return;
             }
-            string slqwhere = " where   ParentID='" + lp.LPID + "'";
-            lp.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere) + 1;
-            frm.RowData = lp;
+            string slqwhere = " where   ParentID='" + parentlp.LPID + "' and CtrlType = '目录'";
+            LP_Temple lp = new LP_Temple();
             lp.CtrlType = "目录";
+            lp.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere) + 1;
+            lp.ParentID = parentlp.LPID;
+            frm.RowData = lp;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 MainHelper.PlatformSqlMap.Create<LP_Temple>(lp);
@@ -218,7 +252,35 @@ namespace Ebada.SCGL.WFlow.Tool
                 return;
             }
             lp.ParentID = parentlp.LPID;
+            string slqwhere = " where   ParentID='" + parentlp.LPID + "'";
+            if (lp.CtrlType != "目录")
+            slqwhere +=  " and CtrlType != '目录'";
+            else
+                slqwhere += " and CtrlType = '目录'";
+
+            lp.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere) + 1;
             MainHelper.PlatformSqlMap.Update<LP_Temple>(lp);
+            
+        }
+
+        private void treeList1_GetSelectImage(object sender, GetSelectImageEventArgs e)
+        {
+            
+                LP_Temple lp = treeList1.GetDataRecordByNode(e.Node) as LP_Temple;
+                if (lp == null) return;
+                if (lp.CtrlType == "目录")
+                {
+                    e.NodeImageIndex = e.Node.Expanded ? 1 : 0;
+                }
+                else
+                {
+                    e.NodeImageIndex =4;
+                }
+        }
+
+        private void btRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            InitData();
         }
 
       

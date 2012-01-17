@@ -99,7 +99,7 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.panelControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1159, 363);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1028, 363);
             this.splitContainerControl1.SplitterPosition = 318;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -114,7 +114,7 @@
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.dsoFramerWordControl1);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(837, 363);
+            this.splitContainerControl2.Size = new System.Drawing.Size(823, 363);
             this.splitContainerControl2.SplitterPosition = 44;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
@@ -133,7 +133,7 @@
             this.groupControl2.MinimumSize = new System.Drawing.Size(823, 0);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.ShowCaption = false;
-            this.groupControl2.Size = new System.Drawing.Size(837, 44);
+            this.groupControl2.Size = new System.Drawing.Size(823, 44);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "groupControl2";
             // 
@@ -141,7 +141,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(780, 12);
+            this.btnCancel.Location = new System.Drawing.Point(766, 12);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(52, 23);
             this.btnCancel.TabIndex = 15;
@@ -152,7 +152,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(716, 12);
+            this.btnOK.Location = new System.Drawing.Point(702, 12);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(49, 23);
             this.btnOK.TabIndex = 16;
@@ -162,7 +162,7 @@
             // simpleButton1
             // 
             this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton1.Location = new System.Drawing.Point(611, 12);
+            this.simpleButton1.Location = new System.Drawing.Point(597, 12);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(99, 23);
             this.simpleButton1.TabIndex = 14;
@@ -171,14 +171,14 @@
             // 
             // memoEdit1
             // 
-            this.memoEdit1.Location = new System.Drawing.Point(298, 5);
+            this.memoEdit1.Location = new System.Drawing.Point(239, 5);
             this.memoEdit1.Name = "memoEdit1";
             this.memoEdit1.Size = new System.Drawing.Size(297, 33);
             this.memoEdit1.TabIndex = 13;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(242, 12);
+            this.labelControl3.Location = new System.Drawing.Point(209, 12);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(24, 14);
             this.labelControl3.TabIndex = 12;
@@ -186,7 +186,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(19, 12);
+            this.labelControl2.Location = new System.Drawing.Point(7, 12);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(24, 14);
             this.labelControl2.TabIndex = 11;
@@ -194,7 +194,7 @@
             // 
             // textEdit1
             // 
-            this.textEdit1.Location = new System.Drawing.Point(70, 9);
+            this.textEdit1.Location = new System.Drawing.Point(37, 9);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Size = new System.Drawing.Size(166, 21);
             this.textEdit1.TabIndex = 10;
@@ -204,7 +204,7 @@
             this.dsoFramerWordControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dsoFramerWordControl1.Location = new System.Drawing.Point(0, 0);
             this.dsoFramerWordControl1.Name = "dsoFramerWordControl1";
-            this.dsoFramerWordControl1.Size = new System.Drawing.Size(837, 315);
+            this.dsoFramerWordControl1.Size = new System.Drawing.Size(823, 315);
             this.dsoFramerWordControl1.TabIndex = 2;
             this.dsoFramerWordControl1.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.dsoFramerWordControl1_ChangeUICues);
             this.dsoFramerWordControl1.BindingContextChanged += new System.EventHandler(this.dsoFramerWordControl1_BindingContextChanged);
@@ -215,7 +215,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(318, 363);
+            this.panelControl1.Size = new System.Drawing.Size(201, 363);
             this.panelControl1.TabIndex = 0;
             // 
             // uCmExcel1
@@ -223,14 +223,14 @@
             this.uCmExcel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uCmExcel1.Location = new System.Drawing.Point(2, 2);
             this.uCmExcel1.Name = "uCmExcel1";
-            this.uCmExcel1.Size = new System.Drawing.Size(314, 359);
+            this.uCmExcel1.Size = new System.Drawing.Size(197, 359);
             this.uCmExcel1.TabIndex = 2;
             // 
             // SetTaskTableFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1159, 363);
+            this.ClientSize = new System.Drawing.Size(1028, 363);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "SetTaskTableFm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

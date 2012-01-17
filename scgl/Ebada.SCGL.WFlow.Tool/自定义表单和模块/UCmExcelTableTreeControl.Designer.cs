@@ -31,12 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCmExcelTableTreeControl));
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.typeCBox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.typeLookUp = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barAddFloder = new DevExpress.XtraBars.BarButtonItem();
@@ -55,6 +54,8 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList3 = new System.Windows.Forms.ImageList(this.components);
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).BeginInit();
@@ -65,37 +66,28 @@
             // 
             this.treeList1.AllowDrop = true;
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn1,
-            this.treeListColumn2,
+            this.treeListColumn4,
             this.treeListColumn3,
-            this.treeListColumn4});
+            this.treeListColumn1});
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.KeyFieldName = "lpID";
-            this.treeList1.Location = new System.Drawing.Point(0, 26);
+            this.treeList1.KeyFieldName = "LPID";
+            this.treeList1.Location = new System.Drawing.Point(0, 25);
             this.treeList1.Name = "treeList1";
+            this.treeList1.OptionsBehavior.AutoChangeParent = false;
             this.treeList1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.treeList1.OptionsBehavior.DragNodes = true;
             this.treeList1.OptionsBehavior.Editable = false;
             this.treeList1.OptionsBehavior.EnableFiltering = true;
+            this.treeList1.OptionsView.ShowIndicator = false;
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.typeCBox,
             this.typeLookUp});
-            this.treeList1.Size = new System.Drawing.Size(760, 326);
+            this.treeList1.SelectImageList = this.imageList2;
+            this.treeList1.Size = new System.Drawing.Size(760, 327);
             this.treeList1.TabIndex = 0;
             this.treeList1.AfterDragNode += new DevExpress.XtraTreeList.NodeEventHandler(this.treeList1_AfterDragNode);
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
-            // 
-            // treeListColumn1
-            // 
-            this.treeListColumn1.Caption = "treeListColumn1";
-            this.treeListColumn1.FieldName = "LPID";
-            this.treeListColumn1.Name = "treeListColumn1";
-            // 
-            // treeListColumn2
-            // 
-            this.treeListColumn2.Caption = "treeListColumn2";
-            this.treeListColumn2.FieldName = "ParentID";
-            this.treeListColumn2.Name = "treeListColumn2";
+            this.treeList1.GetSelectImage += new DevExpress.XtraTreeList.GetSelectImageEventHandler(this.treeList1_GetSelectImage);
             // 
             // treeListColumn4
             // 
@@ -103,18 +95,20 @@
             this.treeListColumn4.FieldName = "CellName";
             this.treeListColumn4.Name = "treeListColumn4";
             this.treeListColumn4.Visible = true;
-            this.treeListColumn4.VisibleIndex = 1;
-            this.treeListColumn4.Width = 370;
+            this.treeListColumn4.VisibleIndex = 0;
+            this.treeListColumn4.Width = 558;
             // 
             // treeListColumn3
             // 
             this.treeListColumn3.Caption = "序号";
             this.treeListColumn3.FieldName = "SortID";
+            this.treeListColumn3.MinWidth = 35;
             this.treeListColumn3.Name = "treeListColumn3";
             this.treeListColumn3.OptionsColumn.AllowSize = false;
+            this.treeListColumn3.SortOrder = System.Windows.Forms.SortOrder.Ascending;
             this.treeListColumn3.Visible = true;
-            this.treeListColumn3.VisibleIndex = 0;
-            this.treeListColumn3.Width = 369;
+            this.treeListColumn3.VisibleIndex = 1;
+            this.treeListColumn3.Width = 35;
             // 
             // typeCBox
             // 
@@ -132,6 +126,16 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name3", "Name3", 61, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name4", "Name4", 48, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.typeLookUp.Name = "typeLookUp";
+            // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Magenta;
+            this.imageList2.Images.SetKeyName(0, "");
+            this.imageList2.Images.SetKeyName(1, "");
+            this.imageList2.Images.SetKeyName(2, "");
+            this.imageList2.Images.SetKeyName(3, "");
+            this.imageList2.Images.SetKeyName(4, "archives.png");
             // 
             // barManager1
             // 
@@ -237,13 +241,13 @@
             // 
             // btRefresh
             // 
-            this.btRefresh.Caption = "检索";
-            this.btRefresh.Description = "加载数据";
+            this.btRefresh.Caption = "刷新";
+            this.btRefresh.Description = "刷新数据";
             this.btRefresh.Id = 6;
             this.btRefresh.ImageIndex = 9;
             this.btRefresh.Name = "btRefresh";
             this.btRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btRefresh.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btRefresh_ItemClick);
             // 
             // btFind
             // 
@@ -289,7 +293,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(760, 26);
+            this.barDockControlTop.Size = new System.Drawing.Size(760, 25);
             // 
             // barDockControlBottom
             // 
@@ -300,14 +304,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 326);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 327);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(760, 26);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
+            this.barDockControlRight.Location = new System.Drawing.Point(760, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 327);
             // 
             // imageList1
             // 
@@ -327,6 +331,21 @@
             this.imageList1.Images.SetKeyName(11, "exit1.png");
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
+            // 
+            // imageList3
+            // 
+            this.imageList3.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList3.ImageStream")));
+            this.imageList3.TransparentColor = System.Drawing.Color.Magenta;
+            this.imageList3.Images.SetKeyName(0, "");
+            this.imageList3.Images.SetKeyName(1, "");
+            // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.Caption = "说明";
+            this.treeListColumn1.FieldName = "CtrlType";
+            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.Visible = true;
+            this.treeListColumn1.VisibleIndex = 2;
             // 
             // UCmExcelTableTreeControl
             // 
@@ -370,9 +389,10 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit typeLookUp;
         private DevExpress.XtraBars.BarButtonItem barAddFloder;
         private DevExpress.XtraBars.BarButtonItem barAddChildFloder;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn4;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn3;
+        private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.ImageList imageList3;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
     }
 }
