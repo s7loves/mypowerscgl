@@ -153,7 +153,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 lp.SignImg = new byte[0];
                 lp.ImageAttachment = new byte[0];
-                //lp.DocContent = new byte[0];
+                if (lp.DocContent == null) lp.DocContent = new byte[0];
                 if (lp.CtrlSize != "目录" && lp.CtrlSize != "")
                 {
                     lp.CtrlSize = "";
