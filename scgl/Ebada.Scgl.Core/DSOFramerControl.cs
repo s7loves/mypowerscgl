@@ -32,6 +32,8 @@ namespace Ebada.Scgl.Core {
             myExcel = new ExcelAccess();
             desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             tempPath = Path.GetTempPath();
+            axFramerControl1.ActivationPolicy = DSOFramer.dsoActivationPolicy.dsoKeepUIActiveOnAppDeactive;
+            axFramerControl1.FrameHookPolicy = DSOFramer.dsoFrameHookPolicy.dsoSetOnFirstOpen;
             this.axFramerControl1.set_EnableFileCommand(DSOFramer.dsoFileCommandType.dsoFilePrintPreview, false);
         }
 
