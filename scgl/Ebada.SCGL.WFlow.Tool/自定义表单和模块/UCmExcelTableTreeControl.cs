@@ -151,8 +151,8 @@ namespace Ebada.SCGL.WFlow.Tool
             IList<LP_Temple> list = MainHelper.PlatformSqlMap.GetList<LP_Temple>(slqwhere);
             foreach (LP_Temple lp in list)
             {
-                lp.SignImg = new byte[0];
-                lp.ImageAttachment = new byte[0];
+                if (lp.SignImg == null) lp.SignImg = new byte[0];
+                if (lp.ImageAttachment == null) lp.ImageAttachment = new byte[0];
                 if (lp.DocContent == null) lp.DocContent = new byte[0];
                 if (lp.CtrlSize != "目录" && lp.CtrlSize != "")
                 {
@@ -254,9 +254,9 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             LP_Temple lp = treeList1.GetDataRecordByNode(treeList1.FocusedNode) as LP_Temple;
             LP_Temple parentlp = treeList1.GetDataRecordByNode(treeList1.FocusedNode.ParentNode) as LP_Temple;
-            lp.SignImg = new byte[0];
-            lp.ImageAttachment = new byte[0];
-            lp.DocContent = new byte[0];
+            if (lp.SignImg == null) lp.SignImg = new byte[0];
+            if (lp.ImageAttachment == null) lp.ImageAttachment = new byte[0];
+            if (lp.DocContent==null) lp.DocContent = new byte[0];
             //LP_Temple lp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(treeList1.FocusedNode["lpid"]);
             //LP_Temple parentlp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(treeList1.FocusedNode.ParentNode["lpid"]);
             if (parentlp.CtrlSize != "目录")
