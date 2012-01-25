@@ -146,7 +146,7 @@ namespace Ebada.SCGL.WFlow.Tool
         public void InitData() {
             //treeViewOperator.RefreshData("where parentid = '0' order by cellname");
             //treeViewOperator.RefreshData("where CtrlSize='目录' or ParentID not in (select LPID from LP_Temple where 1=1) order by cellname");
-            string slqwhere = "where CtrlSize='目录' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') order by CtrlSize desc, SortID";
+            string slqwhere = "where CtrlSize='目录' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') order by CtrlSize desc, SortID,cellname";
 
             IList<LP_Temple> list = MainHelper.PlatformSqlMap.GetList<LP_Temple>(slqwhere);
             foreach (LP_Temple lp in list)
