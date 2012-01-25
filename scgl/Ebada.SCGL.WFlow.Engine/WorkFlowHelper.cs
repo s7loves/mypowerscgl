@@ -710,7 +710,7 @@ namespace Ebada.SCGL.WFlow.Engine
                                             workTaskInstance.TaskInsCaption = "子流程";
                                             workTaskInstance.Status = "3";
                                             workTaskInstance.Create();
-                                            string result=  CreateNextTaskInstance(userId, MainWorkflowId, MainWorktaskId, MainWorkflowInsId, newTaskId, operatorInstanceId, "提交");
+                                            string result = CreateNextTaskInstance(userId, MainWorkflowId, MainWorktaskId, MainWorkflowInsId, newTaskId, operatorInstanceId, "提交");
                                             if (result != WorkFlowConst.SuccessCode) return result;
                                         }
 
@@ -742,16 +742,16 @@ namespace Ebada.SCGL.WFlow.Engine
 
                                         //创建多个处理人
 
-                                       string result= CreateOperInstance(userId, WorkTaskInstanceId, workTaskId, workFlowId, endTaskId, workFlowInstanceId, newTaskId, OperParam);//创建处理者实例
-                                       if (result != WorkFlowConst.SuccessCode) return result;
+                                        string result = CreateOperInstance(userId, WorkTaskInstanceId, workTaskId, workFlowId, endTaskId, workFlowInstanceId, newTaskId, OperParam);//创建处理者实例
+                                        if (result != WorkFlowConst.SuccessCode) return result;
                                     }
                                     else
                                         if (endoperRule == "2")//所以有人都要处理，此时每个处理者产生一个任务实例
                                         {
                                             //创建任务实例和处理人
 
-                                           string result= CreateOperInstance(userId, WorkTaskInstanceId, workTaskId, workFlowId, endTaskId, workFlowInstanceId, WorkTaskInstanceId, OperParam);
-                                           if (result != WorkFlowConst.SuccessCode) return result;
+                                            string result = CreateOperInstance(userId, WorkTaskInstanceId, workTaskId, workFlowId, endTaskId, workFlowInstanceId, WorkTaskInstanceId, OperParam);
+                                            if (result != WorkFlowConst.SuccessCode) return result;
                                         }
                                     //设置处理者实例正常结束
                                     OperatorInstance.SetOperatorInstanceOver(userId, operatorInstanceId);
@@ -804,7 +804,7 @@ namespace Ebada.SCGL.WFlow.Engine
                                             }
                                         }
 
-                                      
+
 
                                     }
 
@@ -824,7 +824,7 @@ namespace Ebada.SCGL.WFlow.Engine
                                         workTaskInstance.TaskInsCaption = endTaskTypeAndOr;
                                         workTaskInstance.Status = "3";
                                         workTaskInstance.Create();
-                                        string result= CreateNextTaskInstance(userId, workFlowId, endTaskId, workFlowInstanceId, newTaskId, operatorInstanceId, "提交");
+                                        string result = CreateNextTaskInstance(userId, workFlowId, endTaskId, workFlowInstanceId, newTaskId, operatorInstanceId, "提交");
                                         if (result != WorkFlowConst.SuccessCode) return result;
                                     }
                                     #endregion
@@ -850,16 +850,16 @@ namespace Ebada.SCGL.WFlow.Engine
 
                                         //创建多个处理人
 
-                                       string result= CreateOperInstance(userId, WorkTaskInstanceId, workTaskId, workFlowId, endTaskId, workFlowInstanceId, newTaskId, OperParam);//创建任务实例
-                                       if (result != WorkFlowConst.SuccessCode) return result;
+                                        string result = CreateOperInstance(userId, WorkTaskInstanceId, workTaskId, workFlowId, endTaskId, workFlowInstanceId, newTaskId, OperParam);//创建任务实例
+                                        if (result != WorkFlowConst.SuccessCode) return result;
                                     }
                                     else
                                         if (endoperRule == "2")//所以有人都要处理，此时每个处理者产生一个任务实例
                                         {
                                             //创建任务实例和处理人
 
-                                          string result=CreateOperInstance(userId, WorkTaskInstanceId, workTaskId, workFlowId, endTaskId, workFlowInstanceId, WorkTaskInstanceId, OperParam);
-                                          if (result != WorkFlowConst.SuccessCode) return result;
+                                            string result = CreateOperInstance(userId, WorkTaskInstanceId, workTaskId, workFlowId, endTaskId, workFlowInstanceId, WorkTaskInstanceId, OperParam);
+                                            if (result != WorkFlowConst.SuccessCode) return result;
                                         }
                                     //设置处理者实例正常结束
                                     OperatorInstance.SetOperatorInstanceOver(userId, operatorInstanceId);
@@ -912,8 +912,15 @@ namespace Ebada.SCGL.WFlow.Engine
                                     #endregion
                                     break;
                                 }
-                        }
+                            case "7"://并行操作
+                                {
+                                    //并行操作
+                                    #region 并行操作
 
+                                    #endregion
+                                    break;
+                                }
+                        }
                     }
                 }
                 #endregion

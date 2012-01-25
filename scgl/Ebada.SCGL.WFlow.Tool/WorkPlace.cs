@@ -42,6 +42,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private int autoID;//自动节点计数
         private int conID;//控制节点计数
         private int subID;//子流程节点计数
+        private int rlID;//并行节点计数
         private Rubberband rubberband = null;//橡皮圈                                    
         private Dragger dragger = null;    //拖拽处理
         private bool isZhexian;//选中的连线的选中折点的索引
@@ -126,7 +127,8 @@ namespace Ebada.SCGL.WFlow.Tool
             etID=0;
             autoID=0;
             conID=0;
-            subID=0;            
+            subID=0;
+            rlID = 0;
             toolModel=false;        
             isDrawingLine = false;
             isZhexian=false;
@@ -522,6 +524,12 @@ namespace Ebada.SCGL.WFlow.Tool
                         this.subID++;
                         SubFlowTask sft=new SubFlowTask(p,subID);
                         AddItem(sft,6);
+                        break;
+
+                    case 7:
+                        this.rlID++;
+                        ParallelTask rlt = new ParallelTask(p, rlID);
+                        AddItem(rlt, 7);
                         break;
                                     
 
@@ -1099,11 +1107,14 @@ namespace Ebada.SCGL.WFlow.Tool
                 objArray[0]=tmpBaseComponent;
                 objArray[1]=this.UserId;
                 objArray[2]=this.UserName;
-                DynamicLibrary myDll=new DynamicLibrary();
-                myDll.DllFileName=tmpBaseComponent.DllFileName;;
-                myDll.DllClassName=tmpBaseComponent.DllClassName;
-                myDll.ObjArray=objArray;
-                myDll.CallSDIWindows();
+                if (tmpBaseComponent.DllClassName != "")
+                {
+                    DynamicLibrary myDll = new DynamicLibrary();
+                    myDll.DllFileName = tmpBaseComponent.DllFileName;
+                    myDll.DllClassName = tmpBaseComponent.DllClassName;
+                    myDll.ObjArray = objArray;
+                    myDll.CallSDIWindows();
+                }
                 this.Invalidate();    
             }
             else//连线属性

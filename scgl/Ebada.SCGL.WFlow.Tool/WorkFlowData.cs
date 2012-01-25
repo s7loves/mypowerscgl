@@ -141,6 +141,15 @@ namespace Ebada.SCGL.WFlow.Tool
                             TaskItems.Add(subFlowTask);
                             break;
 
+                        case 7://并行节点
+                            ParallelTask rlt = new ParallelTask(p, 0);
+                            rlt.TaskName = dr["TaskCaption"].ToString();
+                            rlt.TaskId = dr["WorkTaskId"].ToString();
+                            rlt.TaskType = taskType;
+                            rlt.WorkFlowId = dr["WorkFlowId"].ToString();
+                            TaskItems.Add(rlt);
+                            break;
+
 
                     }
 
