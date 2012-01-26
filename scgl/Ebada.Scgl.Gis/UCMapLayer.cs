@@ -16,6 +16,7 @@ using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Collections;
 using DevExpress.Utils;
+using Ebada.Scgl.Sbgl;
 
 namespace TLMapPlatform {
     /// <summary>
@@ -115,25 +116,13 @@ namespace TLMapPlatform {
                 if (value == mRMap) return;
                 mRMap = value;
                 treeList1.BeginInit();
-                //mTable.Rows.Clear();
-                if (value != null) {
-                    //foreach (GMapOverlay layer in mRMap.Overlays) {
-                    //    mTable.Rows.Add(layer.IsVisibile ? "1" : "0", "1", layer.Text, layer.Id, "0");
-                    //}
-                }
                 treeList1.EndInit();
             }
         }
         public void InitLayer()
         {
             treeList1.BeginInit();
-            //mTable.Rows.Clear();
-            if (mRMap != null)
-            {
-                //foreach (GMapOverlay layer in mRMap.Overlays) {
-                //    mTable.Rows.Add(layer.IsVisibile ? "1" : "0", "1", layer.ToString(), "1", layer.Id);
-                //}
-            }
+
             IList<mOrg> orgList = ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgtype='1'");
             foreach (mOrg org in orgList) {
                 mTable.Rows.Add(hide, "0", org.OrgName, org.OrgCode, "10");
@@ -145,8 +134,6 @@ namespace TLMapPlatform {
             }
             
             treeList1.EndInit();
-            //treeList1.ParentFieldName = "ParentID";
-
         }
         private void inittq(string gdscode) {
             treeList1.BeginInit();
@@ -252,7 +239,14 @@ namespace TLMapPlatform {
                 item = new MenuItem("高压线路条图");
                 item.Click += new EventHandler(高压线路条图17_Click);
                 contextMenu.MenuItems.Add(item);
+                item = new MenuItem("台区属性");
+                item.Click += new EventHandler(台区属性_Click);
+                contextMenu.MenuItems.Add(item);
             }
+            bool flag = code.Length == 6;
+            contextMenu.MenuItems[2].Enabled = flag;
+            contextMenu.MenuItems[3].Enabled = flag;
+            contextMenu.MenuItems[4].Enabled = !flag;
             contextMenu.Tag = code;
             contextMenu.Show(treeList1, p);
         }
@@ -303,10 +297,20 @@ namespace TLMapPlatform {
                 setWaitMsg(null);
             }
         }
+        void 台区属性_Click(object sender, EventArgs e) {
+            PS_tq tq = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(string.Format("where tqcode='{0}'", contextMenu.Tag));
+
+            if (tq == null) return;
+            frmtqEdit dlg = new frmtqEdit();
+            dlg.RowData = tq;
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                Application.DoEvents();
+                Ebada.Client.ClientHelper.PlatformSqlMap.Update<PS_tq>(dlg.RowData);
+            }
+        }
         void 定位_Click(object sender, EventArgs e) {
             mRMap.LocationOverlay(contextMenu.Tag as string);
         }
-
         void 刷新_Click(object sender, EventArgs e) {
             mRMap.RefreshOverlay(contextMenu.Tag as string);
         }
