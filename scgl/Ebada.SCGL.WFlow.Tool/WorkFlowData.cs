@@ -240,49 +240,74 @@ namespace Ebada.SCGL.WFlow.Tool
             if (this.State==WorkConst.STATE_ADD)
             {
 
-                foreach (BaseComponent bc in TaskItems)
-                {
-                    if (bc.TaskExist())
-                        bc.SaveUpdateTask();
-                    else
-                    bc.SaveInsertTask();
+                //foreach (BaseComponent bc in TaskItems)
+                //{
+                //    if (bc.TaskExist())
+                //        bc.SaveUpdateTask();
+                //    else
+                //    bc.SaveInsertTask();
 
-                }
-                //保存连线
-                foreach (Link lk in LineItems)
-                {
-                    if (lk.LinkExist())
-                        lk.SaveUpdateLink();
-                    else
-                    lk.SaveInsertLink();
+                //}
+                ////保存连线
+                //foreach (Link lk in LineItems)
+                //{
+                //    if (lk.LinkExist())
+                //        lk.SaveUpdateLink();
+                //    else
+                //    lk.SaveInsertLink();
                     
-                }
+                //}
 
             }
             else
                 if (this.State==WorkConst.STATE_MOD)
             {
-                //保存节点
+                ////保存节点
 
-                foreach (BaseComponent bc in TaskItems)
-                {
-                    if (bc.TaskExist())
-                        bc.SaveUpdateTask();
-                    else
-                        bc.SaveInsertTask();
+                //foreach (BaseComponent bc in TaskItems)
+                //{
+                //    if (bc.TaskExist())
+                //        bc.SaveUpdateTask();
+                //    else
+                //        bc.SaveInsertTask();
 
-                }
-                //保存连线
-                foreach (Link lk in LineItems)
-                {
-                    if (lk.LinkExist())
-                        lk.SaveUpdateLink();
-                    else
-                        lk.SaveInsertLink();
+                //}
+                ////保存连线
+                //foreach (Link lk in LineItems)
+                //{
+                //    if (lk.LinkExist())
+                //        lk.SaveUpdateLink();
+                //    else
+                //        lk.SaveInsertLink();
                     
+                //}
+
+            }
+            //保存节点
+
+            foreach (BaseComponent bc in TaskItems)
+            {
+                if (bc.TaskExist())
+                    bc.SaveUpdateTask();
+                else
+                    bc.SaveInsertTask();
+                if (bc is ParallelTask)
+                {
+                    bc.DeleterltTask();
+                    bc.SaveUpdaterltTask();
                 }
 
             }
+            //保存连线
+            foreach (Link lk in LineItems)
+            {
+                if (lk.LinkExist())
+                    lk.SaveUpdateLink();
+                else
+                    lk.SaveInsertLink();
+
+            }
+
 
             
         }

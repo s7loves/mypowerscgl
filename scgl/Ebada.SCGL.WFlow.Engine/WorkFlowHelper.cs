@@ -916,7 +916,39 @@ namespace Ebada.SCGL.WFlow.Engine
                                 {
                                     //并行操作
                                     #region 并行操作
-
+                                    DataTable subWf = SubWorkFlow.GetSubWorkflowTable(workFlowId, endTaskId);
+                                    if (subWf != null && subWf.Rows.Count > 0)
+                                    {
+                                        string subWorkflowId = subWf.Rows[0]["subWorkflowId"].ToString();
+                                        string subStartTaskId = subWf.Rows[0]["subStartTaskId"].ToString();
+                                        string subWorkflowCaption = subWf.Rows[0]["subWorkflowCaption"].ToString();
+                                        //*******进入子流程
+                                        WorkFlowRuntime wfruntime = new WorkFlowRuntime();
+                                        wfruntime.UserId = userId;
+                                        wfruntime.WorkFlowId = subWorkflowId;
+                                        wfruntime.WorkTaskId = subStartTaskId;
+                                        wfruntime.WorkFlowInstanceId = Guid.NewGuid().ToString();
+                                        wfruntime.WorkTaskInstanceId = Guid.NewGuid().ToString();
+                                        wfruntime.isSubWorkflow = true;
+                                        wfruntime.MainWorkflowId = workFlowId;
+                                        wfruntime.MainWorkflowInsId = workFlowInstanceId;
+                                        wfruntime.MainWorktaskId = endTaskId;
+                                        wfruntime.MainWorktaskInsId = WorkTaskInstanceId;//记录进入子流程之前的任务实例
+                                        wfruntime.WorkFlowNo = "subWorkflow";
+                                        wfruntime.CommandName = "提交";
+                                        wfruntime.WorkflowInsCaption = subWorkflowCaption;
+                                        wfruntime.IsDraft = true;//开始节点需要交互，草稿状态，暂不提交
+                                        //wfruntime.IsDraft = false;//开始节点需要交互，提交
+                                        wfruntime.Start();
+                                        //设置处理者实例正常结束
+                                        OperatorInstance.SetOperatorInstanceOver(userId, operatorInstanceId);
+                                        //设置任务实例正常结束
+                                        WorkTaskInstance.SetWorkTaskInstanceOver(userName, WorkTaskInstanceId);
+                                        //设定流程实例的当前位置
+                                        WorkFlowInstance.SetCurrTaskId(workFlowInstanceId, endTaskId);
+                                        //设定任务实例成功提交信息
+                                        WorkTaskInstance.SetSuccessMsg(WorkFlowConst.SuccessMsg, WorkTaskInstanceId);
+                                    }
                                     #endregion
                                     break;
                                 }

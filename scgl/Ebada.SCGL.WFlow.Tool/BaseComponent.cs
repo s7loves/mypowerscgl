@@ -3,6 +3,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Data;
 using System.Collections;
+using Ebada.Scgl.Model;
+using Ebada.Client.Platform;
+using System.Collections.Generic;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -171,6 +174,7 @@ namespace Ebada.SCGL.WFlow.Tool
             ControlPaint.DrawSelectionFrame(e.Graphics,true,outerRect,bounds,SystemColors.ActiveBorder);                
             grabHandles.OnPaint(e);//paint the grab handles
         }
+       
         /**//// <summary>
         /// 判断节点是否存在
         /// </summary>
@@ -234,6 +238,46 @@ namespace Ebada.SCGL.WFlow.Tool
                 workflowTask.TaskTypeAndOr = TaskTypeAndOr;
                 workflowTask.IsJumpSelf = IsJumpSelf;
                 workflowTask.UpdateTask();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+        }
+        public void DeleterltTask()
+        {
+            string tmpStr = " where   WorkFlowId='" + WorkFlowId + "' and SubWorkflowId='" + WorkFlowId + "'";
+            MainHelper.PlatformSqlMap.DeleteByWhere<WF_SubWorkFlow>(tmpStr);
+        }
+        /**/
+        /// <summary>
+        /// 增加并行节点
+        /// </summary>
+        public void SaveUpdaterltTask()
+        {
+            if (TaskId.Trim().Length == 0 || TaskId == null)
+                throw new Exception("SaveUpdaterltTask方法错误，TaskId 不能为空！");
+            try
+            {
+                string tmpStr = " where   WorkFlowId='" + WorkFlowId + "' and StartTaskId='" + TaskId + "'";
+                IList<WF_WorkLink> li = MainHelper.PlatformSqlMap.GetList<WF_WorkLink>("SelectWF_WorkLinkList", tmpStr);
+                foreach (WF_WorkLink wl in li)
+                {
+                    SubWorkFlow subworkflow = new SubWorkFlow();
+                    WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(WorkFlowId);
+                    subworkflow.SubId = Guid.NewGuid().ToString();
+                    subworkflow.WorkflowId = WorkFlowId;
+                    subworkflow.WorkTaskId = TaskId;
+                    subworkflow.SubWorkflowId = WorkFlowId;
+                    if(wf!=null)subworkflow.SubWorkflowCaption ="并行节点:"+ wf.FlowCaption;
+                    subworkflow.SubStartTaskId = wl.EndTaskId;
+                    WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(wl.EndTaskId);
+                    if (wt != null) subworkflow.Description = "并行节点 起始节点:" + wt.TaskCaption;
+                    subworkflow.InsertSubWorkFlow();
+                }
+
+             
             }
             catch (Exception ex)
             {
