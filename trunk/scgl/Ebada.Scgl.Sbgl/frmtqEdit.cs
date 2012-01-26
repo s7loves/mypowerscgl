@@ -63,7 +63,7 @@ namespace Ebada.Scgl.Sbgl
         }
         #region IPopupFormEdit Members
         private PS_tq rowData = null;
-
+        private Boolean isnew = false;
         public object RowData {
             get {
                 PS_tq tq = new PS_tq();
@@ -82,9 +82,21 @@ namespace Ebada.Scgl.Sbgl
                 if(rowData.tqCode==""){
                     rowData.InDate = DateTime.Now;
                 }
+                isnew = false;
+                if (rowData.tqName == "")
+                    isnew = true;
             }
         }
-
+        protected override void OnLoad(EventArgs e) {
+            base.OnLoad(e);
+            if ("rabbit赵建明付岩".Contains(MainHelper.User.UserName) && !isnew) {
+                simpleButton3.Show();
+                simpleButton4.Show();
+            } else {
+                simpleButton3.Hide();
+                simpleButton4.Hide();
+            }
+        }
         #endregion
 
         private void InitComboBoxData() {
@@ -214,7 +226,19 @@ namespace Ebada.Scgl.Sbgl
         {
 
         }
+        void simpleButton4_Click(object sender, EventArgs e) {
+            //恢复经纬度
+            
+            SbFuns.RestoreGTLatLngTQ(rowData.tqCode);
+            Client.MsgBox.ShowTipMessageBox("恢复完成。");
+        }
 
+        void simpleButton3_Click(object sender, EventArgs e) {
+            //备份经纬度
+            
+            SbFuns.BackupGTLatLngTQ(rowData.tqCode);
+            Client.MsgBox.ShowTipMessageBox("备份完成。");
+        }
       
     }
 }

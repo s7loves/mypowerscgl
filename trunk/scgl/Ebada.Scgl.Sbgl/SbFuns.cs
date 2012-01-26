@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Ebada.Scgl.Model;
+using DevExpress.Utils;
 
 namespace Ebada.Scgl.Sbgl {
     public static class SbFuns {
@@ -92,6 +93,39 @@ namespace Ebada.Scgl.Sbgl {
             if(updateList.Count>0)
             Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, updateList, null);
 
+        }
+         /// <summary>
+        /// 备份一个台区的杆塔经纬度
+        /// </summary>
+        /// <param name="lineCode"></param>
+        internal static void BackupGTLatLngTQ(string tqCode) {
+            WaitDialogForm waitdlg = new WaitDialogForm("", "备份台区经纬度");
+            string sql = string.Format("where left(linecode,{0})='{1}' and linevol='0.4'", tqCode.Length, tqCode);
+            IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(sql);
+            foreach (PS_xl item in listxl) {
+                waitdlg.SetCaption(item.LineName);
+                
+                BackupGTLatLng(item.LineCode);
+                
+            }
+
+            waitdlg.Close();
+        }
+        /// <summary>
+        /// 备份一个台区的杆塔经纬度
+        /// </summary>
+        /// <param name="lineCode"></param>
+        internal static void RestoreGTLatLngTQ(string tqCode) {
+            WaitDialogForm waitdlg = new WaitDialogForm("", "恢复台区经纬度");
+            IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(string.Format("where left(linecode,{0})='{1}' and linevol='0.4'", tqCode.Length, tqCode));
+            foreach (PS_xl item in listxl) {
+                waitdlg.SetCaption(item.LineName);
+
+                RestoreGTLatLng(item.LineCode);
+
+            }
+
+            waitdlg.Close();
         }
         /// <summary>
         /// 恢复一条线路的杆塔经纬度
