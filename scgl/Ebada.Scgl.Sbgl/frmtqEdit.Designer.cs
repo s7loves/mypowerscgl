@@ -40,6 +40,7 @@
             this.comboBoxEdit4 = new DevExpress.XtraEditors.LookUpEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.spinEdit3 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
             this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
             this.comboBoxEdit11 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit13 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -64,15 +65,16 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
-            this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -84,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit13.Properties)).BeginInit();
@@ -96,7 +99,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // m_DefaultLookAndFeel
@@ -125,6 +127,8 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.simpleButton4);
+            this.groupControlOrg.Controls.Add(this.simpleButton3);
             this.groupControlOrg.Controls.Add(this.simpleButton1);
             this.groupControlOrg.Controls.Add(this.groupBox1);
             this.groupControlOrg.Controls.Add(this.groupBox2);
@@ -279,6 +283,20 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit3.Size = new System.Drawing.Size(171, 21);
             this.spinEdit3.TabIndex = 14;
+            // 
+            // spinEdit2
+            // 
+            this.spinEdit2.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEdit2.Location = new System.Drawing.Point(384, 201);
+            this.spinEdit2.Name = "spinEdit2";
+            this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit2.Size = new System.Drawing.Size(171, 21);
+            this.spinEdit2.TabIndex = 14;
             // 
             // spinEdit1
             // 
@@ -508,6 +526,14 @@
             this.labelControl7.TabIndex = 2;
             this.labelControl7.Text = "完好类型";
             // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(311, 204);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(48, 14);
+            this.labelControl8.TabIndex = 2;
+            this.labelControl8.Text = "台抄例日";
+            // 
             // labelControl3
             // 
             this.labelControl3.Location = new System.Drawing.Point(311, 134);
@@ -548,20 +574,6 @@
             this.labelControl30.TabIndex = 2;
             this.labelControl30.Text = "承包人";
             // 
-            // spinEdit2
-            // 
-            this.spinEdit2.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEdit2.Location = new System.Drawing.Point(384, 201);
-            this.spinEdit2.Name = "spinEdit2";
-            this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit2.Size = new System.Drawing.Size(171, 21);
-            this.spinEdit2.TabIndex = 14;
-            // 
             // bar1
             // 
             this.bar1.BarName = "Tools";
@@ -578,13 +590,25 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // labelControl8
+            // simpleButton4
             // 
-            this.labelControl8.Location = new System.Drawing.Point(311, 204);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(48, 14);
-            this.labelControl8.TabIndex = 2;
-            this.labelControl8.Text = "台抄例日";
+            this.simpleButton4.Location = new System.Drawing.Point(213, 423);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton4.TabIndex = 19;
+            this.simpleButton4.Text = "恢复经纬度";
+            this.simpleButton4.Visible = false;
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Location = new System.Drawing.Point(132, 423);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton3.TabIndex = 18;
+            this.simpleButton3.Text = "备份经纬度";
+            this.simpleButton3.Visible = false;
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // frmtqEdit
             // 
@@ -609,6 +633,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit13.Properties)).EndInit();
@@ -621,7 +646,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -673,6 +697,8 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit13;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
 
     }
 }
