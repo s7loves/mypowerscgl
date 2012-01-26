@@ -41,6 +41,8 @@
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
+            this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemMarqueeProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar();
             this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             this.barAndDockingController1 = new DevExpress.XtraBars.BarAndDockingController(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -54,16 +56,14 @@
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemMarqueeProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -201,6 +201,17 @@
             this.barStaticItem1.Name = "barStaticItem1";
             this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
+            // barEditItem1
+            // 
+            this.barEditItem1.Caption = "加载模块";
+            this.barEditItem1.Edit = this.repositoryItemMarqueeProgressBar1;
+            this.barEditItem1.Id = 12;
+            this.barEditItem1.Name = "barEditItem1";
+            // 
+            // repositoryItemMarqueeProgressBar1
+            // 
+            this.repositoryItemMarqueeProgressBar1.Name = "repositoryItemMarqueeProgressBar1";
+            // 
             // barStaticItem2
             // 
             this.barStaticItem2.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
@@ -287,23 +298,12 @@
             // 
             // defaultLookAndFeel1
             // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2007 Green";
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Xmas 2008 Blue";
             // 
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.Controller = this.barAndDockingController1;
             this.xtraTabbedMdiManager1.MdiParent = this;
-            // 
-            // barEditItem1
-            // 
-            this.barEditItem1.Caption = "加载模块";
-            this.barEditItem1.Edit = this.repositoryItemMarqueeProgressBar1;
-            this.barEditItem1.Id = 12;
-            this.barEditItem1.Name = "barEditItem1";
-            // 
-            // repositoryItemMarqueeProgressBar1
-            // 
-            this.repositoryItemMarqueeProgressBar1.Name = "repositoryItemMarqueeProgressBar1";
             // 
             // frmMain2
             // 
@@ -321,13 +321,13 @@
             this.Text = "主控台";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dockPanel1.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).EndInit();
             this.ResumeLayout(false);
 
         }

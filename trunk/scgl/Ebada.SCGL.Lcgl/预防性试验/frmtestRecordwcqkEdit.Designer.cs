@@ -76,7 +76,7 @@
             // 
             // m_DefaultLookAndFeel
             // 
-            this.m_DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2007 Green";
+            ;
             // 
             // btnCancel
             // 

@@ -34,6 +34,8 @@ namespace Ebada.SCGL {
         BarSubItem iPaintStyle;
         void InitSkins() {
             barManager1.ForceInitialize();
+            //DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("Xmas 2008 Blue");
+            //defaultLookAndFeel1.LookAndFeel.SetSkinStyle("Xmas 2008 Blue");
             if (barManager1.GetController().PaintStyleName == "Skin") {
                 iPaintStyle.Caption = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
                 iPaintStyle.Hint = iPaintStyle.Caption;
