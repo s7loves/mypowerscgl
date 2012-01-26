@@ -543,6 +543,9 @@
   <ItemGroup>
     <None Include="Resources\删除.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\并行节点.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

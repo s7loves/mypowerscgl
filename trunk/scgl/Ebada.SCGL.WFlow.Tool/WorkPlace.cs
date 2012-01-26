@@ -871,13 +871,15 @@ namespace Ebada.SCGL.WFlow.Tool
 
                         bitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.控制节点.ico")));
                         break;
-                    case 5:
+                    case 5: 
 
                         bitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.查看节点.ico")));
                         break;
                     case 6:
-                        
                         bitmap=new  Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.子流程节点.ico")));
+                        break;
+                    case 7:
+                        bitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.并行节点.ico")));
                         break;
                     default:
                         bitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.查看节点.ico")));

@@ -609,6 +609,9 @@ namespace Ebada.SCGL.WFlow.Test
             case "6"://子流程节点 
                 taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.子流程节点.ico")));
                 break;
+            case "7"://并行节点 
+                taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.并行节点.ico")));
+                break;
             default:
                 taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.查看节点.ico")));
                 break;
