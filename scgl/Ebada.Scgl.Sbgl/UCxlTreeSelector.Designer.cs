@@ -1,4 +1,4 @@
-﻿namespace Ebada.Scgl.Yxgl {
+﻿namespace Ebada.Scgl.Sbgl {
     partial class UCxlTreeSelector {
         /// <summary> 
         /// 必需的设计器变量。
