@@ -162,9 +162,9 @@
             // 
             // barButtonItem4
             // 
-            this.barButtonItem4.Caption = "我的桌面";
+            this.barButtonItem4.Caption = "我的首页";
             this.barButtonItem4.Id = 9;
-            this.barButtonItem4.ImageIndex = 9;
+            this.barButtonItem4.ImageIndex = 14;
             this.barButtonItem4.Name = "barButtonItem4";
             this.barButtonItem4.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
@@ -295,6 +295,7 @@
             this.imageCollection1.Images.SetKeyName(11, "login1.png");
             this.imageCollection1.Images.SetKeyName(12, "close.png");
             this.imageCollection1.Images.SetKeyName(13, "keyclose.png");
+            this.imageCollection1.Images.SetKeyName(14, "desk.png");
             // 
             // defaultLookAndFeel1
             // 
