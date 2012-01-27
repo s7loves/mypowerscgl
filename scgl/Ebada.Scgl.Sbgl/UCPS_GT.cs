@@ -349,7 +349,13 @@ namespace Ebada.Scgl.Sbgl
                 gridViewOperation.BindingList.Add(gts);
             }
         }
-
+        /// <summary>
+        /// 隐藏下选择列表
+        /// </summary>
+        public void HideList() {
+            btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+        }
       
     }
 }

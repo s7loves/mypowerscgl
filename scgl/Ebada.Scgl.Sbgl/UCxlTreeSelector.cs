@@ -69,6 +69,7 @@ namespace Ebada.Scgl.Sbgl {
         void treeList1_BeforeFocusNode(object sender, BeforeFocusNodeEventArgs e) {
             string id = e.Node["ID"].ToString();
             string type = e.Node["Type"].ToString();
+            
             if (!e.Node.HasChildren) {
                 treeList1.BeginInit();
                 if (type == "gyxl") {
@@ -79,14 +80,16 @@ namespace Ebada.Scgl.Sbgl {
                     }
                 } else if (type == "xl") {
                     IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "'");
+                    string lname = mLines[id].LineName;
                     foreach (PS_xl xl in list) {
-                        mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl");
+                        mTable.Rows.Add(xl.LineName.Replace(lname,""), xl.LineID, id, "xl");
                         mLines.Add(xl.LineID, xl);
                     }
                 } else if (type == "dxl") {
+                    string lname = e.Node["Name"].ToString();
                     IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "'");
                     foreach (PS_xl xl in list) {
-                        mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl");
+                        mTable.Rows.Add(xl.LineName.Replace(lname, ""), xl.LineID, id, "xl");
                         mLines.Add(xl.LineID, xl);
                     }
                 } else if (type == "dyxl") {

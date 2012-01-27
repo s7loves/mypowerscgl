@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -20,6 +21,31 @@ namespace Ebada.Scgl.Sbgl
             ucpS_GT1.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_gt>(ucpS_GT1_FocusedRowChanged);
             xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(xtraTabControl1_SelectedPageChanged);
         }
+        protected override void OnLoad(EventArgs e) {
+            base.OnLoad(e);
+            init();
+        }
+        private void init() {
+            ucpS_GT1.HideList();
+            SplitContainerControl scc = new SplitContainerControl();
+            scc.Dock = DockStyle.Fill;
+            scc.Parent = this;
+            splitCC1.Parent = scc.Panel2;
+            xltree = new UCxlTreeSelector();
+            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1") {//如果是供电所人员，则锁定
+                xltree.SetShowOrg(MainHelper.UserOrg);
+            }
+            xltree.Dock = DockStyle.Fill;
+            xltree.Parent = scc.Panel1;
+            scc.SplitterPosition = 200;
+            xltree.LineSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_xl>(xltree_LineSelectionChanged);
+            
+        }
+
+        void xltree_LineSelectionChanged(object sender, Ebada.Scgl.Model.PS_xl obj) {
+            ucpS_GT1.ParentObj = obj;
+        }
+        UCxlTreeSelector xltree;
         UCPS_jcky ucps_jcky;
         Ebada.Scgl.Model.PS_gt mgt;
         void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e) {

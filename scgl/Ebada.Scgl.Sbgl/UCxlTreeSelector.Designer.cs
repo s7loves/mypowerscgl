@@ -25,10 +25,10 @@
         private void InitializeComponent() {
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.线路名 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.repositoryItemImageComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
-            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox2)).BeginInit();
@@ -46,7 +46,9 @@
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.ImmediateEditor = false;
             this.treeList1.OptionsSelection.InvertSelection = true;
+            this.treeList1.OptionsView.ShowHorzLines = false;
             this.treeList1.OptionsView.ShowIndicator = false;
+            this.treeList1.OptionsView.ShowVertLines = false;
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageComboBox1,
             this.repositoryItemImageComboBox2,
@@ -65,6 +67,12 @@
             this.线路名.Visible = true;
             this.线路名.VisibleIndex = 0;
             this.线路名.Width = 125;
+            // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.Caption = "treeListColumn1";
+            this.treeListColumn1.FieldName = "Type";
+            this.treeListColumn1.Name = "treeListColumn1";
             // 
             // repositoryItemImageComboBox1
             // 
@@ -94,12 +102,6 @@
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", null, -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", "", -1)});
             this.repositoryItemImageComboBox3.Name = "repositoryItemImageComboBox3";
-            // 
-            // treeListColumn1
-            // 
-            this.treeListColumn1.Caption = "treeListColumn1";
-            this.treeListColumn1.FieldName = "Type";
-            this.treeListColumn1.Name = "treeListColumn1";
             // 
             // UCxlTreeSelector
             // 
