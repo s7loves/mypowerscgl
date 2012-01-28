@@ -444,7 +444,7 @@ namespace Ebada.SCGL.WFlow.Tool
             Y = LocalPoint.Y;
             TaskName = "并行节点" + orderId.ToString();
             TaskType = 7;
-            icon = new Icon("并行节点.ico");
+            icon = Icon.FromHandle(new Bitmap(Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.并行节点.ico"))).GetHicon()); 
             bounds = new Rectangle(LocalPoint, icon.Size);
         }
     }
