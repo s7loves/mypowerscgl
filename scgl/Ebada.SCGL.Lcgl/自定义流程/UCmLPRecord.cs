@@ -880,8 +880,25 @@ namespace Ebada.Scgl.Lcgl {
         }
         private void workFlowFormShow(LP_Record currRecord)
         {
-            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
-
+            DataTable dtall = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+            DataTable dt =new DataTable ();
+            if (dtall.Rows.Count == 1)
+            {
+                dt = dtall;
+            }
+            else
+            {
+                WorkFlowTaskSelectForm wfts = new WorkFlowTaskSelectForm();
+                wfts.RecordWorkFlowData = dtall;
+                if (wfts.ShowDialog() == DialogResult.OK)
+                {
+                    dt = wfts.RetWorkFlowData;
+                }
+                else
+                {
+                    return;
+                }
+            }
             if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
             object obj = RecordWorkTask.GetWorkTaskModle(dt);
             if (obj == null)

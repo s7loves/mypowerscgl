@@ -263,6 +263,59 @@ namespace Ebada.SCGL.WFlow.Engine
         /// <param name="WorkFlowInstanceId">流程实例Id</param>
         /// <param name="NowTaskId">节点实例Id</param>
         /// <returns>指定的未认领的任务列表</returns>
+        public static DataTable SelectedWorkflowNowTaskExplorer(string userId, string WorkFlowId, string WorkFlowInstanceId, string NowTaskId, int topsize)
+        {
+
+            try
+            {
+                //SqlDataItem sqlItem = new SqlDataItem();
+                //sqlItem.CommandText = "WorkTaskSelectClaimPro";
+                //sqlItem.CommandType = CommandType.StoredProcedure.ToString();
+                //sqlItem.AppendParameter("@userId", userId);
+                //sqlItem.AppendParameter("@topsize", topsize,typeof(int));
+                //ClientDBAgent agent = new ClientDBAgent();
+                //return agent.ExecuteDataTable(sqlItem);
+                string filedstr = "Priority,WorkFlowNo,taskStartTime,TaskInsCaption,FlowInsCaption,OperContent,Status,FlowCaption," +
+                         "TaskCaption,UserId,WorkFlowId,WorkTaskId,WorkFlowInsId,WorkTaskInsId,OperType,TaskTypeId,operatorInsId," +
+                          "OperatedDes,OperDateTime,taskEndTime,flowStartTime,flowEndTime,pOperatedDes,Description,OperStatus,taskInsType,TaskInsDescription";
+
+                string allworflowid = "";
+
+                GetAllWorkFlowID(WorkFlowInstanceId, ref allworflowid);
+
+                string sqlstr = "select top " + topsize + " * from (";
+                sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
+                sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') ) OR ";
+                sqlstr = sqlstr + " (OperContent = 'ALL')) ";
+                sqlstr = sqlstr + "  and ( (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "' and WorkTaskId='" + NowTaskId + "')  or WorkFlowInsId in (select WorkFlowInsId from  WF_WorkFlowInstance where " + allworflowid + " ))";
+                sqlstr = sqlstr + "union  ";
+                sqlstr = sqlstr + " select " + filedstr + " from WF_WorkTaskInsAccreditView where ";
+                sqlstr = sqlstr + " AccreditToUserId='" + userId + "' and AccreditStatus='1'and status='1'  ";
+                sqlstr = sqlstr + " ) a ";
+                sqlstr = sqlstr + "  order by taskStartTime desc ";
+                Console.WriteLine(sqlstr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewListValue", sqlstr);
+
+                if (li.Count == 0)
+                {
+                    DataTable dt = new DataTable();
+                    return dt;
+                }
+                return ConvertHelper.ToDataTable(li);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 指定的当前的任务
+        /// </summary>
+        /// <param name="userId">用户Id</param>
+        /// <param name="WorkFlowId">流程Id</param>
+        /// <param name="WorkFlowInstanceId">流程实例Id</param>
+        /// <param name="NowTaskId">节点实例Id</param>
+        /// <returns>指定的未认领的任务列表</returns>
         public static DataTable SelectedWorkflowNowTask(string userId, string WorkFlowId, string WorkFlowInstanceId, string NowTaskId, int topsize)
         {
             try
@@ -698,10 +751,18 @@ namespace Ebada.SCGL.WFlow.Engine
                 throw ex;
             }
         }
-        /**//// <summary>
+        /**/
+        /// <summary>
         /// 设定流程实例的当前位置
         /// </summary>
         public static void SetCurrTaskId(string workflowInsId, string nowtaskId)
+        {
+            SetCurrTaskId(workflowInsId, nowtaskId, "");
+        }
+        /**//// <summary>
+        /// 设定流程实例的当前位置
+        /// </summary>
+        public static void SetCurrTaskId(string workflowInsId, string nowtaskId, string pretaskId)
         {
             try
             {
@@ -716,9 +777,32 @@ namespace Ebada.SCGL.WFlow.Engine
                 //workFlowIns.WorkFlowInsId = workflowInsId;
                 //workFlowIns.NowTaskId = nowtaskId;
                 //MainHelper.PlatformSqlMap.Update<WF_WorkFlowInstance>(workFlowIns);
-
                 string strsql = "  update WF_WorkFlowInstance set nowtaskId='" + nowtaskId + "' where workflowInsid='" + workflowInsId + "'";
-                MainHelper.PlatformSqlMap.Update("UpdateWF_WorkFlowInstanceValue", strsql);
+                if (pretaskId == "")
+                {
+                    
+                    MainHelper.PlatformSqlMap.Update("UpdateWF_WorkFlowInstanceValue", strsql);
+                }
+                else
+                {
+                    strsql = " where workflowInsid='" + workflowInsId + "' ";
+                    WF_WorkFlowInstance wf=MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(strsql);
+                    if (wf != null)
+                    {
+                        string nowtaskidtemp=wf.NowTaskId.Replace(pretaskId,"");
+                        if (nowtaskidtemp == "")
+                        {
+                            nowtaskidtemp = nowtaskId;
+                        }
+                        else
+                        {
+
+                            nowtaskidtemp = wf.NowTaskId + "|" + nowtaskId;
+                        }
+                        wf.NowTaskId = nowtaskidtemp;
+                        MainHelper.PlatformSqlMap.Update<WF_WorkFlowInstance>(wf);
+                    }
+                }
 
             }
             catch (Exception ex)

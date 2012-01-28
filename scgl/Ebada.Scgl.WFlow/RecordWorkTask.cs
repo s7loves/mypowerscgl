@@ -94,7 +94,7 @@ namespace Ebada.Scgl.WFlow
                 "SelectWF_WorkTaskInstanceViewList", tmpStr);
             if (li.Count == 0)
             {
-                tmpStr = " where  WorkTaskInsId='" + workTaskInsId + "' and( (OperStatus='0' and TaskTypeId!='2' ) or TaskTypeId='2'or TaskTypeId='6' )";
+                tmpStr = " where  WorkTaskInsId='" + workTaskInsId + "' and( (OperStatus='0' and TaskTypeId!='2' ) or TaskTypeId='2'or TaskTypeId='6' or TaskTypeId='7' )";
                 li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
                    "SelectWF_WorkTaskInstanceViewList", tmpStr);
             }
@@ -104,14 +104,14 @@ namespace Ebada.Scgl.WFlow
                 //{
                 //    continue;
                 //}
-                if (tl.TaskTypeId != "6")
+                if (tl.TaskTypeId != "6" && tl.TaskTypeId != "7")
                 {
-                    if (!taskht.ContainsKey(tl.WorkTaskInsId) && tl.SuccessMsg.IndexOf("退回") == -1)
+                    if (!taskht.ContainsKey(tl.WorkTaskInsId) && tl.SuccessMsg.IndexOf("退回") == -1 && tl.TaskTypeId != "2")
                         taskht.Add(tl.WorkTaskInsId, tl.TaskInsCaption);
                     if (tl.WorkTaskInsId == tl.PreviousTaskId) return;
                     GetWorkFlowInsPreviousTask(tl.PreviousTaskId, tl.WorkFlowInsId, ref  taskht);
                 }
-                else
+                else if (tl.TaskTypeId == "6")
                 {
                     string tmpStr2 = " where  TaskTypeId='2' and MainWorkflowInsId='" + tl.WorkFlowInsId + "'";
                     IList<WF_WorkTaskInstanceView> li2 = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
@@ -122,6 +122,22 @@ namespace Ebada.Scgl.WFlow
                     GetWorkFlowInsPreviousTask(li2[0].PreviousTaskId, li2[0].WorkFlowInsId, ref  taskht);
                     
                 }
+                else if (tl.TaskTypeId == "7")
+                {
+                    string tmpStr2 = " where  TaskTypeId='2' and MainWorkflowInsId='" + tl.WorkFlowInsId + "'";
+                    IList<WF_WorkTaskInstanceView> li2 = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
+                        "SelectWF_WorkTaskInstanceViewList", tmpStr2);
+
+                    foreach (WF_WorkTaskInstanceView wtiv in li2)
+                    {
+                        if (!taskht.ContainsKey(wtiv.WorkTaskInsId) && wtiv.TaskTypeId != "2")
+                            taskht.Add(wtiv.WorkTaskInsId, wtiv.TaskInsCaption);
+
+                        GetWorkFlowInsPreviousTask(wtiv.PreviousTaskId, wtiv.WorkFlowInsId, ref  taskht);
+                    }
+                    GetWorkFlowInsPreviousTask(tl.PreviousTaskId, tl.WorkFlowInsId, ref  taskht);
+                }
+
             }
 
         }
@@ -160,7 +176,8 @@ namespace Ebada.Scgl.WFlow
             {
                 WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(akeys[i].ToString());
                 WF_WorkFlowInstance workflowins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(worktaskins.WorkFlowInsId);
-                if (!HaveFlowEndExploreRole(workflowins.FlowInsCaption))
+
+                if (!HaveFlowEndExploreRole(workflowins.FlowInsCaption.Replace("并行节点:", "")))
                 {
                     if (!RecordWorkTask.HaveWorkFlowAllExploreRole(akeys[i].ToString(), workflowins.WorkFlowId))
                     {
@@ -1311,6 +1328,22 @@ namespace Ebada.Scgl.WFlow
             return dt;
         }
         /// <summary>
+        /// 获得当前用户当前记录的流程信息
+        /// </summary>
+        /// <param name="recordID">记录ID</param>
+        /// <param name="userID">用户ID</param>
+        /// <returns>返回指定记录的流程信息</returns>
+        public static DataTable GetExplorerRecordWorkFlowData(string recordID, string userID)
+        {
+            DataTable dtnull = new DataTable();
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
+            if (wf.Count == 0) return dtnull;
+            WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
+            DataTable dt = WorkFlowInstance.SelectedWorkflowNowTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, wfi.NowTaskId, 999);
+            // DataTable dt = WorkFlowInstance.SelectedWorkflowTask (userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId,wfi.NowTaskId , 999);
+            return dt;
+        }
+        /// <summary>
         /// 获得当前记录的流程信息,不限定流程状态
         /// </summary>
         /// <param name="recordID">记录ID</param>
@@ -1540,85 +1573,236 @@ namespace Ebada.Scgl.WFlow
             //return "";
         }
         /// <summary>
-        /// 
+        /// 获得流程当前的状态
         /// </summary>
-        /// <param name="WorkTaskInsId"></param>
+        /// <param name="WorkTaskInsId">流转前当前节点实例</param>
         /// <returns></returns>
-        public static string GetWorkFlowTaskCaption(string WorkTaskInsId)
+        //public static string GetWorkFlowTaskCaption(string WorkTaskInsId)
+        //{
+        //    string sql = "where ( previoustaskid='" + WorkTaskInsId + "'  or WorkTaskId in ( select NowTaskId  from WF_WorkFlowInstance where MainWorktaskInsId='" + WorkTaskInsId + "' ) ) and operstatus='0' order by opertype";
+        //    string strturn = "";
+        //    IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
+        //    if (li.Count > 0)
+        //    {
+        //        if (li.Count > 1)
+        //        {
+
+        //            WF_WorkFlowInstance wfi = null;
+        //            wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(li[0].WorkFlowInsId);
+        //            foreach (WF_WorkTaskInstanceView wti in li)
+        //            {
+        //                wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wti.WorkFlowInsId);
+        //                //if (wfi == null) break;
+        //                if (wfi == null) continue;
+        //                if (wfi.NowTaskId == wti.WorkTaskId)
+        //                {
+        //                    //return wti.TaskInsCaption;
+        //                    if (strturn == "")
+        //                        strturn = wti.TaskInsCaption;
+        //                    else
+        //                    {
+        //                        strturn = strturn + "|" + wti.TaskInsCaption;
+        //                    }
+        //                }
+
+        //            }
+        //        }
+        //        else
+        //        {
+        //                strturn = li[0].TaskInsCaption;
+        //        }
+
+                
+        //    }
+        //    else
+        //    {
+        //        sql = "where previoustaskid='" + WorkTaskInsId + "' order by opertype";
+        //        li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
+        //        if (li.Count > 0)
+        //        {
+
+        //            //if (li[0].isSubWorkflow == false)
+        //            //{
+        //            //    return li[0].TaskInsCaption;
+        //            //}
+        //            //else
+        //            //{
+        //            //    WF_WorkFlowInstance mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  WorkflowInsId='" + li[0].MainWorkflowInsId + "'");
+        //            //    if (mainwf != null)
+        //            //    {
+        //            //        //WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(mainwf.NowTaskId);
+        //            //        WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
+        //            //        if (wt.TaskTypeId == "6")
+        //            //        {
+        //            //            WF_WorkFlowInstance subwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  MainWorkflowInsId='" + li[0].MainWorkflowInsId + "'and MainWorktaskId='" + mainwf.NowTaskId + "' ");
+        //            //            wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(subwf.NowTaskId);
+
+        //            //        }
+        //            //        else
+        //            //            if (wt.TaskTypeId == "2")
+        //            //            {
+        //            //                while (wt.TaskTypeId == "2" && mainwf!=null)
+        //            //                {
+        //            //                    if (mainwf.MainWorkflowInsId != "")
+        //            //                    {
+        //            //                        mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList",
+        //            //                        "where  WorkflowInsId='" + mainwf.MainWorkflowInsId + "'");
+        //            //                        wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
+        //            //                    }
+        //            //                    else
+        //            //                    {
+        //            //                        break;
+        //            //                    }
+        //            //                }
+        //            //            }
+
+        //            //        return wt.TaskCaption;
+
+        //            //    }
+        //            //}
+        //            foreach (WF_WorkTaskInstanceView wti in li)
+        //            {
+        //                if (wti.isSubWorkflow == false)
+        //                {
+
+        //                    if (strturn == "")
+        //                        strturn = wti.TaskInsCaption;
+        //                    else
+        //                    {
+        //                        strturn = strturn + "|" + wti.TaskInsCaption;
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    WF_WorkFlowInstance mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  WorkflowInsId='" + li[0].MainWorkflowInsId + "'");
+        //                    if (mainwf != null)
+        //                    {
+        //                        //WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(mainwf.NowTaskId);
+        //                        WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
+        //                        if (wt.TaskTypeId == "6")
+        //                        {
+        //                            WF_WorkFlowInstance subwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  MainWorkflowInsId='" + li[0].MainWorkflowInsId + "'and MainWorktaskId='" + mainwf.NowTaskId + "' ");
+        //                            wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(subwf.NowTaskId);
+
+        //                        }
+        //                        else
+        //                            if (wt.TaskTypeId == "2")
+        //                            {
+        //                                while (wt.TaskTypeId == "2" && mainwf != null)
+        //                                {
+        //                                    if (mainwf.MainWorkflowInsId != "")
+        //                                    {
+        //                                        mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList",
+        //                                        "where  WorkflowInsId='" + mainwf.MainWorkflowInsId + "'");
+        //                                        wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
+        //                                    }
+        //                                    else
+        //                                    {
+        //                                        break;
+        //                                    }
+        //                                }
+        //                            }
+
+        //                        //return wt.TaskCaption;
+
+        //                        if (strturn == "")
+        //                            strturn = wti.TaskInsCaption;
+        //                        else
+        //                        {
+        //                            strturn = strturn + "|" + wti.TaskInsCaption;
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+
+        //        return GetWorkFlowTaskCaption(WorkTaskInsId, strturn);
+        //    }
+        //}
+        public static string GetSubWorkFlowTaskCaption(string WorkflowInsId, WF_WorkTask wt)
         {
-            string sql = "where ( previoustaskid='" + WorkTaskInsId + "'  or WorkTaskId in ( select NowTaskId  from WF_WorkFlowInstance where MainWorktaskInsId='" + WorkTaskInsId + "' ) ) and operstatus='0' order by opertype";
-
-            IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
-            if (li.Count > 0)
+            string retStatus = "";
+            if (wt.TaskTypeId == "6" || wt.TaskTypeId == "7")
             {
-                if(li.Count>1)
+                while (wt.TaskTypeId == "6" || wt.TaskTypeId == "7")
                 {
-
-                    WF_WorkFlowInstance wfi = null;
-                    wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(li[0].WorkFlowInsId);
-                    foreach (WF_WorkTaskInstanceView wti in li)
+                    if (wt.TaskTypeId == "6")
                     {
-                        if (wfi == null) break;
-                        if (wfi.NowTaskId == wti.WorkTaskId)
-                            return wti.TaskInsCaption;
-
+                        WF_WorkFlowInstance subwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList",
+                            "where  MainWorkflowInsId='" + WorkflowInsId + "'and MainWorktaskId='" + wt.WorkTaskId + "' ");
+                        wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(subwf.NowTaskId);
+                        WorkflowInsId = subwf.WorkFlowInsId;
+                        if (wt.TaskTypeId != "6" && wt.TaskTypeId != "7") retStatus = wt.TaskCaption;
+                        else
+                        {
+                            return GetSubWorkFlowTaskCaption(WorkflowInsId, wt);
+                        }
+                        
                     }
+                    else
+                        if (wt.TaskTypeId == "7")
+                        {
+                            IList<WF_WorkFlowInstance> subwfli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowInstance>("SelectWF_WorkFlowInstanceList",
+                                "where  MainWorkflowInsId='" + WorkflowInsId + "'and MainWorktaskId='" + wt.WorkTaskId + "' ");
+                            foreach (WF_WorkFlowInstance wfi in subwfli)
+                            {
+                                wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(wfi.NowTaskId);
+                                WorkflowInsId = wfi.WorkFlowInsId;
+                                string str = GetSubWorkFlowTaskCaption(WorkflowInsId, wt);
+                                if (retStatus == "")
+                                {
+                                    retStatus = str;
+                                }
+                                else
+                                {
+                                    retStatus = retStatus + "|" + str;
+                                }
+                            }
+                            return retStatus;
+                        }
+
                 }
-                return li[0].TaskInsCaption;
             }
             else
             {
-                sql = "where previoustaskid='" + WorkTaskInsId + "' order by opertype";
-                li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
-                if (li.Count > 0)
-                {
-                    if (li[0].isSubWorkflow == false)
-                    {
-                        return li[0].TaskInsCaption;
-                    }
-                    else
-                    {
-                        WF_WorkFlowInstance mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  WorkflowInsId='" + li[0].MainWorkflowInsId + "'");
-                        if (mainwf != null)
-                        {
-                            //WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(mainwf.NowTaskId);
-                            WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
-                            if (wt.TaskTypeId == "6")
-                            {
-                                WF_WorkFlowInstance subwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  MainWorkflowInsId='" + li[0].MainWorkflowInsId + "'and MainWorktaskId='" + mainwf.NowTaskId + "' ");
-                                wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(subwf.NowTaskId);
+                if (wt.TaskCaption.IndexOf("结束节点")==-1)
+                retStatus = wt.TaskCaption;
+                else
+                    retStatus ="存档";
 
-                            }
-                            else
-                                if (wt.TaskTypeId == "2")
-                                {
-                                    while (wt.TaskTypeId == "2" && mainwf!=null)
-                                    {
-                                        if (mainwf.MainWorkflowInsId != "")
-                                        {
-                                            mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList",
-                                            "where  WorkflowInsId='" + mainwf.MainWorkflowInsId + "'");
-
-
-                                            wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
-                                        }
-                                        else
-                                        {
-                                            break;
-                                        }
-                                    }
-                                }
-
-                            return wt.TaskCaption;
-
-                        }
-                    }
-                }
-
-                return "";
+                return retStatus;
             }
+            return retStatus;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="WorkTaskInsId"></param>
+        /// <param name="retWorkTaskCaption"></param>
+        /// <returns></returns>
+        public static string GetWorkFlowTaskCaption(string WorkTaskInsId)
+        {
+            string strreturn = "";
+            WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(WorkTaskInsId);
+            WF_WorkFlowInstance mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList",
+                "where  WorkflowInsId='" + wti.WorkFlowInsId + "'");
+             while (mainwf.isSubWorkflow)
+            {
+                mainwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", 
+                    "where  WorkflowInsId='" + mainwf.MainWorkflowInsId + "'");
+            }
+            string[] taskidli = mainwf.NowTaskId.Split('|');
+            string WorkflowInsId ="";
+            foreach (string taskid in taskidli)
+            {
+                if (taskid == "") continue;
+                WorkflowInsId = mainwf.WorkFlowInsId;
+                WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(taskid);
 
+                strreturn=GetSubWorkFlowTaskCaption(WorkflowInsId, wt);
+            }
+            return strreturn;
+        }
         /// <summary>
         /// 流程是否可以退回
         /// </summary>
@@ -1730,9 +1914,10 @@ namespace Ebada.Scgl.WFlow
                             {
                                 //WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(mainwf.NowTaskId);
                                 WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(mainwf.NowTaskId);
-                                if (wt.TaskTypeId == "6")
+                                WF_WorkFlowInstance subwf=new WF_WorkFlowInstance ();
+                                if (wt.TaskTypeId == "6" )
                                 {
-                                    WF_WorkFlowInstance subwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  MainWorkflowInsId='" + li[0].MainWorkflowInsId + "'and MainWorktaskId='" + mainwf.NowTaskId + "' ");
+                                     subwf = (WF_WorkFlowInstance)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkFlowInstanceList", "where  MainWorkflowInsId='" + li[0].MainWorkflowInsId + "'and MainWorktaskId='" + mainwf.NowTaskId + "' ");
                                     sql = "where MainWorkflowInsId='" + subwf.MainWorkflowInsId + "' and MainWorktaskId='" + subwf.MainWorktaskId + "'and WorkTaskId='" + subwf.NowTaskId + "' order by opertype";
                                     li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>("SelectWF_WorkTaskInstanceViewList", sql);
                                     if (li.Count > 0)
@@ -1743,8 +1928,15 @@ namespace Ebada.Scgl.WFlow
                                 else
                                     if (wt.TaskTypeId == "2")
                                     {
-                                        TaskToWhoMsg = "子流程结束!";
+                                        if (subwf.isSubWorkflow) TaskToWhoMsg = "子流程结束!";
+                                        else
+                                            TaskToWhoMsg = "流程结束!";
                                     }
+                                    else
+                                        if (wt.TaskTypeId == "7")
+                                        {
+                                            if (ResultMsg == "流程正常结束") TaskToWhoMsg = "并行分支流程结束!";
+                                        }
 
 
 
@@ -1758,7 +1950,11 @@ namespace Ebada.Scgl.WFlow
                     TaskToWhoMsg = WorkFlowConst.TaskBackMsg;
                 }
             }
-
+            if (ResultMsg == WorkFlowConst.SuccessMsg)
+            {
+                
+                return TaskToWhoMsg = "提交成功。已完成该任务处理,可以关闭该窗口。";
+            }
             return TaskToWhoMsg = "成功提交至:" + TaskToWhoMsg + "。已完成该任务处理,可以关闭该窗口。";
         }
         public static string CreatWorkFolwNo(mOrg org, string parentID)

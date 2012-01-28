@@ -820,7 +820,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                     string towho = strmes;
                     strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
-                    if (strmes == "结束节点1")
+                    if (strmes.IndexOf("结束节点")>-1)
                     {
                         CurrRecord.Status = "存档";
                     }

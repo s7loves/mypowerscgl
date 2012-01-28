@@ -204,8 +204,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                //if( value.ToString().Length > 50)
+                //throw new Exception("[]长度不能大于50!");
                 if (_nowtaskid as object == null || !_nowtaskid.Equals(value))
                 {
                     _nowtaskid = value;

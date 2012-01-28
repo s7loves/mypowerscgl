@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class WorkFlowLineSelectForm
+    partial class WorkFlowTaskSelectForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,6 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             this.SuspendLayout();
-            
             // 
             // panelControl1
             // 
@@ -85,9 +84,9 @@
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(48, 14);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "支路选择";
+            this.labelControl1.Text = "节点选择";
             // 
-            // WorkFlowLineSelectForm
+            // WorkFlowTaskSelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -96,10 +95,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "WorkFlowLineSelectForm";
+            this.Name = "WorkFlowTaskSelectForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "支路选择";
-            this.Load += new System.EventHandler(this.WorkFlowLineSelectForm_Load);
+            this.Text = "并行节点选择";
+            this.Load += new System.EventHandler(this.WorkFlowTaskSelectForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
