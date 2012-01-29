@@ -116,7 +116,7 @@ namespace Ebada.Scgl.WFlow
                     string tmpStr2 = " where  TaskTypeId='2' and MainWorkflowInsId='" + tl.WorkFlowInsId + "'";
                     IList<WF_WorkTaskInstanceView> li2 = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
                         "SelectWF_WorkTaskInstanceViewList", tmpStr2);
-                    if (!taskht.ContainsKey(li2[0].WorkTaskInsId))
+                    if (!taskht.ContainsKey(li2[0].WorkTaskInsId) && li2[0].TaskTypeId != "2")
                         taskht.Add(li2[0].WorkTaskInsId, li2[0].TaskInsCaption);
 
                     GetWorkFlowInsPreviousTask(li2[0].PreviousTaskId, li2[0].WorkFlowInsId, ref  taskht);
@@ -135,11 +135,11 @@ namespace Ebada.Scgl.WFlow
 
                         GetWorkFlowInsPreviousTask(wtiv.PreviousTaskId, wtiv.WorkFlowInsId, ref  taskht);
                     }
-                    GetWorkFlowInsPreviousTask(tl.PreviousTaskId, tl.WorkFlowInsId, ref  taskht);
+                    if (tl.WorkFlowNo == "rltWorkflow") GetWorkFlowInsPreviousTask(tl.PreviousTaskId, tl.WorkFlowInsId, ref  taskht);
                 }
 
             }
-
+            return;
         }
         /// <summary>
         /// 
@@ -166,7 +166,7 @@ namespace Ebada.Scgl.WFlow
                     IList<WF_WorkTaskInstanceView> tasklist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>
                         ("SelectWF_WorkTaskInstanceViewList",
                         "where TaskTypeId='2' and WorkFlowInsId='" + wf[0].WorkFlowInsId + "'");
-                    if (!hs.ContainsKey(tasklist[0].WorkTaskInsId))
+                    if (!hs.ContainsKey(tasklist[0].WorkTaskInsId) && tasklist[0].TaskTypeId != "2")
                         hs.Add(tasklist[0].WorkTaskInsId, tasklist[0].TaskCaption);
                     GetWorkFlowInsPreviousTask(tasklist[0].WorkTaskInsId, tasklist[0].WorkFlowInsId, ref hs);
                 }
