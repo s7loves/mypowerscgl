@@ -165,6 +165,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tsbCtrl = new System.Windows.Forms.ToolStripButton();
             this.tsbView = new System.Windows.Forms.ToolStripButton();
             this.tsbSub = new System.Windows.Forms.ToolStripButton();
+            this.tsbParallel = new System.Windows.Forms.ToolStripButton();
             this.tsbLine = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
@@ -175,7 +176,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tsbBottom = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEixt = new System.Windows.Forms.ToolStripButton();
-            this.tsbParallel = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.plLeft.SuspendLayout();
@@ -568,6 +568,15 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tsbSub.Text = "6";
             this.tsbSub.ToolTipText = "子流程";
             // 
+            // tsbParallel
+            // 
+            this.tsbParallel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbParallel.Image = ((System.Drawing.Image)(resources.GetObject("tsbParallel.Image")));
+            this.tsbParallel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbParallel.Name = "tsbParallel";
+            this.tsbParallel.Size = new System.Drawing.Size(24, 24);
+            this.tsbParallel.Text = "7";
+            // 
             // tsbLine
             // 
             this.tsbLine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -661,15 +670,6 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tsbEixt.Text = "exit";
             this.tsbEixt.ToolTipText = "关闭";
             this.tsbEixt.Click += new System.EventHandler(this.tsbEixt_Click);
-            // 
-            // tsbParallel
-            // 
-            this.tsbParallel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbParallel.Image = ((System.Drawing.Image)(resources.GetObject("tsbParallel.Image")));
-            this.tsbParallel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbParallel.Name = "tsbParallel";
-            this.tsbParallel.Size = new System.Drawing.Size(24, 24);
-            this.tsbParallel.Text = "7";
             // 
             // fmWorkFlowIDE
             // 
