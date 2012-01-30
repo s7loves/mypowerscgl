@@ -1808,16 +1808,18 @@ namespace Ebada.Scgl.Lcgl {
                     if (fbd.ShowDialog() == DialogResult.OK)
                     {
                         fname = fbd.SelectedPath + "\\";
+                        DSOFramerControl ds1 = new DSOFramerControl();
                         ArrayList checkkeys = new ArrayList(frmes.CheckIndehs.Keys);
                         for (i = 0; i < checkkeys.Count; i++)
                         {
                             object obj = akeys[Convert.ToInt32(checkkeys[i])];
-                            DSOFramerControl ds1 = new DSOFramerControl();
+                            
                             try
                             {
                                 if (obj is LP_Temple)
                                 {
 
+                                    
                                     ds1.FileDataGzip = ((LP_Temple)obj).DocContent;
                                     //ds1.FileOpen(ds1.FileName);
                                     ds1.FileSave(CheckFileName(fname + frmes.CheckIndehs[checkkeys[i]]), true);
@@ -1831,7 +1833,7 @@ namespace Ebada.Scgl.Lcgl {
                                     if (taskTemple != null)
                                     {
                                         WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(templehs[akeys[Convert.ToInt32(checkkeys[i])]]);
-                                        RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, worktaskins.WorkFlowId,
+                                        RecordWorkTask.iniTableRecordData(ref taskTemple,ds1, currRecord, worktaskins.WorkFlowId,
                                             worktaskins.WorkFlowInsId, true);
                                         ds1.FileDataGzip = taskTemple.DocContent;
                                         //ds1.FileOpen(ds1.FileName);
@@ -1843,9 +1845,12 @@ namespace Ebada.Scgl.Lcgl {
                             }
                             catch (Exception ex)
                             {
+
+
+                                ds1.FileClose();
                                 Console.WriteLine(ex.Message);
-                                MsgBox.ShowWarningMessageBox("无法保存" + frmes.CheckIndehs[checkkeys[i]] + "。请用其他文件名保存文件，或将文件存至其他位置。");
-                               
+                                MsgBox.ShowWarningMessageBox("出错" + ex.Message + " ，无法保存" + frmes.CheckIndehs[checkkeys[i]] + "。请用其他文件名保存文件，或将文件存至其他位置。");
+                                break;
                             }
                            
 

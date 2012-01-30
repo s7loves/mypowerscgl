@@ -89,7 +89,7 @@ namespace Ebada.Scgl.WFlow
         public static void GetWorkFlowInsPreviousTask(string workTaskInsId, string WorkFlowInsId, ref Hashtable taskht)
         {
 
-            string tmpStr = " where  WorkTaskInsId='" + workTaskInsId +  "' and( (OperStatus='1' and TaskTypeId!='2' ) or TaskTypeId='2'or TaskTypeId='6' )";
+            string tmpStr = " where  WorkTaskInsId='" + workTaskInsId + "' and( (OperStatus='1' and TaskTypeId!='2' ) or TaskTypeId='2'or TaskTypeId='6' or TaskTypeId='7'  )";
             IList<WF_WorkTaskInstanceView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
                 "SelectWF_WorkTaskInstanceViewList", tmpStr);
             if (li.Count == 0)
@@ -106,7 +106,7 @@ namespace Ebada.Scgl.WFlow
                 //}
                 if (tl.TaskTypeId != "6" && tl.TaskTypeId != "7")
                 {
-                    if (!taskht.ContainsKey(tl.WorkTaskInsId) && tl.SuccessMsg.IndexOf("退回") == -1 && tl.TaskTypeId == "3")
+                    if (!taskht.ContainsKey(tl.WorkTaskInsId) && tl.SuccessMsg.IndexOf("退回") == -1 && (tl.TaskTypeId == "3" || tl.TaskTypeId == "1"))
                         taskht.Add(tl.WorkTaskInsId, tl.TaskInsCaption);
                     if (tl.WorkTaskInsId == tl.PreviousTaskId) return;
                     GetWorkFlowInsPreviousTask(tl.PreviousTaskId, tl.WorkFlowInsId, ref  taskht);
@@ -116,7 +116,7 @@ namespace Ebada.Scgl.WFlow
                     string tmpStr2 = " where  TaskTypeId='2' and MainWorkflowInsId='" + tl.WorkFlowInsId + "'";
                     IList<WF_WorkTaskInstanceView> li2 = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>(
                         "SelectWF_WorkTaskInstanceViewList", tmpStr2);
-                    if (!taskht.ContainsKey(li2[0].WorkTaskInsId) &&  tl.TaskTypeId == "3")
+                    if (!taskht.ContainsKey(li2[0].WorkTaskInsId) && (tl.TaskTypeId == "3" || tl.TaskTypeId == "1"))
                         taskht.Add(li2[0].WorkTaskInsId, li2[0].TaskInsCaption);
 
                     GetWorkFlowInsPreviousTask(li2[0].PreviousTaskId, li2[0].WorkFlowInsId, ref  taskht);
@@ -130,12 +130,13 @@ namespace Ebada.Scgl.WFlow
 
                     foreach (WF_WorkTaskInstanceView wtiv in li2)
                     {
-                        if (!taskht.ContainsKey(wtiv.WorkTaskInsId) && wtiv.TaskTypeId == "3" )
+                        if (!taskht.ContainsKey(wtiv.WorkTaskInsId) && (wtiv.TaskTypeId == "3" || wtiv.TaskTypeId == "1"))
                             taskht.Add(wtiv.WorkTaskInsId, wtiv.TaskInsCaption);
 
                         GetWorkFlowInsPreviousTask(wtiv.PreviousTaskId, wtiv.WorkFlowInsId, ref  taskht);
                     }
-                    if (tl.WorkFlowNo == "rltWorkflow") GetWorkFlowInsPreviousTask(tl.PreviousTaskId, tl.WorkFlowInsId, ref  taskht);
+                    if (tl.TaskInsCaption == "并行流程节点") 
+                        GetWorkFlowInsPreviousTask(tl.PreviousTaskId, tl.WorkFlowInsId, ref  taskht);
                 }
 
             }
@@ -166,7 +167,7 @@ namespace Ebada.Scgl.WFlow
                     IList<WF_WorkTaskInstanceView> tasklist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>
                         ("SelectWF_WorkTaskInstanceViewList",
                         "where TaskTypeId='2' and WorkFlowInsId='" + wf[0].WorkFlowInsId + "'");
-                    if (!hs.ContainsKey(tasklist[0].WorkTaskInsId) && tasklist[0].TaskTypeId == "3" )
+                    if (!hs.ContainsKey(tasklist[0].WorkTaskInsId) && (tasklist[0].TaskTypeId == "3" || tasklist[0].TaskTypeId == "1"))
                         hs.Add(tasklist[0].WorkTaskInsId, tasklist[0].TaskCaption);
                     GetWorkFlowInsPreviousTask(tasklist[0].WorkTaskInsId, tasklist[0].WorkFlowInsId, ref hs);
                 }
@@ -612,66 +613,76 @@ namespace Ebada.Scgl.WFlow
         /// <param name="isExplorerCall"></param>
         public static void iniTableRecordData(ref LP_Temple temple, LP_Record currRecord, string WorkflowId, string WorkFlowInsId, bool isExplorerCall)
         {
+            iniTableRecordData(ref  temple, null, currRecord, WorkflowId, WorkFlowInsId, isExplorerCall);
+        }
+        public static void iniTableRecordData(ref LP_Temple temple,DSOFramerControl dsoFramerWordControl1, LP_Record currRecord, string WorkflowId, string WorkFlowInsId, bool isExplorerCall)
+        {
             if (temple != null)
             {
-                DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
-                dsoFramerWordControl1.FileDataGzip = temple.DocContent;
-                IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
-                    " where RecordId='" + currRecord.ID + "' and UserControlId='" + temple.LPID + "' and   WorkflowId='" + WorkflowId + "' and WorkFlowInsId='" + WorkFlowInsId + "' ");
-                Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-                Excel.Worksheet xx;
-                ExcelAccess ea = new ExcelAccess();
-                ea.MyWorkBook = wb;
-                ea.MyExcel = wb.Application;
-                string activeSheetName = "";
-                xx = wb.Application.Sheets[1] as Excel.Worksheet;
-                int i = 0;
-                ArrayList al = new ArrayList();
-                for (i = 1; i <= wb.Application.Sheets.Count; i++)
+                if(dsoFramerWordControl1==null) dsoFramerWordControl1 = new DSOFramerControl();
+                try
                 {
-                    xx = wb.Application.Sheets[i] as Excel.Worksheet;
-                    if (!al.Contains(xx.Name)) al.Add(xx.Name);
-                }
-                for (i = 0; i < tfvli.Count; i++)
-                {
-                    if (!al.Contains(tfvli[i].ExcelSheetName))
+                    dsoFramerWordControl1.FileDataGzip = temple.DocContent;
+                    IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                        " where RecordId='" + currRecord.ID + "' and UserControlId='" + temple.LPID + "' and   WorkflowId='" + WorkflowId + "' and WorkFlowInsId='" + WorkFlowInsId + "' ");
+                    Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                    Excel.Worksheet xx;
+                    ExcelAccess ea = new ExcelAccess();
+                    ea.MyWorkBook = wb;
+                    ea.MyExcel = wb.Application;
+                    string activeSheetName = "";
+                    xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                    int i = 0;
+                    ArrayList al = new ArrayList();
+                    for (i = 1; i <= wb.Application.Sheets.Count; i++)
                     {
-
-                        continue;
+                        xx = wb.Application.Sheets[i] as Excel.Worksheet;
+                        if (!al.Contains(xx.Name)) al.Add(xx.Name);
                     }
-                    if (isExplorerCall)
+                    for (i = 0; i < tfvli.Count; i++)
                     {
-
-                        LP_Temple field = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tfvli[i].FieldId);
-                        if (field != null)
+                        if (!al.Contains(tfvli[i].ExcelSheetName))
                         {
-                            if (field.isExplorer == 1)
+
+                            continue;
+                        }
+                        if (isExplorerCall)
+                        {
+
+                            LP_Temple field = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tfvli[i].FieldId);
+                            if (field != null)
                             {
-                                continue;
+                                if (field.isExplorer == 1)
+                                {
+                                    continue;
+                                }
                             }
                         }
-                    }
-                    if (activeSheetName != tfvli[i].ExcelSheetName)
-                    {
-                        if (activeSheetName != "")
+                        if (activeSheetName != tfvli[i].ExcelSheetName)
                         {
+                            if (activeSheetName != "")
+                            {
 
-                            xx = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
+                                xx = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
 
 
+                            }
+                            xx = wb.Application.Sheets[tfvli[i].ExcelSheetName] as Excel.Worksheet;
+
+                            activeSheetName = tfvli[i].ExcelSheetName;
+
+                            ea.ActiveSheet(xx.Index);
                         }
-                        xx = wb.Application.Sheets[tfvli[i].ExcelSheetName] as Excel.Worksheet;
 
-                        activeSheetName = tfvli[i].ExcelSheetName;
+                        if (tfvli[i].XExcelPos > -1 && tfvli[i].YExcelPos > -1) ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
 
-                        ea.ActiveSheet(xx.Index);
                     }
-
-                    if (tfvli[i].XExcelPos > -1 && tfvli[i].YExcelPos > -1) ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
-
+                    dsoFramerWordControl1.FileSave();
+                    temple.DocContent = dsoFramerWordControl1.FileDataGzip;
                 }
-                dsoFramerWordControl1.FileSave();
-                temple.DocContent = dsoFramerWordControl1.FileDataGzip;
+                catch (Exception ex) { 
+                    Console.WriteLine(ex.Message); 
+                }
                 dsoFramerWordControl1.FileClose();
             }
         }

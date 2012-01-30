@@ -711,11 +711,11 @@ namespace Ebada.SCGL.WFlow.Engine
                                             workTaskInstance.PreviousTaskId = workTaskInstance.WorktaskInsId;
                                             if (SubWorkflowType == "subWorkflow")
                                             {
-                                                workTaskInstance.TaskInsCaption = "子流程";
+                                                workTaskInstance.TaskInsCaption = OperInfo.Rows[0]["FlowInsCaption"].ToString() + "子流程";
                                             }
                                             else if (SubWorkflowType == "rltWorkflow")
                                             {
-                                                workTaskInstance.TaskInsCaption = "并行流程";
+                                                workTaskInstance.TaskInsCaption = OperInfo.Rows[0]["FlowInsCaption"].ToString() + "并行流程";
                                             }
                                             workTaskInstance.Status = "3";
                                             workTaskInstance.Create();
@@ -768,7 +768,7 @@ namespace Ebada.SCGL.WFlow.Engine
                                                         //workTaskInstance.Status = "3";
                                                         //workTaskInstance.Create();
                                                         WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(subwfli[0].MainWorkflowInsId);
-                                                        string strsql = " where WorktaskId='" + wfi.NowTaskId + "' and WorkflowInsId='" + MainWorkflowInsId+"'";
+                                                        string strsql = " where WorktaskId='" + wfi.NowTaskId + "' and WorkflowInsId='" + MainWorkflowInsId + "'  and TaskInsCaption='并行流程节点' ";
                                                         WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskInstance>(strsql);
                                                         string result = CreateNextTaskInstance(userId, MainWorkflowId, workTaskId, MainWorkflowInsId, wti.WorkTaskInsId, operatorInstanceId, "提交");
                                                         if (result != WorkFlowConst.SuccessCode) return result;
@@ -1086,11 +1086,11 @@ namespace Ebada.SCGL.WFlow.Engine
                                             workTaskInstance.PreviousTaskId = workTaskInstance.WorktaskInsId;
                                             if (SubWorkflowType == "subWorkflow")
                                             {
-                                                workTaskInstance.TaskInsCaption = "子流程";
+                                                workTaskInstance.TaskInsCaption = OperInfo.Rows[0]["FlowInsCaption"].ToString()+"子流程";
                                             }
                                             else if (SubWorkflowType == "rltWorkflow")
                                             {
-                                                workTaskInstance.TaskInsCaption = "并行流程";
+                                                workTaskInstance.TaskInsCaption = OperInfo.Rows[0]["FlowInsCaption"].ToString() + "并行流程";
                                             }
                                             workTaskInstance.Status = "3";
                                             workTaskInstance.Create();
@@ -1119,7 +1119,7 @@ namespace Ebada.SCGL.WFlow.Engine
                                                     {
                                                         
                                                         WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(subwfli[0].MainWorkflowInsId);
-                                                        string strsql = " where WorktaskId='" + wfi.NowTaskId + "' and WorkflowInsId='" + MainWorkflowInsId + "'";
+                                                        string strsql = " where WorktaskId='" + wfi.NowTaskId + "' and WorkflowInsId='" + MainWorkflowInsId + "' and TaskInsCaption='并行流程节点' ";
                                                         WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskInstance>(strsql);
                                                         string result = CreateNextTaskInstance(userId, MainWorkflowId, endTaskId, MainWorkflowInsId, wti.WorkTaskInsId, operatorInstanceId, "提交");
                                                         if (result != WorkFlowConst.SuccessCode) return result;
