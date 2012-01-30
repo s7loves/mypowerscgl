@@ -43,6 +43,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private int conID;//控制节点计数
         private int subID;//子流程节点计数
         private int rlID;//并行节点计数
+        private int syID;//结束节点计数
         private Rubberband rubberband = null;//橡皮圈                                    
         private Dragger dragger = null;    //拖拽处理
         private bool isZhexian;//选中的连线的选中折点的索引
@@ -79,8 +80,8 @@ namespace Ebada.SCGL.WFlow.Tool
         /// </summary>
         public bool toolModel;
         /**//// <summary>
-        /// 节点模式，画线模式：1--启动节点；2-终止节点;3-交互节点;4-判断节点;5-查看节点;6-自动节点;7-控制节点;
-        /// 8-子流程节点；0－连线,-1-自连线;
+        /// 节点模式，画线模式：1--启动节点；2-终止节点;3-交互节点;4-判断节点;5-查看节点;6-子流程;7-并行节点;
+        /// 8-并行结束节点；0－连线,-1-自连线;
         /// </summary>
         public int Module;
         /**//// <summary>
@@ -129,6 +130,7 @@ namespace Ebada.SCGL.WFlow.Tool
             conID=0;
             subID=0;
             rlID = 0;
+            syID = 0;
             toolModel=false;        
             isDrawingLine = false;
             isZhexian=false;
@@ -530,6 +532,12 @@ namespace Ebada.SCGL.WFlow.Tool
                         this.rlID++;
                         ParallelTask rlt = new ParallelTask(p, rlID);
                         AddItem(rlt, 7);
+                        break;
+
+                    case 8:
+                        this.syID++;
+                        SynchTask synt = new SynchTask(p, syID);
+                        AddItem(synt, 8);
                         break;
                                     
 

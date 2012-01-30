@@ -150,6 +150,16 @@ namespace Ebada.SCGL.WFlow.Tool
                             TaskItems.Add(rlt);
                             break;
 
+                        case 8://并行终止节点
+                            SynchTask syn = new SynchTask(p, 0);
+                            syn.TaskName = dr["TaskCaption"].ToString();
+                            syn.TaskId = dr["WorkTaskId"].ToString();
+                            syn.TaskType = taskType;
+                            syn.WorkFlowId = dr["WorkFlowId"].ToString();
+                            TaskItems.Add(syn);
+                            break;
+
+
 
                     }
 

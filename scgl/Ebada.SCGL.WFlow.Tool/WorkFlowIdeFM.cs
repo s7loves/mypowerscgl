@@ -69,7 +69,8 @@ namespace Ebada.SCGL.WFlow.Tool
         private Panel panel3;
         private Button button1;
         private Splitter splitter1;
-        private ToolStripButton tsbParallel;//当前节点
+        private ToolStripButton tsbParallel;
+        private ToolStripButton tsbSynch;//当前节点
         string            nowTreeNodeId;//当前节点的Id
 
         /// <summary>
@@ -166,6 +167,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tsbView = new System.Windows.Forms.ToolStripButton();
             this.tsbSub = new System.Windows.Forms.ToolStripButton();
             this.tsbParallel = new System.Windows.Forms.ToolStripButton();
+            this.tsbSynch = new System.Windows.Forms.ToolStripButton();
             this.tsbLine = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
@@ -455,6 +457,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tsbView,
             this.tsbSub,
             this.tsbParallel,
+            this.tsbSynch,
             this.tsbLine,
             this.toolStripSeparator1,
             this.tsbSave,
@@ -576,6 +579,15 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tsbParallel.Name = "tsbParallel";
             this.tsbParallel.Size = new System.Drawing.Size(24, 24);
             this.tsbParallel.Text = "7";
+            // 
+            // tsbSynch
+            // 
+            this.tsbSynch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSynch.Image = ((System.Drawing.Image)(resources.GetObject("tsbSynch.Image")));
+            this.tsbSynch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSynch.Name = "tsbSynch";
+            this.tsbSynch.Size = new System.Drawing.Size(24, 24);
+            this.tsbSynch.Text = "8";
             // 
             // tsbLine
             // 
@@ -703,8 +715,8 @@ namespace Ebada.SCGL.WFlow.Tool
 		{
             //UserId = "admin";
             WorkFlowClassTreeNode.LoadWorkFlowClass("####", treeWorkflow.Nodes);
-            treeWorkflow.ExpandAll();
-            
+            //treeWorkflow.ExpandAll();
+            treeWorkflow.Nodes[0].Expand();
 			
 		}
 
@@ -899,6 +911,9 @@ namespace Ebada.SCGL.WFlow.Tool
                     break;
                 case "7":
                     wpClient.Module = 7;
+                    break;
+                case "8":
+                    wpClient.Module = 8;
                     break;
                 case "left":
                     Dragger dragger = new Dragger(wpClient, wpClient.SelectedItems);
