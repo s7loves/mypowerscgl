@@ -1110,6 +1110,9 @@ namespace Ebada.SCGL.WFlow.Engine
                 case "7"://并行节点 
                     taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.并行节点.ico")));
                     break;
+                case "8"://并行结束节点 
+                    taskBitmap = new Bitmap(Image.FromStream(typeof(BaseComponent).Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.并行结束节点.ico")));
+                    break;
                    
             }
             if (isCurrent)

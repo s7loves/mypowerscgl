@@ -51,6 +51,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     LoadWorkFlowClass(tmpNode.NodeId, tmpNode.Nodes);
 
                 }
+                WorkFlowTreeNode.LoadWorkFlowSelectNode(key, startNodes);
             }
             catch (Exception ex)
             {

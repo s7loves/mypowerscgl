@@ -465,4 +465,23 @@ namespace Ebada.SCGL.WFlow.Tool
     //        bounds=new Rectangle(LocalPoint,icon.Size);
     //    }        
     //}
+    /**/
+    /// <summary>
+    /// 8并行终止节点
+    /// </summary>
+    public class SynchTask : BaseComponent
+    {
+        public SynchTask(Point localPoint, int orderId)
+        {
+            //DllClassName = "Ebada.SCGL.WFlow.Tool.fmTaskParalle";
+
+            LocalPoint = localPoint;
+            X = LocalPoint.X;
+            Y = LocalPoint.Y;
+            TaskName = "同步节点" + orderId.ToString();
+            TaskType = 8;
+            icon = Icon.FromHandle(new Bitmap(Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ebada.SCGL.WFlow.Tool.Resources.并行结束节点.ico"))).GetHicon());
+            bounds = new Rectangle(LocalPoint, icon.Size);
+        }
+    }
 }

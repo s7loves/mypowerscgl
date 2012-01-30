@@ -636,7 +636,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 string branchPriority = dt.Rows[0]["priority"].ToString();//优先级
                 bool isfind = false;
                 //遍历满足条件的所有任务节点
-                for (int i = 0; i < l; i++)
+                for (int i = 0; i < l;    i++)
                 {
                     DataRow dr = dt.Rows[i];
                     condition = dr["condition"].ToString();
@@ -1030,16 +1030,121 @@ namespace Ebada.SCGL.WFlow.Engine
                                     #endregion
                                     break;
                                 }
+
+                            case "8"://并行结束节点
+                                {
+                                    //并行结束节点
+                                    #region 并行结束节点
+                                    //产生一个并行结束节点的实例
+                                    string newEndTaskId = Guid.NewGuid().ToString();//新任务处理者实例Id
+                                    WorkTaskInstance endWorktaskIns = new WorkTaskInstance();
+                                    endWorktaskIns.WorkflowId = workFlowId;
+                                    endWorktaskIns.WorktaskId = endTaskId;
+                                    endWorktaskIns.WorkflowInsId = workFlowInstanceId;
+                                    endWorktaskIns.WorktaskInsId = newEndTaskId;
+                                    endWorktaskIns.PreviousTaskId = WorkTaskInstanceId;
+                                    endWorktaskIns.TaskInsCaption = WorkFlowTask.GetTaskCaption(endTaskId);
+                                    endWorktaskIns.Status = "2";//结束节点不需要再处理,但此处不能为3,设置结束实例会修改该值=3
+                                    endWorktaskIns.Create();
+
+                                    //设置处理者实例正常结束
+                                    OperatorInstance.SetOperatorInstanceOver(userId, operatorInstanceId);
+                                    //设置任务实例正常结束
+                                    WorkTaskInstance.SetWorkTaskInstanceOver(userName, WorkTaskInstanceId);
+                                    WorkTaskInstance.SetWorkTaskInstanceOver(userName, newEndTaskId);//结束节点实例 结束
+                                    //设置流程实例正常结束
+                                    WorkFlowInstance.SetWorkflowInstanceOver(workFlowInstanceId);
+                                    //设定流程实例的当前位置
+                                    WorkFlowInstance.SetCurrTaskId(workFlowInstanceId, endTaskId);
+                                    WorkTaskInstance.SetSuccessMsg(WorkFlowConst.WorkflowOverMsg, WorkTaskInstanceId);//结束节点单独处理,任务提交给谁了
+                                    //检查是否子流程调用
+                                    DataTable OperInfo;
+                                    OperInfo = WorkFlowInstance.GetWorkflowInstance(workFlowInstanceId);
+                                    if (OperInfo != null && OperInfo.Rows.Count > 0)
+                                    {
+                                        bool isSubWorkflow = false;//是否是子流程调用
+                                        string MainWorkflowInsId = "";
+                                        string MainWorktaskId = "";
+                                        string MainWorkflowId = "";
+                                        string MainWorktaskInsId = "";
+                                        string SubWorkflowType = "";
+                                        isSubWorkflow = Convert.ToBoolean(OperInfo.Rows[0]["isSubWorkflow"]);
+                                        SubWorkflowType = OperInfo.Rows[0]["WorkFlowNo"].ToString();
+                                        MainWorkflowInsId = OperInfo.Rows[0]["MainWorkflowInsId"].ToString();//主流程实例Id
+                                        MainWorktaskId = OperInfo.Rows[0]["MainWorktaskId"].ToString();//子流程节点模板Id
+                                        MainWorkflowId = OperInfo.Rows[0]["MainWorkflowId"].ToString();//主流程模板Id
+                                        MainWorktaskInsId = OperInfo.Rows[0]["MainWorktaskInsId"].ToString();//主任务实例Id，进入子节点前的任务节点实例
+                                        if (isSubWorkflow)
+                                        {
+                                            //创建一个子流程节点实例痕迹，表示子流程节点处理完成
+                                            string newTaskId = Guid.NewGuid().ToString();//新任务处理者实例Id
+                                            WorkTaskInstance workTaskInstance = new WorkTaskInstance();
+                                            workTaskInstance.WorkflowId = MainWorkflowId;
+                                            workTaskInstance.WorktaskId = MainWorktaskId;
+                                            workTaskInstance.WorkflowInsId = MainWorkflowInsId;
+                                            workTaskInstance.WorktaskInsId = newTaskId;
+                                            workTaskInstance.PreviousTaskId = workTaskInstance.WorktaskInsId;
+                                            if (SubWorkflowType == "subWorkflow")
+                                            {
+                                                workTaskInstance.TaskInsCaption = "子流程";
+                                            }
+                                            else if (SubWorkflowType == "rltWorkflow")
+                                            {
+                                                workTaskInstance.TaskInsCaption = "并行流程";
+                                            }
+                                            workTaskInstance.Status = "3";
+                                            workTaskInstance.Create();
+                                            if (SubWorkflowType == "subWorkflow")
+                                            {
+                                                string result = CreateNextTaskInstance(userId, MainWorkflowId, MainWorktaskId, MainWorkflowInsId, newTaskId, operatorInstanceId, "提交");
+                                                if (result != WorkFlowConst.SuccessCode) return result;
+                                            }
+                                            else
+                                                if (SubWorkflowType == "rltWorkflow")
+                                                {
+                                                    bool isall = true;
+
+                                                    IList<WF_WorkFlowInstance> subwfli = MainHelper.PlatformSqlMap.GetList<WF_WorkFlowInstance>("SelectWF_WorkFlowInstanceList",
+                                                    "where  MainWorkflowInsId='" + MainWorkflowInsId
+                                                    + "'and MainWorktaskId='" + MainWorktaskId + "' ");
+                                                    IList<WF_WorkTaskInstance> taskwfli = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstance>("SelectWF_WorkTaskInstanceList",
+                                                    "where  WorkflowInsId='" + MainWorkflowInsId
+                                                    + "'and WorktaskId='" + MainWorktaskId + "' and TaskInsCaption!='并行流程节点' ");
+                                                   
+                                                    if (subwfli.Count > taskwfli.Count)
+                                                    {
+                                                        isall = false;
+                                                    }
+                                                    if (isall)
+                                                    {
+                                                        
+                                                        WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(subwfli[0].MainWorkflowInsId);
+                                                        string strsql = " where WorktaskId='" + wfi.NowTaskId + "' and WorkflowInsId='" + MainWorkflowInsId + "'";
+                                                        WF_WorkTaskInstance wti = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskInstance>(strsql);
+                                                        string result = CreateNextTaskInstance(userId, MainWorkflowId, endTaskId, MainWorkflowInsId, wti.WorkTaskInsId, operatorInstanceId, "提交");
+                                                        if (result != WorkFlowConst.SuccessCode) return result;
+                                                    }
+                                                }
+
+                                        }
+
+                                    }
+
+
+                                    #endregion
+                                    break;
+                                }
+
                         }
                     }
-                }
+                   }
                 #endregion
                 if (!isfind)
                 {
                     //未配置后续节点
                     return WorkFlowConst.NoFoundTaskCode;
                 }
-            }
+            } 
             else
             {   //未配置后续节点
                 return WorkFlowConst.NoFoundTaskCode;
