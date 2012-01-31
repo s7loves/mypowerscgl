@@ -579,6 +579,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tsbParallel.Name = "tsbParallel";
             this.tsbParallel.Size = new System.Drawing.Size(24, 24);
             this.tsbParallel.Text = "7";
+            this.tsbParallel.ToolTipText = "并行节点";
             // 
             // tsbSynch
             // 
@@ -588,6 +589,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tsbSynch.Name = "tsbSynch";
             this.tsbSynch.Size = new System.Drawing.Size(24, 24);
             this.tsbSynch.Text = "8";
+            this.tsbSynch.ToolTipText = "并行终止节点";
             // 
             // tsbLine
             // 
