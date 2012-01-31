@@ -882,6 +882,7 @@ namespace Ebada.Scgl.Lcgl {
         {
             DataTable dtall = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
             DataTable dt =new DataTable ();
+            if (dtall.Rows.Count < 1) return;
             if (dtall.Rows.Count == 1)
             {
                 dt = dtall;
