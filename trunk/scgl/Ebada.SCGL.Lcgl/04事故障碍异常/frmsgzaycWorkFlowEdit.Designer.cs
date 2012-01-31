@@ -79,7 +79,7 @@
             // 
             // m_DefaultLookAndFeel
             // 
-            ;
+           
             // 
             // btnCancel
             // 
