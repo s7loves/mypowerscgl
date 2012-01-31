@@ -25,7 +25,20 @@ namespace Ebada.SCGL.WFlow.Tool
         private LP_Temple rowData = null;
         private DataTable griddt = null;
         private string strSQL = "";
+        private ArrayList excelList = null;
+        public ArrayList ExcelList
+        {
+            get
+            {
+                return excelList;
+            }
+            set
+            {
+                if (value == null) return;
 
+                excelList = value;
+            }
+        }
         public string StrSQL
         {
             get
@@ -75,41 +88,26 @@ namespace Ebada.SCGL.WFlow.Tool
             WinFormFun.LoadComboBox(cbxWorkDataTable, dt, "LPID", "CellName");
 
             LP_Temple tp = ClientHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(rowData.ParentID);
-          
-           DSOFramerControl dsoFramerWordControl1 =new DSOFramerControl ();
-           if (tp == null)
-           {
-               dsoFramerWordControl1.FileDataGzip = rowData.DocContent;
-               rowData.DocContent = new byte[0];
-           }
-           else
-           {
-               dsoFramerWordControl1.FileDataGzip = tp.DocContent;
-               
-           }
 
-           Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-           Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
+           
            cbxWorkExcelTable.Items.Clear();
-            for (i = 1; i <= wb.Application.Sheets.Count; i++)
+            for (i = 0; i < excelList.Count; i++)
            {
 
-               Microsoft.Office.Interop.Excel.Worksheet tmpSheet = (Microsoft.Office.Interop.Excel.Worksheet)wb.Application.Sheets.get_Item(i);
+               
                    try
                    {
-                       if (tmpSheet != null)
-                       {
-                           cbxWorkExcelTable.Items.Add(tmpSheet.Name);
-                       }
+                       
+                           cbxWorkExcelTable.Items.Add(excelList[i]);
+                       
 
                    }
                    catch { }
 
                
            }
-            dsoFramerWordControl1.FileClose();
-            dsoFramerWordControl1.Dispose();
-            cbxWorkExcelTable.Text = xx.Name;
+
+            if (excelList.Count > 0) cbxWorkExcelTable.Text = excelList[0].ToString();
              li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
              //dt = ConvertHelper.ToDataTable(li);
              dt = new DataTable();
