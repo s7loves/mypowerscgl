@@ -940,6 +940,10 @@ namespace Ebada.Scgl.WFlow
             if (wtc != null)
             {
                  tp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtc.Modu_ID);
+                 if (tp == null)
+                 { 
+                    return null;
+                 }
             }
             if (tp == null)
             {
