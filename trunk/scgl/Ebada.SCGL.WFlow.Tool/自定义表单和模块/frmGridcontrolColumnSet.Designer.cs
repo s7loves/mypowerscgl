@@ -48,7 +48,7 @@
             // 
             // m_DefaultLookAndFeel
             // 
-            ;
+            
             // 
             // groupControl1
             // 

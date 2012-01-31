@@ -19,6 +19,34 @@ namespace Ebada.SCGL.WFlow.Tool
         SortableSearchableBindingList<LP_Temple> m_CityDic = new SortableSearchableBindingList<LP_Temple>();
         private string parentID;
         bool isclose = true;
+        private DSOFramerControl dsoFramerWordControl1 = null;
+        public DSOFramerControl DsoFramerWordControl1
+        {
+            get
+            {
+                return dsoFramerWordControl1;
+            }
+            set
+            {
+                if (value == null) return;
+
+                dsoFramerWordControl1 = value;
+            }
+        }
+        private ArrayList excelList = null;
+        public ArrayList ExcelList
+        {
+            get
+            {
+                return excelList;
+            }
+            set
+            {
+                if (value == null) return;
+
+                excelList = value;
+            }
+        }
         public string ParentID
         {
             get { return parentID; }
@@ -128,7 +156,8 @@ namespace Ebada.SCGL.WFlow.Tool
             //    list.Add(new DicType(wf.TaskCaption, wf.TaskCaption));
             //}
             //this.SetComboBoxData(this.lookUpEdit2, "Value", "Key", "请选择", "状态", list);
-           DSOFramerControl dsoFramerWordControl1 =new DSOFramerControl ();
+           //DSOFramerControl dsoFramerWordControl1 =new DSOFramerControl ();
+            if (dsoFramerWordControl1 == null) dsoFramerWordControl1 = new DSOFramerControl();
            //bool isadd = true;
            if (tp == null)
            {
@@ -140,7 +169,8 @@ namespace Ebada.SCGL.WFlow.Tool
                dsoFramerWordControl1.FileDataGzip = tp.DocContent;
                
            }
-
+           if (excelList == null) excelList = new ArrayList();
+           excelList.Clear();
            Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
            Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
            comboBoxEdit4.Properties.Items.Clear();
@@ -154,7 +184,7 @@ namespace Ebada.SCGL.WFlow.Tool
                        if (tmpSheet != null)
                        {
                            //tmpSheet.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
-                          
+                           excelList.Add(tmpSheet.Name);
                            if (xx.Name == tmpSheet.Name)
                            {
                                j = comboBoxEdit4.Properties.Items.Add(tmpSheet.Name);
@@ -172,7 +202,7 @@ namespace Ebada.SCGL.WFlow.Tool
                
            }
             dsoFramerWordControl1.FileClose();
-            dsoFramerWordControl1.Dispose();
+            //dsoFramerWordControl1.Dispose();
             comboBoxEdit4.SelectedIndex = j;
            //comboBoxEdit4.Text = xx.Name;
         }
@@ -286,7 +316,8 @@ namespace Ebada.SCGL.WFlow.Tool
             comboBoxEdit3.SelectedIndex = rowData.isExplorer;
             if (rowData.DocContent.Length>0)
             {
-                DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
+                //DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
+                if (dsoFramerWordControl1 == null) dsoFramerWordControl1 = new DSOFramerControl();
                 dsoFramerWordControl1.FileDataGzip = rowData.DocContent;
                 Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
                 Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
@@ -485,6 +516,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 frmExcelEditSQLSet fees = new frmExcelEditSQLSet();
                 fees.RowData = rowData;
                 fees.StrSQL = textEdit3.Text;
+                fees.ExcelList = excelList;
                 if (fees.ShowDialog() == DialogResult.OK)
                 {
                     textEdit3.Text = fees.StrSQL;
@@ -511,6 +543,7 @@ namespace Ebada.SCGL.WFlow.Tool
             frmGridcontrolSQLSet fees = new frmGridcontrolSQLSet();
             fees.RowData = rowData;
             fees.StrSQL = textEdit3.Text;
+            fees.ExcelList = excelList;
             if (fees.ShowDialog() == DialogResult.OK)
             {
                 textEdit3.Text = fees.StrSQL;
