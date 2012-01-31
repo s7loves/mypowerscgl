@@ -66,7 +66,7 @@
             // 
             // m_DefaultLookAndFeel
             // 
-            ;
+            
             // 
             // btnCancel
             // 

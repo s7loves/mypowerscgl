@@ -24,7 +24,20 @@ namespace Ebada.SCGL.WFlow.Tool
         }
         private LP_Temple rowData = null;
         private string strSQL = "";
+        private DSOFramerControl dsoFramerWordControl1 = null;
+        public DSOFramerControl DsoFramerWordControl1
+        {
+            get
+            {
+                return dsoFramerWordControl1;
+            }
+            set
+            {
+                if (value == null) return;
 
+                dsoFramerWordControl1 = value;
+            }
+        }
         public string StrSQL
         {
             get
@@ -89,7 +102,8 @@ namespace Ebada.SCGL.WFlow.Tool
 
             LP_Temple tp = ClientHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(rowData.ParentID);
           
-           DSOFramerControl dsoFramerWordControl1 =new DSOFramerControl ();
+           //DSOFramerControl dsoFramerWordControl1 =new DSOFramerControl ();
+            if (dsoFramerWordControl1==null) dsoFramerWordControl1 = new DSOFramerControl();
            if (tp == null)
            {
                dsoFramerWordControl1.FileDataGzip = rowData.DocContent;
