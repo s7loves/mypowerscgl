@@ -115,7 +115,11 @@ namespace Ebada.Scgl.Lcgl
                    
 
                 }
+                if (strModleSQL!="")
                 strModleSQL = strModleSQL + " )";
+                else
+                    strModleSQL =  " ('')";
+
                 foreach (string strtable in strTableidli)
                 {
                     string str2 = "";
@@ -210,12 +214,12 @@ namespace Ebada.Scgl.Lcgl
         }
         private void IniData()
         {
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select FlowCaption from WF_WorkFlow  where 1=1");
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select FlowCaption from WF_WorkFlow  where 1=1 order by FlowCaption");
             cbeWorkFlowCaption.Properties.Items.AddRange(li);
             cbeOrg.Properties.Items.Clear();
             ListItem item = new ListItem("全部", "全部");
             cbeOrg.Properties.Items.Add(item);
-            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgName  from mOrg  where 1=1");
+            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgName  from mOrg  where 1=1 order by OrgCode");
             cbeOrg.Properties.Items.AddRange(li);
             deCreatTimeStart.DateTime = DateTime.Now;
             deCreatTimeEnd.DateTime = DateTime.Now;
