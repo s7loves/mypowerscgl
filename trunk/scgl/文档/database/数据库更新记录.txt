@@ -39,4 +39,4 @@
 2012.1.12	增加表高压配电线路单线系统图、高压配电线路地理位置图、两措计划、记录卡片、设备年报、其他资料
 2012.1.15	修改PS_XL字段linp、lineq大小，增加字段TotalT
 2012.1.16	增加视图流程表单视图WF_WorkFlowControlsView
-2012.1.16	修改表WF_WorkFlowInstance字段NowTaskId大小
+2012.1.16	修改表WF_WorkFlowInstance字段NowTaskId大小,增加线路设备责任区划分明白表
