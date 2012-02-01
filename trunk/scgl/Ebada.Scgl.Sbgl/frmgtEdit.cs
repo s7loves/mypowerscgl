@@ -37,6 +37,7 @@ namespace Ebada.Scgl.Sbgl
         }
         public frmgtEdit() {
             InitializeComponent();
+            xtraTabControl1.TabPages.Remove(xtraTabPage2);
         }
         void dataBind() {
 
@@ -91,6 +92,27 @@ namespace Ebada.Scgl.Sbgl
             if (image != null && imageData!=null)
                 image.ImageData =(byte[]) imageData;
             return image;
+        }
+
+        bool showTab2 = false;
+
+        public bool ShowTab2 {
+            get { return showTab2; }
+            set {
+                showTab2 = value;
+            }
+        }
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+            Application.DoEvents();
+            if (showTab2) {
+                UCPS_GTSB gtsb = new UCPS_GTSB();
+                gtsb.ParentObj = rowData;
+                gtsb.HideList();
+                gtsb.Dock = DockStyle.Fill;
+                gtsb.Parent = xtraTabPage2;
+                xtraTabControl1.TabPages.Add(xtraTabPage2);
+            }
         }
         #endregion
 

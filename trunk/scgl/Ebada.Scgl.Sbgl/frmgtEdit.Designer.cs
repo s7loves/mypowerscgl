@@ -34,6 +34,7 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.spinEdit8 = new DevExpress.XtraEditors.SpinEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.spinEdit7 = new DevExpress.XtraEditors.SpinEdit();
@@ -62,7 +63,9 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit8.Properties)).BeginInit();
@@ -81,13 +84,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.xtraTabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(533, 391);
+            this.btnCancel.Location = new System.Drawing.Point(549, 407);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(64, 23);
             this.btnCancel.TabIndex = 0;
@@ -96,7 +102,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(463, 391);
+            this.btnOK.Location = new System.Drawing.Point(479, 407);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(64, 23);
             this.btnOK.TabIndex = 0;
@@ -105,23 +111,22 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.xtraTabControl1);
             this.groupControlOrg.Controls.Add(this.labelControl5);
             this.groupControlOrg.Controls.Add(this.spinEdit8);
-            this.groupControlOrg.Controls.Add(this.groupBox1);
-            this.groupControlOrg.Controls.Add(this.groupBox2);
             this.groupControlOrg.Controls.Add(this.btnCancel);
             this.groupControlOrg.Controls.Add(this.btnOK);
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.ShowCaption = false;
-            this.groupControlOrg.Size = new System.Drawing.Size(609, 436);
+            this.groupControlOrg.Size = new System.Drawing.Size(625, 452);
             this.groupControlOrg.TabIndex = 9;
             // 
             // labelControl5
             // 
             this.labelControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelControl5.Location = new System.Drawing.Point(42, 396);
+            this.labelControl5.Location = new System.Drawing.Point(42, 412);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(84, 14);
             this.labelControl5.TabIndex = 19;
@@ -136,7 +141,7 @@
             0,
             0,
             0});
-            this.spinEdit8.Location = new System.Drawing.Point(134, 393);
+            this.spinEdit8.Location = new System.Drawing.Point(134, 409);
             this.spinEdit8.Name = "spinEdit8";
             this.spinEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -161,12 +166,21 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.simpleButton1);
             this.groupBox1.Controls.Add(this.pictureEdit1);
-            this.groupBox1.Location = new System.Drawing.Point(259, 14);
+            this.groupBox1.Location = new System.Drawing.Point(252, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(341, 365);
+            this.groupBox1.Size = new System.Drawing.Size(353, 358);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "照片";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(49, -2);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(40, 23);
+            this.simpleButton1.TabIndex = 16;
+            this.simpleButton1.Text = "旋转";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // pictureEdit1
             // 
@@ -176,7 +190,7 @@
             this.pictureEdit1.Properties.NullText = "杆塔照片";
             this.pictureEdit1.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit1.Size = new System.Drawing.Size(335, 344);
+            this.pictureEdit1.Size = new System.Drawing.Size(347, 337);
             this.pictureEdit1.TabIndex = 15;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
@@ -208,9 +222,9 @@
             this.groupBox2.Controls.Add(this.labelControl25);
             this.groupBox2.Controls.Add(this.labelControl26);
             this.groupBox2.Controls.Add(this.labelControl1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
+            this.groupBox2.Location = new System.Drawing.Point(5, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(241, 367);
+            this.groupBox2.Size = new System.Drawing.Size(241, 360);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "杆塔属性";
@@ -471,20 +485,39 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // simpleButton1
+            // xtraTabControl1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(49, -2);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(40, 23);
-            this.simpleButton1.TabIndex = 16;
-            this.simpleButton1.Text = "旋转";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.xtraTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.xtraTabControl1.Location = new System.Drawing.Point(5, 5);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
+            this.xtraTabControl1.Size = new System.Drawing.Size(615, 396);
+            this.xtraTabControl1.TabIndex = 20;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPage1,
+            this.xtraTabPage2});
+            // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.groupBox2);
+            this.xtraTabPage1.Controls.Add(this.groupBox1);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(608, 366);
+            this.xtraTabPage1.Text = "杆塔";
+            // 
+            // xtraTabPage2
+            // 
+            this.xtraTabPage2.Name = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(608, 366);
+            this.xtraTabPage2.Text = "附属设备";
             // 
             // frmgtEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 436);
+            this.ClientSize = new System.Drawing.Size(625, 452);
             this.Controls.Add(this.groupControlOrg);
             this.MinimizeBox = false;
             this.Name = "frmgtEdit";
@@ -511,6 +544,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.xtraTabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -552,6 +588,9 @@
         private DevExpress.XtraEditors.SpinEdit spinEdit8;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
 
     }
 }

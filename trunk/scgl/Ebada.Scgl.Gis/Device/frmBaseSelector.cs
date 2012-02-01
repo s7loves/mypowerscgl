@@ -16,7 +16,7 @@ namespace Ebada.Scgl.Gis.Device {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            
+            gridView1.OptionsView.ShowAutoFilterRow = true;
         }
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
