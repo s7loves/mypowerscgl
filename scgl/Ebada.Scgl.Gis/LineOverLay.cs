@@ -154,6 +154,7 @@ namespace Ebada.Scgl.Gis {
             PS_gt gt2 = new PS_gt();
             Ebada.Core.ConvertHelper.CopyTo(gt0, gt2);
             frm.RowData =  gt2;
+            frm.ShowTab2 = true;
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK && allowEdit) {
                 Ebada.Core.ConvertHelper.CopyTo(frm.RowData, gt0);
                 PS_gt gt = gt0;
