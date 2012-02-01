@@ -1016,6 +1016,47 @@ namespace Ebada.SCGL.WFlow.Engine
                                             wfruntime.IsDraft = true;//开始节点需要交互，草稿状态，暂不提交
                                             //wfruntime.IsDraft = false;//开始节点需要交互，提交
                                             wfruntime.Start();
+                                            WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(subStartTaskId);
+                                            if (wt.TaskTypeId == "6" )
+                                            {
+                                                DataTable subWf2 = SubWorkFlow.GetSubWorkflowTable(wt.WorkFlowId, wt.WorkTaskId);
+                                                if (subWf2 != null && subWf2.Rows.Count > 0)
+                                                {
+                                                    string subWorkflowId2 = subWf2.Rows[0]["subWorkflowId"].ToString();
+                                                    string subStartTaskId2 = subWf2.Rows[0]["subStartTaskId"].ToString();
+                                                    string subWorkflowCaption2 = subWf2.Rows[0]["subWorkflowCaption"].ToString();
+                                                    //*******进入子流程
+                                                    WorkFlowRuntime wfruntime2 = new WorkFlowRuntime();
+                                                    wfruntime2.UserId = userId;
+                                                    wfruntime2.WorkFlowId = subWorkflowId2;
+                                                    wfruntime2.WorkTaskId = subStartTaskId2;
+                                                    wfruntime2.WorkFlowInstanceId = Guid.NewGuid().ToString();
+                                                    wfruntime2.WorkTaskInstanceId = Guid.NewGuid().ToString();
+                                                    wfruntime2.isSubWorkflow = true;
+                                                    wfruntime2.MainWorkflowId = wfruntime.WorkFlowId;
+                                                    wfruntime2.MainWorkflowInsId = wfruntime.WorkFlowInstanceId;
+                                                    wfruntime2.MainWorktaskId = wfruntime.WorkTaskId;
+                                                    wfruntime2.MainWorktaskInsId = wfruntime.WorkTaskInstanceId;//记录进入子流程之前的任务实例
+                                                    wfruntime2.WorkFlowNo = "subWorkflow";
+                                                    wfruntime2.CommandName = "提交";
+                                                    wfruntime2.WorkflowInsCaption = subWorkflowCaption2;
+                                                    wfruntime2.IsDraft = true;//开始节点需要交互，草稿状态，暂不提交
+                                                    wfruntime2.Start();
+
+                                                }
+                                                //设置任务实例正常结束
+                                                WorkTaskInstance.SetWorkTaskInstanceOver(userName, wfruntime.WorkTaskInstanceId);
+                                                //设定流程实例的当前位置
+                                                WorkFlowInstance.SetCurrTaskId(wfruntime.WorkFlowInstanceId, wfruntime.WorkTaskId);
+                                                //设定任务实例成功提交信息
+                                                WorkTaskInstance.SetSuccessMsg(WorkFlowConst.SuccessMsg, wfruntime.WorkTaskInstanceId);
+                                            }
+                                            else if (wt.TaskTypeId == "7")
+                                            {
+                                                CreateNextTaskInstance(userId, workFlowId, workTaskId, workFlowInstanceId, endTaskId, operatorInstanceId, "提交");
+                                            }
+
+                                            
                                         }
                                             //设置处理者实例正常结束
                                             OperatorInstance.SetOperatorInstanceOver(userId, operatorInstanceId);
