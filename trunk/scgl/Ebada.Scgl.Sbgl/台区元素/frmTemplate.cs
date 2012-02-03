@@ -233,7 +233,7 @@ namespace Ebada.Scgl.Sbgl
             Excel.Workbook wb;
             Excel.Worksheet sheet;
             ExcelAccess ea = new ExcelAccess();
-            parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and  CellName like '%低压线路完好率及台区网络图%'");
+            parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where CtrlSize='目录' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CellName like '%低压线路完好率及台区网络图%'");
             currRecord = rowData;
 
             if (currRecord.BigData == null || currRecord.BigData.Length == 0)

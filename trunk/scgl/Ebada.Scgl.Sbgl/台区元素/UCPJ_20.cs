@@ -173,7 +173,7 @@ namespace Ebada.Scgl.Sbgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
-            LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and CellName like '%低压线路完好率及台区网络图%'");
+            LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where CtrlSize='目录' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and CellName like '%低压线路完好率及台区网络图%'");
             newobj.BigData = lp.DocContent;
         }
         /// <summary>
@@ -274,7 +274,7 @@ namespace Ebada.Scgl.Sbgl
 
 
                 MainHelper.PlatformSqlMap.DeleteByWhere<PJ_20>(" where id ='" + pj.ID + "'");
-                LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1) and  CellName like '%低压线路完好率及台区网络图%'");
+                LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where CtrlSize='目录' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CellName like '%低压线路完好率及台区网络图%'");
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where RecordId ='"
                     + pj.ID + "' and UserControlId='" + parentTemple .LPID+ "'");
                 InitData();
