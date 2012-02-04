@@ -140,7 +140,7 @@ namespace Ebada.SCGL.WFlow.Tool
                             WorkFlowTask.SetTaskPower(WorkConst.WorkTask_FuJian, tmpNodeInfo.NodeId, tmpNodeInfo.NodeId);
                             Thread.Sleep(new TimeSpan(100000));//0.1∫¡√Î
                         }
-                        if (cbxFuJian.Checked)
+                        if (checkHuiQianYiJian.Checked)
                         {
                             WorkFlowTask.SetTaskPower(WorkConst.WorkTask_SPYJ, tmpNodeInfo.NodeId, tmpNodeInfo.NodeId);
                             Thread.Sleep(new TimeSpan(100000));//0.1∫¡√Î

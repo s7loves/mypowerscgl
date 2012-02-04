@@ -266,9 +266,9 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 string tmpStr = "";
                 if (mainUserCtrlCaption!="")
-                    tmpStr = " where CtrlSize='Ŀ¼' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='Ŀ¼') and  CellName like '%" + mainUserCtrlCaption + "%' order by CellName";
+                    tmpStr = " where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='Ŀ¼') and  CtrlSize!='Ŀ¼' ) and  CellName like '%" + mainUserCtrlCaption + "%' order by CellName";
                 else
-                    tmpStr = " where CtrlSize='Ŀ¼' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='Ŀ¼') order by CtrlSize desc, SortID,cellname";
+                    tmpStr = " where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='Ŀ¼') and  CtrlSize!='Ŀ¼' ) order by cellname";
 
                 IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", tmpStr);
                 if (li.Count == 0)

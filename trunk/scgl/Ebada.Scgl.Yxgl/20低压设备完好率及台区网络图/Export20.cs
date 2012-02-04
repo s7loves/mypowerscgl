@@ -35,7 +35,7 @@ namespace Ebada.Scgl.Yxgl {
                 {
                     ;
                     IList<LP_Temple> templeList = null;
-                    LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where CtrlSize='目录' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CellName like '%低压线路完好率及台区网络图%'");
+                    LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where  where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
                     if (parentTemple != null)
                     {
                         ds1.FileDataGzip = parentTemple.DocContent;
