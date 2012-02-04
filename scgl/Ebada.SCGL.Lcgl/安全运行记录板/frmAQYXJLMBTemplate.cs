@@ -252,7 +252,7 @@ namespace  Ebada.Scgl.Lcgl
             Excel.Workbook wb;
             Excel.Worksheet sheet;
             ExcelAccess ea = new ExcelAccess();
-            parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where CtrlSize='目录' or ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CellName = '安全运行记录板'");
+            parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName = '安全运行记录板'");
             currRecord = rowData;
             if (parentTemple == null)
             {
