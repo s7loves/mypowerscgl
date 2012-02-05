@@ -370,7 +370,7 @@ namespace Ebada.Scgl.Lcgl
         {
 
             frmYearSelect fys = new frmYearSelect();
-            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , wcsj, 112 ),4 )  from PJ_gztjb";
+            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , gzrq, 112 ),4 )  from PJ_gztjb";
             if (fys.ShowDialog() == DialogResult.OK)
             {
                 ExportGZTJB etdjh = new ExportGZTJB();

@@ -68,7 +68,7 @@ namespace Ebada.Scgl.Lcgl {
             string filter = "";
 
             filter = "  where 1=1 ";
-            if (year != "全部") filter += " and wcsj like '" + year + "%' ";
+            if (year != "全部") filter += " and CONVERT(varchar(50) , gzrq, 112 ) like '" + year + "%' ";
             if (isWorkflowCall)
             {
                 filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
@@ -90,7 +90,7 @@ namespace Ebada.Scgl.Lcgl {
         public void ExportExcel(ExcelAccess ex, IList<PJ_gztjb> datalist)
         {
             //此处写填充内容代码
-            int row = 6;
+            int row = 5;
             int col = 1;
             int rowcount = 20;
 
@@ -113,12 +113,12 @@ namespace Ebada.Scgl.Lcgl {
 
                 if (j % rowcount == 0)
                 {
-                    if (j == 0) ex.ActiveSheet(1);
-                    else ex.ActiveSheet( (j / rowcount + 1));
+                    //if (j == 0) ex.ActiveSheet(1);
+                    //else ex.ActiveSheet((j / rowcount + 1));
 
-                    ex.SetCellValue(DateTime.Now.ToString("yyyy年") + "设备升级工程项目计划申报表", 2, 1);
+                    //ex.SetCellValue(DateTime.Now.ToString("yyyy年") + "设备升级工程项目计划申报表", 2, 1);
 
-                    ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日") , 3, 8);
+                    //ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日") , 3, 8);
 
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
@@ -127,8 +127,8 @@ namespace Ebada.Scgl.Lcgl {
                 ex.SetCellValue(datalist[j].gznr, row + j % rowcount, col + 3);
 
                 ex.SetCellValue(datalist[j].qxlb, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].gzrq.ToString("MM月dd日"), row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col +7);
+                ex.SetCellValue(datalist[j].gzrq.ToString("MM月dd日"), row + j % rowcount, col + 5);
+                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col +6);
 
 
             }
