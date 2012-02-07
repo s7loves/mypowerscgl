@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Ebada.Scgl.Model;
 using DevExpress.XtraBars;
+using Ebada.Client;
 
 namespace Ebada.Scgl.Xtgl {
     /// <summary>
@@ -35,6 +36,14 @@ namespace Ebada.Scgl.Xtgl {
             splitCC1.Panel2.Text = "内容所在类别：" + (obj != null ? obj.dx : "");
         }
 
+        void ucTop_AfterEdit(PJ_dyk obj)
+        {
+            //ucBottom.ParentObj = obj;
+            //splitCC1.Panel2.Text = "内容所在类别：" + (obj != null ? obj.dx : "");
+            Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET dx='{0}',sx='{1}' WHERE ParentID='{2}'", obj.dx, obj.sx, obj.ID));
+
+            ucBottom.ParentObj = obj;
+        }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             ucBottom.ParentID = "0";
@@ -44,6 +53,7 @@ namespace Ebada.Scgl.Xtgl {
             ucTop.InitColumns();
             ucTop.InitData();
            ucTop.ChildView = ucBottom.GridViewOperation;
+           ucTop.GridViewOperation.AfterEdit +=new ObjectEventHandler<PJ_dyk>(ucTop_AfterEdit);
         }
 
     }
