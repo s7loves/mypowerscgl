@@ -124,6 +124,12 @@
     <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
     </Compile>
+    <Compile Include="季度对账\UCmjddzInquiry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="季度对账\UCmjddzInquiry.Designer.cs">
+      <DependentUpon>UCmjddzInquiry.cs</DependentUpon>
+    </Compile>
     <Compile Include="故障统计表\ExportGZTJB.cs" />
     <Compile Include="故障统计表\frmGZTJBEdit.cs">
       <SubType>Form</SubType>
@@ -136,6 +142,12 @@
     </Compile>
     <Compile Include="故障统计表\UCPJ_GZTJB.Designer.cs">
       <DependentUpon>UCPJ_GZTJB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="季度对账\jddzInquiryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="季度对账\jddzInquiryForm.Designer.cs">
+      <DependentUpon>jddzInquiryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="自定义流程\WorkFlowTaskSelectForm.cs">
       <SubType>Form</SubType>
@@ -1380,12 +1392,20 @@
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="季度对账\UCmjddzInquiry.resx">
+      <DependentUpon>UCmjddzInquiry.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="故障统计表\frmGZTJBEdit.resx">
       <DependentUpon>frmGZTJBEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="故障统计表\UCPJ_GZTJB.resx">
       <DependentUpon>UCPJ_GZTJB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="季度对账\jddzInquiryForm.resx">
+      <DependentUpon>jddzInquiryForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\WorkFlowTaskSelectForm.resx">
