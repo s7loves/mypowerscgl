@@ -1,5 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl {
-    partial class UCmLPRecord {
+    partial class UCmjddzInquiry
+    {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -24,7 +25,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCmLPRecord));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCmjddzInquiry));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btAddfrm = new DevExpress.XtraBars.BarButtonItem();
@@ -36,7 +37,6 @@
             this.barBack = new DevExpress.XtraBars.BarButtonItem();
             this.barChange = new DevExpress.XtraBars.BarButtonItem();
             this.barSus = new DevExpress.XtraBars.BarButtonItem();
-            this.barReChange = new DevExpress.XtraBars.BarButtonItem();
             this.btReExport = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.barCopy = new DevExpress.XtraBars.BarButtonItem();
@@ -49,9 +49,16 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.barReExport = new DevExpress.XtraBars.BarButtonItem();
+            this.barReChange = new DevExpress.XtraBars.BarButtonItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -106,7 +113,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barBack, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barChange, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSus, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barReChange, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barCopy)});
@@ -123,7 +129,8 @@
             this.btAddfrm.ImageIndex = 6;
             this.btAddfrm.Name = "btAddfrm";
             this.btAddfrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btAddfrm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddfrm_ItemClick);
+            this.btAddfrm.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+
             // 
             // barView
             // 
@@ -133,7 +140,7 @@
             this.barView.Name = "barView";
             this.barView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.barView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barView_ItemClick);
+
             // 
             // btEditfrm
             // 
@@ -142,7 +149,8 @@
             this.btEditfrm.ImageIndex = 1;
             this.btEditfrm.Name = "btEditfrm";
             this.btEditfrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btEditfrm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btEditfrm_ItemClick);
+            this.btEditfrm.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+
             // 
             // btDeletefrm
             // 
@@ -151,6 +159,7 @@
             this.btDeletefrm.ImageIndex = 12;
             this.btDeletefrm.Name = "btDeletefrm";
             this.btDeletefrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btDeletefrm.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btDeletefrm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDeletefrm_ItemClick);
             // 
             // btRefresh1
@@ -160,6 +169,7 @@
             this.btRefresh1.ImageIndex = 9;
             this.btRefresh1.Name = "btRefresh1";
             this.btRefresh1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btRefresh1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btRefresh1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btRefresh1_ItemClick);
             // 
             // btFind
@@ -169,6 +179,7 @@
             this.btFind.ImageIndex = 5;
             this.btFind.Name = "btFind";
             this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btFind.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barBack
             // 
@@ -178,6 +189,7 @@
             this.barBack.LargeImageIndex = 6;
             this.barBack.Name = "barBack";
             this.barBack.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barBack.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barBack.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBack_ItemClick);
             // 
             // barChange
@@ -188,6 +200,7 @@
             this.barChange.LargeImageIndex = 4;
             this.barChange.Name = "barChange";
             this.barChange.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barChange.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barChange.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barChange_ItemClick);
             // 
             // barSus
@@ -198,16 +211,8 @@
             this.barSus.LargeImageIndex = 3;
             this.barSus.Name = "barSus";
             this.barSus.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barSus.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barSus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSus_ItemClick);
-            // 
-            // barReChange
-            // 
-            this.barReChange.Caption = "跳转";
-            this.barReChange.Id = 19;
-            this.barReChange.ImageIndex = 3;
-            this.barReChange.Name = "barReChange";
-            this.barReChange.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barReChange.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barReChange_ItemClick);
             // 
             // btReExport
             // 
@@ -216,7 +221,7 @@
             this.btReExport.ImageIndex = 7;
             this.btReExport.Name = "btReExport";
             this.btReExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btReExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barReExport_ItemClick);
+  
             // 
             // btClose
             // 
@@ -313,7 +318,16 @@
             this.barReExport.Caption = "导出";
             this.barReExport.Id = 17;
             this.barReExport.Name = "barReExport";
-            this.barReExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barReExport_ItemClick);
+
+            // 
+            // barReChange
+            // 
+            this.barReChange.Caption = "跳转";
+            this.barReChange.Id = 19;
+            this.barReChange.ImageIndex = 3;
+            this.barReChange.Name = "barReChange";
+            this.barReChange.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+
             // 
             // gridControl1
             // 
@@ -337,6 +351,13 @@
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
@@ -356,7 +377,55 @@
             this.repositoryItemTextEdit1.NullText = "输入密码";
             this.repositoryItemTextEdit1.PasswordChar = '*';
             // 
-            // UCmLPRecord
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "序号";
+            this.gridColumn1.FieldName = "ID";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "名称";
+            this.gridColumn2.FieldName = "wpmc";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "规格";
+            this.gridColumn3.FieldName = "wpgg";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "单位";
+            this.gridColumn4.FieldName = "wpdw";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "数量";
+            this.gridColumn5.FieldName = "wpsl";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 4;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "时间";
+            this.gridColumn6.FieldName = "indate";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 5;
+            // 
+            // UCmjddzInquiry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -365,7 +434,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCmLPRecord";
+            this.Name = "UCmjddzInquiry";
             this.Size = new System.Drawing.Size(868, 314);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -404,5 +473,11 @@
         private DevExpress.XtraBars.BarButtonItem barReChange;
         private DevExpress.XtraBars.BarButtonItem barView;
         private DevExpress.XtraBars.BarButtonItem barCopy;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }
