@@ -269,7 +269,7 @@ namespace Ebada.Scgl.Lcgl {
             if (bfind1)
             {
                 DataRow dr1 = gridtable.NewRow();
-                dr1["xh"] = i++;
+                //dr1["xh"] = i++;
                 dr1["type"] = "入库单";
                 dr1["wpmc"] = "入库合计";
                 dr1["wpsl"] = dsum1;
@@ -278,7 +278,7 @@ namespace Ebada.Scgl.Lcgl {
             if (bfind2)
             {
                 DataRow dr1 = gridtable.NewRow();
-                dr1["xh"] = i++;
+                //dr1["xh"] = i++;
                 dr1["type"] = "出库单";
                 dr1["wpmc"] = "出库合计";
                 dr1["wpsl"] = dsum2;
