@@ -440,21 +440,21 @@ namespace Ebada.Scgl.Lcgl
             //labelTip.Text = "";
             spinEdit1.Properties.MinValue = 0;
             spinEdit1.Properties.Increment =1;
-            comboBoxEdit3_TextChanged(sender, e);
+            comboBoxEdit2_TextChanged(sender, e);
         }
 
         private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
         {
-            comboBoxEdit3_TextChanged(sender, e);
+            comboBoxEdit2_TextChanged(sender, e);
         }
 
-        private void comboBoxEdit3_TextChanged(object sender, EventArgs e)
+        private void comboBoxEdit2_TextChanged(object sender, EventArgs e)
         {
             if (comboBoxEdit1.Text != "" && comboBoxEdit3.Text != "")
             {
                 IList li = MainHelper.PlatformSqlMap.GetList("SelectOneInt",
                     "select   sum(cast(wpsl as int))  from PJ_clcrkd  where 1=1 and wpmc='" + comboBoxEdit1.Text
-                    + "'  and wpgg='" + comboBoxEdit2.Text + "' and type='入库单'");
+                    + "'  and wpgg='" + comboBoxEdit2.Text + "' and id!='"+rowData.ID+"' ");
                 if (li.Count > 0 && li[0]!=null && li[0].ToString() != "")
                 {
                     spinEdit1.Properties.MaxValue = Convert.ToDecimal(li[0]);
@@ -470,6 +470,8 @@ namespace Ebada.Scgl.Lcgl
                 labelTip.Text = "";
             }
         }
+
+        
 
       
 
