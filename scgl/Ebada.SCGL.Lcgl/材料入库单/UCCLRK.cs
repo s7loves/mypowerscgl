@@ -147,7 +147,7 @@ namespace Ebada.Scgl.Lcgl
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
 
-            RefreshData(" where OrgCode='" + parentID + "'   and type = '入库单'");
+            RefreshData(" where OrgCode='" + parentID + "'   and (type = '入库单' ortype = '原始库存') ");
         }
         void gridViewOperation_AfterAdd(PJ_clcrkd newobj)
         {
@@ -175,6 +175,41 @@ namespace Ebada.Scgl.Lcgl
             if (parentID == null)
                 e.Cancel = true;
             e.Value.type = "入库单";
+        }
+
+        private void btAddKuCun_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PJ_clcrkd cl = new PJ_clcrkd();
+            bool isadd = false;
+
+            cl = gridView1.GetFocusedRow() as PJ_clcrkd;
+            if (cl == null)
+            {
+                cl = new PJ_clcrkd();
+                cl.OrgCode = parentObj.OrgCode;
+                cl.OrgName = parentObj.OrgName;
+                cl.type = "原始库存";
+                isadd = true;
+            }
+            if (cl.type == "原始库存")
+            {
+                frmCLRKEdit frm = new frmCLRKEdit();
+                frm.RowData = cl;
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    if (isadd)
+                    {
+                        MainHelper.PlatformSqlMap.Create<PJ_clcrkd>(cl);
+                    }
+                    else
+                    {
+                        MainHelper.PlatformSqlMap.Update<PJ_clcrkd>(cl);
+                    }
+                }
+            }
+            else
+                return;
+
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -299,7 +334,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "'  and type = '入库单' ");
+                    RefreshData(" where OrgCode='" + value + "'   and (type = '入库单' ortype = '原始库存')  ");
                 }
             }
         }
@@ -483,38 +518,6 @@ namespace Ebada.Scgl.Lcgl
             currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
-        }
-
-        private void btAddKuCun_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            PJ_clcrkd cl = new PJ_clcrkd();
-            bool isadd = false;
-            cl = gridView1.GetFocusedRow() as PJ_clcrkd;
-            if (cl == null)
-            {
-                cl = new PJ_clcrkd();
-                cl.type = "原始库存";
-                isadd = true;
-            }
-            if (cl.type == "原始库存")
-            {
-                frmCLRKEdit frm = new frmCLRKEdit();
-                frm.RowData = cl;
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    if (isadd)
-                    {
-                        MainHelper.PlatformSqlMap.Create<PJ_clcrkd>(cl);
-                    }
-                    else
-                    {
-                        MainHelper.PlatformSqlMap.Update<PJ_clcrkd>(cl);
-                    }
-                }
-            }
-            else
-                return;
-
         }
     }
 }
