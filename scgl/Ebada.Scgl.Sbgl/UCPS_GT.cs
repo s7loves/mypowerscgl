@@ -48,6 +48,9 @@ namespace Ebada.Scgl.Sbgl
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<PS_gt>(gridViewOperation_BeforeInsert);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PS_gt>(gridViewOperation_BeforeUpdate);
+            try {
+                gridView1.Columns["dxplfs"].VisibleIndex=-1;//导线排列方式
+            } catch { }
         }
         public UCPS_GT(PS_xl xl):this() {
             btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
