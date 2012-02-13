@@ -34,6 +34,7 @@
             this.cbeFieldTable1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.teModleTable = new DevExpress.XtraEditors.TextEdit();
             this.checkEdit4 = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEdit5 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit3 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
@@ -44,8 +45,9 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit4 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxEdit3 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbewpdw = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbeOrg = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbewpgg = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbeWPMC = new DevExpress.XtraEditors.ComboBoxEdit();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
@@ -58,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbeFieldTable1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teModleTable.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
@@ -67,8 +70,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.deCreatTimeStart.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbewpdw.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeOrg.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbewpgg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbeWPMC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -93,6 +97,7 @@
             this.panelControl1.Controls.Add(this.cbeFieldTable1);
             this.panelControl1.Controls.Add(this.teModleTable);
             this.panelControl1.Controls.Add(this.checkEdit4);
+            this.panelControl1.Controls.Add(this.checkEdit5);
             this.panelControl1.Controls.Add(this.checkEdit3);
             this.panelControl1.Controls.Add(this.checkEdit2);
             this.panelControl1.Controls.Add(this.checkEdit1);
@@ -103,8 +108,9 @@
             this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.comboBoxEdit4);
             this.panelControl1.Controls.Add(this.labelControl6);
-            this.panelControl1.Controls.Add(this.comboBoxEdit3);
-            this.panelControl1.Controls.Add(this.comboBoxEdit1);
+            this.panelControl1.Controls.Add(this.cbewpdw);
+            this.panelControl1.Controls.Add(this.cbeOrg);
+            this.panelControl1.Controls.Add(this.cbewpgg);
             this.panelControl1.Controls.Add(this.cbeWPMC);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(2, 23);
@@ -141,15 +147,23 @@
             // 
             // checkEdit4
             // 
-            this.checkEdit4.Location = new System.Drawing.Point(204, 46);
+            this.checkEdit4.Location = new System.Drawing.Point(398, 47);
             this.checkEdit4.Name = "checkEdit4";
             this.checkEdit4.Properties.Caption = "物品单位";
             this.checkEdit4.Size = new System.Drawing.Size(75, 19);
             this.checkEdit4.TabIndex = 31;
             // 
+            // checkEdit5
+            // 
+            this.checkEdit5.Location = new System.Drawing.Point(22, 45);
+            this.checkEdit5.Name = "checkEdit5";
+            this.checkEdit5.Properties.Caption = "供电所";
+            this.checkEdit5.Size = new System.Drawing.Size(61, 19);
+            this.checkEdit5.TabIndex = 31;
+            // 
             // checkEdit3
             // 
-            this.checkEdit3.Location = new System.Drawing.Point(10, 46);
+            this.checkEdit3.Location = new System.Drawing.Point(204, 47);
             this.checkEdit3.Name = "checkEdit3";
             this.checkEdit3.Properties.Caption = "物品规格";
             this.checkEdit3.Size = new System.Drawing.Size(75, 19);
@@ -243,25 +257,35 @@
             this.labelControl6.TabIndex = 11;
             this.labelControl6.Text = "出入库";
             // 
-            // comboBoxEdit3
+            // cbewpdw
             // 
-            this.comboBoxEdit3.Location = new System.Drawing.Point(285, 46);
-            this.comboBoxEdit3.Name = "comboBoxEdit3";
-            this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbewpdw.Location = new System.Drawing.Point(479, 47);
+            this.cbewpdw.Name = "cbewpdw";
+            this.cbewpdw.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit3.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit3.TabIndex = 23;
+            this.cbewpdw.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbewpdw.Size = new System.Drawing.Size(100, 21);
+            this.cbewpdw.TabIndex = 23;
             // 
-            // comboBoxEdit1
+            // cbeOrg
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(89, 46);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbeOrg.Location = new System.Drawing.Point(89, 45);
+            this.cbeOrg.Name = "cbeOrg";
+            this.cbeOrg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit1.TabIndex = 23;
+            this.cbeOrg.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeOrg.Size = new System.Drawing.Size(100, 21);
+            this.cbeOrg.TabIndex = 23;
+            // 
+            // cbewpgg
+            // 
+            this.cbewpgg.Location = new System.Drawing.Point(285, 47);
+            this.cbewpgg.Name = "cbewpgg";
+            this.cbewpgg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbewpgg.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbewpgg.Size = new System.Drawing.Size(100, 21);
+            this.cbewpgg.TabIndex = 23;
             // 
             // cbeWPMC
             // 
@@ -272,6 +296,7 @@
             this.cbeWPMC.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbeWPMC.Size = new System.Drawing.Size(100, 21);
             this.cbeWPMC.TabIndex = 23;
+            this.cbeWPMC.TextChanged += new System.EventHandler(this.cbeWPMC_TextChanged);
             // 
             // splitContainerControl1
             // 
@@ -333,6 +358,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbeFieldTable1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teModleTable.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
@@ -342,8 +368,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.deCreatTimeStart.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbewpdw.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeOrg.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbewpgg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbeWPMC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
@@ -371,14 +398,16 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbeWPMC;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit3;
+        private DevExpress.XtraEditors.ComboBoxEdit cbewpgg;
+        private DevExpress.XtraEditors.ComboBoxEdit cbewpdw;
         private UCmjddzInquiry uCmjddzInquiry1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit4;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.CheckEdit checkEdit4;
         private DevExpress.XtraEditors.CheckEdit checkEdit3;
         private DevExpress.XtraEditors.CheckEdit checkEdit2;
+        private DevExpress.XtraEditors.CheckEdit checkEdit5;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeOrg;
 
     }
 }

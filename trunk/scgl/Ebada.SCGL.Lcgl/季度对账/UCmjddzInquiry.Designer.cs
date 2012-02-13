@@ -52,13 +52,16 @@
             this.barReChange = new DevExpress.XtraBars.BarButtonItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -130,7 +133,6 @@
             this.btAddfrm.Name = "btAddfrm";
             this.btAddfrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btAddfrm.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-
             // 
             // barView
             // 
@@ -140,7 +142,6 @@
             this.barView.Name = "barView";
             this.barView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-
             // 
             // btEditfrm
             // 
@@ -150,7 +151,6 @@
             this.btEditfrm.Name = "btEditfrm";
             this.btEditfrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btEditfrm.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-
             // 
             // btDeletefrm
             // 
@@ -221,7 +221,6 @@
             this.btReExport.ImageIndex = 7;
             this.btReExport.Name = "btReExport";
             this.btReExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-  
             // 
             // btClose
             // 
@@ -239,7 +238,6 @@
             this.barCopy.Name = "barCopy";
             this.barCopy.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barCopy.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.barCopy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barCopy_ItemClick);
             // 
             // bar3
             // 
@@ -318,7 +316,6 @@
             this.barReExport.Caption = "导出";
             this.barReExport.Id = 17;
             this.barReExport.Name = "barReExport";
-
             // 
             // barReChange
             // 
@@ -327,7 +324,6 @@
             this.barReChange.ImageIndex = 3;
             this.barReChange.Name = "barReChange";
             this.barReChange.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-
             // 
             // gridControl1
             // 
@@ -353,11 +349,14 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
+            this.gridColumn9,
+            this.gridColumn7,
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
-            this.gridColumn6});
+            this.gridColumn6,
+            this.gridColumn8});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
@@ -369,21 +368,29 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
             // 
-            // repositoryItemTextEdit1
-            // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.MaxLength = 12;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
-            this.repositoryItemTextEdit1.NullText = "输入密码";
-            this.repositoryItemTextEdit1.PasswordChar = '*';
-            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "序号";
-            this.gridColumn1.FieldName = "ID";
+            this.gridColumn1.FieldName = "xh";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "类型";
+            this.gridColumn9.FieldName = "type";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 1;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "供电所";
+            this.gridColumn7.FieldName = "OrgName";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 2;
             // 
             // gridColumn2
             // 
@@ -391,7 +398,7 @@
             this.gridColumn2.FieldName = "wpmc";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.VisibleIndex = 3;
             // 
             // gridColumn3
             // 
@@ -399,7 +406,7 @@
             this.gridColumn3.FieldName = "wpgg";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.VisibleIndex = 4;
             // 
             // gridColumn4
             // 
@@ -407,7 +414,7 @@
             this.gridColumn4.FieldName = "wpdw";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 5;
             // 
             // gridColumn5
             // 
@@ -415,7 +422,7 @@
             this.gridColumn5.FieldName = "wpsl";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.VisibleIndex = 6;
             // 
             // gridColumn6
             // 
@@ -423,7 +430,21 @@
             this.gridColumn6.FieldName = "indate";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.VisibleIndex = 7;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "ID";
+            this.gridColumn8.FieldName = "ID";
+            this.gridColumn8.Name = "gridColumn8";
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.MaxLength = 12;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            this.repositoryItemTextEdit1.NullText = "输入密码";
+            this.repositoryItemTextEdit1.PasswordChar = '*';
             // 
             // UCmjddzInquiry
             // 
@@ -479,5 +500,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
     }
 }

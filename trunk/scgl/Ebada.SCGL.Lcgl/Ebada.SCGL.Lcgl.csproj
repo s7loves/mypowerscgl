@@ -124,6 +124,32 @@
     <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
     </Compile>
+    <Compile Include="材料出库单\ExportCLCKEdit.cs" />
+    <Compile Include="材料出库单\frmCLCKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="材料出库单\frmCLCKEdit.Designer.cs">
+      <DependentUpon>frmCLCKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="材料出库单\UCCLCK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="材料出库单\UCCLCK.Designer.cs">
+      <DependentUpon>UCCLCK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="材料入库单\ExportCLRKEdit.cs" />
+    <Compile Include="材料入库单\frmCLRKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="材料入库单\frmCLRKEdit.Designer.cs">
+      <DependentUpon>frmCLRKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="材料入库单\UCCLRK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="材料入库单\UCCLRK.Designer.cs">
+      <DependentUpon>UCCLRK.cs</DependentUpon>
+    </Compile>
     <Compile Include="季度对账\UCmjddzInquiry.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1390,6 +1416,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.resx">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="材料出库单\frmCLCKEdit.resx">
+      <DependentUpon>frmCLCKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="材料出库单\UCCLCK.resx">
+      <DependentUpon>UCCLCK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="材料入库单\frmCLRKEdit.resx">
+      <DependentUpon>frmCLRKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="材料入库单\UCCLRK.resx">
+      <DependentUpon>UCCLRK.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="季度对账\UCmjddzInquiry.resx">
