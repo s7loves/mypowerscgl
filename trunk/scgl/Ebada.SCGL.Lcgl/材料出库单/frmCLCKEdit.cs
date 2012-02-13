@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "wpmc");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "wpgg");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "wpdw");
-            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "wpsl");
+            this.spinEdit1.DataBindings.Add("EditValue", rowData, "wpsl");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "indate");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
@@ -378,12 +378,12 @@ namespace Ebada.Scgl.Lcgl
           
            
 
-            comboBoxEdit4.Properties.Items.Clear();
-            for (int i = 1; i <= 500; i++)
-            {
-                comboBoxEdit4.Properties.Items.Add(i);
+            //comboBoxEdit4.Properties.Items.Clear();
+            //for (int i = 1; i <= 500; i++)
+            //{
+            //    comboBoxEdit4.Properties.Items.Add(i);
                 
-            }
+            //}
 
 
 
@@ -433,6 +433,41 @@ namespace Ebada.Scgl.Lcgl
         private void btnOK_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void frmCLCKEdit_Load(object sender, EventArgs e)
+        {
+            labelTip.Text = "";
+            spinEdit1.Properties.MinValue = 0;
+            spinEdit1.Properties.Increment =1;
+        }
+
+        private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
+        {
+            comboBoxEdit3_TextChanged(sender, e);
+        }
+
+        private void comboBoxEdit3_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEdit1.Text != "" && comboBoxEdit3.Text != "")
+            {
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr",
+                    "select   sum(wpsl)  from PJ_clcrkd  where 1=1 and wpmc='" + comboBoxEdit1.Text
+                    + "'  and wpgg='" + comboBoxEdit2.Text + "'");
+                if (li.Count > 0 && li[0].ToString()!="")
+                {
+                    spinEdit1.Properties.MaxValue = Convert.ToDecimal(li[0]);
+                }
+                else
+                {
+                    spinEdit1.Properties.MaxValue = 0;
+                }
+                labelTip.Text = "物品" + comboBoxEdit1.Text + "最大库存:" + spinEdit1.Properties.MaxValue.ToString();
+            }
+            else
+            {
+                labelTip.Text = "";
+            }
         }
 
       
