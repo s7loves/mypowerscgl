@@ -80,6 +80,10 @@ namespace Ebada.Scgl.Lcgl
         {
             IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgName  from mOrg  where 1=1 order by OrgCode");
             cbeOrg.Properties.Items.AddRange(li);
+            if (cbeOrg.Properties.Items.Count > 0)
+            {
+                cbeOrg.SelectedIndex = 0;
+            }
             li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select  distinct wpmc  from PJ_clcrkd  where 1=1 ");
             cbeWPMC.Properties.Items.AddRange(li);
             li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select  distinct wpgg  from PJ_clcrkd  where 1=1 ");
