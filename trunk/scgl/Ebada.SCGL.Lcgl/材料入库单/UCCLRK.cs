@@ -484,5 +484,37 @@ namespace Ebada.Scgl.Lcgl
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }
+
+        private void btAddKuCun_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PJ_clcrkd cl = new PJ_clcrkd();
+            bool isadd = false;
+            cl = gridView1.GetFocusedRow() as PJ_clcrkd;
+            if (cl == null)
+            {
+                cl = new PJ_clcrkd();
+                cl.type = "原始库存";
+                isadd = true;
+            }
+            if (cl.type == "原始库存")
+            {
+                frmCLRKEdit frm = new frmCLRKEdit();
+                frm.RowData = cl;
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    if (isadd)
+                    {
+                        MainHelper.PlatformSqlMap.Create<PJ_clcrkd>(cl);
+                    }
+                    else
+                    {
+                        MainHelper.PlatformSqlMap.Update<PJ_clcrkd>(cl);
+                    }
+                }
+            }
+            else
+                return;
+
+        }
     }
 }

@@ -80,7 +80,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='备品备件计划表' and sx like '%{0}%' and nr!=''", "材料名称"));
+            string.Format("select nr from pj_dyk where  dx='材料出库单' and sx like '%{0}%' and nr!=''", "材料名称"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
@@ -152,7 +152,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit2.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='备品备件计划表' and sx like '%{0}%' and nr!=''", "材料规格"));
+            string.Format("select nr from pj_dyk where  dx='材料出库单' and sx like '%{0}%' and nr!=''", "材料规格"));
             if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
@@ -352,7 +352,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit3.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='备品备件计划表' and sx like '%{0}%' and nr!=''", "单位"));
+            string.Format("select nr from pj_dyk where  dx='材料出库单' and sx like '%{0}%' and nr!=''", "单位"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
@@ -452,9 +452,14 @@ namespace Ebada.Scgl.Lcgl
         {
             if (comboBoxEdit1.Text != "" && comboBoxEdit3.Text != "")
             {
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectOneInt",
-                    "select   sum(cast(wpsl as int))  from PJ_clcrkd  where 1=1 and wpmc='" + comboBoxEdit1.Text
-                    + "'  and wpgg='" + comboBoxEdit2.Text + "' and id!='"+rowData.ID+"' ");
+                string strSQL= "select   sum(cast(wpsl as int))  from PJ_clcrkd  where 1=1 and wpmc='" + comboBoxEdit1.Text
+                    + "'  and wpgg='" + comboBoxEdit2.Text + "' and id!='"+rowData.ID+"' ";
+                if (rowData.OrgName != "物流中心")
+                {
+                    strSQL = strSQL + " and OrgName='" +rowData.OrgName+ "'";
+                }
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectOneInt", strSQL
+                   );
                 if (li.Count > 0 && li[0]!=null && li[0].ToString() != "")
                 {
                     spinEdit1.Properties.MaxValue = Convert.ToDecimal(li[0]);
