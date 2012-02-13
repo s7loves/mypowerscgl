@@ -246,7 +246,7 @@
             // 
             // labelTip
             // 
-            this.labelTip.Location = new System.Drawing.Point(407, 61);
+            this.labelTip.Location = new System.Drawing.Point(273, 88);
             this.labelTip.Name = "labelTip";
             this.labelTip.Size = new System.Drawing.Size(0, 14);
             this.labelTip.TabIndex = 31;
