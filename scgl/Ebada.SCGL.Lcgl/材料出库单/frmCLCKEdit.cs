@@ -437,9 +437,10 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmCLCKEdit_Load(object sender, EventArgs e)
         {
-            labelTip.Text = "";
+            //labelTip.Text = "";
             spinEdit1.Properties.MinValue = 0;
             spinEdit1.Properties.Increment =1;
+            comboBoxEdit3_TextChanged(sender, e);
         }
 
         private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
@@ -451,10 +452,10 @@ namespace Ebada.Scgl.Lcgl
         {
             if (comboBoxEdit1.Text != "" && comboBoxEdit3.Text != "")
             {
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr",
-                    "select   sum(wpsl)  from PJ_clcrkd  where 1=1 and wpmc='" + comboBoxEdit1.Text
-                    + "'  and wpgg='" + comboBoxEdit2.Text + "'");
-                if (li.Count > 0 && li[0].ToString()!="")
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectOneInt",
+                    "select   sum(cast(wpsl as int))  from PJ_clcrkd  where 1=1 and wpmc='" + comboBoxEdit1.Text
+                    + "'  and wpgg='" + comboBoxEdit2.Text + "' and type='入库单'");
+                if (li.Count > 0 && li[0]!=null && li[0].ToString() != "")
                 {
                     spinEdit1.Properties.MaxValue = Convert.ToDecimal(li[0]);
                 }
@@ -462,7 +463,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     spinEdit1.Properties.MaxValue = 0;
                 }
-                labelTip.Text = "物品" + comboBoxEdit1.Text + "最大库存:" + spinEdit1.Properties.MaxValue.ToString();
+                labelTip.Text = "当前规格物品" + comboBoxEdit1.Text + "最大库存:" + spinEdit1.Properties.MaxValue.ToString();
             }
             else
             {
