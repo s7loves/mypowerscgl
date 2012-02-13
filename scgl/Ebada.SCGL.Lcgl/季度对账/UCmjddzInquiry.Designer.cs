@@ -221,6 +221,7 @@
             this.btReExport.ImageIndex = 7;
             this.btReExport.Name = "btReExport";
             this.btReExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReExport_ItemClick);
             // 
             // btClose
             // 
