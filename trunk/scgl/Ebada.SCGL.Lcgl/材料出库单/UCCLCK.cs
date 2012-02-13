@@ -126,6 +126,7 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_clcrkd>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_clcrkd>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_clcrkd>(gridViewOperation_AfterEdit);
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_clcrkd>(gridViewOperation_AfterDelete);
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_clcrkd>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
@@ -149,6 +150,13 @@ namespace Ebada.Scgl.Lcgl
 
             RefreshData(" where OrgCode='" + parentID + "'  and type = '出库单' ");
         }
+        void gridViewOperation_AfterEdit(PJ_clcrkd newobj)
+        {
+
+            newobj.wpsl = (-1 * Convert.ToInt64(newobj.wpsl)).ToString();
+            MainHelper.PlatformSqlMap.Update<PJ_clcrkd>(newobj);
+            newobj.wpsl = newobj.wpsl.Replace("-","");
+        }
         void gridViewOperation_AfterAdd(PJ_clcrkd newobj)
         {
             if (isWorkflowCall)
@@ -164,6 +172,9 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.CreatTime = DateTime.Now;
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
+            newobj.wpsl = (-1 * Convert.ToInt64(newobj.wpsl)).ToString();
+            MainHelper.PlatformSqlMap.Update<PJ_clcrkd>(newobj);
+            newobj.wpsl = newobj.wpsl.Replace("-", "");
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
         {

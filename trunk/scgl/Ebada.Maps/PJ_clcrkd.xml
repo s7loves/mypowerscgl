@@ -20,34 +20,34 @@
 
   <statements>
    <select id="SelectPJ_clcrkdList" resultMap="PJ_clcrkd_AllColumns" parameterClass="string">
-        SELECT 
-         [ID],
-         [OrgName],
-         [OrgCode],
-         [wpmc],
-         [wpgg],
-         [wpdw],
-         [wpsl],
-         [indate],
-         [Remark],
-         [type]
-          FROM PJ_clcrkd
-          $value$
+     SELECT
+     [ID],
+     [OrgName],
+     [OrgCode],
+     [wpmc],
+     [wpgg],
+     [wpdw],
+     replace([wpsl],'-','') as [wpsl],
+     [indate],
+     [Remark],
+     [type]
+     FROM PJ_clcrkd
+     $value$
    </select>
    
    <select id="SelectPJ_clcrkdByHash" parameterClass="Hashtable">
-         SELECT 
-         [ID],
-         [OrgName],
-         [OrgCode],
-         [wpmc],
-         [wpgg],
-         [wpdw],
-         [wpsl],
-         [indate],
-         [Remark],
-         [type]
-          FROM PJ_clcrkd
+     SELECT
+     [ID],
+     [OrgName],
+     [OrgCode],
+     [wpmc],
+     [wpgg],
+     [wpdw],
+     replace([wpsl],'-','') as [wpsl],
+     [indate],
+     [Remark],
+     [type]
+     FROM PJ_clcrkd
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
