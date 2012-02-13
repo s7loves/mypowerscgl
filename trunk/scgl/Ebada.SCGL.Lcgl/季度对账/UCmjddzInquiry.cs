@@ -352,6 +352,11 @@ namespace Ebada.Scgl.Lcgl {
         {
         }
 
+        private void btReExport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
    
    
 
