@@ -35,7 +35,7 @@ using System.Threading;
 namespace Ebada.Scgl.Lcgl {
 
     public partial class UCmjddzInquiry : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<LP_Record> gridViewOperation;
+        private GridViewOperation<PJ_clcrkd> gridViewOperation;
         private static string strKind;
         public static string GetParentKind()
         {
@@ -53,7 +53,17 @@ namespace Ebada.Scgl.Lcgl {
                 status = value;
             }
         }
-        public event SendDataEventHandler<LP_Record> FocusedRowChanged;
+        private string strSQL = "";
+        public string StrSQL
+        {
+
+            set
+            {
+                strSQL = value;
+                InitData(strSQL);
+            }
+        }
+        public event SendDataEventHandler<PJ_clcrkd> FocusedRowChanged;
         private string parentID;
        
         private DataTable gridtable = null;
@@ -65,38 +75,38 @@ namespace Ebada.Scgl.Lcgl {
             InitializeComponent();
             initImageList();
 
-            gridViewOperation = new GridViewOperation<LP_Record>(gridControl1, gridView1, barManager1,new frmLP());            
+            gridViewOperation = new GridViewOperation<PJ_clcrkd>(gridControl1, gridView1, barManager1,new frmLP());            
             //gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
-            //gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeAdd);
-            //gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeEdit);
-            //gridViewOperation.AfterAdd += new ObjectEventHandler<LP_Record>(gridViewOperation_AfterAdd);
-            //gridViewOperation.AfterEdit += new ObjectEventHandler<LP_Record>(gridViewOperation_AfterEdit);
+            //gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_clcrkd>(gridViewOperation_BeforeAdd);
+            //gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_clcrkd>(gridViewOperation_BeforeEdit);
+            //gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_clcrkd>(gridViewOperation_AfterAdd);
+            //gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_clcrkd>(gridViewOperation_AfterEdit);
             //gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
-            //gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeInsert);
-            //gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeUpdate);
-            //initColumns();
+            //gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<PJ_clcrkd>(gridViewOperation_BeforeInsert);
+            //gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PJ_clcrkd>(gridViewOperation_BeforeUpdate);
+            initColumns();
         }
      
         
-        void gridViewOperation_AfterEdit(LP_Record obj)
+        void gridViewOperation_AfterEdit(PJ_clcrkd obj)
         {
 
         }
-        void gridViewOperation_AfterAdd(LP_Record obj)
+        void gridViewOperation_AfterAdd(PJ_clcrkd obj)
         {
 
         }
         
-        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<LP_Record> e)
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
         {
             Status = "edit";
         }
 
-        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<LP_Record> e)
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
         {
         }
 
-        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<LP_Record> e)
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
         {
             //e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
         }
@@ -106,38 +116,7 @@ namespace Ebada.Scgl.Lcgl {
         void initColumns() {
             
 
-            //gridView1.Columns["OrgName"].Visible = false;
-            //gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
-            //repositoryItemTextEdit1.EditValueChanged += new EventHandler(repositoryItemTextEdit1_EditValueChanged);
-            //((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            //((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            //if (picview == null)
-            {
-                //imageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
-                //((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).BeginInit();
-                //// 
-                //// imageEdit1
-                //// 
-                //this.imageEdit1.AutoHeight = false;
-                //this.imageEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-                //this.imageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-                //    new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-                //this.imageEdit1.Name = "imageEdit1";
-                //this.imageEdit1.PopupFormSize = new System.Drawing.Size(1200, 600); 
-                //((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).EndInit();
-
-                
-                //picview.MaxWidth = 300;
-                //picview.MinWidth = 300;
-                //gridControl1.RepositoryItems.Add(imageEdit1);
-
-                //picview.ColumnEdit = imageEdit1;
-                //DevExpress.XtraEditors.Repository.RepositoryItem
-
-                //this.picview.VisibleIndex =1;
-                //picview.FieldName = "Image";
-                
-            }
+            
         }
         private void repositoryItemHyperLinkEdit2_Click(object sender, EventArgs e)
         {
@@ -171,7 +150,7 @@ namespace Ebada.Scgl.Lcgl {
             }
         }
   
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<LP_Record> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
         {
             Status = "add";
             //if (string.IsNullOrEmpty(parentID)) {
@@ -186,7 +165,7 @@ namespace Ebada.Scgl.Lcgl {
         }
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as LP_Record);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_clcrkd);
             //获得编辑按钮的状态
             if (gridView1.FocusedRowHandle>-1)
             {
@@ -201,7 +180,7 @@ namespace Ebada.Scgl.Lcgl {
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<LP_Record> GridViewOperation
+        public GridViewOperation<PJ_clcrkd> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -210,7 +189,7 @@ namespace Ebada.Scgl.Lcgl {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(LP_Record newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_clcrkd newobj)
         {
 
         }
@@ -243,7 +222,69 @@ namespace Ebada.Scgl.Lcgl {
   
         private void InitData(string kind)
         {
-           
+            //gridViewOperation.RefreshData(kind);
+            if (gridtable != null) gridtable.Rows.Clear();
+
+            IList<PJ_clcrkd> li = MainHelper.PlatformSqlMap.GetList<PJ_clcrkd>("SelectPJ_clcrkdList", strSQL);
+            if (li.Count != 0)
+            {
+                gridtable = ConvertHelper.ToDataTable((IList)li);
+
+            }
+            else
+            {
+                if (gridtable == null) gridtable = new DataTable();
+            }
+            foreach (DevExpress.XtraGrid.Columns.GridColumn gc in gridView1.Columns)
+            {
+                gc.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
+                gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
+
+            }
+            //if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(Bitmap));
+            if (!gridtable.Columns.Contains("xh")) gridtable.Columns.Add("xh", typeof(string));
+            int i = 1;
+            double dsum1 = 0;//入库单
+            double dsum2 = 0;//出库单
+            bool bfind1 = false;//入库单
+            bool bfind2 = false;//出库单
+            foreach (DataRow dr in gridtable.Rows)
+            {
+                dr["xh"] = i++;
+                if (dr["type"].ToString() == "入库单")
+                {
+                    dsum1 += Convert.ToDouble(dr["wpsl"]);
+                    bfind1=true;
+                }
+                else
+                    if (dr["type"].ToString() == "出库单")
+                    {
+
+                        dsum2 += Convert.ToDouble(dr["wpsl"]);
+                        bfind2 = true;
+                    }
+
+            }
+            
+            if (bfind1)
+            {
+                DataRow dr1 = gridtable.NewRow();
+                dr1["xh"] = i++;
+                dr1["type"] = "入库单";
+                dr1["wpmc"] = "入库合计";
+                dr1["wpsl"] = dsum1;
+                gridtable.Rows.Add(dr1);
+            }
+            if (bfind2)
+            {
+                DataRow dr1 = gridtable.NewRow();
+                dr1["xh"] = i++;
+                dr1["type"] = "出库单";
+                dr1["wpmc"] = "出库合计";
+                dr1["wpsl"] = dsum2;
+                gridtable.Rows.Add(dr1);
+            }
+            gridControl1.DataSource = gridtable; 
         }
 
    
@@ -271,7 +312,7 @@ namespace Ebada.Scgl.Lcgl {
 
 
                 RecordWorkTask.DeleteRecord(dr["ID"].ToString());
-                MainHelper.PlatformSqlMap.DeleteByWhere<LP_Record>(" where id ='" + dr["ID"].ToString() + "'");
+                MainHelper.PlatformSqlMap.DeleteByWhere<PJ_clcrkd>(" where id ='" + dr["ID"].ToString() + "'");
                 InitData(strKind);
             }
             catch (Exception ex)
@@ -309,176 +350,10 @@ namespace Ebada.Scgl.Lcgl {
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.ViewFocusEventArgs e)
         {
-            if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as LP_Record);
-            //获得编辑按钮的状态
-            this.btEditfrm.Caption = (gridView1.GetFocusedRow() as LP_Record).Status;
         }
 
    
-        void copyData(LP_Temple lp,IList<LP_Temple> templeList)
-        {
-            if (templeList.Count == 0) return;
-             string flowid=lp.ParentID;
-            int i = 1;
-            List<LP_Temple> list = new List<LP_Temple>();
-            string workflowid = flowid;
-            IList<WF_WorkTask> wftli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where WorkFlowId='" + workflowid + "' and  TaskTypeId!='2' order by TaskTypeId");
-            foreach (WF_WorkTask wft in wftli)
-            {
-                //保存关联模块
-                WorkFlowTask.DeleteAllModle(wft.WorkTaskId);
-                mModule mu = MainHelper.PlatformSqlMap.GetOne<mModule>("where ModuName='表单执行平台'  and ModuTypes='Ebada.Scgl.Lcgl.frmLP'");
-                WorkFlowTask.SetTaskUserModle(mu.Modu_ID, wft.WorkFlowId, wft.WorkTaskId);
-                //保存关联表单
-                WorkFlowTask.DeleteAllControls(wft.WorkTaskId);
-                WorkFlowTask.DeleteAllTableField(wft.WorkFlowId, wft.WorkTaskId);
-                string sqlStr = " where  WorkTaskId='" + wft.WorkTaskId + "'";
-
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskControls>(sqlStr);
-                WorkFlowTask.SetTaskUserCtrls(templeList[0].ParentID, workflowid, wft.WorkTaskId);
-            }
-            i = 1;
-            foreach (LP_Temple obj in templeList)
-            {
-                obj.SortID = i;
-                if (obj.SignImg == null)
-                {
-                    obj.SignImg = new byte[0];
-                }
-                if (obj.ImageAttachment == null)
-                {
-                    obj.ImageAttachment = new byte[0];
-                }
-                if (obj.DocContent == null)
-                {
-                    obj.DocContent = new byte[0];
-                }
-                i++;
-                if (obj.CellName == "6.3 其他安全措施和注意事项" && obj.Status=="")
-                {
-                    obj.Status = "填票";
-                }
-                
-                if (obj.CellName.IndexOf("终了时间") > -1)
-                {
-                    obj.WordCount = "dd日 HH:mm";
-                }
-                else
-                    if (obj.CellName.IndexOf("同意执行时间") > -1)
-                    {
-                        obj.WordCount = "MM-dd日 HH:mm";
-                    }
-                    else
-                    if (obj.CellName.IndexOf("时间") > -1)
-                        {
-                            obj.WordCount = "yyyy-MM-dd HH:mm";
-                        }
-
-                if (obj.SqlSentence == "SelectmOrgList where parentid='0'")
-                {
-                    obj.SqlSentence = "Select OrgName  from mOrg where parentid='0'";
-                    obj.SqlColName = "";
-                }
-
-                if (obj.SqlSentence.IndexOf( "SelectmUserList where  OrgName ='@1'")>-1)
-                {
-                    obj.SqlSentence = "Select UserName  from mUser where OrgName='{1}'";
-                    obj.SqlColName = "";
-                }
-                
-                if (lp.CellName == "电力线路第一种工作票")
-                {
-                    //if (obj.KindTable == "")
-                    {
-                        obj.KindTable = "工作票";
-                    }
-                }
-                if (lp.CellName == "电力线路第二种工作票")
-                {
-                    //if (obj.KindTable == "")
-                    {
-                        obj.KindTable = "Sheet1";
-                    }
-                }
-
-                if (lp.CellName == "电力线路倒闸操作票")
-                {
-                    //if (obj.KindTable == "")
-                    {
-                        obj.KindTable = "Sheet1";
-                    }
-                }
-                if (lp.CellName == "电力线路事故应急抢修单")
-                {
-                    if (obj.KindTable == "")
-                    {
-                        obj.KindTable = "Sheet1";
-                    }
-                }
-
-
-                if (obj.SqlSentence == "SelectmOrgList where parentid=(select OrgID From mOrg where OrgName='@1')")
-                //if (obj.SqlSentence == "Select OrgName  from mOrg where  parentid=(select OrgID From mOrg where OrgName={1})")
-                {
-                    obj.SqlSentence = "Select OrgName  from mOrg where  parentid=(select OrgID From mOrg where OrgName='{1}')";
-                    obj.SqlColName = "";
-                }
-                WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOne<WF_WorkTask>(
-                    "where WorkFlowId='" + workflowid + "'  and TaskCaption='" + obj.Status + "'");
-                if (wt == null)
-                {
-                    continue;
-                }
-                WF_TableUsedField tuf = MainHelper.PlatformSqlMap.GetOne<WF_TableUsedField>("where FieldName='" + obj.CellName +
-                    "'  and UserControlId='" + obj.ParentID + "'");
-                if (tuf == null)
-                {
-                    WF_TableUsedField um = new WF_TableUsedField();
-                    um.ID = um.CreateID();
-                    um.UserControlId = obj.ParentID;
-                    um.FieldName = obj.CellName;
-                    um.FieldId = obj.LPID;
-                    um.WorkflowId = workflowid;
-                    um.WorktaskId = wt.WorkTaskId;
-                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                    MainHelper.PlatformSqlMap.Create<WF_TableUsedField>(um);
-                }
-                list.Add(obj);
-            }
-            List<SqlQueryObject> list3 = new List<SqlQueryObject>();
-            if (list.Count > 0)
-            {
-                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
-                list3.Add(obj3);
-            }
-
-            MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-           
-        
-        }
-        private void barCopy_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            //CreatWF_TableFieldValueView
-            //MainHelper.PlatformSqlMap.Update("CreatWF_TableFieldValueView",null);
-          LP_Temple temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路第一种工作票'  and Status=''");
-          IList<LP_Temple> templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
-              "where ParentID ='" + temple.LPID + "' Order by SortID");
-          copyData(temple,templeList);
-        temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路第二种工作票'  and Status=''");
-        templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
-              "where ParentID ='" + temple.LPID + "' Order by SortID");
-        copyData(temple,templeList);
-        temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路倒闸操作票'  and Status=''");
-        templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
-              "where ParentID ='" + temple.LPID + "' Order by SortID");
-        copyData(temple,templeList);
-        temple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where cellname='电力线路事故应急抢修单'  ");
-        templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
-              "where ParentID ='" + temple.LPID + "' Order by SortID");
-        copyData(temple,templeList);
-        MsgBox.ShowTipMessageBox("执行完毕");
-        }
+   
 
     }
 }
