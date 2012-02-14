@@ -147,7 +147,7 @@ namespace Ebada.Scgl.Lcgl
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
 
-            RefreshData(" where OrgCode='" + parentID + "'   and (type = '入库单' ortype = '原始库存') ");
+            RefreshData(" where OrgCode='" + parentID + "'   and (type = '入库单' or type = '原始库存') ");
         }
         void gridViewOperation_AfterAdd(PJ_clcrkd newobj)
         {
@@ -334,7 +334,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "'   and (type = '入库单' ortype = '原始库存')  ");
+                    RefreshData(" where OrgCode='" + value + "'   and (type = '入库单' or type = '原始库存')  ");
                 }
             }
         }
