@@ -36,7 +36,6 @@
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
@@ -87,7 +86,6 @@
             this.groupControlOrg.Controls.Add(this.labelControl5);
             this.groupControlOrg.Controls.Add(this.labelControl4);
             this.groupControlOrg.Controls.Add(this.labelControl6);
-            this.groupControlOrg.Controls.Add(this.labelControl3);
             this.groupControlOrg.Controls.Add(this.labelControl2);
             this.groupControlOrg.Controls.Add(this.labelControl1);
             this.groupControlOrg.Controls.Add(this.textEdit2);
@@ -152,15 +150,6 @@
             this.labelControl4.Size = new System.Drawing.Size(48, 28);
             this.labelControl4.TabIndex = 2;
             this.labelControl4.Text = "人生安全\r\n启始时间";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(21, 188);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(24, 14);
-            this.labelControl3.TabIndex = 2;
-            this.labelControl3.Text = "种类";
-            this.labelControl3.Visible = false;
             // 
             // labelControl2
             // 
@@ -261,7 +250,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit textEdit2;
         private DevExpress.XtraEditors.DateEdit dateEdit2;
