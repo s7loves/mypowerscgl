@@ -183,7 +183,7 @@ namespace Ebada.Scgl.Lcgl
             bool isadd = false;
 
             cl = gridView1.GetFocusedRow() as PJ_clcrkd;
-            if (cl == null)
+            if (cl == null || cl.type != "原始库存")
             {
                 cl = new PJ_clcrkd();
                 cl.OrgCode = parentObj.OrgCode;
@@ -205,6 +205,7 @@ namespace Ebada.Scgl.Lcgl
                     {
                         MainHelper.PlatformSqlMap.Update<PJ_clcrkd>(cl);
                     }
+                    RefreshData(" where OrgCode='" + parentID + "'   and (type = '入库单' or type = '原始库存') ");
                 }
             }
             else

@@ -230,7 +230,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[C1],nvarchar
         /// </summary>
         [Browsable(false)]
-        [DisplayNameAttribute("未定义")]
+        [DisplayNameAttribute("生产部门")]
         public string C1
         {
             get { return _c1; }
