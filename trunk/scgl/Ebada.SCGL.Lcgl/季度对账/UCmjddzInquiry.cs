@@ -298,7 +298,7 @@ namespace Ebada.Scgl.Lcgl {
             foreach (string wpmc in wpli)
             {
                 IList wpggli = MainHelper.PlatformSqlMap.GetList("SelectOneStr",
-               string.Format("select distinct wpgg from PJ_clcrkd {0} and type!='原始库存'", strSQL));
+               string.Format("select distinct wpgg from PJ_clcrkd {0} ", strSQL));
                 string stryskc = "",//原始库存
                    strrks = "",//入库数
                    strcks = "",//出库数 

@@ -124,6 +124,30 @@ namespace Ebada.Scgl.Core {
             }
         }
 
+        static RepositoryItem gdsDic3;
+        /// <summary>
+        /// 添加生产部门
+        /// </summary>
+        public static RepositoryItem GdsDic3
+        {
+            get
+            {
+                //if (gdsDic == null) {
+                if (gdsDic3 == null || gdsDic3.LinkCount == 1)
+                {
+                    IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mOrg>("where c1='是' order by orgcode");
+                    IList<DicType> dic = new List<DicType>();
+                    dic.Add(new DicType("0", "生产部门"));
+                    foreach (mOrg gds in list)
+                    {
+                        dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                    }
+                    gdsDic3 = new LookUpDicType(dic);
+                }
+                return DicTypeHelper.gdsDic3;
+            }
+        }
+
         static RepositoryItem tjDic;
         /// <summary>
         /// 添加统计方式

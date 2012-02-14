@@ -156,7 +156,7 @@ namespace Ebada.Scgl.Lcgl
         
         private void IniData()
         {
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgName  from mOrg  where 1=1 order by OrgCode");
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgName  from mOrg  where 1=1 and c1='是' order by OrgCode");
             cbeOrg.Properties.Items.AddRange(li);
             if (cbeOrg.Properties.Items.Count > 0)
             {
