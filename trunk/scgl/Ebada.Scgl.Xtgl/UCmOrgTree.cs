@@ -109,6 +109,8 @@ namespace Ebada.Scgl.Xtgl {
 
 
             treeList1.Columns["OrgType"].ColumnEdit = DicTypeHelper.OrgTypeDic;
+            treeList1.Columns["C1"].Visible = true;
+            treeList1.Columns["C1"].VisibleIndex = 4;
             if (this.Site == null)
                 InitData();
 

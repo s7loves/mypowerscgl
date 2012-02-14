@@ -36,6 +36,7 @@
             this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
             this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
+            this.btAddKuCun = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
@@ -53,7 +54,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btAddKuCun = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -105,7 +105,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
             new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAddKuCun),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
@@ -185,6 +184,14 @@
             this.btAdd.ImageIndex = 6;
             this.btAdd.Name = "btAdd";
             this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btAddKuCun
+            // 
+            this.btAddKuCun.Caption = "设置库存";
+            this.btAddKuCun.Id = 23;
+            this.btAddKuCun.ImageIndex = 6;
+            this.btAddKuCun.Name = "btAddKuCun";
+            this.btAddKuCun.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddKuCun_ItemClick);
             // 
             // btEdit
             // 
@@ -335,13 +342,6 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // btAddKuCun
-            // 
-            this.btAddKuCun.Caption = "设置库存";
-            this.btAddKuCun.Id = 23;
-            this.btAddKuCun.Name = "btAddKuCun";
-            this.btAddKuCun.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddKuCun_ItemClick);
             // 
             // UCCLRK
             // 

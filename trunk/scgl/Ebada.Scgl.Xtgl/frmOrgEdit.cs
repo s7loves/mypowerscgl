@@ -27,8 +27,9 @@ namespace Ebada.Scgl.Xtgl
             this.textEdit1.DataBindings.Add("EditValue", rowData, "OrgCode");
             this.textEdit2.DataBindings.Add("EditValue", rowData, "OrgName");
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
+            //this.checkEdit1.DataBindings.Add("EditValue", rowData, "C1");
 
         }
         #region IPopupFormEdit Members
@@ -44,8 +45,12 @@ namespace Ebada.Scgl.Xtgl
                     this.rowData = value as mOrg;
                     this.InitComboBoxData();
                     dataBind();
+                    checkEdit1.Checked = false;
                 } else {
                     ConvertHelper.CopyTo<mOrg>(value as mOrg, rowData);
+                    checkEdit1.Checked = false;
+                    if (rowData.C1 == "是")
+                        checkEdit1.Checked = true;
                 }
             }
         }
@@ -88,6 +93,16 @@ namespace Ebada.Scgl.Xtgl
 
         private void textEdit1_EditValueChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            //rowData.C1 = checkEdit1.Checked ? 0 : 1;
+            if ( checkEdit1.Checked)
+                rowData.C1 = "是";
+            else
+                rowData.C1 = "否";
 
         }
     }

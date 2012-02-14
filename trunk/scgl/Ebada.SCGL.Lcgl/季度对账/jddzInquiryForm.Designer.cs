@@ -30,6 +30,8 @@
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.barFJLY = new DevExpress.XtraEditors.SimpleButton();
+            this.TaskOverButton = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.cbeFieldTable1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.teModleTable = new DevExpress.XtraEditors.TextEdit();
@@ -53,6 +55,7 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.uCmjddzInquiry1 = new Ebada.Scgl.Lcgl.UCmjddzInquiry();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -93,6 +96,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.barFJLY);
+            this.panelControl1.Controls.Add(this.TaskOverButton);
             this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.cbeFieldTable1);
             this.panelControl1.Controls.Add(this.teModleTable);
@@ -107,6 +112,7 @@
             this.panelControl1.Controls.Add(this.comboBoxEdit2);
             this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.comboBoxEdit4);
+            this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.labelControl6);
             this.panelControl1.Controls.Add(this.cbewpdw);
             this.panelControl1.Controls.Add(this.cbeOrg);
@@ -118,11 +124,29 @@
             this.panelControl1.Size = new System.Drawing.Size(1024, 96);
             this.panelControl1.TabIndex = 0;
             // 
+            // barFJLY
+            // 
+            this.barFJLY.Location = new System.Drawing.Point(911, 59);
+            this.barFJLY.Name = "barFJLY";
+            this.barFJLY.Size = new System.Drawing.Size(71, 34);
+            this.barFJLY.TabIndex = 40;
+            this.barFJLY.Text = "附件留言";
+            this.barFJLY.Click += new System.EventHandler(this.barFJLY_ItemClick);
+            // 
+            // TaskOverButton
+            // 
+            this.TaskOverButton.Location = new System.Drawing.Point(834, 59);
+            this.TaskOverButton.Name = "TaskOverButton";
+            this.TaskOverButton.Size = new System.Drawing.Size(71, 34);
+            this.TaskOverButton.TabIndex = 40;
+            this.TaskOverButton.Text = "结束";
+            this.TaskOverButton.Click += new System.EventHandler(this.TaskOverButton_ItemClick);
+            // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(795, 59);
+            this.simpleButton1.Location = new System.Drawing.Point(740, 59);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(88, 34);
+            this.simpleButton1.Size = new System.Drawing.Size(72, 34);
             this.simpleButton1.TabIndex = 40;
             this.simpleButton1.Text = "查询";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -155,11 +179,12 @@
             // 
             // checkEdit5
             // 
-            this.checkEdit5.Location = new System.Drawing.Point(22, 45);
+            this.checkEdit5.Location = new System.Drawing.Point(22, 72);
             this.checkEdit5.Name = "checkEdit5";
             this.checkEdit5.Properties.Caption = "供电所";
             this.checkEdit5.Size = new System.Drawing.Size(61, 19);
             this.checkEdit5.TabIndex = 31;
+            this.checkEdit5.Visible = false;
             // 
             // checkEdit3
             // 
@@ -251,7 +276,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(39, 14);
+            this.labelControl6.Location = new System.Drawing.Point(47, 14);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(36, 14);
             this.labelControl6.TabIndex = 11;
@@ -341,6 +366,14 @@
             this.uCmjddzInquiry1.Size = new System.Drawing.Size(1021, 239);
             this.uCmjddzInquiry1.TabIndex = 0;
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(47, 48);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(24, 14);
+            this.labelControl1.TabIndex = 11;
+            this.labelControl1.Text = "单位";
+            // 
             // jddzInquiryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -408,6 +441,9 @@
         private DevExpress.XtraEditors.CheckEdit checkEdit2;
         private DevExpress.XtraEditors.CheckEdit checkEdit5;
         private DevExpress.XtraEditors.ComboBoxEdit cbeOrg;
+        private DevExpress.XtraEditors.SimpleButton TaskOverButton;
+        private DevExpress.XtraEditors.SimpleButton barFJLY;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
 
     }
 }
