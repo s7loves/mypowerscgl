@@ -1989,7 +1989,7 @@ namespace Ebada.Scgl.WFlow
             string number = "";
             IList<WF_TableFieldValueView> datalist = null;
             IList<LP_Record> datalist2 = null;
-            Regex r1 = new Regex(@"[0-9]+");
+            Regex r1 = new Regex(@"[0-9]+$");
             switch (kind)
             {
                 case "编号规则一":
