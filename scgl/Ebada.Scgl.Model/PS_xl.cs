@@ -48,7 +48,8 @@ namespace Ebada.Scgl.Model
         private string _parentgt=String.Empty;
         private string _lineKind = String.Empty;
         private string _lineNum = String.Empty;
-        private decimal _totalt = 0; 
+        private decimal _totalt = 0;
+        private string _sectionalizedmessage = String.Empty;
         #endregion
   
   
@@ -610,6 +611,26 @@ namespace Ebada.Scgl.Model
                 if (_totalt as object == null || !_totalt.Equals(value))
                 {
                     _totalt = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：SectionalizedMessage
+        /// 属性描述：线路分段信息
+        /// 字段信息：[SectionalizedMessage],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("线路分段信息")]
+        public string SectionalizedMessage
+        {
+            get { return _sectionalizedmessage; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[线路分段信息]长度不能大于50!");
+                if (_sectionalizedmessage as object == null || !_sectionalizedmessage.Equals(value))
+                {
+                    _sectionalizedmessage = value;
                 }
             }
         }

@@ -33,6 +33,7 @@
         <result property="lineKind" column="lineKind" />
         <result property="lineNum" column="lineNum" />
         <result property="TotalT" column="TotalT" />
+        <result property="SectionalizedMessage" column="SectionalizedMessage" />
       </resultMap>
   </resultMaps>
 
@@ -66,7 +67,8 @@
      [ParentGT],
      [lineKind],
      [lineNum],
-     [TotalT]
+     [TotalT],
+     [SectionalizedMessage]
      FROM PS_xl
      $value$
    </select>
@@ -100,7 +102,8 @@
      [ParentGT],
      [lineKind],
      [lineNum],
-     [TotalT]
+     [TotalT],
+     [SectionalizedMessage]
      FROM PS_xl
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
@@ -131,6 +134,7 @@
        <isNotNull prepend="AND" property="lineKind">[lineKind]='$lineKind$'</isNotNull>
        <isNotNull prepend="AND" property="lineNum">[lineNum]='$lineNum$'</isNotNull>
        <isNotNull prepend="AND" property="TotalT">[TotalT]='$TotalT$'</isNotNull>
+       <isNotNull prepend="AND" property="SectionalizedMessage">[SectionalizedMessage]='$SectionalizedMessage$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_xlByKey" resultMap="PS_xl_AllColumns" parameterClass="PS_xl">
@@ -162,7 +166,8 @@
      [ParentGT],
      [lineKind],
      [lineNum],
-     [TotalT]
+     [TotalT],
+     [SectionalizedMessage]
      FROM PS_xl
      WHERE
      LineID = #LineID#
@@ -218,7 +223,8 @@
      [ParentGT]=#ParentGT#,
      [lineKind]=#lineKind#,
      [lineNum]=#lineNum#,
-     [TotalT]=#TotalT#
+     [TotalT]=#TotalT#,
+     [SectionalizedMessage]=#SectionalizedMessage#
      WHERE
      LineID = #LineID#
 
@@ -254,7 +260,8 @@
      [ParentGT],
      [lineKind],
      [lineNum],
-     [TotalT]
+     [TotalT],
+     [SectionalizedMessage]
      )
      VALUES
      (
@@ -285,7 +292,8 @@
      #ParentGT#,
      #lineKind#,
      #lineNum#,
-     #TotalT#
+     #TotalT#,
+     #SectionalizedMessage#
      )
 
    </insert>
@@ -322,6 +330,7 @@
        <isNotNull prepend="AND" property="lineKind">[lineKind]='$lineKind$'</isNotNull>
        <isNotNull prepend="AND" property="lineNum">[lineNum]='$lineNum$'</isNotNull>
        <isNotNull prepend="AND" property="TotalT">[TotalT]='$TotalT$'</isNotNull>
+       <isNotNull prepend="AND" property="SectionalizedMessage">[SectionalizedMessage]='$SectionalizedMessage$'</isNotNull>
      </dynamic>
 
    </select>

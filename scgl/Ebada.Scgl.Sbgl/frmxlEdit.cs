@@ -23,6 +23,46 @@ namespace Ebada.Scgl.Sbgl
             simpleButton1.Click += new EventHandler(simpleButton1_Click);
             simpleButton3.Click += new EventHandler(simpleButton3_Click);
             simpleButton4.Click += new EventHandler(simpleButton4_Click);
+            simpleButton5.Click += new EventHandler(simpleButton5_Click);
+        }
+        UCPS_XLSec xlSec = null;
+        void simpleButton5_Click(object sender, EventArgs e)
+        {
+            
+            groupControl1.Text = rowData.LineName;
+            if (xlSec == null)
+            {
+                xlSec = new UCPS_XLSec(rowData);
+                xlSec.Dock = DockStyle.Fill;
+                groupControl2.Controls.Add(xlSec);
+
+            }
+            else
+            {
+                xlSec.ParentObj = rowData;
+            }
+            bool flag = groupBox1.Visible;
+            if (simpleButton5.Text == "线路信息")
+            {
+                flag = false;
+            } 
+            else
+            {
+                flag = true;
+            }
+            groupBox1.Visible = !flag;
+            groupControl1.Visible = false;
+            groupControl2.Visible = flag;
+            if (flag)
+            {
+                simpleButton5.Text = "线路信息";
+                simpleButton2.Text = "杆塔信息";
+            }
+            else
+            {
+                simpleButton5.Text = "分段信息";
+                simpleButton2.Text = "杆塔信息";
+            }
         }
 
         
@@ -220,12 +260,27 @@ namespace Ebada.Scgl.Sbgl
                 gt.ParentObj = rowData;
             }
             bool flag = groupBox1.Visible;
+            if (simpleButton2.Text == "线路信息")
+            {
+                flag = false;
+            }
+            else
+            {
+                flag = true;
+            }
             groupBox1.Visible = !flag;
             groupControl1.Visible = flag;
+            groupControl2.Visible = false;
             if (flag)
+            {
                 simpleButton2.Text = "线路信息";
+                simpleButton5.Text = "分段信息";
+            }
             else
+            {
                 simpleButton2.Text = "杆塔信息";
+                simpleButton5.Text = "分段信息";
+            }
         }
         void simpleButton4_Click(object sender, EventArgs e) {
             //恢复经纬度
@@ -247,6 +302,12 @@ namespace Ebada.Scgl.Sbgl
         private void labelControl17_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmxlEdit_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            simpleButton2.Text = "杆塔信息";
+            simpleButton5.Text = "分段信息";
         }
 
     }

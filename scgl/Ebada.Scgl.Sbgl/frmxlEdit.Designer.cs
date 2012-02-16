@@ -31,15 +31,22 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.spinEdit8 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEdit7 = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
             this.spinEdit5 = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit8 = new DevExpress.XtraEditors.LookUpEdit();
+            this.spinEdit6 = new DevExpress.XtraEditors.SpinEdit();
             this.comboBoxEdit7 = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
             this.spinEdit4 = new DevExpress.XtraEditors.SpinEdit();
             this.spinEdit3 = new DevExpress.XtraEditors.SpinEdit();
             this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
@@ -81,19 +88,17 @@
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.spinEdit6 = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
-            this.spinEdit7 = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
-            this.spinEdit8 = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit8.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).BeginInit();
@@ -116,14 +121,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit7.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit8.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // m_DefaultLookAndFeel
-            // 
-            ;
             // 
             // btnCancel
             // 
@@ -147,6 +146,7 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.simpleButton5);
             this.groupControlOrg.Controls.Add(this.simpleButton2);
             this.groupControlOrg.Controls.Add(this.simpleButton4);
             this.groupControlOrg.Controls.Add(this.simpleButton3);
@@ -155,12 +155,21 @@
             this.groupControlOrg.Controls.Add(this.btnCancel);
             this.groupControlOrg.Controls.Add(this.btnOK);
             this.groupControlOrg.Controls.Add(this.groupControl1);
+            this.groupControlOrg.Controls.Add(this.groupControl2);
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.ShowCaption = false;
             this.groupControlOrg.Size = new System.Drawing.Size(697, 464);
             this.groupControlOrg.TabIndex = 9;
+            // 
+            // simpleButton5
+            // 
+            this.simpleButton5.Location = new System.Drawing.Point(388, 429);
+            this.simpleButton5.Name = "simpleButton5";
+            this.simpleButton5.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton5.TabIndex = 10;
+            this.simpleButton5.Text = "分段信息";
             // 
             // simpleButton2
             // 
@@ -258,6 +267,50 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "线路\\干支分";
             // 
+            // spinEdit8
+            // 
+            this.spinEdit8.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEdit8.Location = new System.Drawing.Point(446, 360);
+            this.spinEdit8.Name = "spinEdit8";
+            this.spinEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit8.Size = new System.Drawing.Size(163, 21);
+            this.spinEdit8.TabIndex = 24;
+            // 
+            // spinEdit7
+            // 
+            this.spinEdit7.EditValue = new decimal(new int[] {
+            720,
+            0,
+            0,
+            0});
+            this.spinEdit7.Location = new System.Drawing.Point(124, 330);
+            this.spinEdit7.Name = "spinEdit7";
+            this.spinEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit7.Size = new System.Drawing.Size(181, 21);
+            this.spinEdit7.TabIndex = 26;
+            // 
+            // labelControl25
+            // 
+            this.labelControl25.Location = new System.Drawing.Point(334, 363);
+            this.labelControl25.Name = "labelControl25";
+            this.labelControl25.Size = new System.Drawing.Size(103, 14);
+            this.labelControl25.TabIndex = 23;
+            this.labelControl25.Text = "无功供电量(kvar.h)";
+            // 
+            // labelControl24
+            // 
+            this.labelControl24.Location = new System.Drawing.Point(29, 333);
+            this.labelControl24.Name = "labelControl24";
+            this.labelControl24.Size = new System.Drawing.Size(89, 14);
+            this.labelControl24.TabIndex = 25;
+            this.labelControl24.Text = "投入运行时间(h)";
+            // 
             // spinEdit5
             // 
             this.spinEdit5.EditValue = new decimal(new int[] {
@@ -295,6 +348,20 @@
             this.comboBoxEdit8.Size = new System.Drawing.Size(198, 21);
             this.comboBoxEdit8.TabIndex = 20;
             // 
+            // spinEdit6
+            // 
+            this.spinEdit6.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEdit6.Location = new System.Drawing.Point(446, 330);
+            this.spinEdit6.Name = "spinEdit6";
+            this.spinEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit6.Size = new System.Drawing.Size(163, 21);
+            this.spinEdit6.TabIndex = 24;
+            // 
             // comboBoxEdit7
             // 
             this.comboBoxEdit7.Location = new System.Drawing.Point(107, 165);
@@ -309,6 +376,14 @@
             this.comboBoxEdit7.Properties.ValueMember = "OrgCode";
             this.comboBoxEdit7.Size = new System.Drawing.Size(198, 21);
             this.comboBoxEdit7.TabIndex = 20;
+            // 
+            // labelControl23
+            // 
+            this.labelControl23.Location = new System.Drawing.Point(334, 333);
+            this.labelControl23.Name = "labelControl23";
+            this.labelControl23.Size = new System.Drawing.Size(99, 14);
+            this.labelControl23.TabIndex = 23;
+            this.labelControl23.Text = "有功供电量(kW.h)";
             // 
             // spinEdit4
             // 
@@ -687,12 +762,21 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Location = new System.Drawing.Point(28, 25);
+            this.groupControl1.Location = new System.Drawing.Point(28, 26);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(642, 351);
+            this.groupControl1.Size = new System.Drawing.Size(642, 346);
             this.groupControl1.TabIndex = 8;
-            this.groupControl1.Text = "groupControl1";
+            this.groupControl1.Text = "线路杆塔信息";
             this.groupControl1.VisibleChanged += new System.EventHandler(this.groupControl1_VisibleChanged);
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Location = new System.Drawing.Point(22, 21);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(642, 351);
+            this.groupControl2.TabIndex = 9;
+            this.groupControl2.Text = "线路分段信息";
+            this.groupControl2.Visible = false;
             // 
             // bar1
             // 
@@ -710,72 +794,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // spinEdit6
-            // 
-            this.spinEdit6.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEdit6.Location = new System.Drawing.Point(446, 330);
-            this.spinEdit6.Name = "spinEdit6";
-            this.spinEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit6.Size = new System.Drawing.Size(163, 21);
-            this.spinEdit6.TabIndex = 24;
-            // 
-            // labelControl23
-            // 
-            this.labelControl23.Location = new System.Drawing.Point(334, 333);
-            this.labelControl23.Name = "labelControl23";
-            this.labelControl23.Size = new System.Drawing.Size(99, 14);
-            this.labelControl23.TabIndex = 23;
-            this.labelControl23.Text = "有功供电量(kW.h)";
-            // 
-            // spinEdit7
-            // 
-            this.spinEdit7.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEdit7.Location = new System.Drawing.Point(124, 330);
-            this.spinEdit7.Name = "spinEdit7";
-            this.spinEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit7.Size = new System.Drawing.Size(181, 21);
-            this.spinEdit7.TabIndex = 26;
-            // 
-            // labelControl24
-            // 
-            this.labelControl24.Location = new System.Drawing.Point(29, 333);
-            this.labelControl24.Name = "labelControl24";
-            this.labelControl24.Size = new System.Drawing.Size(89, 14);
-            this.labelControl24.TabIndex = 25;
-            this.labelControl24.Text = "投入运行时间(h)";
-            // 
-            // spinEdit8
-            // 
-            this.spinEdit8.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEdit8.Location = new System.Drawing.Point(446, 360);
-            this.spinEdit8.Name = "spinEdit8";
-            this.spinEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit8.Size = new System.Drawing.Size(163, 21);
-            this.spinEdit8.TabIndex = 24;
-            // 
-            // labelControl25
-            // 
-            this.labelControl25.Location = new System.Drawing.Point(334, 363);
-            this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(103, 14);
-            this.labelControl25.TabIndex = 23;
-            this.labelControl25.Text = "无功供电量(kvar.h)";
-            // 
             // frmxlEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -787,12 +805,16 @@
             this.Name = "frmxlEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "线路\\干支分";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmxlEdit_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit8.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).EndInit();
@@ -815,9 +837,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit7.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit8.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -886,6 +906,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl24;
         private DevExpress.XtraEditors.SpinEdit spinEdit6;
         private DevExpress.XtraEditors.LabelControl labelControl23;
+        private DevExpress.XtraEditors.SimpleButton simpleButton5;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
 
     }
 }
