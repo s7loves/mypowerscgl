@@ -148,17 +148,31 @@ namespace Ebada.Scgl.Core
                 return 0;
             }
             PS_dxxh xh = listxh[0];
-            IList<PS_gt> listGTAfterRemove = new List<PS_gt>(); ;
-            foreach (PS_gt gt in listGT)
+            //IList<PS_gt> listGTAfterRemove = new List<PS_gt>(); ;
+            //foreach (PS_gt gt in listGT)
+            //{
+            //    listGTAfterRemove.Add(gt);
+            //}
+            decimal capSum = ByqCapcity(listGT);
+            IList<PS_XLSec>  xlSecList = ListCacheHelper.GetXLSecList(line.SectionalizedMessage);
+            foreach (PS_gt gt in listGT) 
             {
-                listGTAfterRemove.Add(gt);
-            }
-           // decimal capSum = ByqCapcity(listGT);
-            foreach (PS_gt gt in listGT)
-            {
-                decimal cap = ByqCapcity(listGTAfterRemove);
-                lineloss += xh.dwdz * gt.gtSpan * cap * cap;
-                listGTAfterRemove.Remove(gt);
+                foreach (PS_XLSec xlSec in xlSecList)
+                {
+                    if (Convert.ToDouble(gt.gtCode) > Convert.ToDouble( xlSec.StartGT) && Convert.ToDouble(gt.gtCode) <= Convert.ToDouble(xlSec.EndGT))
+                    {
+                        IList<PS_dxxh> listxhnew = Client.ClientHelper.PlatformSqlMap.GetList<PS_dxxh>("SelectPS_dxxhList", "where dydj = '" + line.LineVol + "' and dxxh = '" + xlSec.LineType + "'");
+                        if (listxh.Count > 0)
+                        {
+                            xh = listxhnew[0];
+                        }
+                        break;
+                    }
+                }
+                //decimal cap = ByqCapcity(listGTAfterRemove);
+                lineloss += xh.dwdz * gt.gtSpan * capSum * capSum;
+                capSum -= ByqCapcity(gt);
+                //listGTAfterRemove.Remove(gt);
             }
 
             IList<PS_xl> listXL = GetChildrenList(line.LineID);
@@ -193,6 +207,11 @@ namespace Ebada.Scgl.Core
         public static decimal ByqCapcity(PS_gt gt)//变压器容量
         {
             decimal byqCap = 0;
+            IList<PS_xl> listXL = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("SelectPS_xlList", " where ParentGT = '" + gt.gtCode + "'");
+            foreach (PS_xl line in listXL)
+            {
+                byqCap += ByqCapcityByLine(line);
+            }
             IList<PS_tq> listTQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("SelectPS_tqList", "where gtID = '" + gt.gtID + "'");
             foreach (PS_tq tq in listTQ)
             {

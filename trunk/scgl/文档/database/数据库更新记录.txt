@@ -40,3 +40,4 @@
 2012.1.15	修改PS_XL字段linp、lineq大小，增加字段TotalT
 2012.1.16	增加视图流程表单视图WF_WorkFlowControlsView
 2012.1.16	修改表WF_WorkFlowInstance字段NowTaskId大小,增加线路设备责任区划分明白表
+2012.2.10	表PS_XL增加字段SectionalizedMessage(nvarchar(200))
