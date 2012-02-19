@@ -77,13 +77,23 @@ namespace Ebada.Scgl.Lcgl
 
             string tmpStr = " where  StartTaskId='" + taskid + "' and WorkFlowId='" + workFlowId + "' order by startTaskCaption";
             IList<WF_WorkTaskLinkView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskLinkView>("SelectWF_WorkTaskLinkViewList", tmpStr);
-            foreach (WF_WorkTaskLinkView tl in li)
+            if (li.Count == 1)
             {
-                if (!taskht.ContainsKey(tl.EndTaskId))
-                    taskht.Add(tl.EndTaskId, tl.endTaskCaption);
-                
+                if (li[0].EndTaskTypeId == "7")
+                {
+                    taskht.Add("跳过", "跳过");
+                }
             }
+            else
+            {
+                foreach (WF_WorkTaskLinkView tl in li)
+                {
+                    if (!taskht.ContainsKey(tl.EndTaskId))
+                        taskht.Add(tl.EndTaskId, tl.endTaskCaption);
 
+                }
+
+            }
         }
         private void WorkFlowLineSelectForm_Load(object sender, EventArgs e)
         {
@@ -94,13 +104,49 @@ namespace Ebada.Scgl.Lcgl
             workFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
             GetNextTask(taskid, workFlowId, ref  checkkeys);
             ArrayList akeys = new ArrayList(checkkeys.Keys);
-            comboBoxEdit1.Properties.Items.Clear();
-            foreach (string strtask in akeys)
+            if (akeys.Count == 1 && akeys[0].ToString() == "跳过")
             {
-                ListItem lt = new ListItem();
-                lt.DisplayMember = checkkeys[strtask].ToString();
-                lt.ValueMember = strtask;
-                comboBoxEdit1.Properties.Items.Add(lt);
+                string strmes = "";
+                WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+                if (wt != null)
+                {
+                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+                }
+                else
+                {
+                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+                }
+                if (strmes.IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                  
+                    return;
+                }
+               
+                strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+                if (strmes == "结束节点1")
+                {
+                    currRecord.Status = "存档";
+                }
+                else
+                {
+                    currRecord.Status = strmes;
+                }
+
+                currRecord.LastChangeTime = DateTime.Now.ToString();
+                MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                comboBoxEdit1.Properties.Items.Clear();
+                foreach (string strtask in akeys)
+                {
+                    ListItem lt = new ListItem();
+                    lt.DisplayMember = checkkeys[strtask].ToString();
+                    lt.ValueMember = strtask;
+                    comboBoxEdit1.Properties.Items.Add(lt);
+                }
             }
         }
 
