@@ -110,7 +110,9 @@ namespace Ebada.Scgl.Sbgl
                 repositoryItemLookUpEdit3.DataSource = list;
                 ParentObj = null;
                 if (frm.LineCode.Length == 6) {
-                    RefreshData(string.Format("where left(tqcode,{0})='{1}'", frm.LineCode.Length, frm.LineCode));
+                    //RefreshData(string.Format("where left(tqcode,{0})='{1}'", frm.LineCode.Length, frm.LineCode));
+                    RefreshData(string.Format("where xlcode='{0}'", frm.LineCode));
+                    //gridViewOperation.BindingList.Add(Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>(string.Format("where xlcode2='{0}'", frm.LineCode)));
                 } else {
                     RefreshData(string.Format("where xlcode2='{0}'",frm.LineCode));
                 }
