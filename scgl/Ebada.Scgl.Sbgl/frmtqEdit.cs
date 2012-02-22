@@ -74,6 +74,8 @@ namespace Ebada.Scgl.Sbgl
                 if (value == null) return;
                 if (rowData == null) {
                     this.rowData = value as PS_tq;
+                    if (string.IsNullOrEmpty(gdsCode))
+                        GdsCode = rowData.tqCode.Substring(0,3);
                     this.InitComboBoxData();
                     dataBind();
                 } else {
