@@ -75,9 +75,9 @@ namespace Ebada.Scgl.Gis.Markers {
             : base(p) {
             Size = SizeSt;
             Offset = new Point(-2, -2);
-            Pen = new Pen(Color.Black, 1);
+            Pen = new Pen(Color.Blue, 1);
             items = new List<GMapMarkerVector>();
-            font = new Font(FontFamily.GenericSerif, 8);
+            font = new Font(FontFamily.GenericSansSerif, 8);
         }
         public override void OnRender(Graphics g) {
             //g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -88,7 +88,7 @@ namespace Ebada.Scgl.Gis.Markers {
             g.DrawEllipse(Pen, r);
             if (showText && !string.IsNullOrEmpty(Text)) {
 
-                g.DrawString(Text,font , Brushes.Black, r.Right + 3, r.Top - 3);
+                g.DrawString(Text,font , Brushes.Blue, r.Right + 3, r.Top - 3);
             }
         }
 
