@@ -227,7 +227,7 @@ namespace Ebada.SCGL {
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e) {
             ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence"); InitMenu("");
         }
-
+        
         private void btLogin_ItemClick(object sender, ItemClickEventArgs e) {
             frmLogin dlg = new frmLogin();
             if (dlg.ShowDialog() == DialogResult.OK) { 
@@ -246,7 +246,10 @@ namespace Ebada.SCGL {
                 showMessage(3);
                 try {
                     Program.killmsg();
-                    System.Diagnostics.Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\msg\\Ebada.MsgClient.exe",MainHelper.User.LoginID);
+                    BackgroundWorker bw = new BackgroundWorker();
+                    bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+                    bw.RunWorkerAsync(MainHelper.User.LoginID);
+                    
                 } catch { }
             } else {
                 if (MainHelper.User.LoginID == "rabbit") {
@@ -265,6 +268,10 @@ namespace Ebada.SCGL {
             }
             barButtonItem3.Enabled = (dlg.DialogResult == DialogResult.OK);
 
+        }
+
+        void bw_DoWork(object sender, DoWorkEventArgs e) {
+            System.Diagnostics.Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\msg\\Ebada.MsgClient.exe", e.Argument.ToString());
         }
 
         private void btClose_ItemClick(object sender, ItemClickEventArgs e) {
