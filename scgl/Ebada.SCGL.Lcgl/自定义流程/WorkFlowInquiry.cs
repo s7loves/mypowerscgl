@@ -28,9 +28,10 @@ namespace Ebada.Scgl.Lcgl
         {
             string strSQL = "where 1=1 ";
             int i = 0;
-            WaitDialogForm wdf = new WaitDialogForm("", "正在查询数据...");
+            
             object workFlowId = MainHelper.PlatformSqlMap.GetObject("SelectOneStr", "select WorkFlowId from WF_WorkFlow  where FlowCaption='" + cbeWorkFlowCaption.Text + "'");
             if (workFlowId == null) return;
+            WaitDialogForm wdf = new WaitDialogForm("", "正在查询数据...");
             string workTaskId = "";
             for (i = 0; xtraTabControl1.TabPages.Count>1;)
             {
