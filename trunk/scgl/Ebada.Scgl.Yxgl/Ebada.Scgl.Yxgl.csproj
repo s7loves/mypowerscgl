@@ -1808,6 +1808,15 @@
     <None Include="00记录模板\事故抢修调度通知.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\入库单.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\出库单.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\出库材料单.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\反事故措施计划表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1841,10 +1850,16 @@
     <None Include="00记录模板\工作分配.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\市郊局秋查工作方案.xls" />
+    <None Include="00记录模板\报废申请表.xls" />
+    <None Include="00记录模板\撤旧材料入库单.xls" />
     <None Include="00记录模板\故障性巡视.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\故障统计.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\生产台账 %28撤旧%29.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\绥化市农电局安全生产工作目标.xls">
@@ -1860,6 +1875,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\设备标志缺失变更明细表.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\验收单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="测试记录（20110629）.xls" />
