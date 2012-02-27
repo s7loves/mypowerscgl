@@ -125,6 +125,12 @@
     <Compile Include="frmDownload.Designer.cs">
       <DependentUpon>frmDownload.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPS_XS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_XS.Designer.cs">
+      <DependentUpon>UCPS_XS.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCxlTreeSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -143,6 +149,30 @@
     </Compile>
     <Compile Include="frmXLSecEdit.Designer.cs">
       <DependentUpon>frmXLSecEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCxsTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCxsTree.Designer.cs">
+      <DependentUpon>UCxsTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPS_xlSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_xlSelect.Designer.cs">
+      <DependentUpon>UCPS_xlSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPSdxxhSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPSdxxhSelect.Designer.cs">
+      <DependentUpon>UCPSdxxhSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPSbyqxhSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPSbyqxhSelect.Designer.cs">
+      <DependentUpon>UCPSbyqxhSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="台区元素\frmTemplate.cs">
       <SubType>Form</SubType>
@@ -381,6 +411,9 @@
       <DependentUpon>frmDownload.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_XS.resx">
+      <DependentUpon>UCPS_XS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCxlTreeSelector.resx">
       <DependentUpon>UCxlTreeSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -391,6 +424,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmXLSecEdit.resx">
       <DependentUpon>frmXLSecEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCxsTree.resx">
+      <DependentUpon>UCxsTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_xlSelect.resx">
+      <DependentUpon>UCPS_xlSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPSdxxhSelect.resx">
+      <DependentUpon>UCPSdxxhSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPSbyqxhSelect.resx">
+      <DependentUpon>UCPSbyqxhSelect.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="台区元素\frmTemplate.resx">
