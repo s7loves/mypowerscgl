@@ -336,5 +336,14 @@ namespace Ebada.Scgl.Core
             byqpk = ByqP0(listGT);
             return byqpk;
         }
+        /// <summary>
+        /// 线路的变压器开路损耗
+        /// </summary>
+        /// <param name="listgt"></param>
+        /// <returns></returns>
+        public static decimal CapacityLoss(PS_xl line)//电容器损耗
+        {
+            return 0;
+        }
     }
 }
