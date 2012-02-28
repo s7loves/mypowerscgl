@@ -12,7 +12,9 @@ namespace Ebada.Scgl.Sbgl
     public partial class UCPS_XS : DevExpress.XtraEditors.XtraUserControl
     {
         UCxsTree scLeft;
-        Control scright;
+        UCPS_xlSelect scrightxl;
+        UCPsdxxhSelect scrightdxxh;  
+        UCPsbyqxhSelect scrightbyqxh;
         public UCPS_XS()
         {
             InitializeComponent();
@@ -23,45 +25,49 @@ namespace Ebada.Scgl.Sbgl
             scLeft = new UCxsTree();
             scLeft.Parent = splitContainerControl1.Panel1;
             scLeft.Dock = DockStyle.Fill;
+            scrightdxxh = new UCPsdxxhSelect();
+            scrightdxxh.Parent = splitContainerControl1.Panel2;   
+            scrightdxxh.Dock = DockStyle.Fill;
+            scrightdxxh.Visible = false;
+            scrightxl = new UCPS_xlSelect();
+            scrightxl.Parent = splitContainerControl1.Panel2;
+            scrightxl.Dock = DockStyle.Fill;
+            scrightxl.Visible = false;
+            scrightbyqxh = new UCPsbyqxhSelect();
+            scrightbyqxh.Parent = splitContainerControl1.Panel2;
+            scrightbyqxh.Dock = DockStyle.Fill;
+            scrightbyqxh.Visible = false;
             scLeft.LineSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_xl>(scLeft_LineSelectionChanged);
             scLeft.DxxhSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_dxxh>(scLeft_DxxhSelectionChanged);
-            scLeft.ByqxhSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_byqxh>(scLeft_ByqxhSelectionChanged);
+            scLeft.ByqxhSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_byqxh>(scLeft_ByqxhSelectionChanged);   
+         
         }
         protected override void OnLoad(EventArgs e)
         {           
             base.OnLoad(e);
         }
         void scLeft_ByqxhSelectionChanged(object sender, Ebada.Scgl.Model.PS_byqxh obj)
-        {
-            
-            scright = new UCPsbyqxhSelect();
-            scright.Visible = false;
-            scright.Parent = splitContainerControl1.Panel2;
-            (scright as UCPsbyqxhSelect).ParentObj = obj;
-            scright.Dock = DockStyle.Fill;
-            scright.Visible = true;           
+        {             
+            scrightbyqxh.ParentObj = obj;
+            scrightbyqxh.Visible = true;
+            scrightdxxh.Visible = false;
+            scrightxl.Visible = false;
         }
 
         void scLeft_DxxhSelectionChanged(object sender, Ebada.Scgl.Model.PS_dxxh obj)
-        {
-            
-            scright = new UCPsdxxhSelect();
-            scright.Visible = false;
-            scright.Parent = splitContainerControl1.Panel2;
-            (scright as UCPsdxxhSelect).ParentObj = obj;
-            scright.Dock = DockStyle.Fill;
-            scright.Visible = true;
+        {         
+            scrightdxxh.ParentObj = obj;
+            scrightbyqxh.Visible = false;
+            scrightdxxh.Visible = true;
+            scrightxl.Visible = false;         
         }
 
         void scLeft_LineSelectionChanged(object sender, Ebada.Scgl.Model.PS_xl obj)
         {
-            
-            scright = new UCPS_xlSelect();
-            scright.Visible = false;
-            (scright as UCPS_xlSelect).ParentObj = obj;
-            scright.Parent = splitContainerControl1.Panel2;
-            scright.Dock = DockStyle.Fill;
-            scright.Visible = true;
+            scrightxl.ParentObj = obj;
+            scrightbyqxh.Visible = false;
+            scrightdxxh.Visible = false;
+            scrightxl.Visible = true;        
         }
     }
 }
