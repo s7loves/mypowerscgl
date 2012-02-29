@@ -132,12 +132,13 @@ namespace Ebada.Scgl.Core {
         {
             get
             {
+                IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mOrg>("where c1='是' order by orgcode");
                 //if (gdsDic == null) {
-                if (gdsDic3 == null || gdsDic3.LinkCount == 1)
+                if (gdsDic3 == null ||list.Count > gdsDic3.LinkCount)
                 {
-                    IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mOrg>("where c1='是' order by orgcode");
+                    
                     IList<DicType> dic = new List<DicType>();
-                    dic.Add(new DicType("0", "生产部门"));
+                    dic.Add(new DicType("0", "选择生产部门"));
                     foreach (mOrg gds in list)
                     {
                         dic.Add(new DicType(gds.OrgCode, gds.OrgName));

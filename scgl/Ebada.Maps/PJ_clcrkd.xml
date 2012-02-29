@@ -12,42 +12,78 @@
         <result property="wpgg" column="wpgg" />
         <result property="wpdw" column="wpdw" />
         <result property="wpsl" column="wpsl" />
+        <result property="wpdj" column="wpdj" />
+        <result property="wpcj" column="wpcj" />
+        <result property="ssgc" column="ssgc" />
+        <result property="ckdate" column="ckdate" />
+        <result property="yt" column="yt" />
+        <result property="cksl" column="cksl" />
+        <result property="kcsl" column="kcsl" />
+        <result property="lqdw" column="lqdw" />
+        <result property="zkcsl" column="zkcsl" />
+        <result property="ssxm" column="ssxm" />
         <result property="indate" column="indate" />
         <result property="Remark" column="Remark" />
         <result property="type" column="type" />
+        <result property="num" column="num" />
+        <result property="lasttime" column="lasttime" />
       </resultMap>
   </resultMaps>
 
   <statements>
    <select id="SelectPJ_clcrkdList" resultMap="PJ_clcrkd_AllColumns" parameterClass="string">
-     SELECT
-     [ID],
-     [OrgName],
-     [OrgCode],
-     [wpmc],
-     [wpgg],
-     [wpdw],
-     replace([wpsl],'-','') as [wpsl],
-     [indate],
-     [Remark],
-     [type]
-     FROM PJ_clcrkd
-     $value$
+        SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [wpdj],
+         [wpcj],
+         [ssgc],
+         [ckdate],
+         [yt],
+         [cksl],
+         [kcsl],
+         [lqdw],
+         [zkcsl],
+         [ssxm],
+         [indate],
+         [Remark],
+         [type],
+         [num],
+         [lasttime]
+          FROM PJ_clcrkd
+          $value$
    </select>
    
    <select id="SelectPJ_clcrkdByHash" parameterClass="Hashtable">
-     SELECT
-     [ID],
-     [OrgName],
-     [OrgCode],
-     [wpmc],
-     [wpgg],
-     [wpdw],
-     replace([wpsl],'-','') as [wpsl],
-     [indate],
-     [Remark],
-     [type]
-     FROM PJ_clcrkd
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [wpdj],
+         [wpcj],
+         [ssgc],
+         [ckdate],
+         [yt],
+         [cksl],
+         [kcsl],
+         [lqdw],
+         [zkcsl],
+         [ssxm],
+         [indate],
+         [Remark],
+         [type],
+         [num],
+         [lasttime]
+          FROM PJ_clcrkd
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
@@ -56,9 +92,21 @@
        <isNotNull prepend="AND" property="wpgg">[wpgg]='$wpgg$'</isNotNull>
        <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
        <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdj">[wpdj]='$wpdj$'</isNotNull>
+       <isNotNull prepend="AND" property="wpcj">[wpcj]='$wpcj$'</isNotNull>
+       <isNotNull prepend="AND" property="ssgc">[ssgc]='$ssgc$'</isNotNull>
+       <isNotNull prepend="AND" property="ckdate">[ckdate]='$ckdate$'</isNotNull>
+       <isNotNull prepend="AND" property="yt">[yt]='$yt$'</isNotNull>
+       <isNotNull prepend="AND" property="cksl">[cksl]='$cksl$'</isNotNull>
+       <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="lqdw">[lqdw]='$lqdw$'</isNotNull>
+       <isNotNull prepend="AND" property="zkcsl">[zkcsl]='$zkcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="num">[num]='$num$'</isNotNull>
+       <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_clcrkdByKey" resultMap="PJ_clcrkd_AllColumns" parameterClass="PJ_clcrkd">
@@ -70,9 +118,21 @@
          [wpgg],
          [wpdw],
          [wpsl],
+         [wpdj],
+         [wpcj],
+         [ssgc],
+         [ckdate],
+         [yt],
+         [cksl],
+         [kcsl],
+         [lqdw],
+         [zkcsl],
+         [ssxm],
          [indate],
          [Remark],
-         [type]
+         [type],
+         [num],
+         [lasttime]
          FROM PJ_clcrkd
          WHERE 
            ID = #ID#
@@ -108,9 +168,21 @@
              [wpgg]=#wpgg#,
              [wpdw]=#wpdw#,
              [wpsl]=#wpsl#,
+             [wpdj]=#wpdj#,
+             [wpcj]=#wpcj#,
+             [ssgc]=#ssgc#,
+             [ckdate]=#ckdate#,
+             [yt]=#yt#,
+             [cksl]=#cksl#,
+             [kcsl]=#kcsl#,
+             [lqdw]=#lqdw#,
+             [zkcsl]=#zkcsl#,
+             [ssxm]=#ssxm#,
              [indate]=#indate#,
              [Remark]=#Remark#,
-             [type]=#type#
+             [type]=#type#,
+             [num]=#num#,
+             [lasttime]=#lasttime#
             WHERE 
               ID = #ID#
 
@@ -126,9 +198,21 @@
          [wpgg],
          [wpdw],
          [wpsl],
+         [wpdj],
+         [wpcj],
+         [ssgc],
+         [ckdate],
+         [yt],
+         [cksl],
+         [kcsl],
+         [lqdw],
+         [zkcsl],
+         [ssxm],
          [indate],
          [Remark],
-         [type]
+         [type],
+         [num],
+         [lasttime]
          )
        VALUES
          (
@@ -139,9 +223,21 @@
          #wpgg#,
          #wpdw#,
          #wpsl#,
+         #wpdj#,
+         #wpcj#,
+         #ssgc#,
+         #ckdate#,
+         #yt#,
+         #cksl#,
+         #kcsl#,
+         #lqdw#,
+         #zkcsl#,
+         #ssxm#,
          #indate#,
          #Remark#,
-         #type#
+         #type#,
+         #num#,
+         #lasttime#
          )
 
    </insert>
@@ -157,9 +253,21 @@
        <isNotNull prepend="AND" property="wpgg">[wpgg]='$wpgg$'</isNotNull>
        <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
        <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdj">[wpdj]='$wpdj$'</isNotNull>
+       <isNotNull prepend="AND" property="wpcj">[wpcj]='$wpcj$'</isNotNull>
+       <isNotNull prepend="AND" property="ssgc">[ssgc]='$ssgc$'</isNotNull>
+       <isNotNull prepend="AND" property="ckdate">[ckdate]='$ckdate$'</isNotNull>
+       <isNotNull prepend="AND" property="yt">[yt]='$yt$'</isNotNull>
+       <isNotNull prepend="AND" property="cksl">[cksl]='$cksl$'</isNotNull>
+       <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="lqdw">[lqdw]='$lqdw$'</isNotNull>
+       <isNotNull prepend="AND" property="zkcsl">[zkcsl]='$zkcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="num">[num]='$num$'</isNotNull>
+       <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>
      </dynamic>
 
    </select>

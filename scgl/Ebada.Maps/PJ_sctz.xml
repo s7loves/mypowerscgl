@@ -13,6 +13,14 @@
         <result property="wpdw" column="wpdw" />
         <result property="wpsl" column="wpsl" />
         <result property="indate" column="indate" />
+        <result property="wpdj" column="wpdj" />
+        <result property="wpcj" column="wpcj" />
+        <result property="ssgc" column="ssgc" />
+        <result property="ckdate" column="ckdate" />
+        <result property="yt" column="yt" />
+        <result property="cksl" column="cksl" />
+        <result property="kcsl" column="kcsl" />
+        <result property="lqdw" column="lqdw" />
         <result property="Remark" column="Remark" />
         <result property="S1" column="S1" />
         <result property="S2" column="S2" />
@@ -31,6 +39,14 @@
          [wpdw],
          [wpsl],
          [indate],
+         [wpdj],
+         [wpcj],
+         [ssgc],
+         [ckdate],
+         [yt],
+         [cksl],
+         [kcsl],
+         [lqdw],
          [Remark],
          [S1],
          [S2],
@@ -49,6 +65,14 @@
          [wpdw],
          [wpsl],
          [indate],
+         [wpdj],
+         [wpcj],
+         [ssgc],
+         [ckdate],
+         [yt],
+         [cksl],
+         [kcsl],
+         [lqdw],
          [Remark],
          [S1],
          [S2],
@@ -63,6 +87,14 @@
        <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
        <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdj">[wpdj]='$wpdj$'</isNotNull>
+       <isNotNull prepend="AND" property="wpcj">[wpcj]='$wpcj$'</isNotNull>
+       <isNotNull prepend="AND" property="ssgc">[ssgc]='$ssgc$'</isNotNull>
+       <isNotNull prepend="AND" property="ckdate">[ckdate]='$ckdate$'</isNotNull>
+       <isNotNull prepend="AND" property="yt">[yt]='$yt$'</isNotNull>
+       <isNotNull prepend="AND" property="cksl">[cksl]='$cksl$'</isNotNull>
+       <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="lqdw">[lqdw]='$lqdw$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
@@ -79,6 +111,14 @@
          [wpdw],
          [wpsl],
          [indate],
+         [wpdj],
+         [wpcj],
+         [ssgc],
+         [ckdate],
+         [yt],
+         [cksl],
+         [kcsl],
+         [lqdw],
          [Remark],
          [S1],
          [S2],
@@ -119,6 +159,14 @@
              [wpdw]=#wpdw#,
              [wpsl]=#wpsl#,
              [indate]=#indate#,
+             [wpdj]=#wpdj#,
+             [wpcj]=#wpcj#,
+             [ssgc]=#ssgc#,
+             [ckdate]=#ckdate#,
+             [yt]=#yt#,
+             [cksl]=#cksl#,
+             [kcsl]=#kcsl#,
+             [lqdw]=#lqdw#,
              [Remark]=#Remark#,
              [S1]=#S1#,
              [S2]=#S2#,
@@ -139,6 +187,14 @@
          [wpdw],
          [wpsl],
          [indate],
+         [wpdj],
+         [wpcj],
+         [ssgc],
+         [ckdate],
+         [yt],
+         [cksl],
+         [kcsl],
+         [lqdw],
          [Remark],
          [S1],
          [S2],
@@ -154,6 +210,14 @@
          #wpdw#,
          #wpsl#,
          #indate#,
+         #wpdj#,
+         #wpcj#,
+         #ssgc#,
+         #ckdate#,
+         #yt#,
+         #cksl#,
+         #kcsl#,
+         #lqdw#,
          #Remark#,
          #S1#,
          #S2#,
@@ -174,6 +238,14 @@
        <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
        <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdj">[wpdj]='$wpdj$'</isNotNull>
+       <isNotNull prepend="AND" property="wpcj">[wpcj]='$wpcj$'</isNotNull>
+       <isNotNull prepend="AND" property="ssgc">[ssgc]='$ssgc$'</isNotNull>
+       <isNotNull prepend="AND" property="ckdate">[ckdate]='$ckdate$'</isNotNull>
+       <isNotNull prepend="AND" property="yt">[yt]='$yt$'</isNotNull>
+       <isNotNull prepend="AND" property="cksl">[cksl]='$cksl$'</isNotNull>
+       <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="lqdw">[lqdw]='$lqdw$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>

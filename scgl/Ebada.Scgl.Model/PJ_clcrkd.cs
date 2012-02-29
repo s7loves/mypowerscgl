@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2012-2-11 20:53:21
+生成时间:2012-2-29 14:18:40
 ***********************************************/
 
 using System;
@@ -28,9 +28,21 @@ namespace Ebada.Scgl.Model
         private string _wpgg=String.Empty; 
         private string _wpdw=String.Empty; 
         private string _wpsl=String.Empty; 
+        private string _wpdj=String.Empty; 
+        private string _wpcj=String.Empty; 
+        private string _ssgc=String.Empty; 
+        private DateTime _ckdate=new DateTime(1900,1,1); 
+        private string _yt=String.Empty; 
+        private string _cksl=String.Empty; 
+        private string _kcsl=String.Empty; 
+        private string _lqdw=String.Empty; 
+        private string _zkcsl=String.Empty; 
+        private string _ssxm=String.Empty; 
         private DateTime _indate=new DateTime(1900,1,1); 
         private string _remark=String.Empty; 
-        private string _type=String.Empty;   
+        private string _type=String.Empty; 
+        private string _num=String.Empty; 
+        private DateTime _lasttime=new DateTime(1900,1,1);   
         #endregion
   
   
@@ -185,6 +197,213 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
+        /// 属性名称：wpdj
+        /// 属性描述：单价
+        /// 字段信息：[wpdj],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("单价")]
+        public string wpdj
+        {
+            get { return _wpdj; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[单价]长度不能大于50!");
+                if (_wpdj as object == null || !_wpdj.Equals(value))
+                {
+                    _wpdj = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：wpcj
+        /// 属性描述：厂家
+        /// 字段信息：[wpcj],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("厂家")]
+        public string wpcj
+        {
+            get { return _wpcj; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[厂家]长度不能大于50!");
+                if (_wpcj as object == null || !_wpcj.Equals(value))
+                {
+                    _wpcj = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ssgc
+        /// 属性描述：所属工程
+        /// 字段信息：[ssgc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("所属工程")]
+        public string ssgc
+        {
+            get { return _ssgc; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[所属工程]长度不能大于50!");
+                if (_ssgc as object == null || !_ssgc.Equals(value))
+                {
+                    _ssgc = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ckdate
+        /// 属性描述：出库时间
+        /// 字段信息：[ckdate],datetime
+        /// </summary>
+        [DisplayNameAttribute("出库时间")]
+        public DateTime ckdate
+        {
+            get { return _ckdate; }
+            set
+            {			
+                if (_ckdate as object == null || !_ckdate.Equals(value))
+                {
+                    _ckdate = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：yt
+        /// 属性描述：用途
+        /// 字段信息：[yt],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("用途")]
+        public string yt
+        {
+            get { return _yt; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[用途]长度不能大于50!");
+                if (_yt as object == null || !_yt.Equals(value))
+                {
+                    _yt = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：cksl
+        /// 属性描述：出库数量
+        /// 字段信息：[cksl],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("出库数量")]
+        public string cksl
+        {
+            get { return _cksl; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[出库数量]长度不能大于50!");
+                if (_cksl as object == null || !_cksl.Equals(value))
+                {
+                    _cksl = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：kcsl
+        /// 属性描述：该物品库存数量
+        /// 字段信息：[kcsl],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("该物品库存数量")]
+        public string kcsl
+        {
+            get { return _kcsl; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[该物品库存数量]长度不能大于50!");
+                if (_kcsl as object == null || !_kcsl.Equals(value))
+                {
+                    _kcsl = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：lqdw
+        /// 属性描述：领取单位
+        /// 字段信息：[lqdw],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("领取单位")]
+        public string lqdw
+        {
+            get { return _lqdw; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[领取单位]长度不能大于50!");
+                if (_lqdw as object == null || !_lqdw.Equals(value))
+                {
+                    _lqdw = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：zkcsl
+        /// 属性描述：库存数量
+        /// 字段信息：[zkcsl],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("库存数量")]
+        public string zkcsl
+        {
+            get { return _zkcsl; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[库存数量]长度不能大于50!");
+                if (_zkcsl as object == null || !_zkcsl.Equals(value))
+                {
+                    _zkcsl = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ssxm
+        /// 属性描述：所属分工程
+        /// 字段信息：[ssxm],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("所属分工程")]
+        public string ssxm
+        {
+            get { return _ssxm; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[所属分工程]长度不能大于50!");
+                if (_ssxm as object == null || !_ssxm.Equals(value))
+                {
+                    _ssxm = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
         /// 属性名称：indate
         /// 属性描述：入库时间
         /// 字段信息：[indate],datetime
@@ -240,6 +459,45 @@ namespace Ebada.Scgl.Model
                 if (_type as object == null || !_type.Equals(value))
                 {
                     _type = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：num
+        /// 属性描述：出入库单号
+        /// 字段信息：[num],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("出入库单号")]
+        public string num
+        {
+            get { return _num; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[出入库单号]长度不能大于50!");
+                if (_num as object == null || !_num.Equals(value))
+                {
+                    _num = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：lasttime
+        /// 属性描述：最后修改时间
+        /// 字段信息：[lasttime],datetime
+        /// </summary>
+        [DisplayNameAttribute("最后修改时间")]
+        public DateTime lasttime
+        {
+            get { return _lasttime; }
+            set
+            {			
+                if (_lasttime as object == null || !_lasttime.Equals(value))
+                {
+                    _lasttime = value;
                 }
             }			 
         }
