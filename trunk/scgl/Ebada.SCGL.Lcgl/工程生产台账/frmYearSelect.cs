@@ -15,7 +15,8 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmYearSelect : FormBase, IPopupFormEdit {
+    public partial class frmYearSelect : FormBase, IPopupFormEdit
+    {
 
 
         public frmYearSelect()

@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class frmYearSelect
+    partial class frmProjectSelect
     {
         /// <summary>
         /// Required designer variable.
@@ -44,10 +44,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // m_DefaultLookAndFeel
-            // 
-            ;
             // 
             // btnCancel
             // 
@@ -93,45 +89,44 @@
             this.groupBox1.Size = new System.Drawing.Size(375, 129);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "年份选择";
+            this.groupBox1.Text = "工程选择";
             // 
             // comboBoxEdit2
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(233, 30);
+            this.comboBoxEdit2.Location = new System.Drawing.Point(141, 69);
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(82, 21);
+            this.comboBoxEdit2.Size = new System.Drawing.Size(146, 21);
             this.comboBoxEdit2.TabIndex = 13;
-            this.comboBoxEdit2.Visible = false;
             // 
             // comboBoxEdit1
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(137, 53);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(142, 30);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxEdit1.Size = new System.Drawing.Size(146, 21);
             this.comboBoxEdit1.TabIndex = 13;
+            this.comboBoxEdit1.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit1_SelectedIndexChanged);
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(95, 56);
+            this.labelControl4.Location = new System.Drawing.Point(88, 33);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(24, 14);
+            this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 12;
-            this.labelControl4.Text = "年份";
+            this.labelControl4.Text = "选择工程";
             this.labelControl4.Click += new System.EventHandler(this.labelControl4_Click_1);
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(213, 57);
+            this.labelControl5.Location = new System.Drawing.Point(75, 72);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(24, 14);
+            this.labelControl5.Size = new System.Drawing.Size(60, 14);
             this.labelControl5.TabIndex = 7;
-            this.labelControl5.Text = "备注";
-            this.labelControl5.Visible = false;
+            this.labelControl5.Text = "选择子工程";
             // 
             // bar1
             // 
@@ -149,7 +144,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // frmYearSelect
+            // frmProjectSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -157,9 +152,9 @@
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmYearSelect";
+            this.Name = "frmProjectSelect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "导出年份选择";
+            this.Text = "导出工程选择";
             this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);

@@ -886,7 +886,7 @@ namespace Ebada.Scgl.Lcgl {
             {
                 return;
             }
-            if (dtall.Rows.Count == 1)
+            if (dtall.Rows.Count == 1 || currRecord.Status.IndexOf("|")==-1)
             {
                 dt = dtall;
             }

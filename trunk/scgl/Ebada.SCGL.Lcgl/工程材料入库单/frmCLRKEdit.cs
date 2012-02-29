@@ -23,11 +23,16 @@ namespace Ebada.Scgl.Lcgl
             InitializeComponent();
         }
         void dataBind() {
-
+            
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "wpmc");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "wpgg");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "wpdw");
-            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "wpsl");
+            this.spinEdit2.DataBindings.Add("EditValue", rowData, "wpsl");
+            this.spinEdit1.DataBindings.Add("EditValue", rowData, "wpdj");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "ssxm");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "wpcj");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
+            this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "zkcsl");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "indate");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
@@ -80,7 +85,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='材料入库单' and sx like '%{0}%' and nr!=''", "材料名称"));
+            string.Format("select nr from pj_dyk where  dx='工程材料入库单' and sx like '%{0}%' and nr!=''", "材料名称"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
@@ -152,7 +157,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit2.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='材料入库单' and sx like '%{0}%' and nr!=''", "材料规格"));
+            string.Format("select nr from pj_dyk where  dx='工程材料入库单' and sx like '%{0}%' and nr!=''", "材料规格"));
             if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
@@ -352,7 +357,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit3.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='材料入库单' and sx like '%{0}%' and nr!=''", "单位"));
+            string.Format("select nr from pj_dyk where  dx='工程材料入库单' and sx like '%{0}%' and nr!=''", "单位"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
@@ -378,13 +383,12 @@ namespace Ebada.Scgl.Lcgl
           
            
 
-            comboBoxEdit4.Properties.Items.Clear();
-            for (int i = 1; i <= 500; i++)
-            {
-                comboBoxEdit4.Properties.Items.Add(i);
-                
-            }
 
+            comboBoxEdit6.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='工程材料入库单' and sx like '%{0}%' and nr!=''", "厂家"));
+            if (strlist.Count > 0)
+                comboBoxEdit6.Properties.Items.AddRange(strlist);
 
 
 
@@ -434,6 +438,60 @@ namespace Ebada.Scgl.Lcgl
         {
            
         }
+
+        //private void spinEdit1_EditValueChanged(object sender, EventArgs e)
+        //{
+        //    double injg = 0;
+        //    double innum = 0;
+        //     injg = Convert.ToDouble(spinEdit1.Value);
+        //     innum = Convert.ToDouble(spinEdit2.Value);
+
+        //}
+
+      
+        private void spinEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            rowData.kcsl = spinEdit2.Value.ToString();
+            long i = 0;
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
+                "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+                + " and wpmc='" + comboBoxEdit1.Text + "' " + " and ssgc='" + comboBoxEdit7.Text + "' "
+                + " and wpgg='" + comboBoxEdit2.Text + "' and id!='" + rowData.ID + "' ");
+            if (mclist[0]!=null)i=Convert.ToInt64(mclist[0].ToString());
+            rowData.zkcsl = (Convert.ToInt64(rowData.kcsl) + i).ToString();
+            comboBoxEdit10.Text = rowData.zkcsl;
+            rowData.lasttime = DateTime.Now;  
+        }
+
+        private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            spinEdit2_EditValueChanged(sender, e);
+        }
+
+        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+
+            spinEdit2_EditValueChanged(sender, e);
+        }
+
+        private void comboBoxEdit7_TextChanged(object sender, EventArgs e)
+        {
+            spinEdit2_EditValueChanged(sender, e);
+            comboBoxEdit5.Properties.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", 
+                "select distinct ssxm  from PJ_clcrkd where type = '工程材料入库单' or type = '工程材料入库单原始库存' and ssgc='"+comboBoxEdit7.Text+ "' and ssxm!='' ");
+            comboBoxEdit5.Properties.Items.AddRange(mclist);
+        }
+
+        private void frmCLRKEdit_Load(object sender, EventArgs e)
+        {
+            comboBoxEdit7.Properties.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd where type = '工程材料入库单' or type = '工程材料入库单原始库存'");
+            comboBoxEdit7.Properties.Items.AddRange(mclist);
+        }
+
+        
+    
 
       
 

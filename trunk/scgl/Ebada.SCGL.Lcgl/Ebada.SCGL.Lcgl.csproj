@@ -124,30 +124,30 @@
     <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
     </Compile>
-    <Compile Include="材料出库单\ExportCLCKEdit.cs" />
-    <Compile Include="材料出库单\frmCLCKEdit.cs">
+    <Compile Include="工程材料出库单\ExportCLCKEdit.cs" />
+    <Compile Include="工程材料出库单\frmCLCKEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="材料出库单\frmCLCKEdit.Designer.cs">
+    <Compile Include="工程材料出库单\frmCLCKEdit.Designer.cs">
       <DependentUpon>frmCLCKEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="材料出库单\UCCLCK.cs">
+    <Compile Include="工程材料出库单\UCCLCK.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="材料出库单\UCCLCK.Designer.cs">
+    <Compile Include="工程材料出库单\UCCLCK.Designer.cs">
       <DependentUpon>UCCLCK.cs</DependentUpon>
     </Compile>
-    <Compile Include="材料入库单\ExportCLRKEdit.cs" />
-    <Compile Include="材料入库单\frmCLRKEdit.cs">
+    <Compile Include="工程材料入库单\ExportCLRKEdit.cs" />
+    <Compile Include="工程材料入库单\frmCLRKEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="材料入库单\frmCLRKEdit.Designer.cs">
+    <Compile Include="工程材料入库单\frmCLRKEdit.Designer.cs">
       <DependentUpon>frmCLRKEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="材料入库单\UCCLRK.cs">
+    <Compile Include="工程材料入库单\UCCLRK.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="材料入库单\UCCLRK.Designer.cs">
+    <Compile Include="工程材料入库单\UCCLRK.Designer.cs">
       <DependentUpon>UCCLRK.cs</DependentUpon>
     </Compile>
     <Compile Include="季度对账\UCmjddzInquiry.cs">
@@ -155,6 +155,12 @@
     </Compile>
     <Compile Include="季度对账\UCmjddzInquiry.Designer.cs">
       <DependentUpon>UCmjddzInquiry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="工程生产台账\frmProjectSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工程生产台账\frmProjectSelect.Designer.cs">
+      <DependentUpon>frmProjectSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="故障统计表\ExportGZTJB.cs" />
     <Compile Include="故障统计表\frmGZTJBEdit.cs">
@@ -881,23 +887,23 @@
     <Compile Include="非生产台账\UCFSCTZ.Designer.cs">
       <DependentUpon>UCFSCTZ.cs</DependentUpon>
     </Compile>
-    <Compile Include="生产台账\ExportSCTZEdit.cs" />
-    <Compile Include="生产台账\frmSCTZEdit.cs">
+    <Compile Include="工程生产台账\ExportSCTZEdit.cs" />
+    <Compile Include="工程生产台账\frmSCTZEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="生产台账\frmSCTZEdit.Designer.cs">
+    <Compile Include="工程生产台账\frmSCTZEdit.Designer.cs">
       <DependentUpon>frmSCTZEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="生产台账\frmYearSelect.cs">
+    <Compile Include="工程生产台账\frmYearSelect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="生产台账\frmYearSelect.Designer.cs">
+    <Compile Include="工程生产台账\frmYearSelect.Designer.cs">
       <DependentUpon>frmYearSelect.cs</DependentUpon>
     </Compile>
-    <Compile Include="生产台账\UCSCTZ.cs">
+    <Compile Include="工程生产台账\UCSCTZ.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="生产台账\UCSCTZ.Designer.cs">
+    <Compile Include="工程生产台账\UCSCTZ.Designer.cs">
       <DependentUpon>UCSCTZ.cs</DependentUpon>
     </Compile>
     <Compile Include="备品备件计划\ExportBPBJJHBEdit.cs" />
@@ -1418,24 +1424,28 @@
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="材料出库单\frmCLCKEdit.resx">
+    <EmbeddedResource Include="工程材料出库单\frmCLCKEdit.resx">
       <DependentUpon>frmCLCKEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="材料出库单\UCCLCK.resx">
+    <EmbeddedResource Include="工程材料出库单\UCCLCK.resx">
       <DependentUpon>UCCLCK.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="材料入库单\frmCLRKEdit.resx">
+    <EmbeddedResource Include="工程材料入库单\frmCLRKEdit.resx">
       <DependentUpon>frmCLRKEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="材料入库单\UCCLRK.resx">
+    <EmbeddedResource Include="工程材料入库单\UCCLRK.resx">
       <DependentUpon>UCCLRK.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="季度对账\UCmjddzInquiry.resx">
       <DependentUpon>UCmjddzInquiry.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工程生产台账\frmProjectSelect.resx">
+      <DependentUpon>frmProjectSelect.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="故障统计表\frmGZTJBEdit.resx">
@@ -1894,15 +1904,15 @@
       <DependentUpon>UCFSCTZ.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="生产台账\frmSCTZEdit.resx">
+    <EmbeddedResource Include="工程生产台账\frmSCTZEdit.resx">
       <DependentUpon>frmSCTZEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="生产台账\frmYearSelect.resx">
+    <EmbeddedResource Include="工程生产台账\frmYearSelect.resx">
       <DependentUpon>frmYearSelect.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="生产台账\UCSCTZ.resx">
+    <EmbeddedResource Include="工程生产台账\UCSCTZ.resx">
       <DependentUpon>UCSCTZ.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

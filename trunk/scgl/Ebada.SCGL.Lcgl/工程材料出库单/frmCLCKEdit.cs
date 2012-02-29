@@ -27,7 +27,6 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "wpmc");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "wpgg");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "wpdw");
-            this.spinEdit1.DataBindings.Add("EditValue", rowData, "wpsl");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "indate");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
@@ -438,8 +437,8 @@ namespace Ebada.Scgl.Lcgl
         private void frmCLCKEdit_Load(object sender, EventArgs e)
         {
             //labelTip.Text = "";
-            spinEdit1.Properties.MinValue = 0;
-            spinEdit1.Properties.Increment =1;
+            //spinEdit1.Properties.MinValue = 0;
+            //spinEdit1.Properties.Increment =1;
             comboBoxEdit2_TextChanged(sender, e);
         }
 
@@ -450,30 +449,30 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit2_TextChanged(object sender, EventArgs e)
         {
-            if (comboBoxEdit1.Text != "" && comboBoxEdit3.Text != "")
-            {
-                string strSQL= "select   sum(cast(wpsl as int))  from PJ_clcrkd  where 1=1 and wpmc='" + comboBoxEdit1.Text
-                    + "'  and wpgg='" + comboBoxEdit2.Text + "' and id!='"+rowData.ID+"' ";
-                if (rowData.OrgName != "物流中心")
-                {
-                    strSQL = strSQL + " and OrgName='" +rowData.OrgName+ "'";
-                }
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectOneInt", strSQL
-                   );
-                if (li.Count > 0 && li[0]!=null && li[0].ToString() != "")
-                {
-                    spinEdit1.Properties.MaxValue = Convert.ToDecimal(li[0]);
-                }
-                else
-                {
-                    spinEdit1.Properties.MaxValue = 0;
-                }
-                labelTip.Text = "当前规格物品" + comboBoxEdit1.Text + "最大库存:" + spinEdit1.Properties.MaxValue.ToString();
-            }
-            else
-            {
-                labelTip.Text = "";
-            }
+            //if (comboBoxEdit1.Text != "" && comboBoxEdit3.Text != "")
+            //{
+            //    string strSQL= "select   sum(cast(wpsl as int))  from PJ_clcrkd  where 1=1 and wpmc='" + comboBoxEdit1.Text
+            //        + "'  and wpgg='" + comboBoxEdit2.Text + "' and id!='"+rowData.ID+"' ";
+            //    if (rowData.OrgName != "物流中心")
+            //    {
+            //        strSQL = strSQL + " and OrgName='" +rowData.OrgName+ "'";
+            //    }
+            //    IList li = MainHelper.PlatformSqlMap.GetList("SelectOneInt", strSQL
+            //       );
+            //    if (li.Count > 0 && li[0]!=null && li[0].ToString() != "")
+            //    {
+            //        spinEdit1.Properties.MaxValue = Convert.ToDecimal(li[0]);
+            //    }
+            //    else
+            //    {
+            //        spinEdit1.Properties.MaxValue = 0;
+            //    }
+            //    labelTip.Text = "当前规格物品" + comboBoxEdit1.Text + "最大库存:" + spinEdit1.Properties.MaxValue.ToString();
+            //}
+            //else
+            //{
+            //    labelTip.Text = "";
+            //}
         }
 
         

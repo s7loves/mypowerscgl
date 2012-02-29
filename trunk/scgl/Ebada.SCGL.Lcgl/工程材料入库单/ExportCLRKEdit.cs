@@ -85,69 +85,133 @@ namespace Ebada.Scgl.Lcgl
                 IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
                   str
                    );
-                ExportExcel(ex, datalist, mc);
+                ExportExcel(ex, datalist);
             }
             ex.DeleteSheet(1);
             ex.ShowExcel();
-           
+
         }
-        public void ExportExcelYear(string orgid,string year)
+        public void ExportExcelProjectCKD(string orgid, string strProject, string strfenProject)
         {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\生产台账.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\入库单.xls";
             ex.Open(fname);
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd order by wpmc");
             string strfirst = "";
             string filter = "";
+            string filter2 = "";
+            string filter3 = "";
+            string filter4 = "";
+            if (strProject != "全部")
+                filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '工程材料入库单' ";
+            else
+                filter2 = "  where 1=1  and type = '工程材料入库单' ";
+
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd " + filter2 + " order by ssgc");
+            
             foreach (string mc in mclist)
             {
-                if (year=="全部")
-                    filter = "  where 1=1 and wpmc='" + mc + "'  and type = '入库单' ";
+                if (strfenProject == "全部")
+                    filter3 = "  where 1=1 and type = '工程材料入库单' ";
                 else
-                    filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'  and type = '入库单' ";
+                    filter3 = "  where  ssxm='" + strfenProject + "'  and type = '工程材料入库单' ";
 
-                if (orgid != "") filter += " and OrgCode='" + orgid + "'";
-
-                if (isWorkflowCall)
+                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_clcrkd " + filter3 + " order by ssxm");
+                foreach (string xm in xmlist)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                        + "    RecordID='" + currRecord.ID + "') "
-                        ;
-                }
-                IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
-                 filter
-                   );
-                ExportExcel(ex, datalist, mc);
-            } 
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_fsctz order by wpmc");
-            strfirst = "";
-            foreach (string mc in mclist)
-            {
-                filter = "  where 1=1 and wpmc='" + mc + "' and type = '入库单' ";
-                if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and type = '入库单' ";
-                
-                if (orgid != "") filter += " and OrgCode='" + orgid + "'";
+                    filter4 = "  where 1=1 and type = '工程材料入库单'"
+                        + "  and ssgc='" + mc + "' "
+                        +"  and ssxm='" + xm + "' ";
+                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_clcrkd " + filter4 + " ");
+                    foreach (string sj in sjlist)
+                    {
+                        filter = "  where 1=1 and type = '工程材料入库单'"
+                        + "  and ssgc='" + mc + "' "
+                        + "  and ssxm='" + xm
+                        + "' and CONVERT(varchar(50) , indate, 112 )   like '" + sj + "%' ";
+                        if (isWorkflowCall)
+                        {
+                            filter = "  where 1=1 and type = '工程材料入库单'"
+                           + "  and ssgc='" + mc + "' "
+                           + "  and ssxm='" + xm + "' ";
+                            filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                                + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                                    + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                                + "    RecordID='" + currRecord.ID + "') "
+                                ;
+                        }
 
-                if (isWorkflowCall)
-                {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                        + "    RecordID='" + currRecord.ID + "') "
-                        ;
+                        IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
+                         filter
+                           );
+                        ExportExcel(ex, datalist);
+                    }
                 }
-                IList<PJ_fsctz> datalist2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_fsctz>(
-                 filter
-                   );
-                ExportExcel(ex, datalist2, mc);
+
             }
-            ex.DeleteSheet(1);
 
+
+            ex.DeleteSheet(1);
             ex.ShowExcel();
+        }
+        public void ExportExcelYear(string orgid,string year)
+        {
+            //////lgm
+            //ExcelAccess ex = new ExcelAccess();
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            //string fname = Application.StartupPath + "\\00记录模板\\入库单.xls";
+            //ex.Open(fname);
+            //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd order by wpmc");
+            //string strfirst = "";
+            //string filter = "";
+            //foreach (string mc in mclist)
+            //{
+            //    if (year=="全部")
+            //        filter = "  where 1=1 and wpmc='" + mc + "'  and type = '入库单' ";
+            //    else
+            //        filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'  and type = '入库单' ";
+
+            //    if (orgid != "") filter += " and OrgCode='" + orgid + "'";
+
+            //    if (isWorkflowCall)
+            //    {
+            //        filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+            //            + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+            //                + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+            //            + "    RecordID='" + currRecord.ID + "') "
+            //            ;
+            //    }
+            //    IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
+            //     filter
+            //       );
+            //    ExportExcel(ex, datalist);
+            //} 
+            //mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_fsctz order by wpmc");
+            //strfirst = "";
+            //foreach (string mc in mclist)
+            //{
+            //    filter = "  where 1=1 and wpmc='" + mc + "' and type = '入库单' ";
+            //    if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and type = '入库单' ";
+                
+            //    if (orgid != "") filter += " and OrgCode='" + orgid + "'";
+
+            //    if (isWorkflowCall)
+            //    {
+            //        filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+            //            + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+            //                + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+            //            + "    RecordID='" + currRecord.ID + "') "
+            //            ;
+            //    }
+            //    IList<PJ_fsctz> datalist2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_fsctz>(
+            //     filter
+            //       );
+            //    ExportExcel(ex, datalist2, mc);
+            //}
+            //ex.DeleteSheet(1);
+
+            //ex.ShowExcel();
         }
         public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid,string year)
         {
@@ -249,7 +313,7 @@ namespace Ebada.Scgl.Lcgl
         public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid,string year, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
-            string fname = Application.StartupPath + "\\00记录模板\\生产台账.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\入库单.xls";
             dsoFramerWordControl1.FileOpen(fname);
 
             if (parentTemple == null)
@@ -287,31 +351,9 @@ namespace Ebada.Scgl.Lcgl
                 IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
                  filter
                    );
-                ExportExcel(ex, datalist, mc);
-            }
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_fsctz order by wpmc");
-
-            foreach (string mc in mclist)
-            {
-                //filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
-                filter = "  where 1=1  and wpmc='" + mc + "' and type = '入库单'  ";
-                if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and type = '入库单'  ";
-
-                //filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
-                if (orgid != "") filter += " and OrgCode='" + orgid + "'";
-
-                if (isWorkflowCall)
-                {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                        + "    RecordID='" + currRecord.ID + "') "
-                        ;
-                }
-                IList<PJ_fsctz> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_fsctz>(
-                 filter
-                   );
-                ExportExcel(ex, datalist, mc);
+                ExportExcel(ex, datalist);
+            
+            
             }
             //ex.ActiveSheet(1);
             //ex.DeleteWorkSheet(1);
@@ -337,12 +379,13 @@ namespace Ebada.Scgl.Lcgl
             parentTemple.DocContent = dsoFramerWordControl1.FileDataGzip;
             dsoFramerWordControl1.FileClose();
         }
-        public void ExportExcel(ExcelAccess ex, IList<PJ_fsctz> datalist, string wpmc)
+        
+        public void ExportExcel(ExcelAccess ex ,IList<PJ_clcrkd> datalist)
         {
             //此处写填充内容代码
-            int row = 5;
+            int row = 6;
             int col = 1;
-            int rowcount = 30;
+            int rowcount = 12;
 
             //
 
@@ -356,77 +399,33 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 ex.CopySheet(1, j);
-                if (j == 1) ex.ReNameWorkSheet(j + 1, wpmc);
+                if(j==1)ex.ReNameWorkSheet(j + 1, datalist[0].ssxm  );
                 else
-                    ex.ReNameWorkSheet(j + 1, wpmc + (j));
+                    ex.ReNameWorkSheet(j + 1, datalist[0].ssxm + (j));
             }
             for (int j = 0; j < datalist.Count; j++)
             {
 
                 if (j % rowcount == 0)
                 {
-                    if (j == 0) ex.ActiveSheet(wpmc);
-                    else ex.ActiveSheet(wpmc + (j / rowcount + 1));
-                    ex.SetCellValue(datalist[j].OrgName, 2, 2);
-                    ex.SetCellValue(datalist[0].OrgName.Trim() + datalist[0].indate.ToString("yyyy年") + "非生产台账", 1, 1);
-
+                    if (j == 0) ex.ActiveSheet(datalist[0].ssxm);
+                    else ex.ActiveSheet(datalist[0].ssxm + (j / rowcount + 1));
+                    ex.SetCellValue(datalist[j].ssgc, 2, 4);
+                    ex.SetCellValue(datalist[j].ssxm , 4, 10);
+                    ex.SetCellValue(datalist[j].indate.ToString("yyyy年"), 4, 1);
+                    ex.SetCellValue(datalist[j].indate.ToString("MM月"), 4, 3);
+                    ex.SetCellValue(datalist[j].indate.ToString("dd日"), 4,5);
                 }
-                ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
-                ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col + 1);
-                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 2);
+                ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col );
+                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 6);
+                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 8);
 
-                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 3);
-                ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 5);
-                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 6);
-                //ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
-
-
-            }
-        }
-    
-        public void ExportExcel(ExcelAccess ex ,IList<PJ_clcrkd> datalist,string wpmc)
-        {
-            //此处写填充内容代码
-            int row = 5;
-            int col = 1;
-            int rowcount = 30;
-
-            //
-
-            //加页
-            int pageindex = 1;
-            if (pageindex < Ecommon.GetPagecount(datalist.Count, rowcount))
-            {
-                pageindex = Ecommon.GetPagecount(datalist.Count, rowcount);
-            }
-            for (int j = 1; j <= pageindex; j++)
-            {
-
-                ex.CopySheet(1, j);
-                if(j==1)ex.ReNameWorkSheet(j + 1, wpmc );
-                else
-                    ex.ReNameWorkSheet(j + 1, wpmc + (j ));
-            }
-            for (int j = 0; j < datalist.Count; j++)
-            {
-
-                if (j % rowcount == 0)
-                {
-                    if(j==0)ex.ActiveSheet(wpmc);
-                    else ex.ActiveSheet(wpmc+(j / rowcount+1) );
-                    ex.SetCellValue(datalist[j].OrgName, 2, 2);
-                    ex.SetCellValue(datalist[0].OrgName.Trim() + datalist[0].indate.ToString("yyyy年") + "材料入库单", 1, 1);
-
-                }
-                ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
-                ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col + 1);
-                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 2);
-
-                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 3);
-                ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 5);
-                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 6);
+                ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 9);
+                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount, col + 10);
+                ex.SetCellValue((Convert.ToDouble(datalist[j].wpsl)*Convert.ToDouble(datalist[j].wpdj)).ToString() 
+                    , row + j % rowcount, col + 12);
+                
+                ex.SetCellValue(datalist[j].Remark, 18, 7);
                 //ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
 
 
