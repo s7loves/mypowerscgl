@@ -20,6 +20,7 @@
         <result property="yt" column="yt" />
         <result property="cksl" column="cksl" />
         <result property="kcsl" column="kcsl" />
+        <result property="ghdw" column="ghdw" />
         <result property="lqdw" column="lqdw" />
         <result property="zkcsl" column="zkcsl" />
         <result property="ssxm" column="ssxm" />
@@ -49,6 +50,7 @@
          [yt],
          [cksl],
          [kcsl],
+         [ghdw],
          [lqdw],
          [zkcsl],
          [ssxm],
@@ -78,6 +80,7 @@
          [yt],
          [cksl],
          [kcsl],
+         [ghdw],
          [lqdw],
          [zkcsl],
          [ssxm],
@@ -103,6 +106,7 @@
        <isNotNull prepend="AND" property="yt">[yt]='$yt$'</isNotNull>
        <isNotNull prepend="AND" property="cksl">[cksl]='$cksl$'</isNotNull>
        <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="ghdw">[ghdw]='$ghdw$'</isNotNull>
        <isNotNull prepend="AND" property="lqdw">[lqdw]='$lqdw$'</isNotNull>
        <isNotNull prepend="AND" property="zkcsl">[zkcsl]='$zkcsl$'</isNotNull>
        <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
@@ -130,6 +134,7 @@
          [yt],
          [cksl],
          [kcsl],
+         [ghdw],
          [lqdw],
          [zkcsl],
          [ssxm],
@@ -181,6 +186,7 @@
              [yt]=#yt#,
              [cksl]=#cksl#,
              [kcsl]=#kcsl#,
+             [ghdw]=#ghdw#,
              [lqdw]=#lqdw#,
              [zkcsl]=#zkcsl#,
              [ssxm]=#ssxm#,
@@ -212,6 +218,7 @@
          [yt],
          [cksl],
          [kcsl],
+         [ghdw],
          [lqdw],
          [zkcsl],
          [ssxm],
@@ -238,6 +245,7 @@
          #yt#,
          #cksl#,
          #kcsl#,
+         #ghdw#,
          #lqdw#,
          #zkcsl#,
          #ssxm#,
@@ -269,6 +277,7 @@
        <isNotNull prepend="AND" property="yt">[yt]='$yt$'</isNotNull>
        <isNotNull prepend="AND" property="cksl">[cksl]='$cksl$'</isNotNull>
        <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="ghdw">[ghdw]='$ghdw$'</isNotNull>
        <isNotNull prepend="AND" property="lqdw">[lqdw]='$lqdw$'</isNotNull>
        <isNotNull prepend="AND" property="zkcsl">[zkcsl]='$zkcsl$'</isNotNull>
        <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
