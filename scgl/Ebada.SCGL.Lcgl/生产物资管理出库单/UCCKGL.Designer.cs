@@ -41,6 +41,8 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.barFJLY = new DevExpress.XtraEditors.SimpleButton();
+            this.TaskOverButton = new DevExpress.XtraEditors.SimpleButton();
             this.comboBoxEdit6 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit5 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -96,10 +98,10 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 133);
+            this.gridControl1.Location = new System.Drawing.Point(0, 142);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(575, 194);
+            this.gridControl1.Size = new System.Drawing.Size(575, 185);
             this.gridControl1.TabIndex = 8;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -194,6 +196,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.barFJLY);
+            this.panelControl1.Controls.Add(this.TaskOverButton);
             this.panelControl1.Controls.Add(this.comboBoxEdit6);
             this.panelControl1.Controls.Add(this.labelControl6);
             this.panelControl1.Controls.Add(this.comboBoxEdit5);
@@ -211,8 +215,30 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(575, 133);
+            this.panelControl1.Size = new System.Drawing.Size(575, 142);
             this.panelControl1.TabIndex = 6;
+            // 
+            // barFJLY
+            // 
+            this.barFJLY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.barFJLY.Location = new System.Drawing.Point(334, 108);
+            this.barFJLY.Name = "barFJLY";
+            this.barFJLY.Size = new System.Drawing.Size(74, 23);
+            this.barFJLY.TabIndex = 42;
+            this.barFJLY.Text = "附件留言";
+            this.barFJLY.Visible = false;
+            this.barFJLY.Click += new System.EventHandler(this.barFJLY_Click);
+            // 
+            // TaskOverButton
+            // 
+            this.TaskOverButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TaskOverButton.Location = new System.Drawing.Point(253, 108);
+            this.TaskOverButton.Name = "TaskOverButton";
+            this.TaskOverButton.Size = new System.Drawing.Size(75, 23);
+            this.TaskOverButton.TabIndex = 41;
+            this.TaskOverButton.Text = "结束";
+            this.TaskOverButton.Visible = false;
+            this.TaskOverButton.Click += new System.EventHandler(this.TaskOverButton_Click);
             // 
             // comboBoxEdit6
             // 
@@ -225,7 +251,7 @@
             "撤旧材料出库单",
             "非生产物资出库单"});
             this.comboBoxEdit6.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit6.TabIndex = 2;
+            this.comboBoxEdit6.TabIndex = 6;
             // 
             // labelControl6
             // 
@@ -246,7 +272,7 @@
             "撤旧材料入库单",
             "非生产物资入库单"});
             this.comboBoxEdit5.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit5.TabIndex = 2;
+            this.comboBoxEdit5.TabIndex = 5;
             // 
             // labelControl5
             // 
@@ -263,7 +289,7 @@
             this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit4.TabIndex = 2;
+            this.comboBoxEdit4.TabIndex = 4;
             // 
             // labelControl4
             // 
@@ -290,7 +316,7 @@
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit3.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit3.TabIndex = 2;
+            this.comboBoxEdit3.TabIndex = 3;
             this.comboBoxEdit3.TextChanged += new System.EventHandler(this.comboBoxEdit3_TextChanged);
             // 
             // labelControl2
@@ -316,7 +342,7 @@
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit1.TabIndex = 2;
+            this.comboBoxEdit1.TabIndex = 1;
             this.comboBoxEdit1.TextChanged += new System.EventHandler(this.comboBoxEdit1_TextChanged);
             // 
             // labelControl1
@@ -330,7 +356,7 @@
             // simpleButton2
             // 
             this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton2.Location = new System.Drawing.Point(405, 104);
+            this.simpleButton2.Location = new System.Drawing.Point(414, 109);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(75, 23);
             this.simpleButton2.TabIndex = 0;
@@ -340,7 +366,7 @@
             // simpleButton1
             // 
             this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton1.Location = new System.Drawing.Point(486, 103);
+            this.simpleButton1.Location = new System.Drawing.Point(495, 108);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(75, 23);
             this.simpleButton1.TabIndex = 0;
@@ -424,6 +450,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private UCCLCK ucclck1;
+        private DevExpress.XtraEditors.SimpleButton barFJLY;
+        private DevExpress.XtraEditors.SimpleButton TaskOverButton;
 
     }
 }
