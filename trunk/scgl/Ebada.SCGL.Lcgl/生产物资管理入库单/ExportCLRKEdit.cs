@@ -132,9 +132,7 @@ namespace Ebada.Scgl.Lcgl
                         + "' and CONVERT(varchar(50) , indate, 112 )   like '" + sj + "%' ";
                         if (isWorkflowCall)
                         {
-                            filter = "  where 1=1 and type = '工程材料入库单'"
-                           + "  and ssgc='" + mc + "' "
-                           + "  and ssxm='" + xm + "' ";
+                          
                             filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
                                 + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                                     + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
@@ -213,88 +211,81 @@ namespace Ebada.Scgl.Lcgl
 
             //ex.ShowExcel();
         }
-        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid,string year)
+        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid, string strProject, string strfenProject)
         {
 
             string filter = "";
             int i = 0;
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd order by wpmc");
-            
             List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
-            foreach (string mc in mclist)
-            {
-                filter = "  where 1=1  and wpmc='" + mc + "' and type = '入库单' ";
-                if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%'  and type = '入库单' ";
-                if (orgid != "") filter += " and OrgCode='" + orgid + "'";
-                if (isWorkflowCall)
-                {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                        + "    RecordID='" + currRecord.ID + "') ";
-                }
-                IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
-                 filter
-                   );
-                if (isWorkflowCall)
-                {
-                    for (i = 0; i < datalist.Count; i++)
-                    {
-                        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                        mrwt.ID = mrwt.CreateID();
-                        mrwt.ModleRecordID = datalist[i].ID;
-                        mrwt.RecordID = currRecord.ID;
-                        mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                        mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                        mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                        mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                        mrwt.ModleTableName = datalist[i].GetType().ToString();
-                        mrwt.CreatTime = DateTime.Now;
-                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                        mrwtlist.Add(mrwt);
-                    }
-                }
-                
-            }
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_fsctz order by wpmc");
+            string strfirst = "";
+            string filter2 = "";
+            string filter3 = "";
+            string filter4 = "";
+            if (strProject != "全部")
+                filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '工程材料入库单' ";
+            else
+                filter2 = "  where 1=1  and type = '工程材料入库单' ";
 
-           
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd " + filter2 + " order by ssgc");
+
             foreach (string mc in mclist)
             {
-            //    filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
-            //    if (orgid != "") filter += " and OrgCode='" + orgid + "'";
-                filter = "  where 1=1  and wpmc='" + mc + "' and type = '入库单' ";
-                if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and type = '入库单'  ";
-                if (orgid != "") filter += " and OrgCode='" + orgid + "' ";
-                if (isWorkflowCall)
+                if (strfenProject == "全部")
+                    filter3 = "  where 1=1 and type = '工程材料入库单' ";
+                else
+                    filter3 = "  where  ssxm='" + strfenProject + "'  and type = '工程材料入库单' ";
+
+                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_clcrkd " + filter3 + " order by ssxm");
+                foreach (string xm in xmlist)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                        + "    RecordID='" + currRecord.ID + "') ";
-                }
-                IList<PJ_fsctz> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_fsctz>(
-                 filter
-                   );
-                if (isWorkflowCall)
-                {
-                    for (i = 0; i < datalist.Count; i++)
+                    filter4 = "  where 1=1 and type = '工程材料入库单'"
+                        + "  and ssgc='" + mc + "' "
+                        + "  and ssxm='" + xm + "' ";
+                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_clcrkd " + filter4 + " ");
+                    foreach (string sj in sjlist)
                     {
-                        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                        mrwt.ID = mrwt.CreateID();
-                        mrwt.ModleRecordID = datalist[i].ID;
-                        mrwt.RecordID = currRecord.ID;
-                        mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                        mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                        mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                        mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                        mrwt.ModleTableName = datalist[i].GetType().ToString();
-                        mrwt.CreatTime = DateTime.Now;
-                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                        mrwtlist.Add(mrwt);
+                        filter = "  where 1=1 and type = '工程材料入库单'"
+                        + "  and ssgc='" + mc + "' "
+                        + "  and ssxm='" + xm
+                        + "' and CONVERT(varchar(50) , indate, 112 )   like '" + sj + "%' ";
+                        if (isWorkflowCall)
+                        {
+
+                            filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                                + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                                    + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                                + "    RecordID='" + currRecord.ID + "') "
+                                ;
+                        }
+
+                        IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
+                         filter
+                           );
+                        if (isWorkflowCall)
+                        {
+                            for (i = 0; i < datalist.Count; i++)
+                            {
+                                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                                mrwt.ID = mrwt.CreateID();
+                                mrwt.ModleRecordID = datalist[i].ID;
+                                mrwt.RecordID = currRecord.ID;
+                                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                                mrwt.ModleTableName = datalist[i].GetType().ToString();
+                                mrwt.CreatTime = DateTime.Now;
+                                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                                mrwtlist.Add(mrwt);
+                            }
+                        }
+                        
                     }
                 }
+
             }
+           
+           
             List<SqlQueryObject> list3 = new List<SqlQueryObject>();
             if (mrwtlist.Count > 0)
             {
@@ -310,7 +301,7 @@ namespace Ebada.Scgl.Lcgl
         }
 
         
-        public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid,string year, bool isShow)
+        public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid, string strProject, string strfenProject, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string fname = Application.StartupPath + "\\00记录模板\\入库单.xls";
@@ -328,32 +319,56 @@ namespace Ebada.Scgl.Lcgl
             Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
+
+            string strfirst = "";
             string filter = "";
-           
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd order by wpmc");
-            
+            string filter2 = "";
+            string filter3 = "";
+            string filter4 = "";
+            if (strProject != "全部")
+                filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '工程材料入库单' ";
+            else
+                filter2 = "  where 1=1  and type = '工程材料入库单' ";
+
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd " + filter2 + " order by ssgc");
+
             foreach (string mc in mclist)
             {
-                filter = "  where 1=1  and wpmc='" + mc + "' and type = '入库单'  ";
-                if (year != "全部") filter += " and CONVERT(varchar(50) , indate, 112 )   like '" + year + "%'  and type = '入库单' ";
-               
-                //filter = "  where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "'";
-                if (orgid != "") filter += " and OrgCode='" + orgid + "'";
+                if (strfenProject == "全部")
+                    filter3 = "  where 1=1 and type = '工程材料入库单' ";
+                else
+                    filter3 = "  where  ssxm='" + strfenProject + "'  and type = '工程材料入库单' ";
 
-                if (isWorkflowCall)
+                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_clcrkd " + filter3 + " order by ssxm");
+                foreach (string xm in xmlist)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                        + "    RecordID='" + currRecord.ID + "') "
-                        ;
+                    filter4 = "  where 1=1 and type = '工程材料入库单'"
+                        + "  and ssgc='" + mc + "' "
+                        + "  and ssxm='" + xm + "' ";
+                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_clcrkd " + filter4 + " ");
+                    foreach (string sj in sjlist)
+                    {
+                        filter = "  where 1=1 and type = '工程材料入库单'"
+                        + "  and ssgc='" + mc + "' "
+                        + "  and ssxm='" + xm
+                        + "' and CONVERT(varchar(50) , indate, 112 )   like '" + sj + "%' ";
+                        if (isWorkflowCall)
+                        {
+                           
+                            filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                                + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                                    + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                                + "    RecordID='" + currRecord.ID + "') "
+                                ;
+                        }
+
+                        IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
+                         filter
+                           );
+                        ExportExcel(ex, datalist);
+                    }
                 }
-                IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
-                 filter
-                   );
-                ExportExcel(ex, datalist);
-            
-            
+
             }
             //ex.ActiveSheet(1);
             //ex.DeleteWorkSheet(1);

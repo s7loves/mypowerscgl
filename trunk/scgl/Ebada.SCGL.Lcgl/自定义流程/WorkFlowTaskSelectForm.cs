@@ -57,7 +57,7 @@ namespace Ebada.Scgl.Lcgl
             for (int i = 0; i < WorkFlowData.Rows.Count; i++)
             {
 
-                
+                if (!checkkeys.ContainsKey(WorkFlowData.Rows[i]["WorkTaskId"]))
                 checkkeys.Add(WorkFlowData.Rows[i]["WorkTaskId"], WorkFlowData.Rows[i]["TaskCaption"]);
             }
             ArrayList akeys = new ArrayList(checkkeys.Keys);

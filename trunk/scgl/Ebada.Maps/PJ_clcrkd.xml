@@ -6,6 +6,7 @@
   <resultMaps>
       <resultMap id="PJ_clcrkd_AllColumns" class="PJ_clcrkd">
         <result property="ID" column="ID" />
+        <result property="num" column="num" />
         <result property="OrgName" column="OrgName" />
         <result property="OrgCode" column="OrgCode" />
         <result property="wpmc" column="wpmc" />
@@ -25,8 +26,8 @@
         <result property="indate" column="indate" />
         <result property="Remark" column="Remark" />
         <result property="type" column="type" />
-        <result property="num" column="num" />
         <result property="lasttime" column="lasttime" />
+        <result property="lyparent" column="lyparent" />
       </resultMap>
   </resultMaps>
 
@@ -34,6 +35,7 @@
    <select id="SelectPJ_clcrkdList" resultMap="PJ_clcrkd_AllColumns" parameterClass="string">
         SELECT 
          [ID],
+         [num],
          [OrgName],
          [OrgCode],
          [wpmc],
@@ -53,8 +55,8 @@
          [indate],
          [Remark],
          [type],
-         [num],
-         [lasttime]
+         [lasttime],
+         [lyparent]
           FROM PJ_clcrkd
           $value$
    </select>
@@ -62,6 +64,7 @@
    <select id="SelectPJ_clcrkdByHash" parameterClass="Hashtable">
          SELECT 
          [ID],
+         [num],
          [OrgName],
          [OrgCode],
          [wpmc],
@@ -81,11 +84,12 @@
          [indate],
          [Remark],
          [type],
-         [num],
-         [lasttime]
+         [lasttime],
+         [lyparent]
           FROM PJ_clcrkd
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="num">[num]='$num$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="wpmc">[wpmc]='$wpmc$'</isNotNull>
@@ -105,13 +109,14 @@
        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
-       <isNotNull prepend="AND" property="num">[num]='$num$'</isNotNull>
        <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>
+       <isNotNull prepend="AND" property="lyparent">[lyparent]='$lyparent$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_clcrkdByKey" resultMap="PJ_clcrkd_AllColumns" parameterClass="PJ_clcrkd">
          SELECT 
          [ID],
+         [num],
          [OrgName],
          [OrgCode],
          [wpmc],
@@ -131,8 +136,8 @@
          [indate],
          [Remark],
          [type],
-         [num],
-         [lasttime]
+         [lasttime],
+         [lyparent]
          FROM PJ_clcrkd
          WHERE 
            ID = #ID#
@@ -162,6 +167,7 @@
    <update id="UpdatePJ_clcrkd" parameterClass="PJ_clcrkd" resultClass="int">
           UPDATE PJ_clcrkd
            SET
+             [num]=#num#,
              [OrgName]=#OrgName#,
              [OrgCode]=#OrgCode#,
              [wpmc]=#wpmc#,
@@ -181,8 +187,8 @@
              [indate]=#indate#,
              [Remark]=#Remark#,
              [type]=#type#,
-             [num]=#num#,
-             [lasttime]=#lasttime#
+             [lasttime]=#lasttime#,
+             [lyparent]=#lyparent#
             WHERE 
               ID = #ID#
 
@@ -192,6 +198,7 @@
         INSERT INTO PJ_clcrkd
          (
          [ID],
+         [num],
          [OrgName],
          [OrgCode],
          [wpmc],
@@ -211,12 +218,13 @@
          [indate],
          [Remark],
          [type],
-         [num],
-         [lasttime]
+         [lasttime],
+         [lyparent]
          )
        VALUES
          (
          #ID#,
+         #num#,
          #OrgName#,
          #OrgCode#,
          #wpmc#,
@@ -236,8 +244,8 @@
          #indate#,
          #Remark#,
          #type#,
-         #num#,
-         #lasttime#
+         #lasttime#,
+         #lyparent#
          )
 
    </insert>
@@ -247,6 +255,7 @@
           FROM PJ_clcrkd
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="num">[num]='$num$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="wpmc">[wpmc]='$wpmc$'</isNotNull>
@@ -266,8 +275,8 @@
        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
-       <isNotNull prepend="AND" property="num">[num]='$num$'</isNotNull>
        <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>
+       <isNotNull prepend="AND" property="lyparent">[lyparent]='$lyparent$'</isNotNull>
      </dynamic>
 
    </select>
