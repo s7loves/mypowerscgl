@@ -46,6 +46,7 @@
             this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit4 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cbewpdw = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbeOrg = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -55,7 +56,6 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.uCmjddzInquiry1 = new Ebada.Scgl.Lcgl.UCmjddzInquiry();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -131,6 +131,7 @@
             this.barFJLY.Size = new System.Drawing.Size(71, 34);
             this.barFJLY.TabIndex = 40;
             this.barFJLY.Text = "附件留言";
+            this.barFJLY.Visible = false;
             this.barFJLY.Click += new System.EventHandler(this.barFJLY_ItemClick);
             // 
             // TaskOverButton
@@ -140,6 +141,7 @@
             this.TaskOverButton.Size = new System.Drawing.Size(71, 34);
             this.TaskOverButton.TabIndex = 40;
             this.TaskOverButton.Text = "结束";
+            this.TaskOverButton.Visible = false;
             this.TaskOverButton.Click += new System.EventHandler(this.TaskOverButton_ItemClick);
             // 
             // simpleButton1
@@ -274,6 +276,14 @@
             this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit4.TabIndex = 23;
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(47, 48);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(24, 14);
+            this.labelControl1.TabIndex = 11;
+            this.labelControl1.Text = "单位";
+            // 
             // labelControl6
             // 
             this.labelControl6.Location = new System.Drawing.Point(47, 14);
@@ -365,14 +375,6 @@
             this.uCmjddzInquiry1.Name = "uCmjddzInquiry1";
             this.uCmjddzInquiry1.Size = new System.Drawing.Size(1021, 239);
             this.uCmjddzInquiry1.TabIndex = 0;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(47, 48);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(24, 14);
-            this.labelControl1.TabIndex = 11;
-            this.labelControl1.Text = "单位";
             // 
             // jddzInquiryForm
             // 
