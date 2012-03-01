@@ -147,6 +147,7 @@ namespace Ebada.Scgl.Lcgl
                     ckd.Remark = frm.ReturnData.Remark;
                     ckd.yt = pc.yt;
                     ckd.ssxm = pc.ssxm;
+                    ckd.ssxm = frm.ReturnData.lqdw;
                     ckd.ckdate = DateTime.Now;
                     if (cktemp >= Convert.ToInt64(pc.kcsl))
                     {
@@ -190,6 +191,7 @@ namespace Ebada.Scgl.Lcgl
                         ckd.num = "CK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
                         ckd.type = comboBoxEdit6.Text;
                         ckd.Remark = frm.ReturnData.Remark;
+                        ckd.ssxm = frm.ReturnData.lqdw;
                         ckd.yt = pc.yt;
                         ckd.ssxm = pc.ssxm;
                         ckd.ckdate = DateTime.Now;

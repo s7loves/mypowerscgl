@@ -65,30 +65,30 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="obj"></param>
         public void ExportExcel(string orgid, string year)
         {
-            //lgm
-            ExcelAccess ex = new ExcelAccess();
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\材料入库单.xls";
-            ex.Open(fname);
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd order by wpmc");
-            string  strfirst = "",str="";
-            foreach (string mc in mclist)
-            {
-                if (year == "全部")
-                    str = "  where 1=1 and wpmc='" + mc + "' ";
-                else
-                    str = " where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "' ";
-                if (orgid != "")
-                    str+= " and OrgCode='" + orgid + "' ";
+            ////lgm
+            //ExcelAccess ex = new ExcelAccess();
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            //string fname = Application.StartupPath + "\\00记录模板\\材料入库单.xls";
+            //ex.Open(fname);
+            //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd order by wpmc");
+            //string  strfirst = "",str="";
+            //foreach (string mc in mclist)
+            //{
+            //    if (year == "全部")
+            //        str = "  where 1=1 and wpmc='" + mc + "' ";
+            //    else
+            //        str = " where CONVERT(varchar(50) , indate, 112 )   like '" + year + "%' and wpmc='" + mc + "' ";
+            //    if (orgid != "")
+            //        str+= " and OrgCode='" + orgid + "' ";
 
-                str +=  "' order by wpmc";
-                IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
-                  str
-                   );
-                ExportExcel(ex, datalist);
-            }
-            ex.DeleteSheet(1);
-            ex.ShowExcel();
+            //    str +=  "' order by wpmc";
+            //    IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
+            //      str
+            //       );
+            //    ExportExcel(ex, datalist);
+            //}
+            //ex.DeleteSheet(1);
+            //ex.ShowExcel();
 
         }
         public void ExportExcelProjectCKD(string orgid, string strProject, string strfenProject)
@@ -403,7 +403,6 @@ namespace Ebada.Scgl.Lcgl
             int rowcount = 12;
 
             //
-
             //加页
             int pageindex = 1;
             if (pageindex < Ecommon.GetPagecount(datalist.Count, rowcount))
@@ -414,22 +413,26 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 ex.CopySheet(1, j);
-                if(j==1)ex.ReNameWorkSheet(j + 1, datalist[0].ssxm  );
+                if (j == 1)
+                {
+
+                    ex.ReNameWorkSheet(j + 1, datalist[0].ssgc + datalist[0].ssxm + datalist[0].num);
+                }
                 else
-                    ex.ReNameWorkSheet(j + 1, datalist[0].ssxm + (j));
+                    ex.ReNameWorkSheet(j + 1, datalist[0].ssgc + datalist[0].ssxm + datalist[0].num+"(" + (j)+")");
             }
             for (int j = 0; j < datalist.Count; j++)
             {
 
                 if (j % rowcount == 0)
                 {
-                    if (j == 0) ex.ActiveSheet(datalist[0].ssxm);
-                    else ex.ActiveSheet(datalist[0].ssxm + (j / rowcount + 1));
+                    if (j == 0) ex.ActiveSheet(datalist[0].ssgc + datalist[0].ssxm + datalist[0].num);
+                    else ex.ActiveSheet(datalist[0].ssgc + datalist[0].ssxm + datalist[0].num + "(" + (j / rowcount + 1)+")");
                     ex.SetCellValue(datalist[j].ssgc, 2, 4);
                     ex.SetCellValue(datalist[j].ssxm , 4, 10);
-                    ex.SetCellValue(datalist[j].indate.ToString("yyyy年"), 4, 1);
-                    ex.SetCellValue(datalist[j].indate.ToString("MM月"), 4, 3);
-                    ex.SetCellValue(datalist[j].indate.ToString("dd日"), 4,5);
+                    ex.SetCellValue(datalist[j].indate.ToString("yyyy"), 4, 1);
+                    ex.SetCellValue(datalist[j].indate.ToString("MM"), 4, 3);
+                    ex.SetCellValue(datalist[j].indate.ToString("dd"), 4,5);
                 }
                 ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col );
                 ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 6);
