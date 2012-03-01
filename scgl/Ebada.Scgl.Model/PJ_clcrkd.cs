@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2012-3-1 13:37:01
+生成时间:2012-3-1 21:52:29
 ***********************************************/
 
 using System;
@@ -36,6 +36,7 @@ namespace Ebada.Scgl.Model
         private string _yt=String.Empty; 
         private string _cksl=String.Empty; 
         private string _kcsl=String.Empty; 
+        private string _ghdw=String.Empty; 
         private string _lqdw=String.Empty; 
         private string _zkcsl=String.Empty; 
         private string _ssxm=String.Empty; 
@@ -358,6 +359,27 @@ namespace Ebada.Scgl.Model
                 if (_kcsl as object == null || !_kcsl.Equals(value))
                 {
                     _kcsl = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ghdw
+        /// 属性描述：供货单位
+        /// 字段信息：[ghdw],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("供货单位")]
+        public string ghdw
+        {
+            get { return _ghdw; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[供货单位]长度不能大于50!");
+                if (_ghdw as object == null || !_ghdw.Equals(value))
+                {
+                    _ghdw = value;
                 }
             }			 
         }
