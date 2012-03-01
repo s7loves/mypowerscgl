@@ -91,7 +91,7 @@
             this.xtraTabPage1.Controls.Add(this.panelControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(575, 327);
-            this.xtraTabPage1.Text = "出库界面";
+            this.xtraTabPage1.Text = "出库操作";
             // 
             // gridControl1
             // 

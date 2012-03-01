@@ -26,6 +26,7 @@ using Ebada.Scgl.Lcgl;
 using Ebada.Scgl.WFlow;
 using Ebada.Components;
 using System.Threading;
+using System.Collections;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -189,8 +190,78 @@ namespace Ebada.Scgl.Lcgl
             InitColumns();//初始列
             //InitData();//初始数据
             if (this.Site != null) return;
-           
-            
+            iniProject();
+            RefreshData(" where (type = '工程材料出库单') ");
+
+
+        }
+        void iniProject()
+        {
+            repositoryItemComboBox1.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd where type = '工程材料出库单'  and ssgc!='' ");
+            repositoryItemComboBox1.Items.AddRange(mclist);
+        }
+        private void barEditGC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            repositoryItemComboBox2.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_clcrkd where  ssgc='" + barEditGC.EditValue + "' and ( type = '工程材料出库单') and ssxm!='' ");
+            repositoryItemComboBox2.Items.AddRange(mclist);
+
+            repositoryItemComboBox3.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd where  ssgc='" + barEditGC.EditValue + "' and ( type = '工程材料出库单') and wpmc!='' ");
+            repositoryItemComboBox3.Items.AddRange(mclist);
+
+            repositoryItemComboBox4.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_clcrkd where  ssgc='" + barEditGC.EditValue + "' and ( type = '工程材料出库单') and wpgg!='' ");
+            repositoryItemComboBox4.Items.AddRange(mclist);
+            barEditFGC.EditValue = "";
+        }
+        private void barEditFGC_EditValueChanged(object sender, EventArgs e)
+        {
+
+
+
+            inidate();
+            repositoryItemComboBox3.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd where  ssxm='" + barEditFGC.EditValue + "' and ( type = '工程材料出库单') and wpmc!='' ");
+            repositoryItemComboBox3.Items.AddRange(mclist);
+
+            repositoryItemComboBox4.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_clcrkd where  ssxm='" + barEditFGC.EditValue + "' and ( type = '工程材料出库单') and wpgg!='' ");
+            repositoryItemComboBox4.Items.AddRange(mclist);
+
+        }
+
+        private void barEditGC_EditValueChanged(object sender, EventArgs e)
+        {
+            barEditGC_ItemClick(sender, null);
+
+            inidate();
+        }
+
+        private void barEditItem1_EditValueChanged(object sender, EventArgs e)
+        {
+            inidate();
+
+        }
+        private void inidate()
+        {
+            string ssgc = " and 1=1 ", ssxm = " and 1=1 ", wpgg = " and 1=1 ", wpmc = " and 1=1 ";
+            if (barEditGC.EditValue != null && barEditGC.EditValue.ToString() != "")
+                ssgc = " and ssgc='" + barEditGC.EditValue + "' ";
+            if (barEditFGC.EditValue != null && barEditFGC.EditValue.ToString() != "")
+                ssxm = " and ssxm='" + barEditFGC.EditValue + "' ";
+            if (barEditItem1.EditValue != null && barEditItem1.EditValue.ToString() != "")
+                wpmc = " and wpmc='" + barEditItem1.EditValue + "' ";
+            if (barEditItem2.EditValue != null && barEditItem2.EditValue.ToString() != "")
+                wpgg = " and wpgg='" + barEditItem1.EditValue + "' ";
+            RefreshData(" where  (type = '工程材料出库单') " + ssgc + ssxm + wpmc + wpgg);
+        }
+        private void barEditItem2_EditValueChanged(object sender, EventArgs e)
+        {
+
+
+            inidate();
         }
 
         
@@ -228,6 +299,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("OrgCode");
             hideColumn("OrgName");
             hideColumn("type");
+            hideColumn("lyparent");
 
            
         }
@@ -312,20 +384,7 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            //IList<PJ_clcrkd> datalist = gridView1.DataSource as IList<PJ_clcrkd>;
-            frmYearSelect fys = new frmYearSelect();
-            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_clcrkd";
-            if (fys.ShowDialog() == DialogResult.OK)
-            {
-
-                ExportCLCKEdit etdjh = new ExportCLCKEdit();
-                etdjh.ExportExcel(parentID,fys.strYear);
-            }
-           
-           
-           
-        }
+        
 
         
 
@@ -339,8 +398,9 @@ namespace Ebada.Scgl.Lcgl
             else
                 fm.Status = "edit";
             fm.Kind = currRecord.Kind;
-            frmYearSelect fys = new frmYearSelect();
-            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_clcrkd";
+            frmProjectSelect fys = new frmProjectSelect();
+            fys.strType = " and (type = '工程材料出库单' ) ";
+            fys.StrSQL = "select distinct ssgc  from PJ_clcrkd where  (type = '工程材料出库单' ) ";
             if (fys.ShowDialog() == DialogResult.OK)
             {
                 ExportCLCKEdit export = new ExportCLCKEdit();
@@ -349,7 +409,7 @@ namespace Ebada.Scgl.Lcgl
                 export.ParentTemple = parentTemple;
                 export.RecordWorkFlowData = WorkFlowData;
 
-                export.ExportExcelSubmit(ref parentTemple, parentID, fys.strYear, false);
+                export.ExportExcelSubmit(ref parentTemple, "", fys.strProject, fys.strFenproject, false);
 
                 fm.ParentTemple = parentTemple;
                 if (fm.ShowDialog() == DialogResult.OK)
@@ -357,9 +417,9 @@ namespace Ebada.Scgl.Lcgl
                     if (fjly == null) fjly = new frmModleFjly();
                     fjly.btn_Submit_Click(sender, e);
                     if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID, fys.strYear);
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
                     else
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID, fys.strYear);
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
                     gridControl1.FindForm().Close();
                 }
             }
@@ -413,12 +473,13 @@ namespace Ebada.Scgl.Lcgl
 
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmYearSelect fys = new frmYearSelect();
-            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_clcrkd";
+            frmProjectSelect fys = new frmProjectSelect();
+            fys.strType = " and (type = '工程材料出库单' ) ";
+            fys.StrSQL = "select distinct ssgc  from PJ_clcrkd where  (type = '工程材料出库单') ";
             if (fys.ShowDialog() == DialogResult.OK)
             {
                 ExportCLCKEdit etdjh = new ExportCLCKEdit();
-                etdjh.ExportExcelYear(parentID, fys.strYear);
+                etdjh.ExportExcelProjectCKD("", fys.strProject, fys.strFenproject);
             }
         }
 

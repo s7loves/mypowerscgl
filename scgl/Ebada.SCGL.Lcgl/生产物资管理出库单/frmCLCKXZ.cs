@@ -77,6 +77,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "wpgg");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "ssxm");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "yt");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "lqdw");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "cksl");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");

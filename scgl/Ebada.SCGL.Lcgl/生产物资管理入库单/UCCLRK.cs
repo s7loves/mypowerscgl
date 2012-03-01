@@ -362,6 +362,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("lqdw");
             hideColumn("kcsl");
             hideColumn("ckdate");
+            hideColumn("lyparent");
 
 
            
