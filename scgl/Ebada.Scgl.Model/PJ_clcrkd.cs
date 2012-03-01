@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2012-2-29 14:18:40
+生成时间:2012-3-1 13:37:01
 ***********************************************/
 
 using System;
@@ -22,6 +22,7 @@ namespace Ebada.Scgl.Model
         
         #region Private 成员
         private string _id=Newid(); 
+        private string _num=String.Empty; 
         private string _orgname=String.Empty; 
         private string _orgcode=String.Empty; 
         private string _wpmc=String.Empty; 
@@ -41,8 +42,8 @@ namespace Ebada.Scgl.Model
         private DateTime _indate=new DateTime(1900,1,1); 
         private string _remark=String.Empty; 
         private string _type=String.Empty; 
-        private string _num=String.Empty; 
-        private DateTime _lasttime=new DateTime(1900,1,1);   
+        private DateTime _lasttime=new DateTime(1900,1,1); 
+        private string _lyparent=String.Empty;   
         #endregion
   
   
@@ -66,6 +67,27 @@ namespace Ebada.Scgl.Model
                 if (_id as object == null || !_id.Equals(value))
                 {
                     _id = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：num
+        /// 属性描述：出入库单号
+        /// 字段信息：[num],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("出入库单号")]
+        public string num
+        {
+            get { return _num; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[出入库单号]长度不能大于50!");
+                if (_num as object == null || !_num.Equals(value))
+                {
+                    _num = value;
                 }
             }			 
         }
@@ -464,27 +486,6 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：num
-        /// 属性描述：出入库单号
-        /// 字段信息：[num],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("出入库单号")]
-        public string num
-        {
-            get { return _num; }
-            set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[出入库单号]长度不能大于50!");
-                if (_num as object == null || !_num.Equals(value))
-                {
-                    _num = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
         /// 属性名称：lasttime
         /// 属性描述：最后修改时间
         /// 字段信息：[lasttime],datetime
@@ -498,6 +499,27 @@ namespace Ebada.Scgl.Model
                 if (_lasttime as object == null || !_lasttime.Equals(value))
                 {
                     _lasttime = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：lyparent
+        /// 属性描述：材料来源ID
+        /// 字段信息：[lyparent],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("材料来源ID")]
+        public string lyparent
+        {
+            get { return _lyparent; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[材料来源ID]长度不能大于50!");
+                if (_lyparent as object == null || !_lyparent.Equals(value))
+                {
+                    _lyparent = value;
                 }
             }			 
         }
