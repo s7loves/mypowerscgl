@@ -95,7 +95,7 @@ namespace Ebada.Scgl.Sbgl {
                 } else if (type == "dyxl") {
                     IList<PS_tq> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where left(tqcode,3)='" + id.Substring(2) + "'");
                     foreach (PS_tq xl in list) {
-                        mTable.Rows.Add(xl.tqName, xl.tqID, id, "dxl");
+                        mTable.Rows.Add(xl.tqName, xl.tqCode, id, "dxl");
                         //mTQs.Add(xl.tqID, xl);
                     }
                 }
