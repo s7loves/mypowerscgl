@@ -87,7 +87,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='工程材料入库单' and sx like '%{0}%' and nr!=''", "材料名称"));
+            string.Format("select nr from pj_dyk where  dx='非生产物资入库单' and sx like '%{0}%' and nr!=''", "材料名称"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit2.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='工程材料入库单' and sx like '%{0}%' and nr!=''", "材料规格"));
+            string.Format("select nr from pj_dyk where  dx='非生产物资入库单' and sx like '%{0}%' and nr!=''", "材料规格"));
             if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
@@ -359,7 +359,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit3.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='工程材料入库单' and sx like '%{0}%' and nr!=''", "单位"));
+            string.Format("select nr from pj_dyk where  dx='非生产物资入库单' and sx like '%{0}%' and nr!=''", "单位"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
@@ -388,7 +388,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit6.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select nr from pj_dyk where  dx='工程材料入库单' and sx like '%{0}%' and nr!=''", "厂家"));
+           string.Format("select nr from pj_dyk where  dx='非生产物资入库单' and sx like '%{0}%' and nr!=''", "厂家"));
             if (strlist.Count > 0)
                 comboBoxEdit6.Properties.Items.AddRange(strlist);
 
@@ -456,7 +456,7 @@ namespace Ebada.Scgl.Lcgl
             rowData.kcsl = spinEdit2.Value.ToString();
             long i = 0;
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+                "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '非生产物资入库单' or type = '非生产物资入库单原始库存')"
                 + " and wpmc='" + comboBoxEdit1.Text + "' " + " and ssgc='" + comboBoxEdit7.Text + "' "
                 + " and wpgg='" + comboBoxEdit2.Text + "' and id!='" + rowData.ID + "' ");
             if (mclist[0]!=null)i=Convert.ToInt64(mclist[0].ToString());
@@ -473,7 +473,7 @@ namespace Ebada.Scgl.Lcgl
         private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
         {
             comboBoxEdit6.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj  from PJ_clcrkd where type = '工程材料入库单' or type = '工程材料入库单原始库存' and wpgg='" + comboBoxEdit2.Text + "' and wpmc='" + comboBoxEdit1.Text + "'");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj  from PJ_clcrkd where type = '非生产物资入库单' or type = '非生产物资入库单原始库存' and wpgg='" + comboBoxEdit2.Text + "' and wpmc='" + comboBoxEdit1.Text + "'");
             comboBoxEdit6.Properties.Items.AddRange(mclist);
 
             spinEdit2_EditValueChanged(sender, e);
@@ -484,14 +484,14 @@ namespace Ebada.Scgl.Lcgl
             spinEdit2_EditValueChanged(sender, e);
             comboBoxEdit5.Properties.Items.Clear();
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", 
-                "select distinct ssxm  from PJ_clcrkd where type = '工程材料入库单' or type = '工程材料入库单原始库存' and ssgc='"+comboBoxEdit7.Text+ "' and ssxm!='' ");
+                "select distinct ssxm  from PJ_clcrkd where type = '非生产物资入库单' or type = '非生产物资入库单原始库存' and ssgc='"+comboBoxEdit7.Text+ "' and ssxm!='' ");
             comboBoxEdit5.Properties.Items.AddRange(mclist);
         }
 
         private void frmCLRKEdit_Load(object sender, EventArgs e)
         {
             comboBoxEdit7.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd where type = '工程材料入库单' or type = '工程材料入库单原始库存'");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd where type = '非生产物资入库单' or type = '非生产物资入库单原始库存'");
             comboBoxEdit7.Properties.Items.AddRange(mclist);
         }
 

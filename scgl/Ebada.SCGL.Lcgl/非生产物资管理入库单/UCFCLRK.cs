@@ -263,7 +263,7 @@ namespace Ebada.Scgl.Lcgl
                 e.Value.num = "FSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
             {
-                e.Value.num = "FSCRK" + (Convert.ToDecimal(pnumli[0].num.Replace("SCRK","")) + 1);
+                e.Value.num = "FSCRK" + (Convert.ToDecimal(pnumli[0].num.Replace("FSCRK","")) + 1);
             
             }
 
