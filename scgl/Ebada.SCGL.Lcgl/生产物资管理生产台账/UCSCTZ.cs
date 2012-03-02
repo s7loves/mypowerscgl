@@ -323,7 +323,20 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("lasttime");
             hideColumn("lyparent");
             gridView1.Columns["num"].Width = 150;
+            gridView1.Columns["wpmc"].VisibleIndex=1;
+            gridView1.Columns["wpgg"].VisibleIndex=2;
 
+            gridView1.Columns["wpdw"].VisibleIndex=3;
+            gridView1.Columns["wpsl"].VisibleIndex=4;
+            gridView1.Columns["wpdj"].VisibleIndex=5;
+            gridView1.Columns["wpcj"].VisibleIndex=6;
+            gridView1.Columns["indate"].VisibleIndex=7;
+            gridView1.Columns["ssgc"].VisibleIndex=8;
+            gridView1.Columns["ckdate"].VisibleIndex=9;
+            gridView1.Columns["yt"].VisibleIndex=10;
+            gridView1.Columns["cksl"].VisibleIndex=11;
+            gridView1.Columns["cksl"].VisibleIndex=12;
+            gridView1.Columns["lqdw"].VisibleIndex=13;
            
         }
 
@@ -406,15 +419,16 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            //IList<PJ_clcrkd> datalist = gridView1.DataSource as IList<PJ_clcrkd>;
-            frmYearSelect fys = new frmYearSelect();
-            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_clcrkd";
-            if (fys.ShowDialog() == DialogResult.OK)
-            {
+            IList<PJ_clcrkd> datalist = gridView1.DataSource as IList<PJ_clcrkd>;
+            frmProjectSelect fys = new frmProjectSelect();
+            //fys.strType = " and (type = '工程材料入库单' or type = '工程材料入库单原始库存') ";
+            //fys.StrSQL = "select distinct ssgc  from PJ_clcrkd where  (type = '工程材料入库单' or type = '工程材料入库单原始库存') ";
+            //if (fys.ShowDialog() == DialogResult.OK)
+            //{
 
                 ExportSCTZEdit etdjh = new ExportSCTZEdit();
-                etdjh.ExportExcel(parentID,fys.strYear);
-            }
+                etdjh.ExportExcel(datalist);
+            //}
            
            
            
@@ -424,38 +438,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmModleSubmit fm = new frmModleSubmit();
-            fm.RecordWorkFlowData = WorkFlowData;
-            fm.CurrRecord = currRecord;
-            if (currRecord.Status == "申报")
-                fm.Status = "add";
-            else
-                fm.Status = "edit";
-            fm.Kind = currRecord.Kind;
-            frmYearSelect fys = new frmYearSelect();
-            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_clcrkd";
-            if (fys.ShowDialog() == DialogResult.OK)
-            {
-                ExportSCTZEdit export = new ExportSCTZEdit();
-                export.CurrRecord = currRecord;
-                export.IsWorkflowCall = isWorkflowCall;
-                export.ParentTemple = parentTemple;
-                export.RecordWorkFlowData = WorkFlowData;
-
-                export.ExportExcelSubmit(ref parentTemple, parentID, fys.strYear, false);
-
-                fm.ParentTemple = parentTemple;
-                if (fm.ShowDialog() == DialogResult.OK)
-                {
-                    if (fjly == null) fjly = new frmModleFjly();
-                    fjly.btn_Submit_Click(sender, e);
-                    if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID, fys.strYear);
-                    else
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID, fys.strYear);
-                    gridControl1.FindForm().Close();
-                }
-            }
+            MsgBox.ShowTipMessageBox("没有开发此功能!");
         }
 
         private void liuchenBarClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

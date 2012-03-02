@@ -324,20 +324,7 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            //IList<PJ_fsctz> datalist = gridView1.DataSource as IList<PJ_fsctz>;
-            frmYearSelect fys = new frmYearSelect();
-            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_fsctz";
-            if (fys.ShowDialog() == DialogResult.OK)
-            {
-
-                ExportSCTZEdit etdjh = new ExportSCTZEdit();
-                etdjh.ExportExcel(parentID,fys.strYear);
-            }
-           
-           
-           
-        }
+       
 
         
 
