@@ -27,7 +27,17 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "wpmc");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "wpgg");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "wpdw");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "wpsl");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "wpdj");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "wpcj");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
+            this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "yt");
+            this.spinEdit2.DataBindings.Add("EditValue", rowData, "cksl");
+            this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "zkcsl");
+            this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "lqdw");
+            this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "ssxm");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "indate");
+            this.dateEdit2.DataBindings.Add("EditValue", rowData, "ckdate");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
 
@@ -440,6 +450,7 @@ namespace Ebada.Scgl.Lcgl
             //spinEdit1.Properties.MinValue = 0;
             //spinEdit1.Properties.Increment =1;
             comboBoxEdit2_TextChanged(sender, e);
+            spinEdit2.Properties.MaxValue = Convert.ToDecimal(rowData.cksl);
         }
 
         private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
@@ -473,6 +484,15 @@ namespace Ebada.Scgl.Lcgl
             //{
             //    labelTip.Text = "";
             //}
+        }
+
+        private void spinEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            long i = 0;
+            rowData.zkcsl = (Convert.ToInt64(rowData.zkcsl) +Convert.ToInt64(spinEdit2.Value)
+                - Convert.ToInt64(rowData.cksl)).ToString();
+            comboBoxEdit10.Text = rowData.zkcsl;
+            rowData.lasttime = DateTime.Now;  
         }
 
         

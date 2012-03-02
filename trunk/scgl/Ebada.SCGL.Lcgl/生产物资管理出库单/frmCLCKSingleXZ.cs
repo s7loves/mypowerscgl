@@ -9,6 +9,7 @@ using Ebada.UI.Base;
 using Ebada.Client;
 using Ebada.Core;
 using Ebada.Scgl.Model;
+using System.Collections;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -80,6 +81,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "yt");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "cksl");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "lqdw");
+            this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "ghdw");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "num");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
@@ -118,7 +120,15 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmCLCKXZ_Load(object sender, EventArgs e)
         {
-            spinEdit2.Properties.MaxValue =Convert.ToDecimal( rowData.kcsl);
+            spinEdit2.Properties.MaxValue = Convert.ToDecimal(rowData.kcsl);
+
+            comboBoxEdit6.Properties.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct lqdw  from PJ_clcrkd where type = '工程材料出库单'");
+            comboBoxEdit6.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit9.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ghdw  from PJ_clcrkd where type = '工程材料出库单'");
+            comboBoxEdit9.Properties.Items.AddRange(mclist);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -126,6 +136,8 @@ namespace Ebada.Scgl.Lcgl
             if (returnData == null) returnData = new PJ_clcrkd();
             ConvertHelper.CopyTo<PJ_clcrkd>(rowData, returnData);
         }
+
+        
 
        
       

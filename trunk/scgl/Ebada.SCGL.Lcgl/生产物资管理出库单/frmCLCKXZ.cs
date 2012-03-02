@@ -81,6 +81,7 @@ namespace Ebada.Scgl.Lcgl
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "cksl");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
+            this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "ghdw");
 
 
         }
@@ -118,9 +119,18 @@ namespace Ebada.Scgl.Lcgl
         {
             //spinEdit2.Properties.MaxValue =Convert.ToDecimal( rowData.kcsl);
             comboBoxEdit8.Text = num;
+
             comboBoxEdit7.Properties.Items.Clear();
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd where type = '" + type + "' or type = '" + type + "原始库存'");
             comboBoxEdit7.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit6.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct lqdw  from PJ_clcrkd where type = '工程材料出库单'");
+            comboBoxEdit6.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit9.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ghdw  from PJ_clcrkd where type = '工程材料出库单'");
+            comboBoxEdit9.Properties.Items.AddRange(mclist);
         }
 
         private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
@@ -134,15 +144,17 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                "select zkcsl   from PJ_clcrkd where (type = '" + type + "' or type = '" + type + "原始库存') and wpmc='" + comboBoxEdit1.Text + "' and wpgg='" + comboBoxEdit2.Text + "'  order by lasttime desc");
+
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
+                "select sum(cast(kcsl as int))    from PJ_clcrkd where (type = '" + type + "' or type = '" + type + "原始库存') and wpmc='" + comboBoxEdit1.Text + "' and wpgg='" + comboBoxEdit2.Text + "'  ");
             if (mclist.Count > 0 && mclist[0] != null)
                 spinEdit2.Properties.MaxValue = Convert.ToDecimal(mclist[0]);
             else
                 spinEdit2.Properties.MaxValue =0;
             spinEdit2.Enabled = true;
             comboBoxEdit3.Text = spinEdit2.Properties.MaxValue.ToString();
+
+            
         }
 
         private void btnOK_Click(object sender, EventArgs e)

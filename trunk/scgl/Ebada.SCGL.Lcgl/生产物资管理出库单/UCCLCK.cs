@@ -131,6 +131,8 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_clcrkd>(gridViewOperation_AfterDelete);
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_clcrkd>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_clcrkd>(gridViewOperation_BeforeEdit);
+            gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PJ_clcrkd>(gridViewOperation_BeforeUpdate);
             if (isWorkflowCall && fjly==null)
             {
                 fjly = new frmModleFjly();
@@ -148,13 +150,77 @@ namespace Ebada.Scgl.Lcgl
                     + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
+            long i = 0;
+            PJ_clcrkd pc = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_clcrkd>(obj.lyparent);
+            pc.kcsl = (Convert.ToDouble(pc.kcsl) + Convert.ToDouble(obj.cksl)).ToString();
+            ClientHelper.PlatformSqlMap.Update<PJ_clcrkd>(pc);
 
-            RefreshData(" where   and type = '工程材料出库单' ");
+            //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
+            //    "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+            //    + " and wpmc='" + obj.wpmc + "' " + " and ssgc='" + obj.ssgc + "' "
+            //    + " and wpgg='" + obj.wpgg + "'  ");
+
+            //IList<PJ_clcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>
+            //        ("where (type = '工程材料出库单')"
+            //    + " and wpmc='" + obj.wpmc + "' " + " and ssgc='" + obj.ssgc + "' "
+            //    + " and wpgg='" + obj.wpgg + "'  order by id desc ");
+            //if (datalist.Count > 0)
+            //{
+            //    if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
+            //    datalist[0].zkcsl = i.ToString();
+            //    ClientHelper.PlatformSqlMap.Update<PJ_clcrkd>(datalist[0]);
+            //}
+            RefreshData(" where    type = '工程材料出库单' ");
         }
         void gridViewOperation_AfterEdit(PJ_clcrkd newobj)
         {
 
+
+        }
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
+        {
           
+            IList<PJ_clcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>
+                      ("where (type = '工程材料出库单' )"
+                  + " and wpmc='" + e.Value.wpmc + "' " + " and ssgc='" + e.Value.ssgc + "' "
+                  + " and wpgg='" + e.Value.wpgg + "'  order by id desc ");
+            if (datalist.Count > 0)
+            {
+
+                if (datalist[0].ID != e.Value.ID)
+                {
+                    MsgBox.ShowTipMessageBox("该记录不是该类型物品最后的记录，不能修改！");
+                    e.Cancel = true;
+                    return;
+                }
+            }
+        }
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
+        {
+            if (e.ValueOld.cksl != e.Value.cksl )
+            {
+                long i = 0;
+                PJ_clcrkd pc = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_clcrkd>(e.ValueOld.lyparent);
+                pc.kcsl = (Convert.ToDouble(pc.kcsl) + Convert.ToDouble(e.ValueOld.cksl) - Convert.ToDouble(e.Value.cksl)).ToString();
+                ClientHelper.PlatformSqlMap.Update<PJ_clcrkd>(pc);
+
+                IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
+                    "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+                    + " and wpmc='" + e.ValueOld.wpmc + "' " + " and ssgc='" + e.ValueOld.ssgc + "' "
+                    + " and wpgg='" + e.ValueOld.wpgg + "' and id!='" + e.ValueOld.ID + "' ");
+
+                IList<PJ_clcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>
+                        ("where (type = '工程材料出库单')"
+                    + " and wpmc='" + e.ValueOld.wpmc + "' " + " and ssgc='" + e.ValueOld.ssgc + "' "
+                    + " and wpgg='" + e.ValueOld.wpgg + "'  order by id desc ");
+                if (datalist.Count > 0)
+                {
+                    if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
+                    datalist[0].zkcsl = i.ToString();
+                    ClientHelper.PlatformSqlMap.Update<PJ_clcrkd>(datalist[0]);
+                }
+            }
+
         }
         void gridViewOperation_AfterAdd(PJ_clcrkd newobj)
         {
@@ -175,7 +241,21 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
         {
-           
+
+            IList<PJ_clcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>
+                      ("where (type = '工程材料出库单' )"
+                  + " and wpmc='" + e.Value.wpmc + "' " + " and ssgc='" + e.Value.ssgc + "' "
+                  + " and wpgg='" + e.Value.wpgg + "'  order by id desc ");
+            if (datalist.Count > 0)
+            {
+
+                if (datalist[0].ID != e.Value.ID)
+                {
+                    MsgBox.ShowTipMessageBox("该记录不是该类型物品最后的记录，不能修改！");
+                    e.Cancel = true;
+                    return;
+                }
+            }
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
@@ -300,6 +380,8 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("OrgName");
             hideColumn("type");
             hideColumn("lyparent");
+            hideColumn("kcsl");
+            gridView1.Columns["num"].Width = 120;
 
            
         }
