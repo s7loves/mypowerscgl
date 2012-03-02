@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Sbgl {
             }
             //user.PassWord = Ebada.Client.Platform.MainHelper.Password;
             string sql = "insert into user(userid,username,loginid,orgcode,orgname,password)values(?,?,?,?,?,?)";
-            object[] ps = new object[] { user.UserID, user.UserName, user.LoginID, user.OrgCode, user.OrgName, user.PassWord };
+            object[] ps = new object[] { user.UserID, user.UserName, user.LoginID, user.OrgCode, user.OrgName, Client.Platform.MainHelper.Password };
             SqliteHelper.ExecuteNonQuery(sql, ps);
         }
     }

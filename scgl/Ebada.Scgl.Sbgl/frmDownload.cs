@@ -29,6 +29,7 @@ namespace Ebada.Scgl.Sbgl {
             simpleButton7.Click += new EventHandler(simpleButton7_Click);
             labelControl3.Text = "数据下载操作会消除现有数据，请谨慎使用";
             baseUrl = string.Format("http://{0}:83/ScglService/", textEdit1.Text);
+            btDownPic.Enabled = false;
         }
 
         void simpleButton7_Click(object sender, EventArgs e) {
@@ -137,7 +138,49 @@ namespace Ebada.Scgl.Sbgl {
             writeLine("下载完成");
             writeLine(getClientinfo());
         }
+        private void downloadPic() {
+            string str = "开始下载照片数据：";
+            string username = Client.Platform.MainHelper.User.UserName;
+            writeLine(str);
+            writeLine("当前用户：" + username);            
+            List<ps_xl> xllist = getxl(username);
+            str = "{0} {1} ，照片张数:{2}";
+            int i = 0;
+            foreach (ps_xl item in xllist) {
+                i++;
+                IList<PS_Image> gtlist = getgtpic(item.LineCode);
+                writeLine(string.Format(str, i, item.LineName, gtlist.Count));
+                Application.DoEvents();
+            }
 
+            writeLine("下载完成");
+        }
+
+        private IList<PS_Image> getgtpic(string p) {
+            //IList<PS_Image> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_Image>("where imageid in (select imageid from ps_gt where linecode='"+p+"')");
+            IList<PS_gt> list2 = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where linecode='" + p + "' and imageid<>''");
+            List<PS_Image> list = new List<PS_Image>();
+            foreach (PS_gt gt in list2) {
+                PS_Image pic = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(gt.ImageID);
+                if (pic != null && pic.ImageData.Length>0) {
+                    if(savefile(gt.gtCode,pic))
+                        list.Add(pic);
+                }
+            }
+
+            return list;
+        }
+        private bool savefile(string filename, PS_Image pic) {
+            string filepath = buttonEdit1.Text + "\\" + filename+".jpg";
+            MemoryStream ms = new MemoryStream(pic.ImageData);
+            bool flag = true;
+            try {
+                FileStream fs = new FileStream(filepath, FileMode.OpenOrCreate);
+
+                fs.Write(pic.ImageData, 0, pic.ImageData.Length);
+            } catch (Exception err) { flag = false; writeLine(filename+".jpg,写入异常："+err.Message); }
+            return flag;
+        }
         private List<ps_gtsbzl> getgtsbzl() {
             string ret;
             List<ps_gtsbzl> list = new List<ps_gtsbzl>();
@@ -273,6 +316,7 @@ namespace Ebada.Scgl.Sbgl {
             simpleButton3.Enabled = flag;
             simpleButton5.Enabled = flag;
             simpleButton6.Enabled = flag;
+            btDownPic.Enabled = flag;
         }
         int upCount = 0;
         private void upload() {
@@ -483,6 +527,10 @@ namespace Ebada.Scgl.Sbgl {
 
             //Console.WriteLine("Service: Received file {0} with {1} bytes", id, totalBytesRead);
             return id;
+        }
+
+        private void btDownPic_Click(object sender, EventArgs e) {
+            downloadPic();
         }
     }
 }
