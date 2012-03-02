@@ -9,12 +9,13 @@ using Ebada.UI.Base;
 using Ebada.Client;
 using Ebada.Core;
 using Ebada.Scgl.Model;
+using System.Collections;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmCLCKXZ : FormBase, IPopupFormEdit
+    public partial class frmGCCLDSingleXZ : FormBase, IPopupFormEdit
     {
-        public frmCLCKXZ()
+        public frmGCCLDSingleXZ()
         {
             InitializeComponent();
         }
@@ -75,15 +76,16 @@ namespace Ebada.Scgl.Lcgl
             
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "wpmc");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "wpgg");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "kcsl");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "ssxm");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "yt");
-            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "lqdw");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "cksl");
-            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
-            this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "lqdw");
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "ghdw");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
+            this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "num");
+            this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "ckdate");
-
 
         }
         #region IPopupFormEdit Members
@@ -118,15 +120,10 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmCLCKXZ_Load(object sender, EventArgs e)
         {
-            //spinEdit2.Properties.MaxValue =Convert.ToDecimal( rowData.kcsl);
-            comboBoxEdit8.Text = num;
-
-            comboBoxEdit7.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd where type = '" + type + "' or type = '" + type + "原始库存'");
-            comboBoxEdit7.Properties.Items.AddRange(mclist);
+            spinEdit2.Properties.MaxValue = Convert.ToDecimal(rowData.kcsl);
 
             comboBoxEdit6.Properties.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct lqdw  from PJ_clcrkd where type = '工程材料出库单'");
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct lqdw  from PJ_clcrkd where type = '工程材料出库单'");
             comboBoxEdit6.Properties.Items.AddRange(mclist);
 
             comboBoxEdit9.Properties.Items.Clear();
@@ -138,51 +135,15 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit5.Properties.Items.AddRange(mclist);
         }
 
-        private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
-        {
-            comboBoxEdit2.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_clcrkd where type = '" + type + "' or type = '" + type + "原始库存'");
-            comboBoxEdit2.Properties.Items.AddRange(mclist);
-            spinEdit2.Enabled = false;
-            spinEdit2.Properties.MaxValue = 0;
-        }
-
-        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select sum(cast(kcsl as int))    from PJ_clcrkd where (type = '" + type + "' or type = '" + type + "原始库存') and wpmc='" + comboBoxEdit1.Text + "' and wpgg='" + comboBoxEdit2.Text + "'  ");
-            if (mclist.Count > 0 && mclist[0] != null)
-                spinEdit2.Properties.MaxValue = Convert.ToDecimal(mclist[0]);
-            else
-                spinEdit2.Properties.MaxValue =0;
-            spinEdit2.Enabled = true;
-            comboBoxEdit3.Text = spinEdit2.Properties.MaxValue.ToString();
-
-            
-        }
-
         private void btnOK_Click(object sender, EventArgs e)
         {
-            rowData.zkcsl = spinEdit2.Properties.MaxValue.ToString();
             if (returnData == null) returnData = new PJ_clcrkd();
             ConvertHelper.CopyTo<PJ_clcrkd>(rowData, returnData);
         }
 
-        private void comboBoxEdit7_TextChanged(object sender, EventArgs e)
-        {
+        
 
-            comboBoxEdit1.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd where type = '" + type + "' or type = '" + type + "原始库存'");
-            comboBoxEdit1.Properties.Items.AddRange(mclist);
-            spinEdit2.Enabled = false;
-            spinEdit2.Properties.MaxValue = 0;
-
-            comboBoxEdit4.Properties.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_clcrkd where type = '" + type + "' or type = '" + type + "原始库存'");
-            comboBoxEdit4.Properties.Items.AddRange(mclist);
-        }
-
+       
       
 
 

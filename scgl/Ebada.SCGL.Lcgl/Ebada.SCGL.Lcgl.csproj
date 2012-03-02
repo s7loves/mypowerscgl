@@ -124,6 +124,43 @@
     <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
     </Compile>
+    <Compile Include="生产物资管理材料单\ExportGCCLDEdit.cs" />
+    <Compile Include="生产物资管理材料单\frmGCCLDEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="生产物资管理材料单\frmGCCLDEdit.Designer.cs">
+      <DependentUpon>frmGCCLDEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="生产物资管理材料单\frmGCCLDSingleXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="生产物资管理材料单\frmGCCLDSingleXZ.Designer.cs">
+      <DependentUpon>frmGCCLDSingleXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="生产物资管理材料单\frmGCCLDXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="生产物资管理材料单\frmGCCLDXZ.Designer.cs">
+      <DependentUpon>frmGCCLDXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="生产物资管理材料单\frmGCCLDShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="生产物资管理材料单\frmGCCLDShow.Designer.cs">
+      <DependentUpon>frmGCCLDShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="生产物资管理材料单\UCGCCLDGL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="生产物资管理材料单\UCGCCLDGL.Designer.cs">
+      <DependentUpon>UCGCCLDGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="生产物资管理材料单\UCGCCLD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="生产物资管理材料单\UCGCCLD.Designer.cs">
+      <DependentUpon>UCGCCLD.cs</DependentUpon>
+    </Compile>
     <Compile Include="生产物资管理出库单\frmCLCKSingleXZ.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1446,6 +1483,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.resx">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="生产物资管理材料单\frmGCCLDEdit.resx">
+      <DependentUpon>frmGCCLDEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="生产物资管理材料单\frmGCCLDSingleXZ.resx">
+      <DependentUpon>frmGCCLDSingleXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="生产物资管理材料单\frmGCCLDXZ.resx">
+      <DependentUpon>frmGCCLDXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="生产物资管理材料单\frmGCCLDShow.resx">
+      <DependentUpon>frmGCCLDShow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="生产物资管理材料单\UCGCCLDGL.resx">
+      <DependentUpon>UCGCCLDGL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="生产物资管理材料单\UCGCCLD.resx">
+      <DependentUpon>UCGCCLD.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="生产物资管理出库单\frmCLCKSingleXZ.resx">
