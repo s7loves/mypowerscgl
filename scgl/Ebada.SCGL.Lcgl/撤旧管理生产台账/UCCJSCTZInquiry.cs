@@ -17,9 +17,9 @@ using DevExpress.Utils;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class UCSCTZInquiry : FormBase
+    public partial class UCCJSCTZInquiry : FormBase
     {
-        public UCSCTZInquiry()
+        public UCCJSCTZInquiry()
         {
             InitializeComponent();
         }
@@ -118,33 +118,35 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            string strSQL = "where 1=1 and (type='工程材料入库单' or type='工程材料出库单' or type='工程材料材料单' ) ";
+            string strSQL = "where 1=1 and (type='撤旧材料入库单' or type='撤旧材料出库单' or type='撤旧材料材料单' ) ";
             int i = 0;
 
             
             WaitDialogForm wdf = new WaitDialogForm("", "正在查询数据...");
-            
-            if (comboBoxEdit1.Text != "")
-                strSQL += " and ssgc='" + comboBoxEdit1.Text + "' ";
-            if (comboBoxEdit2.Text != "")
-                strSQL += " and ssxm='" + comboBoxEdit2.Text + "' ";
-            if (comboBoxEdit3.Text != "")
-                strSQL += " and wpmc='" + comboBoxEdit3.Text + "' ";
-            if (comboBoxEdit4.Text != "")
-                strSQL += " and wpgg='" + comboBoxEdit4.Text + "' ";
-            if (comboBoxEdit5.Text != "")
-                strSQL += " and type='" + comboBoxEdit5.Text + "' ";
+            try
+            {
+                if (comboBoxEdit1.Text != "")
+                    strSQL += " and ssgc='" + comboBoxEdit1.Text + "' ";
+                if (comboBoxEdit2.Text != "")
+                    strSQL += " and ssxm='" + comboBoxEdit2.Text + "' ";
+                if (comboBoxEdit3.Text != "")
+                    strSQL += " and wpmc='" + comboBoxEdit3.Text + "' ";
+                if (comboBoxEdit4.Text != "")
+                    strSQL += " and wpgg='" + comboBoxEdit4.Text + "' ";
+                if (comboBoxEdit5.Text != "")
+                    strSQL += " and type='" + comboBoxEdit5.Text + "' ";
 
-            if (checkEdit1.Checked)
-            {
-                strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                if (checkEdit1.Checked && deCreatTimeStart.Text != "")
+                {
+                    strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                }
+                if (checkEdit2.Checked && deEditTimeStart.Text != "")
+                {
+                    strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                }
+                ucsctz1.StrSQL = (strSQL);
             }
-            if (checkEdit2.Checked)
-            {
-                strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
-            }
-            ucsctz1.StrSQL=(strSQL);
-               
+            catch { }
               
            
             

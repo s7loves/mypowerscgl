@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class UCGCCLDGL
+    partial class UCCJGCCLDGL
     {
         /// <summary> 
         /// Required designer variable.
@@ -60,7 +60,7 @@
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.ucgccld1 = new Ebada.Scgl.Lcgl.UCGCCLD();
+            this.ucgccld1 = new Ebada.Scgl.Lcgl.UCCJGCCLD();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -488,7 +488,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private UCGCCLD ucgccld1;
+        private UCCJGCCLD ucgccld1;
 
     }
 }

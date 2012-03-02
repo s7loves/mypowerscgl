@@ -272,7 +272,9 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit6.Properties.Items.AddRange(new object[] {
             "工程材料出库单",
+            "工程材料材料单",
             "撤旧材料出库单",
+            "撤旧材料材料单",
             "非生产物资出库单"});
             this.comboBoxEdit6.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit6.TabIndex = 6;
