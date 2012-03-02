@@ -28,11 +28,15 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        private string varDbTableName = "LP_Record";
+        private string varDbTableName = "LP_Record,PJ_clcrkd";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
-            set { parentTemple = value; }
+            set
+            {
+                parentTemple = value;
+                ucclck1.ParentTemple = value;
+            }
         }
         public bool IsWorkflowCall
         {
@@ -40,13 +44,18 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 isWorkflowCall = value;
+                ucclck1.IsWorkflowCall = value;
 
             }
         }
         public LP_Record CurrRecord
         {
             get { return currRecord; }
-            set { currRecord = value; }
+            set
+            {
+                currRecord = value;
+                ucclck1.CurrRecord = value;
+            }
         }
 
         public DataTable RecordWorkFlowData
@@ -88,6 +97,7 @@ namespace Ebada.Scgl.Lcgl
                         //}
 
                     }
+                    ucclck1.RecordWorkFlowData = value;
                 }
             }
         }
@@ -98,6 +108,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 varDbTableName = value;
+                ucclck1.VarDbTableName = value;
             }
         }
 
@@ -332,6 +343,15 @@ namespace Ebada.Scgl.Lcgl
                         zkc = Convert.ToInt64(ckd.zkcsl);
                         Thread.Sleep(new TimeSpan(100000));//0.1毫秒
 
+                        if (isWorkflowCall)
+                        {
+
+                            MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + ckd.ID + "' and RecordID='" + currRecord.ID + "'"
+                                + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                                + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                                + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                                + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
+                        }
                         ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(ckd);
 
 
@@ -410,6 +430,15 @@ namespace Ebada.Scgl.Lcgl
                 zkc = Convert.ToInt64(ckd.zkcsl);
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
 
+                if (isWorkflowCall)
+                {
+
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + ckd.ID + "' and RecordID='" + currRecord.ID + "'"
+                        + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                        + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                        + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                        + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
+                }
                 ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(ckd);
                 ucclck1.inidata();
             }

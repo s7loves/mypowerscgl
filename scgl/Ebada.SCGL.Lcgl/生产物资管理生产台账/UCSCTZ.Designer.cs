@@ -167,6 +167,7 @@
             this.barEditGC.Edit = this.repositoryItemComboBox1;
             this.barEditGC.Id = 25;
             this.barEditGC.Name = "barEditGC";
+            this.barEditGC.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barEditGC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barEditGC_ItemClick);
             this.barEditGC.EditValueChanged += new System.EventHandler(this.barEditGC_EditValueChanged);
             // 
@@ -183,6 +184,7 @@
             this.barEditFGC.Edit = this.repositoryItemComboBox2;
             this.barEditFGC.Id = 26;
             this.barEditFGC.Name = "barEditFGC";
+            this.barEditFGC.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barEditFGC.EditValueChanged += new System.EventHandler(this.barEditFGC_EditValueChanged);
             // 
             // repositoryItemComboBox2
@@ -198,6 +200,7 @@
             this.barEditItem1.Edit = this.repositoryItemComboBox3;
             this.barEditItem1.Id = 27;
             this.barEditItem1.Name = "barEditItem1";
+            this.barEditItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barEditItem1.EditValueChanged += new System.EventHandler(this.barEditItem1_EditValueChanged);
             // 
             // repositoryItemComboBox3
@@ -213,6 +216,7 @@
             this.barEditItem2.Edit = this.repositoryItemComboBox4;
             this.barEditItem2.Id = 28;
             this.barEditItem2.Name = "barEditItem2";
+            this.barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barEditItem2.EditValueChanged += new System.EventHandler(this.barEditItem2_EditValueChanged);
             // 
             // repositoryItemComboBox4
@@ -273,6 +277,7 @@
             this.btAdd.ImageIndex = 6;
             this.btAdd.Name = "btAdd";
             this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btAddKuCun
             // 
@@ -281,6 +286,7 @@
             this.btAddKuCun.ImageIndex = 6;
             this.btAddKuCun.Name = "btAddKuCun";
             this.btAddKuCun.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAddKuCun.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btEdit
             // 
@@ -289,6 +295,7 @@
             this.btEdit.ImageIndex = 1;
             this.btEdit.Name = "btEdit";
             this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btDelete
             // 
@@ -297,6 +304,7 @@
             this.btDelete.ImageIndex = 12;
             this.btDelete.Name = "btDelete";
             this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btRefresh
             // 
@@ -479,12 +487,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
         private DevExpress.XtraBars.BarButtonItem barExplorYear;
-        private DevExpress.XtraBars.BarSubItem liuchbarSubItem;
-        private DevExpress.XtraBars.BarButtonItem SubmitButton;
-        private DevExpress.XtraBars.BarButtonItem TaskOverButton;
-        private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
         private DevExpress.XtraBars.BarButtonItem barCopy;
-        private DevExpress.XtraBars.BarButtonItem barFJLY;
         private DevExpress.XtraBars.BarButtonItem btAddKuCun;
         private DevExpress.XtraBars.BarEditItem barEditGC;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
@@ -494,5 +497,10 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox3;
         private DevExpress.XtraBars.BarEditItem barEditItem2;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox4;
+        public DevExpress.XtraBars.BarSubItem liuchbarSubItem;
+        public DevExpress.XtraBars.BarButtonItem SubmitButton;
+        public DevExpress.XtraBars.BarButtonItem TaskOverButton;
+        public DevExpress.XtraBars.BarButtonItem liuchenBarClear;
+        public DevExpress.XtraBars.BarButtonItem barFJLY;
     }
 }
