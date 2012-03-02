@@ -126,15 +126,15 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit7.Properties.Items.AddRange(mclist);
 
             comboBoxEdit6.Properties.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct lqdw  from PJ_clcrkd where type = '工程材料出库单'");
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct lqdw  from PJ_clcrkd where type = '非生产物资出库单'");
             comboBoxEdit6.Properties.Items.AddRange(mclist);
 
             comboBoxEdit9.Properties.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ghdw  from PJ_clcrkd where type = '工程材料出库单'");
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ghdw  from PJ_clcrkd where type = '非生产物资出库单'");
             comboBoxEdit9.Properties.Items.AddRange(mclist);
 
             comboBoxEdit5.Properties.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct yt  from PJ_clcrkd where type = '工程材料出库单'");
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct yt  from PJ_clcrkd where type = '非生产物资出库单'");
             comboBoxEdit5.Properties.Items.AddRange(mclist);
         }
 
