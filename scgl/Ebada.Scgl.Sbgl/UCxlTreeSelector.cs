@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Sbgl {
                     string lname = mLines[id].LineName;
                     foreach (PS_xl xl in list) {
                         mTable.Rows.Add(xl.LineName.Replace(lname,""), xl.LineID, id, "xl");
-                        mLines.Add(xl.LineID, xl);
+                        if (!mLines.ContainsKey(xl.LineID)) mLines.Add(xl.LineID, xl);
                     }
                 } else if (type == "dxl") {
                     string lname = e.Node["Name"].ToString();
