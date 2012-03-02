@@ -70,7 +70,7 @@ namespace Ebada.Scgl.Lcgl
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\生产台账 (撤旧).xls";
             ex.Open(fname);
-            ExportExcel(ex, datalist, "生产台账");
+            ExportExcel(ex, datalist, "生产台账 (撤旧)");
             
             //ex.DeleteSheet(1);
             ex.ShowExcel();

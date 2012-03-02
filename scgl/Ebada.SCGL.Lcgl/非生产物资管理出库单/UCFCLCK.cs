@@ -123,7 +123,7 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_clcrkd>(gridControl1, gridView1, barManager1, new frmCLCKEdit());
+            gridViewOperation = new GridViewOperation<PJ_clcrkd>(gridControl1, gridView1, barManager1, new frmFCLCKEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_clcrkd>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_clcrkd>(gridViewOperation_AfterAdd);
@@ -575,7 +575,7 @@ namespace Ebada.Scgl.Lcgl
             fys.StrSQL = "select distinct ssgc  from PJ_clcrkd where  (type = '非生产物资出库单') ";
             if (fys.ShowDialog() == DialogResult.OK)
             {
-                ExportCLCKEdit etdjh = new ExportCLCKEdit();
+                ExportFCLCKEdit etdjh = new ExportFCLCKEdit();
                 etdjh.ExportExcelProjectCKD("", fys.strProject, fys.strFenproject);
             }
         }

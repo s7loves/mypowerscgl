@@ -60,7 +60,7 @@
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.ucclck1 = new Ebada.Scgl.Lcgl.UCCLCK();
+            this.ucclck1 = new Ebada.Scgl.Lcgl.UCFCLCK();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -471,7 +471,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private UCCLCK ucclck1;
+        private UCFCLCK ucclck1;
         private DevExpress.XtraEditors.SimpleButton barFJLY;
         private DevExpress.XtraEditors.SimpleButton TaskOverButton;
         private DevExpress.XtraEditors.GroupControl groupControl1;

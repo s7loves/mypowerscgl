@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class frmFCJCLCKXZ
+    partial class frmFCLCKXZ
     {
         /// <summary>
         /// Required designer variable.
@@ -325,7 +325,7 @@
             this.labelControl11.TabIndex = 42;
             this.labelControl11.Text = "出库时间";
             // 
-            // frmCJCLCKXZ
+            // frmFCJCLCKXZ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -357,9 +357,9 @@
             this.Controls.Add(this.btnOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "frmCJCLCKXZ";
+            this.Name = "frmFCJCLCKXZ";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "撤旧管理出库选择";
+            this.Text = "非生产物资出库选择";
             this.Load += new System.EventHandler(this.frmCLCKXZ_Load);
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();

@@ -138,11 +138,11 @@
       <DependentUpon>UCFCLRK.cs</DependentUpon>
     </Compile>
     <Compile Include="非生产物资管理出库单\ExportFCLCKEdit.cs" />
-    <Compile Include="非生产物资管理出库单\frmFCJCLCKXZ.cs">
+    <Compile Include="非生产物资管理出库单\frmFCLCKXZ.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="非生产物资管理出库单\frmFCJCLCKXZ.Designer.cs">
-      <DependentUpon>frmFCJCLCKXZ.cs</DependentUpon>
+    <Compile Include="非生产物资管理出库单\frmFCLCKXZ.Designer.cs">
+      <DependentUpon>frmFCLCKXZ.cs</DependentUpon>
     </Compile>
     <Compile Include="非生产物资管理出库单\frmFCLCKEdit.cs">
       <SubType>Form</SubType>
@@ -1667,8 +1667,8 @@
       <DependentUpon>UCFCLRK.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="非生产物资管理出库单\frmFCJCLCKXZ.resx">
-      <DependentUpon>frmFCJCLCKXZ.cs</DependentUpon>
+    <EmbeddedResource Include="非生产物资管理出库单\frmFCLCKXZ.resx">
+      <DependentUpon>frmFCLCKXZ.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="非生产物资管理出库单\frmFCLCKEdit.resx">
