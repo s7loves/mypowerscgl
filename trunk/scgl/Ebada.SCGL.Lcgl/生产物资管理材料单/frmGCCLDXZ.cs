@@ -12,9 +12,9 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmCLCKXZ : FormBase, IPopupFormEdit
+    public partial class frmGCCLDXZ : FormBase, IPopupFormEdit
     {
-        public frmCLCKXZ()
+        public frmGCCLDXZ()
         {
             InitializeComponent();
         }

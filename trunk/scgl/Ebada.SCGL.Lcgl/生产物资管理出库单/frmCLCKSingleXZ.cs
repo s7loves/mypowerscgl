@@ -85,6 +85,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "num");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "ckdate");
 
 
         }
@@ -129,6 +130,10 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit9.Properties.Items.Clear();
             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ghdw  from PJ_clcrkd where type = '工程材料出库单'");
             comboBoxEdit9.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit5.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct yt  from PJ_clcrkd where type = '工程材料出库单'");
+            comboBoxEdit5.Properties.Items.AddRange(mclist);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
