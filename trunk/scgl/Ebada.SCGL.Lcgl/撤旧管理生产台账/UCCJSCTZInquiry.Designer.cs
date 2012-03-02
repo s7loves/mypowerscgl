@@ -56,7 +56,7 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.ucsctz1 = new Ebada.Scgl.Lcgl.UCSCTZ();
+            this.ucsctz1 = new Ebada.Scgl.Lcgl.UCCJSCTZ();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -465,7 +465,7 @@
         private DevExpress.XtraEditors.CheckEdit checkEdit2;
         private DevExpress.XtraEditors.SimpleButton barFJLY;
         private DevExpress.XtraEditors.SimpleButton TaskOverButton;
-        private UCSCTZ ucsctz1;
+        private UCCJSCTZ ucsctz1;
 
     }
 }
