@@ -146,11 +146,11 @@ namespace Ebada.Scgl.Lcgl
                 System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
                     "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
                     + " and wpmc='" + e.ValueOld.wpmc + "' " + " and ssgc='" + e.ValueOld.ssgc + "' "
-                    + " and wpgg='" + e.ValueOld.wpgg + "' and id!='" + e.ValueOld.ID + "' ");
+                    + " and wpgg='" + e.ValueOld.wpgg + "'  ");
                 IList<PJ_clcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>
                         ("where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
                     + " and wpmc='" + e.ValueOld.wpmc + "' " + " and ssgc='" + e.ValueOld.ssgc + "' "
-                    + " and wpgg='" + e.ValueOld.wpgg + "' and id!='" + e.ValueOld.ID + "' order by id desc ");
+                    + " and wpgg='" + e.ValueOld.wpgg + "'  order by id desc ");
                 if (datalist.Count > 0)
                 {
                     if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
@@ -236,7 +236,20 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
         {
-           
+            IList<PJ_clcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>
+                       ("where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+                   + " and wpmc='" + e.Value.wpmc + "' " + " and ssgc='" + e.Value.ssgc + "' "
+                   + " and wpgg='" + e.Value.wpgg + "'  order by id desc ");
+            if (datalist.Count > 0)
+            {
+
+                if (datalist[0].ID != e.Value.ID)
+                {
+                    MsgBox.ShowTipMessageBox("该记录不是该类型物品最后的记录，不能删除！");
+                    e.Cancel = true;
+                    return;
+                }
+            }
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_clcrkd> e)
@@ -244,9 +257,15 @@ namespace Ebada.Scgl.Lcgl
             //if (parentID == null)
             //    e.Cancel = true;
             e.Value.type = "工程材料入库单";
-            int i= Client.ClientHelper.PlatformSqlMap.GetRowCount
-                   <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + e.Value.type + "' ");
-            e.Value.num = "RK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
+            IList<PJ_clcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
+                   <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + e.Value.type + "' order by id desc ");
+            if (pnumli.Count == 0)
+                e.Value.num = "RK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
+            else
+            {
+                e.Value.num = "RK" + (Convert.ToDecimal(pnumli[0].num.Replace("RK","")) + 1);
+            
+            }
 
             e.Value.lasttime = DateTime.Now; 
  
@@ -363,7 +382,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("kcsl");
             hideColumn("ckdate");
             hideColumn("lyparent");
-
+            gridView1.Columns["num"].Width = 120;
 
            
         }

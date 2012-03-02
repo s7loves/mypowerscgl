@@ -27,6 +27,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "wpmc");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "wpgg");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "wpdw");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "type");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "num");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "wpsl");
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "wpdj");
@@ -471,6 +472,9 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
         {
+            comboBoxEdit6.Properties.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj  from PJ_clcrkd where type = '工程材料入库单' or type = '工程材料入库单原始库存' and wpgg='" + comboBoxEdit2.Text + "' and wpmc='" + comboBoxEdit1.Text + "'");
+            comboBoxEdit6.Properties.Items.AddRange(mclist);
 
             spinEdit2_EditValueChanged(sender, e);
         }
@@ -491,6 +495,7 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit7.Properties.Items.AddRange(mclist);
         }
 
+      
         
     
 

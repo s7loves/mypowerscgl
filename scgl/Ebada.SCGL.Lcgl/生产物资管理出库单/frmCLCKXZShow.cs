@@ -98,7 +98,8 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmCLCKXZ_Load(object sender, EventArgs e)
         {
-           
+
+            gridView1.Columns["num"].Width = 120;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
