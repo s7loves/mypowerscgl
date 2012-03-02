@@ -35,6 +35,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "wpcj");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
             this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "zkcsl");
+            this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "OrgName");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "indate");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
@@ -393,6 +394,12 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit6.Properties.Items.AddRange(strlist);
 
 
+
+            comboBoxEdit11.Properties.Items.Clear();
+             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select OrgName from mOrg where  orgtype='1' or orgtype='2'  "));
+            if (strlist.Count > 0)
+                comboBoxEdit11.Properties.Items.AddRange(strlist);
 
 
         }
