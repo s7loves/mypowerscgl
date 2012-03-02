@@ -355,7 +355,7 @@ namespace Ebada.Scgl.Lcgl
             fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_sctz";
             if (fys.ShowDialog() == DialogResult.OK)
             {
-                ExportFSCTZEdit export = new ExportFSCTZEdit();
+                ExportDYJCZZSZTZEdit export = new ExportDYJCZZSZTZEdit();
                 export.CurrRecord = currRecord;
                 export.IsWorkflowCall = isWorkflowCall;
                 export.ParentTemple = parentTemple;
@@ -368,9 +368,9 @@ namespace Ebada.Scgl.Lcgl
                 {
                     fjly.btn_Submit_Click(sender, e);
                     if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID, fys.strYear);
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
                     else
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID, fys.strYear);
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
                     gridControl1.FindForm().Close();
                 }
             }
@@ -424,13 +424,16 @@ namespace Ebada.Scgl.Lcgl
 
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmYearSelect fys = new frmYearSelect();
-            fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_sctz";
-            if (fys.ShowDialog() == DialogResult.OK)
-            {
-                ExportFSCTZEdit etdjh = new ExportFSCTZEdit();
-                etdjh.ExportExcelYear(parentID, fys.strYear);
-            }
+            //frmYearSelect fys = new frmYearSelect();
+            //fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_sctz";
+            //if (fys.ShowDialog() == DialogResult.OK)
+            //{
+            //    ExportDYJCZZSZTZEdi etdjh = new ExportDYJCZZSZTZEdi();
+            //    etdjh.ex(parentID, fys.strYear);
+
+            //}
+            ExportDYJCZZSZTZEdit etdjh = new ExportDYJCZZSZTZEdit();
+            etdjh.ExportExcel(parentID);
         }
 
       

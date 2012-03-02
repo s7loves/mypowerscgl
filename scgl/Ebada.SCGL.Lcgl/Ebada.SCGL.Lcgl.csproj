@@ -124,6 +124,38 @@
     <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
     </Compile>
+    <Compile Include="非生产物资管理入库单\ExportFCLRKEdit.cs" />
+    <Compile Include="非生产物资管理入库单\frmFCLRKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="非生产物资管理入库单\frmFCLRKEdit.Designer.cs">
+      <DependentUpon>frmFCLRKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="非生产物资管理入库单\UCFCLRK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="非生产物资管理入库单\UCFCLRK.Designer.cs">
+      <DependentUpon>UCFCLRK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="非生产物资管理生产台账\ExportFSCTZEdit.cs" />
+    <Compile Include="非生产物资管理生产台账\frmFSCTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="非生产物资管理生产台账\frmFSCTZEdit.Designer.cs">
+      <DependentUpon>frmFSCTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="非生产物资管理生产台账\UCFSCTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="非生产物资管理生产台账\UCFSCTZ.Designer.cs">
+      <DependentUpon>UCFSCTZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="非生产物资管理生产台账\UCFSCTZInquiry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="非生产物资管理生产台账\UCFSCTZInquiry.Designer.cs">
+      <DependentUpon>UCFSCTZInquiry.cs</DependentUpon>
+    </Compile>
     <Compile Include="撤旧管理入库单\ExportCJCLRKEdit.cs" />
     <Compile Include="撤旧管理入库单\frmCJCLRKEdit.cs">
       <SubType>Form</SubType>
@@ -1053,19 +1085,6 @@
     <Compile Include="电压监测装置设置台帐\UCDYJCZZSZTZ.Designer.cs">
       <DependentUpon>UCDYJCZZSZTZ.cs</DependentUpon>
     </Compile>
-    <Compile Include="非生产台账\ExportFSCTZEdit.cs" />
-    <Compile Include="非生产台账\frmFSCTZEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="非生产台账\frmFSCTZEdit.Designer.cs">
-      <DependentUpon>frmFSCTZEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="非生产台账\UCFSCTZ.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="非生产台账\UCFSCTZ.Designer.cs">
-      <DependentUpon>UCFSCTZ.cs</DependentUpon>
-    </Compile>
     <Compile Include="生产物资管理生产台账\ExportSCTZEdit.cs" />
     <Compile Include="生产物资管理生产台账\frmSCTZEdit.cs">
       <SubType>Form</SubType>
@@ -1601,6 +1620,26 @@
     </EmbeddedResource>
     <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.resx">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="非生产物资管理入库单\frmFCLRKEdit.resx">
+      <DependentUpon>frmFCLRKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="非生产物资管理入库单\UCFCLRK.resx">
+      <DependentUpon>UCFCLRK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="非生产物资管理生产台账\frmFSCTZEdit.resx">
+      <DependentUpon>frmFSCTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="非生产物资管理生产台账\UCFSCTZ.resx">
+      <DependentUpon>UCFSCTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="非生产物资管理生产台账\UCFSCTZInquiry.resx">
+      <DependentUpon>UCFSCTZInquiry.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="撤旧管理入库单\frmCJCLRKEdit.resx">
@@ -2189,14 +2228,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="电压监测装置设置台帐\UCDYJCZZSZTZ.resx">
       <DependentUpon>UCDYJCZZSZTZ.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="非生产台账\frmFSCTZEdit.resx">
-      <DependentUpon>frmFSCTZEdit.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="非生产台账\UCFSCTZ.resx">
-      <DependentUpon>UCFSCTZ.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="生产物资管理生产台账\frmSCTZEdit.resx">

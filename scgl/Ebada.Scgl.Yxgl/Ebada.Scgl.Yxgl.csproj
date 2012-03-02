@@ -1850,9 +1850,15 @@
     <None Include="00记录模板\工作分配.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="00记录模板\市郊局秋查工作方案.xls" />
-    <None Include="00记录模板\报废申请表.xls" />
-    <None Include="00记录模板\撤旧材料入库单.xls" />
+    <None Include="00记录模板\市郊局秋查工作方案.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\报废申请表.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\撤旧材料入库单.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\故障性巡视.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

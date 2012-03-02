@@ -15,8 +15,9 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmFSCTZEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_fsctz> m_CityDic = new SortableSearchableBindingList<PJ_fsctz>();
+    public partial class frmFSCTZEdit : FormBase, IPopupFormEdit
+    {
+        SortableSearchableBindingList<PJ_sctz> m_CityDic = new SortableSearchableBindingList<PJ_sctz>();
 
         public frmFSCTZEdit()
         {
@@ -28,13 +29,21 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "wpgg");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "wpdw");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "wpsl");
+            this.spinEdit1.DataBindings.Add("EditValue", rowData, "wpdj");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "wpcj");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
+            this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "yt");
+            this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "wpcj");
+            this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "ssgc");
+            this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "yt");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "indate");
+            this.dateEdit2.DataBindings.Add("EditValue", rowData, "ckdate");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
 
         }
         #region IPopupFormEdit Members
-        private PJ_fsctz rowData = null;
+        private PJ_sctz rowData = null;
 
         public object RowData {
             get {
@@ -45,11 +54,11 @@ namespace Ebada.Scgl.Lcgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_fsctz;
+                    this.rowData = value as PJ_sctz;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_fsctz>(value as PJ_fsctz, rowData);
+                    ConvertHelper.CopyTo<PJ_sctz>(value as PJ_sctz, rowData);
                 }
             
             }
