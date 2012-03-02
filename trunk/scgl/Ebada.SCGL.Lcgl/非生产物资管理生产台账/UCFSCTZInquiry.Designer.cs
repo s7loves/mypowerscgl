@@ -171,9 +171,8 @@
             this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit5.Properties.Items.AddRange(new object[] {
-            "工程材料入库单",
-            "工程材料出库单",
-            "工程材料材料单"});
+            "非生产物资入库单",
+            "非生产物资出库单"});
             this.comboBoxEdit5.Size = new System.Drawing.Size(137, 21);
             this.comboBoxEdit5.TabIndex = 51;
             // 
@@ -395,13 +394,13 @@
             this.ucsctz1.TabIndex = 0;
             this.ucsctz1.VarDbTableName = "PJ_clcrkd,LP_Record";
             // 
-            // UCSCTZInquiry
+            // UCFSCTZInquiry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 396);
             this.Controls.Add(this.splitContainerControl1);
-            this.Name = "UCSCTZInquiry";
+            this.Name = "UCFSCTZInquiry";
             this.Text = "生产物资管理生产台账";
             this.Load += new System.EventHandler(this.WorkFlowInquiry_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
