@@ -72,7 +72,7 @@ namespace Ebada.Scgl.Lcgl
             ex.Open(fname);
             ExportExcel(ex, datalist, "生产台账");
             
-            ex.DeleteSheet(1);
+            //ex.DeleteSheet(1);
             ex.ShowExcel();
            
         }
@@ -94,7 +94,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 pageindex = Ecommon.GetPagecount(datalist.Count, rowcount);
             }
-            for (int j = 1; j <= pageindex; j++)
+            for (int j = 1; j <= pageindex-1; j++)
             {
 
                 ex.CopySheet(1, j);
