@@ -30,6 +30,7 @@
             this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -37,7 +38,7 @@
             this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
+            this.btDownPic = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
@@ -52,6 +53,7 @@
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.labelControl3);
+            this.splitContainerControl1.Panel1.Controls.Add(this.btDownPic);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton5);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton3);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton6);
@@ -73,7 +75,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(112, 77);
+            this.labelControl3.Location = new System.Drawing.Point(224, 77);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(70, 14);
             this.labelControl3.TabIndex = 6;
@@ -85,7 +87,7 @@
             this.simpleButton5.Name = "simpleButton5";
             this.simpleButton5.Size = new System.Drawing.Size(75, 23);
             this.simpleButton5.TabIndex = 5;
-            this.simpleButton5.Text = "数据下载";
+            this.simpleButton5.Text = "下载数据";
             // 
             // simpleButton3
             // 
@@ -126,6 +128,16 @@
             this.simpleButton4.TabIndex = 3;
             this.simpleButton4.Text = "测试";
             this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
+            // 
+            // simpleButton7
+            // 
+            this.simpleButton7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton7.Location = new System.Drawing.Point(450, 43);
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(33, 23);
+            this.simpleButton7.TabIndex = 3;
+            this.simpleButton7.Text = "测试";
+            this.simpleButton7.ToolTip = "检查数据库内容";
             // 
             // simpleButton1
             // 
@@ -191,15 +203,14 @@
             this.memoEdit1.Size = new System.Drawing.Size(503, 262);
             this.memoEdit1.TabIndex = 0;
             // 
-            // simpleButton7
+            // btDownPic
             // 
-            this.simpleButton7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton7.Location = new System.Drawing.Point(450, 43);
-            this.simpleButton7.Name = "simpleButton7";
-            this.simpleButton7.Size = new System.Drawing.Size(33, 23);
-            this.simpleButton7.TabIndex = 3;
-            this.simpleButton7.Text = "测试";
-            this.simpleButton7.ToolTip = "检查数据库内容";
+            this.btDownPic.Location = new System.Drawing.Point(128, 77);
+            this.btDownPic.Name = "btDownPic";
+            this.btDownPic.Size = new System.Drawing.Size(75, 23);
+            this.btDownPic.TabIndex = 5;
+            this.btDownPic.Text = "下载图片";
+            this.btDownPic.Click += new System.EventHandler(this.btDownPic_Click);
             // 
             // frmDownload
             // 
@@ -208,7 +219,7 @@
             this.ClientSize = new System.Drawing.Size(503, 415);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "frmDownload";
-            this.Text = "数据上传";
+            this.Text = "数据下传";
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
@@ -235,5 +246,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton6;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.SimpleButton simpleButton7;
+        private DevExpress.XtraEditors.SimpleButton btDownPic;
     }
 }
