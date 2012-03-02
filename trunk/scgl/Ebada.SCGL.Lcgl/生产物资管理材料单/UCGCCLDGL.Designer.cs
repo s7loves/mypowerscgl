@@ -277,6 +277,7 @@
             "非生产物资出库单"});
             this.comboBoxEdit6.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit6.TabIndex = 6;
+            this.comboBoxEdit6.Visible = false;
             // 
             // labelControl6
             // 
@@ -285,6 +286,7 @@
             this.labelControl6.Size = new System.Drawing.Size(48, 14);
             this.labelControl6.TabIndex = 1;
             this.labelControl6.Text = "出库类型";
+            this.labelControl6.Visible = false;
             // 
             // comboBoxEdit5
             // 
@@ -298,6 +300,7 @@
             "非生产物资入库单"});
             this.comboBoxEdit5.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit5.TabIndex = 5;
+            this.comboBoxEdit5.Visible = false;
             // 
             // labelControl5
             // 
@@ -306,6 +309,7 @@
             this.labelControl5.Size = new System.Drawing.Size(48, 14);
             this.labelControl5.TabIndex = 1;
             this.labelControl5.Text = "物品类型";
+            this.labelControl5.Visible = false;
             // 
             // comboBoxEdit4
             // 

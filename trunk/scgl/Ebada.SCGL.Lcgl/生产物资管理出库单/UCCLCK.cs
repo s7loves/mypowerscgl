@@ -383,6 +383,21 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("kcsl");
             gridView1.Columns["num"].Width = 120;
 
+            gridView1.Columns["wpmc"].VisibleIndex = 1;
+            gridView1.Columns["wpgg"].VisibleIndex = 2;
+
+            gridView1.Columns["wpdw"].VisibleIndex = 3;
+            gridView1.Columns["wpsl"].VisibleIndex = 4;
+            gridView1.Columns["wpdj"].VisibleIndex = 5;
+            gridView1.Columns["wpcj"].VisibleIndex = 6;
+            gridView1.Columns["indate"].VisibleIndex = 7;
+            gridView1.Columns["ssgc"].VisibleIndex = 8;
+            gridView1.Columns["ckdate"].VisibleIndex = 9;
+            gridView1.Columns["yt"].VisibleIndex = 10;
+            gridView1.Columns["cksl"].VisibleIndex = 11;
+            gridView1.Columns["cksl"].VisibleIndex = 12;
+            gridView1.Columns["lqdw"].VisibleIndex = 13;
+
            
         }
         /// <summary>

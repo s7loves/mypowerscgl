@@ -30,6 +30,18 @@
         {
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.barFJLY = new DevExpress.XtraEditors.SimpleButton();
             this.TaskOverButton = new DevExpress.XtraEditors.SimpleButton();
@@ -49,21 +61,13 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.ucclck1 = new Ebada.Scgl.Lcgl.UCCLCK();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).BeginInit();
@@ -73,10 +77,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -98,204 +98,6 @@
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(575, 327);
             this.xtraTabPage1.Text = "出库操作";
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.barFJLY);
-            this.panelControl1.Controls.Add(this.TaskOverButton);
-            this.panelControl1.Controls.Add(this.comboBoxEdit6);
-            this.panelControl1.Controls.Add(this.labelControl6);
-            this.panelControl1.Controls.Add(this.comboBoxEdit5);
-            this.panelControl1.Controls.Add(this.labelControl5);
-            this.panelControl1.Controls.Add(this.comboBoxEdit4);
-            this.panelControl1.Controls.Add(this.labelControl4);
-            this.panelControl1.Controls.Add(this.comboBoxEdit2);
-            this.panelControl1.Controls.Add(this.comboBoxEdit3);
-            this.panelControl1.Controls.Add(this.labelControl2);
-            this.panelControl1.Controls.Add(this.labelControl3);
-            this.panelControl1.Controls.Add(this.comboBoxEdit1);
-            this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.simpleButton2);
-            this.panelControl1.Controls.Add(this.simpleButton1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(0, 0);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(575, 142);
-            this.panelControl1.TabIndex = 6;
-            // 
-            // barFJLY
-            // 
-            this.barFJLY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.barFJLY.Location = new System.Drawing.Point(334, 108);
-            this.barFJLY.Name = "barFJLY";
-            this.barFJLY.Size = new System.Drawing.Size(74, 23);
-            this.barFJLY.TabIndex = 42;
-            this.barFJLY.Text = "附件留言";
-            this.barFJLY.Visible = false;
-            this.barFJLY.Click += new System.EventHandler(this.barFJLY_Click);
-            // 
-            // TaskOverButton
-            // 
-            this.TaskOverButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.TaskOverButton.Location = new System.Drawing.Point(253, 108);
-            this.TaskOverButton.Name = "TaskOverButton";
-            this.TaskOverButton.Size = new System.Drawing.Size(75, 23);
-            this.TaskOverButton.TabIndex = 41;
-            this.TaskOverButton.Text = "结束";
-            this.TaskOverButton.Visible = false;
-            this.TaskOverButton.Click += new System.EventHandler(this.TaskOverButton_Click);
-            // 
-            // comboBoxEdit6
-            // 
-            this.comboBoxEdit6.Location = new System.Drawing.Point(451, 64);
-            this.comboBoxEdit6.Name = "comboBoxEdit6";
-            this.comboBoxEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit6.Properties.Items.AddRange(new object[] {
-            "工程材料出库单",
-            "撤旧材料出库单",
-            "非生产物资出库单"});
-            this.comboBoxEdit6.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit6.TabIndex = 6;
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(385, 67);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(48, 14);
-            this.labelControl6.TabIndex = 1;
-            this.labelControl6.Text = "出库类型";
-            // 
-            // comboBoxEdit5
-            // 
-            this.comboBoxEdit5.Location = new System.Drawing.Point(266, 64);
-            this.comboBoxEdit5.Name = "comboBoxEdit5";
-            this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit5.Properties.Items.AddRange(new object[] {
-            "工程材料入库单",
-            "撤旧材料入库单",
-            "非生产物资入库单"});
-            this.comboBoxEdit5.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit5.TabIndex = 5;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Location = new System.Drawing.Point(200, 67);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(48, 14);
-            this.labelControl5.TabIndex = 1;
-            this.labelControl5.Text = "物品类型";
-            // 
-            // comboBoxEdit4
-            // 
-            this.comboBoxEdit4.Location = new System.Drawing.Point(73, 64);
-            this.comboBoxEdit4.Name = "comboBoxEdit4";
-            this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit4.TabIndex = 4;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(7, 67);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(48, 14);
-            this.labelControl4.TabIndex = 1;
-            this.labelControl4.Text = "物品规格";
-            // 
-            // comboBoxEdit2
-            // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(266, 22);
-            this.comboBoxEdit2.Name = "comboBoxEdit2";
-            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit2.TabIndex = 2;
-            this.comboBoxEdit2.TextChanged += new System.EventHandler(this.comboBoxEdit2_TextChanged);
-            // 
-            // comboBoxEdit3
-            // 
-            this.comboBoxEdit3.Location = new System.Drawing.Point(451, 22);
-            this.comboBoxEdit3.Name = "comboBoxEdit3";
-            this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit3.TabIndex = 3;
-            this.comboBoxEdit3.TextChanged += new System.EventHandler(this.comboBoxEdit3_TextChanged);
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(200, 25);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(60, 14);
-            this.labelControl2.TabIndex = 1;
-            this.labelControl2.Text = "分工程名称";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(385, 25);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(48, 14);
-            this.labelControl3.TabIndex = 1;
-            this.labelControl3.Text = "物品名称";
-            // 
-            // comboBoxEdit1
-            // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(73, 25);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit1.TabIndex = 1;
-            this.comboBoxEdit1.TextChanged += new System.EventHandler(this.comboBoxEdit1_TextChanged);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(7, 28);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(60, 14);
-            this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "总工程名称";
-            // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton2.Location = new System.Drawing.Point(414, 109);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 0;
-            this.simpleButton2.Text = "查询";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton1.Location = new System.Drawing.Point(495, 108);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "自动出库";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
-            // xtraTabPage2
-            // 
-            this.xtraTabPage2.Controls.Add(this.ucclck1);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(575, 327);
-            this.xtraTabPage2.Text = "出库记录";
-            // 
-            // ucclck1
-            // 
-            this.ucclck1.CurrRecord = null;
-            this.ucclck1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucclck1.Location = new System.Drawing.Point(0, 0);
-            this.ucclck1.Name = "ucclck1";
-            this.ucclck1.ParentTemple = null;
-            this.ucclck1.RecordWorkFlowData = null;
-            this.ucclck1.Size = new System.Drawing.Size(575, 327);
-            this.ucclck1.TabIndex = 0;
-            this.ucclck1.VarDbTableName = "PJ_clcrkd,LP_Record";
             // 
             // groupControl1
             // 
@@ -416,6 +218,208 @@
             this.gridColumn8.FieldName = "ID";
             this.gridColumn8.Name = "gridColumn8";
             // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.barFJLY);
+            this.panelControl1.Controls.Add(this.TaskOverButton);
+            this.panelControl1.Controls.Add(this.comboBoxEdit6);
+            this.panelControl1.Controls.Add(this.labelControl6);
+            this.panelControl1.Controls.Add(this.comboBoxEdit5);
+            this.panelControl1.Controls.Add(this.labelControl5);
+            this.panelControl1.Controls.Add(this.comboBoxEdit4);
+            this.panelControl1.Controls.Add(this.labelControl4);
+            this.panelControl1.Controls.Add(this.comboBoxEdit2);
+            this.panelControl1.Controls.Add(this.comboBoxEdit3);
+            this.panelControl1.Controls.Add(this.labelControl2);
+            this.panelControl1.Controls.Add(this.labelControl3);
+            this.panelControl1.Controls.Add(this.comboBoxEdit1);
+            this.panelControl1.Controls.Add(this.labelControl1);
+            this.panelControl1.Controls.Add(this.simpleButton2);
+            this.panelControl1.Controls.Add(this.simpleButton1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(575, 142);
+            this.panelControl1.TabIndex = 6;
+            // 
+            // barFJLY
+            // 
+            this.barFJLY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.barFJLY.Location = new System.Drawing.Point(334, 108);
+            this.barFJLY.Name = "barFJLY";
+            this.barFJLY.Size = new System.Drawing.Size(74, 23);
+            this.barFJLY.TabIndex = 42;
+            this.barFJLY.Text = "附件留言";
+            this.barFJLY.Visible = false;
+            this.barFJLY.Click += new System.EventHandler(this.barFJLY_Click);
+            // 
+            // TaskOverButton
+            // 
+            this.TaskOverButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TaskOverButton.Location = new System.Drawing.Point(253, 108);
+            this.TaskOverButton.Name = "TaskOverButton";
+            this.TaskOverButton.Size = new System.Drawing.Size(75, 23);
+            this.TaskOverButton.TabIndex = 41;
+            this.TaskOverButton.Text = "结束";
+            this.TaskOverButton.Visible = false;
+            this.TaskOverButton.Click += new System.EventHandler(this.TaskOverButton_Click);
+            // 
+            // comboBoxEdit6
+            // 
+            this.comboBoxEdit6.Location = new System.Drawing.Point(451, 64);
+            this.comboBoxEdit6.Name = "comboBoxEdit6";
+            this.comboBoxEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit6.Properties.Items.AddRange(new object[] {
+            "工程材料出库单",
+            "撤旧材料出库单",
+            "非生产物资出库单"});
+            this.comboBoxEdit6.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit6.TabIndex = 6;
+            this.comboBoxEdit6.Visible = false;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(385, 67);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(48, 14);
+            this.labelControl6.TabIndex = 1;
+            this.labelControl6.Text = "出库类型";
+            this.labelControl6.Visible = false;
+            // 
+            // comboBoxEdit5
+            // 
+            this.comboBoxEdit5.Location = new System.Drawing.Point(266, 64);
+            this.comboBoxEdit5.Name = "comboBoxEdit5";
+            this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit5.Properties.Items.AddRange(new object[] {
+            "工程材料入库单",
+            "撤旧材料入库单",
+            "非生产物资入库单"});
+            this.comboBoxEdit5.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit5.TabIndex = 5;
+            this.comboBoxEdit5.Visible = false;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(200, 67);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(48, 14);
+            this.labelControl5.TabIndex = 1;
+            this.labelControl5.Text = "物品类型";
+            this.labelControl5.Visible = false;
+            // 
+            // comboBoxEdit4
+            // 
+            this.comboBoxEdit4.Location = new System.Drawing.Point(73, 64);
+            this.comboBoxEdit4.Name = "comboBoxEdit4";
+            this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit4.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit4.TabIndex = 4;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(7, 67);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(48, 14);
+            this.labelControl4.TabIndex = 1;
+            this.labelControl4.Text = "物品规格";
+            // 
+            // comboBoxEdit2
+            // 
+            this.comboBoxEdit2.Location = new System.Drawing.Point(266, 22);
+            this.comboBoxEdit2.Name = "comboBoxEdit2";
+            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit2.TabIndex = 2;
+            this.comboBoxEdit2.TextChanged += new System.EventHandler(this.comboBoxEdit2_TextChanged);
+            // 
+            // comboBoxEdit3
+            // 
+            this.comboBoxEdit3.Location = new System.Drawing.Point(451, 22);
+            this.comboBoxEdit3.Name = "comboBoxEdit3";
+            this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit3.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit3.TabIndex = 3;
+            this.comboBoxEdit3.TextChanged += new System.EventHandler(this.comboBoxEdit3_TextChanged);
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(200, 25);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(60, 14);
+            this.labelControl2.TabIndex = 1;
+            this.labelControl2.Text = "分工程名称";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(385, 25);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(48, 14);
+            this.labelControl3.TabIndex = 1;
+            this.labelControl3.Text = "物品名称";
+            // 
+            // comboBoxEdit1
+            // 
+            this.comboBoxEdit1.Location = new System.Drawing.Point(73, 25);
+            this.comboBoxEdit1.Name = "comboBoxEdit1";
+            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit1.TabIndex = 1;
+            this.comboBoxEdit1.TextChanged += new System.EventHandler(this.comboBoxEdit1_TextChanged);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(7, 28);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(60, 14);
+            this.labelControl1.TabIndex = 1;
+            this.labelControl1.Text = "总工程名称";
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton2.Location = new System.Drawing.Point(414, 109);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton2.TabIndex = 0;
+            this.simpleButton2.Text = "查询";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton1.Location = new System.Drawing.Point(495, 108);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.TabIndex = 0;
+            this.simpleButton1.Text = "自动出库";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // xtraTabPage2
+            // 
+            this.xtraTabPage2.Controls.Add(this.ucclck1);
+            this.xtraTabPage2.Name = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(575, 327);
+            this.xtraTabPage2.Text = "出库记录";
+            // 
+            // ucclck1
+            // 
+            this.ucclck1.CurrRecord = null;
+            this.ucclck1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucclck1.Location = new System.Drawing.Point(0, 0);
+            this.ucclck1.Name = "ucclck1";
+            this.ucclck1.ParentTemple = null;
+            this.ucclck1.RecordWorkFlowData = null;
+            this.ucclck1.Size = new System.Drawing.Size(575, 327);
+            this.ucclck1.TabIndex = 0;
+            this.ucclck1.VarDbTableName = "PJ_clcrkd,LP_Record";
+            // 
             // UCCLCKGL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -427,6 +431,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
@@ -437,10 +445,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
