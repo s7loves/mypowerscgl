@@ -62,6 +62,16 @@ namespace Ebada.Scgl.Lcgl
 
             }
         }
+        private string strSQL = "";
+        public string StrSQL
+        {
+
+            set
+            {
+                strSQL = value;
+                RefreshData(strSQL);
+            }
+        }
         public LP_Record CurrRecord
         {
             get { return currRecord; }
@@ -310,9 +320,9 @@ namespace Ebada.Scgl.Lcgl
 
             hideColumn("OrgCode");
             hideColumn("OrgName");
-            hideColumn("S1");
-            hideColumn("S2");
-            hideColumn("S3");
+            hideColumn("lasttime");
+            hideColumn("lyparent");
+            gridView1.Columns["num"].Width = 150;
 
            
         }
@@ -333,7 +343,7 @@ namespace Ebada.Scgl.Lcgl
             //       + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
             //       + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
             //}
-            slqwhere = slqwhere + " order by ID desc";
+            slqwhere = slqwhere + " order by num desc";
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
