@@ -15,9 +15,9 @@ using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class UCGCCLDGL : UserControl
+    public partial class UCCJCKGL : UserControl
     {
-        public UCGCCLDGL()
+        public UCCJCKGL()
         {
             InitializeComponent();
         }
@@ -35,7 +35,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 parentTemple = value;
-                ucgccld1.ParentTemple = value;
+                ucclck1.ParentTemple = value;
             }
         }
         public bool IsWorkflowCall
@@ -44,7 +44,8 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 isWorkflowCall = value;
-                ucgccld1.IsWorkflowCall = value;
+                ucclck1.IsWorkflowCall = value;
+
             }
         }
         public LP_Record CurrRecord
@@ -53,7 +54,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 currRecord = value;
-                ucgccld1.CurrRecord = value;
+                ucclck1.CurrRecord = value;
             }
         }
 
@@ -96,7 +97,7 @@ namespace Ebada.Scgl.Lcgl
                         //}
 
                     }
-                    ucgccld1.RecordWorkFlowData = value;
+                    ucclck1.RecordWorkFlowData = value;
                 }
             }
         }
@@ -107,7 +108,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 varDbTableName = value;
-                ucgccld1.VarDbTableName = value;
+                ucclck1.VarDbTableName = value;
             }
         }
 
@@ -131,21 +132,21 @@ namespace Ebada.Scgl.Lcgl
            //hideColumn("OrgName");
            //hideColumn("type");
            //hideColumn("yt");
-           //hideColumn("CLDCKsl");
+           //hideColumn("cksl");
            //hideColumn("kcsl");
            //hideColumn("lqdw");
            //hideColumn("kcsl");
-           //hideColumn("CLDCKdate");
+           //hideColumn("ckdate");
         }
         private void hideColumn(string colname)
         {
             gridView1.Columns[colname].Visible = false;
         }
-        private void UCCLCLDCKGL_Load(object sender, EventArgs e)
+        private void UCCLCKGL_Load(object sender, EventArgs e)
         {
 
-            comboBoxEdit5.SelectedIndex = 0;
-            comboBoxEdit6.SelectedIndex = 1;
+            comboBoxEdit5.SelectedIndex = 1;
+            comboBoxEdit6.SelectedIndex = 2;
             comboBoxEdit1.Properties.Items.Clear();
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                 "select distinct ssgc  from PJ_clcrkd where type = '"+comboBoxEdit5.Text
@@ -201,8 +202,9 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            frmCLCKXZ frm = new frmCLCKXZ();
+            frmCJCLCKXZ frm = new frmCJCLCKXZ();
             frm.strType = comboBoxEdit5.Text;
+
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
             //       <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
             //frm.strNum = DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
@@ -210,10 +212,10 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_clcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
                        <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "'  order by id desc  ");
             if (pnumli.Count == 0)
-                frm.strNum = "SCCLDCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
+                frm.strNum = "CJCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
             {
-                frm.strNum = "SCCLDCK" + (Convert.ToDecimal(pnumli[0].num.Replace("SCCLDCK", "")) + 1);
+                frm.strNum = "CJCK" + (Convert.ToDecimal(pnumli[0].num.Replace("CJCK", "")) + 1);
 
             }
             frm.RowData = new PJ_clcrkd();
@@ -243,27 +245,26 @@ namespace Ebada.Scgl.Lcgl
                         num = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
                     else
                     {
-                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("SCCLDCK", "")));
+                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("CJCK", "")));
 
                     }
                 
                 foreach (PJ_clcrkd pc in datalist)
                 {
-                    PJ_clcrkd ckd = new PJ_clcrkd();
+                    PJ_clcrkd ckd =new PJ_clcrkd() ;
                     ConvertHelper.CopyTo<PJ_clcrkd>(pc, ckd);
                     ckd.ID = ckd.CreateID();
                     //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
                     //       <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
                     //frm.strNum = DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
 
-                    ckd.num = "SCCLDCK" + (num + 1);
+                    ckd.num = "CJCK" + (num + 1);
                     ckd.type = comboBoxEdit6.Text;
                     ckd.Remark = frm.ReturnData.Remark;
-                    ckd.yt = frm.ReturnData.yt;
+                    ckd.yt = pc.yt;
                     ckd.ssxm = pc.ssxm;
                     ckd.lqdw = frm.ReturnData.lqdw;
-                    ckd.ghdw= frm.ReturnData.ghdw;
-                    ckd.ckdate = frm.ReturnData.ckdate;
+                    ckd.ckdate = DateTime.Now;
                     if (cktemp >= Convert.ToInt64(pc.kcsl))
                     {
                         ckd.cksl = pc.kcsl;
@@ -285,13 +286,13 @@ namespace Ebada.Scgl.Lcgl
                     zkc = Convert.ToInt64(ckd.zkcsl);
                     Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                     
-                    //ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(CLDCKd);
+                    //ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(ckd);
 
                     ckdatalist.Add(ckd);
                     if (cktemp<1) break;
                     //num=(num + 1);
                 }
-                frmGCCLDShow frmshow = new frmGCCLDShow();
+                frmCJCLCKXZShow frmshow = new frmCJCLCKXZShow();
                 frmshow.DataList = ckdatalist;
                 if (frmshow.ShowDialog() == DialogResult.OK)
                 {
@@ -303,7 +304,7 @@ namespace Ebada.Scgl.Lcgl
                         num = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
                     else
                     {
-                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("SCCLDCK", "")));
+                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("CJCK", "")) );
 
                     } 
                     datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>
@@ -313,14 +314,14 @@ namespace Ebada.Scgl.Lcgl
                         PJ_clcrkd ckd = new PJ_clcrkd();
                         ConvertHelper.CopyTo<PJ_clcrkd>(pc, ckd);
                         ckd.ID = ckd.CreateID();
-                        ckd.num = "SCCLDCK" + (num + 1);
+                        ckd.num = "CJCK" + (num + 1);
                         ckd.type = comboBoxEdit6.Text;
                         ckd.Remark = frm.ReturnData.Remark;
                         ckd.lqdw = frm.ReturnData.lqdw;
                         ckd.ghdw = frm.ReturnData.ghdw;
                         ckd.yt = frm.ReturnData.yt;
                         ckd.ssxm = frm.ReturnData.ssxm;
-                        ckd.ckdate = frm.ReturnData.ckdate;
+                        ckd.ckdate = DateTime.Now;
                         if (cktemp >= Convert.ToInt64(pc.kcsl))
                         {
                             ckd.cksl = pc.kcsl;
@@ -341,6 +342,7 @@ namespace Ebada.Scgl.Lcgl
                         ckd.lyparent = pc.ID;
                         zkc = Convert.ToInt64(ckd.zkcsl);
                         Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+
                         if (isWorkflowCall)
                         {
 
@@ -357,7 +359,7 @@ namespace Ebada.Scgl.Lcgl
                         //num = (num + 1);
 
                     }
-                    ucgccld1.inidata();
+                    ucclck1.inidata();
                 }
             }
         }
@@ -367,7 +369,7 @@ namespace Ebada.Scgl.Lcgl
             if (gridView1.FocusedRowHandle < -1)
                 return;
             PJ_clcrkd rowdata = gridView1.GetFocusedRow() as PJ_clcrkd;
-            frmGCCLDSingleXZ frm = new frmGCCLDSingleXZ();
+            frmCJCLCKSingleXZ frm = new frmCJCLCKSingleXZ();
             frm.RowData = new PJ_clcrkd();
             ConvertHelper.CopyTo<PJ_clcrkd>(rowdata, (PJ_clcrkd)frm.RowData);
             ((PJ_clcrkd)frm.RowData).Remark = "";
@@ -375,10 +377,10 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_clcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
             <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc ");
             if (pnumli.Count == 0)
-                ((PJ_clcrkd)frm.RowData).num = "SCCLDCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
+                ((PJ_clcrkd)frm.RowData).num = "CJCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
             {
-                ((PJ_clcrkd)frm.RowData).num = "SCCLDCK" + (Convert.ToDecimal(pnumli[0].num.Replace("SCCLDCK","")) + 1);
+                ((PJ_clcrkd)frm.RowData).num = "CJCK" + (Convert.ToDecimal(pnumli[0].num.Replace("CJCK",""))+1 );
 
             }
             ((PJ_clcrkd)frm.RowData).ckdate = DateTime.Now;
@@ -390,7 +392,7 @@ namespace Ebada.Scgl.Lcgl
                 ckd.ID = ckd.CreateID();
                
                 System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                    "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+                    "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '撤旧材料出库单' or type = '撤旧材料出库单原始库存')"
                     + " and wpmc='" + rowdata.wpmc + "' " + " and ssgc='" + rowdata.ssgc + "' "
                     + " and wpgg='" + rowdata.wpgg + "' ");
                 if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
@@ -405,7 +407,7 @@ namespace Ebada.Scgl.Lcgl
                 ckd.ssxm = frm.ReturnData.ssxm;
                 ckd.lqdw = frm.ReturnData.lqdw;
                 ckd.ghdw = frm.ReturnData.ghdw;
-                ckd.ckdate = frm.ReturnData.ckdate;
+                ckd.ckdate = DateTime.Now;
                 if (cktemp >= Convert.ToInt64(rowdata.kcsl))
                 {
                     ckd.cksl = rowdata.kcsl;
@@ -438,7 +440,7 @@ namespace Ebada.Scgl.Lcgl
                         + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
                 }
                 ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(ckd);
-                ucgccld1.inidata();
+                ucclck1.inidata();
             }
         }
 
@@ -492,7 +494,5 @@ namespace Ebada.Scgl.Lcgl
             fjly.Status = RecordWorkTask.GetWorkTaskStatus(WorkFlowData, currRecord);
             fjly.ShowDialog();
         }
-
-     
     }
 }

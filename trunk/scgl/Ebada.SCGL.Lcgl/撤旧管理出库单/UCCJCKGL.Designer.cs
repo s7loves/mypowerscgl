@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class UCGCCLDGL
+    partial class UCCJCKGL
     {
         /// <summary> 
         /// Required designer variable.
@@ -60,7 +60,7 @@
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.ucgccld1 = new Ebada.Scgl.Lcgl.UCGCCLD();
+            this.ucclck1 = new Ebada.Scgl.Lcgl.UCCJCLCK();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -338,7 +338,6 @@
             this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit2.TabIndex = 2;
             this.comboBoxEdit2.TextChanged += new System.EventHandler(this.comboBoxEdit2_TextChanged);
-            this.comboBoxEdit2.Click += new System.EventHandler(this.comboBoxEdit2_TextChanged);
             // 
             // comboBoxEdit3
             // 
@@ -349,7 +348,6 @@
             this.comboBoxEdit3.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit3.TabIndex = 3;
             this.comboBoxEdit3.TextChanged += new System.EventHandler(this.comboBoxEdit3_TextChanged);
-            this.comboBoxEdit3.Click += new System.EventHandler(this.comboBoxEdit3_TextChanged);
             // 
             // labelControl2
             // 
@@ -376,7 +374,6 @@
             this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit1.TabIndex = 1;
             this.comboBoxEdit1.TextChanged += new System.EventHandler(this.comboBoxEdit1_TextChanged);
-            this.comboBoxEdit1.Click += new System.EventHandler(this.comboBoxEdit1_TextChanged);
             // 
             // labelControl1
             // 
@@ -408,31 +405,31 @@
             // 
             // xtraTabPage2
             // 
-            this.xtraTabPage2.Controls.Add(this.ucgccld1);
+            this.xtraTabPage2.Controls.Add(this.ucclck1);
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(575, 327);
             this.xtraTabPage2.Text = "出库记录";
             // 
-            // ucgccld1
+            // ucclck1
             // 
-            this.ucgccld1.CurrRecord = null;
-            this.ucgccld1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucgccld1.Location = new System.Drawing.Point(0, 0);
-            this.ucgccld1.Name = "ucgccld1";
-            this.ucgccld1.ParentTemple = null;
-            this.ucgccld1.RecordWorkFlowData = null;
-            this.ucgccld1.Size = new System.Drawing.Size(575, 327);
-            this.ucgccld1.TabIndex = 3;
-            this.ucgccld1.VarDbTableName = "PJ_clcrkd,LP_Record";
+            this.ucclck1.CurrRecord = null;
+            this.ucclck1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucclck1.Location = new System.Drawing.Point(0, 0);
+            this.ucclck1.Name = "ucclck1";
+            this.ucclck1.ParentTemple = null;
+            this.ucclck1.RecordWorkFlowData = null;
+            this.ucclck1.Size = new System.Drawing.Size(575, 327);
+            this.ucclck1.TabIndex = 0;
+            this.ucclck1.VarDbTableName = "PJ_clcrkd,LP_Record";
             // 
-            // UCGCCLDGL
+            // UCCLCKGL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.xtraTabControl1);
-            this.Name = "UCGCCLDGL";
+            this.Name = "UCCLCKGL";
             this.Size = new System.Drawing.Size(582, 357);
-            this.Load += new System.EventHandler(this.UCCLCLDCKGL_Load);
+            this.Load += new System.EventHandler(this.UCCLCKGL_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
@@ -474,6 +471,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private UCCJCLCK ucclck1;
         private DevExpress.XtraEditors.SimpleButton barFJLY;
         private DevExpress.XtraEditors.SimpleButton TaskOverButton;
         private DevExpress.XtraEditors.GroupControl groupControl1;
@@ -488,7 +486,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private UCGCCLD ucgccld1;
 
     }
 }

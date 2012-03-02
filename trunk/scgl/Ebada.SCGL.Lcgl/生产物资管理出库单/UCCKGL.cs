@@ -212,10 +212,10 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_clcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
                        <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "'  order by id desc  ");
             if (pnumli.Count == 0)
-                frm.strNum = "CK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
+                frm.strNum = "SCCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
             {
-                frm.strNum = "CK" + (Convert.ToDecimal(pnumli[0].num.Replace("CK", "")) + 1);
+                frm.strNum = "SCCK" + (Convert.ToDecimal(pnumli[0].num.Replace("SCCK", "")) + 1);
 
             }
             frm.RowData = new PJ_clcrkd();
@@ -245,7 +245,7 @@ namespace Ebada.Scgl.Lcgl
                         num = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
                     else
                     {
-                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("CK", "")));
+                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("SCCK", "")));
 
                     }
                 
@@ -258,7 +258,7 @@ namespace Ebada.Scgl.Lcgl
                     //       <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
                     //frm.strNum = DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
 
-                    ckd.num = "CK" + (num + 1);
+                    ckd.num = "SCCK" + (num + 1);
                     ckd.type = comboBoxEdit6.Text;
                     ckd.Remark = frm.ReturnData.Remark;
                     ckd.yt = pc.yt;
@@ -304,7 +304,7 @@ namespace Ebada.Scgl.Lcgl
                         num = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
                     else
                     {
-                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("CK", "")) );
+                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("SCCK", "")) );
 
                     } 
                     datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>
@@ -314,7 +314,7 @@ namespace Ebada.Scgl.Lcgl
                         PJ_clcrkd ckd = new PJ_clcrkd();
                         ConvertHelper.CopyTo<PJ_clcrkd>(pc, ckd);
                         ckd.ID = ckd.CreateID();
-                        ckd.num = "CK" + (num + 1);
+                        ckd.num = "SCCK" + (num + 1);
                         ckd.type = comboBoxEdit6.Text;
                         ckd.Remark = frm.ReturnData.Remark;
                         ckd.lqdw = frm.ReturnData.lqdw;
@@ -377,10 +377,10 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_clcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
             <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc ");
             if (pnumli.Count == 0)
-                ((PJ_clcrkd)frm.RowData).num = "CK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0);
+                ((PJ_clcrkd)frm.RowData).num = "SCCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
             {
-                ((PJ_clcrkd)frm.RowData).num = "CK" + (Convert.ToDecimal(pnumli[0].num.Replace("CK","")) );
+                ((PJ_clcrkd)frm.RowData).num = "SCCK" + (Convert.ToDecimal(pnumli[0].num.Replace("SCCK", "")) + 1);
 
             }
             ((PJ_clcrkd)frm.RowData).ckdate = DateTime.Now;
