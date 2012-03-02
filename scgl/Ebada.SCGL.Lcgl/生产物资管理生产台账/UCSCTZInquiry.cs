@@ -153,11 +153,10 @@ namespace Ebada.Scgl.Lcgl
    
         private void WorkFlowInquiry_Load(object sender, EventArgs e)
         {
-            comboBoxEdit5.SelectedIndex = 0;
+            //comboBoxEdit5.SelectedIndex = 0;
             comboBoxEdit1.Properties.Items.Clear();
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                "select distinct ssgc  from PJ_clcrkd where type = '" + comboBoxEdit5.Text
-                + "' or type = '" + comboBoxEdit5.Text + "原始库存'  and ssgc!='' ");
+                "select distinct ssgc  from PJ_clcrkd where 1=1  and ssgc!='' ");
             comboBoxEdit1.Properties.Items.AddRange(mclist);
 
         }
@@ -166,18 +165,17 @@ namespace Ebada.Scgl.Lcgl
         {
             comboBoxEdit2.Properties.Items.Clear();
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                "select distinct ssxm  from PJ_clcrkd where type = '" + comboBoxEdit5.Text
-                + "' or type = '" + comboBoxEdit5.Text + "原始库存'  and ssgc!='' ");
+                "select distinct ssxm  from PJ_clcrkd where  ssgc!='' ");
             comboBoxEdit2.Properties.Items.AddRange(mclist);
 
             comboBoxEdit3.Properties.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd where  ssgc='" + comboBoxEdit1.Text + "' and ( type = '" + comboBoxEdit5.Text
-                + "' or type = '" + comboBoxEdit5.Text + "原始库存') and wpmc!='' ");
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct wpmc  from PJ_clcrkd where  ssgc='" + comboBoxEdit1.Text + "' and wpmc!='' ");
             comboBoxEdit3.Properties.Items.AddRange(mclist);
 
             comboBoxEdit4.Properties.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_clcrkd where  ssgc='" + comboBoxEdit1.Text + "' and ( type = '" + comboBoxEdit5.Text
-                + "' or type = '" + comboBoxEdit5.Text + "原始库存') and wpgg!='' ");
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", 
+                "select distinct wpgg  from PJ_clcrkd where  ssgc='" + comboBoxEdit1.Text + "' and  wpgg!='' ");
             comboBoxEdit4.Properties.Items.AddRange(mclist);
         }
 
@@ -186,13 +184,13 @@ namespace Ebada.Scgl.Lcgl
 
 
             comboBoxEdit3.Properties.Items.Clear();
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd where  ssxm='" + comboBoxEdit2.Text + "' and ( type = '" + comboBoxEdit5.Text
-                + "' or type = '" + comboBoxEdit5.Text + "原始库存') and wpmc!='' ");
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", 
+                "select distinct wpmc  from PJ_clcrkd where  ssxm='" + comboBoxEdit2.Text + "'  and wpmc!='' ");
             comboBoxEdit3.Properties.Items.AddRange(mclist);
 
             comboBoxEdit4.Properties.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_clcrkd where  ssxm='" + comboBoxEdit2.Text + "' and ( type = '" + comboBoxEdit5.Text
-               + "' or type = '" + comboBoxEdit5.Text + "原始库存') and wpgg!='' ");
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct wpgg  from PJ_clcrkd where  ssxm='" + comboBoxEdit2.Text + "'  and wpgg!='' ");
             comboBoxEdit4.Properties.Items.AddRange(mclist);
         }
 
@@ -201,8 +199,8 @@ namespace Ebada.Scgl.Lcgl
 
 
             comboBoxEdit4.Properties.Items.Clear();
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit3.Text + "' and ( type = '" + comboBoxEdit5.Text
-                + "' or type = '" + comboBoxEdit5.Text + "原始库存') and wpgg!='' ");
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", 
+                "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit3.Text + "' and wpgg!='' ");
             comboBoxEdit4.Properties.Items.AddRange(mclist);
         }
 

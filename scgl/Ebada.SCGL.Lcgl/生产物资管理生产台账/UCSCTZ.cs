@@ -322,6 +322,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("OrgName");
             hideColumn("lasttime");
             hideColumn("lyparent");
+            hideColumn("kcsl");
             gridView1.Columns["num"].Width = 150;
             gridView1.Columns["wpmc"].VisibleIndex=1;
             gridView1.Columns["wpgg"].VisibleIndex=2;
@@ -356,7 +357,7 @@ namespace Ebada.Scgl.Lcgl
             //       + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
             //       + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
             //}
-            slqwhere = slqwhere + " order by num desc";
+            slqwhere = slqwhere + " order by id desc";
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
@@ -489,12 +490,16 @@ namespace Ebada.Scgl.Lcgl
 
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //frmYearSelect fys = new frmYearSelect();
-            //fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_clcrkd";
+            
+            IList<PJ_clcrkd> datalist = gridView1.DataSource as IList<PJ_clcrkd>;
+            //frmProjectSelect fys = new frmProjectSelect();
+            //fys.strType = " and (type = '工程材料入库单' or type = '工程材料入库单原始库存') ";
+            //fys.StrSQL = "select distinct ssgc  from PJ_clcrkd where  (type = '工程材料入库单' or type = '工程材料入库单原始库存') ";
             //if (fys.ShowDialog() == DialogResult.OK)
             //{
-            //    ExportSCTZEdit etdjh = new ExportSCTZEdit();
-            //    etdjh.ExportExcelYear(parentID, fys.strYear);
+
+            ExportSCTZEdit etdjh = new ExportSCTZEdit();
+            etdjh.ExportExcel(datalist);
             //}
         }
 
