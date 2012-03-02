@@ -283,7 +283,7 @@
             // 
             // comboBoxEdit11
             // 
-            this.comboBoxEdit11.Location = new System.Drawing.Point(99, 245);
+            this.comboBoxEdit11.Location = new System.Drawing.Point(100, 223);
             this.comboBoxEdit11.Name = "comboBoxEdit11";
             this.comboBoxEdit11.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -345,18 +345,18 @@
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(31, 248);
+            this.labelControl13.Location = new System.Drawing.Point(36, 226);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(48, 14);
+            this.labelControl13.Size = new System.Drawing.Size(60, 14);
             this.labelControl13.TabIndex = 1;
-            this.labelControl13.Text = "领取单位";
+            this.labelControl13.Text = "供电所名称";
             this.labelControl13.Visible = false;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.simpleButton3);
             this.groupBox3.Controls.Add(this.memoEdit3);
-            this.groupBox3.Location = new System.Drawing.Point(12, 225);
+            this.groupBox3.Location = new System.Drawing.Point(12, 248);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(508, 133);
             this.groupBox3.TabIndex = 28;

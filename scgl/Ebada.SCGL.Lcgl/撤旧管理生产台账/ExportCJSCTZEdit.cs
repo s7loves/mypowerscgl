@@ -68,7 +68,7 @@ namespace Ebada.Scgl.Lcgl
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\生产台账.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\生产台账 (撤旧).xls";
             ex.Open(fname);
             ExportExcel(ex, datalist, "生产台账");
             
