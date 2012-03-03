@@ -121,8 +121,12 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmCLCKXZ_Load(object sender, EventArgs e)
         {
-            spinEdit2.Properties.MaxValue = Convert.ToDecimal(rowData.kcsl);
-
+            if (rowData.kcsl != "0")
+                spinEdit2.Properties.MaxValue = Convert.ToDecimal(rowData.kcsl);
+            else
+            {
+                spinEdit2.Properties.MaxValue = Convert.ToDecimal(0.0001);
+            }
             comboBoxEdit6.Properties.Items.Clear();
             IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct lqdw  from PJ_clcrkd where type = '工程材料出库单'");
             comboBoxEdit6.Properties.Items.AddRange(mclist);

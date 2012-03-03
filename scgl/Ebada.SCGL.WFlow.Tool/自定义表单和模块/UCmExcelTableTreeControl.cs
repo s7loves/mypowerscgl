@@ -86,7 +86,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 LP_Temple parentlp = treeList1.GetDataRecordByNode(treeList1.FocusedNode) as LP_Temple;
                 if (parentlp != null)
                 {
+                    if (parentlp.CtrlSize == "目录")
                     e.Value.ParentID = parentlp.LPID;
+                    else
+                        e.Value.ParentID = parentlp.ParentID;
+
                     string slqwhere = " where   ParentID='" + parentlp.LPID + "'";
                         slqwhere += " and CtrlSize != '目录'";
                         e.Value.SortID = MainHelper.PlatformSqlMap.GetRowCount<LP_Temple>(slqwhere) + 1;
@@ -295,6 +299,8 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             InitData();
         }
+
+        
 
       
        

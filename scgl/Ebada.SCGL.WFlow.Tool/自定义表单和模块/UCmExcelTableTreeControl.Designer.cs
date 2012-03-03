@@ -73,7 +73,7 @@
             this.treeListColumn1});
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.KeyFieldName = "LPID";
-            this.treeList1.Location = new System.Drawing.Point(0, 25);
+            this.treeList1.Location = new System.Drawing.Point(0, 26);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.AutoChangeParent = false;
             this.treeList1.OptionsBehavior.AutoSelectAllInEditor = false;
@@ -85,7 +85,7 @@
             this.typeCBox,
             this.typeLookUp});
             this.treeList1.SelectImageList = this.imageList2;
-            this.treeList1.Size = new System.Drawing.Size(760, 327);
+            this.treeList1.Size = new System.Drawing.Size(760, 326);
             this.treeList1.TabIndex = 0;
             this.treeList1.AfterDragNode += new DevExpress.XtraTreeList.NodeEventHandler(this.treeList1_AfterDragNode);
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
@@ -308,7 +308,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(760, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(760, 26);
             // 
             // barDockControlBottom
             // 
@@ -319,14 +319,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 327);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 326);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(760, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 327);
+            this.barDockControlRight.Location = new System.Drawing.Point(760, 26);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
             // 
             // imageList1
             // 
