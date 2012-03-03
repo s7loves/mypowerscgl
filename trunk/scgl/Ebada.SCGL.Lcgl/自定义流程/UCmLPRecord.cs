@@ -880,37 +880,48 @@ namespace Ebada.Scgl.Lcgl {
         }
         private void workFlowFormShow(LP_Record currRecord)
         {
+            workFlowFormShow(currRecord, null);
+        }
+        private void workFlowFormShow(LP_Record currRecord, DataTable dtret)
+        {
             DataTable dtall = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
             DataTable dt =new DataTable ();
-            if (dtall.Rows.Count < 1)
+            if (dtret == null)
             {
-                if (currRecord.Status == "存档")
+                if (dtall.Rows.Count < 1)
                 {
-                    frmTemplate fm = new frmTemplate();
-                    fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
-                    fm.CurrRecord = currRecord;
-                    fm.Kind = strKind;
-                    fm.Status = "edit";
-                    fm.ShowDialog();
+                    if (currRecord.Status == "存档")
+                    {
+                        frmTemplate fm = new frmTemplate();
+                        fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+                        fm.CurrRecord = currRecord;
+                        fm.Kind = strKind;
+                        fm.Status = "edit";
+                        fm.ShowDialog();
+                    }
+                    return;
                 }
-                return;
-            }
-            if (dtall.Rows.Count == 1 || currRecord.Status.IndexOf("|")==-1)
-            {
-                dt = dtall;
-            }
-            else
-            {
-                WorkFlowTaskSelectForm wfts = new WorkFlowTaskSelectForm();
-                wfts.RecordWorkFlowData = dtall;
-                if (wfts.ShowDialog() == DialogResult.OK)
+                if (dtall.Rows.Count == 1 || currRecord.Status.IndexOf("|") == -1)
                 {
-                    dt = wfts.RetWorkFlowData;
+                    dt = dtall;
                 }
                 else
                 {
-                    return;
+                    WorkFlowTaskSelectForm wfts = new WorkFlowTaskSelectForm();
+                    wfts.RecordWorkFlowData = dtall;
+                    if (wfts.ShowDialog() == DialogResult.OK)
+                    {
+                        dt = wfts.RetWorkFlowData;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
+            }
+            else
+            {
+                dt = dtret;
             }
             if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
             object obj = RecordWorkTask.GetWorkTaskModle(dt);
@@ -1446,7 +1457,8 @@ namespace Ebada.Scgl.Lcgl {
                         {
                             if (obj is WorkFlowLineSelectForm)
                             {
-                                workFlowFormShow(currRecord);
+
+                                workFlowFormShow(currRecord, ((WorkFlowLineSelectForm)obj).RetWorkFlowData);
                             }
                         }
                     }
