@@ -118,7 +118,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            string strSQL = "where 1=1 and (type='非生产物资入库单' or type='工程材料出库单' or type='工程材料材料单' ) ";
+            string strSQL = "where 1=1 and (type='非生产物资入库单' or type='非生产物资出库单' ) ";
             int i = 0;
 
             
@@ -158,6 +158,15 @@ namespace Ebada.Scgl.Lcgl
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                 "select distinct ssgc  from PJ_clcrkd where 1=1  and ssgc!='' ");
             comboBoxEdit1.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit7.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct lqdw  from PJ_clcrkd where 1=1  and lqdw!='' ");
+            comboBoxEdit7.Properties.Items.AddRange(mclist);
+            comboBoxEdit8.Properties.Items.Clear();
+             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct ghdw  from PJ_clcrkd where 1=1  and ghdw!='' ");
+            comboBoxEdit8.Properties.Items.AddRange(mclist);
 
         }
 

@@ -57,6 +57,10 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.ucsctz1 = new Ebada.Scgl.Lcgl.UCCJSCTZ();
+            this.comboBoxEdit8 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.comboBoxEdit7 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -83,6 +87,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit7.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -97,6 +103,10 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.comboBoxEdit8);
+            this.panelControl1.Controls.Add(this.comboBoxEdit7);
+            this.panelControl1.Controls.Add(this.labelControl10);
+            this.panelControl1.Controls.Add(this.labelControl9);
             this.panelControl1.Controls.Add(this.barFJLY);
             this.panelControl1.Controls.Add(this.TaskOverButton);
             this.panelControl1.Controls.Add(this.checkEdit2);
@@ -395,6 +405,40 @@
             this.ucsctz1.TabIndex = 0;
             this.ucsctz1.VarDbTableName = "PJ_clcrkd,LP_Record";
             // 
+            // comboBoxEdit8
+            // 
+            this.comboBoxEdit8.Location = new System.Drawing.Point(532, 92);
+            this.comboBoxEdit8.Name = "comboBoxEdit8";
+            this.comboBoxEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit8.Size = new System.Drawing.Size(149, 21);
+            this.comboBoxEdit8.TabIndex = 70;
+            // 
+            // comboBoxEdit7
+            // 
+            this.comboBoxEdit7.Location = new System.Drawing.Point(532, 50);
+            this.comboBoxEdit7.Name = "comboBoxEdit7";
+            this.comboBoxEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit7.Size = new System.Drawing.Size(149, 21);
+            this.comboBoxEdit7.TabIndex = 71;
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Location = new System.Drawing.Point(478, 95);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(48, 14);
+            this.labelControl10.TabIndex = 68;
+            this.labelControl10.Text = "供货单位";
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(478, 53);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(48, 14);
+            this.labelControl9.TabIndex = 69;
+            this.labelControl9.Text = "领取单位";
+            // 
             // UCCJSCTZInquiry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -431,6 +475,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit7.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -466,6 +512,10 @@
         private DevExpress.XtraEditors.SimpleButton barFJLY;
         private DevExpress.XtraEditors.SimpleButton TaskOverButton;
         private UCCJSCTZ ucsctz1;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit8;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit7;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
 
     }
 }

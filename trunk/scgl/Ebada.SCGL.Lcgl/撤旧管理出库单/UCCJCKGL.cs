@@ -360,6 +360,7 @@ namespace Ebada.Scgl.Lcgl
 
                     }
                     ucclck1.inidata();
+                    //simpleButton2_Click(sender, e);
                 }
             }
         }
@@ -369,6 +370,7 @@ namespace Ebada.Scgl.Lcgl
             if (gridView1.FocusedRowHandle < -1)
                 return;
             PJ_clcrkd rowdata = gridView1.GetFocusedRow() as PJ_clcrkd;
+            rowdata = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_clcrkd>(rowdata.ID);
             frmCJCLCKSingleXZ frm = new frmCJCLCKSingleXZ();
             frm.RowData = new PJ_clcrkd();
             ConvertHelper.CopyTo<PJ_clcrkd>(rowdata, (PJ_clcrkd)frm.RowData);
@@ -441,6 +443,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(ckd);
                 ucclck1.inidata();
+                //simpleButton2_Click(sender, e);
             }
         }
 

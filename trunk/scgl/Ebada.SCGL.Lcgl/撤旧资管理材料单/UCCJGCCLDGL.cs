@@ -367,6 +367,7 @@ namespace Ebada.Scgl.Lcgl
             if (gridView1.FocusedRowHandle < -1)
                 return;
             PJ_clcrkd rowdata = gridView1.GetFocusedRow() as PJ_clcrkd;
+            rowdata = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_clcrkd>(rowdata.ID);
             frmCJGCCLDSingleXZ frm = new frmCJGCCLDSingleXZ();
             frm.RowData = new PJ_clcrkd();
             ConvertHelper.CopyTo<PJ_clcrkd>(rowdata, (PJ_clcrkd)frm.RowData);
