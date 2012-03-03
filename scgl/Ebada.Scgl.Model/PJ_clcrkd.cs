@@ -224,7 +224,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：单价
         /// 字段信息：[wpdj],nvarchar
         /// </summary>
-        [DisplayNameAttribute("单价")]
+        [DisplayNameAttribute("单价(单位:元)")]
         public string wpdj
         {
             get { return _wpdj; }

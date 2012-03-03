@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_clrkysd" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_clrkysd"  type="Ebada.Scgl.Model.PJ_clrkysd,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_clrkysd_AllColumns" class="PJ_clrkysd">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="ssgc" column="ssgc" />
+        <result property="ssxm" column="ssxm" />
+        <result property="xmdw" column="xmdw" />
+        <result property="ghdw" column="ghdw" />
+        <result property="xmtz" column="xmtz" />
+        <result property="dhht" column="dhht" />
+        <result property="fpbh" column="fpbh" />
+        <result property="wpmc" column="wpmc" />
+        <result property="wpgg" column="wpgg" />
+        <result property="wpdw" column="wpdw" />
+        <result property="wpsl" column="wpsl" />
+        <result property="wpdj" column="wpdj" />
+        <result property="htjg" column="htjg" />
+        <result property="yfk" column="yfk" />
+        <result property="scbh" column="scbh" />
+        <result property="jcjg" column="jcjg" />
+        <result property="czwt" column="czwt" />
+        <result property="indate" column="indate" />
+        <result property="cljg" column="cljg" />
+        <result property="ysr" column="ysr" />
+        <result property="jsfzr" column="jsfzr" />
+        <result property="zgjz" column="zgjz" />
+        <result property="Remark" column="Remark" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_clrkysdList" resultMap="PJ_clrkysd_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [ssgc],
+         [ssxm],
+         [xmdw],
+         [ghdw],
+         [xmtz],
+         [dhht],
+         [fpbh],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [wpdj],
+         [htjg],
+         [yfk],
+         [scbh],
+         [jcjg],
+         [czwt],
+         [indate],
+         [cljg],
+         [ysr],
+         [jsfzr],
+         [zgjz],
+         [Remark]
+          FROM PJ_clrkysd
+          $value$
+   </select>
+   
+   <select id="SelectPJ_clrkysdByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [ssgc],
+         [ssxm],
+         [xmdw],
+         [ghdw],
+         [xmtz],
+         [dhht],
+         [fpbh],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [wpdj],
+         [htjg],
+         [yfk],
+         [scbh],
+         [jcjg],
+         [czwt],
+         [indate],
+         [cljg],
+         [ysr],
+         [jsfzr],
+         [zgjz],
+         [Remark]
+          FROM PJ_clrkysd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="ssgc">[ssgc]='$ssgc$'</isNotNull>
+       <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
+       <isNotNull prepend="AND" property="xmdw">[xmdw]='$xmdw$'</isNotNull>
+       <isNotNull prepend="AND" property="ghdw">[ghdw]='$ghdw$'</isNotNull>
+       <isNotNull prepend="AND" property="xmtz">[xmtz]='$xmtz$'</isNotNull>
+       <isNotNull prepend="AND" property="dhht">[dhht]='$dhht$'</isNotNull>
+       <isNotNull prepend="AND" property="fpbh">[fpbh]='$fpbh$'</isNotNull>
+       <isNotNull prepend="AND" property="wpmc">[wpmc]='$wpmc$'</isNotNull>
+       <isNotNull prepend="AND" property="wpgg">[wpgg]='$wpgg$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
+       <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdj">[wpdj]='$wpdj$'</isNotNull>
+       <isNotNull prepend="AND" property="htjg">[htjg]='$htjg$'</isNotNull>
+       <isNotNull prepend="AND" property="yfk">[yfk]='$yfk$'</isNotNull>
+       <isNotNull prepend="AND" property="scbh">[scbh]='$scbh$'</isNotNull>
+       <isNotNull prepend="AND" property="jcjg">[jcjg]='$jcjg$'</isNotNull>
+       <isNotNull prepend="AND" property="czwt">[czwt]='$czwt$'</isNotNull>
+       <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+       <isNotNull prepend="AND" property="cljg">[cljg]='$cljg$'</isNotNull>
+       <isNotNull prepend="AND" property="ysr">[ysr]='$ysr$'</isNotNull>
+       <isNotNull prepend="AND" property="jsfzr">[jsfzr]='$jsfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="zgjz">[zgjz]='$zgjz$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_clrkysdByKey" resultMap="PJ_clrkysd_AllColumns" parameterClass="PJ_clrkysd">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [ssgc],
+         [ssxm],
+         [xmdw],
+         [ghdw],
+         [xmtz],
+         [dhht],
+         [fpbh],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [wpdj],
+         [htjg],
+         [yfk],
+         [scbh],
+         [jcjg],
+         [czwt],
+         [indate],
+         [cljg],
+         [ysr],
+         [jsfzr],
+         [zgjz],
+         [Remark]
+         FROM PJ_clrkysd
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_clrkysd" parameterClass="PJ_clrkysd">
+        DELETE FROM 
+         PJ_clrkysd
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_clrkysdByWhere" parameterClass="string">
+     delete from PJ_clrkysd $value$
+   </delete>
+   
+   <delete id="DeletePJ_clrkysdByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_clrkysd
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_clrkysd" parameterClass="PJ_clrkysd" resultClass="int">
+          UPDATE PJ_clrkysd
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [ssgc]=#ssgc#,
+             [ssxm]=#ssxm#,
+             [xmdw]=#xmdw#,
+             [ghdw]=#ghdw#,
+             [xmtz]=#xmtz#,
+             [dhht]=#dhht#,
+             [fpbh]=#fpbh#,
+             [wpmc]=#wpmc#,
+             [wpgg]=#wpgg#,
+             [wpdw]=#wpdw#,
+             [wpsl]=#wpsl#,
+             [wpdj]=#wpdj#,
+             [htjg]=#htjg#,
+             [yfk]=#yfk#,
+             [scbh]=#scbh#,
+             [jcjg]=#jcjg#,
+             [czwt]=#czwt#,
+             [indate]=#indate#,
+             [cljg]=#cljg#,
+             [ysr]=#ysr#,
+             [jsfzr]=#jsfzr#,
+             [zgjz]=#zgjz#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_clrkysd" parameterClass="PJ_clrkysd">
+        INSERT INTO PJ_clrkysd
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [ssgc],
+         [ssxm],
+         [xmdw],
+         [ghdw],
+         [xmtz],
+         [dhht],
+         [fpbh],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [wpdj],
+         [htjg],
+         [yfk],
+         [scbh],
+         [jcjg],
+         [czwt],
+         [indate],
+         [cljg],
+         [ysr],
+         [jsfzr],
+         [zgjz],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #ssgc#,
+         #ssxm#,
+         #xmdw#,
+         #ghdw#,
+         #xmtz#,
+         #dhht#,
+         #fpbh#,
+         #wpmc#,
+         #wpgg#,
+         #wpdw#,
+         #wpsl#,
+         #wpdj#,
+         #htjg#,
+         #yfk#,
+         #scbh#,
+         #jcjg#,
+         #czwt#,
+         #indate#,
+         #cljg#,
+         #ysr#,
+         #jsfzr#,
+         #zgjz#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_clrkysdRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_clrkysd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="ssgc">[ssgc]='$ssgc$'</isNotNull>
+       <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
+       <isNotNull prepend="AND" property="xmdw">[xmdw]='$xmdw$'</isNotNull>
+       <isNotNull prepend="AND" property="ghdw">[ghdw]='$ghdw$'</isNotNull>
+       <isNotNull prepend="AND" property="xmtz">[xmtz]='$xmtz$'</isNotNull>
+       <isNotNull prepend="AND" property="dhht">[dhht]='$dhht$'</isNotNull>
+       <isNotNull prepend="AND" property="fpbh">[fpbh]='$fpbh$'</isNotNull>
+       <isNotNull prepend="AND" property="wpmc">[wpmc]='$wpmc$'</isNotNull>
+       <isNotNull prepend="AND" property="wpgg">[wpgg]='$wpgg$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
+       <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdj">[wpdj]='$wpdj$'</isNotNull>
+       <isNotNull prepend="AND" property="htjg">[htjg]='$htjg$'</isNotNull>
+       <isNotNull prepend="AND" property="yfk">[yfk]='$yfk$'</isNotNull>
+       <isNotNull prepend="AND" property="scbh">[scbh]='$scbh$'</isNotNull>
+       <isNotNull prepend="AND" property="jcjg">[jcjg]='$jcjg$'</isNotNull>
+       <isNotNull prepend="AND" property="czwt">[czwt]='$czwt$'</isNotNull>
+       <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+       <isNotNull prepend="AND" property="cljg">[cljg]='$cljg$'</isNotNull>
+       <isNotNull prepend="AND" property="ysr">[ysr]='$ysr$'</isNotNull>
+       <isNotNull prepend="AND" property="jsfzr">[jsfzr]='$jsfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="zgjz">[zgjz]='$zgjz$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_clrkysdRowCount" parameterClass="string">
+    select count(*) from PJ_clrkysd $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
