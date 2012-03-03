@@ -884,6 +884,15 @@ namespace Ebada.Scgl.Lcgl {
             DataTable dt =new DataTable ();
             if (dtall.Rows.Count < 1)
             {
+                if (currRecord.Status == "存档")
+                {
+                    frmTemplate fm = new frmTemplate();
+                    fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+                    fm.CurrRecord = currRecord;
+                    fm.Kind = strKind;
+                    fm.Status = "edit";
+                    fm.ShowDialog();
+                }
                 return;
             }
             if (dtall.Rows.Count == 1 || currRecord.Status.IndexOf("|")==-1)

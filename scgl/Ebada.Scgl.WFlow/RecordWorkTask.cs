@@ -167,9 +167,13 @@ namespace Ebada.Scgl.WFlow
                     IList<WF_WorkTaskInstanceView> tasklist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskInstanceView>
                         ("SelectWF_WorkTaskInstanceViewList",
                         "where TaskTypeId='2' and WorkFlowInsId='" + wf[0].WorkFlowInsId + "'");
-                    if (!hs.ContainsKey(tasklist[0].WorkTaskInsId) && (tasklist[0].TaskTypeId == "3" || tasklist[0].TaskTypeId == "1"))
-                        hs.Add(tasklist[0].WorkTaskInsId, tasklist[0].TaskCaption);
-                    GetWorkFlowInsPreviousTask(tasklist[0].WorkTaskInsId, tasklist[0].WorkFlowInsId, ref hs);
+
+                    if (tasklist.Count > 0)
+                    {
+                        if (!hs.ContainsKey(tasklist[0].WorkTaskInsId) && (tasklist[0].TaskTypeId == "3" || tasklist[0].TaskTypeId == "1"))
+                            hs.Add(tasklist[0].WorkTaskInsId, tasklist[0].TaskCaption);
+                        GetWorkFlowInsPreviousTask(tasklist[0].WorkTaskInsId, tasklist[0].WorkFlowInsId, ref hs);
+                    }
                 }
             }
             ArrayList akeys = new ArrayList(hs.Keys);
