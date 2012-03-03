@@ -303,6 +303,10 @@
     <EmbeddedResource Include="PJ_clcrkd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_clrkysd.xml">
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

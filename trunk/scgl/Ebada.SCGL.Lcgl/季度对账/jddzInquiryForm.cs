@@ -29,7 +29,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        private string varDbTableName = "LP_Record";
+        private string varDbTableName = "LP_Record,PJ_clcrkd";
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
