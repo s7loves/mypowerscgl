@@ -564,33 +564,42 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
         {
-            if (gridView1.FocusedRowHandle  < 0)
+            try
             {
-                DataView dt = gridView1.DataSource as DataView;
-                if (dt.Table.Rows.Count <= 0)
+                if (gridView1.FocusedRowHandle < 0)
                 {
-                    dt.Table.Rows.Add(dt.Table.NewRow());
-                    gridFlag = true;
-                }
-                else
-                {
-                    if (gridFlag)
+                    DataView dt = gridView1.DataSource as DataView;
+                    if (dt.Table.Rows.Count <= 0)
                     {
-                        if (dt.Table.Rows.Count>0)
-                        {
-                            gridView1.FocusedRowHandle = dt.Table.Rows.Count - 1;
-                        }
-                        gridFlag = false;
+                        dt.Table.Rows.Add(dt.Table.NewRow());
+                        gridFlag = true;
                     }
                     else
                     {
-                        dt.Table.Rows.Add(dt.Table.NewRow());
-                        gridView1.FocusedRowHandle = dt.Table.Rows.Count - 1;
-                    }                
-                    
+                        if (gridFlag)
+                        {
+                            if (dt.Table.Rows.Count > 0)
+                            {
+                                gridView1.FocusedRowHandle = dt.Table.Rows.Count - 1;
+                            }
+                            gridFlag = false;
+                        }
+                        else
+                        {
+                            if (!gridFlag)
+                            {
+                                gridFlag = true;
+                                if (dt.Table.Rows[dt.Table.Rows.Count - 1][0].ToString() == "") return;
+                                dt.Table.Rows.Add(dt.Table.NewRow());
+                            }
+                            gridView1.FocusedRowHandle = dt.Table.Rows.Count - 1;
+                        }
+
+                    }
+
                 }
-                             
             }
+            catch { }
         }
 
         private void gridView1_FocusedColumnChanged(object sender, FocusedColumnChangedEventArgs e)
