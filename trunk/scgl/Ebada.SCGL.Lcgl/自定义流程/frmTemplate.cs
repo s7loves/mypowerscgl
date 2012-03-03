@@ -266,7 +266,7 @@ namespace Ebada.Scgl.Lcgl
                     {
                         if (parentTemple != null) this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
                         else
-                            this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                            if (currRecord.DocContent.Length>0) this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                     }
                 
 
@@ -457,7 +457,7 @@ namespace Ebada.Scgl.Lcgl
                 dockPanel1.Controls.Add(filecontrol);
                 currentPosY += 20;
             }
-            if (currRecord.Status!="存档"||RecordWorkTask.HaveWorkFlowBackRole(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
+            if (currRecord.Status!="存档"||(WorkFlowData!=null&& RecordWorkTask.HaveWorkFlowBackRole(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString())))
             {
                 Button btn_Back = new Button();
                 dockPanel1.Controls.Add(btn_Back);
