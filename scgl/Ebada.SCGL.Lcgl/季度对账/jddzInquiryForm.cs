@@ -104,86 +104,102 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            string strSQL = "where 1=1 and type!='原始库存' ";
+            string strSQL = "where 1=1  ";
             
             int i = 0;
             WaitDialogForm wdf = new WaitDialogForm("", "正在查询数据...");
-            if (comboBoxEdit4.Text == "入库")
+            try
             {
-                strSQL = strSQL + " and type='入库单'  ";
+                if (comboBoxEdit1.Text != "")
+                    strSQL += " and ssgc='" + comboBoxEdit1.Text + "' ";
+                if (comboBoxEdit2.Text != "")
+                    strSQL += " and ssxm='" + comboBoxEdit2.Text + "' ";
+                if (comboBoxEdit3.Text != "")
+                    strSQL += " and wpmc='" + comboBoxEdit3.Text + "' ";
+                if (comboBoxEdit4.Text != "")
+                    strSQL += " and wpgg='" + comboBoxEdit4.Text + "' ";
+                if (comboBoxEdit5.Text != "")
+                    strSQL += " and type like'%" + comboBoxEdit5.Text + "%' ";
+                if (comboBoxEdit7.Text != "")
+                    strSQL += " and lqdw='" + comboBoxEdit7.Text + "' ";
+                if (comboBoxEdit8.Text != "")
+                    strSQL += " and ghdw='" + comboBoxEdit8.Text + "' ";
+
+                if (checkEdit1.Checked && deCreatTimeStart.Text != "")
+                {
+                    strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                }
+                if (checkEdit2.Checked && deEditTimeStart.Text != "")
+                {
+                    strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                }
+                uCmjddzInquiry1.StrSQL = strSQL;
             }
-            if (comboBoxEdit4.Text == "出库")
-            {
-                strSQL = strSQL + " and type='出库单'  ";
-            } 
-            if (checkEdit1.Checked)
-            {
-
-                strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
-
-            }
-            if (checkEdit2.Checked)
-            {
-
-                strSQL = strSQL + " and (wpmc =  '" + cbeWPMC.Text + "' ) ";
-
-            }
-            if (checkEdit3.Checked)
-            {
-
-                strSQL = strSQL + " and (wpgg =  '" + cbewpgg.Text + "' ) ";
-
-            }
-            if (checkEdit4.Checked)
-            {
-
-                strSQL = strSQL + " and (wpdw =  '" + cbewpdw.Text + "' ) ";
-
-            }
-            //if (checkEdit5.Checked)
-            {
-
-                strSQL = strSQL + " and (OrgName =  '" + cbeOrg.Text + "' ) ";
-
-            }
-            //strSQL = strSQL + "  order by type,indate";
-
-            uCmjddzInquiry1.StrOrgName = cbeOrg.Text;
-            uCmjddzInquiry1.StrSQL = strSQL;
-          
+            catch { }
             wdf.Close();
         }
         
-        private void IniData()
-        {
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgName  from mOrg  where 1=1 and c1='是' order by OrgCode");
-            cbeOrg.Properties.Items.AddRange(li);
-            if (cbeOrg.Properties.Items.Count > 0)
-            {
-                cbeOrg.SelectedIndex = 0;
-            }
-            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select  distinct wpmc  from PJ_clcrkd  where 1=1 ");
-            cbeWPMC.Properties.Items.AddRange(li);
-            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select  distinct wpgg  from PJ_clcrkd  where 1=1 ");
-            cbewpgg.Properties.Items.AddRange(li);
-            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select  distinct wpdw  from PJ_clcrkd  where 1=1 ");
-            cbewpdw.Properties.Items.AddRange(li);
-            
-        }
+       
         private void WorkFlowInquiry_Load(object sender, EventArgs e)
         {
-            IniData();
+            comboBoxEdit1.Properties.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct ssgc  from PJ_clcrkd where 1=1  and ssgc!='' ");
+            comboBoxEdit1.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit7.Properties.Items.Clear();
+             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct lqdw  from PJ_clcrkd where 1=1  and lqdw!='' ");
+            comboBoxEdit7.Properties.Items.AddRange(mclist);
+            comboBoxEdit8.Properties.Items.Clear();
+             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct ghdw  from PJ_clcrkd where 1=1  and ghdw!='' ");
+            comboBoxEdit8.Properties.Items.AddRange(mclist);
+           
+        }
+        private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
+        {
+            comboBoxEdit2.Properties.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct ssxm  from PJ_clcrkd where  ssgc!='' ");
+            comboBoxEdit2.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit3.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct wpmc  from PJ_clcrkd where  ssgc='" + comboBoxEdit1.Text + "' and wpmc!='' ");
+            comboBoxEdit3.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit4.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct wpgg  from PJ_clcrkd where  ssgc='" + comboBoxEdit1.Text + "' and  wpgg!='' ");
+            comboBoxEdit4.Properties.Items.AddRange(mclist);
         }
 
-        private void cbeWPMC_TextChanged(object sender, EventArgs e)
+        private void comboBoxEdit2_TextChanged(object sender, EventArgs e)
         {
-            cbewpgg.Properties.Items.Clear();
-            cbewpdw.Properties.Items.Clear();
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select  distinct wpgg  from PJ_clcrkd  where 1=1 and wpmc='" + cbeWPMC.Text + "' ");
-            cbewpgg.Properties.Items.AddRange(li);
-            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select  distinct wpdw  from PJ_clcrkd  where 1=1 and wpmc='" + cbeWPMC.Text + "' ");
-            cbewpdw.Properties.Items.AddRange(li);
+
+
+            comboBoxEdit3.Properties.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct wpmc  from PJ_clcrkd where  ssxm='" + comboBoxEdit2.Text + "'  and wpmc!='' ");
+            comboBoxEdit3.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit4.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct wpgg  from PJ_clcrkd where  ssxm='" + comboBoxEdit2.Text + "'  and wpgg!='' ");
+            comboBoxEdit4.Properties.Items.AddRange(mclist);
         }
+
+        private void comboBoxEdit3_TextChanged(object sender, EventArgs e)
+        {
+
+
+            comboBoxEdit4.Properties.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit3.Text + "' and wpgg!='' ");
+            comboBoxEdit4.Properties.Items.AddRange(mclist);
+        }
+       
 
         private void barFJLY_ItemClick(object sender, EventArgs e)
         {

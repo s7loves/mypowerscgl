@@ -37,7 +37,7 @@
             this.barBack = new DevExpress.XtraBars.BarButtonItem();
             this.barChange = new DevExpress.XtraBars.BarButtonItem();
             this.barSus = new DevExpress.XtraBars.BarButtonItem();
-            this.btReExport = new DevExpress.XtraBars.BarButtonItem();
+            this.btView = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.barCopy = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -47,21 +47,30 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btExport = new DevExpress.XtraBars.BarSubItem();
-            this.barReExport = new DevExpress.XtraBars.BarButtonItem();
             this.barReChange = new DevExpress.XtraBars.BarButtonItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.btExport = new DevExpress.XtraBars.BarSubItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -87,16 +96,15 @@
             this.btRefresh1,
             this.btClose,
             this.bsItem1,
-            this.btExport,
             this.barBack,
             this.barChange,
             this.barSus,
-            this.barReExport,
-            this.btReExport,
+            this.btView,
             this.barReChange,
             this.barView,
-            this.barCopy});
-            this.barManager1.MaxItemId = 24;
+            this.barCopy,
+            this.btExport});
+            this.barManager1.MaxItemId = 25;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -116,8 +124,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barBack, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barChange, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSus, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btReExport, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose),
             new DevExpress.XtraBars.LinkPersistInfo(this.barCopy)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -214,14 +223,14 @@
             this.barSus.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barSus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSus_ItemClick);
             // 
-            // btReExport
+            // btView
             // 
-            this.btReExport.Caption = "导出";
-            this.btReExport.Id = 18;
-            this.btReExport.ImageIndex = 7;
-            this.btReExport.Name = "btReExport";
-            this.btReExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btReExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReExport_ItemClick);
+            this.btView.Caption = "导出";
+            this.btView.Id = 18;
+            this.btView.ImageIndex = 7;
+            this.btView.Name = "btView";
+            this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btView.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInCustomizing;
             // 
             // btClose
             // 
@@ -303,21 +312,6 @@
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
             // 
-            // btExport
-            // 
-            this.btExport.Caption = "导出";
-            this.btExport.Id = 8;
-            this.btExport.ImageIndex = 7;
-            this.btExport.Name = "btExport";
-            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // barReExport
-            // 
-            this.barReExport.Caption = "导出";
-            this.barReExport.Id = 17;
-            this.barReExport.Name = "barReExport";
-            // 
             // barReChange
             // 
             this.barReChange.Caption = "跳转";
@@ -350,13 +344,23 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
-            this.gridColumn9,
-            this.gridColumn7,
             this.gridColumn2,
             this.gridColumn3,
+            this.gridColumn9,
+            this.gridColumn19,
+            this.gridColumn7,
+            this.gridColumn16,
             this.gridColumn4,
+            this.gridColumn13,
             this.gridColumn5,
             this.gridColumn6,
+            this.gridColumn12,
+            this.gridColumn10,
+            this.gridColumn15,
+            this.gridColumn11,
+            this.gridColumn14,
+            this.gridColumn17,
+            this.gridColumn18,
             this.gridColumn8});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
@@ -377,29 +381,14 @@
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             // 
-            // gridColumn9
-            // 
-            this.gridColumn9.Caption = "类型";
-            this.gridColumn9.FieldName = "type";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 1;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "供电所";
-            this.gridColumn7.FieldName = "OrgName";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 2;
-            // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "名称";
             this.gridColumn2.FieldName = "wpmc";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 3;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 100;
             // 
             // gridColumn3
             // 
@@ -407,7 +396,43 @@
             this.gridColumn3.FieldName = "wpgg";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 4;
+            this.gridColumn3.VisibleIndex = 2;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "类型";
+            this.gridColumn9.FieldName = "type";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 3;
+            this.gridColumn9.Width = 200;
+            // 
+            // gridColumn19
+            // 
+            this.gridColumn19.Caption = "编号";
+            this.gridColumn19.FieldName = "num";
+            this.gridColumn19.Name = "gridColumn19";
+            this.gridColumn19.Visible = true;
+            this.gridColumn19.VisibleIndex = 4;
+            this.gridColumn19.Width = 200;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "所属工程";
+            this.gridColumn7.FieldName = "ssgc";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 5;
+            this.gridColumn7.Width = 200;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "所属分工程";
+            this.gridColumn16.FieldName = "ssxm";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 6;
+            this.gridColumn16.Width = 200;
             // 
             // gridColumn4
             // 
@@ -415,7 +440,15 @@
             this.gridColumn4.FieldName = "wpdw";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 5;
+            this.gridColumn4.VisibleIndex = 7;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "物品单价";
+            this.gridColumn13.FieldName = "wpdj";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 8;
             // 
             // gridColumn5
             // 
@@ -423,20 +456,82 @@
             this.gridColumn5.FieldName = "wpsl";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 6;
+            this.gridColumn5.VisibleIndex = 9;
             // 
             // gridColumn6
             // 
-            this.gridColumn6.Caption = "时间";
+            this.gridColumn6.Caption = "入库时间";
             this.gridColumn6.FieldName = "indate";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 7;
+            this.gridColumn6.VisibleIndex = 10;
+            this.gridColumn6.Width = 150;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "出库数量";
+            this.gridColumn12.FieldName = "cksl";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 11;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "物品价值(单位:元)";
+            this.gridColumn10.FieldName = "wpjz";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 12;
+            this.gridColumn10.Width = 100;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "用途";
+            this.gridColumn15.FieldName = "yt";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 13;
+            this.gridColumn15.Width = 100;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "出库时间";
+            this.gridColumn11.FieldName = "ckdate";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 14;
+            this.gridColumn11.Width = 100;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "库存数量";
+            this.gridColumn14.FieldName = "zkcsl";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 15;
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "领取单位";
+            this.gridColumn17.FieldName = "lqdw";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 16;
+            this.gridColumn17.Width = 100;
+            // 
+            // gridColumn18
+            // 
+            this.gridColumn18.Caption = "供货单位";
+            this.gridColumn18.FieldName = "ghdw";
+            this.gridColumn18.Name = "gridColumn18";
+            this.gridColumn18.Visible = true;
+            this.gridColumn18.VisibleIndex = 17;
+            this.gridColumn18.Width = 100;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "ID";
-            this.gridColumn8.FieldName = "ID";
+            this.gridColumn8.FieldName = "wpjz";
             this.gridColumn8.Name = "gridColumn8";
             // 
             // repositoryItemTextEdit1
@@ -446,6 +541,14 @@
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             this.repositoryItemTextEdit1.NullText = "输入密码";
             this.repositoryItemTextEdit1.PasswordChar = '*';
+            // 
+            // btExport
+            // 
+            this.btExport.Caption = "导出";
+            this.btExport.Id = 24;
+            this.btExport.ImageIndex = 7;
+            this.btExport.Name = "btExport";
+            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // UCmjddzInquiry
             // 
@@ -484,14 +587,12 @@
         private DevExpress.XtraBars.BarStaticItem bsItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraBars.BarSubItem btExport;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraBars.BarButtonItem barBack;
         private DevExpress.XtraBars.BarButtonItem barChange;
         private DevExpress.XtraBars.BarButtonItem barSus;
-        private DevExpress.XtraBars.BarButtonItem barReExport;
         private System.Windows.Forms.ImageList imageList1;
-        private DevExpress.XtraBars.BarButtonItem btReExport;
+        private DevExpress.XtraBars.BarButtonItem btView;
         private DevExpress.XtraBars.BarButtonItem barReChange;
         private DevExpress.XtraBars.BarButtonItem barView;
         private DevExpress.XtraBars.BarButtonItem barCopy;
@@ -504,5 +605,16 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
+        private DevExpress.XtraBars.BarSubItem btExport;
     }
 }

@@ -159,6 +159,14 @@ namespace Ebada.Scgl.Lcgl
                 "select distinct ssgc  from PJ_clcrkd where 1=1  and ssgc!='' ");
             comboBoxEdit1.Properties.Items.AddRange(mclist);
 
+            comboBoxEdit7.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct lqdw  from PJ_clcrkd where 1=1  and lqdw!='' ");
+            comboBoxEdit7.Properties.Items.AddRange(mclist);
+            comboBoxEdit8.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct ghdw  from PJ_clcrkd where 1=1  and ghdw!='' ");
+            comboBoxEdit8.Properties.Items.AddRange(mclist);
         }
 
         private void comboBoxEdit1_TextChanged(object sender, EventArgs e)

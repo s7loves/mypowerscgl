@@ -136,6 +136,11 @@ namespace Ebada.Scgl.Lcgl
                 if (comboBoxEdit5.Text != "")
                     strSQL += " and type='" + comboBoxEdit5.Text + "' ";
 
+                if (comboBoxEdit7.Text != "")
+                    strSQL += " and lqdw='" + comboBoxEdit7.Text + "' ";
+                if (comboBoxEdit8.Text != "")
+                    strSQL += " and ghdw='" + comboBoxEdit8.Text + "' ";
+
                 if (checkEdit1.Checked && deCreatTimeStart.Text != "")
                 {
                     strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
@@ -160,6 +165,15 @@ namespace Ebada.Scgl.Lcgl
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                 "select distinct ssgc  from PJ_clcrkd where 1=1  and ssgc!='' ");
             comboBoxEdit1.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit7.Properties.Items.Clear();
+             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct lqdw  from PJ_clcrkd where 1=1  and lqdw!='' ");
+            comboBoxEdit7.Properties.Items.AddRange(mclist);
+            comboBoxEdit8.Properties.Items.Clear();
+             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct ghdw  from PJ_clcrkd where 1=1  and ghdw!='' ");
+            comboBoxEdit8.Properties.Items.AddRange(mclist);
 
         }
 
