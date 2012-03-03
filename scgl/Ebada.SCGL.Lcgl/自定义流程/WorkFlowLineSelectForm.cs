@@ -26,6 +26,7 @@ namespace Ebada.Scgl.Lcgl
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private Hashtable checkkeys = null;
+        private DataTable retWorkFlowData = null;//实例流程信息
         private string varDbTableName = "LP_Record";
         public LP_Temple ParentTemple
         {
@@ -71,6 +72,10 @@ namespace Ebada.Scgl.Lcgl
             {
                 varDbTableName = value; ;
             }
+        }
+        public DataTable RetWorkFlowData
+        {
+            get { return retWorkFlowData; }
         }
         public static void GetNextTask(string taskid, string workFlowId, ref Hashtable taskht)
         {
@@ -228,6 +233,23 @@ namespace Ebada.Scgl.Lcgl
 
             currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+            //retWorkFlowData = WorkFlowData.Clone();
+            DataTable dtall = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+            retWorkFlowData = dtall.Clone();
+            retWorkFlowData.Rows.Clear();
+            foreach (DataRow dr in dtall.Rows)
+            {
+                if (WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() == dr["WorkFlowInsId"].ToString())
+                {
+                    DataRow dr2 = retWorkFlowData.NewRow();
+                    foreach (DataColumn dc in dtall.Columns)
+                    {
+                        dr2[dc.ColumnName] = dr[dc.ColumnName];
+                    }
+                    retWorkFlowData.Rows.Add(dr2);
+                    break;
+                }
+            }
             this.DialogResult = DialogResult.OK;
         }
     }
