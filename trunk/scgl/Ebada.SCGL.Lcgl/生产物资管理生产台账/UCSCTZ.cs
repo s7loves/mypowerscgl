@@ -27,6 +27,7 @@ using Ebada.Scgl.WFlow;
 using Ebada.Components;
 using System.Threading;
 using System.Collections;
+using Ebada.Core;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -129,6 +130,7 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value;
             }
         }
+        private DataTable gridtable = null;
         private void initImageList()
         {
             ImageList imagelist = new ImageList();
@@ -318,6 +320,10 @@ namespace Ebada.Scgl.Lcgl
 
             //需要隐藏列时在这写代码
 
+            for (int i = 0; i < gridView1.Columns.Count; i++)
+            {
+                gridView1.Columns[i].Caption = AttributeHelper.GetDisplayName(typeof(PJ_clcrkd), gridView1.Columns[i].FieldName);
+            }
             hideColumn("OrgCode");
             hideColumn("OrgName");
             hideColumn("lasttime");
@@ -338,7 +344,16 @@ namespace Ebada.Scgl.Lcgl
             gridView1.Columns["cksl"].VisibleIndex=11;
             gridView1.Columns["cksl"].VisibleIndex=12;
             gridView1.Columns["lqdw"].VisibleIndex=13;
-           
+
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            GridColumn picview = new GridColumn();
+            picview.Caption = "物品价值";
+            picview.VisibleIndex = 12;
+            picview.FieldName = "wpjz";
+            gridView1.Columns.Add(picview);
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
         }
 
         
@@ -357,8 +372,213 @@ namespace Ebada.Scgl.Lcgl
             //       + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
             //       + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
             //}
-            slqwhere = slqwhere + " order by id desc";
-            gridViewOperation.RefreshData(slqwhere);
+            //slqwhere = slqwhere + " order by id desc";
+            //gridViewOperation.RefreshData(slqwhere);
+            if (gridtable != null) gridtable.Rows.Clear();
+
+            IList<PJ_clcrkd> li = MainHelper.PlatformSqlMap.GetList<PJ_clcrkd>("SelectPJ_clcrkdList", strSQL + "  order by type,indate");
+            if (li.Count != 0)
+            {
+                gridtable = ConvertHelper.ToDataTable((IList)li);
+
+            }
+            else
+            {
+                if (gridtable == null) gridtable = new DataTable();
+            }
+            foreach (DevExpress.XtraGrid.Columns.GridColumn gc in gridView1.Columns)
+            {
+                gc.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
+                gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
+
+            }
+            if (!gridtable.Columns.Contains("xh")) gridtable.Columns.Add("xh", typeof(string));
+            if (!gridtable.Columns.Contains("wpjz")) gridtable.Columns.Add("wpjz", typeof(string));
+            int i = 1;
+            double dsum1 = 0;//入库单
+            double dsum2 = 0;//出库单
+            double dsum3 = 0;//材料单
+            double dsum4 = 0;//库存单
+            double djzsum1 = 0;//入库单
+            double djzsum2 = 0;//出库单
+            double djzsum3 = 0;//材料单
+            double djzsum4 = 0;//材料单
+            bool bfind1 = false;//入库单
+            bool bfind2 = false;//出库单
+            bool bfind3 = false;//材料单
+            foreach (DataRow dr in gridtable.Rows)
+            {
+                dr["xh"] = i++;
+                if (dr["wpsl"].ToString() == "") dr["wpsl"] = 0;
+                if (dr["wpdj"].ToString() == "") dr["wpdj"] = 0;
+                if (dr["type"].ToString().IndexOf("入库单") > 0)
+                {
+                    dsum1 += Convert.ToDouble(dr["wpsl"]);
+                    dr["wpjz"] = Convert.ToDouble(dr["wpsl"]) * Convert.ToDouble(dr["wpdj"]);
+                    djzsum1 += Convert.ToDouble(dr["wpjz"]);
+                    dsum4 += Convert.ToDouble(dr["kcsl"]);
+                    djzsum4 += Convert.ToDouble(dr["kcsl"]) * Convert.ToDouble(dr["wpdj"]);
+                    bfind1 = true;
+                }
+                else
+                    if (dr["type"].ToString().IndexOf("出库单") > 0)
+                    {
+
+                        dsum2 += Convert.ToDouble(dr["cksl"]);
+                        dr["wpjz"] = Convert.ToDouble(dr["cksl"]) * Convert.ToDouble(dr["wpdj"]);
+                        djzsum2 += Convert.ToDouble(dr["wpjz"]);
+                        bfind2 = true;
+                    }
+                    else
+                        if (dr["type"].ToString().IndexOf("材料单") > 0)
+                        {
+
+                            dsum3 += Convert.ToDouble(dr["cksl"]);
+                            dr["wpjz"] = Convert.ToDouble(dr["cksl"]) * Convert.ToDouble(dr["wpdj"]);
+                            djzsum3 += Convert.ToDouble(dr["wpjz"]);
+                            bfind3 = true;
+                        }
+
+            }
+
+            if (bfind1)
+            {
+                DataRow dr1 = gridtable.NewRow();
+                //dr1["xh"] = i++;
+                dr1["type"] = "入库单";
+                dr1["wpmc"] = "入库合计";
+                dr1["wpsl"] = dsum1;
+                dr1["wpjz"] = djzsum1;
+                gridtable.Rows.Add(dr1);
+            }
+            if (bfind2)
+            {
+                DataRow dr1 = gridtable.NewRow();
+                //dr1["xh"] = i++;
+                dr1["type"] = "出库单";
+                dr1["wpmc"] = "出库合计";
+                dr1["wpsl"] = dsum2;
+                dr1["wpjz"] = djzsum2;
+                gridtable.Rows.Add(dr1);
+            }
+            if (bfind3)
+            {
+                DataRow dr1 = gridtable.NewRow();
+                //dr1["xh"] = i++;
+                dr1["type"] = "材料单";
+                dr1["wpmc"] = "出库合计";
+                dr1["wpsl"] = dsum3;
+                dr1["wpjz"] = djzsum3;
+                gridtable.Rows.Add(dr1);
+            }
+            DataRow dr2 = gridtable.NewRow();
+            //dr1["xh"] = i++;
+            dr2["type"] = "现有库存";
+            dr2["wpmc"] = "库存合计";
+            dr2["wpsl"] = dsum4;
+            dr2["wpjz"] = djzsum4;
+            gridtable.Rows.Add(dr2);
+            IList wpli = MainHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select distinct wpmc from PJ_clcrkd {0} ", strSQL));
+            foreach (string wpmc in wpli)
+            {
+                IList wpggli = MainHelper.PlatformSqlMap.GetList("SelectOneStr",
+               string.Format("select distinct wpgg from PJ_clcrkd {0} ", strSQL));
+                string stryskc = "",//原始库存
+                 strjzyskc = "",//原始库存价值
+
+                 strrks = "",//入库数
+                 strjzrks = "",//入库数价值
+
+                 strcks = "",//出库数 
+                 strjzcks = "",//出库数价值
+
+                 strxykc = "",//现有库存
+                strjzxykc = "";//现有库存价值
+                List<string> sli = new List<string>();
+                sli.Add("生产材料");
+                //sli.Add("撤旧材料");
+                //sli.Add("非生产物资");
+                foreach (string strtype in sli)
+                {
+                    if (strSQL.IndexOf(strtype) < 0 && strSQL.IndexOf("type") > -1) continue;
+                    foreach (string wpgg in wpggli)
+                    {
+                        stryskc = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
+                        string.Format("select wpsl from PJ_clcrkd where  wpmc='{0}' and wpgg='{1}'  and type = '{2}原始库存' ",
+                            wpmc, wpgg, strtype));
+                        strjzyskc = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
+                        string.Format("select cast(sum(cast(wpsl as int)*cast(wpdj as int)) as nvarchar(50)) from PJ_clcrkd where  wpmc='{0}' and wpgg='{1}'  and type = '{2}原始库存' ", wpmc, wpgg, strtype));
+
+                        strrks = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
+                        string.Format("select cast(sum(cast(wpsl as int)) as nvarchar(50)) from PJ_clcrkd   {2}  and wpmc='{0}' and wpgg='{1}'  and type = '{3}入库单' ",
+                             wpmc, wpgg, strSQL, strtype));
+                        strjzrks = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
+                        string.Format("select cast(sum(cast(wpsl as int)*cast(wpdj as int)) as nvarchar(50)) from PJ_clcrkd   {2}  and wpmc='{0}' and wpgg='{1}'  and type = '{3}入库单' ", wpmc, wpgg, strSQL, strtype));
+
+                        strcks = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
+                        string.Format("select cast(sum(cast(cksl as int)) as nvarchar(50))  from PJ_clcrkd   {2} and  wpmc='{0}' and wpgg='{1}'  and type='{3}出库单' ",
+                            wpmc, wpgg, strSQL, strtype));
+                        strjzcks = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
+                        string.Format("select cast(sum(cast(cksl as int)*cast(wpdj as int)) as nvarchar(50))  from PJ_clcrkd   {2} and  wpmc='{0}' and wpgg='{1}'  and type='{3}出库单' ",
+                            wpmc, wpgg, strSQL, strtype));
+
+                        strxykc = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
+                        string.Format("select cast(sum(cast(kcsl as int)) as nvarchar(12))  from PJ_clcrkd {2} and  wpmc='{0}' and wpgg='{1}' and type = '{3}入库单'   ",
+                            wpmc, wpgg, strSQL, strtype));
+                        strjzxykc = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
+                        string.Format("select cast(sum(cast(kcsl as int)*cast(wpdj as int)) as nvarchar(50))  from PJ_clcrkd {2} and  wpmc='{0}' and wpgg='{1}' and type = '{3}入库单' ",
+                            wpmc, wpgg, strSQL, strtype));
+
+                        DataRow dr1;
+                        if (strSQL.IndexOf("type") == -1 || strSQL.IndexOf("%" + strtype + "%") > 0 || strSQL.IndexOf("入库单") > 0)
+                        {
+                            dr1 = gridtable.NewRow();
+                            //dr1["xh"] = i++;x
+                            dr1["type"] = strtype + "入库单合计";
+                            dr1["wpmc"] = wpmc;
+                            dr1["wpgg"] = wpgg;
+                            dr1["wpsl"] = strrks;
+                            dr1["wpjz"] = strjzrks;
+                            gridtable.Rows.Add(dr1);
+                        }
+
+                        if (strSQL.IndexOf("type") == -1 || strSQL.IndexOf("%" + strtype + "%") > 0 || strSQL.IndexOf("出库单") > 0)
+                        {
+                            dr1 = gridtable.NewRow();
+                            dr1["type"] = strtype + "出库单合计";
+                            dr1["wpmc"] = wpmc;
+                            dr1["wpgg"] = wpgg;
+                            dr1["wpsl"] = strcks;
+                            dr1["wpjz"] = strjzcks;
+                            gridtable.Rows.Add(dr1);
+                        }
+
+
+                        dr1 = gridtable.NewRow();
+                        dr1["type"] = strtype + "原始库存";
+                        dr1["wpmc"] = wpmc;
+                        dr1["wpgg"] = wpgg;
+                        dr1["wpsl"] = stryskc;
+                        dr1["wpjz"] = strjzyskc;
+                        gridtable.Rows.Add(dr1);
+
+
+
+                        dr1 = gridtable.NewRow();
+                        dr1["type"] = strtype + "现有库存";
+                        dr1["wpmc"] = wpmc;
+                        dr1["wpgg"] = wpgg;
+                        dr1["wpsl"] = strxykc;
+                        dr1["wpjz"] = strjzxykc;
+                        gridtable.Rows.Add(dr1);
+
+
+                    }
+
+                }
+            }
+            gridControl1.DataSource = gridtable; 
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -420,7 +640,18 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            IList<PJ_clcrkd> datalist = gridView1.DataSource as IList<PJ_clcrkd>;
+            //IList<PJ_clcrkd> datalist = gridView1.DataSource as IList<PJ_clcrkd>;
+            IList<PJ_clcrkd> datalist = new List<PJ_clcrkd>();
+            foreach (DataRow dr in gridtable.Rows)
+            {
+                PJ_clcrkd pc = new PJ_clcrkd();
+                foreach (DataColumn dc in gridtable.Columns)
+                {
+                    if (dc.DataType.FullName.IndexOf("wpjz") < 0)
+                        pc.GetType().GetProperty(dc.ColumnName).SetValue(pc, dr[dc.ColumnName], null);
+                }
+                datalist.Add(pc);
+            }
             frmProjectSelect fys = new frmProjectSelect();
             //fys.strType = " and (type = '工程材料入库单' or type = '工程材料入库单原始库存') ";
             //fys.StrSQL = "select distinct ssgc  from PJ_clcrkd where  (type = '工程材料入库单' or type = '工程材料入库单原始库存') ";

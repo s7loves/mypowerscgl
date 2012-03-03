@@ -394,7 +394,7 @@ namespace Ebada.Scgl.Lcgl
                 ckd.ID = ckd.CreateID();
                
                 System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                    "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+                    "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '非生产物资入库单' or type = '非生产物资入库单单原始库存')"
                     + " and wpmc='" + rowdata.wpmc + "' " + " and ssgc='" + rowdata.ssgc + "' "
                     + " and wpgg='" + rowdata.wpgg + "' ");
                 if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());

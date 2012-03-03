@@ -531,7 +531,7 @@
             // gridColumn8
             // 
             this.gridColumn8.Caption = "ID";
-            this.gridColumn8.FieldName = "wpjz";
+            this.gridColumn8.FieldName = "ID";
             this.gridColumn8.Name = "gridColumn8";
             // 
             // repositoryItemTextEdit1
