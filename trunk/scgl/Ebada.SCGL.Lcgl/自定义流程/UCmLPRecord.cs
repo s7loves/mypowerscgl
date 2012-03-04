@@ -396,6 +396,17 @@ namespace Ebada.Scgl.Lcgl {
             {
                 barView.Visibility = BarItemVisibility.Always;
             }
+            if (parentObj.FlowCaption == "电力线路第一种工作票")
+            {
+                barChange.Visibility = BarItemVisibility.Always;
+                barSus.Visibility= BarItemVisibility.Always;
+            }
+            else
+            {
+                barChange.Visibility = BarItemVisibility.Never;
+                barSus.Visibility = BarItemVisibility.Never;
+            }
+
         }
         private void btAddfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -1969,6 +1980,11 @@ namespace Ebada.Scgl.Lcgl {
                         currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
 
                 }
+            }
+            if (currRecord.Status == "存档")
+            {
+                MsgBox.ShowTipMessageBox("该流程已经结束!");
+                return;
             }
              DataTable dt = RecordWorkTask.GetRecordWorkFlowData2(dr["ID"].ToString());
             if (dt.Rows.Count > 0)
