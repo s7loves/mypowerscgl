@@ -115,12 +115,12 @@ namespace Ebada.Scgl.Lcgl
             for (int i = 0; i < arrCol.Length; i++)
             {
                 if (arrCol[i].ToString() == "") continue;
-                if (arrColtype.Length>i &&( arrColtype[i].IndexOf("RepositoryItemCalcEdit") > -1 || arrColtype[i].IndexOf("RepositoryItemSpinEdit") > -1))
+                if (arrColtype[i].IndexOf("RepositoryItemCalcEdit") > -1 || arrColtype[i].IndexOf("RepositoryItemSpinEdit") > -1)
                 {
                     ds.Columns.Add(arrCol[i], typeof(double));
                 }
                 else
-                    if (arrColtype.Length > i && arrColtype[i].IndexOf("RepositoryItemDateEdit") > -1)
+                    if (arrColtype[i].IndexOf("RepositoryItemDateEdit") > -1)
                     {
                         ds.Columns.Add(arrCol[i], typeof(DateTime));
                     }
@@ -137,17 +137,18 @@ namespace Ebada.Scgl.Lcgl
             grid.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             grid.OptionsView.ShowGroupPanel = false;
             string[] comItem = SelectorHelper.ToDBC(lp.ComBoxItem).Split('|');
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             for (int i = 0; i < grid.Columns.Count; i++)
             {
-                grid.Columns[i].OptionsColumn.AllowShowHide = false;
-                grid.Columns[i].OptionsColumn.AllowMove = false;
+
                 if (grid.Columns[i].FieldName == "序号" || grid.Columns[i].FieldName == "月份" || grid.Columns[i].FieldName == "季度")
                 {
                     grid.Columns[i].MinWidth = 20;
                 }
                 Regex r1 = new Regex(@"(?<=" + i + ":).*?(?=])");
-                string strcom = "";
-                if(comItem.Length>i)strcom = r1.Match(comItem[i]).Value;
+                string strcom = r1.Match(comItem[i]).Value;
+
                 if (strcom.IndexOf("RepositoryItemDateEdit") > -1)
                 {
                     r1 = new Regex(@"(?<=:).*");
@@ -169,11 +170,11 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else if (strcom.IndexOf("RepositoryItemCalcEdit") > -1)
                 {
+
                     r1 = new Regex(@"(?<=:).*");
                     DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit date =
                              new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
                     if (r1.Match(strcom).Value != "")
-
                         date.Properties.EditMask = r1.Match(strcom).Value;
 
                     grid.Columns[i].ColumnEdit = date;
@@ -186,7 +187,7 @@ namespace Ebada.Scgl.Lcgl
                     ((System.ComponentModel.ISupportInitialize)(lue1)).BeginInit();
                     if (r1.Match(strcom).Value != "")
                     {
-                        if (r1.Match(strcom).Value.IndexOf("p") > -1 )
+                        if (r1.Match(strcom).Value.IndexOf("p") > -1)
                         {
                             lue1.Increment = (decimal)0.0001;
                             lue1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -196,20 +197,24 @@ namespace Ebada.Scgl.Lcgl
                             {
                                 Regex r2 = new Regex(@"(?<=\.).*");
 
-                                lue1.Increment = (decimal)Math.Pow(0.1, r2.Match(strcom).Value.Length/2);
+                                lue1.Increment = (decimal)Math.Pow(0.1, r2.Match(strcom).Value.Length / 2);
                                 lue1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
 
                             }
-                       
+                        lue1.Name = ("lue1" + i.ToString());
+
                         lue1.Properties.EditMask = r1.Match(strcom).Value;
                         lue1.DisplayFormat.FormatString = r1.Match(strcom).Value;
                         lue1.Properties.DisplayFormat.FormatString = r1.Match(strcom).Value;
+                        lue1.EditMask = r1.Match(strcom).Value;
                     }
                     gridView1.Columns[i].ColumnEdit = lue1;
-                    if (lue1.Properties.EditMask.IndexOf("p") > -1 || lue1.Properties.EditMask.IndexOf("%") > -1)
+                    //if (lue1.Properties.EditMask.IndexOf("p") > -1 || lue1.Properties.EditMask.IndexOf("%") > -1)
                     {
-                        gridView1.Columns[i].DisplayFormat.FormatString = "p";
                         gridView1.Columns[i].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                        gridView1.Columns[i].DisplayFormat.FormatString = lue1.Properties.EditMask.ToString();
+
+
 
 
                     }
@@ -227,6 +232,8 @@ namespace Ebada.Scgl.Lcgl
                 }
 
             }
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
         }
         public int[] GetCellPos(string cellpos)
         {

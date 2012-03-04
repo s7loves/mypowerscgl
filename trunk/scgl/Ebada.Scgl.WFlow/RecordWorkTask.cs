@@ -182,17 +182,21 @@ namespace Ebada.Scgl.WFlow
                 WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(akeys[i].ToString());
                 WF_WorkFlowInstance workflowins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(worktaskins.WorkFlowInsId);
 
-                if (!HaveFlowEndExploreRole(workflowins.FlowInsCaption.Replace("并行节点:", "")))
+                if (HaveFlowEndExploreRole(workflowins.FlowInsCaption.Replace("并行节点:", "")))
                 {
-                    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(akeys[i].ToString(), workflowins.WorkFlowId))
+                    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(worktaskins.WorkTaskId, workflowins.WorkFlowId))
                     {
 
-                        if (!RecordWorkTask.HaveWorkFlowExploreRole(akeys[i].ToString(), workflowins.WorkFlowId))
+                        if (!RecordWorkTask.HaveWorkFlowExploreRole(worktaskins.WorkTaskId, workflowins.WorkFlowId))
                         {
                             continue;
                         }
 
                     }
+                }
+                else
+                {
+                    continue;
                 }
                 LP_Temple temp = GetWorkTaskTemple(currRecord, workflowins.WorkFlowId, workflowins.WorkFlowInsId, worktaskins.WorkTaskId);
 
@@ -661,6 +665,19 @@ namespace Ebada.Scgl.WFlow
                                     continue;
                                 }
                             }
+                            if (!HaveRunPowerRole(WorkConst.WorkTask_FlowEndExplore, tfvli[i].WorkFlowId, tfvli[i].WorkFlowId) || (currRecord.Status != "存档"))
+                            {
+                                if (!RecordWorkTask.HaveWorkFlowAllExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
+                                {
+
+                                    if (!RecordWorkTask.HaveWorkFlowExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
+                                    {
+                                        continue;
+                                    }
+
+                                }
+                            }
+                           
                         }
                         if (activeSheetName != tfvli[i].ExcelSheetName)
                         {
