@@ -899,6 +899,16 @@ namespace Ebada.Scgl.Lcgl {
                         fm.Status = "edit";
                         fm.ShowDialog();
                     }
+                    else
+                    {
+                        IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
+                        if (wf.Count ==1) {
+                            WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
+
+                          string struser= RecordWorkTask.GetWorkFlowTaskOperator(wf[0].WorkTaskInsId);
+                          MsgBox.ShowTipMessageBox("此记录由他人创建，此记录操作者为 " + struser+" !");
+                        }
+                    }
                     return;
                 }
                 if (dtall.Rows.Count == 1 || currRecord.Status.IndexOf("|") == -1)
