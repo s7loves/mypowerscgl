@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Lcgl {
             //gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeUpdate);
             initColumns();
         }
-     
+        DSOFramerControl ds1 = null;
         
         void gridViewOperation_AfterEdit(LP_Record obj)
         {
@@ -1708,6 +1708,7 @@ namespace Ebada.Scgl.Lcgl {
             LP_Record currRecord = new LP_Record();
             int i = 0;
             //string exploreKind = "";
+            if (ds1 == null) ds1 = new DSOFramerControl();
             foreach (DataColumn dc in gridtable.Columns)
             {
                 if (dc.ColumnName != "Image")
@@ -1724,28 +1725,28 @@ namespace Ebada.Scgl.Lcgl {
             if (currRecord.Status != "存档")
             {
                 
-                if (dt.Rows.Count > 0)
-                {
-                    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
-                    {
-                        if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID))
-                        {
-                            MsgBox.ShowWarningMessageBox("没有运行权限，导出失败!");
-                            return;
-                        }
-                        if (!RecordWorkTask.HaveWorkFlowExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
-                        {
-                            MsgBox.ShowWarningMessageBox("没有导出权限，导出失败!");
-                            return;
-                        }
+                //if (dt.Rows.Count > 0)
+                //{
+                //    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
+                //    {
+                //        if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID))
+                //        {
+                //            MsgBox.ShowWarningMessageBox("没有运行权限，导出失败!");
+                //            return;
+                //        }
+                //        if (!RecordWorkTask.HaveWorkFlowExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
+                //        {
+                //            MsgBox.ShowWarningMessageBox("没有导出权限，导出失败!");
+                //            return;
+                //        }
 
-                    }
-                }
-                else
-                {
-                    MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,导出失败!");
-                    return;
-                }
+                //    }
+                //}
+                //else
+                //{
+                //    MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,导出失败!");
+                //    return;
+                //}
             }//流程没结束
             else if (!RecordWorkTask.HaveFlowEndExploreRole(currRecord.Kind))
             {
@@ -1761,10 +1762,10 @@ namespace Ebada.Scgl.Lcgl {
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     fname = saveFileDialog1.FileName;
+
                     try
                     {
 
-                        DSOFramerControl ds1 = new DSOFramerControl();
 
                         ds1.FileDataGzip = currRecord.DocContent;
                         ds1.FileSave(fname, true);
@@ -1776,6 +1777,7 @@ namespace Ebada.Scgl.Lcgl {
                     }
                     catch (Exception ex)
                     {
+                        ds1.FileClose();
                         Console.WriteLine(ex.Message);
                         MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
 
@@ -1833,7 +1835,7 @@ namespace Ebada.Scgl.Lcgl {
                     if (fbd.ShowDialog() == DialogResult.OK)
                     {
                         fname = fbd.SelectedPath + "\\";
-                        DSOFramerControl ds1 = new DSOFramerControl();
+                        
                         ArrayList checkkeys = new ArrayList(frmes.CheckIndehs.Keys);
                         for (i = 0; i < checkkeys.Count; i++)
                         {
@@ -1886,7 +1888,7 @@ namespace Ebada.Scgl.Lcgl {
                     }
                 }
             }//表单不止一个
-            else
+            else if (templehs.Count==1)
             {
                 ArrayList akeys = new ArrayList(templehs.Keys);
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -1895,10 +1897,10 @@ namespace Ebada.Scgl.Lcgl {
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     fname = saveFileDialog1.FileName;
+                    
                     try
                     {
                        
-                        DSOFramerControl ds1 = new DSOFramerControl();
                         if (akeys[0] is LP_Temple)
                         {
                             ds1.FileDataGzip = ((LP_Temple)akeys[0]).DocContent;
@@ -1932,6 +1934,7 @@ namespace Ebada.Scgl.Lcgl {
                     }
                     catch (Exception ex)
                     {
+                        ds1.FileClose();
                         Console.WriteLine(ex.Message);
                         MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
                         return;
