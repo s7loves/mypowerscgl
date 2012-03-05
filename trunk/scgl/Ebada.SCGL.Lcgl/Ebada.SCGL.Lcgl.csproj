@@ -163,43 +163,6 @@
     <Compile Include="非生产物资管理入库单\UCFCLRK.Designer.cs">
       <DependentUpon>UCFCLRK.cs</DependentUpon>
     </Compile>
-    <Compile Include="非生产物资管理出库单\ExportFCLCKEdit.cs" />
-    <Compile Include="非生产物资管理出库单\frmFCLCKXZ.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\frmFCLCKXZ.Designer.cs">
-      <DependentUpon>frmFCLCKXZ.cs</DependentUpon>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\frmFCLCKEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\frmFCLCKEdit.Designer.cs">
-      <DependentUpon>frmFCLCKEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\frmFCLCKSingleXZ.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\frmFCLCKSingleXZ.Designer.cs">
-      <DependentUpon>frmFCLCKSingleXZ.cs</DependentUpon>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\frmFCLCKXZShow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\frmfCLCKXZShow.Designer.cs">
-      <DependentUpon>frmFCLCKXZShow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\UCFCKGL.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\UCFCKGL.Designer.cs">
-      <DependentUpon>UCFCKGL.cs</DependentUpon>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\UCFCLCK.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="非生产物资管理出库单\UCFCLCK.Designer.cs">
-      <DependentUpon>UCFCLCK.cs</DependentUpon>
-    </Compile>
     <Compile Include="非生产物资管理生产台账\ExportFSCTZEdit.cs" />
     <Compile Include="非生产物资管理生产台账\frmFSCTZEdit.cs">
       <SubType>Form</SubType>
@@ -1670,30 +1633,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="非生产物资管理入库单\UCFCLRK.resx">
       <DependentUpon>UCFCLRK.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="非生产物资管理出库单\frmFCLCKXZ.resx">
-      <DependentUpon>frmFCLCKXZ.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="非生产物资管理出库单\frmFCLCKEdit.resx">
-      <DependentUpon>frmFCLCKEdit.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="非生产物资管理出库单\frmFCLCKSingleXZ.resx">
-      <DependentUpon>frmFCLCKSingleXZ.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="非生产物资管理出库单\frmfCLCKXZShow.resx">
-      <DependentUpon>frmFCLCKXZShow.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="非生产物资管理出库单\UCFCKGL.resx">
-      <DependentUpon>UCFCKGL.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="非生产物资管理出库单\UCFCLCK.resx">
-      <DependentUpon>UCFCLCK.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="非生产物资管理生产台账\frmFSCTZEdit.resx">
