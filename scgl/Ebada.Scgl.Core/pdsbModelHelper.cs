@@ -11,6 +11,7 @@ namespace Ebada.Scgl.Core {
     public static class pdsbModelHelper {
 
         public  const string dxxh = "02";
+        public const string byqxh = "08";
         public  const string gtzl = "18";
         public  const string gtxh = "";
         public static void FillCBoxByGt(ComboBoxEdit c) {
