@@ -265,7 +265,7 @@ namespace Ebada.Scgl.Core
         /// </summary>
         /// <param name="listgt"></param>
         /// <returns></returns>
-        public static decimal ByqPk(IList<PS_gt> listgt)//变压器短路损耗
+        public static decimal ByqPk(IList<PS_gt> listgt)//变压器短路损耗-负载
         {
             decimal byqpk = 0;
             foreach (PS_gt gt in listgt)
@@ -282,7 +282,7 @@ namespace Ebada.Scgl.Core
                     IList<PS_tqbyq> listTQBYQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("SelectPS_tqbyqList", "where tqID = '" + tq.tqID + "'");
                     foreach (PS_tqbyq tqbyq in listTQBYQ)
                     {
-                        IList<PS_byqxh> listByqxh = Client.ClientHelper.PlatformSqlMap.GetList<PS_byqxh>("SelectPS_byqxhList","where byqModle = '" +tqbyq.byqModle +"' and byqVol = '" + tqbyq.byqVol +"'");
+                        IList<PS_byqxh> listByqxh = Client.ClientHelper.PlatformSqlMap.GetList<PS_byqxh>("SelectPS_byqxhList", "where byqModle like '" + tqbyq.byqModle + "%' and byqVol = '" + tqbyq.byqVol + "' and byqCapcity =" + tqbyq.byqCapcity.ToString());
                         if (listByqxh.Count>0)
                         {
                             byqpk += (listByqxh[0] as PS_byqxh).Loss1;
@@ -297,7 +297,7 @@ namespace Ebada.Scgl.Core
         /// </summary>
         /// <param name="listgt"></param>
         /// <returns></returns>
-        public static decimal ByqP0(IList<PS_gt> listgt)//变压器开路损耗
+        public static decimal ByqP0(IList<PS_gt> listgt)//变压器开路损耗-空载
         {
             decimal byqp0 = 0;
             foreach (PS_gt gt in listgt)
@@ -314,7 +314,7 @@ namespace Ebada.Scgl.Core
                     IList<PS_tqbyq> listTQBYQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("SelectPS_tqbyqList", "where tqID = '" + tq.tqID + "'");
                     foreach (PS_tqbyq tqbyq in listTQBYQ)
                     {
-                        IList<PS_byqxh> listByqxh = Client.ClientHelper.PlatformSqlMap.GetList<PS_byqxh>("SelectPS_byqxhList", "where byqModle = '" + tqbyq.byqModle + "' and byqVol = '" + tqbyq.byqVol + "'");
+                        IList<PS_byqxh> listByqxh = Client.ClientHelper.PlatformSqlMap.GetList<PS_byqxh>("SelectPS_byqxhList", "where byqModle like '" + tqbyq.byqModle + "%' and byqVol = '" + tqbyq.byqVol + "' and byqCapcity = " + tqbyq.byqCapcity.ToString());
                         if (listByqxh.Count > 0)
                         {
                             byqp0 += (listByqxh[0] as PS_byqxh).Loss2;

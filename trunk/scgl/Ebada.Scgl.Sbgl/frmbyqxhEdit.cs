@@ -57,6 +57,14 @@ namespace Ebada.Scgl.Sbgl
 
         private void InitComboBoxData() {
             this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetVoltage());
+            pdsbModelHelper.FillCBox(textEdit1, pdsbModelHelper.byqxh);
+        }
+
+        private void textEdit1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string []str = new string[3];
+            str = textEdit1.SelectedText.Split(new char[] { '-' });
+            spinEdit1.Text = str[str.Length-1];
         }
 
     }
