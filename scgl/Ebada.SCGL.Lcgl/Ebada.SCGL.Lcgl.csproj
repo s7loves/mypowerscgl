@@ -368,43 +368,6 @@
     <Compile Include="生产物资管理材料单\UCGCCLD.Designer.cs">
       <DependentUpon>UCGCCLD.cs</DependentUpon>
     </Compile>
-    <Compile Include="生产物资管理出库单\frmCLCKSingleXZ.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="生产物资管理出库单\frmCLCKSingleXZ.Designer.cs">
-      <DependentUpon>frmCLCKSingleXZ.cs</DependentUpon>
-    </Compile>
-    <Compile Include="生产物资管理出库单\frmCLCKXZShow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="生产物资管理出库单\frmCLCKXZShow.Designer.cs">
-      <DependentUpon>frmCLCKXZShow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="生产物资管理出库单\ExportCLCKEdit.cs" />
-    <Compile Include="生产物资管理出库单\frmCLCKEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="生产物资管理出库单\frmCLCKEdit.Designer.cs">
-      <DependentUpon>frmCLCKEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="生产物资管理出库单\frmCLCKXZ.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="生产物资管理出库单\frmCLCKXZ.Designer.cs">
-      <DependentUpon>frmCLCKXZ.cs</DependentUpon>
-    </Compile>
-    <Compile Include="生产物资管理出库单\UCCKGL.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="生产物资管理出库单\UCCKGL.Designer.cs">
-      <DependentUpon>UCCKGL.cs</DependentUpon>
-    </Compile>
-    <Compile Include="生产物资管理出库单\UCCLCK.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="生产物资管理出库单\UCCLCK.Designer.cs">
-      <DependentUpon>UCCLCK.cs</DependentUpon>
-    </Compile>
     <Compile Include="生产物资管理入库单\ExportCLRKEdit.cs" />
     <Compile Include="生产物资管理入库单\frmCLRKEdit.cs">
       <SubType>Form</SubType>
@@ -1839,30 +1802,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="生产物资管理材料单\UCGCCLD.resx">
       <DependentUpon>UCGCCLD.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="生产物资管理出库单\frmCLCKSingleXZ.resx">
-      <DependentUpon>frmCLCKSingleXZ.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="生产物资管理出库单\frmCLCKXZShow.resx">
-      <DependentUpon>frmCLCKXZShow.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="生产物资管理出库单\frmCLCKEdit.resx">
-      <DependentUpon>frmCLCKEdit.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="生产物资管理出库单\frmCLCKXZ.resx">
-      <DependentUpon>frmCLCKXZ.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="生产物资管理出库单\UCCKGL.resx">
-      <DependentUpon>UCCKGL.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="生产物资管理出库单\UCCLCK.resx">
-      <DependentUpon>UCCLCK.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="生产物资管理入库单\frmCLRKEdit.resx">
