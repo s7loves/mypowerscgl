@@ -84,7 +84,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='安全工器具入库单' and sx like '%{0}%' and nr!=''", "材料名称"));
+            string.Format("select nr from pj_dyk where  dx='局安全工器具入库单' and sx like '%{0}%' and nr!=''", "材料名称"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
@@ -163,7 +163,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit2.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='安全工器具入库单' and sx like '%{0}%' and nr!=''", "材料规格"));
+            string.Format("select nr from pj_dyk where  dx='局安全工器具入库单' and sx like '%{0}%' and nr!=''", "材料规格"));
             if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
@@ -369,7 +369,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit3.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='安全工器具入库单' and sx like '%{0}%' and nr!=''", "单位"));
+            string.Format("select nr from pj_dyk where  dx='局安全工器具入库单' and sx like '%{0}%' and nr!=''", "单位"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
@@ -461,7 +461,7 @@ namespace Ebada.Scgl.Lcgl
             rowData.kcsl = spinEdit2.Value.ToString();
             long i = 0;
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '安全工器具入库单' or type = '安全工器具入库单原始库存')"
+                "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
                 + " and wpmc='" + comboBoxEdit1.Text + "' "
                 + " and wpgg='" + comboBoxEdit2.Text + "' and id!='" + rowData.ID + "' ");
             if (mclist[0]!=null)i=Convert.ToInt64(mclist[0].ToString());

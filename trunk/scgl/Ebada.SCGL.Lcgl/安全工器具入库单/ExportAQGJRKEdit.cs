@@ -91,64 +91,31 @@ namespace Ebada.Scgl.Lcgl
             //ex.ShowExcel();
 
         }
-        public void ExportExcelProjectCKD(string orgid, string strProject, string strfenProject)
+        public void ExportExcelProjectCKD(string orgid, string strnum)
         {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\安全工器具入库单.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\局安全工器具入库单.xls";
             ex.Open(fname);
-            string strfirst = "";
             string filter = "";
-            string filter2 = "";
-            string filter3 = "";
-            string filter4 = "";
-            if (strProject != "全部")
-                filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '安全工器具入库单' ";
+            if (strnum != "全部")
+                filter = "  where 1=1 and num='" + strnum + "'  and type = '局安全工器具入库单' ";
             else
-                filter2 = "  where 1=1  and type = '安全工器具入库单' ";
-
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_anqgjcrkd " + filter2 + " order by ssgc");
-            
-            foreach (string mc in mclist)
+                filter = "  where 1=1  and type = '局安全工器具入库单' ";
+            if (isWorkflowCall)
             {
-                if (strfenProject == "全部")
-                    filter3 = "  where 1=1 and type = '安全工器具入库单' ";
-                else
-                    filter3 = "  where  ssxm='" + strfenProject + "'  and type = '安全工器具入库单' ";
 
-                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_anqgjcrkd " + filter3 + " order by ssxm");
-                foreach (string xm in xmlist)
-                {
-                    filter4 = "  where 1=1 and type = '安全工器具入库单'"
-                        + "  and ssgc='" + mc + "' "
-                        +"  and ssxm='" + xm + "' ";
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_anqgjcrkd " + filter4 + " ");
-                    foreach (string sj in sjlist)
-                    {
-                        filter = "  where 1=1 and type = '安全工器具入库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm
-                        + "' and CONVERT(varchar(50) , indate, 112 )   like '" + sj + "%' ";
-                        if (isWorkflowCall)
-                        {
-                          
-                            filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                                + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                                    + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                                + "    RecordID='" + currRecord.ID + "') "
-                                ;
-                        }
-
-                        IList<PJ_anqgjcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>(
-                         filter
-                           );
-                        ExportExcel(ex, datalist);
-                    }
-                }
-
+                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                    + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                        + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                    + "    RecordID='" + currRecord.ID + "') "
+                    ;
             }
-
+            IList<PJ_anqgjcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>(
+                          filter
+                            );
+           ExportExcel(ex, datalist);
 
             ex.DeleteSheet(1);
             ex.ShowExcel();
@@ -158,7 +125,7 @@ namespace Ebada.Scgl.Lcgl
             //////lgm
             //ExcelAccess ex = new ExcelAccess();
             //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            //string fname = Application.StartupPath + "\\00记录模板\\安全工器具入库单.xls";
+            //string fname = Application.StartupPath + "\\00记录模板\\局安全工器具入库单.xls";
             //ex.Open(fname);
             //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_anqgjcrkd order by wpmc");
             //string strfirst = "";
@@ -211,43 +178,22 @@ namespace Ebada.Scgl.Lcgl
 
             //ex.ShowExcel();
         }
-        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid, string strProject, string strfenProject)
+        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid, string strnum)
         {
 
             string filter = "";
             int i = 0;
             List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
-            string strfirst = "";
-            string filter2 = "";
-            string filter3 = "";
-            string filter4 = "";
-            if (strProject != "全部")
-                filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '安全工器具入库单' ";
+            
+            
+
+            if (strnum != "全部")
+                filter = "  where 1=1 and strnum='" + strnum + "'  and type = '局安全工器具入库单' ";
             else
-                filter2 = "  where 1=1  and type = '安全工器具入库单' ";
+                filter = "  where 1=1  and type = '局安全工器具入库单' ";
 
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_anqgjcrkd " + filter2 + " order by ssgc");
-
-            foreach (string mc in mclist)
-            {
-                if (strfenProject == "全部")
-                    filter3 = "  where 1=1 and type = '安全工器具入库单' ";
-                else
-                    filter3 = "  where  ssxm='" + strfenProject + "'  and type = '安全工器具入库单' ";
-
-                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_anqgjcrkd " + filter3 + " order by ssxm");
-                foreach (string xm in xmlist)
-                {
-                    filter4 = "  where 1=1 and type = '安全工器具入库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm + "' ";
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_anqgjcrkd " + filter4 + " ");
-                    foreach (string sj in sjlist)
-                    {
-                        filter = "  where 1=1 and type = '安全工器具入库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm
-                        + "' and CONVERT(varchar(50) , indate, 112 )   like '" + sj + "%' ";
+           
+                       
                         if (isWorkflowCall)
                         {
 
@@ -279,11 +225,11 @@ namespace Ebada.Scgl.Lcgl
                                 mrwtlist.Add(mrwt);
                             }
                         }
-                        
-                    }
-                }
+                       
+                    
+                
 
-            }
+            
            
            
             List<SqlQueryObject> list3 = new List<SqlQueryObject>();
@@ -301,10 +247,10 @@ namespace Ebada.Scgl.Lcgl
         }
 
         
-        public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid, string strProject, string strfenProject, bool isShow)
+        public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid, string strnum, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
-            string fname = Application.StartupPath + "\\00记录模板\\安全工器具入库单.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\局安全工器具入库单.xls";
             dsoFramerWordControl1.FileOpen(fname);
 
             if (parentTemple == null)
@@ -320,56 +266,31 @@ namespace Ebada.Scgl.Lcgl
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
 
-            string strfirst = "";
+           
             string filter = "";
-            string filter2 = "";
-            string filter3 = "";
-            string filter4 = "";
-            if (strProject != "全部")
-                filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '安全工器具入库单' ";
+
+            if (strnum != "全部")
+                filter = "  where 1=1 and num='" + strnum + "'  and type = '局安全工器具入库单' ";
             else
-                filter2 = "  where 1=1  and type = '安全工器具入库单' ";
+                filter = "  where 1=1  and type = '局安全工器具入库单' ";
 
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_anqgjcrkd " + filter2 + " order by ssgc");
-
-            foreach (string mc in mclist)
-            {
-                if (strfenProject == "全部")
-                    filter3 = "  where 1=1 and type = '安全工器具入库单' ";
-                else
-                    filter3 = "  where  ssxm='" + strfenProject + "'  and type = '安全工器具入库单' ";
-
-                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_anqgjcrkd " + filter3 + " order by ssxm");
-                foreach (string xm in xmlist)
-                {
-                    filter4 = "  where 1=1 and type = '安全工器具入库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm + "' ";
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_anqgjcrkd " + filter4 + " ");
-                    foreach (string sj in sjlist)
-                    {
-                        filter = "  where 1=1 and type = '安全工器具入库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm
-                        + "' and CONVERT(varchar(50) , indate, 112 )   like '" + sj + "%' ";
-                        if (isWorkflowCall)
-                        {
+            if (isWorkflowCall)
+               {
                            
                             filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
                                 + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
                                     + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                                + "    RecordID='" + currRecord.ID + "') "
-                                ;
-                        }
+                                + "    RecordID='" + currRecord.ID + "') ";
+                }
 
-                        IList<PJ_anqgjcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>(
+             IList<PJ_anqgjcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>(
                          filter
                            );
                         ExportExcel(ex, datalist);
-                    }
-                }
+                    
+                
 
-            }
+            
             //ex.ActiveSheet(1);
             //ex.DeleteWorkSheet(1);
             Excel.Worksheet sheet;
