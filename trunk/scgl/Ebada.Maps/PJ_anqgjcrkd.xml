@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_anqgjcrkd" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_anqgjcrkd"  type="Ebada.Scgl.Model.PJ_anqgjcrkd,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_anqgjcrkd_AllColumns" class="PJ_anqgjcrkd">
+        <result property="ID" column="ID" />
+        <result property="num" column="num" />
+        <result property="OrgName" column="OrgName" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="wpmc" column="wpmc" />
+        <result property="wpgg" column="wpgg" />
+        <result property="wpdw" column="wpdw" />
+        <result property="wpsl" column="wpsl" />
+        <result property="wpdj" column="wpdj" />
+        <result property="wpcj" column="wpcj" />
+        <result property="ckdate" column="ckdate" />
+        <result property="cksl" column="cksl" />
+        <result property="kcsl" column="kcsl" />
+        <result property="lqdw" column="lqdw" />
+        <result property="zkcsl" column="zkcsl" />
+        <result property="ssxm" column="ssxm" />
+        <result property="indate" column="indate" />
+        <result property="Remark" column="Remark" />
+        <result property="type" column="type" />
+        <result property="lasttime" column="lasttime" />
+        <result property="lyparent" column="lyparent" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_anqgjcrkdList" resultMap="PJ_anqgjcrkd_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [num],
+         [OrgName],
+         [OrgCode],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [wpdj],
+         [wpcj],
+         [ckdate],
+         [cksl],
+         [kcsl],
+         [lqdw],
+         [zkcsl],
+         [ssxm],
+         [indate],
+         [Remark],
+         [type],
+         [lasttime],
+         [lyparent]
+          FROM PJ_anqgjcrkd
+          $value$
+   </select>
+   
+   <select id="SelectPJ_anqgjcrkdByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [num],
+         [OrgName],
+         [OrgCode],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [wpdj],
+         [wpcj],
+         [ckdate],
+         [cksl],
+         [kcsl],
+         [lqdw],
+         [zkcsl],
+         [ssxm],
+         [indate],
+         [Remark],
+         [type],
+         [lasttime],
+         [lyparent]
+          FROM PJ_anqgjcrkd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="num">[num]='$num$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="wpmc">[wpmc]='$wpmc$'</isNotNull>
+       <isNotNull prepend="AND" property="wpgg">[wpgg]='$wpgg$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
+       <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdj">[wpdj]='$wpdj$'</isNotNull>
+       <isNotNull prepend="AND" property="wpcj">[wpcj]='$wpcj$'</isNotNull>
+       <isNotNull prepend="AND" property="ckdate">[ckdate]='$ckdate$'</isNotNull>
+       <isNotNull prepend="AND" property="cksl">[cksl]='$cksl$'</isNotNull>
+       <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="lqdw">[lqdw]='$lqdw$'</isNotNull>
+       <isNotNull prepend="AND" property="zkcsl">[zkcsl]='$zkcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
+       <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>
+       <isNotNull prepend="AND" property="lyparent">[lyparent]='$lyparent$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_anqgjcrkdByKey" resultMap="PJ_anqgjcrkd_AllColumns" parameterClass="PJ_anqgjcrkd">
+         SELECT 
+         [ID],
+         [num],
+         [OrgName],
+         [OrgCode],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [wpdj],
+         [wpcj],
+         [ckdate],
+         [cksl],
+         [kcsl],
+         [lqdw],
+         [zkcsl],
+         [ssxm],
+         [indate],
+         [Remark],
+         [type],
+         [lasttime],
+         [lyparent]
+         FROM PJ_anqgjcrkd
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_anqgjcrkd" parameterClass="PJ_anqgjcrkd">
+        DELETE FROM 
+         PJ_anqgjcrkd
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_anqgjcrkdByWhere" parameterClass="string">
+     delete from PJ_anqgjcrkd $value$
+   </delete>
+   
+   <delete id="DeletePJ_anqgjcrkdByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_anqgjcrkd
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_anqgjcrkd" parameterClass="PJ_anqgjcrkd" resultClass="int">
+          UPDATE PJ_anqgjcrkd
+           SET
+             [num]=#num#,
+             [OrgName]=#OrgName#,
+             [OrgCode]=#OrgCode#,
+             [wpmc]=#wpmc#,
+             [wpgg]=#wpgg#,
+             [wpdw]=#wpdw#,
+             [wpsl]=#wpsl#,
+             [wpdj]=#wpdj#,
+             [wpcj]=#wpcj#,
+             [ckdate]=#ckdate#,
+             [cksl]=#cksl#,
+             [kcsl]=#kcsl#,
+             [lqdw]=#lqdw#,
+             [zkcsl]=#zkcsl#,
+             [ssxm]=#ssxm#,
+             [indate]=#indate#,
+             [Remark]=#Remark#,
+             [type]=#type#,
+             [lasttime]=#lasttime#,
+             [lyparent]=#lyparent#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_anqgjcrkd" parameterClass="PJ_anqgjcrkd">
+        INSERT INTO PJ_anqgjcrkd
+         (
+         [ID],
+         [num],
+         [OrgName],
+         [OrgCode],
+         [wpmc],
+         [wpgg],
+         [wpdw],
+         [wpsl],
+         [wpdj],
+         [wpcj],
+         [ckdate],
+         [cksl],
+         [kcsl],
+         [lqdw],
+         [zkcsl],
+         [ssxm],
+         [indate],
+         [Remark],
+         [type],
+         [lasttime],
+         [lyparent]
+         )
+       VALUES
+         (
+         #ID#,
+         #num#,
+         #OrgName#,
+         #OrgCode#,
+         #wpmc#,
+         #wpgg#,
+         #wpdw#,
+         #wpsl#,
+         #wpdj#,
+         #wpcj#,
+         #ckdate#,
+         #cksl#,
+         #kcsl#,
+         #lqdw#,
+         #zkcsl#,
+         #ssxm#,
+         #indate#,
+         #Remark#,
+         #type#,
+         #lasttime#,
+         #lyparent#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_anqgjcrkdRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_anqgjcrkd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="num">[num]='$num$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="wpmc">[wpmc]='$wpmc$'</isNotNull>
+       <isNotNull prepend="AND" property="wpgg">[wpgg]='$wpgg$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
+       <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
+       <isNotNull prepend="AND" property="wpdj">[wpdj]='$wpdj$'</isNotNull>
+       <isNotNull prepend="AND" property="wpcj">[wpcj]='$wpcj$'</isNotNull>
+       <isNotNull prepend="AND" property="ckdate">[ckdate]='$ckdate$'</isNotNull>
+       <isNotNull prepend="AND" property="cksl">[cksl]='$cksl$'</isNotNull>
+       <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="lqdw">[lqdw]='$lqdw$'</isNotNull>
+       <isNotNull prepend="AND" property="zkcsl">[zkcsl]='$zkcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
+       <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>
+       <isNotNull prepend="AND" property="lyparent">[lyparent]='$lyparent$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_anqgjcrkdRowCount" parameterClass="string">
+    select count(*) from PJ_anqgjcrkd $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
