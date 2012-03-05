@@ -201,7 +201,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            frmCLCKXZ frm = new frmCLCKXZ();
+            frmGCCLDSingleXZ frm = new frmGCCLDSingleXZ();
             frm.strType = comboBoxEdit5.Text;
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
             //       <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
