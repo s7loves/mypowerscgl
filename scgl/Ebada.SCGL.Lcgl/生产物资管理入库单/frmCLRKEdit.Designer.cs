@@ -214,6 +214,7 @@
             this.comboBoxEdit1.Size = new System.Drawing.Size(133, 21);
             this.comboBoxEdit1.TabIndex = 1;
             this.comboBoxEdit1.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
+            this.comboBoxEdit1.TextChanged += new System.EventHandler(this.comboBoxEdit1_TextChanged);
             // 
             // comboBoxEdit4
             // 

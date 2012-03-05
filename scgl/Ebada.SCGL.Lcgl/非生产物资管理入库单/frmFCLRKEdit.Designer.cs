@@ -214,6 +214,7 @@
             this.comboBoxEdit1.Size = new System.Drawing.Size(133, 21);
             this.comboBoxEdit1.TabIndex = 1;
             this.comboBoxEdit1.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
+            this.comboBoxEdit1.TextChanged += new System.EventHandler(this.comboBoxEdit1_TextChanged);
             // 
             // comboBoxEdit4
             // 
@@ -472,7 +473,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // frmCLRKEdit
+            // frmFCLRKEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -480,7 +481,7 @@
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmCLRKEdit";
+            this.Name = "frmFCLRKEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "非生产物资入库单";
             this.Load += new System.EventHandler(this.frmCLRKEdit_Load);
