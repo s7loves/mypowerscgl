@@ -165,6 +165,7 @@
             this.barEditGC.Edit = this.repositoryItemComboBox1;
             this.barEditGC.Id = 25;
             this.barEditGC.Name = "barEditGC";
+            this.barEditGC.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barEditGC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barEditGC_ItemClick);
             this.barEditGC.EditValueChanged += new System.EventHandler(this.barEditGC_EditValueChanged);
             // 
@@ -181,6 +182,7 @@
             this.barEditFGC.Edit = this.repositoryItemComboBox2;
             this.barEditFGC.Id = 26;
             this.barEditFGC.Name = "barEditFGC";
+            this.barEditFGC.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barEditFGC.EditValueChanged += new System.EventHandler(this.barEditFGC_EditValueChanged);
             // 
             // repositoryItemComboBox2
@@ -432,7 +434,7 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UCCLRK
+            // UCAQGJRK
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -441,7 +443,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCCLRK";
+            this.Name = "UCAQGJRK";
             this.Size = new System.Drawing.Size(955, 328);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
