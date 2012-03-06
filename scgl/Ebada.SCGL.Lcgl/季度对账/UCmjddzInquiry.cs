@@ -235,7 +235,7 @@ namespace Ebada.Scgl.Lcgl {
             //gridViewOperation.RefreshData(kind);
             if (gridtable != null) gridtable.Rows.Clear();
 
-            IList<PJ_clcrkd> li = MainHelper.PlatformSqlMap.GetList<PJ_clcrkd>("SelectPJ_clcrkdList", strSQL + "  order by type,indate");
+            IList<PJ_clcrkd> li = MainHelper.PlatformSqlMap.GetList<PJ_clcrkd>("SelectPJ_clcrkdList", strSQL + "  order by type,cast( indate as datetime)");
             if (li.Count != 0)
             {
                 gridtable = ConvertHelper.ToDataTable((IList)li);

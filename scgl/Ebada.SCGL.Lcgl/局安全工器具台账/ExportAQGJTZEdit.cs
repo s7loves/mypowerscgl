@@ -17,7 +17,7 @@ namespace Ebada.Scgl.Lcgl
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class ExportFSCTZEdit
+    public class ExportAQGJTZEdit
     {
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
@@ -63,14 +63,14 @@ namespace Ebada.Scgl.Lcgl
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public void ExportExcel(IList<PJ_clcrkd> datalist)
+        public void ExportExcel(IList<PJ_anqgjcrkd> datalist)
         {
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\非生产台账.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\局安全工器具台账.xls";
             ex.Open(fname);
-            ExportExcel(ex, datalist, "非生产台账");
+            ExportExcel(ex, datalist, "局安全工器具台账汇总");
             
             ex.DeleteSheet(1);
             ex.ShowExcel();
@@ -79,10 +79,10 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-        public void ExportExcel(ExcelAccess ex, IList<PJ_clcrkd> datalist, string wpmc)
+        public void ExportExcel(ExcelAccess ex, IList<PJ_anqgjcrkd> datalist, string wpmc)
         {
             //此处写填充内容代码
-            int row = 5;
+            int row = 4;
             int col = 2;
             int rowcount = 18;
 
@@ -111,21 +111,18 @@ namespace Ebada.Scgl.Lcgl
                     else ex.ActiveSheet(wpmc + (j / rowcount + 1));
 
                 }
+                ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
                 ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col );
                 ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 1);
 
                 ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 2);
                 ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 3);
-                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].wpcj, row + j % rowcount, col + 5);
-                ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].ssgc, row + j % rowcount, col + 7);
-                ex.SetCellValue(datalist[j].ckdate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 8);
-                ex.SetCellValue(datalist[j].yt, row + j % rowcount, col + 9);
-                ex.SetCellValue(datalist[j].cksl, row + j % rowcount, col + 10);
-                ex.SetCellValue(datalist[j].cksl, row + j % rowcount, col + 11);
-                ex.SetCellValue(datalist[j].lqdw, row + j % rowcount, col + 12);
-                //ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
+                ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 4);
+                ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), row + j % rowcount, col +5);
+                ex.SetCellValue(datalist[j].cksl, row + j % rowcount, col + 6);
+                ex.SetCellValue(datalist[j].ckdate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 7);
+                ex.SetCellValue(datalist[j].OrgName, row + j % rowcount, col + 8);
+                ex.SetCellValue(datalist[j].zkcsl, row + j % rowcount, col + 10);
 
 
             }

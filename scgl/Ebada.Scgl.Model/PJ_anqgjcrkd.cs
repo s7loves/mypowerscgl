@@ -321,10 +321,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：lqdw
-        /// 属性描述：领取单位
+        /// 属性描述：领取人
         /// 字段信息：[lqdw],nvarchar
         /// </summary>
-        [DisplayNameAttribute("领取单位")]
+        [DisplayNameAttribute("领取人")]
         public string lqdw
         {
             get { return _lqdw; }
@@ -332,7 +332,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[领取单位]长度不能大于50!");
+                    throw new Exception("[领取人]长度不能大于50!");
                 if (_lqdw as object == null || !_lqdw.Equals(value))
                 {
                     _lqdw = value;
