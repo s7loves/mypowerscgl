@@ -33,7 +33,7 @@ namespace Ebada.Scgl.Lcgl
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCAQGJRK : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCAQGJCK : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_anqgjcrkd> gridViewOperation;
 
@@ -119,74 +119,24 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value;
             }
         }
-        public UCAQGJRK()
+        public UCAQGJCK()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_anqgjcrkd>(gridControl1, gridView1, barManager1, new frmAQGJRKEdit());
+            gridViewOperation = new GridViewOperation<PJ_anqgjcrkd>(gridControl1, gridView1, barManager1, new frmAQGJCKEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_anqgjcrkd>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_anqgjcrkd>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_anqgjcrkd>(gridViewOperation_AfterEdit);
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_anqgjcrkd>(gridViewOperation_AfterDelete);
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_anqgjcrkd>(gridViewOperation_BeforeDelete);
+            gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_anqgjcrkd>(gridViewOperation_BeforeEdit);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PJ_anqgjcrkd>(gridViewOperation_BeforeUpdate);
-            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_anqgjcrkd>(gridViewOperation_AfterEdit);
-            gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             if (isWorkflowCall && fjly==null)
             {
                 fjly = new frmModleFjly();
             }
-        }
-        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_anqgjcrkd> e)
-        {
-            if (e.ValueOld.wpmc!= e.Value.wpmc || e.ValueOld.wpgg != e.Value.wpgg)
-            {
-                long i = 0;
-                System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                    "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
-                    + " and wpmc='" + e.ValueOld.wpmc + "' " 
-                    + " and wpgg='" + e.ValueOld.wpgg + "'  ");
-                IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
-                        ("where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
-                    + " and wpmc='" + e.ValueOld.wpmc + "' " 
-                    + " and wpgg='" + e.ValueOld.wpgg + "'  order by id desc ");
-                if (datalist.Count > 0)
-                {
-                    if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
-                    datalist[0].zkcsl = i.ToString();
-                    ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(datalist[0]);
-                }
-            }
-
-        }
-        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_anqgjcrkd> e)
-        {
-            if (e.Value.kcsl != e.Value.wpsl)
-            {
-                MsgBox.ShowTipMessageBox("该记录已有出库信息！");
-                e.Cancel = true;
-                return;
-            }
-            IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
-                      ("where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
-                  + " and wpmc='" + e.Value.wpmc + "' " 
-                  + " and wpgg='" + e.Value.wpgg + "'  order by id desc ");
-            if (datalist.Count > 0)
-            {
-
-                if (datalist[0].ID != e.Value.ID)
-                {
-                    MsgBox.ShowTipMessageBox("该记录不是该类型物品最后的记录，不能修改！");
-                    e.Cancel = true;
-                    return;
-                }
-            }
-        }
-        void gridViewOperation_AfterEdit(PJ_anqgjcrkd obj)
-        {
-
-            RefreshData(" where     (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') ");
         }
         void gridViewOperation_AfterDelete(PJ_anqgjcrkd obj)
         {
@@ -200,23 +150,77 @@ namespace Ebada.Scgl.Lcgl
                     + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
-
             long i = 0;
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
-                + " and wpmc='" + obj.wpmc + "' " 
-                + " and wpgg='" + obj.wpgg + "' and id!='" + obj.ID + "' ");
+            PJ_anqgjcrkd pc = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_anqgjcrkd>(obj.lyparent);
+            pc.kcsl = (Convert.ToDouble(pc.kcsl) + Convert.ToDouble(obj.cksl)).ToString();
+            ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
+
+            //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
+            //    "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '安全工器具入库单' or type = '安全工器具入库单原始库存')"
+            //    + " and wpmc='" + obj.wpmc + "' " + " and ssgc='" + obj.ssgc + "' "
+            //    + " and wpgg='" + obj.wpgg + "'  ");
+
+            //IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
+            //        ("where (type = '局安全工器具出库单')"
+            //    + " and wpmc='" + obj.wpmc + "' " + " and ssgc='" + obj.ssgc + "' "
+            //    + " and wpgg='" + obj.wpgg + "'  order by id desc ");
+            //if (datalist.Count > 0)
+            //{
+            //    if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
+            //    datalist[0].zkcsl = i.ToString();
+            //    ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(datalist[0]);
+            //}
+            RefreshData(" where    type = '局安全工器具出库单' ");
+        }
+        void gridViewOperation_AfterEdit(PJ_anqgjcrkd newobj)
+        {
+
+
+        }
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_anqgjcrkd> e)
+        {
+          
             IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
-                    ("where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
-                + " and wpmc='" + obj.wpmc + "' "
-                + " and wpgg='" + obj.wpgg + "' and id!='" + obj.ID + "' order by id desc ");
+                      ("where (type = '局安全工器具出库单' )"
+                  + " and wpmc='" + e.Value.wpmc + "' "
+                  + " and wpgg='" + e.Value.wpgg + "'  order by id desc ");
             if (datalist.Count > 0)
             {
-                if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
-                datalist[0].zkcsl = i.ToString();
-                ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(datalist[0]);
+
+                if (datalist[0].ID != e.Value.ID)
+                {
+                    MsgBox.ShowTipMessageBox("该记录不是该类型物品最后的记录，不能修改！");
+                    e.Cancel = true;
+                    return;
+                }
             }
-            RefreshData(" where OrgCode='" + parentID + "'   and (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') ");
+        }
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_anqgjcrkd> e)
+        {
+            if (e.ValueOld.cksl != e.Value.cksl )
+            {
+                long i = 0;
+                PJ_anqgjcrkd pc = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_anqgjcrkd>(e.ValueOld.lyparent);
+                pc.kcsl = (Convert.ToDouble(pc.kcsl) + Convert.ToDouble(e.ValueOld.cksl) - Convert.ToDouble(e.Value.cksl)).ToString();
+                ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
+
+                IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
+                    "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '安全工器具入库单' or type = '安全工器具入库单原始库存')"
+                    + " and wpmc='" + e.ValueOld.wpmc + "' "
+                    + " and wpgg='" + e.ValueOld.wpgg + "' and id!='" + e.ValueOld.ID + "' ");
+
+                IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
+                        ("where (type = '局安全工器具出库单')"
+                    + " and wpmc='" + e.ValueOld.wpmc + "' "
+                    + " and wpgg='" + e.ValueOld.wpgg + "'  order by id desc ");
+                if (datalist.Count > 0)
+                {
+                    if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
+                    datalist[0].zkcsl = i.ToString();
+                    ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(datalist[0]);
+                }
+            }
+
         }
         void gridViewOperation_AfterAdd(PJ_anqgjcrkd newobj)
         {
@@ -233,19 +237,21 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.CreatTime = DateTime.Now;
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
+           
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_anqgjcrkd> e)
         {
+
             IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
-                       ("where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
-                   + " and wpmc='" + e.Value.wpmc + "' " 
-                   + " and wpgg='" + e.Value.wpgg + "'  order by id desc ");
+                      ("where (type = '局安全工器具出库单' )"
+                  + " and wpmc='" + e.Value.wpmc + "' "
+                  + " and wpgg='" + e.Value.wpgg + "'  order by id desc ");
             if (datalist.Count > 0)
             {
 
                 if (datalist[0].ID != e.Value.ID)
                 {
-                    MsgBox.ShowTipMessageBox("该记录不是该类型物品最后的记录，不能删除！");
+                    MsgBox.ShowTipMessageBox("该记录不是该类型物品最后的记录，不能修改！");
                     e.Cancel = true;
                     return;
                 }
@@ -254,58 +260,8 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_anqgjcrkd> e)
         {
-            //if (parentID == null)
-            //    e.Cancel = true;
-            e.Value.type = "局安全工器具入库单";
-            IList<PJ_anqgjcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                   <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + e.Value.type + "' order by id desc ");
-            if (pnumli.Count == 0)
-                e.Value.num = "AQGJRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
-            else
-            {
-                e.Value.num = "AQGJRK" + (Convert.ToDecimal(pnumli[0].num.Replace("AQGJRK", "")) + 1);
-            
-            }
-
-            e.Value.lasttime = DateTime.Now; 
- 
-        }
-
-        private void btAddKuCun_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            PJ_anqgjcrkd cl = new PJ_anqgjcrkd();
-            bool isadd = false;
-
-            cl = gridView1.GetFocusedRow() as PJ_anqgjcrkd;
-            if (cl == null || cl.type != "局安全工器具入库单原始库存")
-            {
-                cl = new PJ_anqgjcrkd();
-                //cl.OrgCode = parentObj.OrgCode;
-                //cl.OrgName = parentObj.OrgName;
-                cl.type = "局安全工器具入库单原始库存";
-                cl.Remark = "局安全工器具入库单原始库存";
-                isadd = true;
-            }
-            if (cl.type == "局安全工器具入库单原始库存")
-            {
-                frmCLRKEdit frm = new frmCLRKEdit();
-                frm.RowData = cl;
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    if (isadd)
-                    {
-                        MainHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(cl);
-                    }
-                    else
-                    {
-                        MainHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(cl);
-                    }
-                    RefreshData(" where     (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') ");
-                }
-            }
-            else
-                return;
-
+           
+            e.Value.type = "安全工器具出库单";
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -314,33 +270,85 @@ namespace Ebada.Scgl.Lcgl
             InitColumns();//初始列
             //InitData();//初始数据
             if (this.Site != null) return;
-            //btGdsList.Edit = DicTypeHelper.GdsDic3;
-            //btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
-            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
-            {//如果是供电所人员，则锁定
-                btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
-                btGdsList.Edit.ReadOnly = true;
-            }
             iniProject();
-            RefreshData(" where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') ");
-        }
+            RefreshData(" where (type = '局安全工器具出库单') ");
 
-        void btGdsList_EditValueChanged(object sender, EventArgs e)
+
+        }
+        void iniProject()
         {
-            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
-            if (list.Count > 0)
-                org = list[0];
-            
-            if (org != null)
-            {
-                ParentObj = org;
-                if (SelectGdsChanged != null)
-                    SelectGdsChanged(this, org);
-            }
-            
+            repositoryItemComboBox1.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_anqgjcrkd where type = '局安全工器具出库单'  and ssgc!='' ");
+            repositoryItemComboBox1.Items.AddRange(mclist);
+        }
+        private void barEditGC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            repositoryItemComboBox2.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_anqgjcrkd where  ssgc='" + barEditGC.EditValue + "' and ( type = '局安全工器具出库单') and ssxm!='' ");
+            repositoryItemComboBox2.Items.AddRange(mclist);
+
+            repositoryItemComboBox3.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_anqgjcrkd where  ssgc='" + barEditGC.EditValue + "' and ( type = '局安全工器具出库单') and wpmc!='' ");
+            repositoryItemComboBox3.Items.AddRange(mclist);
+
+            repositoryItemComboBox4.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_anqgjcrkd where  ssgc='" + barEditGC.EditValue + "' and ( type = '局安全工器具出库单') and wpgg!='' ");
+            repositoryItemComboBox4.Items.AddRange(mclist);
+            barEditFGC.EditValue = "";
+        }
+        private void barEditFGC_EditValueChanged(object sender, EventArgs e)
+        {
+
+
+
+            inidate();
+            repositoryItemComboBox3.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_anqgjcrkd where  ssxm='" + barEditFGC.EditValue + "' and ( type = '局安全工器具出库单') and wpmc!='' ");
+            repositoryItemComboBox3.Items.AddRange(mclist);
+
+            repositoryItemComboBox4.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_anqgjcrkd where  ssxm='" + barEditFGC.EditValue + "' and ( type = '局安全工器具出库单') and wpgg!='' ");
+            repositoryItemComboBox4.Items.AddRange(mclist);
 
         }
+
+        private void barEditGC_EditValueChanged(object sender, EventArgs e)
+        {
+            barEditGC_ItemClick(sender, null);
+
+            inidate();
+        }
+
+        private void barEditItem1_EditValueChanged(object sender, EventArgs e)
+        {
+
+            repositoryItemComboBox4.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_anqgjcrkd where  wpmc='" + barEditItem1.EditValue + "' and wpgg!='' ");
+            repositoryItemComboBox4.Items.AddRange(mclist);
+            inidate();
+
+        }
+        private void inidate()
+        {
+            string ssgc = " and 1=1 ", ssxm = " and 1=1 ", wpgg = " and 1=1 ", wpmc = " and 1=1 ";
+            if (barEditGC.EditValue != null && barEditGC.EditValue.ToString() != "")
+                ssgc = " and ssgc='" + barEditGC.EditValue + "' ";
+            if (barEditFGC.EditValue != null && barEditFGC.EditValue.ToString() != "")
+                ssxm = " and ssxm='" + barEditFGC.EditValue + "' ";
+            if (barEditItem1.EditValue != null && barEditItem1.EditValue.ToString() != "")
+                wpmc = " and wpmc='" + barEditItem1.EditValue + "' ";
+            if (barEditItem2.EditValue != null && barEditItem2.EditValue.ToString() != "")
+                wpgg = " and wpgg='" + barEditItem2.EditValue + "' ";
+            RefreshData(" where  (type = '局安全工器具出库单') " + ssgc + ssxm + wpmc + wpgg);
+        }
+        private void barEditItem2_EditValueChanged(object sender, EventArgs e)
+        {
+
+
+            inidate();
+        }
+
+        
         private void initImageList()
         {
             ImageList imagelist = new ImageList();
@@ -373,16 +381,26 @@ namespace Ebada.Scgl.Lcgl
             //需要隐藏列时在这写代码
 
             hideColumn("OrgCode");
-            hideColumn("OrgName");
             hideColumn("type");
-            hideColumn("cksl");
-            hideColumn("kcsl");
-            hideColumn("lqdw");
-            hideColumn("kcsl");
-            hideColumn("ckdate");
             hideColumn("lyparent");
+            hideColumn("kcsl");
+            hideColumn("ssgc");
+            hideColumn("ssxm");
+            hideColumn("lqdw");
             hideColumn("wpcj");
-            gridView1.Columns["num"].Width = 150;
+            gridView1.Columns["num"].Width = 120;
+
+            gridView1.Columns["OrgName"].VisibleIndex = 1;
+            gridView1.Columns["wpmc"].VisibleIndex = 2;
+            gridView1.Columns["wpgg"].VisibleIndex = 3;
+
+            gridView1.Columns["wpdw"].VisibleIndex = 4;
+            gridView1.Columns["wpsl"].VisibleIndex = 5;
+            gridView1.Columns["wpdj"].VisibleIndex = 6;
+            gridView1.Columns["indate"].VisibleIndex = 7;
+            gridView1.Columns["ckdate"].VisibleIndex = 8;
+            gridView1.Columns["cksl"].VisibleIndex = 9;
+            
 
            
         }
@@ -419,10 +437,9 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_anqgjcrkd newobj)
         {
-            //if (parentID == null) return;
-            //newobj.OrgCode = parentID;
-            //newobj.OrgName = parentObj.OrgName;
-            
+            if (parentID == null) return;
+            newobj.OrgCode = parentID;
+            newobj.OrgName = parentObj.OrgName;
             newobj.indate = DateTime.Now;
           
         }
@@ -440,81 +457,13 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where  (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')  ");
+                    RefreshData(" where  type = '局安全工器具出库单' ");
                 }
             }
         }
-
-        void iniProject()
+        public void inidata()
         {
-            repositoryItemComboBox3.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_anqgjcrkd where type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存'  and wpmc!='' ");
-            repositoryItemComboBox3.Items.AddRange(mclist);
-        }
-        private void barEditGC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            repositoryItemComboBox2.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_anqgjcrkd where  ssgc='" + barEditGC.EditValue + "' and ( type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') and ssxm!='' ");
-            repositoryItemComboBox2.Items.AddRange(mclist);
-
-            repositoryItemComboBox3.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_anqgjcrkd where  ssgc='" + barEditGC.EditValue + "' and ( type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') and wpmc!='' ");
-            repositoryItemComboBox3.Items.AddRange(mclist);
-
-            repositoryItemComboBox4.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_anqgjcrkd where  ssgc='" + barEditGC.EditValue + "' and ( type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') and wpgg!='' ");
-            repositoryItemComboBox4.Items.AddRange(mclist);
-            barEditFGC.EditValue = ""; 
-        }
-        private void barEditFGC_EditValueChanged(object sender, EventArgs e)
-        {
-
-
-
-            inidate();
-            repositoryItemComboBox3.Items.Clear();
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_anqgjcrkd where  ssxm='" + barEditFGC.EditValue + "' and ( type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') and wpmc!='' ");
-            repositoryItemComboBox3.Items.AddRange(mclist);
-
-            repositoryItemComboBox4.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_anqgjcrkd where  ssxm='" + barEditFGC.EditValue + "' and ( type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') and wpgg!='' ");
-            repositoryItemComboBox4.Items.AddRange(mclist);
-
-        }
-
-        private void barEditGC_EditValueChanged(object sender, EventArgs e)
-        {
-            barEditGC_ItemClick(sender, null);
-
-            inidate();
-        }
-
-        private void barEditItem1_EditValueChanged(object sender, EventArgs e)
-        {
-            repositoryItemComboBox4.Items.Clear();
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_anqgjcrkd where  wpmc='" + barEditItem1.EditValue + "' and wpgg!='' ");
-            repositoryItemComboBox4.Items.AddRange(mclist);
-            inidate();
-            
-        }
-        private void inidate()
-        {
-            string ssgc = " and 1=1 ", ssxm = " and 1=1 ", wpgg = " and 1=1 ", wpmc = " and 1=1 ";
-            if (barEditGC.EditValue != null && barEditGC.EditValue.ToString() != "")
-                ssgc = " and ssgc='" + barEditGC.EditValue + "' ";
-            if (barEditFGC.EditValue!=null&&barEditFGC.EditValue.ToString() != "")
-                ssxm = " and ssxm='" + barEditFGC.EditValue + "' ";
-            if (barEditItem1.EditValue != null && barEditItem1.EditValue.ToString() != "")
-                wpmc = " and wpmc='" + barEditItem1.EditValue + "' ";
-            if (barEditItem2.EditValue != null && barEditItem2.EditValue.ToString() != "")
-                wpgg = " and wpgg='" + barEditItem2.EditValue + "' ";
-            RefreshData(" where  (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') " + ssgc + ssxm + wpmc + wpgg);
-        }
-        private void barEditItem2_EditValueChanged(object sender, EventArgs e)
-        {
-
-
-            inidate();
+            RefreshData(" where type = '局安全工器具出库单' ");
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -536,21 +485,7 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            //IList<PJ_anqgjcrkd> datalist = gridView1.DataSource as IList<PJ_anqgjcrkd>;
-            frmNumSelect fys = new frmNumSelect();
-            fys.strType = " and (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') ";
-            fys.StrSQL = "select distinct num  from PJ_anqgjcrkd where  (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') ";
-            if (fys.ShowDialog() == DialogResult.OK)
-            {
-
-                ExportAQGJRKEdit etdjh = new ExportAQGJRKEdit();
-                etdjh.ExportExcelProjectCKD(parentID,fys.strNum);
-            }
-           
-           
-           
-        }
+        
 
         
 
@@ -564,18 +499,18 @@ namespace Ebada.Scgl.Lcgl
             else
                 fm.Status = "edit";
             fm.Kind = currRecord.Kind;
-            frmNumSelect fys = new frmNumSelect();
-            fys.strType = " and (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') ";
-            fys.StrSQL = "select distinct num  from PJ_anqgjcrkd where  (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') ";
+            frmProjectSelect fys = new frmProjectSelect();
+            fys.strType = " and (type = '局安全工器具出库单' ) ";
+            fys.StrSQL = "select distinct ssgc  from PJ_anqgjcrkd where  (type = '局安全工器具出库单' ) ";
             if (fys.ShowDialog() == DialogResult.OK)
             {
-                ExportAQGJRKEdit export = new ExportAQGJRKEdit();
+                ExportCLCKEdit export = new ExportCLCKEdit();
                 export.CurrRecord = currRecord;
                 export.IsWorkflowCall = isWorkflowCall;
                 export.ParentTemple = parentTemple;
                 export.RecordWorkFlowData = WorkFlowData;
 
-                export.ExportExcelSubmit(ref parentTemple, "", fys.strNum , false);
+                export.ExportExcelSubmit(ref parentTemple, "", fys.strProject, fys.strFenproject, false);
 
                 fm.ParentTemple = parentTemple;
                 if (fm.ShowDialog() == DialogResult.OK)
@@ -583,9 +518,9 @@ namespace Ebada.Scgl.Lcgl
                     if (fjly == null) fjly = new frmModleFjly();
                     fjly.btn_Submit_Click(sender, e);
                     if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strNum);
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
                     else
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strNum);
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
                     gridControl1.FindForm().Close();
                 }
             }
@@ -639,13 +574,13 @@ namespace Ebada.Scgl.Lcgl
 
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmNumSelect fys = new frmNumSelect();
-            fys.strType = " and (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') ";
-            fys.StrSQL = "select distinct num  from PJ_anqgjcrkd where  (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存') ";
+            frmProjectSelect fys = new frmProjectSelect();
+            fys.strType = " and (type = '局安全工器具出库单' ) ";
+            fys.StrSQL = "select distinct ssgc  from PJ_anqgjcrkd where  (type = '局安全工器具出库单') ";
             if (fys.ShowDialog() == DialogResult.OK)
             {
-                ExportAQGJRKEdit etdjh = new ExportAQGJRKEdit();
-                etdjh.ExportExcelProjectCKD("", fys.strNum);
+                ExportCLCKEdit etdjh = new ExportCLCKEdit();
+                etdjh.ExportExcelProjectCKD("", fys.strProject, fys.strFenproject);
             }
         }
 
@@ -700,11 +635,5 @@ namespace Ebada.Scgl.Lcgl
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }
-
-      
-
-       
-
-    
     }
 }

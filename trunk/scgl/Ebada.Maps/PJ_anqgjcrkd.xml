@@ -20,6 +20,7 @@
         <result property="kcsl" column="kcsl" />
         <result property="lqdw" column="lqdw" />
         <result property="zkcsl" column="zkcsl" />
+        <result property="ssgc" column="ssgc" />
         <result property="ssxm" column="ssxm" />
         <result property="indate" column="indate" />
         <result property="Remark" column="Remark" />
@@ -47,6 +48,7 @@
          [kcsl],
          [lqdw],
          [zkcsl],
+         [ssgc],
          [ssxm],
          [indate],
          [Remark],
@@ -74,6 +76,7 @@
          [kcsl],
          [lqdw],
          [zkcsl],
+         [ssgc],
          [ssxm],
          [indate],
          [Remark],
@@ -97,6 +100,7 @@
        <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
        <isNotNull prepend="AND" property="lqdw">[lqdw]='$lqdw$'</isNotNull>
        <isNotNull prepend="AND" property="zkcsl">[zkcsl]='$zkcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="ssgc">[ssgc]='$ssgc$'</isNotNull>
        <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
@@ -122,6 +126,7 @@
          [kcsl],
          [lqdw],
          [zkcsl],
+         [ssgc],
          [ssxm],
          [indate],
          [Remark],
@@ -171,6 +176,7 @@
              [kcsl]=#kcsl#,
              [lqdw]=#lqdw#,
              [zkcsl]=#zkcsl#,
+             [ssgc]=#ssgc#,
              [ssxm]=#ssxm#,
              [indate]=#indate#,
              [Remark]=#Remark#,
@@ -200,6 +206,7 @@
          [kcsl],
          [lqdw],
          [zkcsl],
+         [ssgc],
          [ssxm],
          [indate],
          [Remark],
@@ -224,6 +231,7 @@
          #kcsl#,
          #lqdw#,
          #zkcsl#,
+         #ssgc#,
          #ssxm#,
          #indate#,
          #Remark#,
@@ -253,6 +261,7 @@
        <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
        <isNotNull prepend="AND" property="lqdw">[lqdw]='$lqdw$'</isNotNull>
        <isNotNull prepend="AND" property="zkcsl">[zkcsl]='$zkcsl$'</isNotNull>
+       <isNotNull prepend="AND" property="ssgc">[ssgc]='$ssgc$'</isNotNull>
        <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>

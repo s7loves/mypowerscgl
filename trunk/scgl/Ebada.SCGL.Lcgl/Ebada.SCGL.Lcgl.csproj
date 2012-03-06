@@ -124,23 +124,60 @@
     <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
     </Compile>
-    <Compile Include="安全工器具入库单\ExportAQGJRKEdit.cs" />
-    <Compile Include="安全工器具入库单\frmAQGJRKEdit.cs">
+    <Compile Include="局安全工器具出库单\ExportAQGJCKEdit.cs" />
+    <Compile Include="局安全工器具出库单\frmAQGJCKEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="安全工器具入库单\frmAQGJRKEdit.Designer.cs">
-      <DependentUpon>frmAQGJRKEdit.cs</DependentUpon>
+    <Compile Include="局安全工器具出库单\frmAQGJCKEdit.Designer.cs">
+      <DependentUpon>frmAQGJCKEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="安全工器具入库单\frmNumSelect.cs">
+    <Compile Include="局安全工器具出库单\frmAQGJCKSingleXZ.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="安全工器具入库单\frmNumSelect.Designer.cs">
-      <DependentUpon>frmNumSelect.cs</DependentUpon>
+    <Compile Include="局安全工器具出库单\frmAQGJCKSingleXZ.Designer.cs">
+      <DependentUpon>frmAQGJCKSingleXZ.cs</DependentUpon>
     </Compile>
-    <Compile Include="安全工器具入库单\UCAQGJRK.cs">
+    <Compile Include="局安全工器具出库单\frmAQGJCKXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="局安全工器具出库单\frmAQGJCKXZ.Designer.cs">
+      <DependentUpon>frmAQGJCKXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="局安全工器具出库单\frmAQGJCKXZShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="局安全工器具出库单\frmAQGJCKXZShow.Designer.cs">
+      <DependentUpon>frmAQGJCKXZShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="局安全工器具出库单\UCAQGJCKGL.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="安全工器具入库单\UCAQGJRK.Designer.cs">
+    <Compile Include="局安全工器具出库单\UCAQGJCKGL.Designer.cs">
+      <DependentUpon>UCAQGJCKGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="局安全工器具出库单\UCAQGJCK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="局安全工器具出库单\UCAQGJCK.Designer.cs">
+      <DependentUpon>UCAQGJCK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="局安全工器具入库单\ExportAQGJRKEdit.cs" />
+    <Compile Include="局安全工器具入库单\frmAQGJRKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="局安全工器具入库单\frmAQGJRKEdit.Designer.cs">
+      <DependentUpon>frmAQGJRKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="局安全工器具入库单\frmNumSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="局安全工器具入库单\frmNumSelect.Designer.cs">
+      <DependentUpon>frmNumSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="局安全工器具入库单\UCAQGJRK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="局安全工器具入库单\UCAQGJRK.Designer.cs">
       <DependentUpon>UCAQGJRK.cs</DependentUpon>
     </Compile>
     <Compile Include="生产物资管理出库单\ExportCLCKEdit.cs">
@@ -1695,15 +1732,39 @@
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="安全工器具入库单\frmAQGJRKEdit.resx">
+    <EmbeddedResource Include="局安全工器具出库单\frmAQGJCKEdit.resx">
+      <DependentUpon>frmAQGJCKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="局安全工器具出库单\frmAQGJCKSingleXZ.resx">
+      <DependentUpon>frmAQGJCKSingleXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="局安全工器具出库单\frmAQGJCKXZ.resx">
+      <DependentUpon>frmAQGJCKXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="局安全工器具出库单\frmAQGJCKXZShow.resx">
+      <DependentUpon>frmAQGJCKXZShow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="局安全工器具出库单\UCAQGJCKGL.resx">
+      <DependentUpon>UCAQGJCKGL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="局安全工器具出库单\UCAQGJCK.resx">
+      <DependentUpon>UCAQGJCK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="局安全工器具入库单\frmAQGJRKEdit.resx">
       <DependentUpon>frmAQGJRKEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="安全工器具入库单\frmNumSelect.resx">
+    <EmbeddedResource Include="局安全工器具入库单\frmNumSelect.resx">
       <DependentUpon>frmNumSelect.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="安全工器具入库单\UCAQGJRK.resx">
+    <EmbeddedResource Include="局安全工器具入库单\UCAQGJRK.resx">
       <DependentUpon>UCAQGJRK.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
