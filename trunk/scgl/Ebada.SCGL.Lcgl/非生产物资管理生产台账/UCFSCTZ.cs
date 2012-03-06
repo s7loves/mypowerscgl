@@ -381,7 +381,7 @@ namespace Ebada.Scgl.Lcgl
 
             if (gridtable != null) gridtable.Rows.Clear();
 
-            IList<PJ_clcrkd> li = MainHelper.PlatformSqlMap.GetList<PJ_clcrkd>("SelectPJ_clcrkdList", strSQL + "  order by type,indate");
+            IList<PJ_clcrkd> li = MainHelper.PlatformSqlMap.GetList<PJ_clcrkd>("SelectPJ_clcrkdList", strSQL + "  order by type,cast( indate as datetime)");
             if (li.Count != 0)
             {
                 gridtable = ConvertHelper.ToDataTable((IList)li);
@@ -726,8 +726,18 @@ namespace Ebada.Scgl.Lcgl
 
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
-            IList<PJ_clcrkd> datalist = gridView1.DataSource as IList<PJ_clcrkd>;
+
+            IList<PJ_clcrkd> datalist = new List<PJ_clcrkd>();
+            foreach (DataRow dr in gridtable.Rows)
+            {
+                PJ_clcrkd pc = new PJ_clcrkd();
+                foreach (DataColumn dc in gridtable.Columns)
+                {
+                    if (dc.ColumnName.IndexOf("wpjz") < 0 && dc.ColumnName.IndexOf("xh") < 0 && dr[dc.ColumnName].ToString() != string.Empty)
+                        pc.GetType().GetProperty(dc.ColumnName).SetValue(pc, dr[dc.ColumnName], null);
+                }
+                datalist.Add(pc);
+            }
             //frmProjectSelect fys = new frmProjectSelect();
             //fys.strType = " and (type = '工程材料入库单' or type = '工程材料入库单原始库存') ";
             //fys.StrSQL = "select distinct ssgc  from PJ_clcrkd where  (type = '工程材料入库单' or type = '工程材料入库单原始库存') ";

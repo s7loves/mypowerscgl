@@ -256,6 +256,19 @@ namespace Ebada.Scgl.Lcgl
                     return;
                 }
             }
+            datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
+                     ("where (type = '所安全工器具入库单' )"
+                 + " and lyparent='" + e.Value.ID+ "' "
+                 + "  order by id desc ");
+            foreach (PJ_anqgjcrkd aj in datalist)
+            {
+                if (aj.kcsl != aj.wpsl)
+                {
+                    MsgBox.ShowTipMessageBox("该记录对应的物品，所单位已出库，不能修改！");
+                    e.Cancel = true;
+                    return;
+                }
+            }
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_anqgjcrkd> e)
