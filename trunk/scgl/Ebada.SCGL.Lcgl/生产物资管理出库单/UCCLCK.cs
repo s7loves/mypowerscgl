@@ -385,7 +385,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("type");
             hideColumn("lyparent");
             hideColumn("kcsl");
-            gridView1.Columns["num"].Width = 120;
+            gridView1.Columns["num"].Width = 150;
 
             gridView1.Columns["wpmc"].VisibleIndex = 1;
             gridView1.Columns["wpgg"].VisibleIndex = 2;

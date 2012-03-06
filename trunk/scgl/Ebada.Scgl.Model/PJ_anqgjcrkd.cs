@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2012-3-4 16:49:01
+生成时间:2012-3-6 14:27:22
 ***********************************************/
 
 using System;
@@ -36,6 +36,7 @@ namespace Ebada.Scgl.Model
         private string _kcsl=String.Empty; 
         private string _lqdw=String.Empty; 
         private string _zkcsl=String.Empty; 
+        private string _ssgc=String.Empty; 
         private string _ssxm=String.Empty; 
         private DateTime _indate=new DateTime(1900,1,1); 
         private string _remark=String.Empty; 
@@ -356,6 +357,27 @@ namespace Ebada.Scgl.Model
                 if (_zkcsl as object == null || !_zkcsl.Equals(value))
                 {
                     _zkcsl = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ssgc
+        /// 属性描述：所属工程
+        /// 字段信息：[ssgc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("所属工程")]
+        public string ssgc
+        {
+            get { return _ssgc; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[所属工程]长度不能大于50!");
+                if (_ssgc as object == null || !_ssgc.Equals(value))
+                {
+                    _ssgc = value;
                 }
             }			 
         }

@@ -15,9 +15,9 @@ using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class UCAQGJCKGL : UserControl
+    public partial class UCAQGJSCKGL : UserControl
     {
-        public UCAQGJCKGL()
+        public UCAQGJSCKGL()
         {
             InitializeComponent();
         }
@@ -144,11 +144,14 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit5.SelectedIndex = 0;
             comboBoxEdit6.SelectedIndex = 0;
-
             comboBoxEdit3.Properties.Items.Clear();
             IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_anqgjcrkd where    ( type = '" + comboBoxEdit5.Text
                 + "' or type = '" + comboBoxEdit5.Text + "原始库存') and wpmc!='' ");
             comboBoxEdit3.Properties.Items.AddRange(mclist);
+            comboBoxEdit1.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgName   from mOrg where OrgType = '1' or OrgType = '2'");
+            comboBoxEdit1.Properties.Items.AddRange(mclist);
+            comboBoxEdit1.SelectedIndex = 0;
 
             
         }
@@ -195,7 +198,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            frmAQGJCKXZ frm = new frmAQGJCKXZ();
+            frmAQGJSCKXZ frm = new frmAQGJSCKXZ();
             frm.strType = comboBoxEdit5.Text;
 
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
@@ -205,14 +208,20 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_anqgjcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
                        <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "'  order by id desc  ");
             if (pnumli.Count == 0)
-                frm.strNum = "JAQGJCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
+                frm.strNum = "SAQGJCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
             {
-                frm.strNum = "JAQGJCK" + (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "")) + 1);
+                frm.strNum = "SAQGJCK" + (Convert.ToDecimal(pnumli[0].num.Replace("SAQGJCK", "")) + 1);
 
             }
             frm.RowData = new PJ_anqgjcrkd();
             ((PJ_anqgjcrkd)frm.RowData).ckdate = DateTime.Now;
+            ((PJ_anqgjcrkd)frm.RowData).OrgName = comboBoxEdit1.Text;
+            mOrg org = ClientHelper.PlatformSqlMap.GetOne<mOrg>(" where orgname = '" + comboBoxEdit1.Text + "' ");
+            if (org != null)
+            {
+                ((PJ_anqgjcrkd)frm.RowData).OrgCode = org.OrgCode;
+            }
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 string ssgc = " and 1=1 ",  wpgg = " and 1=1 ", wpmc = " and 1=1 ";
@@ -238,7 +247,7 @@ namespace Ebada.Scgl.Lcgl
                         num = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
                     else
                     {
-                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "")));
+                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("SAQGJCK", "")));
 
                     }
 
@@ -252,12 +261,13 @@ namespace Ebada.Scgl.Lcgl
                     //       <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
                     //frm.strNum = DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
 
-                    ckd.num = "JAQGJCK" + (num + 1);
+                    ckd.num = "SAQGJCK" + (num + 1);
                     ckd.type = comboBoxEdit6.Text;
                     ckd.Remark = frm.ReturnData.Remark;
                     ckd.OrgName = frm.ReturnData.OrgName;
                     ckd.OrgCode = frm.ReturnData.OrgCode;
                     ckd.ckdate = DateTime.Now;
+                    ckd.lqdw = frm.ReturnData.lqdw;
                     if (cktemp >= Convert.ToInt64(pc.kcsl))
                     {
                         ckd.cksl = pc.kcsl;
@@ -285,7 +295,7 @@ namespace Ebada.Scgl.Lcgl
                     if (cktemp<1) break;
                     //num=(num + 1);
                 }
-                frmAQGJCKXZShow frmshow = new frmAQGJCKXZShow();
+                frmAQGJSCKXZShow frmshow = new frmAQGJSCKXZShow();
                 frmshow.DataList = ckdatalist;
                 if (frmshow.ShowDialog() == DialogResult.OK)
                 {
@@ -297,7 +307,7 @@ namespace Ebada.Scgl.Lcgl
                         num = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
                     else
                     {
-                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "")) );
+                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("SAQGJCK", "")) );
 
                     }
                     
@@ -309,12 +319,13 @@ namespace Ebada.Scgl.Lcgl
 
                         ConvertHelper.CopyTo<PJ_anqgjcrkd>(pc, ckd);
                         ckd.ID = ckd.CreateID();
-                        ckd.num = "JAQGJCK" + (num + 1);
+                        ckd.num = "SAQGJCK" + (num + 1);
                         ckd.type = comboBoxEdit6.Text;
                         ckd.Remark = frm.ReturnData.Remark;
                         ckd.OrgName = frm.ReturnData.OrgName;
                         ckd.OrgCode = frm.ReturnData.OrgCode;
                         ckd.ckdate = DateTime.Now;
+                        ckd.lasttime = DateTime.Now;
                         if (cktemp >= Convert.ToInt64(pc.kcsl))
                         {
                             ckd.cksl = pc.kcsl;
@@ -346,41 +357,6 @@ namespace Ebada.Scgl.Lcgl
                                 + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
                         }
                         ClientHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(ckd);
-                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                        PJ_anqgjcrkd slkd = new PJ_anqgjcrkd();
-                        //ConvertHelper.CopyTo<PJ_anqgjcrkd>(ckd, slkd);
-                        decimal snum;
-                        pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                                 <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='所安全工器具入库单' and orgname='" + ckd.OrgName + "'   order by id desc  ");
-                        if (pnumli.Count == 0)
-                            snum = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
-                        else
-                        {
-                            snum = (Convert.ToDecimal(pnumli[0].num.Replace("SAQGJRK", "")));
-
-                        }
-
-
-                        slkd.ID = slkd.CreateID();
-                        slkd.wpmc = ckd.wpmc;
-                        slkd.wpgg = ckd.wpgg;
-                        slkd.wpdw = ckd.wpdw;
-                        slkd.wpdj = ckd.wpdj;
-                        slkd.wpsl = ckd.cksl;
-                        slkd.num = "SAQGJRK" + (snum + 1);
-                        slkd.type = "所安全工器具入库单";
-                        slkd.lyparent = ckd.ID;
-                        slkd.indate = ckd.ckdate;
-                        slkd.OrgName = ckd.OrgName;
-                        slkd.OrgCode = ckd.OrgCode;
-                        slkd.ckdate = new DateTime(1900, 1, 1);
-                        slkd.kcsl = ckd.cksl;
-                        System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                   "select sum(cast(kcsl as int))    from PJ_anqgjcrkd where (type = '所安全工器具入库单' or type = '所安全工器具入库单原始库存') and wpmc='" + slkd.wpmc + "' and wpgg='" + slkd.wpgg + "'  ");
-                        if (mclist.Count > 0 && mclist[0] != null)
-                            szkc = Convert.ToInt64(mclist[0]);
-                        slkd.zkcsl = (szkc + Convert.ToInt64(slkd.kcsl)).ToString();
-                        ClientHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(slkd);
 
                         if (cktemp < 1) break;
                         //num = (num + 1);
@@ -397,7 +373,7 @@ namespace Ebada.Scgl.Lcgl
                 return;
             PJ_anqgjcrkd rowdata = gridView1.GetFocusedRow() as PJ_anqgjcrkd;
             rowdata = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_anqgjcrkd>(rowdata.ID);
-            frmAQGJCKSingleXZ frm = new frmAQGJCKSingleXZ();
+            frmAQGJSCKSingleXZ frm = new frmAQGJSCKSingleXZ();
             frm.RowData = new PJ_anqgjcrkd();
             ConvertHelper.CopyTo<PJ_anqgjcrkd>(rowdata, (PJ_anqgjcrkd)frm.RowData);
             ((PJ_anqgjcrkd)frm.RowData).Remark = "";
@@ -405,10 +381,10 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_anqgjcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
             <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc ");
             if (pnumli.Count == 0)
-                ((PJ_anqgjcrkd)frm.RowData).num = "JAQGJCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
+                ((PJ_anqgjcrkd)frm.RowData).num = "SAQGJCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
             {
-                ((PJ_anqgjcrkd)frm.RowData).num = "JAQGJCK" + (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "")) + 1);
+                ((PJ_anqgjcrkd)frm.RowData).num = "SAQGJCK" + (Convert.ToDecimal(pnumli[0].num.Replace("SAQGJCK", "")) + 1);
 
             }
             ((PJ_anqgjcrkd)frm.RowData).ckdate = DateTime.Now;
@@ -420,7 +396,7 @@ namespace Ebada.Scgl.Lcgl
                 ckd.ID = ckd.CreateID();
                
                 System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                    "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
+                    "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '所安全工器具入库单' or type = '所安全工器具入库单原始库存' and orgname='" + ckd.OrgName + "')"
                     + " and wpmc='" + rowdata.wpmc + "' "
                     + " and wpgg='" + rowdata.wpgg + "' ");
                 if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
@@ -433,7 +409,9 @@ namespace Ebada.Scgl.Lcgl
                 ckd.Remark = frm.ReturnData.Remark;
                 ckd.OrgName = frm.ReturnData.OrgName;
                 ckd.OrgCode = frm.ReturnData.OrgCode;
+                ckd.lqdw = frm.ReturnData.lqdw;
                 ckd.ckdate = DateTime.Now;
+                ckd.lasttime = DateTime.Now;
                 if (cktemp >= Convert.ToInt64(rowdata.kcsl))
                 {
                     ckd.cksl = rowdata.kcsl;
@@ -466,41 +444,6 @@ namespace Ebada.Scgl.Lcgl
                         + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
                 }
                 ClientHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(ckd);
-                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                PJ_anqgjcrkd slkd = new PJ_anqgjcrkd();
-                //ConvertHelper.CopyTo<PJ_anqgjcrkd>(ckd, slkd);
-                decimal snum;
-                long szkc=0;
-                pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                         <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='所安全工器具入库单'  order by id desc  ");
-                if (pnumli.Count == 0)
-                    snum = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
-                else
-                {
-                    snum = (Convert.ToDecimal(pnumli[0].num.Replace("SAQGJRK", "")));
-
-                }
-                
-                slkd.ID = slkd.CreateID();
-                slkd.wpmc = ckd.wpmc;
-                slkd.wpgg = ckd.wpgg;
-                slkd.wpdw = ckd.wpdw;
-                slkd.wpdj = ckd.wpdj;
-                slkd.wpsl = ckd.cksl;
-                slkd.num = "SAQGJRK" + (snum + 1);
-                slkd.type = "所安全工器具入库单";
-                slkd.lyparent = ckd.ID;
-                slkd.indate = ckd.ckdate;
-                slkd.OrgName = ckd.OrgName;
-                slkd.OrgCode = ckd.OrgCode;
-                slkd.ckdate = new DateTime(1900, 1, 1);
-                slkd.kcsl = ckd.cksl;
-                pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                         <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='所安全工器具入库单' and orgname='" + ckd.OrgName + "'   order by id desc  ");
-                if (mclist.Count > 0 && mclist[0] != null)
-                    szkc = Convert.ToInt64(mclist[0]);
-                slkd.zkcsl = (szkc + Convert.ToInt64(slkd.kcsl)).ToString();
-                ClientHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(slkd);
                 ucclck1.inidata();
             }
         }
