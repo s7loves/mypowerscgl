@@ -12,14 +12,14 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmCJCLCKXZShow : FormBase
+    public partial class frmAQGJSCKXZShow : FormBase
     {
-        public frmCJCLCKXZShow()
+        public frmAQGJSCKXZShow()
         {
             InitializeComponent();
         }
-        private PJ_clcrkd returnData = null;
-        public PJ_clcrkd ReturnData
+        private PJ_anqgjcrkd returnData = null;
+        public PJ_anqgjcrkd ReturnData
         {
             get
             {
@@ -72,9 +72,9 @@ namespace Ebada.Scgl.Lcgl
 
        
         #region IPopupFormEdit Members
-        private IList<PJ_clcrkd> dataList = null;
+        private IList<PJ_anqgjcrkd> dataList = null;
 
-        public IList<PJ_clcrkd> DataList
+        public IList<PJ_anqgjcrkd> DataList
         {
             get
             {

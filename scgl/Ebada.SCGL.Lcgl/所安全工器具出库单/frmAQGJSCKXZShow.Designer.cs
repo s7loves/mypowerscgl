@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class frmAQGJCKXZShow
+    partial class frmAQGJSCKXZShow
     {
         /// <summary>
         /// Required designer variable.
@@ -33,13 +33,13 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -103,6 +103,15 @@
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 0;
             // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "领取人";
+            this.gridColumn7.FieldName = "lqdw";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 1;
+            this.gridColumn7.Width = 100;
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "物品名称";
@@ -156,22 +165,13 @@
             this.gridColumn5.VisibleIndex = 7;
             this.gridColumn5.Width = 100;
             // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "领取单位";
-            this.gridColumn7.FieldName = "OrgName";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 1;
-            this.gridColumn7.Width = 100;
-            // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "id";
             this.gridColumn8.FieldName = "ID";
             this.gridColumn8.Name = "gridColumn8";
             // 
-            // frmAQGJCKXZShow
+            // frmAQGJSCKXZShow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -181,9 +181,9 @@
             this.Controls.Add(this.btnOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "frmAQGJCKXZShow";
+            this.Name = "frmAQGJSCKXZShow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "局安全工器具出库选择";
+            this.Text = "所安全工器具出库选择";
             this.Load += new System.EventHandler(this.frmCLCKXZ_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();

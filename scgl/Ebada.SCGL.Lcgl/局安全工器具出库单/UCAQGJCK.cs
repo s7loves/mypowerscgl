@@ -154,7 +154,7 @@ namespace Ebada.Scgl.Lcgl
             PJ_anqgjcrkd pc = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_anqgjcrkd>(obj.lyparent);
             pc.kcsl = (Convert.ToDouble(pc.kcsl) + Convert.ToDouble(obj.cksl)).ToString();
             ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
-
+            ClientHelper.PlatformSqlMap.DeleteByWhere<PJ_anqgjcrkd>(" where lyparent='" + obj.ID + "' and type = '所安全工器具入库单'");
             //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
             //    "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '安全工器具入库单' or type = '安全工器具入库单原始库存')"
             //    + " and wpmc='" + obj.wpmc + "' " + " and ssgc='" + obj.ssgc + "' "
@@ -277,9 +277,14 @@ namespace Ebada.Scgl.Lcgl
         }
         void iniProject()
         {
-            repositoryItemComboBox1.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_anqgjcrkd where type = '局安全工器具出库单'  and ssgc!='' ");
-            repositoryItemComboBox1.Items.AddRange(mclist);
+            repositoryItemComboBox3.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_anqgjcrkd where type = '局安全工器具出库单'  and wpmc!='' ");
+            repositoryItemComboBox3.Items.AddRange(mclist);
+
+            repositoryItemComboBox5.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgName   from mOrg where OrgType = '1' or OrgType = '2'");
+            repositoryItemComboBox5.Items.AddRange(mclist);
+        
         }
         private void barEditGC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -319,6 +324,10 @@ namespace Ebada.Scgl.Lcgl
             inidate();
         }
 
+        private void barEditOrg_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            inidate();
+        }
         private void barEditItem1_EditValueChanged(object sender, EventArgs e)
         {
 
@@ -388,7 +397,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("ssxm");
             hideColumn("lqdw");
             hideColumn("wpcj");
-            gridView1.Columns["num"].Width = 120;
+            gridView1.Columns["num"].Width = 150;
 
             gridView1.Columns["OrgName"].VisibleIndex = 1;
             gridView1.Columns["wpmc"].VisibleIndex = 2;
@@ -635,5 +644,6 @@ namespace Ebada.Scgl.Lcgl
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }
+
     }
 }

@@ -382,7 +382,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("kcsl");
             hideColumn("ckdate");
             hideColumn("lyparent");
-            gridView1.Columns["num"].Width = 120;
+            gridView1.Columns["num"].Width = 150;
 
            
         }
