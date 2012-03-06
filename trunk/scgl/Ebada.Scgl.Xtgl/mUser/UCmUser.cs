@@ -128,7 +128,7 @@ namespace Ebada.Scgl.Xtgl {
                 if (value == null) {
                     parentID = null;
                 } else {
-                    ParentID = value.OrgID;
+                    ParentID = value.OrgCode;
                 }
             }
         }
