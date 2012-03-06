@@ -90,7 +90,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='材料出库单' and sx like '%{0}%' and nr!=''", "材料名称"));
+            string.Format("select nr from pj_dyk where  dx='工程材料出库单' and sx like '%{0}%' and nr!=''", "材料名称"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
@@ -162,7 +162,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit2.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='材料出库单' and sx like '%{0}%' and nr!=''", "材料规格"));
+            string.Format("select nr from pj_dyk where  dx='工程材料出库单' and sx like '%{0}%' and nr!=''", "材料规格"));
             if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
@@ -362,7 +362,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit3.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='材料出库单' and sx like '%{0}%' and nr!=''", "单位"));
+            string.Format("select nr from pj_dyk where  dx='工程材料出库单' and sx like '%{0}%' and nr!=''", "单位"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
@@ -437,7 +437,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("备品备件计划", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("工程材料出库单", "备注", memoEdit3);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
