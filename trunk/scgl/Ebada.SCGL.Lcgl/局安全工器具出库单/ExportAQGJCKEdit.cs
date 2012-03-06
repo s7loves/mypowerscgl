@@ -63,47 +63,24 @@ namespace Ebada.Scgl.Lcgl
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public void ExportExcelProjectCKD(string orgid, string strProject, string strfenProject)
+        public void ExportExcelProjectCKD(string orgid, string strnum)
         {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\出库单.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\安全工器具出库单.xls";
             ex.Open(fname);
             string strfirst = "";
             string filter = "";
             string filter2 = "";
             string filter3 = "";
             string filter4 = "";
-            if (strProject != "全部")
-                filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '局安全工器具出库单' ";
+            if (strnum != "全部")
+                filter = "  where 1=1 and num='" + strnum + "'  and type = '局安全工器具出库单' ";
             else
-                filter2 = "  where 1=1  and type = '局安全工器具出库单' ";
+                filter = "  where 1=1  and type = '局安全工器具出库单' ";
 
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_anqgjcrkd " + filter2 + " order by ssgc");
-
-            foreach (string mc in mclist)
-            {
-                if (strfenProject == "全部")
-                    filter3 = "  where 1=1 and type = '局安全工器具出库单' ";
-                else
-                    filter3 = "  where  ssxm='" + strfenProject + "'  and type = '局安全工器具出库单' ";
-
-                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_anqgjcrkd " + filter3 + " order by ssxm");
-                foreach (string xm in xmlist)
-                {
-                    filter4 = "  where 1=1 and type = '局安全工器具出库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm + "' ";
-                    //IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_anqgjcrkd " + filter4 + " ");
-
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_anqgjcrkd " + filter4 + " ");
-                    foreach (string sj in sjlist)
-                    {
-                        filter = "  where 1=1 and type = '局安全工器具出库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm
-                        + "' and num= '" + sj + "' ";
+            
                         if (isWorkflowCall)
                         {
 
@@ -118,10 +95,8 @@ namespace Ebada.Scgl.Lcgl
                          filter
                            );
                         ExportExcel(ex, datalist);
-                    }
-                }
-
-            }
+                    
+            
 
 
             ex.DeleteSheet(1);
@@ -132,7 +107,7 @@ namespace Ebada.Scgl.Lcgl
             //////lgm
             //ExcelAccess ex = new ExcelAccess();
             //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            //string fname = Application.StartupPath + "\\00记录模板\\出库单.xls";
+            //string fname = Application.StartupPath + "\\00记录模板\\安全工器具出库单.xls";
             //ex.Open(fname);
             //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_anqgjcrkd order by wpmc");
             //string strfirst = "";
@@ -185,45 +160,19 @@ namespace Ebada.Scgl.Lcgl
 
             //ex.ShowExcel();
         }
-        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid, string strProject, string strfenProject)
+        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid, string strnum)
         {
 
             string filter = "";
             int i = 0;
             List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
             string strfirst = "";
-            string filter2 = "";
-            string filter3 = "";
-            string filter4 = "";
-            if (strProject != "全部")
-                filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '局安全工器具出库单' ";
+            if (strnum != "全部")
+                filter = "  where 1=1 and num='" + strnum + "'  and type = '局安全工器具出库单' ";
             else
-                filter2 = "  where 1=1  and type = '局安全工器具出库单' ";
+                filter = "  where 1=1  and type = '局安全工器具出库单' ";
 
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_anqgjcrkd " + filter2 + " order by ssgc");
-
-            foreach (string mc in mclist)
-            {
-                if (strfenProject == "全部")
-                    filter3 = "  where 1=1 and type = '局安全工器具出库单' ";
-                else
-                    filter3 = "  where  ssxm='" + strfenProject + "'  and type = '局安全工器具出库单' ";
-
-                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_anqgjcrkd " + filter3 + " order by ssxm");
-                foreach (string xm in xmlist)
-                {
-                    filter4 = "  where 1=1 and type = '局安全工器具出库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm + "' ";
-                    //IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_anqgjcrkd " + filter4 + " ");
-
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_anqgjcrkd " + filter4 + " ");
-                    foreach (string sj in sjlist)
-                    {
-                        filter = "  where 1=1 and type = '局安全工器具出库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm
-                        + "' and num= '" + sj + "' ";
+            
                         if (isWorkflowCall)
                         {
 
@@ -256,10 +205,8 @@ namespace Ebada.Scgl.Lcgl
                             }
                         }
 
-                    }
-                }
-
-            }
+                    
+           
 
 
             List<SqlQueryObject> list3 = new List<SqlQueryObject>();
@@ -277,10 +224,10 @@ namespace Ebada.Scgl.Lcgl
         }
 
 
-        public void ExportExcelSubmit(ref LP_Temple parentTemple, string orgid, string strProject, string strfenProject, bool isShow)
+        public void ExportExcelSubmit(ref LP_Temple parentTemple, string orgid, string strnum, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
-            string fname = Application.StartupPath + "\\00记录模板\\出库单.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\安全工器具出库单.xls";
             dsoFramerWordControl1.FileOpen(fname);
 
             if (parentTemple == null)
@@ -295,40 +242,13 @@ namespace Ebada.Scgl.Lcgl
             Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
-
-            string strfirst = "";
             string filter = "";
-            string filter2 = "";
-            string filter3 = "";
-            string filter4 = "";
-            if (strProject != "全部")
-                filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '局安全工器具出库单' ";
+            if (strnum != "全部")
+                filter = "  where 1=1 and num='" + strnum + "'  and type = '局安全工器具出库单' ";
             else
-                filter2 = "  where 1=1  and type = '局安全工器具出库单' ";
+                filter = "  where 1=1  and type = '局安全工器具出库单' ";
 
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_anqgjcrkd " + filter2 + " order by ssgc");
-
-            foreach (string mc in mclist)
-            {
-                if (strfenProject == "全部")
-                    filter3 = "  where 1=1 and type = '局安全工器具出库单' ";
-                else
-                    filter3 = "  where  ssxm='" + strfenProject + "'  and type = '局安全工器具出库单' ";
-
-                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_anqgjcrkd " + filter3 + " order by ssxm");
-                foreach (string xm in xmlist)
-                {
-                    filter4 = "  where 1=1 and type = '局安全工器具出库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm + "' ";
-                    //IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_anqgjcrkd " + filter4 + " ");
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_anqgjcrkd " + filter4 + " ");
-                    foreach (string sj in sjlist)
-                    {
-                        filter = "  where 1=1 and type = '局安全工器具出库单'"
-                        + "  and ssgc='" + mc + "' "
-                        + "  and ssxm='" + xm
-                        + "' and num= '" + sj + "' ";
+           
                         if (isWorkflowCall)
                         {
 
@@ -343,10 +263,10 @@ namespace Ebada.Scgl.Lcgl
                          filter
                            );
                         ExportExcel(ex, datalist);
-                    }
-                }
+                    
+                
 
-            }
+            
             //ex.ActiveSheet(1);
             //ex.DeleteWorkSheet(1);
             Excel.Worksheet sheet;
@@ -380,9 +300,9 @@ namespace Ebada.Scgl.Lcgl
         {
             
             //此处写填充内容代码
-            int row = 7;
+            int row = 4;
             int col = 1;
-            int rowcount = 10;
+            int rowcount = 23;
 
             //
 
@@ -407,59 +327,20 @@ namespace Ebada.Scgl.Lcgl
                 {
                     if (j == 0) ex.ActiveSheet(datalist[0].num);
                     else ex.ActiveSheet( datalist[0].num + "(" + (j / rowcount + 1) + ")");
-                    ex.SetCellValue(datalist[j].ssxm, 4, 2);
-                    ex.SetCellValue(datalist[j].ckdate.ToString("yyyy"), 4, 7);
-                    ex.SetCellValue(datalist[j].ckdate.ToString("MM"), 4, 9);
-                    ex.SetCellValue(datalist[j].ckdate.ToString("dd"), 4, 11);
-                    ex.SetCellValue(datalist[j].ssxm, 24, 2);
-                    ex.SetCellValue(datalist[j].ckdate.ToString("yyyy"), 24, 7);
-                    ex.SetCellValue(datalist[j].ckdate.ToString("MM"), 24, 9);
-                    ex.SetCellValue(datalist[j].ckdate.ToString("dd"), 24, 11);
+                    ex.SetCellValue(datalist[j].OrgName, 2, 2);
 
                     
                 }
 
-                ex.SetCellValue(datalist[j].wpmc, row + j % rowcount , col);
-                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount , col + 2);
-                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 4);
+                ex.SetCellValue((j+1).ToString(), row + j % rowcount, col );
+                ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col + 1);
+                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 2);
+                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount , col +3);
 
-                ex.SetCellValue(datalist[j].cksl, row + j % rowcount, col + 5);
-                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount , col + 7);
+                ex.SetCellValue(datalist[j].cksl, row + j % rowcount, col + 4);
+                ex.SetCellValue(datalist[j].Remark, row + j % rowcount , col + 5);
 
-                ex.SetCellValue(datalist[j].wpmc, row + j % rowcount+20, col);
-                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount + 20, col + 2);
-                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount + 20, col + 4);
-
-                ex.SetCellValue(datalist[j].cksl, row + j % rowcount + 20, col + 5);
-                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount + 20, col + 7);
-
-                ex.SetCellValue(datalist[j].wpmc, row + j % rowcount + 40, col);
-                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount + 40, col + 2);
-                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount + 40, col + 4);
-                ex.SetCellValue(datalist[j].cksl, row + j % rowcount + 40, col + 5);
-                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount + 40, col + 7);
-
-                ex.SetCellValue(datalist[j].wpmc, row + j % rowcount + 60, col);
-                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount + 60, col + 2);
-                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount + 60, col + 4);
-                ex.SetCellValue(datalist[j].cksl, row + j % rowcount + 60, col + 5);
-                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount + 60, col + 7);
-                long value = Convert.ToInt64(Math.Round(Convert.ToDouble(datalist[j].cksl) * Convert.ToDouble(datalist[j].wpdj), 2) * 100);
-                int index = 19;
-                while (value > 0)
-                {
-                    long ifen = value % 10;
-                    ex.SetCellValue(ifen.ToString(), row + j % rowcount, index);
-                    ex.SetCellValue(ifen.ToString(), row + j % rowcount + 20, index);
-                    ex.SetCellValue(ifen.ToString(), row + j % rowcount + 40, index);
-                    ex.SetCellValue(ifen.ToString(), row + j % rowcount + 60, index);
-                    value = value/ 10;
-                    index--;
-                }
-                ex.SetCellValue(datalist[j].Remark, 17, 2);
-                ex.SetCellValue(datalist[j].Remark, 17 + 20, 2);
-                ex.SetCellValue(datalist[j].Remark, 17 + 40, 2);
-                ex.SetCellValue(datalist[j].Remark, 17 + 60, 2);
+                
                 //ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
 
 

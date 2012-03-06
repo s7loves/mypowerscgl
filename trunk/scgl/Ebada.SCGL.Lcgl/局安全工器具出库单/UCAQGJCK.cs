@@ -508,18 +508,18 @@ namespace Ebada.Scgl.Lcgl
             else
                 fm.Status = "edit";
             fm.Kind = currRecord.Kind;
-            frmProjectSelect fys = new frmProjectSelect();
+            frmNumSelect fys = new frmNumSelect();
             fys.strType = " and (type = '局安全工器具出库单' ) ";
             fys.StrSQL = "select distinct ssgc  from PJ_anqgjcrkd where  (type = '局安全工器具出库单' ) ";
             if (fys.ShowDialog() == DialogResult.OK)
             {
-                ExportCLCKEdit export = new ExportCLCKEdit();
+                ExportAQGJCKEdit export = new ExportAQGJCKEdit();
                 export.CurrRecord = currRecord;
                 export.IsWorkflowCall = isWorkflowCall;
                 export.ParentTemple = parentTemple;
                 export.RecordWorkFlowData = WorkFlowData;
 
-                export.ExportExcelSubmit(ref parentTemple, "", fys.strProject, fys.strFenproject, false);
+                export.ExportExcelSubmit(ref parentTemple, "", fys.strNum, false);
 
                 fm.ParentTemple = parentTemple;
                 if (fm.ShowDialog() == DialogResult.OK)
@@ -527,9 +527,9 @@ namespace Ebada.Scgl.Lcgl
                     if (fjly == null) fjly = new frmModleFjly();
                     fjly.btn_Submit_Click(sender, e);
                     if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strNum);
                     else
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strNum);
                     gridControl1.FindForm().Close();
                 }
             }
@@ -583,13 +583,13 @@ namespace Ebada.Scgl.Lcgl
 
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmProjectSelect fys = new frmProjectSelect();
+            frmNumSelect fys = new frmNumSelect();
             fys.strType = " and (type = '局安全工器具出库单' ) ";
-            fys.StrSQL = "select distinct ssgc  from PJ_anqgjcrkd where  (type = '局安全工器具出库单') ";
+            fys.StrSQL = "select distinct num  from PJ_anqgjcrkd where  (type = '局安全工器具出库单') ";
             if (fys.ShowDialog() == DialogResult.OK)
             {
-                ExportCLCKEdit etdjh = new ExportCLCKEdit();
-                etdjh.ExportExcelProjectCKD("", fys.strProject, fys.strFenproject);
+                ExportAQGJCKEdit etdjh = new ExportAQGJCKEdit();
+                etdjh.ExportExcelProjectCKD("", fys.strNum);
             }
         }
 

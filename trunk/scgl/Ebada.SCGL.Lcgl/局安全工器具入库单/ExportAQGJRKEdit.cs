@@ -319,7 +319,7 @@ namespace Ebada.Scgl.Lcgl
         public void ExportExcel(ExcelAccess ex ,IList<PJ_anqgjcrkd> datalist)
         {
             //此处写填充内容代码
-            int row = 6;
+            int row = 5;
             int col = 1;
             int rowcount = 41;
 
@@ -350,20 +350,18 @@ namespace Ebada.Scgl.Lcgl
                     if (j == 0) ex.ActiveSheet( datalist[0].num);
                     else ex.ActiveSheet( datalist[0].num + "(" + (j / rowcount + 1)+")");
                     
-                    ex.SetCellValue(datalist[j].ssxm , 4, 10);
-                    ex.SetCellValue(datalist[j].indate.ToString("yyyy"), 4, 1);
-                    ex.SetCellValue(datalist[j].indate.ToString("MM"), 4, 3);
-                    ex.SetCellValue(datalist[j].indate.ToString("dd"), 4,5);
+                    ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), 3, 2);
+                    ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), 3, 6);
                 }
                 ex.SetCellValue((j+1).ToString(), row + j % rowcount, col);
                 ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col+1 );
-                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 2);
-                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 3);
+                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 3);
+                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 4);
 
-                ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount, col + 5);
-                ex.SetCellValue((Convert.ToDouble(datalist[j].wpsl)*Convert.ToDouble(datalist[j].wpdj)).ToString() 
-                    , row + j % rowcount, 6);
+                ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 5);
+                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount, col + 6);
+                ex.SetCellValue((Convert.ToDouble(datalist[j].wpsl)*Convert.ToDouble(datalist[j].wpdj)).ToString()
+                    , row + j % rowcount, col + 7);
                  
                 //ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
 
