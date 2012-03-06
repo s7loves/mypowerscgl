@@ -172,7 +172,7 @@ namespace Ebada.Scgl.Lcgl
             else
             {
                  strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select distinct xh from PS_sbcs"));
+            string.Format("select distinct xh from PS_sbcs where xh is not null "));
                  if (strlist.Count > 0)
                      comboBoxEdit1.Properties.Items.AddRange(strlist);
                  else
@@ -446,7 +446,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("备品备件计划", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("非生产物资入库单", "备注", memoEdit3);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -511,7 +511,7 @@ namespace Ebada.Scgl.Lcgl
         private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
         {
             comboBoxEdit2.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   wpmc='" + comboBoxEdit1.Text + "'");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   mc='" + comboBoxEdit1.Text + "' and xh is not null ");
             if (mclist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(mclist);
             else
@@ -523,7 +523,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                 "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
-                    comboBoxEdit5.Properties.Items.AddRange(mclist);
+                    comboBoxEdit2.Properties.Items.AddRange(mclist);
                 }
             }
 

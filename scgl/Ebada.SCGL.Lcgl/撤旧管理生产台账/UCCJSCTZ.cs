@@ -216,6 +216,10 @@ namespace Ebada.Scgl.Lcgl
 
         private void barEditItem1_EditValueChanged(object sender, EventArgs e)
         {
+
+            repositoryItemComboBox4.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_clcrkd where  wpmc='" + barEditItem1.EditValue + "' and wpgg!='' ");
+            repositoryItemComboBox4.Items.AddRange(mclist);
             inidate();
 
         }
@@ -229,7 +233,7 @@ namespace Ebada.Scgl.Lcgl
             if (barEditItem1.EditValue != null && barEditItem1.EditValue.ToString() != "")
                 wpmc = " and wpmc='" + barEditItem1.EditValue + "' ";
             if (barEditItem2.EditValue != null && barEditItem2.EditValue.ToString() != "")
-                wpgg = " and wpgg='" + barEditItem1.EditValue + "' ";
+                wpgg = " and wpgg='" + barEditItem2.EditValue + "' ";
             RefreshData(" where  (type = '工程材料入库单' or type = '工程材料入库单原始库存') " + ssgc + ssxm + wpmc + wpgg);
         }
         private void barEditItem2_EditValueChanged(object sender, EventArgs e)
