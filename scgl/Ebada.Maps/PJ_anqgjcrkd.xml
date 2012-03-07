@@ -23,6 +23,9 @@
         <result property="ssgc" column="ssgc" />
         <result property="ssxm" column="ssxm" />
         <result property="indate" column="indate" />
+        <result property="syzq" column="syzq" />
+        <result property="scsydate" column="scsydate" />
+        <result property="synx" column="synx" />
         <result property="Remark" column="Remark" />
         <result property="type" column="type" />
         <result property="lasttime" column="lasttime" />
@@ -51,6 +54,9 @@
          [ssgc],
          [ssxm],
          [indate],
+         [syzq],
+         [scsydate],
+         [synx],
          [Remark],
          [type],
          [lasttime],
@@ -79,6 +85,9 @@
          [ssgc],
          [ssxm],
          [indate],
+         [syzq],
+         [scsydate],
+         [synx],
          [Remark],
          [type],
          [lasttime],
@@ -103,6 +112,9 @@
        <isNotNull prepend="AND" property="ssgc">[ssgc]='$ssgc$'</isNotNull>
        <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+       <isNotNull prepend="AND" property="syzq">[syzq]='$syzq$'</isNotNull>
+       <isNotNull prepend="AND" property="scsydate">[scsydate]='$scsydate$'</isNotNull>
+       <isNotNull prepend="AND" property="synx">[synx]='$synx$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
        <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>
@@ -129,6 +141,9 @@
          [ssgc],
          [ssxm],
          [indate],
+         [syzq],
+         [scsydate],
+         [synx],
          [Remark],
          [type],
          [lasttime],
@@ -179,6 +194,9 @@
              [ssgc]=#ssgc#,
              [ssxm]=#ssxm#,
              [indate]=#indate#,
+             [syzq]=#syzq#,
+             [scsydate]=#scsydate#,
+             [synx]=#synx#,
              [Remark]=#Remark#,
              [type]=#type#,
              [lasttime]=#lasttime#,
@@ -209,6 +227,9 @@
          [ssgc],
          [ssxm],
          [indate],
+         [syzq],
+         [scsydate],
+         [synx],
          [Remark],
          [type],
          [lasttime],
@@ -234,6 +255,9 @@
          #ssgc#,
          #ssxm#,
          #indate#,
+         #syzq#,
+         #scsydate#,
+         #synx#,
          #Remark#,
          #type#,
          #lasttime#,
@@ -264,6 +288,9 @@
        <isNotNull prepend="AND" property="ssgc">[ssgc]='$ssgc$'</isNotNull>
        <isNotNull prepend="AND" property="ssxm">[ssxm]='$ssxm$'</isNotNull>
        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+       <isNotNull prepend="AND" property="syzq">[syzq]='$syzq$'</isNotNull>
+       <isNotNull prepend="AND" property="scsydate">[scsydate]='$scsydate$'</isNotNull>
+       <isNotNull prepend="AND" property="synx">[synx]='$synx$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
        <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>

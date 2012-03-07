@@ -339,7 +339,7 @@ namespace Ebada.Scgl.Lcgl
         }
         private void inidate()
         {
-            string ssgc = " and 1=1 ", ssxm = " and 1=1 ", wpgg = " and 1=1 ", wpmc = " and 1=1 ";
+            string ssgc = " and 1=1 ", ssxm = " and 1=1 ", wpgg = " and 1=1 ", wpmc = " and 1=1 ", gds = " and 1=1 ";
             if (barEditGC.EditValue != null && barEditGC.EditValue.ToString() != "")
                 ssgc = " and ssgc='" + barEditGC.EditValue + "' ";
             if (barEditFGC.EditValue != null && barEditFGC.EditValue.ToString() != "")
@@ -348,7 +348,9 @@ namespace Ebada.Scgl.Lcgl
                 wpmc = " and wpmc='" + barEditItem1.EditValue + "' ";
             if (barEditItem2.EditValue != null && barEditItem2.EditValue.ToString() != "")
                 wpgg = " and wpgg='" + barEditItem2.EditValue + "' ";
-            RefreshData(" where  (type = '所安全工器具出库单') " + ssgc + ssxm + wpmc + wpgg);
+            if (barEditOrg.EditValue != null && barEditOrg.EditValue.ToString() != "")
+                gds = " and OrgName='" + barEditOrg.EditValue + "' ";
+            RefreshData(" where  (type = '所安全工器具出库单') " + ssgc + ssxm + wpmc + wpgg + gds);
         }
         private void barEditItem2_EditValueChanged(object sender, EventArgs e)
         {

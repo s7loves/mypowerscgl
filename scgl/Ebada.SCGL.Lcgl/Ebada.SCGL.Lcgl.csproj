@@ -124,6 +124,38 @@
     <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
     </Compile>
+    <Compile Include="所安全工器具入库单\ExportAQGJSRKEdit.cs" />
+    <Compile Include="所安全工器具入库单\frmAQGJSRKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="所安全工器具入库单\frmAQGJSRKEdit.Designer.cs">
+      <DependentUpon>frmAQGJSRKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="所安全工器具入库单\UCAQGJSRK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="所安全工器具入库单\UCAQGJSRK.Designer.cs">
+      <DependentUpon>UCAQGJSRK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="所安全工器具台账\ExportAQGJSTZEdit.cs" />
+    <Compile Include="所安全工器具台账\frmAQGJSTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="所安全工器具台账\frmAQGJSTZEdit.Designer.cs">
+      <DependentUpon>frmAQGJSTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="所安全工器具台账\UCAQGJSTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="所安全工器具台账\UCAQGJSTZ.Designer.cs">
+      <DependentUpon>UCAQGJSTZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="所安全工器具台账\UCAQGJSTZInquiry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="所安全工器具台账\UCAQGJSTZInquiry.Designer.cs">
+      <DependentUpon>UCAQGJSTZInquiry.cs</DependentUpon>
+    </Compile>
     <Compile Include="局安全工器具台账\ExportAQGJTZEdit.cs" />
     <Compile Include="局安全工器具台账\frmAQGJTZEdit.cs">
       <SubType>Form</SubType>
@@ -1786,6 +1818,26 @@
     </EmbeddedResource>
     <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.resx">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="所安全工器具入库单\frmAQGJSRKEdit.resx">
+      <DependentUpon>frmAQGJSRKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="所安全工器具入库单\UCAQGJSRK.resx">
+      <DependentUpon>UCAQGJSRK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="所安全工器具台账\frmAQGJSTZEdit.resx">
+      <DependentUpon>frmAQGJSTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="所安全工器具台账\UCAQGJSTZ.resx">
+      <DependentUpon>UCAQGJSTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="所安全工器具台账\UCAQGJSTZInquiry.resx">
+      <DependentUpon>UCAQGJSTZInquiry.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="局安全工器具台账\frmAQGJTZEdit.resx">
