@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2012-3-6 14:27:22
+生成时间:2012-3-7 10:08:58
 ***********************************************/
 
 using System;
@@ -39,6 +39,9 @@ namespace Ebada.Scgl.Model
         private string _ssgc=String.Empty; 
         private string _ssxm=String.Empty; 
         private DateTime _indate=new DateTime(1900,1,1); 
+        private string _syzq=String.Empty; 
+        private DateTime _scsydate=new DateTime(1900,1,1); 
+        private string _synx=String.Empty; 
         private string _remark=String.Empty; 
         private string _type=String.Empty; 
         private DateTime _lasttime=new DateTime(1900,1,1); 
@@ -332,7 +335,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                    throw new Exception("[领取人]长度不能大于50!");
+                throw new Exception("[领取人]长度不能大于50!");
                 if (_lqdw as object == null || !_lqdw.Equals(value))
                 {
                     _lqdw = value;
@@ -417,6 +420,66 @@ namespace Ebada.Scgl.Model
                 if (_indate as object == null || !_indate.Equals(value))
                 {
                     _indate = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：syzq
+        /// 属性描述：试验周期（年）
+        /// 字段信息：[syzq],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("试验周期（年）")]
+        public string syzq
+        {
+            get { return _syzq; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[试验周期（年）]长度不能大于50!");
+                if (_syzq as object == null || !_syzq.Equals(value))
+                {
+                    _syzq = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：scsydate
+        /// 属性描述：上次试验时间
+        /// 字段信息：[scsydate],datetime
+        /// </summary>
+        [DisplayNameAttribute("上次试验时间")]
+        public DateTime scsydate
+        {
+            get { return _scsydate; }
+            set
+            {			
+                if (_scsydate as object == null || !_scsydate.Equals(value))
+                {
+                    _scsydate = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：synx
+        /// 属性描述：使用年限
+        /// 字段信息：[synx],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("使用年限")]
+        public string synx
+        {
+            get { return _synx; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[使用年限]长度不能大于50!");
+                if (_synx as object == null || !_synx.Equals(value))
+                {
+                    _synx = value;
                 }
             }			 
         }
