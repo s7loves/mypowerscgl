@@ -41,6 +41,8 @@
             this.xtraTabPage1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
+            this.xtraTabPage4.SuspendLayout();
+            this.xtraTabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -81,12 +83,14 @@
             // 
             // xtraTabPage4
             // 
+            this.xtraTabPage4.Controls.Add(this.ucsbbzqsbgmxB41);
             this.xtraTabPage4.Name = "xtraTabPage4";
             this.xtraTabPage4.Size = new System.Drawing.Size(601, 301);
             this.xtraTabPage4.Text = "明细表四（高低压相位牌）";
             // 
             // xtraTabPage5
             // 
+            this.xtraTabPage5.Controls.Add(this.ucsbbzqsbgmxB51);
             this.xtraTabPage5.Name = "xtraTabPage5";
             this.xtraTabPage5.Size = new System.Drawing.Size(601, 301);
             this.xtraTabPage5.Text = "明细表五（杆塔相位牌）";
@@ -131,25 +135,25 @@
             // 
             this.ucsbbzqsbgmxB41.CurrRecord = null;
             this.ucsbbzqsbgmxB41.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucsbbzqsbgmxB41.Location = new System.Drawing.Point(1, 23);
+            this.ucsbbzqsbgmxB41.Location = new System.Drawing.Point(0, 0);
             this.ucsbbzqsbgmxB41.Name = "ucsbbzqsbgmxB41";
             this.ucsbbzqsbgmxB41.ParentTemple = null;
             this.ucsbbzqsbgmxB41.RecordWorkFlowData = null;
             this.ucsbbzqsbgmxB41.Size = new System.Drawing.Size(601, 301);
-            this.ucsbbzqsbgmxB41.TabIndex = 5;
+            this.ucsbbzqsbgmxB41.TabIndex = 0;
             this.ucsbbzqsbgmxB41.VarDbTableName = "PJ_sbbzqsbgmxb4,LP_Record";
             // 
             // ucsbbzqsbgmxB51
             // 
             this.ucsbbzqsbgmxB51.CurrRecord = null;
             this.ucsbbzqsbgmxB51.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucsbbzqsbgmxB51.Location = new System.Drawing.Point(1, 23);
+            this.ucsbbzqsbgmxB51.Location = new System.Drawing.Point(0, 0);
             this.ucsbbzqsbgmxB51.Name = "ucsbbzqsbgmxB51";
             this.ucsbbzqsbgmxB51.ParentTemple = null;
             this.ucsbbzqsbgmxB51.RecordWorkFlowData = null;
             this.ucsbbzqsbgmxB51.Size = new System.Drawing.Size(601, 301);
-            this.ucsbbzqsbgmxB51.TabIndex = 6;
-            this.ucsbbzqsbgmxB51.VarDbTableName = "PJ_sbbzqsbgmxb4,LP_Record";
+            this.ucsbbzqsbgmxB51.TabIndex = 0;
+            this.ucsbbzqsbgmxB51.VarDbTableName = "PJ_sbbzqsbgmxb5,LP_Record";
             // 
             // UCSBBZQSBGMXBM
             // 
@@ -163,6 +167,8 @@
             this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
             this.xtraTabPage3.ResumeLayout(false);
+            this.xtraTabPage4.ResumeLayout(false);
+            this.xtraTabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

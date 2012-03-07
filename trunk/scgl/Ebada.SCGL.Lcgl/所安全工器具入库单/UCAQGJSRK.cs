@@ -381,6 +381,8 @@ namespace Ebada.Scgl.Lcgl
 
             hideColumn("OrgCode");
             hideColumn("OrgName");
+            hideColumn("ssgc");
+            hideColumn("ssxm");
             hideColumn("type");
             hideColumn("cksl");
             hideColumn("kcsl");
@@ -390,6 +392,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("lyparent");
             hideColumn("wpcj");
             gridView1.Columns["num"].Width = 150;
+            gridView1.Columns["indate"].Caption = "领取时间";
 
            
         }
@@ -711,6 +714,88 @@ namespace Ebada.Scgl.Lcgl
             currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
+        }
+
+        private void gridView1_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
+        {
+            PJ_anqgjcrkd dr = gridView1.GetRow(e.RowHandle) as PJ_anqgjcrkd;
+            
+            if (dr == null)
+                return;
+            string strsynx = dr.synx;
+            string strsyzq = dr.syzq;
+            double synx = 0;
+            double syzq = 0;
+            string txts = "3";
+            Brush brush = null;
+            Rectangle r = e.Bounds;
+            Color c1 = Color.FromArgb(255, 121, 121);
+            Color c2 = Color.FromArgb(255, 121, 121);
+            DateTime lqsj =dr.indate;
+            DateTime scsysj =dr.scsydate;
+            DateTime bfsj = new DateTime(1900, 1, 1);//报废时间
+            DateTime bcsysj = new DateTime(1900, 1, 1);//本次试验时间
+            DateTime now = DateTime.Now;
+            if (now.Hour < 23)
+            {
+                now = now.AddHours(23 - now.Hour);
+            }
+            if (now.Minute < 59)
+            {
+                now = now.AddMinutes(59 - now.Minute);
+            }
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='安全工器具' and sx like '%{0}%' and nr!=''", "提醒天数"));
+            if (strlist.Count > 0)
+            {
+                if (strlist[0] != null && strlist[0].ToString() != "")
+                    txts = strlist[0].ToString();
+            }
+            if(strsynx!="")
+                synx = Convert.ToDouble(strsynx);
+            if (strsyzq != "")
+                syzq = Convert.ToDouble(strsyzq);
+            int isynx = Convert.ToInt32(synx);
+            int isyzq = Convert.ToInt32(syzq);
+            bfsj = lqsj.AddMonths(Convert.ToInt32(Math.Round((synx ) * 12)));
+            bcsysj = scsysj.AddMonths(Convert.ToInt32(Math.Round((syzq) * 12)));
+            now = now.AddDays(Convert.ToInt32(txts));
+            if (e.Column.FieldName == "num")
+            {
+                if (now >= bfsj || now >= bcsysj)
+                {
+                    brush = new System.Drawing.Drawing2D.LinearGradientBrush(e.Bounds, c1, c2, 180);
+                    if (brush != null)
+                    {
+                        e.Graphics.FillRectangle(brush, r);
+                    }
+                }
+
+            }
+            if (e.Column.FieldName == "scsydate")
+            {
+                if (now >= bcsysj)
+                {
+                    brush = new System.Drawing.Drawing2D.LinearGradientBrush(e.Bounds, c1, c2, 180);
+                    if (brush != null)
+                    {
+                        e.Graphics.FillRectangle(brush, r);
+                    }
+                }
+
+            }
+            if (e.Column.FieldName == "synx")
+            {
+                if (now >= bfsj)
+                {
+                    brush = new System.Drawing.Drawing2D.LinearGradientBrush(e.Bounds, c1, c2, 180);
+                    if (brush != null)
+                    {
+                        e.Graphics.FillRectangle(brush, r);
+                    }
+                }
+
+            }
         }
 
       
