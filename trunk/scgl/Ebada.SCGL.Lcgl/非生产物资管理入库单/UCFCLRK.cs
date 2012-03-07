@@ -288,7 +288,7 @@ namespace Ebada.Scgl.Lcgl
             }
             if (cl.type == "非生产物资入库单原始库存")
             {
-                frmCLRKEdit frm = new frmCLRKEdit();
+                frmFCLRKEdit frm = new frmFCLRKEdit();
                 frm.RowData = cl;
                 if (frm.ShowDialog() == DialogResult.OK)
                 {

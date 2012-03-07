@@ -288,7 +288,7 @@ namespace Ebada.Scgl.Lcgl
             }
             if (cl.type == "撤旧材料入库单原始库存")
             {
-                frmCLRKEdit frm = new frmCLRKEdit();
+                frmCJCLRKEdit frm = new frmCJCLRKEdit();
                 frm.RowData = cl;
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
