@@ -120,6 +120,7 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_gjyb>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PS_gjyb>(gridViewOperation_AfterAdd);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_gjyb>(gridViewOperation_BeforeAdd);
         }
         void gridViewOperation_AfterAdd(PS_gjyb obj)
@@ -362,6 +363,13 @@ namespace Ebada.Scgl.Lcgl
                 return;
             }
             string strmes = "";
+
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] {  currRecord });
+
+            }
             WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
             if (wt != null)
             {

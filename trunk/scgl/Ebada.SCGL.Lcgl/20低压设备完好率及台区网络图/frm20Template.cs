@@ -496,6 +496,7 @@ namespace Ebada.Scgl.Lcgl
         }
         void btn_Close(object sender, EventArgs e)
         {
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             dsoFramerWordControl1.Dispose();
             dsoFramerWordControl1 = null;
@@ -643,7 +644,8 @@ namespace Ebada.Scgl.Lcgl
                     Client.ClientHelper.PlatformSqlMap.Update<PJ_20>(currRecord);
                     break;
             }
-           
+
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
 
             this.DialogResult = DialogResult.OK;
@@ -2010,6 +2012,7 @@ namespace Ebada.Scgl.Lcgl
                 //base.Close();
                 currRecord = null;
 
+                dsoFramerWordControl1.FileSave();
                 dsoFramerWordControl1.FileClose();
                 dsoFramerWordControl1.Dispose();
                 dockPanel1.ControlContainer.Controls.Clear();

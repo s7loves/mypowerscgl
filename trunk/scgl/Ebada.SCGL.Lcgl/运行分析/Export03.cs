@@ -241,6 +241,7 @@ namespace Ebada.Scgl.Lcgl
                 currRecord.Status = "文档生成";
             }
             currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
             ExcelAccess ex = new ExcelAccess();
@@ -325,6 +326,7 @@ namespace Ebada.Scgl.Lcgl
             }
             dsoFramerWordControl1.FileSave();
             currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
 
         }

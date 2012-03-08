@@ -208,11 +208,10 @@ namespace Ebada.Scgl.Core {
         #region axFramerControl1 ÊÂ¼þ
 
         void axFramerControl1_OnDocumentClosed(object sender, EventArgs e) {
-           
+          
                 if (isTempFile && File.Exists(fileName)) {
                      try {File.Delete(fileName);} catch { }
                 }
-            
                 fileName = string.Empty;
                 isTempFile = false;
                 isModified = false;

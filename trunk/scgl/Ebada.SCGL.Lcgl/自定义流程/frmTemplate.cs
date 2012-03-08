@@ -480,6 +480,7 @@ namespace Ebada.Scgl.Lcgl
         }
         void btn_Close(object sender, EventArgs e)
         {
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             dsoFramerWordControl1.Dispose();
             dsoFramerWordControl1 = null;
@@ -520,6 +521,7 @@ namespace Ebada.Scgl.Lcgl
                     MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
 
             }
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             this.DialogResult = DialogResult.OK;
         }
@@ -739,6 +741,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
             }
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             this.DialogResult = DialogResult.OK;
         }

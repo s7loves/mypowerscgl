@@ -87,6 +87,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="02安全活动\Export02.cs" />
+    <Compile Include="02安全活动\frmaqhdEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="02安全活动\frmaqhdEdit.Designer.cs">
+      <DependentUpon>frmaqhdEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="02安全活动\UCPJ_02aqhd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="02安全活动\UCPJ_02aqhd.Designer.cs">
+      <DependentUpon>UCPJ_02aqhd.cs</DependentUpon>
+    </Compile>
     <Compile Include="04事故障碍异常\frmsgzaycWorkFlowEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1796,6 +1809,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="02安全活动\frmaqhdEdit.resx">
+      <DependentUpon>frmaqhdEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="02安全活动\UCPJ_02aqhd.resx">
+      <DependentUpon>UCPJ_02aqhd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="04事故障碍异常\frmsgzaycWorkFlowEdit.resx">
       <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
       <SubType>Designer</SubType>

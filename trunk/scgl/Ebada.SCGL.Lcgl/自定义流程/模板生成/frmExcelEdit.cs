@@ -119,8 +119,9 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void frmExcelEdit_FormClosed(object sender, FormClosedEventArgs e)
-        {   
-            this.dsoFramerWordControl1.FileClose();
+        {
+            this.dsoFramerWordControl1.FileSave();
+            dsoFramerWordControl1.FileClose();
             base.Close();
         }
 
@@ -142,8 +143,9 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
-        {       
-            this.dsoFramerWordControl1.FileClose();
+        {
+            this.dsoFramerWordControl1.FileSave();
+            dsoFramerWordControl1.FileClose();
         }
 
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)

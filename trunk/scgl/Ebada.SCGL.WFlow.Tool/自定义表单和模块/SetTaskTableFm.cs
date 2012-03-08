@@ -120,7 +120,8 @@ namespace Ebada.SCGL.WFlow.Tool
         }
 
         private void frmExcelEdit_FormClosed(object sender, FormClosedEventArgs e)
-        {   
+        {
+            dsoFramerWordControl1.FileSave();
             this.dsoFramerWordControl1.FileClose();
             base.Close();
         }
@@ -145,6 +146,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            dsoFramerWordControl1.FileSave();
             this.dsoFramerWordControl1.FileClose();
         }
 

@@ -199,8 +199,9 @@ namespace Ebada.SCGL.WFlow.Tool
                    }
                    catch { }
 
-               
+
            }
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             //dsoFramerWordControl1.Dispose();
             comboBoxEdit4.SelectedIndex = j;

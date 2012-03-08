@@ -233,6 +233,7 @@ namespace Ebada.Scgl.Lcgl
                 parentTemple.Status = "文档生成";
             }
             parentTemple.DocContent = dsoFramerWordControl1.FileDataGzip;
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
             ExcelAccess ex = new ExcelAccess();
@@ -285,6 +286,7 @@ namespace Ebada.Scgl.Lcgl
             }
             dsoFramerWordControl1.FileSave();
             parentTemple.DocContent = dsoFramerWordControl1.FileDataGzip;
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
         }
         
