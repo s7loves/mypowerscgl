@@ -631,6 +631,10 @@ namespace Ebada.Scgl.WFlow
                 try
                 {
                     dsoFramerWordControl1.FileDataGzip = temple.DocContent;
+                    WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(WorkflowId);
+                    //IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                    //    " where RecordId='" + currRecord.ID + "' and UserControlId='" + temple.LPID + "' and   WorkflowId='" + WorkflowId + "' and WorkFlowInsId='" + WorkFlowInsId + "' ");
+
                     IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                         " where RecordId='" + currRecord.ID + "' and UserControlId='" + temple.LPID + "' and   WorkflowId='" + WorkflowId + "' and WorkFlowInsId='" + WorkFlowInsId + "' ");
                     Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
@@ -702,8 +706,9 @@ namespace Ebada.Scgl.WFlow
                     temple.DocContent = dsoFramerWordControl1.FileDataGzip;
                 }
                 catch (Exception ex) { 
-                    Console.WriteLine(ex.Message); 
+                    Console.WriteLine(ex.Message);
                 }
+                dsoFramerWordControl1.FileSave();
                 dsoFramerWordControl1.FileClose();
             }
         }

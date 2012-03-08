@@ -377,6 +377,7 @@ namespace Ebada.SCGL.WFlow.Tool
       
         void btn_Submit_Click(object sender, EventArgs e)
         {
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             this.DialogResult = DialogResult.OK;
         }
@@ -1808,7 +1809,9 @@ namespace Ebada.SCGL.WFlow.Tool
             //rowData = null;
             //dockPanel1.ControlContainer.Controls.Clear();
             //templeList.Clear();
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
+            dsoFramerWordControl1.Dispose();
         }
 
         private void frmLP_FormClosing(object sender, FormClosingEventArgs e)

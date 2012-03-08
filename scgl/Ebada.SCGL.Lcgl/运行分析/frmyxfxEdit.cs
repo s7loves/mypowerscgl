@@ -331,6 +331,8 @@ namespace Ebada.Scgl.Lcgl
             {
                 try
                 {
+
+                    
                     string strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
                     if (strmes.IndexOf("未提交至任何人") > -1)
                     {

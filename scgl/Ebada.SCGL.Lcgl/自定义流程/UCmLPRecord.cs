@@ -295,6 +295,7 @@ namespace Ebada.Scgl.Lcgl {
                         str = "";
                        // parentID = null;
                        strKind = null;
+                       InitData("");
                     } else {
                       // ParentID = value.LPID;
                         //if (value.FlowCaption == "电力线路倒闸操作票")
@@ -1895,6 +1896,7 @@ namespace Ebada.Scgl.Lcgl {
                             {
 
 
+                                ds1.FileSave();
                                 ds1.FileClose();
                                 Console.WriteLine(ex.Message);
                                 MsgBox.ShowWarningMessageBox("出错" + ex.Message + " ，无法保存" + frmes.CheckIndehs[checkkeys[i]] + "。请用其他文件名保存文件，或将文件存至其他位置。");
@@ -1941,7 +1943,9 @@ namespace Ebada.Scgl.Lcgl {
                                 { 
                                 
                                 }
-                                RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, true);
+                                WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(templehs[akeys[0]]);
+                                //RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, true);
+                                RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, worktaskins.WorkFlowId, worktaskins.WorkFlowInsId, true);
                                 ds1.FileDataGzip = taskTemple.DocContent;
                                 ds1.FileSave(fname, true);
                                 ds1.FileClose();
@@ -1955,9 +1959,10 @@ namespace Ebada.Scgl.Lcgl {
                     }
                     catch (Exception ex)
                     {
+                        ds1.FileSave();
                         ds1.FileClose();
                         Console.WriteLine(ex.Message);
-                        MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
+                        MsgBox.ShowWarningMessageBox("出错" + ex.Message + " ，无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
                         return;
                     }
                 }

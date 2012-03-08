@@ -633,6 +633,7 @@ namespace Ebada.Scgl.Lcgl
                     MainHelper.PlatformSqlMap.Create<PJ_lcspyj>(lcyj);
 
             }
+            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             this.DialogResult = DialogResult.OK;
         }
@@ -730,7 +731,8 @@ namespace Ebada.Scgl.Lcgl
                     dsoFramerWordControl1.FileSave();
                     currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
                     currRecord.Kind = kind;
-                    currRecord.Content = GetContent(); 
+                    currRecord.Content = GetContent();
+                    dsoFramerWordControl1.FileSave();
                     dsoFramerWordControl1.FileClose();
                     if (ctrlNumber != null)
                         currRecord.Number = ctrlNumber.Text;
@@ -808,6 +810,7 @@ namespace Ebada.Scgl.Lcgl
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;
                     currRecord.Content = GetContent();
+                    dsoFramerWordControl1.FileSave();
                     dsoFramerWordControl1.FileClose();
                     wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                     if (wt != null)
@@ -2892,6 +2895,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 //base.Close();
                 //rowData = null;
+                dsoFramerWordControl1.FileSave();
                 dsoFramerWordControl1.FileClose();
                 dockPanel1.ControlContainer.Controls.Clear();
                 templeList.Clear();

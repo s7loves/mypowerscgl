@@ -211,7 +211,12 @@ namespace Ebada.Scgl.Lcgl
                 RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { rowData, currRecord });
 
             }
+
+
+           
             WF_WorkTaskCommands wt;
+
+            
             //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
             wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
             if (wt != null)

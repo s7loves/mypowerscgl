@@ -367,6 +367,14 @@ namespace Ebada.Scgl.Lcgl
                 return;
             }
             string strmes = "";
+
+
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { currRecord });
+
+            }
             WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
             if (wt != null)
             {

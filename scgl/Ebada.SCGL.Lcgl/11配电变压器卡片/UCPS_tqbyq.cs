@@ -395,6 +395,14 @@ namespace Ebada.Scgl.Lcgl
             currRecord.Status = "容量变更";
             MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
             string strmes = "";
+
+
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { currRecord });
+
+            }
             WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
             if (wt != null)
             {
@@ -460,6 +468,14 @@ namespace Ebada.Scgl.Lcgl
             currRecord.Status = "方案调整";
             MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
             string strmes = "";
+
+
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] {  currRecord });
+
+            }
             WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
             if (wt != null)
             {
@@ -500,6 +516,13 @@ namespace Ebada.Scgl.Lcgl
             currRecord.Status = "调整结束";
             MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
             string strmes = "";
+
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] {currRecord });
+
+            }
             WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
             if (wt != null)
             {
@@ -561,6 +584,13 @@ namespace Ebada.Scgl.Lcgl
                 return;
             }
             string strmes = "";
+
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] {  currRecord });
+
+            }
             WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
             if (wt != null)
             {

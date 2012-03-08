@@ -723,6 +723,13 @@ namespace Ebada.Scgl.Lcgl {
                     MsgBox.ShowWarningMessageBox("当前节点不能退回.设置里没有允许退回，退回失败!");
                     return;
                 }
+
+                if (RecordWorkTask.CheckOnRiZhi(dt))
+                {
+
+                    RecordWorkTask.CreatRiZhi(dt, null, currRecord.ID, new object[] { currRecord });
+
+                }
                 string strmes = RecordWorkTask.RunWorkFlowBack(MainHelper.User.UserID, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString());
                 if (strmes.IndexOf("未提交至任何人") > -1)
                 {
