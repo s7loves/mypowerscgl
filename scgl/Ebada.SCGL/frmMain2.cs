@@ -12,6 +12,7 @@ using System.Collections;
 using Ebada.Scgl.Model;
 using Ebada.Client;
 using Ebada.SCGL.WFlow.Engine;
+using System.Threading;
 
 namespace Ebada.SCGL {
     public partial class frmMain2 : DevExpress.XtraEditors.XtraForm {
@@ -243,7 +244,10 @@ namespace Ebada.SCGL {
                     barButtonItem2.Visibility = BarItemVisibility.Always;
                 }
 
-                showMessage(3);
+                showMessage(3, "欢迎 " + MainHelper.User.UserName + " 登陆，您今天有" + WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999).Rows.Count.ToString() + "个任务待处理");
+                timer1.Enabled = false;
+                timer1.Interval = 8000;
+                timer1.Enabled = true;
                 try {
                     Program.killmsg();
                     BackgroundWorker bw = new BackgroundWorker();
@@ -276,6 +280,8 @@ namespace Ebada.SCGL {
 
         private void btClose_ItemClick(object sender, ItemClickEventArgs e) {
             if (Client.MsgBox.ShowAskMessageBox("是否退出系统？") == DialogResult.OK) {
+
+                timer1.Enabled = false;
                 this.Close();
             }
         }
@@ -297,7 +303,7 @@ namespace Ebada.SCGL {
                 }
             }
         }
-        private void showMessage(int type)
+        private void showMessage(int type,string nr)
         {
             TaskbarNotifier taskbarNotifier1 = new TaskbarNotifier();
             switch (type)
@@ -330,7 +336,7 @@ namespace Ebada.SCGL {
             //taskbarNotifier1.TitleClick += new EventHandler(TitleClick);
             taskbarNotifier1.ContentClick += new EventHandler(ContentClick);
             //taskbarNotifier1.CloseClick += new EventHandler(CloseClick);
-            taskbarNotifier1.Show("农电生产系统", "欢迎 "+MainHelper.User.UserName +" 登陆，您今天有" + WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999).Rows.Count.ToString ()   + "个任务待处理", 10, 5000, 50);
+            taskbarNotifier1.Show("农电生产系统", nr, 10, 5000, 50);
         
         }
         void ContentClick(object obj, EventArgs e)
@@ -344,6 +350,29 @@ namespace Ebada.SCGL {
             Desktop dt = new Desktop();
             dt.PlatForm = this;
             this.showControl(dt,null).Text = "我的桌面";
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select * from dbo.PJ_anqgjcrkd where datediff(day, dateadd(year,cast(syzq as float)*12,cast(scsydate as datetime) ),getdate())>1"));
+            if (strlist.Count > 0)
+            {
+                showMessage(3, "有" + strlist.Count + "个安全工具临近试验周期");
+                //return;
+            }
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select * from dbo.PJ_anqgjcrkd where datediff(day, dateadd(year,cast(synx as float)*12,cast(indate as datetime) ),getdate())>1"));
+            if (strlist.Count > 0)
+            {
+                showMessage(3, "有" + strlist.Count + "个安全工具临近报废时间");
+                //return;
+            }
+
+            if (timer1.Interval == 8000)
+            {
+                timer1.Interval = 1000 * 60 * 30;
+            }
         }
     }
 }

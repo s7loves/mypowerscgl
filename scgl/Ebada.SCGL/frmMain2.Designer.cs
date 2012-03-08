@@ -56,6 +56,7 @@
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).BeginInit();
@@ -227,7 +228,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(568, 67);
+            this.barDockControlTop.Size = new System.Drawing.Size(568, 68);
             // 
             // barDockControlBottom
             // 
@@ -238,14 +239,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 67);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 280);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 68);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 279);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(568, 67);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 280);
+            this.barDockControlRight.Location = new System.Drawing.Point(568, 68);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 279);
             // 
             // dockManager1
             // 
@@ -265,18 +266,18 @@
             this.dockPanel1.Controls.Add(this.dockPanel1_Container);
             this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
             this.dockPanel1.ID = new System.Guid("fb50d88c-b887-4278-a904-2871e4d01c1c");
-            this.dockPanel1.Location = new System.Drawing.Point(362, 67);
+            this.dockPanel1.Location = new System.Drawing.Point(362, 68);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.OriginalSize = new System.Drawing.Size(206, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(206, 280);
+            this.dockPanel1.Size = new System.Drawing.Size(206, 279);
             this.dockPanel1.Text = "功能导航";
             // 
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.Controls.Add(this.ucModulBar1);
-            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 24);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(200, 253);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(200, 251);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // ucModulBar1
@@ -284,7 +285,7 @@
             this.ucModulBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucModulBar1.Location = new System.Drawing.Point(0, 0);
             this.ucModulBar1.Name = "ucModulBar1";
-            this.ucModulBar1.Size = new System.Drawing.Size(200, 253);
+            this.ucModulBar1.Size = new System.Drawing.Size(200, 251);
             this.ucModulBar1.TabIndex = 0;
             // 
             // imageCollection1
@@ -305,6 +306,10 @@
             // 
             this.xtraTabbedMdiManager1.Controller = this.barAndDockingController1;
             this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmMain2
             // 
@@ -361,5 +366,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar repositoryItemMarqueeProgressBar1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
