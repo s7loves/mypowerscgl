@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using System.Threading;
 namespace Ebada.Scgl.Lcgl
 {
     public partial class frmCLRKYSEdit : FormBase, IPopupFormEdit {
@@ -481,6 +482,15 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmCLRKEdit_Load(object sender, EventArgs e)
         {
+            PJ_clrkysd obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_clrkysd>(rowData.ID);
+            if (obj == null)
+            {
+                simpleButton4.Visible = true; 
+            }
+            else
+            {
+                simpleButton4.Visible = false;
+            }
             comboBoxEdit7.Properties.Items.Clear();
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clrkysd where 1=1");
             comboBoxEdit7.Properties.Items.AddRange(mclist);
@@ -522,6 +532,35 @@ namespace Ebada.Scgl.Lcgl
             SelectorHelper.SelectDyk("工程材料验收单", "备注", memoEdit3);
         }
 
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            rowData.ID = rowData.CreateID();
+            Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+            Client.ClientHelper.PlatformSqlMap.Create<PJ_clrkysd>(rowData);
+            MsgBox.ShowTipMessageBox("添加成功!");
+            rowData.ID = rowData.CreateID();
+        }
+
+        private void spinEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            spinEdit1_EditValueChanged(sender,e);
+        }
+
+        private void spinEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            double i1 = 0;
+            double i2 = 0;
+            i1 = Convert.ToDouble(spinEdit1.Value);
+            i2 = Convert.ToDouble(spinEdit2.Value);
+            spinEdit3.Value = Convert.ToDecimal(i1 * i2);
+            spinEdit4.Value = Convert.ToDecimal(Convert.ToDouble(spinEdit3.Value) * 0.9);
+            rowData.htjg = spinEdit3.Value.ToString();
+            rowData.yfk = spinEdit4.Value.ToString();
+        }
+
+       
+
+       
       
         
     

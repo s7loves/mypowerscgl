@@ -497,29 +497,66 @@ namespace Ebada.Scgl.Lcgl
 
         private void barCopy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ////请求确认
-            //if (MsgBox.ShowAskMessageBox("是否确认复制去年计划生成今年计划 ?") != DialogResult.OK)
-            //{
-            //    return;
-            //}
-            //IList<PJ_clrkysd> bjlist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_clrkysd>("where orgcode='" + btGdsList.EditValue + "' AND jhnf='"+DateTime.Now.Year+"'");
-            //List<PJ_clrkysd> list = new List<PJ_clrkysd>();
-            //foreach (PJ_clrkysd bj in bjlist)
-            //{
-            //    bj.ID = bj.CreateID();
-            //    bj.jhnf = (DateTime.Now.Year+1).ToString();
-            //    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            //    list.Add(bj);
-            //} 
-            //List<SqlQueryObject> list3 = new List<SqlQueryObject>();
-            //if (list.Count > 0)
-            //{
-            //    SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Insert, list.ToArray());
-            //    list3.Add(obj3);
-            //}
+             frmNumSelect fys = new frmNumSelect();
+            fys.strType = " and 1=1";
+            fys.StrSQL = "select distinct dhht  from PJ_clrkysd where  1=1";
+            if (fys.ShowDialog() == DialogResult.OK)
+            {
+                string filter = " where 1=1";
+                if(fys.strNum!="全部")
+                    filter = " where dhht='" + fys.strNum + "'";
+                IList<PJ_clrkysd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clrkysd>(
+                         filter
+                           );
+                IList<PJ_clcrkd> cdatalist = new List<PJ_clcrkd>();
+                string num = "";
+                IList<PJ_clcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
+                   <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='工程材料入库单' order by id desc ");
+                if (pnumli.Count == 0)
+                    num = "SCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
+                else
+                {
+                    num = "SCRK" + (Convert.ToDecimal(pnumli[0].num.Replace("SCRK", "")) + 1);
 
-            //MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            //RefreshData(" where OrgCode='" + parentID + "' ");
+                }
+                foreach (PJ_clrkysd ysd in datalist)
+                {
+                    PJ_clcrkd clc = new PJ_clcrkd();
+                    clc.ID = clc.CreateID();
+                    clc.ssgc = ysd.ssgc;
+                    clc.ssxm = ysd.ssxm;
+                    clc.type = "工程材料入库单";
+                    clc.num = num;
+                    clc.wpmc = ysd.wpmc;
+                    clc.wpgg = ysd.wpgg;
+                    clc.wpdw = ysd.wpdw;
+                    clc.wpdj = ysd.wpdj;
+                    clc.wpcj = ysd.ghdw;
+                    clc.wpsl = ysd.wpsl;
+                    clc.kcsl = ysd.wpsl;
+                    clc.indate = ysd.indate;
+                    cdatalist.Add(clc);
+
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                }
+                frmCLRKYSShow fss = new frmCLRKYSShow();
+                fss.DataList = cdatalist;
+                if (fss.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (PJ_clcrkd clc in cdatalist)
+                    {
+                        long i = 0;
+                        System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
+                            "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+                            + " and wpmc='" + clc.wpmc + "' " + " and ssgc='" + clc.ssgc + "' "
+                            + " and wpgg='" + clc.wpgg + "' and id!='" + clc.ID + "' ");
+                        if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
+                        clc.zkcsl = (Convert.ToInt64(clc.kcsl) + i).ToString();
+                        Client.ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(clc);
+                    }
+                    MsgBox.ShowTipMessageBox("导入成功!");
+                }
+            }
         }
 
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
