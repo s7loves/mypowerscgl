@@ -674,7 +674,7 @@ namespace Ebada.Scgl.WFlow
                                 if (!RecordWorkTask.HaveWorkFlowAllExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
                                 {
 
-                                    if (!RecordWorkTask.HaveWorkFlowExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
+                                    //if (!RecordWorkTask.HaveWorkFlowExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
                                     {
                                         continue;
                                     }

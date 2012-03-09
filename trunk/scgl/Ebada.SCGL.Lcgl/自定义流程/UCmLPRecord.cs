@@ -1746,29 +1746,29 @@ namespace Ebada.Scgl.Lcgl {
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
             if (currRecord.Status != "存档")
             {
-                
-                //if (dt.Rows.Count > 0)
-                //{
-                //    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
-                //    {
-                //        if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID))
-                //        {
-                //            MsgBox.ShowWarningMessageBox("没有运行权限，导出失败!");
-                //            return;
-                //        }
-                //        if (!RecordWorkTask.HaveWorkFlowExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
-                //        {
-                //            MsgBox.ShowWarningMessageBox("没有导出权限，导出失败!");
-                //            return;
-                //        }
 
-                //    }
-                //}
-                //else
-                //{
-                //    MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,导出失败!");
-                //    return;
-                //}
+                if (dt.Rows.Count > 0)
+                {
+                    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
+                    {
+                        if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID))
+                        {
+                            MsgBox.ShowWarningMessageBox("没有运行权限，导出失败!");
+                            return;
+                        }
+                        //if (!RecordWorkTask.HaveWorkFlowExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
+                        //{
+                        //    MsgBox.ShowWarningMessageBox("没有导出权限，导出失败!");
+                        //    return;
+                        //}
+
+                    }
+                }
+                else
+                {
+                    MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,导出失败!");
+                    return;
+                }
             }//流程没结束
             else if (!RecordWorkTask.HaveFlowEndExploreRole(currRecord.Kind))
             {

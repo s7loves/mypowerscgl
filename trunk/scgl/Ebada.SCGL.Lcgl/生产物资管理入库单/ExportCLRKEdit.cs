@@ -123,13 +123,15 @@ namespace Ebada.Scgl.Lcgl
                     filter4 = "  where 1=1 and type = '工程材料入库单'"
                         + "  and ssgc='" + mc + "' "
                         +"  and ssxm='" + xm + "' ";
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_clcrkd " + filter4 + " ");
+                    
+                    //IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_clcrkd " + filter4 + " ");
+                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_clcrkd " + filter4 + " ");
                     foreach (string sj in sjlist)
                     {
                         filter = "  where 1=1 and type = '工程材料入库单'"
                         + "  and ssgc='" + mc + "' "
                         + "  and ssxm='" + xm
-                        + "' and CONVERT(varchar(50) , indate, 112 )   like '" + sj + "%' ";
+                        + "' and num   = '" + sj + "' ";
                         if (isWorkflowCall)
                         {
                           
@@ -241,13 +243,14 @@ namespace Ebada.Scgl.Lcgl
                     filter4 = "  where 1=1 and type = '工程材料入库单'"
                         + "  and ssgc='" + mc + "' "
                         + "  and ssxm='" + xm + "' ";
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_clcrkd " + filter4 + " ");
+                    //IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_clcrkd " + filter4 + " ");
+                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_clcrkd " + filter4 + " ");
                     foreach (string sj in sjlist)
                     {
                         filter = "  where 1=1 and type = '工程材料入库单'"
                         + "  and ssgc='" + mc + "' "
                         + "  and ssxm='" + xm
-                        + "' and CONVERT(varchar(50) , indate, 112 )   like '" + sj + "%' ";
+                        + "' and num= '" + sj + "' ";
                         if (isWorkflowCall)
                         {
 
@@ -346,13 +349,14 @@ namespace Ebada.Scgl.Lcgl
                     filter4 = "  where 1=1 and type = '工程材料入库单'"
                         + "  and ssgc='" + mc + "' "
                         + "  and ssxm='" + xm + "' ";
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_clcrkd " + filter4 + " ");
+                    //IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct CONVERT(varchar(50) ,indate, 112 )  from PJ_clcrkd " + filter4 + " ");
+                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_clcrkd " + filter4 + " ");
                     foreach (string sj in sjlist)
                     {
                         filter = "  where 1=1 and type = '工程材料入库单'"
                         + "  and ssgc='" + mc + "' "
                         + "  and ssxm='" + xm
-                        + "' and CONVERT(varchar(50) , indate, 112 )   like '" + sj + "%' ";
+                        + "' and num= '" + sj + "' ";
                         if (isWorkflowCall)
                         {
                            

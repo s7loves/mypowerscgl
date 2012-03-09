@@ -321,6 +321,12 @@
       <DependentUpon>UCCLCK.cs</DependentUpon>
     </Compile>
     <Compile Include="生产物资管理验收单\ExportCLRKYSEdit.cs" />
+    <Compile Include="生产物资管理验收单\frmCLRKYSShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="生产物资管理验收单\frmCLRKYSShow.Designer.cs">
+      <DependentUpon>frmCLRKYSShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="生产物资管理验收单\frmCLRKYSEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1955,6 +1961,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="生产物资管理出库单\UCCLCK.resx">
       <DependentUpon>UCCLCK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="生产物资管理验收单\frmCLRKYSShow.resx">
+      <DependentUpon>frmCLRKYSShow.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="生产物资管理验收单\frmCLRKYSEdit.resx">
