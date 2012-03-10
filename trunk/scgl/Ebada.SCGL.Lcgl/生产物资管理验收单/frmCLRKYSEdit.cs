@@ -485,10 +485,12 @@ namespace Ebada.Scgl.Lcgl
             PJ_clrkysd obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_clrkysd>(rowData.ID);
             if (obj == null)
             {
+                btnOK.Visible = false; 
                 simpleButton4.Visible = true; 
             }
             else
             {
+                btnOK.Visible = true; 
                 simpleButton4.Visible = false;
             }
             comboBoxEdit7.Properties.Items.Clear();
@@ -556,6 +558,26 @@ namespace Ebada.Scgl.Lcgl
             spinEdit4.Value = Convert.ToDecimal(Convert.ToDouble(spinEdit3.Value) * 0.9);
             rowData.htjg = spinEdit3.Value.ToString();
             rowData.yfk = spinEdit4.Value.ToString();
+        }
+
+        private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
+        {
+            comboBoxEdit2.Properties.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   mc='" + comboBoxEdit1.Text + "'");
+            if (mclist.Count > 0)
+                comboBoxEdit2.Properties.Items.AddRange(mclist);
+            else
+            {
+                mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct nr  from pj_dyk where   sx='" + comboBoxEdit1.Text + "' and xh is not null ");
+                if (mclist.Count > 0)
+                    comboBoxEdit2.Properties.Items.AddRange(mclist);
+                else
+                {
+                    mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
+                    comboBoxEdit2.Properties.Items.AddRange(mclist);
+                }
+            }
         }
 
        
