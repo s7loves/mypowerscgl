@@ -118,6 +118,10 @@ namespace Ebada.Scgl.Sbgl {
                 {
                     RefreshData(" where ID='" + value + "' order by dxxh");
                 }
+                else
+                {
+                    RefreshData(" where dydj='10' order by dxxh");
+                }
             }
         }
         [Browsable(false)]

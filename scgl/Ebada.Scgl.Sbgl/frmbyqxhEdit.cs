@@ -56,7 +56,7 @@ namespace Ebada.Scgl.Sbgl
         #endregion
 
         private void InitComboBoxData() {
-            this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetVoltage());
+            this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetVoltageNokV());
             pdsbModelHelper.FillCBox(textEdit1, pdsbModelHelper.byqxh);
         }
 
@@ -65,6 +65,7 @@ namespace Ebada.Scgl.Sbgl
             string []str = new string[3];
             str = textEdit1.SelectedText.Split(new char[] { '-' });
             spinEdit1.Text = str[str.Length-1];
+            (RowData as PS_byqxh).byqCapcity = Convert.ToInt32(string.IsNullOrEmpty(spinEdit1.Text)?"0":spinEdit1.Text) ;
         }
 
     }
