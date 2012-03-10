@@ -132,6 +132,18 @@ namespace Ebada.Scgl.Sbgl {
                     ByqxhSelectionChanged(treeList1, mByqxh[id]);
                 }
             }
+            else if (type == "gyxl" )
+            {
+                LineSelectionChanged(treeList1,null);
+            }
+            else if ( type == "xlxh" )
+            {
+                DxxhSelectionChanged(treeList1,null);
+            }
+            else if (type == "byqxh")
+            {
+                ByqxhSelectionChanged(treeList1, null);
+            }
         }
 
         /// <summary>

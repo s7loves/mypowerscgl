@@ -179,6 +179,10 @@ namespace Ebada.Scgl.Sbgl {
                 {
                     RefreshData(" where LineID='" + value + "' and linevol='10'  order by linecode");
                 }
+                else
+                {
+                    RefreshData(" where linevol='10'  order by linecode");
+                }
             }
         }
         [Browsable(false)]

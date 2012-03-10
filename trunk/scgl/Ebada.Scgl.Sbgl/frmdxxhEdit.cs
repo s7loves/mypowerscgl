@@ -55,7 +55,7 @@ namespace Ebada.Scgl.Sbgl
 
         private void InitComboBoxData() {
             pdsbModelHelper.FillCBox(textEdit2, pdsbModelHelper.dxxh);
-            this.textEdit1.Properties.Items.AddRange(ComboBoxHelper.GetVoltage()); 
+            this.textEdit1.Properties.Items.AddRange(ComboBoxHelper.GetVoltageNokV()); 
         }
 
     }

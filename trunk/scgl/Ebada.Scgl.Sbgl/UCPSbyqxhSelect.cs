@@ -116,6 +116,10 @@ namespace Ebada.Scgl.Sbgl {
                 {
                     RefreshData(" where ID='" + ParentID + "' order by byqModle");
                 }
+                else
+                {
+                    gridViewOperation.RefreshData(" where byqVol='10' order by byqModle");
+                }
             }
         }
         [Browsable(false)]

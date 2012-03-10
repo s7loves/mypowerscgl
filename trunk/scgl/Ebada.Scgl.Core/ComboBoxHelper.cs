@@ -445,7 +445,28 @@ namespace Ebada.Scgl.Core {
             }
             return list;
         }
+        /// <summary>
+        /// 获取电压等级
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection GetVoltageNokV()
+        {
 
+
+
+            ICollection list = new ArrayList();
+            string key = "GetVoltage";
+            if (mCache.ContainsKey(key))
+            {
+                list = mCache[key];
+            }
+            else
+            {
+                list = new string[] { "65", "10", "0.4" };
+                mCache.Add(key, list);
+            }
+            return list;
+        }
         /// <summary>
         /// 获取导线型号
         /// </summary>
