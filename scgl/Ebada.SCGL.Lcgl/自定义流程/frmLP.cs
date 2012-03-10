@@ -455,6 +455,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                     if (lp.CtrlType.Contains("uc_gridcontrol"))
                     {
+                        label.Text = lp.CellName+"(Tab键可选下一格)";
                         (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar),lp);
                         if (RecordWorkTask.HaveRunPowerRole(WorkConst.WorkTask_BindTable, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkTaskId"].ToString()))
                         {

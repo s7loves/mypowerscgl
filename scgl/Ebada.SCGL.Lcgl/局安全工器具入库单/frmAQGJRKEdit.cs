@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using System.Threading;
 namespace Ebada.Scgl.Lcgl
 {
     public partial class frmAQGJRKEdit : FormBase, IPopupFormEdit {
@@ -506,7 +507,32 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmCLRKEdit_Load(object sender, EventArgs e)
         {
-           
+
+            comboBoxEdit8.Properties.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_clcrkd where type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存'");
+            
+            PJ_anqgjcrkd obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_anqgjcrkd>(rowData.ID);
+            if (obj == null)
+            {
+                btnOK.Visible = false;
+                simpleButton4.Visible = true;
+                comboBoxEdit8.Properties.Items.Add(rowData.num);
+            }
+            else
+            {
+                btnOK.Visible = true;
+                simpleButton4.Visible = false;
+            }
+            comboBoxEdit8.Properties.Items.AddRange(mclist);
+        }
+
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            rowData.ID = rowData.CreateID();
+            Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+            Client.ClientHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(rowData);
+            MsgBox.ShowTipMessageBox("添加成功!");
+            rowData.ID = rowData.CreateID();
         }
 
       

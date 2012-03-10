@@ -184,10 +184,10 @@ namespace Ebada.Scgl.WFlow
 
                 if (HaveFlowEndExploreRole(workflowins.FlowInsCaption.Replace("并行节点:", "")))
                 {
-                    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(worktaskins.WorkTaskId, workflowins.WorkFlowId))
+                    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(worktaskins.WorkTaskId, workflowins.WorkFlowId) && currRecord.Status != "存档")
                     {
 
-                        if (!RecordWorkTask.HaveWorkFlowExploreRole(worktaskins.WorkTaskId, workflowins.WorkFlowId))
+                        if (!RecordWorkTask.HaveWorkFlowExploreRole(worktaskins.WorkTaskId, workflowins.WorkFlowId) && currRecord.Status != "存档")
                         {
                             continue;
                         }
@@ -671,7 +671,7 @@ namespace Ebada.Scgl.WFlow
                             }
                             if (!HaveRunPowerRole(WorkConst.WorkTask_FlowEndExplore, tfvli[i].WorkFlowId, tfvli[i].WorkFlowId) || (currRecord.Status != "存档"))
                             {
-                                if (!RecordWorkTask.HaveWorkFlowAllExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
+                                //if (!RecordWorkTask.HaveWorkFlowAllExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
                                 {
 
                                     //if (!RecordWorkTask.HaveWorkFlowExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
