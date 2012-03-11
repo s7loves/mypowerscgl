@@ -137,6 +137,24 @@
     <Compile Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.Designer.cs">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
     </Compile>
+    <Compile Include="06设备巡视及缺陷消除\frmWorkFlow06sbxsEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\frmWorkFlow06sbxsEdit.Designer.cs">
+      <DependentUpon>frmWorkFlow06sbxsEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="春秋06设备巡视及缺陷消除\frm06cqsbxsEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="春秋06设备巡视及缺陷消除\frm06cqsbxsEdit.Designer.cs">
+      <DependentUpon>frm06cqsbxsEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="春秋06设备巡视及缺陷消除\UCPJ_06cqsbxs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="春秋06设备巡视及缺陷消除\UCPJ_06cqsbxs.Designer.cs">
+      <DependentUpon>UCPJ_06cqsbxs.cs</DependentUpon>
+    </Compile>
     <Compile Include="所安全工器具入库单\ExportAQGJSRKEdit.cs" />
     <Compile Include="所安全工器具入库单\frmAQGJSRKEdit.cs">
       <SubType>Form</SubType>
@@ -1845,6 +1863,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="05交叉跨越及对地距离测量\UCPJ_05jckyM.resx">
       <DependentUpon>UCPJ_05jckyM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="06设备巡视及缺陷消除\frmWorkFlow06sbxsEdit.resx">
+      <DependentUpon>frmWorkFlow06sbxsEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="春秋06设备巡视及缺陷消除\frm06cqsbxsEdit.resx">
+      <DependentUpon>frm06cqsbxsEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="春秋06设备巡视及缺陷消除\UCPJ_06cqsbxs.resx">
+      <DependentUpon>UCPJ_06cqsbxs.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="所安全工器具入库单\frmAQGJSRKEdit.resx">

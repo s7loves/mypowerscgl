@@ -37,6 +37,7 @@
             this.ceBind = new DevExpress.XtraEditors.CheckEdit();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.tetWorkFixValue = new DevExpress.XtraEditors.MemoEdit();
             this.tetWorkSQL = new DevExpress.XtraEditors.MemoEdit();
             this.cbxWorkDbTableColumns = new System.Windows.Forms.ComboBox();
             this.cbxWorkDbTable = new System.Windows.Forms.ComboBox();
@@ -57,21 +58,16 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkExcel = new System.Windows.Forms.RadioButton();
             this.rbnWorkTable = new System.Windows.Forms.RadioButton();
-            this.tetWorkFixValue = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // m_DefaultLookAndFeel
-            // 
-            
             // 
             // groupControl1
             // 
@@ -157,7 +153,7 @@
             this.ceBind.Location = new System.Drawing.Point(201, 26);
             this.ceBind.Name = "ceBind";
             this.ceBind.Properties.Caption = "关联流程记录";
-            this.ceBind.Size = new System.Drawing.Size(88, 19);
+            this.ceBind.Size = new System.Drawing.Size(104, 19);
             this.ceBind.TabIndex = 64;
             // 
             // simpleButton2
@@ -179,6 +175,13 @@
             this.simpleButton1.TabIndex = 62;
             this.simpleButton1.Text = "确定";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // tetWorkFixValue
+            // 
+            this.tetWorkFixValue.Location = new System.Drawing.Point(69, 46);
+            this.tetWorkFixValue.Name = "tetWorkFixValue";
+            this.tetWorkFixValue.Size = new System.Drawing.Size(395, 23);
+            this.tetWorkFixValue.TabIndex = 61;
             // 
             // tetWorkSQL
             // 
@@ -362,13 +365,6 @@
             this.rbnWorkTable.Text = "从表单取";
             this.rbnWorkTable.UseVisualStyleBackColor = true;
             // 
-            // tetWorkFixValue
-            // 
-            this.tetWorkFixValue.Location = new System.Drawing.Point(69, 46);
-            this.tetWorkFixValue.Name = "tetWorkFixValue";
-            this.tetWorkFixValue.Size = new System.Drawing.Size(395, 23);
-            this.tetWorkFixValue.TabIndex = 61;
-            // 
             // frmGridcontrolSQLSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -388,9 +384,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
