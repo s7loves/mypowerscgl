@@ -239,8 +239,7 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 128)
-                throw new Exception("[]长度不能大于128!");
+               
                 if (_initvalue as object == null || !_initvalue.Equals(value))
                 {
                     _initvalue = value;

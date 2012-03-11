@@ -348,7 +348,7 @@ namespace Ebada.Scgl.WFlow
             gzr.gzrjID = gzr.CreateID();
             gzr.ParentID = recordID;
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
+            IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where GdsCode='" + MainHelper.User.OrgCode + "' and rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
 
             if (gzrj01.Count > 0)
             {
@@ -376,7 +376,7 @@ namespace Ebada.Scgl.WFlow
                 //MsgBox.ShowWarningMessageBox("未填写今日工作日记");
                 //return;
             }
-            IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
+            IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where gzrjID  = '" + gzr.gzrjID + "' order by seq  ");
             if (gzrlist.Count > 0)
             {
                 gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
@@ -476,86 +476,192 @@ namespace Ebada.Scgl.WFlow
         public static string GetTaskVarRiZhiValue(WF_TaskVar tv, Excel.Worksheet sheet, string recordID, object modlecord)
         {
             string strvalue = "";
-            if (tv.VarModule == "固定值")
+            string sqlSentence = tv.InitValue;
+            IList li = new ArrayList();
+            Regex r1;
+            int i = 0;
+            if (sqlSentence.IndexOf("Excel:") == 0)
             {
-                strvalue = tv.InitValue;
-            }
-            else if (tv.VarModule == "表单")
-            {
-                //LP_Temple tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tvAddress.TableField);
-                IList<WF_TableFieldValue> filedvaluelist = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
-                    "where RecordId  = '" + recordID + "' and FieldId='" + tv.TableField
-                    + "' and WorkFlowId='" + tv.WorkFlowId
-                    + "' and WorkTaskId='" + tv.WorkTaskId + "' order by seq  ");
-                if (filedvaluelist.Count > 0)
-                {
-                    strvalue = filedvaluelist[0].ControlValue;
-                }
-            }
-            else if (tv.VarModule == "Excel")
-            {
-                if (tv.TableName != "")
-                {
+                int index1 = sqlSentence.LastIndexOf(":");
+                string tablename = sqlSentence.Substring(6, index1 - 6);
+                string cellpos = sqlSentence.Substring(index1 + 1);
+                string[] arrCellPos = cellpos.Split('|');
+                arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
+                
+               
+                
 
-                    string[] arrCellPos = tv.TableField.Split('|');
-                    arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
-                    string strcellvalue = "";
-                    for (int i = 0; i < arrCellPos.Length; i++)
-                    {
-                        Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
-                        strcellvalue += range.Value2;
-                    }
-                    strvalue = strcellvalue;
-                }
-
-            }
-            else if (tv.VarModule == "数据库" && modlecord != null)
-            {
-                if (modlecord.GetType().ToString().IndexOf(tv.TableName) > -1)
+                for ( i = 0; i < arrCellPos.Length; i++)
                 {
-                    //if (modlecord.GetType().GetProperty(tvAddress.TableField) != null && modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null) != null)
-                    //{
-                    //strvalue = modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null).ToString();
-                    string strsql = "";
-                    strsql = tv.InitValue;
-                    strsql = SetSQLValue(strsql, modlecord);
-                    try
+                    Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
+                    strvalue += range.Value2;
+                }
+                li.Add(strvalue);
+            }
+            else if (sqlSentence != "")
+            {
+                if (sqlSentence.IndexOf("{recordid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{recordid}", recordID);
+                }
+                if (sqlSentence.IndexOf("{orgcode}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{userid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+               
+               
+                try
+                {
+                    sqlSentence = sqlSentence.Replace("\r\n", " ");
+                    li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+                    if (sqlSentence.IndexOf("where 9=9") > -1)
                     {
-                        IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strsql);
-                        if (list.Count > 0)
+                        string strtemp = li[0].ToString();
+                        li.Clear();
+                        r1 = new Regex(@"[0-9]+\+[0-9]+");
+                        if (r1.Match(strtemp).Value != "")
                         {
-                            for (int i = 0; i < list.Count; i++)
+                            int istart = 1;
+                            int ilen = 10;
+                            r1 = new Regex(@"[0-9]+(?=\+)");
+                            if (r1.Match(strtemp).Value != "")
                             {
-                                 if (tv.VarName == "参加人员")
-                                {
-                                    if (i > 1)
-                                    {
-                                        strvalue += "等人";
-                                    }
-                                }
-                                 if(strvalue =="")
-                                     strvalue += "、"+list[i].ToString();
-                                 else
-                                     strvalue += list[i].ToString();
-
-                               
+                                istart = Convert.ToInt32(r1.Match(strtemp).Value);
+                            }
+                            r1 = new Regex(@"(?<=\+)[0-9]+");
+                            if (r1.Match(strtemp).Value != "")
+                            {
+                                ilen = Convert.ToInt32(r1.Match(strtemp).Value); ;
+                            }
+                            for ( i = istart; i <= ilen; i++)
+                            {
+                                li.Add(string.Format("{0}", i));
                             }
                         }
                         else
                         {
-                            strvalue = "无数据";
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        strvalue = "出错:" + ex.Message;
-                    }
-                    //}
+                            string[] strli = SelectorHelper.ToDBC(strtemp).Split(',');
+                            foreach (string ss in strli)
+                            {
+                                li.Add(ss);
+                            }
 
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    li.Add("出错:" + ex.Message);
                 }
             }
+            i = 0;
+            foreach (string strvaluetemp in li)
+            {
+               
+                        if (tv.VarName.IndexOf( "参加人员")>0)
+                        {
+                            if (i > 2)
+                            {
+                                strvalue += "等" + li.Count.ToString() + "人";
+                                break;
+                            }
+                        }
+                        if (strvalue == "")
+                            strvalue +=strvaluetemp;
+                        else
+                            strvalue += "、" + strvaluetemp;
+            }
+            
             return strvalue;
         }
+        //public static string GetTaskVarRiZhiValue(WF_TaskVar tv, Excel.Worksheet sheet, string recordID, object modlecord)
+        //{
+        //    string strvalue = "";
+        //    if (tv.VarModule == "固定值")
+        //    {
+        //        strvalue = tv.InitValue;
+        //    }
+        //    else if (tv.VarModule == "表单")
+        //    {
+        //        //LP_Temple tp = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tvAddress.TableField);
+        //        IList<WF_TableFieldValue> filedvaluelist = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+        //            "where RecordId  = '" + recordID + "' and FieldId='" + tv.TableField
+        //            + "' and WorkFlowId='" + tv.WorkFlowId
+        //            + "' and WorkTaskId='" + tv.WorkTaskId + "' order by seq  ");
+        //        if (filedvaluelist.Count > 0)
+        //        {
+        //            strvalue = filedvaluelist[0].ControlValue;
+        //        }
+        //    }
+        //    else if (tv.VarModule == "Excel")
+        //    {
+        //        if (tv.TableName != "")
+        //        {
+
+        //            string[] arrCellPos = tv.TableField.Split('|');
+        //            arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
+        //            string strcellvalue = "";
+        //            for (int i = 0; i < arrCellPos.Length; i++)
+        //            {
+        //                Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
+        //                strcellvalue += range.Value2;
+        //            }
+        //            strvalue = strcellvalue;
+        //        }
+
+        //    }
+        //    else if (tv.VarModule == "数据库" && modlecord != null)
+        //    {
+        //        if (modlecord.GetType().ToString().IndexOf(tv.TableName) > -1)
+        //        {
+        //            //if (modlecord.GetType().GetProperty(tvAddress.TableField) != null && modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null) != null)
+        //            //{
+        //            //strvalue = modlecord.GetType().GetProperty(tvAddress.TableField).GetValue(modlecord, null).ToString();
+        //            string strsql = "";
+        //            strsql = tv.InitValue;
+        //            strsql = SetSQLValue(strsql, modlecord);
+        //            try
+        //            {
+        //                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strsql);
+        //                if (list.Count > 0)
+        //                {
+        //                    for (int i = 0; i < list.Count; i++)
+        //                    {
+        //                         if (tv.VarName == "参加人员")
+        //                        {
+        //                            if (i > 1)
+        //                            {
+        //                                strvalue += "等人";
+        //                            }
+        //                        }
+        //                         if(strvalue =="")
+        //                             strvalue += list[i].ToString();
+        //                         else
+        //                             strvalue += "、" + list[i].ToString();
+
+                               
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    strvalue = "无数据";
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                strvalue = "出错:" + ex.Message;
+        //            }
+        //            //}
+
+        //        }
+        //    }
+        //    return strvalue;
+        //}
         /// <summary>
         /// 设置SQL语句里的变量值
         /// </summary>
@@ -1365,6 +1471,22 @@ namespace Ebada.Scgl.WFlow
             if (wf.Count == 0) return dtnull;
             WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
             DataTable dt = WorkFlowInstance.SelectedWorkflowNowTask(userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, wfi.NowTaskId, 999);
+            // DataTable dt = WorkFlowInstance.SelectedWorkflowTask (userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId,wfi.NowTaskId , 999);
+            return dt;
+        }
+        /// <summary>
+        /// 获得当前记录的流程信息
+        /// </summary>
+        /// <param name="recordID">记录ID</param>
+        /// <param name="userID">用户ID</param>
+        /// <returns>返回指定记录的流程信息</returns>
+        public static DataTable GetRecordWorkFlowData(string recordID)
+        {
+            DataTable dtnull = new DataTable();
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + recordID + "'");
+            if (wf.Count == 0) return dtnull;
+            WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
+            DataTable dt = WorkFlowInstance.SelectedWorkflowNowTask( wf[0].WorkFlowId, wf[0].WorkFlowInsId, wfi.NowTaskId, 999);
             // DataTable dt = WorkFlowInstance.SelectedWorkflowTask (userID, wf[0].WorkFlowId, wf[0].WorkFlowInsId,wfi.NowTaskId , 999);
             return dt;
         }

@@ -17,7 +17,7 @@ using System.Threading;
 using Ebada.Scgl.WFlow;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frm06sbxsEdit : FormBase, IPopupFormEdit
+    public partial class frmWorkFlow06sbxsEdit : FormBase, IPopupFormEdit
     {
         SortableSearchableBindingList<PJ_06sbxs> m_CityDic = new SortableSearchableBindingList<PJ_06sbxs>();
 
@@ -73,7 +73,7 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        public frm06sbxsEdit()
+        public frmWorkFlow06sbxsEdit()
         {
             InitializeComponent();
         }
@@ -142,6 +142,10 @@ namespace Ebada.Scgl.Lcgl
             ////线路名称
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
             IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'");
+            if (xllit.Count == 0)
+            {
+                xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where 1=1");
+            }
             SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
 
             //巡视区段
@@ -353,9 +357,142 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-          
+            PJ_06sbxs sbxs = RowData as PJ_06sbxs;
+            string strmes = "";
+            object obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_06sbxs>(sbxs.ID);
+            PJ_qxfl qxfj = new PJ_qxfl();
+            if (obj == null)
+            {
+                MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(sbxs);
+                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ModleRecordID = sbxs.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = sbxs.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                if (sbxs.qxlb != "")
+                {
+                    
+
+                    qxfj.CreateDate = sbxs.CreateDate;
+                    qxfj.CreateMan = sbxs.CreateMan;
+                    qxfj.LineID = sbxs.LineID;
+                    qxfj.LineName = sbxs.LineName;
+                    qxfj.OrgCode = sbxs.OrgCode;
+                    qxfj.OrgName = sbxs.OrgName;
+                    qxfj.qxlb = sbxs.qxlb;
+                    qxfj.qxly = "设备巡视";
+                    qxfj.qxnr = sbxs.qxnr;
+                    qxfj.xcqx = sbxs.xcqx;
+                    qxfj.xcr = sbxs.xcr;
+                    qxfj.xlqd = sbxs.xlqd;
+                    qxfj.xsr = sbxs.xsr;
+                    qxfj.xssj = sbxs.xssj;
+                    MainHelper.PlatformSqlMap.Create<PJ_qxfl>(qxfj);
+                }
+            }
+            else
+            {
+                PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOne<PJ_qxfl>(" where CONVERT(varchar, CreateDate, 120 ) =  '" + sbxs.CreateDate + "'"
+                  + " and LineID='" + sbxs.LineID + "'"
+                  + " and OrgCode='" + sbxs.OrgCode + "'"
+                   + " and qxlb='" + sbxs.qxlb + "'"
+                   + " and xsr='" + sbxs.xsr + "'"
+                   + " and xlqd='" + sbxs.xlqd + "'"
+                  );
+                if (qxfltemp != null)
+                {
+                    qxfltemp.LineID = sbxs.LineID;
+                    qxfltemp.LineName = sbxs.LineName;
+                    qxfltemp.OrgCode = sbxs.OrgCode;
+                    qxfltemp.OrgName = sbxs.OrgName;
+                    qxfltemp.qxlb = sbxs.qxlb;
+                    qxfltemp.qxnr = sbxs.qxnr;
+                    qxfltemp.xssj = sbxs.xssj;
+                    qxfltemp.xsr = sbxs.xsr;
+                    qxfltemp.xcqx = sbxs.xcqx;
+                    qxfltemp.xlqd = sbxs.xlqd; ;
+                    qxfltemp.xcr = sbxs.xcr;
+                    qxfltemp.xcrq = sbxs.xcrq;
+                    MainHelper.PlatformSqlMap.Update<PJ_qxfl>(qxfltemp);
+                }
+                MainHelper.PlatformSqlMap.Update<PJ_06sbxs>(sbxs);
+            }
            
            
+                currRecord.LastChangeTime = DateTime.Now.ToString();
+                if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+                {
+
+                    RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { sbxs, qxfj, currRecord });
+
+                }
+                WF_WorkTaskCommands wt;
+                //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
+                wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+                if (wt != null)
+                {
+                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+                }
+                else
+                {
+                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+                }
+                if (strmes.IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                else
+                    MsgBox.ShowTipMessageBox(strmes);
+                strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+                if (strmes == "结束节点1")
+                {
+                    currRecord.Status = "存档";
+                }
+                else
+                {
+                    currRecord.Status = strmes;
+                }
+                if (currRecord.ImageAttachment == null)
+                {
+                    currRecord.ImageAttachment = new byte[0];
+                }
+                if (currRecord.DocContent == null)
+                {
+                    currRecord.DocContent = new byte[0];
+                }
+                if (currRecord.SignImg == null)
+                {
+                    currRecord.SignImg = new byte[0];
+                }
+
+                currRecord.LastChangeTime = DateTime.Now.ToString();
+                MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
+                if (obj == null&& (sbxs.qxlb != ""))
+                {
+                    DataTable dttemp = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID);
+                    if (dttemp.Rows.Count > 0)
+                    {
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                        mrwt.ID = mrwt.CreateID();
+                        mrwt.ModleRecordID = qxfj.ID;
+                        mrwt.RecordID = currRecord.ID;
+                        mrwt.WorkFlowId = dttemp.Rows[0]["WorkFlowId"].ToString();
+                        mrwt.WorkFlowInsId = dttemp.Rows[0]["WorkFlowInsId"].ToString();
+                        mrwt.WorkTaskId = dttemp.Rows[0]["WorkTaskId"].ToString();
+                        mrwt.ModleTableName = qxfj.GetType().ToString();
+                        mrwt.WorkTaskInsId = dttemp.Rows[0]["WorkTaskInsId"].ToString();
+                        mrwt.CreatTime = DateTime.Now;
+                        MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                    }
+
+                }
         }
 
 

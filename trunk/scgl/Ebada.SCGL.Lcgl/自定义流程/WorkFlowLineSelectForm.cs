@@ -196,6 +196,12 @@ namespace Ebada.Scgl.Lcgl
                     wlk.Description = tl.endTaskCaption;
                     MainHelper.PlatformSqlMap.Update<WF_WorkLink>(wlk);
                 }
+                else
+                {
+                    wlk.Condition = "<%kind%>='" + tl.endTaskCaption + "'";
+                    wlk.Description = tl.endTaskCaption;
+                    MainHelper.PlatformSqlMap.Update<WF_WorkLink>(wlk);
+                }
             }
             string statustem = currRecord.Status;
             currRecord.Status=comboBoxEdit1.Text;

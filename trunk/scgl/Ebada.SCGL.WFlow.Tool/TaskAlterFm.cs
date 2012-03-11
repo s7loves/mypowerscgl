@@ -10,6 +10,7 @@ using Ebada.Scgl.Model;
 using Ebada.Client.Platform;
 using Ebada.Core;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 
 namespace Ebada.SCGL.WFlow.Tool
@@ -128,94 +129,40 @@ namespace Ebada.SCGL.WFlow.Tool
         private Button btnTableClear;
         private IContainer components;
         private TabPage tabPage7;
-        private GroupBox groupBox11;
-        private DevExpress.XtraEditors.TextEdit tetWorkExcelName;
-        private DevExpress.XtraEditors.TextEdit tetWorkPos;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
-        private ComboBox cbxWorkTableColumns;
-        private ComboBox cbxWorkDataTable;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private RadioButton rbnWorkFixValue;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private RadioButton rbnWorkExcel;
-        private RadioButton rbnWorkTable;
-        private GroupBox groupBox10;
-        private DevExpress.XtraEditors.TextEdit tetProjectExcelName;
-        private DevExpress.XtraEditors.TextEdit tetProjectPos;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
-        private ComboBox cbxProjectTableColumns;
-        private ComboBox cbxProjectDataTable;
-        private DevExpress.XtraEditors.LabelControl labelControl11;
-        private RadioButton rbnProjectFixValue;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
-        private RadioButton rbnProjectExcel;
-        private RadioButton rbnProjectTable;
-        private GroupBox groupBox9;
-        private DevExpress.XtraEditors.TextEdit tetCharManExcelName;
-        private DevExpress.XtraEditors.TextEdit tetCharManPos;
-        private DevExpress.XtraEditors.LabelControl labelControl17;
-        private ComboBox cbxCharManTableColumns;
-        private ComboBox cbxCharManDataTable;
-        private DevExpress.XtraEditors.LabelControl labelControl16;
-        private RadioButton rbnCharManFixValue;
-        private DevExpress.XtraEditors.LabelControl labelControl15;
-        private DevExpress.XtraEditors.LabelControl labelControl14;
-        private DevExpress.XtraEditors.LabelControl labelControl13;
-        private RadioButton rbnCharManExcel;
-        private RadioButton rbnCharManTable;
-        private GroupBox groupBox8;
-        private DevExpress.XtraEditors.TextEdit tetAttendManPos;
-        private DevExpress.XtraEditors.LabelControl labelControl22;
-        private ComboBox cbxAttendManTableColumns;
-        private ComboBox cbxAttendManDataTable;
-        private DevExpress.XtraEditors.LabelControl labelControl21;
-        private RadioButton rbnAttendManFixValue;
-        private DevExpress.XtraEditors.LabelControl labelControl20;
-        private DevExpress.XtraEditors.LabelControl labelControl19;
-        private DevExpress.XtraEditors.LabelControl labelControl18;
-        private RadioButton rbnAttendManExcel;
-        private RadioButton rbnAttendManTable;
+        private CheckBox cbxTaskAllExplore;
+        private CheckBox cbxTaskExplore;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
         private CheckBox cbxRiZhi;
-        private DevExpress.XtraEditors.TextEdit tetWorkFixValue;
-        private DevExpress.XtraEditors.TextEdit tetProjectFixValue;
-        private DevExpress.XtraEditors.TextEdit tetCharManFixValue;
-        private DevExpress.XtraEditors.TextEdit tetAttendManFixValue;
-        private DevExpress.XtraEditors.TextEdit tetAttendManExcelName;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.CheckEdit ceBind;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.MemoEdit tetWorkFixValue;
+        private DevExpress.XtraEditors.MemoEdit tetWorkSQL;
         private ComboBox cbxWorkDbTableColumns;
         private ComboBox cbxWorkDbTable;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl23;
         private DevExpress.XtraEditors.LabelControl labelControl24;
         private RadioButton rbnWorkDatabase;
-        private ComboBox cbxProjectDbTableColumns;
-        private ComboBox cbxProjectDbTable;
-        private DevExpress.XtraEditors.LabelControl labelControl25;
-        private DevExpress.XtraEditors.LabelControl labelControl26;
-        private RadioButton rbnProjectDatabase;
-        private ComboBox cbxCharManDbTableColumns;
-        private ComboBox cbxCharManDbTable;
-        private DevExpress.XtraEditors.LabelControl labelControl27;
-        private DevExpress.XtraEditors.LabelControl labelControl28;
-        private RadioButton rbnCharManDatabase;
-        private ComboBox cbxAttendManDbTableColumns;
-        private ComboBox cbxAttendManDbTable;
-        private DevExpress.XtraEditors.LabelControl labelControl30;
-        private DevExpress.XtraEditors.LabelControl labelControl29;
-        private RadioButton rbnAttendManDatabase;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl31;
-        private DevExpress.XtraEditors.LabelControl labelControl32;
-        private DevExpress.XtraEditors.LabelControl labelControl33;
-        private DevExpress.XtraEditors.MemoEdit tetWorkSQL;
-        private DevExpress.XtraEditors.MemoEdit tetCharManSQL;
-        private DevExpress.XtraEditors.MemoEdit tetAttendManSQL;
-        private DevExpress.XtraEditors.MemoEdit tetProjectSQL;
-        private CheckBox cbxTaskAllExplore;
-        private CheckBox cbxTaskExplore;//处理人
+        private DevExpress.XtraEditors.TextEdit cbxWorkExcelTable;
+        private DevExpress.XtraEditors.TextEdit tetWorkPos;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private ComboBox cbxWorkTableColumns;
+        private ComboBox columnBox;
+        private ComboBox cbxWorkDataTable;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private RadioButton rbnWorkFixValue;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private RadioButton rbnWorkExcel;
+        private RadioButton rbnWorkTable;//处理人
         private string varDbTableName = "";
+        private DataTable rizdt = null;
         public fmTaskAlter(AlternateTask alterTask, string userId, string userName)
         {
             //
@@ -338,8 +285,16 @@ namespace Ebada.SCGL.WFlow.Tool
             this.cbxTaskExplore = new System.Windows.Forms.CheckBox();
             this.cbxReturn = new System.Windows.Forms.CheckBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.cbxRiZhi = new System.Windows.Forms.CheckBox();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.ceBind = new DevExpress.XtraEditors.CheckEdit();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.tetWorkFixValue = new DevExpress.XtraEditors.MemoEdit();
             this.tetWorkSQL = new DevExpress.XtraEditors.MemoEdit();
             this.cbxWorkDbTableColumns = new System.Windows.Forms.ComboBox();
             this.cbxWorkDbTable = new System.Windows.Forms.ComboBox();
@@ -347,82 +302,19 @@ namespace Ebada.SCGL.WFlow.Tool
             this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkDatabase = new System.Windows.Forms.RadioButton();
-            this.tetWorkFixValue = new DevExpress.XtraEditors.TextEdit();
-            this.tetWorkExcelName = new DevExpress.XtraEditors.TextEdit();
+            this.cbxWorkExcelTable = new DevExpress.XtraEditors.TextEdit();
             this.tetWorkPos = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.cbxWorkTableColumns = new System.Windows.Forms.ComboBox();
+            this.columnBox = new System.Windows.Forms.ComboBox();
             this.cbxWorkDataTable = new System.Windows.Forms.ComboBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkFixValue = new System.Windows.Forms.RadioButton();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkExcel = new System.Windows.Forms.RadioButton();
             this.rbnWorkTable = new System.Windows.Forms.RadioButton();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.tetProjectSQL = new DevExpress.XtraEditors.MemoEdit();
-            this.cbxProjectDbTableColumns = new System.Windows.Forms.ComboBox();
-            this.cbxProjectDbTable = new System.Windows.Forms.ComboBox();
-            this.labelControl31 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
-            this.rbnProjectDatabase = new System.Windows.Forms.RadioButton();
-            this.tetProjectFixValue = new DevExpress.XtraEditors.TextEdit();
-            this.tetProjectExcelName = new DevExpress.XtraEditors.TextEdit();
-            this.tetProjectPos = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.cbxProjectTableColumns = new System.Windows.Forms.ComboBox();
-            this.cbxProjectDataTable = new System.Windows.Forms.ComboBox();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.rbnProjectFixValue = new System.Windows.Forms.RadioButton();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.rbnProjectExcel = new System.Windows.Forms.RadioButton();
-            this.rbnProjectTable = new System.Windows.Forms.RadioButton();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.tetCharManSQL = new DevExpress.XtraEditors.MemoEdit();
-            this.cbxCharManDbTableColumns = new System.Windows.Forms.ComboBox();
-            this.cbxCharManDbTable = new System.Windows.Forms.ComboBox();
-            this.labelControl32 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl28 = new DevExpress.XtraEditors.LabelControl();
-            this.rbnCharManDatabase = new System.Windows.Forms.RadioButton();
-            this.tetCharManFixValue = new DevExpress.XtraEditors.TextEdit();
-            this.tetCharManExcelName = new DevExpress.XtraEditors.TextEdit();
-            this.tetCharManPos = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
-            this.cbxCharManTableColumns = new System.Windows.Forms.ComboBox();
-            this.cbxCharManDataTable = new System.Windows.Forms.ComboBox();
-            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
-            this.rbnCharManFixValue = new System.Windows.Forms.RadioButton();
-            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.rbnCharManExcel = new System.Windows.Forms.RadioButton();
-            this.rbnCharManTable = new System.Windows.Forms.RadioButton();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.tetAttendManSQL = new DevExpress.XtraEditors.MemoEdit();
-            this.cbxAttendManDbTableColumns = new System.Windows.Forms.ComboBox();
-            this.tetAttendManFixValue = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
-            this.cbxAttendManDbTable = new System.Windows.Forms.ComboBox();
-            this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
-            this.tetAttendManExcelName = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
-            this.tetAttendManPos = new DevExpress.XtraEditors.TextEdit();
-            this.rbnAttendManDatabase = new System.Windows.Forms.RadioButton();
-            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
-            this.cbxAttendManTableColumns = new System.Windows.Forms.ComboBox();
-            this.cbxAttendManDataTable = new System.Windows.Forms.ComboBox();
-            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
-            this.rbnAttendManFixValue = new System.Windows.Forms.RadioButton();
-            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
-            this.rbnAttendManExcel = new System.Windows.Forms.RadioButton();
-            this.rbnAttendManTable = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -466,26 +358,16 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage7.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkExcelName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxWorkExcelTable.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).BeginInit();
-            this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tetProjectSQL.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetProjectFixValue.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetProjectExcelName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetProjectPos.Properties)).BeginInit();
-            this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tetCharManSQL.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetCharManFixValue.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetCharManExcelName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetCharManPos.Properties)).BeginInit();
-            this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tetAttendManSQL.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetAttendManFixValue.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetAttendManExcelName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetAttendManPos.Properties)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -495,12 +377,12 @@ namespace Ebada.SCGL.WFlow.Tool
             // plclassFill
             // 
             this.plclassFill.Controls.Add(this.tabControl1);
-            this.plclassFill.Size = new System.Drawing.Size(550, 529);
+            this.plclassFill.Size = new System.Drawing.Size(553, 529);
             // 
             // plclassBottom
             // 
             this.plclassBottom.Location = new System.Drawing.Point(0, 491);
-            this.plclassBottom.Size = new System.Drawing.Size(550, 38);
+            this.plclassBottom.Size = new System.Drawing.Size(553, 38);
             // 
             // btnSave
             // 
@@ -557,7 +439,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage6.Controls.Add(this.checkBox1);
             this.tabPage6.Location = new System.Drawing.Point(4, 21);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(528, 466);
+            this.tabPage6.Size = new System.Drawing.Size(536, 466);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "处理者";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -704,7 +586,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage3.Controls.Add(this.btnAddVar);
             this.tabPage3.Location = new System.Drawing.Point(4, 21);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(528, 466);
+            this.tabPage3.Size = new System.Drawing.Size(536, 466);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "任务变量";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -989,7 +871,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabControl1.Location = new System.Drawing.Point(9, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(536, 491);
+            this.tabControl1.Size = new System.Drawing.Size(544, 491);
             this.tabControl1.TabIndex = 19;
             // 
             // tabPage1
@@ -1019,7 +901,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(528, 466);
+            this.tabPage1.Size = new System.Drawing.Size(536, 466);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "常规";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1234,7 +1116,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage5.Location = new System.Drawing.Point(4, 21);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(528, 466);
+            this.tabPage5.Size = new System.Drawing.Size(536, 466);
             this.tabPage5.TabIndex = 6;
             this.tabPage5.Text = "控制权限";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1330,148 +1212,213 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             // tabPage7
             // 
-            this.tabPage7.Controls.Add(this.cbxRiZhi);
-            this.tabPage7.Controls.Add(this.groupBox11);
-            this.tabPage7.Controls.Add(this.groupBox10);
-            this.tabPage7.Controls.Add(this.groupBox9);
-            this.tabPage7.Controls.Add(this.groupBox8);
+            this.tabPage7.Controls.Add(this.groupControl1);
             this.tabPage7.Location = new System.Drawing.Point(4, 21);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(528, 466);
+            this.tabPage7.Size = new System.Drawing.Size(536, 466);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "日志功能";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.cbxRiZhi);
+            this.groupControl1.Controls.Add(this.gridControl1);
+            this.groupControl1.Controls.Add(this.simpleButton3);
+            this.groupControl1.Controls.Add(this.labelControl2);
+            this.groupControl1.Controls.Add(this.memoEdit1);
+            this.groupControl1.Controls.Add(this.ceBind);
+            this.groupControl1.Controls.Add(this.simpleButton2);
+            this.groupControl1.Controls.Add(this.tetWorkFixValue);
+            this.groupControl1.Controls.Add(this.tetWorkSQL);
+            this.groupControl1.Controls.Add(this.cbxWorkDbTableColumns);
+            this.groupControl1.Controls.Add(this.cbxWorkDbTable);
+            this.groupControl1.Controls.Add(this.labelControl4);
+            this.groupControl1.Controls.Add(this.labelControl23);
+            this.groupControl1.Controls.Add(this.labelControl24);
+            this.groupControl1.Controls.Add(this.rbnWorkDatabase);
+            this.groupControl1.Controls.Add(this.cbxWorkExcelTable);
+            this.groupControl1.Controls.Add(this.tetWorkPos);
+            this.groupControl1.Controls.Add(this.labelControl7);
+            this.groupControl1.Controls.Add(this.cbxWorkTableColumns);
+            this.groupControl1.Controls.Add(this.columnBox);
+            this.groupControl1.Controls.Add(this.cbxWorkDataTable);
+            this.groupControl1.Controls.Add(this.labelControl5);
+            this.groupControl1.Controls.Add(this.rbnWorkFixValue);
+            this.groupControl1.Controls.Add(this.labelControl3);
+            this.groupControl1.Controls.Add(this.labelControl6);
+            this.groupControl1.Controls.Add(this.labelControl8);
+            this.groupControl1.Controls.Add(this.rbnWorkExcel);
+            this.groupControl1.Controls.Add(this.rbnWorkTable);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(3, 3);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(530, 460);
+            this.groupControl1.TabIndex = 36;
+            // 
             // cbxRiZhi
             // 
             this.cbxRiZhi.AutoSize = true;
-            this.cbxRiZhi.Location = new System.Drawing.Point(10, 10);
+            this.cbxRiZhi.Location = new System.Drawing.Point(5, 3);
             this.cbxRiZhi.Name = "cbxRiZhi";
             this.cbxRiZhi.Size = new System.Drawing.Size(72, 16);
-            this.cbxRiZhi.TabIndex = 28;
+            this.cbxRiZhi.TabIndex = 69;
             this.cbxRiZhi.Text = "开启日志";
             this.cbxRiZhi.UseVisualStyleBackColor = true;
             // 
-            // groupBox11
+            // gridControl1
             // 
-            this.groupBox11.Controls.Add(this.tetWorkSQL);
-            this.groupBox11.Controls.Add(this.cbxWorkDbTableColumns);
-            this.groupBox11.Controls.Add(this.cbxWorkDbTable);
-            this.groupBox11.Controls.Add(this.labelControl4);
-            this.groupBox11.Controls.Add(this.labelControl23);
-            this.groupBox11.Controls.Add(this.labelControl24);
-            this.groupBox11.Controls.Add(this.rbnWorkDatabase);
-            this.groupBox11.Controls.Add(this.tetWorkFixValue);
-            this.groupBox11.Controls.Add(this.tetWorkExcelName);
-            this.groupBox11.Controls.Add(this.tetWorkPos);
-            this.groupBox11.Controls.Add(this.labelControl7);
-            this.groupBox11.Controls.Add(this.cbxWorkTableColumns);
-            this.groupBox11.Controls.Add(this.cbxWorkDataTable);
-            this.groupBox11.Controls.Add(this.labelControl5);
-            this.groupBox11.Controls.Add(this.rbnWorkFixValue);
-            this.groupBox11.Controls.Add(this.labelControl6);
-            this.groupBox11.Controls.Add(this.labelControl3);
-            this.groupBox11.Controls.Add(this.labelControl2);
-            this.groupBox11.Controls.Add(this.rbnWorkExcel);
-            this.groupBox11.Controls.Add(this.rbnWorkTable);
-            this.groupBox11.Location = new System.Drawing.Point(14, 25);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(509, 111);
-            this.groupBox11.TabIndex = 27;
-            this.groupBox11.TabStop = false;
+            this.gridControl1.Location = new System.Drawing.Point(5, 327);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(522, 162);
+            this.gridControl1.TabIndex = 68;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Location = new System.Drawing.Point(415, 283);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(49, 29);
+            this.simpleButton3.TabIndex = 67;
+            this.simpleButton3.Text = "添加";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(428, 26);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(24, 14);
+            this.labelControl2.TabIndex = 66;
+            this.labelControl2.Text = "说明";
+            // 
+            // memoEdit1
+            // 
+            this.memoEdit1.EditValue = "";
+            this.memoEdit1.Location = new System.Drawing.Point(415, 44);
+            this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Size = new System.Drawing.Size(115, 233);
+            this.memoEdit1.TabIndex = 65;
+            // 
+            // ceBind
+            // 
+            this.ceBind.EditValue = true;
+            this.ceBind.Location = new System.Drawing.Point(201, 26);
+            this.ceBind.Name = "ceBind";
+            this.ceBind.Properties.Caption = "关联流程记录";
+            this.ceBind.Size = new System.Drawing.Size(100, 19);
+            this.ceBind.TabIndex = 64;
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton2.Location = new System.Drawing.Point(462, 432);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(56, 23);
+            this.simpleButton2.TabIndex = 63;
+            this.simpleButton2.Text = "取消";
+            // 
+            // tetWorkFixValue
+            // 
+            this.tetWorkFixValue.Location = new System.Drawing.Point(69, 46);
+            this.tetWorkFixValue.Name = "tetWorkFixValue";
+            this.tetWorkFixValue.Size = new System.Drawing.Size(340, 23);
+            this.tetWorkFixValue.TabIndex = 61;
             // 
             // tetWorkSQL
             // 
-            this.tetWorkSQL.Location = new System.Drawing.Point(405, 82);
+            this.tetWorkSQL.Location = new System.Drawing.Point(55, 201);
             this.tetWorkSQL.Name = "tetWorkSQL";
-            this.tetWorkSQL.Size = new System.Drawing.Size(100, 27);
-            this.tetWorkSQL.TabIndex = 42;
+            this.tetWorkSQL.Size = new System.Drawing.Size(346, 117);
+            this.tetWorkSQL.TabIndex = 61;
             // 
             // cbxWorkDbTableColumns
             // 
             this.cbxWorkDbTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDbTableColumns.FormattingEnabled = true;
-            this.cbxWorkDbTableColumns.Location = new System.Drawing.Point(405, 60);
+            this.cbxWorkDbTableColumns.Location = new System.Drawing.Point(275, 167);
             this.cbxWorkDbTableColumns.Name = "cbxWorkDbTableColumns";
-            this.cbxWorkDbTableColumns.Size = new System.Drawing.Size(99, 20);
-            this.cbxWorkDbTableColumns.TabIndex = 40;
+            this.cbxWorkDbTableColumns.Size = new System.Drawing.Size(108, 20);
+            this.cbxWorkDbTableColumns.TabIndex = 59;
             this.cbxWorkDbTableColumns.SelectedIndexChanged += new System.EventHandler(this.cbxWorkDbTableColumns_SelectedIndexChanged);
             // 
             // cbxWorkDbTable
             // 
             this.cbxWorkDbTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDbTable.FormattingEnabled = true;
-            this.cbxWorkDbTable.Location = new System.Drawing.Point(405, 35);
+            this.cbxWorkDbTable.Location = new System.Drawing.Point(63, 167);
             this.cbxWorkDbTable.Name = "cbxWorkDbTable";
-            this.cbxWorkDbTable.Size = new System.Drawing.Size(99, 20);
-            this.cbxWorkDbTable.TabIndex = 41;
+            this.cbxWorkDbTable.Size = new System.Drawing.Size(127, 20);
+            this.cbxWorkDbTable.TabIndex = 60;
             this.cbxWorkDbTable.SelectedIndexChanged += new System.EventHandler(this.cbxWorkDbTable_SelectedIndexChanged);
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(357, 91);
+            this.labelControl4.Location = new System.Drawing.Point(15, 204);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(34, 14);
-            this.labelControl4.TabIndex = 38;
+            this.labelControl4.TabIndex = 56;
             this.labelControl4.Text = "SQL：";
             // 
             // labelControl23
             // 
-            this.labelControl23.Location = new System.Drawing.Point(356, 62);
+            this.labelControl23.Location = new System.Drawing.Point(226, 169);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(36, 14);
-            this.labelControl23.TabIndex = 38;
+            this.labelControl23.TabIndex = 57;
             this.labelControl23.Text = "字段：";
             // 
             // labelControl24
             // 
-            this.labelControl24.Location = new System.Drawing.Point(357, 38);
+            this.labelControl24.Location = new System.Drawing.Point(15, 170);
             this.labelControl24.Name = "labelControl24";
             this.labelControl24.Size = new System.Drawing.Size(36, 14);
-            this.labelControl24.TabIndex = 39;
+            this.labelControl24.TabIndex = 58;
             this.labelControl24.Text = "表名：";
             // 
             // rbnWorkDatabase
             // 
             this.rbnWorkDatabase.AutoSize = true;
-            this.rbnWorkDatabase.Location = new System.Drawing.Point(355, 15);
+            this.rbnWorkDatabase.Location = new System.Drawing.Point(13, 147);
             this.rbnWorkDatabase.Name = "rbnWorkDatabase";
             this.rbnWorkDatabase.Size = new System.Drawing.Size(83, 16);
-            this.rbnWorkDatabase.TabIndex = 37;
+            this.rbnWorkDatabase.TabIndex = 55;
             this.rbnWorkDatabase.Text = "从数据库取";
             this.rbnWorkDatabase.UseVisualStyleBackColor = true;
             // 
-            // tetWorkFixValue
+            // cbxWorkExcelTable
             // 
-            this.tetWorkFixValue.Location = new System.Drawing.Point(157, 17);
-            this.tetWorkFixValue.Name = "tetWorkFixValue";
-            this.tetWorkFixValue.Size = new System.Drawing.Size(111, 21);
-            this.tetWorkFixValue.TabIndex = 36;
-            // 
-            // tetWorkExcelName
-            // 
-            this.tetWorkExcelName.Location = new System.Drawing.Point(242, 63);
-            this.tetWorkExcelName.Name = "tetWorkExcelName";
-            this.tetWorkExcelName.Size = new System.Drawing.Size(110, 21);
-            this.tetWorkExcelName.TabIndex = 36;
+            this.cbxWorkExcelTable.Location = new System.Drawing.Point(299, 82);
+            this.cbxWorkExcelTable.Name = "cbxWorkExcelTable";
+            this.cbxWorkExcelTable.Properties.Mask.EditMask = "([a-zA-Z]{1,2}\\d{1,3}[|])+";
+            this.cbxWorkExcelTable.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.cbxWorkExcelTable.Size = new System.Drawing.Size(110, 21);
+            this.cbxWorkExcelTable.TabIndex = 52;
             // 
             // tetWorkPos
             // 
-            this.tetWorkPos.Location = new System.Drawing.Point(242, 88);
+            this.tetWorkPos.Location = new System.Drawing.Point(299, 112);
             this.tetWorkPos.Name = "tetWorkPos";
             this.tetWorkPos.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tetWorkPos.Properties.Mask.EditMask = "([a-zA-Z]{1,2}\\d{1,3}[|])+";
             this.tetWorkPos.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.tetWorkPos.Size = new System.Drawing.Size(110, 21);
-            this.tetWorkPos.TabIndex = 35;
+            this.tetWorkPos.TabIndex = 52;
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(159, 91);
+            this.labelControl7.Location = new System.Drawing.Point(229, 114);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(72, 14);
-            this.labelControl7.TabIndex = 34;
+            this.labelControl7.TabIndex = 51;
             this.labelControl7.Text = "单元格位置：";
             this.labelControl7.UseWaitCursor = true;
             // 
@@ -1479,699 +1426,94 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.cbxWorkTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkTableColumns.FormattingEnabled = true;
-            this.cbxWorkTableColumns.Location = new System.Drawing.Point(55, 87);
+            this.cbxWorkTableColumns.Location = new System.Drawing.Point(63, 114);
             this.cbxWorkTableColumns.Name = "cbxWorkTableColumns";
-            this.cbxWorkTableColumns.Size = new System.Drawing.Size(99, 20);
-            this.cbxWorkTableColumns.TabIndex = 30;
+            this.cbxWorkTableColumns.Size = new System.Drawing.Size(158, 20);
+            this.cbxWorkTableColumns.TabIndex = 48;
+            // 
+            // columnBox
+            // 
+            this.columnBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.columnBox.FormattingEnabled = true;
+            this.columnBox.Location = new System.Drawing.Point(69, 23);
+            this.columnBox.Name = "columnBox";
+            this.columnBox.Size = new System.Drawing.Size(126, 20);
+            this.columnBox.TabIndex = 49;
+            this.columnBox.SelectedIndexChanged += new System.EventHandler(this.columnBox_SelectedIndexChanged);
             // 
             // cbxWorkDataTable
             // 
             this.cbxWorkDataTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDataTable.FormattingEnabled = true;
-            this.cbxWorkDataTable.Location = new System.Drawing.Point(56, 63);
+            this.cbxWorkDataTable.Location = new System.Drawing.Point(64, 90);
             this.cbxWorkDataTable.Name = "cbxWorkDataTable";
-            this.cbxWorkDataTable.Size = new System.Drawing.Size(99, 20);
-            this.cbxWorkDataTable.TabIndex = 31;
+            this.cbxWorkDataTable.Size = new System.Drawing.Size(158, 20);
+            this.cbxWorkDataTable.TabIndex = 49;
             this.cbxWorkDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxWorkDataTable_SelectedIndexChanged);
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(6, 89);
+            this.labelControl5.Location = new System.Drawing.Point(14, 116);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(36, 14);
-            this.labelControl5.TabIndex = 27;
+            this.labelControl5.TabIndex = 46;
             this.labelControl5.Text = "字段：";
             // 
             // rbnWorkFixValue
             // 
             this.rbnWorkFixValue.AutoSize = true;
             this.rbnWorkFixValue.Checked = true;
-            this.rbnWorkFixValue.Location = new System.Drawing.Point(71, 20);
+            this.rbnWorkFixValue.Location = new System.Drawing.Point(12, 47);
             this.rbnWorkFixValue.Name = "rbnWorkFixValue";
             this.rbnWorkFixValue.Size = new System.Drawing.Size(59, 16);
-            this.rbnWorkFixValue.TabIndex = 32;
+            this.rbnWorkFixValue.TabIndex = 50;
             this.rbnWorkFixValue.TabStop = true;
             this.rbnWorkFixValue.Text = "固定值";
             this.rbnWorkFixValue.UseVisualStyleBackColor = true;
             // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(170, 66);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(60, 14);
-            this.labelControl6.TabIndex = 26;
-            this.labelControl6.Text = "工作表名：";
-            // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(7, 65);
+            this.labelControl3.Location = new System.Drawing.Point(18, 25);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(36, 14);
-            this.labelControl3.TabIndex = 29;
-            this.labelControl3.Text = "表名：";
+            this.labelControl3.TabIndex = 47;
+            this.labelControl3.Text = "列名：";
             // 
-            // labelControl2
+            // labelControl6
             // 
-            this.labelControl2.Location = new System.Drawing.Point(5, 20);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(60, 14);
-            this.labelControl2.TabIndex = 28;
-            this.labelControl2.Text = "工作地址：";
+            this.labelControl6.Location = new System.Drawing.Point(240, 89);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(60, 14);
+            this.labelControl6.TabIndex = 45;
+            this.labelControl6.Text = "工作表名：";
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(15, 92);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(36, 14);
+            this.labelControl8.TabIndex = 47;
+            this.labelControl8.Text = "表名：";
             // 
             // rbnWorkExcel
             // 
             this.rbnWorkExcel.AutoSize = true;
-            this.rbnWorkExcel.Location = new System.Drawing.Point(153, 44);
+            this.rbnWorkExcel.Location = new System.Drawing.Point(227, 69);
             this.rbnWorkExcel.Name = "rbnWorkExcel";
-            this.rbnWorkExcel.Size = new System.Drawing.Size(77, 16);
-            this.rbnWorkExcel.TabIndex = 24;
-            this.rbnWorkExcel.Text = "从EXCEL取";
+            this.rbnWorkExcel.Size = new System.Drawing.Size(101, 16);
+            this.rbnWorkExcel.TabIndex = 43;
+            this.rbnWorkExcel.Text = "从当前Excel取";
             this.rbnWorkExcel.UseVisualStyleBackColor = true;
             // 
             // rbnWorkTable
             // 
             this.rbnWorkTable.AutoSize = true;
-            this.rbnWorkTable.Location = new System.Drawing.Point(5, 42);
+            this.rbnWorkTable.Location = new System.Drawing.Point(13, 69);
             this.rbnWorkTable.Name = "rbnWorkTable";
             this.rbnWorkTable.Size = new System.Drawing.Size(71, 16);
-            this.rbnWorkTable.TabIndex = 25;
+            this.rbnWorkTable.TabIndex = 44;
             this.rbnWorkTable.Text = "从表单取";
             this.rbnWorkTable.UseVisualStyleBackColor = true;
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.tetProjectSQL);
-            this.groupBox10.Controls.Add(this.cbxProjectDbTableColumns);
-            this.groupBox10.Controls.Add(this.cbxProjectDbTable);
-            this.groupBox10.Controls.Add(this.labelControl31);
-            this.groupBox10.Controls.Add(this.labelControl25);
-            this.groupBox10.Controls.Add(this.labelControl26);
-            this.groupBox10.Controls.Add(this.rbnProjectDatabase);
-            this.groupBox10.Controls.Add(this.tetProjectFixValue);
-            this.groupBox10.Controls.Add(this.tetProjectExcelName);
-            this.groupBox10.Controls.Add(this.tetProjectPos);
-            this.groupBox10.Controls.Add(this.labelControl12);
-            this.groupBox10.Controls.Add(this.cbxProjectTableColumns);
-            this.groupBox10.Controls.Add(this.cbxProjectDataTable);
-            this.groupBox10.Controls.Add(this.labelControl11);
-            this.groupBox10.Controls.Add(this.rbnProjectFixValue);
-            this.groupBox10.Controls.Add(this.labelControl10);
-            this.groupBox10.Controls.Add(this.labelControl9);
-            this.groupBox10.Controls.Add(this.labelControl8);
-            this.groupBox10.Controls.Add(this.rbnProjectExcel);
-            this.groupBox10.Controls.Add(this.rbnProjectTable);
-            this.groupBox10.Location = new System.Drawing.Point(13, 129);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(510, 102);
-            this.groupBox10.TabIndex = 26;
-            this.groupBox10.TabStop = false;
-            // 
-            // tetProjectSQL
-            // 
-            this.tetProjectSQL.Location = new System.Drawing.Point(408, 72);
-            this.tetProjectSQL.Name = "tetProjectSQL";
-            this.tetProjectSQL.Size = new System.Drawing.Size(100, 27);
-            this.tetProjectSQL.TabIndex = 47;
-            // 
-            // cbxProjectDbTableColumns
-            // 
-            this.cbxProjectDbTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxProjectDbTableColumns.FormattingEnabled = true;
-            this.cbxProjectDbTableColumns.Location = new System.Drawing.Point(408, 49);
-            this.cbxProjectDbTableColumns.Name = "cbxProjectDbTableColumns";
-            this.cbxProjectDbTableColumns.Size = new System.Drawing.Size(99, 20);
-            this.cbxProjectDbTableColumns.TabIndex = 45;
-            this.cbxProjectDbTableColumns.SelectedIndexChanged += new System.EventHandler(this.cbxProjectDbTableColumns_SelectedIndexChanged);
-            // 
-            // cbxProjectDbTable
-            // 
-            this.cbxProjectDbTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxProjectDbTable.FormattingEnabled = true;
-            this.cbxProjectDbTable.Location = new System.Drawing.Point(408, 27);
-            this.cbxProjectDbTable.Name = "cbxProjectDbTable";
-            this.cbxProjectDbTable.Size = new System.Drawing.Size(99, 20);
-            this.cbxProjectDbTable.TabIndex = 46;
-            this.cbxProjectDbTable.SelectedIndexChanged += new System.EventHandler(this.cbxProjectDbTable_SelectedIndexChanged);
-            // 
-            // labelControl31
-            // 
-            this.labelControl31.Location = new System.Drawing.Point(360, 78);
-            this.labelControl31.Name = "labelControl31";
-            this.labelControl31.Size = new System.Drawing.Size(34, 14);
-            this.labelControl31.TabIndex = 38;
-            this.labelControl31.Text = "SQL：";
-            // 
-            // labelControl25
-            // 
-            this.labelControl25.Location = new System.Drawing.Point(358, 51);
-            this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(36, 14);
-            this.labelControl25.TabIndex = 43;
-            this.labelControl25.Text = "字段：";
-            // 
-            // labelControl26
-            // 
-            this.labelControl26.Location = new System.Drawing.Point(359, 29);
-            this.labelControl26.Name = "labelControl26";
-            this.labelControl26.Size = new System.Drawing.Size(36, 14);
-            this.labelControl26.TabIndex = 44;
-            this.labelControl26.Text = "表名：";
-            // 
-            // rbnProjectDatabase
-            // 
-            this.rbnProjectDatabase.AutoSize = true;
-            this.rbnProjectDatabase.Location = new System.Drawing.Point(357, 6);
-            this.rbnProjectDatabase.Name = "rbnProjectDatabase";
-            this.rbnProjectDatabase.Size = new System.Drawing.Size(83, 16);
-            this.rbnProjectDatabase.TabIndex = 42;
-            this.rbnProjectDatabase.Text = "从数据库取";
-            this.rbnProjectDatabase.UseVisualStyleBackColor = true;
-            // 
-            // tetProjectFixValue
-            // 
-            this.tetProjectFixValue.Location = new System.Drawing.Point(157, 11);
-            this.tetProjectFixValue.Name = "tetProjectFixValue";
-            this.tetProjectFixValue.Size = new System.Drawing.Size(111, 21);
-            this.tetProjectFixValue.TabIndex = 36;
-            // 
-            // tetProjectExcelName
-            // 
-            this.tetProjectExcelName.Location = new System.Drawing.Point(242, 38);
-            this.tetProjectExcelName.Name = "tetProjectExcelName";
-            this.tetProjectExcelName.Size = new System.Drawing.Size(110, 21);
-            this.tetProjectExcelName.TabIndex = 36;
-            // 
-            // tetProjectPos
-            // 
-            this.tetProjectPos.Location = new System.Drawing.Point(242, 76);
-            this.tetProjectPos.Name = "tetProjectPos";
-            this.tetProjectPos.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tetProjectPos.Properties.Mask.EditMask = "([a-zA-Z]{1,2}\\d{1,3}[|])+";
-            this.tetProjectPos.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.tetProjectPos.Size = new System.Drawing.Size(110, 21);
-            this.tetProjectPos.TabIndex = 35;
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.Location = new System.Drawing.Point(159, 79);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(72, 14);
-            this.labelControl12.TabIndex = 34;
-            this.labelControl12.Text = "单元格位置：";
-            this.labelControl12.UseWaitCursor = true;
-            // 
-            // cbxProjectTableColumns
-            // 
-            this.cbxProjectTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxProjectTableColumns.FormattingEnabled = true;
-            this.cbxProjectTableColumns.Location = new System.Drawing.Point(50, 75);
-            this.cbxProjectTableColumns.Name = "cbxProjectTableColumns";
-            this.cbxProjectTableColumns.Size = new System.Drawing.Size(99, 20);
-            this.cbxProjectTableColumns.TabIndex = 30;
-            // 
-            // cbxProjectDataTable
-            // 
-            this.cbxProjectDataTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxProjectDataTable.FormattingEnabled = true;
-            this.cbxProjectDataTable.Location = new System.Drawing.Point(51, 51);
-            this.cbxProjectDataTable.Name = "cbxProjectDataTable";
-            this.cbxProjectDataTable.Size = new System.Drawing.Size(99, 20);
-            this.cbxProjectDataTable.TabIndex = 31;
-            this.cbxProjectDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxProjectDataTable_SelectedIndexChanged);
-            // 
-            // labelControl11
-            // 
-            this.labelControl11.Location = new System.Drawing.Point(1, 77);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(36, 14);
-            this.labelControl11.TabIndex = 27;
-            this.labelControl11.Text = "字段：";
-            // 
-            // rbnProjectFixValue
-            // 
-            this.rbnProjectFixValue.AutoSize = true;
-            this.rbnProjectFixValue.Checked = true;
-            this.rbnProjectFixValue.Location = new System.Drawing.Point(72, 14);
-            this.rbnProjectFixValue.Name = "rbnProjectFixValue";
-            this.rbnProjectFixValue.Size = new System.Drawing.Size(59, 16);
-            this.rbnProjectFixValue.TabIndex = 32;
-            this.rbnProjectFixValue.TabStop = true;
-            this.rbnProjectFixValue.Text = "固定值";
-            this.rbnProjectFixValue.UseVisualStyleBackColor = true;
-            // 
-            // labelControl10
-            // 
-            this.labelControl10.Location = new System.Drawing.Point(170, 54);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(60, 14);
-            this.labelControl10.TabIndex = 26;
-            this.labelControl10.Text = "工作表名：";
-            // 
-            // labelControl9
-            // 
-            this.labelControl9.Location = new System.Drawing.Point(2, 53);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(36, 14);
-            this.labelControl9.TabIndex = 29;
-            this.labelControl9.Text = "表名：";
-            // 
-            // labelControl8
-            // 
-            this.labelControl8.Location = new System.Drawing.Point(6, 14);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(36, 14);
-            this.labelControl8.TabIndex = 28;
-            this.labelControl8.Text = "项目：";
-            // 
-            // rbnProjectExcel
-            // 
-            this.rbnProjectExcel.AutoSize = true;
-            this.rbnProjectExcel.Location = new System.Drawing.Point(153, 32);
-            this.rbnProjectExcel.Name = "rbnProjectExcel";
-            this.rbnProjectExcel.Size = new System.Drawing.Size(77, 16);
-            this.rbnProjectExcel.TabIndex = 24;
-            this.rbnProjectExcel.Text = "从EXCEL取";
-            this.rbnProjectExcel.UseVisualStyleBackColor = true;
-            // 
-            // rbnProjectTable
-            // 
-            this.rbnProjectTable.AutoSize = true;
-            this.rbnProjectTable.Location = new System.Drawing.Point(6, 30);
-            this.rbnProjectTable.Name = "rbnProjectTable";
-            this.rbnProjectTable.Size = new System.Drawing.Size(71, 16);
-            this.rbnProjectTable.TabIndex = 25;
-            this.rbnProjectTable.Text = "从表单取";
-            this.rbnProjectTable.UseVisualStyleBackColor = true;
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.tetCharManSQL);
-            this.groupBox9.Controls.Add(this.cbxCharManDbTableColumns);
-            this.groupBox9.Controls.Add(this.cbxCharManDbTable);
-            this.groupBox9.Controls.Add(this.labelControl32);
-            this.groupBox9.Controls.Add(this.labelControl27);
-            this.groupBox9.Controls.Add(this.labelControl28);
-            this.groupBox9.Controls.Add(this.rbnCharManDatabase);
-            this.groupBox9.Controls.Add(this.tetCharManFixValue);
-            this.groupBox9.Controls.Add(this.tetCharManExcelName);
-            this.groupBox9.Controls.Add(this.tetCharManPos);
-            this.groupBox9.Controls.Add(this.labelControl17);
-            this.groupBox9.Controls.Add(this.cbxCharManTableColumns);
-            this.groupBox9.Controls.Add(this.cbxCharManDataTable);
-            this.groupBox9.Controls.Add(this.labelControl16);
-            this.groupBox9.Controls.Add(this.rbnCharManFixValue);
-            this.groupBox9.Controls.Add(this.labelControl15);
-            this.groupBox9.Controls.Add(this.labelControl14);
-            this.groupBox9.Controls.Add(this.labelControl13);
-            this.groupBox9.Controls.Add(this.rbnCharManExcel);
-            this.groupBox9.Controls.Add(this.rbnCharManTable);
-            this.groupBox9.Location = new System.Drawing.Point(13, 228);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(509, 114);
-            this.groupBox9.TabIndex = 25;
-            this.groupBox9.TabStop = false;
-            // 
-            // tetCharManSQL
-            // 
-            this.tetCharManSQL.Location = new System.Drawing.Point(403, 78);
-            this.tetCharManSQL.Name = "tetCharManSQL";
-            this.tetCharManSQL.Size = new System.Drawing.Size(102, 27);
-            this.tetCharManSQL.TabIndex = 52;
-            // 
-            // cbxCharManDbTableColumns
-            // 
-            this.cbxCharManDbTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCharManDbTableColumns.FormattingEnabled = true;
-            this.cbxCharManDbTableColumns.Location = new System.Drawing.Point(404, 54);
-            this.cbxCharManDbTableColumns.Name = "cbxCharManDbTableColumns";
-            this.cbxCharManDbTableColumns.Size = new System.Drawing.Size(99, 20);
-            this.cbxCharManDbTableColumns.TabIndex = 50;
-            this.cbxCharManDbTableColumns.SelectedIndexChanged += new System.EventHandler(this.cbxCharManDbTableColumns_SelectedIndexChanged);
-            // 
-            // cbxCharManDbTable
-            // 
-            this.cbxCharManDbTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCharManDbTable.FormattingEnabled = true;
-            this.cbxCharManDbTable.Location = new System.Drawing.Point(405, 32);
-            this.cbxCharManDbTable.Name = "cbxCharManDbTable";
-            this.cbxCharManDbTable.Size = new System.Drawing.Size(99, 20);
-            this.cbxCharManDbTable.TabIndex = 51;
-            this.cbxCharManDbTable.SelectedIndexChanged += new System.EventHandler(this.cbxCharManDbTable_SelectedIndexChanged);
-            // 
-            // labelControl32
-            // 
-            this.labelControl32.Location = new System.Drawing.Point(355, 83);
-            this.labelControl32.Name = "labelControl32";
-            this.labelControl32.Size = new System.Drawing.Size(34, 14);
-            this.labelControl32.TabIndex = 38;
-            this.labelControl32.Text = "SQL：";
-            // 
-            // labelControl27
-            // 
-            this.labelControl27.Location = new System.Drawing.Point(355, 56);
-            this.labelControl27.Name = "labelControl27";
-            this.labelControl27.Size = new System.Drawing.Size(36, 14);
-            this.labelControl27.TabIndex = 48;
-            this.labelControl27.Text = "字段：";
-            // 
-            // labelControl28
-            // 
-            this.labelControl28.Location = new System.Drawing.Point(356, 34);
-            this.labelControl28.Name = "labelControl28";
-            this.labelControl28.Size = new System.Drawing.Size(36, 14);
-            this.labelControl28.TabIndex = 49;
-            this.labelControl28.Text = "表名：";
-            // 
-            // rbnCharManDatabase
-            // 
-            this.rbnCharManDatabase.AutoSize = true;
-            this.rbnCharManDatabase.Location = new System.Drawing.Point(354, 11);
-            this.rbnCharManDatabase.Name = "rbnCharManDatabase";
-            this.rbnCharManDatabase.Size = new System.Drawing.Size(83, 16);
-            this.rbnCharManDatabase.TabIndex = 47;
-            this.rbnCharManDatabase.Text = "从数据库取";
-            this.rbnCharManDatabase.UseVisualStyleBackColor = true;
-            // 
-            // tetCharManFixValue
-            // 
-            this.tetCharManFixValue.Location = new System.Drawing.Point(155, 12);
-            this.tetCharManFixValue.Name = "tetCharManFixValue";
-            this.tetCharManFixValue.Size = new System.Drawing.Size(111, 21);
-            this.tetCharManFixValue.TabIndex = 36;
-            // 
-            // tetCharManExcelName
-            // 
-            this.tetCharManExcelName.Location = new System.Drawing.Point(242, 52);
-            this.tetCharManExcelName.Name = "tetCharManExcelName";
-            this.tetCharManExcelName.Size = new System.Drawing.Size(110, 21);
-            this.tetCharManExcelName.TabIndex = 36;
-            // 
-            // tetCharManPos
-            // 
-            this.tetCharManPos.Location = new System.Drawing.Point(242, 77);
-            this.tetCharManPos.Name = "tetCharManPos";
-            this.tetCharManPos.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tetCharManPos.Properties.Mask.EditMask = "([a-zA-Z]{1,2}\\d{1,3}[|])+";
-            this.tetCharManPos.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.tetCharManPos.Size = new System.Drawing.Size(110, 21);
-            this.tetCharManPos.TabIndex = 35;
-            // 
-            // labelControl17
-            // 
-            this.labelControl17.Location = new System.Drawing.Point(159, 80);
-            this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(72, 14);
-            this.labelControl17.TabIndex = 34;
-            this.labelControl17.Text = "单元格位置：";
-            this.labelControl17.UseWaitCursor = true;
-            // 
-            // cbxCharManTableColumns
-            // 
-            this.cbxCharManTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCharManTableColumns.FormattingEnabled = true;
-            this.cbxCharManTableColumns.Location = new System.Drawing.Point(52, 79);
-            this.cbxCharManTableColumns.Name = "cbxCharManTableColumns";
-            this.cbxCharManTableColumns.Size = new System.Drawing.Size(99, 20);
-            this.cbxCharManTableColumns.TabIndex = 30;
-            // 
-            // cbxCharManDataTable
-            // 
-            this.cbxCharManDataTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCharManDataTable.FormattingEnabled = true;
-            this.cbxCharManDataTable.Location = new System.Drawing.Point(52, 52);
-            this.cbxCharManDataTable.Name = "cbxCharManDataTable";
-            this.cbxCharManDataTable.Size = new System.Drawing.Size(99, 20);
-            this.cbxCharManDataTable.TabIndex = 31;
-            this.cbxCharManDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxCharManDataTable_SelectedIndexChanged);
-            // 
-            // labelControl16
-            // 
-            this.labelControl16.Location = new System.Drawing.Point(2, 78);
-            this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(36, 14);
-            this.labelControl16.TabIndex = 27;
-            this.labelControl16.Text = "字段：";
-            // 
-            // rbnCharManFixValue
-            // 
-            this.rbnCharManFixValue.AutoSize = true;
-            this.rbnCharManFixValue.Checked = true;
-            this.rbnCharManFixValue.Location = new System.Drawing.Point(84, 14);
-            this.rbnCharManFixValue.Name = "rbnCharManFixValue";
-            this.rbnCharManFixValue.Size = new System.Drawing.Size(59, 16);
-            this.rbnCharManFixValue.TabIndex = 32;
-            this.rbnCharManFixValue.TabStop = true;
-            this.rbnCharManFixValue.Text = "固定值";
-            this.rbnCharManFixValue.UseVisualStyleBackColor = true;
-            // 
-            // labelControl15
-            // 
-            this.labelControl15.Location = new System.Drawing.Point(169, 55);
-            this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(60, 14);
-            this.labelControl15.TabIndex = 26;
-            this.labelControl15.Text = "工作表名：";
-            // 
-            // labelControl14
-            // 
-            this.labelControl14.Location = new System.Drawing.Point(3, 54);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(36, 14);
-            this.labelControl14.TabIndex = 29;
-            this.labelControl14.Text = "表名：";
-            // 
-            // labelControl13
-            // 
-            this.labelControl13.Location = new System.Drawing.Point(9, 15);
-            this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(72, 14);
-            this.labelControl13.TabIndex = 28;
-            this.labelControl13.Text = "工作负责人：";
-            // 
-            // rbnCharManExcel
-            // 
-            this.rbnCharManExcel.AutoSize = true;
-            this.rbnCharManExcel.Location = new System.Drawing.Point(156, 34);
-            this.rbnCharManExcel.Name = "rbnCharManExcel";
-            this.rbnCharManExcel.Size = new System.Drawing.Size(77, 16);
-            this.rbnCharManExcel.TabIndex = 24;
-            this.rbnCharManExcel.Text = "从EXCEL取";
-            this.rbnCharManExcel.UseVisualStyleBackColor = true;
-            // 
-            // rbnCharManTable
-            // 
-            this.rbnCharManTable.AutoSize = true;
-            this.rbnCharManTable.Location = new System.Drawing.Point(9, 33);
-            this.rbnCharManTable.Name = "rbnCharManTable";
-            this.rbnCharManTable.Size = new System.Drawing.Size(71, 16);
-            this.rbnCharManTable.TabIndex = 25;
-            this.rbnCharManTable.Text = "从表单取";
-            this.rbnCharManTable.UseVisualStyleBackColor = true;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.tetAttendManSQL);
-            this.groupBox8.Controls.Add(this.cbxAttendManDbTableColumns);
-            this.groupBox8.Controls.Add(this.tetAttendManFixValue);
-            this.groupBox8.Controls.Add(this.labelControl33);
-            this.groupBox8.Controls.Add(this.cbxAttendManDbTable);
-            this.groupBox8.Controls.Add(this.labelControl30);
-            this.groupBox8.Controls.Add(this.tetAttendManExcelName);
-            this.groupBox8.Controls.Add(this.labelControl29);
-            this.groupBox8.Controls.Add(this.tetAttendManPos);
-            this.groupBox8.Controls.Add(this.rbnAttendManDatabase);
-            this.groupBox8.Controls.Add(this.labelControl22);
-            this.groupBox8.Controls.Add(this.cbxAttendManTableColumns);
-            this.groupBox8.Controls.Add(this.cbxAttendManDataTable);
-            this.groupBox8.Controls.Add(this.labelControl21);
-            this.groupBox8.Controls.Add(this.rbnAttendManFixValue);
-            this.groupBox8.Controls.Add(this.labelControl20);
-            this.groupBox8.Controls.Add(this.labelControl19);
-            this.groupBox8.Controls.Add(this.labelControl18);
-            this.groupBox8.Controls.Add(this.rbnAttendManExcel);
-            this.groupBox8.Controls.Add(this.rbnAttendManTable);
-            this.groupBox8.Location = new System.Drawing.Point(13, 340);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(510, 114);
-            this.groupBox8.TabIndex = 24;
-            this.groupBox8.TabStop = false;
-            // 
-            // tetAttendManSQL
-            // 
-            this.tetAttendManSQL.Location = new System.Drawing.Point(404, 84);
-            this.tetAttendManSQL.Name = "tetAttendManSQL";
-            this.tetAttendManSQL.Size = new System.Drawing.Size(100, 25);
-            this.tetAttendManSQL.TabIndex = 52;
-            // 
-            // cbxAttendManDbTableColumns
-            // 
-            this.cbxAttendManDbTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxAttendManDbTableColumns.FormattingEnabled = true;
-            this.cbxAttendManDbTableColumns.Location = new System.Drawing.Point(404, 58);
-            this.cbxAttendManDbTableColumns.Name = "cbxAttendManDbTableColumns";
-            this.cbxAttendManDbTableColumns.Size = new System.Drawing.Size(99, 20);
-            this.cbxAttendManDbTableColumns.TabIndex = 50;
-            this.cbxAttendManDbTableColumns.SelectedIndexChanged += new System.EventHandler(this.cbxAttendManDbTableColumns_SelectedIndexChanged);
-            // 
-            // tetAttendManFixValue
-            // 
-            this.tetAttendManFixValue.Location = new System.Drawing.Point(157, 17);
-            this.tetAttendManFixValue.Name = "tetAttendManFixValue";
-            this.tetAttendManFixValue.Size = new System.Drawing.Size(111, 21);
-            this.tetAttendManFixValue.TabIndex = 36;
-            // 
-            // labelControl33
-            // 
-            this.labelControl33.Location = new System.Drawing.Point(355, 88);
-            this.labelControl33.Name = "labelControl33";
-            this.labelControl33.Size = new System.Drawing.Size(34, 14);
-            this.labelControl33.TabIndex = 38;
-            this.labelControl33.Text = "SQL：";
-            // 
-            // cbxAttendManDbTable
-            // 
-            this.cbxAttendManDbTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxAttendManDbTable.FormattingEnabled = true;
-            this.cbxAttendManDbTable.Location = new System.Drawing.Point(405, 36);
-            this.cbxAttendManDbTable.Name = "cbxAttendManDbTable";
-            this.cbxAttendManDbTable.Size = new System.Drawing.Size(99, 20);
-            this.cbxAttendManDbTable.TabIndex = 51;
-            this.cbxAttendManDbTable.SelectedIndexChanged += new System.EventHandler(this.cbxAttendManDbTable_SelectedIndexChanged);
-            // 
-            // labelControl30
-            // 
-            this.labelControl30.Location = new System.Drawing.Point(355, 60);
-            this.labelControl30.Name = "labelControl30";
-            this.labelControl30.Size = new System.Drawing.Size(36, 14);
-            this.labelControl30.TabIndex = 48;
-            this.labelControl30.Text = "字段：";
-            // 
-            // tetAttendManExcelName
-            // 
-            this.tetAttendManExcelName.Location = new System.Drawing.Point(242, 60);
-            this.tetAttendManExcelName.Name = "tetAttendManExcelName";
-            this.tetAttendManExcelName.Size = new System.Drawing.Size(110, 21);
-            this.tetAttendManExcelName.TabIndex = 36;
-            // 
-            // labelControl29
-            // 
-            this.labelControl29.Location = new System.Drawing.Point(356, 38);
-            this.labelControl29.Name = "labelControl29";
-            this.labelControl29.Size = new System.Drawing.Size(36, 14);
-            this.labelControl29.TabIndex = 49;
-            this.labelControl29.Text = "表名：";
-            // 
-            // tetAttendManPos
-            // 
-            this.tetAttendManPos.Location = new System.Drawing.Point(242, 86);
-            this.tetAttendManPos.Name = "tetAttendManPos";
-            this.tetAttendManPos.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tetAttendManPos.Properties.Mask.EditMask = "([a-zA-Z]{1,2}\\d{1,3}[|])+";
-            this.tetAttendManPos.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.tetAttendManPos.Size = new System.Drawing.Size(110, 21);
-            this.tetAttendManPos.TabIndex = 35;
-            // 
-            // rbnAttendManDatabase
-            // 
-            this.rbnAttendManDatabase.AutoSize = true;
-            this.rbnAttendManDatabase.Location = new System.Drawing.Point(354, 15);
-            this.rbnAttendManDatabase.Name = "rbnAttendManDatabase";
-            this.rbnAttendManDatabase.Size = new System.Drawing.Size(83, 16);
-            this.rbnAttendManDatabase.TabIndex = 47;
-            this.rbnAttendManDatabase.Text = "从数据库取";
-            this.rbnAttendManDatabase.UseVisualStyleBackColor = true;
-            // 
-            // labelControl22
-            // 
-            this.labelControl22.Location = new System.Drawing.Point(159, 89);
-            this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(72, 14);
-            this.labelControl22.TabIndex = 34;
-            this.labelControl22.Text = "单元格位置：";
-            this.labelControl22.UseWaitCursor = true;
-            // 
-            // cbxAttendManTableColumns
-            // 
-            this.cbxAttendManTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxAttendManTableColumns.FormattingEnabled = true;
-            this.cbxAttendManTableColumns.Location = new System.Drawing.Point(47, 85);
-            this.cbxAttendManTableColumns.Name = "cbxAttendManTableColumns";
-            this.cbxAttendManTableColumns.Size = new System.Drawing.Size(99, 20);
-            this.cbxAttendManTableColumns.TabIndex = 30;
-            // 
-            // cbxAttendManDataTable
-            // 
-            this.cbxAttendManDataTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxAttendManDataTable.FormattingEnabled = true;
-            this.cbxAttendManDataTable.Location = new System.Drawing.Point(48, 61);
-            this.cbxAttendManDataTable.Name = "cbxAttendManDataTable";
-            this.cbxAttendManDataTable.Size = new System.Drawing.Size(99, 20);
-            this.cbxAttendManDataTable.TabIndex = 31;
-            this.cbxAttendManDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxAttendManDataTable_SelectedIndexChanged);
-            // 
-            // labelControl21
-            // 
-            this.labelControl21.Location = new System.Drawing.Point(-2, 87);
-            this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(36, 14);
-            this.labelControl21.TabIndex = 27;
-            this.labelControl21.Text = "字段：";
-            // 
-            // rbnAttendManFixValue
-            // 
-            this.rbnAttendManFixValue.AutoSize = true;
-            this.rbnAttendManFixValue.Checked = true;
-            this.rbnAttendManFixValue.Location = new System.Drawing.Point(74, 20);
-            this.rbnAttendManFixValue.Name = "rbnAttendManFixValue";
-            this.rbnAttendManFixValue.Size = new System.Drawing.Size(59, 16);
-            this.rbnAttendManFixValue.TabIndex = 32;
-            this.rbnAttendManFixValue.TabStop = true;
-            this.rbnAttendManFixValue.Text = "固定值";
-            this.rbnAttendManFixValue.UseVisualStyleBackColor = true;
-            // 
-            // labelControl20
-            // 
-            this.labelControl20.Location = new System.Drawing.Point(170, 64);
-            this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(60, 14);
-            this.labelControl20.TabIndex = 26;
-            this.labelControl20.Text = "工作表名：";
-            // 
-            // labelControl19
-            // 
-            this.labelControl19.Location = new System.Drawing.Point(-1, 63);
-            this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(36, 14);
-            this.labelControl19.TabIndex = 29;
-            this.labelControl19.Text = "表名：";
-            // 
-            // labelControl18
-            // 
-            this.labelControl18.Location = new System.Drawing.Point(11, 20);
-            this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(60, 14);
-            this.labelControl18.TabIndex = 28;
-            this.labelControl18.Text = "参加人员：";
-            // 
-            // rbnAttendManExcel
-            // 
-            this.rbnAttendManExcel.AutoSize = true;
-            this.rbnAttendManExcel.Location = new System.Drawing.Point(152, 41);
-            this.rbnAttendManExcel.Name = "rbnAttendManExcel";
-            this.rbnAttendManExcel.Size = new System.Drawing.Size(77, 16);
-            this.rbnAttendManExcel.TabIndex = 24;
-            this.rbnAttendManExcel.Text = "从EXCEL取";
-            this.rbnAttendManExcel.UseVisualStyleBackColor = true;
-            // 
-            // rbnAttendManTable
-            // 
-            this.rbnAttendManTable.AutoSize = true;
-            this.rbnAttendManTable.Location = new System.Drawing.Point(9, 40);
-            this.rbnAttendManTable.Name = "rbnAttendManTable";
-            this.rbnAttendManTable.Size = new System.Drawing.Size(71, 16);
-            this.rbnAttendManTable.TabIndex = 25;
-            this.rbnAttendManTable.Text = "从表单取";
-            this.rbnAttendManTable.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -2179,7 +1521,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage2.Controls.Add(this.groupBox7);
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(528, 466);
+            this.tabPage2.Size = new System.Drawing.Size(536, 466);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "超时配置";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2191,7 +1533,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage4.Controls.Add(this.groupBox6);
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(528, 466);
+            this.tabPage4.Size = new System.Drawing.Size(536, 466);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "任务通知";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -2380,7 +1722,7 @@ namespace Ebada.SCGL.WFlow.Tool
             // fmTaskAlter
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-            this.ClientSize = new System.Drawing.Size(550, 529);
+            this.ClientSize = new System.Drawing.Size(553, 529);
             this.Name = "fmTaskAlter";
             this.Text = "交互节点配置";
             this.Load += new System.EventHandler(this.fmTaskAlter_Load);
@@ -2410,31 +1752,17 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkExcelName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxWorkExcelTable.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).EndInit();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tetProjectSQL.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetProjectFixValue.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetProjectExcelName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetProjectPos.Properties)).EndInit();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tetCharManSQL.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetCharManFixValue.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetCharManExcelName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetCharManPos.Properties)).EndInit();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tetAttendManSQL.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetAttendManFixValue.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetAttendManExcelName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetAttendManPos.Properties)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -2723,166 +2051,80 @@ namespace Ebada.SCGL.WFlow.Tool
                 DataTable dtrow = new DataTable();
                 WinFormFun.LoadComboBox(cbxtablefield, dtrow, "name", "name", fieldID);
             }
-        
+
+        }
+        private void memoEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            e.Cancel = true;
         }
         private void iniRiZhiData()
         {
-            WF_TaskVar tv = WorkFlowTask.GetTaskRiZhiVar(NowTask.TaskId,"工作地点");
-            if (tv != null)
-            {
-                if (tv.VarModule == "固定值")
-                {
-                    rbnWorkFixValue.Checked = true;
-                    tetWorkFixValue.Text = tv.InitValue;
-                    iniRiZhiTablelcbxData(cbxWorkDataTable, cbxWorkTableColumns, NowTask.TaskId, UserControlId, "");
-                    iniRiZhiDbcbxData(cbxWorkDbTable, cbxWorkDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "表单")
-                {
-                    rbnWorkTable.Checked = true;
-                    iniRiZhiTablelcbxData(cbxWorkDataTable, cbxWorkTableColumns, NowTask.TaskId, tv.TableName, tv.TableField);
-                    iniRiZhiDbcbxData(cbxWorkDbTable, cbxWorkDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "Excel")
-                {
-                    rbnWorkExcel.Checked = true;
-                    tetWorkExcelName.Text = tv.TableName;
-                    tetWorkPos.Text = tv.TableField;
-                    iniRiZhiTablelcbxData(cbxWorkDataTable, cbxWorkTableColumns, NowTask.TaskId, UserControlId, "");
-                    iniRiZhiDbcbxData(cbxWorkDbTable, cbxWorkDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "数据库")
-                {
-                    rbnWorkDatabase.Checked = true;
-                    cbxWorkDbTable.Text = tv.TableName;
-                    cbxWorkDbTableColumns.Text = tv.TableField;
-                    iniRiZhiDbcbxData(cbxWorkDbTable, cbxWorkDbTableColumns, varDbTableName, tv.TableName, tv.TableField);
-                    iniRiZhiTablelcbxData(cbxWorkDataTable, cbxWorkTableColumns, NowTask.TaskId, UserControlId, "");
-                    tetWorkSQL.Text = tv.InitValue;
-                }
-            }
-            else {
+            int i = 0;
+            memoEdit1.Text = "说明 SQL语句支持中的特殊代码\r\n 固定值中 数字+数字:{1+10}表示1到10用于序号 {sortid}:当前表单的序号为sortid的字段\r\n{recordid}:票LP_Record的ID\r\n{orgcode}:用户单位编号\r\n{userid}:用户编号\r\n{编号规则一:单位的sortid}:把26个供电所按顺序编号分别为01、02、03以此类推，001为单据编号\r\n";
+            this.memoEdit1.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.memoEdit1_EditValueChanging);
 
-                iniRiZhiTablelcbxData(cbxWorkDataTable, cbxWorkTableColumns, NowTask.TaskId, UserControlId, "");
-                iniRiZhiDbcbxData(cbxWorkDbTable, cbxWorkDbTableColumns, varDbTableName, "","");
+            if (rizdt == null)
+            {
+                rizdt = new DataTable();
+                rizdt.Columns.Add("name", typeof(string));
+                rizdt.Columns.Add("sql", typeof(string));
+                gridControl1.DataSource = rizdt;
+                gridView1.Columns["name"].Caption = "列名";
+                gridView1.Columns["name"].OptionsColumn.AllowEdit = false;
+                gridView1.Columns["name"].AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                gridView1.Columns["name"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                gridView1.Columns["sql"].Caption = "SQL语句";
+                gridView1.Columns["sql"].OptionsColumn.AllowEdit = true;
+                gridView1.Columns["sql"].AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                gridView1.Columns["sql"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             }
+            rizdt.Rows.Clear();
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", " where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) order by cellname ");
+            DataTable dt = ConvertHelper.ToDataTable(li);
+            WinFormFun.LoadComboBox(cbxWorkDataTable, dt, "LPID", "CellName");
+            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
+
+            dt = new DataTable();
+            dt.Columns.Add("name", typeof(string));
+
+            for (i = 0; i < li.Count; i++)
+            {
+                DataRow dr2 = dt.NewRow();
+                dr2["name"] = li[i];
+                dt.Rows.Add(dr2);
+            }
+            WinFormFun.LoadComboBox(cbxWorkDbTable, dt, "name", "name");
+
+            WF_TaskVar tv = WorkFlowTask.GetTaskRiZhiVar(NowTask.TaskId, "工作地点");
+            if (tv == null) tv = new WF_TaskVar();
+            DataRow dr = rizdt.NewRow();
+            dr["name"] = "工作地点";
+            dr["sql"] = tv.InitValue;
+            rizdt.Rows.Add(dr);
+
             tv = WorkFlowTask.GetTaskRiZhiVar(NowTask.TaskId, "项目");
-            if (tv != null)
-            {
-                if (tv.VarModule == "固定值")
-                {
-                    rbnProjectFixValue.Checked = true;
-                    tetProjectFixValue.Text = tv.InitValue;
+            if (tv == null) tv = new WF_TaskVar();
+            dr = rizdt.NewRow();
+            dr["name"] = "项目";
+            dr["sql"] = tv.InitValue;
+            rizdt.Rows.Add(dr);
 
-                    iniRiZhiTablelcbxData(cbxProjectDataTable, cbxProjectTableColumns, NowTask.TaskId, UserControlId, "");
-                    iniRiZhiDbcbxData(cbxProjectDbTable, cbxProjectDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "表单")
-                {
-                    rbnProjectTable.Checked = true;
-                    iniRiZhiTablelcbxData(cbxProjectDataTable, cbxProjectTableColumns, NowTask.TaskId, tv.TableName, tv.TableField);
-                    iniRiZhiDbcbxData(cbxProjectDbTable, cbxProjectDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "Excel")
-                {
-                    rbnProjectExcel.Checked = true;
-                    tetProjectExcelName.Text = tv.TableName;
-                    tetProjectPos.Text = tv.TableField;
-                    iniRiZhiTablelcbxData(cbxProjectDataTable, cbxProjectTableColumns, NowTask.TaskId, UserControlId, "");
-                    iniRiZhiDbcbxData(cbxProjectDbTable, cbxProjectDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "数据库")
-                {
-
-                    rbnProjectDatabase.Checked = true;
-                    iniRiZhiDbcbxData(cbxProjectDbTable, cbxProjectDbTableColumns, varDbTableName, tv.TableName, tv.TableField);
-                    iniRiZhiTablelcbxData(cbxProjectDataTable, cbxProjectTableColumns, NowTask.TaskId, UserControlId, "");
-                    tetProjectSQL.Text = tv.InitValue;
-                }
-            }
-            else
-            {
-
-                iniRiZhiTablelcbxData(cbxProjectDataTable, cbxProjectTableColumns, NowTask.TaskId, UserControlId, "");
-                iniRiZhiDbcbxData(cbxProjectDbTable, cbxProjectDbTableColumns, varDbTableName, "", "");
-            }
             tv = WorkFlowTask.GetTaskRiZhiVar(NowTask.TaskId, "负责人");
-            if (tv != null)
-            {
-                if (tv.VarModule == "固定值")
-                {
-                    rbnCharManFixValue.Checked = true;
-                    tetCharManFixValue.Text = tv.InitValue;
-                    iniRiZhiTablelcbxData(cbxCharManDataTable, cbxCharManTableColumns, NowTask.TaskId, UserControlId, "");
-                    iniRiZhiDbcbxData(cbxCharManDbTable, cbxCharManDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "表单")
-                {
-                    rbnCharManTable.Checked = true;
-                    iniRiZhiTablelcbxData(cbxCharManDataTable, cbxCharManTableColumns, NowTask.TaskId, tv.TableName, tv.TableField);
-                    iniRiZhiDbcbxData(cbxCharManDbTable, cbxCharManDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "Excel")
-                {
-                    rbnCharManExcel.Checked = true;
-                    tetCharManExcelName.Text = tv.TableName;
-                    tetCharManPos.Text = tv.TableField; 
-                    iniRiZhiTablelcbxData(cbxCharManDataTable, cbxCharManTableColumns, NowTask.TaskId, UserControlId, "");
-                    iniRiZhiDbcbxData(cbxCharManDbTable, cbxCharManDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "数据库")
-                {
+            if (tv == null) tv = new WF_TaskVar();
+            dr = rizdt.NewRow();
+            dr["name"] = "负责人";
+            dr["sql"] = tv.InitValue;
+            rizdt.Rows.Add(dr);
 
-                    rbnCharManDatabase.Checked = true;
-                    iniRiZhiDbcbxData(cbxCharManDbTable, cbxCharManDbTableColumns, varDbTableName, tv.TableName, tv.TableField);
-                    iniRiZhiTablelcbxData(cbxCharManDataTable, cbxCharManTableColumns, NowTask.TaskId, UserControlId, "");
-                    tetCharManSQL.Text = tv.InitValue;
-                }
-            }
-            else
-            {
-                iniRiZhiTablelcbxData(cbxCharManDataTable, cbxCharManTableColumns, NowTask.TaskId, UserControlId,"");
-                iniRiZhiDbcbxData(cbxCharManDbTable, cbxCharManDbTableColumns, varDbTableName, "", "");
-            }
             tv = WorkFlowTask.GetTaskRiZhiVar(NowTask.TaskId, "参加人员");
-            if (tv != null)
-            {
-                if (tv.VarModule == "固定值")
-                {
-                    rbnAttendManFixValue.Checked = true;
-                    tetAttendManFixValue.Text = tv.InitValue;
-                    iniRiZhiTablelcbxData(cbxAttendManDataTable, cbxAttendManTableColumns, NowTask.TaskId, UserControlId, "");
-                    iniRiZhiDbcbxData(cbxAttendManDbTable, cbxAttendManDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "表单")
-                {
-                    rbnAttendManTable.Checked = true;
-                    iniRiZhiTablelcbxData(cbxAttendManDataTable, cbxAttendManTableColumns, NowTask.TaskId, tv.TableName, tv.TableField);
-                    iniRiZhiDbcbxData(cbxAttendManDbTable, cbxAttendManDbTableColumns, varDbTableName, "", "");
+            if (tv == null) tv = new WF_TaskVar();
+            dr = rizdt.NewRow();
+            dr["name"] = "参加人员";
+            dr["sql"] = tv.InitValue;
+            rizdt.Rows.Add(dr);
 
-                }
-                else if (tv.VarModule == "Excel")
-                {
-                    rbnAttendManExcel.Checked = true;
-                    tetAttendManExcelName.Text = tv.TableName;
-                    tetAttendManPos.Text = tv.TableField;
-                    iniRiZhiTablelcbxData(cbxAttendManDataTable, cbxAttendManTableColumns, NowTask.TaskId, UserControlId, "");
-                    iniRiZhiDbcbxData(cbxAttendManDbTable, cbxAttendManDbTableColumns, varDbTableName, "", "");
-                }
-                else if (tv.VarModule == "数据库")
-                {
 
-                    rbnAttendManDatabase.Checked = true;
-                    iniRiZhiDbcbxData(cbxAttendManDbTable, cbxAttendManDbTableColumns, varDbTableName, tv.TableName, tv.TableField);
-                    iniRiZhiTablelcbxData(cbxAttendManDataTable, cbxAttendManTableColumns, NowTask.TaskId, UserControlId, "");
-                    tetAttendManSQL.Text = tv.InitValue;
-                }
-            }
-            else {
-
-                iniRiZhiTablelcbxData(cbxAttendManDataTable, cbxAttendManTableColumns, NowTask.TaskId, UserControlId, "");
-                iniRiZhiDbcbxData(cbxAttendManDbTable, cbxAttendManDbTableColumns, varDbTableName, "", "");
-            }
+            WinFormFun.LoadComboBox(columnBox, rizdt, "sql", "name");
         }
         private void iniBindTask()
         {
@@ -3101,145 +2343,17 @@ namespace Ebada.SCGL.WFlow.Tool
         }
         private void SaveRiZhiData()
         {
-            TaskVar tv = new TaskVar();
-            tv.WorkFlowId = NowTask.WorkFlowId;
-            tv.WorkTaskId = NowTask.TaskId;
-                tv.VarName = "工作地点";
-                tv.AccessType = WorkConst.WorkTask_WorkRiZhi;
-                if ( rbnWorkFixValue.Checked == true)
-                {
-                    tv.VarModule = "固定值";
-                    tv.InitValue=tetWorkFixValue.Text ;
-                }
-                else if ( rbnWorkTable.Checked == true)
-                {
-                    tv.VarModule = "表单";
-                    tv.TableName=((ListItem)cbxWorkDataTable.SelectedItem).ID;
-                    tv.TableField = ((ListItem)cbxWorkTableColumns.SelectedItem).ID;
-                }
-                else if (rbnWorkExcel.Checked == true)
-                {
-                    
-                    tv.VarModule = "Excel";
-                    tv.TableName = tetWorkExcelName.Text;
-                    tv.TableField = tetWorkPos.Text;
-                }
-                else if (rbnWorkDatabase.Checked == true)
-                {
-                    
-                    tv.VarModule = "数据库";
-                    tv.TableName = ((ListItem)cbxWorkDbTable.SelectedItem).ID;
-                    tv.TableField = ((ListItem)cbxWorkDbTableColumns.SelectedItem).ID;
-                    tv.InitValue = tetWorkSQL.Text;
-                }
-                tv.InsertTaskVar();
-                tv = new TaskVar();
+            foreach (DataRow dr in rizdt.Rows)
+            {
+                TaskVar tv = new TaskVar();
                 tv.WorkFlowId = NowTask.WorkFlowId;
                 tv.WorkTaskId = NowTask.TaskId;
-                tv.VarName = "项目";
+                tv.VarName = dr["name"].ToString();
                 tv.AccessType = WorkConst.WorkTask_WorkRiZhi;
-            if (tv != null)
-            {
-                if (rbnProjectFixValue.Checked == true)
-                {
-                    tv.VarModule ="固定值";
-                    tv.InitValue=tetProjectFixValue.Text;
-                }
-                else if (rbnProjectTable.Checked == true)
-                {
-                    
-                    tv.VarModule = "表单";
-                    tv.TableName=((ListItem)cbxProjectDataTable.SelectedItem).ID;
-                    tv.TableField=((ListItem)cbxProjectTableColumns.SelectedItem).ID;
-                }
-                else if (rbnProjectExcel.Checked == true)
-                {
-                    
-                    tv.VarModule = "Excel";
-                    tv.TableName=tetProjectExcelName.Text;
-                    tv.TableField=tetProjectPos.Text;
-                }
-                else if (rbnProjectDatabase.Checked == true)
-                {
-
-                   
-                    tv.VarModule = "数据库";
-                    tv.TableName=((ListItem)cbxProjectDbTable.SelectedItem).ID;
-                    tv.TableField = ((ListItem)cbxProjectDbTableColumns.SelectedItem).ID;
-                    tv.InitValue = tetProjectSQL.Text;
-                }
+                tv.InitValue = dr["sql"].ToString();
+                tv.InsertTaskVar();
             }
-            tv.InsertTaskVar();
-            tv = new TaskVar();
-            tv.WorkFlowId = NowTask.WorkFlowId;
-            tv.WorkTaskId = NowTask.TaskId;
-            tv.VarName = "负责人";
-            tv.AccessType = WorkConst.WorkTask_WorkRiZhi;
-            if (tv != null)
-            {
-                if ( rbnCharManFixValue.Checked ==true)
-                {
-                    tv.VarModule = "固定值";
-                    tetCharManFixValue.Text = tv.InitValue;
-                } 
-                else if ( rbnCharManTable.Checked == true)
-                {
-                    tv.VarModule = "表单";
-                    tv.TableName = ((ListItem)cbxCharManDataTable.SelectedItem).ID;
-                    tv.TableField = ((ListItem)cbxCharManTableColumns.SelectedItem).ID;
-                }
-                else if (rbnCharManExcel.Checked == true)
-                {
-                    tv.VarModule = "Excel";
-                    tv.TableName = tetCharManExcelName.Text;
-                    tv.TableField = tetCharManPos.Text;
-                }
-                else if (rbnCharManDatabase.Checked == true)
-                {
 
-                    tv.VarModule ="数据库";
-                    tv.TableName =((ListItem) cbxCharManDbTable.SelectedItem).ID;
-                    tv.TableField = ((ListItem)cbxCharManDbTableColumns.SelectedItem).ID;
-                    tv.InitValue = tetCharManSQL.Text;
-                }
-            }
-            tv.InsertTaskVar();
-            tv = new TaskVar();
-            tv.WorkFlowId = NowTask.WorkFlowId;
-            tv.WorkTaskId = NowTask.TaskId;
-            tv.VarName = "参加人员";
-            tv.AccessType = WorkConst.WorkTask_WorkRiZhi;
-            if (tv != null)
-            {
-                if ( rbnAttendManFixValue.Checked == true)
-                {
-                    tv.VarModule = "固定值";
-                    tv.InitValue=tetAttendManFixValue.Text;
-                }
-                else if ( rbnAttendManTable.Checked == true)
-                {
-                    tv.VarModule ="表单";
-                    tv.TableName = ((ListItem)cbxAttendManDataTable.SelectedItem).ID;
-                    tv.TableField =((ListItem) cbxAttendManTableColumns.SelectedItem).ID;
-                }
-                else if (rbnAttendManExcel.Checked == true)
-                {
-                    tv.VarModule = "Excel";
-                    tv.TableName = tetAttendManExcelName.Text;
-                    tv.TableField = tetAttendManPos.Text;
-                }
-                else if (rbnAttendManDatabase.Checked == true)
-                {
-
-
-                    tv.VarModule = "数据库";
-                    tv.TableName =((ListItem) cbxAttendManDbTable.SelectedItem).ID;
-                    tv.TableField = ((ListItem)cbxAttendManDbTableColumns.SelectedItem).ID;
-                    tv.InitValue = tetAttendManSQL.Text;
-                }
-            }
-            tv.InsertTaskVar();
-        
         }
         private void btnAddOpr_Click(object sender, EventArgs e)
         {
@@ -3692,7 +2806,175 @@ namespace Ebada.SCGL.WFlow.Tool
             tbxFiledName.Text = "";
         }
 
-      
+
+
+        private void SetDataBaseSQL(DevExpress.XtraEditors.TextEdit tetSQL, ComboBox cbxDbTable, ComboBox cbxDbTableColumns)
+        {
+            if (cbxDbTable.SelectedIndex > 0 && cbxDbTableColumns.SelectedIndex > 0)
+            {
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + ((ListItem)cbxDbTable.SelectedItem).ID + "'");
+                if (list.Count > 0 && 1 == 0)
+                {
+                    tetSQL.Text = "select " + cbxDbTableColumns.Text + " from " + cbxDbTable.Text + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
+                }
+                else
+                {
+                    tetSQL.Text = "select " + cbxDbTableColumns.Text + " from " + cbxDbTable.Text + " where 5=5 ";
+                }
+                if (ceBind.Checked)
+                {
+                    if (cbxDbTable.Text == "WF_TableFieldValueView")
+                        tetSQL.Text = "" + tetSQL.Text + " and id='{recordid}'";
+                    else
+                        if (cbxDbTable.Text == "LP_Record")
+                            tetSQL.Text = "" + tetSQL.Text + " and id='{recordid}'";
+                        else
+                        {
+
+
+                            tetSQL.Text = "" + tetSQL.Text + " and " + list[0].ToString()
+                                + " in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  RecordID='{recordid}')";
+                        }
+
+                }
+            }
+
+        }
+
+
+
+        private void columnBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string strSQLtemp = ((ListItem)columnBox.SelectedItem).ID;
+            if (columnBox.SelectedIndex < 1) return;
+            if (strSQLtemp != "")
+            {
+                simpleButton3.Text = "修改";
+                if (strSQLtemp.IndexOf("9=9") > -1)
+                {
+                    rbnWorkFixValue.Checked = true;
+
+                    tetWorkFixValue.Text = strSQLtemp.Replace("select top 1 '", "").Replace("' from LP_Temple where 9=9", "");
+                }
+                else if (strSQLtemp.IndexOf("Excel:") > -1)
+                {
+                    rbnWorkExcel.Checked = true;
+                    int index1 = strSQLtemp.LastIndexOf(":");
+                    string tablename = strSQLtemp.Substring(6, index1 - 6);
+                    string cellpos = strSQLtemp.Substring(index1 + 1);
+
+                    cbxWorkExcelTable.Text = tablename;
+                    tetWorkPos.Text = cellpos;
+                }
+                else if (strSQLtemp.IndexOf("10=10") > -1)
+                {
+                    rbnWorkTable.Checked = true;
+                    Regex r1 = new Regex(@"(?<=UserControlId=').*?(?=')");
+                    //cbxWorkDataTable.Text = r1.Match(strSQL).Value;
+                    setComoboxFocusIndex(cbxWorkDataTable, r1.Match(strSQLtemp).Value);
+                    r1 = new Regex(@"(?<=FieldId=').*?(?=')");
+                    //cbxWorkTableColumns.Text = r1.Match(strSQL).Value;
+                    setComoboxFocusIndex(cbxWorkTableColumns, r1.Match(strSQLtemp).Value);
+                }
+                else
+                {
+                    rbnWorkDatabase.Checked = true;
+                    int index1 = strSQLtemp.ToLower().IndexOf("select");
+                    int index2 = strSQLtemp.ToLower().IndexOf("from");
+                    int index3 = strSQLtemp.ToLower().IndexOf("where");
+                    string tablename = "";
+                    if (index1 == -1 || index2 == -1 || index3 == -1) return;
+                    tablename = strSQLtemp.Substring(index2 + 4, index3 - (index2 + 4)).Trim();
+                    string cellpos = strSQLtemp.Substring(index1 + 6, index2 - (index1 + 6)).Trim();
+                    //cbxWorkDbTable.SelectedItem = tablename;
+                    //cbxWorkTableColumns.Text = cellpos;
+                    setComoboxFocusIndex(cbxWorkDbTable, tablename);
+                    setComoboxFocusIndex(cbxWorkDbTableColumns, cellpos);
+                    tetWorkSQL.Text = strSQLtemp;
+                }
+
+            }
+            else
+            {
+                tetWorkFixValue.Text = "";
+                tetWorkSQL.Text = "";
+                simpleButton3.Text = "添加";
+            }
+        }
+
+        private void cbxWorkDbTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxWorkDbTable.SelectedIndex < 1) return;
+            IList li = MainHelper.PlatformSqlMap.GetList("GetTableColumns", ((ListItem)cbxWorkDbTable.SelectedItem).ID);
+            DataTable dt = ConvertHelper.ToDataTable(li);
+            WinFormFun.LoadComboBox(cbxWorkDbTableColumns, dt, "name", "name");
+            cbxWorkDbTableColumns.SelectedIndex = 0;
+            SetDataBaseSQL(tetWorkSQL, cbxWorkDbTable, cbxWorkDbTableColumns);
+        }
+
+        private void cbxWorkDbTableColumns_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetDataBaseSQL(tetWorkSQL, cbxWorkDbTable, cbxWorkDbTableColumns);
+        }
+        void setComoboxFocusIndex(ComboBox cbx, string text)
+        {
+            int focusindex = -1, i = 0;
+            foreach (ListItem it in cbx.Items)
+            {
+
+                ListItem l = it as ListItem;
+                if (l.ID == text)
+                {
+                    focusindex = i;
+                    break;
+                }
+                i++;
+            }
+            cbx.SelectedIndex = focusindex;
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            string strSQLtemp = "";
+            simpleButton3.Text = "修改";
+            if (rbnWorkFixValue.Checked == true)
+            {
+
+                strSQLtemp = "select top 1 '" + tetWorkFixValue.Text.Replace("\r\n", " ") + "' from LP_Temple where 9=9";
+            }
+            else if (rbnWorkTable.Checked == true)
+            {
+                strSQLtemp = "select ControlValue from WF_TableFieldValue where 10=10  "
+                    + "and UserControlId='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' "
+                    + " and FieldId='" + ((ListItem)cbxWorkTableColumns.SelectedItem).ID + "' ";
+                if (ceBind.Checked)
+                {
+                    strSQLtemp = strSQLtemp + " and RecordId='{recordid}'";
+                }
+
+            }
+            else if (rbnWorkExcel.Checked == true)
+            {
+                strSQLtemp = "Excel:" + cbxWorkExcelTable.Text + ":" + tetWorkPos.Text;
+            }
+            else if (rbnWorkDatabase.Checked == true)
+            {
+                strSQLtemp = tetWorkSQL.Text;
+            }
+
+
+            int i = 0;
+            foreach (DataRow dr in rizdt.Rows)
+            {
+                if (dr["name"].ToString() == columnBox.Text)
+                {
+                    dr["sql"] = strSQLtemp;
+                    break;
+                }
+                i++;
+            }
+            if (columnBox.Items.Count > i + 1) ((ListItem)columnBox.Items[i + 1]).ID = strSQLtemp;
+        }
 
         private void cbxWorkDataTable_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -3705,124 +2987,7 @@ namespace Ebada.SCGL.WFlow.Tool
             cbxWorkTableColumns.SelectedIndex = 0;
         }
 
-        private void cbxWorkDbTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbxWorkDbTable.SelectedIndex == 0) return;
-            IList li = MainHelper.PlatformSqlMap.GetList("GetTableColumns", ((ListItem)cbxWorkDbTable.SelectedItem).ID);
-            DataTable dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxWorkDbTableColumns, dt, "name", "name");
-            cbxWorkDbTableColumns.SelectedIndex = 0;
-            SetDataBaseSQL(tetWorkSQL, cbxWorkDbTable, cbxWorkDbTableColumns);
-        }
-
-        private void cbxProjectDataTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-            if (cbxProjectDataTable.SelectedIndex == 0) return;
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList",
-                "where UserControlId ='" + ((ListItem)cbxProjectDataTable.SelectedItem).ID + "' and WorktaskId='" + NowTask.TaskId + "'");
-            DataTable dt = new DataTable();
-            if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxProjectTableColumns, dt, "FieldId", "FieldName");
-            cbxProjectTableColumns.SelectedIndex = 0;
-        }
-
-        private void cbxProjectDbTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (cbxProjectDbTable.SelectedIndex == 0) return;
-            IList li = MainHelper.PlatformSqlMap.GetList("GetTableColumns", ((ListItem)cbxProjectDbTable.SelectedItem).ID );
-            DataTable dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxProjectDbTableColumns, dt, "name", "name");
-            cbxProjectDbTableColumns.SelectedIndex = 0;
-            SetDataBaseSQL(tetProjectSQL, cbxProjectDbTable, cbxProjectDbTableColumns);
-        }
-
-        private void cbxCharManDataTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-            if (cbxCharManDataTable.SelectedIndex == 0) return;
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList",
-                "where UserControlId ='" + ((ListItem)cbxCharManDataTable.SelectedItem).ID + "' and WorktaskId='" + NowTask.TaskId + "'");
-            DataTable dt = new DataTable();
-            if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxCharManTableColumns, dt, "FieldId", "FieldName");
-            cbxCharManTableColumns.SelectedIndex = 0;
-        }
-
-        private void cbxCharManDbTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbxCharManDbTable.SelectedIndex == 0) return;
-            IList li = MainHelper.PlatformSqlMap.GetList("GetTableColumns",((ListItem)cbxCharManDbTable.SelectedItem).ID );
-            DataTable dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxCharManDbTableColumns, dt, "name", "name");
-            cbxCharManDbTableColumns.SelectedIndex = 0;
-            SetDataBaseSQL(tetCharManSQL, cbxCharManDbTable, cbxCharManDbTableColumns);
-        }
-
-        private void cbxAttendManDataTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-            if (cbxAttendManDataTable.SelectedIndex == 0) return;
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList",
-                "where UserControlId ='" + ((ListItem)cbxAttendManDataTable.SelectedItem).ID + "' and WorktaskId='" + NowTask.TaskId + "'");
-            DataTable dt = new DataTable();
-            if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxAttendManTableColumns, dt, "FieldId", "FieldName");
-            cbxAttendManTableColumns.SelectedIndex = 0;
-        }
-
-        private void cbxAttendManDbTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbxAttendManDbTable.SelectedIndex == 0) return;
-            IList li = MainHelper.PlatformSqlMap.GetList("GetTableColumns",((ListItem)cbxAttendManDbTable.SelectedItem).ID);
-            DataTable dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxAttendManDbTableColumns, dt, "name", "name");
-            cbxAttendManDbTableColumns.SelectedIndex = 0;
-            SetDataBaseSQL(tetAttendManSQL, cbxAttendManDbTable, cbxAttendManDbTableColumns);
-        }
-
-      private void SetDataBaseSQL(DevExpress.XtraEditors.TextEdit tetSQL,ComboBox cbxDbTable,ComboBox cbxDbTableColumns)
-      {
-          if (cbxDbTable.SelectedIndex > 0 && cbxDbTableColumns.SelectedIndex > 0)
-          {
-              IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + ((ListItem)cbxDbTable.SelectedItem).ID + "'");
-              if (list.Count > 0)
-              {
-                  tetSQL.Text = "select " + cbxDbTableColumns.Text + " from " + cbxDbTable.Text + " where 1=1 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
-              }
-              else
-              {
-                  tetSQL.Text = "select " + cbxDbTableColumns.Text + " from " + cbxDbTable.Text + " where 1=1 ";
-              }
-          }
-      
-      }
-
-        private void cbxWorkDbTableColumns_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           SetDataBaseSQL(tetWorkSQL, cbxWorkDbTable, cbxWorkDbTableColumns);
-        }
-
-        private void cbxProjectDbTableColumns_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            SetDataBaseSQL(tetProjectSQL, cbxProjectDbTable, cbxProjectDbTableColumns);
-        }
-
-        private void cbxCharManDbTableColumns_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            SetDataBaseSQL(tetCharManSQL, cbxCharManDbTable, cbxCharManDbTableColumns);
-        }
-
-        private void cbxAttendManDbTableColumns_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            SetDataBaseSQL(tetAttendManSQL, cbxAttendManDbTable, cbxAttendManDbTableColumns);
-        }
-
-     
+       
 
  
        

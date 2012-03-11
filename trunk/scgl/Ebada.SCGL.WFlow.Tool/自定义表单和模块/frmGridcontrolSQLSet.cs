@@ -83,7 +83,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private void frmExcelEditSQLSet_Load(object sender, EventArgs e)
         {
             int i = 0;
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", " where ParentID not in (select LPID from LP_Temple where 1=1) ");
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", " where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) order by cellname ");
             DataTable dt = ConvertHelper.ToDataTable(li);
             WinFormFun.LoadComboBox(cbxWorkDataTable, dt, "LPID", "CellName");
 

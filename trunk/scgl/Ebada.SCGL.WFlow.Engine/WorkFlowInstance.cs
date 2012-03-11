@@ -360,6 +360,58 @@ namespace Ebada.SCGL.WFlow.Engine
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// 指定的当前的任务
+        /// </summary>
+        /// <param name="WorkFlowId">流程Id</param>
+        /// <param name="WorkFlowInstanceId">流程实例Id</param>
+        /// <param name="NowTaskId">节点实例Id</param>
+        /// <returns>指定的未认领的任务列表</returns>
+        public static DataTable SelectedWorkflowNowTask( string WorkFlowId, string WorkFlowInstanceId, string NowTaskId, int topsize)
+        {
+            try
+            {
+                //SqlDataItem sqlItem = new SqlDataItem();
+                //sqlItem.CommandText = "WorkTaskSelectClaimPro";
+                //sqlItem.CommandType = CommandType.StoredProcedure.ToString();
+                //sqlItem.AppendParameter("@userId", userId);
+                //sqlItem.AppendParameter("@topsize", topsize,typeof(int));
+                //ClientDBAgent agent = new ClientDBAgent();
+                //return agent.ExecuteDataTable(sqlItem);
+                string filedstr = "Priority,WorkFlowNo,taskStartTime,TaskInsCaption,FlowInsCaption,OperContent,Status,FlowCaption," +
+                         "TaskCaption,UserId,WorkFlowId,WorkTaskId,WorkFlowInsId,WorkTaskInsId,OperType,TaskTypeId,operatorInsId," +
+                          "OperatedDes,OperDateTime,taskEndTime,flowStartTime,flowEndTime,pOperatedDes,Description,OperStatus,taskInsType,TaskInsDescription";
+
+                string allworflowid = "";
+
+                GetAllWorkFlowID(WorkFlowInstanceId, ref allworflowid);
+
+                string sqlstr = "select top " + topsize + " * from (";
+                sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
+                sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where 1=1) ) OR (OperContent IN (SELECT RoleID FROM rUserRole where 1=1) ) OR ";
+                sqlstr = sqlstr + " (OperContent = 'ALL')) and  (OperStatus='0') and ";
+                sqlstr = sqlstr + " (Status='1' ) and ( (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "' and WorkTaskId='" + NowTaskId + "')  or WorkFlowInsId in (select WorkFlowInsId from  WF_WorkFlowInstance where " + allworflowid + " ))";
+                sqlstr = sqlstr + "union  ";
+                sqlstr = sqlstr + " select " + filedstr + " from WF_WorkTaskInsAccreditView where ";
+                sqlstr = sqlstr + "  AccreditStatus='1'and status='1'  ";
+                sqlstr = sqlstr + " ) a ";
+                sqlstr = sqlstr + "  order by taskStartTime desc ";
+                Console.WriteLine(sqlstr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewListValue", sqlstr);
+
+                if (li.Count == 0)
+                {
+                    DataTable dt = new DataTable();
+                    return dt;
+                }
+                return ConvertHelper.ToDataTable(li);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static void GetAllWorkFlowID(string workFlowInstanceId, ref string allworflowid)
         {
             IList<WF_WorkFlowInstance> wflist = MainHelper.PlatformSqlMap.GetListByWhere<WF_WorkFlowInstance>
