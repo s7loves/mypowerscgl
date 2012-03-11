@@ -56,6 +56,7 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
@@ -95,6 +96,7 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.labelControl16);
             this.groupControlOrg.Controls.Add(this.simpleButton4);
             this.groupControlOrg.Controls.Add(this.spinEdit2);
             this.groupControlOrg.Controls.Add(this.spinEdit1);
@@ -131,7 +133,7 @@
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(62, 23);
             this.simpleButton4.TabIndex = 30;
-            this.simpleButton4.Text = "继续添加";
+            this.simpleButton4.Text = "添加并继续";
             this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
             // spinEdit2
@@ -166,7 +168,7 @@
             this.spinEdit1.Properties.DisplayFormat.FormatString = "#####0.00";
             this.spinEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.spinEdit1.Properties.Mask.EditMask = "#####0.00";
-            this.spinEdit1.Size = new System.Drawing.Size(185, 21);
+            this.spinEdit1.Size = new System.Drawing.Size(219, 21);
             this.spinEdit1.TabIndex = 29;
             // 
             // dateEdit1
@@ -178,7 +180,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEdit1.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateEdit1.Size = new System.Drawing.Size(185, 21);
+            this.dateEdit1.Size = new System.Drawing.Size(219, 21);
             this.dateEdit1.TabIndex = 7;
             // 
             // comboBoxEdit2
@@ -197,7 +199,7 @@
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(185, 21);
+            this.comboBoxEdit1.Size = new System.Drawing.Size(219, 21);
             this.comboBoxEdit1.TabIndex = 1;
             this.comboBoxEdit1.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
             // 
@@ -218,7 +220,7 @@
             this.comboBoxEdit8.Name = "comboBoxEdit8";
             this.comboBoxEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit8.Size = new System.Drawing.Size(185, 21);
+            this.comboBoxEdit8.Size = new System.Drawing.Size(219, 21);
             this.comboBoxEdit8.TabIndex = 10;
             // 
             // labelControl15
@@ -252,7 +254,7 @@
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(185, 21);
+            this.comboBoxEdit3.Size = new System.Drawing.Size(219, 21);
             this.comboBoxEdit3.TabIndex = 3;
             // 
             // groupBox3
@@ -366,6 +368,16 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // labelControl16
+            // 
+            this.labelControl16.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl16.Appearance.Options.UseForeColor = true;
+            this.labelControl16.Location = new System.Drawing.Point(44, 11);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(96, 14);
+            this.labelControl16.TabIndex = 47;
+            this.labelControl16.Text = "编号是批次的编号";
+            // 
             // frmAQGJRKEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -427,6 +439,7 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit4;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private DevExpress.XtraEditors.LabelControl labelControl16;
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Yxgl
 {
-    partial class frmTemplate
+    partial class frm20Template
     {
         /// <summary>
         /// Required designer variable.

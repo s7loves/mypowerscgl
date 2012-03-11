@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_20>(gridControl1, gridView1, barManager1, new frmTemplate());
+            gridViewOperation = new GridViewOperation<PJ_20>(gridControl1, gridView1, barManager1, new frm20Template());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_20>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_20>(gridViewOperation_BeforeDelete);
@@ -248,7 +248,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
-            frmTemplate frm = new frmTemplate();
+            frm20Template frm = new frm20Template();
             frm.RowData = newobj;
             frm.Status = "add";
             frm.ShowDialog();
@@ -262,7 +262,7 @@ namespace Ebada.Scgl.Yxgl
                 return;
             }
             PJ_20 pj = gridView1.GetFocusedRow() as PJ_20;
-            frmTemplate frm = new frmTemplate();
+            frm20Template frm = new frm20Template();
             frm.RowData = pj;
             frm.Status = "edit";
             frm.ShowDialog();

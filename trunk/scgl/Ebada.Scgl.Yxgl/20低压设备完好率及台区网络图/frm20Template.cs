@@ -25,7 +25,7 @@ using System.Threading;
 
 namespace Ebada.Scgl.Yxgl
 {
-    public partial class frmTemplate : Form,IPopupFormEdit
+    public partial class frm20Template : Form,IPopupFormEdit
     {
         #region 字段
 
@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Yxgl
         }
 
         #endregion
-        public frmTemplate()
+        public frm20Template()
         {
             InitializeComponent();           
         }

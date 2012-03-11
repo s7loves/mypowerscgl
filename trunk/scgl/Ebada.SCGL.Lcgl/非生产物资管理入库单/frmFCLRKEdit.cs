@@ -553,7 +553,7 @@ namespace Ebada.Scgl.Lcgl
         {
             rowData.ID = rowData.CreateID();
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            Client.ClientHelper.PlatformSqlMap.Create<PJ_clrkysd>(rowData);
+            Client.ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(rowData);
             MsgBox.ShowTipMessageBox("添加成功!");
             rowData.ID = rowData.CreateID();
         }

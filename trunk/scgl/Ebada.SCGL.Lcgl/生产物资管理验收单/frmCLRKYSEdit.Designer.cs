@@ -196,7 +196,7 @@
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(62, 23);
             this.simpleButton4.TabIndex = 29;
-            this.simpleButton4.Text = "继续添加";
+            this.simpleButton4.Text = "添加并继续";
             this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
             // spinEdit2

@@ -72,12 +72,11 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Location = new System.Drawing.Point(314, 334);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(49, 23);
             this.btnOK.TabIndex = 7;
-            this.btnOK.Text = "确定";
+            this.btnOK.Text = "出库";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // spinEdit2

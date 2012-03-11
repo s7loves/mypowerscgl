@@ -29,6 +29,7 @@ namespace Ebada.Scgl.Lcgl
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "LP_Record,PJ_clcrkd";
+        PJ_clcrkd clccktemp = null;
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -203,19 +204,24 @@ namespace Ebada.Scgl.Lcgl
         {
             frmCJCLCKXZ frm = new frmCJCLCKXZ();
             frm.strType = comboBoxEdit5.Text;
+            if (clccktemp == null) clccktemp = new PJ_clcrkd();
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
             //       <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
             //frm.strNum = DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
             
             IList<PJ_clcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
                        <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "'  order by id desc  ");
-            if (pnumli.Count == 0)
-                frm.strNum = "CJCLDCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
-            else
+            if (clccktemp.num == "")
             {
-                frm.strNum = "CJCLDCK" + (Convert.ToDecimal(pnumli[0].num.Replace("CJCLDCK", "")) + 1);
+                if (pnumli.Count == 0)
+                    clccktemp.num = "CJCLDCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
+                else
+                {
+                    clccktemp.num = "CJCLDCK" + (Convert.ToDecimal(pnumli[0].num.Replace("CJCLDCK", "")) + 1);
 
+                }
             }
+            frm.strNum = clccktemp.num;
             frm.RowData = new PJ_clcrkd();
             ((PJ_clcrkd)frm.RowData).ckdate = DateTime.Now;
             if (frm.ShowDialog() == DialogResult.OK)
@@ -256,7 +262,8 @@ namespace Ebada.Scgl.Lcgl
                     //       <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
                     //frm.strNum = DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
 
-                    ckd.num = "CJCLDCK" + (num + 1);
+                    //ckd.num = "CJCLDCK" + (num + 1);
+                    ckd.num = clccktemp.num;
                     ckd.type = comboBoxEdit6.Text;
                     ckd.Remark = frm.ReturnData.Remark;
                     ckd.yt = frm.ReturnData.yt;
@@ -313,7 +320,8 @@ namespace Ebada.Scgl.Lcgl
                         PJ_clcrkd ckd = new PJ_clcrkd();
                         ConvertHelper.CopyTo<PJ_clcrkd>(pc, ckd);
                         ckd.ID = ckd.CreateID();
-                        ckd.num = "CJCLDCK" + (num + 1);
+                        //ckd.num = "CJCLDCK" + (num + 1);
+                        ckd.num = clccktemp.num;
                         ckd.type = comboBoxEdit6.Text;
                         ckd.Remark = frm.ReturnData.Remark;
                         ckd.lqdw = frm.ReturnData.lqdw;
@@ -358,6 +366,7 @@ namespace Ebada.Scgl.Lcgl
 
                     }
                     ucgccld1.inidata();
+                    simpleButton1_Click(sender, e);
                 }
             }
         }

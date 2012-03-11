@@ -400,7 +400,7 @@ namespace Ebada.Scgl.Lcgl
                 return;
             }
             PJ_20 pj = gridView1.GetFocusedRow() as PJ_20;
-            frmTemplate frm = new frmTemplate();
+            frm20Template frm = new frm20Template();
             frm.RowData = pj;
             frm.Status = "edit";
             frm.ShowDialog();

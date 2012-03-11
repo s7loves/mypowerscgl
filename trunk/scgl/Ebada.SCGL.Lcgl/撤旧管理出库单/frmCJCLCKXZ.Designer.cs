@@ -79,7 +79,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(52, 23);
             this.btnCancel.TabIndex = 8;
-            this.btnCancel.Text = "取消";
+            this.btnCancel.Text = "关闭";
             // 
             // btnOK
             // 
@@ -89,7 +89,7 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(49, 23);
             this.btnOK.TabIndex = 7;
-            this.btnOK.Text = "确定";
+            this.btnOK.Text = "出库";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // spinEdit2
