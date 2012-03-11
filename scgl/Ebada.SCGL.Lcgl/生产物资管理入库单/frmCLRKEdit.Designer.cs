@@ -31,6 +31,7 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
             this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
@@ -65,7 +66,7 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
@@ -110,6 +111,7 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.labelControl16);
             this.groupControlOrg.Controls.Add(this.simpleButton4);
             this.groupControlOrg.Controls.Add(this.spinEdit2);
             this.groupControlOrg.Controls.Add(this.spinEdit1);
@@ -149,6 +151,15 @@
             this.groupControlOrg.Size = new System.Drawing.Size(542, 393);
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
+            // 
+            // simpleButton4
+            // 
+            this.simpleButton4.Location = new System.Drawing.Point(390, 365);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(62, 23);
+            this.simpleButton4.TabIndex = 31;
+            this.simpleButton4.Text = "添加并继续";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
             // spinEdit2
             // 
@@ -475,14 +486,15 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // simpleButton4
+            // labelControl16
             // 
-            this.simpleButton4.Location = new System.Drawing.Point(390, 365);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(62, 23);
-            this.simpleButton4.TabIndex = 31;
-            this.simpleButton4.Text = "继续添加";
-            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
+            this.labelControl16.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl16.Appearance.Options.UseForeColor = true;
+            this.labelControl16.Location = new System.Drawing.Point(44, 11);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(96, 14);
+            this.labelControl16.TabIndex = 32;
+            this.labelControl16.Text = "编号是批次的编号";
             // 
             // frmCLRKEdit
             // 
@@ -560,6 +572,7 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit4;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private DevExpress.XtraEditors.LabelControl labelControl16;
 
     }
 }

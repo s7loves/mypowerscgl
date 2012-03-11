@@ -541,11 +541,11 @@
     <Compile Include="20低压设备完好率及台区网络图\frm20Edit.Designer.cs">
       <DependentUpon>frm20Edit.cs</DependentUpon>
     </Compile>
-    <Compile Include="20低压设备完好率及台区网络图\frmTemplate.cs">
+    <Compile Include="20低压设备完好率及台区网络图\frm20Template.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="20低压设备完好率及台区网络图\frmTemplate.Designer.cs">
-      <DependentUpon>frmTemplate.cs</DependentUpon>
+    <Compile Include="20低压设备完好率及台区网络图\frm20Template.Designer.cs">
+      <DependentUpon>frm20Template.cs</DependentUpon>
     </Compile>
     <Compile Include="20低压设备完好率及台区网络图\StringHelper.cs" />
     <Compile Include="20低压设备完好率及台区网络图\UCPJ_20.cs">
@@ -947,8 +947,8 @@
       <DependentUpon>frm20Edit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="20低压设备完好率及台区网络图\frmTemplate.resx">
-      <DependentUpon>frmTemplate.cs</DependentUpon>
+    <EmbeddedResource Include="20低压设备完好率及台区网络图\frm20Template.resx">
+      <DependentUpon>frm20Template.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="20低压设备完好率及台区网络图\UCPJ_20.resx">
@@ -1805,6 +1805,18 @@
     <Content Include="00记录模板\黑龙江省电压质量与无功电力管理办法.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="00记录模板\26种记录卡片.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\34种规程规则制度条例设置要求.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\6种定期上报的图表计划总结.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\8种技术资料.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\事故抢修调度通知.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1874,6 +1886,9 @@
     <None Include="00记录模板\市郊局秋查工作方案.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\技术管理发现问题及整改记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\报废申请表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1886,7 +1901,13 @@
     <None Include="00记录模板\故障统计.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\月安全生产例会.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\生产台账 %28撤旧%29.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\百安活动落实情况记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\绝缘工具试验单.xls">

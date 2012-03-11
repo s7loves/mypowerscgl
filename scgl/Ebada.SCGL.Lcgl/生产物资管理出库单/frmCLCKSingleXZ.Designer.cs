@@ -55,6 +55,7 @@
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
@@ -99,7 +100,7 @@
             0,
             0,
             0});
-            this.spinEdit2.Location = new System.Drawing.Point(304, 72);
+            this.spinEdit2.Location = new System.Drawing.Point(304, 78);
             this.spinEdit2.Name = "spinEdit2";
             this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -111,7 +112,7 @@
             // 
             // comboBoxEdit2
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(304, 36);
+            this.comboBoxEdit2.Location = new System.Drawing.Point(304, 50);
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -120,25 +121,25 @@
             // 
             // comboBoxEdit1
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(73, 36);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(59, 49);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(133, 21);
+            this.comboBoxEdit1.Size = new System.Drawing.Size(171, 21);
             this.comboBoxEdit1.TabIndex = 3;
             // 
             // comboBoxEdit8
             // 
-            this.comboBoxEdit8.Location = new System.Drawing.Point(73, 9);
+            this.comboBoxEdit8.Location = new System.Drawing.Point(59, 22);
             this.comboBoxEdit8.Name = "comboBoxEdit8";
             this.comboBoxEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit8.Size = new System.Drawing.Size(133, 21);
+            this.comboBoxEdit8.Size = new System.Drawing.Size(171, 21);
             this.comboBoxEdit8.TabIndex = 1;
             // 
             // comboBoxEdit7
             // 
-            this.comboBoxEdit7.Location = new System.Drawing.Point(304, 8);
+            this.comboBoxEdit7.Location = new System.Drawing.Point(304, 22);
             this.comboBoxEdit7.Name = "comboBoxEdit7";
             this.comboBoxEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -147,7 +148,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(18, 11);
+            this.labelControl10.Location = new System.Drawing.Point(18, 25);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(24, 14);
             this.labelControl10.TabIndex = 33;
@@ -155,7 +156,7 @@
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(236, 11);
+            this.labelControl7.Location = new System.Drawing.Point(236, 25);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(48, 14);
             this.labelControl7.TabIndex = 31;
@@ -163,7 +164,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(246, 75);
+            this.labelControl6.Location = new System.Drawing.Point(246, 81);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(24, 14);
             this.labelControl6.TabIndex = 37;
@@ -171,7 +172,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(5, 39);
+            this.labelControl2.Location = new System.Drawing.Point(5, 53);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 36;
@@ -179,7 +180,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(235, 38);
+            this.labelControl3.Location = new System.Drawing.Point(235, 52);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(48, 14);
             this.labelControl3.TabIndex = 32;
@@ -187,7 +188,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(18, 75);
+            this.labelControl1.Location = new System.Drawing.Point(18, 81);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(24, 14);
             this.labelControl1.TabIndex = 37;
@@ -195,11 +196,11 @@
             // 
             // comboBoxEdit3
             // 
-            this.comboBoxEdit3.Location = new System.Drawing.Point(73, 72);
+            this.comboBoxEdit3.Location = new System.Drawing.Point(59, 77);
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(133, 21);
+            this.comboBoxEdit3.Size = new System.Drawing.Size(171, 21);
             this.comboBoxEdit3.TabIndex = 5;
             // 
             // labelControl4
@@ -212,11 +213,11 @@
             // 
             // comboBoxEdit4
             // 
-            this.comboBoxEdit4.Location = new System.Drawing.Point(73, 110);
+            this.comboBoxEdit4.Location = new System.Drawing.Point(59, 109);
             this.comboBoxEdit4.Name = "comboBoxEdit4";
             this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit4.Size = new System.Drawing.Size(133, 21);
+            this.comboBoxEdit4.Size = new System.Drawing.Size(171, 21);
             this.comboBoxEdit4.TabIndex = 2;
             // 
             // labelControl5
@@ -276,11 +277,11 @@
             // 
             // comboBoxEdit6
             // 
-            this.comboBoxEdit6.Location = new System.Drawing.Point(73, 144);
+            this.comboBoxEdit6.Location = new System.Drawing.Point(59, 143);
             this.comboBoxEdit6.Name = "comboBoxEdit6";
             this.comboBoxEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit6.Size = new System.Drawing.Size(133, 21);
+            this.comboBoxEdit6.Size = new System.Drawing.Size(171, 21);
             this.comboBoxEdit6.TabIndex = 2;
             // 
             // comboBoxEdit9
@@ -303,13 +304,13 @@
             // dateEdit1
             // 
             this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(73, 171);
+            this.dateEdit1.Location = new System.Drawing.Point(59, 170);
             this.dateEdit1.Name = "dateEdit1";
             this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEdit1.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateEdit1.Size = new System.Drawing.Size(133, 21);
+            this.dateEdit1.Size = new System.Drawing.Size(171, 21);
             this.dateEdit1.TabIndex = 44;
             // 
             // labelControl11
@@ -320,11 +321,22 @@
             this.labelControl11.TabIndex = 43;
             this.labelControl11.Text = "出库时间";
             // 
+            // labelControl13
+            // 
+            this.labelControl13.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl13.Appearance.Options.UseForeColor = true;
+            this.labelControl13.Location = new System.Drawing.Point(18, 5);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(96, 14);
+            this.labelControl13.TabIndex = 46;
+            this.labelControl13.Text = "编号是批次的编号";
+            // 
             // frmCLCKSingleXZ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 370);
+            this.Controls.Add(this.labelControl13);
             this.Controls.Add(this.dateEdit1);
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.comboBoxEdit9);
@@ -404,5 +416,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.DateEdit dateEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
     }
 }

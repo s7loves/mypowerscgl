@@ -79,7 +79,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(52, 23);
             this.btnCancel.TabIndex = 8;
-            this.btnCancel.Text = "取消";
+            this.btnCancel.Text = "关闭";
             // 
             // btnOK
             // 
@@ -325,7 +325,7 @@
             this.labelControl11.TabIndex = 42;
             this.labelControl11.Text = "出库时间";
             // 
-            // frmFCJCLCKXZ
+            // frmFCLCKXZ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -357,7 +357,7 @@
             this.Controls.Add(this.btnOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "frmFCJCLCKXZ";
+            this.Name = "frmFCLCKXZ";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "非生产物资出库选择";
             this.Load += new System.EventHandler(this.frmCLCKXZ_Load);
