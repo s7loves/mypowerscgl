@@ -133,7 +133,8 @@ namespace Ebada.Scgl.Sbgl
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             this.Invoke(new MethodInvoker(initParentGtList));
-            if ("rabbit赵建明付岩".Contains(MainHelper.User.UserName) && !isnew) {
+            if ("rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(MainHelper.User.UserName) && !isnew)
+            {
                 simpleButton1.Show();
                 simpleButton2.Show();
             } else {
