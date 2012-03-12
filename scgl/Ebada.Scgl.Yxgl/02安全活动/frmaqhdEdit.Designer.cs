@@ -149,10 +149,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit5.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // m_DefaultLookAndFeel
-            // 
-            ;
-            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -252,7 +248,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("FangSong_GB2312", 9F);
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Location = new System.Drawing.Point(74, 328);
             this.simpleButton1.Name = "simpleButton1";
@@ -602,6 +598,13 @@
             this.dateEdit3.Name = "dateEdit3";
             this.dateEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit3.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.dateEdit3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit3.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.dateEdit3.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit3.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
+            this.dateEdit3.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEdit3.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit3.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit3.Size = new System.Drawing.Size(132, 21);
@@ -614,6 +617,13 @@
             this.dateEdit2.Name = "dateEdit2";
             this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit2.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.dateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit2.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.dateEdit2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit2.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
+            this.dateEdit2.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEdit2.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit2.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit2.Size = new System.Drawing.Size(132, 21);
@@ -714,7 +724,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.memoEdit1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(388, 182);
+            this.xtraTabPage1.Size = new System.Drawing.Size(386, 179);
             this.xtraTabPage1.Text = "活动内容";
             // 
             // memoEdit1
@@ -723,14 +733,14 @@
             this.memoEdit1.EditValue = "";
             this.memoEdit1.Location = new System.Drawing.Point(0, 0);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(388, 182);
+            this.memoEdit1.Size = new System.Drawing.Size(386, 179);
             this.memoEdit1.TabIndex = 0;
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.memoEdit2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(388, 183);
+            this.xtraTabPage2.Size = new System.Drawing.Size(386, 180);
             this.xtraTabPage2.Text = "活动小结";
             // 
             // memoEdit2
@@ -738,14 +748,14 @@
             this.memoEdit2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit2.Location = new System.Drawing.Point(0, 0);
             this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(388, 183);
+            this.memoEdit2.Size = new System.Drawing.Size(386, 180);
             this.memoEdit2.TabIndex = 0;
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.memoEdit5);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(388, 183);
+            this.xtraTabPage3.Size = new System.Drawing.Size(386, 180);
             this.xtraTabPage3.Text = "发言简要记录";
             // 
             // memoEdit5
@@ -753,7 +763,7 @@
             this.memoEdit5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit5.Location = new System.Drawing.Point(0, 0);
             this.memoEdit5.Name = "memoEdit5";
-            this.memoEdit5.Size = new System.Drawing.Size(388, 183);
+            this.memoEdit5.Size = new System.Drawing.Size(386, 180);
             this.memoEdit5.TabIndex = 0;
             // 
             // bar1

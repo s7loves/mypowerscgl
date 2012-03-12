@@ -207,5 +207,10 @@ namespace Ebada.Scgl.Lcgl
             }
             //memoEdit5.Update();
         }
+
+        private void frmaqhdEdit_Load(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

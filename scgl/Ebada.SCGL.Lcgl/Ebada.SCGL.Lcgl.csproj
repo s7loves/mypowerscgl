@@ -143,6 +143,18 @@
     <Compile Include="06设备巡视及缺陷消除\frmWorkFlow06sbxsEdit.Designer.cs">
       <DependentUpon>frmWorkFlow06sbxsEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="自定义提示\frmZDYTSEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义提示\frmZDYTSEdit.Designer.cs">
+      <DependentUpon>frmZDYTSEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义提示\UCZDYTS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义提示\UCZDYTS.Designer.cs">
+      <DependentUpon>UCZDYTS.cs</DependentUpon>
+    </Compile>
     <Compile Include="春秋06设备巡视及缺陷消除\frm06cqsbxsEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1867,6 +1879,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="06设备巡视及缺陷消除\frmWorkFlow06sbxsEdit.resx">
       <DependentUpon>frmWorkFlow06sbxsEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义提示\frmZDYTSEdit.resx">
+      <DependentUpon>frmZDYTSEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义提示\UCZDYTS.resx">
+      <DependentUpon>UCZDYTS.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="春秋06设备巡视及缺陷消除\frm06cqsbxsEdit.resx">
