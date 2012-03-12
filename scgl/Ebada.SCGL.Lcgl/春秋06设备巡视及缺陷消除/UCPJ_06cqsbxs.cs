@@ -139,8 +139,87 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_06sbxs>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_06sbxs>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_06sbxs>(gridViewOperation_AfterEdit);
         }
-        
+
+        void gridViewOperation_AfterEdit(PJ_06sbxs newobj)
+        {
+            PJ_qxfl qxfj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(newobj.ID);
+            if (qxfj != null && newobj.qxlb != "")
+            {
+                qxfj.LineID = newobj.LineID;
+                qxfj.LineName = newobj.LineName;
+                qxfj.qxlb = newobj.qxlb;
+                qxfj.qxnr = newobj.qxnr;
+                qxfj.xcqx = newobj.xcqx;
+                qxfj.xcr = newobj.xcr;
+                qxfj.xlqd = newobj.xlqd;
+                qxfj.xsr = newobj.xsr;
+                qxfj.xssj = newobj.xssj;
+                MainHelper.PlatformSqlMap.Update<PJ_qxfl>(qxfj);
+            }
+            else if (qxfj != null)
+            {
+                MainHelper.PlatformSqlMap.Delete<PJ_qxfl>(qxfj);
+            }
+        }
+        void gridViewOperation_AfterAdd(PJ_06sbxs newobj)
+        {
+            WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+            if (isWorkflowCall)
+            {
+
+                mrwt.ModleRecordID = newobj.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = newobj.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                //currRecord.DocContent = newobj.BigData;
+                //MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+
+            }
+            if (newobj.qxlb != "")
+            {
+                PJ_qxfl qxfj = new PJ_qxfl();
+                qxfj.ID = newobj.ID;
+                qxfj.CreateDate = newobj.CreateDate;
+                qxfj.CreateMan = newobj.CreateMan;
+                qxfj.LineID = newobj.LineID;
+                qxfj.LineName = newobj.LineName;
+                qxfj.OrgCode = newobj.OrgCode;
+                qxfj.OrgName = newobj.OrgName;
+                qxfj.qxlb = newobj.qxlb;
+                qxfj.qxly = "设备巡视";
+                qxfj.qxnr = newobj.qxnr;
+                qxfj.xcqx = newobj.xcqx;
+                qxfj.xcr = newobj.xcr;
+                qxfj.xlqd = newobj.xlqd;
+                qxfj.xsr = newobj.xsr;
+                qxfj.xssj = newobj.xssj;
+                MainHelper.PlatformSqlMap.Create<PJ_qxfl>(qxfj);
+                
+
+
+
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ID = mrwt.CreateID();
+                mrwt.ModleRecordID = qxfj.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = qxfj.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            }
+        }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_06sbxs> e)
         {
             if (isWorkflowCall)

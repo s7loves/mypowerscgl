@@ -176,32 +176,32 @@ namespace Ebada.Scgl.Lcgl
                 qxfj.qxly = "秋检消缺计划";
                 qxfj.qxnr = newobj.xqlr;
                 MainHelper.PlatformSqlMap.Create<PJ_qxfl>(qxfj);
-                LP_Record lpr = new LP_Record();
-                lpr.ID = "N" + lpr.CreateID();
-                lpr.Kind = "设备缺陷管理流程";
-                lpr.CreateTime = DateTime.Now.ToString();
-                lpr.OrgName = qxfj.OrgName;
+                //LP_Record lpr = new LP_Record();
+                //lpr.ID = "N" + lpr.CreateID();
+                //lpr.Kind = "设备缺陷管理流程";
+                //lpr.CreateTime = DateTime.Now.ToString();
+                //lpr.OrgName = qxfj.OrgName;
 
-                string[] strtemp = RecordWorkTask.RunNewGZPRecord(lpr.ID, "设备缺陷管理流程", MainHelper.User.UserID, false);
-                if (strtemp[0].IndexOf("未提交至任何人") > -1)
-                {
-                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
-                    return;
-                }
-                DataTable recordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
-                if (recordWorkFlowData == null)
-                {
-                    MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
+                //string[] strtemp = RecordWorkTask.RunNewGZPRecord(lpr.ID, "设备缺陷管理流程", MainHelper.User.UserID, false);
+                //if (strtemp[0].IndexOf("未提交至任何人") > -1)
+                //{
+                //    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                //    return;
+                //}
+                //DataTable recordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
+                //if (recordWorkFlowData == null)
+                //{
+                //    MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
 
-                }
-                LP_Temple ParentTemple = RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr);
-                if (ParentTemple == null)
-                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, "设备缺陷管理流程");
-                else
-                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, ParentTemple.LPID);
-                lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
-                MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
-                currRecord = lpr;
+                //}
+                //LP_Temple ParentTemple = RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr);
+                //if (ParentTemple == null)
+                //    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, "设备缺陷管理流程");
+                //else
+                //    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, ParentTemple.LPID);
+                //lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
+                //MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
+                //currRecord = lpr;
 
 
 
