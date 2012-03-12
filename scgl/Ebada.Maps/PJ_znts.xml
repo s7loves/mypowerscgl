@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_znts" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_znts"  type="Ebada.Scgl.Model.PJ_znts,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_znts_AllColumns" class="PJ_znts">
+        <result property="ID" column="ID" />
+        <result property="szdx" column="szdx" />
+        <result property="sql" column="sql" />
+        <result property="type" column="type" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_zntsList" resultMap="PJ_znts_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [szdx],
+         [sql],
+         [type],
+         [c1],
+         [c2],
+         [c3]
+          FROM PJ_znts
+          $value$
+   </select>
+   
+   <select id="SelectPJ_zntsByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [szdx],
+         [sql],
+         [type],
+         [c1],
+         [c2],
+         [c3]
+          FROM PJ_znts
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="szdx">[szdx]='$szdx$'</isNotNull>
+       <isNotNull prepend="AND" property="sql">[sql]='$sql$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_zntsByKey" resultMap="PJ_znts_AllColumns" parameterClass="PJ_znts">
+         SELECT 
+         [ID],
+         [szdx],
+         [sql],
+         [type],
+         [c1],
+         [c2],
+         [c3]
+         FROM PJ_znts
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_znts" parameterClass="PJ_znts">
+        DELETE FROM 
+         PJ_znts
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_zntsByWhere" parameterClass="string">
+     delete from PJ_znts $value$
+   </delete>
+   
+   <delete id="DeletePJ_zntsByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_znts
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_znts" parameterClass="PJ_znts" resultClass="int">
+          UPDATE PJ_znts
+           SET
+             [szdx]=#szdx#,
+             [sql]=#sql#,
+             [type]=#type#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_znts" parameterClass="PJ_znts">
+        INSERT INTO PJ_znts
+         (
+         [ID],
+         [szdx],
+         [sql],
+         [type],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #ID#,
+         #szdx#,
+         #sql#,
+         #type#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_zntsRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_znts
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="szdx">[szdx]='$szdx$'</isNotNull>
+       <isNotNull prepend="AND" property="sql">[sql]='$sql$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_zntsRowCount" parameterClass="string">
+    select count(*) from PJ_znts $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
