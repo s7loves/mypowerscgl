@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{890818B2-EE50-4CB2-9C85-BAA60730CAAB}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -173,6 +173,12 @@
     </Compile>
     <Compile Include="UCPSbyqxhSelect.Designer.cs">
       <DependentUpon>UCPSbyqxhSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmgtsbEditM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmgtsbEditM.Designer.cs">
+      <DependentUpon>frmgtsbEditM.cs</DependentUpon>
     </Compile>
     <Compile Include="台区元素\frmTemplate.cs">
       <SubType>Form</SubType>
@@ -441,6 +447,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCPSbyqxhSelect.resx">
       <DependentUpon>UCPSbyqxhSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmgtsbEditM.resx">
+      <DependentUpon>frmgtsbEditM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="台区元素\frmTemplate.resx">
