@@ -359,6 +359,17 @@ namespace Ebada.Scgl.Sbgl
             btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
+        /// <summary>
+        /// 增加其它设备
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btAddM2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if(gridViewOperation.BindingList.Count==0)return;
+            frmgtsbEditM dlg = new frmgtsbEditM();
+            dlg.SetGt(gridViewOperation.BindingList);
+            dlg.ShowDialog(this);
+        }
       
     }
 }

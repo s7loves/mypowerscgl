@@ -48,6 +48,8 @@
             this.btExport0 = new DevExpress.XtraBars.BarSubItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            this.btAddM2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -77,8 +79,10 @@
             this.btGdsList,
             this.btView,
             this.btXlList,
-            this.btAddM});
-            this.barManager1.MaxItemId = 18;
+            this.btAddM,
+            this.barSubItem1,
+            this.btAddM2});
+            this.barManager1.MaxItemId = 20;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2});
@@ -95,7 +99,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btXlList, "", false, true, true, 99),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAddM),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
@@ -154,7 +158,7 @@
             // 
             // btAddM
             // 
-            this.btAddM.Caption = "批量增加";
+            this.btAddM.Caption = "杆塔";
             this.btAddM.Id = 17;
             this.btAddM.ImageIndex = 8;
             this.btAddM.Name = "btAddM";
@@ -235,7 +239,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(685, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(685, 25);
             // 
             // barDockControlBottom
             // 
@@ -246,14 +250,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 328);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 327);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(685, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 328);
+            this.barDockControlRight.Location = new System.Drawing.Point(685, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 327);
             // 
             // btExport0
             // 
@@ -272,11 +276,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 25);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(685, 328);
+            this.gridControl1.Size = new System.Drawing.Size(685, 327);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -294,6 +298,22 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // barSubItem1
+            // 
+            this.barSubItem1.Caption = "批量增加";
+            this.barSubItem1.Id = 18;
+            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btAddM),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btAddM2)});
+            this.barSubItem1.Name = "barSubItem1";
+            // 
+            // btAddM2
+            // 
+            this.btAddM2.Caption = "其它设备";
+            this.btAddM2.Id = 19;
+            this.btAddM2.Name = "btAddM2";
+            this.btAddM2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddM2_ItemClick);
             // 
             // UCPS_GT
             // 
@@ -340,5 +360,7 @@
         private DevExpress.XtraBars.BarEditItem btXlList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraBars.BarButtonItem btAddM;
+        private DevExpress.XtraBars.BarSubItem barSubItem1;
+        private DevExpress.XtraBars.BarButtonItem btAddM2;
     }
 }
