@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2012-3-12 20:13:05
+生成时间:2012-3-13 10:43:23
 ***********************************************/
 
 using System;
@@ -24,10 +24,12 @@ namespace Ebada.Scgl.Model
         private string _id=Newid(); 
         private string _szdx=String.Empty; 
         private string _sql=String.Empty; 
+        private string _tjsql=String.Empty; 
+        private string _xsgs=String.Empty; 
         private string _type=String.Empty; 
-        private string _c1=String.Empty; 
-        private string _c2=String.Empty; 
-        private string _c3=String.Empty;   
+        private string _s1=String.Empty; 
+        private string _s2=String.Empty; 
+        private string _s3=String.Empty;   
         #endregion
   
   
@@ -98,6 +100,48 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
+        /// 属性名称：tjsql
+        /// 属性描述：条件SQL
+        /// 字段信息：[tjsql],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("条件SQL")]
+        public string tjsql
+        {
+            get { return _tjsql; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 1073741823)
+                throw new Exception("[条件SQL]长度不能大于1073741823!");
+                if (_tjsql as object == null || !_tjsql.Equals(value))
+                {
+                    _tjsql = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：xsgs
+        /// 属性描述：显示形式
+        /// 字段信息：[xsgs],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("显示形式")]
+        public string xsgs
+        {
+            get { return _xsgs; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 1073741823)
+                throw new Exception("[显示形式]长度不能大于1073741823!");
+                if (_xsgs as object == null || !_xsgs.Equals(value))
+                {
+                    _xsgs = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
         /// 属性名称：type
         /// 属性描述：类型
         /// 字段信息：[type],nvarchar
@@ -119,64 +163,64 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：c1
+        /// 属性名称：S1
         /// 属性描述：备用
-        /// 字段信息：[c1],nvarchar
+        /// 字段信息：[S1],nvarchar
         /// </summary>
         [DisplayNameAttribute("备用")]
-        public string c1
+        public string S1
         {
-            get { return _c1; }
+            get { return _s1; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
                 throw new Exception("[备用]长度不能大于50!");
-                if (_c1 as object == null || !_c1.Equals(value))
+                if (_s1 as object == null || !_s1.Equals(value))
                 {
-                    _c1 = value;
+                    _s1 = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：c2
+        /// 属性名称：S2
         /// 属性描述：备用
-        /// 字段信息：[c2],nvarchar
+        /// 字段信息：[S2],nvarchar
         /// </summary>
         [DisplayNameAttribute("备用")]
-        public string c2
+        public string S2
         {
-            get { return _c2; }
+            get { return _s2; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
                 throw new Exception("[备用]长度不能大于50!");
-                if (_c2 as object == null || !_c2.Equals(value))
+                if (_s2 as object == null || !_s2.Equals(value))
                 {
-                    _c2 = value;
+                    _s2 = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：c3
+        /// 属性名称：S3
         /// 属性描述：备用
-        /// 字段信息：[c3],nvarchar
+        /// 字段信息：[S3],nvarchar
         /// </summary>
         [DisplayNameAttribute("备用")]
-        public string c3
+        public string S3
         {
-            get { return _c3; }
+            get { return _s3; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
                 throw new Exception("[备用]长度不能大于50!");
-                if (_c3 as object == null || !_c3.Equals(value))
+                if (_s3 as object == null || !_s3.Equals(value))
                 {
-                    _c3 = value;
+                    _s3 = value;
                 }
             }			 
         }
