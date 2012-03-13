@@ -14,6 +14,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
 using Ebada.Scgl.WFlow;
+using System.Threading;
 namespace Ebada.Scgl.Lcgl
 {
     public partial class frmyxfxEdit : FormBase, IPopupFormEdit {
@@ -326,6 +327,60 @@ namespace Ebada.Scgl.Lcgl
                 //    MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
                 MainHelper.PlatformSqlMap.Create<PJ_03yxfx>(yxfx);
                 //this.Close();
+
+                PJ_gzrjnr gzr = new PJ_gzrjnr();
+                gzr.ParentID = yxfx.ID;
+                IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
+                if (gzrj01.Count > 0)
+                {
+                    gzr.gzrjID = gzrj01[0].gzrjID;
+                }
+                else
+                {
+                    PJ_01gzrj pj = new PJ_01gzrj();
+                    pj.gzrjID = pj.CreateID();
+                    pj.GdsCode = MainHelper.User.OrgCode;
+                    pj.GdsName = MainHelper.User.OrgName;
+                    pj.CreateDate = DateTime.Now;
+                    pj.CreateMan = MainHelper.User.UserName;
+                    gzr.gzrjID = pj.gzrjID;
+                    pj.rq = DateTime.Now.Date;
+                    pj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+                    pj.rsaqts = (DateTime.Today - MainHelper.UserOrg.PSafeTime.Date).Days;
+                    pj.sbaqts = (DateTime.Today - MainHelper.UserOrg.DSafeTime.Date).Days;
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    MainHelper.PlatformSqlMap.Create<PJ_01gzrj>(pj);
+
+
+                }
+                IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
+                if (gzrlist.Count > 0)
+                {
+                    gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
+                }
+                else
+                    gzr.seq = 1;
+                gzr.gznr = yxfx.hydd + "运行分析-" + yxfx.type;
+                gzr.fzr = yxfx.zcr;
+                gzr.fssj = yxfx.rq;
+                string[] ss = yxfx.cjry.Split(';');
+                if (ss.Length >= 1)
+                {
+
+                    gzr.cjry = ss[0] + "、" + ss[1];
+                    if (ss.Length > 2) gzr.cjry = gzr.cjry + "等";
+                    gzr.cjry = gzr.cjry + ss.Length + "人";
+                }
+                else
+                {
+                    gzr.cjry = gzr.fzr;
+                }
+
+
+
+
+
+                MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
             }
             else
             {
