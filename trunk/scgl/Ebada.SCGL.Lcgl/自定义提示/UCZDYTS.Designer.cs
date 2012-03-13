@@ -103,7 +103,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
             new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btset),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
@@ -180,6 +179,7 @@
             // 
             this.btset.Caption = "提示间隔";
             this.btset.Id = 23;
+            this.btset.ImageIndex = 6;
             this.btset.Name = "btset";
             this.btset.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btset.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btset_ItemClick);
