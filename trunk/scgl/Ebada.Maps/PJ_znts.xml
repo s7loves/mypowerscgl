@@ -8,10 +8,12 @@
         <result property="ID" column="ID" />
         <result property="szdx" column="szdx" />
         <result property="sql" column="sql" />
+        <result property="tjsql" column="tjsql" />
+        <result property="xsgs" column="xsgs" />
         <result property="type" column="type" />
-        <result property="c1" column="c1" />
-        <result property="c2" column="c2" />
-        <result property="c3" column="c3" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
       </resultMap>
   </resultMaps>
 
@@ -21,10 +23,12 @@
          [ID],
          [szdx],
          [sql],
+         [tjsql],
+         [xsgs],
          [type],
-         [c1],
-         [c2],
-         [c3]
+         [S1],
+         [S2],
+         [S3]
           FROM PJ_znts
           $value$
    </select>
@@ -34,19 +38,23 @@
          [ID],
          [szdx],
          [sql],
+         [tjsql],
+         [xsgs],
          [type],
-         [c1],
-         [c2],
-         [c3]
+         [S1],
+         [S2],
+         [S3]
           FROM PJ_znts
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="szdx">[szdx]='$szdx$'</isNotNull>
        <isNotNull prepend="AND" property="sql">[sql]='$sql$'</isNotNull>
+       <isNotNull prepend="AND" property="tjsql">[tjsql]='$tjsql$'</isNotNull>
+       <isNotNull prepend="AND" property="xsgs">[xsgs]='$xsgs$'</isNotNull>
        <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
-       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
-       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
-       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_zntsByKey" resultMap="PJ_znts_AllColumns" parameterClass="PJ_znts">
@@ -54,10 +62,12 @@
          [ID],
          [szdx],
          [sql],
+         [tjsql],
+         [xsgs],
          [type],
-         [c1],
-         [c2],
-         [c3]
+         [S1],
+         [S2],
+         [S3]
          FROM PJ_znts
          WHERE 
            ID = #ID#
@@ -89,10 +99,12 @@
            SET
              [szdx]=#szdx#,
              [sql]=#sql#,
+             [tjsql]=#tjsql#,
+             [xsgs]=#xsgs#,
              [type]=#type#,
-             [c1]=#c1#,
-             [c2]=#c2#,
-             [c3]=#c3#
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
             WHERE 
               ID = #ID#
 
@@ -104,20 +116,24 @@
          [ID],
          [szdx],
          [sql],
+         [tjsql],
+         [xsgs],
          [type],
-         [c1],
-         [c2],
-         [c3]
+         [S1],
+         [S2],
+         [S3]
          )
        VALUES
          (
          #ID#,
          #szdx#,
          #sql#,
+         #tjsql#,
+         #xsgs#,
          #type#,
-         #c1#,
-         #c2#,
-         #c3#
+         #S1#,
+         #S2#,
+         #S3#
          )
 
    </insert>
@@ -129,10 +145,12 @@
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="szdx">[szdx]='$szdx$'</isNotNull>
        <isNotNull prepend="AND" property="sql">[sql]='$sql$'</isNotNull>
+       <isNotNull prepend="AND" property="tjsql">[tjsql]='$tjsql$'</isNotNull>
+       <isNotNull prepend="AND" property="xsgs">[xsgs]='$xsgs$'</isNotNull>
        <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
-       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
-       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
-       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
      </dynamic>
 
    </select>
