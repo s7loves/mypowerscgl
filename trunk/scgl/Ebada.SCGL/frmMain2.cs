@@ -15,9 +15,12 @@ using Ebada.SCGL.WFlow.Engine;
 using System.Threading;
 using System.Text.RegularExpressions;
 
-namespace Ebada.SCGL {
-    public partial class frmMain2 : DevExpress.XtraEditors.XtraForm {
-        public frmMain2() {
+namespace Ebada.SCGL
+{
+    public partial class frmMain2 : DevExpress.XtraEditors.XtraForm
+    {
+        public frmMain2()
+        {
             InitializeComponent();
 
             //ucModulBar1.RefreshData("");
@@ -34,15 +37,18 @@ namespace Ebada.SCGL {
         #region Skins
         string skinMask = "Office 2010";
         BarSubItem iPaintStyle;
-        void InitSkins() {
+        void InitSkins()
+        {
             barManager1.ForceInitialize();
             //DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("Xmas 2008 Blue");
             //defaultLookAndFeel1.LookAndFeel.SetSkinStyle("Xmas 2008 Blue");
-            if (barManager1.GetController().PaintStyleName == "Skin") {
+            if (barManager1.GetController().PaintStyleName == "Skin")
+            {
                 iPaintStyle.Caption = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
                 iPaintStyle.Hint = iPaintStyle.Caption;
             }
-            foreach (DevExpress.Skins.SkinContainer cnt in DevExpress.Skins.SkinManager.Default.Skins) {
+            foreach (DevExpress.Skins.SkinContainer cnt in DevExpress.Skins.SkinManager.Default.Skins)
+            {
                 BarButtonItem item = new BarButtonItem(barManager1, cnt.SkinName);
                 item.Name = "bi" + cnt.SkinName;
                 item.Id = barManager1.GetNewItemId();
@@ -50,7 +56,8 @@ namespace Ebada.SCGL {
                 item.ItemClick += new ItemClickEventHandler(OnSkinClick);
             }
         }
-        void OnSkinClick(object sender, ItemClickEventArgs e) {
+        void OnSkinClick(object sender, ItemClickEventArgs e)
+        {
             string skinName = e.Item.Caption.Replace(skinMask, "");
             DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(skinName);
             barManager1.GetController().PaintStyleName = "Skin";
@@ -69,7 +76,7 @@ namespace Ebada.SCGL {
             barManager1.ForceInitialize();
             helpitem.Name = "help";
             helpitem.ItemClick += new ItemClickEventHandler(OnHelpClick);
-          
+
         }
         void OnHelpClick(object sender, ItemClickEventArgs e)
         {
@@ -93,28 +100,34 @@ namespace Ebada.SCGL {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void doModule(object sender, EventArgs e) {
+        private void doModule(object sender, EventArgs e)
+        {
             Application.DoEvents();
 
             DataRow row = sender as DataRow;
             mModule obj = Ebada.Core.ConvertHelper.RowToObject<mModule>(row);
             OpenModule(obj);
         }
-        public void OpenModule(mModule obj) {
+        public void OpenModule(mModule obj)
+        {
             //检查模块是否已经打开
-            if (openFormList.ContainsKey(obj.Modu_ID)) {
+            if (openFormList.ContainsKey(obj.Modu_ID))
+            {
                 openFormList[obj.Modu_ID].Activate();
                 return;
             }
             object instance = null;//模块接口
             barEditItem1.Visibility = BarItemVisibility.Always;
             this.Cursor = Cursors.WaitCursor;
-            try {
+            try
+            {
                 object result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
-                if (result is UserControl) {
+                if (result is UserControl)
+                {
                     instance = showControl(result as UserControl, obj.Modu_ID);
                 }
-                if (instance is Form){
+                if (instance is Form)
+                {
                     Form fb = instance as Form;
                     openFormList.Add(obj.Modu_ID, fb);
                     fb.Text = obj.ModuName;
@@ -125,10 +138,14 @@ namespace Ebada.SCGL {
                 }
                 this.Cursor = Cursors.Default;
 
-            } catch (Exception err) {
+            }
+            catch (Exception err)
+            {
                 this.Cursor = Cursors.Default;
                 MsgBox.ShowException(err);
-            } finally {
+            }
+            finally
+            {
                 barEditItem1.Visibility = BarItemVisibility.Never;
             }
         }
@@ -137,19 +154,22 @@ namespace Ebada.SCGL {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void frmMain_ChildFormClosed(object sender, FormClosedEventArgs e) {
-            Dictionary<string,object> dic =(sender as Form).Tag as Dictionary<string,object>;
-            if(dic!=null)
-            openFormList.Remove(dic["Modu_ID"].ToString());
+        void frmMain_ChildFormClosed(object sender, FormClosedEventArgs e)
+        {
+            Dictionary<string, object> dic = (sender as Form).Tag as Dictionary<string, object>;
+            if (dic != null)
+                openFormList.Remove(dic["Modu_ID"].ToString());
         }
         /// <summary>
         /// 显示用户控件方法
         /// </summary>
         /// <param name="uc"></param>
         /// <returns></returns>
-        private FormBase showControl(UserControl uc,string moduID) {
+        private FormBase showControl(UserControl uc, string moduID)
+        {
             FormBase dlg = new FormBase();
-            if (!string.IsNullOrEmpty(moduID)) {
+            if (!string.IsNullOrEmpty(moduID))
+            {
                 Dictionary<string, object> dic = new Dictionary<string, object>();
                 dic.Add("Modu_ID", moduID);
                 dlg.Tag = dic;
@@ -163,33 +183,40 @@ namespace Ebada.SCGL {
         #endregion
         #region 加载菜单
         string sqlwhere = " where 1=0";
-        internal void InitMenu(string userid) {
+        internal void InitMenu(string userid)
+        {
             bar2.ItemLinks.Clear();
             sqlwhere = "  a " +
                 "where a.modu_id in (select b.modu_id from rRoleModul b " +
                 "inner join rUserRole c on b.roleid=c.roleid " +
                 "where a.visiableflag=1" + " and c.userid='" + userid + "')";
             IList list = (IList)MainHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);
-            if (list.Count > 0) {
+            if (list.Count > 0)
+            {
                 DataTable dt = Ebada.Core.ConvertHelper.ToDataTable(list);
                 DataRow[] rows = dt.Select("parentid='0'", "Sequence");
                 createMenu(bar2, rows, dt);
             }
             bar2.AddItem(iPaintStyle);
             bar2.AddItem(helpitem);
-            
+
             //加载用户操作权限列表
             //ClientHelper.UserFuns = ClientHelper.PlatformSqlMap.GetList("SelectUserFuns", userid);
 
         }
-        void createMenu(BarLinksHolder bc, DataRow[] rows, DataTable dt) {
-            foreach (DataRow row in rows) {
+        void createMenu(BarLinksHolder bc, DataRow[] rows, DataTable dt)
+        {
+            foreach (DataRow row in rows)
+            {
                 DataRow[] progs = dt.Select("parentid='" + row["Modu_ID"] + "' and visiableflag=1", "Sequence");
-                if (progs.Length > 0) {
+                if (progs.Length > 0)
+                {
                     BarSubItem sub1 = new BarSubItem(barManager1, row["ModuName"].ToString());
                     createMenu(sub1, progs, dt);
                     bc.AddItem(sub1);
-                } else {
+                }
+                else
+                {
                     BarButtonItem bt = new BarButtonItem(barManager1, row["ModuName"].ToString());
                     bt.ItemClick += new ItemClickEventHandler(bt_ItemClick);
                     bt.Tag = Ebada.Core.ConvertHelper.RowToObject<mModule>(row);
@@ -198,49 +225,60 @@ namespace Ebada.SCGL {
             }
         }
 
-        void bt_ItemClick(object sender, ItemClickEventArgs e) {
+        void bt_ItemClick(object sender, ItemClickEventArgs e)
+        {
             OpenModule(e.Item.Tag as mModule);
         }
 
         #endregion
-        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e) {
-            this.showControl(new sample1.MudleTreeManager(),null).Text = "模块登记";
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.showControl(new sample1.MudleTreeManager(), null).Text = "模块登记";
         }
-        protected override void OnShown(EventArgs e) {
+        protected override void OnShown(EventArgs e)
+        {
             base.OnShown(e);
             MainHelper.MainForm = this;
             InitSkins();
-            MethodInvoker m = delegate() {
+            MethodInvoker m = delegate()
+            {
                 mModule module = new mModule();
                 module.ModuTypes = "Ebada.Scgl.Gis.frmMapM";
                 module.ModuName = "地理信息";
                 module.AssemblyFileName = "Ebada.Scgl.Gis.dll";
                 OpenModule(module);
             };
-            
-            
+
+
             btLogin.PerformClick();
             Application.DoEvents();
-            try {
+            try
+            {
                 BeginInvoke(m);
-            } catch {
+            }
+            catch
+            {
             }
         }
-        private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e) {
+        private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
+        {
             ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence"); InitMenu("");
         }
-        
-        private void btLogin_ItemClick(object sender, ItemClickEventArgs e) {
+
+        private void btLogin_ItemClick(object sender, ItemClickEventArgs e)
+        {
             frmLogin dlg = new frmLogin();
-            if (dlg.ShowDialog() == DialogResult.OK) { 
-                
-            
-           
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+
+
                 barStaticItem2.Caption = string.Format("部门：{0}  操作员：{1}", MainHelper.User.OrgName, MainHelper.User.UserName);
                 InitMenu(MainHelper.User.UserID);
                 ucModulBar1.RefreshData(sqlwhere);
                 ucModulBar1.SetImage();
-                if (MainHelper.User.LoginID == "rabbit") {
+                if (MainHelper.User.LoginID == "rabbit")
+                {
                     barButtonItem1.Visibility = BarItemVisibility.Always;
                     barButtonItem2.Visibility = BarItemVisibility.Always;
                 }
@@ -249,21 +287,28 @@ namespace Ebada.SCGL {
                 timer1.Enabled = false;
                 timer1.Interval = 8000;
                 timer1.Enabled = true;
-                try {
+                try
+                {
                     Program.killmsg();
                     BackgroundWorker bw = new BackgroundWorker();
                     bw.DoWork += new DoWorkEventHandler(bw_DoWork);
                     bw.RunWorkerAsync(MainHelper.User.LoginID);
-                    
-                } catch { }
-            } else {
-                if (MainHelper.User.LoginID == "rabbit") {
+
+                }
+                catch { }
+            }
+            else
+            {
+                if (MainHelper.User.LoginID == "rabbit")
+                {
                     barButtonItem1.Visibility = BarItemVisibility.Always;
                     barButtonItem2.Visibility = BarItemVisibility.Always;
 
                     ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence");
                     ucModulBar1.SetImage();
-                } else {
+                }
+                else
+                {
                     this.Close();
                     return;
                 }
@@ -275,40 +320,49 @@ namespace Ebada.SCGL {
 
         }
 
-        void bw_DoWork(object sender, DoWorkEventArgs e) {
+        void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
             System.Diagnostics.Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\msg\\Ebada.MsgClient.exe", e.Argument.ToString());
         }
 
-        private void btClose_ItemClick(object sender, ItemClickEventArgs e) {
-            if (Client.MsgBox.ShowAskMessageBox("是否退出系统？") == DialogResult.OK) {
+        private void btClose_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (Client.MsgBox.ShowAskMessageBox("是否退出系统？") == DialogResult.OK)
+            {
 
                 timer1.Enabled = false;
                 this.Close();
             }
         }
 
-        private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e) {
+        private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
+        {
             //锁屏
 
             Client.Platform.FormPasswordValidation dlg = new FormPasswordValidation();
             dlg.Owner = this;
             dlg.ShowInTaskbar = false;
-            while (true) {
-                if (dlg.ShowDialog() == DialogResult.OK) {
+            while (true)
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
                     break;
-                } else {
-                    if (Client.MsgBox.ShowAskMessageBox("是否退出系统？") == DialogResult.OK) {
+                }
+                else
+                {
+                    if (Client.MsgBox.ShowAskMessageBox("是否退出系统？") == DialogResult.OK)
+                    {
                         this.Close();
                         break;
                     }
                 }
             }
         }
-        private void showMessage(int type,string nr)
+        private void showMessage(int type, string nr)
         {
-            showMessage( type, nr,5000);
+            showMessage(type, nr, 5000);
         }
-        private void showMessage(int type,string nr,int nTimeToStay)
+        private void showMessage(int type, string nr, int nTimeToStay)
         {
             TaskbarNotifier taskbarNotifier1 = new TaskbarNotifier();
             switch (type)
@@ -325,7 +379,7 @@ namespace Ebada.SCGL {
                     taskbarNotifier1.TitleRectangle = new Rectangle(123, 80, 176, 16);
                     taskbarNotifier1.ContentRectangle = new Rectangle(116, 97, 197, 22);
                     break;
-                default :
+                default:
                     taskbarNotifier1.SetBackgroundBitmap(new Bitmap(Image.FromStream(typeof(UsualForm).Assembly.GetManifestResourceStream("Ebada.SCGL.Resources.skin3.bmp"))), Color.FromArgb(255, 0, 255));
                     taskbarNotifier1.SetCloseBitmap(new Bitmap(Image.FromStream(typeof(UsualForm).Assembly.GetManifestResourceStream("Ebada.SCGL.Resources.close.bmp"))), Color.FromArgb(255, 0, 255), new Point(280, 57));
                     taskbarNotifier1.TitleRectangle = new Rectangle(150, 57, 125, 28);
@@ -342,7 +396,7 @@ namespace Ebada.SCGL {
             taskbarNotifier1.ContentClick += new EventHandler(ContentClick);
             //taskbarNotifier1.CloseClick += new EventHandler(CloseClick);
             taskbarNotifier1.Show("农电生产系统", nr, 10, nTimeToStay, 50);
-        
+
         }
         void ContentClick(object obj, EventArgs e)
         {
@@ -351,10 +405,11 @@ namespace Ebada.SCGL {
             this.showControl(dt, null).Text = "我的桌面";
         }
 
-        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e) {
+        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
+        {
             Desktop dt = new Desktop();
             dt.PlatForm = this;
-            this.showControl(dt,null).Text = "我的桌面";
+            this.showControl(dt, null).Text = "我的桌面";
         }
         public IList InitSQLData(string sqlSentence)
         {
@@ -372,7 +427,7 @@ namespace Ebada.SCGL {
             Regex r1;
             if (sqlSentence != "")
             {
-                sqlSentence=sqlSentence.ToLower();
+                sqlSentence = sqlSentence.ToLower();
                 if (sqlSentence.IndexOf("{orgcode}") > -1)
                 {
                     sqlSentence = sqlSentence.ToLower().Replace("{orgcode}", MainHelper.User.OrgCode);
@@ -456,17 +511,17 @@ namespace Ebada.SCGL {
             IList<PJ_znts> strlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_znts>(
                 "where type='显示信息' "
            );
-            foreach(PJ_znts zn in strlist)
+            foreach (PJ_znts zn in strlist)
             {
                 IList li = InitSQLData(zn.tjsql);
-                if (li.Count >0)
+                if (li.Count > 0)
                 {
                     li = InitSQLData(zn.sql);
                     string ss = "select  top 1 '" + zn.xsgs.Replace("{gs}", li.Count.ToString()) + "'from mOrg where 1=1";
                     li = InitSQLData(ss);
-                    showMessage(3, li[0].ToString(),60000);
+                    showMessage(3, li[0].ToString(), 60000);
                 }
-               
+
             }
             PJ_znts zn2 = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_znts>(
                 "where type='显示间隔' ");
