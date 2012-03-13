@@ -13,11 +13,11 @@ using System.ComponentModel;
 namespace Ebada.Scgl.Model
 {
     /// <summary>
-    ///[PJ_sbsjgcxmjhsbb]业务实体类
-    ///对应表名:PJ_sbsjgcxmjhsbb
+    ///[PJ_sbsjjhsbb]业务实体类
+    ///对应表名:PJ_sbsjjhsbb
     /// </summary>
     [Serializable]
-    public class PJ_sbsjgcxmjhsbb
+    public class PJ_sbsjjhsbb
     {
         
         #region Private 成员

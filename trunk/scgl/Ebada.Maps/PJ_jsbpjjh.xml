@@ -11,6 +11,9 @@
         <result property="lsr" column="lsr" />
         <result property="dbr" column="dbr" />
         <result property="lsyq" column="lsyq" />
+        <result property="bzrq" column="bzrq" />
+        <result property="bzr" column="bzr" />
+        <result property="scbzr" column="scbzr" />
         <result property="Remark" column="Remark" />
         <result property="S1" column="S1" />
         <result property="S2" column="S2" />
@@ -27,6 +30,9 @@
          [lsr],
          [dbr],
          [lsyq],
+         [bzrq],
+         [bzr],
+         [scbzr],
          [Remark],
          [S1],
          [S2],
@@ -43,6 +49,9 @@
          [lsr],
          [dbr],
          [lsyq],
+         [bzrq],
+         [bzr],
+         [scbzr],
          [Remark],
          [S1],
          [S2],
@@ -55,6 +64,9 @@
        <isNotNull prepend="AND" property="lsr">[lsr]='$lsr$'</isNotNull>
        <isNotNull prepend="AND" property="dbr">[dbr]='$dbr$'</isNotNull>
        <isNotNull prepend="AND" property="lsyq">[lsyq]='$lsyq$'</isNotNull>
+       <isNotNull prepend="AND" property="bzrq">[bzrq]='$bzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="bzr">[bzr]='$bzr$'</isNotNull>
+       <isNotNull prepend="AND" property="scbzr">[scbzr]='$scbzr$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
@@ -69,6 +81,9 @@
          [lsr],
          [dbr],
          [lsyq],
+         [bzrq],
+         [bzr],
+         [scbzr],
          [Remark],
          [S1],
          [S2],
@@ -107,6 +122,9 @@
              [lsr]=#lsr#,
              [dbr]=#dbr#,
              [lsyq]=#lsyq#,
+             [bzrq]=#bzrq#,
+             [bzr]=#bzr#,
+             [scbzr]=#scbzr#,
              [Remark]=#Remark#,
              [S1]=#S1#,
              [S2]=#S2#,
@@ -125,6 +143,9 @@
          [lsr],
          [dbr],
          [lsyq],
+         [bzrq],
+         [bzr],
+         [scbzr],
          [Remark],
          [S1],
          [S2],
@@ -138,6 +159,9 @@
          #lsr#,
          #dbr#,
          #lsyq#,
+         #bzrq#,
+         #bzr#,
+         #scbzr#,
          #Remark#,
          #S1#,
          #S2#,
@@ -156,6 +180,9 @@
        <isNotNull prepend="AND" property="lsr">[lsr]='$lsr$'</isNotNull>
        <isNotNull prepend="AND" property="dbr">[dbr]='$dbr$'</isNotNull>
        <isNotNull prepend="AND" property="lsyq">[lsyq]='$lsyq$'</isNotNull>
+       <isNotNull prepend="AND" property="bzrq">[bzrq]='$bzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="bzr">[bzr]='$bzr$'</isNotNull>
+       <isNotNull prepend="AND" property="scbzr">[scbzr]='$scbzr$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>

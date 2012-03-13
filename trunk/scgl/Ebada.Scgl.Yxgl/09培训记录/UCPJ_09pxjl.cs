@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using System.Threading;
 
 namespace Ebada.Scgl.Yxgl
 {
@@ -44,8 +45,65 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_09pxjl>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_09pxjl>(gridViewOperation_AfterAdd);
         }
-        
+
+        void gridViewOperation_AfterAdd(PJ_09pxjl obj)
+        {
+            
+            CreatRiZhi(obj);
+        }
+        public static void CreatRiZhi(PJ_09pxjl obj)
+        {
+
+
+            PJ_gzrjnr gzr = new PJ_gzrjnr();
+            gzr.gzrjID = gzr.CreateID();
+            gzr.ParentID = obj.ID;
+            Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+            IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where GdsCode='" + MainHelper.User.OrgCode + "' and rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
+
+            if (gzrj01.Count > 0)
+            {
+                gzr.gzrjID = gzrj01[0].gzrjID;
+            }
+            else
+            {
+                PJ_01gzrj pj = new PJ_01gzrj();
+                pj.gzrjID = pj.CreateID();
+                pj.GdsCode = MainHelper.User.OrgCode;
+                pj.GdsName = MainHelper.User.OrgName;
+                pj.CreateDate = DateTime.Now;
+                pj.CreateMan = MainHelper.User.UserName;
+                gzr.gzrjID = pj.gzrjID;
+                pj.rq = DateTime.Now.Date;
+                pj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+                pj.rsaqts = (DateTime.Today - MainHelper.UserOrg.PSafeTime.Date).Days;
+                pj.sbaqts = (DateTime.Today - MainHelper.UserOrg.DSafeTime.Date).Days;
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                MainHelper.PlatformSqlMap.Create<PJ_01gzrj>(pj);
+
+
+            }
+            IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where gzrjID  = '" + gzr.gzrjID + "' order by seq  ");
+            if (gzrlist.Count > 0)
+            {
+                gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
+            }
+            else
+                gzr.seq = 1;
+
+            gzr.gznr =obj.hydd+ "职工培训";
+            gzr.fzr = obj.zcr;
+
+            gzr.cjry = obj.zcr + "等" + gzr.cjry + "人";
+           
+            gzr.CreateDate = DateTime.Now;
+            gzr.CreateMan = MainHelper.User.UserName;
+            gzr.fssj = DateTime.Now;
+            MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
+
+        }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_09pxjl> e)
         {
            

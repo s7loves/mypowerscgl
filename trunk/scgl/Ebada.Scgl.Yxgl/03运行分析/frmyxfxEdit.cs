@@ -14,6 +14,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
 using Ebada.Scgl.WFlow;
+using System.Threading;
 namespace Ebada.Scgl.Yxgl
 {
     public partial class frmyxfxEdit : FormBase, IPopupFormEdit {
@@ -212,7 +213,10 @@ namespace Ebada.Scgl.Yxgl
             //((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.AddRange(ryList);
             ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]));
-
+            comboBoxEdit18.Properties.Items.Clear();
+            comboBoxEdit18.Properties.Items.Add("会议室");
+            comboBoxEdit18.Properties.Items.Add("所长室");
+            comboBoxEdit18.Properties.Items.Add("配电班");
         }
 
         /// <summary>
@@ -285,6 +289,25 @@ namespace Ebada.Scgl.Yxgl
                      if (gzrj01.Count > 0)
                      {
                          gzr.gzrjID = gzrj01[0].gzrjID;
+                     }
+                     else
+                     {
+                         PJ_01gzrj pj = new PJ_01gzrj();
+                         pj.gzrjID = pj.CreateID();
+                         pj.GdsCode = MainHelper.User.OrgCode;
+                         pj.GdsName = MainHelper.User.OrgName;
+                         pj.CreateDate = DateTime.Now;
+                         pj.CreateMan = MainHelper.User.UserName;
+                         gzr.gzrjID = pj.gzrjID;
+                         pj.rq = DateTime.Now.Date;
+                         pj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+                         pj.rsaqts = (DateTime.Today - MainHelper.UserOrg.PSafeTime.Date).Days;
+                         pj.sbaqts = (DateTime.Today - MainHelper.UserOrg.DSafeTime.Date).Days;
+                         Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                         MainHelper.PlatformSqlMap.Create<PJ_01gzrj>(pj);
+
+
+                     }
                          IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
                          if (gzrlist.Count > 0)
                          {
@@ -299,7 +322,7 @@ namespace Ebada.Scgl.Yxgl
                          if (ss.Length >= 1)
                          {
 
-                             gzr.cjry = gzr.fzr + "、" + ss[0];
+                             gzr.cjry = ss[0] + "、" + ss[1];
                              if (ss.Length > 2) gzr.cjry = gzr.cjry + "等";
                              gzr.cjry = gzr.cjry + ss.Length + "人";
                          }
@@ -309,13 +332,9 @@ namespace Ebada.Scgl.Yxgl
                          }
 
 
-                     }
-                     else
-                     {
-                         MsgBox.ShowWarningMessageBox("未填写今日工作日记");
-                         //return;
-                     }
-                     if (gzrj01.Count > 0)
+                     
+                    
+                     
                          MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
                      MainHelper.PlatformSqlMap.Create<PJ_03yxfx>(yxfx);
                  }

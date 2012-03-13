@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-12-27 21:46:10
+生成时间:2012-3-13 21:00:49
 ***********************************************/
 
 using System;
@@ -27,6 +27,9 @@ namespace Ebada.Scgl.Model
         private string _lsr=String.Empty; 
         private string _dbr=String.Empty; 
         private string _lsyq=String.Empty; 
+        private DateTime _bzrq=new DateTime(1900,1,1); 
+        private string _bzr=String.Empty; 
+        private string _scbzr=String.Empty; 
         private string _remark=String.Empty; 
         private string _s1=String.Empty; 
         private string _s2=String.Empty; 
@@ -156,6 +159,66 @@ namespace Ebada.Scgl.Model
                 if (_lsyq as object == null || !_lsyq.Equals(value))
                 {
                     _lsyq = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：bzrq
+        /// 属性描述：编制日期
+        /// 字段信息：[bzrq],datetime
+        /// </summary>
+        [DisplayNameAttribute("编制日期")]
+        public DateTime bzrq
+        {
+            get { return _bzrq; }
+            set
+            {			
+                if (_bzrq as object == null || !_bzrq.Equals(value))
+                {
+                    _bzrq = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：bzr
+        /// 属性描述：编制
+        /// 字段信息：[bzr],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("编制")]
+        public string bzr
+        {
+            get { return _bzr; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[编制]长度不能大于50!");
+                if (_bzr as object == null || !_bzr.Equals(value))
+                {
+                    _bzr = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：scbzr
+        /// 属性描述：生产部主任
+        /// 字段信息：[scbzr],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("生产部主任")]
+        public string scbzr
+        {
+            get { return _scbzr; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[生产部主任]长度不能大于50!");
+                if (_scbzr as object == null || !_scbzr.Equals(value))
+                {
+                    _scbzr = value;
                 }
             }			 
         }

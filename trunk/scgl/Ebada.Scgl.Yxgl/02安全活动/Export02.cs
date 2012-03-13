@@ -137,15 +137,15 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(obj.kssj.Minute.ToString(), row + 2, col + 12);
            
             //结束时间
-            ex.SetCellValue(obj.kssj.Year.ToString(), row + 3, col + 4);
-          
-            ex.SetCellValue(obj.kssj.Month.ToString(), row + 3, col + 6);
-           
-            ex.SetCellValue(obj.kssj.Day.ToString(), row + 3, col + 8);
-         
-            ex.SetCellValue(obj.kssj.Hour.ToString(), row + 3, col + 10);
-            
-            ex.SetCellValue(obj.kssj.Minute.ToString(), row + 3, col + 12);
+            ex.SetCellValue(obj.jssj.Year.ToString(), row + 3, col + 4);
+
+            ex.SetCellValue(obj.jssj.Month.ToString(), row + 3, col + 6);
+
+            ex.SetCellValue(obj.jssj.Day.ToString(), row + 3, col + 8);
+
+            ex.SetCellValue(obj.jssj.Hour.ToString(), row + 3, col + 10);
+
+            ex.SetCellValue(obj.jssj.Minute.ToString(), row + 3, col + 12);
            
             //出席人员
             string[] ary = obj.cjry.Split(jksign);

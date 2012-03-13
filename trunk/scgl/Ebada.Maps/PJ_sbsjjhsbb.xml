@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="PJ_sbsjgcxmjhsbb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sqlMap namespace="PJ_sbsjjhsbb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="PJ_sbsjgcxmjhsbb"  type="Ebada.Scgl.Model.PJ_sbsjgcxmjhsbb,Ebada.Scgl.Model" />
+  <typeAlias alias="PJ_sbsjjhsbb"  type="Ebada.Scgl.Model.PJ_sbsjjhsbb,Ebada.Scgl.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="PJ_sbsjgcxmjhsbb_AllColumns" class="PJ_sbsjgcxmjhsbb">
+      <resultMap id="PJ_sbsjjhsbb_AllColumns" class="PJ_sbsjjhsbb">
         <result property="ID" column="ID" />
         <result property="xsjmc" column="xsjmc" />
         <result property="gcmc" column="gcmc" />
@@ -26,7 +26,7 @@
   </resultMaps>
 
   <statements>
-   <select id="SelectPJ_sbsjgcxmjhsbbList" resultMap="PJ_sbsjgcxmjhsbb_AllColumns" parameterClass="string">
+   <select id="SelectPJ_sbsjjhsbbList" resultMap="PJ_sbsjjhsbb_AllColumns" parameterClass="string">
         SELECT 
          [ID],
          [xsjmc],
@@ -45,11 +45,11 @@
          [S1],
          [S2],
          [S3]
-          FROM PJ_sbsjgcxmjhsbb
+          FROM PJ_sbsjjhsbb
           $value$
    </select>
    
-   <select id="SelectPJ_sbsjgcxmjhsbbByHash" parameterClass="Hashtable">
+   <select id="SelectPJ_sbsjjhsbbByHash" parameterClass="Hashtable">
          SELECT 
          [ID],
          [xsjmc],
@@ -68,7 +68,7 @@
          [S1],
          [S2],
          [S3]
-          FROM PJ_sbsjgcxmjhsbb
+          FROM PJ_sbsjjhsbb
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="xsjmc">[xsjmc]='$xsjmc$'</isNotNull>
@@ -89,7 +89,7 @@
        <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
      </dynamic>
    </select>
-   <select id="SelectPJ_sbsjgcxmjhsbbByKey" resultMap="PJ_sbsjgcxmjhsbb_AllColumns" parameterClass="PJ_sbsjgcxmjhsbb">
+   <select id="SelectPJ_sbsjjhsbbByKey" resultMap="PJ_sbsjjhsbb_AllColumns" parameterClass="PJ_sbsjjhsbb">
          SELECT 
          [ID],
          [xsjmc],
@@ -108,34 +108,34 @@
          [S1],
          [S2],
          [S3]
-         FROM PJ_sbsjgcxmjhsbb
+         FROM PJ_sbsjjhsbb
          WHERE 
            ID = #ID#
 
    </select>
  
-   <delete id="DeletePJ_sbsjgcxmjhsbb" parameterClass="PJ_sbsjgcxmjhsbb">
+   <delete id="DeletePJ_sbsjjhsbb" parameterClass="PJ_sbsjjhsbb">
         DELETE FROM 
-         PJ_sbsjgcxmjhsbb
+         PJ_sbsjjhsbb
            WHERE
          ID = #ID#
 
    </delete>
    
-   <delete id="DeletePJ_sbsjgcxmjhsbbByWhere" parameterClass="string">
-     delete from PJ_sbsjgcxmjhsbb $value$
+   <delete id="DeletePJ_sbsjjhsbbByWhere" parameterClass="string">
+     delete from PJ_sbsjjhsbb $value$
    </delete>
    
-   <delete id="DeletePJ_sbsjgcxmjhsbbByKey" parameterClass="string">
+   <delete id="DeletePJ_sbsjjhsbbByKey" parameterClass="string">
         DELETE FROM 
-         PJ_sbsjgcxmjhsbb
+         PJ_sbsjjhsbb
            WHERE
          ID = #ID#
     
    </delete>
    
-   <update id="UpdatePJ_sbsjgcxmjhsbb" parameterClass="PJ_sbsjgcxmjhsbb" resultClass="int">
-          UPDATE PJ_sbsjgcxmjhsbb
+   <update id="UpdatePJ_sbsjjhsbb" parameterClass="PJ_sbsjjhsbb" resultClass="int">
+          UPDATE PJ_sbsjjhsbb
            SET
              [xsjmc]=#xsjmc#,
              [gcmc]=#gcmc#,
@@ -158,8 +158,8 @@
 
    </update>
   
-   <insert id="InsertPJ_sbsjgcxmjhsbb" parameterClass="PJ_sbsjgcxmjhsbb">
-        INSERT INTO PJ_sbsjgcxmjhsbb
+   <insert id="InsertPJ_sbsjjhsbb" parameterClass="PJ_sbsjjhsbb">
+        INSERT INTO PJ_sbsjjhsbb
          (
          [ID],
          [xsjmc],
@@ -202,9 +202,9 @@
 
    </insert>
    
-   <select id="GetPJ_sbsjgcxmjhsbbRowCountByHash" parameterClass="Hashtable">
+   <select id="GetPJ_sbsjjhsbbRowCountByHash" parameterClass="Hashtable">
          SELECT Count(*) 
-          FROM PJ_sbsjgcxmjhsbb
+          FROM PJ_sbsjjhsbb
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="xsjmc">[xsjmc]='$xsjmc$'</isNotNull>
@@ -227,8 +227,8 @@
 
    </select>
    
-   <select id="GetPJ_sbsjgcxmjhsbbRowCount" parameterClass="string">
-    select count(*) from PJ_sbsjgcxmjhsbb $value$
+   <select id="GetPJ_sbsjjhsbbRowCount" parameterClass="string">
+    select count(*) from PJ_sbsjjhsbb $value$
    </select>
   </statements>
 </sqlMap>

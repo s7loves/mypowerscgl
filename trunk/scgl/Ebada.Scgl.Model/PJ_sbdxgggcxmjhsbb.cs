@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-12-27 22:19:26
+生成时间:2012-3-13 21:44:13
 ***********************************************/
 
 using System;
@@ -29,6 +29,11 @@ namespace Ebada.Scgl.Model
         private string _dgzj=String.Empty; 
         private string _qtzj=String.Empty; 
         private string _sxzjsum=String.Empty; 
+        private string _dsjfzr=String.Empty; 
+        private string _xsjfzr=String.Empty; 
+        private string _shr=String.Empty; 
+        private string _tbr=String.Empty; 
+        private DateTime _tbrq=new DateTime(1900,1,1); 
         private string _remark=String.Empty; 
         private string _s1=String.Empty; 
         private string _s2=String.Empty; 
@@ -203,6 +208,108 @@ namespace Ebada.Scgl.Model
                 if (_sxzjsum as object == null || !_sxzjsum.Equals(value))
                 {
                     _sxzjsum = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：dsjfzr
+        /// 属性描述：地（市）局负责人
+        /// 字段信息：[dsjfzr],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("地（市）局负责人")]
+        public string dsjfzr
+        {
+            get { return _dsjfzr; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[地（市）局负责人]长度不能大于50!");
+                if (_dsjfzr as object == null || !_dsjfzr.Equals(value))
+                {
+                    _dsjfzr = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：xsjfzr
+        /// 属性描述：县（市）局负责人
+        /// 字段信息：[xsjfzr],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("县（市）局负责人")]
+        public string xsjfzr
+        {
+            get { return _xsjfzr; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[县（市）局负责人]长度不能大于50!");
+                if (_xsjfzr as object == null || !_xsjfzr.Equals(value))
+                {
+                    _xsjfzr = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：shr
+        /// 属性描述：审核人
+        /// 字段信息：[shr],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("审核人")]
+        public string shr
+        {
+            get { return _shr; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[审核人]长度不能大于50!");
+                if (_shr as object == null || !_shr.Equals(value))
+                {
+                    _shr = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：tbr
+        /// 属性描述：填报人
+        /// 字段信息：[tbr],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("填报人")]
+        public string tbr
+        {
+            get { return _tbr; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[填报人]长度不能大于50!");
+                if (_tbr as object == null || !_tbr.Equals(value))
+                {
+                    _tbr = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：tbrq
+        /// 属性描述：填报日期
+        /// 字段信息：[tbrq],datetime
+        /// </summary>
+        [DisplayNameAttribute("填报日期")]
+        public DateTime tbrq
+        {
+            get { return _tbrq; }
+            set
+            {			
+                if (_tbrq as object == null || !_tbrq.Equals(value))
+                {
+                    _tbrq = value;
                 }
             }			 
         }
