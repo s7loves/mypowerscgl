@@ -13,48 +13,52 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using System.Text.RegularExpressions;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmZDYTSEdit : FormBase, IPopupFormEdit {
+    public partial class frmZDYTSEdit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<PJ_znts> m_CityDic = new SortableSearchableBindingList<PJ_znts>();
 
         public frmZDYTSEdit()
         {
             InitializeComponent();
         }
-        void dataBind() {
+        void dataBind()
+        {
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "clmc");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "clgg");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "cldw");
-            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "clsl");
-            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "Status");
-            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "cfdd");
-            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "jhnf");
-            this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "zrr");
-            this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
-           
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "szdx");
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "xsgs");
+            this.memoEdit3.DataBindings.Add("EditValue", rowData, "tjsql");
+            this.memoEdit4.DataBindings.Add("EditValue", rowData, "sql");
+
 
         }
         #region IPopupFormEdit Members
         private PJ_znts rowData = null;
 
-        public object RowData {
-            get {
-               
+        public object RowData
+        {
+            get
+            {
+
                 return rowData;
-              
+
             }
-            set {
+            set
+            {
                 if (value == null) return;
-                if (rowData == null) {
+                if (rowData == null)
+                {
                     this.rowData = value as PJ_znts;
                     this.InitComboBoxData();
                     dataBind();
-                } else {
+                }
+                else
+                {
                     ConvertHelper.CopyTo<PJ_znts>(value as PJ_znts, rowData);
                 }
-            
+
             }
         }
 
@@ -76,345 +80,13 @@ namespace Ebada.Scgl.Lcgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void InitComboBoxData() {
-           
+        private void InitComboBoxData()
+        {
+
             //填充下拉列表数据
-           
-
-            comboBoxEdit1.Properties.Items.Clear();
-            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='备品备件计划表' and sx like '%{0}%' and nr!=''", "材料名称"));
-            if (strlist.Count > 0)
-                comboBoxEdit2.Properties.Items.AddRange(strlist);
-            else
-            {
-                comboBoxEdit1.Properties.Items.Add("水泥杆");
-                comboBoxEdit1.Properties.Items.Add("横担");
-                comboBoxEdit1.Properties.Items.Add("拉板");
-                comboBoxEdit1.Properties.Items.Add("联担");
-                comboBoxEdit1.Properties.Items.Add("U型抱箍");
-                comboBoxEdit1.Properties.Items.Add("拉板抱箍");
-                comboBoxEdit1.Properties.Items.Add("高压立瓶");
-                comboBoxEdit1.Properties.Items.Add("悬式绝缘子");
-                comboBoxEdit1.Properties.Items.Add("合成针式绝缘子");
-
-                comboBoxEdit1.Properties.Items.Add("耐张线夹");
-                comboBoxEdit1.Properties.Items.Add("楔型耐张线夹");
-                comboBoxEdit1.Properties.Items.Add("平行挂板");
-                comboBoxEdit1.Properties.Items.Add("直角挂板");
-                comboBoxEdit1.Properties.Items.Add("U型挂环");
-                comboBoxEdit1.Properties.Items.Add("球头挂环");
-                comboBoxEdit1.Properties.Items.Add("碗头挂板");
-                comboBoxEdit1.Properties.Items.Add("延长环");
-                comboBoxEdit1.Properties.Items.Add("并沟线夹");
-
-                comboBoxEdit1.Properties.Items.Add("绝缘并沟线夹");
-                comboBoxEdit1.Properties.Items.Add("拉线棒");
-                comboBoxEdit1.Properties.Items.Add("拉线盘");
-                comboBoxEdit1.Properties.Items.Add("拉盘U卡子");
-                comboBoxEdit1.Properties.Items.Add("楔形线夹");
-                comboBoxEdit1.Properties.Items.Add("UT线夹");
-                comboBoxEdit1.Properties.Items.Add("拉线绝缘子");
-                comboBoxEdit1.Properties.Items.Add("钢线卡子");
-                comboBoxEdit1.Properties.Items.Add("钢绞线");
-
-                comboBoxEdit1.Properties.Items.Add("镀锌铁线");
-                comboBoxEdit1.Properties.Items.Add("接地极");
-                comboBoxEdit1.Properties.Items.Add("螺栓");
-                comboBoxEdit1.Properties.Items.Add("钢芯铝绞线");
-                comboBoxEdit1.Properties.Items.Add("10KV钢芯耐候线");
-                comboBoxEdit1.Properties.Items.Add("铜铝过度线夹");
-                comboBoxEdit1.Properties.Items.Add("铜铝线鼻子");
-                comboBoxEdit1.Properties.Items.Add("电缆");
-                comboBoxEdit1.Properties.Items.Add("10KV电缆头");
-
-                comboBoxEdit1.Properties.Items.Add("低压茶台");
-                comboBoxEdit1.Properties.Items.Add("低压立瓶");
-                comboBoxEdit1.Properties.Items.Add("隔离开关");
-                comboBoxEdit1.Properties.Items.Add("隔离开关担");
-                comboBoxEdit1.Properties.Items.Add("高压熔断器");
-                comboBoxEdit1.Properties.Items.Add("避雷器");
-                comboBoxEdit1.Properties.Items.Add("跌落开关");
-                comboBoxEdit1.Properties.Items.Add("氧化锌避雷器");
-                comboBoxEdit1.Properties.Items.Add("电流互感器");
-
-                comboBoxEdit1.Properties.Items.Add("漏电开关");
-                comboBoxEdit1.Properties.Items.Add("理石闸");
-                comboBoxEdit1.Properties.Items.Add("低压隔离开关");
-                comboBoxEdit1.Properties.Items.Add("胶盖刀闸");
-                comboBoxEdit1.Properties.Items.Add("变台计量箱");
-                comboBoxEdit1.Properties.Items.Add("电度表");
-                comboBoxEdit1.Properties.Items.Add("杆上居民表箱");
-                comboBoxEdit1.Properties.Items.Add("墙上居民表箱");
-                comboBoxEdit1.Properties.Items.Add("绝缘绑线");
-
-                comboBoxEdit1.Properties.Items.Add("黑胶布");
-                comboBoxEdit1.Properties.Items.Add("高压熔丝");
-                comboBoxEdit1.Properties.Items.Add("低压保险片");
-            }
-
-            comboBoxEdit2.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='备品备件计划表' and sx like '%{0}%' and nr!=''", "材料规格"));
-            if (strlist.Count > 0)
-                comboBoxEdit3.Properties.Items.AddRange(strlist);
-            else
-            {
-                comboBoxEdit2.Properties.Items.Add("YB-15-8");
-                comboBoxEdit2.Properties.Items.Add("YB-15-10");
-                comboBoxEdit2.Properties.Items.Add("YB-19-12");
-                comboBoxEdit2.Properties.Items.Add("YB-19-15");
-                comboBoxEdit2.Properties.Items.Add("aYB-19-18");
-                comboBoxEdit2.Properties.Items.Add("cYB-19-21");
-                comboBoxEdit2.Properties.Items.Add("<63x6x2240");
-                comboBoxEdit2.Properties.Items.Add("<75x7x2240");
-                comboBoxEdit2.Properties.Items.Add("<80x8x3500");
-                comboBoxEdit2.Properties.Items.Add("<63x6x1500x700");
-                comboBoxEdit2.Properties.Items.Add("<50x5x1500");
-                comboBoxEdit2.Properties.Items.Add("<63x6x1500");
-                comboBoxEdit2.Properties.Items.Add("<70x7x1500");
-                comboBoxEdit2.Properties.Items.Add("'-60x6x1100");
-                comboBoxEdit2.Properties.Items.Add("'-60*6*970");
-
-                comboBoxEdit2.Properties.Items.Add("'-50x5x770");
-                comboBoxEdit2.Properties.Items.Add("'-60x6x770");
-                comboBoxEdit2.Properties.Items.Add("'-70x7x770");
-                comboBoxEdit2.Properties.Items.Add("'-50x5x260");
-                comboBoxEdit2.Properties.Items.Add("'-50x5x220");
-                comboBoxEdit2.Properties.Items.Add("'-40x4x200 ");
-                comboBoxEdit2.Properties.Items.Add("'-40x4x260  ");
-                comboBoxEdit2.Properties.Items.Add("M16xD150");
-                comboBoxEdit2.Properties.Items.Add("M16xD190");
-                comboBoxEdit2.Properties.Items.Add("M16xD210");
-                comboBoxEdit2.Properties.Items.Add("'-50x5xD160");
-                comboBoxEdit2.Properties.Items.Add("'-50x5xD170");
-                comboBoxEdit2.Properties.Items.Add("'-50x5xD190");
-                comboBoxEdit2.Properties.Items.Add("'-50x5xD210");
-                comboBoxEdit2.Properties.Items.Add("'-50x5xD220");
-
-                comboBoxEdit2.Properties.Items.Add("'-50x5xD230");
-                comboBoxEdit2.Properties.Items.Add("'-50x5xD170");
-                comboBoxEdit2.Properties.Items.Add("'-50x5xD190");
-                comboBoxEdit2.Properties.Items.Add("P-15T");
-
-                comboBoxEdit2.Properties.Items.Add("XP-7C");
-                comboBoxEdit2.Properties.Items.Add("XP-7Q");
-                comboBoxEdit2.Properties.Items.Add("NLD-1");
-                comboBoxEdit2.Properties.Items.Add("NLD-2");
-
-                comboBoxEdit2.Properties.Items.Add("NLD-3");
-                comboBoxEdit2.Properties.Items.Add("NLD-4");
-                comboBoxEdit2.Properties.Items.Add("J10NL-  ");
-                comboBoxEdit2.Properties.Items.Add("PS-7");
-
-                comboBoxEdit2.Properties.Items.Add("Z-7");
-                comboBoxEdit2.Properties.Items.Add("U-7");
-                comboBoxEdit2.Properties.Items.Add("Q-7");
-                comboBoxEdit2.Properties.Items.Add("W-7");
-
-                comboBoxEdit2.Properties.Items.Add("PH-7");
-                comboBoxEdit2.Properties.Items.Add("JB-1");
-                comboBoxEdit2.Properties.Items.Add("16x200");
-                comboBoxEdit2.Properties.Items.Add("200x400x800");
-
-                comboBoxEdit2.Properties.Items.Add("U-18");
-                comboBoxEdit2.Properties.Items.Add("NX-1");
-                comboBoxEdit2.Properties.Items.Add("NUT-1");
-                comboBoxEdit2.Properties.Items.Add("J-4.5");
-                comboBoxEdit2.Properties.Items.Add("JK-1");
-                comboBoxEdit2.Properties.Items.Add("GJ-25");
-                comboBoxEdit2.Properties.Items.Add("GJ-35");
-
-                comboBoxEdit2.Properties.Items.Add("GJ-50");
-                comboBoxEdit2.Properties.Items.Add("GJ-70");
-                comboBoxEdit2.Properties.Items.Add("GJ-100");
-                comboBoxEdit2.Properties.Items.Add("10#");
-                comboBoxEdit2.Properties.Items.Add("<50x5x2500x4");
-                comboBoxEdit2.Properties.Items.Add("<50x5x2500x6");
-
-                comboBoxEdit2.Properties.Items.Add("M16x35");
-                comboBoxEdit2.Properties.Items.Add("M16x50");
-                comboBoxEdit2.Properties.Items.Add("M16x75");
-                comboBoxEdit2.Properties.Items.Add("M16x100");
-                comboBoxEdit2.Properties.Items.Add("M16x125");
-                comboBoxEdit2.Properties.Items.Add("M16x150");
-
-                comboBoxEdit2.Properties.Items.Add("M16x200");
-                comboBoxEdit2.Properties.Items.Add("M16x225");
-                comboBoxEdit2.Properties.Items.Add("M16x250");
-                comboBoxEdit2.Properties.Items.Add("M16x275");
-                comboBoxEdit2.Properties.Items.Add("M16x300");
-                comboBoxEdit2.Properties.Items.Add("M16x350");
-
-                comboBoxEdit2.Properties.Items.Add("M16x400");
-                comboBoxEdit2.Properties.Items.Add("LGJ-25");
-                comboBoxEdit2.Properties.Items.Add("LGJ-35");
-                comboBoxEdit2.Properties.Items.Add("LGJ-50");
-                comboBoxEdit2.Properties.Items.Add("LGJ-70");
-                comboBoxEdit2.Properties.Items.Add("LGJ-95");
-
-                comboBoxEdit2.Properties.Items.Add("LGJ-120");
-                comboBoxEdit2.Properties.Items.Add("JKLGYJ-35");
-                comboBoxEdit2.Properties.Items.Add("JKLGYJ-50");
-                comboBoxEdit2.Properties.Items.Add("JKLGYJ-70");
-                comboBoxEdit2.Properties.Items.Add("JKLGYJ-95");
-                comboBoxEdit2.Properties.Items.Add("JKLGYJ-120");
-
-                comboBoxEdit2.Properties.Items.Add("SLG-1B");
-                comboBoxEdit2.Properties.Items.Add("DTL-25");
-                comboBoxEdit2.Properties.Items.Add("DTL-35");
-                comboBoxEdit2.Properties.Items.Add("DTL-50");
-                comboBoxEdit2.Properties.Items.Add("DTL-70");
-                comboBoxEdit2.Properties.Items.Add("DTL-95");
-
-
-                comboBoxEdit2.Properties.Items.Add("VLV-");
-                comboBoxEdit2.Properties.Items.Add("ED-1");
-                comboBoxEdit2.Properties.Items.Add("ED-2");
-                comboBoxEdit2.Properties.Items.Add("PD-1T");
-                comboBoxEdit2.Properties.Items.Add("PD-2T");
-                comboBoxEdit2.Properties.Items.Add("GW9-10/200");
-
-                comboBoxEdit2.Properties.Items.Add("RW11-10/200");
-                comboBoxEdit2.Properties.Items.Add("Y5WS-12.7/50");
-                comboBoxEdit2.Properties.Items.Add("RW11-200");
-                comboBoxEdit2.Properties.Items.Add("LQG-30/5");
-                comboBoxEdit2.Properties.Items.Add("LQG-50/5");
-                comboBoxEdit2.Properties.Items.Add("LQG-75/5");
-
-
-                comboBoxEdit2.Properties.Items.Add("LQG-100/5");
-                comboBoxEdit2.Properties.Items.Add("LQG-150/5");
-                comboBoxEdit2.Properties.Items.Add("LQG-200/5");
-                comboBoxEdit2.Properties.Items.Add("LQG-300/5");
-                comboBoxEdit2.Properties.Items.Add("LQG-400/5");
-                comboBoxEdit2.Properties.Items.Add("LQG-500/5");
-
-                comboBoxEdit2.Properties.Items.Add("LQG-600/5");
-                comboBoxEdit2.Properties.Items.Add("LQG-750/5");
-                comboBoxEdit2.Properties.Items.Add("LQG-800/5");
-                comboBoxEdit2.Properties.Items.Add("DZ15L-40A");
-                comboBoxEdit2.Properties.Items.Add("DZ15L-63A");
-                comboBoxEdit2.Properties.Items.Add("DZ15L-100A");
-
-
-                comboBoxEdit2.Properties.Items.Add("DZ15L-160A");
-                comboBoxEdit2.Properties.Items.Add("DZ15L-200A");
-                comboBoxEdit2.Properties.Items.Add("DZ15L-250A");
-                comboBoxEdit2.Properties.Items.Add("DZ15L-400A");
-                comboBoxEdit2.Properties.Items.Add("DZ15L-500A");
-                comboBoxEdit2.Properties.Items.Add("DZ15L-630A");
-                comboBoxEdit2.Properties.Items.Add("DZ15L-1000A");
-                comboBoxEdit2.Properties.Items.Add("HRT0-100/3");
-                comboBoxEdit2.Properties.Items.Add("HRT0-150/3");
-                comboBoxEdit2.Properties.Items.Add("HRT0-200/3");
-                comboBoxEdit2.Properties.Items.Add("HRT0-300/3");
-                comboBoxEdit2.Properties.Items.Add("HRT0-400/3");
-                comboBoxEdit2.Properties.Items.Add("HRT0-500/3");
-                comboBoxEdit2.Properties.Items.Add("HRT0-600/3");
-                comboBoxEdit2.Properties.Items.Add("HRT0-1000/3");
-                comboBoxEdit2.Properties.Items.Add("DWJ5-500/380-200A");
-                comboBoxEdit2.Properties.Items.Add("DWJ5-500/380-400A");
-                comboBoxEdit2.Properties.Items.Add("DWJ5-500/380-500A");
-                comboBoxEdit2.Properties.Items.Add("DWJ5-500/380-600A");
-                comboBoxEdit2.Properties.Items.Add("DWJ5-500/380-800A");
-                comboBoxEdit2.Properties.Items.Add("DWJ5-500/380-1000A");
-                comboBoxEdit2.Properties.Items.Add("HK1-30/3");
-
-
-                comboBoxEdit2.Properties.Items.Add("HK1-50/3");
-                comboBoxEdit2.Properties.Items.Add("HK1-75/3");
-                comboBoxEdit2.Properties.Items.Add("2表");
-                comboBoxEdit2.Properties.Items.Add("4表");
-                comboBoxEdit2.Properties.Items.Add("6表");
-                comboBoxEdit2.Properties.Items.Add("8表");
-                comboBoxEdit2.Properties.Items.Add("9表");
-                comboBoxEdit2.Properties.Items.Add("5A");
-
-
-                comboBoxEdit2.Properties.Items.Add("10A");
-                comboBoxEdit2.Properties.Items.Add("15A");
-                comboBoxEdit2.Properties.Items.Add("20A");
-                comboBoxEdit2.Properties.Items.Add("25A");
-                comboBoxEdit2.Properties.Items.Add("30A");
-                comboBoxEdit2.Properties.Items.Add("50A");
-                comboBoxEdit2.Properties.Items.Add("100A");
-                comboBoxEdit2.Properties.Items.Add("150A");
-
-
-                comboBoxEdit2.Properties.Items.Add("200A");
-                comboBoxEdit2.Properties.Items.Add("250A");
-                comboBoxEdit2.Properties.Items.Add("300A");
-                comboBoxEdit2.Properties.Items.Add("400A");
-                comboBoxEdit2.Properties.Items.Add("600A");
 
 
 
-
-            }
-
-            comboBoxEdit3.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='备品备件计划表' and sx like '%{0}%' and nr!=''", "单位"));
-            if (strlist.Count > 0)
-                comboBoxEdit3.Properties.Items.AddRange(strlist);
-            else
-            {
-                comboBoxEdit3.Properties.Items.Add("根");
-                comboBoxEdit3.Properties.Items.Add("片");
-                comboBoxEdit3.Properties.Items.Add("个");
-                comboBoxEdit3.Properties.Items.Add("付");
-
-                comboBoxEdit3.Properties.Items.Add("套");
-                comboBoxEdit3.Properties.Items.Add("块");
-                comboBoxEdit3.Properties.Items.Add("Kg");
-                comboBoxEdit3.Properties.Items.Add("米");
-
-                comboBoxEdit3.Properties.Items.Add("台");
-                comboBoxEdit3.Properties.Items.Add("卷");
-                comboBoxEdit3.Properties.Items.Add("捆");
-                comboBoxEdit3.Properties.Items.Add("组");
-
-            }
-
-            comboBoxEdit5.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='备品备件计划表' and sx like '%{0}%' and nr!=''", "状态"));
-            if (strlist.Count > 0)
-                comboBoxEdit5.Properties.Items.AddRange(strlist);
-            else
-            {
-
-                comboBoxEdit5.Properties.Items.Add("合格");
-                comboBoxEdit5.Properties.Items.Add("不合格");
-            }
-
-            comboBoxEdit6.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='备品备件计划表' and sx like '%{0}%' and nr!=''", "存放地点"));
-            if (strlist.Count > 0)
-                comboBoxEdit6.Properties.Items.AddRange(strlist);
-            else
-            {
-                comboBoxEdit6.Properties.Items.Add("材料库");
-
-            }
-
-            comboBoxEdit7.Properties.Items.Clear();
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 1);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 2);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 3);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 4);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 5);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 6);
-
-            comboBoxEdit4.Properties.Items.Clear();
-            for (int i = 1; i <= 500; i++)
-            {
-                comboBoxEdit4.Properties.Items.Add(i);
-                
-            }
 
 
 
@@ -431,7 +103,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -453,25 +126,231 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-       
-      
+
+
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("备品备件计划", "备注", memoEdit3);
+            frmSQLSet fe = new frmSQLSet();
+            fe.StrSQL = rowData.tjsql;
+            if (fe.ShowDialog() == DialogResult.OK)
+            {
+                memoEdit3.Text = fe.StrSQL;
+                rowData.tjsql = fe.StrSQL;
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-           
+
         }
 
-      
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            frmSQLSet fe = new frmSQLSet();
+            fe.StrSQL = rowData.sql;
+            if (fe.ShowDialog() == DialogResult.OK)
+            {
+                memoEdit4.Text = fe.StrSQL;
+                rowData.sql = fe.StrSQL;
+            }
+        }
 
-       
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            frmSQLSet fe = new frmSQLSet();
+            fe.StrSQL = rowData.xsgs;
+            if (fe.ShowDialog() == DialogResult.OK)
+            {
+                memoEdit1.Text = fe.StrSQL;
+                rowData.xsgs = fe.StrSQL;
+            }
+        }
 
-      
+        private void frmZDYTSEdit_Load(object sender, EventArgs e)
+        {
+            memoEdit2.Text = "说明 SQL语句支持中的特殊代码\r\n {orgcode}:用户单位编号\r\n{orgname}:用户单位名称\r\n{userid}:用户编号\r\n";
+        }
 
-       
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            string xstj = "";
+            IList li = InitSQLData(rowData.tjsql);
+            if (li.Count == 1)
+            {
+                if (li[0] == null || li[0].ToString().IndexOf("出错:") > -1)
+                {
+                    if (li[0] != null)
+                    {
+                        MsgBox.ShowTipMessageBox("显示条件语句出错，" + li[0]);
+                        return;
+                    }
+                    else
+                    {
+                        MsgBox.ShowTipMessageBox("设置显示格式出错!");
+                        return;
+                    }
+                }
+            }
+            li = InitSQLData(rowData.sql);
+            if (li.Count == 1)
+            {
+                if (li[0] == null || li[0].ToString().IndexOf("出错:") > -1)
+                {
+                    if (li[0] != null)
+                    {
+                        MsgBox.ShowTipMessageBox("设置提示个数SQL出错，" + li[0]);
+                        return;
+                    }
+                    else
+                    {
+                        MsgBox.ShowTipMessageBox("设置显示格式出错!");
+                        return;
+                    }
+                }
+            }
+            string ss = "select  top 1 '" + rowData.xsgs.Replace("{gs}", li.Count.ToString()) + "'from mOrg where 1=1";
+            li = InitSQLData(ss);
+            if (li.Count == 1)
+            {
+                if (li[0] == null || li[0].ToString().IndexOf("出错:") > -1)
+                {
+                    if (li[0] != null)
+                    {
+                        MsgBox.ShowTipMessageBox("设置显示格式出错，" + li[0]);
+                        return;
+                    }
+                    else
+                    {
+                        MsgBox.ShowTipMessageBox("设置显示格式出错!" );
+                        return;
+                    }
+                }
+            }
+            showMessage(3,li[0].ToString());
+        }
+        private void showMessage(int type, string nr)
+        {
+            TaskbarNotifier taskbarNotifier1 = new TaskbarNotifier();
+            switch (type)
+            {
+                case 1:
+                    taskbarNotifier1.SetBackgroundBitmap(new Bitmap(Image.FromStream(typeof(DownFileControl).Assembly.GetManifestResourceStream("Ebada.Scgl.Lcgl.Resources.skin1.bmp"))), Color.FromArgb(255, 0, 255));
+                    taskbarNotifier1.SetCloseBitmap(new Bitmap(Image.FromStream(typeof(DownFileControl).Assembly.GetManifestResourceStream("Ebada.SCGL.Lcgl.Resources.close.bmp"))), Color.FromArgb(255, 0, 255), new Point(127, 8));
+                    taskbarNotifier1.TitleRectangle = new Rectangle(40, 9, 70, 25);
+                    taskbarNotifier1.ContentRectangle = new Rectangle(8, 41, 133, 68);
+                    break;
+                case 2:
+                    taskbarNotifier1.SetBackgroundBitmap(new Bitmap(Image.FromStream(typeof(DownFileControl).Assembly.GetManifestResourceStream("Ebada.Scgl.Lcgl.Resources.skin2.bmp"))), Color.FromArgb(255, 0, 255));
+                    taskbarNotifier1.SetCloseBitmap(new Bitmap(Image.FromStream(typeof(DownFileControl).Assembly.GetManifestResourceStream("Ebada.Scgl.Lcgl.Resources.close.bmp"))), Color.FromArgb(255, 0, 255), new Point(300, 74));
+                    taskbarNotifier1.TitleRectangle = new Rectangle(123, 80, 176, 16);
+                    taskbarNotifier1.ContentRectangle = new Rectangle(116, 97, 197, 22);
+                    break;
+                default:
+                    taskbarNotifier1.SetBackgroundBitmap(new Bitmap(Image.FromStream(typeof(DownFileControl).Assembly.GetManifestResourceStream("Ebada.Scgl.Lcgl.Resources.skin3.bmp"))), Color.FromArgb(255, 0, 255));
+                    taskbarNotifier1.SetCloseBitmap(new Bitmap(Image.FromStream(typeof(DownFileControl).Assembly.GetManifestResourceStream("Ebada.Scgl.Lcgl.Resources.close.bmp"))), Color.FromArgb(255, 0, 255), new Point(280, 57));
+                    taskbarNotifier1.TitleRectangle = new Rectangle(150, 57, 125, 28);
+                    taskbarNotifier1.ContentRectangle = new Rectangle(75, 92, 215, 55);
+                    break;
+            }
+            taskbarNotifier1.CloseClickable = true;
+            taskbarNotifier1.TitleClickable = false;
+            taskbarNotifier1.ContentClickable = true;
+            taskbarNotifier1.EnableSelectionRectangle = true;
+            taskbarNotifier1.KeepVisibleOnMousOver = true;	// Added Rev 002
+            taskbarNotifier1.ReShowOnMouseOver = false;			// Added Rev 002
+            //taskbarNotifier1.TitleClick += new EventHandler(TitleClick);
+            //taskbarNotifier1.CloseClick += new EventHandler(CloseClick);
+            taskbarNotifier1.Show("农电生产系统", nr, 10, 5000, 50);
+
+        }
+        
+        public IList InitSQLData(string sqlSentence)
+        {
+
+
+
+            /*
+             * 
+             * SELECT   cellname,  SqlSentence,SqlColName
+                FROM         LP_Temple
+                where SqlSentence !=''
+             * 
+             * */
+            IList li = new ArrayList();
+            Regex r1;
+            if (sqlSentence != "")
+            {
+                
+                if (sqlSentence.IndexOf("{orgcode}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{orgname}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName );
+                }
+                if (sqlSentence.IndexOf("{userid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+               
+
+
+
+                }
+              
+                try
+                {
+                    sqlSentence = sqlSentence.Replace("\r\n", " ");
+                    li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+                    if (sqlSentence.IndexOf("where 9=9") > -1)
+                    {
+                        string strtemp = li[0].ToString();
+                        li.Clear();
+                        r1 = new Regex(@"[0-9]+\+[0-9]+");
+                        if (r1.Match(strtemp).Value != "")
+                        {
+                            int istart = 1;
+                            int ilen = 10;
+                            r1 = new Regex(@"[0-9]+(?=\+)");
+                            if (r1.Match(strtemp).Value != "")
+                            {
+                                istart = Convert.ToInt32(r1.Match(strtemp).Value);
+                            }
+                            r1 = new Regex(@"(?<=\+)[0-9]+");
+                            if (r1.Match(strtemp).Value != "")
+                            {
+                                ilen = Convert.ToInt32(r1.Match(strtemp).Value); ;
+                            }
+                            for (int i = istart; i <= ilen; i++)
+                            {
+                                li.Add(string.Format("{0}", i));
+                            }
+                        }
+                        else
+                        {
+                            string[] strli = SelectorHelper.ToDBC(strtemp).Split(',');
+                            foreach (string ss in strli)
+                            {
+                                li.Add(ss);
+                            }
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    li.Add("出错:" + ex.Message);
+                }
+                return li;
+            }
+        }
     }
-}
+
+       
+
+      
+
+       
+    

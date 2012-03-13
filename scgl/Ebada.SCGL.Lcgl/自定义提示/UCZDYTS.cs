@@ -147,7 +147,7 @@ namespace Ebada.Scgl.Lcgl
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
 
-            RefreshData(" where OrgCode='" + parentID + "' ");
+            RefreshData(" where 1=1 ");
         }
         void gridViewOperation_AfterAdd(PJ_znts newobj)
         {
@@ -172,8 +172,9 @@ namespace Ebada.Scgl.Lcgl
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_znts> e)
         {
-            if (parentID == null)
-                e.Cancel = true;
+            //if (parentID == null)
+            //    e.Cancel = true;
+            e.Value.type = "显示信息";  
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -181,6 +182,7 @@ namespace Ebada.Scgl.Lcgl
 
             InitColumns();//初始列
             //InitData();//初始数据
+            RefreshData(" where 1=1  and type='显示信息' ");
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -239,8 +241,7 @@ namespace Ebada.Scgl.Lcgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("OrgCode");
-            hideColumn("OrgName");
+            hideColumn("type");
             hideColumn("S1");
             hideColumn("S2");
             hideColumn("S3");
@@ -445,6 +446,34 @@ namespace Ebada.Scgl.Lcgl
             currRecord.LastChangeTime = DateTime.Now.ToString();
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
+        }
+
+        private void btset_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            bool isadd = false;
+            PJ_znts zn = MainHelper.PlatformSqlMap.GetOne<PJ_znts>(" where type ='显示间隔'");
+            if (zn == null)
+            {
+                isadd = true;
+                zn=new PJ_znts  ();
+                zn.type = "显示间隔";
+                zn.xsgs = "60";
+            }
+            frmSpanSet fm = new frmSpanSet();
+            fm.StrSQL = zn.xsgs;
+            if (fm.ShowDialog() == DialogResult.OK)
+            {
+                zn.xsgs = fm.StrSQL;
+                if (isadd)
+                {
+                    MainHelper.PlatformSqlMap.Create<PJ_znts>(zn);
+                }
+                else
+                {
+                    MainHelper.PlatformSqlMap.Update<PJ_znts>(zn);
+                
+                }
+            }
         }
     }
 }

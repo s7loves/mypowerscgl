@@ -13,6 +13,7 @@ using Ebada.Scgl.Model;
 using Ebada.Client;
 using Ebada.SCGL.WFlow.Engine;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace Ebada.SCGL {
     public partial class frmMain2 : DevExpress.XtraEditors.XtraForm {
@@ -305,6 +306,10 @@ namespace Ebada.SCGL {
         }
         private void showMessage(int type,string nr)
         {
+            showMessage( type, nr,5000);
+        }
+        private void showMessage(int type,string nr,int nTimeToStay)
+        {
             TaskbarNotifier taskbarNotifier1 = new TaskbarNotifier();
             switch (type)
             {
@@ -336,7 +341,7 @@ namespace Ebada.SCGL {
             //taskbarNotifier1.TitleClick += new EventHandler(TitleClick);
             taskbarNotifier1.ContentClick += new EventHandler(ContentClick);
             //taskbarNotifier1.CloseClick += new EventHandler(CloseClick);
-            taskbarNotifier1.Show("农电生产系统", nr, 10, 5000, 50);
+            taskbarNotifier1.Show("农电生产系统", nr, 10, nTimeToStay, 50);
         
         }
         void ContentClick(object obj, EventArgs e)
@@ -351,27 +356,128 @@ namespace Ebada.SCGL {
             dt.PlatForm = this;
             this.showControl(dt,null).Text = "我的桌面";
         }
+        public IList InitSQLData(string sqlSentence)
+        {
 
+
+
+            /*
+             * 
+             * SELECT   cellname,  SqlSentence,SqlColName
+                FROM         LP_Temple
+                where SqlSentence !=''
+             * 
+             * */
+            IList li = new ArrayList();
+            Regex r1;
+            if (sqlSentence != "")
+            {
+                sqlSentence=sqlSentence.ToLower();
+                if (sqlSentence.IndexOf("{orgcode}") > -1)
+                {
+                    sqlSentence = sqlSentence.ToLower().Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{orgname}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                }
+                if (sqlSentence.IndexOf("{userid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+
+
+
+
+            }
+
+            try
+            {
+                sqlSentence = sqlSentence.Replace("\r\n", " ");
+                li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+                if (sqlSentence.IndexOf("where 9=9") > -1)
+                {
+                    string strtemp = li[0].ToString();
+                    li.Clear();
+                    r1 = new Regex(@"[0-9]+\+[0-9]+");
+                    if (r1.Match(strtemp).Value != "")
+                    {
+                        int istart = 1;
+                        int ilen = 10;
+                        r1 = new Regex(@"[0-9]+(?=\+)");
+                        if (r1.Match(strtemp).Value != "")
+                        {
+                            istart = Convert.ToInt32(r1.Match(strtemp).Value);
+                        }
+                        r1 = new Regex(@"(?<=\+)[0-9]+");
+                        if (r1.Match(strtemp).Value != "")
+                        {
+                            ilen = Convert.ToInt32(r1.Match(strtemp).Value); ;
+                        }
+                        for (int i = istart; i <= ilen; i++)
+                        {
+                            li.Add(string.Format("{0}", i));
+                        }
+                    }
+                    else
+                    {
+                        string[] strli = ToDBC(strtemp).Split(',');
+                        foreach (string ss in strli)
+                        {
+                            li.Add(ss);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                li.Add("出错:" + ex.Message);
+            }
+            return li;
+        }
+        public static String ToDBC(String input)
+        {
+            char[] c = input.ToCharArray();
+            for (int i = 0; i < c.Length; i++)
+            {
+                if (c[i] == 12288)
+                {
+                    c[i] = (char)32;
+                    continue;
+                }
+                if (c[i] > 65280 && c[i] < 65375)
+                    c[i] = (char)(c[i] - 65248);
+            }
+            return new String(c);
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select * from dbo.PJ_anqgjcrkd where datediff(day, dateadd(year,cast(syzq as float)*12,cast(scsydate as datetime) ),getdate())>1"));
-            if (strlist.Count > 0)
+            IList<PJ_znts> strlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_znts>(
+                "where type='显示信息' "
+           );
+            foreach(PJ_znts zn in strlist)
             {
-                showMessage(3, "有" + strlist.Count + "个安全工具临近试验周期");
-                //return;
+                IList li = InitSQLData(zn.tjsql);
+                if (li.Count >0)
+                {
+                    li = InitSQLData(zn.sql);
+                    string ss = "select  top 1 '" + zn.xsgs.Replace("{gs}", li.Count.ToString()) + "'from mOrg where 1=1";
+                    li = InitSQLData(ss);
+                    showMessage(3, li[0].ToString(),60000);
+                }
+               
             }
-            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select * from dbo.PJ_anqgjcrkd where datediff(day, dateadd(year,cast(synx as float)*12,cast(indate as datetime) ),getdate())>1"));
-            if (strlist.Count > 0)
-            {
-                showMessage(3, "有" + strlist.Count + "个安全工具临近报废时间");
-                //return;
-            }
+            PJ_znts zn2 = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_znts>(
+                "where type='显示间隔' ");
 
-            if (timer1.Interval == 8000)
+            if (zn2 == null || zn2.xsgs == "")
             {
                 timer1.Interval = 1000 * 60 * 30;
+            }
+            else if (timer1.Interval.ToString() != (1000 * 60 * Convert.ToInt32(zn2.xsgs)).ToString())
+            {
+                timer1.Interval = 1000 * 60 * Convert.ToInt32(zn2.xsgs);
             }
         }
     }
