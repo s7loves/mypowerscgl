@@ -61,8 +61,8 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 if (value == null) return;
-                
-                    this.rowData = value as LP_Temple;
+
+                this.rowData = value as LP_Temple;
             }
         }
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -78,32 +78,32 @@ namespace Ebada.Scgl.Lcgl
             DataTable dt = ConvertHelper.ToDataTable(li);
             WinFormFun.LoadComboBox(cbxWorkDataTable, dt, "LPID", "CellName");
 
-          
-          
 
-         
-           
-           
 
-             li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
-             //dt = ConvertHelper.ToDataTable(li);
-             dt = new DataTable();
-             dt.Columns.Add("name", typeof(string));
-             for (int i = 0; i < li.Count; i++)
-             {
-                 DataRow dr = dt.NewRow();
-                 dr["name"] = li[i];
-                 dt.Rows.Add(dr);
-             }
-             WinFormFun.LoadComboBox(cbxWorkDbTable, dt, "name", "name");
-             memoEdit1.Text = "说明 SQL语句支持中的特殊代码\r\n {sortid}:当前表单的序号为sortid的字段\r\n{recordid}:票LP_Record的ID\r\n{orgcode}:用户单位编号\r\n{userid}:用户编号\r\n{编号规则一:单位的sortid}:把26个供电所按顺序编号分别为01、02、03以此类推，001为单据编号\r\n";
+
+
+
+
+
+            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
+            //dt = ConvertHelper.ToDataTable(li);
+            dt = new DataTable();
+            dt.Columns.Add("name", typeof(string));
+            for (int i = 0; i < li.Count; i++)
+            {
+                DataRow dr = dt.NewRow();
+                dr["name"] = li[i];
+                dt.Rows.Add(dr);
+            }
+            WinFormFun.LoadComboBox(cbxWorkDbTable, dt, "name", "name");
+            memoEdit1.Text = "说明 SQL语句支持中的特殊代码\r\n {sortid}:当前表单的序号为sortid的字段\r\n{recordid}:票LP_Record的ID\r\n{orgcode}:用户单位编号\r\n{userid}:用户编号\r\n{编号规则一:单位的sortid}:把26个供电所按顺序编号分别为01、02、03以此类推，001为单据编号\r\n";
             this.memoEdit1.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.memoEdit1_EditValueChanging);
             if (strSQL != "")
             {
-                
-                 if (strSQL.IndexOf("10=10") > -1)
+
+                if (strSQL.IndexOf("10=10") > -1)
                 {
-                   
+
                     Regex r1 = new Regex(@"(?<=UserControlId=').*?(?=')");
                     //cbxWorkDataTable.Text = r1.Match(strSQL).Value;
                     setComoboxFocusIndex(cbxWorkDataTable, r1.Match(strSQL).Value);
@@ -113,14 +113,14 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else
                 {
-                   
+
                     int index1 = strSQL.ToLower().IndexOf("select");
                     int index2 = strSQL.ToLower().IndexOf("from");
                     int index3 = strSQL.ToLower().IndexOf("where");
                     if (index3 == -1) index3 = strSQL.Length;
                     string tablename = "";
                     if (index1 == -1 || index2 == -1 || index3 == -1) return;
-                    tablename=strSQL.Substring(index2 + 4, index3 - (index2 + 4)).Trim().Replace("dbo.","");
+                    tablename = strSQL.Substring(index2 + 4, index3 - (index2 + 4)).Trim().Replace("dbo.", "");
                     string cellpos = strSQL.Substring(index1 + 6, index2 - (index1 + 6)).Trim();
                     //cbxWorkDbTable.SelectedItem = tablename;
                     //cbxWorkTableColumns.Text = cellpos;
@@ -130,11 +130,11 @@ namespace Ebada.Scgl.Lcgl
                 }
 
             }
-           
+
         }
-        void setComoboxFocusIndex(ComboBox cbx,string text)
+        void setComoboxFocusIndex(ComboBox cbx, string text)
         {
-            int focusindex =-1, i = 0;
+            int focusindex = -1, i = 0;
             foreach (Ebada.SCGL.WFlow.Tool.ListItem it in cbx.Items)
             {
 
@@ -150,7 +150,7 @@ namespace Ebada.Scgl.Lcgl
         }
         private void SetDataBaseSQL(DevExpress.XtraEditors.TextEdit tetSQL, ComboBox cbxDbTable, ComboBox cbxDbTableColumns)
         {
-            if (cbxDbTable.SelectedIndex > 0  )
+            if (cbxDbTable.SelectedIndex > 0)
             {
                 if (cbxDbTableColumns.SelectedIndex > 0)
                 {
@@ -167,16 +167,16 @@ namespace Ebada.Scgl.Lcgl
                 else
                 {
                     tetSQL.Text = "select * from " + cbxDbTable.Text + " where 5=5 ";
-                
+
                 }
-                
+
             }
 
         }
         private void cbxWorkDbTable_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (cbxWorkDbTable.SelectedIndex <1) return;
+            if (cbxWorkDbTable.SelectedIndex < 1) return;
             IList li = MainHelper.PlatformSqlMap.GetList("GetTableColumns", ((Ebada.SCGL.WFlow.Tool.ListItem)cbxWorkDbTable.SelectedItem).ID);
             DataTable dt = ConvertHelper.ToDataTable(li);
             WinFormFun.LoadComboBox(cbxWorkDbTableColumns, dt, "name", "name");
@@ -206,10 +206,10 @@ namespace Ebada.Scgl.Lcgl
                 "where ParentID ='" + ((Ebada.SCGL.WFlow.Tool.ListItem)cbxWorkDataTable.SelectedItem).ID + "' order by sortid");
             DataTable dt = new DataTable();
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
-            for (int i = 0; i < dt.Rows.Count&&li.Count>0; i++)
+            for (int i = 0; i < dt.Rows.Count && li.Count > 0; i++)
             {
                 dt.Rows[i]["cellname"] = dt.Rows[i]["SortID"] + " " + dt.Rows[i]["cellname"];
-            
+
             }
             WinFormFun.LoadComboBox(cbxWorkTableColumns, dt, "LPID", "cellname");
             cbxWorkTableColumns.SelectedIndex = 0;
@@ -226,12 +226,12 @@ namespace Ebada.Scgl.Lcgl
             tetWorkSQL.Text = "select ControlValue from WF_TableFieldValue where 10=10  "
                   + "and UserControlId='" + ((Ebada.SCGL.WFlow.Tool.ListItem)cbxWorkDataTable.SelectedItem).ID + "' "
                   + " and FieldId='" + ((Ebada.SCGL.WFlow.Tool.ListItem)cbxWorkTableColumns.SelectedItem).ID + "' ";
-              
+
         }
 
-       
 
-       
+
+
 
     }
 }

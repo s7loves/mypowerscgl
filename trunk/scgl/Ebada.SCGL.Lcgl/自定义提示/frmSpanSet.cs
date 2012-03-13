@@ -61,8 +61,8 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 if (value == null) return;
-                
-                    this.rowData = value as LP_Temple;
+
+                this.rowData = value as LP_Temple;
             }
         }
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -76,22 +76,22 @@ namespace Ebada.Scgl.Lcgl
 
 
             textEdit1.Text = strSQL;
-             
-           
-        }
-    
-    
-      
 
-      
+
+        }
+
+
+
+
+
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-      
 
-       
+
+
 
     }
 }
