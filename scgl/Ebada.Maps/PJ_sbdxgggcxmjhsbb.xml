@@ -13,6 +13,11 @@
         <result property="dgzj" column="dgzj" />
         <result property="qtzj" column="qtzj" />
         <result property="sxzjsum" column="sxzjsum" />
+        <result property="dsjfzr" column="dsjfzr" />
+        <result property="xsjfzr" column="xsjfzr" />
+        <result property="shr" column="shr" />
+        <result property="tbr" column="tbr" />
+        <result property="tbrq" column="tbrq" />
         <result property="Remark" column="Remark" />
         <result property="S1" column="S1" />
         <result property="S2" column="S2" />
@@ -31,6 +36,11 @@
          [dgzj],
          [qtzj],
          [sxzjsum],
+         [dsjfzr],
+         [xsjfzr],
+         [shr],
+         [tbr],
+         [tbrq],
          [Remark],
          [S1],
          [S2],
@@ -49,6 +59,11 @@
          [dgzj],
          [qtzj],
          [sxzjsum],
+         [dsjfzr],
+         [xsjfzr],
+         [shr],
+         [tbr],
+         [tbrq],
          [Remark],
          [S1],
          [S2],
@@ -63,6 +78,11 @@
        <isNotNull prepend="AND" property="dgzj">[dgzj]='$dgzj$'</isNotNull>
        <isNotNull prepend="AND" property="qtzj">[qtzj]='$qtzj$'</isNotNull>
        <isNotNull prepend="AND" property="sxzjsum">[sxzjsum]='$sxzjsum$'</isNotNull>
+       <isNotNull prepend="AND" property="dsjfzr">[dsjfzr]='$dsjfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="xsjfzr">[xsjfzr]='$xsjfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="shr">[shr]='$shr$'</isNotNull>
+       <isNotNull prepend="AND" property="tbr">[tbr]='$tbr$'</isNotNull>
+       <isNotNull prepend="AND" property="tbrq">[tbrq]='$tbrq$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
@@ -79,6 +99,11 @@
          [dgzj],
          [qtzj],
          [sxzjsum],
+         [dsjfzr],
+         [xsjfzr],
+         [shr],
+         [tbr],
+         [tbrq],
          [Remark],
          [S1],
          [S2],
@@ -119,6 +144,11 @@
              [dgzj]=#dgzj#,
              [qtzj]=#qtzj#,
              [sxzjsum]=#sxzjsum#,
+             [dsjfzr]=#dsjfzr#,
+             [xsjfzr]=#xsjfzr#,
+             [shr]=#shr#,
+             [tbr]=#tbr#,
+             [tbrq]=#tbrq#,
              [Remark]=#Remark#,
              [S1]=#S1#,
              [S2]=#S2#,
@@ -139,6 +169,11 @@
          [dgzj],
          [qtzj],
          [sxzjsum],
+         [dsjfzr],
+         [xsjfzr],
+         [shr],
+         [tbr],
+         [tbrq],
          [Remark],
          [S1],
          [S2],
@@ -154,6 +189,11 @@
          #dgzj#,
          #qtzj#,
          #sxzjsum#,
+         #dsjfzr#,
+         #xsjfzr#,
+         #shr#,
+         #tbr#,
+         #tbrq#,
          #Remark#,
          #S1#,
          #S2#,
@@ -174,6 +214,11 @@
        <isNotNull prepend="AND" property="dgzj">[dgzj]='$dgzj$'</isNotNull>
        <isNotNull prepend="AND" property="qtzj">[qtzj]='$qtzj$'</isNotNull>
        <isNotNull prepend="AND" property="sxzjsum">[sxzjsum]='$sxzjsum$'</isNotNull>
+       <isNotNull prepend="AND" property="dsjfzr">[dsjfzr]='$dsjfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="xsjfzr">[xsjfzr]='$xsjfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="shr">[shr]='$shr$'</isNotNull>
+       <isNotNull prepend="AND" property="tbr">[tbr]='$tbr$'</isNotNull>
+       <isNotNull prepend="AND" property="tbrq">[tbrq]='$tbrq$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
