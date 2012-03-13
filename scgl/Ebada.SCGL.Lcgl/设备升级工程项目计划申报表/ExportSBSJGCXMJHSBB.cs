@@ -118,8 +118,8 @@ namespace Ebada.Scgl.Lcgl {
 
                     ex.SetCellValue(DateTime.Now.ToString("yyyy年") + "设备升级工程项目计划申报表", 2, 1);
 
-                    ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日") , 3, 8);
-
+                    ex.SetCellValue(datalist[j].tbrq.ToString("yyyy年MM月dd日"), 3, 8);
+                    ex.SetCellValue(string.Format("地（市）局负责人：{0}                                         县（市）局负责人：{1}                                         审核：{2}                                           填报：{3}", datalist[j].dsjfzr, datalist[j].xsjfzr, datalist[j].shr, datalist[j].tbr), 27, 1);
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
                 ex.SetCellValue(datalist[j].xsjmc, row + j % rowcount, col + 1);
@@ -131,7 +131,7 @@ namespace Ebada.Scgl.Lcgl {
                 ex.SetCellValue(datalist[j].qtzj, row + j % rowcount, col + 7);
                 ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col +8);
 
-
+                
             }
         
         }

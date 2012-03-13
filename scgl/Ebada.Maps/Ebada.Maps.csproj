@@ -313,6 +313,9 @@
     <EmbeddedResource Include="PJ_znts.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_sbsjjhsbb.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
