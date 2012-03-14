@@ -87,6 +87,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="01工作日记\Export01.cs" />
+    <Compile Include="01工作日记\frmgzrjEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="01工作日记\frmgzrjEdit.Designer.cs">
+      <DependentUpon>frmgzrjEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="01工作日记\frmgzrjnrEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="01工作日记\frmgzrjnrEdit.Designer.cs">
+      <DependentUpon>frmgzrjnrEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="01工作日记\UCPJ_gzrj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="01工作日记\UCPJ_gzrj.Designer.cs">
+      <DependentUpon>UCPJ_gzrj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="01工作日记\UCPJ_gzrjM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="01工作日记\UCPJ_gzrjM.Designer.cs">
+      <DependentUpon>UCPJ_gzrjM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="01工作日记\UCPJ_gzrjnr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="01工作日记\UCPJ_gzrjnr.Designer.cs">
+      <DependentUpon>UCPJ_gzrjnr.cs</DependentUpon>
+    </Compile>
     <Compile Include="02安全活动\Export02.cs" />
     <Compile Include="02安全活动\frmaqhdEdit.cs">
       <SubType>Form</SubType>
@@ -100,11 +131,24 @@
     <Compile Include="02安全活动\UCPJ_02aqhd.Designer.cs">
       <DependentUpon>UCPJ_02aqhd.cs</DependentUpon>
     </Compile>
+    <Compile Include="04事故障碍异常\Export04.cs" />
+    <Compile Include="04事故障碍异常\frmsgzaycEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="04事故障碍异常\frmsgzaycEdit.Designer.cs">
+      <DependentUpon>frmsgzaycEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="04事故障碍异常\frmsgzaycWorkFlowEdit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="04事故障碍异常\frmsgzaycWorkFlowEdit.Designer.cs">
       <DependentUpon>frmsgzaycWorkFlowEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="04事故障碍异常\UCPJ_04sgzayc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="04事故障碍异常\UCPJ_04sgzayc.Designer.cs">
+      <DependentUpon>UCPJ_04sgzayc.cs</DependentUpon>
     </Compile>
     <Compile Include="05交叉跨越及对地距离测量\Export05.cs" />
     <Compile Include="05交叉跨越及对地距离测量\frmjckyEdit.cs">
@@ -142,6 +186,32 @@
     </Compile>
     <Compile Include="06设备巡视及缺陷消除\frmWorkFlow06sbxsEdit.Designer.cs">
       <DependentUpon>frmWorkFlow06sbxsEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="21电力故障电话接听记录\Export21.cs" />
+    <Compile Include="21电力故障电话接听记录\frm21gzbxdhEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="21电力故障电话接听记录\frm21gzbxdhEdit.Designer.cs">
+      <DependentUpon>frm21gzbxdhEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="21电力故障电话接听记录\UCPJ_21gzbxdh .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="21电力故障电话接听记录\UCPJ_21gzbxdh .Designer.cs">
+      <DependentUpon>UCPJ_21gzbxdh .cs</DependentUpon>
+    </Compile>
+    <Compile Include="22报修服务修理票实例\Export22.cs" />
+    <Compile Include="22报修服务修理票实例\frm22Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="22报修服务修理票实例\frm22Edit.Designer.cs">
+      <DependentUpon>frm22Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="22报修服务修理票实例\UCPJ_22.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="22报修服务修理票实例\UCPJ_22.Designer.cs">
+      <DependentUpon>UCPJ_22.cs</DependentUpon>
     </Compile>
     <Compile Include="自定义提示\frmSpanSet.cs">
       <SubType>Form</SubType>
@@ -1607,10 +1677,10 @@
     <Compile Include="08设备停电检修记录\frm08SBTDJXWorkFlowEdit.Designer.cs">
       <DependentUpon>frm08SBTDJXWorkFlowEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="运行分析\frmyxfxWorkFlowEdit.cs">
+    <Compile Include="03运行分析\frmyxfxWorkFlowEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="运行分析\frmyxfxWorkFlowEdit.Designer.cs">
+    <Compile Include="03运行分析\frmyxfxWorkFlowEdit.Designer.cs">
       <DependentUpon>frmyxfxWorkFlowEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="预防性试验\frmtestRecorddrqwcqkEdit.cs">
@@ -1823,23 +1893,23 @@
     <Compile Include="23配电线路产权维护范围协议书\UCPJ_23.Designer.cs">
       <DependentUpon>UCPJ_23.cs</DependentUpon>
     </Compile>
-    <Compile Include="运行分析\Export03.cs" />
-    <Compile Include="运行分析\frmyxfxEdit.cs">
+    <Compile Include="03运行分析\Export03.cs" />
+    <Compile Include="03运行分析\frmyxfxEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="运行分析\frmyxfxEdit.Designer.cs">
+    <Compile Include="03运行分析\frmyxfxEdit.Designer.cs">
       <DependentUpon>frmyxfxEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="运行分析\UCPJ_03yxfx.cs">
+    <Compile Include="03运行分析\UCPJ_03yxfx.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="运行分析\UCPJ_03yxfx.Designer.cs">
+    <Compile Include="03运行分析\UCPJ_03yxfx.Designer.cs">
       <DependentUpon>UCPJ_03yxfx.cs</DependentUpon>
     </Compile>
-    <Compile Include="运行分析\UCPJ_03YXFXForm.cs">
+    <Compile Include="03运行分析\UCPJ_03YXFXForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="运行分析\UCPJ_03YXFXForm.Designer.cs">
+    <Compile Include="03运行分析\UCPJ_03YXFXForm.Designer.cs">
       <DependentUpon>UCPJ_03YXFXForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2817,7 +2887,7 @@
       <DependentUpon>frm08SBTDJXWorkFlowEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="运行分析\frmyxfxWorkFlowEdit.resx">
+    <EmbeddedResource Include="03运行分析\frmyxfxWorkFlowEdit.resx">
       <DependentUpon>frmyxfxWorkFlowEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -2962,15 +3032,15 @@
       <DependentUpon>UCPJ_23.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="运行分析\frmyxfxEdit.resx">
+    <EmbeddedResource Include="03运行分析\frmyxfxEdit.resx">
       <DependentUpon>frmyxfxEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="运行分析\UCPJ_03yxfx.resx">
+    <EmbeddedResource Include="03运行分析\UCPJ_03yxfx.resx">
       <DependentUpon>UCPJ_03yxfx.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="运行分析\UCPJ_03YXFXForm.resx">
+    <EmbeddedResource Include="03运行分析\UCPJ_03YXFXForm.resx">
       <DependentUpon>UCPJ_03YXFXForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -3017,6 +3087,50 @@
     <EmbeddedResource Include="Resources\skin3.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="01工作日记\frmgzrjEdit.resx">
+      <DependentUpon>frmgzrjEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="01工作日记\frmgzrjnrEdit.resx">
+      <DependentUpon>frmgzrjnrEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="01工作日记\UCPJ_gzrj.resx">
+      <DependentUpon>UCPJ_gzrj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="01工作日记\UCPJ_gzrjM.resx">
+      <DependentUpon>UCPJ_gzrjM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="01工作日记\UCPJ_gzrjnr.resx">
+      <DependentUpon>UCPJ_gzrjnr.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="04事故障碍异常\frmsgzaycEdit.resx">
+      <DependentUpon>frmsgzaycEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="04事故障碍异常\UCPJ_04sgzayc.resx">
+      <DependentUpon>UCPJ_04sgzayc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="21电力故障电话接听记录\frm21gzbxdhEdit.resx">
+      <DependentUpon>frm21gzbxdhEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="21电力故障电话接听记录\UCPJ_21gzbxdh .resx">
+      <DependentUpon>UCPJ_21gzbxdh .cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="22报修服务修理票实例\frm22Edit.resx">
+      <DependentUpon>frm22Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="22报修服务修理票实例\UCPJ_22.resx">
+      <DependentUpon>UCPJ_22.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\close.bmp" />
     <EmbeddedResource Include="自定义提示\frmSpanSet.resx">
       <DependentUpon>frmSpanSet.cs</DependentUpon>
