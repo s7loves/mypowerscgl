@@ -38,30 +38,31 @@ namespace Ebada.Scgl.Yxgl {
 
             string hdstr =Ecommon.Comparestring(obj.hdnr,"活动内容")?"" :"活动内容：";
             List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.hdnr, zc, 8);
-            if (Ecommon.GetPagecount(hdlist.Count, 8) > pagecount)
-            {
-                pagecount = Ecommon.GetPagecount(hdlist.Count, 8);
-            }
+            //if (Ecommon.GetPagecount(hdlist.Count, 8) > pagecount)
+            //{
+            //    pagecount = Ecommon.GetPagecount(hdlist.Count, 8);
+            //}
             //活动小结
             string hdxjstr = Ecommon.Comparestring(obj.hdxj,"活动小结")?"":"活动小结：";
             List<string> hdxlist = Ecommon.ResultStrListByPage(hdxjstr, obj.hdxj, zc, 5);
-            if (Ecommon.GetPagecount(hdxlist.Count, 5) > pagecount)
-            {
-                pagecount = Ecommon.GetPagecount(hdxlist.Count, 5);
-            }
+            //if (Ecommon.GetPagecount(hdxlist.Count, 5) > pagecount)
+            //{
+            //    pagecount = Ecommon.GetPagecount(hdxlist.Count, 5);
+            //}
             //发言简要记录
+            //领导评语
+            string ldpystr = Ecommon.Comparestring(obj.py, "领导检查评语") ? "" : "领导检查评语：";
+            List<string> ldpylist = Ecommon.ResultStrListByPage(ldpystr, obj.py, zc, 2);
+            if (Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count,15) > pagecount)
+            {
+                pagecount = Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count, 15);
+            }
             List<string> fyjyjllist = Ecommon.ResultStrListByPage("", obj.fyjyjl, zc, 21);
             if (Ecommon.GetPagecount(fyjyjllist.Count,21)>pagecount)
             {
                 pagecount = Ecommon.GetPagecount(fyjyjllist.Count, 21);
             }
-            //领导评语
-            string ldpystr =Ecommon.Comparestring(obj.py,"领导检查评语")?"": "领导检查评语：";
-            List<string> ldpylist = Ecommon.ResultStrListByPage(ldpystr, obj.py, zc, 2);
-            if (Ecommon.GetPagecount(ldpylist.Count, 2) > pagecount)
-            {
-                pagecount = Ecommon.GetPagecount(ldpylist.Count, 2);
-            }
+           
             //复制空模版
             if (pagecount > 1)
             {
@@ -75,47 +76,96 @@ namespace Ebada.Scgl.Yxgl {
             for (int p = 0; p < pagecount; p++)
             {
                 ex.ActiveSheet(p + 1);
-
-                //活动内容
-                for (int i = 0; i < 8; i++)
+                //改造后的
+                for (int i = 0; i < 15; i++)
                 {
-                    if (p * 8 + i>=hdlist.Count)
-                    {
-                        break;
-                    }
-                    string tempstr = hdlist[p * 8 + i];
-                    ex.SetCellValue(tempstr, 10 + i, 1);
-                }
-                //活动小结
-                for (int s = 0; s < 5; s++)
-                {
-                    if (p * 5 + s >= hdxlist.Count)
-                    {
-                        break;
-                    }
-                    string tempstr = hdxlist[p * 5 + s];
-                    ex.SetCellValue(tempstr, 18 + s, 1);
-                }
-                //领导评语
-                for (int t = 0; t < 2; t++)
-                {
-                    if (p * 2 + t >= ldpylist.Count)
-                    {
-                        break;
-                    }
-                    string tempstr = ldpylist[p * 2 + t];
                    
-                    ex.SetCellValue(tempstr, 23 + t, 1);
+                    if (p * 15 + i < hdlist.Count)
+                    {
+                      
+                        string tempstr = hdlist[p * 15 + i];
+                        ex.SetCellValue(tempstr, 10 + i, 1);
+                       if (p == 0 && i == 0)
+                        {
+                            //设定活动内容为粗体
+                            ex.SetFontBold(10 + i, 1, 10 + i, 1, true, 0, 5);
+                        }
+                    }
+                    if (p * 15 + i >= hdlist.Count && p * 15 + i < hdlist.Count + hdxlist.Count)
+                    {
+                      
+                        string tempstr = hdxlist[p * 15 + i - hdlist.Count];
+                        ex.SetCellValue(tempstr, 10 + i, 1);
+                        if (p * 15 + i == hdlist.Count)
+                        {
+                            ex.SetFontBold(10 + i, 1, 10 + i, 1, true, 0, 5);
+                        }
+                        //break;
+                    }
+
+                    if (p * 15 + i >= hdlist.Count + hdxlist.Count && p * 15 + i < hdlist.Count + hdxlist.Count + ldpylist.Count)
+                    {
+                       
+                        string tempstr = ldpylist[p * 15 + i - hdlist.Count -hdxlist.Count];
+
+                        ex.SetCellValue(tempstr, 10 + i, 1);
+                        if (p * 15 + i == hdlist.Count + hdxlist.Count)
+                            ex.SetFontBold(10 + i, 1, 10 + i, 1, true, 0, 7);
+                        //break;
+                    }
+                    if (p * 15 + i >= hdlist.Count + hdxlist.Count + ldpylist.Count)
+                    {
+                        break;
+                    }
                 }
+                ////活动内容
+                //for (int i = 0; i < 8; i++)
+                //{
+                //    if (p * 8 + i>=hdlist.Count)
+                //    {
+                //        break;
+                //    }
+                //    string tempstr = hdlist[p * 8 + i];
+                //    ex.SetCellValue(tempstr, 10 + i, 1);
+                   
+                //}
+                ////活动小结
+                //for (int s = 0; s < 5; s++)
+                //{
+                //    if (p * 5 + s >= hdxlist.Count)
+                //    {
+                //        break;
+                //    }
+                //    string tempstr = hdxlist[p * 5 + s];
+                //    ex.SetCellValue(tempstr, 18 + s, 1);
+                //}
+                ////领导评语
+                //for (int t = 0; t < 2; t++)
+                //{
+                //    if (p * 2 + t >= ldpylist.Count)
+                //    {
+                //        break;
+                //    }
+                //    string tempstr = ldpylist[p * 2 + t];
+                   
+                //    ex.SetCellValue(tempstr, 23 + t, 1);
+                //}
                 //简要记录
                 for (int jy = 0; jy < 21;jy++ )
                 {
+                   
                     if (p*21+jy>=fyjyjllist.Count)
                     {
                         break;
                     }
                     string tempstr = fyjyjllist[p * 21 + jy];
                     ex.SetCellValue(tempstr, 30 + jy,1);
+
+                    if (p == 0 && jy == 0)
+                    {
+                        //设定活动内容为粗体
+                        ex.SetFontBold(30, 1, 30, 1, true, 0, 6);
+                    }
                 }
             }
 
