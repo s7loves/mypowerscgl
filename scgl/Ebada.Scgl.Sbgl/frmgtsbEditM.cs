@@ -148,13 +148,13 @@ namespace Ebada.Scgl.Sbgl
                 bh = 1;
             }
             if (bh<0||bh > 999) {
-                MsgBox.ShowTipMessageBox("启始编号范围000-999");
+                MsgBox.ShowTipMessageBox("编号范围000-999");
                 return;
             }
-            if ((bh + end - begin) > 999) {
-                MsgBox.ShowTipMessageBox("终止编号不能大于999");
-                return;
-            }
+            //if ((bh + end - begin) > 999) {
+            //    MsgBox.ShowTipMessageBox("终止编号不能大于999");
+            //    return;
+            //}
             List<PS_gtsb> gtsblist = new List<PS_gtsb>();
 
             for (int i = begin; i <= end; i++) {
@@ -164,7 +164,7 @@ namespace Ebada.Scgl.Sbgl
                 Ebada.Core.ConvertHelper.CopyTo(RowData,gtsb);
                 gtsb.gtID = gt.gtID;
                 gtsb.sbID =gt.CreateID()+i;
-                gtsb.sbCode = (i - begin + 1).ToString("000");
+                gtsb.sbCode = bh.ToString("000");
                 gtsblist.Add(gtsb);
             }
             Ebada.Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(gtsblist, null, null);
