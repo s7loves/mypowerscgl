@@ -99,6 +99,10 @@ namespace Ebada.Scgl.Yxgl
             IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>( string.Format("where left(tqCode,{1})='{0}' ", lineCode,lineCode.Length));
             //comboBoxEdit5.Properties.DataSource = listXL;
             SetComboBoxData(comboBoxEdit5, "tqName", "tqID", "台区名称", "", listXL);
+            comboBoxEdit11.Properties.Items.Clear();
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqCode,{1})='{0}' ", lineCode, lineCode.Length));
+            
+            comboBoxEdit11.Properties.Items.AddRange(list);
             comboBoxEdit10.Properties.Items.Clear();
             for (int i = 0; i < listXL.Count; i++)
             {
