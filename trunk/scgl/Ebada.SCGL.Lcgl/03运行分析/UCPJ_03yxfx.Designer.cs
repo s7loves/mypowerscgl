@@ -29,6 +29,11 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btGdsList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.liuchbarSubItem = new DevExpress.XtraBars.BarSubItem();
+            this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
+            this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
+            this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
+            this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             this.btReAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btReEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btReDelete = new DevExpress.XtraBars.BarButtonItem();
@@ -62,6 +67,11 @@
             this.barManager1.DockControls.Add(this.barDockControlRight);
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.liuchbarSubItem,
+            this.SubmitButton,
+            this.TaskOverButton,
+            this.liuchenBarClear,
+            this.barFJLY,
             this.btReAdd,
             this.btReEdit,
             this.btReDelete,
@@ -86,6 +96,7 @@
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
+            new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReAdd, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReDelete),
@@ -149,6 +160,50 @@
             this.btRefresh.Name = "btRefresh";
             this.btRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btRefresh_ItemClick);
+            // 
+            // liuchbarSubItem
+            // 
+            this.liuchbarSubItem.Caption = "流程命令";
+            this.liuchbarSubItem.Id = 17;
+            this.liuchbarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.SubmitButton),
+            new DevExpress.XtraBars.LinkPersistInfo(this.TaskOverButton),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barFJLY),
+            new DevExpress.XtraBars.LinkPersistInfo(this.liuchenBarClear)});
+            this.liuchbarSubItem.Name = "liuchbarSubItem";
+            this.liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // SubmitButton
+            // 
+            this.SubmitButton.Caption = "提交审核";
+            this.SubmitButton.Id = 18;
+            this.SubmitButton.Name = "SubmitButton";
+            this.SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.SubmitButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.SubmitButton_ItemClick);
+            // 
+            // TaskOverButton
+            // 
+            this.TaskOverButton.Caption = "任务结束";
+            this.TaskOverButton.Id = 19;
+            this.TaskOverButton.Name = "TaskOverButton";
+            this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
+            // 
+            // barFJLY
+            // 
+            this.barFJLY.Caption = "附件留言";
+            this.barFJLY.Id = 22;
+            this.barFJLY.Name = "barFJLY";
+            this.barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.barFJLY.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barFJLY_ItemClick);
+            // 
+            // liuchenBarClear
+            // 
+            this.liuchenBarClear.Caption = "清除关联信息";
+            this.liuchenBarClear.Id = 20;
+            this.liuchenBarClear.Name = "liuchenBarClear";
+            this.liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.liuchenBarClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.liuchenBarClear_ItemClick);
             // 
             // btFind
             // 
@@ -300,5 +355,10 @@
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
+        private DevExpress.XtraBars.BarSubItem liuchbarSubItem;
+        private DevExpress.XtraBars.BarButtonItem SubmitButton;
+        private DevExpress.XtraBars.BarButtonItem TaskOverButton;
+        private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
+        private DevExpress.XtraBars.BarButtonItem barFJLY;
     }
 }
