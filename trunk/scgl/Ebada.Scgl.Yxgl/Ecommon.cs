@@ -114,6 +114,15 @@ namespace Ebada.Scgl.Yxgl
 
                  }
              }
+             //寻找标点是否在第一个 则加到上一个字符中
+             for (int i = 1; i < RList.Count;i++ )
+             {
+                 if (RList[i].Substring(0, 1) == "，" || RList[i].Substring(0, 1) == "。")
+                 {
+                     RList[i - 1] += RList[i].Substring(0, 1);
+                     RList[i].Remove(0, 1);
+                 }
+             }
              return RList;
            
  
@@ -409,6 +418,99 @@ namespace Ebada.Scgl.Yxgl
                     for (int i = 0; i < bdzlist.Count - starow + 1; i++)
                     {
                         ex.SetCellValue(bdzlist[starow - 1 + i], star + i, clm);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Month.ToString(), rowcount + i, 1);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Day.ToString(), rowcount + i, 2);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Hour.ToString(), rowcount + i, 3);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Minute.ToString(), rowcount + i, 4);
+                        //ex.SetCellValue(objlist[starow - 1 + i].lxfs, rowcount + i, 5);
+                        //ex.SetCellValue(objlist[starow - 1 + i].yhdz, rowcount + i, 6);
+                        //ex.SetCellValue(objlist[starow - 1 + i].gzjk, rowcount + i, 7);
+                        //ex.SetCellValue(objlist[starow - 1 + i].djr, rowcount + i, 8);
+                        //ex.SetCellValue(objlist[starow - 1 + i].clr, rowcount + i, 9);
+
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///创建工作表并将数据加入到工作表中
+        /// </summary>
+        /// <param name="ex">操作EXCEL表</param>
+        /// <param name="bdzlist">填入的数据</param>
+        ///  <param name="hs">一页对应的总行数</param>
+        ///  <param name="stawz">一页中填入的开始的位置</param>
+        ///  <param name="pageindex">一页填入的列位置</param>
+        ///  <param name="strnumcol">第一个字符开始的行数</param>
+        ///  <param name="boldnum">加粗的数量</param>
+        public static void CreatandWritesheet1(ExcelAccess ex, List<string> bdzlist, int hs, int star, int clm,int[] strnumcol,int[] boldnum)
+        {
+            int pageindex = 1;
+            if (pageindex < Ecommon.GetPagecount(bdzlist.Count, hs))
+            {
+                pageindex = Ecommon.GetPagecount(bdzlist.Count, hs);
+            }
+            for (int j = 1; j <= pageindex; j++)
+            {
+                if (j > 1)
+                {
+                    ex.CopySheet(1, 1);
+
+                }
+            }
+            ex.ShowExcel();
+            for (int j = 1; j <= pageindex; j++)
+            {
+
+                ex.ActiveSheet(j);
+                ex.ReNameWorkSheet(j, "Sheet" + (j));
+                int prepageindex = j - 1;
+                //主题
+                int starow = prepageindex * hs + 1;
+                int endrow = j * hs;
+                if (bdzlist.Count > endrow)
+                {
+                    for (int i = 0; i < hs; i++)
+                    {
+
+                        ex.SetCellValue(bdzlist[starow - 1 + i], star + i, clm);
+                        //加粗过程
+                        for (int n = 0; n < strnumcol.Length;n++ )
+                        {
+                            if (starow-1+i==strnumcol[n])
+                            {
+                                ex.SetFontBold(star + i, clm, star + i, clm, true, 0, boldnum[n]);
+                            }
+                          
+                        }
+
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Month.ToString(), rowcount + i, 1);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Day.ToString(), rowcount + i, 2);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Hour.ToString(), rowcount + i, 3);
+                        //ex.SetCellValue(objlist[starow - 1 + i].rq.Minute.ToString(), rowcount + i, 4);
+                        //ex.SetCellValue(objlist[starow - 1 + i].lxfs, rowcount + i, 5);
+                        //ex.SetCellValue(objlist[starow - 1 + i].yhdz, rowcount + i, 6);
+                        //ex.SetCellValue(objlist[starow - 1 + i].gzjk, rowcount + i, 7);
+                        //ex.SetCellValue(objlist[starow - 1 + i].djr, rowcount + i, 8);
+                        //ex.SetCellValue(objlist[starow - 1 + i].clr, rowcount + i, 9);
+
+                    }
+                }
+                else if (bdzlist.Count <= endrow && bdzlist.Count >= starow)
+                {
+                    for (int i = 0; i < bdzlist.Count - starow + 1; i++)
+                    {
+                        ex.SetCellValue(bdzlist[starow - 1 + i], star + i, clm);
+                        //加粗过程
+                        for (int n = 0; n < strnumcol.Length; n++)
+                        {
+                            if (starow - 1 + i == strnumcol[n])
+                            {
+                                ex.SetFontBold(star + i, clm, star + i, clm, true, 0, boldnum[n]);
+                            }
+
+                        }
+
                         //ex.SetCellValue(objlist[starow - 1 + i].rq.Month.ToString(), rowcount + i, 1);
                         //ex.SetCellValue(objlist[starow - 1 + i].rq.Day.ToString(), rowcount + i, 2);
                         //ex.SetCellValue(objlist[starow - 1 + i].rq.Hour.ToString(), rowcount + i, 3);

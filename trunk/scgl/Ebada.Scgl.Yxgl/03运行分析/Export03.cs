@@ -51,11 +51,19 @@ namespace Ebada.Scgl.Yxgl
             //{
             //    pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
             //}
+
+            int[] strnumcol = { 0, listztstring.Count, listztstring.Count +listjy.Count};
+            int[] statnum = { 3, 3, 6 };
             List<string> strcol = new List<string>();
             Ecommon.addstring(listztstring, ref strcol);
             Ecommon.addstring(listjy, ref strcol);
             Ecommon.addstring(listjldc, ref strcol);
-            Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
+
+            //Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
+
+            Ecommon.CreatandWritesheet1(ex, strcol, 15, 9, 1,strnumcol,statnum);
+            //进行加粗
+
             ex.ActiveSheet(1);
             //时间
             ex.SetCellValue(obj.rq.Year.ToString(), 4, 5);
