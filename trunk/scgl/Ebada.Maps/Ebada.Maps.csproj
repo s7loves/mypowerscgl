@@ -316,6 +316,9 @@
     <EmbeddedResource Include="PJ_sbsjjhsbb.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_ryda.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

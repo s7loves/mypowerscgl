@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_ryda" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_ryda"  type="Ebada.Scgl.Model.PJ_ryda,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_ryda_AllColumns" class="PJ_ryda">
+        <result property="ID" column="ID" />
+        <result property="OrgName" column="OrgName" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="wdmc" column="wdmc" />
+        <result property="wdlx" column="wdlx" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="Remark" column="Remark" />
+        <result property="BigData" column="BigData" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_rydaList" resultMap="PJ_ryda_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wdmc],
+         [wdlx],
+         [CreateMan],
+         [CreateDate],
+         [Remark],
+         [BigData],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_ryda
+          $value$
+   </select>
+   
+   <select id="SelectPJ_rydaByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wdmc],
+         [wdlx],
+         [CreateMan],
+         [CreateDate],
+         [Remark],
+         [BigData],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_ryda
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="wdmc">[wdmc]='$wdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="wdlx">[wdlx]='$wdlx$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_rydaByKey" resultMap="PJ_ryda_AllColumns" parameterClass="PJ_ryda">
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wdmc],
+         [wdlx],
+         [CreateMan],
+         [CreateDate],
+         [Remark],
+         [BigData],
+         [S1],
+         [S2],
+         [S3]
+         FROM PJ_ryda
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_ryda" parameterClass="PJ_ryda">
+        DELETE FROM 
+         PJ_ryda
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_rydaByWhere" parameterClass="string">
+     delete from PJ_ryda $value$
+   </delete>
+   
+   <delete id="DeletePJ_rydaByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_ryda
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_ryda" parameterClass="PJ_ryda" resultClass="int">
+          UPDATE PJ_ryda
+           SET
+             [OrgName]=#OrgName#,
+             [OrgCode]=#OrgCode#,
+             [wdmc]=#wdmc#,
+             [wdlx]=#wdlx#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [Remark]=#Remark#,
+             [BigData]=#BigData#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_ryda" parameterClass="PJ_ryda">
+        INSERT INTO PJ_ryda
+         (
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [wdmc],
+         [wdlx],
+         [CreateMan],
+         [CreateDate],
+         [Remark],
+         [BigData],
+         [S1],
+         [S2],
+         [S3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgName#,
+         #OrgCode#,
+         #wdmc#,
+         #wdlx#,
+         #CreateMan#,
+         #CreateDate#,
+         #Remark#,
+         #BigData#,
+         #S1#,
+         #S2#,
+         #S3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_rydaRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_ryda
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="wdmc">[wdmc]='$wdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="wdlx">[wdlx]='$wdlx$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_rydaRowCount" parameterClass="string">
+    select count(*) from PJ_ryda $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
