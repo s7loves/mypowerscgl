@@ -88,6 +88,15 @@ namespace Ebada.Scgl.Lcgl
                 {
                     taskht.Add("跳过", "跳过");
                 }
+                else
+                {
+                    foreach (WF_WorkTaskLinkView tl in li)
+                    {
+                        if (!taskht.ContainsKey(tl.EndTaskId))
+                            taskht.Add(tl.EndTaskId, tl.endTaskCaption);
+
+                    }
+                }
             }
             else
             {
