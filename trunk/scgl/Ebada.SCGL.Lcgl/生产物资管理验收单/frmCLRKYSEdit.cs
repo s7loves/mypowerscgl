@@ -563,12 +563,12 @@ namespace Ebada.Scgl.Lcgl
         private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
         {
             comboBoxEdit2.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   mc='" + comboBoxEdit1.Text + "'");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   mc='" + comboBoxEdit1.Text + "' and xh is not null ");
             if (mclist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(mclist);
             else
             {
-                mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct nr  from pj_dyk where   sx='" + comboBoxEdit1.Text + "' and xh is not null ");
+                mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct nr  from pj_dyk where   sx='" + comboBoxEdit1.Text + "' ");
                 if (mclist.Count > 0)
                     comboBoxEdit2.Properties.Items.AddRange(mclist);
                 else
