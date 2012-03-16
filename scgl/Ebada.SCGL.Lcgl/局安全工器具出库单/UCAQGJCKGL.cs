@@ -216,6 +216,17 @@ namespace Ebada.Scgl.Lcgl
 
                 }
             }
+            else
+            {
+                if (pnumli.Count > 0)
+                {
+
+                    if ((Convert.ToDecimal(clccktemp.num.Replace("JAQGJCK", ""))) - (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", ""))) > 1)
+                    {
+                        clccktemp.num = "JAQGJCK" + (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "") + 1));
+                    }
+                }
+            }
             frm.strNum = clccktemp.num;
             //frm.RowData = new PJ_anqgjcrkd();
             frm.RowData = clccktemp;

@@ -359,7 +359,7 @@
             this.xtraTabPage1.Controls.Add(this.ucsctz1);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(688, 142);
-            this.xtraTabPage1.Text = "流程信息";
+            this.xtraTabPage1.Text = "查询信息";
             // 
             // ucsctz1
             // 

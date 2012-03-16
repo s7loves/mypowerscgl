@@ -123,29 +123,31 @@ namespace Ebada.Scgl.Lcgl
 
             
             WaitDialogForm wdf = new WaitDialogForm("", "正在查询数据...");
-            
-            if (comboBoxEdit1.Text != "")
-                strSQL += " and ssgc='" + comboBoxEdit1.Text + "' ";
-            if (comboBoxEdit2.Text != "")
-                strSQL += " and ssxm='" + comboBoxEdit2.Text + "' ";
-            if (comboBoxEdit3.Text != "")
-                strSQL += " and wpmc='" + comboBoxEdit3.Text + "' ";
-            if (comboBoxEdit4.Text != "")
-                strSQL += " and wpgg='" + comboBoxEdit4.Text + "' ";
-            if (comboBoxEdit5.Text != "")
-                strSQL += " and type='" + comboBoxEdit5.Text + "' ";
+            try
+            {
+                if (comboBoxEdit1.Text != "")
+                    strSQL += " and ssgc='" + comboBoxEdit1.Text + "' ";
+                if (comboBoxEdit2.Text != "")
+                    strSQL += " and ssxm='" + comboBoxEdit2.Text + "' ";
+                if (comboBoxEdit3.Text != "")
+                    strSQL += " and wpmc='" + comboBoxEdit3.Text + "' ";
+                if (comboBoxEdit4.Text != "")
+                    strSQL += " and wpgg='" + comboBoxEdit4.Text + "' ";
+                if (comboBoxEdit5.Text != "")
+                    strSQL += " and type='" + comboBoxEdit5.Text + "' ";
 
-            if (checkEdit1.Checked)
-            {
-                strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                if (checkEdit1.Checked)
+                {
+                    strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                }
+                if (checkEdit2.Checked)
+                {
+                    strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                }
+                ucsctz1.StrSQL = (strSQL);
+
             }
-            if (checkEdit2.Checked)
-            {
-                strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
-            }
-            ucsctz1.StrSQL=(strSQL);
-               
-              
+            catch { }
            
             
             wdf.Close();

@@ -83,6 +83,7 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
@@ -137,6 +138,7 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.labelControl21);
             this.groupControlOrg.Controls.Add(this.simpleButton4);
             this.groupControlOrg.Controls.Add(this.spinEdit2);
             this.groupControlOrg.Controls.Add(this.memoEdit3);
@@ -563,7 +565,7 @@
             // 
             // memoEdit1
             // 
-            this.memoEdit1.Location = new System.Drawing.Point(6, 24);
+            this.memoEdit1.Location = new System.Drawing.Point(12, 21);
             this.memoEdit1.Name = "memoEdit1";
             this.memoEdit1.Properties.LookAndFeel.SkinName = "Office 2007 Green";
             this.memoEdit1.Size = new System.Drawing.Size(649, 65);
@@ -697,6 +699,16 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // labelControl21
+            // 
+            this.labelControl21.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl21.Appearance.Options.UseForeColor = true;
+            this.labelControl21.Location = new System.Drawing.Point(19, 14);
+            this.labelControl21.Name = "labelControl21";
+            this.labelControl21.Size = new System.Drawing.Size(120, 14);
+            this.labelControl21.TabIndex = 33;
+            this.labelControl21.Text = "合同编号是批次的编号";
+            // 
             // frmCLRKYSEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -800,6 +812,7 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit13;
         private DevExpress.XtraEditors.LabelControl labelControl20;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private DevExpress.XtraEditors.LabelControl labelControl21;
 
     }
 }

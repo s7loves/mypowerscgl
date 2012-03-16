@@ -499,7 +499,7 @@ namespace Ebada.Scgl.Lcgl
         {
              frmNumSelect fys = new frmNumSelect();
             fys.strType = " and 1=1";
-            fys.StrSQL = "select distinct dhht  from PJ_clrkysd where  1=1";
+            fys.StrSQL = "select distinct dhht  from PJ_clrkysd where  1=1 and dhht!=''";
             if (fys.ShowDialog() == DialogResult.OK)
             {
                 string filter = " where 1=1";
@@ -519,25 +519,31 @@ namespace Ebada.Scgl.Lcgl
                     num = "SCRK" + (Convert.ToDecimal(pnumli[0].num.Replace("SCRK", "")) + 1);
 
                 }
+                PJ_clcrkd lc = null;
                 foreach (PJ_clrkysd ysd in datalist)
                 {
-                    PJ_clcrkd clc = new PJ_clcrkd();
-                    clc.ID = clc.CreateID();
-                    clc.ssgc = ysd.ssgc;
-                    clc.ssxm = ysd.ssxm;
-                    clc.type = "工程材料入库单";
-                    clc.num = num;
-                    clc.wpmc = ysd.wpmc;
-                    clc.wpgg = ysd.wpgg;
-                    clc.wpdw = ysd.wpdw;
-                    clc.wpdj = ysd.wpdj;
-                    clc.wpcj = ysd.ghdw;
-                    clc.wpsl = ysd.wpsl;
-                    clc.kcsl = ysd.wpsl;
-                    clc.indate = ysd.indate;
-                    cdatalist.Add(clc);
+                    lc = MainHelper.PlatformSqlMap.GetOne<PJ_clcrkd>(" where lyparent='"+ysd.ID +"' and type = '工程材料入库单'");
+                    if (lc == null)
+                    {
+                        PJ_clcrkd clc = new PJ_clcrkd();
+                        clc.ID = clc.CreateID();
+                        clc.ssgc = ysd.ssgc;
+                        clc.ssxm = ysd.ssxm;
+                        clc.type = "工程材料入库单";
+                        clc.num = num;
+                        clc.wpmc = ysd.wpmc;
+                        clc.wpgg = ysd.wpgg;
+                        clc.wpdw = ysd.wpdw;
+                        clc.wpdj = ysd.wpdj;
+                        clc.wpcj = ysd.ghdw;
+                        clc.wpsl = ysd.wpsl;
+                        clc.kcsl = ysd.wpsl;
+                        clc.indate = ysd.indate;
+                        clc.lyparent = ysd.ID;
+                        cdatalist.Add(clc);
 
-                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    }
                 }
                 frmCLRKYSShow fss = new frmCLRKYSShow();
                 fss.DataList = cdatalist;
