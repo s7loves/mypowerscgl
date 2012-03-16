@@ -374,8 +374,19 @@ namespace Ebada.Scgl.Lcgl
                         if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                         {
                             fname = saveFileDialog1.FileName;
-                            WriteDoc(OBJECT.BigData, fname );
-                        
+                            //WriteDoc(OBJECT.BigData, fname );
+                            DSOFramerControl ds1 = new DSOFramerControl();
+                            ds1.FileData = OBJECT.BigData;
+                            // ds1.FileOpen(ds1.FileName);
+                            ExcelAccess ex = new ExcelAccess();
+
+                            
+                            ex.Open(fname);
+                            //此处写填充内容代码
+                            ds1.FileSave(fname,true);
+                            ds1.FileClose();
+                            ds1.Dispose();
+                            ex.ShowExcel();
                             if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
                                 return;
 
