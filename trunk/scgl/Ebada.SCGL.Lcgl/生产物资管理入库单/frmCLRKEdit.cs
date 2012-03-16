@@ -510,8 +510,8 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit8.Properties.Items.Clear();
             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_clcrkd where type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存'");
-            
-            PJ_clrkysd obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_clrkysd>(rowData.ID);
+
+            PJ_clcrkd obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_clcrkd>(rowData.ID);
             if (obj == null)
             {
                 btnOK.Visible = false;

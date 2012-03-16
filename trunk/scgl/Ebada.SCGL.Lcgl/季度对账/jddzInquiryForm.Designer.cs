@@ -139,10 +139,10 @@
             this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit5.Properties.Items.AddRange(new object[] {
-            "生产材料",
-            "生产材料入库单",
-            "生产材料出库单",
-            "生产材料材料单",
+            "工程材料",
+            "工程材料入库单",
+            "工程材料出库单",
+            "工程材料材料单",
             "撤旧材料",
             "撤旧材料入库单",
             "撤旧材料出库单",
@@ -419,7 +419,7 @@
             this.xtraTabPage1.Controls.Add(this.uCmjddzInquiry1);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(1021, 179);
-            this.xtraTabPage1.Text = "流程信息";
+            this.xtraTabPage1.Text = "查询信息";
             // 
             // uCmjddzInquiry1
             // 

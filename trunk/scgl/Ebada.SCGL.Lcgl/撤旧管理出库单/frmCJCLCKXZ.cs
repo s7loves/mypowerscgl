@@ -137,6 +137,10 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit5.Properties.Items.Clear();
             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct yt  from PJ_clcrkd where type = '撤旧材料出库单'");
             comboBoxEdit5.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit6.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct OrgName  from mOrg where c1='是' order by orgcode");
+            comboBoxEdit6.Properties.Items.AddRange(mclist);
         }
 
         private void comboBoxEdit1_TextChanged(object sender, EventArgs e)

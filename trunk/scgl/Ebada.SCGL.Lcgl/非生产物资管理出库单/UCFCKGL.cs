@@ -206,6 +206,7 @@ namespace Ebada.Scgl.Lcgl
             frmFCLCKXZ frm = new frmFCLCKXZ();
             frm.strType = comboBoxEdit5.Text;
             if (clccktemp == null) clccktemp = new PJ_clcrkd();
+            clccktemp.cksl = "0";
 
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
             //       <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
@@ -222,6 +223,17 @@ namespace Ebada.Scgl.Lcgl
                 {
                     clccktemp.num = "FSCCK" + (Convert.ToDecimal(pnumli[0].num.Replace("FSCCK", "")) + 1);
 
+                }
+            }
+            else
+            {
+                if (pnumli.Count > 0)
+                {
+
+                    if ((Convert.ToDecimal(clccktemp.num.Replace("FSCCK", ""))) - (Convert.ToDecimal(pnumli[0].num.Replace("FSCCK", ""))) > 1)
+                    {
+                        clccktemp.num = "FSCCK" + (Convert.ToDecimal(pnumli[0].num.Replace("FSCCK", "") + 1));
+                    }
                 }
             }
             frm.strNum = clccktemp.num;

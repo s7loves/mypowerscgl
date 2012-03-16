@@ -117,6 +117,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmCLCKXZ_Load(object sender, EventArgs e)
         {
+            if (rowData.kcsl == "") rowData.kcsl = "0";
             if (rowData.kcsl != "0")
                 spinEdit2.Properties.MaxValue = Convert.ToDecimal(rowData.kcsl);
             else

@@ -202,9 +202,10 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            frmGCCLDSingleXZ frm = new frmGCCLDSingleXZ();
+            frmGCCLDXZ frm = new frmGCCLDXZ();
             frm.strType = comboBoxEdit5.Text;
             if (clccktemp == null) clccktemp = new PJ_clcrkd();
+            clccktemp.cksl = "0";
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
             //       <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
             //frm.strNum = DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
@@ -214,11 +215,22 @@ namespace Ebada.Scgl.Lcgl
             if (clccktemp.num == "")
             {
                 if (pnumli.Count == 0)
-                    frm.strNum = "SCCLDCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
+                    clccktemp.num = "SCCLDCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
                 else
                 {
-                    frm.strNum = "SCCLDCK" + (Convert.ToDecimal(pnumli[0].num.Replace("SCCLDCK", "")) + 1);
+                    clccktemp.num = "SCCLDCK" + (Convert.ToDecimal(pnumli[0].num.Replace("SCCLDCK", "")) + 1);
 
+                }
+            }
+            else
+            {
+                if (pnumli.Count > 0)
+                {
+
+                    if ((Convert.ToDecimal(clccktemp.num.Replace("SCCLDCK", ""))) - (Convert.ToDecimal(pnumli[0].num.Replace("SCCLDCK", ""))) > 1)
+                    {
+                        clccktemp.num = "SCCLDCK" + (Convert.ToDecimal(pnumli[0].num.Replace("SCCLDCK", "") + 1));
+                    }
                 }
             }
             frm.strNum = clccktemp.num;

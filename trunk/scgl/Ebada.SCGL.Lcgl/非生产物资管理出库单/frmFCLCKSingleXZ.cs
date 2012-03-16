@@ -121,6 +121,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmCLCKXZ_Load(object sender, EventArgs e)
         {
+            if (rowData.kcsl == "") rowData.kcsl = "0";
             if (rowData.kcsl != "0")
                 spinEdit2.Properties.MaxValue = Convert.ToDecimal(rowData.kcsl);
             else
@@ -139,6 +140,10 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit5.Properties.Items.Clear();
             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct yt  from PJ_clcrkd where type = '非生产物资出库单'");
             comboBoxEdit5.Properties.Items.AddRange(mclist);
+
+            comboBoxEdit6.Properties.Items.Clear();
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct OrgName  from mOrg where c1='是' order by orgcode");
+            comboBoxEdit6.Properties.Items.AddRange(mclist);
         }
 
         private void btnOK_Click(object sender, EventArgs e)

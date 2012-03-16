@@ -187,6 +187,32 @@
     <Compile Include="06设备巡视及缺陷消除\frmWorkFlow06sbxsEdit.Designer.cs">
       <DependentUpon>frmWorkFlow06sbxsEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="08设备停电检修记录\Export08.cs" />
+    <Compile Include="08设备停电检修记录\frm08SBTDJXEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="08设备停电检修记录\frm08SBTDJXEdit.Designer.cs">
+      <DependentUpon>frm08SBTDJXEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="08设备停电检修记录\UCPJ_08sbtdjx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="08设备停电检修记录\UCPJ_08sbtdjx.Designer.cs">
+      <DependentUpon>UCPJ_08sbtdjx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="09培训记录\Export09.cs" />
+    <Compile Include="09培训记录\frm09pxjlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="09培训记录\frm09pxjlEdit.Designer.cs">
+      <DependentUpon>frm09pxjlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="09培训记录\UCPJ_09pxjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="09培训记录\UCPJ_09pxjl.Designer.cs">
+      <DependentUpon>UCPJ_09pxjl.cs</DependentUpon>
+    </Compile>
     <Compile Include="21电力故障电话接听记录\Export21.cs" />
     <Compile Include="21电力故障电话接听记录\frm21gzbxdhEdit.cs">
       <SubType>Form</SubType>
@@ -3138,6 +3164,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="04事故障碍异常\UCPJ_04sgzayc.resx">
       <DependentUpon>UCPJ_04sgzayc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="08设备停电检修记录\frm08SBTDJXEdit.resx">
+      <DependentUpon>frm08SBTDJXEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="08设备停电检修记录\UCPJ_08sbtdjx.resx">
+      <DependentUpon>UCPJ_08sbtdjx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="09培训记录\frm09pxjlEdit.resx">
+      <DependentUpon>frm09pxjlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="09培训记录\UCPJ_09pxjl.resx">
+      <DependentUpon>UCPJ_09pxjl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="21电力故障电话接听记录\frm21gzbxdhEdit.resx">

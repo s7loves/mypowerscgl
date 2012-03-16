@@ -318,7 +318,9 @@
             // 
             this.barCopy.Caption = "导入入库单";
             this.barCopy.Id = 21;
+            this.barCopy.ImageIndex = 6;
             this.barCopy.Name = "barCopy";
+            this.barCopy.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barCopy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barCopy_ItemClick);
             // 
             // btExport0
