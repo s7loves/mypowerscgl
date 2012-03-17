@@ -344,6 +344,7 @@ namespace Ebada.Scgl.Lcgl
                         ckd.Remark = frm.ReturnData.Remark;
                         ckd.OrgName = frm.ReturnData.OrgName;
                         ckd.OrgCode = frm.ReturnData.OrgCode;
+                        ckd.lqdw = frm.ReturnData.lqdw;
                         ckd.ckdate = DateTime.Now;
                         ckd.lasttime = DateTime.Now;
                         if (cktemp >= Convert.ToInt64(pc.kcsl))
