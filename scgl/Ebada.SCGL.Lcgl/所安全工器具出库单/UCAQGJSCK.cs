@@ -397,6 +397,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("kcsl");
             hideColumn("ssgc");
             hideColumn("ssxm");
+            hideColumn("lasttime");
             //hideColumn("lqdw");
             hideColumn("wpcj");
             gridView1.Columns["num"].Width = 150;

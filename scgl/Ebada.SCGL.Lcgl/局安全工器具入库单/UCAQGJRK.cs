@@ -373,13 +373,16 @@ namespace Ebada.Scgl.Lcgl
             //需要隐藏列时在这写代码
 
             hideColumn("OrgCode");
-            hideColumn("OrgName");
+            hideColumn("OrgName"); 
+            hideColumn("ssgc");
+            hideColumn("ssxm");
             hideColumn("type");
             hideColumn("cksl");
             hideColumn("kcsl");
             hideColumn("lqdw");
             hideColumn("kcsl");
             hideColumn("ckdate");
+            hideColumn("lasttime");
             hideColumn("lyparent");
             hideColumn("wpcj");
             gridView1.Columns["num"].Width = 150;

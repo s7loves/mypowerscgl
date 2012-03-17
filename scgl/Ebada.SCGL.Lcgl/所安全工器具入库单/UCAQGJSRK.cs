@@ -390,6 +390,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("kcsl");
             hideColumn("ckdate");
             hideColumn("lyparent");
+            hideColumn("lasttime");
             hideColumn("wpcj");
             gridView1.Columns["num"].Width = 150;
             gridView1.Columns["indate"].Caption = "领取时间";
