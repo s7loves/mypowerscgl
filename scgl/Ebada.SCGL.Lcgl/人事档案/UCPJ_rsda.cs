@@ -344,16 +344,17 @@ namespace Ebada.Scgl.Lcgl
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //if (gridView1.FocusedRowHandle > -1)
-            //{
-            //    frm25Template frm = new frm25Template();
-            //    frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_ryda;
-            //    if (frm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        Client.ClientHelper.PlatformSqlMap.Update<PJ_ryda>(frm.pjobject);
-            //       MessageBox.Show("保存成功");
-            //    }
-            //}
+            if (gridView1.FocusedRowHandle > -1)
+            {
+                frmrsdaTemplate frm = new frmrsdaTemplate();
+                frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_ryda;
+                frm.strType = "1";
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    Client.ClientHelper.PlatformSqlMap.Update<PJ_ryda>(frm.pjobject);
+                    MessageBox.Show("保存成功");
+                }
+            }
             
         }
 
@@ -513,6 +514,11 @@ namespace Ebada.Scgl.Lcgl
             fjly.Kind = currRecord.Kind;
             fjly.Status = RecordWorkTask.GetWorkTaskStatus(WorkFlowData, currRecord);
             fjly.ShowDialog();
+        }
+
+        private void btEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }
