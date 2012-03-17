@@ -11,6 +11,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Ebada.Client.Platform;
 using Ebada.Components;
 using System.Threading;
+using System.Text.RegularExpressions;
 namespace Ebada.Scgl.Lcgl
 {
     /// <summary>
@@ -68,7 +69,7 @@ namespace Ebada.Scgl.Lcgl
             ////lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\撤旧材料入库单.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\出库单.xls";
             ex.Open(fname);
             string strfirst = "";
             string filter = "";
@@ -387,6 +388,18 @@ namespace Ebada.Scgl.Lcgl
 
             //
 
+            if (datalist.Count < 1) return;
+            Regex r1 = new Regex("[0-9]+");
+            string str = r1.Match(datalist[0].num).Value;
+            if (str == "")
+            {
+                str = datalist[0].num;
+            }
+            string tablename = datalist[0].ssgc + datalist[0].ssxm + str;
+            if (tablename.Length > 30)
+            {
+                tablename = tablename.Substring(tablename.Length - 31);
+            }
             //加页
             int pageindex = 1;
             if (pageindex < Ecommon.GetPagecount(datalist.Count, rowcount))
@@ -397,17 +410,17 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 ex.CopySheet(1, j);
-                if (j == 1) ex.ReNameWorkSheet(j + 1, datalist[0].ssgc + datalist[0].ssxm + datalist[0].num);
+                if (j == 1) ex.ReNameWorkSheet(j + 1, tablename);
                 else
-                    ex.ReNameWorkSheet(j + 1, datalist[0].ssgc + datalist[0].ssxm + datalist[0].num + "(" + (j) + ")");
+                    ex.ReNameWorkSheet(j + 1, tablename + "(" + (j) + ")");
             }
             for (int j = 0; j < datalist.Count; j++)
             {
 
                 if (j % rowcount == 0)
                 {
-                    if (j == 0) ex.ActiveSheet(datalist[0].ssgc + datalist[0].ssxm + datalist[0].num);
-                    else ex.ActiveSheet(datalist[0].ssgc + datalist[0].ssxm + datalist[0].num + "(" + (j / rowcount + 1) + ")");
+                    if (j == 0) ex.ActiveSheet(tablename);
+                    else ex.ActiveSheet(tablename + "(" + (j / rowcount + 1) + ")");
                     ex.SetCellValue(datalist[j].ssgc, 2, 3);
                     ex.SetCellValue(datalist[j].ssxm, 4, 2);
                     ex.SetCellValue(datalist[j].ckdate.ToString("yyyy"), 4, 7);
