@@ -317,7 +317,7 @@
             this.ClientSize = new System.Drawing.Size(695, 396);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "UCrsdaInquiry";
-            this.Text = "人事档案查询";
+            this.Text = "安规档案查询";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.WorkFlowInquiry_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
