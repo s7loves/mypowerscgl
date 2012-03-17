@@ -11,6 +11,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Ebada.Client.Platform;
 using Ebada.Components;
 using System.Threading;
+using System.Text.RegularExpressions;
 namespace Ebada.Scgl.Lcgl
 {
     /// <summary>
@@ -384,7 +385,18 @@ namespace Ebada.Scgl.Lcgl
             int row = 8;
             int col = 2;
             int rowcount = 25;
-
+            if (datalist.Count < 1) return;
+            Regex r1 = new Regex("[0-9]+");
+            string str = r1.Match(datalist[0].num).Value;
+            if(str=="")
+            {
+             str = datalist[0].num;
+            }
+            string tablename = datalist[0].ssgc + datalist[0].ssxm + str;
+            if(tablename.Length >30 )
+            {
+                tablename=tablename.Substring(tablename.Length-31);
+            }
             //
 
             //加页
@@ -397,17 +409,17 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 ex.CopySheet(1, j);
-                if (j == 1) ex.ReNameWorkSheet(j + 1, datalist[0].ssgc + datalist[0].ssxm + datalist[0].num);
+                if (j == 1) ex.ReNameWorkSheet(j + 1, tablename);
                 else
-                    ex.ReNameWorkSheet(j + 1, datalist[0].ssgc + datalist[0].ssxm + datalist[0].num + "(" + (j) + ")");
+                    ex.ReNameWorkSheet(j + 1, tablename + "(" + (j) + ")");
             }
             for (int j = 0; j < datalist.Count; j++)
             {
 
                 if (j % rowcount == 0)
                 {
-                    if (j == 0) ex.ActiveSheet(datalist[0].ssgc + datalist[0].ssxm + datalist[0].num);
-                    else ex.ActiveSheet(datalist[0].ssgc + datalist[0].ssxm + datalist[0].num + "(" + (j / rowcount + 1) + ")");
+                    if (j == 0) ex.ActiveSheet(tablename);
+                    else ex.ActiveSheet(tablename + "(" + (j / rowcount + 1) + ")");
                     ex.SetCellValue(datalist[j].ssgc, 3, 4);
                     ex.SetCellValue(datalist[j].lqdw, 6, 3);
                     ex.SetCellValue(datalist[j].ghdw, 6, 14);

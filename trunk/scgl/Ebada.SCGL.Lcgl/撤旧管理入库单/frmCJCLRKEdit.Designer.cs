@@ -180,9 +180,9 @@
             this.spinEdit2.Name = "spinEdit2";
             this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit2.Properties.DisplayFormat.FormatString = "#####0";
+            this.spinEdit2.Properties.DisplayFormat.FormatString = "###########0";
             this.spinEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit2.Properties.Mask.EditMask = "#####0";
+            this.spinEdit2.Properties.Mask.EditMask = "###########0";
             this.spinEdit2.Size = new System.Drawing.Size(133, 21);
             this.spinEdit2.TabIndex = 29;
             this.spinEdit2.EditValueChanged += new System.EventHandler(this.spinEdit2_EditValueChanged);
@@ -311,7 +311,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit11.Size = new System.Drawing.Size(218, 21);
             this.comboBoxEdit11.TabIndex = 13;
-            this.comboBoxEdit11.Visible = false;
             // 
             // comboBoxEdit10
             // 
@@ -372,7 +371,6 @@
             this.labelControl13.Size = new System.Drawing.Size(60, 14);
             this.labelControl13.TabIndex = 1;
             this.labelControl13.Text = "供电所名称";
-            this.labelControl13.Visible = false;
             // 
             // groupBox3
             // 

@@ -11,6 +11,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Ebada.Client.Platform;
 using Ebada.Components;
 using System.Threading;
+using System.Text.RegularExpressions;
 namespace Ebada.Scgl.Lcgl
 {
     /// <summary>
@@ -407,7 +408,18 @@ namespace Ebada.Scgl.Lcgl
             int row = 6;
             int col = 1;
             int rowcount = 12;
-
+            if (datalist.Count < 1) return;
+            Regex r1 = new Regex("[0-9]+");
+            string str = r1.Match(datalist[0].num).Value;
+            if (str == "")
+            {
+                str = datalist[0].num;
+            }
+            string tablename = datalist[0].ssgc + datalist[0].ssxm + str;
+            if (tablename.Length > 30)
+            {
+                tablename = tablename.Substring(tablename.Length - 31);
+            }
             //
             //加页
             int pageindex = 1;
@@ -422,18 +434,18 @@ namespace Ebada.Scgl.Lcgl
                 if (j == 1)
                 {
 
-                    ex.ReNameWorkSheet(j + 1, datalist[0].ssgc + datalist[0].ssxm + datalist[0].num);
+                    ex.ReNameWorkSheet(j + 1, tablename);
                 }
                 else
-                    ex.ReNameWorkSheet(j + 1, datalist[0].ssgc + datalist[0].ssxm + datalist[0].num+"(" + (j)+")");
+                    ex.ReNameWorkSheet(j + 1, tablename + "(" + (j) + ")");
             }
             for (int j = 0; j < datalist.Count; j++)
             {
 
                 if (j % rowcount == 0)
                 {
-                    if (j == 0) ex.ActiveSheet(datalist[0].ssgc + datalist[0].ssxm + datalist[0].num);
-                    else ex.ActiveSheet(datalist[0].ssgc + datalist[0].ssxm + datalist[0].num + "(" + (j / rowcount + 1)+")");
+                    if (j == 0) ex.ActiveSheet(tablename);
+                    else ex.ActiveSheet(tablename + "(" + (j / rowcount + 1) + ")");
                     ex.SetCellValue(datalist[j].ssgc, 2, 4);
                     ex.SetCellValue(datalist[j].ssxm , 4, 10);
                     ex.SetCellValue(datalist[j].indate.ToString("yyyy"), 4, 1);
