@@ -31,6 +31,7 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
             this.memoEdit3 = new DevExpress.XtraEditors.MemoEdit();
@@ -83,7 +84,6 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
@@ -192,6 +192,16 @@
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
+            // labelControl21
+            // 
+            this.labelControl21.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl21.Appearance.Options.UseForeColor = true;
+            this.labelControl21.Location = new System.Drawing.Point(19, 14);
+            this.labelControl21.Name = "labelControl21";
+            this.labelControl21.Size = new System.Drawing.Size(120, 14);
+            this.labelControl21.TabIndex = 33;
+            this.labelControl21.Text = "合同编号是批次的编号";
+            // 
             // simpleButton4
             // 
             this.simpleButton4.Location = new System.Drawing.Point(569, 609);
@@ -214,7 +224,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit2.Properties.DisplayFormat.FormatString = "#####0";
             this.spinEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit2.Properties.Mask.EditMask = "#####0";
+            this.spinEdit2.Properties.Mask.EditMask = "###########0";
             this.spinEdit2.Size = new System.Drawing.Size(133, 21);
             this.spinEdit2.TabIndex = 11;
             this.spinEdit2.EditValueChanged += new System.EventHandler(this.spinEdit2_EditValueChanged);
@@ -238,9 +248,9 @@
             this.spinEdit5.Name = "spinEdit5";
             this.spinEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit5.Properties.DisplayFormat.FormatString = "#####0.00";
+            this.spinEdit5.Properties.DisplayFormat.FormatString = "###########0.00";
             this.spinEdit5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit5.Properties.Mask.EditMask = "#####0.00";
+            this.spinEdit5.Properties.Mask.EditMask = "###########0.00";
             this.spinEdit5.Size = new System.Drawing.Size(133, 21);
             this.spinEdit5.TabIndex = 7;
             // 
@@ -255,9 +265,9 @@
             this.spinEdit4.Name = "spinEdit4";
             this.spinEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit4.Properties.DisplayFormat.FormatString = "#####0.00";
+            this.spinEdit4.Properties.DisplayFormat.FormatString = "###########0.00";
             this.spinEdit4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit4.Properties.Mask.EditMask = "#####0.00";
+            this.spinEdit4.Properties.Mask.EditMask = "###########0.00";
             this.spinEdit4.Size = new System.Drawing.Size(133, 21);
             this.spinEdit4.TabIndex = 14;
             // 
@@ -274,7 +284,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit3.Properties.DisplayFormat.FormatString = "#####0.00";
             this.spinEdit3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit3.Properties.Mask.EditMask = "#####0.00";
+            this.spinEdit3.Properties.Mask.EditMask = "###########0.00";
             this.spinEdit3.Size = new System.Drawing.Size(133, 21);
             this.spinEdit3.TabIndex = 13;
             // 
@@ -289,9 +299,9 @@
             this.spinEdit1.Name = "spinEdit1";
             this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit1.Properties.DisplayFormat.FormatString = "#####0.00";
+            this.spinEdit1.Properties.DisplayFormat.FormatString = "###########0.00";
             this.spinEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit1.Properties.Mask.EditMask = "#####0.00";
+            this.spinEdit1.Properties.Mask.EditMask = "###########0.00";
             this.spinEdit1.Size = new System.Drawing.Size(133, 21);
             this.spinEdit1.TabIndex = 12;
             this.spinEdit1.EditValueChanged += new System.EventHandler(this.spinEdit1_EditValueChanged);
@@ -698,16 +708,6 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
-            // 
-            // labelControl21
-            // 
-            this.labelControl21.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.labelControl21.Appearance.Options.UseForeColor = true;
-            this.labelControl21.Location = new System.Drawing.Point(19, 14);
-            this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(120, 14);
-            this.labelControl21.TabIndex = 33;
-            this.labelControl21.Text = "合同编号是批次的编号";
             // 
             // frmCLRKYSEdit
             // 
