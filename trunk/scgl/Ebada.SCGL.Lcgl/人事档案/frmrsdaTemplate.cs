@@ -23,10 +23,22 @@ namespace Ebada.Scgl.Lcgl
         string filename = "";
         string filepath = Path.GetTempPath();
         PJ_ryda _pjobject;
-
+        string _type = "";
         public frmrsdaTemplate()
         {
             InitializeComponent();
+        }
+        public string strType
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                _type = value;
+                barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
         }
         public PJ_ryda pjobject
         {
@@ -49,7 +61,7 @@ namespace Ebada.Scgl.Lcgl
                     // dsoFramerControl1.FileSave(filename, true);
                     //dsoFramerControl1.FileName = filename;
                    dsoFramerControl1.FileSave();
-                    pjobject.BigData = dsoFramerControl1.FileData;
+                    pjobject.BigData = dsoFramerControl1.FileDataGzip ;
                     Client.ClientHelper.PlatformSqlMap.Update<PJ_ryda>(pjobject);
                 }
                 catch (System.Exception ex)
@@ -158,11 +170,14 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            dsoFramerControl1.FileSave();
-            pjobject.BigData = dsoFramerControl1.FileData;
-            dsoFramerControl1.FileClose();
-            dsoFramerControl1.Dispose();
-            dsoFramerControl1 = null;
+            if (_type != "")
+            {
+                dsoFramerControl1.FileSave();
+                pjobject.BigData = dsoFramerControl1.FileDataGzip ;
+                dsoFramerControl1.FileClose();
+                dsoFramerControl1.Dispose();
+                dsoFramerControl1 = null;
+            }
             this.DialogResult = DialogResult.OK;
         }
 
