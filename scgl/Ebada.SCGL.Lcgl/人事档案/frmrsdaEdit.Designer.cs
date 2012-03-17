@@ -197,7 +197,7 @@
             this.MinimizeBox = false;
             this.Name = "frmrsdaEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "人事档案";
+            this.Text = "安规档案";
             this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);

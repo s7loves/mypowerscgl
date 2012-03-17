@@ -168,7 +168,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "frmrsdaTemplate";
-            this.Text = "人事档案查询";
+            this.Text = "安规档案查询";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm26Template_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm24Template_FormClosed);
