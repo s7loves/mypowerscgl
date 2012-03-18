@@ -52,6 +52,18 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.teField1 = new DevExpress.XtraEditors.TextEdit();
+            this.ceField1 = new DevExpress.XtraEditors.CheckEdit();
+            this.cbeFieldRule1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbeField1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.teField3 = new DevExpress.XtraEditors.TextEdit();
+            this.teField2 = new DevExpress.XtraEditors.TextEdit();
+            this.ceField3 = new DevExpress.XtraEditors.CheckEdit();
+            this.ceField2 = new DevExpress.XtraEditors.CheckEdit();
+            this.cbeFieldRule3 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbeFieldRule2 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbeField3 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbeField2 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -69,6 +81,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceField1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeFieldRule1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeField1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceField3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceField2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeFieldRule3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeFieldRule2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeField3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeField2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -83,6 +107,18 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.teField3);
+            this.panelControl1.Controls.Add(this.teField2);
+            this.panelControl1.Controls.Add(this.ceField3);
+            this.panelControl1.Controls.Add(this.ceField2);
+            this.panelControl1.Controls.Add(this.cbeFieldRule3);
+            this.panelControl1.Controls.Add(this.cbeFieldRule2);
+            this.panelControl1.Controls.Add(this.cbeField3);
+            this.panelControl1.Controls.Add(this.cbeField2);
+            this.panelControl1.Controls.Add(this.teField1);
+            this.panelControl1.Controls.Add(this.ceField1);
+            this.panelControl1.Controls.Add(this.cbeFieldRule1);
+            this.panelControl1.Controls.Add(this.cbeField1);
             this.panelControl1.Controls.Add(this.barFJLY);
             this.panelControl1.Controls.Add(this.TaskOverButton);
             this.panelControl1.Controls.Add(this.comboBoxEdit2);
@@ -124,16 +160,16 @@
             // 
             // comboBoxEdit2
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(332, 79);
+            this.comboBoxEdit2.Location = new System.Drawing.Point(111, 46);
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(137, 21);
+            this.comboBoxEdit2.Size = new System.Drawing.Size(149, 21);
             this.comboBoxEdit2.TabIndex = 48;
             // 
             // comboBoxEdit3
             // 
-            this.comboBoxEdit3.Location = new System.Drawing.Point(111, 33);
+            this.comboBoxEdit3.Location = new System.Drawing.Point(111, 10);
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -143,7 +179,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(278, 82);
+            this.labelControl3.Location = new System.Drawing.Point(45, 49);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(24, 14);
             this.labelControl3.TabIndex = 41;
@@ -151,7 +187,7 @@
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(45, 36);
+            this.labelControl7.Location = new System.Drawing.Point(45, 13);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(24, 14);
             this.labelControl7.TabIndex = 44;
@@ -159,7 +195,7 @@
             // 
             // comboBoxEdit1
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(111, 79);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(378, 10);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -169,7 +205,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(45, 82);
+            this.labelControl8.Location = new System.Drawing.Point(312, 13);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(24, 14);
             this.labelControl8.TabIndex = 42;
@@ -310,6 +346,123 @@
             this.gridColumn5.FieldName = "ID";
             this.gridColumn5.Name = "gridColumn5";
             // 
+            // teField1
+            // 
+            this.teField1.Location = new System.Drawing.Point(379, 81);
+            this.teField1.Name = "teField1";
+            this.teField1.Size = new System.Drawing.Size(149, 21);
+            this.teField1.TabIndex = 59;
+            // 
+            // ceField1
+            // 
+            this.ceField1.Location = new System.Drawing.Point(25, 81);
+            this.ceField1.Name = "ceField1";
+            this.ceField1.Properties.Caption = "字段名称1";
+            this.ceField1.Size = new System.Drawing.Size(78, 19);
+            this.ceField1.TabIndex = 58;
+            // 
+            // cbeFieldRule1
+            // 
+            this.cbeFieldRule1.EditValue = "包含";
+            this.cbeFieldRule1.Location = new System.Drawing.Point(276, 83);
+            this.cbeFieldRule1.Name = "cbeFieldRule1";
+            this.cbeFieldRule1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbeFieldRule1.Properties.Items.AddRange(new object[] {
+            "包含",
+            "不包含"});
+            this.cbeFieldRule1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeFieldRule1.Size = new System.Drawing.Size(88, 21);
+            this.cbeFieldRule1.TabIndex = 57;
+            // 
+            // cbeField1
+            // 
+            this.cbeField1.Location = new System.Drawing.Point(112, 81);
+            this.cbeField1.Name = "cbeField1";
+            this.cbeField1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbeField1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeField1.Size = new System.Drawing.Size(149, 21);
+            this.cbeField1.TabIndex = 56;
+            // 
+            // teField3
+            // 
+            this.teField3.Location = new System.Drawing.Point(379, 144);
+            this.teField3.Name = "teField3";
+            this.teField3.Size = new System.Drawing.Size(149, 21);
+            this.teField3.TabIndex = 67;
+            // 
+            // teField2
+            // 
+            this.teField2.Location = new System.Drawing.Point(379, 113);
+            this.teField2.Name = "teField2";
+            this.teField2.Size = new System.Drawing.Size(148, 21);
+            this.teField2.TabIndex = 66;
+            // 
+            // ceField3
+            // 
+            this.ceField3.Location = new System.Drawing.Point(28, 145);
+            this.ceField3.Name = "ceField3";
+            this.ceField3.Properties.Caption = "字段名称3";
+            this.ceField3.Size = new System.Drawing.Size(77, 19);
+            this.ceField3.TabIndex = 65;
+            // 
+            // ceField2
+            // 
+            this.ceField2.Location = new System.Drawing.Point(27, 113);
+            this.ceField2.Name = "ceField2";
+            this.ceField2.Properties.Caption = "字段名称2";
+            this.ceField2.Size = new System.Drawing.Size(76, 19);
+            this.ceField2.TabIndex = 64;
+            // 
+            // cbeFieldRule3
+            // 
+            this.cbeFieldRule3.EditValue = "包含";
+            this.cbeFieldRule3.Location = new System.Drawing.Point(276, 144);
+            this.cbeFieldRule3.Name = "cbeFieldRule3";
+            this.cbeFieldRule3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbeFieldRule3.Properties.Items.AddRange(new object[] {
+            "包含",
+            "不包含"});
+            this.cbeFieldRule3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeFieldRule3.Size = new System.Drawing.Size(88, 21);
+            this.cbeFieldRule3.TabIndex = 60;
+            // 
+            // cbeFieldRule2
+            // 
+            this.cbeFieldRule2.EditValue = "包含";
+            this.cbeFieldRule2.Location = new System.Drawing.Point(276, 112);
+            this.cbeFieldRule2.Name = "cbeFieldRule2";
+            this.cbeFieldRule2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbeFieldRule2.Properties.Items.AddRange(new object[] {
+            "包含",
+            "不包含"});
+            this.cbeFieldRule2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeFieldRule2.Size = new System.Drawing.Size(88, 21);
+            this.cbeFieldRule2.TabIndex = 61;
+            // 
+            // cbeField3
+            // 
+            this.cbeField3.Location = new System.Drawing.Point(111, 144);
+            this.cbeField3.Name = "cbeField3";
+            this.cbeField3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbeField3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeField3.Size = new System.Drawing.Size(149, 21);
+            this.cbeField3.TabIndex = 62;
+            // 
+            // cbeField2
+            // 
+            this.cbeField2.Location = new System.Drawing.Point(111, 112);
+            this.cbeField2.Name = "cbeField2";
+            this.cbeField2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbeField2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeField2.Size = new System.Drawing.Size(149, 21);
+            this.cbeField2.TabIndex = 63;
+            // 
             // UCrsdaInquiry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -338,6 +491,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceField1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeFieldRule1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeField1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceField3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceField2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeFieldRule3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeFieldRule2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeField3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeField2.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -368,6 +533,18 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraEditors.TextEdit teField1;
+        private DevExpress.XtraEditors.CheckEdit ceField1;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeFieldRule1;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeField1;
+        private DevExpress.XtraEditors.TextEdit teField3;
+        private DevExpress.XtraEditors.TextEdit teField2;
+        private DevExpress.XtraEditors.CheckEdit ceField3;
+        private DevExpress.XtraEditors.CheckEdit ceField2;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeFieldRule3;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeFieldRule2;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeField3;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeField2;
 
     }
 }
