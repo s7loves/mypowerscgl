@@ -438,7 +438,7 @@ namespace Ebada.Scgl.Lcgl
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
-            if (_type != ""&&_type!=null)
+            if (_type != "")
             {
                 btn_Submit.Text = "提交";
                 btn_Submit.Click += new EventHandler(btn_Submit_Click);
@@ -1714,7 +1714,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 for (int i = 0; i < arrRst.Length; i++)
                 {
-
+                   
                     ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
                     if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
                     {

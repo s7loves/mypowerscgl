@@ -118,7 +118,6 @@ namespace Ebada.Scgl.Lcgl
         {
             string strSQL = "where 1=1 ";
             int i = 0;
-
             
             WaitDialogForm wdf = new WaitDialogForm("", "正在查询数据...");
             try
@@ -129,6 +128,9 @@ namespace Ebada.Scgl.Lcgl
                     strSQL += " and wdlx='" + comboBoxEdit2.Text + "' ";
                 if (comboBoxEdit3.Text != "")
                     strSQL += " and orgname='" + comboBoxEdit3.Text + "' ";
+                GetckField(ref strSQL, ceField1, cbeField1, cbeFieldRule1, teField1);
+                GetckField(ref strSQL, ceField2, cbeField2, cbeFieldRule2, teField2);
+                GetckField(ref strSQL, ceField3, cbeField3, cbeFieldRule3, teField3);
                 IList<PJ_ryda> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_ryda>(strSQL);
                 DataTable dt = new DataTable();
                 dt.Columns.Add("wdmc");
@@ -154,7 +156,33 @@ namespace Ebada.Scgl.Lcgl
             
             wdf.Close();
         }
+        private void GetckField(ref string strSQL, CheckEdit ceField, ComboBoxEdit cbeField, ComboBoxEdit cbeFieldRule, TextEdit teField)
+        {
+            string strname = "";
+            int index = 0;
+            if (ceField.Checked)
+            {
+                index = cbeField.SelectedIndex;
 
+
+                if (cbeFieldRule.Text == "包含")
+                {
+                    strSQL = strSQL + " and  ID in  ( select RecordId from WF_TableFieldValue where 1=1"
+                     + " and WorkTaskId='安规电子档案' and WorkTaskInsId='安规电子档案' "
+                     + "  and  FieldName='" + ((ListItem)cbeField.SelectedItem).ValueMember + "' and ControlValue like '%" + teField.Text + "%'"
+                      + ") ";
+                }
+                else if (cbeFieldRule.Text == "不包含")
+                {
+                    strSQL = strSQL + " and  ID  not in  ( select RecordId from WF_TableFieldValue where 1=1"
+                    + " and WorkTaskId='安规电子档案' and WorkTaskInsId='安规电子档案' "
+                     + "  and   FieldName='" + ((ListItem)cbeField.SelectedItem).ValueMember + "' and ControlValue  like '%" + teField.Text + "%'"
+                     + " ) ";
+                }
+               
+            }
+
+        }
 
         private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
         {
@@ -191,7 +219,18 @@ namespace Ebada.Scgl.Lcgl
              mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                 "select distinct OrgName  from mOrg where 1=1  and OrgName!='' ");
              comboBoxEdit3.Properties.Items.AddRange(mclist);
+             string strSQL = "SELECT distinct FieldName from WF_TableFieldValue where WorkTaskId='安规电子档案' and WorkTaskInsId='安规电子档案'";
+             mclist = MainHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+             foreach (string strfield in mclist)
+             {
+                 if (strfield == null) continue;
 
+                 ListItem item = new ListItem(strfield, strfield);
+                 cbeField1.Properties.Items.Add(item);
+                 cbeField2.Properties.Items.Add(item);
+                 cbeField3.Properties.Items.Add(item);
+                 
+             }
         }
 
         private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
