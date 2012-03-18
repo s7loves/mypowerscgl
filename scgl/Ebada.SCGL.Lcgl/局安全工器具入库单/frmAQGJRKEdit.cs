@@ -34,6 +34,9 @@ namespace Ebada.Scgl.Lcgl
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "wpdj");;
             this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "zkcsl");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "indate");
+            this.dateEdit2.DataBindings.Add("EditValue", rowData, "scsydate");
+            this.spinEdit3.DataBindings.Add("EditValue", rowData, "syzq");
+            this.spinEdit4.DataBindings.Add("EditValue", rowData, "synx");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
 

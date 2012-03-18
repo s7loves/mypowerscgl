@@ -521,6 +521,9 @@ namespace Ebada.Scgl.Lcgl
                 slkd.OrgCode = ckd.OrgCode;
                 slkd.ckdate = new DateTime(1900, 1, 1);
                 slkd.kcsl = ckd.cksl;
+                slkd.synx = ckd.synx;
+                slkd.syzq = ckd.syzq;
+                slkd.scsydate = ckd.scsydate;
                 pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
                          <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='所安全工器具入库单' and orgname='" + ckd.OrgName + "'   order by id desc  ");
                 if (mclist.Count > 0 && mclist[0] != null)
