@@ -630,6 +630,8 @@ namespace Ebada.Scgl.Yxgl
                                 + " and   UserControlId='" + wfv.UserControlId + "'"
                                 + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
                                 + " and   FieldId='" + wfv.FieldId + "'"
+                                + " and   XExcelPos='" + wfv.XExcelPos + "'"
+                                + " and   YExcelPos='" + wfv.YExcelPos + "'"
                                 + " and WorkTaskInsId='20低压设备完好率及台区网络图'");
                            wfv.ID = wtfvtemp.ID;
                         }
