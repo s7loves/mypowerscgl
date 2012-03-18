@@ -128,7 +128,7 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_ryda>(gridControl1, gridView1, barManager1, new frmrsdaEdit());
+            gridViewOperation = new GridViewOperation<PJ_ryda>(gridControl1, gridView1, barManager1, new frmrsdaTemplate());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_ryda>(gridViewOperation_BeforeAdd);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PJ_ryda>(gridViewOperation_BeforeUpdate);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
@@ -242,9 +242,9 @@ namespace Ebada.Scgl.Lcgl
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
             //RefreshData("");
-            if (MainHelper.UserOrg != null)
+            //if (MainHelper.UserOrg != null)
             {
-                string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' ";
+                string strSQL = "where OrgCode='" + parentID + "' ";
                 RefreshData(strSQL);
             }
         }
@@ -347,12 +347,12 @@ namespace Ebada.Scgl.Lcgl
             if (gridView1.FocusedRowHandle > -1)
             {
                 frmrsdaTemplate frm = new frmrsdaTemplate();
-                frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_ryda;
+                frm.RowData  = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_ryda;
                 frm.strType = "1";
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    Client.ClientHelper.PlatformSqlMap.Update<PJ_ryda>(frm.pjobject);
-                    MessageBox.Show("保存成功");
+                    //Client.ClientHelper.PlatformSqlMap.Update<PJ_ryda>(frm.RowData);
+                    //MessageBox.Show("保存成功");
                 }
             }
             
@@ -518,7 +518,60 @@ namespace Ebada.Scgl.Lcgl
 
         private void btEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (gridView1.FocusedRowHandle < 0)
+            {
+                return;
+            }
+            PJ_ryda pj = gridView1.GetFocusedRow() as PJ_ryda;
+            frmrsdaTemplate frm = new frmrsdaTemplate();
+            frm.CurrRecord = pj;
+            frm.RowData = pj;
+            frm.Status = "edit";
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
 
+               
+            }
+            InitData();
+        }
+
+        private void btAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PJ_ryda newobj = new PJ_ryda();
+            if (parentID == null) return;
+            newobj.OrgCode = parentObj.OrgCode;
+            newobj.OrgName = parentObj.OrgName;
+            if (parentID != null)
+            {
+                newobj.OrgCode = parentObj.OrgCode;
+                newobj.OrgName = parentObj.OrgName;
+            }
+            newobj.CreateDate = DateTime.Now;
+            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            newobj.CreateMan = m_UserBase.RealName;
+            frmrsdaTemplate frm = new frmrsdaTemplate();
+            frm.CurrRecord = newobj;
+            frm.RowData = newobj;
+            frm.Status = "add";
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+
+                if (isWorkflowCall)
+                {
+                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ModleRecordID = newobj.ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.ModleTableName = newobj.GetType().ToString();
+                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                    MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+                }
+            }
+            InitData();
         }
     }
 }

@@ -164,7 +164,9 @@ namespace Ebada.Scgl.Lcgl
             DataRow dr = gridView1.GetDataRow(ihand);
             PJ_ryda ry = MainHelper.PlatformSqlMap.GetOneByKey<PJ_ryda>(dr["ID"]);
             frmrsdaTemplate frm = new frmrsdaTemplate();
-            frm.pjobject = ry;
+            frm.RowData  = ry;
+            frm.strType = "";
+            frm.Text ="安规电子档案"+"-"+ ry.wdmc;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 
