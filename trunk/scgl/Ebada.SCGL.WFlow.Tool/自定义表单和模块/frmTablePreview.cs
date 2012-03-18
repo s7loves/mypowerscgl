@@ -377,8 +377,8 @@ namespace Ebada.SCGL.WFlow.Tool
       
         void btn_Submit_Click(object sender, EventArgs e)
         {
-            dsoFramerWordControl1.FileSave();
-            dsoFramerWordControl1.FileClose();
+            //dsoFramerWordControl1.FileSave();
+            //dsoFramerWordControl1.FileClose();
             this.DialogResult = DialogResult.OK;
         }
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)

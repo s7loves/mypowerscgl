@@ -320,6 +320,7 @@ namespace Ebada.Scgl.Lcgl
             }
             dsoFramerWordControl1.FileSave();
             currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+            parentTemple.DocContent = dsoFramerWordControl1.FileDataGzip;
             currRecord.Kind = kind;
             currRecord.Content = GetContent();
             if (ctrlNumber != null)
@@ -327,12 +328,7 @@ namespace Ebada.Scgl.Lcgl
             //currRecord.ImageAttachment = bt;
             //currRecord.SignImg = bt;
             currRecord.LastChangeTime = DateTime.Now.ToString();
-            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
-            {
-                
-                RecordWorkTask.CreatRiZhi(WorkFlowData, dsoFramerWordControl1, currRecord.ID, currRecord);
-
-            }
+            
             string strmes = "";
             WF_WorkTaskCommands wt;
 
