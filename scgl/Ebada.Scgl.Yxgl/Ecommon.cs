@@ -114,18 +114,31 @@ namespace Ebada.Scgl.Yxgl
 
                  }
              }
-             //寻找标点是否在第一个 则加到上一个字符中
-             for (int i = 1; i < RList.Count;i++ )
-             {
-                 if (RList[i].Substring(0, 1) == "，" || RList[i].Substring(0, 1) == "。")
-                 {
-                     RList[i - 1] += RList[i].Substring(0, 1);
-                     RList[i].Remove(0, 1);
-                 }
-             }
+             ////寻找标点是否在第一个 则加到上一个字符中
+             //for (int i = 1; i < RList.Count;i++ )
+             //{
+             //    if (RList[i].Substring(0, 1) == "，" || RList[i].Substring(0, 1) == "。")
+             //    {
+             //        RList[i - 1] += RList[i].Substring(0, 1);
+             //        RList[i].Remove(0, 1);
+             //    }
+             //}
              return RList;
            
  
+        }
+        //寻找标点是否在第一个 则加到上一个字符中
+        public static void Resultstrbystartbd(ref List<string> RList)
+        {
+            for (int i = 1; i < RList.Count; i++)
+            {
+                if (RList[i].Substring(0, 1) == "，" || RList[i].Substring(0, 1) == "。")
+                {
+                    RList[i - 1] += RList[i].Substring(0, 1);
+                    RList[i] = RList[i].Substring(1);
+                }
+            }
+            
         }
         /// <summary>
         /// 根据给定条件截取字符串（可解决换页问题）
@@ -189,7 +202,7 @@ namespace Ebada.Scgl.Yxgl
                     }
                 }
             }
-
+            Resultstrbystartbd(ref RList);
             return RList;
         }
         /// <summary>
