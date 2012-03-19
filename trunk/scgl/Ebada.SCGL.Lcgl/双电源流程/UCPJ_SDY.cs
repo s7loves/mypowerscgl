@@ -319,11 +319,11 @@ namespace Ebada.Scgl.Lcgl
            
         }
 
-        private void barExplorMonth_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ExportTDJH etdjh = new ExportTDJH();
-            etdjh.ExportExcelMonth(parentObj.OrgCode);
-        }
+        //private void barExplorMonth_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        //{
+        //    ExportTDJH etdjh = new ExportTDJH();
+        //    etdjh.ExportExcelMonth(parentObj.OrgCode);
+        //}
 
         private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

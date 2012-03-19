@@ -313,7 +313,12 @@ namespace Ebada.Scgl.Lcgl
         private void barExplorMonth_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ExportTDJH etdjh = new ExportTDJH();
-            etdjh.ExportExcelMonth(parentObj.OrgCode);
+            frmTDJHMonthSet fms = new frmTDJHMonthSet();
+            if (fms.ShowDialog() == DialogResult.OK)
+            {
+                fms.dtTime = fms.dtTime.AddMonths(-1);
+                etdjh.ExportExcelMonth(fms.dtTime,parentObj.OrgCode);
+            }
         }
 
         private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -326,23 +331,27 @@ namespace Ebada.Scgl.Lcgl
             else
                 fm.Status = "edit";
             fm.Kind = currRecord.Kind;
-            ExportTDJH export = new ExportTDJH();
-            export.CurrRecord = currRecord;
-            export.IsWorkflowCall = isWorkflowCall;
-            export.ParentTemple = parentTemple;
-            export.RecordWorkFlowData = WorkFlowData;
-
-            export.ExportExcelSubmit(ref parentTemple,  parentID, false);
-           
-            fm.ParentTemple = parentTemple;
-            if (fm.ShowDialog() == DialogResult.OK)
+            frmTDJHMonthSet fms = new frmTDJHMonthSet();
+            if (fms.ShowDialog() == DialogResult.OK)
             {
+                ExportTDJH export = new ExportTDJH();
+                export.CurrRecord = currRecord;
+                export.IsWorkflowCall = isWorkflowCall;
+                export.ParentTemple = parentTemple;
+                export.RecordWorkFlowData = WorkFlowData;
 
-                if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
-                else
-                    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
-                gridControl1.FindForm().Close();
+                fms.dtTime = fms.dtTime.AddMonths(-1);
+                export.ExportExcelSubmit(fms.dtTime  ,ref parentTemple, parentID, false);
+
+                fm.ParentTemple = parentTemple;
+                if (fm.ShowDialog() == DialogResult.OK)
+                {
+                    if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(fms.dtTime, parentID);
+                    else
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(fms.dtTime, parentID);
+                    gridControl1.FindForm().Close();
+                }
             }
         }
 

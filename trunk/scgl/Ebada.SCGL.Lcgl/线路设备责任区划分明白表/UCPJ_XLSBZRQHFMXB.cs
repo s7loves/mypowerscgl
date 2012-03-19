@@ -354,40 +354,15 @@ namespace Ebada.Scgl.Lcgl
            
         }
 
-        private void barExplorMonth_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ExportTDJH etdjh = new ExportTDJH();
-            etdjh.ExportExcelMonth(parentObj.OrgCode);
-        }
+        //private void barExplorMonth_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        //{
+        //    ExportTDJH etdjh = new ExportTDJH();
+        //    etdjh.ExportExcelMonth(parentObj.OrgCode);
+        //}
 
         private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmModleSubmit fm = new frmModleSubmit();
-            fm.RecordWorkFlowData = WorkFlowData;
-            fm.CurrRecord = currRecord;
-            if (currRecord.Status == "申报")
-                fm.Status = "add";
-            else
-                fm.Status = "edit";
-            fm.Kind = currRecord.Kind;
-            ExportTDJH export = new ExportTDJH();
-            export.CurrRecord = currRecord;
-            export.IsWorkflowCall = isWorkflowCall;
-            export.ParentTemple = parentTemple;
-            export.RecordWorkFlowData = WorkFlowData;
-
-            export.ExportExcelSubmit(ref parentTemple,  parentID, false);
-           
-            fm.ParentTemple = parentTemple;
-            if (fm.ShowDialog() == DialogResult.OK)
-            {
-
-                if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
-                else
-                    export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
-                gridControl1.FindForm().Close();
-            }
+         
         }
 
         private void liuchenBarClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
