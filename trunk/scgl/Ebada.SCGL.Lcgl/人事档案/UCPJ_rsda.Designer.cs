@@ -216,7 +216,7 @@
             // 
             // barButtonItem1
             // 
-            this.barButtonItem1.Caption = "打开";
+            this.barButtonItem1.Caption = "批量导入";
             this.barButtonItem1.Id = 16;
             this.barButtonItem1.ImageIndex = 3;
             this.barButtonItem1.Name = "barButtonItem1";
