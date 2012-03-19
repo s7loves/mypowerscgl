@@ -23,6 +23,9 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Scgl.WFlow;
 using System.IO;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Threading;
+using DevExpress.XtraEditors.Repository;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -135,8 +138,17 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_ryda>(gridViewOperation_AfterAdd);
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_ryda>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_ryda>(gridViewOperation_AfterDelete);
         }
-
+        void gridViewOperation_AfterDelete(PJ_ryda newobj)
+        {
+            MainHelper.PlatformSqlMap.DeleteByWhere <WF_TableFieldValue>(" where    1=1 "
+                                + " and   RecordId='" + newobj.ID  + "'"
+                                + " and   WorkFlowId='" + newobj.ID + "'"
+                                + " and   WorkFlowInsId='" + newobj.wdmc + "'"
+                                + " and   WorkTaskId='安规电子档案'"
+                                + " and WorkTaskInsId='安规电子档案'");
+        }
         void gridViewOperation_AfterAdd(PJ_ryda newobj)
         {
             if (isWorkflowCall)
@@ -193,7 +205,17 @@ namespace Ebada.Scgl.Lcgl
             InitColumns();//初始列
             InitData();//初始数据
             if (this.Site != null) return;
-            btGdsList.Edit = DicTypeHelper.GdsDic;
+            RepositoryItem gdsDic2=new RepositoryItem ();
+            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>(" where 1=1 order by OrgCode");
+                IList<DicType> dic = new List<DicType>();
+                dic.Add(new DicType("0", "所有单位"));
+                foreach (mOrg gds in list)
+                {
+                    dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                }
+                gdsDic2 = new LookUpDicType(dic);
+            
+            btGdsList.Edit = gdsDic2;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
             {//如果是供电所人员，则锁定
@@ -341,23 +363,369 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         }
-
+        /// <summary>
+        /// 获得Excel的表格数字位置，去掉字母
+        /// </summary>
+        /// <param name="cellpos">Excel的表格位置</param>
+        /// <returns>Excel的表格数字位置</returns>
+        public static int[] GetCellPos(string cellpos)
+        {
+            cellpos = cellpos.Replace("|", "");
+            return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
+        }
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (gridView1.FocusedRowHandle > -1)
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "请选择文件路径";
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                frmrsdaTemplate frm = new frmrsdaTemplate();
-                frm.RowData  = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_ryda;
-                frm.strType = "1";
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    //Client.ClientHelper.PlatformSqlMap.Update<PJ_ryda>(frm.RowData);
-                    //MessageBox.Show("保存成功");
-                }
+            ///循环判断当前目录下的文件和目录
+            DSOFramerControl ds1 = new DSOFramerControl();
+
+                string filepath = dialog.SelectedPath;
+                GetFileList(ds1, filepath);
+                ds1.FileSave();
+                ds1.FileClose();
+                ds1.Dispose();
+                if (parentObj!=null)
+                RefreshData( "where OrgCode ='" + parentObj.OrgCode    + "'");
             }
-            
         }
 
+        private void GetFileList(DSOFramerControl ds1, string strCurDir)
+        {
+
+            DirectoryInfo dir;
+            ///针对当前目录建立目录引用对象
+            DirectoryInfo dirInfo = new DirectoryInfo(strCurDir);
+            foreach (FileSystemInfo fsi in dirInfo.GetFileSystemInfos())
+            {
+                if (fsi is FileInfo)
+                {
+
+                    if (fsi.Extension.IndexOf(".xls") < 0) continue;
+                    string filename = fsi.FullName;
+                    ds1.FileOpen(filename);
+                    IList<LP_Temple> templeList = new List<LP_Temple>();
+                    LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CellName like '%安规电子档案%'");
+                    if (parentTemple != null) templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
+                        "where ParentID ='" + parentTemple.LPID + "' order by SortID");
+                    Excel.Worksheet xx = null;
+                    Excel.Workbook wb = ds1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                    Excel.Worksheet sheet = wb.Application.Sheets[1] as Excel.Worksheet;
+                    PJ_ryda currRecord = new PJ_ryda();
+                    currRecord.CreateDate = DateTime.Now;
+                    currRecord.BigData = ds1.FileDataGzip;
+                    Excel.Range range;
+                    WF_TableFieldValue wfv;
+                    int i = 0;
+
+                    foreach (LP_Temple lp in templeList)
+                    {
+                        string[] arrCellPos = lp.CellPos.Split('|');
+                        arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
+                        if (lp.CtrlType.Contains("uc_gridcontrol"))
+                        {
+                            if (lp.CellName.IndexOf("培训情况") > -1)
+                            {
+                                for (i = 0; i < 6; i++)
+                                {
+                                    range = sheet.get_Range(sheet.Cells[11 + i, 1], sheet.Cells[11 + i, 1]);//坐标
+                                    if (range.Value2 != null && range.Value2.ToString() != "")
+                                    {
+                                        wfv = new WF_TableFieldValue();
+                                        wfv.ID = wfv.CreateID();
+                                        wfv.RecordId = currRecord.ID;
+                                        wfv.WorkFlowId = currRecord.ID;
+                                        wfv.WorkFlowInsId = currRecord.wdmc;
+                                        wfv.WorkTaskId = "安规电子档案";
+                                        wfv.WorkTaskInsId = "安规电子档案";
+                                        wfv.UserControlId = parentTemple.LPID;
+                                        wfv.XExcelPos = GetCellPos(arrCellPos[0])[0];
+                                        wfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
+                                        wfv.FieldId = lp.LPID;
+                                        wfv.FieldName = lp.CellName + "-" + "培训时间1";
+                                        wfv.ExcelSheetName = lp.KindTable;
+                                        if (range.Value2 != null)
+                                            wfv.ControlValue = range.Value2.ToString();
+                                        if (wfv.ControlValue != "" && wfv.FieldName.IndexOf("时间") > 0)
+                                        {
+                                            wfv.ControlValue = range.Value2.ToString().Replace(".", "-");
+                                            DateTime dt = Convert.ToDateTime(wfv.ControlValue);
+                                            wfv.ControlValue = dt.ToString("yyyy年MM月dd日");
+                                        }
+                                        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+
+                                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+
+                                        range = sheet.get_Range(sheet.Cells[11 + i, 2], sheet.Cells[11 + i, 2]);//坐标
+                                        wfv = new WF_TableFieldValue();
+                                        wfv.ID = wfv.CreateID();
+                                        wfv.RecordId = currRecord.ID;
+                                        wfv.WorkFlowId = currRecord.ID;
+                                        wfv.WorkFlowInsId = currRecord.wdmc;
+                                        wfv.WorkTaskId = "安规电子档案";
+                                        wfv.WorkTaskInsId = "安规电子档案";
+                                        wfv.UserControlId = parentTemple.LPID;
+                                        wfv.XExcelPos = GetCellPos(arrCellPos[1])[0];
+                                        wfv.YExcelPos = GetCellPos(arrCellPos[1])[1];
+                                        wfv.FieldId = lp.LPID;
+                                        wfv.FieldName = lp.CellName + "-" + "培训类别1";
+                                        wfv.ExcelSheetName = lp.KindTable;
+                                        if (range.Value2 != null)
+                                            wfv.ControlValue = range.Value2.ToString();
+                                        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                                    }
+
+                                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+
+                                    range = sheet.get_Range(sheet.Cells[11 + i, 3], sheet.Cells[11 + i, 3]);//坐标
+                                    if (range.Value2 != null && range.Value2.ToString() != "")
+                                    {
+                                        wfv = new WF_TableFieldValue();
+                                        wfv.ID = wfv.CreateID();
+                                        wfv.RecordId = currRecord.ID;
+                                        wfv.WorkFlowId = currRecord.ID;
+                                        wfv.WorkFlowInsId = currRecord.wdmc;
+                                        wfv.WorkTaskId = "安规电子档案";
+                                        wfv.WorkTaskInsId = "安规电子档案";
+                                        wfv.UserControlId = parentTemple.LPID;
+                                        wfv.XExcelPos = GetCellPos(arrCellPos[2])[0];
+                                        wfv.YExcelPos = GetCellPos(arrCellPos[2])[1];
+                                        wfv.FieldId = lp.LPID;
+                                        wfv.FieldName = lp.CellName + "-" + "培训时间2";
+                                        wfv.ExcelSheetName = lp.KindTable;
+                                        if (range.Value2 != null)
+                                            wfv.ControlValue = range.Value2.ToString();
+                                        if (wfv.ControlValue != "" && wfv.FieldName.IndexOf("时间") > 0)
+                                        {
+                                            wfv.ControlValue = range.Value2.ToString().Replace(".", "-");
+                                            DateTime dt = Convert.ToDateTime(wfv.ControlValue);
+                                            wfv.ControlValue = dt.ToString("yyyy年MM月dd日");
+                                        }
+
+                                        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+
+                                        range = sheet.get_Range(sheet.Cells[11 + i, 4], sheet.Cells[11 + i, 4]);//坐标
+                                        wfv = new WF_TableFieldValue();
+                                        wfv.ID = wfv.CreateID();
+                                        wfv.RecordId = currRecord.ID;
+                                        wfv.WorkFlowId = currRecord.ID;
+                                        wfv.WorkFlowInsId = currRecord.wdmc;
+                                        wfv.WorkTaskId = "安规电子档案";
+                                        wfv.WorkTaskInsId = "安规电子档案";
+                                        wfv.UserControlId = parentTemple.LPID;
+                                        wfv.XExcelPos = GetCellPos(arrCellPos[3])[0];
+                                        wfv.YExcelPos = GetCellPos(arrCellPos[3])[1];
+                                        wfv.FieldId = lp.LPID;
+                                        wfv.FieldName = lp.CellName + "-" + "培训类别2";
+                                        wfv.ExcelSheetName = lp.KindTable;
+                                        if (range.Value2 != null)
+                                            wfv.ControlValue = range.Value2.ToString();
+                                        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                                    }
+                                }
+                            }
+                            else if (lp.CellName.IndexOf("考试情况") > -1)
+                            {
+                                for (i = 0; i < 12; i++)
+                                {
+                                    range = sheet.get_Range(sheet.Cells[19 + i, 1], sheet.Cells[19 + i, 1]);//坐标
+                                    if (range.Value2 != null && range.Value2.ToString() != "")
+                                    {
+
+                                        wfv = new WF_TableFieldValue();
+                                        wfv.ID = wfv.CreateID();
+                                        wfv.RecordId = currRecord.ID;
+                                        wfv.WorkFlowId = currRecord.ID;
+                                        wfv.WorkFlowInsId = currRecord.wdmc;
+                                        wfv.WorkTaskId = "安规电子档案";
+                                        wfv.WorkTaskInsId = "安规电子档案";
+                                        wfv.UserControlId = parentTemple.LPID;
+                                        wfv.XExcelPos = GetCellPos(arrCellPos[0])[0];
+                                        wfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
+                                        wfv.FieldId = lp.LPID;
+                                        wfv.FieldName = lp.CellName + "-" + "考试时间";
+                                        wfv.ExcelSheetName = lp.KindTable;
+                                        if (range.Value2 != null)
+                                            wfv.ControlValue = range.Value2.ToString();
+                                        if (wfv.ControlValue != "" && wfv.FieldName.IndexOf("时间") > 0)
+                                        {
+                                            wfv.ControlValue = range.Value2.ToString().Replace(".", "-");
+                                            DateTime dt = Convert.ToDateTime(wfv.ControlValue);
+                                            wfv.ControlValue = dt.ToString("yyyy年MM月dd日");
+                                        }
+                                        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+
+                                        range = sheet.get_Range(sheet.Cells[19 + i, 2], sheet.Cells[19 + i, 2]);//坐标
+                                        wfv = new WF_TableFieldValue();
+                                        wfv.ID = wfv.CreateID();
+                                        wfv.RecordId = currRecord.ID;
+                                        wfv.WorkFlowId = currRecord.ID;
+                                        wfv.WorkFlowInsId = currRecord.wdmc;
+                                        wfv.WorkTaskId = "安规电子档案";
+                                        wfv.WorkTaskInsId = "安规电子档案";
+                                        wfv.UserControlId = parentTemple.LPID;
+                                        wfv.XExcelPos = GetCellPos(arrCellPos[1])[0];
+                                        wfv.YExcelPos = GetCellPos(arrCellPos[1])[1];
+                                        wfv.FieldId = lp.LPID;
+                                        wfv.FieldName = lp.CellName + "-" + "考试类别";
+                                        wfv.ExcelSheetName = lp.KindTable;
+                                        if (range.Value2 != null)
+                                            wfv.ControlValue = range.Value2.ToString();
+                                        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+
+
+                                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+
+                                        range = sheet.get_Range(sheet.Cells[19 + i, 3], sheet.Cells[19 + i, 3]);//坐标
+
+                                        wfv = new WF_TableFieldValue();
+                                        wfv.ID = wfv.CreateID();
+                                        wfv.RecordId = currRecord.ID;
+                                        wfv.WorkFlowId = currRecord.ID;
+                                        wfv.WorkFlowInsId = currRecord.wdmc;
+                                        wfv.WorkTaskId = "安规电子档案";
+                                        wfv.WorkTaskInsId = "安规电子档案";
+                                        wfv.UserControlId = parentTemple.LPID;
+                                        wfv.XExcelPos = GetCellPos(arrCellPos[2])[0];
+                                        wfv.YExcelPos = GetCellPos(arrCellPos[2])[1];
+                                        wfv.FieldId = lp.LPID;
+                                        wfv.FieldName = lp.CellName + "-" + "考试成绩";
+                                        wfv.ExcelSheetName = lp.KindTable;
+                                        if (range.Value2 != null)
+                                            wfv.ControlValue = range.Value2.ToString();
+                                        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+
+                                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+
+                                        range = sheet.get_Range(sheet.Cells[19 + i, 4], sheet.Cells[19 + i, 4]);//坐标
+                                        wfv = new WF_TableFieldValue();
+                                        wfv.ID = wfv.CreateID();
+                                        wfv.RecordId = currRecord.ID;
+                                        wfv.WorkFlowId = currRecord.ID;
+                                        wfv.WorkFlowInsId = currRecord.wdmc;
+                                        wfv.WorkTaskId = "安规电子档案";
+                                        wfv.WorkTaskInsId = "安规电子档案";
+                                        wfv.UserControlId = parentTemple.LPID;
+                                        wfv.XExcelPos = GetCellPos(arrCellPos[3])[0];
+                                        wfv.YExcelPos = GetCellPos(arrCellPos[3])[1];
+                                        wfv.FieldId = lp.LPID;
+                                        wfv.FieldName = lp.CellName + "-" + "考试评价";
+                                        wfv.ExcelSheetName = lp.KindTable;
+                                        if (range.Value2 != null)
+                                            wfv.ControlValue = range.Value2.ToString();
+                                        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+
+                                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+
+                                        range = sheet.get_Range(sheet.Cells[19 + i, 5], sheet.Cells[19 + i, 5]);//坐标
+                                        wfv = new WF_TableFieldValue();
+                                        wfv.ID = wfv.CreateID();
+                                        wfv.RecordId = currRecord.ID;
+                                        wfv.WorkFlowId = currRecord.ID;
+                                        wfv.WorkFlowInsId = currRecord.wdmc;
+                                        wfv.WorkTaskId = "安规电子档案";
+                                        wfv.WorkTaskInsId = "安规电子档案";
+                                        wfv.UserControlId = parentTemple.LPID;
+                                        wfv.XExcelPos = GetCellPos(arrCellPos[4])[0];
+                                        wfv.YExcelPos = GetCellPos(arrCellPos[4])[1];
+                                        wfv.FieldId = lp.LPID;
+                                        wfv.FieldName = lp.CellName + "-" + "年检情况";
+                                        wfv.ExcelSheetName = lp.KindTable;
+                                        if (range.Value2 != null)
+                                            wfv.ControlValue = range.Value2.ToString();
+                                        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                                    }
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]], sheet.Cells[GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]]);//坐标
+                            wfv = new WF_TableFieldValue();
+                            wfv.ID = wfv.CreateID();
+                            wfv.RecordId = currRecord.ID;
+                            wfv.WorkFlowId = currRecord.ID;
+                            wfv.WorkFlowInsId = currRecord.wdmc;
+                            wfv.WorkTaskId = "安规电子档案";
+                            wfv.WorkTaskInsId = "安规电子档案";
+                            wfv.UserControlId = parentTemple.LPID;
+                            wfv.XExcelPos = GetCellPos(arrCellPos[0])[0];
+                            wfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
+                            wfv.FieldId = lp.LPID;
+                            wfv.FieldName = lp.CellName;
+                            wfv.ExcelSheetName = lp.KindTable;
+                            if (range.Value2 != null)
+                                wfv.ControlValue = range.Value2.ToString();
+                            if (wfv.ControlValue != "" && lp.CellName == "出生年月日")
+                            {
+                                wfv.ControlValue = range.Value2.ToString().Replace(".", "-");
+                                DateTime dt = Convert.ToDateTime(wfv.ControlValue);
+                                wfv.ControlValue = dt.ToString("yyyy年MM月dd日");
+                            }
+                            if (wfv.ControlValue != "" && lp.CellName == "参加工作时间")
+                            {
+                                try
+                                {
+                                    wfv.ControlValue = range.Value2.ToString().Replace(".", "-");
+                                    DateTime dt = Convert.ToDateTime(wfv.ControlValue);
+
+                                    wfv.ControlValue = dt.ToString("yyyy年MM月dd日");
+                                }
+                                catch
+                                {
+                                    DateTime dt = new DateTime(Convert.ToInt32(wfv.ControlValue));
+
+                                    wfv.ControlValue = dt.ToString("yyyy年MM月dd日");
+                                }
+                            }
+                            if (lp.CellName == "姓名")
+                            {
+                                currRecord.wdmc = wfv.ControlValue;
+                            }
+                            else if (lp.CellName == "职务")
+                            {
+                                currRecord.wdlx = wfv.ControlValue;
+                            }
+                            else if (lp.CellName == "所在单位")
+                            {
+                                currRecord.OrgName = wfv.ControlValue.Replace("绥化市郊农电局", "");
+                                mOrg org = MainHelper.PlatformSqlMap.GetOne<mOrg>("where OrgName='" + currRecord.OrgName + "'");
+                                if (org != null)
+                                {
+                                    currRecord.OrgCode = org.OrgCode;
+                                }
+                            }
+                            wfv.WorkFlowInsId = currRecord.wdmc;
+                            MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                            Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        }
+                    }
+                    currRecord.CreateMan = MainHelper.User.UserName;
+                    MainHelper.PlatformSqlMap.Create<PJ_ryda>(currRecord);
+                    ds1.FileSave();
+                    ds1.FileClose();
+                }
+                else
+                {
+                    dir = (DirectoryInfo)fsi;
+
+
+
+
+
+
+                    //获取文件夹路径
+                    GetFileList(ds1, strCurDir + "\\" + dir.Name);
+
+
+                }
+            }
+        }
 
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -371,23 +739,25 @@ namespace Ebada.Scgl.Lcgl
                     {
                         SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                         string fname = "";
-                        saveFileDialog1.Filter = "Microsoft Excel (*." + OBJECT.S1 + ")|*." + OBJECT.S1 + "";
+                        saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
                         if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                         {
                             fname = saveFileDialog1.FileName;
                             //WriteDoc(OBJECT.BigData, fname );
                             DSOFramerControl ds1 = new DSOFramerControl();
-                            ds1.FileData = OBJECT.BigData;
-                            // ds1.FileOpen(ds1.FileName);
-                            ExcelAccess ex = new ExcelAccess();
+                            ds1.FileDataGzip = OBJECT.BigData;
+                            //ds1.FileSave();
+                            //ds1.FileClose();
+                            ds1.FileSave(fname, true);
+                            //ExcelAccess ex = new ExcelAccess();
 
                             
-                            ex.Open(fname);
+                            //ex.Open(fname);
                             //此处写填充内容代码
-                            ds1.FileSave(fname,true);
+                            //ds1.FileSave(fname,true);
                             ds1.FileClose();
                             ds1.Dispose();
-                            ex.ShowExcel();
+                            //ex.ShowExcel();
                             if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
                                 return;
 
@@ -573,5 +943,7 @@ namespace Ebada.Scgl.Lcgl
             }
             InitData();
         }
+
+      
     }
 }
