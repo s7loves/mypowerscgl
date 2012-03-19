@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Yxgl {
 
             ex.Open(fname);
             //每行显示文字长度
-            int zc = 60;
+            int zc =58;
             //与会人员之间的间隔符号
             char[] jksign = new char[1] { ';' };
             int row = 1;
@@ -151,22 +151,27 @@ namespace Ebada.Scgl.Yxgl {
                 //    ex.SetCellValue(tempstr, 23 + t, 1);
                 //}
                 //简要记录
-                for (int jy = 0; jy < 21;jy++ )
+                int jymaxpage = Ecommon.GetPagecount(fyjyjllist.Count, 21);
+                if (pagecount-jymaxpage<=p)
                 {
-                   
-                    if (p*21+jy>=fyjyjllist.Count)
+                    for (int jy = 0; jy < 21; jy++)
                     {
-                        break;
-                    }
-                    string tempstr = fyjyjllist[p * 21 + jy];
-                    ex.SetCellValue(tempstr, 30 + jy,1);
 
-                    if (p == 0 && jy == 0)
-                    {
-                        //设定活动内容为粗体
-                        ex.SetFontBold(30, 1, 30, 1, true, 0, 6);
+                        if ((jymaxpage+p-pagecount) * 21 + jy >= fyjyjllist.Count)
+                        {
+                            break;
+                        }
+                        string tempstr = fyjyjllist[(jymaxpage + p - pagecount) * 21 + jy];
+                        ex.SetCellValue(tempstr, 30 + jy, 1);
+
+                        if (p == pagecount - jymaxpage && jy == 0)
+                        {
+                            //设定活动内容为粗体
+                            ex.SetFontBold(30, 1, 30, 1, true, 0, 6);
+                        }
                     }
                 }
+               
             }
 
             ex.ActiveSheet(1);
