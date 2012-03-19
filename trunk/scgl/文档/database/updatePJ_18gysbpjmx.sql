@@ -1,7 +1,6 @@
 USE [EbadaScgl]
-alter table [PS_xl] add
-	[lineKind] [nvarchar](50) null default '',
-    [lineNum] [nvarchar](50) null default ''
+alter table [PJ_18gysbpjmx] add
+	[qxlb] [nvarchar](50) null default ''
 	
 go
 
