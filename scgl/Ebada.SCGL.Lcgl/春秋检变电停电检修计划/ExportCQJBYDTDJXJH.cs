@@ -203,7 +203,7 @@ namespace Ebada.Scgl.Lcgl
             ex.ShowExcel();
 
         }
-        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid)
+        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(DateTime dt, string orgid)
         {
 
             string filter = "";
@@ -215,11 +215,11 @@ namespace Ebada.Scgl.Lcgl
             if (list.Count > 0)
                 startday = list[0].ToString();
 
-             filter = " where TDtime between '" + DateTime.Now.Year + "-"
-                 + DateTime.Now.Month + "-" + startday
+            filter = " where TDtime between '" + dt.Year + "-"
+                 + dt.Month + "-" + startday
                  + " 00:00:00' and    dateadd(m,1,cast('"
-                + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) )  and OrgCode='" + orgid + "'";
+                + dt.Year + "-"
+                + dt.Month + "-" + startday + " 00:00:00' as datetime) )  and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
                 filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowInsId='"
@@ -266,8 +266,8 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
             }
 
-        
-        public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid, bool isShow)
+
+        public void ExportExcelSubmit(DateTime dt, ref LP_Temple parentTemple, string orgid, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string fname = Application.StartupPath + "\\00记录模板\\供电所春秋查停电检修计划.xls";
@@ -290,11 +290,11 @@ namespace Ebada.Scgl.Lcgl
             Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
-            string filter = " where TDtime between '" + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday
+            string filter = " where TDtime between '" + dt.Year + "-"
+                + dt.Month + "-" + startday
                 + " 00:00:00' and    dateadd(m,1,cast('"
-                + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) )  and OrgCode='" + orgid + "'";
+                + dt.Year + "-"
+                + dt.Month + "-" + startday + " 00:00:00' as datetime) )  and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
                 filter = filter + " and (id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where WorkFlowId='"

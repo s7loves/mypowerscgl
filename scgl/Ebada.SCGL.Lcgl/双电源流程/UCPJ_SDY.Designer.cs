@@ -228,7 +228,6 @@
             this.barExplorMonth.Id = 16;
             this.barExplorMonth.Name = "barExplorMonth";
             this.barExplorMonth.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.barExplorMonth.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorMonth_ItemClick);
             // 
             // btClose
             // 

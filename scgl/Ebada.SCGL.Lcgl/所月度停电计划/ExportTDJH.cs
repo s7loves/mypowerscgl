@@ -69,11 +69,11 @@ namespace Ebada.Scgl.Lcgl
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\所月度停电计划.xls";
             ex.Open(fname);
-            ExportExcel(ex, datalist);
+            ExportExcel(DateTime.Now, ex, datalist);
             ex.ShowExcel();
            
         }
-        public void ExportExcelMonth(string orgid)
+        public void ExportExcelMonth(DateTime dt,string orgid)
         {
             //lgm
             ExcelAccess ex = new ExcelAccess();
@@ -85,20 +85,20 @@ namespace Ebada.Scgl.Lcgl
                 string.Format("select nr from pj_dyk where  dx='所月度停电计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
             if (list.Count > 0)
                 startday=list[0].ToString();
-            string str = " where TDtime between '" + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday
+            string str = " where TDtime between '" +dt.Year + "-"
+                + dt.Month + "-" + startday
                 + " 00:00:00' and  dateadd(m,1,cast('"
-                + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) ) ";
+                + dt.Year + "-"
+                + dt.Month + "-" + startday + " 00:00:00' as datetime) ) ";
             if (orgid != "") str += " and OrgCode='" + orgid + "'";
             IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
                str
                 );
-            ExportExcel(ex, datalist);
+            ExportExcel(dt, ex, datalist);
             ex.ShowExcel();
 
         }
-        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid)
+        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(DateTime dt, string orgid)
         {
 
             string filter = "";
@@ -110,11 +110,11 @@ namespace Ebada.Scgl.Lcgl
             if (list.Count > 0)
                 startday = list[0].ToString();
 
-             filter = " where TDtime between '" + DateTime.Now.Year + "-"
-                 + DateTime.Now.Month + "-" + startday
+            filter = " where TDtime between '" + dt.Year + "-"
+                 + dt.Month + "-" + startday
                  + " 00:00:00' and    dateadd(m,1,cast('"
-                + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) )  ";
+                + dt.Year + "-"
+                + dt.Month + "-" + startday + " 00:00:00' as datetime) )  ";
              if (orgid != "") filter += " and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
@@ -163,7 +163,7 @@ namespace Ebada.Scgl.Lcgl
             }
 
         
-        public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid, bool isShow)
+        public void ExportExcelSubmit(DateTime dt, ref LP_Temple parentTemple,  string orgid, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string fname = Application.StartupPath + "\\00记录模板\\所月度停电计划.xls";
@@ -186,11 +186,11 @@ namespace Ebada.Scgl.Lcgl
             Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
-            string filter = " where TDtime between '" + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday
+            string filter = " where TDtime between '" + dt.Year  + "-"
+                + dt.Month + "-" + startday
                 + " 00:00:00' and    dateadd(m,1,cast('"
-                + DateTime.Now.Year + "-"
-                + DateTime.Now.Month + "-" + startday + " 00:00:00' as datetime) ) ";
+                + dt.Year + "-"
+                + dt.Month + "-" + startday + " 00:00:00' as datetime) ) ";
             if (orgid != "") filter += " and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
@@ -203,7 +203,7 @@ namespace Ebada.Scgl.Lcgl
             IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
                  filter
                   );
-            ExportExcel(ex, datalist);
+            ExportExcel(dt,ex, datalist);
             if (parentTemple == null)
             {
                 parentTemple = new LP_Temple();
@@ -214,7 +214,7 @@ namespace Ebada.Scgl.Lcgl
             dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
         }
-        public void ExportExcel(ExcelAccess ex ,IList<PJ_tdjh> datalist)
+        public void ExportExcel(DateTime dt, ExcelAccess ex ,IList<PJ_tdjh> datalist)
         {
             //此处写填充内容代码
             int row = 6;
@@ -236,9 +236,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.CopySheet(1, 1);
                 }
             }
-            DateTime dt = DateTime.Now;
-            dt=dt.AddMonths(1);
-            ex.SetCellValue(dt.Year + "年" + (dt.Month) + "月份配电设备停电检修计划表", 1, 1);
+            DateTime dt2 = dt.AddMonths(1);
+            ex.SetCellValue(dt2.Year + "年" + (dt2.Month) + "月份配电设备停电检修计划表", 1, 1);
         
             for (int j = 0; j < datalist.Count; j++)
             {
