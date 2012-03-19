@@ -724,7 +724,12 @@ namespace Ebada.Scgl.Lcgl
                
                 Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
             }
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
 
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { currRecord });
+
+            }
             switch (status)
             {
                 case "add":
