@@ -373,7 +373,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode ='" + value + "'");
+                    RefreshData(" where 1=1");
                 }
             }
         }
