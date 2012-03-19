@@ -52,11 +52,19 @@ namespace Ebada.Scgl.Lcgl
             //{
             //    pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
             //}
+
+            int[] strnumcol = { 0, listztstring.Count, listztstring.Count + listjy.Count };
+            int[] statnum = { 3, 3, 6 };
             List<string> strcol = new List<string>();
             Ecommon.addstring(listztstring, ref strcol);
             Ecommon.addstring(listjy, ref strcol);
             Ecommon.addstring(listjldc, ref strcol);
-            Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
+
+            //Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
+
+            Ecommon.CreatandWritesheet1(ex, strcol, 15, 9, 1, strnumcol, statnum);
+            //进行加粗
+
             ex.ActiveSheet(1);
             //时间
             ex.SetCellValue(obj.rq.Year.ToString(), 4, 5);
@@ -69,36 +77,36 @@ namespace Ebada.Scgl.Lcgl
             for (int i = 0; i < ary.Length; i++)
             {
                 int tempcol = col + 1 + i % 5;
-                if (i % 5==1||i % 5==2||i % 5==3)
+                if (i % 5 == 1 || i % 5 == 2 || i % 5 == 3)
                 {
                     tempcol = col + 1 + i % 5 + 1;
                 }
-                if (i % 5==4)
+                if (i % 5 == 4)
                 {
                     tempcol = col + 1 + i % 5 + 2;
                 }
                 ex.SetCellValue(ary[i], row + 4 + i / 5, tempcol);
             }
             //主持人
-            ex.SetCellValue(obj.zcr,5,11);
+            ex.SetCellValue(obj.zcr, 5, 11);
             //检查人签字
             //ex.CopySheet(1, 2);
             //ex.ActiveSheet(2);
             //ex.SetCellValue("kakaka", 24, 4);
             //ex.ActiveSheet(1);
-            ex.SetCellValue(obj.qz, 24, 4);
+            //   ex.SetCellValue(obj.qz, 24, 4);
             //签字时间
-            if (ComboBoxHelper.CompreDate(obj.qzrq))
-            {
-                 ex.SetCellValue(obj.qzrq.Year.ToString(), 24, 5);
-                ex.SetCellValue(obj.qzrq.Month.ToString(), 24, 9);
-                ex.SetCellValue(obj.qzrq.Day.ToString(), 24, 11);
-            }
-            
+            //  if (ComboBoxHelper.CompreDate(obj.qzrq))
+            //   {
+            //        ex.SetCellValue(obj.qzrq.Year.ToString(), 24, 5);
+            //       ex.SetCellValue(obj.qzrq.Month.ToString(), 24, 9);
+            //       ex.SetCellValue(obj.qzrq.Day.ToString(), 24, 11);
+            //   }
+
             //将固定的写完再创建不固定的。
-           
-            
-           
+
+
+
             //添加变动内容
             //for (int j = 1; j <= pagemax;j++ )
             //{
@@ -111,7 +119,7 @@ namespace Ebada.Scgl.Lcgl
             //for (int j = 1; j <= pagemax;j++ )
             //{
 
-                
+
             //        ex.ActiveSheet(j);
             //    //if (j>1)
             //    //{
@@ -172,14 +180,14 @@ namespace Ebada.Scgl.Lcgl
             //            ex.SetCellValue(listjldc[starow - 1 + i], 18 + i, 1);
             //        }
             //    }
-                
+
             //}
             ////主题：
-           
+
             //ex.SetCellValue("主题: " + obj.zt, 9, 1);
             ////纪要
             //string jystr = "纪要：" + obj.jy;
-           
+
             //for (int i = 0; i < 7; i++)
             //{
             //    string tempstr = "";
@@ -223,11 +231,12 @@ namespace Ebada.Scgl.Lcgl
             //    }
             //    ex.SetCellValue(tempstr, 18 + j, 1);
             //}
-            
+
             //ex.CopySheet(1,2);
             //ex.CopySheet(1, 3);
             //ex.CopySheet(2, 4);
             ex.ShowExcel();
+
 
         }
         public static void ExportExcelWorkFlow(ref LP_Record currRecord, PJ_03yxfx obj)
@@ -277,11 +286,17 @@ namespace Ebada.Scgl.Lcgl
             //{
             //    pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
             //}
+            int[] strnumcol = { 0, listztstring.Count, listztstring.Count + listjy.Count };
+            int[] statnum = { 3, 3, 6 };
             List<string> strcol = new List<string>();
             Ecommon.addstring(listztstring, ref strcol);
             Ecommon.addstring(listjy, ref strcol);
             Ecommon.addstring(listjldc, ref strcol);
-            Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
+
+            //Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
+
+            Ecommon.CreatandWritesheet1(ex, strcol, 15, 9, 1, strnumcol, statnum);
+            //进行加粗
             ex.ActiveSheet(1);
             //时间
             ex.SetCellValue(obj.rq.Year.ToString(), 4, 5);

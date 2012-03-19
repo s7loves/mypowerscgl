@@ -34,6 +34,7 @@ namespace Ebada.Scgl.Lcgl {
             }
             PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
             ex.ActiveSheet(1);
+            if (xlobject!=null)
             ex.SetCellValue(xlobject.LineName, row + 3, col);
             PS_xl xlobject2 = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.gtID);
 
