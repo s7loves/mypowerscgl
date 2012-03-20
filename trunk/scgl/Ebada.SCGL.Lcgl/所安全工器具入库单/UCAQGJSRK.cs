@@ -759,6 +759,7 @@ namespace Ebada.Scgl.Lcgl
                 if (strlist[0] != null && strlist[0].ToString() != "")
                     txts = strlist[0].ToString();
             }
+            if (strsyzq == "物品不需要试验" || strsyzq == "无试验") return;
             if(strsynx!="")
                 synx = Convert.ToDouble(strsynx);
             if (strsyzq != "")

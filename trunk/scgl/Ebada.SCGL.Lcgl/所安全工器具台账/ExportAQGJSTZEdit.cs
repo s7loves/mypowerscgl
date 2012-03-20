@@ -122,7 +122,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[j].num.Substring(datalist[j].num.Length-4), row + j % rowcount, col + 6);
                 ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 7);
                 ex.SetCellValue(datalist[j].synx, row + j % rowcount, col + 9);
-                if (datalist[j].syzq !="无试验")
+                if (datalist[j].syzq != "物品不需要试验")
                 {
                     ex.SetCellValue(datalist[j].scsydate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 8);
 
