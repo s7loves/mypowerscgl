@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="db3Helper.cs" />
+    <Compile Include="DeviceType.cs" />
     <Compile Include="DSandroid.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -179,6 +180,12 @@
     </Compile>
     <Compile Include="frmgtsbEditM.Designer.cs">
       <DependentUpon>frmgtsbEditM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCDeviceTypeTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCDeviceTypeTree.Designer.cs">
+      <DependentUpon>UCDeviceTypeTree.cs</DependentUpon>
     </Compile>
     <Compile Include="台区元素\frmTemplate.cs">
       <SubType>Form</SubType>
@@ -574,6 +581,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="devicetypes.xml" />
+    <EmbeddedResource Include="UCDeviceTypeTree.resx">
+      <DependentUpon>UCDeviceTypeTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="模块说明.txt" />
   </ItemGroup>
   <ItemGroup>
