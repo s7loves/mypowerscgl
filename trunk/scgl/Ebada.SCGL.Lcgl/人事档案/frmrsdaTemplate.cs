@@ -274,6 +274,18 @@ namespace Ebada.Scgl.Lcgl
                 InitIndex();
                 InitContorl();
                 InitData();
+            
+                if (_type == "")
+                { 
+                    wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                    Excel.Worksheet xx;
+                    wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                    ea.MyWorkBook = wb;
+                    ea.MyExcel = wb.Application;
+                    string activeSheetName = "";
+                    xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                    LockExcel(wb,xx);
+                }
                 if (status == "edit")
                 {
                     IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
