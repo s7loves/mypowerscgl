@@ -507,7 +507,7 @@ namespace Ebada.Scgl.Lcgl
                      strxykc = "",//现有库存
                     strjzxykc = "";//现有库存价值
                     List<string> sli = new List<string>();
-                    sli.Add("局安全工器具");
+                    sli.Add("所安全工器具");
                     //sli.Add("撤旧材料");
                     //sli.Add("非生产物资");
                     foreach (string strtype in sli)
