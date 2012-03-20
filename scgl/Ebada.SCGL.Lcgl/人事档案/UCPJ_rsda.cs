@@ -26,6 +26,7 @@ using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Threading;
 using DevExpress.XtraEditors.Repository;
+using System.Collections;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -214,7 +215,6 @@ namespace Ebada.Scgl.Lcgl
                     dic.Add(new DicType(gds.OrgCode, gds.OrgName));
                 }
                 gdsDic2 = new LookUpDicType(dic);
-            
             btGdsList.Edit = gdsDic2;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
@@ -222,6 +222,9 @@ namespace Ebada.Scgl.Lcgl
                 btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
                 btGdsList.Edit.ReadOnly = true;
             }
+            repositoryItemComboBox1.Items.Clear();
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select  UserName  from mUser where   1=1");
+            repositoryItemComboBox1.Items.AddRange (strlist);
 
         }
 
@@ -235,6 +238,9 @@ namespace Ebada.Scgl.Lcgl
             if (org != null)
             {
                 ParentObj = org;
+                repositoryItemComboBox1.Items.Clear();
+                IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select  UserName  from mUser where   orgcode='" + ParentObj.OrgCode  + "'");
+                repositoryItemComboBox1.Items.AddRange(strlist);
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
@@ -344,6 +350,19 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         }
+
+        
+        private void barEditItem1_EditValueChanged(object sender, EventArgs e)
+        {
+            if (parentID != "" && parentID != null)
+            {
+                RefreshData(" where OrgCode ='" + parentID + "' and wdmc='" + barEditItem1.EditValue + "'");
+            }
+            else
+            {
+                RefreshData(" where wdmc='" + barEditItem1.EditValue + "'");
+            }
+        }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public mOrg ParentObj
@@ -384,14 +403,15 @@ namespace Ebada.Scgl.Lcgl
 
                 string filepath = dialog.SelectedPath;
                 GetFileList(ds1, filepath);
-                ds1.FileSave();
-                ds1.FileClose();
+                //ds1.FileSave();
+                //ds1.FileClose();
                 ds1.Dispose();
                 if (parentObj!=null)
                 RefreshData( "where OrgCode ='" + parentObj.OrgCode    + "'");
             }
         }
 
+       
         private void GetFileList(DSOFramerControl ds1, string strCurDir)
         {
 
@@ -943,6 +963,8 @@ namespace Ebada.Scgl.Lcgl
             }
             InitData();
         }
+
+
 
       
     }
