@@ -71,22 +71,22 @@ namespace Ebada.Scgl.Lcgl
             ex.SetCellValue(obj.rq.Month.ToString(), 4, 7);
             ex.SetCellValue(obj.rq.Day.ToString(), 4, 9);
 
-            //出席人员
-            string[] ary = obj.cjry.Split(';');
-            int n = ary.Length % 5;
-            for (int i = 0; i < ary.Length; i++)
-            {
-                int tempcol = col + 1 + i % 5;
-                if (i % 5 == 1 || i % 5 == 2 || i % 5 == 3)
-                {
-                    tempcol = col + 1 + i % 5 + 1;
-                }
-                if (i % 5 == 4)
-                {
-                    tempcol = col + 1 + i % 5 + 2;
-                }
-                ex.SetCellValue(ary[i], row + 4 + i / 5, tempcol);
-            }
+            ////出席人员
+            //string[] ary = obj.cjry.Split(';');
+            //int n = ary.Length % 5;
+            //for (int i = 0; i < ary.Length; i++)
+            //{
+            //    int tempcol = col + 1 + i % 5;
+            //    if (i % 5 == 1 || i % 5 == 2 || i % 5 == 3)
+            //    {
+            //        tempcol = col + 1 + i % 5 + 1;
+            //    }
+            //    if (i % 5 == 4)
+            //    {
+            //        tempcol = col + 1 + i % 5 + 2;
+            //    }
+            //    ex.SetCellValue(ary[i], row + 4 + i / 5, tempcol);
+            //}
             //主持人
             ex.SetCellValue(obj.zcr, 5, 11);
             //检查人签字
