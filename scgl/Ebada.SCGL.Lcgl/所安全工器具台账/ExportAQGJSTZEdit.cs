@@ -121,9 +121,13 @@ namespace Ebada.Scgl.Lcgl
                 if (datalist[j].num.Length>0)
                 ex.SetCellValue(datalist[j].num.Substring(datalist[j].num.Length-4), row + j % rowcount, col + 6);
                 ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 7);
-                ex.SetCellValue(datalist[j].scsydate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 8);
                 ex.SetCellValue(datalist[j].synx, row + j % rowcount, col + 9);
-                ex.SetCellValue(datalist[j].syzq, row + j % rowcount, col + 10);
+                if (datalist[j].syzq !="无试验")
+                {
+                    ex.SetCellValue(datalist[j].scsydate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 8);
+
+                    ex.SetCellValue(datalist[j].syzq, row + j % rowcount, col + 10);
+                }
 
 
             }

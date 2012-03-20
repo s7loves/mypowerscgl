@@ -34,7 +34,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "zkcsl");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "indate");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "scsydate");
-            this.spinEdit3.DataBindings.Add("EditValue", rowData, "syzq");
+            //this.spinEdit3.DataBindings.Add("EditValue", rowData, "syzq");
             this.spinEdit4.DataBindings.Add("EditValue", rowData, "synx");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
@@ -93,7 +93,7 @@ namespace Ebada.Scgl.Lcgl
             else
             {
                 strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select distinct mc from PS_sbcs "));
+            string.Format("select distinct wpmc from PJ_anqgjcrkd "));
                 if (strlist.Count > 0)
                     comboBoxEdit1.Properties.Items.AddRange(strlist);
                 else
@@ -110,7 +110,7 @@ namespace Ebada.Scgl.Lcgl
             else
             {
                 strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select distinct xh from PS_sbcs where xh is not null "));
+            string.Format("select distinct wpgg from PJ_anqgjcrkd where wpgg is not null "));
                 if (strlist.Count > 0)
                     comboBoxEdit1.Properties.Items.AddRange(strlist);
                 else
@@ -198,7 +198,14 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-           
+            if (checkEdit1.Checked)
+            {
+                rowData.synx = "无试验";
+            }
+            else
+            {
+                rowData.synx = spinEdit3.Value.ToString(); 
+            }
         }
 
         //private void spinEdit1_EditValueChanged(object sender, EventArgs e)
@@ -240,7 +247,7 @@ namespace Ebada.Scgl.Lcgl
                 else
                 {
                     mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
+                "select distinct wpgg  from PJ_anqgjcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
                     comboBoxEdit2.Properties.Items.AddRange(mclist);
                 }
             }
@@ -296,9 +303,28 @@ namespace Ebada.Scgl.Lcgl
                 else
                 {
                     mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
+                "select distinct wpgg  from PJ_anqgjcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
                     comboBoxEdit2.Properties.Items.AddRange(mclist);
                 }
+            }
+        }
+
+        private void checkEdit1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkEdit1.Checked)
+            {
+                spinEdit3.Visible = false;
+                labelControl7.Visible = false;
+                dateEdit2.Visible = false;
+                labelControl4.Visible = false;
+                
+            }
+            else
+            {
+                spinEdit3.Visible = true;
+                labelControl7.Visible = true;
+                dateEdit2.Visible = true;
+                labelControl4.Visible = true;
             }
         }
 

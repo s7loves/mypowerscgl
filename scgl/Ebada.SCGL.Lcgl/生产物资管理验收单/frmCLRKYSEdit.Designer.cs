@@ -204,9 +204,9 @@
             // 
             // simpleButton4
             // 
-            this.simpleButton4.Location = new System.Drawing.Point(569, 609);
+            this.simpleButton4.Location = new System.Drawing.Point(550, 609);
             this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(62, 23);
+            this.simpleButton4.Size = new System.Drawing.Size(81, 23);
             this.simpleButton4.TabIndex = 29;
             this.simpleButton4.Text = "添加并继续";
             this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);

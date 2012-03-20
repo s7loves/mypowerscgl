@@ -137,9 +137,16 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit9.Properties.Items.AddRange(mclist);
 
             comboBoxEdit5.Properties.Items.Clear();
+            comboBoxEdit5.Properties.Items.Add("工程");
+            comboBoxEdit5.Properties.Items.Add("检修");
             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct yt  from PJ_clcrkd where type = '工程材料出库单'");
             comboBoxEdit5.Properties.Items.AddRange(mclist);
-
+            //if (comboBoxEdit5.Properties.Items.Count == 0)
+            //for (int i = 0; i < comboBoxEdit5.Properties.Items.Count;i++ )
+            //{
+            //    comboBoxEdit5.Properties.Items.Add("工程");
+            //    comboBoxEdit5.Properties.Items.Add("检修");
+            //}
             comboBoxEdit6.Properties.Items.Clear();
             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select  OrgName  from mOrg where c1='是' order by orgcode");
             comboBoxEdit6.Properties.Items.AddRange(mclist);
