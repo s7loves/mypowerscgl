@@ -93,14 +93,14 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
             {
-            //    strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            //string.Format("select distinct mc from PS_sbcs "));
-            //    if (strlist.Count > 0)
-            //        comboBoxEdit1.Properties.Items.AddRange(strlist);
-            //    else
-            //    {
-                    
-            //    }
+                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                string.Format("select distinct wpmc from PJ_anqgjcrkd where wpmc is not null "));
+                if (strlist.Count > 0)
+                    comboBoxEdit1.Properties.Items.AddRange(strlist);
+                else
+                {
+
+                }
             }
 
             comboBoxEdit2.Properties.Items.Clear();
@@ -110,15 +110,15 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
             {
-            //    strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            //string.Format("select distinct xh from PS_sbcs where xh is not null "));
-            //    if (strlist.Count > 0)
-            //        comboBoxEdit1.Properties.Items.AddRange(strlist);
-            //    else
-            //    {
-                    
+                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select distinct wpgg from PJ_anqgjcrkd where wpgg is not null "));
+                if (strlist.Count > 0)
+                    comboBoxEdit2.Properties.Items.AddRange(strlist);
+                else
+                {
 
-            //    }
+
+                }
 
 
             }
@@ -241,7 +241,7 @@ namespace Ebada.Scgl.Lcgl
                 else
                 {
                     mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
+                "select distinct wpgg  from PJ_anqgjcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
                     comboBoxEdit2.Properties.Items.AddRange(mclist);
                 }
             }
@@ -264,7 +264,7 @@ namespace Ebada.Scgl.Lcgl
         {
 
             comboBoxEdit8.Properties.Items.Clear();
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_clcrkd where type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存'");
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_anqgjcrkd where type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存'");
             
             PJ_anqgjcrkd obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_anqgjcrkd>(rowData.ID);
             if (obj == null)

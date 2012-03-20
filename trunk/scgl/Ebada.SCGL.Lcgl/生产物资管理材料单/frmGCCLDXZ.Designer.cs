@@ -235,6 +235,7 @@
             // 
             // comboBoxEdit5
             // 
+            this.comboBoxEdit5.EditValue = "工程";
             this.comboBoxEdit5.Location = new System.Drawing.Point(304, 120);
             this.comboBoxEdit5.Name = "comboBoxEdit5";
             this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

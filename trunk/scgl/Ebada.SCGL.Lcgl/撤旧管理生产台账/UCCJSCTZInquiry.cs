@@ -140,14 +140,16 @@ namespace Ebada.Scgl.Lcgl
                     strSQL += " and lqdw='" + comboBoxEdit7.Text + "' ";
                 if (comboBoxEdit8.Text != "")
                     strSQL += " and ghdw='" + comboBoxEdit8.Text + "' ";
+                if (comboBoxEdit6.Text != "")
+                    strSQL += " and yt='" + comboBoxEdit6.Text + "' ";
 
                 if (checkEdit1.Checked && deCreatTimeStart.Text != "")
                 {
-                    strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                    strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59'  ) ";
                 }
                 if (checkEdit2.Checked && deEditTimeStart.Text != "")
                 {
-                    strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                    strSQL = strSQL + " or (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' and type='%出库单' ) ";
                 }
                 ucsctz1.StrSQL = (strSQL);
             }
@@ -173,7 +175,12 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit8.Properties.Items.Clear();
              mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                 "select distinct ghdw  from PJ_clcrkd where 1=1  and ghdw!='' ");
-            comboBoxEdit8.Properties.Items.AddRange(mclist);
+             comboBoxEdit8.Properties.Items.AddRange(mclist);
+
+             comboBoxEdit6.Properties.Items.Clear();
+             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                 "select distinct yt  from PJ_clcrkd where 1=1  and yt!='' ");
+             comboBoxEdit6.Properties.Items.AddRange(mclist);
 
         }
 

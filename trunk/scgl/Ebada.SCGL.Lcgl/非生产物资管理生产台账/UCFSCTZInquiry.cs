@@ -135,6 +135,8 @@ namespace Ebada.Scgl.Lcgl
                     strSQL += " and wpgg='" + comboBoxEdit4.Text + "' ";
                 if (comboBoxEdit5.Text != "")
                     strSQL += " and type='" + comboBoxEdit5.Text + "' ";
+                if (comboBoxEdit6.Text != "")
+                    strSQL += " and yt='" + comboBoxEdit6.Text + "' ";
 
                 if (checkEdit1.Checked)
                 {
@@ -142,7 +144,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 if (checkEdit2.Checked)
                 {
-                    strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                    strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59'  and type='%出库单' ) ";
                 }
                 ucsctz1.StrSQL = (strSQL);
 
@@ -168,7 +170,12 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit8.Properties.Items.Clear();
              mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                 "select distinct ghdw  from PJ_clcrkd where 1=1  and ghdw!='' ");
-            comboBoxEdit8.Properties.Items.AddRange(mclist);
+             comboBoxEdit8.Properties.Items.AddRange(mclist);
+
+             comboBoxEdit6.Properties.Items.Clear();
+             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                 "select distinct yt  from PJ_clcrkd where 1=1  and yt!='' ");
+             comboBoxEdit6.Properties.Items.AddRange(mclist);
 
         }
 
