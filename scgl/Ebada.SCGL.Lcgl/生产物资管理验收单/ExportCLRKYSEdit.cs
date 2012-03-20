@@ -150,8 +150,11 @@ namespace Ebada.Scgl.Lcgl
 
             }
 
-
-            ex.DeleteSheet(1);
+            try
+            {
+                ex.DeleteSheet(1);
+            }
+            catch { }
             ex.ShowExcel();
         }
         public void ExportExcelYear(string orgid,string year)
@@ -456,8 +459,8 @@ namespace Ebada.Scgl.Lcgl
                     ex.SetCellValue(datalist[j].czwt, 29, 3);
                     ex.SetCellValue(datalist[j].cljg, 30, 3);
                 }
-                ex.SetCellValue(datalist[j].dhht, row + j % rowcount, col);
-                ex.SetCellValue(datalist[j].dhht, row + j % rowcount+8, col);
+                ex.SetCellValue("'"+datalist[j].dhht, row + j % rowcount, col);
+                ex.SetCellValue("'" + datalist[j].fpbh , row + j % rowcount + 8, col);
                 ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col+1);
                 ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 3);
                 ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 5);

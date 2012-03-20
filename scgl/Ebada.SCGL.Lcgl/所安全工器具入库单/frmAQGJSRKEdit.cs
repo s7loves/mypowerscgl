@@ -200,11 +200,11 @@ namespace Ebada.Scgl.Lcgl
         {
             if (checkEdit1.Checked)
             {
-                rowData.synx = "无试验";
+                rowData.syzq = "物品不需要试验";
             }
             else
             {
-                rowData.synx = spinEdit3.Value.ToString(); 
+                rowData.syzq = spinEdit3.Value.ToString(); 
             }
         }
 
