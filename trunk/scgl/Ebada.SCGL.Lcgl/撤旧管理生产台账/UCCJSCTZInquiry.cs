@@ -149,7 +149,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 if (checkEdit2.Checked && deEditTimeStart.Text != "")
                 {
-                    strSQL = strSQL + " or (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' and type='%出库单' ) ";
+                    strSQL = strSQL + " or (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' and type like '%出库单' ) ";
                 }
                 ucsctz1.StrSQL = (strSQL);
             }
