@@ -240,10 +240,34 @@ namespace Ebada.Scgl.Lcgl
                 "select distinct PostName  from mUser where  UserName='" + comboBoxEdit1.Text + "' ");
             comboBoxEdit2.Properties.Items.AddRange(mclist);
 
-            
-           
+
+
         }
 
+        private void cbeField1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            teField1.Properties.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct ControlValue from WF_TableFieldValue where WorkTaskId='安规电子档案' and WorkTaskInsId='安规电子档案' and FieldName='" + cbeField1.Text + "' ");
+            teField1.Properties.Items.AddRange(mclist);
+        }
+
+        private void cbeField2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            teField2.Properties.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct ControlValue from WF_TableFieldValue where WorkTaskId='安规电子档案' and WorkTaskInsId='安规电子档案' and FieldName='" + cbeField2.Text + "' ");
+            teField2.Properties.Items.AddRange(mclist);
+
+        }
+
+        private void cbeField3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            teField3.Properties.Items.Clear();
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct ControlValue from WF_TableFieldValue where WorkTaskId='安规电子档案' and WorkTaskInsId='安规电子档案' and FieldName='" + cbeField3.Text + "' ");
+            teField3.Properties.Items.AddRange(mclist);
+        }
        
         private void comboBoxEdit3_TextChanged(object sender, EventArgs e)
         {
@@ -325,7 +349,9 @@ namespace Ebada.Scgl.Lcgl
                 e.Cancel = true;
         }
 
+        
 
+      
   
     
   
