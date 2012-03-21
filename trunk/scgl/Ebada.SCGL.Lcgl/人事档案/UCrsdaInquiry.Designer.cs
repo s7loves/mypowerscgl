@@ -155,7 +155,7 @@
             // cbeFieldRule3
             // 
             this.cbeFieldRule3.EditValue = "包含";
-            this.cbeFieldRule3.Location = new System.Drawing.Point(276, 139);
+            this.cbeFieldRule3.Location = new System.Drawing.Point(312, 137);
             this.cbeFieldRule3.Name = "cbeFieldRule3";
             this.cbeFieldRule3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -169,7 +169,7 @@
             // cbeFieldRule2
             // 
             this.cbeFieldRule2.EditValue = "包含";
-            this.cbeFieldRule2.Location = new System.Drawing.Point(276, 107);
+            this.cbeFieldRule2.Location = new System.Drawing.Point(312, 105);
             this.cbeFieldRule2.Name = "cbeFieldRule2";
             this.cbeFieldRule2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -187,7 +187,7 @@
             this.cbeField3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbeField3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbeField3.Size = new System.Drawing.Size(149, 21);
+            this.cbeField3.Size = new System.Drawing.Size(185, 21);
             this.cbeField3.TabIndex = 62;
             this.cbeField3.SelectedIndexChanged += new System.EventHandler(this.cbeField3_SelectedIndexChanged);
             // 
@@ -198,7 +198,7 @@
             this.cbeField2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbeField2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbeField2.Size = new System.Drawing.Size(149, 21);
+            this.cbeField2.Size = new System.Drawing.Size(185, 21);
             this.cbeField2.TabIndex = 63;
             this.cbeField2.SelectedIndexChanged += new System.EventHandler(this.cbeField2_SelectedIndexChanged);
             // 
@@ -213,7 +213,7 @@
             // cbeFieldRule1
             // 
             this.cbeFieldRule1.EditValue = "包含";
-            this.cbeFieldRule1.Location = new System.Drawing.Point(276, 78);
+            this.cbeFieldRule1.Location = new System.Drawing.Point(312, 76);
             this.cbeFieldRule1.Name = "cbeFieldRule1";
             this.cbeFieldRule1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -226,32 +226,32 @@
             // 
             // teField3
             // 
-            this.teField3.Location = new System.Drawing.Point(379, 139);
+            this.teField3.Location = new System.Drawing.Point(415, 137);
             this.teField3.Name = "teField3";
             this.teField3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.teField3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.teField3.Size = new System.Drawing.Size(149, 21);
+            this.teField3.Size = new System.Drawing.Size(202, 21);
             this.teField3.TabIndex = 56;
             // 
             // teField2
             // 
-            this.teField2.Location = new System.Drawing.Point(379, 108);
+            this.teField2.Location = new System.Drawing.Point(415, 106);
             this.teField2.Name = "teField2";
             this.teField2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.teField2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.teField2.Size = new System.Drawing.Size(149, 21);
+            this.teField2.Size = new System.Drawing.Size(202, 21);
             this.teField2.TabIndex = 56;
             // 
             // teField1
             // 
-            this.teField1.Location = new System.Drawing.Point(379, 76);
+            this.teField1.Location = new System.Drawing.Point(415, 74);
             this.teField1.Name = "teField1";
             this.teField1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.teField1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.teField1.Size = new System.Drawing.Size(149, 21);
+            this.teField1.Size = new System.Drawing.Size(202, 21);
             this.teField1.TabIndex = 56;
             // 
             // cbeField1
@@ -261,7 +261,7 @@
             this.cbeField1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbeField1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbeField1.Size = new System.Drawing.Size(149, 21);
+            this.cbeField1.Size = new System.Drawing.Size(185, 21);
             this.cbeField1.TabIndex = 56;
             this.cbeField1.SelectedIndexChanged += new System.EventHandler(this.cbeField1_SelectedIndexChanged);
             // 
@@ -293,7 +293,7 @@
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(149, 21);
+            this.comboBoxEdit2.Size = new System.Drawing.Size(185, 21);
             this.comboBoxEdit2.TabIndex = 48;
             // 
             // comboBoxEdit3
@@ -302,7 +302,7 @@
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(149, 21);
+            this.comboBoxEdit3.Size = new System.Drawing.Size(185, 21);
             this.comboBoxEdit3.TabIndex = 49;
             this.comboBoxEdit3.TextChanged += new System.EventHandler(this.comboBoxEdit3_TextChanged);
             // 
@@ -324,17 +324,17 @@
             // 
             // comboBoxEdit1
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(378, 10);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(415, 10);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(149, 21);
+            this.comboBoxEdit1.Size = new System.Drawing.Size(202, 21);
             this.comboBoxEdit1.TabIndex = 43;
             this.comboBoxEdit1.TextChanged += new System.EventHandler(this.comboBoxEdit1_TextChanged);
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(312, 13);
+            this.labelControl8.Location = new System.Drawing.Point(333, 13);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(24, 14);
             this.labelControl8.TabIndex = 42;
