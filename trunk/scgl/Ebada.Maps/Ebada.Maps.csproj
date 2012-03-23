@@ -319,6 +319,10 @@
     <EmbeddedResource Include="PJ_ryda.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_wgclcrkd.xml" />
+    <EmbeddedResource Include="PJ_wgclrkysd.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

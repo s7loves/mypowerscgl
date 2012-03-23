@@ -264,6 +264,324 @@
     <Compile Include="人事档案\UCPJ_rsda.Designer.cs">
       <DependentUpon>UCPJ_rsda.cs</DependentUpon>
     </Compile>
+    <Compile Include="网改季度对账\jddzWGInquiryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改季度对账\jddzWGInquiryForm.Designer.cs">
+      <DependentUpon>jddzWGInquiryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改季度对账\UCmjddzWGInquiry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改季度对账\UCmjddzWGInquiry.Designer.cs">
+      <DependentUpon>UCmjddzWGInquiry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理入库单\ExportWGCJCLRKEdit.cs" />
+    <Compile Include="网改撤旧管理入库单\frmWGCJCLRKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理入库单\frmWGCJCLRKEdit.Designer.cs">
+      <DependentUpon>frmWGCJCLRKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理入库单\UCWGCJCLRK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理入库单\UCWGCJCLRK.Designer.cs">
+      <DependentUpon>UCWGCJCLRK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\ExportWGCJCLCKEdit.cs" />
+    <Compile Include="网改撤旧管理出库单\frmWGCJCLCKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\frmWGCJCLCKEdit.Designer.cs">
+      <DependentUpon>frmWGCJCLCKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\frmWGCJCLCKSingleXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\frmWGCJCLCKSingleXZ.Designer.cs">
+      <DependentUpon>frmWGCJCLCKSingleXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\frmWGCJCLCKXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\frmWGCJCLCKXZ.Designer.cs">
+      <DependentUpon>frmWGCJCLCKXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\frmWGCJCLCKXZShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\frmWGCJCLCKXZShow.Designer.cs">
+      <DependentUpon>frmWGCJCLCKXZShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\UCWGCJCKGL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\UCWGCJCKGL.Designer.cs">
+      <DependentUpon>UCWGCJCKGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\UCWGCJCLCK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理出库单\UCWGCJCLCK.Designer.cs">
+      <DependentUpon>UCWGCJCLCK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理生产台账\ExportWGCJSCTZEdit.cs" />
+    <Compile Include="网改撤旧管理生产台账\frmWGCJProjectSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理生产台账\frmWGCJProjectSelect.Designer.cs">
+      <DependentUpon>frmWGCJProjectSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理生产台账\frmWGCJSCTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理生产台账\frmWGCJSCTZEdit.Designer.cs">
+      <DependentUpon>frmWGCJSCTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理生产台账\UCWGCJSCTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理生产台账\UCWGCJSCTZ.Designer.cs">
+      <DependentUpon>UCWGCJSCTZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧管理生产台账\UCWGCJSCTZInquiry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧管理生产台账\UCWGCJSCTZInquiry.Designer.cs">
+      <DependentUpon>UCWGCJSCTZInquiry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\ExportWGCJGCCLDEdit.cs" />
+    <Compile Include="网改撤旧资管理材料单\frmWGCJGCCLDEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\frmWGCJGCCLDEdit.Designer.cs">
+      <DependentUpon>frmWGCJGCCLDEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\frmWGCJGCCLDShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\frmWGCJGCCLDShow.Designer.cs">
+      <DependentUpon>frmWGCJGCCLDShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\frmWGCJGCCLDSingleXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\frmWGCJGCCLDSingleXZ.Designer.cs">
+      <DependentUpon>frmWGCJGCCLDSingleXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\frmWGCJGCCLDXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\frmWGCJGCCLDXZ.Designer.cs">
+      <DependentUpon>frmWGCJGCCLDXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\UCWGCJGCCLD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\UCWGCJGCCLD.Designer.cs">
+      <DependentUpon>UCWGCJGCCLD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\UCWGCJGCCLDGL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改撤旧资管理材料单\UCWGCJGCCLDGL.Designer.cs">
+      <DependentUpon>UCWGCJGCCLDGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理入库单\ExportWGCLRKEdit.cs" />
+    <Compile Include="网改生产物资管理入库单\frmWGCLRKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理入库单\frmWGCLRKEdit.Designer.cs">
+      <DependentUpon>frmWGCLRKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理入库单\UCWGCLRK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理入库单\UCWGCLRK.Designer.cs">
+      <DependentUpon>UCWGCLRK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\ExportWGCLCKEdit.cs" />
+    <Compile Include="网改生产物资管理出库单\frmWGCLCKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\frmWGCLCKEdit.Designer.cs">
+      <DependentUpon>frmWGCLCKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\frmWGCLCKSingleXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\frmWGCLCKSingleXZ.Designer.cs">
+      <DependentUpon>frmWGCLCKSingleXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\frmWGCLCKXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\frmWGCLCKXZ.Designer.cs">
+      <DependentUpon>frmWGCLCKXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\frmWGCLCKXZShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\frmWGCLCKXZShow.Designer.cs">
+      <DependentUpon>frmWGCLCKXZShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\UCWGCKGL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\UCWGCKGL.Designer.cs">
+      <DependentUpon>UCWGCKGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\UCWGCLCK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理出库单\UCWGCLCK.Designer.cs">
+      <DependentUpon>UCWGCLCK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\ExportWGGCCLDEdit.cs" />
+    <Compile Include="网改生产物资管理材料单\frmWGGCCLDEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\frmWGGCCLDEdit.Designer.cs">
+      <DependentUpon>frmWGGCCLDEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\frmWGGCCLDShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\frmWGGCCLDShow.Designer.cs">
+      <DependentUpon>frmWGGCCLDShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\frmWGGCCLDSingleXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\frmWGGCCLDSingleXZ.Designer.cs">
+      <DependentUpon>frmWGGCCLDSingleXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\frmWGGCCLDXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\frmWGGCCLDXZ.Designer.cs">
+      <DependentUpon>frmWGGCCLDXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\UCWGGCCLD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\UCWGGCCLD.Designer.cs">
+      <DependentUpon>UCWGGCCLD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\UCWGGCCLDGL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理材料单\UCWGGCCLDGL.Designer.cs">
+      <DependentUpon>UCWGGCCLDGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理生产台账\ExportWGSCTZEdit.cs" />
+    <Compile Include="网改生产物资管理生产台账\frmWGSCTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理生产台账\frmWGSCTZEdit.Designer.cs">
+      <DependentUpon>frmWGSCTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理生产台账\UCWGSCTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理生产台账\UCWGSCTZ.Designer.cs">
+      <DependentUpon>UCWGSCTZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理生产台账\UCWGSCTZInquiry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理生产台账\UCWGSCTZInquiry.Designer.cs">
+      <DependentUpon>UCWGSCTZInquiry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理验收单\ExportWGCLRKYSEdit.cs" />
+    <Compile Include="网改生产物资管理验收单\frmWGCLRKYSEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理验收单\frmWGCLRKYSEdit.Designer.cs">
+      <DependentUpon>frmWGCLRKYSEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理验收单\frmWGCLRKYSShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理验收单\frmWGCLRKYSShow.Designer.cs">
+      <DependentUpon>frmWGCLRKYSShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改生产物资管理验收单\UCWGCLRKYSD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改生产物资管理验收单\UCWGCLRKYSD.Designer.cs">
+      <DependentUpon>UCWGCLRKYSD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理入库单\ExportWGFCLRKEdit.cs" />
+    <Compile Include="网改非生产物资管理入库单\frmWGFCLRKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理入库单\frmWGFCLRKEdit.Designer.cs">
+      <DependentUpon>frmWGFCLRKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理入库单\UCWGFCLRK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理入库单\UCWGFCLRK.Designer.cs">
+      <DependentUpon>UCWGFCLRK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\ExportWGFCLCKEdit.cs" />
+    <Compile Include="网改非生产物资管理出库单\frmWGFCLCKEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\frmWGFCLCKEdit.Designer.cs">
+      <DependentUpon>frmWGFCLCKEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\frmWGFCLCKSingleXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\frmWGFCLCKSingleXZ.Designer.cs">
+      <DependentUpon>frmWGFCLCKSingleXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\frmWGFCLCKXZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\frmWGFCLCKXZ.Designer.cs">
+      <DependentUpon>frmWGFCLCKXZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\frmWGFCLCKXZShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\frmWGFCLCKXZShow.Designer.cs">
+      <DependentUpon>frmWGFCLCKXZShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\UCWGFCKGL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\UCWGFCKGL.Designer.cs">
+      <DependentUpon>UCWGFCKGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\UCWGFCLCK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理出库单\UCWGFCLCK.Designer.cs">
+      <DependentUpon>UCWGFCLCK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理生产台账\ExportWGFSCTZEdit.cs" />
+    <Compile Include="网改非生产物资管理生产台账\frmWGFSCTZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理生产台账\frmWGFSCTZEdit.Designer.cs">
+      <DependentUpon>frmWGFSCTZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理生产台账\UCWGFSCTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理生产台账\UCWGFSCTZ.Designer.cs">
+      <DependentUpon>UCWGFSCTZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="网改非生产物资管理生产台账\UCWGFSCTZInquiry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网改非生产物资管理生产台账\UCWGFSCTZInquiry.Designer.cs">
+      <DependentUpon>UCWGFSCTZInquiry.cs</DependentUpon>
+    </Compile>
     <Compile Include="所月度停电计划\frmTDJHMonthSet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3221,6 +3539,210 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\close.bmp" />
+    <EmbeddedResource Include="网改季度对账\jddzWGInquiryForm.resx">
+      <DependentUpon>jddzWGInquiryForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改季度对账\UCmjddzWGInquiry.resx">
+      <DependentUpon>UCmjddzWGInquiry.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理入库单\frmWGCJCLRKEdit.resx">
+      <DependentUpon>frmWGCJCLRKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理入库单\UCWGCJCLRK.resx">
+      <DependentUpon>UCWGCJCLRK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理出库单\frmWGCJCLCKEdit.resx">
+      <DependentUpon>frmWGCJCLCKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理出库单\frmWGCJCLCKSingleXZ.resx">
+      <DependentUpon>frmWGCJCLCKSingleXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理出库单\frmWGCJCLCKXZ.resx">
+      <DependentUpon>frmWGCJCLCKXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理出库单\frmWGCJCLCKXZShow.resx">
+      <DependentUpon>frmWGCJCLCKXZShow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理出库单\UCWGCJCKGL.resx">
+      <DependentUpon>UCWGCJCKGL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理出库单\UCWGCJCLCK.resx">
+      <DependentUpon>UCWGCJCLCK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理生产台账\frmWGCJProjectSelect.resx">
+      <DependentUpon>frmWGCJProjectSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理生产台账\frmWGCJSCTZEdit.resx">
+      <DependentUpon>frmWGCJSCTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理生产台账\UCWGCJSCTZ.resx">
+      <DependentUpon>UCWGCJSCTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧管理生产台账\UCWGCJSCTZInquiry.resx">
+      <DependentUpon>UCWGCJSCTZInquiry.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧资管理材料单\frmWGCJGCCLDEdit.resx">
+      <DependentUpon>frmWGCJGCCLDEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧资管理材料单\frmWGCJGCCLDShow.resx">
+      <DependentUpon>frmWGCJGCCLDShow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧资管理材料单\frmWGCJGCCLDSingleXZ.resx">
+      <DependentUpon>frmWGCJGCCLDSingleXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧资管理材料单\frmWGCJGCCLDXZ.resx">
+      <DependentUpon>frmWGCJGCCLDXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧资管理材料单\UCWGCJGCCLD.resx">
+      <DependentUpon>UCWGCJGCCLD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改撤旧资管理材料单\UCWGCJGCCLDGL.resx">
+      <DependentUpon>UCWGCJGCCLDGL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理入库单\frmWGCLRKEdit.resx">
+      <DependentUpon>frmWGCLRKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理入库单\UCWGCLRK.resx">
+      <DependentUpon>UCWGCLRK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理出库单\frmWGCLCKEdit.resx">
+      <DependentUpon>frmWGCLCKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理出库单\frmWGCLCKSingleXZ.resx">
+      <DependentUpon>frmWGCLCKSingleXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理出库单\frmWGCLCKXZ.resx">
+      <DependentUpon>frmWGCLCKXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理出库单\frmWGCLCKXZShow.resx">
+      <DependentUpon>frmWGCLCKXZShow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理出库单\UCWGCKGL.resx">
+      <DependentUpon>UCWGCKGL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理出库单\UCWGCLCK.resx">
+      <DependentUpon>UCWGCLCK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理材料单\frmWGGCCLDEdit.resx">
+      <DependentUpon>frmWGGCCLDEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理材料单\frmWGGCCLDShow.resx">
+      <DependentUpon>frmWGGCCLDShow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理材料单\frmWGGCCLDSingleXZ.resx">
+      <DependentUpon>frmWGGCCLDSingleXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理材料单\frmWGGCCLDXZ.resx">
+      <DependentUpon>frmWGGCCLDXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理材料单\UCWGGCCLD.resx">
+      <DependentUpon>UCWGGCCLD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理材料单\UCWGGCCLDGL.resx">
+      <DependentUpon>UCWGGCCLDGL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理生产台账\frmWGSCTZEdit.resx">
+      <DependentUpon>frmWGSCTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理生产台账\UCWGSCTZ.resx">
+      <DependentUpon>UCWGSCTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理生产台账\UCWGSCTZInquiry.resx">
+      <DependentUpon>UCWGSCTZInquiry.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理验收单\frmWGCLRKYSEdit.resx">
+      <DependentUpon>frmWGCLRKYSEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理验收单\frmWGCLRKYSShow.resx">
+      <DependentUpon>frmWGCLRKYSShow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改生产物资管理验收单\UCWGCLRKYSD.resx">
+      <DependentUpon>UCWGCLRKYSD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理入库单\frmWGFCLRKEdit.resx">
+      <DependentUpon>frmWGFCLRKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理入库单\UCWGFCLRK.resx">
+      <DependentUpon>UCWGFCLRK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理出库单\frmWGFCLCKEdit.resx">
+      <DependentUpon>frmWGFCLCKEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理出库单\frmWGFCLCKSingleXZ.resx">
+      <DependentUpon>frmWGFCLCKSingleXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理出库单\frmWGFCLCKXZ.resx">
+      <DependentUpon>frmWGFCLCKXZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理出库单\frmWGFCLCKXZShow.resx">
+      <DependentUpon>frmWGFCLCKXZShow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理出库单\UCWGFCKGL.resx">
+      <DependentUpon>UCWGFCKGL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理出库单\UCWGFCLCK.resx">
+      <DependentUpon>UCWGFCLCK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理生产台账\frmWGFSCTZEdit.resx">
+      <DependentUpon>frmWGFSCTZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理生产台账\UCWGFSCTZ.resx">
+      <DependentUpon>UCWGFSCTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网改非生产物资管理生产台账\UCWGFSCTZInquiry.resx">
+      <DependentUpon>UCWGFSCTZInquiry.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="所月度停电计划\frmTDJHMonthSet.resx">
       <DependentUpon>frmTDJHMonthSet.cs</DependentUpon>
       <SubType>Designer</SubType>
