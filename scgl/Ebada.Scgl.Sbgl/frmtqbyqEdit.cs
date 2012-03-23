@@ -52,8 +52,10 @@ namespace Ebada.Scgl.Sbgl
         }
 
         void lookUpEdit1_EditValueChanged(object sender, EventArgs e) {
-            this.comboBoxEdit2.EditValue=rowData.byqName = lookUpEdit1.Text;
-            this.comboBoxEdit14.EditValue=rowData.byqInstallAdress = lookUpEdit1.Text;
+            if (!string.IsNullOrEmpty(lookUpEdit1.Text)) {
+                this.comboBoxEdit2.EditValue = rowData.byqName = lookUpEdit1.Text;
+                this.comboBoxEdit14.EditValue = rowData.byqInstallAdress = lookUpEdit1.Text;
+            }
         }
         #region IPopupFormEdit Members
         private PS_tqbyq rowData = null;
