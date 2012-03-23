@@ -70,7 +70,7 @@ namespace Ebada.Scgl.Yxgl
                 }
 
                 MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-                RefreshData(" where PJ_ID='" + PSObj.PJ_ID + "' order by xh ");
+                RefreshData(" where PJ_ID='" + PSObj.PJ_ID + "' order by xh  ");
 
             }
             catch (Exception exception)
@@ -139,11 +139,11 @@ namespace Ebada.Scgl.Yxgl
                 _parentobj = value;
                 if (PSObj != null)
                 {
-                    RefreshData(" where PJ_ID='" + value.PJ_ID + "'  order by id desc");
+                    RefreshData(" where PJ_ID='" + value.PJ_ID + "'  order by xh ");
                 }
                 else
                 {
-                    RefreshData(" where PJ_ID='   ###@@@#'  order by id desc");
+                    RefreshData(" where PJ_ID='   ###@@@#'  order by xh ");
                 }
 
             }
