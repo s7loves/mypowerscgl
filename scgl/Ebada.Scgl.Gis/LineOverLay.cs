@@ -101,7 +101,8 @@ namespace Ebada.Scgl.Gis {
         }
         public static LineOverlay CreateTQLine(GMapControl map, string tqCode, string tqName) {
             LineOverlay lay = new LineOverlay(map, tqCode);
-
+            if (tqCode.StartsWith("tq"))
+                tqCode = tqCode.Substring(2);
             MapBuilder.BuildTQLines(ref lay,tqCode, tqName);
 
             return lay;
