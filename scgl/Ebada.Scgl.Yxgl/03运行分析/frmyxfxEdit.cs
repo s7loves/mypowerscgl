@@ -340,6 +340,7 @@ namespace Ebada.Scgl.Yxgl
                  }
                  else
                  {
+                     yxfx.CreateDate = DateTime.Now;
                      MainHelper.PlatformSqlMap.Update<PJ_03yxfx>(RowData);
                  }
                 //string strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, yxfx.type,MainHelper.User.UserID   );

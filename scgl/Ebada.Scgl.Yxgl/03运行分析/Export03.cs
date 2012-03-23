@@ -34,19 +34,21 @@ namespace Ebada.Scgl.Yxgl
             // int pagemax = 1;
             string zt = Ecommon.Comparestring(obj.zt, "主题") ? "" : "主题：";
             List<string> listztstring = Ecommon.ResultStrList(zt + obj.zt, zc);
-
+            Ecommon.Resultstrbystartbd(ref listztstring);
             //if (pagemax < Ecommon.GetPagecount(listztstring.Count,2))
             //{
             //    pagemax = Ecommon.GetPagecount(listztstring.Count, 2);
             //}
             string jy = Ecommon.Comparestring(obj.jy, "纪要") ? "" : "纪要：";
             List<string> listjy = Ecommon.ResultStrList(jy + obj.jy, zc);
+            Ecommon.Resultstrbystartbd(ref listjy);
             //if (pagemax < Ecommon.GetPagecount(listjy.Count, 7))
             //{
             //    pagemax = Ecommon.GetPagecount(listjy.Count, 7);
             //}
             string jr = Ecommon.Comparestring(obj.jr, "结论及对策") ? "" : "结论及对策：";
             List<string> listjldc = Ecommon.ResultStrList(jr + obj.jr, zc);
+            Ecommon.Resultstrbystartbd(ref listjldc);
             //if (pagemax < Ecommon.GetPagecount(listjldc.Count, 6))
             //{
             //    pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
