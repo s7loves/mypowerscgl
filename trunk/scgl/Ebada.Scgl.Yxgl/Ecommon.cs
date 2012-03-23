@@ -132,7 +132,7 @@ namespace Ebada.Scgl.Yxgl
         {
             for (int i = 1; i < RList.Count; i++)
             {
-                if (RList[i].Substring(0, 1) == "，" || RList[i].Substring(0, 1) == "。")
+                if (RList[i].Substring(0, 1) == "，" || RList[i].Substring(0, 1) == "。" || RList[i].Substring(0, 1) == "、" || RList[i].Substring(0, 1) == "：" || RList[i].Substring(0, 1) == "！")
                 {
                     RList[i - 1] += RList[i].Substring(0, 1);
                     RList[i] = RList[i].Substring(1);
