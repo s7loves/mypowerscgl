@@ -402,7 +402,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                 	
                 }
-
+               ((PJ_03yxfx) RowData).CreateDate = DateTime.Now;
                 MainHelper.PlatformSqlMap.Update<PJ_03yxfx>(RowData);
 
             }
