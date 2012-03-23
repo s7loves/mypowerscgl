@@ -169,11 +169,11 @@ namespace Ebada.Scgl.Gis {
         }
 
         internal GMapOverlay FindCreateLine(string lineCode) {
-            if (lineCode.Length == 10)
-                lineCode = "tq" + lineCode;
+            //if (lineCode.Length > 10)
+            //    lineCode = "tq" + lineCode;
             GMapOverlay lay = FindOverlay(lineCode);
             if (lay == null) {
-                if (lineCode.Length == 12)
+                if (lineCode.Length > 6)
                     lay = LineOverlay.CreateTQLine(this, lineCode, "");
                 else
                     lay = LineOverlay.CreateLine(this, lineCode, "");
