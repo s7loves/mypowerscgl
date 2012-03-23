@@ -519,26 +519,26 @@ namespace Ebada.Scgl.Lcgl
                             string.Format("select wpsl from PJ_anqgjcrkd where  wpmc='{0}' and wpgg='{1}'  and type = '{2}原始库存' ",
                                 wpmc, wpgg, strtype));
                             strjzyskc = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
-                            string.Format("select cast(sum(cast(wpsl as int)*cast(wpdj as int)) as nvarchar(50)) from PJ_anqgjcrkd where  wpmc='{0}' and wpgg='{1}'  and type = '{2}原始库存' ", wpmc, wpgg, strtype));
+                            string.Format("select cast(sum(cast(wpsl as int)*cast(wpdj as float)) as nvarchar(50)) from PJ_anqgjcrkd where  wpmc='{0}' and wpgg='{1}'  and type = '{2}原始库存' ", wpmc, wpgg, strtype));
 
                             strrks = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
                             string.Format("select cast(sum(cast(wpsl as int)) as nvarchar(50)) from PJ_anqgjcrkd   {2}  and wpmc='{0}' and wpgg='{1}'  and type = '{3}入库单' ",
                                  wpmc, wpgg, strSQL, strtype));
                             strjzrks = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
-                            string.Format("select cast(sum(cast(wpsl as int)*cast(wpdj as int)) as nvarchar(50)) from PJ_anqgjcrkd   {2}  and wpmc='{0}' and wpgg='{1}'  and type = '{3}入库单' ", wpmc, wpgg, strSQL, strtype));
+                            string.Format("select cast(sum(cast(wpsl as int)*cast(wpdj as float)) as nvarchar(50)) from PJ_anqgjcrkd   {2}  and wpmc='{0}' and wpgg='{1}'  and type = '{3}入库单' ", wpmc, wpgg, strSQL, strtype));
 
                             strcks = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
                             string.Format("select cast(sum(cast(cksl as int)) as nvarchar(50))  from PJ_anqgjcrkd   {2} and  wpmc='{0}' and wpgg='{1}'  and type='{3}出库单' ",
                                 wpmc, wpgg, strSQL, strtype));
                             strjzcks = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
-                            string.Format("select cast(sum(cast(cksl as int)*cast(wpdj as int)) as nvarchar(50))  from PJ_anqgjcrkd   {2} and  wpmc='{0}' and wpgg='{1}'  and type='{3}出库单' ",
+                            string.Format("select cast(sum(cast(cksl as int)*cast(wpdj as float)) as nvarchar(50))  from PJ_anqgjcrkd   {2} and  wpmc='{0}' and wpgg='{1}'  and type='{3}出库单' ",
                                 wpmc, wpgg, strSQL, strtype));
 
                             strxykc = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
                             string.Format("select cast(sum(cast(kcsl as int)) as nvarchar(12))  from PJ_anqgjcrkd {2} and  wpmc='{0}' and wpgg='{1}' and type = '{3}入库单'   ",
                                 wpmc, wpgg, strSQL, strtype));
                             strjzxykc = (string)MainHelper.PlatformSqlMap.GetObject("SelectOneStr",
-                            string.Format("select cast(sum(cast(kcsl as int)*cast(wpdj as int)) as nvarchar(50))  from PJ_anqgjcrkd {2} and  wpmc='{0}' and wpgg='{1}' and type = '{3}入库单' ",
+                            string.Format("select cast(sum(cast(kcsl as int)*cast(wpdj as float)) as nvarchar(50))  from PJ_anqgjcrkd {2} and  wpmc='{0}' and wpgg='{1}' and type = '{3}入库单' ",
                                 wpmc, wpgg, strSQL, strtype));
 
                             DataRow dr1;
