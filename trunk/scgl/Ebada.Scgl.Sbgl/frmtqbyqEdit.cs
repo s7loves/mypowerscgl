@@ -84,7 +84,7 @@ namespace Ebada.Scgl.Sbgl
                 if (xlcode != rowData.byqCode.Substring(0, 6)) {
                     xlcode = rowData.byqCode.Substring(0, 6);
                     this.lookUpEdit1.EditValueChanged -= new EventHandler(lookUpEdit1_EditValueChanged);
-                    lookUpEdit1.Properties.DataSource = ClientHelper.PlatformSqlMap.GetList<PS_tq>(string.Format(" where left(tqcode,6)='{0}'", xlcode));
+                    lookUpEdit1.Properties.DataSource = ClientHelper.PlatformSqlMap.GetList<PS_tq>(string.Format(" where left(tqcode,3)='{0}'", xlcode.Substring(0,3)));
                     this.lookUpEdit1.EditValueChanged += new EventHandler(lookUpEdit1_EditValueChanged);
                 }
             }
