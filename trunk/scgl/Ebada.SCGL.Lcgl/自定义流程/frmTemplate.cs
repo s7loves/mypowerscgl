@@ -480,6 +480,7 @@ namespace Ebada.Scgl.Lcgl
         }
         void btn_Close(object sender, EventArgs e)
         {
+            if (currRecord.Status != "存档" && currRecord.Status != "结束节点1")
             dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             dsoFramerWordControl1.Dispose();

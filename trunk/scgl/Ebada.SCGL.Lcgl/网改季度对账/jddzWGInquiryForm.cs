@@ -124,11 +124,17 @@ namespace Ebada.Scgl.Lcgl
                     strSQL += " and lqdw='" + comboBoxEdit7.Text + "' ";
                 if (comboBoxEdit8.Text != "")
                     strSQL += " and ghdw='" + comboBoxEdit8.Text + "' ";
-
+                if (checkEdit1.Checked && checkEdit2.Checked)
+                {
+                    strSQL = strSQL + " and ((indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59'  and (type like '%入库单'  )  ) "
+                        + " or (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' and (type like '%出库单' or type like '%材料单' )  )) ";
+                }
+                else
                 if (checkEdit1.Checked && deCreatTimeStart.Text != "")
                 {
-                    strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59'  and (type like '%入库单' ' )  ) ";
+                    strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59'  and (type like '%入库单'  )  ) ";
                 }
+                else
                 if (checkEdit2.Checked && deEditTimeStart.Text != "")
                 {
                     strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
