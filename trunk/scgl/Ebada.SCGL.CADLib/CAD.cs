@@ -139,6 +139,16 @@ namespace Ebada.SCGL.CADLib
                 color.SetRGB(c1.R, c1.G, c1.B);
                 ple.TrueColor = color;
                 cad.Application.Update();
+
+                PS_xl xl= Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='"+list[0].LineCode+"'");
+                double[] ins = new double[3];
+                ins[0] = Convert.ToDouble(list[0].gtLon.ToString("0.########"));
+                ins[1] = Convert.ToDouble(list[0].gtLat.ToString("0.########"));
+                ins[2] = 0;
+                AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.LineName);
+                text.Height = 0.005;
+                text.Layer = "line";
+                cad.Application.Update();
             }
             catch (Exception e) { MessageBox.Show(e.Message); };
         }
