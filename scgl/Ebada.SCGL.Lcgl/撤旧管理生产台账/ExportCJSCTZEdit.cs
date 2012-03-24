@@ -70,7 +70,7 @@ namespace Ebada.Scgl.Lcgl
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\生产台账 (撤旧).xls";
             ex.Open(fname);
-            ExportExcel(ex, datalist, "生产台账 (撤旧)");
+            ExportExcel(ex, datalist, "撤旧管理生产台账");
             
             ex.DeleteSheet(1);
             ex.ShowExcel();
@@ -120,6 +120,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[j].wpcj, row + j % rowcount, col + 5);
                 ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 6);
                 ex.SetCellValue(datalist[j].ssgc, row + j % rowcount, col + 7);
+                if (datalist[j].type.IndexOf("入库单") == -1)
                 ex.SetCellValue(datalist[j].ckdate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 8);
                 ex.SetCellValue(datalist[j].yt, row + j % rowcount, col + 9);
                 ex.SetCellValue(datalist[j].cksl, row + j % rowcount, col + 10);

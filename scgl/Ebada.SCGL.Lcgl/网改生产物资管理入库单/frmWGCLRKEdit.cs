@@ -167,7 +167,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit2.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='工程材料入库单' and sx like '%{0}%' and nr!=''", "材料规格"));
+            string.Format("select nr from pj_dyk where  dx='工程材料入库单' and nr like '%{0}%' and nr!=''", "材料规格"));
             if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
@@ -175,7 +175,7 @@ namespace Ebada.Scgl.Lcgl
                 strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select distinct xh from PS_sbcs where xh is not null "));
                 if (strlist.Count > 0)
-                    comboBoxEdit1.Properties.Items.AddRange(strlist);
+                    comboBoxEdit2.Properties.Items.AddRange(strlist);
                 else
                 {
                     comboBoxEdit2.Properties.Items.Add("YB-15-8");

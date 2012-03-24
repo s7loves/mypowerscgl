@@ -32,6 +32,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "wpcj");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "ssgc");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "yt");
+            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "num");
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "ghdw");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "cksl");
             this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "zkcsl");
@@ -454,11 +455,6 @@ namespace Ebada.Scgl.Lcgl
             spinEdit2.Properties.MaxValue = Convert.ToDecimal(rowData.cksl);
         }
 
-        private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
-        {
-            comboBoxEdit2_TextChanged(sender, e);
-        }
-
         private void comboBoxEdit2_TextChanged(object sender, EventArgs e)
         {
             //if (comboBoxEdit1.Text != "" && comboBoxEdit3.Text != "")
@@ -493,7 +489,7 @@ namespace Ebada.Scgl.Lcgl
             rowData.zkcsl = (Convert.ToInt64(rowData.zkcsl) +Convert.ToInt64(spinEdit2.Value)
                 - Convert.ToInt64(rowData.cksl)).ToString();
             comboBoxEdit10.Text = rowData.zkcsl;
-            rowData.lasttime = DateTime.Now;  
+            rowData.lasttime = DateTime.Now;
         }
 
         

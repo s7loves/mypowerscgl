@@ -260,6 +260,7 @@
             this.btAddKuCun.ImageIndex = 6;
             this.btAddKuCun.Name = "btAddKuCun";
             this.btAddKuCun.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAddKuCun.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btEdit
             // 

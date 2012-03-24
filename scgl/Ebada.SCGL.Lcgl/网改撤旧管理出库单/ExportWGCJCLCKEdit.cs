@@ -471,17 +471,20 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[j].wpdw, row + j % rowcount + 60, col + 4);
                 ex.SetCellValue(datalist[j].cksl, row + j % rowcount + 60, col + 5);
                 ex.SetCellValue(datalist[j].wpdj, row + j % rowcount + 60, col + 7);
-                long value = Convert.ToInt64(Math.Round(Convert.ToDouble(datalist[j].cksl) * Convert.ToDouble(datalist[j].wpdj), 2) * 100);
-                int index = 19;
-                while (value > 0)
+                if (datalist[j].wpdj != "")
                 {
-                    long ifen = value % 10;
-                    ex.SetCellValue(ifen.ToString(), row + j % rowcount, index);
-                    ex.SetCellValue(ifen.ToString(), row + j % rowcount + 20, index);
-                    ex.SetCellValue(ifen.ToString(), row + j % rowcount + 40, index);
-                    ex.SetCellValue(ifen.ToString(), row + j % rowcount + 60, index);
-                    value = value/ 10;
-                    index--;
+                    long value = Convert.ToInt64(Math.Round(Convert.ToDouble(datalist[j].cksl) * Convert.ToDouble(datalist[j].wpdj), 2) * 100);
+                    int index = 19;
+                    while (value > 0)
+                    {
+                        long ifen = value % 10;
+                        ex.SetCellValue(ifen.ToString(), row + j % rowcount, index);
+                        ex.SetCellValue(ifen.ToString(), row + j % rowcount + 20, index);
+                        ex.SetCellValue(ifen.ToString(), row + j % rowcount + 40, index);
+                        ex.SetCellValue(ifen.ToString(), row + j % rowcount + 60, index);
+                        value = value / 10;
+                        index--;
+                    }
                 }
                 ex.SetCellValue(datalist[j].Remark, 17, 2);
                 ex.SetCellValue(datalist[j].Remark, 17 + 20, 2);
