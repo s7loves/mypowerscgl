@@ -79,7 +79,7 @@ namespace Ebada.Scgl.Sbgl {
                         mLines.Add(xl.LineID, xl);
                     }
                 } else if (type == "xl") {
-                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "'");
+                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "' and vol='10'");
                     string lname = mLines[id].LineName;
                     foreach (PS_xl xl in list) {
                         mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl");
