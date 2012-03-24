@@ -126,6 +126,8 @@ namespace Ebada.SCGL.WFlow.Tool
             comboBoxEdit5.Properties.Items.Clear();
             ListItem lt = new ListItem("yyyy年MM月dd日", "yyyy年MM月dd日");
             comboBoxEdit5.Properties.Items.Add(lt);
+            lt = new ListItem("yyyy年MM月dd日 HH时:mm分", "yyyy年MM月dd日 HH时:mm分");
+            comboBoxEdit5.Properties.Items.Add(lt);
             lt = new ListItem("yyyy-MM-dd", "yyyy-MM-dd");
             comboBoxEdit5.Properties.Items.Add(lt);
             lt = new ListItem("MM-dd日", "MM-dd日");

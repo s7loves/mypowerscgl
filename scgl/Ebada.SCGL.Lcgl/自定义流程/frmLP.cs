@@ -699,21 +699,26 @@ namespace Ebada.Scgl.Lcgl
            
             DateTime dt= DateTime.Now;
             Random rd = new Random();
+            int irpos = 5001;
             decimal dtemp = Convert.ToDecimal(dt.ToString("yyyyMMddHHmmssffffff"));
             for (int i = 0; i < akeys.Count; i++)
             {
                 WF_TableFieldValue wfv = valuehs[akeys[i]] as WF_TableFieldValue;
-                if (wfv.XExcelPos != -1 && wfv.YExcelPos!=-1)
-                wfv.ID = Convert.ToString((dtemp+wfv.YExcelPos + wfv.XExcelPos * 10000));
+                if (wfv.XExcelPos != -1 && wfv.YExcelPos != -1)
+                    wfv.ID = Convert.ToString((dtemp + wfv.YExcelPos + wfv.XExcelPos * 10000));
                 else
-                    wfv.ID = Convert.ToString((dtemp + rd.Next()*10000));
+                {
+                  
+                    wfv.ID = Convert.ToString((dtemp +irpos+ irpos * 10000));
+                    irpos++;
+                }
                 wfv.RecordId = currRecord.ID;
                 wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
                 wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
                 wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
                 wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
                 wfv.UserControlId = parentTemple.LPID;
-                
+                //MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
                 //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 list.Add(wfv);
             }
@@ -723,7 +728,7 @@ namespace Ebada.Scgl.Lcgl
             }
             if (list.Count > 0)
             {
-               
+
                 Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
             }
             if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
