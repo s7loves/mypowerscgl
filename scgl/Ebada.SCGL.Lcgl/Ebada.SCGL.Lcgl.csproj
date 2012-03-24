@@ -264,6 +264,19 @@
     <Compile Include="人事档案\UCPJ_rsda.Designer.cs">
       <DependentUpon>UCPJ_rsda.cs</DependentUpon>
     </Compile>
+    <Compile Include="图片资料\Exportptzl.cs" />
+    <Compile Include="图片资料\frmtpzlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="图片资料\frmtpzlEdit.Designer.cs">
+      <DependentUpon>frmtpzlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="图片资料\UCPJ_tpzl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="图片资料\UCPJ_tpzl.Designer.cs">
+      <DependentUpon>UCPJ_tpzl.cs</DependentUpon>
+    </Compile>
     <Compile Include="网改季度对账\jddzWGInquiryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3539,6 +3552,14 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\close.bmp" />
+    <EmbeddedResource Include="图片资料\frmtpzlEdit.resx">
+      <DependentUpon>frmtpzlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="图片资料\UCPJ_tpzl.resx">
+      <DependentUpon>UCPJ_tpzl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="网改季度对账\jddzWGInquiryForm.resx">
       <DependentUpon>jddzWGInquiryForm.cs</DependentUpon>
       <SubType>Designer</SubType>

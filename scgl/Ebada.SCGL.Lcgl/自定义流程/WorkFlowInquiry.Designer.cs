@@ -32,10 +32,6 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.cbeFieldTable1 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.teField4 = new DevExpress.XtraEditors.TextEdit();
-            this.teField3 = new DevExpress.XtraEditors.TextEdit();
-            this.teField2 = new DevExpress.XtraEditors.TextEdit();
-            this.teField1 = new DevExpress.XtraEditors.TextEdit();
             this.teModleTable = new DevExpress.XtraEditors.TextEdit();
             this.teNumber = new DevExpress.XtraEditors.TextEdit();
             this.ceField4 = new DevExpress.XtraEditors.CheckEdit();
@@ -62,22 +58,22 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cbeField2 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.cbeField1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.teField1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbeWorkFlowCaption = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.uCmLPInquiryRecord1 = new Ebada.Scgl.Lcgl.UCmLPInquiryRecord();
+            this.cbeField1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.teField2 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.teField3 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.teField4 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbeFieldTable1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teField4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teField3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teField2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teField1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teModleTable.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceField4.Properties)).BeginInit();
@@ -103,13 +99,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbeField4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbeField3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbeField2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbeField1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbeWorkFlowCaption.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeField1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField4.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -126,10 +126,6 @@
             // 
             this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.cbeFieldTable1);
-            this.panelControl1.Controls.Add(this.teField4);
-            this.panelControl1.Controls.Add(this.teField3);
-            this.panelControl1.Controls.Add(this.teField2);
-            this.panelControl1.Controls.Add(this.teField1);
             this.panelControl1.Controls.Add(this.teModleTable);
             this.panelControl1.Controls.Add(this.teNumber);
             this.panelControl1.Controls.Add(this.ceField4);
@@ -154,9 +150,13 @@
             this.panelControl1.Controls.Add(this.cbeField4);
             this.panelControl1.Controls.Add(this.cbeField3);
             this.panelControl1.Controls.Add(this.labelControl5);
+            this.panelControl1.Controls.Add(this.cbeField1);
             this.panelControl1.Controls.Add(this.cbeField2);
             this.panelControl1.Controls.Add(this.labelControl2);
-            this.panelControl1.Controls.Add(this.cbeField1);
+            this.panelControl1.Controls.Add(this.teField4);
+            this.panelControl1.Controls.Add(this.teField3);
+            this.panelControl1.Controls.Add(this.teField2);
+            this.panelControl1.Controls.Add(this.teField1);
             this.panelControl1.Controls.Add(this.cbeWorkFlowCaption);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -183,34 +183,6 @@
             this.cbeFieldTable1.Size = new System.Drawing.Size(64, 21);
             this.cbeFieldTable1.TabIndex = 17;
             this.cbeFieldTable1.Visible = false;
-            // 
-            // teField4
-            // 
-            this.teField4.Location = new System.Drawing.Point(471, 95);
-            this.teField4.Name = "teField4";
-            this.teField4.Size = new System.Drawing.Size(100, 21);
-            this.teField4.TabIndex = 36;
-            // 
-            // teField3
-            // 
-            this.teField3.Location = new System.Drawing.Point(471, 67);
-            this.teField3.Name = "teField3";
-            this.teField3.Size = new System.Drawing.Size(100, 21);
-            this.teField3.TabIndex = 35;
-            // 
-            // teField2
-            // 
-            this.teField2.Location = new System.Drawing.Point(472, 40);
-            this.teField2.Name = "teField2";
-            this.teField2.Size = new System.Drawing.Size(100, 21);
-            this.teField2.TabIndex = 34;
-            // 
-            // teField1
-            // 
-            this.teField1.Location = new System.Drawing.Point(472, 11);
-            this.teField1.Name = "teField1";
-            this.teField1.Size = new System.Drawing.Size(100, 21);
-            this.teField1.TabIndex = 39;
             // 
             // teModleTable
             // 
@@ -432,6 +404,7 @@
             this.cbeField4.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbeField4.Size = new System.Drawing.Size(100, 21);
             this.cbeField4.TabIndex = 14;
+            this.cbeField4.SelectedIndexChanged += new System.EventHandler(this.cbeField4_SelectedIndexChanged);
             // 
             // cbeField3
             // 
@@ -442,6 +415,7 @@
             this.cbeField3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbeField3.Size = new System.Drawing.Size(100, 21);
             this.cbeField3.TabIndex = 18;
+            this.cbeField3.SelectedIndexChanged += new System.EventHandler(this.cbeField3_SelectedIndexChanged);
             // 
             // labelControl5
             // 
@@ -460,6 +434,7 @@
             this.cbeField2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbeField2.Size = new System.Drawing.Size(100, 21);
             this.cbeField2.TabIndex = 20;
+            this.cbeField2.SelectedIndexChanged += new System.EventHandler(this.cbeField2_SelectedIndexChanged);
             // 
             // labelControl2
             // 
@@ -469,15 +444,15 @@
             this.labelControl2.TabIndex = 10;
             this.labelControl2.Text = "单位";
             // 
-            // cbeField1
+            // teField1
             // 
-            this.cbeField1.Location = new System.Drawing.Point(295, 10);
-            this.cbeField1.Name = "cbeField1";
-            this.cbeField1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.teField1.Location = new System.Drawing.Point(472, 11);
+            this.teField1.Name = "teField1";
+            this.teField1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbeField1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbeField1.Size = new System.Drawing.Size(100, 21);
-            this.cbeField1.TabIndex = 19;
+            this.teField1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.teField1.Size = new System.Drawing.Size(100, 21);
+            this.teField1.TabIndex = 19;
             // 
             // cbeWorkFlowCaption
             // 
@@ -541,6 +516,47 @@
             this.uCmLPInquiryRecord1.Size = new System.Drawing.Size(1021, 209);
             this.uCmLPInquiryRecord1.TabIndex = 0;
             // 
+            // cbeField1
+            // 
+            this.cbeField1.Location = new System.Drawing.Point(296, 10);
+            this.cbeField1.Name = "cbeField1";
+            this.cbeField1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbeField1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeField1.Size = new System.Drawing.Size(100, 21);
+            this.cbeField1.TabIndex = 20;
+            this.cbeField1.SelectedIndexChanged += new System.EventHandler(this.cbeField1_SelectedIndexChanged);
+            // 
+            // teField2
+            // 
+            this.teField2.Location = new System.Drawing.Point(472, 41);
+            this.teField2.Name = "teField2";
+            this.teField2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.teField2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.teField2.Size = new System.Drawing.Size(100, 21);
+            this.teField2.TabIndex = 19;
+            // 
+            // teField3
+            // 
+            this.teField3.Location = new System.Drawing.Point(472, 68);
+            this.teField3.Name = "teField3";
+            this.teField3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.teField3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.teField3.Size = new System.Drawing.Size(100, 21);
+            this.teField3.TabIndex = 19;
+            // 
+            // teField4
+            // 
+            this.teField4.Location = new System.Drawing.Point(472, 94);
+            this.teField4.Name = "teField4";
+            this.teField4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.teField4.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.teField4.Size = new System.Drawing.Size(100, 21);
+            this.teField4.TabIndex = 19;
+            // 
             // WorkFlowInquiry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -556,10 +572,6 @@
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbeFieldTable1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teField4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teField3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teField2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teField1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teModleTable.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceField4.Properties)).EndInit();
@@ -585,13 +597,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbeField4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbeField3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbeField2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbeField1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbeWorkFlowCaption.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cbeField1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teField4.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -606,10 +622,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.ComboBoxEdit cbeFieldTable1;
-        private DevExpress.XtraEditors.TextEdit teField4;
-        private DevExpress.XtraEditors.TextEdit teField3;
-        private DevExpress.XtraEditors.TextEdit teField2;
-        private DevExpress.XtraEditors.TextEdit teField1;
         private DevExpress.XtraEditors.TextEdit teModleTable;
         private DevExpress.XtraEditors.TextEdit teNumber;
         private DevExpress.XtraEditors.CheckEdit ceField4;
@@ -636,9 +648,13 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.ComboBoxEdit cbeField2;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.ComboBoxEdit cbeField1;
+        private DevExpress.XtraEditors.ComboBoxEdit teField1;
         private DevExpress.XtraEditors.ComboBoxEdit cbeWorkFlowCaption;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeField1;
+        private DevExpress.XtraEditors.ComboBoxEdit teField4;
+        private DevExpress.XtraEditors.ComboBoxEdit teField3;
+        private DevExpress.XtraEditors.ComboBoxEdit teField2;
 
     }
 }
