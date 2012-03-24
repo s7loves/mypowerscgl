@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D3BDBDF2-B305-48A2-9BD1-CE51C4F805FB}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autodesk.AutoCAD.Interop, Version=16.1.63.0, Culture=neutral, PublicKeyToken=eed84259d7cbf30b">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Autodesk.AutoCAD.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.AutoCAD.Interop.Common, Version=16.2.54.0, Culture=neutral, PublicKeyToken=eed84259d7cbf30b">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Autodesk.AutoCAD.Interop.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Ebada.Client.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Ebada.Components, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Ebada.Scgl.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
@@ -57,22 +65,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="AutoCAD">
-      <Guid>{851A4561-F4EC-4631-9B0C-E7DC407512C9}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="AXDBLib">
-      <Guid>{11A32D00-9E89-4C16-82CB-629DEBA56AE2}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
     <COMReference Include="stdole">
       <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>2</VersionMajor>
