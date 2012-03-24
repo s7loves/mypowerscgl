@@ -55,6 +55,7 @@
             this.ucMapLayer1 = new TLMapPlatform.UCMapLayer();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.rMap1 = new Ebada.Scgl.Gis.RMap();
+            this.barCAD = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).BeginInit();
@@ -90,9 +91,10 @@
             this.barStaticItem1,
             this.barEditItem1,
             this.barButtonItem10,
-            this.barEditItem2});
+            this.barEditItem2,
+            this.barCAD});
             this.barManager1.LargeImages = this.imageList1;
-            this.barManager1.MaxItemId = 16;
+            this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageComboBox1,
             this.repositoryItemMarqueeProgressBar1});
@@ -115,7 +117,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem6),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEditItem1, "", false, true, true, 91)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEditItem1, "", false, true, true, 91),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCAD)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -234,7 +237,7 @@
             this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemImageComboBox1.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
-                new DevExpress.XtraEditors.Controls.ImageComboBoxItem("无地图", "0", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("无地图", "0", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("城市地图", "1", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("卫星地图", "2", -1)});
             this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
@@ -337,6 +340,7 @@
             this.ucMapLayer1.Location = new System.Drawing.Point(0, 0);
             this.ucMapLayer1.MapControl = null;
             this.ucMapLayer1.Name = "ucMapLayer1";
+            this.ucMapLayer1.ShowToolbar = false;
             this.ucMapLayer1.Size = new System.Drawing.Size(247, 336);
             this.ucMapLayer1.TabIndex = 0;
             // 
@@ -370,10 +374,23 @@
             this.rMap1.PolygonsEnabled = true;
             this.rMap1.RetryLoadTile = 0;
             this.rMap1.RoutesEnabled = true;
+            this.rMap1.Showbyq = true;
+            this.rMap1.Showbyqrl = true;
+            this.rMap1.Showgt = true;
+            this.rMap1.Showgth = false;
+            this.rMap1.Showkg = false;
             this.rMap1.ShowTileGridLines = false;
+            this.rMap1.Showxlmc = false;
             this.rMap1.Size = new System.Drawing.Size(150, 150);
             this.rMap1.TabIndex = 0;
             this.rMap1.Zoom = 0;
+            // 
+            // barCAD
+            // 
+            this.barCAD.Caption = "导出CAD";
+            this.barCAD.Id = 16;
+            this.barCAD.Name = "barCAD";
+            this.barCAD.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barCAD_ItemClick);
             // 
             // frmMapM
             // 
@@ -429,6 +446,7 @@
         private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
         private TLMapPlatform.UCMapLayer ucMapLayer1;
+        private DevExpress.XtraBars.BarButtonItem barCAD;
 
     }
 }
