@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_tbsj" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_tbsj"  type="Ebada.Scgl.Model.PJ_tbsj,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_tbsj_AllColumns" class="PJ_tbsj">
+        <result property="ID" column="ID" />
+        <result property="picName" column="picName" />
+        <result property="picImage" column="picImage" />
+        <result property="Remark" column="Remark" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_tbsjList" resultMap="PJ_tbsj_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [picName],
+         [picImage],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_tbsj
+          $value$
+   </select>
+   
+   <select id="SelectPJ_tbsjByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [picName],
+         [picImage],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+          FROM PJ_tbsj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="picName">[picName]='$picName$'</isNotNull>
+       <isNotNull prepend="AND" property="picImage">[picImage]='$picImage$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_tbsjByKey" resultMap="PJ_tbsj_AllColumns" parameterClass="PJ_tbsj">
+         SELECT 
+         [ID],
+         [picName],
+         [picImage],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+         FROM PJ_tbsj
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_tbsj" parameterClass="PJ_tbsj">
+        DELETE FROM 
+         PJ_tbsj
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_tbsjByWhere" parameterClass="string">
+     delete from PJ_tbsj $value$
+   </delete>
+   
+   <delete id="DeletePJ_tbsjByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_tbsj
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_tbsj" parameterClass="PJ_tbsj" resultClass="int">
+          UPDATE PJ_tbsj
+           SET
+             [picName]=#picName#,
+             [picImage]=#picImage#,
+             [Remark]=#Remark#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_tbsj" parameterClass="PJ_tbsj">
+        INSERT INTO PJ_tbsj
+         (
+         [ID],
+         [picName],
+         [picImage],
+         [Remark],
+         [S1],
+         [S2],
+         [S3]
+         )
+       VALUES
+         (
+         #ID#,
+         #picName#,
+         #picImage#,
+         #Remark#,
+         #S1#,
+         #S2#,
+         #S3#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_tbsjRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_tbsj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="picName">[picName]='$picName$'</isNotNull>
+       <isNotNull prepend="AND" property="picImage">[picImage]='$picImage$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_tbsjRowCount" parameterClass="string">
+    select count(*) from PJ_tbsj $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

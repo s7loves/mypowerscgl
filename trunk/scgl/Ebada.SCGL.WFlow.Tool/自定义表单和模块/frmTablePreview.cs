@@ -702,9 +702,48 @@ namespace Ebada.SCGL.WFlow.Tool
                 activeSheetIndex = xx.Index;
                 activeSheetName = xx.Name;
             }
-
+            ExcelAccess ea = new ExcelAccess();
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
+            if (lp.KindTable != "")
+            {
+                ea.ActiveSheet(lp.KindTable);
+            }
+            else
+            {
+                ea.ActiveSheet(1);
+            }
             unLockExcel(wb, xx);
-            if (lp.CellPos == "") return;
+            if (lp.CellPos == "")
+            {
+                if (lp.CellName.IndexOf("简图") > -1)
+                {
+
+                    PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
+                    string tempPath = Path.GetTempPath();
+                    string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+                    FileStream fs;
+                    fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                    BinaryWriter bw = new BinaryWriter(fs);
+                    bw.Write(tb.picImage);
+                    bw.Flush();
+                    bw.Close();
+                    fs.Close();
+                    //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
+                    //MemoryStream memo = new MemoryStream(4);
+                    //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
+                    //memo.Write(bytes, 0, bytes.Length);
+                    //data.SetData("ttt", memo);
+                    //Clipboard.SetDataObject(data);
+                    Image im = Bitmap.FromFile(tempfile);
+                    Bitmap bt = new Bitmap(im);
+                    DataObject dataObject = new DataObject();
+                    dataObject.SetData(DataFormats.Bitmap, bt);
+                    Clipboard.SetDataObject(dataObject, true);
+
+                }
+                return;
+            }
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
             if (arrCellpos.Length >= 1)
@@ -734,8 +773,37 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
-            if (lp.CellPos == "") return;
             string str = (sender as Control).Text;
+            if (lp.CellPos == "")
+            {
+                if (lp.CellName.IndexOf("简图") > -1)
+                {
+
+                    PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
+                    string tempPath = Path.GetTempPath();
+                    string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+                    FileStream fs;
+                    fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                    BinaryWriter bw = new BinaryWriter(fs);
+                    bw.Write(tb.picImage);
+                    bw.Flush();
+                    bw.Close();
+                    fs.Close();
+                    //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
+                    //MemoryStream memo = new MemoryStream(4);
+                    //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
+                    //memo.Write(bytes, 0, bytes.Length);
+                    //data.SetData("ttt", memo);
+                    //Clipboard.SetDataObject(data);
+                    Image im = Bitmap.FromFile(tempfile);
+                    Bitmap bt = new Bitmap(im);
+                    DataObject   dataObject   =   new   DataObject();
+                    dataObject.SetData(DataFormats.Bitmap, bt);
+                    Clipboard.SetDataObject(dataObject, true);
+
+                }
+                return;
+            }
             if (dsoFramerWordControl1.MyExcel == null)
             {
                 return;
@@ -862,9 +930,14 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     else
                     {
-                        ea.SetCellValue(str.Substring(0, help.GetFristLen(str, arrCellCount[0])), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        int i1 = str.IndexOf("\r\n");
+                        if(i1>help.GetFristLen(str, arrCellCount[0]))
+                        i1=help.GetFristLen(str, arrCellCount[0]);
+                        if (i1 == -1)
+                            i1 = help.GetFristLen(str, arrCellCount[0]);
+                        ea.SetCellValue(str.Substring(0, i1), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
 
-                        str = str.Substring( help.GetFristLen(str, arrCellCount[0]));
+                        str = str.Substring(i1);
                         i++;
                         //str = help.GetPlitString(str, arrCellCount[1]);
                     }
@@ -953,10 +1026,21 @@ namespace Ebada.SCGL.WFlow.Tool
             else
             {
                 string strarrRst = str;
-                
+                int i1 = strarrRst.IndexOf("\r\n");
                 for (; i < arrCellPos.Length; i++)
                 {
-
+                    i1 = strarrRst.IndexOf("\r\n");
+                    if (i1 > help.GetFristLen(strarrRst, arrCellCount[i]))
+                        i1 = help.GetFristLen(strarrRst, arrCellCount[i]);
+                    if (i1 == 0)
+                    {
+                        strarrRst = strarrRst.Substring(2);
+                        i1 = strarrRst.IndexOf("\r\n");
+                        if (i1 > help.GetFristLen(strarrRst, arrCellCount[i]))
+                            i1 = help.GetFristLen(strarrRst, arrCellCount[i]);
+                    }
+                    if (i1 == -1)
+                        i1 = help.GetFristLen(str, arrCellCount[i]);
                     if (strarrRst.Length <= help.GetFristLen(str, arrCellCount[i]))
                     {
                         ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
@@ -964,8 +1048,10 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     else
                     {
-                        ea.SetCellValue(strarrRst.Substring(0, help.GetFristLen(strarrRst, arrCellCount[i])), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
-                        strarrRst = strarrRst.Substring(help.GetFristLen(strarrRst, arrCellCount[i]));
+                       
+                        
+                        ea.SetCellValue(strarrRst.Substring(0, i1), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        strarrRst = strarrRst.Substring(i1);
                         
                         //strarrRst = help.GetPlitString(strarrRst, arrCellCount[i]);
                     }

@@ -121,6 +121,7 @@
     <Compile Include="PJ_sctz.cs" />
     <Compile Include="PJ_sdytz.cs" />
     <Compile Include="PJ_sheetTemp.cs" />
+    <Compile Include="PJ_tbsj.cs" />
     <Compile Include="PJ_tdjh.cs" />
     <Compile Include="PJ_wgclcrkd.cs" />
     <Compile Include="PJ_wgclrkysd.cs" />

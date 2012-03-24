@@ -323,6 +323,9 @@
     <EmbeddedResource Include="PJ_wgclrkysd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_tbsj.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
