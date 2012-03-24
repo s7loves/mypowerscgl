@@ -260,6 +260,7 @@
             this.btAddKuCun.ImageIndex = 6;
             this.btAddKuCun.Name = "btAddKuCun";
             this.btAddKuCun.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAddKuCun.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btEdit
             // 
@@ -276,6 +277,7 @@
             this.btDelete.ImageIndex = 12;
             this.btDelete.Name = "btDelete";
             this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // btRefresh
             // 
             this.btRefresh.Caption = "刷新";

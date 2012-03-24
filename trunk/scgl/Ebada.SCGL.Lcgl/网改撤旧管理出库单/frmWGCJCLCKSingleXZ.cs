@@ -136,6 +136,8 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit9.Properties.Items.AddRange(mclist);
 
             comboBoxEdit5.Properties.Items.Clear();
+            comboBoxEdit5.Properties.Items.Add("工程");
+            comboBoxEdit5.Properties.Items.Add("检修");
             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct yt  from PJ_wgclcrkd where type = '撤旧材料出库单'");
             comboBoxEdit5.Properties.Items.AddRange(mclist);
 

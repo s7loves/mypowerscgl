@@ -1711,7 +1711,8 @@ namespace Ebada.Scgl.Lcgl
                     IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select * from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' ", parentTemple.LPID));
                     if (kind == "yzgzp" || parentTemple.CellName=="电力线路第一种工作票")
                     {
-                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                        //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') ;
                     }
                     else
                     {
@@ -1895,36 +1896,37 @@ namespace Ebada.Scgl.Lcgl
             switch (lp.WordCount)
             {
                 case "yyyy-MM-dd":
-                    strList.Add(dt.Year.ToString());
-                    strList.Add(dt.Month.ToString());
-                    strList.Add(dt.Day.ToString());
+                    strList.Add( dt.Year.ToString());
+                    strList.Add(string.Format("{0:D2}", dt.Month));
+                    strList.Add(string.Format("{0:D2}", dt.Day));
                     break;
                 case "yyyy-MM-dd HH:mm:ss":
                     strList.Add(dt.Year.ToString());
-                    strList.Add(dt.Month.ToString());
-                    strList.Add(dt.Day.ToString());
-                    strList.Add(dt.Hour.ToString());
-                    strList.Add(dt.Second.ToString());
+                    strList.Add(string.Format("{0:D2}", dt.Month));
+                    strList.Add(string.Format("{0:D2}", dt.Day));
+                    strList.Add(string.Format("{0:D2}", dt.Hour));
+                    strList.Add(string.Format("{0:D2}", dt.Minute));
+                    strList.Add(string.Format("{0:D2}", dt.Second));
                     break;
                 case "HH:mm:ss":
                     strList.Add(dt.Hour.ToString());
-                    strList.Add(dt.Minute.ToString());
-                    strList.Add(dt.Second.ToString());
+                    strList.Add(string.Format("{0:D2}", dt.Minute));
+                    strList.Add(string.Format("{0:D2}", dt.Second));
                     break;
                 case "MM-dd日 HH:mm":
-                    strList.Add(dt.Month.ToString());
-                    strList.Add(dt.Day.ToString());
-                    strList.Add(dt.Hour.ToString());
-                    strList.Add(dt.Minute.ToString());
+                    strList.Add(string.Format("{0:D2}", dt.Month));
+                    strList.Add(string.Format("{0:D2}", dt.Day));
+                    strList.Add(string.Format("{0:D2}", dt.Hour));
+                    strList.Add(string.Format("{0:D2}", dt.Minute));
                     break;
                 case "dd日 HH:mm":
-                    strList.Add(dt.Day.ToString());
-                    strList.Add(dt.Hour.ToString());
-                    strList.Add(dt.Minute.ToString());
+                    strList.Add(string.Format("{0:D2}", dt.Day));
+                    strList.Add(string.Format("{0:D2}", dt.Hour));
+                    strList.Add(string.Format("{0:D2}", dt.Minute));
                     break;
                 case "HH:mm":
-                    strList.Add(dt.Hour.ToString());
-                    strList.Add(dt.Minute.ToString());
+                    strList.Add(string.Format("{0:D2}", dt.Hour));
+                    strList.Add(string.Format("{0:D2}", dt.Minute));
                     break;
                 default:
                     if (lp.WordCount.IndexOf("yyyy") > -1)
@@ -1938,37 +1940,37 @@ namespace Ebada.Scgl.Lcgl
                     if (lp.WordCount.IndexOf("MM") > -1)
                     {
                         if (lp.WordCount.IndexOf("MM月") > -1)
-                            strList.Add(dt.Month.ToString() + "月");
+                            strList.Add(string.Format("{0:D2}", dt.Month) + "月");
                         else
-                            strList.Add(dt.Month.ToString());
+                            strList.Add(string.Format("{0:D2}", dt.Month));
                     }
                     if (lp.WordCount.IndexOf("dd") > -1)
                     {
                         if (lp.WordCount.IndexOf("dd日") > -1)
-                            strList.Add(dt.Day.ToString() + "日");
+                            strList.Add(string.Format("{0:D2}", dt.Day) + "日");
                         else
-                            strList.Add(dt.Day.ToString());
+                            strList.Add(string.Format("{0:D2}", dt.Day));
                     }
                     if (lp.WordCount.IndexOf("HH") > -1)
                     {
                         if (lp.WordCount.IndexOf("HH时") > -1)
-                            strList.Add(dt.Hour.ToString() + "时");
+                            strList.Add(string.Format("{0:D2}", dt.Hour) + "时");
                         else
-                            strList.Add(dt.Hour.ToString());
+                            strList.Add(string.Format("{0:D2}", dt.Hour));
                     }
                     if (lp.WordCount.IndexOf("mm") > -1)
                     {
                         if (lp.WordCount.IndexOf("mm分") > -1)
-                            strList.Add(dt.Minute.ToString() + "分");
+                            strList.Add(string.Format("{0:D2}", dt.Minute) + "分");
                         else
-                            strList.Add(dt.Minute.ToString());
+                            strList.Add(string.Format("{0:D2}", dt.Minute));
                     }
                     if (lp.WordCount.IndexOf("ss") > -1)
                     {
                         if (lp.WordCount.IndexOf("ss秒") > -1)
-                            strList.Add(dt.Second.ToString() + "秒");
+                            strList.Add(string.Format("{0:D2}", dt.Second) + "秒");
                         else
-                            strList.Add(dt.Second.ToString());
+                            strList.Add(string.Format("{0:D2}", dt.Second));
                     }
                     break;
             }
@@ -2595,7 +2597,8 @@ namespace Ebada.Scgl.Lcgl
                                 IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
                                 if (kind == "yzgzp")
                                 {
-                                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                                    //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                                 }
                                 else
                                 {

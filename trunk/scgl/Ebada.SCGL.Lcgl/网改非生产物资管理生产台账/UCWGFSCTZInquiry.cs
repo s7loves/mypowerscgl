@@ -140,11 +140,11 @@ namespace Ebada.Scgl.Lcgl
 
                 if (checkEdit1.Checked)
                 {
-                    strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' ) ";
+                    strSQL = strSQL + " and (indate between  '" + deCreatTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deCreatTimeEnd.DateTime.ToString("d") + " 23:59:59' and (type like '%入库单' ' ) ) ";
                 }
                 if (checkEdit2.Checked)
                 {
-                    strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59'  and type like '%出库单' ) ";
+                    strSQL = strSQL + " and (ckdate between  '" + deEditTimeStart.DateTime.ToString("d") + " 00:00:00' and '" + deEditTimeEnd.DateTime.ToString("d") + " 23:59:59'  and (type like '%出库单' or type like '%材料单' ) ) ";
                 }
                 ucsctz1.StrSQL = (strSQL);
 

@@ -206,6 +206,7 @@ namespace Ebada.Scgl.Lcgl
             frm.strType = comboBoxEdit5.Text;
             if (clccktemp == null) clccktemp = new PJ_wgclcrkd();
             clccktemp.cksl = "0";
+            clccktemp.yt = "工程";
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
             //       <PJ_wgclcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
             //frm.strNum = DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
@@ -393,6 +394,7 @@ namespace Ebada.Scgl.Lcgl
             frm.RowData = new PJ_wgclcrkd();
             ConvertHelper.CopyTo<PJ_wgclcrkd>(rowdata, (PJ_wgclcrkd)frm.RowData);
             ((PJ_wgclcrkd)frm.RowData).Remark = "";
+            ((PJ_wgclcrkd)frm.RowData).yt = "工程";
 
             IList<PJ_wgclcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
             <PJ_wgclcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc ");

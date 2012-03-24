@@ -261,6 +261,7 @@
             this.btAddKuCun.ImageIndex = 6;
             this.btAddKuCun.Name = "btAddKuCun";
             this.btAddKuCun.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAddKuCun.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btEdit
             // 
@@ -269,7 +270,6 @@
             this.btEdit.ImageIndex = 1;
             this.btEdit.Name = "btEdit";
             this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btDelete
             // 
@@ -362,25 +362,25 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(955, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(955, 26);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 303);
-            this.barDockControlBottom.Size = new System.Drawing.Size(955, 25);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 298);
+            this.barDockControlBottom.Size = new System.Drawing.Size(955, 30);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 278);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 272);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(955, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 278);
+            this.barDockControlRight.Location = new System.Drawing.Point(955, 26);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 272);
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -397,11 +397,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 25);
+            this.gridControl1.Location = new System.Drawing.Point(0, 26);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(955, 278);
+            this.gridControl1.Size = new System.Drawing.Size(955, 272);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
