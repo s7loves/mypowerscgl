@@ -36,6 +36,7 @@
       <HintPath>..\Library\Db4objects.Db4o.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpo.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Ebada.SCGL.CADLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GMap.NET.Core, Version=1.5.5.5, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\GMap.NET.Core.dll</HintPath>
