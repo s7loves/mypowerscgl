@@ -285,7 +285,7 @@ namespace Ebada.Scgl.Lcgl
             //需要隐藏列时在这写代码
 
 
-            hideColumn("OrgName");
+            //hideColumn("OrgName");
             hideColumn("OrgCode");
             hideColumn("S1");
             hideColumn("S2");

@@ -540,7 +540,7 @@ namespace Ebada.SCGL.WFlow.Engine
                         + list[0]
                         + " in (select id  from WF_TableFieldValue where WorkFlowId='"
                         + wfi.WorkFlowId + "' and WorkFlowInsId='"
-                        + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by " + list[0] + " desc";
+                        + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by id desc";
                 }
                 else
                 {
@@ -789,6 +789,49 @@ namespace Ebada.SCGL.WFlow.Engine
                                 {
                                     //交互节点
                                     #region 交互节点
+
+                                    if (endoperRule == "1")//共享处理任务，此时只产生一个任务实例多个处理者实例
+                                    {
+                                        //创建一个任务实例
+                                        string newTaskId = Guid.NewGuid().ToString();//新任务处理者实例Id
+                                        WorkTaskInstance workTaskInstance = new WorkTaskInstance();
+                                        workTaskInstance.WorkflowId = workFlowId;
+                                        workTaskInstance.WorktaskId = endTaskId;
+                                        workTaskInstance.WorkflowInsId = workFlowInstanceId;
+                                        workTaskInstance.WorktaskInsId = newTaskId;
+                                        workTaskInstance.PreviousTaskId = WorkTaskInstanceId;
+                                        workTaskInstance.TaskInsCaption = WorkFlowTask.GetTaskCaption(endTaskId);
+                                        workTaskInstance.Status = "1";
+                                        workTaskInstance.Create();
+
+                                        //创建多个处理人
+
+                                        string result = CreateOperInstance(userId, WorkTaskInstanceId, workTaskId, workFlowId, endTaskId, workFlowInstanceId, newTaskId, OperParam);//创建处理者实例
+                                        if (result != WorkFlowConst.SuccessCode) return result;
+                                    }
+                                    else
+                                        if (endoperRule == "2")//所以有人都要处理，此时每个处理者产生一个任务实例
+                                        {
+                                            //创建任务实例和处理人
+
+                                            string result = CreateOperInstance(userId, WorkTaskInstanceId, workTaskId, workFlowId, endTaskId, workFlowInstanceId, WorkTaskInstanceId, OperParam);
+                                            if (result != WorkFlowConst.SuccessCode) return result;
+                                        }
+                                    //设置处理者实例正常结束
+                                    OperatorInstance.SetOperatorInstanceOver(userId, operatorInstanceId);
+                                    //设置任务实例正常结束
+                                    WorkTaskInstance.SetWorkTaskInstanceOver(userName, WorkTaskInstanceId);
+                                    //设定流程实例的当前位置
+                                    WorkFlowInstance.SetCurrTaskId(workFlowInstanceId, endTaskId);
+                                    //设定任务实例成功提交信息
+                                    WorkTaskInstance.SetSuccessMsg(WorkFlowConst.SuccessMsg, WorkTaskInstanceId);
+                                    #endregion
+                                    break;
+                                }
+                            case "1":
+                                {
+                                    //起始节点
+                                    #region 起始节点
 
                                     if (endoperRule == "1")//共享处理任务，此时只产生一个任务实例多个处理者实例
                                     {

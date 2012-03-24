@@ -62,10 +62,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：OrgName
-        /// 属性描述：供电所名称
+        /// 属性描述：单位名称
         /// 字段信息：[OrgName],nvarchar
         /// </summary>
-        [DisplayNameAttribute("供电所名称")]
+        [DisplayNameAttribute("单位名称")]
         public string OrgName
         {
             get { return _orgname; }
