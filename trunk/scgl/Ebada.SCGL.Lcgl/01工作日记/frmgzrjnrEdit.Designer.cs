@@ -49,6 +49,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -63,10 +64,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // m_DefaultLookAndFeel
-            // 
-            ;
             // 
             // btnCancel
             // 
@@ -104,6 +101,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.simpleButton1);
             this.groupBox3.Controls.Add(this.memoEdit2);
             this.groupBox3.Location = new System.Drawing.Point(28, 338);
             this.groupBox3.Name = "groupBox3";
@@ -111,6 +109,7 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "参加人员";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // memoEdit2
             // 
@@ -269,6 +268,17 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Location = new System.Drawing.Point(102, 0);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(34, 23);
+            this.simpleButton1.TabIndex = 13;
+            this.simpleButton1.Text = "…";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // frmgzrjnrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -322,6 +332,7 @@
         private DevExpress.XtraEditors.MemoEdit memoEdit2;
         private DevExpress.XtraEditors.DateEdit dateEdit1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
 
     }
 }

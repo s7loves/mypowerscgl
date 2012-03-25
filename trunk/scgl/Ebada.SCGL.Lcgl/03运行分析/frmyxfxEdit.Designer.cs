@@ -71,6 +71,7 @@
             this.comboBoxEdit18 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -109,10 +110,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit16.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit18.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // m_DefaultLookAndFeel
-            // 
-            ;
             // 
             // btnCancel
             // 
@@ -250,7 +247,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.memoEdit5);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(388, 239);
+            this.xtraTabPage1.Size = new System.Drawing.Size(386, 236);
             this.xtraTabPage1.Text = "运行分析主题";
             // 
             // memoEdit5
@@ -258,14 +255,14 @@
             this.memoEdit5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit5.Location = new System.Drawing.Point(0, 0);
             this.memoEdit5.Name = "memoEdit5";
-            this.memoEdit5.Size = new System.Drawing.Size(388, 239);
+            this.memoEdit5.Size = new System.Drawing.Size(386, 236);
             this.memoEdit5.TabIndex = 0;
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.memoEdit1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(388, 240);
+            this.xtraTabPage2.Size = new System.Drawing.Size(386, 237);
             this.xtraTabPage2.Text = "纪要内容";
             // 
             // memoEdit1
@@ -274,14 +271,14 @@
             this.memoEdit1.EditValue = "";
             this.memoEdit1.Location = new System.Drawing.Point(0, 0);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(388, 240);
+            this.memoEdit1.Size = new System.Drawing.Size(386, 237);
             this.memoEdit1.TabIndex = 0;
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.memoEdit2);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(388, 240);
+            this.xtraTabPage3.Size = new System.Drawing.Size(386, 237);
             this.xtraTabPage3.Text = "结论及对策";
             // 
             // memoEdit2
@@ -289,11 +286,12 @@
             this.memoEdit2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit2.Location = new System.Drawing.Point(0, 0);
             this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(388, 240);
+            this.memoEdit2.Size = new System.Drawing.Size(386, 237);
             this.memoEdit2.TabIndex = 0;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.simpleButton2);
             this.groupBox2.Controls.Add(this.comboBoxEdit15);
             this.groupBox2.Controls.Add(this.comboBoxEdit10);
             this.groupBox2.Controls.Add(this.comboBoxEdit5);
@@ -541,6 +539,17 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(86, 0);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(34, 15);
+            this.simpleButton2.TabIndex = 12;
+            this.simpleButton2.Text = "…";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // frmyxfxEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -640,6 +649,7 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
 
     }
 }
