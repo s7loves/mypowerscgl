@@ -182,6 +182,10 @@ namespace Ebada.Scgl.Yxgl
                 ea.SetCellValue(strname, 4, 9);
                 strname = string.Format("{0:D3}", icount);
                 ea.SetCellValue(strname, 4, 10);
+                ea.SetCellValue(rowData.cqfw, 11, 4);
+                ea.SetCellValue(rowData.qdrq.Year.ToString(), 21, 7);
+                ea.SetCellValue(rowData.qdrq.Month.ToString(), 21, 9);
+                ea.SetCellValue(rowData.qdrq.Day.ToString(), 21, 11);
                 dsoFramerControl1.FileSave();
                 rowData.BigData = dsoFramerControl1.FileData;
                 dsoFramerControl1.FileClose();

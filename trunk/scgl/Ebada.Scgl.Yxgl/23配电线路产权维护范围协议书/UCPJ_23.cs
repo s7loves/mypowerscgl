@@ -235,8 +235,44 @@ namespace Ebada.Scgl.Yxgl
         {
             if (gridView1.FocusedRowHandle > -1)
             {
+                //修改模板
+                PJ_23 rowData = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
+                mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
+                string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
+                string bhname = org.OrgName.Replace("供电所", "");
+                DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+                dsoFramerControl1.FileOpen(fname);
+                Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+                PJ_23 obj = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
+                int icount = 1;
+                if (obj != null && obj.xybh != "")
+                {
+                    icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
+                }
+                string strname = SelectorHelper.GetPysm(bhname, true);
+                ExcelAccess ea = new ExcelAccess();
+                ea.MyWorkBook = wb;
+                ea.MyExcel = wb.Application;
+                ea.SetCellValue(strname.ToUpper(), 4, 8);
+                strname = DateTime.Now.Year.ToString();
+                ea.SetCellValue(strname, 4, 9);
+                strname = string.Format("{0:D3}", icount);
+                ea.SetCellValue(strname, 4, 10);
+                ea.SetCellValue(rowData.cqdw + "：", 6, 4);
+                ea.SetCellValue(rowData.cqfw, 11, 4);
+                ea.SetCellValue(rowData.qdrq.Year.ToString(), 21, 7);
+                ea.SetCellValue(rowData.qdrq.Month.ToString(), 21, 9);
+                ea.SetCellValue(rowData.qdrq.Day.ToString(), 21,11);
+                dsoFramerControl1.FileSave();
+                rowData.BigData = dsoFramerControl1.FileData;
+                dsoFramerControl1.FileClose();
+                dsoFramerControl1.Dispose();
+                dsoFramerControl1 = null;
+                MainHelper.PlatformSqlMap.Update<PJ_23>(rowData);
+
                 frm23Template frm = new frm23Template();
-                frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
+                //frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
+                frm.pjobject = rowData;
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     Client.ClientHelper.PlatformSqlMap.Update<PJ_23>(frm.pjobject);

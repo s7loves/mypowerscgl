@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit1.Properties.Items.AddRange(ryList);
             }
 
-            ComboBoxHelper.FillCBoxByDyk("21电力故障电话接听记录", "故障简况", comboBoxEdit6.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("21电力故障电话接听记录", "故障简况", comboBoxEdit6.Properties);
             
         }
 
