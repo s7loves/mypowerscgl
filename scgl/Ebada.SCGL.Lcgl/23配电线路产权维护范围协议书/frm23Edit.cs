@@ -13,7 +13,6 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-using Excel = Microsoft.Office.Interop.Excel;
 namespace Ebada.Scgl.Lcgl
 {
     public partial class frm23Edit : FormBase, IPopupFormEdit {
@@ -71,6 +70,7 @@ namespace Ebada.Scgl.Lcgl
             list.Add(new DicType("2", "变电所"));
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
             ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
+
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
         }
@@ -138,17 +138,22 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit1_Properties_Click(object sender, EventArgs e)
         {
-            frmDykSelector dlg = new frmDykSelector();
-            PJ_dyk dyk = null;
-            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='23配电线路产权维护范围协议书' and sx='维护界限划分原则' and parentid=''");
-            if (parentObj != null)
+            //frmDykSelector dlg = new frmDykSelector();
+            //PJ_dyk dyk = null;
+            //PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='23配电线路产权维护范围协议书' and sx='维护界限划分原则' and parentid=''");
+            //if (parentObj != null)
+            //{
+            //    dlg.ucpJ_dykSelector1.ParentObj = parentObj;
+            //    dlg.TxtMemo = txt;
+            //    if (dlg.ShowDialog() == DialogResult.OK)
+            //    {
+            //        comboBoxEdit1.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr4;
+            //    }
+            //}
+            frmCqSelector fcs = new frmCqSelector();
+            if (fcs.ShowDialog()==DialogResult.OK)
             {
-                dlg.ucpJ_dykSelector1.ParentObj = parentObj;
-                // dlg.TxtMemo = txt;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    comboBoxEdit1.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr4;
-                }
+                comboBoxEdit1.Text = fcs.dynr;
             }
         }
 
@@ -157,18 +162,18 @@ namespace Ebada.Scgl.Lcgl
             if (rowData.BigData.Length == 0)
             {
                 mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
-                string bhname=org.OrgName.Replace("供电所", "");
                 string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
+                string bhname = org.OrgName.Replace("供电所", "");
                 DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
                 dsoFramerControl1.FileOpen(fname);
                 Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
                 PJ_23 obj = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
                 int icount = 1;
-                if (obj != null && obj.xybh != "")
+                if (obj != null && obj.xybh !="")
                 {
-                    icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
+                    icount = Convert.ToInt32(obj.xybh.Split('-')[2])+1;
                 }
-                string strname = SelectorHelper.GetPysm (bhname,true );
+                string strname = SelectorHelper.GetPysm(bhname, true);
                 ExcelAccess ea = new ExcelAccess();
                 ea.MyWorkBook = wb;
                 ea.MyExcel = wb.Application;
@@ -183,7 +188,6 @@ namespace Ebada.Scgl.Lcgl
                 dsoFramerControl1.Dispose();
                 dsoFramerControl1 = null;
                 rowData.xybh = SelectorHelper.GetPysm(bhname, true).ToUpper() + "-" + DateTime.Now.Year.ToString() + "-" + string.Format("{0:D3}", icount);
-
             }
             DSOFramerControl dsoFramerControl2 = new DSOFramerControl();
             dsoFramerControl2.FileData = rowData.BigData;
@@ -191,7 +195,7 @@ namespace Ebada.Scgl.Lcgl
             ExcelAccess ea2 = new ExcelAccess();
             ea2.MyWorkBook = wb2;
             ea2.MyExcel = wb2.Application;
-            ea2.SetCellValue(comboBoxEdit1.Text, 11, 4);
+            ea2.SetCellValue(comboBoxEdit1.Text , 11, 4);
             dsoFramerControl2.FileSave();
             rowData.BigData = dsoFramerControl2.FileData;
             dsoFramerControl2.FileClose();
