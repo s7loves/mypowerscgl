@@ -132,6 +132,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            rowData.CreateDate = rowData.qdrq;
             DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
             Microsoft.Office.Interop.Excel.Workbook wb;
             if (rowData.BigData==null||rowData.BigData.Length == 0)
@@ -146,6 +147,9 @@ namespace Ebada.Scgl.Lcgl
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
             ea.SetCellValue("乙 方："+comboBoxEdit1.Text, 5, 1);
+            ea.SetCellValue(rowData.qdrq.Year.ToString(), 42, 6);
+            ea.SetCellValue(rowData.qdrq.Month.ToString(), 42, 8);
+            ea.SetCellValue(rowData.qdrq.Day.ToString(), 42, 10);
             dsoFramerControl1.FileSave();
             rowData.BigData = dsoFramerControl1.FileData;
             dsoFramerControl1.FileClose();
