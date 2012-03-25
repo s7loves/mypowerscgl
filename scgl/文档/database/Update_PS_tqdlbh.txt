@@ -1,0 +1,10 @@
+USE [EbadaScgl]
+alter table [PS_tqdlbh] add
+	[orgCode] [nvarchar](50) null default ''
+   
+	
+go
+
+
+execute sp_addextendedproperty 'MS_Description', '¹©µçËù±àºÅ' , 'user','dbo', 'TABLE','PS_tqdlbh', 'COLUMN','orgCode'
+go
