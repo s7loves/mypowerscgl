@@ -28,12 +28,17 @@ namespace Ebada.Scgl.Sbgl {
             List<object> updateList = new List<object>();
             for(int i=0;i<gtList.Count;i++) {
                 PS_gt gt = gtList[i];
-                if (gt.gtLat == 0 || gt.gtLon == 0) continue;
+                double d1 = 0;
+                if (gt.gtLat == 0 || gt.gtLon == 0) d1=-1;
                 if (gt0.gtLat == 0 || gt0.gtLon == 0) {
-                    gt0 = gt; continue;
+                    gt0 = gt; d1=-1;
                 }
-                double d1= GetDistance(new PointLatLng(gt.gtLat, gt.gtLon), new PointLatLng(gt0.gtLat, gt0.gtLon));
-                gt.gtSpan = (decimal)Math.Round(d1,1);
+                if (d1 == 0) {
+                    d1 = GetDistance(new PointLatLng(gt.gtLat, gt.gtLon), new PointLatLng(gt0.gtLat, gt0.gtLon));
+                    gt.gtSpan = (decimal)Math.Round(d1, 1);
+                } else {
+                    gt.gtSpan = 0;
+                }
                 //gt.
                 updateList.Add(gt);
                 dLen1 += d1;
