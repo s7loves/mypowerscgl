@@ -15,6 +15,7 @@ namespace Ebada.Scgl.Sbgl {
 
         public event SendDataEventHandler<PS_xl> LineSelectionChanged;
         private Dictionary<string, PS_xl> mLines;
+        private Dictionary<string, PS_xl> mLines2;
         private Dictionary<string, mOrg> mOrgs;
         private Dictionary<string, PS_tq> mTQs;
         private DataTable mTable;
@@ -27,6 +28,7 @@ namespace Ebada.Scgl.Sbgl {
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
             mLines = new Dictionary<string, PS_xl>();
+            mLines2 = new Dictionary<string, PS_xl>();
             mOrgs = new Dictionary<string, mOrg>();
             mTQs = new Dictionary<string, PS_tq>();
             
@@ -82,27 +84,33 @@ namespace Ebada.Scgl.Sbgl {
                     IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "' and linevol='10'");
                     string lname = mLines[id].LineName;
                     foreach (PS_xl xl in list) {
-                        mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl");
-                        if (!mLines.ContainsKey(xl.LineID)) mLines.Add(xl.LineID, xl);
+
+                        if (!mLines.ContainsKey(xl.LineID)) {
+                            mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl");
+                            mLines.Add(xl.LineID, xl);
+                        }
                     }
                 } else if (type == "xl2") {
-                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "' ");
-                    string lname = mLines[id].LineName;
+                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "' and linevol='0.4' ");
+                    ///string lname = mLines2[id].LineName;
                     foreach (PS_xl xl in list) {
-                        mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl2");
-                        if (!mLines.ContainsKey(xl.LineID)) mLines.Add(xl.LineID, xl);
+
+                        if (!mLines2.ContainsKey(xl.LineID)) {
+                            mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl2");
+                            mLines2.Add(xl.LineID, xl);
+                        }
                     }
                 } else if (type == "dxl") {
                     string lname = e.Node["Name"].ToString();
-                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "'");
+                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id.Substring(2) + "'  and linevol='0.4'");
                     foreach (PS_xl xl in list) {
                         mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl2");
-                        mLines.Add(xl.LineID, xl);
+                        mLines2.Add(xl.LineID, xl);
                     }
                 } else if (type == "dyxl") {
                     IList<PS_tq> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where left(tqcode,3)='" + id.Substring(2) + "'");
                     foreach (PS_tq xl in list) {
-                        mTable.Rows.Add(xl.tqName, xl.tqCode, id, "dxl");
+                        mTable.Rows.Add(xl.tqName, "tq"+xl.tqCode, id, "dxl");
                         //mTQs.Add(xl.tqID, xl);
                     }
                 }
@@ -115,6 +123,9 @@ namespace Ebada.Scgl.Sbgl {
             if (type == "xl") {
                 if (LineSelectionChanged != null)
                     LineSelectionChanged(treeList1, mLines[id]);
+            } else if (type == "xl2") {
+                if (LineSelectionChanged != null)
+                    LineSelectionChanged(treeList1, mLines2[id]);
             }
         }
 
@@ -130,6 +141,8 @@ namespace Ebada.Scgl.Sbgl {
                 string type = node["Type"].ToString();
                 if (type == "xl")
                     line = mLines[id];
+                else if (type=="xl2")
+                    line=mLines2[id];
             }
             return line;
         }
