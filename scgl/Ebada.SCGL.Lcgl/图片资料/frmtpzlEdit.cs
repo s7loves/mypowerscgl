@@ -154,7 +154,43 @@ namespace Ebada.Scgl.Lcgl
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "bmp文件(*.bmp)|*.bmp|jpg文件(*.jpg)|*.jpg|ico文件(*.ico)|*.ico|png文件(*.png)|*.png";
+            //string parentid ="";
+            //IList<mModule> mli = MainHelper.PlatformSqlMap.GetList<mModule>(" where ModuName like  '%仓储管理%' and ModuTypes!='hide' order by Modu_ID ");
+            //foreach (mModule md in mli)
+            //{
+            //    mModule mdtem = new mModule();
+            //    ConvertHelper.CopyTo<mModule>(md, mdtem);
+            //    mdtem.Modu_ID = mdtem.CreateID();
+            //    parentid = mdtem.Modu_ID;
+            //    mdtem.ModuName = "物流中心仓储管理";
+            //    MainHelper.PlatformSqlMap.Create<mModule>(mdtem);
+            //}
+
+            //mli = MainHelper.PlatformSqlMap.GetList<mModule>(" where  parentid='" + mli[0].Modu_ID + "'");
+            //foreach (mModule md in mli)
+            //{
+            //    mModule mdtem = new mModule();
+            //    ConvertHelper.CopyTo<mModule>(md, mdtem);
+            //    mdtem.Modu_ID = mdtem.CreateID();
+            //    mdtem.ModuName = "物流中心" + mdtem.ModuName;
+            //    mdtem.ParentID = parentid;
+            //    MainHelper.PlatformSqlMap.Create<mModule>(mdtem);
+            //    IList<mModule> mli2 = MainHelper.PlatformSqlMap.GetList<mModule>(" where parentid='" + md.Modu_ID + "'");
+            //    foreach (mModule md2 in mli2)
+            //    {
+            //        mModule mdtem2 = new mModule();
+            //        ConvertHelper.CopyTo<mModule>(md2, mdtem2);
+            //        mdtem2.Modu_ID = mdtem2.CreateID();
+            //        mdtem2.ParentID = md.Modu_ID;
+            //        mdtem2.ModuName = "物流中心" + mdtem2.ModuName;
+            //        mdtem2.ModuTypes = mdtem2.ModuTypes.Replace("WG", "");
+            //        mdtem2.ParentID = "";
+            //        MainHelper.PlatformSqlMap.Create<mModule>(mdtem2);
+
+
+            //    }
+            //}
+            openFileDialog1.Filter = "常见图片文件(*.bmp,*.jpg,*.ico,*.png)|*.bmp;*.jpg;*.ico;*.png|bmp文件(*.bmp)|*.bmp|jpg文件(*.jpg)|*.jpg|ico文件(*.ico)|*.ico|png文件(*.png)|*.png";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 buttonEdit1.Text = openFileDialog1.FileName;

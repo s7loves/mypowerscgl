@@ -729,6 +729,40 @@ namespace Ebada.Scgl.WFlow
         {
             iniTableRecordData(ref  temple, null, currRecord, WorkflowId, WorkFlowInsId, isExplorerCall);
         }
+        /// <summary>
+        /// 去保护工作表
+        /// </summary>
+        public static void unLockExcel(Excel.Workbook wb, Excel.Worksheet xx)
+        {
+            try
+            {
+
+
+                xx.Unprotect("MyPassword");
+                xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+                //wb.SheetSelectionChange -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);
+                //wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+            }
+            catch { }
+        }
+        /// <summary>
+        ///设置保护工作表
+        /// </summary>
+        public static void LockExcel(Excel.Workbook wb, Excel.Worksheet xx)
+        {
+
+
+            xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
+            xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+            //wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+            //wb.SheetDeactivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetDeactivateEventHandler(Workbook_SheetDeactivate);
+            //wb.SheetActivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetActivateEventHandler(Workbook_SheetActivate);
+            //try
+            //{
+            //    wb.SheetSelectionChange += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);
+            //}
+            //catch { }
+        }
         public static void iniTableRecordData(ref LP_Temple temple,DSOFramerControl dsoFramerWordControl1, LP_Record currRecord, string WorkflowId, string WorkFlowInsId, bool isExplorerCall)
         {
             if (temple != null)
@@ -737,6 +771,10 @@ namespace Ebada.Scgl.WFlow
                 try
                 {
                     dsoFramerWordControl1.FileDataGzip = temple.DocContent;
+                   if(isExplorerCall)
+                    if (currRecord.DocContent != null && currRecord.DocContent.Length > 0) dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                    
+                        
                     WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(WorkflowId);
                     //IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                     //    " where RecordId='" + currRecord.ID + "' and UserControlId='" + temple.LPID + "' and   WorkflowId='" + WorkflowId + "' and WorkFlowInsId='" + WorkFlowInsId + "' ");
@@ -757,8 +795,10 @@ namespace Ebada.Scgl.WFlow
                         xx = wb.Application.Sheets[i] as Excel.Worksheet;
                         if (!al.Contains(xx.Name)) al.Add(xx.Name);
                     }
+                    unLockExcel(wb, xx);
                     for (i = 0; i < tfvli.Count; i++)
                     {
+                        
                         if (!al.Contains(tfvli[i].ExcelSheetName))
                         {
 
@@ -767,14 +807,8 @@ namespace Ebada.Scgl.WFlow
                         if (isExplorerCall)
                         {
 
-                            LP_Temple field = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tfvli[i].FieldId);
-                            if (field != null)
-                            {
-                                if (field.isExplorer == 1)
-                                {
-                                    continue;
-                                }
-                            }
+                            
+                            
                             if (!HaveRunPowerRole(WorkConst.WorkTask_FlowEndExplore, tfvli[i].WorkFlowId, tfvli[i].WorkFlowId) || (currRecord.Status != "存档"))
                             {
                                 //if (!RecordWorkTask.HaveWorkFlowAllExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
@@ -804,25 +838,36 @@ namespace Ebada.Scgl.WFlow
 
                             ea.ActiveSheet(xx.Index);
                         }
-
-                        if (tfvli[i].XExcelPos > -1 && tfvli[i].YExcelPos > -1)
+                        LP_Temple field = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(tfvli[i].FieldId);
+                        if (field != null)
                         {
-                            if (tfvli[i].FieldName!="编号")
-                            ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
-                            else
-                                ea.SetCellValue("'"+tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
+                            if (field.isExplorer == 1)
+                            {
 
+                                ea.SetCellValue("", tfvli[i].XExcelPos, tfvli[i].YExcelPos);
+                                LockExcel(wb, xx);
+                                continue;
+                            }
                         }
+                        //if (tfvli[i].XExcelPos > -1 && tfvli[i].YExcelPos > -1)
+                        //{
+                        //    if (tfvli[i].FieldName!="编号")
+                        //    ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
+                        //    else
+                        //        ea.SetCellValue("'"+tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
 
-                        
+                        //}
+
+
                     }
+                    LockExcel(wb, xx);
                     dsoFramerWordControl1.FileSave();
                     temple.DocContent = dsoFramerWordControl1.FileDataGzip;
                 }
                 catch (Exception ex) { 
                     Console.WriteLine(ex.Message);
                 }
-                dsoFramerWordControl1.FileSave();
+                //dsoFramerWordControl1.FileSave();
                 dsoFramerWordControl1.FileClose();
             }
         }
