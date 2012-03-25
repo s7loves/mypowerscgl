@@ -94,8 +94,9 @@ namespace Ebada.SCGL.WFlow.Tool
         #endregion
         public frmTablePreview()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
+        Hashtable bhht = new Hashtable();
         void dataBind()
         {        
             
@@ -159,6 +160,24 @@ namespace Ebada.SCGL.WFlow.Tool
             //}
             //catch { }
         }
+        public static string GetWorkFlowNmae(string kind)
+        {
+            string strkind = kind;
+            if (kind == "dzczp")
+                strkind = "电力线路倒闸操作票";
+            else if (kind == "yzgzp")
+                strkind = "电力线路第一种工作票";
+            else if (kind == "ezgzp")
+                strkind = "电力线路第二种工作票";
+            else if (kind == "xlqxp")
+                strkind = "电力线路事故应急抢修单";
+
+
+
+            return strkind;
+
+
+        }
         private void LPFrm_Load(object sender, EventArgs e)
         {
             if (tempCtrlList==null)
@@ -168,7 +187,55 @@ namespace Ebada.SCGL.WFlow.Tool
             //InitializeComponent();
             InitIndex();            
                 //InitContorl();
-           
+
+            if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1)
+            {
+                bhht.Clear();
+                bhht.Add("宝山供电所", "01");
+                bhht.Add("长发供电所", "02");
+                bhht.Add("绥胜供电所", "03");
+                bhht.Add("红旗供电所", "04");
+                bhht.Add("永安供电所", "05");
+                bhht.Add("连岗供电所", "06");
+                bhht.Add("太平供电所", "07");
+                bhht.Add("新华供电所", "08");
+                bhht.Add("北郊供电所", "09");
+
+                bhht.Add("东郊供电所", "10");
+                bhht.Add("东富供电所", "11");
+                bhht.Add("兴福供电所", "12");
+                bhht.Add("利民供电所", "13");
+                bhht.Add("东津供电所", "14");
+                bhht.Add("津河供电所", "15");
+                bhht.Add("龙太供电所", "16");
+                bhht.Add("秦家供电所", "17");
+                bhht.Add("双河供电所", "18");
+                bhht.Add("五营供电所", "19");
+                bhht.Add("三河供电所", "20");
+
+                bhht.Add("四方台供电所", "21");
+                bhht.Add("张维供电所", "22");
+                bhht.Add("民吉供电所", "23");
+                bhht.Add("三井供电所", "24");
+                bhht.Add("联合供电所", "25");
+                bhht.Add("新生供电所", "26");
+                bhht.Add("张维变电所", "27");
+
+                bhht.Add("秦家变电所", "28");
+                bhht.Add("四方台变电所", "29");
+                bhht.Add("三河变电所", "30");
+                bhht.Add("长发变电所", "31");
+                bhht.Add("五营变电所", "32");
+                bhht.Add("新华变电所", "33");
+                bhht.Add("太平变电所", "34");
+
+                bhht.Add("红旗变电所", "35");
+                bhht.Add("连岗变电所", "36");
+                bhht.Add("津河变电所", "37");
+                bhht.Add("送变电工区", "38");
+
+
+            }
             if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
             {              
                 this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;            
@@ -953,7 +1020,10 @@ namespace Ebada.SCGL.WFlow.Tool
                     switch (kind)
                     {
                         case "yzgzp":
-                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                            if (bhht[str] != null)
+                                strNumber = "07" + bhht[str].ToString();
+                            else
+                                strNumber = "07";
                             break;
                         case "ezgzp":
                             strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
@@ -968,10 +1038,11 @@ namespace Ebada.SCGL.WFlow.Tool
                             strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                             break;
                     }
-                    IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
+                    IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select * from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' ", parentTemple.LPID));
                     if (kind == "yzgzp")
                     {
-                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                        //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') ;
                     }
                     else
                     {
@@ -1564,7 +1635,10 @@ namespace Ebada.SCGL.WFlow.Tool
                                 switch (kind)
                                 {
                                     case "yzgzp":
-                                        strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                                        if (bhht[ctrl.Text] != null)
+                                            strNumber = "07" + bhht[ctrl.Text].ToString();
+                                        else
+                                            strNumber = "07";
                                         break;
                                     case "ezgzp":
                                         strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
@@ -1579,7 +1653,7 @@ namespace Ebada.SCGL.WFlow.Tool
                                         strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                                         break;
                                 }
-                                IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
+                                IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select * from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' ", parentTemple.LPID));
                                 if (kind == "yzgzp")
                                 {
                                     strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
