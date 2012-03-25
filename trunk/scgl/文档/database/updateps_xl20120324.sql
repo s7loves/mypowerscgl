@@ -1,6 +1,6 @@
-USE [EbadaScgl]
+
 alter table [PS_xl] add
-	[xlpy] [nvarchar](50) null default '',
+	[xlpy] [nvarchar](50) null default ''
     
 	
 go
