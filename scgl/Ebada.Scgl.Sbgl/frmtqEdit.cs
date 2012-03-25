@@ -82,6 +82,7 @@ namespace Ebada.Scgl.Sbgl
                     ConvertHelper.CopyTo<PS_tq>(value as PS_tq, rowData);
                 }
                 if(rowData.tqCode==""){
+                    GdsCode = rowData.tqCode.Substring(0, 3);
                     rowData.InDate = DateTime.Now;
                 }
                 isnew = false;
