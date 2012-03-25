@@ -43,6 +43,7 @@ namespace Ebada.Scgl.Lcgl
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PS_tqbyq,LP_Record";
+        frmtqbyqEdit fe = new frmtqbyqEdit();
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -94,7 +95,7 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_tqbyq>(gridControl1, gridView1, barManager1,new frmtqbyqEdit());
+            gridViewOperation = new GridViewOperation<PS_tqbyq>(gridControl1, gridView1, barManager1,fe);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_tqbyq>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tqbyq>(gridViewOperation_BeforeDelete);
@@ -179,6 +180,7 @@ namespace Ebada.Scgl.Lcgl
             
             if (org != null)
             {
+                fe.OrgCode = org.OrgCode;
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
