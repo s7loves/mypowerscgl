@@ -59,7 +59,14 @@ namespace Ebada.Scgl.Lcgl {
                         ex.SetCellValue(objlist[starow - 1 + i].dw, rowcount + i, 4);
                         ex.SetCellValue(objlist[starow - 1 + i].sl.ToString(), rowcount + i, 5);
                         ex.SetCellValue(objlist[starow - 1 + i].cj, rowcount + i, 6);
-                        ex.SetCellValue(objlist[starow - 1 + i].sbCode, rowcount + i, 7);
+                        if (objlist[starow - 1 + i].sbCode.Contains(objlist[starow - 1 + i].sbName))
+                        {
+                            ex.SetCellValue(objlist[starow - 1 + i].sbCode, rowcount + i, 7);
+                        }
+                        else
+                        {
+                            ex.SetCellValue(objlist[starow - 1 + i].sbCode + objlist[starow - 1 + i].sbCode, rowcount + i, 7);
+                        }
                         ex.SetCellValue(objlist[starow - 1 + i].lqsj.Year.ToString(), rowcount + i, 8);
                         ex.SetCellValue(objlist[starow - 1 + i].lqsj.Month.ToString(), rowcount + i, 9);
                         ex.SetCellValue(objlist[starow - 1 + i].Remark, rowcount + i, 10);
@@ -76,7 +83,14 @@ namespace Ebada.Scgl.Lcgl {
                         ex.SetCellValue(objlist[starow - 1 + i].dw, rowcount + i, 4);
                         ex.SetCellValue(objlist[starow - 1 + i].sl.ToString(), rowcount + i, 5);
                         ex.SetCellValue(objlist[starow - 1 + i].cj, rowcount + i, 6);
-                        ex.SetCellValue(objlist[starow - 1 + i].sbCode, rowcount + i, 7);
+                        if (objlist[starow - 1 + i].sbCode.Contains(objlist[starow - 1 + i].sbName))
+                        {
+                            ex.SetCellValue(objlist[starow - 1 + i].sbCode, rowcount + i, 7);
+                        }
+                        else
+                        {
+                            ex.SetCellValue(objlist[starow - 1 + i].sbCode + objlist[starow - 1 + i].sbCode, rowcount + i, 7);
+                        }
                         ex.SetCellValue(objlist[starow - 1 + i].lqsj.Year.ToString(), rowcount + i, 8);
                         ex.SetCellValue(objlist[starow - 1 + i].lqsj.Month.ToString(), rowcount + i, 9);
                         ex.SetCellValue(objlist[starow - 1 + i].Remark, rowcount + i, 10);

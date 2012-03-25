@@ -73,7 +73,7 @@ namespace Ebada.Scgl.Lcgl
             ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "规格精度", comboBoxEdit2.Properties);
             ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "名称",comboBoxEdit1.Properties);
             ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "制造厂家",comboBoxEdit4.Properties);
-            ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "编号",comboBoxEdit5.Properties);
+           // ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "编号",comboBoxEdit5.Properties);
             ComboBoxHelper.FillCBoxByDyk("公用属性", "单位", comboBoxEdit3.Properties);
         }
 
