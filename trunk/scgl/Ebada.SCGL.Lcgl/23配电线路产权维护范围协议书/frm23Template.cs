@@ -128,6 +128,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void frm26Template_Load(object sender, EventArgs e)
         {
+            initcomment();
             string fname = filepath + Guid.NewGuid().ToString() + ".xls";
             filename = fname;
             fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
@@ -147,7 +148,11 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         }
-
+        private void initcomment()
+        {
+          IList<string> ilist=  MainHelper.PlatformSqlMap.GetList<string>("SelectOneStr","select picName from PJ_tbsj");
+          repositoryItemLookUpEdit1.DataSource = ilist;
+        }
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             dsoFramerControl1.FileClose();
@@ -174,6 +179,38 @@ namespace Ebada.Scgl.Lcgl
                 dsoFramerControl1.Dispose();
                 dsoFramerControl1 = null;
             }
+        }
+
+        void barEditItem1_EditValueChanged(object sender, EventArgs e)
+        {
+          
+
+
+        }
+
+        private void barEditItem1_EditValueChanged_1(object sender, EventArgs e)
+        {
+            PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + barEditItem1.EditValue + "'");
+            string tempPath = Path.GetTempPath();
+            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+            FileStream fs;
+            fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+            BinaryWriter bw = new BinaryWriter(fs);
+            bw.Write(tb.picImage);
+            bw.Flush();
+            bw.Close();
+            fs.Close();
+            //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
+            //MemoryStream memo = new MemoryStream(4);
+            //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
+            //memo.Write(bytes, 0, bytes.Length);
+            //data.SetData("ttt", memo);
+            //Clipboard.SetDataObject(data);
+            Image im = Bitmap.FromFile(tempfile);
+            Bitmap bt = new Bitmap(im);
+            DataObject dataObject = new DataObject();
+            dataObject.SetData(DataFormats.Bitmap, bt);
+            Clipboard.SetDataObject(dataObject, true);
         }
 
     }
