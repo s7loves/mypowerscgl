@@ -200,7 +200,8 @@ namespace Ebada.Scgl.Sbgl
                 newobj.tqName = "";
             }
             newobj.gtID = parentID;
-            newobj.tqCode = newobj.tqID = getcode();
+            //newobj.tqCode = newobj.tqID = getcode();
+            newobj.tqCode = getcode();
    
         }
         string getcode() {
