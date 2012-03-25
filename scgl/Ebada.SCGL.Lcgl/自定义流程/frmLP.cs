@@ -125,7 +125,7 @@ namespace Ebada.Scgl.Lcgl
         {
 
         }
-
+        Hashtable bhht = new Hashtable();
         public DataTable RecordWorkFlowData
         {
             get
@@ -234,6 +234,54 @@ namespace Ebada.Scgl.Lcgl
             if (valuehs == null)
                 valuehs = new Hashtable();
             InitIndex();
+            if (GetWorkFlowNmae(kind).IndexOf ("电力线路")>-1)
+            {
+                bhht.Clear();
+                bhht.Add("宝山供电所", "01");
+                bhht.Add("长发供电所", "02");
+                bhht.Add("绥胜供电所", "03");
+                bhht.Add("红旗供电所", "04");
+                bhht.Add("永安供电所", "05");
+                bhht.Add("连岗供电所", "06");
+                bhht.Add("太平供电所", "07");
+                bhht.Add("新华供电所", "08");
+                bhht.Add("北郊供电所", "09");
+
+                bhht.Add("东郊供电所", "10");
+                bhht.Add("东富供电所", "11");
+                bhht.Add("兴福供电所", "12");
+                bhht.Add("利民供电所", "13");
+                bhht.Add("东津供电所", "14");
+                bhht.Add("津河供电所", "15");
+                bhht.Add("龙太供电所", "16");
+                bhht.Add("秦家供电所", "17");
+                bhht.Add("双河供电所", "18");
+                bhht.Add("五营供电所", "19");
+                bhht.Add("三河供电所", "20");
+
+                bhht.Add("四方台供电所", "21");
+                bhht.Add("张维供电所", "22");
+                bhht.Add("民吉供电所", "23");
+                bhht.Add("三井供电所", "24");
+                bhht.Add("联合供电所", "25");
+                bhht.Add("新生供电所", "26");
+                bhht.Add("张维变电所", "27");
+
+                bhht.Add("秦家变电所", "28");
+                bhht.Add("四方台变电所", "29");
+                bhht.Add("三河变电所", "30");
+                bhht.Add("长发变电所", "31");
+                bhht.Add("五营变电所", "32");
+                bhht.Add("新华变电所", "33");
+                bhht.Add("太平变电所", "34");
+
+                bhht.Add("红旗变电所", "35");
+                bhht.Add("连岗变电所", "36");
+                bhht.Add("津河变电所", "37");
+                bhht.Add("送变电工区", "38");
+
+
+            }
             //InitContorl();
             Excel.Workbook wb;
             Excel.Worksheet sheet;
@@ -275,6 +323,12 @@ namespace Ebada.Scgl.Lcgl
 
 
 
+                if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1)
+                {
+
+                    this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+
+                }
 
                 //LoadContent();
             }
@@ -572,7 +626,7 @@ namespace Ebada.Scgl.Lcgl
                     if (ct.Text == "" || !((CheckEdit)ce).Checked)
                         ct.Text = str;
                     else
-                        ct.Text += "，" + str;
+                        ct.Text += "、" + str;
                 }
                 else
                 {
@@ -594,6 +648,7 @@ namespace Ebada.Scgl.Lcgl
 
                 }
             }
+            ctrl_Leave(ct , null);
         }
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
@@ -1587,6 +1642,25 @@ namespace Ebada.Scgl.Lcgl
                 str = value.Replace("{0}", str);
 
             }
+            if (lp.CellName == "工作班人员")
+            {
+               LP_Temple lpt = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where CellName='人数' and ParentID='"+parentTemple.LPID+"'" );
+               Control relateCtrl = FindCtrl(lp.LPID);
+               Control resCtrl = FindCtrl(lpt.LPID);
+                if(relateCtrl!=null)
+                {
+                    string[] strcount = SelectorHelper.ToDBC ( relateCtrl.Text).Split('、');
+                    int irencount=0;
+                    for (int iren = 0; iren < strcount.Length; iren++)
+                    {
+                        if (strcount[iren] != "") irencount++;
+                    }
+                    if (irencount != 0)
+                    {
+                        resCtrl.Text = irencount.ToString();
+                    }
+                }
+            }
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
             {
                 ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
@@ -1623,8 +1697,9 @@ namespace Ebada.Scgl.Lcgl
                     {
                         if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]) && str != "")
                         {
-                            string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
-                            ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                            //string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
+                            string strNew = str;
+                            ea.SetCellValue("'"+strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[j]))
                             {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
@@ -1658,7 +1733,11 @@ namespace Ebada.Scgl.Lcgl
                 {
                     if ((lp.CtrlType.IndexOf("uc_gridcontrol") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[i])) || (lp.CtrlType.IndexOf("uc_gridcontrol") > -1 && str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[i])))
                     {
-                        ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        try
+                        {
+                            ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        }
+                        catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
@@ -1770,7 +1849,11 @@ namespace Ebada.Scgl.Lcgl
 
                         case "电力线路第一种工作票":
                         case "yzgzp":
-                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                            //strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                            if (bhht[str]!=null)
+                            strNumber = "07" + bhht[str].ToString ();
+                            else
+                                strNumber = "07" ;
                             break;
                         case "电力线路第二种工作票":
                         case "ezgzp":
@@ -1790,7 +1873,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                     
                     //IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
-                    IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select * from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' ", parentTemple.LPID));
+                    IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select * from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' ", parentTemple.LPID));
                     if (kind == "yzgzp" || parentTemple.CellName=="电力线路第一种工作票")
                     {
                         //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
@@ -1810,7 +1893,6 @@ namespace Ebada.Scgl.Lcgl
                 }
 
             }
-
             LockExcel(wb, xx);
         }
 
@@ -1895,7 +1977,11 @@ namespace Ebada.Scgl.Lcgl
                         i1 = help.GetFristLen(str, arrCellCount[i]);
                     if (strarrRst.Length <= help.GetFristLen(str, arrCellCount[i]))
                     {
-                        ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        try
+                        {
+                            ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        }
+                        catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
@@ -2673,7 +2759,11 @@ namespace Ebada.Scgl.Lcgl
                                 switch (kind)
                                 {
                                     case "yzgzp":
-                                        strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                                        //strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                                        if (bhht[ctrl.Text] != null)
+                                            strNumber = "07" + bhht[ctrl.Text].ToString();
+                                        else
+                                            strNumber = "07";
                                         break;
                                     case "ezgzp":
                                         strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);

@@ -196,25 +196,44 @@ namespace Ebada.Scgl.Lcgl {
             if (ihand < 0)
                 return;
             DataRow dr = gridView1.GetDataRow(ihand);
-            Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(), new Size(1024, 768));
-            string tempPath = Path.GetTempPath();
-            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".png";
-            if (objBitmap != null)
+            LP_Record currRecord = new LP_Record();
+            foreach (DataColumn dc in gridtable.Columns)
             {
-
-
-                objBitmap.Save(tempfile, System.Drawing.Imaging.ImageFormat.Png);
-                try
+                if (dc.ColumnName != "Image")
                 {
-                    //System.Diagnostics.Process.Start("explorer.exe", tempfile);
-                    SelectorHelper.Execute("rundll32.exe %Systemroot%\\System32\\shimgvw.dll,ImageView_Fullscreen " + tempfile);
-                }
-                catch
-                {
-
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
 
                 }
             }
+            frmViewTemplate fm = new frmViewTemplate();
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+            fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+            fm.CurrRecord = currRecord;
+            fm.Kind = strKind;
+            fm.Status = "edit";
+            fm.ShowDialog();
+            //Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(), new Size(1024, 768));
+            //string tempPath = Path.GetTempPath();
+            //string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".png";
+            //if (objBitmap != null)
+            //{
+
+
+            //    objBitmap.Save(tempfile, System.Drawing.Imaging.ImageFormat.Png);
+            //    try
+            //    {
+            //        //System.Diagnostics.Process.Start("explorer.exe", tempfile);
+            //        SelectorHelper.Execute("rundll32.exe %Systemroot%\\System32\\shimgvw.dll,ImageView_Fullscreen " + tempfile);
+            //    }
+            //    catch
+            //    {
+
+
+            //    }
+            //}
         }
   
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<LP_Record> e)
