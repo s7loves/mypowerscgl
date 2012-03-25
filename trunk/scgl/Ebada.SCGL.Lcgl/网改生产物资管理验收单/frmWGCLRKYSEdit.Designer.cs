@@ -123,7 +123,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(52, 23);
             this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "取消";
+            this.btnCancel.Text = "关闭";
             // 
             // btnOK
             // 
@@ -222,9 +222,9 @@
             this.spinEdit2.Name = "spinEdit2";
             this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit2.Properties.DisplayFormat.FormatString = "###########0";
+            this.spinEdit2.Properties.DisplayFormat.FormatString = "###########0.00##";
             this.spinEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit2.Properties.Mask.EditMask = "###########0";
+            this.spinEdit2.Properties.Mask.EditMask = "###########0.00##";
             this.spinEdit2.Size = new System.Drawing.Size(133, 21);
             this.spinEdit2.TabIndex = 11;
             this.spinEdit2.EditValueChanged += new System.EventHandler(this.spinEdit2_EditValueChanged);
@@ -709,7 +709,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // frmCLRKYSEdit
+            // frmWGCLRKYSEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -717,7 +717,7 @@
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmCLRKYSEdit";
+            this.Name = "frmWGCLRKYSEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "工程材料验收单";
             this.Load += new System.EventHandler(this.frmCLRKEdit_Load);

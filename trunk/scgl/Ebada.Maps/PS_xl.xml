@@ -26,85 +26,88 @@
         <result property="gdbj" column="gdbj" />
         <result property="TheoryLoss" column="TheoryLoss" />
         <result property="ActualLoss" column="ActualLoss" />
+        <result property="ParentGT" column="ParentGT" />
         <result property="LineP" column="LineP" />
         <result property="LineQ" column="LineQ" />
         <result property="K" column="K" />
-        <result property="ParentGT" column="ParentGT" />
         <result property="lineKind" column="lineKind" />
         <result property="lineNum" column="lineNum" />
         <result property="TotalT" column="TotalT" />
         <result property="SectionalizedMessage" column="SectionalizedMessage" />
+        <result property="xlpy" column="xlpy" />
       </resultMap>
   </resultMaps>
 
   <statements>
    <select id="SelectPS_xlList" resultMap="PS_xl_AllColumns" parameterClass="string">
-     SELECT
-     [LineID],
-     [ParentID],
-     [LineType],
-     [LineCode],
-     [LineName],
-     [LineNamePath],
-     [LineVol],
-     [OrgCode],
-     [OrgCode2],
-     [Owner],
-     [Contractor],
-     [RunState],
-     [InDate],
-     [LineGtbegin],
-     [LineGtend],
-     [WireType],
-     [WireLength],
-     [TotalLength],
-     [gdbj],
-     [TheoryLoss],
-     [ActualLoss],
-     [LineP],
-     [LineQ],
-     [K],
-     [ParentGT],
-     [lineKind],
-     [lineNum],
-     [TotalT],
-     [SectionalizedMessage]
-     FROM PS_xl
-     $value$
+        SELECT 
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength],
+         [gdbj],
+         [TheoryLoss],
+         [ActualLoss],
+         [ParentGT],
+         [LineP],
+         [LineQ],
+         [K],
+         [lineKind],
+         [lineNum],
+         [TotalT],
+         [SectionalizedMessage],
+         [xlpy]
+          FROM PS_xl
+          $value$
    </select>
    
    <select id="SelectPS_xlByHash" parameterClass="Hashtable">
-     SELECT
-     [LineID],
-     [ParentID],
-     [LineType],
-     [LineCode],
-     [LineName],
-     [LineNamePath],
-     [LineVol],
-     [OrgCode],
-     [OrgCode2],
-     [Owner],
-     [Contractor],
-     [RunState],
-     [InDate],
-     [LineGtbegin],
-     [LineGtend],
-     [WireType],
-     [WireLength],
-     [TotalLength],
-     [gdbj],
-     [TheoryLoss],
-     [ActualLoss],
-     [LineP],
-     [LineQ],
-     [K],
-     [ParentGT],
-     [lineKind],
-     [lineNum],
-     [TotalT],
-     [SectionalizedMessage]
-     FROM PS_xl
+         SELECT 
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength],
+         [gdbj],
+         [TheoryLoss],
+         [ActualLoss],
+         [ParentGT],
+         [LineP],
+         [LineQ],
+         [K],
+         [lineKind],
+         [lineNum],
+         [TotalT],
+         [SectionalizedMessage],
+         [xlpy]
+          FROM PS_xl
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
@@ -127,50 +130,52 @@
        <isNotNull prepend="AND" property="gdbj">[gdbj]='$gdbj$'</isNotNull>
        <isNotNull prepend="AND" property="TheoryLoss">[TheoryLoss]='$TheoryLoss$'</isNotNull>
        <isNotNull prepend="AND" property="ActualLoss">[ActualLoss]='$ActualLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
        <isNotNull prepend="AND" property="LineP">[LineP]='$LineP$'</isNotNull>
        <isNotNull prepend="AND" property="LineQ">[LineQ]='$LineQ$'</isNotNull>
        <isNotNull prepend="AND" property="K">[K]='$K$'</isNotNull>
-       <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
        <isNotNull prepend="AND" property="lineKind">[lineKind]='$lineKind$'</isNotNull>
        <isNotNull prepend="AND" property="lineNum">[lineNum]='$lineNum$'</isNotNull>
        <isNotNull prepend="AND" property="TotalT">[TotalT]='$TotalT$'</isNotNull>
        <isNotNull prepend="AND" property="SectionalizedMessage">[SectionalizedMessage]='$SectionalizedMessage$'</isNotNull>
+       <isNotNull prepend="AND" property="xlpy">[xlpy]='$xlpy$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_xlByKey" resultMap="PS_xl_AllColumns" parameterClass="PS_xl">
-     SELECT
-     [LineID],
-     [ParentID],
-     [LineType],
-     [LineCode],
-     [LineName],
-     [LineNamePath],
-     [LineVol],
-     [OrgCode],
-     [OrgCode2],
-     [Owner],
-     [Contractor],
-     [RunState],
-     [InDate],
-     [LineGtbegin],
-     [LineGtend],
-     [WireType],
-     [WireLength],
-     [TotalLength],
-     [gdbj],
-     [TheoryLoss],
-     [ActualLoss],
-     [LineP],
-     [LineQ],
-     [K],
-     [ParentGT],
-     [lineKind],
-     [lineNum],
-     [TotalT],
-     [SectionalizedMessage]
-     FROM PS_xl
-     WHERE
-     LineID = #LineID#
+         SELECT 
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength],
+         [gdbj],
+         [TheoryLoss],
+         [ActualLoss],
+         [ParentGT],
+         [LineP],
+         [LineQ],
+         [K],
+         [lineKind],
+         [lineNum],
+         [TotalT],
+         [SectionalizedMessage],
+         [xlpy]
+         FROM PS_xl
+         WHERE 
+           LineID = #LineID#
 
    </select>
  
@@ -195,106 +200,109 @@
    </delete>
    
    <update id="UpdatePS_xl" parameterClass="PS_xl" resultClass="int">
-     UPDATE PS_xl
-     SET
-     [ParentID]=#ParentID#,
-     [LineType]=#LineType#,
-     [LineCode]=#LineCode#,
-     [LineName]=#LineName#,
-     [LineNamePath]=#LineNamePath#,
-     [LineVol]=#LineVol#,
-     [OrgCode]=#OrgCode#,
-     [OrgCode2]=#OrgCode2#,
-     [Owner]=#Owner#,
-     [Contractor]=#Contractor#,
-     [RunState]=#RunState#,
-     [InDate]=#InDate#,
-     [LineGtbegin]=#LineGtbegin#,
-     [LineGtend]=#LineGtend#,
-     [WireType]=#WireType#,
-     [WireLength]=#WireLength#,
-     [TotalLength]=#TotalLength#,
-     [gdbj]=#gdbj#,
-     [TheoryLoss]=#TheoryLoss#,
-     [ActualLoss]=#ActualLoss#,
-     [LineP]=#LineP#,
-     [LineQ]=#LineQ#,
-     [K]=#K#,
-     [ParentGT]=#ParentGT#,
-     [lineKind]=#lineKind#,
-     [lineNum]=#lineNum#,
-     [TotalT]=#TotalT#,
-     [SectionalizedMessage]=#SectionalizedMessage#
-     WHERE
-     LineID = #LineID#
+          UPDATE PS_xl
+           SET
+             [ParentID]=#ParentID#,
+             [LineType]=#LineType#,
+             [LineCode]=#LineCode#,
+             [LineName]=#LineName#,
+             [LineNamePath]=#LineNamePath#,
+             [LineVol]=#LineVol#,
+             [OrgCode]=#OrgCode#,
+             [OrgCode2]=#OrgCode2#,
+             [Owner]=#Owner#,
+             [Contractor]=#Contractor#,
+             [RunState]=#RunState#,
+             [InDate]=#InDate#,
+             [LineGtbegin]=#LineGtbegin#,
+             [LineGtend]=#LineGtend#,
+             [WireType]=#WireType#,
+             [WireLength]=#WireLength#,
+             [TotalLength]=#TotalLength#,
+             [gdbj]=#gdbj#,
+             [TheoryLoss]=#TheoryLoss#,
+             [ActualLoss]=#ActualLoss#,
+             [ParentGT]=#ParentGT#,
+             [LineP]=#LineP#,
+             [LineQ]=#LineQ#,
+             [K]=#K#,
+             [lineKind]=#lineKind#,
+             [lineNum]=#lineNum#,
+             [TotalT]=#TotalT#,
+             [SectionalizedMessage]=#SectionalizedMessage#,
+             [xlpy]=#xlpy#
+            WHERE 
+              LineID = #LineID#
 
    </update>
   
    <insert id="InsertPS_xl" parameterClass="PS_xl">
-     INSERT INTO PS_xl
-     (
-     [LineID],
-     [ParentID],
-     [LineType],
-     [LineCode],
-     [LineName],
-     [LineNamePath],
-     [LineVol],
-     [OrgCode],
-     [OrgCode2],
-     [Owner],
-     [Contractor],
-     [RunState],
-     [InDate],
-     [LineGtbegin],
-     [LineGtend],
-     [WireType],
-     [WireLength],
-     [TotalLength],
-     [gdbj],
-     [TheoryLoss],
-     [ActualLoss],
-     [LineP],
-     [LineQ],
-     [K],
-     [ParentGT],
-     [lineKind],
-     [lineNum],
-     [TotalT],
-     [SectionalizedMessage]
-     )
-     VALUES
-     (
-     #LineID#,
-     #ParentID#,
-     #LineType#,
-     #LineCode#,
-     #LineName#,
-     #LineNamePath#,
-     #LineVol#,
-     #OrgCode#,
-     #OrgCode2#,
-     #Owner#,
-     #Contractor#,
-     #RunState#,
-     #InDate#,
-     #LineGtbegin#,
-     #LineGtend#,
-     #WireType#,
-     #WireLength#,
-     #TotalLength#,
-     #gdbj#,
-     #TheoryLoss#,
-     #ActualLoss#,
-     #LineP#,
-     #LineQ#,
-     #K#,
-     #ParentGT#,
-     #lineKind#,
-     #lineNum#,
-     #TotalT#,
-     #SectionalizedMessage#
-     )
+        INSERT INTO PS_xl
+         (
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength],
+         [gdbj],
+         [TheoryLoss],
+         [ActualLoss],
+         [ParentGT],
+         [LineP],
+         [LineQ],
+         [K],
+         [lineKind],
+         [lineNum],
+         [TotalT],
+         [SectionalizedMessage],
+         [xlpy]
+         )
+       VALUES
+         (
+         #LineID#,
+         #ParentID#,
+         #LineType#,
+         #LineCode#,
+         #LineName#,
+         #LineNamePath#,
+         #LineVol#,
+         #OrgCode#,
+         #OrgCode2#,
+         #Owner#,
+         #Contractor#,
+         #RunState#,
+         #InDate#,
+         #LineGtbegin#,
+         #LineGtend#,
+         #WireType#,
+         #WireLength#,
+         #TotalLength#,
+         #gdbj#,
+         #TheoryLoss#,
+         #ActualLoss#,
+         #ParentGT#,
+         #LineP#,
+         #LineQ#,
+         #K#,
+         #lineKind#,
+         #lineNum#,
+         #TotalT#,
+         #SectionalizedMessage#,
+         #xlpy#
+         )
 
    </insert>
    
@@ -323,21 +331,22 @@
        <isNotNull prepend="AND" property="gdbj">[gdbj]='$gdbj$'</isNotNull>
        <isNotNull prepend="AND" property="TheoryLoss">[TheoryLoss]='$TheoryLoss$'</isNotNull>
        <isNotNull prepend="AND" property="ActualLoss">[ActualLoss]='$ActualLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
        <isNotNull prepend="AND" property="LineP">[LineP]='$LineP$'</isNotNull>
        <isNotNull prepend="AND" property="LineQ">[LineQ]='$LineQ$'</isNotNull>
        <isNotNull prepend="AND" property="K">[K]='$K$'</isNotNull>
-       <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
        <isNotNull prepend="AND" property="lineKind">[lineKind]='$lineKind$'</isNotNull>
        <isNotNull prepend="AND" property="lineNum">[lineNum]='$lineNum$'</isNotNull>
        <isNotNull prepend="AND" property="TotalT">[TotalT]='$TotalT$'</isNotNull>
        <isNotNull prepend="AND" property="SectionalizedMessage">[SectionalizedMessage]='$SectionalizedMessage$'</isNotNull>
+       <isNotNull prepend="AND" property="xlpy">[xlpy]='$xlpy$'</isNotNull>
      </dynamic>
 
    </select>
-   
-   <select id="GetPS_xlRowCount" parameterClass="string">
-    select count(*) from PS_xl $value$
-   </select>
+
+    <select id="GetPS_xlRowCount" parameterClass="string">
+      select count(*) from PS_xl $value$
+    </select>
     <select id="GetPS_xllength" parameterClass="string">
       select sum(WireLength) from PS_xl $value$
     </select>
@@ -383,4 +392,3 @@
     </select>
   </statements>
 </sqlMap>
- 
