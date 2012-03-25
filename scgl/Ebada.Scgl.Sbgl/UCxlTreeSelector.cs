@@ -85,11 +85,18 @@ namespace Ebada.Scgl.Sbgl {
                         mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl");
                         if (!mLines.ContainsKey(xl.LineID)) mLines.Add(xl.LineID, xl);
                     }
+                } else if (type == "xl2") {
+                    IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "' ");
+                    string lname = mLines[id].LineName;
+                    foreach (PS_xl xl in list) {
+                        mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl2");
+                        if (!mLines.ContainsKey(xl.LineID)) mLines.Add(xl.LineID, xl);
+                    }
                 } else if (type == "dxl") {
                     string lname = e.Node["Name"].ToString();
                     IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id + "'");
                     foreach (PS_xl xl in list) {
-                        mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl");
+                        mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl2");
                         mLines.Add(xl.LineID, xl);
                     }
                 } else if (type == "dyxl") {
