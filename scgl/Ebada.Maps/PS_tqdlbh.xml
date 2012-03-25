@@ -21,51 +21,54 @@
         <result property="InstallDate" column="InstallDate" />
         <result property="State" column="State" />
         <result property="InDate" column="InDate" />
+        <result property="orgCode" column="orgCode" />
       </resultMap>
   </resultMaps>
 
   <statements>
    <select id="SelectPS_tqdlbhList" resultMap="PS_tqdlbh_AllColumns" parameterClass="string">
-        SELECT 
-         [tqID],
-         [sbID],
-         [tqName],
-         [InstallAdress],
-         [sbCode],
-         [sbModle],
-         [sbName],
-         [Factory],
-         [Number],
-         [MadeDate],
-         [dzdl],
-         [dzsj],
-         [glr],
-         [InstallDate],
-         [State],
-         [InDate]
-          FROM PS_tqdlbh
-          $value$
+     SELECT
+     [tqID],
+     [sbID],
+     [tqName],
+     [InstallAdress],
+     [sbCode],
+     [sbModle],
+     [sbName],
+     [Factory],
+     [Number],
+     [MadeDate],
+     [dzdl],
+     [dzsj],
+     [glr],
+     [InstallDate],
+     [State],
+     [InDate],
+     [orgCode]
+     FROM PS_tqdlbh
+     $value$
    </select>
    
    <select id="SelectPS_tqdlbhByHash" parameterClass="Hashtable">
-         SELECT 
-         [tqID],
-         [sbID],
-         [tqName],
-         [InstallAdress],
-         [sbCode],
-         [sbModle],
-         [sbName],
-         [Factory],
-         [Number],
-         [MadeDate],
-         [dzdl],
-         [dzsj],
-         [glr],
-         [InstallDate],
-         [State],
-         [InDate]
-          FROM PS_tqdlbh
+     SELECT
+     [tqID],
+     [sbID],
+     [tqName],
+     [InstallAdress],
+     [sbCode],
+     [sbModle],
+     [sbName],
+     [Factory],
+     [Number],
+     [MadeDate],
+     [dzdl],
+     [dzsj],
+     [glr],
+     [InstallDate],
+     [State],
+     [InDate],
+     [orgCode]
+     FROM PS_tqdlbh
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
        <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
@@ -83,29 +86,31 @@
        <isNotNull prepend="AND" property="InstallDate">[InstallDate]='$InstallDate$'</isNotNull>
        <isNotNull prepend="AND" property="State">[State]='$State$'</isNotNull>
        <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[orgCode]='$orgCode$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_tqdlbhByKey" resultMap="PS_tqdlbh_AllColumns" parameterClass="PS_tqdlbh">
-         SELECT 
-         [tqID],
-         [sbID],
-         [tqName],
-         [InstallAdress],
-         [sbCode],
-         [sbModle],
-         [sbName],
-         [Factory],
-         [Number],
-         [MadeDate],
-         [dzdl],
-         [dzsj],
-         [glr],
-         [InstallDate],
-         [State],
-         [InDate]
-         FROM PS_tqdlbh
-         WHERE 
-           sbID = #sbID#
+     SELECT
+     [tqID],
+     [sbID],
+     [tqName],
+     [InstallAdress],
+     [sbCode],
+     [sbModle],
+     [sbName],
+     [Factory],
+     [Number],
+     [MadeDate],
+     [dzdl],
+     [dzsj],
+     [glr],
+     [InstallDate],
+     [State],
+     [InDate],
+     [orgCode]
+     FROM PS_tqdlbh
+     WHERE
+     sbID = #sbID#
 
    </select>
  
@@ -130,67 +135,70 @@
    </delete>
    
    <update id="UpdatePS_tqdlbh" parameterClass="PS_tqdlbh" resultClass="int">
-          UPDATE PS_tqdlbh
-           SET
-             [tqID]=#tqID#,
-             [tqName]=#tqName#,
-             [InstallAdress]=#InstallAdress#,
-             [sbCode]=#sbCode#,
-             [sbModle]=#sbModle#,
-             [sbName]=#sbName#,
-             [Factory]=#Factory#,
-             [Number]=#Number#,
-             [MadeDate]=#MadeDate#,
-             [dzdl]=#dzdl#,
-             [dzsj]=#dzsj#,
-             [glr]=#glr#,
-             [InstallDate]=#InstallDate#,
-             [State]=#State#,
-             [InDate]=#InDate#
-            WHERE 
-              sbID = #sbID#
+     UPDATE PS_tqdlbh
+     SET
+     [tqID]=#tqID#,
+     [tqName]=#tqName#,
+     [InstallAdress]=#InstallAdress#,
+     [sbCode]=#sbCode#,
+     [sbModle]=#sbModle#,
+     [sbName]=#sbName#,
+     [Factory]=#Factory#,
+     [Number]=#Number#,
+     [MadeDate]=#MadeDate#,
+     [dzdl]=#dzdl#,
+     [dzsj]=#dzsj#,
+     [glr]=#glr#,
+     [InstallDate]=#InstallDate#,
+     [State]=#State#,
+     [InDate]=#InDate#,
+     [orgCode]=#orgCode#
+     WHERE
+     sbID = #sbID#
 
    </update>
   
    <insert id="InsertPS_tqdlbh" parameterClass="PS_tqdlbh">
-        INSERT INTO PS_tqdlbh
-         (
-         [tqID],
-         [sbID],
-         [tqName],
-         [InstallAdress],
-         [sbCode],
-         [sbModle],
-         [sbName],
-         [Factory],
-         [Number],
-         [MadeDate],
-         [dzdl],
-         [dzsj],
-         [glr],
-         [InstallDate],
-         [State],
-         [InDate]
-         )
-       VALUES
-         (
-         #tqID#,
-         #sbID#,
-         #tqName#,
-         #InstallAdress#,
-         #sbCode#,
-         #sbModle#,
-         #sbName#,
-         #Factory#,
-         #Number#,
-         #MadeDate#,
-         #dzdl#,
-         #dzsj#,
-         #glr#,
-         #InstallDate#,
-         #State#,
-         #InDate#
-         )
+     INSERT INTO PS_tqdlbh
+     (
+     [tqID],
+     [sbID],
+     [tqName],
+     [InstallAdress],
+     [sbCode],
+     [sbModle],
+     [sbName],
+     [Factory],
+     [Number],
+     [MadeDate],
+     [dzdl],
+     [dzsj],
+     [glr],
+     [InstallDate],
+     [State],
+     [InDate],
+     [orgCode]
+     )
+     VALUES
+     (
+     #tqID#,
+     #sbID#,
+     #tqName#,
+     #InstallAdress#,
+     #sbCode#,
+     #sbModle#,
+     #sbName#,
+     #Factory#,
+     #Number#,
+     #MadeDate#,
+     #dzdl#,
+     #dzsj#,
+     #glr#,
+     #InstallDate#,
+     #State#,
+     #InDate#,
+     #orgCode#
+     )
 
    </insert>
    
@@ -214,6 +222,7 @@
        <isNotNull prepend="AND" property="InstallDate">[InstallDate]='$InstallDate$'</isNotNull>
        <isNotNull prepend="AND" property="State">[State]='$State$'</isNotNull>
        <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[orgCode]='$orgCode$'</isNotNull>
      </dynamic>
 
    </select>

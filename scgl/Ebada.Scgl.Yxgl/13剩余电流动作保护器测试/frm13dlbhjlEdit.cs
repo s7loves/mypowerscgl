@@ -54,7 +54,7 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "动作电流（mA）", comboBoxEdit1);
+            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "额定漏电动作电流", comboBoxEdit1);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "动作时间（S）", comboBoxEdit4);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "运行情况", comboBoxEdit2);
             if (rowData.csr == "")

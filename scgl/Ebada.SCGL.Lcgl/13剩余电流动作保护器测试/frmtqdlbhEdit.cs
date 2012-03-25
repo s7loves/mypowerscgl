@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void InitComboBoxData() {
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "额定漏电动作电流", comboBoxEdit4);
-            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "型   号", comboBoxEdit2);
+            ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "型号", comboBoxEdit2);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "制造厂名", comboBoxEdit9);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "额定漏电动作时间", comboBoxEdit7);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "运行情况", comboBoxEdit1);
@@ -94,10 +94,33 @@ namespace Ebada.Scgl.Lcgl
             //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqCode,{1})='{0}' ", lineCode,lineCode.Length));
             ////ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
             //comboBoxEdit5.Properties.Items.AddRange(list);
-            IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>( string.Format("where left(tqCode,{1})='{0}' ", lineCode,lineCode.Length));
+
+            IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqID,{1})='{0}' ", OrgCode, OrgCode.Length));
             //comboBoxEdit5.Properties.DataSource = listXL;
             SetComboBoxData(comboBoxEdit5, "tqName", "tqID", "台区名称", "", listXL);
-            
+            comboBoxEdit11.Properties.Items.Clear();
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqID,{1})='{0}' ", OrgCode, OrgCode.Length));
+
+            comboBoxEdit11.Properties.Items.AddRange(list);
+            comboBoxEdit10.Properties.Items.Clear();
+            for (int i = 0; i < listXL.Count; i++)
+            {
+                ListItem ot = new ListItem();
+                ot.DisplayMember = listXL[i].tqName;
+                ot.ValueMember = listXL[i].tqName;
+                comboBoxEdit10.Properties.Items.Add(ot);
+            }
+
+            if (rowData.tqName == "")
+            {
+                if (comboBoxEdit10.Properties.Items.Count > 0)
+                    comboBoxEdit10.SelectedIndex = 0;
+            }
+            else
+            {
+                //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(rowData.tqID);
+                comboBoxEdit10.Text = rowData.tqName;
+            }
             ICollection ryList = ComboBoxHelper.GetGdsRy(OrgCode);//获取供电所人员列表
             comboBoxEdit3.Properties.Items.AddRange(ryList);
         }
@@ -129,12 +152,26 @@ namespace Ebada.Scgl.Lcgl
      
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (comboBoxEdit5.Text == "")
+            //if (comboBoxEdit5.Text == "")
+            //{
+            //    MsgBox.ShowTipMessageBox("台区名称不能为空。");
+            //    comboBoxEdit5.Focus();
+            //    return;
+            //}
+            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + comboBoxEdit10.Text + "'");
+            if (tq == null)
             {
-                MsgBox.ShowTipMessageBox("台区名称不能为空。");
-                comboBoxEdit5.Focus();
-                return;
+                rowData.tqName = comboBoxEdit10.Text;
+                //MsgBox.ShowTipMessageBox("台区名称不能为空。");
+                //comboBoxEdit5.Focus();
+                //return;
             }
+            else
+            {
+                rowData.tqID = tq.tqID;
+                rowData.tqName = tq.tqName;
+            }
+
             //if (textEdit1.Text == "")
             //{
             //    MsgBox.ShowTipMessageBox("设备编号不能为空。");
@@ -147,7 +184,7 @@ namespace Ebada.Scgl.Lcgl
             //    textEdit1.Focus();
             //    return;
             //}
-            rowData.tqName = comboBoxEdit5.Text;
+            //rowData.tqName = comboBoxEdit5.Text;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

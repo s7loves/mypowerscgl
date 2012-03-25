@@ -36,7 +36,8 @@ namespace Ebada.Scgl.Model
         private string _glr=String.Empty; 
         private DateTime _installdate=new DateTime(1900,1,1); 
         private string _state=String.Empty; 
-        private DateTime _indate=new DateTime(1900,1,1);   
+        private DateTime _indate=new DateTime(1900,1,1);
+        private string _orgCode = String.Empty; 
         #endregion
   
   
@@ -370,7 +371,27 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        /// <summary>
+        /// 属性名称：orgCode
+        /// 属性描述：供电所
+        /// 字段信息：[orgCode],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("供电所编号")]
+        public string orgCode
+        {
+            get { return _orgCode; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[台区ID]长度不能大于50!");
+                if (_orgCode as object == null || !_orgCode.Equals(value))
+                {
+                    _orgCode = value;
+                }
+            }
+        }
         #endregion 
   
         #region 方法

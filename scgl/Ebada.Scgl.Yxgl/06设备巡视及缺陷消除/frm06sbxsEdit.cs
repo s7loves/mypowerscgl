@@ -349,6 +349,7 @@ namespace Ebada.Scgl.Yxgl
             {
                 rowData.LineName = comboBoxEdit1.Text;
             }
+            rowData.CreateDate = rowData.xssj;
         }
 
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)

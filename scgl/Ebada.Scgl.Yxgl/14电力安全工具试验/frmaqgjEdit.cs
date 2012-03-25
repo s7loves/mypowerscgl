@@ -73,11 +73,38 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "工具名称", comboBoxEdit5.Properties);
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "编号", comboBoxEdit3.Properties);
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试验周期", comboBoxEdit7.Properties);
-            ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试验项目", comboBoxEdit4.Properties);
+           // ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试验项目", comboBoxEdit4.Properties);
+            IList<PJ_dyk> dic = new List<PJ_dyk>();
+            PJ_dyk di = new PJ_dyk();
+            di.nr = "工频耐压";
+            
+            dic.Add(di);
+            di = new PJ_dyk();
+            di.nr = "绝缘电阻";
+            dic.Add(di);
+            di = new PJ_dyk();
+            di.nr = "成组绝缘电阻";
+            dic.Add(di);
+            di = new PJ_dyk();
+            di.nr = "直流电阻";
+            dic.Add(di);
 
+            ////this.InitionData(this.cltOrderState, "DicItemCnName", "DicItemCode", "请选择", "类型名称", dic);
+            this.InitionData(this.comboBoxEdit4, "nr", "nr", "请选择", "实验项目", dic);
 
-                  }
+          }
 
+        private void InitionData(DevExpress.XtraEditors.CheckedComboBoxEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, object post)
+        {
+            comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboBox.Properties.DataSource = post;
+            comboBox.Properties.DisplayMember = displayMember;
+            comboBox.Properties.ValueMember = valueMember;
+            comboBox.Properties.NullText = nullTest;
+            comboBox.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 15, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
+        }
         /// <summary>
         /// 
         /// </summary>
