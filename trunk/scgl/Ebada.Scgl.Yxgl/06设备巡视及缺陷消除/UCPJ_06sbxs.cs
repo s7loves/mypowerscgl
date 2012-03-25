@@ -245,6 +245,11 @@ namespace Ebada.Scgl.Yxgl
             if (parentID == null) return;
             frmXSQD pd = new frmXSQD();
             pd.parentobj = ParentObj;
+            if (gridView1.FocusedRowHandle >= 0)
+            {
+                pd.xsobj = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_06sbxs;
+            }
+            
             pd.ShowDialog();
           
         }

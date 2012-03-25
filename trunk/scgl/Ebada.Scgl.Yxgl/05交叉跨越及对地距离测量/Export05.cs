@@ -32,17 +32,19 @@ namespace Ebada.Scgl.Yxgl {
                     ex.CopySheet(1, 1);
                 }
             }
-            PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
+           // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
             ex.ActiveSheet(1);
-            if (xlobject!=null)
-            {
-                ex.SetCellValue(xlobject.LineName, row + 3, col);
-            }
-            
-            PS_xl xlobject2 = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.gtID);
+            ex.SetCellValue(jl.LineID, row + 3, col);
 
-            if(xlobject2!=null)
-            ex.SetCellValue("'" + xlobject2.LineName, row + 3, col + 3);
+            //if (xlobject!=null)
+            //{
+            //    ex.SetCellValue(xlobject.LineName, row + 3, col);
+            //}
+            
+            //PS_xl xlobject2 = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.gtID);
+
+            //if(xlobject2!=null)
+            ex.SetCellValue("'" + jl.gtID, row + 3, col + 3);
             ex.SetCellValue(jl.kywz, row + 3, col + 6);
 
             //交叉跨越行

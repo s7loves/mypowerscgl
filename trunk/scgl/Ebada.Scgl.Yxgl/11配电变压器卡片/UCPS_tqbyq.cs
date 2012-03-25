@@ -36,11 +36,12 @@ namespace Ebada.Scgl.Yxgl
         private string parentID = null;
         private mOrg parentObj;
         //private PS_tqbyq _parentobj;
+        frmtqbyqEdit fe = new frmtqbyqEdit();
         public UCPS_tqbyq()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_tqbyq>(gridControl1, gridView1, barManager1,new frmtqbyqEdit());
+            gridViewOperation = new GridViewOperation<PS_tqbyq>(gridControl1, gridView1, barManager1,fe);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_tqbyq>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tqbyq>(gridViewOperation_BeforeDelete);
@@ -101,6 +102,7 @@ namespace Ebada.Scgl.Yxgl
             
             if (org != null)
             {
+                fe.OrgCode = org.OrgCode;
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
@@ -166,7 +168,7 @@ namespace Ebada.Scgl.Yxgl
         {
            if (parentID == null) return;
           // newobj.byqCode = DateTime.Now.ToString("yyyyMMddHHmmss");
-            ////newobj.OrgCode = parentID;
+             // newobj.OrgCode = parentID;
             ////newobj.OrgName = parentObj.OrgName;
             ////newobj.CreateDate = DateTime.Now;
             ////newobj.CreateMan = MainHelper.LoginName;
