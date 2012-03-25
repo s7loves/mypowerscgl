@@ -58,10 +58,13 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         private void InitComboBoxData() {
-           ICollection ryList = ComboBoxHelper.Getbtq();
-            if (ryList.Count > 0)
+            IList<string> list = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select distinct Adress  from PS_tq where Adress is not null and left(tqcode,'" + rowData.ParentID.Length + "')='" + rowData.ParentID + "'");
+            //ICollection ryList = ComboBoxHelper.Getbtq();
+
+            if (list.Count > 0)
             {
-                comboBoxEdit1.Properties.Items.AddRange(ryList);
+                List<string> lt = list as List<string>;
+                comboBoxEdit1.Properties.Items.AddRange(lt.ToArray());
             }
 
         }
@@ -109,22 +112,26 @@ namespace Ebada.Scgl.Lcgl
             ////}
             //this.DialogResult = DialogResult.OK;
             //this.Close();
+            IList<PJ_24> list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_24>("where ParentID='" + rowData.ParentID + "'");
+            string bh = (list.Count + 1).ToString("000");
             DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
             Microsoft.Office.Interop.Excel.Workbook wb;
-            if (rowData.BigData ==null|| rowData.BigData.Length == 0)
+            if (rowData.BigData == null || rowData.BigData.Length == 0)
             {
                 string fname = Application.StartupPath + "\\00记录模板\\24设备变更通知书.xls";
                 dsoFramerControl1.FileOpen(fname);
             }
             else
-            dsoFramerControl1.FileData = rowData.BigData;
+                dsoFramerControl1.FileData = rowData.BigData;
             wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
             DateTime dt = Convert.ToDateTime(dateEdit1.EditValue);
+            ea.SetCellValue(dt.Year.ToString(), 4, 7);
+            ea.SetCellValue(bh, 4, 10);
             ea.SetCellValue(dt.Year.ToString(), 9, 1);
-            ea.SetCellValue(dt.Month .ToString(), 9, 3);
+            ea.SetCellValue(dt.Month.ToString(), 9, 3);
             ea.SetCellValue(dt.Day.ToString(), 9, 5);
             ea.SetCellValue(comboBoxEdit1.Text, 6, 7);
             ea.SetCellValue(memoEdit1.Text, 6, 8);
