@@ -96,5 +96,24 @@ namespace Ebada.Scgl.Yxgl
         {
             SelectorHelper.SelectDyk("01工作日记", "工作地址及项目", memoEdit1);
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+
+           IList<string> list = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select UserName from mUser where orgcode='" + UCPJ_gzrjnr.GetGdsCode() + "'");
+           string cr = "";
+           int i = 0;
+            foreach (string pp in list)
+            {
+                if (i==list.Count-1)
+                {
+                 cr+=pp;
+                    break;
+                }
+                 cr+=pp+"；";
+                i++;
+            }
+            memoEdit2.Text = cr;
+        }
     }
 }

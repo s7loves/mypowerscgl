@@ -24,7 +24,7 @@ namespace Ebada.Scgl.Yxgl
         }
         SortableSearchableBindingList<PJ_sbxsqd> m_CityDic = new SortableSearchableBindingList<PJ_sbxsqd>();
         public string orgcode = "";
-        public string linename = "";
+        public string lineid = "";
         private void frm06sbxsLine_Load(object sender, EventArgs e)
         {
 
@@ -63,7 +63,7 @@ namespace Ebada.Scgl.Yxgl
         {
             get
             {
-               
+                
                 return rowData;
             }
             set
@@ -73,8 +73,14 @@ namespace Ebada.Scgl.Yxgl
                 if (rowData == null)
                 {
                     this.rowData = value as PJ_sbxsqd;
+                   
                     this.InitComboBoxData();
+                    if (lineid != "")
+                    {
+                        rowData.LineCode = lineid;
+                    }
                     dataBind();
+                    
                 }
                 else
                 {
@@ -101,7 +107,8 @@ namespace Ebada.Scgl.Yxgl
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
             IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + orgcode + "'");
             SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
-
+        
+            
             ////巡视区段
             //ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视区段", comboBoxEdit2.Properties);
 

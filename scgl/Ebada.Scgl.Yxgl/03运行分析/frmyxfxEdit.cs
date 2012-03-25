@@ -340,7 +340,7 @@ namespace Ebada.Scgl.Yxgl
                  }
                  else
                  {
-                     yxfx.CreateDate = DateTime.Now;
+                     yxfx.CreateDate = yxfx.rq;
                      MainHelper.PlatformSqlMap.Update<PJ_03yxfx>(RowData);
                  }
                 //string strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, yxfx.type,MainHelper.User.UserID   );
@@ -393,6 +393,34 @@ namespace Ebada.Scgl.Yxgl
                 rowData.jr = dyk.nr3;
             }
             //memoEdit1.Focus();
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            frmorgRySelect fr = new frmorgRySelect();
+            fr.gdscode = rowData.OrgCode;
+            DataTable dt = new DataTable();
+            if (fr.ShowDialog() == DialogResult.OK)
+            {
+                dt = fr.DT1;
+                if (MsgBox.ShowAskMessageBox("是否确认快速写入人名") == DialogResult.OK)
+                {
+                    if (dt.Rows.Count >= 15)
+                    {
+                        for (int i = 0; i < 15; i++)
+                        {
+                            ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = dt.Rows[i][0].ToString();
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = dt.Rows[i][0].ToString();
+                        }
+                    }
+                }
+            }
         }
     }
 }

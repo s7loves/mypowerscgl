@@ -89,7 +89,7 @@ namespace Ebada.Scgl.Yxgl
             //ICollection linelist = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电线路名称
             ////线路名称
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
-            IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'");
+            IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'and linevol>=10.0 ");
             SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
             comboBoxEdit1.Properties.Items.Clear();
             for (int i = 0; i < xllit.Count; i++)
@@ -212,13 +212,19 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit2.Properties.Items.Clear();
                 comboBoxEdit3.Properties.Items.Clear();
                 comboBoxEdit6.Properties.Items.Clear();
-                IList<PJ_sbxsqd> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbxsqd>(" where LineCode='" + rowData.LineID + "'");
-                foreach (PJ_sbxsqd xsqd in xllit)
+
+                PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + rowData.LineID + "'");
+                if (xl != null)
                 {
-                    comboBoxEdit2.Properties.Items.Add(xsqd.XsqdName);
-                    comboBoxEdit3.Properties.Items.Add(xsqd.XSR1);
-                    comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
+                    IList<PJ_sbxsqd> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbxsqd>(" where LineCode='" + xl.LineID + "'");
+                    foreach (PJ_sbxsqd xsqd in xllit)
+                    {
+                        comboBoxEdit2.Properties.Items.Add(xsqd.XsqdName);
+                        comboBoxEdit3.Properties.Items.Add(xsqd.XSR1);
+                        comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
+                    }
                 }
+               
             }
 
         }
@@ -338,6 +344,36 @@ namespace Ebada.Scgl.Yxgl
             {
                 rowData.LineID = xl.LineID;
                 rowData.LineName = xl.LineName;
+            }
+            else
+            {
+                rowData.LineName = comboBoxEdit1.Text;
+            }
+        }
+
+        private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+
+            if (!string.IsNullOrEmpty(comboBoxEdit1.Text))
+            {
+                PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit1.EditValue.ToString() + "'");
+              
+                rowData.LineName = comboBoxEdit1.EditValue.ToString(); ;
+                comboBoxEdit2.Properties.Items.Clear();
+                comboBoxEdit3.Properties.Items.Clear();
+                comboBoxEdit6.Properties.Items.Clear();
+                if (xl != null)
+                {
+                    rowData.LineID = xl.LineID;
+                    IList<PJ_sbxsqd> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbxsqd>(" where LineCode='" + xl.LineID + "'");
+                    foreach (PJ_sbxsqd xsqd in xllit)
+                    {
+                        comboBoxEdit2.Properties.Items.Add(xsqd.XsqdName);
+                        comboBoxEdit3.Properties.Items.Add(xsqd.XSR1);
+                        comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
+                    }
+                }
+
             }
         }
 

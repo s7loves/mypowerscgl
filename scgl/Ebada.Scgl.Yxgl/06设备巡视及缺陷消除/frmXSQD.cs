@@ -23,10 +23,11 @@ namespace Ebada.Scgl.Yxgl
             InitializeComponent();
         }
         public mOrg parentobj;
-
+        public PJ_06sbxs xsobj;
         private void frmXSQD_Load(object sender, EventArgs e)
         {
             ucxsqd1.ParentObj = parentobj;
+            ucxsqd1.SbxsObj = xsobj;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)

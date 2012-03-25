@@ -35,6 +35,7 @@ namespace Ebada.Scgl.Yxgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
+        private PJ_06sbxs xsobj;
         frmxsDialog fdialog = null;
         public UCXSQD()
         {
@@ -46,6 +47,7 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_sbxsqd>(gridViewOperation_BeforEdit);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_sbxsqd>(gridViewOperation_BeforeDelete);
+            
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
         void gridViewOperation_BeforEdit(object render, ObjectOperationEventArgs<PJ_sbxsqd> e)
@@ -55,6 +57,7 @@ namespace Ebada.Scgl.Yxgl
                 e.Cancel = true;
             }
             fdialog.orgcode = parentObj.OrgID;
+            //fdialog.RowData = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_sbxsqd;
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sbxsqd> e)
         {
@@ -132,8 +135,23 @@ namespace Ebada.Scgl.Yxgl
             //需要隐藏列时在这写代码
 
             //hideColumn("OrgCode");
-            hideColumn("LineCode");
+            //hideColumn("LineCode");
+            Init_linecode();
             //hideColumn("gzrjID");
+        }
+        //将关联单位标识改为关联单位
+        //并以中文显示
+        public void Init_linecode()
+        {
+            gridView1.Columns["LineCode"].Caption = "关联单位";
+            DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit comboBox = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            gridView1.Columns["LineCode"].ColumnEdit = comboBox;
+            IList<PS_xl> xl_list = ClientHelper.PlatformSqlMap.GetList<PS_xl>("");
+            comboBox.DataSource = xl_list;
+            comboBox.DisplayMember = "LineName";
+            comboBox.ValueMember = "LineID";
+
+
         }
         /// <summary>
         /// 刷新数据
@@ -160,6 +178,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (parentID == null) return;
             fdialog.orgcode = parentObj.OrgID;
+            fdialog.lineid = xsobj.LineID;
             //newobj.OrgCode = parentID;
             //newobj.OrgName = parentObj.OrgName;
             //newobj.CreateDate = DateTime.Now;
@@ -182,6 +201,23 @@ namespace Ebada.Scgl.Yxgl
                 {
                     RefreshData(" where LineCode in(select lineid from ps_xl where OrgCode='" + value+ "')");
                 }
+            }
+        }
+        /// <summary>
+        /// 父表ID
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public PJ_06sbxs SbxsObj
+        {
+            get { return xsobj; }
+            set
+            {
+                xsobj = value;
+                //if (!string.IsNullOrEmpty(value))
+                //{
+                //    RefreshData(" where LineCode in(select lineid from ps_xl where OrgCode='" + value + "')");
+                //}
             }
         }
         [Browsable(false)]

@@ -17,7 +17,7 @@ namespace Ebada.Scgl.Yxgl
 {
     public partial class frmtqbyqEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PS_tqbyq> m_CityDic = new SortableSearchableBindingList<PS_tqbyq>();
-
+        public string OrgCode;
         public frmtqbyqEdit() {
             InitializeComponent();
         }
@@ -77,7 +77,7 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            IList<PS_tq> tqlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("");
+            IList<PS_tq> tqlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where Substring(tqid,1,3)='" + OrgCode.Substring(0,3) + "'");
 
             SetComboBoxData(lookUpEdit1, "tqName", "tqID", "选择台区", "", tqlist);
             for (int i = 0; i < tqlist.Count; i++)

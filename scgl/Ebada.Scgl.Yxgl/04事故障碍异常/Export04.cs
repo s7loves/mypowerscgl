@@ -74,7 +74,7 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.CreateDate.Day.ToString(), 24, 17);
 
             //事故障碍异常
-            string sgzyc = "三、事故、障碍、异常运行情况及处理经过：" + obj.clqk;
+            string sgzyc =obj.clqk;
             //string hdstr = Ecommon.Comparestring(obj.hdnr, "活动内容") ? "" : "活动内容：";
             //List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.clqk, zc, 8);
 
@@ -99,7 +99,7 @@ namespace Ebada.Scgl.Yxgl
                 ex.SetCellValue(tempstr, 9 + i, 1);
             }
             //主要原因分析
-            string zyyuy = "四、主要原因分析：" + obj.yyfx;
+            string zyyuy =obj.yyfx;
             for (int i = 0; i < 5; i++)
             {
                 string tempstr = "";
@@ -121,7 +121,7 @@ namespace Ebada.Scgl.Yxgl
                 ex.SetCellValue(tempstr, 13 + i, 1);
             }
             //今后放置对策
-            string fzdc = "五、今后防止对策：" + obj.fzdc;
+            string fzdc =obj.fzdc;
             for (int i = 0; i < 5; i++)
             {
                 string tempstr = "";

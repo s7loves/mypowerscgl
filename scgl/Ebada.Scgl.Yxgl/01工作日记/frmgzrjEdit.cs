@@ -145,5 +145,33 @@ namespace Ebada.Scgl.Yxgl {
             this.textEdit4.Text= rowData.rsaqts.ToString();
             this.textEdit5.Text = rowData.sbaqts.ToString();
         }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            frmorgRySelect fr = new frmorgRySelect();
+            fr.gdscode = rowData.GdsCode;
+            DataTable dt = new DataTable();
+            if (fr.ShowDialog() == DialogResult.OK)
+            {
+                dt = fr.DT1;
+                 if (MsgBox.ShowAskMessageBox("是否确认快速写入人名") == DialogResult.OK) 
+                 {
+                     if (dt.Rows.Count>=20)
+                     {
+                         for (int i = 0; i < 20;i++ )
+                         {
+                             ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = dt.Rows[i][0].ToString();
+                         }
+                     }
+                     else
+                     {
+                         for (int i = 0; i < dt.Rows.Count;i++ )
+                         {
+                             ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = dt.Rows[i][0].ToString();
+                         }
+                     }
+                 }
+            }
+        }
     }
 }

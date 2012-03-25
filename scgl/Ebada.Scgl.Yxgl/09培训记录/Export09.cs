@@ -33,21 +33,26 @@ namespace Ebada.Scgl.Yxgl {
             int pagecount = 1;
 
             //题目
-            string timustr = "题目：";
+
+            string timustr = Ecommon.Comparestring(obj.tm, "题目") ? "" : "题目：";
+           
+            
             List<string> timulist = Ecommon.ResultStrListByPage(timustr,obj.tm, zc,4);
             if (Ecommon.GetPagecount(timulist.Count,4)>pagecount)
 	        {
                 pagecount=Ecommon.GetPagecount(timulist.Count,4);
 	        }
             //活动内容
-            string hdstr = "内容："; 
+
+            string hdstr = Ecommon.Comparestring(obj.nr, "内容") ? "" : "内容：";
             List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.nr,zc,10);
               if (Ecommon.GetPagecount(hdlist.Count,10)>pagecount)
 	        {
                 pagecount=Ecommon.GetPagecount(hdlist.Count,10);
 	        }
             //领导评语
-            string ldpystr = "领导检查评语：" ;
+            
+            string ldpystr = Ecommon.Comparestring(obj.py, "领导检查评语") ? "" : "领导检查评语：";
             List<string> ldpylist = Ecommon.ResultStrListByPage(ldpystr,obj.py, zc,3);
              if (Ecommon.GetPagecount(ldpylist.Count,3)>pagecount)
 	        {
