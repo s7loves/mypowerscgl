@@ -365,11 +365,17 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton4_Click(object sender, EventArgs e)
         {
+            if (spinEdit2.Value == 0) {
+                MsgBox.ShowTipMessageBox("物品数量不能为0!");
+                return;
+            }
             rowData.ID = rowData.CreateID();
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
             Client.ClientHelper.PlatformSqlMap.Create<PJ_wgclrkysd>(rowData);
             MsgBox.ShowTipMessageBox("添加成功!");
             rowData.ID = rowData.CreateID();
+            rowData.wpsl = "0";
+            spinEdit2.Value   = 0;
         }
 
         private void spinEdit2_EditValueChanged(object sender, EventArgs e)

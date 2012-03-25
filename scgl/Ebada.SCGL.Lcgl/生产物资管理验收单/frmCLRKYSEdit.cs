@@ -535,17 +535,17 @@ namespace Ebada.Scgl.Lcgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
 
-            SelectorHelper.SelectDyk("工程材料验收单", "存在问题", memoEdit3);
+            SelectorHelper.SelectDyk("工程材料验收单", "存在问题", memoEdit1);
         }
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("工程材料验收单", "处理结果", memoEdit3);
+            SelectorHelper.SelectDyk("工程材料验收单", "处理结果", memoEdit4);
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
 
-            SelectorHelper.SelectDyk("工程材料验收单", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("工程材料验收单", "备注", memoEdit2);
         }
 
         private void simpleButton4_Click(object sender, EventArgs e)
