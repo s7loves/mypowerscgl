@@ -90,9 +90,17 @@ namespace Ebada.Scgl.Core {
                 //if (gdsDic == null) {
                 if (gdsDic == null||gdsDic.LinkCount  == 1 )
                 {
-                    IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                    //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                    //IList<DicType> dic = new List<DicType>();
+                    //foreach (ViewGds gds in list) {
+                    //    dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                    //}
+                    //gdsDic = new LookUpDicType(dic); 
+
+                    IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where c1='是' order by orgcode");
                     IList<DicType> dic = new List<DicType>();
-                    foreach (ViewGds gds in list) {
+                    foreach (mOrg gds in list)
+                    {
                         dic.Add(new DicType(gds.OrgCode, gds.OrgName));
                     }
                     gdsDic = new LookUpDicType(dic); 
