@@ -747,7 +747,7 @@ namespace Ebada.Scgl.Lcgl
             //if (fys.ShowDialog() == DialogResult.OK)
             //{
 
-            ExportSCTZEdit etdjh = new ExportSCTZEdit();
+            ExportWGCJSCTZEdit etdjh = new ExportWGCJSCTZEdit();
             etdjh.ExportExcel(datalist);
             //}
         }
