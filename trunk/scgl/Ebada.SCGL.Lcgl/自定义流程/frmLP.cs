@@ -32,6 +32,7 @@ namespace Ebada.Scgl.Lcgl
         #region 字段
 
         const int wordWidth = 13;
+        public string strxiestatus = "";
         private LP_Temple parentTemple = null;
         private IList<LP_Temple> templeList;
         private IList<Control> tempCtrlList = null;
@@ -154,7 +155,11 @@ namespace Ebada.Scgl.Lcgl
             //wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
             //wb.SheetDeactivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetDeactivateEventHandler(Workbook_SheetDeactivate);
             //wb.SheetActivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetActivateEventHandler(Workbook_SheetActivate);
-            wb.SheetSelectionChange  += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);  
+            try
+            {
+                wb.SheetSelectionChange += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);
+            }
+            catch { }
         }
         protected void Workbook_SheetSelectionChange(object Sh, Excel.Range Target)
         {
@@ -323,14 +328,15 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-                if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1)
-                {
-
-                    this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
-
-                }
+                
 
                 //LoadContent();
+            }
+            if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1 && currRecord.DocContent != null && currRecord.DocContent.Length>0)
+            {
+
+                this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+
             }
             if ((parentTemple != null && parentTemple.DocContent != null) || (currRecord != null && currRecord.DocContent != null && currRecord.DocContent.Length > 0))
             {
@@ -359,6 +365,54 @@ namespace Ebada.Scgl.Lcgl
                 }
 
             }
+            IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                    " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + WorkFlowData.Rows[0]["WorkflowId"] + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "' ");
+
+            Excel.Worksheet xx;
+            wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
+            string activeSheetName = "";
+            xx = wb.Application.Sheets[1] as Excel.Worksheet;
+           
+
+            for (int i = 0; i < tfvli.Count; i++)
+            {
+
+                Control ctl = FindCtrl(tfvli[i].FieldId);
+                if (ctl != null)
+                {
+                    LP_Temple lp = ctl.Tag as LP_Temple;
+                    if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit") == false)
+                    {
+                        if (lp.CellName != "编号")
+                        {
+                            if (ctl.Text.IndexOf(tfvli[i].ControlValue) == -1)
+                            ctl.Text += tfvli[i].ControlValue;
+                        }
+                        else
+                        {
+                            ctl.Text = tfvli[i].ControlValue;
+                        }
+                        ctl.Focus();
+                    }
+                    else
+                    {
+                         
+                        
+                        IList<WF_TableFieldValue> tfvlitemp = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                    " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + WorkFlowData.Rows[0]["WorkflowId"] + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "'  and FieldId='" + tfvli[i].FieldId.ToString() + "' and FieldName='" + tfvli[i].FieldName + "完整时间' order by id desc, YExcelPos,XExcelPos");
+                        if (tfvlitemp.Count > 0)
+                        {
+                            ((DevExpress.XtraEditors.DateEdit)ctl).DateTime = Convert.ToDateTime(tfvlitemp[0].ControlValue);
+                        }
+                        //((DevExpress.XtraEditors.DateEdit)ctl).DateTime = Convert.ToDateTime(tfvli[i].ControlValue);
+                    }
+                }
+
+
+            }
+            dsoFramerWordControl1.FileSave();
             //保护工作表
             //    LockExcel(wb,sheet);
             //}
@@ -513,7 +567,7 @@ namespace Ebada.Scgl.Lcgl
                     {
                         label.Text = lp.CellName+"(Tab键可选下一格)";
                         (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar),lp);
-                        if (RecordWorkTask.HaveRunPowerRole(WorkConst.WorkTask_BindTable, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkTaskId"].ToString()))
+                        if (RecordWorkTask.HaveRunPowerRole(WorkConst.WorkTask_BindTable, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkTaskId"].ToString()) || currRecord.Status =="填票")
                         {
                             (ctrl as uc_gridcontrol).iniTableRecordData(currRecord.ID, lp, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkFlowInsId"].ToString());
                         }
@@ -781,20 +835,51 @@ namespace Ebada.Scgl.Lcgl
             {
                 Console.Write(wfv.ID+"\r\n");
             }
-            if (list.Count > 0)
-            {
-
-                Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
-            }
+            
             if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
             {
 
                 RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { currRecord });
 
             }
+            if (strxiestatus == "add")
+            {
+                if (list.Count > 0)
+                {
+
+                    Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
+                }
+            }
+            else
+            {
+                if (list.Count > 0)
+                {
+                    foreach (WF_TableFieldValue wfv in list)
+                    {
+                        WF_TableFieldValue wtfvtemp = Client.ClientHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
+                             + " and   WorkflowId='" + wfv.WorkFlowId + "'"
+                             + " and   RecordId='" + wfv.RecordId + "'"
+                             + " and   UserControlId='" + wfv.UserControlId + "'"
+                             + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
+                             + " and   fieldname='" + wfv.FieldName + "'"
+                             + " and   FieldId='" + wfv.FieldId + "'"
+                             + " and   XExcelPos='" + wfv.XExcelPos + "'"
+                             + " and   YExcelPos='" + wfv.YExcelPos + "'"
+                             );
+                        if (wtfvtemp != null)
+                            wfv.ID = wtfvtemp.ID;
+                        else
+                        {
+                            Client.ClientHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                        }
+                    }
+                    Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, list, null);
+                }
+            }
             switch (status)
             {
                 case "add":
+                   
                     //LP_Record newRecord = new LP_Record();
                     dsoFramerWordControl1.FileSave();
                     currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
@@ -871,6 +956,7 @@ namespace Ebada.Scgl.Lcgl
                     //currRecord = newRecord;
                     break;
                 case "edit":
+                   
                     currRecord.LastChangeTime = DateTime.Now.ToString();
                      dsoFramerWordControl1.FileSave();
                     currRecord.DocContent = this.dsoFramerWordControl1.FileDataGzip;
@@ -1370,27 +1456,29 @@ namespace Ebada.Scgl.Lcgl
                 {
 
                     PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
-                    string tempPath = Path.GetTempPath();
-                    string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
-                    FileStream fs;
-                    fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
-                    BinaryWriter bw = new BinaryWriter(fs);
-                    bw.Write(tb.picImage);
-                    bw.Flush();
-                    bw.Close();
-                    fs.Close();
-                    //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
-                    //MemoryStream memo = new MemoryStream(4);
-                    //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
-                    //memo.Write(bytes, 0, bytes.Length);
-                    //data.SetData("ttt", memo);
-                    //Clipboard.SetDataObject(data);
-                    Image im = Bitmap.FromFile(tempfile);
-                    Bitmap bt = new Bitmap(im);
-                    DataObject dataObject = new DataObject();
-                    dataObject.SetData(DataFormats.Bitmap, bt);
-                    Clipboard.SetDataObject(dataObject, true);
-
+                    if (tb != null)
+                    {
+                        string tempPath = Path.GetTempPath();
+                        string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+                        FileStream fs;
+                        fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                        BinaryWriter bw = new BinaryWriter(fs);
+                        bw.Write(tb.picImage);
+                        bw.Flush();
+                        bw.Close();
+                        fs.Close();
+                        //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
+                        //MemoryStream memo = new MemoryStream(4);
+                        //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
+                        //memo.Write(bytes, 0, bytes.Length);
+                        //data.SetData("ttt", memo);
+                        //Clipboard.SetDataObject(data);
+                        Image im = Bitmap.FromFile(tempfile);
+                        Bitmap bt = new Bitmap(im);
+                        DataObject dataObject = new DataObject();
+                        dataObject.SetData(DataFormats.Bitmap, bt);
+                        Clipboard.SetDataObject(dataObject, true);
+                    }
                 }
                 return;
             }
@@ -1466,27 +1554,29 @@ namespace Ebada.Scgl.Lcgl
                 {
                     unLockExcel(wb, xx);
                     PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
-                    string tempPath = Path.GetTempPath();
-                    string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
-                    FileStream fs;
-                    fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
-                    BinaryWriter bw = new BinaryWriter(fs);
-                    bw.Write(tb.picImage);
-                    bw.Flush();
-                    bw.Close();
-                    fs.Close();
-                    //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
-                    //MemoryStream memo = new MemoryStream(4);
-                    //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
-                    //memo.Write(bytes, 0, bytes.Length);
-                    //data.SetData("ttt", memo);
-                    //Clipboard.SetDataObject(data);
-                    Image im = Bitmap.FromFile(tempfile);
-                    Bitmap bt = new Bitmap(im);
-                    DataObject dataObject = new DataObject();
-                    dataObject.SetData(DataFormats.Bitmap, bt);
-                    Clipboard.SetDataObject(dataObject, true);
-
+                    if (tb != null)
+                    {
+                        string tempPath = Path.GetTempPath();
+                        string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+                        FileStream fs;
+                        fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                        BinaryWriter bw = new BinaryWriter(fs);
+                        bw.Write(tb.picImage);
+                        bw.Flush();
+                        bw.Close();
+                        fs.Close();
+                        //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
+                        //MemoryStream memo = new MemoryStream(4);
+                        //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
+                        //memo.Write(bytes, 0, bytes.Length);
+                        //data.SetData("ttt", memo);
+                        //Clipboard.SetDataObject(data);
+                        Image im = Bitmap.FromFile(tempfile);
+                        Bitmap bt = new Bitmap(im);
+                        DataObject dataObject = new DataObject();
+                        dataObject.SetData(DataFormats.Bitmap, bt);
+                        Clipboard.SetDataObject(dataObject, true);
+                    }
                 }
                 else
                 {
@@ -1642,7 +1732,7 @@ namespace Ebada.Scgl.Lcgl
                 str = value.Replace("{0}", str);
 
             }
-            if (lp.CellName == "工作班人员")
+            if (lp.CellName == "工作班人员" || lp.CellName == "抢修班人员" || lp.CellName == "工作班成员")
             {
                LP_Temple lpt = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where CellName='人数' and ParentID='"+parentTemple.LPID+"'" );
                Control relateCtrl = FindCtrl(lp.LPID);
@@ -1807,7 +1897,11 @@ namespace Ebada.Scgl.Lcgl
                             i1 = help.GetFristLen(str, arrCellCount[0]);
                         if (i1 == -1)
                             i1 = help.GetFristLen(str, arrCellCount[0]);
-                        ea.SetCellValue(str.Substring(0, i1), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        try
+                        {
+                            ea.SetCellValue(str.Substring(0, i1), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        }
+                        catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
@@ -2225,6 +2319,16 @@ namespace Ebada.Scgl.Lcgl
                             tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                             tfv.ExcelSheetName = activeSheetName;
 
+                            tfv = valuehs[lp.LPID + "$" + arrCellPos[i] + "时间"] as WF_TableFieldValue;
+                            if(tfv!=null)
+                            {
+                                tfv.ControlValue = dt.ToString();
+                                tfv.FieldId = lp.LPID;
+                                tfv.FieldName = lp.CellName + "完整时间";
+                                tfv.XExcelPos = -1;
+                                tfv.YExcelPos = -1;
+                                tfv.ExcelSheetName = activeSheetName;
+                            }
                         }
                         else
                         {
@@ -2236,6 +2340,17 @@ namespace Ebada.Scgl.Lcgl
                             tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                             tfv.ExcelSheetName = activeSheetName;
                             valuehs.Add(lp.LPID + "$" + arrCellPos[i], tfv);
+
+                                tfv = new WF_TableFieldValue(); 
+                                tfv.FieldId = lp.LPID;
+                                tfv.ControlValue = dt.ToString();
+                                tfv.FieldName = lp.CellName + "完整时间";
+                                tfv.XExcelPos = -1;
+                                tfv.YExcelPos = -1;
+                                tfv.ExcelSheetName = activeSheetName;
+                                valuehs.Add(lp.LPID + "$" + arrCellPos[i] + "时间", tfv);
+                               
+                           
                         }
                     }
                     else
@@ -2255,6 +2370,17 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
                                 tfv.ExcelSheetName = activeSheetName;
 
+                                tfv = valuehs[lp.LPID + "$" + arrCellPos[0] + "时间"] as WF_TableFieldValue;
+                                if (tfv != null)
+                                {
+                                    // tfv.ControlValue = dt。;
+                                    tfv.FieldId = lp.LPID;
+                                    tfv.FieldName = lp.CellName + "完整时间";
+                                    tfv.XExcelPos =-1;
+                                    tfv.YExcelPos = -1;
+                                    tfv.ExcelSheetName = activeSheetName;
+                                }
+
                             }
                             else
                             {
@@ -2266,6 +2392,15 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
                                 tfv.ExcelSheetName = activeSheetName;
                                 valuehs.Add(lp.LPID + "$" + arrCellPos[0], tfv);
+
+                                tfv = new WF_TableFieldValue();
+                                tfv.FieldId = lp.LPID;
+                                tfv.ControlValue = dt.ToString();
+                                tfv.FieldName = lp.CellName + "完整时间";
+                                tfv.XExcelPos = -1;
+                                tfv.YExcelPos = -1;
+                                tfv.ExcelSheetName = activeSheetName;
+                                valuehs.Add(lp.LPID + "$" + arrCellPos[0] + "时间", tfv);
                             }
                         }
                     }
@@ -2693,8 +2828,8 @@ namespace Ebada.Scgl.Lcgl
                         {
                             ((ComboBoxEdit)bttip).Properties.Items.Clear();
                             ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
-                            if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
-                                ((ComboBoxEdit)bttip).SelectedIndex = 0;
+                            //if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
+                            //    ((ComboBoxEdit)bttip).SelectedIndex = 0;
                         }
                     }
                     break;
@@ -2707,33 +2842,33 @@ namespace Ebada.Scgl.Lcgl
                         {
                             ((ComboBoxEdit)bttip).Properties.Items.Clear();
                             ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
-                            if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
-                                ((ComboBoxEdit)bttip).SelectedIndex = 0;
+                            //if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
+                            //    ((ComboBoxEdit)bttip).SelectedIndex = 0;
                         }
                     }
                     break;
                 case "DevExpress.XtraEditors.ComboBoxEdit":
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-                    //if (sqlSentence != "")
-                    //{
-                    //    try
-                    //    {
-                    //        IList list = ClientHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
-                    //        for (int i = 0; i < list.Count; i++)
-                    //        {
-                    //            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i], null));
-                    //        }
-                    //    }
-                    //    catch
-                    //    {
-                    //        string sql = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
-                    //        IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
-                    //        ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(list);
-                    //        ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedItem = MainHelper.User.OrgName;
-                    //    }
+                    if (sqlSentence != "")
+                    {
+                        try
+                        {
+                            IList list = ClientHelper.PlatformSqlMap.GetList(SplitSQL(sqlSentence)[0], SplitSQL(sqlSentence)[1]);
+                            for (int i = 0; i < list.Count; i++)
+                            {
+                                ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(list[i].GetType().GetProperty(lp.SqlColName).GetValue(list[i], null));
+                            }
+                        }
+                        catch
+                        {
+                            //string sql = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                            //IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
+                            //((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(list);
+                            //((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedItem = MainHelper.User.OrgName;
+                        }
 
-                    //}
+                    }
 
                     if (li.Count > 0 && sqlSentence != "")
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(li);
@@ -2748,8 +2883,8 @@ namespace Ebada.Scgl.Lcgl
                     }
                     if (((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Count > 0)
                     {
-                        if (lp.CellName != "单位")
-                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;
+                        //if (lp.CellName != "单位")
+                        //    ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;
                         //ContentChanged(ctrl);
                         if (lp.CellName == "单位")
                         {
@@ -2828,8 +2963,8 @@ namespace Ebada.Scgl.Lcgl
                     }
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
-                    //if (li.Count > 0 && sqlSentence != "")
-                    //    ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
+                    if (li.Count > 0 && sqlSentence != "")
+                        ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
 
                     if (li.Count > 0 && sqlSentence != "")
                     {
@@ -2839,8 +2974,8 @@ namespace Ebada.Scgl.Lcgl
                         {
                             ((ComboBoxEdit)bttip).Properties.Items.Clear();
                             ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
-                            if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
-                                ((ComboBoxEdit)bttip).SelectedIndex = 0;
+                            //if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
+                            //    ((ComboBoxEdit)bttip).SelectedIndex = 0;
                         }
                     }
                     break;

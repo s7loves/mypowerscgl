@@ -352,7 +352,7 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit2.Properties.Items.AddRange(mclist);
             else
             {
-                mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct nr  from PJ_clcrkd where   sx='" + comboBoxEdit1.Text + "'");
+                mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct nr  from pj_dyk where   sx='" + comboBoxEdit1.Text + "'");
                 if (mclist.Count > 0)
                     comboBoxEdit2.Properties.Items.AddRange(mclist);
                 else

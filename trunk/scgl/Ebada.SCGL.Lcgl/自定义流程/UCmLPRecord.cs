@@ -349,32 +349,52 @@ namespace Ebada.Scgl.Lcgl {
         }
         private void InitData(string kind)
         {
-            string str = "";             
+            string str = "";
+            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+
+            mUser user = MainHelper.PlatformSqlMap.GetOne<mUser>(" where UserID='" + m_UserBase.UserID + "'");
             //gridViewOperation.RefreshData(str);
             if (kind == "电力线路倒闸操作票")
             {
                 strKind = "dzczp";
-                str = string.Format("where kind='{0}' or kind='dzczp' ", kind);    
+                str = string.Format("where kind='{0}' or kind='dzczp' and OrgName='{1}'", kind, user.OrgName);
+                if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1)
+                    str = string.Format("where kind='{0}' or kind='dzczp'and OrgName='{1}'", kind, user.OrgName);
+                else
+                    str = string.Format("where kind='{0}' or kind='dzczp'", kind);      
             }
             else if (kind == "电力线路第一种工作票")
             {
                 strKind = "yzgzp";
-                str = string.Format("where kind='{0}' or kind='yzgzp' ", kind);    
+                if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1)
+                    str = string.Format("where kind='{0}' or kind='yzgzp' and OrgName='{1}'", kind, user.OrgName);
+                else
+                    str = string.Format("where kind='{0}' or kind='yzgzp'", kind); 
+
             }
             else if (kind == "电力线路第二种工作票")
             {
                 strKind = "ezgzp";
-                str = string.Format("where kind='{0}' or kind='ezgzp' ", kind);    
+                if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1)
+                    str = string.Format("where kind='{0}' or kind='ezgzp'and OrgName='{1}'", kind, user.OrgName);
+                else
+                    str = string.Format("where kind='{0}' or kind='ezgzp'", kind);  
             }
             else if (kind == "电力线路事故应急抢修单")
             {
                 strKind = "xlqxp";
-                str = string.Format("where kind='{0}' or kind='xlqxp' ", kind);
+                if (m_UserBase.LoginName  != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1)
+                    str = string.Format("where kind='{0}' or kind='xlqxp'and OrgName='{1}'", kind, user.OrgName);
+                else
+                    str = string.Format("where kind='{0}' or kind='xlqxp'", kind);    
             }
             else
             {
                 strKind = kind;
-                str = string.Format("where kind='{0}'  ", kind);
+                if (MainHelper.User.UserName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1)
+                    str = string.Format("where kind='{0}' and OrgName='{1}'", kind, user.OrgName);
+                else
+                    str = string.Format("where kind='{0}' ", kind); 
             }
 
             if (gridtable != null) gridtable.Rows.Clear();
@@ -448,7 +468,7 @@ namespace Ebada.Scgl.Lcgl {
             if (obj is frmLP)
             {
                 frmLP frm = new frmLP();
-               
+                frm.strxiestatus = "add";
                 frm.Status = "add";
                 frm.Kind = strKind;
                 string[] strtemp = RecordWorkTask.RunNewGZPRecord(lpr.ID, strKind, MainHelper.User.UserID, false);
@@ -978,7 +998,7 @@ namespace Ebada.Scgl.Lcgl {
                 frm.Status = RecordWorkTask.GetWorkTaskStatus(dt, currRecord);
 
                 frm.CurrRecord = currRecord;
-
+                frm.strxiestatus = "edit";
 
                 frm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
                 if (frm.ParentTemple == null)
@@ -1527,6 +1547,7 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
             }
+
             workFlowFormShow(currRecord);
         }
 
@@ -1761,6 +1782,7 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
             }
+            currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
             if (currRecord.Status != "存档")
@@ -1964,8 +1986,10 @@ namespace Ebada.Scgl.Lcgl {
                                 }
                                 WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(templehs[akeys[0]]);
                                 //RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, true);
+                                currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
                                 RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, worktaskins.WorkFlowId, worktaskins.WorkFlowInsId, true);
                                 ds1.FileDataGzip = taskTemple.DocContent;
+                                //ds1.FileDataGzip = currRecord.DocContent ;
                                 ds1.FileSave(fname, true);
                                 ds1.FileClose();
 
