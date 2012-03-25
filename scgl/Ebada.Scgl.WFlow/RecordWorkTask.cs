@@ -805,8 +805,16 @@ namespace Ebada.Scgl.WFlow
                             ea.ActiveSheet(xx.Index);
                         }
 
-                        if (tfvli[i].XExcelPos > -1 && tfvli[i].YExcelPos > -1) ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
+                        if (tfvli[i].XExcelPos > -1 && tfvli[i].YExcelPos > -1)
+                        {
+                            if (tfvli[i].FieldName!="编号")
+                            ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
+                            else
+                                ea.SetCellValue("'"+tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
 
+                        }
+
+                        
                     }
                     dsoFramerWordControl1.FileSave();
                     temple.DocContent = dsoFramerWordControl1.FileDataGzip;
