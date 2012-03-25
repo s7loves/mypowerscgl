@@ -96,11 +96,12 @@ namespace Ebada.Scgl.Yxgl
             //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqCode,{1})='{0}' ", lineCode,lineCode.Length));
             ////ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
             //comboBoxEdit5.Properties.Items.AddRange(list);
-            IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>( string.Format("where left(tqCode,{1})='{0}' ", lineCode,lineCode.Length));
+          
+            IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>( string.Format("where left(tqID,{1})='{0}' ", OrgCode,OrgCode.Length));
             //comboBoxEdit5.Properties.DataSource = listXL;
             SetComboBoxData(comboBoxEdit5, "tqName", "tqID", "台区名称", "", listXL);
             comboBoxEdit11.Properties.Items.Clear();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqCode,{1})='{0}' ", lineCode, lineCode.Length));
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqID,{1})='{0}' ", OrgCode, OrgCode.Length));
             
             comboBoxEdit11.Properties.Items.AddRange(list);
             comboBoxEdit10.Properties.Items.Clear();
@@ -162,12 +163,17 @@ namespace Ebada.Scgl.Yxgl
             PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + comboBoxEdit10.Text + "'");
             if (tq == null)
             {
-                MsgBox.ShowTipMessageBox("台区名称不能为对。");
-                comboBoxEdit5.Focus();
-                return;
+                rowData.tqName = comboBoxEdit10.Text;
+                //MsgBox.ShowTipMessageBox("台区名称不能为空。");
+                //comboBoxEdit5.Focus();
+                //return;
             }
-            rowData.tqID = tq.tqID;
-            rowData.tqName = tq.tqName;
+            else
+            {
+                rowData.tqID = tq.tqID;
+                rowData.tqName = tq.tqName;
+            }
+           
             //if (textEdit1.Text == "")
             //{
             //    MsgBox.ShowTipMessageBox("设备编号不能为空。");

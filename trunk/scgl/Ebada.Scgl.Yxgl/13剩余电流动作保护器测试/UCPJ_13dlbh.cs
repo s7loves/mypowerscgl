@@ -35,7 +35,7 @@ namespace Ebada.Scgl.Yxgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         frmtqdlbhEdit frm = new frmtqdlbhEdit();
         private string parentID = null;
-        private PS_xl parentObj;
+        private mOrg parentObj;
         public UCPJ_13dlbh()
         {
             InitializeComponent();
@@ -89,12 +89,12 @@ namespace Ebada.Scgl.Yxgl
             if (parentID != "")
             {
                 IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where LineCode='" + parentID + "'");
-                frm.LineCode = parentID;
+                //frm.LineCode = parentID;
                 PS_xl xl = null;
                 if (list.Count > 0)
                 {
                     xl = list[0];
-                    ParentObj = xl;
+                   // ParentObj = xl;
                 }
             }
          
@@ -109,6 +109,8 @@ namespace Ebada.Scgl.Yxgl
            
             if (org != null)
             {
+                RefreshData(" where tqID in(select tqID from PS_tq where LEFT(tqID,'" + org.OrgCode.Length + "')='" + org.OrgCode + "') or orgCode='" + org.OrgCode + "' order by sbCode ");
+                ParentObj = org;
                 gds = org;
                 IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
                 repositoryItemLookUpEdit3.DataSource = xlList;
@@ -180,6 +182,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (parentID == null) return;
             frm.OrgCode = btGdsList.EditValue.ToString();
+            newobj.orgCode = btGdsList.EditValue.ToString();
             //newobj.tqID = ParentObj.OrgID;
             //newobj.OrgName = parentObj.OrgName;
             //newobj.CreateDate = DateTime.Now;
@@ -197,15 +200,15 @@ namespace Ebada.Scgl.Yxgl
             {
                 //where left(tqCode,{1})='{0}' ", lineCode,lineCode.Length
                 parentID = value;
-                if (!string.IsNullOrEmpty(value))
-                {
-                    RefreshData(" where tqID in (select tqID  from PS_tq where LEFT(tqCODE,'"+value.Length+"')= '" + value + "') order by sbCode ");
-                }
+                //if (!string.IsNullOrEmpty(value))
+                //{
+                //    RefreshData(" where tqID in (select tqID  from PS_tq where LEFT(tqCODE,'"+value.Length+"')= '" + value + "') order by sbCode ");
+                //}
             }
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public PS_xl ParentObj
+        public mOrg ParentObj
         {
             get { return parentObj; }
             set
@@ -218,7 +221,7 @@ namespace Ebada.Scgl.Yxgl
                 }
                 else
                 {
-                    ParentID = value.LineCode;
+                    ParentID = value.OrgID;
                 }
             }
         }
