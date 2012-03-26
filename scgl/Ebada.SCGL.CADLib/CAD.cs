@@ -35,16 +35,22 @@ namespace Ebada.SCGL.CADLib
                 f.Show();
                 cad = AutoCADConnector();
                 cad.ActiveDocument.SendCommand("-units 2 8 1 0 0 n ");
+                ArrayList nlist= getLineCode(linecode);
                 if (cad != null)
                 {
                     cad.ActiveDocument.Layers.Add("line");
                     cad.ActiveDocument.Layers.Add("gt");
                     cad.ActiveDocument.Layers.Add("gth");
-                    for (int n = 0; n < linecode.Length; n++)
+                    cad.ActiveDocument.Layers.Add("text");
+                    for (int n = 0; n < nlist.Count; n++)
                     {
-                        f.SetText("正在处理线路"+linecode[n]);
-                        IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='"+linecode[n]+"' order by gth");
-                        CallCAD(cad, ReLoadList(list));
+                        f.SetText("正在处理线路" + nlist[n].ToString());
+                        IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + nlist[n].ToString()+ "' order by gth");
+                        IList<PS_gt> newlist = ReLoadList(list);
+                        if (newlist.Count > 1)
+                        {
+                            CallCAD(cad, newlist);
+                        }
                     }
                     cad.Visible = true;
                     cad.ActiveDocument.SendCommand("Z e ");
@@ -80,8 +86,13 @@ namespace Ebada.SCGL.CADLib
                     cad.ActiveDocument.Layers.Add("line");
                     cad.ActiveDocument.Layers.Add("gt");
                     cad.ActiveDocument.Layers.Add("gth");
+                    cad.ActiveDocument.Layers.Add("text");
                     IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='"+linecode+"' order by gth");
-                    CallCAD(cad, ReLoadList(list));
+                    IList<PS_gt> newlist = ReLoadList(list);
+                    if (newlist.Count > 1)
+                    {
+                        CallCAD(cad, newlist);
+                    }
                     cad.Visible = true;
                     cad.ActiveDocument.SendCommand("Z e ");
                     cad.ActiveDocument.SendCommand("audit y ");
@@ -134,6 +145,19 @@ namespace Ebada.SCGL.CADLib
             }
             return newlist;
         }
+        public ArrayList getLineCode(string[] code)
+        {
+            ArrayList r = new ArrayList();
+            for (int i = 0; i < code.Length; i++)
+            {
+                IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where LineID like '" + code[i] + "%' order by LineID");
+                for (int j = 0; j < list.Count; j++)
+                {
+                    r.Add(list[j].LineID);
+                }
+            }
+            return r;
+        }
         public void CallCAD(AcadApplication cad, IList<PS_gt> list)
         {
             try
@@ -176,8 +200,8 @@ namespace Ebada.SCGL.CADLib
                 ins[1] = Convert.ToDouble(list[0].gtLat.ToString("0.########"));
                 ins[2] = 0;
                 AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.LineName);
-                text.Height = 0.004;
-                text.Layer = "line";
+                text.Height = 0.0002;
+                text.Layer = "text";
                 cad.Application.Update();
             }
             catch (Exception e) { MessageBox.Show(e.Message); };
