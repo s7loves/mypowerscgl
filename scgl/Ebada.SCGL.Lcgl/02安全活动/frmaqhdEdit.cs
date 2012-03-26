@@ -233,13 +233,13 @@ namespace Ebada.Scgl.Lcgl
 
                             if (i < 6)
                             {
-                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = dt.Rows[i - 2][0];
+                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = dt.Rows[i - 2][0].ToString();
 
                             }
 
                             else if (i>6)
                             {
-                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = dt.Rows[i - 3][0];
+                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = dt.Rows[i - 3][0].ToString();
                             }
                                
                         }
@@ -253,11 +253,11 @@ namespace Ebada.Scgl.Lcgl
                           
                             if (i+2<6)
                             {
-                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i+2]).EditValue = dt.Rows[i ][0];
+                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" +(i+2)]).EditValue = dt.Rows[i][0].ToString();
                             }
                             else 
                             {
-                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i+3]).EditValue = dt.Rows[i][0];
+                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" +(i+3)]).EditValue = dt.Rows[i][0].ToString();
                             }
                         }
                     }
