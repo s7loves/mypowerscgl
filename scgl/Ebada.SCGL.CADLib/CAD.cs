@@ -37,12 +37,14 @@ namespace Ebada.SCGL.CADLib
                 cad.ActiveDocument.SendCommand("-units 2 8 1 0 0 n ");
                 if (cad != null)
                 {
-                    AcadLayer layer = cad.ActiveDocument.Layers.Add("line");
+                    cad.ActiveDocument.Layers.Add("line");
+                    cad.ActiveDocument.Layers.Add("gt");
+                    cad.ActiveDocument.Layers.Add("gth");
                     for (int n = 0; n < linecode.Length; n++)
                     {
                         f.SetText("正在处理线路"+linecode[n]);
                         IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='"+linecode[n]+"' order by gth");
-                        CallCAD(cad, list);
+                        CallCAD(cad, ReLoadList(list));
                     }
                     cad.Visible = true;
                     cad.ActiveDocument.SendCommand("Z e ");
@@ -75,9 +77,11 @@ namespace Ebada.SCGL.CADLib
                 cad.ActiveDocument.SendCommand("-units 2 8 1 0 0 n ");
                 if (cad != null)
                 {
-                    AcadLayer layer = cad.ActiveDocument.Layers.Add("line");
+                    cad.ActiveDocument.Layers.Add("line");
+                    cad.ActiveDocument.Layers.Add("gt");
+                    cad.ActiveDocument.Layers.Add("gth");
                     IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='"+linecode+"' order by gth");
-                    CallCAD(cad, list);
+                    CallCAD(cad, ReLoadList(list));
                     cad.Visible = true;
                     cad.ActiveDocument.SendCommand("Z e ");
                     cad.ActiveDocument.SendCommand("audit y ");
@@ -118,6 +122,18 @@ namespace Ebada.SCGL.CADLib
             }
             return cad;
         }
+        public IList<PS_gt> ReLoadList(IList<PS_gt> list)
+        {
+            IList<PS_gt> newlist = new List<PS_gt>();
+            foreach (PS_gt gt in list)
+            {
+                if (gt.gtLat != 0 && gt.gtLon != 0)
+                {
+                    newlist.Add(gt);
+                }
+            }
+            return newlist;
+        }
         public void CallCAD(AcadApplication cad, IList<PS_gt> list)
         {
             try
@@ -140,13 +156,27 @@ namespace Ebada.SCGL.CADLib
                 ple.TrueColor = color;
                 cad.Application.Update();
 
+                for (int i = 0; i < list.Count; i++)
+                {
+                    double[] pnt = new double[3];
+                    pnt[0] = Convert.ToDouble(list[i].gtLon.ToString("0.########"));
+                    pnt[1] = Convert.ToDouble(list[i].gtLat.ToString("0.########"));
+                    pnt[2] = 0;
+                    AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.0001);
+                    cirz.Layer = "gt";
+                    cirz.TrueColor = color;
+                    AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 1, list[i].gth);
+                    ntext.Height = 0.0001;
+                    ntext.Layer = "gth";
+                }
+
                 PS_xl xl= Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='"+list[0].LineCode+"'");
                 double[] ins = new double[3];
                 ins[0] = Convert.ToDouble(list[0].gtLon.ToString("0.########"));
                 ins[1] = Convert.ToDouble(list[0].gtLat.ToString("0.########"));
                 ins[2] = 0;
                 AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.LineName);
-                text.Height = 0.005;
+                text.Height = 0.004;
                 text.Layer = "line";
                 cad.Application.Update();
             }
