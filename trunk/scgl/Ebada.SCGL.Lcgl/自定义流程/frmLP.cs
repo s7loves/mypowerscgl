@@ -737,64 +737,73 @@ namespace Ebada.Scgl.Lcgl
         }
         void btn_Save_Click(object sender, EventArgs e)
         {
+            
             dsoFramerWordControl1.FileSave();
-            currRecord.LastChangeTime = DateTime.Now.ToString();
-            currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
-            Client.ClientHelper.PlatformSqlMap.Update <LP_Record>(currRecord);
-            ArrayList akeys = new ArrayList(valuehs.Keys);
-            List<object> list = new List<object>();
+            try
+            {
+                currRecord.LastChangeTime = DateTime.Now.ToString();
+                currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+                Client.ClientHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+                ArrayList akeys = new ArrayList(valuehs.Keys);
+                List<object> list = new List<object>();
 
-            DateTime dt = DateTime.Now;
-            Random rd = new Random();
-            int irpos = 5001;
-            decimal dtemp = Convert.ToDecimal(dt.ToString("yyyyMMddHHmmssffffff"));
-            for (int i = 0; i < akeys.Count; i++)
-            {
-                WF_TableFieldValue wfv = valuehs[akeys[i]] as WF_TableFieldValue;
-                if (wfv.XExcelPos != -1 && wfv.YExcelPos != -1)
-                    wfv.ID = Convert.ToString((dtemp + wfv.YExcelPos + wfv.XExcelPos * 10000));
-                else
+                DateTime dt = DateTime.Now;
+                Random rd = new Random();
+                int irpos = 5001;
+                decimal dtemp = Convert.ToDecimal(dt.ToString("yyyyMMddHHmmssffffff"));
+                for (int i = 0; i < akeys.Count; i++)
                 {
+                    WF_TableFieldValue wfv = valuehs[akeys[i]] as WF_TableFieldValue;
+                    if (wfv.XExcelPos != -1 && wfv.YExcelPos != -1)
+                        wfv.ID = Convert.ToString((dtemp + wfv.YExcelPos + wfv.XExcelPos * 10000));
+                    else
+                    {
 
-                    wfv.ID = Convert.ToString((dtemp + irpos + irpos * 10000));
-                    irpos++;
+                        wfv.ID = Convert.ToString((dtemp + irpos + irpos * 10000));
+                        irpos++;
+                    }
+                    wfv.RecordId = currRecord.ID;
+                    wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    wfv.UserControlId = parentTemple.LPID;
+                    //MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                    //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    list.Add(wfv);
                 }
-                wfv.RecordId = currRecord.ID;
-                wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                wfv.UserControlId = parentTemple.LPID;
-                //MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
-                //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                list.Add(wfv);
-            }
-            foreach (WF_TableFieldValue wfv in list)
-            {
-                Console.Write(wfv.ID + "\r\n");
-            }
-            foreach (WF_TableFieldValue wfv in list)
-            {
-                WF_TableFieldValue wtfvtemp = Client.ClientHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
-                     + " and   WorkflowId='" + wfv.WorkFlowId + "'"
-                     + " and   RecordId='" + wfv.RecordId + "'"
-                     + " and   UserControlId='" + wfv.UserControlId + "'"
-                     + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
-                     + " and   fieldname='" + wfv.FieldName + "'"
-                     + " and   FieldId='" + wfv.FieldId + "'"
-                     + " and   XExcelPos='" + wfv.XExcelPos + "'"
-                     + " and   YExcelPos='" + wfv.YExcelPos + "'"
-                     + " and   WorkTaskId='" + wfv.WorkTaskId + "'"
-                     );
-                if (wtfvtemp != null)
-                    wfv.ID = wtfvtemp.ID;
-                else
+                foreach (WF_TableFieldValue wfv in list)
                 {
-                    Client.ClientHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                    Console.Write(wfv.ID + "\r\n");
                 }
+                foreach (WF_TableFieldValue wfv in list)
+                {
+                    WF_TableFieldValue wtfvtemp = Client.ClientHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
+                         + " and   WorkflowId='" + wfv.WorkFlowId + "'"
+                         + " and   RecordId='" + wfv.RecordId + "'"
+                         + " and   UserControlId='" + wfv.UserControlId + "'"
+                         + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
+                         + " and   fieldname='" + wfv.FieldName + "'"
+                         + " and   FieldId='" + wfv.FieldId + "'"
+                         + " and   XExcelPos='" + wfv.XExcelPos + "'"
+                         + " and   YExcelPos='" + wfv.YExcelPos + "'"
+                         + " and   WorkTaskId='" + wfv.WorkTaskId + "'"
+                         );
+                    if (wtfvtemp != null)
+                        wfv.ID = wtfvtemp.ID;
+                    else
+                    {
+                        Client.ClientHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                    }
+                }
+                Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, list, null);
+                MsgBox.ShowTipMessageBox("保存成功!");
+                this.DialogResult = DialogResult.OK;
             }
-            Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, list, null);
-            this.DialogResult = DialogResult.OK;
+            catch
+            {
+                MsgBox.ShowTipMessageBox("保存失败!");
+            }
         }
         void btn_Back_Click(object sender, EventArgs e)
         {
@@ -3030,24 +3039,34 @@ namespace Ebada.Scgl.Lcgl
                             {
                                 switch (kind)
                                 {
+                                    case "电力线路第一种工作票":
                                     case "yzgzp":
                                         //strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                                         if (bhht[ctrl.Text] != null)
+                                        {
                                             strNumber = "07" + bhht[ctrl.Text].ToString();
+
+                                        }
                                         else
                                             strNumber = "07";
                                         break;
+                                    case "电力线路第二种工作票":
                                     case "ezgzp":
+                                        //strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                                         strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                                         break;
+                                    case "电力线路倒闸操作票":
                                     case "dzczp":
-                                        strNumber = "BJ" + System.DateTime.Now.Year.ToString();
+                                        //strNumber = "BJ" + System.DateTime.Now.Year.ToString();
+                                        strNumber = "06" + list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
                                         break;
+                                    case "电力线路事故应急抢修单":
                                     case "xlqxp":
+                                        //strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
                                         strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
                                         break;
                                     default:
-                                        strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                                        strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
                                         break;
                                 }
                                 //IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
@@ -3066,7 +3085,14 @@ namespace Ebada.Scgl.Lcgl
                                 }
                                 else
                                 {
-                                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                                    if (listLPRecord.Count == 0)
+                                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                                    else
+                                    {
+                                        decimal udw = Convert.ToDecimal(listLPRecord[0].ToString().Substring(listLPRecord[0].ToString().Length - 3));
+                                        strNumber = listLPRecord[0].ToString().Substring(0, listLPRecord[0].ToString().Length - 3) + (udw + 1).ToString().PadLeft(3, '0');
+                                    }
+                                    //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                                 }
                             }
                             if (ctrlNumber != null) ctrlNumber.Text = strNumber;
