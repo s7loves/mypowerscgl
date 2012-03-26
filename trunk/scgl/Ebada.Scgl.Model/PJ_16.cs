@@ -250,6 +250,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：汇总表
         /// 字段信息：[BigData],image
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("汇总表")]
         public byte[] BigData
         {

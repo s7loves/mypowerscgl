@@ -333,6 +333,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：填写日期
         /// 字段信息：[CreateDate],datetime
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("填写日期")]
         public DateTime CreateDate
         {

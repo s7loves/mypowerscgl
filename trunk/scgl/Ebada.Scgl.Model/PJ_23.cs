@@ -251,6 +251,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：生成日期
         /// 字段信息：[CreateDate],datetime
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("生成日期")]
         public DateTime CreateDate
         {
