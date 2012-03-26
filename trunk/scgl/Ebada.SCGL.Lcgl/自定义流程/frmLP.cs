@@ -586,6 +586,18 @@ namespace Ebada.Scgl.Lcgl
                     {
                         ctrlNumber = ctrl;
                     }
+                    if (lp.CtrlType.IndexOf("DateEdit") > -1)
+                    {
+
+                        if (lp.WordCount.ToLower().IndexOf("hh") > -1)
+                        {
+                            ((DateEdit)ctrl).Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+                            ((DateEdit)ctrl).Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+                        }
+                            
+                        
+                        
+                    }
                     if (lp.CtrlType.Contains("SpinEdit") && lp.WordCount != "")
                     {
                         SpinEdit lue1 = (SpinEdit)ctrl;
@@ -656,6 +668,20 @@ namespace Ebada.Scgl.Lcgl
                 btn_Back.Click += new EventHandler(btn_Back_Click);
                 btn_Back.Location = new Point(currentPosX + 80, currentPosY + 10);
                 btn_Back.Text = "退回";
+
+                btn_Back = new Button();
+                dockPanel1.Controls.Add(btn_Back);
+                btn_Back.Click += new EventHandler(btn_Save_Click);
+                btn_Back.Location = new Point(currentPosX + 80 + btn_Back.Width , currentPosY + 10);
+                btn_Back.Text = "保存";
+            }
+            else {
+                Button btn_Back = new Button();
+                dockPanel1.Controls.Add(btn_Back);
+                btn_Back.Click += new EventHandler(btn_Save_Click);
+                btn_Back.Location = new Point(currentPosX + 80, currentPosY + 10);
+                btn_Back.Text = "保存";
+            
             }
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
@@ -708,6 +734,67 @@ namespace Ebada.Scgl.Lcgl
         {
             ctrl_Leave(sender, e);
 
+        }
+        void btn_Save_Click(object sender, EventArgs e)
+        {
+            dsoFramerWordControl1.FileSave();
+            currRecord.LastChangeTime = DateTime.Now.ToString();
+            currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+            Client.ClientHelper.PlatformSqlMap.Update <LP_Record>(currRecord);
+            ArrayList akeys = new ArrayList(valuehs.Keys);
+            List<object> list = new List<object>();
+
+            DateTime dt = DateTime.Now;
+            Random rd = new Random();
+            int irpos = 5001;
+            decimal dtemp = Convert.ToDecimal(dt.ToString("yyyyMMddHHmmssffffff"));
+            for (int i = 0; i < akeys.Count; i++)
+            {
+                WF_TableFieldValue wfv = valuehs[akeys[i]] as WF_TableFieldValue;
+                if (wfv.XExcelPos != -1 && wfv.YExcelPos != -1)
+                    wfv.ID = Convert.ToString((dtemp + wfv.YExcelPos + wfv.XExcelPos * 10000));
+                else
+                {
+
+                    wfv.ID = Convert.ToString((dtemp + irpos + irpos * 10000));
+                    irpos++;
+                }
+                wfv.RecordId = currRecord.ID;
+                wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                wfv.UserControlId = parentTemple.LPID;
+                //MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                list.Add(wfv);
+            }
+            foreach (WF_TableFieldValue wfv in list)
+            {
+                Console.Write(wfv.ID + "\r\n");
+            }
+            foreach (WF_TableFieldValue wfv in list)
+            {
+                WF_TableFieldValue wtfvtemp = Client.ClientHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
+                     + " and   WorkflowId='" + wfv.WorkFlowId + "'"
+                     + " and   RecordId='" + wfv.RecordId + "'"
+                     + " and   UserControlId='" + wfv.UserControlId + "'"
+                     + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
+                     + " and   fieldname='" + wfv.FieldName + "'"
+                     + " and   FieldId='" + wfv.FieldId + "'"
+                     + " and   XExcelPos='" + wfv.XExcelPos + "'"
+                     + " and   YExcelPos='" + wfv.YExcelPos + "'"
+                     + " and   WorkTaskId='" + wfv.WorkTaskId + "'"
+                     );
+                if (wtfvtemp != null)
+                    wfv.ID = wtfvtemp.ID;
+                else
+                {
+                    Client.ClientHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                }
+            }
+            Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, list, null);
+            this.DialogResult = DialogResult.OK;
         }
         void btn_Back_Click(object sender, EventArgs e)
         {
@@ -1612,6 +1699,13 @@ namespace Ebada.Scgl.Lcgl
             string[] arrCellpos = lp.CellPos.Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+            if (lp.CtrlType.Contains("uc_gridcontrol") == false)
+            {
+                for (int i = 0; i < arrCellpos.Length; i++)
+                {
+                    ea.SetCellValue("", GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                }
+            }
             if (lp.CtrlType.Contains("uc_gridcontrol"))
             {
                 FillTable(ea, lp, (sender as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar))));
@@ -2190,6 +2284,7 @@ namespace Ebada.Scgl.Lcgl
             switch (lp.WordCount)
             {
                 case "yyyy-MM-dd":
+                    
                     strList.Add( dt.Year.ToString());
                     strList.Add(string.Format("{0:D2}", dt.Month));
                     strList.Add(string.Format("{0:D2}", dt.Day));
@@ -2328,7 +2423,14 @@ namespace Ebada.Scgl.Lcgl
                 {
                     if (arrCellPos.Length > 1)
                     {
-                        ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        if (dt.ToString("yyyyMMdd") == "00010101")
+                        {
+                             strList[i] = " ";
+                        }
+                       
+                            ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                       
+                       
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
@@ -2352,6 +2454,10 @@ namespace Ebada.Scgl.Lcgl
                         }
                         else
                         {
+                            if (dt.ToString("yyyyMMdd") == "00010101")
+                            {
+                                strList[i] = " ";
+                            }
                             WF_TableFieldValue tfv = new WF_TableFieldValue();
                             tfv.ControlValue = strList[i];
                             tfv.FieldId = lp.LPID;
@@ -2375,7 +2481,10 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else
                     {
-
+                        if (dt.ToString("yyyyMMdd") == "00010101")
+                        {
+                            strList[i] = " ";
+                        }
                         value += strList[i];
                         if (strList.Count == i+1)
                         {
@@ -2427,6 +2536,10 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else
                 {
+                    if (dt.ToString("yyyyMMdd") == "00010101")
+                    {
+                        strList[i] = " ";
+                    }
                     if (lp.ExtraWord.IndexOf("|") == -1)
                     {
                         value = value.Replace("{" + i + "}", strList[i]);
@@ -2460,6 +2573,10 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else
                     {
+                        if (dt.ToString("yyyyMMdd") == "00010101")
+                        {
+                            strList[i] = " ";
+                        }
                         string[] strextrlist = lp.ExtraWord.Split('|');
                         value = strList[i];
                         if (strextrlist.Length > i )

@@ -180,9 +180,9 @@
             this.spinEdit2.Name = "spinEdit2";
             this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit2.Properties.DisplayFormat.FormatString = "###########0";
+            this.spinEdit2.Properties.DisplayFormat.FormatString = "###########0.########";
             this.spinEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit2.Properties.Mask.EditMask = "###########0";
+            this.spinEdit2.Properties.Mask.EditMask = "###########0.########";
             this.spinEdit2.Size = new System.Drawing.Size(133, 21);
             this.spinEdit2.TabIndex = 29;
             this.spinEdit2.EditValueChanged += new System.EventHandler(this.spinEdit2_EditValueChanged);
