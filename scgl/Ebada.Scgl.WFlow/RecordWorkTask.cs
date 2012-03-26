@@ -739,7 +739,7 @@ namespace Ebada.Scgl.WFlow
 
 
                 xx.Unprotect("MyPassword");
-                xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+                //xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
                 //wb.SheetSelectionChange -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);
                 //wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
             }
@@ -753,7 +753,7 @@ namespace Ebada.Scgl.WFlow
 
 
             xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
-            xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+            //xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
             //wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
             //wb.SheetDeactivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetDeactivateEventHandler(Workbook_SheetDeactivate);
             //wb.SheetActivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetActivateEventHandler(Workbook_SheetActivate);
@@ -795,7 +795,7 @@ namespace Ebada.Scgl.WFlow
                         xx = wb.Application.Sheets[i] as Excel.Worksheet;
                         if (!al.Contains(xx.Name)) al.Add(xx.Name);
                     }
-                    unLockExcel(wb, xx);
+                    
                     for (i = 0; i < tfvli.Count; i++)
                     {
                         
@@ -807,8 +807,8 @@ namespace Ebada.Scgl.WFlow
                         if (isExplorerCall)
                         {
 
-                            
-                            
+
+                            unLockExcel(wb, xx);
                             if (!HaveRunPowerRole(WorkConst.WorkTask_FlowEndExplore, tfvli[i].WorkFlowId, tfvli[i].WorkFlowId) || (currRecord.Status != "存档"))
                             {
                                 //if (!RecordWorkTask.HaveWorkFlowAllExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
@@ -845,8 +845,8 @@ namespace Ebada.Scgl.WFlow
                             {
 
                                 ea.SetCellValue("", tfvli[i].XExcelPos, tfvli[i].YExcelPos);
-                                LockExcel(wb, xx);
-                                continue;
+                                //LockExcel(wb, xx);
+                                //continue;
                             }
                         }
                         //if (tfvli[i].XExcelPos > -1 && tfvli[i].YExcelPos > -1)
@@ -857,10 +857,10 @@ namespace Ebada.Scgl.WFlow
                         //        ea.SetCellValue("'"+tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
 
                         //}
-
+                        LockExcel(wb, xx);
 
                     }
-                    LockExcel(wb, xx);
+                    
                     dsoFramerWordControl1.FileSave();
                     temple.DocContent = dsoFramerWordControl1.FileDataGzip;
                 }
