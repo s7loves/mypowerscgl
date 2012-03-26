@@ -22,6 +22,7 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Scgl.WFlow;
+using Ebada.SCGL.Lcgl;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -119,7 +120,7 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_22>(gridControl1, gridView1, barManager1, new frm22Edit());
+            gridViewOperation = new GridViewOperation<PJ_22>(gridControl1, gridView1, barManager1, new frm22Edit1());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_22>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_22>(gridViewOperation_BeforeDelete);
