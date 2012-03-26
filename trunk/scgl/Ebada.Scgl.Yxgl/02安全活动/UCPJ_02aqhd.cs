@@ -70,12 +70,12 @@ namespace Ebada.Scgl.Yxgl
             {
                 PJ_01gzrj pj = new PJ_01gzrj();
                 pj.gzrjID = pj.CreateID();
-                pj.GdsCode = MainHelper.User.OrgCode;
-                pj.GdsName = MainHelper.User.OrgName;
+                pj.GdsCode = obj.OrgCode;
+                pj.GdsName = obj.OrgName;
                 pj.CreateDate = DateTime.Now;
                 pj.CreateMan = MainHelper.User.UserName;
                 gzr.gzrjID = pj.gzrjID;
-                pj.rq = DateTime.Now.Date;
+                pj.rq =obj.qzrq;
                 pj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
                 pj.rsaqts = (DateTime.Today - MainHelper.UserOrg.PSafeTime.Date).Days;
                 pj.sbaqts = (DateTime.Today - MainHelper.UserOrg.DSafeTime.Date).Days;

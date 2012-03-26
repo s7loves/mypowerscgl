@@ -294,12 +294,12 @@ namespace Ebada.Scgl.Yxgl
                      {
                          PJ_01gzrj pj = new PJ_01gzrj();
                          pj.gzrjID = pj.CreateID();
-                         pj.GdsCode = MainHelper.User.OrgCode;
-                         pj.GdsName = MainHelper.User.OrgName;
+                         pj.GdsCode = rowData.OrgCode;
+                         pj.GdsName =rowData.OrgName;
                          pj.CreateDate = DateTime.Now;
                          pj.CreateMan = MainHelper.User.UserName;
                          gzr.gzrjID = pj.gzrjID;
-                         pj.rq = DateTime.Now.Date;
+                         pj.rq = rowData.rq;
                          pj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
                          pj.rsaqts = (DateTime.Today - MainHelper.UserOrg.PSafeTime.Date).Days;
                          pj.sbaqts = (DateTime.Today - MainHelper.UserOrg.DSafeTime.Date).Days;
@@ -307,7 +307,7 @@ namespace Ebada.Scgl.Yxgl
                          MainHelper.PlatformSqlMap.Create<PJ_01gzrj>(pj);
 
 
-                     }
+                      }
                          IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where ParentID  = '" + gzr.ParentID + "' order by seq  ");
                          if (gzrlist.Count > 0)
                          {
