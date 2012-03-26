@@ -96,6 +96,7 @@ namespace Ebada.Scgl.Lcgl
         {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
+            bool isadd = false;
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\入库单.xls";
             ex.Open(fname);
@@ -146,6 +147,7 @@ namespace Ebada.Scgl.Lcgl
                         IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
                          filter
                            );
+                        if (datalist.Count > 0) isadd = true;
                         ExportExcel(ex, datalist);
                     }
                 }
@@ -153,6 +155,7 @@ namespace Ebada.Scgl.Lcgl
             }
 
 
+            if (isadd)
             ex.DeleteSheet(1);
             ex.ShowExcel();
         }

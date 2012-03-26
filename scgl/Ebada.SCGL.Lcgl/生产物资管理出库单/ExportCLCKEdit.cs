@@ -76,6 +76,7 @@ namespace Ebada.Scgl.Lcgl
             string filter2 = "";
             string filter3 = "";
             string filter4 = "";
+            bool isadd = false;
             if (strProject != "全部")
                 filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '工程材料出库单' ";
             else
@@ -118,6 +119,7 @@ namespace Ebada.Scgl.Lcgl
                         IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
                          filter
                            );
+                        if (datalist.Count > 0) isadd = true;
                         ExportExcel(ex, datalist);
                     }
                 }
@@ -125,6 +127,7 @@ namespace Ebada.Scgl.Lcgl
             }
 
 
+            if (isadd)
             ex.DeleteSheet(1);
             ex.ShowExcel();
         }

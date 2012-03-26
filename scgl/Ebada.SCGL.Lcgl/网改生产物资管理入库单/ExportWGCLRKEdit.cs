@@ -153,7 +153,11 @@ namespace Ebada.Scgl.Lcgl
             }
 
 
-            ex.DeleteSheet(1);
+            try
+            {
+                ex.DeleteSheet(1);
+            }
+            catch { }
             ex.ShowExcel();
         }
         public void ExportExcelYear(string orgid,string year)

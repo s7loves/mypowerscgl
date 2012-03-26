@@ -104,6 +104,7 @@ namespace Ebada.Scgl.Lcgl
             string filter2 = "";
             string filter3 = "";
             string filter4 = "";
+            bool isadd = false;
             if (strProject != "全部")
                 filter2 = "  where 1=1 and ssgc='" + strProject + "'  and type = '撤旧材料入库单' ";
             else
@@ -144,13 +145,14 @@ namespace Ebada.Scgl.Lcgl
                         IList<PJ_wgclcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_wgclcrkd>(
                          filter
                            );
+                        if (datalist.Count>0) isadd = true;
                         ExportExcel(ex, datalist);
                     }
                 }
 
             }
 
-
+            if (isadd)
             ex.DeleteSheet(1);
             ex.ShowExcel();
         }
