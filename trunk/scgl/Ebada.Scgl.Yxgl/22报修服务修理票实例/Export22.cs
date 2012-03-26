@@ -25,12 +25,12 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(obj.OrgName, 3, 1);
             ex.SetCellValue(obj.OrgName,13,1);
             //创建时间
-            ex.SetCellValue(obj.CreateDate.Year.ToString(), 3, 9);
-            ex.SetCellValue(obj.CreateDate.Month.ToString(), 3, 12);
-            ex.SetCellValue(obj.CreateDate.Day.ToString(), 3, 14);
-            ex.SetCellValue(obj.CreateDate.Year.ToString(), 13, 9);
-            ex.SetCellValue(obj.CreateDate.Month.ToString(), 13, 12);
-            ex.SetCellValue(obj.CreateDate.Day.ToString(), 13, 14);
+            ex.SetCellValue(obj.bxsj.Year.ToString(), 3, 9);
+            ex.SetCellValue(obj.bxsj.Month.ToString(), 3, 12);
+            ex.SetCellValue(obj.bxsj.Day.ToString(), 3, 14);
+            ex.SetCellValue(obj.bxsj.Year.ToString(), 13, 9);
+            ex.SetCellValue(obj.bxsj.Month.ToString(), 13, 12);
+            ex.SetCellValue(obj.bxsj.Day.ToString(), 13, 14);
             //编号
             ex.SetCellValue(obj.ph.Substring(0, 2), 3, 20);
             ex.SetCellValue(obj.ph.Substring(2, 4), 3, 21);
