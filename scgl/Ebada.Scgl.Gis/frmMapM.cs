@@ -355,7 +355,7 @@ namespace Ebada.Scgl.Gis {
         private void barCAD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Ebada.SCGL.CADLib.CAD cad = new Ebada.SCGL.CADLib.CAD();
-            string[] linecode = { "2020120010012", "202011" };
+            string[] linecode = { "204009", "204010" };
             cad.ToDwg(linecode);
         }
 
