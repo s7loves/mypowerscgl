@@ -32,6 +32,8 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit7 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit6 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit5 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -48,19 +50,17 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -119,6 +119,26 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "交叉跨越";
+            // 
+            // comboBoxEdit2
+            // 
+            this.comboBoxEdit2.Location = new System.Drawing.Point(133, 51);
+            this.comboBoxEdit2.Name = "comboBoxEdit2";
+            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit2.TabIndex = 7;
+            this.comboBoxEdit2.EditValueChanged += new System.EventHandler(this.comboBoxEdit2_EditValueChanged_2);
+            // 
+            // comboBoxEdit1
+            // 
+            this.comboBoxEdit1.Location = new System.Drawing.Point(133, 23);
+            this.comboBoxEdit1.Name = "comboBoxEdit1";
+            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit1.TabIndex = 6;
+            this.comboBoxEdit1.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
             // 
             // comboBoxEdit7
             // 
@@ -195,9 +215,9 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(40, 84);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(72, 14);
+            this.labelControl3.Size = new System.Drawing.Size(36, 14);
             this.labelControl3.TabIndex = 1;
-            this.labelControl3.Text = "交叉跨越位置";
+            this.labelControl3.Text = "分线路";
             // 
             // labelControl4
             // 
@@ -255,26 +275,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // comboBoxEdit1
-            // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(133, 23);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit1.TabIndex = 6;
-            this.comboBoxEdit1.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
-            // 
-            // comboBoxEdit2
-            // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(133, 51);
-            this.comboBoxEdit2.Name = "comboBoxEdit2";
-            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxEdit2.TabIndex = 7;
-            this.comboBoxEdit2.EditValueChanged += new System.EventHandler(this.comboBoxEdit2_EditValueChanged_2);
-            // 
             // frmjckyEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -290,14 +290,14 @@
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

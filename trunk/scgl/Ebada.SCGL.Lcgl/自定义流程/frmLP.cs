@@ -1712,6 +1712,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 for (int i = 0; i < arrCellpos.Length; i++)
                 {
+                    //HScroll.
                     ea.SetCellValue("", GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                 }
             }
@@ -2077,7 +2078,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                     
                     //IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
-                    IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select ControlValue from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' order by id desc", parentTemple.LPID));
+                    IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select ControlValue from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and WorkFlowInsId!='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' order by id desc", parentTemple.LPID));
                     if (kind == "yzgzp" || parentTemple.CellName=="电力线路第一种工作票")
                     {
                         //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
@@ -3070,7 +3071,7 @@ namespace Ebada.Scgl.Lcgl
                                         break;
                                 }
                                 //IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
-                                IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select ControlValue from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' order by id desc", parentTemple.LPID));
+                                IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select ControlValue from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and WorkFlowInsId!='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' order by id desc", parentTemple.LPID));
                                 if (kind == "yzgzp")
                                 {
                                     //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
