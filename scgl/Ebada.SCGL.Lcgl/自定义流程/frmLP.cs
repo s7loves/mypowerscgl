@@ -865,6 +865,7 @@ namespace Ebada.Scgl.Lcgl
                              + " and   FieldId='" + wfv.FieldId + "'"
                              + " and   XExcelPos='" + wfv.XExcelPos + "'"
                              + " and   YExcelPos='" + wfv.YExcelPos + "'"
+                             + " and   WorkTaskId='" + wfv.WorkTaskId + "'"
                              );
                         if (wtfvtemp != null)
                             wfv.ID = wtfvtemp.ID;
@@ -1944,10 +1945,13 @@ namespace Ebada.Scgl.Lcgl
                         case "电力线路第一种工作票":
                         case "yzgzp":
                             //strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
-                            if (bhht[str]!=null)
-                            strNumber = "07" + bhht[str].ToString ();
+                            if (bhht[str] != null)
+                            {
+                                strNumber = "07" + bhht[str].ToString();
+
+                            }
                             else
-                                strNumber = "07" ;
+                                strNumber = "07";
                             break;
                         case "电力线路第二种工作票":
                         case "ezgzp":
@@ -1967,11 +1971,17 @@ namespace Ebada.Scgl.Lcgl
                     }
                     
                     //IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
-                    IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select * from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' ", parentTemple.LPID));
+                    IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select ControlValue from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' order by id desc", parentTemple.LPID));
                     if (kind == "yzgzp" || parentTemple.CellName=="电力线路第一种工作票")
                     {
                         //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
-                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') ;
+                        if (listLPRecord.Count == 0)
+                            strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                        else
+                        {
+                            decimal udw = Convert.ToDecimal(listLPRecord[0]);
+                            strNumber = "0"+(udw + 1).ToString().PadLeft(3, '0');
+                        }
                     }
                     else
                     {
@@ -2913,11 +2923,19 @@ namespace Ebada.Scgl.Lcgl
                                         strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                                         break;
                                 }
-                                IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
+                                //IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
+                                IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select ControlValue from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' order by id desc", parentTemple.LPID));
                                 if (kind == "yzgzp")
                                 {
                                     //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
-                                    strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                                    //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                                    if (listLPRecord.Count == 0)
+                                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                                    else
+                                    {
+                                        decimal udw = Convert.ToDecimal(listLPRecord[0]);
+                                        strNumber = "0" + (udw + 1).ToString().PadLeft(3, '0');
+                                    }
                                 }
                                 else
                                 {
