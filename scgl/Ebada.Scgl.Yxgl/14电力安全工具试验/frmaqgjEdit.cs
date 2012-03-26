@@ -71,7 +71,7 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit1.Properties.Items.Add(pt.sbModle);
             }
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "工具名称", comboBoxEdit5.Properties);
-            ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "编号", comboBoxEdit3.Properties);
+           // ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "编号", comboBoxEdit3.Properties);
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试验周期", comboBoxEdit7.Properties);
            // ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试验项目", comboBoxEdit4.Properties);
             IList<PJ_dyk> dic = new List<PJ_dyk>();

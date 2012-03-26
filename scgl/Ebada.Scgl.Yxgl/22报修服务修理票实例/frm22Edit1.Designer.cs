@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Yxgl
 {
-    partial class frm22Edit
+    partial class frm22Edit1
     {
         /// <summary>
         /// Required designer variable.
@@ -232,7 +232,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(648, 629);
+            this.btnCancel.Location = new System.Drawing.Point(408, 278);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(52, 23);
             this.btnCancel.TabIndex = 0;
@@ -242,7 +242,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(589, 629);
+            this.btnOK.Location = new System.Drawing.Point(317, 278);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(49, 23);
             this.btnOK.TabIndex = 0;
@@ -250,15 +250,15 @@
             // 
             // groupControlOrg
             // 
-            this.groupControlOrg.Controls.Add(this.btnOK);
             this.groupControlOrg.Controls.Add(this.btnCancel);
+            this.groupControlOrg.Controls.Add(this.btnOK);
             this.groupControlOrg.Controls.Add(this.groupBox5);
             this.groupControlOrg.Controls.Add(this.groupBox1);
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.ShowCaption = false;
-            this.groupControlOrg.Size = new System.Drawing.Size(737, 657);
+            this.groupControlOrg.Size = new System.Drawing.Size(473, 313);
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
@@ -272,6 +272,7 @@
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "操作项目";
+            this.groupBox5.Visible = false;
             // 
             // groupBox7
             // 
@@ -878,7 +879,7 @@
             this.groupBox1.Controls.Add(this.labelControl9);
             this.groupBox1.Location = new System.Drawing.Point(12, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(713, 354);
+            this.groupBox1.Size = new System.Drawing.Size(456, 261);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "报修服务修理票";
@@ -891,10 +892,11 @@
             this.labelControl46.Size = new System.Drawing.Size(24, 14);
             this.labelControl46.TabIndex = 23;
             this.labelControl46.Text = "千伏";
+            this.labelControl46.Visible = false;
             // 
             // textEdit1
             // 
-            this.textEdit1.Location = new System.Drawing.Point(92, 298);
+            this.textEdit1.Location = new System.Drawing.Point(316, 235);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Size = new System.Drawing.Size(129, 21);
             this.textEdit1.TabIndex = 22;
@@ -925,6 +927,7 @@
             this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "备注";
+            this.groupBox4.Visible = false;
             // 
             // memoEdit4
             // 
@@ -943,6 +946,7 @@
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "故障处理经过及结果";
+            this.groupBox3.Visible = false;
             // 
             // simpleButton2
             // 
@@ -972,6 +976,7 @@
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "危险点及安措";
+            this.groupBox2.Visible = false;
             // 
             // simpleButton1
             // 
@@ -1024,6 +1029,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit4.Size = new System.Drawing.Size(130, 21);
             this.dateEdit4.TabIndex = 14;
+            this.dateEdit4.Visible = false;
             // 
             // dateEdit3
             // 
@@ -1041,6 +1047,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit3.Size = new System.Drawing.Size(130, 21);
             this.dateEdit3.TabIndex = 14;
+            this.dateEdit3.Visible = false;
             // 
             // dateEdit2
             // 
@@ -1078,7 +1085,7 @@
             // 
             // comboBoxEdit10
             // 
-            this.comboBoxEdit10.Location = new System.Drawing.Point(93, 265);
+            this.comboBoxEdit10.Location = new System.Drawing.Point(317, 202);
             this.comboBoxEdit10.Name = "comboBoxEdit10";
             this.comboBoxEdit10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1087,12 +1094,13 @@
             // 
             // comboBoxEdit12
             // 
-            this.comboBoxEdit12.Location = new System.Drawing.Point(92, 328);
+            this.comboBoxEdit12.Location = new System.Drawing.Point(307, 205);
             this.comboBoxEdit12.Name = "comboBoxEdit12";
             this.comboBoxEdit12.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit12.Size = new System.Drawing.Size(129, 21);
             this.comboBoxEdit12.TabIndex = 13;
+            this.comboBoxEdit12.Visible = false;
             // 
             // comboBoxEdit9
             // 
@@ -1129,6 +1137,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit19.Size = new System.Drawing.Size(130, 21);
             this.comboBoxEdit19.TabIndex = 13;
+            this.comboBoxEdit19.Visible = false;
             // 
             // comboBoxEdit4
             // 
@@ -1156,6 +1165,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit1.Size = new System.Drawing.Size(134, 21);
             this.comboBoxEdit1.TabIndex = 13;
+            this.comboBoxEdit1.Visible = false;
             // 
             // comboBoxEdit17
             // 
@@ -1165,6 +1175,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit17.Size = new System.Drawing.Size(54, 21);
             this.comboBoxEdit17.TabIndex = 13;
+            this.comboBoxEdit17.Visible = false;
             // 
             // comboBoxEdit16
             // 
@@ -1214,11 +1225,12 @@
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(14, 331);
+            this.labelControl13.Location = new System.Drawing.Point(229, 208);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(72, 14);
             this.labelControl13.TabIndex = 7;
             this.labelControl13.Text = "实际故障情况";
+            this.labelControl13.Visible = false;
             // 
             // labelControl24
             // 
@@ -1227,10 +1239,11 @@
             this.labelControl24.Size = new System.Drawing.Size(48, 14);
             this.labelControl24.TabIndex = 7;
             this.labelControl24.Text = "送电时间";
+            this.labelControl24.Visible = false;
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(14, 300);
+            this.labelControl12.Location = new System.Drawing.Point(238, 237);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(48, 14);
             this.labelControl12.TabIndex = 7;
@@ -1259,6 +1272,7 @@
             this.labelControl22.Size = new System.Drawing.Size(72, 14);
             this.labelControl22.TabIndex = 7;
             this.labelControl22.Text = "临近带电设备";
+            this.labelControl22.Visible = false;
             // 
             // labelControl4
             // 
@@ -1275,10 +1289,11 @@
             this.labelControl21.Size = new System.Drawing.Size(48, 14);
             this.labelControl21.TabIndex = 7;
             this.labelControl21.Text = "停电时间";
+            this.labelControl21.Visible = false;
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(14, 270);
+            this.labelControl11.Location = new System.Drawing.Point(238, 207);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(36, 14);
             this.labelControl11.TabIndex = 7;
@@ -1347,6 +1362,7 @@
             this.labelControl19.Size = new System.Drawing.Size(72, 14);
             this.labelControl19.TabIndex = 2;
             this.labelControl19.Text = "停电线路杆号";
+            this.labelControl19.Visible = false;
             this.labelControl19.Click += new System.EventHandler(this.labelControl2_Click);
             // 
             // labelControl16
@@ -1356,6 +1372,7 @@
             this.labelControl16.Size = new System.Drawing.Size(48, 14);
             this.labelControl16.TabIndex = 2;
             this.labelControl16.Text = "停电线路";
+            this.labelControl16.Visible = false;
             this.labelControl16.Click += new System.EventHandler(this.labelControl2_Click);
             // 
             // labelControl1
@@ -1400,15 +1417,15 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // frm22Edit
+            // frm22Edit1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 657);
+            this.ClientSize = new System.Drawing.Size(473, 313);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frm22Edit";
+            this.Name = "frm22Edit1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "报修服务修理票";
             this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
