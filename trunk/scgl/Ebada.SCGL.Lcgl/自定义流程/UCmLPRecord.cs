@@ -1817,7 +1817,7 @@ namespace Ebada.Scgl.Lcgl {
                 return;
 
             }//流程结束
-            if (currRecord.ID.IndexOf("N") == -1 || parentObj.FlowCaption.IndexOf("定期分析") > -1 || parentObj.FlowCaption.IndexOf("专题分析") > -1)
+            if (currRecord.ID.IndexOf("N") == -1 || parentObj.FlowCaption.IndexOf("定期分析") > -1 || parentObj.FlowCaption.IndexOf("专题分析") > -1 || parentObj.FlowCaption.IndexOf("电力线路") > -1)
             { 
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 string fname = "";
@@ -1977,7 +1977,7 @@ namespace Ebada.Scgl.Lcgl {
                             LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(akeys[0]);
                             if (taskTemple != null)
                             {
-                                if (taskTemple.CellName.IndexOf("电力线路") ==-1||1==1)
+                                if (taskTemple.CellName.IndexOf("电力线路") ==-1)
                                 {
                                     WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + wf[0].WorkFlowId
                                     + "' and WorktaskId='" + wf[0].WorkTaskId + "'");
