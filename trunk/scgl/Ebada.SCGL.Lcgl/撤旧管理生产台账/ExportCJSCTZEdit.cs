@@ -127,6 +127,10 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[j].cksl, row + j % rowcount, col + 11);
                 ex.SetCellValue(datalist[j].lqdw, row + j % rowcount, col + 12);
                 //ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
+                if (datalist[j].wpmc == "出库合计")
+                {
+                    return;
+                }
 
 
             }

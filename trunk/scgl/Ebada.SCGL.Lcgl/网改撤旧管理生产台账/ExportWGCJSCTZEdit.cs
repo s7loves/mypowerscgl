@@ -63,7 +63,7 @@ namespace Ebada.Scgl.Lcgl
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public void ExportExcel(IList<PJ_clcrkd> datalist)
+        public void ExportExcel(IList<PJ_wgclcrkd> datalist)
         {
             //lgm
             ExcelAccess ex = new ExcelAccess();
@@ -79,7 +79,7 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-        public void ExportExcel(ExcelAccess ex, IList<PJ_clcrkd> datalist, string wpmc)
+        public void ExportExcel(ExcelAccess ex, IList<PJ_wgclcrkd> datalist, string wpmc)
         {
             //此处写填充内容代码
             int row = 5;
@@ -127,6 +127,10 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[j].cksl, row + j % rowcount, col + 11);
                 ex.SetCellValue(datalist[j].lqdw, row + j % rowcount, col + 12);
                 //ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
+                if (datalist[j].wpmc == "出库合计")
+                {
+                    return;
+                }
 
 
             }

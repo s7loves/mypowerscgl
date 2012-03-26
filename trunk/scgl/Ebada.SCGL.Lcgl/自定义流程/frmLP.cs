@@ -2383,7 +2383,7 @@ namespace Ebada.Scgl.Lcgl
                                 tfv = valuehs[lp.LPID + "$" + arrCellPos[0] + "时间"] as WF_TableFieldValue;
                                 if (tfv != null)
                                 {
-                                    // tfv.ControlValue = dt。;
+                                    tfv.ControlValue = dt.ToString();
                                     tfv.FieldId = lp.LPID;
                                     tfv.FieldName = lp.CellName + "完整时间";
                                     tfv.XExcelPos =-1;
