@@ -71,8 +71,12 @@ namespace Ebada.Scgl.Lcgl
             string fname = Application.StartupPath + "\\00记录模板\\生产台账.xls";
             ex.Open(fname);
             ExportExcel(ex, datalist, "生产物资管理生产台账");
-            
-            ex.DeleteSheet(1);
+
+            try
+            {
+                ex.DeleteSheet(1);
+            }
+            catch { }
             ex.ShowExcel();
            
         }

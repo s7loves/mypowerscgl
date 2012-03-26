@@ -649,6 +649,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             //IList<PJ_wgclcrkd> datalist = gridView1.DataSource as IList<PJ_wgclcrkd>;
+            if (gridtable == null) return;
             IList<PJ_wgclcrkd> datalist = new List<PJ_wgclcrkd>();
             foreach (DataRow dr in gridtable.Rows)
             {
@@ -730,6 +731,7 @@ namespace Ebada.Scgl.Lcgl
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+            if (gridtable == null) return;
             IList<PJ_wgclcrkd> datalist = new List<PJ_wgclcrkd>();
             foreach (DataRow dr in gridtable.Rows)
             {

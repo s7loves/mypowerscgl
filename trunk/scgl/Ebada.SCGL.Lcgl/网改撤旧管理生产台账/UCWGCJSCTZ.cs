@@ -730,7 +730,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            if (gridtable == null) return;
             IList<PJ_wgclcrkd> datalist = new List<PJ_wgclcrkd>();
             foreach (DataRow dr in gridtable.Rows)
             {
