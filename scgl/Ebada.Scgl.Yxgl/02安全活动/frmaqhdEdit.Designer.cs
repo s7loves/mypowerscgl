@@ -45,6 +45,7 @@
             this.comboBoxEdit28 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit32 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.comboBoxEdit22 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit17 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit12 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -199,6 +200,7 @@
             this.groupBox7.TabIndex = 11;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "工作评语";
+            this.groupBox7.Enter += new System.EventHandler(this.groupBox7_Enter);
             // 
             // dateEdit4
             // 
@@ -248,7 +250,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("FangSong_GB2312", 9F);
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Location = new System.Drawing.Point(74, 328);
             this.simpleButton1.Name = "simpleButton1";
@@ -318,6 +320,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.simpleButton2);
             this.groupBox2.Controls.Add(this.comboBoxEdit22);
             this.groupBox2.Controls.Add(this.comboBoxEdit17);
             this.groupBox2.Controls.Add(this.comboBoxEdit12);
@@ -349,6 +352,17 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "出席人员情况";
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(86, 0);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(35, 14);
+            this.simpleButton2.TabIndex = 13;
+            this.simpleButton2.Text = "…";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // comboBoxEdit22
             // 
@@ -921,6 +935,7 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraEditors.MemoEdit memoEdit5;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
 
     }
 }

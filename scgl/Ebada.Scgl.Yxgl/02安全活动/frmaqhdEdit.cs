@@ -207,5 +207,61 @@ namespace Ebada.Scgl.Yxgl
             }
             //memoEdit5.Update();
         }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            frmorgRySelect fr = new frmorgRySelect();
+            fr.gdscode = rowData.OrgCode;
+            DataTable dt = new DataTable();
+            if (fr.ShowDialog() == DialogResult.OK)
+            {
+                dt = fr.DT1;
+                if (MsgBox.ShowAskMessageBox("是否确认快速写入人名") == DialogResult.OK)
+                {
+
+                    if (dt.Rows.Count >= 25)
+                    {
+                        for (int i = 2; i <= 27; i++)
+                        {
+
+                            if (i < 6)
+                            {
+                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = dt.Rows[i - 2][0].ToString();
+
+                            }
+
+                            else if (i > 6)
+                            {
+                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = dt.Rows[i - 3][0].ToString();
+                            }
+
+                        }
+
+                    }
+                    else
+                    {
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+                            if (i + 2 < 6)
+                            {
+                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" +( i + 2)]).EditValue = dt.Rows[i][0].ToString();
+                            }
+                            else
+                            {
+                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" +(i + 3)]).EditValue = dt.Rows[i][0].ToString();
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void groupBox7_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
