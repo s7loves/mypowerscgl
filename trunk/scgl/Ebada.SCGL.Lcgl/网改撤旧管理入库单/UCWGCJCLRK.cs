@@ -645,7 +645,7 @@ namespace Ebada.Scgl.Lcgl
             fys.StrSQL = "select distinct ssgc  from PJ_wgclcrkd where  (type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存') ";
             if (fys.ShowDialog() == DialogResult.OK)
             {
-                ExportCJCLRKEdit etdjh = new ExportCJCLRKEdit();
+                ExportWGCJCLRKEdit etdjh = new ExportWGCJCLRKEdit();
                 etdjh.ExportExcelProjectCKD("", fys.strProject, fys.strFenproject);
             }
         }

@@ -151,7 +151,9 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            
+
+
+            if (this.comboBoxEdit1.EditValue != null)
             strnum = this.comboBoxEdit1.EditValue.ToString();
             this.DialogResult = DialogResult.OK;  
         }
