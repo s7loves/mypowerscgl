@@ -1955,18 +1955,21 @@ namespace Ebada.Scgl.Lcgl
                             break;
                         case "电力线路第二种工作票":
                         case "ezgzp":
+                            //strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                             strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
                             break;
                         case "电力线路倒闸操作票":
                         case "dzczp":
-                            strNumber = "BJ" + System.DateTime.Now.Year.ToString();
+                            //strNumber = "BJ" + System.DateTime.Now.Year.ToString();
+                            strNumber = "06" + list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
                             break;
                         case "电力线路事故应急抢修单":
                         case "xlqxp":
+                            //strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
                             strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
                             break;
                         default:
-                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                            strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
                             break;
                     }
                     
@@ -1985,7 +1988,14 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else
                     {
-                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                        if (listLPRecord.Count == 0)
+                            strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                        else
+                        {
+                            decimal udw = Convert.ToDecimal(listLPRecord[0].ToString().Substring(listLPRecord[0].ToString().Length-3));
+                            strNumber = listLPRecord[0].ToString().Substring(0,listLPRecord[0].ToString().Length - 3) + (udw + 1).ToString().PadLeft(3, '0');
+                        }
+                        //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                     }
                     if (ctrlNumber != null)
                     {
