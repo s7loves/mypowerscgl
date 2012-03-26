@@ -43,9 +43,29 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_22>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_22>(gridViewOperation_BeforeDelete);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_22>(gridViewOperation_AfterAdd);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
-        
+        void gridViewOperation_AfterAdd(PJ_22 obj)
+        {
+
+            PJ_21gzbxdh dhjt = new PJ_21gzbxdh();
+            dhjt.gzrjID = dhjt.CreateID();
+            dhjt.OrgCode = obj.OrgCode;
+            dhjt.OrgName = obj.OrgName;
+            dhjt.rq = obj.bxsj;
+            dhjt.lxfs = obj.lxdh;
+            dhjt.yhdz = obj.bxdd;
+            dhjt.gzjk = obj.bggzqc;
+            dhjt.djr = obj.zbslr;
+            dhjt.clr = obj.xlfzr;
+            dhjt.CreateDate = DateTime.Now;
+             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            dhjt.CreateMan = m_UserBase.RealName;
+            Client.ClientHelper.PlatformSqlMap.Create<PJ_21gzbxdh>(dhjt);
+           
+        }
+
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_22> e)
         {
            
