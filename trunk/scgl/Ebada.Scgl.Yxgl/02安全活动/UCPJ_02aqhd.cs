@@ -60,7 +60,7 @@ namespace Ebada.Scgl.Yxgl
             gzr.gzrjID = gzr.CreateID();
             gzr.ParentID = obj.ID;
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where GdsCode='" + MainHelper.User.OrgCode + "' and rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
+            IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where GdsCode='" + MainHelper.User.OrgCode + "' and rq between '" + obj.kssj.ToString("yyyy-MM-dd 00:00:00") + "' and '" + obj.kssj.ToString("yyyy-MM-dd 23:59:59") + "'");
 
             if (gzrj01.Count > 0)
             {
@@ -75,7 +75,7 @@ namespace Ebada.Scgl.Yxgl
                 pj.CreateDate = DateTime.Now;
                 pj.CreateMan = MainHelper.User.UserName;
                 gzr.gzrjID = pj.gzrjID;
-                pj.rq =obj.qzrq;
+                pj.rq = obj.kssj;
                 pj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
                 pj.rsaqts = (DateTime.Today - MainHelper.UserOrg.PSafeTime.Date).Days;
                 pj.sbaqts = (DateTime.Today - MainHelper.UserOrg.DSafeTime.Date).Days;
@@ -103,7 +103,7 @@ namespace Ebada.Scgl.Yxgl
             }
             gzr.CreateDate = DateTime.Now;
             gzr.CreateMan = MainHelper.User.UserName;
-            gzr.fssj = DateTime.Now;
+            gzr.fssj = obj.kssj;
             MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
 
         }

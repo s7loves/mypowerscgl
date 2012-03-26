@@ -285,7 +285,7 @@ namespace Ebada.Scgl.Yxgl
                      gzr.ParentID = yxfx.ID;
                      yxfx.CreateDate = DateTime.Now;
                      yxfx.CreateMan = MainHelper.User.UserName;
-                     IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
+                     IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + rowData.rq.ToString("yyyy-MM-dd 00:00:00") + "' and '" + rowData.rq.ToString("yyyy-MM-dd 23:59:59") + "'");
                      if (gzrj01.Count > 0)
                      {
                          gzr.gzrjID = gzrj01[0].gzrjID;
