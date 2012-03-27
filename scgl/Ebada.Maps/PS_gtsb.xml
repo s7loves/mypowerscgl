@@ -185,6 +185,9 @@
    <select id="GetPS_gtsbRowCount" parameterClass="string">
     select count(*) from PS_gtsb $value$
    </select>
+    <select id="GetPS_gtsbRowCountByWhere" parameterClass="string">
+      select count(sbModle), sbModle,sbName from PS_gtsb $value$
+    </select>
     <select id="GetPS_gtsbName" parameterClass="Hashtable" >
       DECLARE	@return_value int
 
