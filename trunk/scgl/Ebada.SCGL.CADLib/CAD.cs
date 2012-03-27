@@ -10,6 +10,7 @@ using Autodesk.AutoCAD.Interop.Common;
 using System.Runtime.InteropServices;
 
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Xml;
 using System.Configuration;
 using Ebada.Scgl.Model;
@@ -150,7 +151,7 @@ namespace Ebada.SCGL.CADLib
             ArrayList r = new ArrayList();
             for (int i = 0; i < code.Length; i++)
             {
-                IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where LineID like '" + code[i] + "%' order by LineID");
+                IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where LineCode like '" + code[i] + "%' order by LineCode");
                 for (int j = 0; j < list.Count; j++)
                 {
                     r.Add(list[j].LineID);
@@ -206,6 +207,69 @@ namespace Ebada.SCGL.CADLib
             }
             catch (Exception e) { MessageBox.Show(e.Message); };
         }
+        /// <summary>
+        /// 画线
+        /// </summary>
+        /// <param name="points"></param>
+        /// <param name="color"></param>
+        public void drawLines(PointF[] points, Color color) {
+
+        }
+        /// <summary>
+        /// 画文本
+        /// </summary>
+        /// <param name="texts"></param>
+        /// <param name="points"></param>
+        /// <param name="color"></param>
+        public void drawTexts(String[] texts, PointF[] points, Color color) {
+
+        }
+        /// <summary>
+        /// 画矩形
+        /// </summary>
+        /// <param name="rectf"></param>
+        /// <param name="color"></param>
+        public void drawRects(RectangleF[] rects, Color color) {
+
+        }
+        /// <summary>
+        /// 画填充矩形
+        /// </summary>
+        /// <param name="rectf"></param>
+        /// <param name="color"></param>
+        public void drawFillRects(RectangleF[] rects, Color color) {
+
+        }
+        /// <summary>
+        /// 画圆
+        /// </summary>
+        /// <param name="rectf"></param>
+        /// <param name="color"></param>
+        public void drawCircles(RectangleF[] rects, Color color) {
+
+        }
+        /// <summary>
+        /// 画块(块在此类中内部定义方法)
+        /// </summary>
+        /// <param name="points"></param>
+        /// <param name="blockName"></param>
+        /// <param name="color"></param>
+        public void drawBlocks(PointF[] points, string blockName, Color color) {
+            switch (blockName) {
+                case "Block1":                    
+                    drawBlockName1(points, color);
+                    break;
+                case "":
+                    break;                   
+
+            }
+        }
+
+        void drawBlockName1(PointF[] points, Color color) {
+            //块方法
+
+        }
     }
+    
 
 }
