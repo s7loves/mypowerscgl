@@ -559,13 +559,13 @@ namespace Ebada.Scgl.Lcgl
                 {
                     foreach (PJ_wgclcrkd clc in cdatalist)
                     {
-                        long i = 0;
+                        double i = 0;
                         System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                            "select  sum(cast(kcsl as int) )  from PJ_wgclcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+                            "select  sum(cast(kcsl as float) )  from PJ_wgclcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
                             + " and wpmc='" + clc.wpmc + "' " + " and ssgc='" + clc.ssgc + "' "
                             + " and wpgg='" + clc.wpgg + "' and id!='" + clc.ID + "' ");
-                        if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
-                        clc.zkcsl = (Convert.ToInt64(clc.kcsl) + i).ToString();
+                        if (mclist[0] != null) i = Convert.ToDouble(mclist[0].ToString());
+                        clc.zkcsl = (Convert.ToDouble(clc.kcsl) + i).ToString();
                         Client.ClientHelper.PlatformSqlMap.Create<PJ_wgclcrkd>(clc);
                     }
                     MsgBox.ShowTipMessageBox("导入成功!");

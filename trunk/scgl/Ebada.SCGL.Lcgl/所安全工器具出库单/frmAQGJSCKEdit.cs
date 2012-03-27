@@ -29,6 +29,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "wpdw");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "wpsl");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "wpdj");
+            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "num");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "cksl");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "lqdw");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "indate");

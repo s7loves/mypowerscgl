@@ -215,13 +215,13 @@ namespace Ebada.Scgl.Lcgl
         private void spinEdit2_EditValueChanged(object sender, EventArgs e)
         {
             rowData.kcsl = spinEdit2.Value.ToString();
-            long i = 0;
+            double i = 0;
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
+                "select  sum(cast(kcsl as float) )  from PJ_anqgjcrkd where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
                 + " and wpmc='" + comboBoxEdit1.Text + "' "
                 + " and wpgg='" + comboBoxEdit2.Text + "' and id!='" + rowData.ID + "' ");
-            if (mclist[0]!=null)i=Convert.ToInt64(mclist[0].ToString());
-            rowData.zkcsl = (Convert.ToInt64(rowData.kcsl) + i).ToString();
+            if (mclist[0]!=null)i=Convert.ToDouble(mclist[0].ToString());
+            rowData.zkcsl = (Convert.ToDouble(rowData.kcsl) + i).ToString();
             comboBoxEdit10.Text = rowData.zkcsl;
             rowData.lasttime = DateTime.Now;  
         }

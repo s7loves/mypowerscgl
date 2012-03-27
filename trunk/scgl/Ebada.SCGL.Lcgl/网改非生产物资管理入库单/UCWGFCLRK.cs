@@ -144,7 +144,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 long i = 0;
                 System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                    "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '非生产物资入库单' or type = '非生产物资入库单原始库存')"
+                    "select  sum(cast(kcsl as float) )  from PJ_clcrkd where (type = '非生产物资入库单' or type = '非生产物资入库单原始库存')"
                     + " and wpmc='" + e.ValueOld.wpmc + "' " + " and ssgc='" + e.ValueOld.ssgc + "' "
                     + " and wpgg='" + e.ValueOld.wpgg + "'  ");
                 IList<PJ_clcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>
@@ -203,7 +203,7 @@ namespace Ebada.Scgl.Lcgl
 
             long i = 0;
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '非生产物资入库单' or type = '非生产物资入库单原始库存')"
+                "select  sum(cast(kcsl as float) )  from PJ_clcrkd where (type = '非生产物资入库单' or type = '非生产物资入库单原始库存')"
                 + " and wpmc='" + obj.wpmc + "' " + " and ssgc='" + obj.ssgc + "' "
                 + " and wpgg='" + obj.wpgg + "' and id!='" + obj.ID + "' ");
             IList<PJ_clcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>

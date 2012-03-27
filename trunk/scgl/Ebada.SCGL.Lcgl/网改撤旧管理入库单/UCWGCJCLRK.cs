@@ -144,7 +144,7 @@ namespace Ebada.Scgl.Lcgl
             //{
             //    long i = 0;
             //    System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-            //        "select  sum(cast(kcsl as int) )  from PJ_wgclcrkd where (type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存')"
+            //        "select  sum(cast(kcsl as float) )  from PJ_wgclcrkd where (type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存')"
             //        + " and wpmc='" + e.ValueOld.wpmc + "' " + " and ssgc='" + e.ValueOld.ssgc + "' "
             //        + " and wpgg='" + e.ValueOld.wpgg + "'  ");
             //    IList<PJ_wgclcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_wgclcrkd>
@@ -203,7 +203,7 @@ namespace Ebada.Scgl.Lcgl
 
             long i = 0;
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select  sum(cast(kcsl as int) )  from PJ_wgclcrkd where (type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存')"
+                "select  sum(cast(kcsl as float) )  from PJ_wgclcrkd where (type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存')"
                 + " and wpmc='" + obj.wpmc + "' " + " and ssgc='" + obj.ssgc + "' "
                 + " and wpgg='" + obj.wpgg + "' and id!='" + obj.ID + "' ");
             IList<PJ_wgclcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_wgclcrkd>

@@ -123,7 +123,7 @@ namespace Ebada.Scgl.Lcgl
                 wpgg = " and wpgg='" + comboBoxEdit4.Text + "' ";
             strSQL = " where  (type = '" + comboBoxEdit5.Text
                 + "' or type = '" + comboBoxEdit5.Text + "原始库存') "
-                + wpmc + wpgg+" and cast(kcsl as int)>0 order by wpmc,wpgg,cast( indate as datetime) ";
+                + wpmc + wpgg+" and cast(kcsl as float)>0 order by wpmc,wpgg,cast( indate as datetime) ";
             IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>(strSQL);
            gridControl1.DataSource  = datalist;
            //hideColumn("OrgCode");
@@ -243,20 +243,20 @@ namespace Ebada.Scgl.Lcgl
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 string ssgc = " and 1=1 ",  wpgg = " and 1=1 ", wpmc = " and 1=1 ";
-                long isum = 0;
+                double isum = 0;
 
                     wpmc = " and wpmc='" + frm.ReturnData.wpmc  + "' ";
 
                     wpgg = " and wpgg='" + frm.ReturnData.wpgg  + "' ";
-                    isum =Convert.ToInt64( frm.ReturnData.cksl);
+                    isum =Convert.ToDouble( frm.ReturnData.cksl);
                   string   strsql = " where  (type = '" + comboBoxEdit5.Text
                     + "' or type = '" + comboBoxEdit5.Text + "原始库存') "
-                    + ssgc + wpmc + wpgg + " and cast(kcsl as int)>0 order by cast( indate as datetime) ";
+                    + ssgc + wpmc + wpgg + " and cast(kcsl as float)>0 order by cast( indate as datetime) ";
                 IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
                     (strsql);
-                long cktemp = isum;
-                long zkc = Convert.ToInt64(frm.ReturnData.zkcsl);
-                long szkc = 0;
+                double cktemp = isum;
+                double zkc = Convert.ToDouble(frm.ReturnData.zkcsl);
+                double szkc = 0;
                 IList<PJ_anqgjcrkd> ckdatalist = new List<PJ_anqgjcrkd>();
                 decimal num = 0;
                  pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
@@ -287,11 +287,11 @@ namespace Ebada.Scgl.Lcgl
                     ckd.OrgCode = frm.ReturnData.OrgCode;
                     ckd.ckdate = DateTime.Now;
                     ckd.lqdw = frm.ReturnData.lqdw;
-                    if (cktemp >= Convert.ToInt64(pc.kcsl))
+                    if (cktemp >= Convert.ToDouble(pc.kcsl))
                     {
                         ckd.cksl = pc.kcsl;
-                        ckd.zkcsl = (zkc - Convert.ToInt64(pc.kcsl)).ToString();
-                        cktemp = cktemp - Convert.ToInt64(pc.kcsl);
+                        ckd.zkcsl = (zkc - Convert.ToDouble(pc.kcsl)).ToString();
+                        cktemp = cktemp - Convert.ToDouble(pc.kcsl);
                         pc.kcsl = "0";
                         //ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
                     }
@@ -300,12 +300,12 @@ namespace Ebada.Scgl.Lcgl
                         ckd.cksl = cktemp.ToString();
                         ckd.zkcsl = (zkc - cktemp).ToString();
 
-                        pc.kcsl = (Convert.ToInt64(pc.kcsl) - cktemp).ToString();
+                        pc.kcsl = (Convert.ToDouble(pc.kcsl) - cktemp).ToString();
                         cktemp = 0;
                         //ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
                     }
                     ckd.lyparent = pc.ID;
-                    zkc = Convert.ToInt64(ckd.zkcsl);
+                    zkc = Convert.ToDouble(ckd.zkcsl);
                     Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                     
                     //ClientHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(ckd);
@@ -319,7 +319,7 @@ namespace Ebada.Scgl.Lcgl
                 if (frmshow.ShowDialog() == DialogResult.OK)
                 {
                     cktemp = isum;
-                    zkc = Convert.ToInt64(frm.ReturnData.zkcsl);
+                    zkc = Convert.ToDouble(frm.ReturnData.zkcsl);
                     pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
                        <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' ");
                     if (pnumli.Count == 0)
@@ -347,11 +347,11 @@ namespace Ebada.Scgl.Lcgl
                         ckd.lqdw = frm.ReturnData.lqdw;
                         ckd.ckdate = DateTime.Now;
                         ckd.lasttime = DateTime.Now;
-                        if (cktemp >= Convert.ToInt64(pc.kcsl))
+                        if (cktemp >= Convert.ToDouble(pc.kcsl))
                         {
                             ckd.cksl = pc.kcsl;
-                            ckd.zkcsl = (zkc - Convert.ToInt64(pc.kcsl)).ToString();
-                            cktemp = cktemp - Convert.ToInt64(pc.kcsl);
+                            ckd.zkcsl = (zkc - Convert.ToDouble(pc.kcsl)).ToString();
+                            cktemp = cktemp - Convert.ToDouble(pc.kcsl);
                             pc.kcsl = "0";
                             ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
                         }
@@ -360,12 +360,12 @@ namespace Ebada.Scgl.Lcgl
                             ckd.cksl = cktemp.ToString();
                             ckd.zkcsl = (zkc - cktemp).ToString();
 
-                            pc.kcsl = (Convert.ToInt64(pc.kcsl) - cktemp).ToString();
+                            pc.kcsl = (Convert.ToDouble(pc.kcsl) - cktemp).ToString();
                             cktemp = 0;
                             ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
                         }
                         ckd.lyparent = pc.ID;
-                        zkc = Convert.ToInt64(ckd.zkcsl);
+                        zkc = Convert.ToDouble(ckd.zkcsl);
                         Thread.Sleep(new TimeSpan(100000));//0.1毫秒
 
                         if (isWorkflowCall)
@@ -410,7 +410,7 @@ namespace Ebada.Scgl.Lcgl
 
             }
             ((PJ_anqgjcrkd)frm.RowData).ckdate = DateTime.Now;
-            long i = 0;
+            double i = 0;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 PJ_anqgjcrkd ckd = new PJ_anqgjcrkd();
@@ -418,12 +418,12 @@ namespace Ebada.Scgl.Lcgl
                 ckd.ID = ckd.CreateID();
                
                 System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                    "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '所安全工器具入库单' or type = '所安全工器具入库单原始库存' and orgname='" + ckd.OrgName + "')"
+                    "select  sum(cast(kcsl as float) )  from PJ_anqgjcrkd where (type = '所安全工器具入库单' or type = '所安全工器具入库单原始库存' and orgname='" + ckd.OrgName + "')"
                     + " and wpmc='" + rowdata.wpmc + "' "
                     + " and wpgg='" + rowdata.wpgg + "' ");
-                if (mclist[0] != null) i = Convert.ToInt64(mclist[0].ToString());
-                long cktemp = Convert.ToInt64(frm.ReturnData.cksl);
-                long zkc = Convert.ToInt64(i);
+                if (mclist[0] != null) i = Convert.ToDouble(mclist[0].ToString());
+                double cktemp = Convert.ToDouble(frm.ReturnData.cksl);
+                double zkc = Convert.ToDouble(i);
                 // i = Client.ClientHelper.PlatformSqlMap.GetRowCount
                 //<PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' ");
                 ckd.num = frm.ReturnData.num;
@@ -434,11 +434,11 @@ namespace Ebada.Scgl.Lcgl
                 ckd.lqdw = frm.ReturnData.lqdw;
                 ckd.ckdate = DateTime.Now;
                 ckd.lasttime = DateTime.Now;
-                if (cktemp >= Convert.ToInt64(rowdata.kcsl))
+                if (cktemp >= Convert.ToDouble(rowdata.kcsl))
                 {
                     ckd.cksl = rowdata.kcsl;
-                    ckd.zkcsl = (zkc - Convert.ToInt64(rowdata.kcsl)).ToString();
-                    cktemp = cktemp - Convert.ToInt64(rowdata.kcsl);
+                    ckd.zkcsl = (zkc - Convert.ToDouble(rowdata.kcsl)).ToString();
+                    cktemp = cktemp - Convert.ToDouble(rowdata.kcsl);
                     ckd.kcsl = "0";
                     rowdata.kcsl = "0";
                     ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(rowdata);
@@ -447,13 +447,13 @@ namespace Ebada.Scgl.Lcgl
                 {
                     ckd.cksl = cktemp.ToString();
                     ckd.zkcsl = (zkc - cktemp).ToString();
-                    rowdata.kcsl = (Convert.ToInt64(rowdata.kcsl) - cktemp).ToString();
+                    rowdata.kcsl = (Convert.ToDouble(rowdata.kcsl) - cktemp).ToString();
                     ckd.kcsl = rowdata.kcsl;
                     cktemp = 0;
                     ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(rowdata);
                 }
                 ckd.lyparent = rowdata.ID;
-                zkc = Convert.ToInt64(ckd.zkcsl);
+                zkc = Convert.ToDouble(ckd.zkcsl);
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
 
                 if (isWorkflowCall)

@@ -156,7 +156,7 @@ namespace Ebada.Scgl.Lcgl
             ClientHelper.PlatformSqlMap.Update<PJ_clcrkd>(pc);
 
             //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-            //    "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+            //    "select  sum(cast(kcsl as float) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
             //    + " and wpmc='" + obj.wpmc + "' " + " and ssgc='" + obj.ssgc + "' "
             //    + " and wpgg='" + obj.wpgg + "'  ");
 
@@ -205,7 +205,7 @@ namespace Ebada.Scgl.Lcgl
                 ClientHelper.PlatformSqlMap.Update<PJ_clcrkd>(pc);
 
                 IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                    "select  sum(cast(kcsl as int) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
+                    "select  sum(cast(kcsl as float) )  from PJ_clcrkd where (type = '工程材料入库单' or type = '工程材料入库单原始库存')"
                     + " and wpmc='" + e.ValueOld.wpmc + "' " + " and ssgc='" + e.ValueOld.ssgc + "' "
                     + " and wpgg='" + e.ValueOld.wpgg + "' and id!='" + e.ValueOld.ID + "' ");
 
