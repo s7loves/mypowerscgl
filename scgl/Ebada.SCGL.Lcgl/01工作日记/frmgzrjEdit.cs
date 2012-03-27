@@ -156,18 +156,35 @@ namespace Ebada.Scgl.Lcgl {
                 dt = fr.DT1;
                 if (MsgBox.ShowAskMessageBox("是否确认快速写入人名") == DialogResult.OK)
                 {
-                    if (dt.Rows.Count >= 20)
+                    if (dt.Rows.Count >= 10)
                     {
-                        for (int i = 0; i < 20; i++)
+                        for (int i = 0; i < 10; i++)
                         {
                             ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = dt.Rows[i][0].ToString();
+                           // ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 10)]).EditValue = dt.Rows[i+5][0].ToString();
                         }
+                        
                     }
                     else
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
                             ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = dt.Rows[i][0].ToString();
+                            //if (dt.Rows.Count<=5)
+                            //{
+                            //    ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = dt.Rows[i][0].ToString();
+                            //}
+                            //else
+                            //{
+                            //    if (i<5)
+                            //    {
+                            //        ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = dt.Rows[i][0].ToString();
+                            //    }
+                            //    else
+                            //    {
+                            //        ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 6)]).EditValue = dt.Rows[i][0].ToString();
+                            //    }
+                            //}
                         }
                     }
                 }
