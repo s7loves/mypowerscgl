@@ -232,12 +232,67 @@ namespace Ebada.Scgl.Yxgl {
             //caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", "11配电变压器卡片", "容量"));
             //IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'')) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
             //IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'')) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
-            IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  left(UPPER(b.byqModle),CHARINDEX('-',UPPER(b.byqModle))-1) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
-            IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  left(UPPER(b.byqModle),CHARINDEX('-',UPPER(b.byqModle))-1) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
+            IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(b.byqModle) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
+            IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(b.byqModle) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
             int jmax = 18;
-            pagecount =(int)Math.Ceiling( caplist.Count / (jmax + 0.0));
-            int itemp = modtmlist.Count / 6.0 > modmflist.Count / 3.0 ? (int)Math.Ceiling(modtmlist.Count / 6.0) : (int)Math.Ceiling(modmflist.Count / 3.0 );
             int i = 0;
+            for ( i = 0; i < modmflist.Count; i++)
+            {
+                if (modmflist[i].ToString().IndexOf("-")>-1)
+                {
+                    modmflist[i] = modmflist[i].ToString().Substring(0,modmflist[i].ToString().IndexOf("-"));
+                }
+            }
+            for (i = 0; i < modtmlist.Count; i++)
+            {
+                if (modtmlist[i].ToString().IndexOf("-")>-1)
+                {
+                    modtmlist[i] = modtmlist[i].ToString().Substring(0, modtmlist[i].ToString().IndexOf("-"));
+                }
+            }
+            string modtemp = "";
+            for (i = 0; i < modmflist.Count; i++)
+            {
+                if (modtemp.IndexOf(modmflist[i].ToString())==-1)
+                {
+                    if (modtemp!="")
+                        modtemp+=","+modmflist[i];
+                    else
+                        modtemp = modmflist[i].ToString();
+                }
+            }
+            if (modtemp != "")
+            {
+                string[] strli = modtemp.Split(',');
+                modmflist.Clear();
+                
+                for (i = 0; i < strli.Length; i++)
+                {
+                    modmflist.Add(strli[i]);
+                }
+            }
+            for (i = 0; i < modtmlist.Count; i++)
+            {
+                if (modtemp.IndexOf(modtmlist[i].ToString()) == -1)
+                {
+                    if (modtemp!="")
+                        modtemp += "," + modtmlist[i];
+                    else
+                        modtemp = modtmlist[i].ToString();
+                }
+            }
+            if (modtemp != "")
+            {
+                string[] strli = modtemp.Split(',');
+                modtmlist.Clear();
+                for (i = 0; i < strli.Length; i++)
+                {
+                    modtmlist.Add(strli[i]);
+                }
+            }
+                pagecount = (int)Math.Ceiling(caplist.Count / (jmax + 0.0));
+            int itemp = modtmlist.Count / 6.0 > modmflist.Count / 3.0 ? (int)Math.Ceiling(modtmlist.Count / 6.0) : (int)Math.Ceiling(modmflist.Count / 3.0 );
+            
             pagecount = itemp * pagecount;
             if (pagecount > 1)
             {
