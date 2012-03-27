@@ -506,30 +506,30 @@ namespace Ebada.Scgl.Yxgl
             //repositoryItemGridLookUpEdit1.View = repositoryItemGridLookUpEdit1View;
             //repositoryItemGridLookUpEdit1.DisplayMember = "mc";
             
-            DataColumn dcbh = new DataColumn();
-            dcbh.ColumnName = "bh";
-            dcbh.Caption = "种类编号";
-            dt.Columns.Add(dcbh);
+            //DataColumn dcbh = new DataColumn();
+            //dcbh.ColumnName = "bh";
+            //dcbh.Caption = "种类编号";
+            //dt.Columns.Add(dcbh);
 
-            DataColumn dcmc = new DataColumn();
-            dcmc.ColumnName = "mc";
-            dcmc.Caption = "种类名称";
-            dt.Columns.Add(dcmc);
+            //DataColumn dcmc = new DataColumn();
+            //dcmc.ColumnName = "mc";
+            //dcmc.Caption = "设备名称";
+            //dt.Columns.Add(dcmc);
 
-            DataColumn dcxh = new DataColumn();
-            dcxh.ColumnName = "xh";
-            dcxh.Caption = "设备型号";
-            dt.Columns.Add(dcxh);
+            //DataColumn dcxh = new DataColumn();
+            //dcxh.ColumnName = "xh";
+            //dcxh.Caption = "设备型号";
+            //dt.Columns.Add(dcxh);
 
-            DataColumn dcID = new DataColumn();
-            dcID.ColumnName = "ID";
-            dcID.Caption = "ID";
-            dt.Columns.Add(dcID);
+            //DataColumn dcID = new DataColumn();
+            //dcID.ColumnName = "ID";
+            //dcID.Caption = "ID";
+            //dt.Columns.Add(dcID);
 
-            DataColumn dcParentID = new DataColumn();
-            dcParentID.ColumnName = "ParentID";
-            dcParentID.Caption = "ParentID";
-            dt.Columns.Add(dcParentID);
+            //DataColumn dcParentID = new DataColumn();
+            //dcParentID.ColumnName = "ParentID";
+            //dcParentID.Caption = "ParentID";
+            //dt.Columns.Add(dcParentID);
 
             //DataColumn dcisSelect = new DataColumn();
             //dcisSelect.ColumnName = "isSelect";
@@ -538,7 +538,7 @@ namespace Ebada.Scgl.Yxgl
             //需要隐藏列时在这写代码
             //hideColumn("ParentID");
             //hideColumn("gzrjID");
-            hideColumn("SbName");
+           // hideColumn("SbName");
         }
 
         /// <summary>
