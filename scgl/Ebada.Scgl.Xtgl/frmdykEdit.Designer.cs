@@ -182,6 +182,7 @@
             this.memoEdit1.Name = "memoEdit1";
             this.memoEdit1.Size = new System.Drawing.Size(188, 350);
             this.memoEdit1.TabIndex = 0;
+            this.memoEdit1.TextChanged += new System.EventHandler(this.memoEdit1_TextChanged);
             // 
             // groupBox2
             // 
