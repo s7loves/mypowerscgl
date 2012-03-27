@@ -78,7 +78,7 @@ namespace Ebada.Scgl.Yxgl
             {
                 tjList.Clear();
                 IList tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq where PS_tqsb.tqID = PS_tq.tqID  and PS_tq.tqID = '" + btTQList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq where PS_tqdlbh.tqID = PS_tq.tqID  and PS_tq.tqID = '" + btTQList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                //IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq where PS_tqdlbh.tqID = PS_tq.tqID  and PS_tq.tqID = '" + btTQList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                 foreach (object[] ob in tqSBList)
                 {
                     PS_tj tj = new PS_tj();
@@ -87,14 +87,14 @@ namespace Ebada.Scgl.Yxgl
                     tj.SbName = ob[2].ToString();
                     tjList.Add(tj);
                 }
-                foreach (object[] ob in tqDLBHSBList)
-                {
-                    PS_tj tj = new PS_tj();
-                    tj.SBNumber = Convert.ToInt32(ob[0]);
-                    tj.SbType = ob[1].ToString();
-                    tj.SbName = ob[2].ToString();
-                    tjList.Add(tj);
-                }
+//                 foreach (object[] ob in tqDLBHSBList)
+//                 {
+//                     PS_tj tj = new PS_tj();
+//                     tj.SBNumber = Convert.ToInt32(ob[0]);
+//                     tj.SbType = ob[1].ToString();
+//                     tj.SbName = ob[2].ToString();
+//                     tjList.Add(tj);
+//                 }
                 gridControl1.BeginInit();
                 gridControl1.DataSource = tjList;
                 gridControl1.EndInit();
@@ -129,7 +129,7 @@ namespace Ebada.Scgl.Yxgl
             {
                 tjList.Clear();
                 IList tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq where PS_tqsb.tqID = PS_tq.tqID  and PS_tq.tqID = '" + btTQList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq where PS_tqdlbh.tqID = PS_tq.tqID  and PS_tq.tqID = '" + btTQList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+               // IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq where PS_tqdlbh.tqID = PS_tq.tqID  and PS_tq.tqID = '" + btTQList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                 foreach (object[] ob in tqSBList)
                 {
                     PS_tj tj = new PS_tj();
@@ -138,14 +138,14 @@ namespace Ebada.Scgl.Yxgl
                     tj.SbName = ob[2].ToString();
                     tjList.Add(tj);
                 }
-                foreach (object[] ob in tqDLBHSBList)
-                {
-                    PS_tj tj = new PS_tj();
-                    tj.SBNumber = Convert.ToInt32(ob[0]);
-                    tj.SbType = ob[1].ToString();
-                    tj.SbName = ob[2].ToString();
-                    tjList.Add(tj);
-                }
+//                 foreach (object[] ob in tqDLBHSBList)
+//                 {
+//                     PS_tj tj = new PS_tj();
+//                     tj.SBNumber = Convert.ToInt32(ob[0]);
+//                     tj.SbType = ob[1].ToString();
+//                     tj.SbName = ob[2].ToString();
+//                     tjList.Add(tj);
+//                 }
             }
             else if (btXlList.EditValue!=null&&!string.IsNullOrEmpty(btXlList.EditValue.ToString()))
             {
@@ -163,7 +163,7 @@ namespace Ebada.Scgl.Yxgl
                     tjList.Add(tj);
                 }
                 IList tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode = '" + btXlList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqdlbh.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode = '" + btXlList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+               // IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqdlbh.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode = '" + btXlList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                 foreach (object[] ob in tqSBList)
                 {
                     PS_tj tj = new PS_tj();
@@ -172,14 +172,14 @@ namespace Ebada.Scgl.Yxgl
                     tj.SbName = ob[2].ToString();
                     tjList.Add(tj);
                 }
-                foreach (object[] ob in tqDLBHSBList)
-                {
-                    PS_tj tj = new PS_tj();
-                    tj.SBNumber = Convert.ToInt32(ob[0]);
-                    tj.SbType = ob[1].ToString();
-                    tj.SbName = ob[2].ToString();
-                    tjList.Add(tj);
-                }
+//                 foreach (object[] ob in tqDLBHSBList)
+//                 {
+//                     PS_tj tj = new PS_tj();
+//                     tj.SBNumber = Convert.ToInt32(ob[0]);
+//                     tj.SbType = ob[1].ToString();
+//                     tj.SbName = ob[2].ToString();
+//                     tjList.Add(tj);
+//                 }
             }
             else if (btGdsList.EditValue!=null)
             {
@@ -205,7 +205,7 @@ namespace Ebada.Scgl.Yxgl
                         tjList.Add(tj);
                     }
                     IList tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                    IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                    //IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
                     foreach (object[] ob in tqSBList)
                     {
                         PS_tj tj = new PS_tj();
@@ -215,14 +215,14 @@ namespace Ebada.Scgl.Yxgl
                         tj.SbName = ob[2].ToString();
                         tjList.Add(tj);
                     }
-                    foreach (object[] ob in tqDLBHSBList)
-                    {
-                        PS_tj tj = new PS_tj();
-                        tj.SBNumber = Convert.ToInt32(ob[0]);
-                        tj.SbType = ob[1].ToString();
-                        tj.SbName = ob[2].ToString();
-                        tjList.Add(tj);
-                    }
+//                     foreach (object[] ob in tqDLBHSBList)
+//                     {
+//                         PS_tj tj = new PS_tj();
+//                         tj.SBNumber = Convert.ToInt32(ob[0]);
+//                         tj.SbType = ob[1].ToString();
+//                         tj.SbName = ob[2].ToString();
+//                         tjList.Add(tj);
+//                     }
                 }
 
                 if (org != null)
@@ -243,7 +243,7 @@ namespace Ebada.Scgl.Yxgl
                         tjList.Add(tj);
                     }
                     IList tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                    IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqdlbh.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                   // IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqdlbh.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                     foreach (object[] ob in tqSBList)
                     {
                         PS_tj tj = new PS_tj();
@@ -289,7 +289,7 @@ namespace Ebada.Scgl.Yxgl
                     tjList.Add(tj);
                 }
                 IList tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode = '" + btXlList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqdlbh.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode = '" + btXlList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+               // IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqdlbh.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode = '" + btXlList.EditValue.ToString() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                 foreach (object[] ob in tqSBList)
                 {
                     PS_tj tj = new PS_tj();
@@ -298,14 +298,14 @@ namespace Ebada.Scgl.Yxgl
                     tj.SbName = ob[2].ToString();
                     tjList.Add(tj);
                 }
-                foreach (object[] ob in tqDLBHSBList)
-                {
-                    PS_tj tj = new PS_tj();
-                    tj.SBNumber = Convert.ToInt32(ob[0]);
-                    tj.SbType = ob[1].ToString();
-                    tj.SbName = ob[2].ToString();
-                    tjList.Add(tj);
-                }
+//                 foreach (object[] ob in tqDLBHSBList)
+//                 {
+//                     PS_tj tj = new PS_tj();
+//                     tj.SBNumber = Convert.ToInt32(ob[0]);
+//                     tj.SbType = ob[1].ToString();
+//                     tj.SbName = ob[2].ToString();
+//                     tjList.Add(tj);
+//                 }
                 gridControl1.BeginInit();
                 gridControl1.DataSource = tjList;
                 gridControl1.EndInit();
@@ -336,7 +336,7 @@ namespace Ebada.Scgl.Yxgl
                     tjList.Add(tj);
                 }
                 IList tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+               // IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
                 foreach (object[] ob in tqSBList)
                 {
                     PS_tj tj = new PS_tj();
@@ -346,14 +346,14 @@ namespace Ebada.Scgl.Yxgl
                     tj.SbName = ob[2].ToString();
                     tjList.Add(tj);
                 }
-                foreach (object[] ob in tqDLBHSBList)
-                {
-                    PS_tj tj = new PS_tj();
-                    tj.SBNumber = Convert.ToInt32(ob[0]);
-                    tj.SbType = ob[1].ToString();
-                    tj.SbName = ob[2].ToString();
-                    tjList.Add(tj);
-                }
+//                 foreach (object[] ob in tqDLBHSBList)
+//                 {
+//                     PS_tj tj = new PS_tj();
+//                     tj.SBNumber = Convert.ToInt32(ob[0]);
+//                     tj.SbType = ob[1].ToString();
+//                     tj.SbName = ob[2].ToString();
+//                     tjList.Add(tj);
+//                 }
             }
 
             if (org != null)
@@ -374,7 +374,7 @@ namespace Ebada.Scgl.Yxgl
                     tjList.Add(tj);
                 }
                 IList tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqdlbh.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+               // IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqdlbh.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                 foreach (object[] ob in tqSBList)
                 {
                     PS_tj tj = new PS_tj();
