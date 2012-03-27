@@ -120,11 +120,12 @@ namespace Ebada.Scgl.Lcgl {
             gridView1.Columns["Number"].Width = 150;
             gridView1.Columns["Status"].VisibleIndex = 1;
             gridView1.Columns["Status"].Width = 100;
-            gridView1.Columns["LastChangeTime"].VisibleIndex = 2;
-            gridView1.Columns["LastChangeTime"].Width = 200;
-            gridView1.Columns["CreateTime"].VisibleIndex = 4;
-            gridView1.Columns["CreateTime"].Width = 200;
-
+            //gridView1.Columns["LastChangeTime"].VisibleIndex = 2;
+            //gridView1.Columns["LastChangeTime"].Width = 200;
+            //gridView1.Columns["CreateTime"].VisibleIndex = 4;
+            //gridView1.Columns["CreateTime"].Width = 200;
+            gridView1.Columns["LastChangeTime"].VisibleIndex = -1;
+            gridView1.Columns["CreateTime"].VisibleIndex = -1;
 
             //gridView1.Columns["OrgName"].Visible = false;
             //gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
