@@ -31,7 +31,10 @@ namespace Ebada.Scgl.Model
         private string _remark=String.Empty; 
         private string _gzrjid=String.Empty; 
         private string _createman=String.Empty; 
-        private DateTime _createdate=new DateTime(1900,1,1); 
+        private DateTime _createdate=new DateTime(1900,1,1);
+        private string _linename = String.Empty;
+        private string _fzlinename = String.Empty;
+        private string _gh = String.Empty; 
         private byte[] _bigdata=new byte[]{};   
         #endregion
   
@@ -264,7 +267,68 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        /// <summary>
+        /// 属性名称：linename
+        /// 属性描述：线路
+        /// 字段信息：[linename],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("线路")]
+        public string linename
+        {
+            get { return _linename; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[备注]长度不能大于50!");
+                if (_linename as object == null || !_linename.Equals(value))
+                {
+                    _linename = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：fzlinename
+        /// 属性描述：分支
+        /// 字段信息：[fzlinename],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("分支")]
+        public string fzlinename
+        {
+            get { return _fzlinename; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[gzrjID]长度不能大于50!");
+                if (_fzlinename as object == null || !_fzlinename.Equals(value))
+                {
+                    _fzlinename = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：gh
+        /// 属性描述：杆号
+        /// 字段信息：[gh],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("杆号")]
+        public string gh
+        {
+            get { return _gh; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 10)
+                    throw new Exception("[操作员]长度不能大于10!");
+                if (_gh as object == null || !_gh.Equals(value))
+                {
+                    _gh = value;
+                }
+            }
+        }
         /// <summary>
         /// 属性名称：BigData
         /// 属性描述：生成文档
