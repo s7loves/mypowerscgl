@@ -124,6 +124,7 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PJ_23>(gridViewOperation_BeforeUpdate);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_23>(gridViewOperation_BeforeDelete);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_23>(gridViewOperation_AfterEdit);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_23> e)
@@ -169,7 +170,47 @@ namespace Ebada.Scgl.Lcgl
             }
 
         }
+        void gridViewOperation_AfterEdit(PJ_23 obj)
+        {
+            //修改模板
 
+            mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(obj.ParentID);
+            string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
+            string bhname = org.OrgName.Replace("供电所", "");
+            DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+            dsoFramerControl1.FileOpen(fname);
+            Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            PJ_23 obj1 = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + obj.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
+            int icount = 1;
+            if (obj1 != null && obj1.xybh != "")
+            {
+                icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
+            }
+            string strname = SelectorHelper.GetPysm(bhname, true);
+            ExcelAccess ea = new ExcelAccess();
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
+            ea.SetCellValue(strname.ToUpper(), 4, 8);
+            strname = DateTime.Now.Year.ToString();
+            ea.SetCellValue(strname, 4, 9);
+            strname = string.Format("{0:D3}", icount);
+            ea.SetCellValue(strname, 4, 10);
+            ea.SetCellValue(obj.cqdw + "：", 6, 4);
+            ea.SetCellValue(obj.linename, 10, 7);
+            ea.SetCellValue(obj.fzlinename, 10, 10);
+            ea.SetCellValue("'" + obj.gh, 10, 16);
+            ea.SetCellValue(obj.cqfw, 11, 4);
+            ea.SetCellValue(obj.cqdw, 13, 4);
+            ea.SetCellValue(obj.qdrq.Year.ToString(), 21, 7);
+            ea.SetCellValue(obj.qdrq.Month.ToString(), 21, 9);
+            ea.SetCellValue(obj.qdrq.Day.ToString(), 21, 11);
+            dsoFramerControl1.FileSave();
+            obj.BigData = dsoFramerControl1.FileData;
+            dsoFramerControl1.FileClose();
+            dsoFramerControl1.Dispose();
+            dsoFramerControl1 = null;
+            MainHelper.PlatformSqlMap.Update<PJ_23>(obj);
+        }
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");

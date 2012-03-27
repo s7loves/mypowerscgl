@@ -30,6 +30,10 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "Remark");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "qdrq");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "qxydd");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "linename");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "fzlinename");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "gh");
+
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gzrjID");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "CreateMan");
            
@@ -70,7 +74,11 @@ namespace Ebada.Scgl.Lcgl
             list.Add(new DicType("2", "变电所"));
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
             ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
-
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.ParentID + "' and linevol>=10.0 and parentid=''");
+            foreach (PS_xl pl in xlList)
+            {
+                comboBoxEdit6.Properties.Items.Add(pl.LineName);
+            }
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
         }
@@ -182,6 +190,14 @@ namespace Ebada.Scgl.Lcgl
                 ea.SetCellValue(strname, 4, 9);
                 strname = string.Format("{0:D3}", icount);
                 ea.SetCellValue(strname, 4, 10);
+                ea.SetCellValue(rowData.linename, 10, 7);
+                ea.SetCellValue(rowData.fzlinename, 10, 10);
+                ea.SetCellValue("'" + rowData.gh, 10, 16);
+                ea.SetCellValue(rowData.cqfw, 11, 4);
+                ea.SetCellValue(rowData.cqdw, 13, 4);
+                ea.SetCellValue(rowData.qdrq.Year.ToString(), 21, 7);
+                ea.SetCellValue(rowData.qdrq.Month.ToString(), 21, 9);
+                ea.SetCellValue(rowData.qdrq.Day.ToString(), 21, 11);
                 dsoFramerControl1.FileSave();
                 rowData.BigData = dsoFramerControl1.FileData;
                 dsoFramerControl1.FileClose();
@@ -201,6 +217,38 @@ namespace Ebada.Scgl.Lcgl
             dsoFramerControl2.FileClose();
             dsoFramerControl2.Dispose();
             dsoFramerControl2 = null;
+        }
+
+        private void comboBoxEdit5_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEdit5.EditValue == null) return;
+            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit5.Text + "'");
+            if (xl == null) return;
+            comboBoxEdit7.Properties.Items.Clear();
+
+            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + xl.LineCode + "'");
+
+            foreach (PS_gt pl in list)
+            {
+                comboBoxEdit7.Properties.Items.Add(pl.gth);
+            }
+        }
+
+        private void comboBoxEdit6_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEdit6.EditValue == null) return;
+            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit6.Text + "'");
+            if (xl == null) return;
+            comboBoxEdit5.Properties.Items.Clear();
+            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where ParentID='" + xl.LineCode + "'");
+            if (list.Count == 0)
+            {
+                list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where ParentID='" + xl.LineID + "'");
+            }
+            foreach (PS_xl pl in list)
+            {
+                comboBoxEdit5.Properties.Items.Add(pl.LineName);
+            }
         }
     }
 }
