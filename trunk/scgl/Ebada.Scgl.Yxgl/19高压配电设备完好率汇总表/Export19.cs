@@ -294,13 +294,13 @@ namespace Ebada.Scgl.Yxgl {
                         string kg = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where " + gtcon).ToString();
                         ex.SetCellValue(kg, 8 + i, 17);
                         zskgsum += Convert.ToDouble(kg);
-                        kg = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgVol='1'and " + gtcon).ToString();
+                        kg = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgkind='一类'and " + gtcon).ToString();
                         ex.SetCellValue(kg, 8 + i, 18);
                         zskg1 += Convert.ToDouble(kg);
-                        kg = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgVol='2'and " + gtcon).ToString();
+                        kg = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgkind='二类'and " + gtcon).ToString();
                         ex.SetCellValue(kg, 8 + i, 19);
                         zskg2 += Convert.ToDouble(kg);
-                        kg = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgVol='3'and " + gtcon).ToString();
+                        kg = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgkind='三类'and " + gtcon).ToString();
                         ex.SetCellValue(kg, 8 + i, 20);
                         zskg3 += Convert.ToDouble(kg);
                         ex.SetCellValue("100%", 8 + i, 21);

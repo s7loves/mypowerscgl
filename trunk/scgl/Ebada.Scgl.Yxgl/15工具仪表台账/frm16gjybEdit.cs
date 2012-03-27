@@ -196,5 +196,10 @@ namespace Ebada.Scgl.Yxgl
         {
 
         }
+
+        private void comboBoxEdit5_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
