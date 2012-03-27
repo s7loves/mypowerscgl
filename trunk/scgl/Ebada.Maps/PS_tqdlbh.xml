@@ -231,7 +231,7 @@
     select count(*) from PS_tqdlbh $value$
    </select>
     <select id="GetPS_tqdlbhRowCountByWhere" parameterClass="string">
-      select SUM(sbNumber), sbModle,sbName from PS_tqdlbh $value$
+      select SUM(Number), sbModle,sbName from PS_tqdlbh $value$
     </select>
   </statements>
 </sqlMap>
