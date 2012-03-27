@@ -2556,7 +2556,7 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.XExcelPos = -1;
                                 tfv.YExcelPos = -1;
                                 tfv.ExcelSheetName = activeSheetName;
-                                valuehs.Add(lp.LPID + "$" + arrCellPos[0] + "时间", tfv);
+                                valuehs.Add(lp.LPID + "$" + arrCellPos[0] + "完整时间", tfv);
                             }
                         }
                     }
