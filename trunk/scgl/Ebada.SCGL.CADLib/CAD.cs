@@ -21,7 +21,7 @@ namespace Ebada.SCGL.CADLib
     {
 
         FlashWindow f = new FlashWindow();
-        string color_str = "#00FF00";//线条颜色
+        string color_str = "#0000FF";//线条颜色
         /// <summary>
         /// 导出线路到CAD
         /// </summary>
