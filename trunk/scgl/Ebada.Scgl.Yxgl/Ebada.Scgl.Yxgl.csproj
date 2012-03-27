@@ -668,11 +668,22 @@
     <Compile Include="26电力线路防护通知书\UCPJ_26.Designer.cs">
       <DependentUpon>UCPJ_26.cs</DependentUpon>
     </Compile>
+    <Compile Include="27设备统计表\dataSetPS_sbcs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataSetPS_sbcs.xsd</DependentUpon>
+    </Compile>
     <Compile Include="27设备统计表\UCPJ_sbtj.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="27设备统计表\UCPJ_sbtj.Designer.cs">
       <DependentUpon>UCPJ_sbtj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="27设备统计表\UCPS_tj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="27设备统计表\UCPS_tj.Designer.cs">
+      <DependentUpon>UCPS_tj.cs</DependentUpon>
     </Compile>
     <Compile Include="Ecommon.cs" />
     <Compile Include="06设备巡视及缺陷消除\Export06.cs" />
@@ -1035,6 +1046,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="27设备统计表\UCPJ_sbtj.resx">
       <DependentUpon>UCPJ_sbtj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="27设备统计表\UCPS_tj.resx">
+      <DependentUpon>UCPS_tj.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -1946,6 +1961,17 @@
     </None>
     <None Include="00记录模板\验收单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="27设备统计表\dataSetPS_sbcs.xsc">
+      <DependentUpon>dataSetPS_sbcs.xsd</DependentUpon>
+    </None>
+    <None Include="27设备统计表\dataSetPS_sbcs.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataSetPS_sbcs.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="27设备统计表\dataSetPS_sbcs.xss">
+      <DependentUpon>dataSetPS_sbcs.xsd</DependentUpon>
     </None>
     <None Include="测试记录（20110629）.xls" />
   </ItemGroup>

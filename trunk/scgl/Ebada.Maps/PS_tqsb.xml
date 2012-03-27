@@ -185,6 +185,9 @@
    <select id="GetPS_tqsbRowCount" parameterClass="string">
     select count(*) from PS_tqsb $value$
    </select>
+    <select id="GetPS_tqsbRowCountByWhere" parameterClass="string">
+      select count(sbModle), sbModle,sbName from PS_tqsb $value$
+    </select>
   </statements>
 </sqlMap>
  

@@ -230,6 +230,9 @@
    <select id="GetPS_tqdlbhRowCount" parameterClass="string">
     select count(*) from PS_tqdlbh $value$
    </select>
+    <select id="GetPS_tqdlbhRowCountByWhere" parameterClass="string">
+      select count(sbModle), sbModle,sbName from PS_tqdlbh $value$
+    </select>
   </statements>
 </sqlMap>
  
