@@ -770,10 +770,24 @@ namespace Ebada.Scgl.WFlow
                 if(dsoFramerWordControl1==null) dsoFramerWordControl1 = new DSOFramerControl();
                 try
                 {
-                    dsoFramerWordControl1.FileDataGzip = temple.DocContent;
-                   if(isExplorerCall)
-                    if (currRecord.DocContent != null && currRecord.DocContent.Length > 0) dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                     
+                    if (isExplorerCall)
+                    {
+                        string strkind = currRecord.Kind;
+                        if (strkind == "dzczp")
+                            strkind = "电力线路倒闸操作票";
+                        else if (strkind == "yzgzp")
+                            strkind = "电力线路第一种工作票";
+                        else if (strkind == "ezgzp")
+                            strkind = "电力线路第二种工作票";
+                        else if (strkind == "xlqxp")
+                            strkind = "电力线路事故应急抢修单";
+                        if (currRecord.DocContent != null && currRecord.DocContent.Length > 0 && strkind.IndexOf("电力线路") > -1) dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                        else
+                            dsoFramerWordControl1.FileDataGzip = temple.DocContent;
+                    }
+                    else
+                        dsoFramerWordControl1.FileDataGzip = temple.DocContent;
                         
                     WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(WorkflowId);
                     //IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
@@ -808,7 +822,7 @@ namespace Ebada.Scgl.WFlow
                         {
 
 
-                            unLockExcel(wb, xx);
+                            
                             if (!HaveRunPowerRole(WorkConst.WorkTask_FlowEndExplore, tfvli[i].WorkFlowId, tfvli[i].WorkFlowId) || (currRecord.Status != "存档"))
                             {
                                 //if (!RecordWorkTask.HaveWorkFlowAllExploreRole(tfvli[i].WorkTaskId, tfvli[i].WorkFlowId))
@@ -843,8 +857,9 @@ namespace Ebada.Scgl.WFlow
                         {
                             if (field.isExplorer == 1)
                             {
-
+                                unLockExcel(wb, xx);
                                 ea.SetCellValue("", tfvli[i].XExcelPos, tfvli[i].YExcelPos);
+                                LockExcel(wb, xx);
                                 //LockExcel(wb, xx);
                                 //continue;
                             }
@@ -857,7 +872,7 @@ namespace Ebada.Scgl.WFlow
                         //        ea.SetCellValue("'"+tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
 
                         //}
-                        LockExcel(wb, xx);
+                       
 
                     }
                     
@@ -867,7 +882,7 @@ namespace Ebada.Scgl.WFlow
                 catch (Exception ex) { 
                     Console.WriteLine(ex.Message);
                 }
-                //dsoFramerWordControl1.FileSave();
+                dsoFramerWordControl1.FileSave();
                 dsoFramerWordControl1.FileClose();
             }
         }
@@ -943,7 +958,7 @@ namespace Ebada.Scgl.WFlow
                         * 绑定的节点是表单，则把它的字段值填上
                         * 
                         * **/
-                        iniTableRecordData(ref  tp, record, workflowId, workFlowInsId);
+                        //iniTableRecordData(ref  tp, record, workflowId, workFlowInsId);
                         return tp;
                     }
                 }//是表单

@@ -232,8 +232,8 @@ namespace Ebada.Scgl.Yxgl {
             //caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", "11配电变压器卡片", "容量"));
             //IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'')) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
             //IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'')) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
-            IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(b.byqModle) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
-            IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(b.byqModle) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
+            IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  left(UPPER(b.byqModle),CHARINDEX('-',UPPER(b.byqModle))-1) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
+            IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  left(UPPER(b.byqModle),CHARINDEX('-',UPPER(b.byqModle))-1) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
             int jmax = 18;
             pagecount =(int)Math.Ceiling( caplist.Count / (jmax + 0.0));
             int itemp = modtmlist.Count / 6.0 > modmflist.Count / 3.0 ? (int)Math.Ceiling(modtmlist.Count / 6.0) : (int)Math.Ceiling(modmflist.Count / 3.0 );
@@ -379,11 +379,11 @@ namespace Ebada.Scgl.Yxgl {
         {
 
             //string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modtmlist[itm] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50)) and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
-            string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modtmlist[itm] + "' and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
+            string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle like '" + modtmlist[itm] + "%' and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", str);
             if (list.Count >0) ex.SetCellValue(list.Count.ToString(), istart + (itm % 6) * 2, jstart + j % jmax);
             //str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modtmlist[itm] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50)) and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
-            str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modtmlist[itm] + "' and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
+            str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle like '%" + modtmlist[itm] + "%' and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", str);
             //if (list[0] == null) list[0] = 0;
             if (list[0] != null)
@@ -406,11 +406,11 @@ namespace Ebada.Scgl.Yxgl {
         {
 
             //string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modmflist[imf] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50))  and (b.omniseal='true' )" + jstrfilter;
-            string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modmflist[imf] + "'  and (b.omniseal='true' )" + jstrfilter;
+            string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle like '" + modmflist[imf] + "%'  and (b.omniseal='true' )" + jstrfilter;
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", str);
             if (list.Count > 0) ex.SetCellValue(list.Count.ToString(), istart2 + (imf % 3) * 2, jstart + j % jmax);
             //str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modmflist[imf] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50)) and (b.omniseal='true' )" + jstrfilter;
-            str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modmflist[imf] + "' and (b.omniseal='true' )" + jstrfilter;
+            str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle like '" + modmflist[imf] + "%' and (b.omniseal='true' )" + jstrfilter;
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", str);
             //if (list[0] == null) list[0] = 0;
             if (list[0] != null)
