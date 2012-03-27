@@ -23,6 +23,7 @@ using DevExpress.XtraEditors.Controls;
 using Ebada.Scgl.Core;
 using DevExpress.XtraTreeList.Columns;
 using System.Collections;
+using DevExpress.Utils;
 
 namespace Ebada.Scgl.Sbgl {
     /// <summary>
@@ -247,6 +248,29 @@ namespace Ebada.Scgl.Sbgl {
                     ParentID = value.OrgCode;
                 }
             }
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            IList<PS_xl> list = treeList1.DataSource as IList<PS_xl>;
+            IList<PS_xl> listout = new List<PS_xl>();
+            WaitDialogForm wdf = new WaitDialogForm("", "正在生成数据...");
+            try
+            {
+                foreach (PS_xl xl in list)
+                {
+                    if (xl.xlpy == "")
+                    {
+                        xl.xlpy = SelectorHelper.GetPysm(xl.LineName);
+                        listout.Add(xl);
+                    }
+                }
+                if (listout.Count>0)
+                Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, listout, null);
+            }
+            catch { }
+            wdf.Close();
+            
         }
     }
 }
