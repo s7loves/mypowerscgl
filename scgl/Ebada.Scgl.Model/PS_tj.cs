@@ -21,6 +21,8 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
+        private string _smorg = String.Empty;
+        private string _sbowner = String.Empty;
         private string _sbname=String.Empty;
         private string _sbtype = String.Empty;
         private int _sbnumber = 0;
@@ -28,6 +30,45 @@ namespace Ebada.Scgl.Model
   
   
         #region Public 成员
+        /// <summary>
+        /// 属性名称：单位
+        /// 属性描述：所属单位
+        /// 字段信息：[_smorg],nvarchar
+        /// </summary>
+        //[Browsable(false)]
+        [DisplayNameAttribute("设备名称")]
+        public string SmOrg
+        {
+            get { return _smorg; }
+            set
+            {
+                if (value == null) return;
+                if (_smorg as object == null || !_smorg.Equals(value))
+                {
+                    _smorg = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：所属设备
+        /// 属性描述：线路/台区
+        /// 字段信息：[_sbowner],nvarchar
+        /// </summary>
+        //[Browsable(false)]
+        [DisplayNameAttribute("设备名称")]
+        public string SbOwner
+        {
+            get { return _sbowner; }
+            set
+            {
+                if (value == null) return;
+                if (_sbowner as object == null || !_sbowner.Equals(value))
+                {
+                    _sbowner = value;
+                }
+            }
+        }
    
         /// <summary>
         /// 属性名称：名称
