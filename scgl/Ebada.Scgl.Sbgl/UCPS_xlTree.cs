@@ -252,7 +252,7 @@ namespace Ebada.Scgl.Sbgl {
 
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            IList<PS_xl> list = treeList1.DataSource as IList<PS_xl>;
+            IList<PS_xl> list = MainHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where xlpy='' or xlpy is null"); 
             IList<PS_xl> listout = new List<PS_xl>();
             WaitDialogForm wdf = new WaitDialogForm("", "正在生成数据...");
             try
