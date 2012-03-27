@@ -48,7 +48,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dzdl");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "tqID");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "InstallAdress");
-            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "dzsj");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "dzsj");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "sbName");
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "Factory");
             //this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "tqID");
@@ -60,6 +60,7 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
+                rowData.dzsj = dateEdit1.DateTime.ToString("yyyy-MM-dd");
                 return rowData;
             }
             set {
@@ -67,6 +68,11 @@ namespace Ebada.Scgl.Yxgl
                 if (rowData == null) {
                     this.rowData = value as PS_tqdlbh;
                     rowData.sbCode = DateTime.Now.ToString("yyyymmddhhmmss");
+                    if (!string.IsNullOrEmpty(rowData.dzsj))
+                    {
+                        dateEdit1.DateTime = Convert.ToDateTime(rowData.dzsj);
+                    }
+                   
                     this.InitComboBoxData();
                     dataBind();
                 } else {
