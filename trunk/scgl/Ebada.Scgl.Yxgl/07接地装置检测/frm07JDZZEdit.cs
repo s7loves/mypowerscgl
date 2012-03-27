@@ -296,6 +296,15 @@ namespace Ebada.Scgl.Yxgl
                 //    comboBoxEdit3.Properties.Items.Add(list[i].Adress);
                 //}
             }
+            else
+            {
+                IList list = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName  from PS_xl where xlpy like '%" + comboBoxEdit10.Text + "%'");
+                if (list.Count > 0)
+                {
+                    comboBoxEdit10.Properties.Items.Clear();
+                    comboBoxEdit10.Properties.Items.AddRange(list);
+                }
+            }
         }
 
        

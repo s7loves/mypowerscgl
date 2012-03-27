@@ -296,6 +296,10 @@ namespace Ebada.Scgl.Lcgl
                 //    comboBoxEdit3.Properties.Items.Add(list[i].Adress);
                 //}
             }
+            else
+            { 
+            
+            }
         }
 
        

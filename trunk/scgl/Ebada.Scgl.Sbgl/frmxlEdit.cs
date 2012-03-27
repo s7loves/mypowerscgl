@@ -97,6 +97,7 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit15.DataBindings.Add("EditValue", rowData, "ParentGT");//分支杆号
             this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "lineKind");//完好类型
             this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "lineNum");//线路类型
+            this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "xlpy");//线路类型
             
         }
         #region IPopupFormEdit Members
@@ -246,6 +247,7 @@ namespace Ebada.Scgl.Sbgl
                 comboBoxEdit3.Focus();
                 return;
             }
+            
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -309,6 +311,18 @@ namespace Ebada.Scgl.Sbgl
         {
             simpleButton2.Text = "杆塔信息";
             simpleButton5.Text = "分段信息";
+        }
+
+        private void comboBoxEdit3_TextChanged(object sender, EventArgs e)
+        {
+            rowData.xlpy = SelectorHelper.GetPysm(rowData.LineName);
+            comboBoxEdit8.Text = rowData.xlpy;
+            //IList list = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName  from PS_xl where xlpy like '%"+comboBoxEdit3.Text +"%'");
+            //if (list.Count > 0)
+            //{
+            //    comboBoxEdit3.Properties.Items.Clear();
+            //    comboBoxEdit3.Properties.Items.AddRange(list);
+            //}
         }
 
     }

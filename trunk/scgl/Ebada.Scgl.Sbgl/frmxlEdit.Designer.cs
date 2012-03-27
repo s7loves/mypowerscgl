@@ -91,6 +91,8 @@
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBoxEdit18 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -122,6 +124,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit18.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -235,11 +238,13 @@
             this.groupBox1.Controls.Add(this.comboBoxEdit5);
             this.groupBox1.Controls.Add(this.comboBoxEdit15);
             this.groupBox1.Controls.Add(this.comboBoxEdit4);
+            this.groupBox1.Controls.Add(this.comboBoxEdit18);
             this.groupBox1.Controls.Add(this.comboBoxEdit3);
             this.groupBox1.Controls.Add(this.comboBoxEdit2);
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
             this.groupBox1.Controls.Add(this.labelControl15);
             this.groupBox1.Controls.Add(this.labelControl16);
+            this.groupBox1.Controls.Add(this.labelControl26);
             this.groupBox1.Controls.Add(this.labelControl12);
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Controls.Add(this.labelControl14);
@@ -554,6 +559,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit3.Size = new System.Drawing.Size(198, 21);
             this.comboBoxEdit3.TabIndex = 17;
+            this.comboBoxEdit3.TextChanged += new System.EventHandler(this.comboBoxEdit3_TextChanged);
             // 
             // comboBoxEdit2
             // 
@@ -794,6 +800,23 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // labelControl26
+            // 
+            this.labelControl26.Location = new System.Drawing.Point(26, 361);
+            this.labelControl26.Name = "labelControl26";
+            this.labelControl26.Size = new System.Drawing.Size(72, 14);
+            this.labelControl26.TabIndex = 12;
+            this.labelControl26.Text = "线路拼音缩写";
+            // 
+            // comboBoxEdit18
+            // 
+            this.comboBoxEdit18.Location = new System.Drawing.Point(104, 360);
+            this.comboBoxEdit18.Name = "comboBoxEdit18";
+            this.comboBoxEdit18.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit18.Size = new System.Drawing.Size(198, 21);
+            this.comboBoxEdit18.TabIndex = 17;
+            // 
             // frmxlEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -838,6 +861,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit18.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -908,6 +932,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl23;
         private DevExpress.XtraEditors.SimpleButton simpleButton5;
         private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit18;
+        private DevExpress.XtraEditors.LabelControl labelControl26;
 
     }
 }

@@ -44,6 +44,7 @@
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btExport = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -51,6 +52,7 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).BeginInit();
@@ -72,7 +74,7 @@
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.typeCBox,
             this.typeLookUp});
-            this.treeList1.Size = new System.Drawing.Size(651, 326);
+            this.treeList1.Size = new System.Drawing.Size(798, 326);
             this.treeList1.TabIndex = 0;
             // 
             // typeCBox
@@ -112,8 +114,10 @@
             this.btClose,
             this.btExport,
             this.btFind,
-            this.btGdsList});
-            this.barManager1.MaxItemId = 11;
+            this.btGdsList,
+            this.barButtonItem2,
+            this.barButtonItem3});
+            this.barManager1.MaxItemId = 14;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
             this.barManager1.StatusBar = this.bar3;
@@ -133,6 +137,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -214,6 +219,15 @@
             this.btExport.Name = "btExport";
             this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "生成拼音";
+            this.barButtonItem3.Id = 13;
+            this.barButtonItem3.ImageIndex = 6;
+            this.barButtonItem3.Name = "barButtonItem3";
+            this.barButtonItem3.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+            // 
             // btClose
             // 
             this.btClose.Caption = "关闭";
@@ -239,13 +253,13 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(651, 26);
+            this.barDockControlTop.Size = new System.Drawing.Size(798, 26);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 352);
-            this.barDockControlBottom.Size = new System.Drawing.Size(651, 22);
+            this.barDockControlBottom.Size = new System.Drawing.Size(798, 22);
             // 
             // barDockControlLeft
             // 
@@ -256,7 +270,7 @@
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(651, 26);
+            this.barDockControlRight.Location = new System.Drawing.Point(798, 26);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
             // 
             // imageList1
@@ -278,6 +292,12 @@
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
             // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "barButtonItem2";
+            this.barButtonItem2.Id = 12;
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
             // UCPS_xlTree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -288,7 +308,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "UCPS_xlTree";
-            this.Size = new System.Drawing.Size(651, 374);
+            this.Size = new System.Drawing.Size(798, 374);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeCBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeLookUp)).EndInit();
@@ -321,5 +341,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit typeLookUp;
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
     }
 }
