@@ -545,6 +545,16 @@ namespace Ebada.Scgl.Lcgl
                 wfv.UserControlId = parentTemple.LPID;
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 list.Add(wfv);
+                if (wfv.FieldName == "所在单位")
+                {
+
+                    rowData.OrgName = wfv.ControlValue.Replace("绥化市郊农电局", "");
+                    mOrg org = MainHelper.PlatformSqlMap.GetOne<mOrg>("where OrgName='" + rowData.OrgName + "'");
+                    if (org != null)
+                    {
+                        rowData.OrgCode = org.OrgCode;
+                    }
+                }
                 for (int j = 0; j < templeList.Count; j++)
                 {
                     if (templeList[j].LPID == wfv.FieldId)
@@ -586,6 +596,7 @@ namespace Ebada.Scgl.Lcgl
                 wfv.UserControlId = parentTemple.LPID;
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 list.Add(wfv);
+               
             }
             
             switch (status)
