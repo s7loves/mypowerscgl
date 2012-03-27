@@ -109,7 +109,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).BeginInit();
             this.SuspendLayout();
-            
             // 
             // btnCancel
             // 
@@ -230,6 +229,7 @@
             this.spinEdit1.Name = "spinEdit1";
             this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEdit1.Properties.EditValueChanged += new System.EventHandler(this.spinEdit1_Properties_EditValueChanged);
             this.spinEdit1.Size = new System.Drawing.Size(100, 21);
             this.spinEdit1.TabIndex = 25;
             // 

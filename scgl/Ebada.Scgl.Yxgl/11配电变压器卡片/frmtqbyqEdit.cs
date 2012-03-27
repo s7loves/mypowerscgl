@@ -201,6 +201,18 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit14.EditValue = pt.Adress;
             }
         }
+
+        private void spinEdit1_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(spinEdit2.EditValue.ToString())&&Convert.ToInt32(spinEdit2.EditValue)!=0)
+            {
+                spinEdit4.EditValue = Convert.ToInt32(spinEdit1.EditValue) / Convert.ToInt32(spinEdit2.EditValue) * 0.6;
+            }
+            if (!string.IsNullOrEmpty(spinEdit3.EditValue.ToString()) && Convert.ToInt32(spinEdit3.EditValue) != 0)
+            {
+                spinEdit5.EditValue = Convert.ToInt32(spinEdit1.EditValue) / Convert.ToInt32(spinEdit3.EditValue) * 0.6;
+            }
+        }
     
     }
 }

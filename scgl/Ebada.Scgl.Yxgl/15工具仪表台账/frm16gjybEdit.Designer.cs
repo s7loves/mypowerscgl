@@ -192,6 +192,7 @@
             this.comboBoxEdit5.Properties.Click += new System.EventHandler(this.comboBoxEdit5_Properties_Click);
             this.comboBoxEdit5.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit5.TabIndex = 9;
+            this.comboBoxEdit5.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit5_SelectedIndexChanged_1);
             // 
             // comboBoxEdit1
             // 
