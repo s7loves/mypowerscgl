@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-10-9 16:55:35
+生成时间:2012-3-27 20:09:03
 ***********************************************/
 
 using System;
@@ -21,9 +21,8 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
-        private string _id=Newid();
-        private string _recordid = String.Empty;
-        private string _fieldname = String.Empty; 
+        private string _id=Newid(); 
+        private string _recordid=String.Empty; 
         private string _fieldid=String.Empty; 
         private string _workflowid=String.Empty; 
         private string _workflowinsid=String.Empty; 
@@ -33,7 +32,9 @@ namespace Ebada.Scgl.Model
         private string _usercontrolid=String.Empty; 
         private int _xexcelpos=0; 
         private int _yexcelpos=0; 
-        private string _excelsheetname=String.Empty;   
+        private string _excelsheetname=String.Empty; 
+        private string _fieldname=String.Empty; 
+        private byte[] _bigdata=new byte[]{};   
         #endregion
   
   
@@ -81,7 +82,6 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-
   
         /// <summary>
         /// 属性名称：FieldId
@@ -103,27 +103,7 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-
-        /// <summary>
-        /// 属性名称：FieldId
-        /// 属性描述：表的字段名称
-        /// 字段信息：[FieldId],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("表的字段名称")]
-        public string FieldName
-        {
-            get { return _fieldname; }
-            set
-            {
-                if (value == null) return;
-                if (value.ToString().Length > 100)
-                    throw new Exception("[表的字段ID]长度不能大于100!");
-                if (_fieldname as object == null || !_fieldname.Equals(value))
-                {
-                    _fieldname = value;
-                }
-            }
-        }
+  
         /// <summary>
         /// 属性名称：WorkFlowId
         /// 属性描述：流程ID
@@ -303,6 +283,45 @@ namespace Ebada.Scgl.Model
                 if (_excelsheetname as object == null || !_excelsheetname.Equals(value))
                 {
                     _excelsheetname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：FieldName
+        /// 属性描述：字段名称
+        /// 字段信息：[FieldName],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("字段名称")]
+        public string FieldName
+        {
+            get { return _fieldname; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 100)
+                throw new Exception("[字段名称]长度不能大于100!");
+                if (_fieldname as object == null || !_fieldname.Equals(value))
+                {
+                    _fieldname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：Bigdata
+        /// 属性描述：文档数据
+        /// 字段信息：[Bigdata],image
+        /// </summary>
+        [DisplayNameAttribute("文档数据")]
+        public byte[] Bigdata
+        {
+            get { return _bigdata; }
+            set
+            {			
+                if (_bigdata as object == null || !_bigdata.Equals(value))
+                {
+                    _bigdata = value;
                 }
             }			 
         }
