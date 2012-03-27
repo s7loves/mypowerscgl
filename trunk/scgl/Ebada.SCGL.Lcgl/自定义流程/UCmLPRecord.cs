@@ -1819,6 +1819,7 @@ namespace Ebada.Scgl.Lcgl {
 
             }//流程结束
             if (currRecord.ID.IndexOf("N") == -1 || parentObj.FlowCaption.IndexOf("定期分析") > -1 || parentObj.FlowCaption.IndexOf("专题分析") > -1 || parentObj.FlowCaption.IndexOf("电力线路") > -1)
+            //if (currRecord.ID.IndexOf("N") == -1 || parentObj.FlowCaption.IndexOf("定期分析") > -1 || parentObj.FlowCaption.IndexOf("专题分析") > -1 )
             { 
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 string fname = "";
@@ -1978,7 +1979,7 @@ namespace Ebada.Scgl.Lcgl {
                             LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(akeys[0]);
                             if (taskTemple != null)
                             {
-                                if (taskTemple.CellName.IndexOf("电力线路") ==-1)
+                                if (taskTemple.CellName.IndexOf("电力线路") ==-1||1==1)
                                 {
                                     WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + wf[0].WorkFlowId
                                     + "' and WorktaskId='" + wf[0].WorkTaskId + "'");
@@ -2015,6 +2016,8 @@ namespace Ebada.Scgl.Lcgl {
                         MsgBox.ShowWarningMessageBox("出错" + ex.Message + " ，无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
                         return;
                     }
+                    ds1.Dispose();
+                    ds1 = null;
                 }
             }
 

@@ -478,43 +478,28 @@ namespace Ebada.Scgl.Lcgl
             int currentPosX = 10;
             int index = 0;
             if (MaxWordWidth < 300) MaxWordWidth = 300;
-            if (parentTemple != null)
+            try
             {
-                foreach (LP_Temple lp in templeList)
+                if (parentTemple != null)
                 {
-                    bool flag;//= (lp.Status == CurrRecord.Status);
-                    flag = lp.IsVisible==0;
-                    Label label = new Label();
-                    ComboBoxEdit btTip = null;
-                    CheckEdit ceTip = null;
-                    label.Text = lp.CellName;
-                    //string[] location = lp.CtrlLocation.Split(',');
-                    string[] size = lp.CtrlSize.Split(',');
-                    label.Location = new Point(currentPosX, currentPosY);
-                    label.Size = new Size(MaxWordWidth, 14);
-                    label.Visible = flag;
-                    if (flag)
+                    foreach (LP_Temple lp in templeList)
                     {
-                        currentPosY += 20;
-                    }
-                    if (lp.CtrlType.Contains("MemoEdit") && flag && lp.SqlSentence != "")
-                    {
-                        btTip = new ComboBoxEdit();
-                        btTip.Name = "bt" + lp.LPID;
-                        btTip.Location = new Point(currentPosX, currentPosY);
-                        btTip.Size = new Size(300, 14);
-                        btTip.Tag = lp;
-
-                        ceTip = new CheckEdit();
-                        ceTip.Name = "ce" + lp.LPID;
-                        ceTip.Location = new Point(currentPosX + btTip.Width + 10, currentPosY);
-                        ceTip.Size = new Size(80, 14);
-                        ceTip.Text = "累加";
-                        ceTip.Checked = false;
-                        currentPosY += 30;
-                    }
-                    else
-                        if (lp.CtrlType.Contains("TextEdit") && flag && lp.SqlSentence != "")
+                        bool flag;//= (lp.Status == CurrRecord.Status);
+                        flag = lp.IsVisible == 0;
+                        Label label = new Label();
+                        ComboBoxEdit btTip = null;
+                        CheckEdit ceTip = null;
+                        label.Text = lp.CellName;
+                        //string[] location = lp.CtrlLocation.Split(',');
+                        string[] size = lp.CtrlSize.Split(',');
+                        label.Location = new Point(currentPosX, currentPosY);
+                        label.Size = new Size(MaxWordWidth, 14);
+                        label.Visible = flag;
+                        if (flag)
+                        {
+                            currentPosY += 20;
+                        }
+                        if (lp.CtrlType.Contains("MemoEdit") && flag && lp.SqlSentence != "")
                         {
                             btTip = new ComboBoxEdit();
                             btTip.Name = "bt" + lp.LPID;
@@ -530,159 +515,179 @@ namespace Ebada.Scgl.Lcgl
                             ceTip.Checked = false;
                             currentPosY += 30;
                         }
+                        else
+                            if (lp.CtrlType.Contains("TextEdit") && flag && lp.SqlSentence != "")
+                            {
+                                btTip = new ComboBoxEdit();
+                                btTip.Name = "bt" + lp.LPID;
+                                btTip.Location = new Point(currentPosX, currentPosY);
+                                btTip.Size = new Size(300, 14);
+                                btTip.Tag = lp;
 
-                    Control ctrl;
+                                ceTip = new CheckEdit();
+                                ceTip.Name = "ce" + lp.LPID;
+                                ceTip.Location = new Point(currentPosX + btTip.Width + 10, currentPosY);
+                                ceTip.Size = new Size(80, 14);
+                                ceTip.Text = "累加";
+                                ceTip.Checked = false;
+                                currentPosY += 30;
+                            }
 
-                    if (lp.CtrlType.Contains("uc_gridcontrol"))
-                    {
-                        ctrl = new uc_gridcontrol();
-                        ((uc_gridcontrol)ctrl).CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridView1_CellValueChanged);
-                        ((uc_gridcontrol)ctrl).FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(gridView1_FocusedColumnChanged);
-                    }
-                    else
-                        ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
-                    ctrl.Location = new Point(currentPosX, currentPosY);
-                    ctrl.Size = new Size(int.Parse(size[0]), int.Parse(size[1]));
-                    if (flag)
-                    {
-                        currentPosY += int.Parse(size[1]) + 10;
-                    }
+                        Control ctrl;
 
-                   
-                   
-                    
-                    ctrl.Enter += new EventHandler(ctrl_Enter);
-                    ctrl.Leave += new EventHandler(ctrl_Leave);
-                    ctrl.TextChanged += new EventHandler(ctrl_Leave);
-                    ctrl.Visible = flag;
-                    ctrl.Tag = lp;
-                    ctrl.TabIndex = index;
-                    if (btTip != null)
-                    {
-                        btTip.TabIndex = index;
-                        index++;
-                        btTip.TextChanged += new EventHandler(btTip_Click);
-                    }
-                    if (lp.CtrlType.Contains("uc_gridcontrol"))
-                    {
-                        label.Text = lp.CellName+"(Tab键可选下一格)";
-                        (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar),lp);
-                        if (RecordWorkTask.HaveRunPowerRole(WorkConst.WorkTask_BindTable, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkTaskId"].ToString()) || currRecord.Status =="填票")
+                        if (lp.CtrlType.Contains("uc_gridcontrol"))
                         {
-                            (ctrl as uc_gridcontrol).iniTableRecordData(currRecord.ID, lp, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkFlowInsId"].ToString());
-                        }
-                    }
-                   
-                    index++;
-                    ctrl.Name = lp.LPID;
-                    dockPanel1.Controls.Add(label);
-                    if (btTip != null)
-                    {
-                        dockPanel1.Controls.Add(btTip);
-                        dockPanel1.Controls.Add(ceTip);
-                    }
-                    dockPanel1.Controls.Add(ctrl);
-                    if (lp.CellName == "编号")
-                    {
-                        ctrlNumber = ctrl;
-                    }
-                    if (lp.CtrlType.IndexOf("DateEdit") > -1)
-                    {
-
-                        if (lp.WordCount.ToLower().IndexOf("hh") > -1)
-                        {
-                            ((DateEdit)ctrl).Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-                            ((DateEdit)ctrl).Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
-                        }
-                            
-                        
-                        
-                    }
-                    if (lp.CtrlType.Contains("SpinEdit") && lp.WordCount != "")
-                    {
-                        SpinEdit lue1 = (SpinEdit)ctrl;
-                        if (lp.WordCount.IndexOf("p") > -1)
-                        {
-                            lue1.Properties.Increment = (decimal)0.0001;
-                            lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                            ctrl = new uc_gridcontrol();
+                            ((uc_gridcontrol)ctrl).CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridView1_CellValueChanged);
+                            ((uc_gridcontrol)ctrl).FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(gridView1_FocusedColumnChanged);
                         }
                         else
-                            if (lp.WordCount.IndexOf(".") > -1)
+                            ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
+                        ctrl.Location = new Point(currentPosX, currentPosY);
+                        ctrl.Size = new Size(int.Parse(size[0]), int.Parse(size[1]));
+                        if (flag)
+                        {
+                            currentPosY += int.Parse(size[1]) + 10;
+                        }
+
+
+
+
+                        ctrl.Enter += new EventHandler(ctrl_Enter);
+                        ctrl.Leave += new EventHandler(ctrl_Leave);
+                        ctrl.TextChanged += new EventHandler(ctrl_Leave);
+                        ctrl.Visible = flag;
+                        ctrl.Tag = lp;
+                        ctrl.TabIndex = index;
+                        if (btTip != null)
+                        {
+                            btTip.TabIndex = index;
+                            index++;
+                            btTip.TextChanged += new EventHandler(btTip_Click);
+                        }
+                        if (lp.CtrlType.Contains("uc_gridcontrol"))
+                        {
+                            label.Text = lp.CellName + "(Tab键可选下一格)";
+                            (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar), lp);
+                            if (RecordWorkTask.HaveRunPowerRole(WorkConst.WorkTask_BindTable, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkTaskId"].ToString()) || currRecord.Status == "填票")
                             {
-                                Regex r2 = new Regex(@"(?<=\.).*");
-                                lue1.Properties.Increment = (decimal)Math.Pow(0.1, r2.Match(lp.WordCount).Value.Length / 2);
-                                lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-
+                                (ctrl as uc_gridcontrol).iniTableRecordData(currRecord.ID, lp, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkFlowInsId"].ToString());
                             }
-                        lue1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                        lue1.Properties.EditFormat.FormatString = lp.WordCount;
-                        lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                        lue1.Properties.DisplayFormat.FormatString = lp.WordCount;
-                        lue1.Properties.EditMask = lp.WordCount;
+                        }
 
+                        index++;
+                        ctrl.Name = lp.LPID;
+                        dockPanel1.Controls.Add(label);
+                        if (btTip != null)
+                        {
+                            dockPanel1.Controls.Add(btTip);
+                            dockPanel1.Controls.Add(ceTip);
+                        }
+                        dockPanel1.Controls.Add(ctrl);
+                        if (lp.CellName == "编号")
+                        {
+                            ctrlNumber = ctrl;
+                        }
+                        if (lp.CtrlType.IndexOf("DateEdit") > -1)
+                        {
+
+                            if (lp.WordCount.ToLower().IndexOf("hh") > -1)
+                            {
+                                ((DateEdit)ctrl).Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+                                ((DateEdit)ctrl).Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+                            }
+
+
+
+                        }
+                        if (lp.CtrlType.Contains("SpinEdit") && lp.WordCount != "")
+                        {
+                            SpinEdit lue1 = (SpinEdit)ctrl;
+                            if (lp.WordCount.IndexOf("p") > -1)
+                            {
+                                lue1.Properties.Increment = (decimal)0.0001;
+                                lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                            }
+                            else
+                                if (lp.WordCount.IndexOf(".") > -1)
+                                {
+                                    Regex r2 = new Regex(@"(?<=\.).*");
+                                    lue1.Properties.Increment = (decimal)Math.Pow(0.1, r2.Match(lp.WordCount).Value.Length / 2);
+                                    lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+
+                                }
+                            lue1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                            lue1.Properties.EditFormat.FormatString = lp.WordCount;
+                            lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                            lue1.Properties.DisplayFormat.FormatString = lp.WordCount;
+                            lue1.Properties.EditMask = lp.WordCount;
+
+                        }
                     }
                 }
-            }
-            InitEvent();
-            InitData();
-            if (RecordWorkTask.HaveRunSPYJRole(kind))
-            {
-                if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
-                hqyjcontrol.Size = new System.Drawing.Size(400, 200);
-                hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
-                currentPosY = currentPosY + hqyjcontrol.Size.Height;
-                hqyjcontrol.RecordID = CurrRecord.ID;
-                hqyjcontrol.TabIndex = index;
-                index++;
-                dockPanel1.Controls.Add(hqyjcontrol);
-            }
-
-            if (RecordWorkTask.HaveRunFuJianRole(kind))
-            {
-
-                if (filecontrol == null) filecontrol = new DownFileControl();
-                if (status == "add")
-                    filecontrol.FormType = "上传";
-                else if (status == "edit")
+                InitEvent();
+                InitData();
+                if (RecordWorkTask.HaveRunSPYJRole(kind))
                 {
-                    filecontrol.FormType = "下载";
+                    if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
+                    hqyjcontrol.Size = new System.Drawing.Size(400, 200);
+                    hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+                    currentPosY = currentPosY + hqyjcontrol.Size.Height;
+                    hqyjcontrol.RecordID = CurrRecord.ID;
+                    hqyjcontrol.TabIndex = index;
+                    index++;
+                    dockPanel1.Controls.Add(hqyjcontrol);
                 }
-                filecontrol.Size = new System.Drawing.Size(400, 300);
-                filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
-                currentPosY = currentPosY + filecontrol.Size.Height;
-                filecontrol.UpfilePath = GetWorkFlowNmae(kind);
-                if (currRecord == null)
-                {
-                    currRecord = new LP_Record();
-                }
-                filecontrol.RecordID = CurrRecord.ID;
-                filecontrol.TabIndex = index;
-                index++;
-                dockPanel1.Controls.Add(filecontrol);
-                currentPosY += 20;
-            }
-            if (RecordWorkTask.HaveWorkFlowBackRole(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
-            {
-                Button btn_Back = new Button();
-                dockPanel1.Controls.Add(btn_Back);
-                btn_Back.Click += new EventHandler(btn_Back_Click);
-                btn_Back.Location = new Point(currentPosX + 80, currentPosY + 10);
-                btn_Back.Text = "退回";
 
-                btn_Back = new Button();
-                dockPanel1.Controls.Add(btn_Back);
-                btn_Back.Click += new EventHandler(btn_Save_Click);
-                btn_Back.Location = new Point(currentPosX + 80 + btn_Back.Width , currentPosY + 10);
-                btn_Back.Text = "保存";
+                if (RecordWorkTask.HaveRunFuJianRole(kind))
+                {
+
+                    if (filecontrol == null) filecontrol = new DownFileControl();
+                    if (status == "add")
+                        filecontrol.FormType = "上传";
+                    else if (status == "edit")
+                    {
+                        filecontrol.FormType = "下载";
+                    }
+                    filecontrol.Size = new System.Drawing.Size(400, 300);
+                    filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+                    currentPosY = currentPosY + filecontrol.Size.Height;
+                    filecontrol.UpfilePath = GetWorkFlowNmae(kind);
+                    if (currRecord == null)
+                    {
+                        currRecord = new LP_Record();
+                    }
+                    filecontrol.RecordID = CurrRecord.ID;
+                    filecontrol.TabIndex = index;
+                    index++;
+                    dockPanel1.Controls.Add(filecontrol);
+                    currentPosY += 20;
+                }
+                if (RecordWorkTask.HaveWorkFlowBackRole(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))
+                {
+                    Button btn_Back = new Button();
+                    dockPanel1.Controls.Add(btn_Back);
+                    btn_Back.Click += new EventHandler(btn_Back_Click);
+                    btn_Back.Location = new Point(currentPosX + 80, currentPosY + 10);
+                    btn_Back.Text = "退回";
+
+                    btn_Back = new Button();
+                    dockPanel1.Controls.Add(btn_Back);
+                    btn_Back.Click += new EventHandler(btn_Save_Click);
+                    btn_Back.Location = new Point(currentPosX + 80 + btn_Back.Width, currentPosY + 10);
+                    btn_Back.Text = "保存";
+                }
+                else
+                {
+                    Button btn_Back = new Button();
+                    dockPanel1.Controls.Add(btn_Back);
+                    btn_Back.Click += new EventHandler(btn_Save_Click);
+                    btn_Back.Location = new Point(currentPosX + 80, currentPosY + 10);
+                    btn_Back.Text = "保存";
+
+                }
             }
-            else {
-                Button btn_Back = new Button();
-                dockPanel1.Controls.Add(btn_Back);
-                btn_Back.Click += new EventHandler(btn_Save_Click);
-                btn_Back.Location = new Point(currentPosX + 80, currentPosY + 10);
-                btn_Back.Text = "保存";
-            
-            }
+            catch { }
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
@@ -771,6 +776,7 @@ namespace Ebada.Scgl.Lcgl
                     //MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
                     //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                     list.Add(wfv);
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where FieldId ='" + wfv.FieldId + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                 }
                 foreach (WF_TableFieldValue wfv in list)
                 {
@@ -798,7 +804,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, list, null);
                 MsgBox.ShowTipMessageBox("保存成功!");
-                this.DialogResult = DialogResult.OK;
+                //this.DialogResult = DialogResult.OK;
             }
             catch
             {
@@ -926,6 +932,7 @@ namespace Ebada.Scgl.Lcgl
                 //MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
                 //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 list.Add(wfv);
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where FieldId ='" + wfv.FieldId + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
             }
             foreach (WF_TableFieldValue wfv in list)
             {
@@ -1712,9 +1719,19 @@ namespace Ebada.Scgl.Lcgl
             {
                 for (int i = 0; i < arrCellpos.Length; i++)
                 {
-                    //HScroll.
+                    if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i]))
+                    {
+                        valuehs.Remove(lp.LPID + "$" + arrCellpos[i]);
+                    }
+                    if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i] + "完整时间"))
+                    {
+                        valuehs.Remove(lp.LPID + "$" + arrCellpos[i] + "完整时间");
+                    }
                     ea.SetCellValue("", GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                 }
+              
+                
+                
             }
             if (lp.CtrlType.Contains("uc_gridcontrol"))
             {
@@ -2484,7 +2501,7 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.XExcelPos = -1;
                                 tfv.YExcelPos = -1;
                                 tfv.ExcelSheetName = activeSheetName;
-                                valuehs.Add(lp.LPID + "$" + arrCellPos[i] + "时间", tfv);
+                                valuehs.Add(lp.LPID + "$" + arrCellPos[i] + "完整时间", tfv);
                                
                            
                         }
@@ -3395,11 +3412,17 @@ namespace Ebada.Scgl.Lcgl
             {
                 //base.Close();
                 //rowData = null;
-                dsoFramerWordControl1.FileSave();
-                dsoFramerWordControl1.FileClose();
-                dockPanel1.ControlContainer.Controls.Clear();
-                templeList.Clear();
-                currRecord = null;
+                if (dsoFramerWordControl1 != null)
+                {
+                    
+                    dockPanel1.ControlContainer.Controls.Clear();
+                    templeList.Clear();
+                    dsoFramerWordControl1.FileSave();
+                    dsoFramerWordControl1.FileClose();
+                    dsoFramerWordControl1.Dispose();
+                    dsoFramerWordControl1 = null;
+                    currRecord = null;
+                }
                 if (filecontrol != null)
                 {
 
