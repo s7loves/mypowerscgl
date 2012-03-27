@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dataSetPS_sbcs" targetNamespace="http://tempuri.org/dataSetPS_sbcs.xsd" xmlns:mstns="http://tempuri.org/dataSetPS_sbcs.xsd" xmlns="http://tempuri.org/dataSetPS_sbcs.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dataSetPS_sbcs" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dataSetPS_sbcs" msprop:Generator_DataSetName="dataSetPS_sbcs" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PS_sbcs" msprop:Generator_UserTableName="PS_sbcs" msprop:Generator_RowDeletedName="PS_sbcsRowDeleted" msprop:Generator_RowChangedName="PS_sbcsRowChanged" msprop:Generator_RowClassName="PS_sbcsRow" msprop:Generator_RowChangingName="PS_sbcsRowChanging" msprop:Generator_RowEvArgName="PS_sbcsRowChangeEvent" msprop:Generator_RowEvHandlerName="PS_sbcsRowChangeEventHandler" msprop:Generator_TableClassName="PS_sbcsDataTable" msprop:Generator_TableVarName="tablePS_sbcs" msprop:Generator_RowDeletingName="PS_sbcsRowDeleting" msprop:Generator_TablePropName="PS_sbcs">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="bh" msprop:Generator_UserColumnName="bh" msprop:Generator_ColumnVarNameInTable="columnbh" msprop:Generator_ColumnPropNameInRow="bh" msprop:Generator_ColumnPropNameInTable="bhColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="mc" msprop:Generator_UserColumnName="mc" msprop:Generator_ColumnVarNameInTable="columnmc" msprop:Generator_ColumnPropNameInRow="mc" msprop:Generator_ColumnPropNameInTable="mcColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="xh" msprop:Generator_UserColumnName="xh" msprop:Generator_ColumnVarNameInTable="columnxh" msprop:Generator_ColumnPropNameInRow="xh" msprop:Generator_ColumnPropNameInTable="xhColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ParentID" msprop:Generator_UserColumnName="ParentID" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="DataTable1Key1">
+      <xs:selector xpath=".//mstns:PS_sbcs" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
