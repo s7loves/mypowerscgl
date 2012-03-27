@@ -156,7 +156,7 @@ namespace Ebada.Scgl.Lcgl
             ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
             ClientHelper.PlatformSqlMap.DeleteByWhere<PJ_anqgjcrkd>(" where lyparent='" + obj.ID + "' and type = '所安全工器具入库单'");
             //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-            //    "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '安全工器具入库单' or type = '安全工器具入库单原始库存')"
+            //    "select  sum(cast(kcsl as float) )  from PJ_anqgjcrkd where (type = '安全工器具入库单' or type = '安全工器具入库单原始库存')"
             //    + " and wpmc='" + obj.wpmc + "' " + " and ssgc='" + obj.ssgc + "' "
             //    + " and wpgg='" + obj.wpgg + "'  ");
 
@@ -205,7 +205,7 @@ namespace Ebada.Scgl.Lcgl
                 ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
 
                 IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                    "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '安全工器具入库单' or type = '安全工器具入库单原始库存')"
+                    "select  sum(cast(kcsl as float) )  from PJ_anqgjcrkd where (type = '安全工器具入库单' or type = '安全工器具入库单原始库存')"
                     + " and wpmc='" + e.ValueOld.wpmc + "' "
                     + " and wpgg='" + e.ValueOld.wpgg + "' and id!='" + e.ValueOld.ID + "' ");
 

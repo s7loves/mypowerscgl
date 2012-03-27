@@ -163,9 +163,9 @@
             this.spinEdit4.Name = "spinEdit4";
             this.spinEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit4.Properties.DisplayFormat.FormatString = "#####0.00";
+            this.spinEdit4.Properties.DisplayFormat.FormatString = "#####0.00########";
             this.spinEdit4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit4.Properties.Mask.EditMask = "#####0.00";
+            this.spinEdit4.Properties.Mask.EditMask = "#####0.00########";
             this.spinEdit4.Size = new System.Drawing.Size(133, 21);
             this.spinEdit4.TabIndex = 51;
             this.spinEdit4.Visible = false;
@@ -181,9 +181,9 @@
             this.spinEdit3.Name = "spinEdit3";
             this.spinEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit3.Properties.DisplayFormat.FormatString = "#####0.00";
+            this.spinEdit3.Properties.DisplayFormat.FormatString = "#####0.00########";
             this.spinEdit3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit3.Properties.Mask.EditMask = "#####0.00";
+            this.spinEdit3.Properties.Mask.EditMask = "#####0.00########";
             this.spinEdit3.Size = new System.Drawing.Size(212, 21);
             this.spinEdit3.TabIndex = 52;
             this.spinEdit3.Visible = false;
@@ -267,9 +267,9 @@
             this.spinEdit1.Name = "spinEdit1";
             this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit1.Properties.DisplayFormat.FormatString = "#####0.00";
+            this.spinEdit1.Properties.DisplayFormat.FormatString = "#####0.00########";
             this.spinEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinEdit1.Properties.Mask.EditMask = "#####0.00";
+            this.spinEdit1.Properties.Mask.EditMask = "#####0.00########";
             this.spinEdit1.Size = new System.Drawing.Size(219, 21);
             this.spinEdit1.TabIndex = 29;
             // 

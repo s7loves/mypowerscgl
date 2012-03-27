@@ -144,7 +144,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 long i = 0;
                 System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                    "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '所安全工器具入库单' or type = '所安全工器具入库单原始库存')"
+                    "select  sum(cast(kcsl as float) )  from PJ_anqgjcrkd where (type = '所安全工器具入库单' or type = '所安全工器具入库单原始库存')"
                     + " and wpmc='" + e.ValueOld.wpmc + "' " 
                     + " and wpgg='" + e.ValueOld.wpgg + "'  ");
                 IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
@@ -203,7 +203,7 @@ namespace Ebada.Scgl.Lcgl
 
             long i = 0;
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select  sum(cast(kcsl as int) )  from PJ_anqgjcrkd where (type = '所安全工器具入库单' or type = '所安全工器具入库单原始库存')"
+                "select  sum(cast(kcsl as float) )  from PJ_anqgjcrkd where (type = '所安全工器具入库单' or type = '所安全工器具入库单原始库存')"
                 + " and wpmc='" + obj.wpmc + "' " 
                 + " and wpgg='" + obj.wpgg + "' and id!='" + obj.ID + "' ");
             IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>

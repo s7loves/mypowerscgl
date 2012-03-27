@@ -157,7 +157,7 @@ namespace Ebada.Scgl.Lcgl
         {
 
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select sum(cast(kcsl as int))    from PJ_wgclcrkd where (type = '" + type + "' or type = '" + type + "原始库存') and wpmc='" + comboBoxEdit1.Text + "' and wpgg='" + comboBoxEdit2.Text + "' and ssgc='" + comboBoxEdit7.Text + "'   ");
+                "select sum(cast(kcsl as float))    from PJ_wgclcrkd where (type = '" + type + "' or type = '" + type + "原始库存') and wpmc='" + comboBoxEdit1.Text + "' and wpgg='" + comboBoxEdit2.Text + "' and ssgc='" + comboBoxEdit7.Text + "'   ");
             if (mclist.Count > 0 && mclist[0] != null)
             {
                 spinEdit2.Properties.MaxValue = Convert.ToDecimal(mclist[0]);
