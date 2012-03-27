@@ -2510,7 +2510,16 @@ namespace Ebada.Scgl.Lcgl
                     {
                         if (dt.ToString("yyyyMMdd") == "00010101")
                         {
-                            strList[i] = " ";
+                            //for (int item = 0; i < strList.Count; i++)
+                            if (strList[i].IndexOf("年")>-1) strList[i] = "年";
+                            else
+                                if (strList[i].IndexOf("月") > -1) strList[i] = "      月";
+                                else
+                                    if (strList[i].IndexOf("日") > -1) strList[i] = "      日";
+                                    else
+                                        if (strList[i].IndexOf("时") > -1) strList[i] = "      时";
+                                        else
+                                            if (strList[i].IndexOf("分") > -1) strList[i] = "      分";
                         }
                         value += strList[i];
                         if (strList.Count == i+1)

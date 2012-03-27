@@ -23,6 +23,8 @@ using Ebada.Scgl.Model;
 using DevExpress.XtraBars;
 using System.Threading;
 using Ebada.Components;
+using DevExpress.Utils;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Xtgl {
     /// <summary>
@@ -128,7 +130,15 @@ namespace Ebada.Scgl.Xtgl {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
+            if (parentID == "0")
+            {
+                barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
+            else
 
+            {
+                barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
             //InitColumns();//初始列
             //InitData();//初始数据
         }
@@ -324,6 +334,34 @@ namespace Ebada.Scgl.Xtgl {
             frm.ParentObj = parentObj;
             frm.ShowDialog();
             RefreshData(" where parentid='" + parentObj.ID + "'");
+        }
+
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            IList<PJ_dyk> list = MainHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(" where 1=1");
+            //IList<PJ_dyk> list = MainHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(" where zjm='' or zjm is null");
+            IList<PJ_dyk> listout = new List<PJ_dyk>();
+            WaitDialogForm wdf = new WaitDialogForm("", "正在生成数据...");
+            try
+            {
+                foreach (PJ_dyk xl in list)
+                {
+                    //if (xl.zjm == "")
+                    {
+                        if (xl.nr.Length>50)
+                        xl.zjm = SelectorHelper.GetPysm(xl.nr.Substring(0,50));
+                        else
+                            xl.zjm = SelectorHelper.GetPysm(xl.nr);
+
+                        listout.Add(xl);
+                    }
+                }
+                if (listout.Count > 0)
+                    Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, listout, null);
+            }
+            catch { }
+            wdf.Close();
+            
         }
     }
 }
