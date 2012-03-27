@@ -74,7 +74,7 @@ namespace Ebada.Scgl.Yxgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
-            ComboBoxHelper.FillCBoxByDyk("18高压配电设备评级表", "设备单元名称", comboBoxEdit1);
+            //ComboBoxHelper.FillCBoxByDyk("18高压配电设备评级表", "设备单元名称", comboBoxEdit1);
             ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
             
         }

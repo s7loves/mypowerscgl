@@ -56,7 +56,15 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(obj.seq > 0 ? obj.seq.ToString() : "", row + 9 + i, col);
                         ex.SetCellValue(obj.gznr, row + 9 + i, col + 1);
                         ex.SetCellValue(obj.fzr, row + 9 + i, col + 8);
-                        ex.SetCellValue(obj.cjry, row + 9 + i, col + 11);
+                        string[] rr = obj.cjry.Split("；".ToCharArray());
+                        if (rr.Length > 2)
+                        {
+                            string cry = rr[0] + "；" + rr[1] + "等" + rr.Length + "人";
+
+                            ex.SetCellValue(cry, row + 9 + i, col + 11);
+                        }
+                        else
+                            ex.SetCellValue(obj.cjry, row + 9 + i, col + 11);
 
                     }
                 } else if (nrList.Count <= endrownr && nrList.Count >= starownr) {
@@ -65,7 +73,15 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(obj.seq > 0 ? obj.seq.ToString() : "", row + 9 + i, col);
                         ex.SetCellValue(obj.gznr, row + 9 + i, col + 1);
                         ex.SetCellValue(obj.fzr, row + 9 + i, col + 8);
-                        ex.SetCellValue(obj.cjry, row + 9 + i, col + 11);
+                        string[] rr = obj.cjry.Split("；".ToCharArray());
+                        if (rr.Length > 2)
+                        {
+                            string cry = rr[0] + "；" + rr[1] + "等" + rr.Length + "人";
+
+                            ex.SetCellValue(cry, row + 9 + i, col + 11);
+                        }
+                        else
+                            ex.SetCellValue(obj.cjry, row + 9 + i, col + 11);
                     }
                 }
                 if (allList.Count > endrowjs) {
