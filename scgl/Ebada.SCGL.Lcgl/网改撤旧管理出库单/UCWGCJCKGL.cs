@@ -208,6 +208,7 @@ namespace Ebada.Scgl.Lcgl
             if (clccktemp == null) clccktemp = new PJ_wgclcrkd();
             clccktemp.cksl = "0";
             clccktemp.yt = "工程";
+            clccktemp.wpgg = ""; 
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
             //       <PJ_wgclcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
             //frm.strNum = DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
