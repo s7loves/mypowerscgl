@@ -53,6 +53,7 @@
     <Compile Include="PJ_05jcky.cs" />
     <Compile Include="PJ_05jckyjl.cs" />
     <Compile Include="PJ_06sbxs.cs" />
+    <Compile Include="PJ_06sbxsmx.cs" />
     <Compile Include="PJ_07jdzz.cs" />
     <Compile Include="PJ_07jdzzjl.cs" />
     <Compile Include="PJ_08sbtdjx.cs" />
