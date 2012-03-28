@@ -27,7 +27,9 @@ namespace Ebada.Scgl.Model
         private DateTime _qdrq=new DateTime(1900,1,1); 
         private string _remark=String.Empty; 
         private string _gzrjid=String.Empty; 
-        private string _createman=String.Empty; 
+        private string _createman=String.Empty;
+        private string _bszz = String.Empty;
+        private string _fzcs = String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
         private byte[] _bigdata=new byte[]{};   
         #endregion
@@ -179,7 +181,46 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        /// <summary>
+        /// 属性名称：bszz
+        /// 属性描述：闭锁装置
+        /// 字段信息：[bszz],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("闭锁装置")]
+        public string bszz
+        {
+            get { return _bszz; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[操作员]长度不能大于10!");
+                if (_bszz as object == null || !_bszz.Equals(value))
+                {
+                    _bszz = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：fzcs
+        /// 属性描述：防倒送电措施
+        /// 字段信息：[fzcs],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("防倒送电措施")]
+        public string fzcs
+        {
+            get { return _fzcs; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 100)
+                    throw new Exception("[备注]长度不能大于100!");
+                if (_fzcs as object == null || !_fzcs.Equals(value))
+                {
+                    _fzcs = value;
+                }
+            }
+        }
         /// <summary>
         /// 属性名称：CreateDate
         /// 属性描述：生成日期
