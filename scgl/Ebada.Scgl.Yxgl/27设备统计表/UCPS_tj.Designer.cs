@@ -54,6 +54,8 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.repositoryItemCheckedComboBoxEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
+            this.repositoryItemCheckedComboBoxEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -63,6 +65,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit3)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -96,7 +100,9 @@
             this.repositoryItemLookUpEdit2,
             this.repositoryItemLookUpEdit4,
             this.repositoryItemCheckEdit1,
-            this.repositoryItemCheckedComboBoxEdit1});
+            this.repositoryItemCheckedComboBoxEdit1,
+            this.repositoryItemCheckedComboBoxEdit2,
+            this.repositoryItemCheckedComboBoxEdit3});
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -139,7 +145,7 @@
             // btXlList
             // 
             this.btXlList.Caption = "线路";
-            this.btXlList.Edit = this.repositoryItemLookUpEdit2;
+            this.btXlList.Edit = this.repositoryItemCheckedComboBoxEdit3;
             this.btXlList.Id = 16;
             this.btXlList.Name = "btXlList";
             // 
@@ -159,7 +165,7 @@
             // btTQList
             // 
             this.btTQList.Caption = "barEditItem1";
-            this.btTQList.Edit = this.repositoryItemLookUpEdit4;
+            this.btTQList.Edit = this.repositoryItemCheckedComboBoxEdit2;
             this.btTQList.Id = 18;
             this.btTQList.Name = "btTQList";
             // 
@@ -352,6 +358,20 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // repositoryItemCheckedComboBoxEdit2
+            // 
+            this.repositoryItemCheckedComboBoxEdit2.AutoHeight = false;
+            this.repositoryItemCheckedComboBoxEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemCheckedComboBoxEdit2.Name = "repositoryItemCheckedComboBoxEdit2";
+            // 
+            // repositoryItemCheckedComboBoxEdit3
+            // 
+            this.repositoryItemCheckedComboBoxEdit3.AutoHeight = false;
+            this.repositoryItemCheckedComboBoxEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemCheckedComboBoxEdit3.Name = "repositoryItemCheckedComboBoxEdit3";
+            // 
             // UCPS_tj
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -372,6 +392,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -408,5 +430,7 @@
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit2;
     }
 }
