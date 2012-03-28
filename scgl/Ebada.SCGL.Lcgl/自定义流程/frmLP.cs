@@ -1005,7 +1005,7 @@ namespace Ebada.Scgl.Lcgl
                                  + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
                                  + " and   fieldname='" + lp.CellName + "'"
                                  + " and   FieldId='" + lp.LPID + "'"
-                                 + " and   WorkTaskId='" + wfv.WorkTaskId + "'");
+                                );
                 if (wfv == null)
                 {
                     wfv = new WF_TableFieldValue();
