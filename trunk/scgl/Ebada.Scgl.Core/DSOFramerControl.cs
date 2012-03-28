@@ -331,6 +331,36 @@ namespace Ebada.Scgl.Core {
             
             isModified = true;
         }
+        private static string CmdPing(string strIp)
+        {
+            // 实例一个Process类,启动一个独立进程
+            Process p = new Process();
+            // 设定程序名
+            p.StartInfo.FileName = "cmd.exe";
+            // 关闭Shell的使用
+            p.StartInfo.UseShellExecute = false;
+            // 重定向标准输入
+            p.StartInfo.RedirectStandardInput = true;
+            // 重定向标准输出
+            p.StartInfo.RedirectStandardOutput = true;
+            //重定向错误输出
+            p.StartInfo.RedirectStandardError = true;
+            // 设置不显示窗口
+            p.StartInfo.CreateNoWindow = true;
+            // 启动进程
+            string pingrst;
+            p.Start();
+            p.StandardInput.WriteLine(strIp);
+            p.StandardInput.WriteLine("exit");
+            // 从输出流获取命令执行结果
+            string strRst = p.StandardOutput.ReadToEnd();
+            pingrst = strRst;
+            // if end
+            p.Close();
+            return pingrst;
+
+        }
+    
         /// <summary>
         /// 关闭文件
         /// </summary>
@@ -338,6 +368,7 @@ namespace Ebada.Scgl.Core {
             axFramerControl1.Close();
             Application.DoEvents();
             if (File.Exists(fileName)) {
+                //CmdPing("taskkill /im EXCEL.EXE /f");
                 File.Delete(fileName);
             }
         }
