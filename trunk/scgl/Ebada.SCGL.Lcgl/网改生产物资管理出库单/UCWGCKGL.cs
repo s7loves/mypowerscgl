@@ -207,6 +207,7 @@ namespace Ebada.Scgl.Lcgl
             frm.strType = comboBoxEdit5.Text;
             if (clccktemp == null) clccktemp = new PJ_wgclcrkd();
             clccktemp.cksl = "0";
+            clccktemp.wpgg = ""; 
             clccktemp.yt = "工程";
             ((PJ_wgclcrkd)frm.RowData).yt = "工程";
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount

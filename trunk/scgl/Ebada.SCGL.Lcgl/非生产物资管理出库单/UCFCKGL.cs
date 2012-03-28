@@ -207,6 +207,7 @@ namespace Ebada.Scgl.Lcgl
             frm.strType = comboBoxEdit5.Text;
             if (clccktemp == null) clccktemp = new PJ_clcrkd();
             clccktemp.cksl = "0";
+            clccktemp.wpgg = ""; 
 
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
             //       <PJ_clcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");

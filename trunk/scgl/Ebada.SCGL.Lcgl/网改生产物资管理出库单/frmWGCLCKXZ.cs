@@ -123,7 +123,7 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit8.Text = num;
 
             comboBoxEdit7.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_wgclcrkd where type = '" + type + "' or type = '" + type + "原始库存'");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_wgclcrkd where (type = '" + type + "' or type = '" + type + "原始库存')");
             comboBoxEdit7.Properties.Items.AddRange(mclist);
 
             comboBoxEdit6.Properties.Items.Clear();
@@ -147,8 +147,11 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
         {
+            
+            spinEdit2.Value = 0;
+            rowData.cksl = "0";
             comboBoxEdit2.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_wgclcrkd where type = '" + type + "' or type = '" + type + "原始库存'");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_wgclcrkd where (type = '" + type + "' or type = '" + type + "原始库存') and wpmc='" + comboBoxEdit1.Text + "'");
             comboBoxEdit2.Properties.Items.AddRange(mclist);
             spinEdit2.Enabled = false;
             spinEdit2.Properties.MaxValue = (decimal)0.001;
@@ -159,8 +162,8 @@ namespace Ebada.Scgl.Lcgl
         {
 
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select sum(cast(kcsl as float))    from PJ_wgclcrkd where (type = '" + type + "' or type = '" + type + "原始库存') and wpmc='" + comboBoxEdit1.Text + "' and wpgg='" + comboBoxEdit2.Text + "'  and ssgc='" + comboBoxEdit7.Text + "'  ");
-            if (mclist.Count > 0 && mclist[0] != null)
+                "select sum(cast(kcsl as float))    from PJ_wgclcrkd where ((type = '" + type + "' or type = '" + type + "原始库存')) and wpmc='" + comboBoxEdit1.Text + "' and wpgg='" + comboBoxEdit2.Text + "'  and ssgc='" + comboBoxEdit7.Text + "'  ");
+            if (mclist.Count > 0 && mclist[0] != null && mclist[0].ToString() != "0")
             {
                 spinEdit2.Properties.MaxValue = Convert.ToDecimal(mclist[0]);
                 comboBoxEdit3.Text = spinEdit2.Properties.MaxValue.ToString();
@@ -192,13 +195,13 @@ namespace Ebada.Scgl.Lcgl
         {
 
             comboBoxEdit1.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_wgclcrkd where type = '" + type + "' or type = '" + type + "原始库存'");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_wgclcrkd where (type = '" + type + "' or type = '" + type + "原始库存')");
             comboBoxEdit1.Properties.Items.AddRange(mclist);
             spinEdit2.Enabled = false;
             spinEdit2.Properties.MaxValue = 0;
 
             comboBoxEdit4.Properties.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_wgclcrkd where type = '" + type + "' or type = '" + type + "原始库存'");
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_wgclcrkd where (type = '" + type + "' or type = '" + type + "原始库存')");
             comboBoxEdit4.Properties.Items.AddRange(mclist);
         }
 
