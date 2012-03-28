@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_25zbdymx" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PJ_25zbdymx"  type="Ebada.Scgl.Model.PJ_25zbdymx,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PJ_25zbdymx_AllColumns" class="PJ_25zbdymx">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="Type" column="Type" />
+        <result property="xh" column="xh" />
+        <result property="gl" column="gl" />
+        <result property="ts" column="ts" />
+        <result property="dy" column="dy" />
+        <result property="azrq" column="azrq" />
+        <result property="sccj" column="sccj" />
+        <result property="Createdate" column="Createdate" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPJ_25zbdymxList" resultMap="PJ_25zbdymx_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [Type],
+         [xh],
+         [gl],
+         [ts],
+         [dy],
+         [azrq],
+         [sccj],
+         [Createdate]
+          FROM PJ_25zbdymx
+          $value$
+   </select>
+   
+   <select id="SelectPJ_25zbdymxByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [Type],
+         [xh],
+         [gl],
+         [ts],
+         [dy],
+         [azrq],
+         [sccj],
+         [Createdate]
+          FROM PJ_25zbdymx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="gl">[gl]='$gl$'</isNotNull>
+       <isNotNull prepend="AND" property="ts">[ts]='$ts$'</isNotNull>
+       <isNotNull prepend="AND" property="dy">[dy]='$dy$'</isNotNull>
+       <isNotNull prepend="AND" property="azrq">[azrq]='$azrq$'</isNotNull>
+       <isNotNull prepend="AND" property="sccj">[sccj]='$sccj$'</isNotNull>
+       <isNotNull prepend="AND" property="Createdate">[Createdate]='$Createdate$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPJ_25zbdymxByKey" resultMap="PJ_25zbdymx_AllColumns" parameterClass="PJ_25zbdymx">
+         SELECT 
+         [ID],
+         [ParentID],
+         [Type],
+         [xh],
+         [gl],
+         [ts],
+         [dy],
+         [azrq],
+         [sccj],
+         [Createdate]
+         FROM PJ_25zbdymx
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePJ_25zbdymx" parameterClass="PJ_25zbdymx">
+        DELETE FROM 
+         PJ_25zbdymx
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePJ_25zbdymxByWhere" parameterClass="string">
+     delete from PJ_25zbdymx $value$
+   </delete>
+   
+   <delete id="DeletePJ_25zbdymxByKey" parameterClass="string">
+        DELETE FROM 
+         PJ_25zbdymx
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePJ_25zbdymx" parameterClass="PJ_25zbdymx" resultClass="int">
+          UPDATE PJ_25zbdymx
+           SET
+             [ParentID]=#ParentID#,
+             [Type]=#Type#,
+             [xh]=#xh#,
+             [gl]=#gl#,
+             [ts]=#ts#,
+             [dy]=#dy#,
+             [azrq]=#azrq#,
+             [sccj]=#sccj#,
+             [Createdate]=#Createdate#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPJ_25zbdymx" parameterClass="PJ_25zbdymx">
+        INSERT INTO PJ_25zbdymx
+         (
+         [ID],
+         [ParentID],
+         [Type],
+         [xh],
+         [gl],
+         [ts],
+         [dy],
+         [azrq],
+         [sccj],
+         [Createdate]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #Type#,
+         #xh#,
+         #gl#,
+         #ts#,
+         #dy#,
+         #azrq#,
+         #sccj#,
+         #Createdate#
+         )
+
+   </insert>
+   
+   <select id="GetPJ_25zbdymxRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PJ_25zbdymx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="gl">[gl]='$gl$'</isNotNull>
+       <isNotNull prepend="AND" property="ts">[ts]='$ts$'</isNotNull>
+       <isNotNull prepend="AND" property="dy">[dy]='$dy$'</isNotNull>
+       <isNotNull prepend="AND" property="azrq">[azrq]='$azrq$'</isNotNull>
+       <isNotNull prepend="AND" property="sccj">[sccj]='$sccj$'</isNotNull>
+       <isNotNull prepend="AND" property="Createdate">[Createdate]='$Createdate$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPJ_25zbdymxRowCount" parameterClass="string">
+    select count(*) from PJ_25zbdymx $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
