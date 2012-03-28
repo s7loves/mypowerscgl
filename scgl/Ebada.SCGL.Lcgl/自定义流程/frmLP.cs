@@ -1006,6 +1006,9 @@ namespace Ebada.Scgl.Lcgl
                                  + " and   fieldname='" + lp.CellName + "'"
                                  + " and   FieldId='" + lp.LPID + "'"
                                 );
+
+                dsoFramerWordControl1.FileSave();
+                currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
                 if (wfv == null)
                 {
                     wfv = new WF_TableFieldValue();
@@ -1037,8 +1040,6 @@ namespace Ebada.Scgl.Lcgl
                 case "add":
                    
                     //LP_Record newRecord = new LP_Record();
-                    dsoFramerWordControl1.FileSave();
-                    currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
                     currRecord.Kind = kind;
                     currRecord.Content = GetContent();
                     dsoFramerWordControl1.FileSave();
@@ -1114,8 +1115,8 @@ namespace Ebada.Scgl.Lcgl
                 case "edit":
                    
                     currRecord.LastChangeTime = DateTime.Now.ToString();
-                     dsoFramerWordControl1.FileSave();
-                    currRecord.DocContent = this.dsoFramerWordControl1.FileDataGzip;
+                    // dsoFramerWordControl1.FileSave();
+                    //currRecord.DocContent = this.dsoFramerWordControl1.FileDataGzip;
                     //byte[] bt = new byte[0];
                     //currRecord.ImageAttachment = bt;
                     //currRecord.SignImg = bt;

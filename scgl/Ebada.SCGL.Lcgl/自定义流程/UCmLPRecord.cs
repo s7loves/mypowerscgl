@@ -1924,10 +1924,35 @@ namespace Ebada.Scgl.Lcgl {
                                     LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(akeys[Convert.ToInt32(checkkeys[i])]);
                                     if (taskTemple != null)
                                     {
+                                        
                                         WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(templehs[akeys[Convert.ToInt32(checkkeys[i])]]);
-                                        RecordWorkTask.iniTableRecordData(ref taskTemple,ds1, currRecord, worktaskins.WorkFlowId,
-                                            worktaskins.WorkFlowInsId, true);
-                                        ds1.FileDataGzip = taskTemple.DocContent;
+                                        LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + taskTemple.LPID + "' and SortID=1");
+                                        if (lp != null)
+                                        {
+                                            WF_TableFieldValue wfv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + lp.ParentID + "'"
+                                              + " and   WorkflowId='" + worktaskins.WorkFlowId + "'"
+                                              + " and   RecordId='" + currRecord.ID + "'"
+                                              + " and   WorkFlowInsId='" + worktaskins.WorkFlowInsId + "'"
+                                              + " and   FieldId='" + lp.LPID + "'"
+                                             );
+                                            if (wfv != null && wfv.Bigdata != null && wfv.Bigdata.Length > 0)
+                                            {
+
+                                                ds1.FileDataGzip = wfv.Bigdata ;
+                                            }
+                                            else
+                                            {
+                                                RecordWorkTask.iniTableRecordData(ref taskTemple, ds1, currRecord, worktaskins.WorkFlowId,
+                                               worktaskins.WorkFlowInsId, true);
+                                                ds1.FileDataGzip = taskTemple.DocContent;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            RecordWorkTask.iniTableRecordData(ref taskTemple, ds1, currRecord, worktaskins.WorkFlowId,
+                                                worktaskins.WorkFlowInsId, true);
+                                            ds1.FileDataGzip = taskTemple.DocContent;
+                                        }
                                         //ds1.FileOpen(ds1.FileName);
                                         ds1.FileSave(CheckFileName(fname + taskTemple.CellName), true);
                                         ds1.FileClose();
@@ -1981,17 +2006,50 @@ namespace Ebada.Scgl.Lcgl {
                             {
                                 if (taskTemple.CellName.IndexOf("电力线路") ==-1||1==1)
                                 {
-                                    WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + wf[0].WorkFlowId
-                                    + "' and WorktaskId='" + wf[0].WorkTaskId + "'");
-                                    if (wtc != null)
-                                    {
-
-                                    }
                                     WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(templehs[akeys[0]]);
-                                    //RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, true);
-                                    currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
-                                    RecordWorkTask.iniTableRecordData(ref taskTemple, ds1, currRecord, worktaskins.WorkFlowId, worktaskins.WorkFlowInsId, true); 
-                                    ds1.FileDataGzip = taskTemple.DocContent;
+                                    LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + taskTemple.LPID + "' and SortID=1");
+                                    if (lp != null)
+                                    {
+                                        WF_TableFieldValue wfv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + lp.ParentID + "'"
+                                          + " and   WorkflowId='" + worktaskins.WorkFlowId + "'"
+                                          + " and   RecordId='" + currRecord.ID + "'"
+                                          + " and   WorkFlowInsId='" + worktaskins.WorkFlowInsId + "'"
+                                          + " and   FieldId='" + lp.LPID + "'"
+                                         );
+                                        if (wfv != null && wfv.Bigdata != null && wfv.Bigdata.Length > 0)
+                                        {
+
+                                            ds1.FileDataGzip = wfv.Bigdata;
+                                        }
+                                        else
+                                        {
+                                            WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + wf[0].WorkFlowId
+                                        + "' and WorktaskId='" + wf[0].WorkTaskId + "'");
+                                            if (wtc != null)
+                                            {
+
+                                            }
+                                            
+                                            //RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, true);
+                                            currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
+                                            RecordWorkTask.iniTableRecordData(ref taskTemple, ds1, currRecord, worktaskins.WorkFlowId, worktaskins.WorkFlowInsId, true);
+                                            ds1.FileDataGzip = taskTemple.DocContent;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + wf[0].WorkFlowId
+                                        + "' and WorktaskId='" + wf[0].WorkTaskId + "'");
+                                        if (wtc != null)
+                                        {
+
+                                        }
+                                        //WF_WorkTaskInstance worktaskins = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTaskInstance>(templehs[akeys[0]]);
+                                        //RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, true);
+                                        currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
+                                        RecordWorkTask.iniTableRecordData(ref taskTemple, ds1, currRecord, worktaskins.WorkFlowId, worktaskins.WorkFlowInsId, true);
+                                        ds1.FileDataGzip = taskTemple.DocContent;
+                                    }
                                 }
                                 else
                                 {
