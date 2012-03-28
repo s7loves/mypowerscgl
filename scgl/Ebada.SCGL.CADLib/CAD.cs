@@ -280,7 +280,25 @@ namespace Ebada.SCGL.CADLib
         /// <param name="rectf"></param>
         /// <param name="color"></param>
         public void drawFillRects(RectangleF[] rects, Color color) {
-
+            for (int i = 0; i < rects.Length; i++)
+            {
+                double[] pnt = new double[3];
+                pnt[0] = rects[i].Location.X;
+                pnt[1] = rects[i].Location.Y;
+                pnt[2] = 0;
+                Acad3DSolid r = cad.ActiveDocument.ModelSpace.AddBox(pnt, 0, rects[i].Width, rects[i].Height);
+                r.Layer = "line";
+                AcadAcCmColor color2 = (AcadAcCmColor)cad.ActiveDocument.Application.GetInterfaceObject("AutoCAD.AcCmColor.17");
+                color2.SetRGB(color.R, color.G, color.B);
+                r.TrueColor = color2;
+                AcadHatch wt = cad.ActiveDocument.ModelSpace.AddHatch(0, "solid", true, 0);
+                wt.color = ACAD_COLOR.acBlue;
+                AcadEntity[] ot = new AcadEntity[1];
+                ot[0] = (AcadEntity)r;
+                wt.AppendOuterLoop(ot);
+                wt.Evaluate();
+                cad.Application.Update();
+            }
         }
         /// <summary>
         /// 画圆
