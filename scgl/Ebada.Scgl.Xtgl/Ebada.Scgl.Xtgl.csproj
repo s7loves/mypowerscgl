@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="frmdykEdit.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmdykEdit.Designer.cs">
       <DependentUpon>frmdykEdit.cs</DependentUpon>

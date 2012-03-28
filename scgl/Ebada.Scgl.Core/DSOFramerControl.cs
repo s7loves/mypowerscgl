@@ -267,8 +267,19 @@ namespace Ebada.Scgl.Core {
         }
         private void Close() {
             if (MyWorkbook != null) {
+                //MyWorkbook.Save();
                 MyWorkbook.Close(false, missing, missing);
+                //MyWorkbook.Close(true, missing, missing);
+                //MyWorkbook.Sheets.Application.Quit();
                 MyWorkbook.Application.Quit();
+                //System.Runtime.InteropServices.Marshal.ReleaseComObject(MyWorkbook);
+                //System.Runtime.InteropServices.Marshal.ReleaseComObject(MyWorkbook.Application);
+
+
+                //int generation = System.GC.GetGeneration(MyWorkbook.Application);
+                //System.GC.Collect(generation);
+               
+                
             }
          
         }
@@ -365,11 +376,35 @@ namespace Ebada.Scgl.Core {
         /// ¹Ø±ÕÎÄ¼þ
         /// </summary>
         public void FileClose() {
+            //Close();
+            //Application.DoEvents();
+            //string strfile = "";
+            //strfile = fileName;
+            //axFramerControl1.Save();
+            //Close();
+            //System.Runtime.InteropServices.Marshal.ReleaseComObject(axFramerControl1.ActiveDocument);
+            //int generation = System.GC.GetGeneration(axFramerControl1.ActiveDocument);
+            //System.GC.Collect(generation);
+            //Application.DoEvents();
             axFramerControl1.Close();
-            Application.DoEvents();
-            if (File.Exists(fileName)) {
+            //Close();
+            //Application.DoEvents();
+            //axFramerControl1.Dispose();
+            //axFramerControl1 = null;
+            //Application.DoEvents();
+            if (File.Exists(fileName))
+            {
                 //CmdPing("taskkill /im EXCEL.EXE /f");
-                File.Delete(fileName);
+                //System.GC.Collect();
+                //int generation = System.GC.GetGeneration(axFramerControl1);
+                //System.GC.Collect(generation);
+                //axFramerControl1 = null;
+                try
+                {
+                    Application.DoEvents();
+                    File.Delete(fileName);
+                }
+                catch { }
             }
         }
         /// <summary>
