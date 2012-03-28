@@ -3421,11 +3421,11 @@ namespace Ebada.Scgl.Lcgl
                     
                     dockPanel1.ControlContainer.Controls.Clear();
                     templeList.Clear();
-                    string strfilename = dsoFramerWordControl1.fileName;
+                    //string strfilename = dsoFramerWordControl1.fileName;
                     dsoFramerWordControl1.FileSave();
                     dsoFramerWordControl1.FileClose();
                     dsoFramerWordControl1.Dispose();
-                    SelectorHelper.Execute("del /f/s/q \"" + strfilename+"\"", 500);
+                    //SelectorHelper.Execute("del /f/s/q \"" + strfilename+"\"", 500);
                     dsoFramerWordControl1 = null;
                     currRecord = null;
                 }
