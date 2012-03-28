@@ -121,7 +121,7 @@ namespace Ebada.Scgl.Core {
                 {
                     IList<ViewGds> list = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
                     IList<DicType> dic = new List<DicType>();
-                    dic.Add(new DicType("0", "所有供电所"));
+                    dic.Add(new DicType("001", "全局"));
                     foreach (ViewGds gds in list)
                     {
                         dic.Add(new DicType(gds.OrgCode, gds.OrgName));
