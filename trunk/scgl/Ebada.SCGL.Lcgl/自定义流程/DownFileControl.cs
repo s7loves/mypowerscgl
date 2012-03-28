@@ -661,39 +661,43 @@ namespace Ebada.Scgl.Lcgl
      
         private void DownFileControl_Load(object sender, EventArgs e)
         {
-            if (fjtable == null)
+            try
             {
-                fjtable = new DataTable();
-                fjtable.Columns.Add("FileName", typeof(string));
-                fjtable.Columns.Add("SaveFileName", typeof(string));
-                fjtable.Columns.Add("DelBut", typeof(string));
-                fjtable.Columns.Add("DownBut", typeof(string));
-                fjtable.Columns.Add("Progress", typeof(string));
-                fjtable.Columns.Add("FilePath", typeof(string));
-                fjtable.Columns.Add("SlectFile", typeof(Boolean));
-                fjtable.Columns.Add("Kind", typeof(string));
-                fjtable.Columns.Add("FileSize", typeof(string));
+                if (fjtable == null)
+                {
+                    fjtable = new DataTable();
+                    fjtable.Columns.Add("FileName", typeof(string));
+                    fjtable.Columns.Add("SaveFileName", typeof(string));
+                    fjtable.Columns.Add("DelBut", typeof(string));
+                    fjtable.Columns.Add("DownBut", typeof(string));
+                    fjtable.Columns.Add("Progress", typeof(string));
+                    fjtable.Columns.Add("FilePath", typeof(string));
+                    fjtable.Columns.Add("SlectFile", typeof(Boolean));
+                    fjtable.Columns.Add("Kind", typeof(string));
+                    fjtable.Columns.Add("FileSize", typeof(string));
+                }
+                fjgridControl.DataSource = fjtable;
+                if (formtype == "下载")
+                {
+                    this.toolTip1.SetToolTip(this.fjgridControl, "双击可以打开文件");
+
+                }
+                upfileurl = Config.LoadConfig(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConstFile.FILENAME)).UpfileUrl;
+                DevExpress.Data.CurrencyDataController.DisableThreadingProblemsDetection = true;
+                upfilelist = new List<string>();
+                downfilelist = new List<string>();
+                upcomEvent = new AutoResetEvent(false);
+                downcomEvent = new AutoResetEvent(false);
+                //upfileurl = "http://localhost/ScglUpFileService/UpFileHandler.ashx";
+                int i = upfileurl.LastIndexOf("/");
+                downfileurl = upfileurl.Substring(0, i + 1);
+                downFileFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "工作流附件\\" + upfilePath) + "\\";
+                SelectorHelper.EnableFilePathExit(downFileFolder);
+                iupcount = 0;
+                iniColoumn();
+                iniData();
             }
-            fjgridControl.DataSource= fjtable;
-            if (formtype == "下载")
-            {
-                this.toolTip1.SetToolTip(this.fjgridControl, "双击可以打开文件");
-            
-            }
-            upfileurl = Config.LoadConfig(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConstFile.FILENAME)).UpfileUrl;
-            DevExpress.Data.CurrencyDataController.DisableThreadingProblemsDetection = true;
-            upfilelist = new List<string>();
-            downfilelist = new List<string>();
-            upcomEvent = new AutoResetEvent(false);
-            downcomEvent = new AutoResetEvent(false);
-            //upfileurl = "http://localhost/ScglUpFileService/UpFileHandler.ashx";
-            int i = upfileurl.LastIndexOf("/");
-            downfileurl= upfileurl.Substring(0, i + 1);
-            downFileFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "工作流附件\\" + upfilePath)+"\\";
-            SelectorHelper.EnableFilePathExit(downFileFolder);
-            iupcount = 0;
-            iniColoumn();
-            iniData();
+            catch { }
         }
 
         private void repositoryItemHyperLinkEdit2_Click(object sender, EventArgs e)
