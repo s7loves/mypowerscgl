@@ -13,38 +13,44 @@
         <result property="gzrjID" column="gzrjID" />
         <result property="CreateMan" column="CreateMan" />
         <result property="CreateDate" column="CreateDate" />
+         <result property="bszz" column="bszz" />
+        <result property="fzcs" column="fzcs" />
         <result property="BigData" column="BigData" />
       </resultMap>
   </resultMaps>
 
   <statements>
    <select id="SelectPJ_25List" resultMap="PJ_25_AllColumns" parameterClass="string">
-        SELECT 
-         [ID],
-         [ParentID],
-         [cqdw],
-         [qdrq],
-         [Remark],
-         [gzrjID],
-         [CreateMan],
-         [CreateDate],
-         [BigData]
-          FROM PJ_25
-          $value$
+     SELECT
+     [ID],
+     [ParentID],
+     [cqdw],
+     [qdrq],
+     [Remark],
+     [gzrjID],
+     [CreateMan],
+     [CreateDate],
+     [bszz],
+     [fzcs],
+     [BigData]
+     FROM PJ_25
+     $value$
    </select>
    
    <select id="SelectPJ_25ByHash" parameterClass="Hashtable">
-         SELECT 
-         [ID],
-         [ParentID],
-         [cqdw],
-         [qdrq],
-         [Remark],
-         [gzrjID],
-         [CreateMan],
-         [CreateDate],
-         [BigData]
-          FROM PJ_25
+     SELECT
+     [ID],
+     [ParentID],
+     [cqdw],
+     [qdrq],
+     [Remark],
+     [gzrjID],
+     [CreateMan],
+     [CreateDate],
+     [bszz],
+     [fzcs],
+     [BigData]
+     FROM PJ_25
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
@@ -54,23 +60,27 @@
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[bszz]='$bszz$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[fzcs]='$fzcs$'</isNotNull>
        <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_25ByKey" resultMap="PJ_25_AllColumns" parameterClass="PJ_25">
-         SELECT 
-         [ID],
-         [ParentID],
-         [cqdw],
-         [qdrq],
-         [Remark],
-         [gzrjID],
-         [CreateMan],
-         [CreateDate],
-         [BigData]
-         FROM PJ_25
-         WHERE 
-           ID = #ID#
+     SELECT
+     [ID],
+     [ParentID],
+     [cqdw],
+     [qdrq],
+     [Remark],
+     [gzrjID],
+     [CreateMan],
+     [CreateDate],
+     [bszz],
+     [fzcs],
+     [BigData]
+     FROM PJ_25
+     WHERE
+     ID = #ID#
 
    </select>
  
@@ -95,46 +105,52 @@
    </delete>
    
    <update id="UpdatePJ_25" parameterClass="PJ_25" resultClass="int">
-          UPDATE PJ_25
-           SET
-             [ParentID]=#ParentID#,
-             [cqdw]=#cqdw#,
-             [qdrq]=#qdrq#,
-             [Remark]=#Remark#,
-             [gzrjID]=#gzrjID#,
-             [CreateMan]=#CreateMan#,
-             [CreateDate]=#CreateDate#,
-             [BigData]=#BigData#
-            WHERE 
-              ID = #ID#
+     UPDATE PJ_25
+     SET
+     [ParentID]=#ParentID#,
+     [cqdw]=#cqdw#,
+     [qdrq]=#qdrq#,
+     [Remark]=#Remark#,
+     [gzrjID]=#gzrjID#,
+     [CreateMan]=#CreateMan#,
+     [CreateDate]=#CreateDate#,
+     [bszz]=#bszz#,
+     [fzcs]=#fzcs#,
+     [BigData]=#BigData#
+     WHERE
+     ID = #ID#
 
    </update>
   
    <insert id="InsertPJ_25" parameterClass="PJ_25">
-        INSERT INTO PJ_25
-         (
-         [ID],
-         [ParentID],
-         [cqdw],
-         [qdrq],
-         [Remark],
-         [gzrjID],
-         [CreateMan],
-         [CreateDate],
-         [BigData]
-         )
-       VALUES
-         (
-         #ID#,
-         #ParentID#,
-         #cqdw#,
-         #qdrq#,
-         #Remark#,
-         #gzrjID#,
-         #CreateMan#,
-         #CreateDate#,
-         #BigData#
-         )
+     INSERT INTO PJ_25
+     (
+     [ID],
+     [ParentID],
+     [cqdw],
+     [qdrq],
+     [Remark],
+     [gzrjID],
+     [CreateMan],
+     [CreateDate],
+     [bszz],
+     [fzcs],
+     [BigData]
+     )
+     VALUES
+     (
+     #ID#,
+     #ParentID#,
+     #cqdw#,
+     #qdrq#,
+     #Remark#,
+     #gzrjID#,
+     #CreateMan#,
+     #CreateDate#,
+     #bszz#,
+     #fzcs#,
+     #BigData#
+     )
 
    </insert>
    
@@ -150,6 +166,8 @@
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[bszz]='$bszz$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[fzcs]='$fzcs$'</isNotNull>
        <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
      </dynamic>
 
