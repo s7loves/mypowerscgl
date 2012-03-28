@@ -133,48 +133,48 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
-            Microsoft.Office.Interop.Excel.Workbook wb;
-            if (rowData.BigData==null||rowData.BigData.Length == 0)
-            {
-                string fname = Application.StartupPath + "\\00记录模板\\25双自备电源协议书.xls";
-                dsoFramerControl1.FileOpen(fname);
-            }
-            else
-                dsoFramerControl1.FileData = rowData.BigData;
-            IList<PJ_25zbdymx> list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='"+rowData.ID+"'and Type='发电机'");
-            IList<PJ_25zbdymx> list1 = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='"+rowData.ID+"'and Type='原动机'");
-            wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-            ExcelAccess ea = new ExcelAccess();
-            ea.MyWorkBook = wb;
-            ea.MyExcel = wb.Application;
-            ea.SetCellValue("乙 方："+comboBoxEdit1.Text, 5, 1);
-            ea.SetCellValue(rowData.qdrq.Year.ToString(), 42, 6);
-            ea.SetCellValue(rowData.qdrq.Month.ToString(), 42, 8);
-            ea.SetCellValue(rowData.qdrq.Day.ToString(), 42, 10);
-            for (int i = 0; i < list.Count;i++ )
-            {
-                ea.SetCellValue(list[i].xh, 26 + i, 1);
-                ea.SetCellValue(list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 2);
-                ea.SetCellValue(list[i].dy.ToString(), 26 + i,3);
-                ea.SetCellValue(list[i].azrq.ToString(), 26 + i,4);
-                ea.SetCellValue(list[i].sccj, 26 + i, 5);
-            }
-            for (int i = 0; i < list1.Count; i++)
-            {
-                ea.SetCellValue(list[i].xh, 26 + i, 8);
-                ea.SetCellValue(list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 11);
-                ea.SetCellValue(list[i].dy.ToString(), 26 + i,12);
-                ea.SetCellValue(list[i].azrq.ToString("yyyy-MM-dd"), 26 + i,13);
-                ea.SetCellValue(list[i].sccj, 26 + i,14);
-            }
-            ea.SetCellValue(rowData.bszz, 30, 2);
-            ea.SetCellValue(rowData.fzcs, 31, 2);
-            dsoFramerControl1.FileSave();
-            rowData.BigData = dsoFramerControl1.FileData;
-            dsoFramerControl1.FileClose();
-            dsoFramerControl1.Dispose();
-            dsoFramerControl1 = null;
+            //DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+            //Microsoft.Office.Interop.Excel.Workbook wb;
+            ////if (rowData.BigData==null||rowData.BigData.Length == 0)
+            ////{
+            //    string fname = Application.StartupPath + "\\00记录模板\\25双自备电源协议书.xls";
+            //    dsoFramerControl1.FileOpen(fname);
+            ////}
+            ////else
+            //    //dsoFramerControl1.FileData = rowData.BigData;
+            //IList<PJ_25zbdymx> list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='"+rowData.ID+"'and Type='发电机'");
+            //IList<PJ_25zbdymx> list1 = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='"+rowData.ID+"'and Type='原动机'");
+            //wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            //ExcelAccess ea = new ExcelAccess();
+            //ea.MyWorkBook = wb;
+            //ea.MyExcel = wb.Application;
+            //ea.SetCellValue("乙 方："+comboBoxEdit1.Text, 5, 1);
+            //ea.SetCellValue(rowData.qdrq.Year.ToString(), 42, 6);
+            //ea.SetCellValue(rowData.qdrq.Month.ToString(), 42, 8);
+            //ea.SetCellValue(rowData.qdrq.Day.ToString(), 42, 10);
+            //for (int i = 0; i < list.Count;i++ )
+            //{
+            //    ea.SetCellValue(list[i].xh, 26 + i, 1);
+            //    ea.SetCellValue("'" + list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 2);
+            //    ea.SetCellValue(list[i].dy.ToString(), 26 + i,3);
+            //    ea.SetCellValue(list[i].azrq.ToString("yyyy-MM-dd"), 26 + i,4);
+            //    ea.SetCellValue(list[i].sccj, 26 + i, 5);
+            //}
+            //for (int i = 0; i < list1.Count; i++)
+            //{
+            //    ea.SetCellValue(list[i].xh, 26 + i, 8);
+            //    ea.SetCellValue("'" + list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 11);
+            //    ea.SetCellValue(list[i].dy.ToString(), 26 + i,12);
+            //    ea.SetCellValue(list[i].azrq.ToString("yyyy-MM-dd"), 26 + i,13);
+            //    ea.SetCellValue(list[i].sccj, 26 + i,14);
+            //}
+            //ea.SetCellValue(rowData.bszz, 30, 2);
+            //ea.SetCellValue(rowData.fzcs, 31, 2);
+            //dsoFramerControl1.FileSave();
+            //rowData.BigData = dsoFramerControl1.FileData;
+            //dsoFramerControl1.FileClose();
+            //dsoFramerControl1.Dispose();
+            //dsoFramerControl1 = null;
         }
 
       
