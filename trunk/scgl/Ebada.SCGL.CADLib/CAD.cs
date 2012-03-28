@@ -23,6 +23,9 @@ namespace Ebada.SCGL.CADLib
 
         FlashWindow f = new FlashWindow();
         string color_str = "#0000FF";//线条颜色
+        int zoom = 1000;             //放大比例
+
+        AcadApplication cad;
         /// <summary>
         /// 导出线路到CAD
         /// </summary>
@@ -31,7 +34,7 @@ namespace Ebada.SCGL.CADLib
         {
             try
             {
-                AcadApplication cad;
+                
                 f.SetText("处理中请等待......");
                 f.Show();
                 cad = AutoCADConnector();
@@ -77,7 +80,6 @@ namespace Ebada.SCGL.CADLib
         {
             try
             {
-                AcadApplication cad;
                 f.SetText("处理中请等待......");
                 f.Show();
                 cad = AutoCADConnector();
@@ -141,6 +143,8 @@ namespace Ebada.SCGL.CADLib
             {
                 if (gt.gtLat != 0 && gt.gtLon != 0)
                 {
+                    gt.gtLat = gt.gtLat * zoom;
+                    gt.gtLon = gt.gtLon * zoom;
                     newlist.Add(gt);
                 }
             }
@@ -213,7 +217,20 @@ namespace Ebada.SCGL.CADLib
         /// <param name="points"></param>
         /// <param name="color"></param>
         public void drawLines(PointF[] points, Color color) {
-
+            double[] col = new double[points.Length * 3];
+            for (int i = 0; i < points.Length; i++)
+            {
+                col[i * 3 + 0]=points[i].X;
+                col[i * 3 + 1] = points[i].Y;
+                col[i * 3 + 2] = 0;
+            }
+            AcadPolyline ple = cad.ActiveDocument.ModelSpace.AddPolyline(col);
+            ple.ConstantWidth = 0;
+            ple.Layer = "line";
+            AcadAcCmColor color2 = (AcadAcCmColor)cad.ActiveDocument.Application.GetInterfaceObject("AutoCAD.AcCmColor.17");
+            color2.SetRGB(color.R, color.G, color.B);
+            ple.TrueColor = color2;
+            cad.Application.Update();
         }
         /// <summary>
         /// 画文本
@@ -222,7 +239,20 @@ namespace Ebada.SCGL.CADLib
         /// <param name="points"></param>
         /// <param name="color"></param>
         public void drawTexts(String[] texts, PointF[] points, Color color) {
-
+            for (int i = 0; i < texts.Length; i++)
+            {
+                double[] pnt = new double[3];
+                pnt[0] = points[i].X;
+                pnt[1] = points[i].Y;
+                pnt[2] = 0;
+                AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 1, texts[i]);
+                ntext.Height = 0.0001;
+                ntext.Layer = "gth";
+                AcadAcCmColor color2 = (AcadAcCmColor)cad.ActiveDocument.Application.GetInterfaceObject("AutoCAD.AcCmColor.17");
+                color2.SetRGB(color.R, color.G, color.B);
+                ntext.TrueColor = color2;
+                cad.Application.Update();
+            }
         }
         /// <summary>
         /// 画矩形
@@ -230,7 +260,19 @@ namespace Ebada.SCGL.CADLib
         /// <param name="rectf"></param>
         /// <param name="color"></param>
         public void drawRects(RectangleF[] rects, Color color) {
-
+            for (int i = 0; i < rects.Length; i++)
+            {
+                double[] pnt = new double[3];               
+                pnt[0] = rects[i].Location.X;
+                pnt[1] = rects[i].Location.Y;
+                pnt[2] = 0;
+                Acad3DSolid ntext = cad.ActiveDocument.ModelSpace.AddBox(pnt,0, rects[i].Width, rects[i].Height);
+                ntext.Layer = "line";
+                AcadAcCmColor color2 = (AcadAcCmColor)cad.ActiveDocument.Application.GetInterfaceObject("AutoCAD.AcCmColor.17");
+                color2.SetRGB(color.R, color.G, color.B);
+                ntext.TrueColor = color2;
+                cad.Application.Update();
+            }
         }
         /// <summary>
         /// 画填充矩形
@@ -246,7 +288,19 @@ namespace Ebada.SCGL.CADLib
         /// <param name="rectf"></param>
         /// <param name="color"></param>
         public void drawCircles(RectangleF[] rects, Color color) {
-
+            for (int i = 0; i < rects.Length; i++)
+            {
+                double[] pnt = new double[3];
+                pnt[0] = rects[i].Location.X + rects[i].Width / 2;
+                pnt[1] = rects[i].Location.Y + rects[i].Height / 2;
+                pnt[2] = 0;
+                AcadCircle cir = cad.ActiveDocument.ModelSpace.AddCircle(pnt, rects[i].Width/2);
+                cir.Layer = "line";
+                AcadAcCmColor color2 = (AcadAcCmColor)cad.ActiveDocument.Application.GetInterfaceObject("AutoCAD.AcCmColor.17");
+                color2.SetRGB(color.R, color.G, color.B);
+                cir.TrueColor = color2;
+                cad.Application.Update();
+            }
         }
         /// <summary>
         /// 画块(块在此类中内部定义方法)
