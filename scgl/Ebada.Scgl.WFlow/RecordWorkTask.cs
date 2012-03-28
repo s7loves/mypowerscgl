@@ -989,7 +989,7 @@ namespace Ebada.Scgl.WFlow
                     {
                         if (HaveRunPowerRole(WorkConst.WorkTask_BindTable, workflowId,  worktaskId))
                         {
-                            iniTableRecordData(ref  tp, record, workflowId, workFlowInsId);
+                            //iniTableRecordData(ref  tp, record, workflowId, workFlowInsId);
                         }
                         return tp;
                     }
