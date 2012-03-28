@@ -649,6 +649,24 @@
     <Compile Include="25双%28自备%29电源协议书\UCPJ_25.Designer.cs">
       <DependentUpon>UCPJ_25.cs</DependentUpon>
     </Compile>
+    <Compile Include="25双%28自备%29电源协议书\UCPJ_25main.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\UCPJ_25main.Designer.cs">
+      <DependentUpon>UCPJ_25main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\UCPJ_25zbdymx .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\UCPJ_25zbdymx .Designer.cs">
+      <DependentUpon>UCPJ_25zbdymx .cs</DependentUpon>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\frm25zbdymxEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="25双%28自备%29电源协议书\frm25zbdymxEdit.Designer.cs">
+      <DependentUpon>frm25zbdymxEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="26电力线路防护通知书\Export26.cs" />
     <Compile Include="26电力线路防护通知书\frm26Edit.cs">
       <SubType>Form</SubType>
@@ -1030,6 +1048,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="25双%28自备%29电源协议书\UCPJ_25.resx">
       <DependentUpon>UCPJ_25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="25双%28自备%29电源协议书\UCPJ_25main.resx">
+      <DependentUpon>UCPJ_25main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="25双%28自备%29电源协议书\UCPJ_25zbdymx .resx">
+      <DependentUpon>UCPJ_25zbdymx .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="25双%28自备%29电源协议书\frm25zbdymxEdit.resx">
+      <DependentUpon>frm25zbdymxEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="26电力线路防护通知书\frm26Edit.resx">

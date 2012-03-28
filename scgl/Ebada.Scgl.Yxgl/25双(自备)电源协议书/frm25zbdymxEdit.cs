@@ -15,21 +15,25 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Yxgl
 {
-    public partial class frm25Edit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_25> m_CityDic = new SortableSearchableBindingList<PJ_25>();
+    public partial class frm25zbdymxEdit : FormBase, IPopupFormEdit {
+        SortableSearchableBindingList<PJ_25zbdymx> m_CityDic = new SortableSearchableBindingList<PJ_25zbdymx>();
 
-        public frm25Edit() {
+        public frm25zbdymxEdit()
+        {
             InitializeComponent();
         }
         void dataBind() {
 
 
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "cqdw");
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "qdrq");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "bszz");
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "fzcs");
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "Type");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "azrq");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "xh");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dy");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gl");
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "ts");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "sccj");
+
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -37,20 +41,23 @@ namespace Ebada.Scgl.Yxgl
 
         }
         #region IPopupFormEdit Members
-        private PJ_25 rowData = null;
+        private PJ_25zbdymx rowData = null;
 
         public object RowData {
             get {
+                rowData.dy = Convert.ToInt32(comboBoxEdit4.EditValue);
+                rowData.gl = Convert.ToDouble(comboBoxEdit5.EditValue);
+                rowData.ts = Convert.ToInt32(comboBoxEdit6.EditValue);
                 return rowData;
             }
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_25;
+                    this.rowData = value as PJ_25zbdymx;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_25>(value as PJ_25, rowData);
+                    ConvertHelper.CopyTo<PJ_25zbdymx>(value as PJ_25zbdymx, rowData);
                 }
             }
         }
@@ -58,6 +65,10 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
+
+            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "一次电压", comboBoxEdit4.Properties);
+            
+            
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_25>(" WHERE Citylevel = '2'"));
           /*  IList<DicType> list = new List<DicType>();
@@ -133,48 +144,17 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
-            Microsoft.Office.Interop.Excel.Workbook wb;
-            if (rowData.BigData==null||rowData.BigData.Length == 0)
-            {
-                string fname = Application.StartupPath + "\\00记录模板\\25双自备电源协议书.xls";
-                dsoFramerControl1.FileOpen(fname);
-            }
-            else
-                dsoFramerControl1.FileData = rowData.BigData;
-            IList<PJ_25zbdymx> list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='"+rowData.ID+"'and Type='发电机'");
-            IList<PJ_25zbdymx> list1 = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='"+rowData.ID+"'and Type='原动机'");
-            wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-            ExcelAccess ea = new ExcelAccess();
-            ea.MyWorkBook = wb;
-            ea.MyExcel = wb.Application;
-            ea.SetCellValue("乙 方："+comboBoxEdit1.Text, 5, 1);
-            ea.SetCellValue(rowData.qdrq.Year.ToString(), 42, 6);
-            ea.SetCellValue(rowData.qdrq.Month.ToString(), 42, 8);
-            ea.SetCellValue(rowData.qdrq.Day.ToString(), 42, 10);
-            for (int i = 0; i < list.Count;i++ )
-            {
-                ea.SetCellValue(list[i].xh, 26 + i, 1);
-                ea.SetCellValue(list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 2);
-                ea.SetCellValue(list[i].dy.ToString(), 26 + i,3);
-                ea.SetCellValue(list[i].azrq.ToString(), 26 + i,4);
-                ea.SetCellValue(list[i].sccj, 26 + i, 5);
-            }
-            for (int i = 0; i < list1.Count; i++)
-            {
-                ea.SetCellValue(list[i].xh, 26 + i, 8);
-                ea.SetCellValue(list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 11);
-                ea.SetCellValue(list[i].dy.ToString(), 26 + i,12);
-                ea.SetCellValue(list[i].azrq.ToString("yyyy-MM-dd"), 26 + i,13);
-                ea.SetCellValue(list[i].sccj, 26 + i,14);
-            }
-            ea.SetCellValue(rowData.bszz, 30, 2);
-            ea.SetCellValue(rowData.fzcs, 31, 2);
-            dsoFramerControl1.FileSave();
-            rowData.BigData = dsoFramerControl1.FileData;
-            dsoFramerControl1.FileClose();
-            dsoFramerControl1.Dispose();
-            dsoFramerControl1 = null;
+
+        }
+
+        private void comboBoxEdit6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelControl5_Click(object sender, EventArgs e)
+        {
+
         }
 
       

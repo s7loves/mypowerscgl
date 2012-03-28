@@ -204,13 +204,62 @@ namespace Ebada.Scgl.Yxgl
 
         private void spinEdit1_Properties_EditValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(spinEdit2.EditValue.ToString())&&Convert.ToInt32(spinEdit2.EditValue)!=0)
+            switch (Convert.ToInt32(spinEdit1.EditValue))
             {
-                spinEdit4.EditValue = Convert.ToInt32(spinEdit1.EditValue) / Convert.ToInt32(spinEdit2.EditValue) * 0.6;
-            }
-            if (!string.IsNullOrEmpty(spinEdit3.EditValue.ToString()) && Convert.ToInt32(spinEdit3.EditValue) != 0)
-            {
-                spinEdit5.EditValue = Convert.ToInt32(spinEdit1.EditValue) / Convert.ToInt32(spinEdit3.EditValue) * 0.6;
+            case 10 :
+                    spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(0.58);
+                    spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(14.4);
+            	break;
+            case 20:
+                spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal( 1.15);
+                spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(28.8);
+                
+                break;
+            case 30:
+                spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(1.73);
+                spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(43.3);
+                
+                break;
+            case 50:
+                spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(2.89);
+                spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(72.1);
+               
+                break;
+            case 63:
+                spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(3.64);
+                spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(90.9);
+               
+                break;
+            case 80:
+                spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(4.62);
+                spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(115.5);
+               
+                break;
+            case 100:
+                spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(5.77);
+                spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(144.3);
+                
+                break;
+            case 125:
+                spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(7.22);
+                spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(180.4);
+               
+                break;
+            case 160:
+                spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(9.24);
+                spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(230.9);
+               
+                break;
+            case 200:
+                spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(11.54);
+                spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(288.7);
+                
+                break;
+            case 315:
+                spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(18.19);
+                spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(454.7);
+               
+                break;
             }
         }
     
