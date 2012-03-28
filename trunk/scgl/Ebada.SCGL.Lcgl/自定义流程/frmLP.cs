@@ -320,7 +320,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else
                 {
-                    if (GetWorkFlowNmae(kind).IndexOf("电力线路") == -1 && currRecord.DocContent != null && currRecord.DocContent.Length>0) this.dsoFramerWordControl1.FileDataGzip =currRecord.DocContent ;
+                    if (GetWorkFlowNmae(kind).IndexOf("电力线路") >-1 && currRecord.DocContent != null && currRecord.DocContent.Length>0) this.dsoFramerWordControl1.FileDataGzip =currRecord.DocContent ;
                     else
                         this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
                 }
@@ -3047,7 +3047,7 @@ namespace Ebada.Scgl.Lcgl
                     //    ((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
                     if (li.Count > 0 && sqlSentence != "")
                     {
-                        ((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
+                        //((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
                         Control bttip = FindCtrl("bt" + lp.LPID);
                         if (bttip != null)
                         {
@@ -3061,7 +3061,7 @@ namespace Ebada.Scgl.Lcgl
                 case "DevExpress.XtraEditors.SpinEdit":
                     if (li.Count > 0 && sqlSentence != "")
                     {
-                        ((DevExpress.XtraEditors.SpinEdit)ctrl).Text = li[0].ToString();
+                        //((DevExpress.XtraEditors.SpinEdit)ctrl).Text = li[0].ToString();
                         Control bttip = FindCtrl("bt" + lp.LPID);
                         if (bttip != null)
                         {
@@ -3181,8 +3181,8 @@ namespace Ebada.Scgl.Lcgl
                     }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
-                    if (li.Count > 0 && sqlSentence != "")
-                        ((DevExpress.XtraEditors.DateEdit)ctrl).Text = li[0].ToString();
+                    //if (li.Count > 0 && sqlSentence != "")
+                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).Text = li[0].ToString();
                     //((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";          
                     //string[] arrCellPos = lp.CellPos.Split(pchar);
                     //if (arrCellPos.Length == 5)
@@ -3198,7 +3198,7 @@ namespace Ebada.Scgl.Lcgl
                     //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
                     //    ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd";
                     //}
-                    ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
+                    //((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
 
                     if (lp.WordCount != "" && lp.WordCount.IndexOf("|") == -1)
                     {
@@ -3213,12 +3213,12 @@ namespace Ebada.Scgl.Lcgl
                     }
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
-                    if (li.Count > 0 && sqlSentence != "")
-                        ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
+                    //if (li.Count > 0 && sqlSentence != "")
+                    //    ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
 
                     if (li.Count > 0 && sqlSentence != "")
                     {
-                        ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
+                        //((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
                         Control bttip = FindCtrl("bt" + lp.LPID);
                         if (bttip != null)
                         {
