@@ -61,6 +61,7 @@ namespace Ebada.Scgl.Yxgl
                 if (rowData == null) {
                     this.rowData = value as PS_tqbyq;
                     this.InitComboBoxData();
+                  
                     dataBind();
                 } else {
                     ConvertHelper.CopyTo<PS_tqbyq>(value as PS_tqbyq, rowData);
@@ -71,9 +72,14 @@ namespace Ebada.Scgl.Yxgl
                     rowData.byqMadeDate = DateTime.Now;
                     rowData.InDate = DateTime.Now;
                 }
+                setcombox4(rowData.tqID);
             }
         }
-
+        private void setcombox4(string tqid)
+        {
+            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqid='" +tqid + "'");
+            comboBoxEdit4.Text = tq.tqName;
+        }
         #endregion
 
         private void InitComboBoxData() {
