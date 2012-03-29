@@ -1548,7 +1548,7 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
             }
-
+            currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
             workFlowFormShow(currRecord);
         }
 

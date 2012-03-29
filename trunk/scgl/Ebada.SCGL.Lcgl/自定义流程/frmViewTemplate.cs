@@ -254,6 +254,8 @@ namespace Ebada.Scgl.Lcgl
                     InitContorl();
                     if (currRecord.ID.IndexOf("N") == -1)
                     {
+                        if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1 && currRecord.DocContent != null && currRecord.DocContent.Length > 0) this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                        else
                         this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                     }
                     else
