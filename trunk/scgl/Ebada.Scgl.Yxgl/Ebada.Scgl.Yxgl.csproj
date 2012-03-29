@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -215,6 +215,12 @@
     <Compile Include="06设备巡视及缺陷消除\frmXSQD.Designer.cs">
       <DependentUpon>frmXSQD.cs</DependentUpon>
     </Compile>
+    <Compile Include="06设备巡视及缺陷消除\UCPJ_06sbxs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\UCPJ_06sbxs.Designer.cs">
+      <DependentUpon>UCPJ_06sbxs.cs</DependentUpon>
+    </Compile>
     <Compile Include="06设备巡视及缺陷消除\UCXSQD.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -226,6 +232,18 @@
     </Compile>
     <Compile Include="06设备巡视及缺陷消除\frmxsDialog.Designer.cs">
       <DependentUpon>frmxsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\UCPJ_06sbxsmx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\UCPJ_06sbxsmx.Designer.cs">
+      <DependentUpon>UCPJ_06sbxsmx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\frm06sbxsmxEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="06设备巡视及缺陷消除\frm06sbxsmxEdit.Designer.cs">
+      <DependentUpon>frm06sbxsmxEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="07接地装置检测\Export07.cs" />
     <Compile Include="07接地装置检测\frm07JDZZEdit.cs">
@@ -774,12 +792,24 @@
       <DependentUpon>frmXSQD.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="06设备巡视及缺陷消除\UCPJ_06sbxs.resx">
+      <DependentUpon>UCPJ_06sbxs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="06设备巡视及缺陷消除\UCXSQD.resx">
       <DependentUpon>UCXSQD.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="06设备巡视及缺陷消除\frmxsDialog.resx">
       <DependentUpon>frmxsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="06设备巡视及缺陷消除\UCPJ_06sbxsmx.resx">
+      <DependentUpon>UCPJ_06sbxsmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="06设备巡视及缺陷消除\frm06sbxsmxEdit.resx">
+      <DependentUpon>frm06sbxsmxEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="07接地装置检测\frm07JDZZEdit.resx">
@@ -1108,8 +1138,8 @@
       <DependentUpon>UCPJ_04sgzayc.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="06设备巡视及缺陷消除\UCPJ_06sbxs.resx">
-      <DependentUpon>UCPJ_06sbxs.cs</DependentUpon>
+    <EmbeddedResource Include="06设备巡视及缺陷消除\UCPJ_06sbxsmain.resx">
+      <DependentUpon>UCPJ_06sbxsmain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="07接地装置检测\UCPJ_07jdzz.resx">
@@ -1261,11 +1291,11 @@
     <Compile Include="04事故障碍异常\UCPJ_04sgzayc.Designer.cs">
       <DependentUpon>UCPJ_04sgzayc.cs</DependentUpon>
     </Compile>
-    <Compile Include="06设备巡视及缺陷消除\UCPJ_06sbxs.cs">
+    <Compile Include="06设备巡视及缺陷消除\UCPJ_06sbxsmain.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="06设备巡视及缺陷消除\UCPJ_06sbxs.Designer.cs">
-      <DependentUpon>UCPJ_06sbxs.cs</DependentUpon>
+    <Compile Include="06设备巡视及缺陷消除\UCPJ_06sbxsmain.Designer.cs">
+      <DependentUpon>UCPJ_06sbxsmain.cs</DependentUpon>
     </Compile>
     <Compile Include="07接地装置检测\UCPJ_07jdzz.cs">
       <SubType>UserControl</SubType>
