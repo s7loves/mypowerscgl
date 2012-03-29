@@ -64,9 +64,9 @@
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.AutoScroll = true;
-            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 24);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(467, 460);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(467, 459);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // dsoFramerWordControl1

@@ -245,6 +245,11 @@
     <Compile Include="22报修服务修理票实例\UCPJ_22.Designer.cs">
       <DependentUpon>UCPJ_22.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="人事档案\Exportrsda.cs" />
     <Compile Include="人事档案\frmrsdaTemplate.cs">
       <SubType>Form</SubType>
@@ -3551,6 +3556,11 @@
       <DependentUpon>UCPJ_22.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="人事档案\frmrsdaTemplate.resx">
       <DependentUpon>frmrsdaTemplate.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -3792,6 +3802,9 @@
       <DependentUpon>frmViewTemplate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\删除.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
