@@ -624,6 +624,8 @@ namespace Ebada.Scgl.Lcgl
                 }
                 InitEvent();
                 InitData();
+            }
+            catch { }
                 if (RecordWorkTask.HaveRunSPYJRole(kind))
                 {
                     if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
@@ -683,8 +685,6 @@ namespace Ebada.Scgl.Lcgl
                     btn_Back.Text = "保存";
 
                 }
-            }
-            catch { }
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
@@ -1013,6 +1013,8 @@ namespace Ebada.Scgl.Lcgl
 
                 dsoFramerWordControl1.FileSave();
                 currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+                if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
                 if (wfv == null)
                 {
                     wfv = new WF_TableFieldValue();
