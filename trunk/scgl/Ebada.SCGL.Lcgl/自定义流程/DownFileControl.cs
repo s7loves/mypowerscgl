@@ -789,7 +789,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                 }
             }
-            
+            if (iupcount == 0) isupfile = false;
         }
 
         private void downfileButton_Click(object sender, EventArgs e)

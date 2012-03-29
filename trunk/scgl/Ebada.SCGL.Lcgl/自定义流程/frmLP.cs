@@ -197,8 +197,11 @@ namespace Ebada.Scgl.Lcgl
                 sheet.Move(Type.Missing, wb.Application.Sheets[activeSheetIndex]);
             }
 
-
-            ea.ActiveSheet(activeSheetName);
+            try
+            {
+                ea.ActiveSheet(activeSheetName);
+            }
+            catch { }
 
         }
         protected void Workbook_SheetDeactivate(object Sh)
@@ -626,6 +629,8 @@ namespace Ebada.Scgl.Lcgl
                 InitData();
             }
             catch { }
+            try
+            {
                 if (RecordWorkTask.HaveRunSPYJRole(kind))
                 {
                     if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
@@ -685,6 +690,8 @@ namespace Ebada.Scgl.Lcgl
                     btn_Back.Text = "保存";
 
                 }
+            }
+            catch { }
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
@@ -1306,11 +1313,18 @@ namespace Ebada.Scgl.Lcgl
                         unLockExcel(wb, xx);
                         activeSheetName = tfvli[i].ExcelSheetName;
                         activeSheetIndex = xx.Index;
-                        ea.ActiveSheet(xx.Index);
+                        try
+                        {
+                            ea.ActiveSheet(xx.Index);
+                        }
+                        catch { }
                     }
 
-                    ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
-
+                    try
+                    {
+                        ea.SetCellValue(tfvli[i].ControlValue, tfvli[i].XExcelPos, tfvli[i].YExcelPos);
+                    }
+                    catch { }
                 }
                 LockExcel(wb, xx);
             }
@@ -1366,7 +1380,11 @@ namespace Ebada.Scgl.Lcgl
                 activeSheetIndex = sheet.Index;
                 activeSheetName = sheet.Name;
             }
-            ea.ActiveSheet(activeSheetIndex);
+            try
+            {
+                ea.ActiveSheet(activeSheetIndex);
+            }
+            catch { }
             unLockExcel(wb, sheet);
             if (lp.CtrlType.Contains("uc_gridcontrol"))
             { FillTable(ea, lp, (ctrl as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar)))); return; }
@@ -1382,7 +1400,11 @@ namespace Ebada.Scgl.Lcgl
             List<int> arrCellCount = String2Int(arrtemp);
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
             {
-                if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                try
+                {
+                    if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                }
+                catch { }
                 if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos))
                 {
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
@@ -1415,8 +1437,12 @@ namespace Ebada.Scgl.Lcgl
                         if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]))
                         {
                             string strNew = str.Substring(0, (str.Length > 0 ? str.Length : 1) - 1) + (j + 1).ToString();
-                            if (lp.isExplorer == 0) ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
-                            if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[j]))
+                            try
+                            {
+                                if (lp.isExplorer == 0) ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                            }
+                            catch { }
+                                if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[j]))
                             {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
                                 tfv.ControlValue = str;
@@ -1446,8 +1472,12 @@ namespace Ebada.Scgl.Lcgl
                 {
                     if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
                     {
-                        if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
-                        if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
+                        try
+                        {
+                            if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        }
+                        catch { }
+                            if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
                             tfv.ControlValue = str;
@@ -1471,9 +1501,13 @@ namespace Ebada.Scgl.Lcgl
                         }
                         return;
                     }
-                    if (lp.isExplorer == 0) ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
-                        str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
-                        GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                    try
+                    {
+                        if (lp.isExplorer == 0) ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                            str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
+                            GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                    }
+                    catch { }
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
@@ -1610,7 +1644,11 @@ namespace Ebada.Scgl.Lcgl
                 activeSheetIndex = xx.Index;
                 activeSheetName = xx.Name;
             }
-            ea.ActiveSheet(activeSheetIndex);
+            try
+            {
+                ea.ActiveSheet(activeSheetIndex);
+            }
+            catch { }
             unLockExcel(wb, xx);
 
             if (lp.CellPos == "")
@@ -1703,11 +1741,19 @@ namespace Ebada.Scgl.Lcgl
             }
             if (lp.KindTable != "")
             {
-                ea.ActiveSheet(lp.KindTable);
+                try
+                {
+                    ea.ActiveSheet(lp.KindTable);
+                }
+                catch { }
             }
             else
             {
-                ea.ActiveSheet(1);
+                try
+                {
+                    ea.ActiveSheet(1);
+                }
+                catch { }
             }
 
             if (lp.CellPos == "")
@@ -1785,8 +1831,11 @@ namespace Ebada.Scgl.Lcgl
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i] + "完整时间"))
                     {
                         valuehs.Remove(lp.LPID + "$" + arrCellpos[i] + "完整时间");
+                    } try
+                    {
+                        if (lp.isExplorer == 0) ea.SetCellValue("", GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                     }
-                    if (lp.isExplorer == 0) ea.SetCellValue("", GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                    catch { }
                 }
               
                 
@@ -1810,7 +1859,11 @@ namespace Ebada.Scgl.Lcgl
                 IList<string> strList = new List<string>();
                 if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
                 {
-                    if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    try
+                    {
+                        if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    }
+                    catch { }
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
@@ -1837,7 +1890,11 @@ namespace Ebada.Scgl.Lcgl
                 else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
                 {
                     int i = 0;
-                    if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                    try
+                    {
+                        if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                    }
+                    catch { }
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[i]] as WF_TableFieldValue;
@@ -1875,7 +1932,12 @@ namespace Ebada.Scgl.Lcgl
                     if (str.Length > j)
                     {
                         string strNew = str.Substring(j, 1);
-                        if (lp.isExplorer == 0) ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                        try
+                        {
+                            if (lp.isExplorer == 0) ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+
+                        }
+                        catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
@@ -1934,8 +1996,12 @@ namespace Ebada.Scgl.Lcgl
             }
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
             {
-                if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-                if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos))
+                try
+                {
+                    if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                }
+                catch { }
+                        if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos))
                 {
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
                     tfv.ControlValue = str;
@@ -1970,8 +2036,13 @@ namespace Ebada.Scgl.Lcgl
                         {
                             //string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
                             string strNew = str;
-                            if (lp.isExplorer == 0) ea.SetCellValue("'" + strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
-                            if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[j]))
+                            try
+                            {
+                                if (lp.isExplorer == 0) ea.SetCellValue("'" + strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                            }
+                            catch { }
+
+                                if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[j]))
                             {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
                                 tfv.ControlValue = strNew;
@@ -2038,9 +2109,13 @@ namespace Ebada.Scgl.Lcgl
 
                     if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1)
                     {
-                        if (lp.isExplorer == 0) ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
-                            str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
-                            GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        try
+                        {
+                            if (lp.isExplorer == 0) ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                                str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
+                                GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        }
+                        catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
@@ -2228,7 +2303,11 @@ namespace Ebada.Scgl.Lcgl
                 {
                     if (j >= arrRst.Length)
                         break;
-                    if (lp.isExplorer == 0) ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    try
+                    {
+                        if (lp.isExplorer == 0) ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    }
+                    catch { }
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
@@ -2312,7 +2391,11 @@ namespace Ebada.Scgl.Lcgl
                     {
                         if (strarrRst.Length >= i1)
                         {
-                            if (lp.isExplorer == 0) if (lp.isExplorer == 0) ea.SetCellValue(strarrRst.Substring(0, i1), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                            try
+                            {
+                                if (lp.isExplorer == 0) if (lp.isExplorer == 0) ea.SetCellValue(strarrRst.Substring(0, i1), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                            }
+                            catch { }
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                             {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
@@ -2339,8 +2422,12 @@ namespace Ebada.Scgl.Lcgl
                         }
                         else
                         {
-                            if (lp.isExplorer == 0) if (lp.isExplorer == 0) ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
-                            if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
+                            try
+                            {
+                                if (lp.isExplorer == 0) if (lp.isExplorer == 0) ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                            }
+                            catch { }
+                                if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                             {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
                                 tfv.ControlValue = strarrRst;
@@ -2551,9 +2638,11 @@ namespace Ebada.Scgl.Lcgl
                         {
                              strList[i] = " ";
                         }
-
-                        if (lp.isExplorer == 0) ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
-                       
+                        try
+                        {
+                            if (lp.isExplorer == 0) ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        }
+                        catch { }
                        
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                         {
@@ -2621,7 +2710,11 @@ namespace Ebada.Scgl.Lcgl
                         value += strList[i];
                         if (strList.Count == i+1)
                         {
-                            if (lp.isExplorer == 0) ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                            try
+                            {
+                                if (lp.isExplorer == 0) ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                            }
+                            catch { }
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
                             {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[0]] as WF_TableFieldValue;
@@ -2678,8 +2771,12 @@ namespace Ebada.Scgl.Lcgl
                         value = value.Replace("{" + i + "}", strList[i]);
                         if (i == strList.Count - 1)
                         {
-                            if (lp.isExplorer == 0) ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
-                            if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
+                            try
+                            {
+                                if (lp.isExplorer == 0) ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                            }
+                            catch { }
+                                if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
                             {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[0]] as WF_TableFieldValue;
                                 tfv.ControlValue = value;
@@ -2714,7 +2811,11 @@ namespace Ebada.Scgl.Lcgl
                         value = strList[i];
                         if (strextrlist.Length > i )
                             value += strextrlist[i];
-                        if (lp.isExplorer == 0) ea.SetCellValue(value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        try
+                        {
+                            if (lp.isExplorer == 0) ea.SetCellValue(value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        }
+                        catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[0]] as WF_TableFieldValue;
@@ -2759,8 +2860,12 @@ namespace Ebada.Scgl.Lcgl
             {
                 for (int i = 0; i < arrRst.Length; i++)
                 {
-                    if (lp.isExplorer == 0) ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
-                    if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
+                    try
+                    {
+                        if (lp.isExplorer == 0) ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
+                    }
+                    catch { }
+                        if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]] as WF_TableFieldValue;
                         tfv.ControlValue = arrRst[i];
@@ -2788,8 +2893,11 @@ namespace Ebada.Scgl.Lcgl
             {
                 for (int i = 0; i < arrRst.Length; i++)
                 {
-
-                    if (lp.isExplorer == 0) ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
+                    try
+                    {
+                        if (lp.isExplorer == 0) ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
+                    }
+                    catch { }
                     if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]] as WF_TableFieldValue;
