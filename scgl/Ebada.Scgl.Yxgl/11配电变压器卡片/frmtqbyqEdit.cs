@@ -78,7 +78,11 @@ namespace Ebada.Scgl.Yxgl
         private void setcombox4(string tqid)
         {
             PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqid='" +tqid + "'");
-            comboBoxEdit4.Text = tq.tqName;
+            if (tq!=null)
+            {
+                comboBoxEdit4.Text = tq.tqName;
+            }
+            
         }
         #endregion
 
