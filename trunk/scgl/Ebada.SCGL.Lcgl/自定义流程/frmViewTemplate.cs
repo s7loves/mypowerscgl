@@ -260,9 +260,10 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else
                     {
-                        if (parentTemple != null) this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
-                        else
-                            if (currRecord.DocContent.Length>0) this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                        if (currRecord.DocContent.Length>0) this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                        else if (parentTemple != null) this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+                        
+                            
                     }
                     
                     //if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1)
