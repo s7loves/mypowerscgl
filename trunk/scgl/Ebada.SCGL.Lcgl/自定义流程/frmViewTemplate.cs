@@ -265,12 +265,12 @@ namespace Ebada.Scgl.Lcgl
                             if (currRecord.DocContent.Length>0) this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                     }
                     
-                    if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1)
-                    {
+                    //if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1)
+                    //{
 
-                        this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                    //    this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
 
-                    }
+                    //}
 
                
                 //LoadContent();
