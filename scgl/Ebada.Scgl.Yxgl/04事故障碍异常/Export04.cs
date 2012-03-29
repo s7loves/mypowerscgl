@@ -38,9 +38,12 @@ namespace Ebada.Scgl.Yxgl
             string sgyc = Ecommon.Comparestring(obj.clqk, "三") ? "" : "三、事故、障碍、异常运行情况及处理经过：";
             string zyyy = Ecommon.Comparestring(obj.yyfx, "四") ? "" : "四、主要原因分析：";
             string jhdc = Ecommon.Comparestring(obj.fzdc, "五") ? "" : "五、今后防止对策：";
-            Ecommon.addstring(Ecommon.ResultStrList(sgyc+ obj.clqk, zc), ref strcol);
-            Ecommon.addstring(Ecommon.ResultStrList(zyyy + obj.yyfx, zc), ref strcol);
-            Ecommon.addstring(Ecommon.ResultStrList(jhdc + obj.fzdc, zc), ref strcol);
+            string sgzyc = sgyc + obj.clqk;
+            string zyyuy = zyyy + obj.yyfx;
+            string fzdc = jhdc + obj.fzdc;
+            //Ecommon.addstring(Ecommon.ResultStrList(sgyc+ obj.clqk, zc), ref strcol);
+            //Ecommon.addstring(Ecommon.ResultStrList(zyyy + obj.yyfx, zc), ref strcol);
+            //Ecommon.addstring(Ecommon.ResultStrList(jhdc + obj.fzdc, zc), ref strcol);
             //Ecommon.CreatandWritesheet(ex, strcol, 14, 9, 1);
             ex.ActiveSheet(1);
             //事故异常发生地点
@@ -74,7 +77,7 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.CreateDate.Day.ToString(), 24, 17);
 
             //事故障碍异常
-            string sgzyc =obj.clqk;
+           
             //string hdstr = Ecommon.Comparestring(obj.hdnr, "活动内容") ? "" : "活动内容：";
             //List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.clqk, zc, 8);
 
@@ -99,7 +102,7 @@ namespace Ebada.Scgl.Yxgl
                 ex.SetCellValue(tempstr, 9 + i, 1);
             }
             //主要原因分析
-            string zyyuy =obj.yyfx;
+           
             for (int i = 0; i < 5; i++)
             {
                 string tempstr = "";
@@ -121,7 +124,7 @@ namespace Ebada.Scgl.Yxgl
                 ex.SetCellValue(tempstr, 13 + i, 1);
             }
             //今后放置对策
-            string fzdc =obj.fzdc;
+          
             for (int i = 0; i < 5; i++)
             {
                 string tempstr = "";
