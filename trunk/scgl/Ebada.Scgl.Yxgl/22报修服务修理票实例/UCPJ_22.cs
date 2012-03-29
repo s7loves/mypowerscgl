@@ -183,7 +183,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
-            newobj.ph = "18" + DateTime.Now.Year.ToString() + sws(gridView1.RowCount+1);
+            newobj.ph = Ecommon.GetChineseSpell(newobj.OrgName.Substring(0, newobj.OrgName.LastIndexOf("供"))) + DateTime.Now.Year.ToString() + sws(gridView1.RowCount + 1);
         }
         /// <summary>
         /// 父表ID

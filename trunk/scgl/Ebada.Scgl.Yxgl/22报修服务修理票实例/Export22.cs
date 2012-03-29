@@ -22,8 +22,8 @@ namespace Ebada.Scgl.Yxgl {
             ex.Open(fname);
             //此处写填充内容代码
             //供电所
-            ex.SetCellValue(obj.OrgName, 3, 1);
-            ex.SetCellValue(obj.OrgName,13,1);
+            ex.SetCellValue(obj.OrgName.Substring(0, obj.OrgName.LastIndexOf("供")), 3, 1);
+            ex.SetCellValue(obj.OrgName.Substring(0, obj.OrgName.LastIndexOf("供")), 13, 1);
             //创建时间
             ex.SetCellValue(obj.bxsj.Year.ToString(), 3, 9);
             ex.SetCellValue(obj.bxsj.Month.ToString(), 3, 12);
@@ -32,12 +32,12 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(obj.bxsj.Month.ToString(), 13, 12);
             ex.SetCellValue(obj.bxsj.Day.ToString(), 13, 14);
             //编号
-            ex.SetCellValue(obj.ph.Substring(0, 2), 3, 20);
-            ex.SetCellValue(obj.ph.Substring(2, 4), 3, 21);
-            ex.SetCellValue(obj.ph.Substring(6, 3), 3, 24);
-            ex.SetCellValue(obj.ph.Substring(0, 2), 13, 20);
-            ex.SetCellValue(obj.ph.Substring(2, 4), 13, 21);
-            ex.SetCellValue(obj.ph.Substring(6, 3), 13, 24);
+            ex.SetCellValue(obj.ph, 3, 20);
+            //ex.SetCellValue(obj.ph.Substring(2, 4), 3, 21);
+            //ex.SetCellValue(obj.ph.Substring(6, 3), 3, 24);
+            ex.SetCellValue(obj.ph, 13, 20);
+            //ex.SetCellValue(obj.ph.Substring(2, 4), 13, 21);
+            //ex.SetCellValue(obj.ph.Substring(6, 3), 13, 24);
             //保修时间，保修地点
             ex.SetCellValue(obj.bxsj.Hour.ToString(), 5, 3);
             ex.SetCellValue(obj.bxsj.Minute.ToString(), 5, 5);
