@@ -745,7 +745,9 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.LastChangeTime = DateTime.Now.ToString();
                 currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
-                Client.ClientHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+                if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+                Client.ClientHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
                 ArrayList akeys = new ArrayList(valuehs.Keys);
                 List<object> list = new List<object>();
 
@@ -805,7 +807,7 @@ namespace Ebada.Scgl.Lcgl
             }
             catch
             {
-                MsgBox.ShowTipMessageBox("保存失败!");
+                MsgBox.ShowTipMessageBox("出错,保存失败!");
             }
         }
         void btn_Back_Click(object sender, EventArgs e)

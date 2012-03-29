@@ -209,6 +209,7 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
             }
+            currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
             frmViewTemplate fm = new frmViewTemplate();
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
             fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
