@@ -69,6 +69,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：供电所代码
         /// 字段信息：[OrgCode],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("供电所代码")]
         public string OrgCode
         {
@@ -111,6 +112,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：线路代码
         /// 字段信息：[LineID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("线路代码")]
         public string LineID
         {
@@ -132,6 +134,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：线路名称
         /// 字段信息：[LineName],nvarchar
         /// </summary>
+       
         [DisplayNameAttribute("线路名称")]
         public string LineName
         {
@@ -153,6 +156,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：巡视区段
         /// 字段信息：[xlqd],nvarchar
         /// </summary>
+    
         [DisplayNameAttribute("巡视区段")]
         public string xlqd
         {
@@ -174,6 +178,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：巡视时间
         /// 字段信息：[xssj],datetime
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("巡视时间")]
         public DateTime xssj
         {
@@ -192,6 +197,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：巡视人
         /// 字段信息：[xsr],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("巡视人")]
         public string xsr
         {
@@ -213,6 +219,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：缺陷内容
         /// 字段信息：[qxnr],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("缺陷内容")]
         public string qxnr
         {
@@ -234,6 +241,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：缺陷类别
         /// 字段信息：[qxlb],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("缺陷类别")]
         public string qxlb
         {
@@ -256,6 +264,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：消缺期限
         /// 字段信息：[xcqx],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("消缺期限")]
         public string xcqx
         {
@@ -276,6 +285,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：消除人
         /// 字段信息：[xcr],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("消除人")]
         public string xcr
         {
@@ -297,6 +307,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：消除日期
         /// 字段信息：[xcrq],datetime
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("消除日期")]
         public DateTime xcrq
         {

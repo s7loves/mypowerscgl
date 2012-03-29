@@ -90,6 +90,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：供电所代码
         /// 字段信息：[OrgCode],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("供电所代码")]
         public string OrgCode
         {
@@ -111,6 +112,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：供电所名称
         /// 字段信息：[OrgName],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("供电所名称")]
         public string OrgName
         {
@@ -132,6 +134,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：线路代码
         /// 字段信息：[LineID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("线路代码")]
         public string LineID
         {
@@ -153,6 +156,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：线路名称
         /// 字段信息：[LineName],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("线路名称")]
         public string LineName
         {
@@ -174,6 +178,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：巡视区段
         /// 字段信息：[xlqd],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("巡视区段")]
         public string xlqd
         {
@@ -376,6 +381,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：gzrjID
         /// 字段信息：[gzrjID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("gzrjID")]
         public string gzrjID
         {
