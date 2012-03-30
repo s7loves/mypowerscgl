@@ -324,7 +324,20 @@ namespace Ebada.Scgl.Yxgl
                         tqStringList = repositoryItemCheckedComboBoxEdit2.GetCheckedItems().ToString().Split(new char[]{','});
                         foreach (string str in tqStringList)
                         {
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and linevol='0.4' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq where PS_tqsb.tqID = PS_tq.tqID  and PS_tq.tqID = '" +str.Trim() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            foreach (object[] ob in gtSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
+                                tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
+                                tj.SbOwner = strOwner;
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
                             foreach (object[] ob in tqSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -350,7 +363,19 @@ namespace Ebada.Scgl.Yxgl
                         tqStringList = repositoryItemCheckedComboBoxEdit2.GetCheckedItems().ToString().Split(new char[] { ',' });
                         foreach (string str in tqStringList)
                         {
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and linevol='0.4' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq where PS_tqsb.tqID = PS_tq.tqID  and PS_tq.tqID = '" + str.Trim() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            foreach (object[] ob in gtSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
+                                tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
+                                tj.SbOwner = strOwner;
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
                             foreach (object[] ob in tqSBList)
                             {
                                 PS_tj tj = new PS_tj();
