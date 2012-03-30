@@ -293,21 +293,45 @@ namespace Ebada.Scgl.Lcgl
             //InitContorl();
             Excel.Workbook wb;
             Excel.Worksheet sheet;
+            WF_TableFieldValue wfv=null;
             ExcelAccess ea = new ExcelAccess();
-            //Regex r1 = new Regex(@"(?<=" + CurrRecord.Status + ":)([^,]+)((?=,)?)");
-            //if (r1.Match(parentTemple.KindTable).Value != "")
-            //{
-            //    activeSheetName = r1.Match(parentTemple.KindTable).Value;
-            //}
-            //int istart = parentTemple.KindTable.IndexOf(CurrRecord.Status + ":") + CurrRecord.Status.Length + 1;
-            //int iend = parentTemple.KindTable.IndexOf(",", istart);
-            //if (iend > -1)
-            //    activeSheetName = parentTemple.KindTable.Substring(istart, iend);
-            //else
-            //    activeSheetName = parentTemple.KindTable.Substring(istart);
+            LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
+            if (lp != null)
+            {
+                if (wfv == null)
+                {
+                    wfv = new WF_TableFieldValue();
+                    wfv.ID = wfv.CreateID();
+                    wfv.RecordId = currRecord.ID;
+                    wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    wfv.UserControlId = parentTemple.LPID;
+                    wfv.ControlValue = "";
+                    wfv.FieldId = lp.LPID;
+                    wfv.FieldName = lp.CellName;
+                    wfv.XExcelPos = GetCellPos(lp.CellPos)[0];
+                    wfv.YExcelPos = GetCellPos(lp.CellPos)[1];
+                }
 
+                wfv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
+                                 + " and   WorkflowId='" + wfv.WorkFlowId + "'"
+                                 + " and   RecordId='" + wfv.RecordId + "'"
+                                 + " and   UserControlId='" + wfv.UserControlId + "'"
+                                 + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
+                                 + " and   fieldname='" + lp.CellName + "'"
+                                 + " and   FieldId='" + lp.LPID + "' and Bigdata is not null"
+                                );
+
+            }
             if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
             {
+                if (wfv != null && wfv.Bigdata != null && wfv.Bigdata.Length>0)
+                {
+                    this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                }
+                else
                 if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1 && currRecord.DocContent != null && currRecord.DocContent.Length > 0) this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                 else
                 this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
@@ -325,6 +349,11 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else
                 {
+                    if (wfv != null && wfv.Bigdata != null && wfv.Bigdata.Length > 0)
+                    {
+                        this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                    }
+                    else
                     if (GetWorkFlowNmae(kind).IndexOf("电力线路") >-1 && currRecord.DocContent != null && currRecord.DocContent.Length>0) this.dsoFramerWordControl1.FileDataGzip =currRecord.DocContent ;
                     else
                         this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
@@ -382,7 +411,7 @@ namespace Ebada.Scgl.Lcgl
                 Control ctl = FindCtrl(tfvli[i].FieldId);
                 if (ctl != null)
                 {
-                    LP_Temple lp = ctl.Tag as LP_Temple;
+                    lp = ctl.Tag as LP_Temple;
                     if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit") == false)
                     {
                         if (lp.CellName != "编号")
@@ -824,6 +853,8 @@ namespace Ebada.Scgl.Lcgl
             {
                 return;
             }
+            if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+            if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             string strmes = RecordWorkTask.RunWorkFlowBack(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
             if (strmes.IndexOf("未提交至任何人") > -1)
             {
