@@ -73,7 +73,7 @@ namespace Ebada.Scgl.Lcgl
             ex.ShowExcel();
            
         }
-        public void ExportExcelMonth(DateTime dt,string orgid)
+        public void ExportExcelMonth(DateTime dt, DateTime dt2, string orgid)
         {
             //lgm
             ExcelAccess ex = new ExcelAccess();
@@ -85,11 +85,11 @@ namespace Ebada.Scgl.Lcgl
                 string.Format("select nr from pj_dyk where  dx='所月度停电计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
             if (list.Count > 0)
                 startday=list[0].ToString();
-            string str = " where TDtime between '" +dt.Year + "-"
-                + dt.Month + "-" + startday
-                + " 00:00:00' and  dateadd(m,1,cast('"
-                + dt.Year + "-"
-                + dt.Month + "-" + startday + " 00:00:00' as datetime) ) ";
+            string str = " where (TDtime between '" +dt.Year + "-"
+                + dt.Month + "-" + dt.Day
+                + " 00:00:00' and  '"
+                + dt2.Year + "-"
+                + dt2.Month + "-" + dt2.Day + " 23:59:59' ) ";
             if (orgid != "") str += " and OrgCode='" + orgid + "'";
             IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
                str
@@ -98,7 +98,7 @@ namespace Ebada.Scgl.Lcgl
             ex.ShowExcel();
 
         }
-        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(DateTime dt, string orgid)
+        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(DateTime dt,DateTime dt2, string orgid)
         {
 
             string filter = "";
@@ -110,11 +110,11 @@ namespace Ebada.Scgl.Lcgl
             if (list.Count > 0)
                 startday = list[0].ToString();
 
-            filter = " where TDtime between '" + dt.Year + "-"
-                 + dt.Month + "-" + startday
-                 + " 00:00:00' and    dateadd(m,1,cast('"
-                + dt.Year + "-"
-                + dt.Month + "-" + startday + " 00:00:00' as datetime) )  ";
+            filter = " where (TDtime between '" + dt.Year + "-"
+                + dt.Month + "-" + dt.Day
+                + " 00:00:00' and  '"
+                + dt2.Year + "-"
+                + dt2.Month + "-" + dt2.Day + " 23:59:59' ) ";
              if (orgid != "") filter += " and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {
@@ -163,7 +163,7 @@ namespace Ebada.Scgl.Lcgl
             }
 
         
-        public void ExportExcelSubmit(DateTime dt, ref LP_Temple parentTemple,  string orgid, bool isShow)
+        public void ExportExcelSubmit(DateTime dt,DateTime dt2, ref LP_Temple parentTemple,  string orgid, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string fname = Application.StartupPath + "\\00记录模板\\所月度停电计划.xls";
@@ -186,11 +186,11 @@ namespace Ebada.Scgl.Lcgl
             Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
-            string filter = " where TDtime between '" + dt.Year  + "-"
-                + dt.Month + "-" + startday
-                + " 00:00:00' and    dateadd(m,1,cast('"
-                + dt.Year + "-"
-                + dt.Month + "-" + startday + " 00:00:00' as datetime) ) ";
+            string filter = " where (TDtime between '" + dt.Year + "-"
+                + dt.Month + "-" + dt.Day
+                + " 00:00:00' and  '"
+                + dt2.Year + "-"
+                + dt2.Month + "-" + dt2.Day + " 23:59:59') ";
             if (orgid != "") filter += " and OrgCode='" + orgid + "'";
             if (isWorkflowCall)
             {

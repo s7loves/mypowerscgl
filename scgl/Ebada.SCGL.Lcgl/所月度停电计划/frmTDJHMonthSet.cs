@@ -24,7 +24,8 @@ namespace Ebada.Scgl.Lcgl
             InitializeComponent();
         }
         private LP_Temple rowData = null;
-        private DateTime dt =DateTime.Now ;
+        private DateTime dt =Convert.ToDateTime( DateTime.Now.ToString("yyyy年MM月20日"));
+        private DateTime dt2 = Convert.ToDateTime(DateTime.Now.AddMonths(1).ToString("yyyy年MM月20日"));
         private ArrayList excelList = null;
         public ArrayList ExcelList
         {
@@ -52,6 +53,19 @@ namespace Ebada.Scgl.Lcgl
                 dt = value;
             }
         }
+        public DateTime dtTime2
+        {
+            get
+            {
+                return dt2;
+            }
+            set
+            {
+                if (value == null) return;
+
+                dt2 = value;
+            }
+        }
         public object RowData
         {
             get
@@ -73,7 +87,8 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmExcelEditSQLSet_Load(object sender, EventArgs e)
         {
-
+            dateEdit1.DateTime = dt;
+            dateEdit2.DateTime = dt2;
 
         }
        

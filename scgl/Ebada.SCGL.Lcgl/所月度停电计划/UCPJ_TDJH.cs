@@ -316,8 +316,8 @@ namespace Ebada.Scgl.Lcgl
             frmTDJHMonthSet fms = new frmTDJHMonthSet();
             if (fms.ShowDialog() == DialogResult.OK)
             {
-                fms.dtTime = fms.dtTime.AddMonths(-1);
-                etdjh.ExportExcelMonth(fms.dtTime,parentObj.OrgCode);
+                //fms.dtTime = fms.dtTime.AddMonths(-1);
+                etdjh.ExportExcelMonth(fms.dtTime, fms.dtTime2, parentObj.OrgCode);
             }
         }
 
@@ -341,15 +341,15 @@ namespace Ebada.Scgl.Lcgl
                 export.RecordWorkFlowData = WorkFlowData;
 
                 fms.dtTime = fms.dtTime.AddMonths(-1);
-                export.ExportExcelSubmit(fms.dtTime  ,ref parentTemple, parentID, false);
+                export.ExportExcelSubmit(fms.dtTime, fms.dtTime2, ref parentTemple, parentID, false);
 
                 fm.ParentTemple = parentTemple;
                 if (fm.ShowDialog() == DialogResult.OK)
                 {
                     if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(fms.dtTime, parentID);
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(fms.dtTime, fms.dtTime2, parentID);
                     else
-                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(fms.dtTime, parentID);
+                        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(fms.dtTime, fms.dtTime2, parentID);
                     gridControl1.FindForm().Close();
                 }
             }
