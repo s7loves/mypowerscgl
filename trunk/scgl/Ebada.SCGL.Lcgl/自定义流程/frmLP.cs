@@ -2098,7 +2098,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 try
                 {
-                    if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    if (lp.isExplorer != 1) ea.SetCellValue("'"+str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 }
                 catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos))
