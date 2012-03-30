@@ -30,7 +30,7 @@ namespace Ebada.SCGL.WFlow.Tool
         void gridViewOperation_AfterEdit(LP_Temple e)
         {
 
-            this.dsoFramerWordControl1.FileSave();
+            //this.dsoFramerWordControl1.FileSave();
             this.dsoFramerWordControl1.Refresh();
             this.Refresh();
             this.Update();
