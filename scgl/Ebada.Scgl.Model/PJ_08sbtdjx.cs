@@ -109,6 +109,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：日期
         /// 字段信息：[rq],datetime
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("日期")]
         public DateTime rq
         {

@@ -217,48 +217,74 @@ namespace Ebada.Scgl.Yxgl
             //}
             if (gridView1.FocusedRowHandle >= 0)
             {
-                Dictionary<string, List<PJ_06sbxs>> diclist = new Dictionary<string, List<PJ_06sbxs>>();
-                PJ_06sbxs _pj = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_06sbxs;
-                //添加明细表的信息
-                IList<PJ_06sbxsmx> ilist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxsmx>(" where ParentID='" + _pj.ID + "' order by CreateDate desc");
-                if (ilist.Count == 0)
+                frmExportYearSelect frm = new frmExportYearSelect();
+                if (frm.ShowDialog()==DialogResult.OK)
                 {
-                    List<PJ_06sbxs> lispj = new List<PJ_06sbxs>();
-                    lispj.Add(_pj);
-                    diclist[_pj.LineID] = lispj;
-                }
-                else
-                {
-                    List<PJ_06sbxs> lispj = new List<PJ_06sbxs>();
-                    diclist[_pj.LineID] = lispj;
-                    foreach (PJ_06sbxsmx pmx in ilist)
-                    {
-                        PJ_06sbxs newpj = new PJ_06sbxs();
-                        Type obj = newpj.GetType();
-                        foreach (PropertyInfo p in obj.GetProperties())
-                        {
-                            try
-                            {
-                                p.SetValue(newpj,pmx.GetType().GetProperty(p.Name).GetValue(pmx, null), null);
-                            }
-                            catch(Exception ex) { }
-                        }
-                        diclist[_pj.LineID].Add(newpj);
-                    }
-                   // lispj.Add(_pj);
-                  
-                }
-                foreach (KeyValuePair<string, List<PJ_06sbxs>> pp in diclist)
-                {
-                    List<PJ_06sbxs> objlist = pp.Value;
-                    if (objlist.Count > 0)
-                    {
-                        Export06.ExportExcel(objlist);
-                    }
+                    DataRow[] dtcol = frm.DT1.Select("B=1");
 
+                    Dictionary<string, List<PJ_06sbxs>> diclist = new Dictionary<string, List<PJ_06sbxs>>();
+                    PJ_06sbxs _pj = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_06sbxs;
+                    //添加明细表的信息
+                    IList<PJ_06sbxsmx> ilist = null;
+                    if (dtcol.Length==0)
+                    {
+                       ilist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxsmx>(" where ParentID='" + _pj.ID + "' order by CreateDate desc");
+                    }
+                    else
+                    {
+                        string sely = "(";
+                        for (int i = 0; i < dtcol.Length; i++)
+                        {
+                            if (i < dtcol.Length - 1)
+                            {
+                                sely += "'" + dtcol[i][0].ToString() + "',";
+                            }
+                            else
+                                sely += "'" + dtcol[i][0].ToString() + "')";
+
+                        }
+                        ilist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxsmx>(" where ParentID='" + _pj.ID + "'and year(xssj) in"+sely+ "order by CreateDate desc");
+                    }
+                    if (ilist.Count == 0)
+                    {
+                        List<PJ_06sbxs> lispj = new List<PJ_06sbxs>();
+                        lispj.Add(_pj);
+                        diclist[_pj.LineID] = lispj;
+                    }
+                    else
+                    {
+                        List<PJ_06sbxs> lispj = new List<PJ_06sbxs>();
+                        diclist[_pj.LineID] = lispj;
+                        foreach (PJ_06sbxsmx pmx in ilist)
+                        {
+                            PJ_06sbxs newpj = new PJ_06sbxs();
+                            Type obj = newpj.GetType();
+                            foreach (PropertyInfo p in obj.GetProperties())
+                            {
+                                try
+                                {
+                                    p.SetValue(newpj, pmx.GetType().GetProperty(p.Name).GetValue(pmx, null), null);
+                                }
+                                catch (Exception ex) { }
+                            }
+                            diclist[_pj.LineID].Add(newpj);
+                        }
+                        // lispj.Add(_pj);
+
+                    }
+                    foreach (KeyValuePair<string, List<PJ_06sbxs>> pp in diclist)
+                    {
+                        List<PJ_06sbxs> objlist = pp.Value;
+                        if (objlist.Count > 0)
+                        {
+                            Export06.ExportExcel(objlist);
+                        }
+
+                    }
                 }
-            }
           
+                }
+               
 
             //for (int i = 0; i < gridView1.RowCount;i++ )
             //{

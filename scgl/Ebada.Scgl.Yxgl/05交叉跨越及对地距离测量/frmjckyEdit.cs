@@ -169,14 +169,15 @@ namespace Ebada.Scgl.Yxgl
                     //comboBoxEdit2.Properties.Items.Add(list[i].LineID);
                     comboBoxEdit4.Properties.Items.Add(list[i].gtCode);
                 }
+                IList<string> list1 = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select linename from ps_xl where ParentID='" + xl.LineCode + "'");
+                if (list1.Count == 0)
+                {
+                    list1 = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select linename from ps_xl where ParentID='" + xl.LineID + "'");
+                }
+                List<string> col = list1 as List<string>;
+                comboBoxEdit3.Properties.Items.AddRange(col.ToArray());
             }
-            IList<string> list1 = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select linename from ps_xl where ParentID='" + xl.LineCode + "'");
-            if (list1.Count==0)
-            {
-                list1 = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select linename from ps_xl where ParentID='" + xl.LineID + "'");
-            }
-            List<string> col=list1 as List<string>;
-            comboBoxEdit3.Properties.Items.AddRange(col.ToArray());
+           
            
         }
     }

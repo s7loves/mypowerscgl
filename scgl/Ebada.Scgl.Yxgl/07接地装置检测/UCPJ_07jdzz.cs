@@ -195,7 +195,34 @@ namespace Ebada.Scgl.Yxgl
         {
             if (gridView1.FocusedRowHandle != -1)
             {
-                Export07.ExportExcel(gridView1.GetFocusedRow() as PJ_07jdzz);
+                frmExportYearSelect frm = new frmExportYearSelect();
+                DataTable dt = new DataTable();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    dt = frm.DT1;
+                }
+                DataRow[] dtc = dt.Select("B=1");
+                if (dtc.Length == 0)
+                {
+                    Export07.ExportExcel(gridView1.GetFocusedRow() as PJ_07jdzz);
+                }
+                else
+                {
+                    string sely = "(";
+                    for (int i = 0; i < dtc.Length; i++)
+                    {
+                        if (i < dtc.Length - 1)
+                        {
+                            sely += "'" + dtc[i][0].ToString() + "',";
+                        }
+                        else
+                            sely += "'" + dtc[i][0].ToString() + "')";
+
+                    }
+                    Export07.ExportExcel(gridView1.GetFocusedRow() as PJ_07jdzz,sely);
+
+                }
+                
             }
         }
     }
