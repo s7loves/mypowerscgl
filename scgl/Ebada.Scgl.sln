@@ -15,7 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{46A6
 		Library\Castle.Services.Transaction.dll = Library\Castle.Services.Transaction.dll
 		Library\Castle.Windsor.dll = Library\Castle.Windsor.dll
 		Library\DevExpress.Localization.v10.1.dll = Library\DevExpress.Localization.v10.1.dll
-		Library\dsoframer.ocx = Library\dsoframer.ocx
 		Library\Ebada.Client.Common.dll = Library\Ebada.Client.Common.dll
 		Library\Ebada.Client.dll = Library\Ebada.Client.dll
 		Library\Ebada.Client.Resource.dll = Library\Ebada.Client.Resource.dll
