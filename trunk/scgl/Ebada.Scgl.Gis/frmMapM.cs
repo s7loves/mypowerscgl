@@ -355,8 +355,14 @@ namespace Ebada.Scgl.Gis {
         private void barCAD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Ebada.SCGL.CADLib.CAD cad = new Ebada.SCGL.CADLib.CAD();
-            string[] linecode = { "204009"};
-            cad.ToDwg(linecode);
+            List<string> list=new List<string>();
+            foreach (GMapOverlay lay in rMap1.Overlays) {
+                if (lay is LineOverlay) {
+                    list.Add(lay.Id);
+                }
+            }
+            if(list.Count>0)
+            cad.ToDwg(list.ToArray());
         }
 
     }
