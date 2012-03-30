@@ -234,15 +234,19 @@ namespace Ebada.Scgl.Lcgl
             mOrg org=null;
             if (list.Count > 0)
                 org = list[0];
-            
+
             if (org != null)
             {
                 ParentObj = org;
                 repositoryItemComboBox1.Items.Clear();
-                IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select  UserName  from mUser where   orgcode='" + ParentObj.OrgCode  + "'");
+                IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select  UserName  from mUser where   orgcode='" + ParentObj.OrgCode + "'");
                 repositoryItemComboBox1.Items.AddRange(strlist);
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
+            }
+            else
+            {
+                RefreshData(" where 1=1");
             }
             
 

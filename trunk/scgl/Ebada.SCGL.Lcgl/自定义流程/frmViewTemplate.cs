@@ -1920,25 +1920,27 @@ namespace Ebada.Scgl.Lcgl
                 currRecord = null;
                 //rowData = null;
                 
-                dockPanel1.ControlContainer.Controls.Clear();
-                templeList.Clear();
-                    if (filecontrol != null)
-                    {
+               
+                dsoFramerWordControl1.FileSave();
+                dsoFramerWordControl1.FileClose();
+                dsoFramerWordControl1.Dispose();
+                    //if (filecontrol != null)
+                    //{
 
-                        if (filecontrol.upThread != null && filecontrol.upThread.ThreadState == ThreadState.Running)
-                        {
+                    //    if (filecontrol.upThread != null && filecontrol.upThread.ThreadState == ThreadState.Running)
+                    //    {
                             
-                                filecontrol.upThread.IsBackground = true;
-                                filecontrol.upThread.Abort();
+                    //            filecontrol.upThread.IsBackground = true;
+                    //            filecontrol.upThread.Abort();
                            
-                        }
-                        if (filecontrol.Isdownfile)
-                        {
+                    //    }
+                    //    if (filecontrol.Isdownfile)
+                    //    {
 
-                            if (filecontrol.webClient!=null) filecontrol.webClient.CancelAsync();
+                    //        if (filecontrol.webClient!=null) filecontrol.webClient.CancelAsync();
 
-                        }
-                    }
+                    //    }
+                    //}
             }
             catch { }
         }
