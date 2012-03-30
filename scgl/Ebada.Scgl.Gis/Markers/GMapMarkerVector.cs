@@ -108,10 +108,10 @@ namespace Ebada.Scgl.Gis.Markers {
             (this.Overlay as LineOverlay).ShowLineTT(this);
         }
         void 交叉跨越_Click(object sender, EventArgs e) {
-            (this.Overlay as LineOverlay).ShowLineTT(this);
+            MessageBox.Show("此功能正在开发中。。。");
         }
         void 线路设备统计_Click(object sender, EventArgs e) {
-            (this.Overlay as LineOverlay).ShowLineTT(this);
+            MessageBox.Show("此功能正在开发中。。。");
         }
         public virtual ContextMenu CreatePopuMenu() {
            
