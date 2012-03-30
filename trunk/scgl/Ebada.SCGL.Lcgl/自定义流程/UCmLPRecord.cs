@@ -393,9 +393,9 @@ namespace Ebada.Scgl.Lcgl {
             else
             {
                 strKind = kind;
-                if (MainHelper.User.UserName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
-                    str = string.Format("where kind='{0}' and OrgName='{1}'", kind, user.OrgName);
-                else
+                //if (MainHelper.User.UserName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
+                //    str = string.Format("where kind='{0}' and OrgName='{1}'", kind, user.OrgName);
+                //else
                     str = string.Format("where kind='{0}' ", kind); 
             }
 
