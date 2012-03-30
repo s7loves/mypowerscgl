@@ -98,20 +98,19 @@ namespace Ebada.Scgl.Gis.Markers {
         }
 
         void 线路属性_Click(object sender, EventArgs e) {
-            //if (selectedMarker != null) {
-            //    this.ShowLineinfo(selectedMarker, allowEdit);
-            //}
             (this.Overlay as LineOverlay).ShowLineinfo(this);
         }
 
         void 杆塔属性_Click(object sender, EventArgs e) {
-
-            //if (selectedMarker != null) {
-            //    this.ShowDialog(selectedMarker, allowEdit);
-            //}
             (this.Overlay as LineOverlay).ShowDialog(this);
         }
         void 线路条图_Click(object sender, EventArgs e) {
+            (this.Overlay as LineOverlay).ShowLineTT(this);
+        }
+        void 交叉跨越_Click(object sender, EventArgs e) {
+            (this.Overlay as LineOverlay).ShowLineTT(this);
+        }
+        void 线路设备统计_Click(object sender, EventArgs e) {
             (this.Overlay as LineOverlay).ShowLineTT(this);
         }
         public virtual ContextMenu CreatePopuMenu() {
@@ -128,6 +127,14 @@ namespace Ebada.Scgl.Gis.Markers {
             item = new MenuItem();
             item.Text = "线路条图";
             item.Click += new EventHandler(线路条图_Click);
+            contextMenu.MenuItems.Add(item);
+            item = new MenuItem();
+            item.Text = "交叉跨越";
+            item.Click += new EventHandler(交叉跨越_Click);
+            contextMenu.MenuItems.Add(item);
+            item = new MenuItem();
+            item.Text = "统计线路设备";
+            item.Click += new EventHandler(线路设备统计_Click);
             contextMenu.MenuItems.Add(item);
             return contextMenu;
         }
