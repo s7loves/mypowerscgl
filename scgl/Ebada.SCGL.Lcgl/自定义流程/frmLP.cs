@@ -242,6 +242,7 @@ namespace Ebada.Scgl.Lcgl
             if (valuehs == null)
                 valuehs = new Hashtable();
             InitIndex();
+            if (kind == null) return;
             if (GetWorkFlowNmae(kind).IndexOf ("电力线路")>-1)
             {
                 bhht.Clear();
