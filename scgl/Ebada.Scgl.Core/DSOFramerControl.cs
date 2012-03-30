@@ -10,11 +10,18 @@ using Office = Microsoft.Office.Core;
 using Word = Microsoft.Office.Interop.Excel;
 using System.Diagnostics;
 using Ebada.Client;
+using System.Runtime.InteropServices;
 
 namespace Ebada.Scgl.Core {
    
     public partial class DSOFramerControl : UserControl {
-        
+        [DllImport("User32.dll", EntryPoint = "FindWindow")]
+        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+        [DllImport("User32.dll", EntryPoint = "FindWindowEx")]
+        private static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpClassName, string lpWindowName);
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern int GetWindowThreadProcessId(IntPtr hwnd, out   int ID);   
+
         string tempPath;//临时文件目录
         string fileName;//文件路径
         bool isTempFile = false;//是否临时文件
@@ -274,10 +281,13 @@ namespace Ebada.Scgl.Core {
                 MyWorkbook.Application.Quit();
                 //System.Runtime.InteropServices.Marshal.ReleaseComObject(MyWorkbook);
                 //System.Runtime.InteropServices.Marshal.ReleaseComObject(MyWorkbook.Application);
+                //IntPtr t = new IntPtr(MyWorkbook.Application.Hwnd);
+                //int k = 0;
+                //GetWindowThreadProcessId(t, out   k);
+                //System.Diagnostics.Process p = System.Diagnostics.Process.GetProcessById(k);
+                //p.Kill();
 
-
-                //int generation = System.GC.GetGeneration(MyWorkbook.Application);
-                //System.GC.Collect(generation);
+                
                
                 
             }
@@ -378,8 +388,9 @@ namespace Ebada.Scgl.Core {
         public void FileClose() {
             //Close();
             //Application.DoEvents();
-            //string strfile = "";
-            //strfile = fileName;
+            string strfile = "";
+            strfile = fileName;
+            //IntPtr hWnd = FindWindow(null, "Microsoft Excel - ~bc52aeec-f73d-48a9-b4dc-b23e7293cba2.xls");
             //axFramerControl1.Save();
             //Close();
             //System.Runtime.InteropServices.Marshal.ReleaseComObject(axFramerControl1.ActiveDocument);
@@ -392,9 +403,13 @@ namespace Ebada.Scgl.Core {
             //axFramerControl1.Dispose();
             //axFramerControl1 = null;
             //Application.DoEvents();
-            if (File.Exists(fileName))
+            if (File.Exists(strfile))
             {
-                //CmdPing("taskkill /im EXCEL.EXE /f");
+                string strtext = CmdPing("tasklist /v  /fi \"IMAGENAME eq  Excel.exe\"");
+                if (strtext.IndexOf("暂缺") > -1 || strtext.IndexOf("Microsoft Excel -")==-1)
+                {
+                    CmdPing("taskkill /im EXCEL.EXE /f");
+                }
                 //System.GC.Collect();
                 //int generation = System.GC.GetGeneration(axFramerControl1);
                 //System.GC.Collect(generation);
@@ -402,7 +417,10 @@ namespace Ebada.Scgl.Core {
                 try
                 {
                     Application.DoEvents();
-                    File.Delete(fileName);
+                    //PostMessage(d, &H10, 0&, 0&);
+
+
+                    File.Delete(strfile);
                 }
                 catch { }
             }
