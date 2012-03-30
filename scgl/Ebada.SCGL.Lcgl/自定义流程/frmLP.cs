@@ -1122,6 +1122,8 @@ namespace Ebada.Scgl.Lcgl
                     {
                         currRecord.Status = strmes;
                     }
+                    if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                    if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
                     rowData = null;
                     if (hqyjcontrol != null)
@@ -1193,7 +1195,9 @@ namespace Ebada.Scgl.Lcgl
                     }
                     else
                         MsgBox.ShowTipMessageBox(towho);
-                    MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+                    if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                    if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+                    MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
                     if (hqyjcontrol != null)
                     {
                         PJ_lcspyj lcyj = new PJ_lcspyj();
@@ -1433,7 +1437,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 try
                 {
-                    if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 }
                 catch { }
                 if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos))
@@ -1470,7 +1474,7 @@ namespace Ebada.Scgl.Lcgl
                             string strNew = str.Substring(0, (str.Length > 0 ? str.Length : 1) - 1) + (j + 1).ToString();
                             try
                             {
-                                if (lp.isExplorer == 0) ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                                if (lp.isExplorer != 1) ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
                             }
                             catch { }
                                 if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[j]))
@@ -1505,7 +1509,7 @@ namespace Ebada.Scgl.Lcgl
                     {
                         try
                         {
-                            if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                            if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                         }
                         catch { }
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
@@ -1534,7 +1538,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                     try
                     {
-                        if (lp.isExplorer == 0) ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                        if (lp.isExplorer != 1) ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                             str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
                             GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                     }
@@ -1662,86 +1666,91 @@ namespace Ebada.Scgl.Lcgl
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
-            if (lp.KindTable != "")
-            {
-                activeSheetName = lp.KindTable;
-                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-                activeSheetIndex = xx.Index;
-            }
-            else
-            {
-
-                xx = wb.Application.Sheets[1] as Excel.Worksheet;
-                activeSheetIndex = xx.Index;
-                activeSheetName = xx.Name;
-            }
             try
             {
-                ea.ActiveSheet(activeSheetIndex);
+                if (lp.KindTable != "")
+                {
+                    activeSheetName = lp.KindTable;
+
+                    xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                    activeSheetIndex = xx.Index;
+
+                }
+                else
+                {
+
+                    xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                    activeSheetIndex = xx.Index;
+                    activeSheetName = xx.Name;
+                }
+                try
+                {
+                    ea.ActiveSheet(activeSheetIndex);
+                }
+                catch { }
+                unLockExcel(wb, xx);
+                if (lp.CellPos == "")
+                {
+                    if (lp.CellName.IndexOf("简图") > -1)
+                    {
+
+                        PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
+                        if (tb != null)
+                        {
+                            string tempPath = Path.GetTempPath();
+                            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+                            FileStream fs;
+                            fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                            BinaryWriter bw = new BinaryWriter(fs);
+                            bw.Write(tb.picImage);
+                            bw.Flush();
+                            bw.Close();
+                            fs.Close();
+                            //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
+                            //MemoryStream memo = new MemoryStream(4);
+                            //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
+                            //memo.Write(bytes, 0, bytes.Length);
+                            //data.SetData("ttt", memo);
+                            //Clipboard.SetDataObject(data);
+                            Image im = Bitmap.FromFile(tempfile);
+                            Bitmap bt = new Bitmap(im);
+                            DataObject dataObject = new DataObject();
+                            dataObject.SetData(DataFormats.Bitmap, bt);
+                            Clipboard.SetDataObject(dataObject, true);
+                        }
+                    }
+                    return;
+                }
+                string[] arrCellpos = lp.CellPos.Split(pchar);
+                arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+                if (arrCellpos.Length >= 1)
+                {
+                    if (arrCellpos[0] == "") return;
+                    //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]], xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]]);
+                    range.Select();
+                    bool isfind = false;
+                    for (int i = 1; i <= xx.Protection.AllowEditRanges.Count; i++)
+                    {
+                        Excel.AllowEditRange editRange = xx.Protection.AllowEditRanges.get_Item(i);
+                        if (editRange.Title == lp.CellPos.Replace("|", ""))
+                        {
+                            isfind = true;
+                            break;
+                        }
+                    }
+                    if (!isfind)
+                    {
+                        try
+                        {
+                            xx.Protection.AllowEditRanges.Add(lp.CellPos.Replace("|", ""), range, Type.Missing);
+                        }
+                        catch { }
+                    }
+                }
+                LockExcel(wb, xx);
             }
             catch { }
-            unLockExcel(wb, xx);
-
-            if (lp.CellPos == "")
-            {
-                if (lp.CellName.IndexOf("简图") > -1)
-                {
-
-                    PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
-                    if (tb != null)
-                    {
-                        string tempPath = Path.GetTempPath();
-                        string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
-                        FileStream fs;
-                        fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
-                        BinaryWriter bw = new BinaryWriter(fs);
-                        bw.Write(tb.picImage);
-                        bw.Flush();
-                        bw.Close();
-                        fs.Close();
-                        //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
-                        //MemoryStream memo = new MemoryStream(4);
-                        //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
-                        //memo.Write(bytes, 0, bytes.Length);
-                        //data.SetData("ttt", memo);
-                        //Clipboard.SetDataObject(data);
-                        Image im = Bitmap.FromFile(tempfile);
-                        Bitmap bt = new Bitmap(im);
-                        DataObject dataObject = new DataObject();
-                        dataObject.SetData(DataFormats.Bitmap, bt);
-                        Clipboard.SetDataObject(dataObject, true);
-                    }
-                }
-                return;
-            }
-            string[] arrCellpos = lp.CellPos.Split(pchar);
-            arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
-            if (arrCellpos.Length >= 1)
-            {
-                if (arrCellpos[0] == "") return;
-                //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-                Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]], xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]]);
-                range.Select();
-                bool isfind = false;
-                for (int i = 1; i <= xx.Protection.AllowEditRanges.Count; i++)
-                {
-                    Excel.AllowEditRange editRange = xx.Protection.AllowEditRanges.get_Item(i);
-                    if (editRange.Title == lp.CellPos.Replace("|", ""))
-                    {
-                        isfind = true;
-                        break;
-                    }
-                }
-                if (!isfind)
-                {
-                    try
-                    {
-                        xx.Protection.AllowEditRanges.Add(lp.CellPos.Replace("|", ""), range, Type.Missing);
-                    }
-                    catch { }
-                }
-            }
-            LockExcel(wb, xx);
         }
         void ctrl_Leave(object sender, EventArgs e)
         {
@@ -1864,7 +1873,7 @@ namespace Ebada.Scgl.Lcgl
                         valuehs.Remove(lp.LPID + "$" + arrCellpos[i] + "完整时间");
                     } try
                     {
-                        if (lp.isExplorer == 0) ea.SetCellValue("", GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                        if (lp.isExplorer != 1) ea.SetCellValue("", GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                     }
                     catch { }
                 }
@@ -1892,7 +1901,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     try
                     {
-                        if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                        if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                     }
                     catch { }
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
@@ -1923,7 +1932,7 @@ namespace Ebada.Scgl.Lcgl
                     int i = 0;
                     try
                     {
-                        if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                        if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                     }
                     catch { }
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i]))
@@ -1965,7 +1974,7 @@ namespace Ebada.Scgl.Lcgl
                         string strNew = str.Substring(j, 1);
                         try
                         {
-                            if (lp.isExplorer == 0) ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                            if (lp.isExplorer != 1) ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
 
                         }
                         catch { }
@@ -2029,7 +2038,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 try
                 {
-                    if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 }
                 catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos))
@@ -2069,7 +2078,7 @@ namespace Ebada.Scgl.Lcgl
                             string strNew = str;
                             try
                             {
-                                if (lp.isExplorer == 0) ea.SetCellValue("'" + strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                                if (lp.isExplorer != 1) ea.SetCellValue("'" + strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
                             }
                             catch { }
 
@@ -2108,7 +2117,7 @@ namespace Ebada.Scgl.Lcgl
                     {
                         try
                         {
-                            if (lp.isExplorer == 0) ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                            if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                         }
                         catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
@@ -2142,7 +2151,7 @@ namespace Ebada.Scgl.Lcgl
                     {
                         try
                         {
-                            if (lp.isExplorer == 0) ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                            if (lp.isExplorer != 1) ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                                 str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
                                 GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                         }
@@ -2190,7 +2199,7 @@ namespace Ebada.Scgl.Lcgl
                         }
                         try
                         {
-                            if (lp.isExplorer == 0) ea.SetCellValue(str.Substring(0, i1), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                            if (lp.isExplorer != 1) ea.SetCellValue(str.Substring(0, i1), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                         }
                         catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
@@ -2336,7 +2345,7 @@ namespace Ebada.Scgl.Lcgl
                         break;
                     try
                     {
-                        if (lp.isExplorer == 0) ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        if (lp.isExplorer != 1) ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                     }
                     catch { }
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
@@ -2391,7 +2400,7 @@ namespace Ebada.Scgl.Lcgl
                     //{
                     //    try
                     //    {
-                    //        if (lp.isExplorer == 0) ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    //        if (lp.isExplorer != 1) ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                     //    }
                     //    catch { }
                     //    if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
@@ -2424,7 +2433,7 @@ namespace Ebada.Scgl.Lcgl
                         {
                             try
                             {
-                                if (lp.isExplorer == 0) if (lp.isExplorer == 0) ea.SetCellValue(strarrRst.Substring(0, i1), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                                if (lp.isExplorer != 1) if (lp.isExplorer != 1) ea.SetCellValue(strarrRst.Substring(0, i1), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                             }
                             catch { }
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
@@ -2455,7 +2464,7 @@ namespace Ebada.Scgl.Lcgl
                         {
                             try
                             {
-                                if (lp.isExplorer == 0) if (lp.isExplorer == 0) ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                                if (lp.isExplorer != 1) if (lp.isExplorer != 1) ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                             }
                             catch { }
                                 if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
@@ -2671,7 +2680,7 @@ namespace Ebada.Scgl.Lcgl
                         }
                         try
                         {
-                            if (lp.isExplorer == 0) ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                            if (lp.isExplorer != 1) ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                         }
                         catch { }
                        
@@ -2743,7 +2752,7 @@ namespace Ebada.Scgl.Lcgl
                         {
                             try
                             {
-                                if (lp.isExplorer == 0) ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                                if (lp.isExplorer != 1) ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
                             }
                             catch { }
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
@@ -2804,7 +2813,7 @@ namespace Ebada.Scgl.Lcgl
                         {
                             try
                             {
-                                if (lp.isExplorer == 0) ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                                if (lp.isExplorer != 1) ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
                             }
                             catch { }
                                 if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
@@ -2844,7 +2853,7 @@ namespace Ebada.Scgl.Lcgl
                             value += strextrlist[i];
                         try
                         {
-                            if (lp.isExplorer == 0) ea.SetCellValue(value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                            if (lp.isExplorer != 1) ea.SetCellValue(value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                         }
                         catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
@@ -2893,7 +2902,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     try
                     {
-                        if (lp.isExplorer == 0) ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
+                        if (lp.isExplorer != 1) ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
                     }
                     catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
@@ -2926,7 +2935,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     try
                     {
-                        if (lp.isExplorer == 0) ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
+                        if (lp.isExplorer != 1) ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
                     }
                     catch { }
                     if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))

@@ -360,7 +360,7 @@ namespace Ebada.Scgl.Lcgl {
             {
                 strKind = "dzczp";
                 str = string.Format("where kind='{0}' or kind='dzczp' and OrgName='{1}'", kind, user.OrgName);
-                if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1)
+                if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
                     str = string.Format("where kind='{0}' or kind='dzczp'and OrgName='{1}'", kind, user.OrgName);
                 else
                     str = string.Format("where kind='{0}' or kind='dzczp'", kind);      
@@ -368,7 +368,7 @@ namespace Ebada.Scgl.Lcgl {
             else if (kind == "电力线路第一种工作票")
             {
                 strKind = "yzgzp";
-                if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1)
+                if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
                     str = string.Format("where kind='{0}' or kind='yzgzp' and OrgName='{1}'", kind, user.OrgName);
                 else
                     str = string.Format("where kind='{0}' or kind='yzgzp'", kind); 
@@ -377,7 +377,7 @@ namespace Ebada.Scgl.Lcgl {
             else if (kind == "电力线路第二种工作票")
             {
                 strKind = "ezgzp";
-                if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1)
+                if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
                     str = string.Format("where kind='{0}' or kind='ezgzp'and OrgName='{1}'", kind, user.OrgName);
                 else
                     str = string.Format("where kind='{0}' or kind='ezgzp'", kind);  
@@ -385,7 +385,7 @@ namespace Ebada.Scgl.Lcgl {
             else if (kind == "电力线路事故应急抢修单")
             {
                 strKind = "xlqxp";
-                if (m_UserBase.LoginName  != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1)
+                if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
                     str = string.Format("where kind='{0}' or kind='xlqxp'and OrgName='{1}'", kind, user.OrgName);
                 else
                     str = string.Format("where kind='{0}' or kind='xlqxp'", kind);    
@@ -393,7 +393,7 @@ namespace Ebada.Scgl.Lcgl {
             else
             {
                 strKind = kind;
-                if (MainHelper.User.UserName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1)
+                if (MainHelper.User.UserName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
                     str = string.Format("where kind='{0}' and OrgName='{1}'", kind, user.OrgName);
                 else
                     str = string.Format("where kind='{0}' ", kind); 
@@ -1565,6 +1565,24 @@ namespace Ebada.Scgl.Lcgl {
 
             if (gridView1.FocusedRowHandle < 0) return;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            LP_Record currRecord = new LP_Record();
+            foreach (DataColumn dc in gridtable.Columns)
+            {
+                if (dc.ColumnName != "Image")
+                {
+                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
+                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+
+                }
+            }
+            currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
+            if (currRecord.OrgName != MainHelper.User.OrgName && MainHelper.User.OrgName!="局领导")
+            {
+                MsgBox.ShowWarningMessageBox("删除出错,不是本单位的记录，无权删除！");
+                return;
+            }
             //请求确认
             if (MsgBox.ShowAskMessageBox("是否确认删除 【" + dr["Number"].ToString() + "】?") != DialogResult.OK)
             {
