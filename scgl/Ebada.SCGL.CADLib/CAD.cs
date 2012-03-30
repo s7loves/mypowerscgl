@@ -155,7 +155,17 @@ namespace Ebada.SCGL.CADLib
             ArrayList r = new ArrayList();
             for (int i = 0; i < code.Length; i++)
             {
-                IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where LineCode like '" + code[i] + "%' order by LineCode");
+                string vol = "";
+                string linecode=code[i];
+                if (linecode.Length == 6) {
+                    PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='" + code[i] + "'");
+
+                    if (xl != null)
+                        vol = " and linevol='" + xl.LineVol + "' ";
+                } else {
+                    vol = " and linevol='0.4' ";
+                }
+                IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where LineCode like '" + code[i] + "%'"+vol+" order by LineCode");
                 for (int j = 0; j < list.Count; j++)
                 {
                     r.Add(list[j].LineID);
@@ -163,6 +173,7 @@ namespace Ebada.SCGL.CADLib
             }
             return r;
         }
+        int bl = 1000;
         public void CallCAD(AcadApplication cad, IList<PS_gt> list)
         {
             try
@@ -191,11 +202,11 @@ namespace Ebada.SCGL.CADLib
                     pnt[0] = Convert.ToDouble(list[i].gtLon.ToString("0.########"));
                     pnt[1] = Convert.ToDouble(list[i].gtLat.ToString("0.########"));
                     pnt[2] = 0;
-                    AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.0001);
+                    AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.0001*bl);
                     cirz.Layer = "gt";
                     cirz.TrueColor = color;
                     AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 1, list[i].gth);
-                    ntext.Height = 0.0001;
+                    ntext.Height = 0.0001*bl;
                     ntext.Layer = "gth";
                 }
 
@@ -205,7 +216,7 @@ namespace Ebada.SCGL.CADLib
                 ins[1] = Convert.ToDouble(list[0].gtLat.ToString("0.########"));
                 ins[2] = 0;
                 AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.LineName);
-                text.Height = 0.0002;
+                text.Height = 0.0002 * bl;
                 text.Layer = "text";
                 cad.Application.Update();
             }

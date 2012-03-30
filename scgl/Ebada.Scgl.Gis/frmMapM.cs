@@ -358,7 +358,8 @@ namespace Ebada.Scgl.Gis {
             List<string> list=new List<string>();
             foreach (GMapOverlay lay in rMap1.Overlays) {
                 if (lay is LineOverlay) {
-                    list.Add(lay.Id);
+                    if(lay.IsVisibile)
+                        list.Add(lay.Id);
                 }
             }
             if(list.Count>0)
