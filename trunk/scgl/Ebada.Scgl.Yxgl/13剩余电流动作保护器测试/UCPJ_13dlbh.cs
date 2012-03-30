@@ -230,9 +230,40 @@ namespace Ebada.Scgl.Yxgl
         {
             if (gridView1.FocusedRowHandle != -1)
             {
+                frmExportYearSelect frm = new frmExportYearSelect();
+                DataTable dt = new DataTable();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    dt = frm.DT1;
+                }
+                DataRow[] dtc = dt.Select("B=1");
                 //Export13.ExportExcel(gridView1.GetFocusedRow() as PS_tqdlbh);
                 mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(btGdsList.EditValue.ToString());
-                Export13.ExportExcel2(gridControl1.DataSource as IList<PS_tqdlbh>, org.OrgName);
+                if (dtc.Length==0)
+                {
+                    Export13.ExportExcel2(gridControl1.DataSource as IList<PS_tqdlbh>, org.OrgName);
+                }
+                else
+                {
+                    IList<PS_tqdlbh> pjlist = new List<PS_tqdlbh>();
+                    for (int i = 0; i < gridView1.RowCount; i++)
+                    {
+                        PS_tqdlbh _pj = gridView1.GetRow(i) as PS_tqdlbh;
+
+                        for (int j = 0; j < dtc.Length; j++)
+                        {
+                            if (_pj.InDate.Year == Convert.ToInt32(dtc[j][0]))
+                            {
+                                pjlist.Add(_pj);
+                            }
+                        }
+
+
+                    }
+                    Export13.ExportExcel2(pjlist, org.OrgName);
+                }
+
+               
             }
         }
     }

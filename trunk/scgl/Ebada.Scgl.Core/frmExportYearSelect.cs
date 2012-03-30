@@ -32,9 +32,9 @@ namespace Ebada.Scgl.Core
             dt1.Columns.Add("A", typeof(string));
             dt1.Columns.Add("B", typeof(bool));
             //IList<string> list = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select UserName from mUser where orgcode='" + gdscode+ "'");
-            for (int i = 0; i < 10;i++ )
+            for (int i = 0; i < 30;i++ )
             {
-                string y = (2005 + i).ToString();
+                string y = (1991 + i).ToString();
                 DataRow row = dt1.NewRow();
                 row["A"] =y;
                 row["B"] = false;
