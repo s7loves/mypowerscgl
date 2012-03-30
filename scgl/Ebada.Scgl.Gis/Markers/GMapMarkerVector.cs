@@ -23,7 +23,12 @@ namespace Ebada.Scgl.Gis.Markers {
         private bool showText;
         private Font font;
         private MarkerEnum markerType= MarkerEnum.none;
+        private object ownerLine;//所在线路
 
+        public object OwnerLine {
+            get { return ownerLine; }
+            set { ownerLine = value; }
+        }
         public MarkerEnum MarkerType {
             get { return markerType; }
             set { markerType = value; }
@@ -106,6 +111,9 @@ namespace Ebada.Scgl.Gis.Markers {
             //}
             (this.Overlay as LineOverlay).ShowDialog(this);
         }
+        void 线路条图_Click(object sender, EventArgs e) {
+            (this.Overlay as LineOverlay).ShowLineTT(this);
+        }
         public virtual ContextMenu CreatePopuMenu() {
            
             ContextMenu contextMenu = new ContextMenu();
@@ -117,7 +125,10 @@ namespace Ebada.Scgl.Gis.Markers {
             item.Text = "线路属性";
             item.Click += new EventHandler(线路属性_Click);
             contextMenu.MenuItems.Add(item);
-
+            item = new MenuItem();
+            item.Text = "线路条图";
+            item.Click += new EventHandler(线路条图_Click);
+            contextMenu.MenuItems.Add(item);
             return contextMenu;
         }
 

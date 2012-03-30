@@ -8,6 +8,7 @@ using Ebada.Scgl.Sbgl;
 using System.Data;
 using Ebada.Scgl.Gis.Markers;
 using System.Windows.Forms;
+using TLMapPlatform;
 namespace Ebada.Scgl.Gis {
     public class LineOverlay : GMapOverlay, IUpdateable,IDisposable,IPopuMenu {
 
@@ -204,5 +205,11 @@ namespace Ebada.Scgl.Gis {
         }
 
         #endregion
+
+        internal void ShowLineTT(GMapMarkerVector selectedMarker) {
+            PS_gt gt = selectedMarker.Tag as PS_gt;
+            string linecode = gt.gtCode.Substring(0, gt.gtCode.Length - 4);
+            UCMapLayer.ShowTT(linecode);
+        }
     }
 }

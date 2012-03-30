@@ -30,16 +30,16 @@ namespace TLMapPlatform {
             InitTree();
             
         }
-        void createWaitDlg() {
+        static void createWaitDlg() {
             waitdlg = new WaitDialogForm("", "正在加载数据，请稍候。。。");
         }
-        void closeWaitDlg() {
+        static void closeWaitDlg() {
             if (waitdlg != null) {
                 waitdlg.Close();
                 waitdlg = null;
             }
         }
-        void setWaitMsg(string str) {
+        static void setWaitMsg(string str) {
             if (str == null) {
                 closeWaitDlg();
             } else {
@@ -58,7 +58,7 @@ namespace TLMapPlatform {
         DataTable mTable;
         const string visible="1";
         const string hide = "0";
-        WaitDialogForm waitdlg;
+        static WaitDialogForm waitdlg;
         protected void InitTree() {
             mTable = new DataTable();
             mTable.Columns.Add("显示");
@@ -251,14 +251,17 @@ namespace TLMapPlatform {
             contextMenu.Show(treeList1, p);
         }
         void 高压线路条图17_Click(object sender, EventArgs e) {
-            PS_xl xl = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(string.Format("where linecode='{0}'", contextMenu.Tag));
+            ShowTT(contextMenu.Tag.ToString());
+        }
+        internal static void ShowTT(string linecode) {
+            PS_xl xl = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(string.Format("where linecode='{0}'", linecode));
             if (xl != null) {
                 PJ_17 pj17 = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_17>(xl.LineID);
                 DialogResult result = DialogResult.No;
                 if (pj17 == null) {
                     pj17 = new PJ_17() { LineCode = xl.LineCode, LineName = xl.LineName, OrgCode = xl.OrgCode, CreateMan = "system" };
                 } else {
-                    result=MsgBox.ShowAskMessageBox(xl.LineName + "已经存在，是否要重新生成。\n生成条图需要几分钟，建议没有修改数据前不要重新生成。");
+                    result = MsgBox.ShowAskMessageBox(xl.LineName + "已经存在，是否要重新生成。\n生成条图需要几分钟，建议没有修改数据前不要重新生成。\n[确认]重新生成，[取消]打开已生成数据。");
                 }
                 if (pj17.ID != xl.LineID || result == DialogResult.OK) {
                     setWaitMsg("正在生成“" + xl.LineName + "”条图数据");
@@ -267,24 +270,24 @@ namespace TLMapPlatform {
 
                     setWaitMsg(null);
                 }
-                if (pj17.ID == xl.LineID ) {
-                    if(result== DialogResult.OK)
-                    ClientHelper.PlatformSqlMap.Update<PJ_17>(pj17);
+                if (pj17.ID == xl.LineID) {
+                    if (result == DialogResult.OK)
+                        ClientHelper.PlatformSqlMap.Update<PJ_17>(pj17);
                 } else {
                     pj17.ID = xl.LineID;
                     ClientHelper.PlatformSqlMap.Create<PJ_17>(pj17);
                 }
                 object instance = null;
-                
-                Ebada.Client.Platform.MainHelper.Execute("Ebada.Scgl.Yxgl.dll", "Ebada.Scgl.Yxgl.frm17Template", "Show", new object[]{pj17},null,ref instance);
+
+                Ebada.Client.Platform.MainHelper.Execute("Ebada.Scgl.Yxgl.dll", "Ebada.Scgl.Yxgl.frm17Template", "Show", new object[] { pj17 }, null, ref instance);
                 Form frm = instance as Form;
-                if(frm.ShowDialog()== DialogResult.OK){
-                    object value=instance.GetType().GetProperty("pjobject").GetValue(instance, null);
+                if (frm.ShowDialog() == DialogResult.OK) {
+                    object value = instance.GetType().GetProperty("pjobject").GetValue(instance, null);
                     if (value is PJ_17) {
                         ClientHelper.PlatformSqlMap.Update<PJ_17>(value);
                     }
                 }
-                
+
             }
         }
         void 条图汇总表16_Click(object sender, EventArgs e) {
