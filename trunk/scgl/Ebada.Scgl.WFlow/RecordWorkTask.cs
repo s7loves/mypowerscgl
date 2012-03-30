@@ -106,7 +106,7 @@ namespace Ebada.Scgl.WFlow
                 //}
                 if (tl.TaskTypeId != "6" && tl.TaskTypeId != "7")
                 {
-                    if (!taskht.ContainsKey(tl.WorkTaskInsId) && tl.SuccessMsg.IndexOf("退回") == -1 && (tl.TaskTypeId == "3" || tl.TaskTypeId == "1"))
+                    if (!taskht.ContainsKey(tl.WorkTaskInsId) && (tl.SuccessMsg==null || tl.SuccessMsg.IndexOf("退回") == -1) && (tl.TaskTypeId == "3" || tl.TaskTypeId == "1"))
                         taskht.Add(tl.WorkTaskInsId, tl.TaskInsCaption);
                     if (tl.WorkTaskInsId == tl.PreviousTaskId) return;
                     GetWorkFlowInsPreviousTask(tl.PreviousTaskId, tl.WorkFlowInsId, ref  taskht);
