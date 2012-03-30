@@ -36,7 +36,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[_smorg],nvarchar
         /// </summary>
         //[Browsable(false)]
-        [DisplayNameAttribute("设备名称")]
+        [DisplayNameAttribute("所属单位")]
         public string SmOrg
         {
             get { return _smorg; }
@@ -56,7 +56,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[_sbowner],nvarchar
         /// </summary>
         //[Browsable(false)]
-        [DisplayNameAttribute("设备名称")]
+        [DisplayNameAttribute("线路/台区")]
         public string SbOwner
         {
             get { return _sbowner; }
