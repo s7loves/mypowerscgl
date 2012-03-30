@@ -503,7 +503,7 @@ namespace Ebada.SCGL.WFlow.Tool
             if (j< 0) j = 0;
             if (arrCellpos.Length >= 1)
             {
-                //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                //if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 Excel.Range range;
                 if (lp.ExtraWord == "横向")
                 {
@@ -677,7 +677,7 @@ namespace Ebada.SCGL.WFlow.Tool
             List<int> arrCellCount = String2Int(arrtemp);
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
             {
-                ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                
             }
             else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
@@ -691,7 +691,7 @@ namespace Ebada.SCGL.WFlow.Tool
                         if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]))
                         {
                             string strNew = str.Substring(0, (str.Length > 0 ? str.Length : 1) - 1) + (j + 1).ToString();
-                            ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                            if (lp.isExplorer != 1)ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
                             
                         }
                     }
@@ -702,11 +702,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 {
                     if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
                     {
-                        ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                        
                         return;
                     }
-                    ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                    if (lp.isExplorer != 1)ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
                         GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                     
@@ -829,7 +829,7 @@ namespace Ebada.SCGL.WFlow.Tool
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
             if (arrCellpos.Length >= 1)
             {
-                //ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                //if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]], xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]]);
                 range.Select();
                 bool isfind = false;
@@ -945,7 +945,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     if (str.Length > j)
                     {
                         string strNew = str.Substring(j, 1);
-                        ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                        if (lp.isExplorer != 1)ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
                     }
                     else
                         break;
@@ -984,7 +984,7 @@ namespace Ebada.SCGL.WFlow.Tool
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
             {
                 
-                    ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
               
 
             }
@@ -998,7 +998,7 @@ namespace Ebada.SCGL.WFlow.Tool
                         if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]) && str != "")
                         {
                             string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
-                            ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                            if (lp.isExplorer != 1) ea.SetCellValue("'" + strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
                            
                         }
                     }
@@ -1012,7 +1012,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                     if ((lp.CtrlType.IndexOf("uc_gridcontrol") == -1  && str.Length <= help.GetFristLen(str, arrCellCount[i])) || (lp.CtrlType.IndexOf("uc_gridcontrol") > -1 && str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[i])))
                     {
-                        ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                        if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                       
 
                         LockExcel(wb, xx);
@@ -1020,7 +1020,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1)
                     {
-                        ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                        if (lp.isExplorer != 1)ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                             str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
                             GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
 
@@ -1040,7 +1040,7 @@ namespace Ebada.SCGL.WFlow.Tool
                         {
                             i1 = i1 + 1;
                         }
-                        ea.SetCellValue(str.Substring(0, i1), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        if (lp.isExplorer != 1)ea.SetCellValue(str.Substring(0, i1), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
 
                         str = str.Substring(i1);
                         i++;
@@ -1151,7 +1151,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 {
                     if (j >= arrRst.Length)
                         break;
-                    ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    if (lp.isExplorer != 1)ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
 
                     j++;
                 }
@@ -1180,7 +1180,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     //if (strarrRst.Length <= help.GetFristLen(str, arrCellCount[i]))
                     //{
-                    //    ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    //    if (lp.isExplorer != 1)ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                     //    break;
                     //}
                     //else
@@ -1188,12 +1188,12 @@ namespace Ebada.SCGL.WFlow.Tool
 
                         if (strarrRst.Length >= i1)
                         {
-                            ea.SetCellValue(strarrRst.Substring(0, i1), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                            if (lp.isExplorer != 1)ea.SetCellValue(strarrRst.Substring(0, i1), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                             strarrRst = strarrRst.Substring(i1);
                         }
                         else
                         {
-                            ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                            if (lp.isExplorer != 1)ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                             strarrRst = "";
                         }
 
@@ -1215,13 +1215,13 @@ namespace Ebada.SCGL.WFlow.Tool
             IList<string> strList = new List<string>();
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
             {
-                ea.SetCellValue(se.Text, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                if (lp.isExplorer != 1)ea.SetCellValue(se.Text, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
 
             }
             else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
             {
                
-                ea.SetCellValue(se.Text, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                if (lp.isExplorer != 1)ea.SetCellValue(se.Text, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
             }
         }
     
@@ -1332,7 +1332,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
 
                     if (arrCellPos.Length > 1)
-                        ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        if (lp.isExplorer != 1) ea.SetCellValue("'" + strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                     else
                     {
                         if (dt.ToString("yyyyMMdd") == "00010101")
@@ -1350,7 +1350,7 @@ namespace Ebada.SCGL.WFlow.Tool
                         }
                             value += strList[i];
                             if (strList.Count == i+1)
-                            ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                            if (lp.isExplorer != 1)ea.SetCellValue("'"+value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
                     }
                 }
                 else
@@ -1360,7 +1360,7 @@ namespace Ebada.SCGL.WFlow.Tool
                         value = value.Replace("{" + i + "}", strList[i]);
                         if (i == strList.Count - 1)
                         {
-                            ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                            if (lp.isExplorer != 1) ea.SetCellValue("'" + value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
                         }
                     }
                     else
@@ -1373,7 +1373,7 @@ namespace Ebada.SCGL.WFlow.Tool
                         value = strList[i];
                         if (strextrlist.Length > i)
                             value += strextrlist[i];
-                        ea.SetCellValue(value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        if (lp.isExplorer != 1) ea.SetCellValue("'" + value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                        
                     }
                 }
@@ -1394,7 +1394,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 for (int i = 0; i < arrRst.Length; i++)
                 {
-                    ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
+                    if (lp.isExplorer != 1)ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
 
                 }
             }
@@ -1402,7 +1402,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 for (int i = 0; i < arrRst.Length; i++)
                 {
-                    ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
+                    if (lp.isExplorer != 1)ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
 
                 }
             }

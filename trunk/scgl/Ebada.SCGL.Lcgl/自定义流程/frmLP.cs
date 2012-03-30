@@ -2886,6 +2886,16 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
                                 tfv.ExcelSheetName = activeSheetName;
 
+                                tfv = valuehs[lp.LPID + "$" + arrCellPos[0] + "时间"] as WF_TableFieldValue;
+                                if (tfv != null)
+                                {
+                                    tfv.ControlValue = dt.ToString();
+                                    tfv.FieldId = lp.LPID;
+                                    tfv.FieldName = lp.CellName + "完整时间";
+                                    tfv.XExcelPos = -1;
+                                    tfv.YExcelPos = -1;
+                                    tfv.ExcelSheetName = activeSheetName;
+                                }
                             }
                             else
                             {
@@ -2897,6 +2907,16 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
                                 tfv.ExcelSheetName = activeSheetName;
                                 valuehs.Add(lp.LPID + "$" + arrCellPos[0], tfv);
+
+                                tfv = new WF_TableFieldValue();
+                                tfv.FieldId = lp.LPID;
+                                tfv.ControlValue = dt.ToString();
+                                tfv.FieldName = lp.CellName + "完整时间";
+                                tfv.XExcelPos = -1;
+                                tfv.YExcelPos = -1;
+                                tfv.ExcelSheetName = activeSheetName;
+                                valuehs.Add(lp.LPID + "$" + arrCellPos[0] + "完整时间", tfv);
+            
                             }
                         }
 
@@ -2926,6 +2946,16 @@ namespace Ebada.Scgl.Lcgl
                             tfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
                             tfv.ExcelSheetName = activeSheetName;
 
+                            tfv = valuehs[lp.LPID + "$" + arrCellPos[0] + "时间"] as WF_TableFieldValue;
+                            if (tfv != null)
+                            {
+                                tfv.ControlValue = dt.ToString();
+                                tfv.FieldId = lp.LPID;
+                                tfv.FieldName = lp.CellName + "完整时间";
+                                tfv.XExcelPos = -1;
+                                tfv.YExcelPos = -1;
+                                tfv.ExcelSheetName = activeSheetName;
+                            }
                         }
                         else
                         {
@@ -2937,6 +2967,15 @@ namespace Ebada.Scgl.Lcgl
                             tfv.YExcelPos = GetCellPos(arrCellPos[0])[1];
                             tfv.ExcelSheetName = activeSheetName;
                             valuehs.Add(lp.LPID + "$" + arrCellPos[0], tfv);
+
+                            tfv = new WF_TableFieldValue();
+                            tfv.FieldId = lp.LPID;
+                            tfv.ControlValue = dt.ToString();
+                            tfv.FieldName = lp.CellName + "完整时间";
+                            tfv.XExcelPos = -1;
+                            tfv.YExcelPos = -1;
+                            tfv.ExcelSheetName = activeSheetName;
+                            valuehs.Add(lp.LPID + "$" + arrCellPos[0] + "完整时间", tfv);
                         }
                     }
                     //ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
