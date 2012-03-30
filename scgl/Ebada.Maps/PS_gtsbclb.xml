@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_gtsbclb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_gtsbclb"  type="Ebada.Scgl.Model.PS_gtsbclb,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_gtsbclb_AllColumns" class="PS_gtsbclb">
+        <result property="bh" column="bh" />
+        <result property="mc" column="mc" />
+        <result property="xh" column="xh" />
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+        <result property="zl" column="zl" />
+        <result property="zlCode" column="zlCode" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_gtsbclbList" resultMap="PS_gtsbclb_AllColumns" parameterClass="string">
+        SELECT 
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [S1],
+         [S2],
+         [S3],
+         [zl],
+         [zlCode]
+          FROM PS_gtsbclb
+          $value$
+   </select>
+   
+   <select id="SelectPS_gtsbclbByHash" parameterClass="Hashtable">
+         SELECT 
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [S1],
+         [S2],
+         [S3],
+         [zl],
+         [zlCode]
+          FROM PS_gtsbclb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="mc">[mc]='$mc$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+       <isNotNull prepend="AND" property="zl">[zl]='$zl$'</isNotNull>
+       <isNotNull prepend="AND" property="zlCode">[zlCode]='$zlCode$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_gtsbclbByKey" resultMap="PS_gtsbclb_AllColumns" parameterClass="PS_gtsbclb">
+         SELECT 
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [S1],
+         [S2],
+         [S3],
+         [zl],
+         [zlCode]
+         FROM PS_gtsbclb
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePS_gtsbclb" parameterClass="PS_gtsbclb">
+        DELETE FROM 
+         PS_gtsbclb
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePS_gtsbclbByWhere" parameterClass="string">
+     delete from PS_gtsbclb $value$
+   </delete>
+   
+   <delete id="DeletePS_gtsbclbByKey" parameterClass="string">
+        DELETE FROM 
+         PS_gtsbclb
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePS_gtsbclb" parameterClass="PS_gtsbclb" resultClass="int">
+          UPDATE PS_gtsbclb
+           SET
+             [bh]=#bh#,
+             [mc]=#mc#,
+             [xh]=#xh#,
+             [ParentID]=#ParentID#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#,
+             [zl]=#zl#,
+             [zlCode]=#zlCode#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPS_gtsbclb" parameterClass="PS_gtsbclb">
+        INSERT INTO PS_gtsbclb
+         (
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [S1],
+         [S2],
+         [S3],
+         [zl],
+         [zlCode]
+         )
+       VALUES
+         (
+         #bh#,
+         #mc#,
+         #xh#,
+         #ID#,
+         #ParentID#,
+         #S1#,
+         #S2#,
+         #S3#,
+         #zl#,
+         #zlCode#
+         )
+
+   </insert>
+   
+   <select id="GetPS_gtsbclbRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_gtsbclb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="mc">[mc]='$mc$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+       <isNotNull prepend="AND" property="zl">[zl]='$zl$'</isNotNull>
+       <isNotNull prepend="AND" property="zlCode">[zlCode]='$zlCode$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_gtsbclbRowCount" parameterClass="string">
+    select count(*) from PS_gtsbclb $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
