@@ -598,7 +598,7 @@ namespace Ebada.Scgl.Lcgl
                         {
                             label.Text = lp.CellName + "(Tab键可选下一格)";
                             (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar), lp);
-                            if (RecordWorkTask.HaveRunPowerRole(WorkConst.WorkTask_BindTable, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkTaskId"].ToString()) || currRecord.Status == "填票")
+                            //if (RecordWorkTask.HaveRunPowerRole(WorkConst.WorkTask_BindTable, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkTaskId"].ToString()) || currRecord.Status == "填票")
                             {
                                 (ctrl as uc_gridcontrol).iniTableRecordData(currRecord.ID, lp, WorkFlowData.Rows[0]["WorkFlowId"].ToString(), WorkFlowData.Rows[0]["WorkFlowInsId"].ToString());
                             }
@@ -789,11 +789,12 @@ namespace Ebada.Scgl.Lcgl
 
                 DateTime dt = DateTime.Now;
                 Random rd = new Random();
+                WF_TableFieldValue wfv=null;
                 int irpos = 5001;
                 decimal dtemp = Convert.ToDecimal(dt.ToString("yyyyMMddHHmmssffffff"));
                 for (int i = 0; i < akeys.Count; i++)
                 {
-                    WF_TableFieldValue wfv = valuehs[akeys[i]] as WF_TableFieldValue;
+                    wfv = valuehs[akeys[i]] as WF_TableFieldValue;
                     if (wfv.XExcelPos != -1 && wfv.YExcelPos != -1)
                         wfv.ID = Convert.ToString((dtemp + wfv.YExcelPos + wfv.XExcelPos * 10000));
                     else
@@ -813,31 +814,90 @@ namespace Ebada.Scgl.Lcgl
                     list.Add(wfv);
                     MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where FieldId ='" + wfv.FieldId + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                 }
-                foreach (WF_TableFieldValue wfv in list)
-                {
-                    Console.Write(wfv.ID + "\r\n");
-                }
-                foreach (WF_TableFieldValue wfv in list)
+                //foreach (WF_TableFieldValue wfv in list)
+                //{
+                //    Console.Write(wfv.ID + "\r\n");
+                //}
+                foreach (WF_TableFieldValue wfv2 in list)
                 {
                     WF_TableFieldValue wtfvtemp = Client.ClientHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
-                         + " and   WorkflowId='" + wfv.WorkFlowId + "'"
-                         + " and   RecordId='" + wfv.RecordId + "'"
-                         + " and   UserControlId='" + wfv.UserControlId + "'"
-                         + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
-                         + " and   fieldname='" + wfv.FieldName + "'"
-                         + " and   FieldId='" + wfv.FieldId + "'"
-                         + " and   XExcelPos='" + wfv.XExcelPos + "'"
-                         + " and   YExcelPos='" + wfv.YExcelPos + "'"
-                         + " and   WorkTaskId='" + wfv.WorkTaskId + "'"
+                         + " and   WorkflowId='" + wfv2.WorkFlowId + "'"
+                         + " and   RecordId='" + wfv2.RecordId + "'"
+                         + " and   UserControlId='" + wfv2.UserControlId + "'"
+                         + " and   WorkFlowInsId='" + wfv2.WorkFlowInsId + "'"
+                         + " and   fieldname='" + wfv2.FieldName + "'"
+                         + " and   FieldId='" + wfv2.FieldId + "'"
+                         + " and   XExcelPos='" + wfv2.XExcelPos + "'"
+                         + " and   YExcelPos='" + wfv2.YExcelPos + "'"
+                         + " and   WorkTaskId='" + wfv2.WorkTaskId + "'"
                          );
                     if (wtfvtemp != null)
-                        wfv.ID = wtfvtemp.ID;
+                        wfv2.ID = wtfvtemp.ID;
                     else
                     {
-                        Client.ClientHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                        Client.ClientHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv2);
                     }
                 }
                 Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, list, null);
+                LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
+                if (lp != null)
+                {
+                    if (wfv == null)
+                    {
+                        wfv = new WF_TableFieldValue();
+                        wfv.ID = wfv.CreateID();
+                        wfv.RecordId = currRecord.ID;
+                        wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                        wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                        wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                        wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        wfv.UserControlId = parentTemple.LPID;
+                        wfv.ControlValue = "";
+                        wfv.FieldId = lp.LPID;
+                        wfv.FieldName = lp.CellName;
+                        wfv.XExcelPos = GetCellPos(lp.CellPos)[0];
+                        wfv.YExcelPos = GetCellPos(lp.CellPos)[1];
+                        wfv.ExcelSheetName = activeSheetName;
+                    }
+
+                    wfv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
+                                     + " and   WorkflowId='" + wfv.WorkFlowId + "'"
+                                     + " and   RecordId='" + wfv.RecordId + "'"
+                                     + " and   UserControlId='" + wfv.UserControlId + "'"
+                                     + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
+                                     + " and   fieldname='" + lp.CellName + "'"
+                                     + " and   FieldId='" + lp.LPID + "' and Bigdata is not null"
+                                    );
+                    dsoFramerWordControl1.FileSave();
+                    currRecord.DocContent = dsoFramerWordControl1.FileDataGzip;
+                    if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                    if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+                    if (wfv == null)
+                    {
+                        wfv = new WF_TableFieldValue();
+                        wfv.ID = wfv.CreateID();
+                        wfv.RecordId = currRecord.ID;
+                        wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                        wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                        wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                        wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                        wfv.UserControlId = parentTemple.LPID;
+                        wfv.ControlValue = "";
+                        wfv.FieldId = lp.LPID;
+                        wfv.FieldName = lp.CellName;
+                        wfv.XExcelPos = GetCellPos(lp.CellPos)[0];
+                        wfv.YExcelPos = GetCellPos(lp.CellPos)[1];
+                        wfv.ExcelSheetName = activeSheetName;
+                        wfv.Bigdata = currRecord.DocContent;
+                        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+                    }
+                    else
+                    {
+                        wfv.Bigdata = currRecord.DocContent;
+                        MainHelper.PlatformSqlMap.Update<WF_TableFieldValue>(wfv);
+
+                    }
+                }
                 MsgBox.ShowTipMessageBox("保存成功!");
                 //this.DialogResult = DialogResult.OK;
             }
@@ -2680,7 +2740,7 @@ namespace Ebada.Scgl.Lcgl
                         }
                         try
                         {
-                            if (lp.isExplorer != 1) ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                            if (lp.isExplorer != 1) ea.SetCellValue("'"+strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                         }
                         catch { }
                        
@@ -2752,7 +2812,7 @@ namespace Ebada.Scgl.Lcgl
                         {
                             try
                             {
-                                if (lp.isExplorer != 1) ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                                if (lp.isExplorer != 1) ea.SetCellValue("'" + value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
                             }
                             catch { }
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
@@ -2813,7 +2873,7 @@ namespace Ebada.Scgl.Lcgl
                         {
                             try
                             {
-                                if (lp.isExplorer != 1) ea.SetCellValue(value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                                if (lp.isExplorer != 1) ea.SetCellValue("'" + value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
                             }
                             catch { }
                                 if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
@@ -2853,7 +2913,7 @@ namespace Ebada.Scgl.Lcgl
                             value += strextrlist[i];
                         try
                         {
-                            if (lp.isExplorer != 1) ea.SetCellValue(value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                            if (lp.isExplorer != 1) ea.SetCellValue("'" + value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                         }
                         catch { }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[0]))
