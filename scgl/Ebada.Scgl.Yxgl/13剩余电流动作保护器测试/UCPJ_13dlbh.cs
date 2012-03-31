@@ -235,34 +235,43 @@ namespace Ebada.Scgl.Yxgl
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     dt = frm.DT1;
-                }
-                DataRow[] dtc = dt.Select("B=1");
-                //Export13.ExportExcel(gridView1.GetFocusedRow() as PS_tqdlbh);
-                mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(btGdsList.EditValue.ToString());
-                if (dtc.Length==0)
-                {
-                    Export13.ExportExcel2(gridControl1.DataSource as IList<PS_tqdlbh>, org.OrgName);
-                }
-                else
-                {
-                    IList<PS_tqdlbh> pjlist = new List<PS_tqdlbh>();
-                    for (int i = 0; i < gridView1.RowCount; i++)
+                    try
                     {
-                        PS_tqdlbh _pj = gridView1.GetRow(i) as PS_tqdlbh;
-
-                        for (int j = 0; j < dtc.Length; j++)
+                        DataRow[] dtc = dt.Select("B=1");
+                        //Export13.ExportExcel(gridView1.GetFocusedRow() as PS_tqdlbh);
+                        mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(btGdsList.EditValue.ToString());
+                        if (dtc.Length == 0)
                         {
-                            if (_pj.InDate.Year == Convert.ToInt32(dtc[j][0]))
+                            Export13.ExportExcel2(gridControl1.DataSource as IList<PS_tqdlbh>, org.OrgName);
+                        }
+                        else
+                        {
+                            IList<PS_tqdlbh> pjlist = new List<PS_tqdlbh>();
+                            for (int i = 0; i < gridView1.RowCount; i++)
                             {
-                                pjlist.Add(_pj);
+                                PS_tqdlbh _pj = gridView1.GetRow(i) as PS_tqdlbh;
+
+                                for (int j = 0; j < dtc.Length; j++)
+                                {
+                                    if (_pj.InDate.Year == Convert.ToInt32(dtc[j][0]))
+                                    {
+                                        pjlist.Add(_pj);
+                                    }
+                                }
+
+
                             }
+                            Export13.ExportExcel2(pjlist, org.OrgName);
                         }
 
+                    }
+                    catch (System.Exception ex)
+                    {
 
                     }
-                    Export13.ExportExcel2(pjlist, org.OrgName);
                 }
-
+               
+               
                
             }
         }

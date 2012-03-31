@@ -205,38 +205,39 @@ namespace Ebada.Scgl.Yxgl
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     dt = frm.DT1;
-                }
-                IList<PJ_08sbtdjx> pjlist = new List<PJ_08sbtdjx>();
-                DataRow[] dtc = dt.Select("B=1");
-                if (dtc.Length==0)
-                {
-
-                    for (int i = 0; i < gridView1.RowCount; i++)
+                    IList<PJ_08sbtdjx> pjlist = new List<PJ_08sbtdjx>();
+                    DataRow[] dtc = dt.Select("B=1");
+                    if (dtc.Length == 0)
                     {
-                        PJ_08sbtdjx _pj = gridView1.GetRow(i) as PJ_08sbtdjx;
-                        pjlist.Add(_pj);
 
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < gridView1.RowCount; i++)
-                    {
-                        PJ_08sbtdjx _pj = gridView1.GetRow(i) as PJ_08sbtdjx;
-                        
-                        for (int j = 0; j < dtc.Length;j++ )
+                        for (int i = 0; i < gridView1.RowCount; i++)
                         {
-                            if (_pj.tdsj.Year==Convert.ToInt32(dtc[j][0]))
-                            {
-                                pjlist.Add(_pj);
-                            }
-                        }
-                      
+                            PJ_08sbtdjx _pj = gridView1.GetRow(i) as PJ_08sbtdjx;
+                            pjlist.Add(_pj);
 
+                        }
                     }
+                    else
+                    {
+                        for (int i = 0; i < gridView1.RowCount; i++)
+                        {
+                            PJ_08sbtdjx _pj = gridView1.GetRow(i) as PJ_08sbtdjx;
+
+                            for (int j = 0; j < dtc.Length; j++)
+                            {
+                                if (_pj.tdsj.Year == Convert.ToInt32(dtc[j][0]))
+                                {
+                                    pjlist.Add(_pj);
+                                }
+                            }
+
+
+                        }
+                    }
+
+                    Export08.ExportExcel(pjlist);
                 }
-           
-                Export08.ExportExcel(pjlist);
+               
             }
             else
             {

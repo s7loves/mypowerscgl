@@ -238,12 +238,39 @@ namespace Ebada.Scgl.Yxgl
         {
             if (PSObj!=null&&gridView1.RowCount>0)
             {
-                 IList<PJ_14aqgjsy> pjlist=new List<PJ_14aqgjsy>();
-                for (int i = 0; i < gridView1.RowCount; i++)
-			    {
-                    pjlist.Add(gridView1.GetRow(i) as PJ_14aqgjsy);
-			    }
-                Export14.ExportExcel(PSObj, pjlist);
+                frmExportYearSelect frm = new frmExportYearSelect();
+                DataTable dt = new DataTable();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    dt = frm.DT1;
+                    DataRow[] dtc = dt.Select("B=1");
+                    IList<PJ_14aqgjsy> pjlist = new List<PJ_14aqgjsy>();
+                    if (dtc.Length == 0)
+                    {
+                        for (int i = 0; i < gridView1.RowCount; i++)
+                        {
+                            pjlist.Add(gridView1.GetRow(i) as PJ_14aqgjsy);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < gridView1.RowCount; i++)
+                        {
+                            PJ_14aqgjsy obj = gridView1.GetRow(i) as PJ_14aqgjsy;
+                            for (int j = 0; j < dtc.Length; j++)
+                            {
+                                if (Convert.ToInt32(dtc[j][0]) == obj.rq.Year)
+                                {
+                                    pjlist.Add(gridView1.GetRow(i) as PJ_14aqgjsy);
+                                }
+                            }
+
+                        }
+                    }
+
+                    Export14.ExportExcel(PSObj, pjlist);
+                }
+              
             }
            
            
