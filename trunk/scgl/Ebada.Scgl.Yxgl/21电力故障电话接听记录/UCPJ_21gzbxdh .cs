@@ -200,15 +200,51 @@ namespace Ebada.Scgl.Yxgl
         {
             if (gridView1.RowCount > 0)
             {
-                IList<PJ_21gzbxdh> pjlist = new List<PJ_21gzbxdh>();
-                for (int i = 0; i < gridView1.RowCount; i++)
+                frmExportYearSelect frm = new frmExportYearSelect();
+                DataTable dt = new DataTable();
+                if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    PJ_21gzbxdh _pj = gridView1.GetRow(i) as PJ_21gzbxdh;
-                    pjlist.Add(_pj);
+                    dt = frm.DT1;
+                    try
+                    {
+                        DataRow[] dtc = dt.Select("B=1");
+                        IList<PJ_21gzbxdh> pjlist = new List<PJ_21gzbxdh>();
+                        if (dtc.Length == 0)
+                        {
+                            for (int i = 0; i < gridView1.RowCount; i++)
+                            {
+                                PJ_21gzbxdh _pj = gridView1.GetRow(i) as PJ_21gzbxdh;
+                                pjlist.Add(_pj);
 
 
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < gridView1.RowCount; i++)
+                            {
+                                PJ_21gzbxdh _pj = gridView1.GetRow(i) as PJ_21gzbxdh;
+                                for (int j = 0; j < dtc.Length; j++)
+                                {
+                                    if (Convert.ToInt32(dtc[j][0]) == _pj.rq.Year)
+                                    {
+                                        pjlist.Add(_pj);
+
+                                    }
+                                }
+
+
+                            }
+                        }
+                        Export21.ExportExcel(pjlist);
+                    }
+                    catch (System.Exception ex)
+                    {
+
+                    }
                 }
-                Export21.ExportExcel(pjlist);
+                
+               
             }
             else
             {

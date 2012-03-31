@@ -200,28 +200,29 @@ namespace Ebada.Scgl.Yxgl
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     dt = frm.DT1;
-                }
-                DataRow[] dtc = dt.Select("B=1");
-                if (dtc.Length == 0)
-                {
-                    Export07.ExportExcel(gridView1.GetFocusedRow() as PJ_07jdzz);
-                }
-                else
-                {
-                    string sely = "(";
-                    for (int i = 0; i < dtc.Length; i++)
+                    DataRow[] dtc = dt.Select("B=1");
+                    if (dtc.Length == 0)
                     {
-                        if (i < dtc.Length - 1)
+                        Export07.ExportExcel(gridView1.GetFocusedRow() as PJ_07jdzz);
+                    }
+                    else
+                    {
+                        string sely = "(";
+                        for (int i = 0; i < dtc.Length; i++)
                         {
-                            sely += "'" + dtc[i][0].ToString() + "',";
+                            if (i < dtc.Length - 1)
+                            {
+                                sely += "'" + dtc[i][0].ToString() + "',";
+                            }
+                            else
+                                sely += "'" + dtc[i][0].ToString() + "')";
+
                         }
-                        else
-                            sely += "'" + dtc[i][0].ToString() + "')";
+                        Export07.ExportExcel(gridView1.GetFocusedRow() as PJ_07jdzz, sely);
 
                     }
-                    Export07.ExportExcel(gridView1.GetFocusedRow() as PJ_07jdzz,sely);
-
                 }
+              
                 
             }
         }
