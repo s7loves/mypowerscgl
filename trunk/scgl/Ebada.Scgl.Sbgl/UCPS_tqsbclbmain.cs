@@ -85,6 +85,14 @@ namespace Ebada.Scgl.Sbgl {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PS_tqsbclb);
         }
+        public PS_tqsbclb SelectObject()
+        {
+            return gridView1.GetFocusedRow() as PS_tqsbclb;
+        }
+        public void hidbarmange()
+        {
+            this.bar1.Visible = false;
+        }
         private void hideColumn(string colname) {
             gridView1.Columns[colname].Visible = false;
         }
