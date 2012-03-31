@@ -40,6 +40,7 @@
             this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
             this.btReExportOrg = new DevExpress.XtraBars.BarButtonItem();
+            this.btReExportAll = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -49,7 +50,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btReExportAll = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -240,6 +240,13 @@
             this.btReExportOrg.Name = "btReExportOrg";
             this.btReExportOrg.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReExportOrg_ItemClick);
             // 
+            // btReExportAll
+            // 
+            this.btReExportAll.Caption = "导出全局";
+            this.btReExportAll.Id = 19;
+            this.btReExportAll.Name = "btReExportAll";
+            this.btReExportAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReExportAll_ItemClick);
+            // 
             // btClose
             // 
             this.btClose.Caption = "关闭";
@@ -272,13 +279,13 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(653, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(695, 25);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 303);
-            this.barDockControlBottom.Size = new System.Drawing.Size(653, 25);
+            this.barDockControlBottom.Size = new System.Drawing.Size(695, 25);
             // 
             // barDockControlLeft
             // 
@@ -289,7 +296,7 @@
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(653, 25);
+            this.barDockControlRight.Location = new System.Drawing.Point(695, 25);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 278);
             // 
             // gridControl1
@@ -304,7 +311,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(653, 278);
+            this.gridControl1.Size = new System.Drawing.Size(695, 278);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -315,20 +322,13 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
-            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
             this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // btReExportAll
-            // 
-            this.btReExportAll.Caption = "导出全局";
-            this.btReExportAll.Id = 19;
-            this.btReExportAll.Name = "btReExportAll";
-            this.btReExportAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReExportAll_ItemClick);
+            this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
             // 
             // UCPJ_20
             // 
@@ -340,7 +340,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "UCPJ_20";
-            this.Size = new System.Drawing.Size(653, 328);
+            this.Size = new System.Drawing.Size(695, 328);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();

@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using Ebada.Scgl.Gis;
 
 namespace Ebada.Scgl.Yxgl
 {
@@ -33,8 +34,10 @@ namespace Ebada.Scgl.Yxgl
 
         public event SendDataEventHandler<PJ_20> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
+        private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
         private string parentID = null;
         private mOrg parentObj;
+        private GridColumn picview;
         public UCPJ_20()
         {
             InitializeComponent();
@@ -136,7 +139,29 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
             hideColumn("ParentID");
-            hideColumn("gzrjID");
+            hideColumn("gzrjID"); 
+            picview = new DevExpress.XtraGrid.Columns.GridColumn();
+            picview.Caption = "查看";
+            picview.Visible = true;
+
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
+            this.repositoryItemHyperLinkEdit1.AutoHeight = false;
+            this.repositoryItemHyperLinkEdit1.Caption = "查看";
+            this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
+            this.repositoryItemHyperLinkEdit1.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit1_Click);
+            this.picview.Caption = "查看网络图";
+            this.picview.ColumnEdit = this.repositoryItemHyperLinkEdit1;
+            this.picview.VisibleIndex = 3;
+            picview.FieldName = "Image";
+            gridView1.Columns.Add(picview);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
+
+            gridView1.Columns.Add(picview);
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
         }
         /// <summary>
         /// 刷新数据
@@ -145,6 +170,7 @@ namespace Ebada.Scgl.Yxgl
         public void RefreshData(string slqwhere)
         {
             gridViewOperation.RefreshData(slqwhere);
+            gridView1.SetRowCellValue (0,"Image","查看");
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -297,7 +323,41 @@ namespace Ebada.Scgl.Yxgl
                 Console.WriteLine(ex.Message);
             }
         }
+        private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
+        {
+            int ihand = gridView1.FocusedRowHandle;
+            if (ihand < 0)
+                return;
+            PJ_20 currRecord = gridView1.GetFocusedRow() as PJ_20;
+            currRecord = MainHelper.PlatformSqlMap.GetOneByKey<PJ_20>(currRecord.ID);
+            if(currRecord!=null)
+            GMapHelper.GetDytqMap(currRecord.tqCode);
+            //Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(), new Size(1024, 768));
+            //string tempPath = Path.GetTempPath();
+            //string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".png";
+            //if (objBitmap != null)
+            //{
 
+
+            //    objBitmap.Save(tempfile, System.Drawing.Imaging.ImageFormat.Png);
+            //    try
+            //    {
+            //        //System.Diagnostics.Process.Start("explorer.exe", tempfile);
+            //        SelectorHelper.Execute("rundll32.exe %Systemroot%\\System32\\shimgvw.dll,ImageView_Fullscreen " + tempfile);
+            //    }
+            //    catch
+            //    {
+
+
+            //    }
+            //}
+        }
+
+        private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (gridView1.FocusedColumn.FieldName != "Image")
+                e.Cancel = true;
+        }
      
 
 
