@@ -118,6 +118,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSandroid.xsd</DependentUpon>
     </Compile>
+    <Compile Include="frmPS_tqsbclbEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPS_tqsbclbEdit.Designer.cs">
+      <DependentUpon>frmPS_tqsbclbEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="ps_gtsbzl.cs" />
     <Compile Include="ps_xl.cs" />
     <Compile Include="frmDownload.cs">
@@ -198,6 +204,24 @@
     </Compile>
     <Compile Include="UCPS_gtsbclbM.Designer.cs">
       <DependentUpon>UCPS_gtsbclbM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPS_tqsbclb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_tqsbclb.Designer.cs">
+      <DependentUpon>UCPS_tqsbclb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPS_tqsbclbM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_tqsbclbM.Designer.cs">
+      <DependentUpon>UCPS_tqsbclbM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPS_tqsbclbmain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_tqsbclbmain.Designer.cs">
+      <DependentUpon>UCPS_tqsbclbmain.cs</DependentUpon>
     </Compile>
     <Compile Include="台区元素\frmTemplate.cs">
       <SubType>Form</SubType>
@@ -594,6 +618,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="devicetypes.xml" />
+    <EmbeddedResource Include="frmPS_tqsbclbEdit.resx">
+      <DependentUpon>frmPS_tqsbclbEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCDeviceTypeTree.resx">
       <DependentUpon>UCDeviceTypeTree.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -604,6 +631,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCPS_gtsbclbM.resx">
       <DependentUpon>UCPS_gtsbclbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_tqsbclb.resx">
+      <DependentUpon>UCPS_tqsbclb.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_tqsbclbM.resx">
+      <DependentUpon>UCPS_tqsbclbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_tqsbclbmain.resx">
+      <DependentUpon>UCPS_tqsbclbmain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="模块说明.txt" />

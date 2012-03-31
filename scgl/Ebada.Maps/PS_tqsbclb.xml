@@ -14,6 +14,7 @@
         <result property="S2" column="S2" />
         <result property="S3" column="S3" />
         <result property="zl" column="zl" />
+         <result property="sl" column="sl" />
         <result property="zlCode" column="zlCode" />
       </resultMap>
   </resultMaps>
@@ -30,24 +31,26 @@
          [S2],
          [S3],
          [zl],
+         [sl],
          [zlCode]
           FROM PS_tqsbclb
           $value$
    </select>
    
    <select id="SelectPS_tqsbclbByHash" parameterClass="Hashtable">
-         SELECT 
-         [bh],
-         [mc],
-         [xh],
-         [ID],
-         [ParentID],
-         [S1],
-         [S2],
-         [S3],
-         [zl],
-         [zlCode]
-          FROM PS_tqsbclb
+     SELECT
+     [bh],
+     [mc],
+     [xh],
+     [ID],
+     [ParentID],
+     [S1],
+     [S2],
+     [S3],
+     [zl],
+     [sl],
+     [zlCode]
+     FROM PS_tqsbclb
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
        <isNotNull prepend="AND" property="mc">[mc]='$mc$'</isNotNull>
@@ -58,24 +61,26 @@
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
        <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
        <isNotNull prepend="AND" property="zl">[zl]='$zl$'</isNotNull>
+        <isNotNull prepend="AND" property="sl">[sl]='$sl$'</isNotNull>
        <isNotNull prepend="AND" property="zlCode">[zlCode]='$zlCode$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_tqsbclbByKey" resultMap="PS_tqsbclb_AllColumns" parameterClass="PS_tqsbclb">
-         SELECT 
-         [bh],
-         [mc],
-         [xh],
-         [ID],
-         [ParentID],
-         [S1],
-         [S2],
-         [S3],
-         [zl],
-         [zlCode]
-         FROM PS_tqsbclb
-         WHERE 
-           ID = #ID#
+     SELECT
+     [bh],
+     [mc],
+     [xh],
+     [ID],
+     [ParentID],
+     [S1],
+     [S2],
+     [S3],
+     [zl],
+     [sl],
+     [zlCode]
+     FROM PS_tqsbclb
+     WHERE
+     ID = #ID#
 
    </select>
  
@@ -100,49 +105,52 @@
    </delete>
    
    <update id="UpdatePS_tqsbclb" parameterClass="PS_tqsbclb" resultClass="int">
-          UPDATE PS_tqsbclb
-           SET
-             [bh]=#bh#,
-             [mc]=#mc#,
-             [xh]=#xh#,
-             [ParentID]=#ParentID#,
-             [S1]=#S1#,
-             [S2]=#S2#,
-             [S3]=#S3#,
-             [zl]=#zl#,
-             [zlCode]=#zlCode#
-            WHERE 
-              ID = #ID#
+     UPDATE PS_tqsbclb
+     SET
+     [bh]=#bh#,
+     [mc]=#mc#,
+     [xh]=#xh#,
+     [ParentID]=#ParentID#,
+     [S1]=#S1#,
+     [S2]=#S2#,
+     [S3]=#S3#,
+     [zl]=#zl#,
+     [sl]=#sl#,
+     [zlCode]=#zlCode#
+     WHERE
+     ID = #ID#
 
    </update>
   
    <insert id="InsertPS_tqsbclb" parameterClass="PS_tqsbclb">
-        INSERT INTO PS_tqsbclb
-         (
-         [bh],
-         [mc],
-         [xh],
-         [ID],
-         [ParentID],
-         [S1],
-         [S2],
-         [S3],
-         [zl],
-         [zlCode]
-         )
-       VALUES
-         (
-         #bh#,
-         #mc#,
-         #xh#,
-         #ID#,
-         #ParentID#,
-         #S1#,
-         #S2#,
-         #S3#,
-         #zl#,
-         #zlCode#
-         )
+     INSERT INTO PS_tqsbclb
+     (
+     [bh],
+     [mc],
+     [xh],
+     [ID],
+     [ParentID],
+     [S1],
+     [S2],
+     [S3],
+     [zl],
+     [sl],
+     [zlCode]
+     )
+     VALUES
+     (
+     #bh#,
+     #mc#,
+     #xh#,
+     #ID#,
+     #ParentID#,
+     #S1#,
+     #S2#,
+     #S3#,
+     #zl#,
+     #sl#,
+     #zlCode#
+     )
 
    </insert>
    
@@ -159,6 +167,7 @@
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
        <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
        <isNotNull prepend="AND" property="zl">[zl]='$zl$'</isNotNull>
+       <isNotNull prepend="AND" property="sl">[sl]='$sl$'</isNotNull>
        <isNotNull prepend="AND" property="zlCode">[zlCode]='$zlCode$'</isNotNull>
      </dynamic>
 
