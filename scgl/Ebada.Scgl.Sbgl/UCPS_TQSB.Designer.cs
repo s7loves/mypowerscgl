@@ -33,9 +33,12 @@
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btGtList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.btTQList = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemLookUpEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
@@ -49,15 +52,13 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btTQList = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemLookUpEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit4)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -74,6 +75,7 @@
             this.btAdd,
             this.btEdit,
             this.btDelete,
+            this.barButtonItem1,
             this.btFind,
             this.btRefresh,
             this.btClose,
@@ -84,7 +86,7 @@
             this.btXlList,
             this.btGtList,
             this.btTQList});
-            this.barManager1.MaxItemId = 19;
+            this.barManager1.MaxItemId = 20;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
@@ -107,6 +109,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
@@ -174,6 +177,26 @@
             this.repositoryItemLookUpEdit3.NullText = "请选择杆塔";
             this.repositoryItemLookUpEdit3.ValueMember = "gtID";
             // 
+            // btTQList
+            // 
+            this.btTQList.Caption = "barEditItem1";
+            this.btTQList.Edit = this.repositoryItemLookUpEdit4;
+            this.btTQList.Id = 18;
+            this.btTQList.Name = "btTQList";
+            // 
+            // repositoryItemLookUpEdit4
+            // 
+            this.repositoryItemLookUpEdit4.AutoHeight = false;
+            this.repositoryItemLookUpEdit4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit4.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tqID", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tqName", "台区名称")});
+            this.repositoryItemLookUpEdit4.DisplayMember = "tqName";
+            this.repositoryItemLookUpEdit4.Name = "repositoryItemLookUpEdit4";
+            this.repositoryItemLookUpEdit4.NullText = "请选择台区";
+            this.repositoryItemLookUpEdit4.ValueMember = "tqID";
+            // 
             // btAdd
             // 
             this.btAdd.Caption = "增加";
@@ -197,6 +220,15 @@
             this.btDelete.ImageIndex = 12;
             this.btDelete.Name = "btDelete";
             this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "关联台区材料";
+            this.barButtonItem1.Id = 19;
+            this.barButtonItem1.ImageIndex = 8;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // btRefresh
             // 
@@ -315,26 +347,6 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // btTQList
-            // 
-            this.btTQList.Caption = "barEditItem1";
-            this.btTQList.Edit = this.repositoryItemLookUpEdit4;
-            this.btTQList.Id = 18;
-            this.btTQList.Name = "btTQList";
-            // 
-            // repositoryItemLookUpEdit4
-            // 
-            this.repositoryItemLookUpEdit4.AutoHeight = false;
-            this.repositoryItemLookUpEdit4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit4.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tqID", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tqName", "台区名称")});
-            this.repositoryItemLookUpEdit4.DisplayMember = "tqName";
-            this.repositoryItemLookUpEdit4.Name = "repositoryItemLookUpEdit4";
-            this.repositoryItemLookUpEdit4.NullText = "请选择台区";
-            this.repositoryItemLookUpEdit4.ValueMember = "tqID";
-            // 
             // UCPS_TQSB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -350,9 +362,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -385,5 +397,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
         private DevExpress.XtraBars.BarEditItem btTQList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit4;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }

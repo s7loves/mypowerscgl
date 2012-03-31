@@ -21,6 +21,8 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using Ebada.UI.Base;
+using System.Collections;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -262,6 +264,75 @@ namespace Ebada.Scgl.Sbgl
             }
            
            
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            UCPS_tqsbclbmain ucTop = new UCPS_tqsbclbmain();
+            ucTop.InitColumns();
+            ucTop.InitData();
+            ucTop.hidbarmange();
+            FormBase dlg = showControl(ucTop);
+              if (dlg.DialogResult == DialogResult.OK) {
+                  PS_tqsbclb obj = ucTop.SelectObject();
+                     if (obj != null) {
+                       // List<PS_tqsb> listsb=new List<PS_tqsb>();
+                         IList<PS_tqsbclb> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqsbclb>("where ParentID='" +obj.ID+ "'order by xh");
+                         int i = 0;
+                         foreach (PS_tqsbclb pl in list)
+                         {
+                             i++;
+                             PS_tqsb pt = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tqsb>("where tqid='"+parentID+"'and sbid='"+pl.ID+"'");
+                             if (pt==null)
+                             {
+                               pt=new PS_tqsb();
+                               pt.tqID = parentID;
+                               pt.sbNumber = Convert.ToInt16(pl.sl);
+                               pt.sbCode = getcode() + i;
+                               pt.sbID = pl.ID;
+                               pt.sbModle = pl.xh;
+                               pt.sbName = pl.mc;
+                               pt.sbType = obj.zl;
+                               pt.C1 = pl.S1;
+                               Client.ClientHelper.PlatformSqlMap.Create<PS_tqsb>(pt);
+                             }
+                             else
+                             {
+                                 pt.tqID = parentID;
+                                 pt.sbNumber = Convert.ToInt16(pl.sl);
+                                 pt.sbCode = getcode() + i;
+                                 pt.sbID = pl.ID;
+                                 pt.sbModle = pl.xh;
+                                 pt.sbName = pl.mc;
+                                 pt.sbType = obj.zl;
+                                 pt.C1 = pl.S1;
+                                 Client.ClientHelper.PlatformSqlMap.Update<PS_tqsb>(pt);
+                             }
+                           
+                             //listsb.Add(pt);
+                         }
+                         //Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(listsb,null,null);
+                  }
+             }
+             RefreshData(" where tqID='" + parentID + "' order by sbCode");
+        }
+        private FormBase showControl(UserControl uc)
+        {
+             FrmSelect dlg = new FrmSelect();
+            Size newsize = new Size(500, 400);
+            dlg.Size = newsize;
+
+            dlg.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            dlg.ShowInTaskbar = false;
+            dlg.MaximizeBox = false;
+            dlg.MinimizeBox = false;
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            dlg.Text = "台区材料类型选择器";
+            dlg.control.Controls.Add(uc);
+            uc.Dock = DockStyle.Fill;
+            dlg.ShowDialog();
+            return dlg;
         }
     }
 }
