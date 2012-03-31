@@ -34,7 +34,7 @@ namespace Ebada.Scgl.Sbgl {
         public UCPS_tqsbclb() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_tqsbclb>(gridControl1, gridView1, barManager1);
+            gridViewOperation = new GridViewOperation<PS_tqsbclb>(gridControl1, gridView1, barManager1,new  frmPS_tqsbclbclEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_tqsbclb>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tqsbclb>(gridViewOperation_BeforeDelete);

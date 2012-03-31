@@ -1,0 +1,107 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using Ebada.UI.Base;
+using Ebada.Client;
+using Ebada.Client.Platform;
+using Ebada.Core;
+using Ebada.Scgl.Model;
+using Ebada.Scgl.Core;
+using System.Collections;
+
+namespace Ebada.Scgl.Sbgl
+{
+    public partial class frmPS_tqsbclbclEdit : FormBase, IPopupFormEdit
+    {
+        SortableSearchableBindingList<PS_byqxh> m_CityDic = new SortableSearchableBindingList<PS_byqxh>();
+
+        public frmPS_tqsbclbclEdit()
+        {
+            InitializeComponent();
+        }
+        void dataBind()
+        {
+            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "mc");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "xh");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "bh");
+        }
+        #region IPopupFormEdit Members
+        private PS_tqsbclb rowData = null;
+
+        public object RowData
+        {
+            get
+            {
+                return rowData;
+            }
+            set
+            {
+                if (value == null) return;
+                if (rowData == null)
+                {
+                    this.rowData = value as PS_tqsbclb;
+                    this.InitComboBoxData();
+                    dataBind();
+                }
+                else
+                {
+                    ConvertHelper.CopyTo<PS_tqsbclb>(value as PS_tqsbclb, rowData);
+                }
+            }
+        }
+
+        #endregion
+        private void InitComboBoxData()
+        {
+           
+        }
+        private void labelControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxEdit2.Properties.Items.Clear();
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   mc='" + comboBoxEdit1.Text + "' and xh is not null ");
+            if (mclist.Count > 0)
+                comboBoxEdit2.Properties.Items.AddRange(mclist);
+            else
+            {
+                mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct nr  from pj_dyk where   sx='" + comboBoxEdit1.Text + "'");
+                if (mclist.Count > 0)
+                    comboBoxEdit2.Properties.Items.AddRange(mclist);
+                else
+                {
+                    mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
+                    comboBoxEdit2.Properties.Items.AddRange(mclist);
+                }
+            }
+
+        }
+
+        private void frmPS_gtsbclbclEdit_Load(object sender, EventArgs e)
+        {
+            IList  strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select distinct mc from PS_sbcs"));
+            if (strlist.Count > 0)
+                comboBoxEdit1.Properties.Items.AddRange(strlist);
+        }
+
+        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PS_sbcs sbcs = MainHelper.PlatformSqlMap.GetOne<PS_sbcs>(" where mc='" + comboBoxEdit1.Text + "' and xh='" + comboBoxEdit2.Text + "'");
+            if (sbcs != null)
+            {
+                rowData.bh = sbcs.bh + "001";
+                comboBoxEdit3.Text = rowData.bh; 
+            }
+        }
+    }
+}

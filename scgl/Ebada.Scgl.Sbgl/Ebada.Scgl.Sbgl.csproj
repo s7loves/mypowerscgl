@@ -111,6 +111,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmPS_tqsbclbclEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPS_tqsbclbclEdit.Designer.cs">
+      <DependentUpon>frmPS_tqsbclbclEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPS_gtsbclbclEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPS_gtsbclbclEdit.Designer.cs">
+      <DependentUpon>frmPS_gtsbclbclEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPS_gtsbclbEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPS_gtsbclbEdit.Designer.cs">
+      <DependentUpon>frmPS_gtsbclbEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPS_gtsbclbMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPS_gtsbclbMain.Designer.cs">
+      <DependentUpon>UCPS_gtsbclbMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="db3Helper.cs" />
     <Compile Include="DeviceType.cs" />
     <Compile Include="DSandroid.Designer.cs">
@@ -623,6 +647,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmPS_tqsbclbclEdit.resx">
+      <DependentUpon>frmPS_tqsbclbclEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPS_gtsbclbclEdit.resx">
+      <DependentUpon>frmPS_gtsbclbclEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPS_gtsbclbEdit.resx">
+      <DependentUpon>frmPS_gtsbclbEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPS_gtsbclbMain.resx">
+      <DependentUpon>UCPS_gtsbclbMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="devicetypes.xml" />
     <EmbeddedResource Include="frmPS_tqsbclbEdit.resx">
       <DependentUpon>frmPS_tqsbclbEdit.cs</DependentUpon>

@@ -69,6 +69,17 @@ namespace Ebada.Scgl.Sbgl {
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_tqsbclb> e) {
             if (parentID == null)
                 e.Cancel = true;
+            IList<PS_tqsbclb> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
+                       <PS_tqsbclb>(" where  1=1 and xh='' order by id desc ");
+
+            if (pnumli.Count == 0)
+                e.Value.zlCode   = string.Format("{0:D3}", 1);
+            else
+            {
+                e.Value.zlCode = (Convert.ToDecimal(pnumli[0].zlCode) + 1).ToString("000");
+
+
+            }
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);

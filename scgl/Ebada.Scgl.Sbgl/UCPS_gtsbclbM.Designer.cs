@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.splitCC1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.ucTop = new Ebada.Scgl.Sbgl.UCPS_gtsbclb();
+            this.ucTop = new Ebada.Scgl.Sbgl.UCPS_gtsbclbMain();
             this.ucBottom = new Ebada.Scgl.Sbgl.UCPS_gtsbclb();
             ((System.ComponentModel.ISupportInitialize)(this.splitCC1)).BeginInit();
             this.splitCC1.SuspendLayout();
@@ -84,8 +84,8 @@
         #endregion
 
         public DevExpress.XtraEditors.SplitContainerControl splitCC1;
-        private UCPS_gtsbclb ucTop;
         private UCPS_gtsbclb ucBottom;
+        private UCPS_gtsbclbMain ucTop;
 
     }
 }

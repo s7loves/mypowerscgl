@@ -25,16 +25,17 @@ namespace Ebada.Scgl.Sbgl {
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPS_gtsbclb : DevExpress.XtraEditors.XtraUserControl {
+    public partial class UCPS_gtsbclbMain : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PS_gtsbclb> gridViewOperation;
         
         public event SendDataEventHandler<PS_gtsbclb> FocusedRowChanged;
         private string parentID="";
         private PS_gtsbclb parentObj;
-        public UCPS_gtsbclb() {
+        public UCPS_gtsbclbMain()
+        {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_gtsbclb>(gridControl1, gridView1, barManager1,new frmPS_gtsbclbclEdit());
+            gridViewOperation = new GridViewOperation<PS_gtsbclb>(gridControl1, gridView1, barManager1,new  frmPS_gtsbclbEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_gtsbclb>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_gtsbclb>(gridViewOperation_BeforeDelete);
@@ -43,8 +44,8 @@ namespace Ebada.Scgl.Sbgl {
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<PS_gtsbclb> e) {
-            if(string.IsNullOrEmpty(e.Value.xh))
-                e.Value.ID = e.Value.bh;
+            //if(string.IsNullOrEmpty(e.Value.xh))
+            //    e.Value.ID = e.Value.bh;
         }
         private IViewOperation<PS_gtsbclb> childView;
         /// <summary>
@@ -67,11 +68,21 @@ namespace Ebada.Scgl.Sbgl {
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_gtsbclb> e) {
             if (parentID == null)
                 e.Cancel = true;
-            e.Value.ParentID = parentID;  
+            IList<PS_gtsbclb> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
+                       <PS_gtsbclb>(" where  1=1 and xh='' order by  id desc ");
+            
+                if (pnumli.Count == 0)
+                    e.Value.zlCode = string.Format("{0:D3}", 1);
+                else
+                {
+                    e.Value.zlCode = (Convert.ToDecimal(pnumli[0].zlCode) + 1).ToString("000");
+
+                }
+            
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-
+            InitData();
             //InitColumns();//初始列
             //InitData();//初始数据
         }
@@ -102,9 +113,11 @@ namespace Ebada.Scgl.Sbgl {
 
             //需要隐藏列时在这写代码
 
+
             hideColumn("ParentID");
-            hideColumn("zl");
-            hideColumn("zlCode");
+            hideColumn("bh");
+            hideColumn("mc");
+            hideColumn("xh");
             
             
         }
