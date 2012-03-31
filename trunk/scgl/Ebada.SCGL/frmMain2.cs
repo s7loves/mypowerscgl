@@ -284,7 +284,7 @@ namespace Ebada.SCGL
                     barButtonItem2.Visibility = BarItemVisibility.Always;
                 }
 
-                showMessage(3, "欢迎 " + MainHelper.User.UserName + " 登陆，您今天有" + WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999).Rows.Count.ToString() + "个任务待处理");
+                //showMessage(3, "欢迎 " + MainHelper.User.UserName + " 登陆，您今天有" + WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999).Rows.Count.ToString() + "个任务待处理");
                 timer1.Enabled = false;
                 timer1.Interval = 8000;
                 timer1.Enabled = true;
@@ -518,10 +518,19 @@ namespace Ebada.SCGL
                 IList li = InitSQLData(zn.tjsql);
                 if (li.Count > 0)
                 {
+
                     li = InitSQLData(zn.sql);
-                    string ss = "select  top 1 '" + zn.xsgs.Replace("{gs}", li.Count.ToString()) + "'from mOrg where 1=1";
-                    li = InitSQLData(ss);
-                    showMessage(3, li[0].ToString(), 60000);
+                    if (li[0].ToString().IndexOf("出错") == -1)
+                    {
+                        string ss = "select  top 1 '" + zn.xsgs.Replace("{gs}", li.Count.ToString()) + "'from mOrg where 1=1";
+                        li = InitSQLData(ss);
+
+                        showMessage(3, li[0].ToString(), 60000);
+                    }
+                    else
+                    {
+                        showMessage(3, zn.szdx + "语句出错", 60000);
+                    }
                 }
 
             }
