@@ -31,14 +31,17 @@ namespace Ebada.Scgl.Gis {
             dlg.ShowDyt(tqCode);
 
         }
+        public static Bitmap GetDytqMap(string tqcode) {
+            return GetDytqMap(tqcode, 800, 600);
+        }
         /// <summary>
         ///获取低压台区网络图
         /// </summary>
         /// <param name="tqcode"></param>
         /// <returns></returns>
-        public static Bitmap GetDytqMap(string tqcode) {
-            int w = 800;
-            int h = 600;
+        public static Bitmap GetDytqMap(string tqcode ,int width,int height) {
+            int w = width;
+            int h = height;
             Bitmap bp = new Bitmap(w, h);
             Graphics g = Graphics.FromImage(bp);
             IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where linecode like '" + tqcode + "%' and linevol='0.4'");
