@@ -14,6 +14,7 @@ using Ebada.Client;
 using Ebada.SCGL.WFlow.Engine;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Ebada.SCGL
 {
@@ -322,6 +323,7 @@ namespace Ebada.SCGL
 
         void bw_DoWork(object sender, DoWorkEventArgs e)
         {
+            if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\msg\\Ebada.MsgClient.exe"))
             System.Diagnostics.Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\msg\\Ebada.MsgClient.exe", e.Argument.ToString());
         }
 
