@@ -30,7 +30,8 @@ namespace Ebada.Scgl.Model
         private string _s2=String.Empty; 
         private string _s3=String.Empty; 
         private string _zl=String.Empty; 
-        private string _zlcode=String.Empty;   
+        private string _zlcode=String.Empty;
+        private int _sl = 0;
         #endregion
   
   
@@ -41,7 +42,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：种类编号
         /// 字段信息：[bh],nvarchar
         /// </summary>
-        [DisplayNameAttribute("种类编号")]
+        [DisplayNameAttribute("材料编号")]
         public string bh
         {
             get { return _bh; }
@@ -62,7 +63,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：种类名称
         /// 字段信息：[mc],nvarchar
         /// </summary>
-        [DisplayNameAttribute("种类名称")]
+        [DisplayNameAttribute("材料名称")]
         public string mc
         {
             get { return _mc; }
@@ -83,7 +84,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：设备型号
         /// 字段信息：[xh],nvarchar
         /// </summary>
-        [DisplayNameAttribute("设备型号")]
+        [DisplayNameAttribute("材料规格")]
         public string xh
         {
             get { return _xh; }
@@ -147,7 +148,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用
         /// 字段信息：[S1],nvarchar
         /// </summary>
-        [DisplayNameAttribute("备用")]
+        [DisplayNameAttribute("单位")]
         public string S1
         {
             get { return _s1; }
@@ -168,6 +169,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用
         /// 字段信息：[S2],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用")]
         public string S2
         {
@@ -189,6 +191,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用
         /// 字段信息：[S3],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用")]
         public string S3
         {
@@ -210,7 +213,8 @@ namespace Ebada.Scgl.Model
         /// 属性描述：种类
         /// 字段信息：[zl],nvarchar
         /// </summary>
-        [DisplayNameAttribute("种类")]
+      
+        [DisplayNameAttribute("台区材料种类")]
         public string zl
         {
             get { return _zl; }
@@ -231,6 +235,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：种类编号
         /// 字段信息：[zlCode],nvarchar
         /// </summary>
+       
         [DisplayNameAttribute("种类编号")]
         public string zlCode
         {
@@ -246,7 +251,22 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        /// <summary>
+        /// 属性名称：sl
+        /// 属性描述：数量
+        /// 字段信息：[sl],int
+        /// </summary>
+        [DisplayNameAttribute("数量")]
+        public int sl
+        {
+            get { return _sl; }
+            set
+            {
+
+                _sl = value;
+
+            }
+        }
         #endregion 
   
         #region 方法
