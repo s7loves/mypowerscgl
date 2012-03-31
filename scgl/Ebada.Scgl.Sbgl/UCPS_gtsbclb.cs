@@ -103,6 +103,7 @@ namespace Ebada.Scgl.Sbgl {
 
             hideColumn("ParentID");
             
+            
         }
         /// <summary>
         /// 刷新数据

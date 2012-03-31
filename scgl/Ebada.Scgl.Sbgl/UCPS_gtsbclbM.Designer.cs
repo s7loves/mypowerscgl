@@ -39,11 +39,11 @@
             this.splitCC1.Panel1.CaptionLocation = DevExpress.Utils.Locations.Top;
             this.splitCC1.Panel1.Controls.Add(this.ucTop);
             this.splitCC1.Panel1.ShowCaption = true;
-            this.splitCC1.Panel1.Text = "台区类型";
+            this.splitCC1.Panel1.Text = "杆塔类型";
             this.splitCC1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitCC1.Panel2.Controls.Add(this.ucBottom);
             this.splitCC1.Panel2.ShowCaption = true;
-            this.splitCC1.Panel2.Text = "台区类型详细信息";
+            this.splitCC1.Panel2.Text = "杆塔材料详细信息";
             this.splitCC1.ShowCaption = true;
             this.splitCC1.Size = new System.Drawing.Size(555, 460);
             this.splitCC1.SplitterPosition = 265;
