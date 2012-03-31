@@ -188,8 +188,8 @@ namespace Ebada.Scgl.Lcgl
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
             {//如果是供电所人员，则锁定
-                btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
-                btGdsList.Edit.ReadOnly = true;
+                //btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
+                //btGdsList.Edit.ReadOnly = true;
             }
 
         }

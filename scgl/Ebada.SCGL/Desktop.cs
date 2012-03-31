@@ -156,6 +156,17 @@ namespace Ebada.SCGL
                 //taskdr["Modu_ID"] = wf.MgrUrl;
                 taskdr["butt"] = "进入";
                 taskdr["WorkFlowInsId"] = tdr["WorkFlowInsId"];
+                if (tdr["flowcaption"].ToString().IndexOf("电力线路") > -1)
+                {
+                    IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select * from dbo.lp_record where id in (select recordid from wfp_recordworktaskins where  workflowinsid = '" + tdr["WorkFlowInsId"] + "')  and orgname='" + MainHelper.User.OrgName + "'");
+                    if (mclist.Count == 0) continue;
+                }
+                else
+                {
+                    IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select * from dbo.lp_record where id in (select recordid from wfp_recordworktaskins where  workflowinsid = '" + tdr["WorkFlowInsId"] + "')  ");
+                    if (mclist.Count == 0) continue;
+                
+                }
                 //taskdr["Image"] = WorkFlowInstance.WorkFlowBitmap(tdr["WorkFlowId"].ToString(), tdr["WorkFlowInsId"].ToString(), imageEdit1.PopupFormSize);
                 taskdt.Rows.Add(taskdr);
 
@@ -166,7 +177,7 @@ namespace Ebada.SCGL
             dr["name"] = "我的任务(" + taskdt.Rows.Count + ")";
             dr["id"] = 0;
             dt.Rows.Add(dr);
-            IniWorkFlowData(workTaskdt, 0);
+            IniWorkFlowData(taskdt, 0);
             treeList1.DataSource = dt;
             treeList1.ExpandAll();
             gridTalskCon.DataSource = taskdt;
@@ -300,7 +311,14 @@ namespace Ebada.SCGL
             IList<WFP_RecordWorkTaskIns> rwt = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where WorkFlowId='" + dr["WorkFlowId"] + "' and WorkFlowInsId='" + dr["WorkFlowInsId"] + "'");
             if (rwt.Count == 0) return;
             LP_Record currRecord= MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(rwt[0].RecordID);
-            if (currRecord == null) return;
+            if (currRecord == null)
+            {
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where WorkFlowInsId='" + rwt[0].WorkFlowInsId + "'");
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_OperatorInstance>(" where (WorkFlowInsId='" + rwt[0].WorkFlowInsId + "')");
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkTaskInstance>(" where (WorkFlowInsId='" + rwt[0].WorkFlowInsId + "')");
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_WorkFlowInstance>(" where (WorkFlowInsId='" + rwt[0].WorkFlowInsId + "')");
+                return;
+            }
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
             object obj = RecordWorkTask.GetWorkTaskModle(dr["WorkFlowId"].ToString(), dr["WorkTaskId"].ToString());
              if (obj == null)
