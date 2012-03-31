@@ -52,13 +52,23 @@
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
-            this.bar1 = new DevExpress.XtraBars.Bar();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBoxEdit11 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit10 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxEdit11 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelInfo = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.bar1 = new DevExpress.XtraBars.Bar();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBoxEdit12 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,15 +82,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit12.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(405, 232);
+            this.btnCancel.Location = new System.Drawing.Point(405, 399);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(78, 23);
             this.btnCancel.TabIndex = 0;
@@ -89,7 +103,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(324, 232);
+            this.btnOK.Location = new System.Drawing.Point(324, 399);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
@@ -110,15 +124,17 @@
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.ShowCaption = false;
-            this.groupControlOrg.Size = new System.Drawing.Size(505, 271);
+            this.groupControlOrg.Size = new System.Drawing.Size(505, 438);
             this.groupControlOrg.TabIndex = 9;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.gridControl1);
             this.groupBox2.Controls.Add(this.comboBoxEdit2);
             this.groupBox2.Controls.Add(this.spinEdit2);
             this.groupBox2.Controls.Add(this.comboBoxEdit4);
             this.groupBox2.Controls.Add(this.comboBoxEdit3);
+            this.groupBox2.Controls.Add(this.comboBoxEdit12);
             this.groupBox2.Controls.Add(this.comboBoxEdit9);
             this.groupBox2.Controls.Add(this.comboBoxEdit8);
             this.groupBox2.Controls.Add(this.comboBoxEdit7);
@@ -132,12 +148,13 @@
             this.groupBox2.Controls.Add(this.labelControl23);
             this.groupBox2.Controls.Add(this.labelControl24);
             this.groupBox2.Controls.Add(this.labelControl25);
+            this.groupBox2.Controls.Add(this.labelControl3);
             this.groupBox2.Controls.Add(this.labelControl26);
             this.groupBox2.Controls.Add(this.labelControl29);
             this.groupBox2.Controls.Add(this.labelControl30);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(471, 188);
+            this.groupBox2.Size = new System.Drawing.Size(471, 325);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "杆塔设备参数";
@@ -319,6 +336,53 @@
             this.labelControl30.TabIndex = 2;
             this.labelControl30.Text = "设备参数4";
             // 
+            // comboBoxEdit11
+            // 
+            this.comboBoxEdit11.Location = new System.Drawing.Point(226, 343);
+            this.comboBoxEdit11.Name = "comboBoxEdit11";
+            this.comboBoxEdit11.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit11.Size = new System.Drawing.Size(60, 21);
+            this.comboBoxEdit11.TabIndex = 13;
+            this.comboBoxEdit11.TextChanged += new System.EventHandler(this.comboBoxEdit4_TextChanged);
+            // 
+            // comboBoxEdit10
+            // 
+            this.comboBoxEdit10.Location = new System.Drawing.Point(92, 343);
+            this.comboBoxEdit10.Name = "comboBoxEdit10";
+            this.comboBoxEdit10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit10.Size = new System.Drawing.Size(60, 21);
+            this.comboBoxEdit10.TabIndex = 13;
+            this.comboBoxEdit10.TextChanged += new System.EventHandler(this.comboBoxEdit4_TextChanged);
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(172, 346);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(48, 14);
+            this.labelControl2.TabIndex = 12;
+            this.labelControl2.Text = "终止杆号";
+            // 
+            // labelInfo
+            // 
+            this.labelInfo.Appearance.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelInfo.Appearance.Options.UseForeColor = true;
+            this.labelInfo.Location = new System.Drawing.Point(38, 369);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(120, 14);
+            this.labelInfo.TabIndex = 12;
+            this.labelInfo.Text = "提示：请输入启始杆号";
+            this.labelInfo.Visible = false;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(38, 346);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(48, 14);
+            this.labelControl1.TabIndex = 12;
+            this.labelControl1.Text = "启始杆号";
+            // 
             // bar1
             // 
             this.bar1.BarName = "Tools";
@@ -335,64 +399,102 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // labelControl1
+            // labelControl3
             // 
-            this.labelControl1.Location = new System.Drawing.Point(35, 209);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(48, 14);
-            this.labelControl1.TabIndex = 12;
-            this.labelControl1.Text = "启始杆号";
+            this.labelControl3.Location = new System.Drawing.Point(29, 189);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(48, 14);
+            this.labelControl3.TabIndex = 2;
+            this.labelControl3.Text = "设备类型";
             // 
-            // comboBoxEdit10
+            // comboBoxEdit12
             // 
-            this.comboBoxEdit10.Location = new System.Drawing.Point(89, 206);
-            this.comboBoxEdit10.Name = "comboBoxEdit10";
-            this.comboBoxEdit10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.comboBoxEdit12.Location = new System.Drawing.Point(105, 186);
+            this.comboBoxEdit12.Name = "comboBoxEdit12";
+            this.comboBoxEdit12.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit10.Size = new System.Drawing.Size(60, 21);
-            this.comboBoxEdit10.TabIndex = 13;
-            this.comboBoxEdit10.TextChanged += new System.EventHandler(this.comboBoxEdit4_TextChanged);
+            this.comboBoxEdit12.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit12.TabIndex = 13;
+            this.comboBoxEdit12.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit12_SelectedIndexChanged);
             // 
-            // labelControl2
+            // gridControl1
             // 
-            this.labelControl2.Location = new System.Drawing.Point(169, 209);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(48, 14);
-            this.labelControl2.TabIndex = 12;
-            this.labelControl2.Text = "终止杆号";
+            this.gridControl1.Location = new System.Drawing.Point(29, 209);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(427, 110);
+            this.gridControl1.TabIndex = 17;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1,
+            this.gridView2});
             // 
-            // comboBoxEdit11
+            // gridView1
             // 
-            this.comboBoxEdit11.Location = new System.Drawing.Point(223, 206);
-            this.comboBoxEdit11.Name = "comboBoxEdit11";
-            this.comboBoxEdit11.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit11.Size = new System.Drawing.Size(60, 21);
-            this.comboBoxEdit11.TabIndex = 13;
-            this.comboBoxEdit11.TextChanged += new System.EventHandler(this.comboBoxEdit4_TextChanged);
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // labelInfo
+            // gridView2
             // 
-            this.labelInfo.Appearance.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelInfo.Appearance.Options.UseForeColor = true;
-            this.labelInfo.Location = new System.Drawing.Point(35, 232);
-            this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(120, 14);
-            this.labelInfo.TabIndex = 12;
-            this.labelInfo.Text = "提示：请输入启始杆号";
-            this.labelInfo.Visible = false;
+            this.gridView2.GridControl = this.gridControl1;
+            this.gridView2.Name = "gridView2";
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "编号";
+            this.gridColumn1.FieldName = "code";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "设备名称";
+            this.gridColumn2.FieldName = "name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "设备规格";
+            this.gridColumn3.FieldName = "sbgg";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "设备数量";
+            this.gridColumn4.FieldName = "sl";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "id";
+            this.gridColumn5.FieldName = "id";
+            this.gridColumn5.Name = "gridColumn5";
             // 
             // frmgtsbEditM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(505, 271);
+            this.ClientSize = new System.Drawing.Size(505, 438);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmgtsbEditM";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "杆塔设备-批量增加";
+            this.Load += new System.EventHandler(this.frmgtsbEditM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupControlOrg.PerformLayout();
@@ -408,8 +510,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit12.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -447,6 +553,16 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit11;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelInfo;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit12;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
 
     }
 }

@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using System.Threading;
 namespace Ebada.Scgl.Sbgl
 {
     /// <summary>
@@ -167,6 +168,29 @@ namespace Ebada.Scgl.Sbgl
                 gtsb.sbCode = bh.ToString("000");
                 gtsblist.Add(gtsb);
             }
+            DataTable dt = gridControl1.DataSource as DataTable;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                for (int i = begin; i <= end; i++)
+                {
+
+                    PS_gt gt = gtlist[i].Gt;
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        PS_gtsb gtsb = new PS_gtsb();
+                        gtsb.sbName = dr["name"].ToString();
+                        gtsb.sbModle = dr["sbgg"].ToString();
+                        if (dr["sl"] != null && (dr["sl"].ToString().Trim())!="") 
+                            gtsb.sbNumber = Convert.ToInt16( dr["sl"]);
+                        gtsb.sbID = gtsb.CreateID();
+                        gtsb.gtID = gt.gtID;
+                        gtsb.sbID = gt.CreateID() + i;
+                        gtsb.sbCode = dr["code"].ToString();
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        gtsblist.Add(gtsb);
+                    }
+                }
+            }
             Ebada.Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(gtsblist, null, null);
         }
         private void comboBoxEdit4_TextChanged(object sender, EventArgs e)
@@ -192,6 +216,38 @@ namespace Ebada.Scgl.Sbgl
             public override string ToString() {
                 return Gt.gth;
             }
+        }
+
+        private void frmgtsbEditM_Load(object sender, EventArgs e)
+        {
+            comboBoxEdit12.Properties.Items.Clear();
+            comboBoxEdit12.Properties.Items.Add ("请选择"); 
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
+                "select mc from PS_gtsbclb where ParentID not in (select id from PS_gtsbclb where 1=1)  ");
+
+            comboBoxEdit12.Properties.Items.AddRange(mclist); 
+        }
+
+        private void comboBoxEdit12_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("code");
+            dt.Columns.Add("name");
+            dt.Columns.Add("sbgg");
+            dt.Columns.Add("sl");
+            dt.Columns.Add("id");
+            IList<PS_gtsbclb> mclist = MainHelper.PlatformSqlMap.GetList<PS_gtsbclb>(" where ParentID  in (select id from PS_gtsbclb where mc='" + comboBoxEdit12.Text + "' and ParentID not in (select id from PS_gtsbclb where 1=1)  ) ");
+            foreach (PS_gtsbclb gtsb in mclist)
+            {
+                DataRow dr = dt.NewRow();
+                dr["id"] = gtsb.ID;
+                dr["code"] = gtsb.zlCode;
+                dr["name"] = gtsb.mc;
+                dr["sbgg"] = gtsb.xh;
+                dt.Rows.Add(dr);
+
+            }
+            gridControl1.DataSource = dt; 
         }
     
     }
