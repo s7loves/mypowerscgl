@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Sbgl {
 
         void ucTop_FocusedRowChanged(object sender, PS_gtsbclb obj) {
             ucBottom.ParentObj = obj;
-            splitCC1.Panel2.Text = "台区分类：" + (obj != null ? obj.mc : "");
+            splitCC1.Panel2.Text = "杆塔类型：" + (obj != null ? obj.mc : "");
         }
 
         protected override void OnLoad(EventArgs e) {

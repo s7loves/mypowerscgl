@@ -221,9 +221,9 @@ namespace Ebada.Scgl.Sbgl
         private void frmgtsbEditM_Load(object sender, EventArgs e)
         {
             comboBoxEdit12.Properties.Items.Clear();
-            comboBoxEdit12.Properties.Items.Add ("请选择"); 
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select mc from PS_gtsbclb where ParentID not in (select id from PS_gtsbclb where 1=1)  ");
+            comboBoxEdit12.Properties.Items.Add ("请选择");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                "select zl from PS_gtsbclb where ParentID not in (select id from PS_gtsbclb where 1=1)  ");
 
             comboBoxEdit12.Properties.Items.AddRange(mclist); 
         }
@@ -236,12 +236,12 @@ namespace Ebada.Scgl.Sbgl
             dt.Columns.Add("sbgg");
             dt.Columns.Add("sl");
             dt.Columns.Add("id");
-            IList<PS_gtsbclb> mclist = MainHelper.PlatformSqlMap.GetList<PS_gtsbclb>(" where ParentID  in (select id from PS_gtsbclb where mc='" + comboBoxEdit12.Text + "' and ParentID not in (select id from PS_gtsbclb where 1=1)  ) ");
+            IList<PS_gtsbclb> mclist = MainHelper.PlatformSqlMap.GetList<PS_gtsbclb>(" where ParentID  in (select id from PS_gtsbclb where zl='" + comboBoxEdit12.Text + "' and ParentID not in (select id from PS_gtsbclb where 1=1)  ) ");
             foreach (PS_gtsbclb gtsb in mclist)
             {
                 DataRow dr = dt.NewRow();
                 dr["id"] = gtsb.ID;
-                dr["code"] = gtsb.zlCode;
+                dr["code"] = gtsb.bh;
                 dr["name"] = gtsb.mc;
                 dr["sbgg"] = gtsb.xh;
                 dt.Rows.Add(dr);
