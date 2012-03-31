@@ -186,6 +186,7 @@ namespace Ebada.Scgl.Sbgl
                         gtsb.gtID = gt.gtID;
                         gtsb.sbID = gt.CreateID() + i;
                         gtsb.sbCode = dr["code"].ToString();
+                        if (gtsb.sbName == "") continue;
                         Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                         gtsblist.Add(gtsb);
                     }
