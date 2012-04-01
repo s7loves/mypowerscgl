@@ -505,6 +505,8 @@ namespace Ebada.Scgl.Lcgl
 
                 currRecord.LastChangeTime = DateTime.Now.ToString();
                 currRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+                if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
                 MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
                 MsgBox.ShowTipMessageBox(strmes);
 
@@ -622,6 +624,8 @@ namespace Ebada.Scgl.Lcgl
                         currRecord.Status = strmes;
                     }
                     currRecord.LastChangeTime = DateTime.Now.ToString();
+                    if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                    if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
                     rowData = null;
                     if (hqyjcontrol != null)
@@ -689,6 +693,8 @@ namespace Ebada.Scgl.Lcgl
                     {
                         CurrRecord.Status = strmes;
                     }
+                    if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                    if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
                     if (hqyjcontrol != null)
                     {

@@ -491,6 +491,8 @@ namespace Ebada.Scgl.Lcgl
             {
                 MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
                 currRecord.Status = statustemp;
+                if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
                 MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
                 return;
             }
@@ -506,6 +508,8 @@ namespace Ebada.Scgl.Lcgl
                 currRecord.Status = strmes;
             }
             currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+            if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
 
@@ -538,6 +542,8 @@ namespace Ebada.Scgl.Lcgl
             {
                 MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
                 currRecord.Status = statustemp;
+                if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
                 MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
                 return;
             }
@@ -553,6 +559,8 @@ namespace Ebada.Scgl.Lcgl
                 currRecord.Status = strmes;
             }
             currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+            if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }
@@ -619,6 +627,8 @@ namespace Ebada.Scgl.Lcgl
                 currRecord.Status = strmes;
             }
             currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+            if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }

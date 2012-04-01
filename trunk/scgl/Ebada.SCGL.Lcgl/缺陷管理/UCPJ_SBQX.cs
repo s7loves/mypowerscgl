@@ -432,6 +432,8 @@ namespace Ebada.Scgl.Lcgl
                 currRecord.Status = strmes;
             }
             currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+            if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
         }
@@ -537,6 +539,8 @@ namespace Ebada.Scgl.Lcgl
             }
 
             currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+            if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
 
             
