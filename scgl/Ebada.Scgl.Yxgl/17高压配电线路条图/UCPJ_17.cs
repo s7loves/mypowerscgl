@@ -1705,7 +1705,8 @@ namespace Ebada.Scgl.Yxgl
                          }
                          for (j = 0; j < lxlist.Count; j++)
                          {
-                             int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                          int icount=Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt","select   sum(sbNumber) from PS_gtsb where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                             //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
                              ex.SetCellValue(lxlist[j].ToString() + "/" + icount, ihang + j, jlie);
 
                          }
@@ -1741,7 +1742,8 @@ namespace Ebada.Scgl.Yxgl
                              }
                              for (j = 0; j < jyuzlist.Count; j++)
                              {
-                                 int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + jyuzlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                 int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbModle = '" + jyuzlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                 //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + jyuzlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
                                  ex.SetCellValue(jyuzlist[j].ToString() + "/" + icount, ihang+j, jlie);
                               
                              }
@@ -1789,7 +1791,8 @@ namespace Ebada.Scgl.Yxgl
                              }
                              for (j = 0; j < ilisttemp.Count; j++)
                              {
-                                 int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                 int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                 //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
                                  PS_gtsb gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
                                  if (gtsbtemp != null)
                                  {
@@ -1832,7 +1835,8 @@ namespace Ebada.Scgl.Yxgl
                              }
                              for (j = 0; j < blqlist.Count; j++)
                              {
-                                 int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + blqlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                 int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb  Where sbModle = '" + blqlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                // int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + blqlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
                                  ex.SetCellValue(blqlist[j].ToString() + "/" + icount, ihang+j, jlie);
                               
                              }
@@ -1868,7 +1872,8 @@ namespace Ebada.Scgl.Yxgl
                              }
                              for (j = 0; j < kglist.Count; j++)
                              {
-                                 int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_kg>(" Where kgModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                 int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb  Where kgModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                 //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_kg>(" Where kgModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
                                  ex.SetCellValue(kglist[j].ToString() + "/" + icount, ihang+j, jlie);
                                 
                              }
