@@ -226,7 +226,12 @@ namespace Ebada.Scgl.Sbgl
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                 "select zl from PS_gtsbclb where ParentID not in (select id from PS_gtsbclb where 1=1)  ");
 
-            comboBoxEdit12.Properties.Items.AddRange(mclist); 
+            comboBoxEdit12.Properties.Items.AddRange(mclist);
+
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select distinct mc from PS_sbcs"));
+            if (strlist.Count > 0)
+                repositoryItemComboBox1.Properties.Items.AddRange(strlist);
         }
 
         private void comboBoxEdit12_SelectedIndexChanged(object sender, EventArgs e)
@@ -249,6 +254,26 @@ namespace Ebada.Scgl.Sbgl
 
             }
             gridControl1.DataSource = dt; 
+        }
+
+        private void repositoryItemComboBox1_EditValueChanged(object sender, EventArgs e)
+        {
+            DataRow dr = gridView1.GetFocusedDataRow(); 
+            repositoryItemComboBox2.Properties.Items.Clear();
+            dr["name"] = ((ComboBoxEdit)sender).EditValue;
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   mc='" + ((ComboBoxEdit)sender).EditValue  + "' and xh is not null ");
+            if (mclist.Count > 0)
+                repositoryItemComboBox2.Properties.Items.AddRange(mclist);
+            else
+            {
+               
+            }
+        }
+
+        private void gridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        {
+            DataRow dr = gridView1.GetFocusedDataRow();
+            dr["code"] = "001";
         }
     
     }
