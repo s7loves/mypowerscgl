@@ -229,7 +229,7 @@ namespace Ebada.Scgl.Sbgl
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle>=0)
             {
-                gridControl1.ExportToXls("C:\\temp.xls");
+                gridControl1.ExportToExcelOld("C:\\temp.xls");
                 System.Diagnostics.Process.Start("C:\\temp.xls");
             }
            
