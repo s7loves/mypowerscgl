@@ -265,10 +265,11 @@ namespace Ebada.Scgl.Xtgl {
                     //wflist1.Add(" where WorkTaskId='" + str + "' and OperContent='" + RoleID + "'");
                 }
             }
-           
 
-          
+
+
             SqlQueryObject item = new SqlQueryObject(SqlQueryType.Delete, "DeleterRoleModulByWhere", "where RoleID='" + this.m_RoleID + "'");
+            SqlQueryObject item2 = new SqlQueryObject(SqlQueryType.Delete, "DeleteWF_OperatorInstanceByWhere", "where OperContent='" + this.m_RoleID + "'");
 
 
             SqlQueryObject wfitem = new SqlQueryObject(SqlQueryType.Delete, "DeleteWF_OperatorByWhere", "where OperContent='" + this.m_RoleID + "'");
@@ -277,6 +278,7 @@ namespace Ebada.Scgl.Xtgl {
             try {
                 List<SqlQueryObject> list3 = new List<SqlQueryObject>();
                 list3.Add(item);
+                list3.Add(item2);
                 if (list2.Count>0)
                 {
                     SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Insert, list2.ToArray());

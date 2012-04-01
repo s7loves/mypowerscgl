@@ -156,7 +156,7 @@ namespace Ebada.SCGL
                 //taskdr["Modu_ID"] = wf.MgrUrl;
                 taskdr["butt"] = "进入";
                 taskdr["WorkFlowInsId"] = tdr["WorkFlowInsId"];
-                if (tdr["flowcaption"].ToString().IndexOf("电力线路") > -1)
+                if (tdr["flowcaption"].ToString().IndexOf("电力线路") > -1 && MainHelper.User.OrgName != "安全监察部")
                 {
                     IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select * from dbo.lp_record where id in (select recordid from wfp_recordworktaskins where  workflowinsid = '" + tdr["WorkFlowInsId"] + "')  and orgname='" + MainHelper.User.OrgName + "'");
                     if (mclist.Count == 0) continue;

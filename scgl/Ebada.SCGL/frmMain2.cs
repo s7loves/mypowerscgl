@@ -520,14 +520,14 @@ namespace Ebada.SCGL
                 {
 
                     li = InitSQLData(zn.sql);
-                    if (li[0].ToString().IndexOf("出错") == -1)
+                    if (li.Count >0&& li[0].ToString().IndexOf("出错") == -1)
                     {
                         string ss = "select  top 1 '" + zn.xsgs.Replace("{gs}", li.Count.ToString()) + "'from mOrg where 1=1";
                         li = InitSQLData(ss);
 
                         showMessage(3, li[0].ToString(), 60000);
                     }
-                    else
+                    else if (li.Count >0)
                     {
                         showMessage(3, zn.szdx + "语句出错", 60000);
                     }

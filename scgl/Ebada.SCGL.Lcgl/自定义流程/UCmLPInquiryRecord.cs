@@ -741,6 +741,8 @@ namespace Ebada.Scgl.Lcgl {
 
                     currRecord.LastChangeTime = DateTime.Now.ToString();
                     currRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(dt.Rows[0]["WorkTaskInsId"].ToString());
+                    if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                    if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
                     MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
                     InitData(strSQL);
                     MsgBox.ShowTipMessageBox(strmes);

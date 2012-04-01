@@ -144,7 +144,9 @@ namespace Ebada.Scgl.Lcgl
                     currRecord.ImageAttachment = bt;
                     currRecord.SignImg = bt;
                     currRecord.Content = GetContent();
-                    MainHelper.PlatformSqlMap.Update("UpdateLP_Record",CurrRecord);
+                    if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                    if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+                    MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
                     break;
             }
             this.DialogResult = DialogResult.OK;
