@@ -367,7 +367,7 @@ namespace Ebada.Scgl.Lcgl
 
                 //LoadContent();
             }
-            
+
             if ((parentTemple != null && parentTemple.DocContent != null) || (currRecord != null && currRecord.DocContent != null && currRecord.DocContent.Length > 0))
             {
                 wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
@@ -377,23 +377,27 @@ namespace Ebada.Scgl.Lcgl
 
 
                 //activeSheetIndex = sheet.Index;
-                for (int i = 1; i <= wb.Application.Sheets.Count; i++)
+                try
                 {
-                    sheet = wb.Application.Sheets[i] as Excel.Worksheet;
-                    //保护工作表
-                    LockExcel(wb, sheet);
-                    //if (i != activeSheetIndex)
-                    //{
-                    //    Excel.Worksheet tmpSheet = (Excel.Worksheet)wb.Application.Sheets.get_Item(i);
-                    //    try
-                    //    {
-                    //        if (tmpSheet != null) tmpSheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
+                    for (int i = 1; i <= wb.Application.Sheets.Count; i++)
+                    {
+                        sheet = wb.Application.Sheets[i] as Excel.Worksheet;
+                        //保护工作表
+                        LockExcel(wb, sheet);
+                        //if (i != activeSheetIndex)
+                        //{
+                        //    Excel.Worksheet tmpSheet = (Excel.Worksheet)wb.Application.Sheets.get_Item(i);
+                        //    try
+                        //    {
+                        //        if (tmpSheet != null) tmpSheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
 
-                    //    }
-                    //    catch { }
+                        //    }
+                        //    catch { }
+
+                    }
 
                 }
-
+                catch { }
             }
             IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                     " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + WorkFlowData.Rows[0]["WorkflowId"] + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "' order by YExcelPos,XExcelPos");
@@ -403,8 +407,11 @@ namespace Ebada.Scgl.Lcgl
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
             string activeSheetName = "";
-            xx = wb.Application.Sheets[1] as Excel.Worksheet;
-           
+            try
+            {
+                xx = wb.Application.Sheets[1] as Excel.Worksheet;
+            }
+            catch { }
 
             for (int i = 0; i < tfvli.Count; i++)
             {
