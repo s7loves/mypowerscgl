@@ -15,6 +15,7 @@ namespace Ebada.Scgl.Gis {
     using System.Collections;
     using System.Data;
     using System.Collections.Generic;
+    using Ebada.Scgl.Model;
     /// <summary>
     /// custom map of GMapControl
     /// </summary>
@@ -325,6 +326,39 @@ namespace Ebada.Scgl.Gis {
                     }
 
                 }
+            }
+        }
+
+        void showxl() {
+            foreach (GMapOverlay lay in Overlays) {
+                if (lay is ILineInfo) {
+                    if ((lay as ILineInfo).IsLoad) continue;
+                    IList<TX_Point> list= Client.ClientHelper.PlatformSqlMap.GetList<TX_Point>("where layerid='" + lay.Id + "'");
+                    Dictionary<string, TX_Point> dic = new Dictionary<string, TX_Point>();
+                    foreach (TX_Point p in list) {
+                        dic.Add(p.ID, p);
+                    }
+                    string sqlwhere = "";
+                    if (lay.Id.Length == 6) {
+                        sqlwhere = "where linecode like '" + lay.Id + "%' and linevol='10'";
+                    } else {
+                        sqlwhere = "where linecode like '" + lay.Id + "%' and linevol='0.4'";
+                    }
+
+                    IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(sqlwhere);
+
+                    foreach (PS_xl xl in listxl) {
+                        
+                    }
+                    foreach (GMapMarkerVector marker in lay.Markers) {
+                        try {
+                            if (marker.MarkerType == MarkerEnum.xlmc) {
+                                //marker.IsVisible = showxlmc;
+                            }
+                        } catch { }
+                    }
+                }
+
             }
         }
         #endregion

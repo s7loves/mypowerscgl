@@ -134,6 +134,11 @@ namespace Ebada.Scgl.Gis {
              IList<PS_gt> list;
              IList<PS_kg> kglist;
              IList byqlist;
+             IList<TX_Point> listp = Client.ClientHelper.PlatformSqlMap.GetList<TX_Point>("where layerid='" + lineCode + "'");
+             Dictionary<string, TX_Point> dicp = new Dictionary<string, TX_Point>();
+             foreach (TX_Point p in listp) {
+                 dicp.Add(p.ID, p);
+             }
              foreach (PS_xl line in xllist) {
                  linecode = line.LineCode;
                  list= Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(string.Format("where Linecode='{0}' order by gtcode", linecode));
@@ -146,9 +151,9 @@ namespace Ebada.Scgl.Gis {
                  LineRoute route = new LineRoute(points, linecode);
                  //route.Stroke.Color = Color.Black;
                  if (linecode.Length == 6)
-                     route.Stroke.Width = 2;
+                     route.Stroke.Width = 3;
                  else
-                     route.Stroke.Width = 1;
+                     route.Stroke.Width = 3;
                  int count = 0;
                  gtdic.Clear();
                  foreach (PS_gt gt in list) {
@@ -186,11 +191,22 @@ namespace Ebada.Scgl.Gis {
                  }
                  //线路名文字
                  if (route.Points.Count > 0) {
+                     if(dicp.ContainsKey(line.LineCode)){
+                         TX_Point pt=dicp[line.LineCode];
+                         GMapMarkerText text = new GMapMarkerText(new PointLatLng(double.Parse(pt.y),double.Parse(pt.x)));
+                         text.Text = pt.Text;
+                         text.IsVisible = false;
+                         text.MarkerType = MarkerEnum.xlmc;
+                         layer.Markers.Add(text);
+                         text.Tag = pt;
+                     }else{
                      GMapMarkerText text = new GMapMarkerText(route.Points[0]);
+                     text.Tag = line.LineCode;
                      text.Text = line.LineName;
                      text.IsVisible = false;
                      text.MarkerType = MarkerEnum.xlmc;
                      layer.Markers.Add(text);
+                     }
                  }
                  //变压器
                  if (byqtable!=null && byqtable.Rows.Count>0) {
