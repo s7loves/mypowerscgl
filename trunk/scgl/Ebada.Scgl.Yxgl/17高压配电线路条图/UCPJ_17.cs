@@ -1513,7 +1513,7 @@ namespace Ebada.Scgl.Yxgl
                                  {
                                      range = (Excel.Range)xx.get_Range(xx.Cells[ihang, jlietemp], xx.Cells[ihang, jlietemp - 2]);
                                      range.Merge(Type.Missing);
-                                     if (item % jmax == 2 && ista != item)
+                                     if ((item % jmax == 2 && ista != item) || jlietemp==5)
                                      {
                                          if (str1 != "")
                                              ex.SetCellValue(str1, ihang, jlietemp - 2);
