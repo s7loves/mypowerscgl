@@ -119,7 +119,15 @@ namespace Ebada.Scgl.Sbgl {
             hideColumn("mc");
             hideColumn("xh");
             
-            
+          
+        }
+        public PS_gtsbclb SelectObject()
+        {
+            return gridView1.GetFocusedRow() as PS_gtsbclb;
+        }
+        public void hidbarmange()
+        {
+            this.bar1.Visible = false;
         }
         /// <summary>
         /// 刷新数据

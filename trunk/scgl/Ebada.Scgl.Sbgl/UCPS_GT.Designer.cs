@@ -32,7 +32,9 @@
             this.btXlList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.btAddM = new DevExpress.XtraBars.BarButtonItem();
+            this.btAddM2 = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
@@ -48,8 +50,6 @@
             this.btExport0 = new DevExpress.XtraBars.BarSubItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
-            this.btAddM2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -156,6 +156,15 @@
             this.btAdd.Name = "btAdd";
             this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
+            // barSubItem1
+            // 
+            this.barSubItem1.Caption = "批量增加";
+            this.barSubItem1.Id = 18;
+            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btAddM),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btAddM2)});
+            this.barSubItem1.Name = "barSubItem1";
+            // 
             // btAddM
             // 
             this.btAddM.Caption = "杆塔";
@@ -164,6 +173,14 @@
             this.btAddM.Name = "btAddM";
             this.btAddM.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btAddM.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddM_ItemClick);
+            // 
+            // btAddM2
+            // 
+            this.btAddM2.Caption = "其它设备";
+            this.btAddM2.Id = 19;
+            this.btAddM2.Name = "btAddM2";
+            this.btAddM2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btAddM2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddM2_ItemClick);
             // 
             // btEdit
             // 
@@ -298,22 +315,6 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // barSubItem1
-            // 
-            this.barSubItem1.Caption = "批量增加";
-            this.barSubItem1.Id = 18;
-            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAddM),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAddM2)});
-            this.barSubItem1.Name = "barSubItem1";
-            // 
-            // btAddM2
-            // 
-            this.btAddM2.Caption = "其它设备";
-            this.btAddM2.Id = 19;
-            this.btAddM2.Name = "btAddM2";
-            this.btAddM2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddM2_ItemClick);
             // 
             // UCPS_GT
             // 
