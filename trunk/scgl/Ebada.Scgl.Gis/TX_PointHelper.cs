@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Ebada.Scgl.Model;
+using System.Windows.Forms;
 
 namespace Ebada.Scgl.Gis {
     public class TX_PointHelper {
@@ -13,7 +14,8 @@ namespace Ebada.Scgl.Gis {
             try {
                 Client.ClientHelper.PlatformSqlMap.Create<TX_Point>(pt);
             } catch (Exception err) {
-                if (err.Message.IndexOf("key") > 0) {
+                //MessageBox.Show(err.Message);
+                if (err.Message.IndexOf("FOREIGN") > 0) {
                     TX_Project pro = new TX_Project();
                     pro.ProID = "0";
                     pro.ProjectName = "地理接线图";

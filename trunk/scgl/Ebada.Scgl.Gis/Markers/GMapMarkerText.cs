@@ -41,6 +41,7 @@ namespace Ebada.Scgl.Gis.Markers {
                 TX_Point pt = Tag as TX_Point;
                 pt.x = this.Position.Lng.ToString();
                 pt.y = this.Position.Lat.ToString();
+                pt.Text = this.Text;
                 TX_PointHelper.Update(pt);
             } else if (Tag is string) {
                 TX_Point pt=new TX_Point();
@@ -51,6 +52,8 @@ namespace Ebada.Scgl.Gis.Markers {
                 pt.LayerID=this.Overlay.Id;
                 pt.ID=Tag.ToString();
                 TX_PointHelper.Create(pt);
+
+                this.Tag = pt;
             }
         }
         private void MeasureRect() {
@@ -83,7 +86,7 @@ namespace Ebada.Scgl.Gis.Markers {
             dlg.MarkerText = this.Text;
             if (dlg.ShowDialog() == DialogResult.OK) {
                 Text = dlg.MarkerText;
-
+                this.Update();
             }
             
         }
