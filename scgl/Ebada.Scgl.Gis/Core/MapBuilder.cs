@@ -81,6 +81,11 @@ namespace Ebada.Scgl.Gis {
                  LineRoute route = new LineRoute(points, linecode);
                  route.Stroke.Width = 1;
                  int count = 0;
+                 IList<TX_Point> listp = Client.ClientHelper.PlatformSqlMap.GetList<TX_Point>("where layerid='" + tqcode + "'");
+                 Dictionary<string, TX_Point> dicp = new Dictionary<string, TX_Point>();
+                 foreach (TX_Point p in listp) {
+                     dicp.Add(p.ID, p);
+                 }
                  foreach (PS_gt gt in list) {
                      PointF pf = new PointF((float)gt.gtLon, (float)gt.gtLat);
                      if (count == 0) {
@@ -112,11 +117,22 @@ namespace Ebada.Scgl.Gis {
                  }
                  //线路名文字
                  if (route.Points.Count > 0) {
-                     GMapMarkerText text = new GMapMarkerText(route.Points[0]);
-                     text.Text = line.LineName;
-                     text.MarkerType = MarkerEnum.xlmc;
-                     text.IsVisible = false;
-                     layer.Markers.Add(text);
+                     if (dicp.ContainsKey(line.LineCode)) {
+                         TX_Point pt = dicp[line.LineCode];
+                         GMapMarkerText text = new GMapMarkerText(new PointLatLng(double.Parse(pt.y), double.Parse(pt.x)));
+                         text.Text = pt.Text;
+                         text.IsVisible = false;
+                         text.MarkerType = MarkerEnum.xlmc;
+                         layer.Markers.Add(text);
+                         text.Tag = pt;
+                     } else {
+                         GMapMarkerText text = new GMapMarkerText(route.Points[0]);
+                         text.Tag = line.LineCode;
+                         text.Text = line.LineName;
+                         text.IsVisible = false;
+                         text.MarkerType = MarkerEnum.xlmc;
+                         layer.Markers.Add(text);
+                     }
                  }
                  if (route.Points.Count > 0) {
                      
