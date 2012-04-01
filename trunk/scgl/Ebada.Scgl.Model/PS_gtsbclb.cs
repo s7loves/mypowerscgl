@@ -169,7 +169,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用
         /// 字段信息：[S2],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("备用")]
         public string S2
         {
@@ -191,7 +190,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用
         /// 字段信息：[S3],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("备用")]
         public string S3
         {
