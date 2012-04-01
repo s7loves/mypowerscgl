@@ -1509,15 +1509,18 @@ namespace Ebada.Scgl.Yxgl
 
                              if (gttemp2 == null || str2 == str1)
                              {
-                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang, jlietemp], xx.Cells[ihang, jlietemp - 2]);
-                                 range.Merge(Type.Missing);
-                                 if (item % jmax == 2 && ista != item)
+                                 if (jlietemp > 4)
                                  {
-                                     if (str1 != "")
-                                         ex.SetCellValue(str1, ihang, jlietemp - 2);
-                                     else
-                                         ex.SetCellValue("水平", ihang, jlietemp - 2);
+                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang, jlietemp], xx.Cells[ihang, jlietemp - 2]);
+                                     range.Merge(Type.Missing);
+                                     if (item % jmax == 2 && ista != item)
+                                     {
+                                         if (str1 != "")
+                                             ex.SetCellValue(str1, ihang, jlietemp - 2);
+                                         else
+                                             ex.SetCellValue("水平", ihang, jlietemp - 2);
 
+                                     }
                                  }
                              }
                              else
