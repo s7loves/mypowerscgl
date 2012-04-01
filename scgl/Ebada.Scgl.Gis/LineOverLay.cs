@@ -10,7 +10,7 @@ using Ebada.Scgl.Gis.Markers;
 using System.Windows.Forms;
 using TLMapPlatform;
 namespace Ebada.Scgl.Gis {
-    public class LineOverlay : GMapOverlay, IUpdateable,IDisposable,IPopuMenu {
+    public class LineOverlay : GMapOverlay, IUpdateable,IDisposable,IPopuMenu,ILineInfo {
 
         private GMapControl control;
         private bool allowEdit;
@@ -211,5 +211,18 @@ namespace Ebada.Scgl.Gis {
             string linecode = gt.gtCode.Substring(0, gt.gtCode.Length - 4);
             UCMapLayer.ShowTT(linecode);
         }
+
+        #region ILineInfo 成员
+        bool loadline = false;
+        public bool IsLoad {
+            get {
+                return loadline;
+            }
+            set {
+                loadline=value;
+            }
+        }
+
+        #endregion
     }
 }

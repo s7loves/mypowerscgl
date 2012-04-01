@@ -5,6 +5,7 @@ using GMap.NET.WindowsForms;
 using System.Drawing;
 using GMap.NET;
 using System.Windows.Forms;
+using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Gis.Markers {
     [Serializable]
@@ -13,7 +14,7 @@ namespace Ebada.Scgl.Gis.Markers {
         public GMapMarkerText(PointLatLng p)
             : base(p) {
             Size = SizeSt = new Size(20, 20);
-            Offset = new Point(-10, -10);
+            Offset = new Point(-0, -0);
             Text = string.Empty;
         }
         public override Font Font {
@@ -36,11 +37,26 @@ namespace Ebada.Scgl.Gis.Markers {
             }
         }
         internal override void Update() {
+            if (Tag is TX_Point) {
+                TX_Point pt = Tag as TX_Point;
+                pt.x = this.Position.Lng.ToString();
+                pt.y = this.Position.Lat.ToString();
+                TX_PointHelper.Update(pt);
+            } else if (Tag is string) {
+                TX_Point pt=new TX_Point();
+                pt.x = this.Position.Lng.ToString();
+                pt.y = this.Position.Lat.ToString();
+                pt.Text=this.Text;
+                pt.Type="linename";
+                pt.LayerID=this.Overlay.Id;
+                pt.ID=Tag.ToString();
+                TX_PointHelper.Create(pt);
+            }
         }
         private void MeasureRect() {
             Size = SizeSt = new Control().CreateGraphics().MeasureString(Text, Font).ToSize();
 
-            Offset = new Point(-Size.Width / 2, -Size.Height / 2);
+            //Offset = new Point(-Size.Width / 2, -Size.Height / 2);
         }
         public override void OnRender(Graphics g) {
 

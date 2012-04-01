@@ -366,5 +366,9 @@ namespace Ebada.Scgl.Gis {
             cad.ToDwg(list.ToArray());
         }
 
+        private void barTJ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+
+        }
+
     }
 }
