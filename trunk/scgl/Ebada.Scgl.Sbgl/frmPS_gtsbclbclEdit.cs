@@ -29,6 +29,8 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "mc");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "xh");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "bh");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "S1");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "S2");
         }
         #region IPopupFormEdit Members
         private PS_gtsbclb rowData = null;
