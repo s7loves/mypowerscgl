@@ -359,39 +359,39 @@ namespace Ebada.Scgl.Lcgl {
 
             mUser user = MainHelper.PlatformSqlMap.GetOne<mUser>(" where UserID='" + m_UserBase.UserID + "'");
             //gridViewOperation.RefreshData(str);
-            if (kind == "电力线路倒闸操作票")
+            if (kind == "电力线路倒闸操作票" || kind == "dzczp")
             {
                 strKind = "dzczp";
                 str = string.Format("where kind='{0}' or kind='dzczp' and OrgName='{1}'", kind, user.OrgName);
                 if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
-                    str = string.Format("where kind='{0}' or kind='dzczp'and OrgName='{1}'", kind, user.OrgName);
+                    str = string.Format("where (kind='{0}' or kind='dzczp'and OrgName='{1}')", kind, user.OrgName);
                 else
                     str = string.Format("where kind='{0}' or kind='dzczp'", kind);      
             }
-            else if (kind == "电力线路第一种工作票")
+            else if (kind == "电力线路第一种工作票" || kind == "yzgzp")
             {
                 strKind = "yzgzp";
                 if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
-                    str = string.Format("where kind='{0}' or kind='yzgzp' and OrgName='{1}'", kind, user.OrgName);
+                    str = string.Format("where (kind='{0}' or kind='yzgzp') and OrgName='{1}'", kind, user.OrgName);
                 else
                     str = string.Format("where kind='{0}' or kind='yzgzp'", kind); 
 
             }
-            else if (kind == "电力线路第二种工作票")
+            else if (kind == "电力线路第二种工作票" || kind == "ezgzp")
             {
                 strKind = "ezgzp";
                 if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
-                    str = string.Format("where kind='{0}' or kind='ezgzp'and OrgName='{1}'", kind, user.OrgName);
+                    str = string.Format("where (kind='{0}' or kind='ezgzp') and OrgName='{1}'", kind, user.OrgName);
                 else
                     str = string.Format("where kind='{0}' or kind='ezgzp'", kind);  
             }
-            else if (kind == "电力线路事故应急抢修单")
+            else if (kind == "电力线路事故应急抢修单" || kind == "xlqxp")
             {
                 strKind = "xlqxp";
                 if (m_UserBase.LoginName != "rabbit" && user.OrgName.IndexOf("安全监察部") == -1 && user.OrgName.IndexOf("局领导") == -1)
-                    str = string.Format("where kind='{0}' or kind='xlqxp'and OrgName='{1}'", kind, user.OrgName);
+                    str = string.Format("where (kind='{0}' or kind='xlqxp') and OrgName='{1}'", kind, user.OrgName);
                 else
-                    str = string.Format("where kind='{0}' or kind='xlqxp'", kind);    
+                    str = string.Format("where (kind='{0}' or kind='xlqxp')", kind);    
             }
             else
             {
