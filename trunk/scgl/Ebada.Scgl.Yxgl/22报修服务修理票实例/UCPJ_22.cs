@@ -161,6 +161,7 @@ namespace Ebada.Scgl.Yxgl
         public void RefreshData(string slqwhere)
         {
             gridViewOperation.RefreshData(slqwhere);
+            this.gridView1.BestFitColumns();
         }
         /// <summary>
         /// 封装了数据操作的对象

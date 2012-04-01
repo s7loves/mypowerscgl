@@ -106,6 +106,8 @@ namespace Ebada.Scgl.Sbgl {
             //需要隐藏列时在这写代码
 
             hideColumn("ParentID");
+            hideColumn("zl");
+            hideColumn("zlCode");
             //visitColumn("zl");
             // visitColumn("zlCode");
         }
@@ -115,6 +117,7 @@ namespace Ebada.Scgl.Sbgl {
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere) {
             gridViewOperation.RefreshData(slqwhere);
+            this.gridView1.BestFitColumns();
         }
         /// <summary>
         /// 封装了数据操作的对象

@@ -246,7 +246,8 @@ namespace Ebada.Scgl.Yxgl
                 gridtable.Rows[i]["Image"] = RecordWorkTask.WorkFlowBitmap(gridtable.Rows[i]["ID"].ToString(), imageEdit1.PopupFormSize);
             }
            
-            gridControl1.DataSource = gridtable; 
+            gridControl1.DataSource = gridtable;
+            this.gridView1.BestFitColumns();
         }
         /// <summary>
         /// 封装了数据操作的对象

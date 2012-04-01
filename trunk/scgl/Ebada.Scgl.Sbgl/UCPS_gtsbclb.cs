@@ -114,6 +114,7 @@ namespace Ebada.Scgl.Sbgl {
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere) {
             gridViewOperation.RefreshData(slqwhere);
+            this.gridView1.BestFitColumns();
         }
         /// <summary>
         /// 封装了数据操作的对象

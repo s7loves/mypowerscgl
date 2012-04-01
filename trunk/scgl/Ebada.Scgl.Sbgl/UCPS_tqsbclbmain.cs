@@ -76,8 +76,12 @@ namespace Ebada.Scgl.Sbgl {
                 e.Value.zlCode   = string.Format("{0:D3}", 1);
             else
             {
-                e.Value.zlCode = (Convert.ToDecimal(pnumli[0].zlCode) + 1).ToString("000");
+                if (!string.IsNullOrEmpty(pnumli[0].zlCode))
+                {
+                    e.Value.zlCode = (Convert.ToDecimal(pnumli[0].zlCode) + 1).ToString("000");
 
+                }
+              
 
             }
         }
@@ -136,6 +140,7 @@ namespace Ebada.Scgl.Sbgl {
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere) {
             gridViewOperation.RefreshData(slqwhere);
+            this.gridView1.BestFitColumns();
         }
         /// <summary>
         /// 封装了数据操作的对象
