@@ -367,7 +367,7 @@ namespace Ebada.Scgl.Gis {
         }
 
         private void barTJ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-
+            MessageBox.Show("功能正在调试，近期完成。。。");
         }
 
     }

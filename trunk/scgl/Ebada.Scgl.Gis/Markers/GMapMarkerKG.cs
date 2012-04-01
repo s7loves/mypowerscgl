@@ -14,8 +14,8 @@ namespace Ebada.Scgl.Gis.Markers {
         private Font mFont;
         public GMapMarkerKG(PointLatLng p)
             : base(p) {
-            Size = SizeSt = new Size(8, 8);
-            Offset = new Point(-4, -4);
+            Size = SizeSt = new Size(8, 6);
+            Offset = new Point(-4, -3);
             Text = string.Empty;
             mFont = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Bold);
             Pen = new Pen(Color.Green, 2);
