@@ -212,6 +212,7 @@ namespace Ebada.Scgl.Lcgl {
             currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
             if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+            if (currRecord.DocContent == null) currRecord.DocContent = new byte[0];
             frmViewTemplate fm = new frmViewTemplate();
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
             fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
@@ -1554,6 +1555,7 @@ namespace Ebada.Scgl.Lcgl {
             currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
             if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+            if (currRecord.DocContent == null) currRecord.DocContent = new byte[0];
             workFlowFormShow(currRecord);
         }
 
@@ -1584,6 +1586,7 @@ namespace Ebada.Scgl.Lcgl {
             currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
             if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+            if (currRecord.DocContent == null) currRecord.DocContent = new byte[0];
             if (currRecord.OrgName != MainHelper.User.OrgName && MainHelper.User.OrgName!="局领导")
             {
                 MsgBox.ShowWarningMessageBox("删除出错,不是本单位的记录，无权删除！");
@@ -1813,6 +1816,7 @@ namespace Ebada.Scgl.Lcgl {
             currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
             if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+            if (currRecord.DocContent == null) currRecord.DocContent = new byte[0];
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
             if (currRecord.Status != "存档")
@@ -2063,6 +2067,7 @@ namespace Ebada.Scgl.Lcgl {
                                             currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
                                             if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
                                             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+                                            if (currRecord.DocContent == null) currRecord.DocContent = new byte[0];
                                             RecordWorkTask.iniTableRecordData(ref taskTemple, ds1, currRecord, worktaskins.WorkFlowId, worktaskins.WorkFlowInsId, true);
                                             ds1.FileDataGzip = taskTemple.DocContent;
                                         }
@@ -2080,6 +2085,7 @@ namespace Ebada.Scgl.Lcgl {
                                         currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
                                         if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
                                         if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+                                        if (currRecord.DocContent == null) currRecord.DocContent = new byte[0];
                                         RecordWorkTask.iniTableRecordData(ref taskTemple, ds1, currRecord, worktaskins.WorkFlowId, worktaskins.WorkFlowInsId, true);
                                         ds1.FileDataGzip = taskTemple.DocContent;
                                     }

@@ -215,7 +215,9 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
             string statustem = currRecord.Status;
-            currRecord.Status=comboBoxEdit1.Text;
+            currRecord.Status = comboBoxEdit1.Text;
+            if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+            if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
             string strmes = "";
             WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
