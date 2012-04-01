@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using Ebada.UI.Base;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -234,6 +235,77 @@ namespace Ebada.Scgl.Sbgl
             }
            
            
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            UCPS_gtsbclbMain ucTop = new UCPS_gtsbclbMain();
+            ucTop.InitColumns();
+            ucTop.InitData();
+            ucTop.hidbarmange();
+            FormBase dlg = showControl(ucTop);
+            if (dlg.DialogResult == DialogResult.OK)
+            {
+                PS_gtsbclb obj = ucTop.SelectObject();
+                if (obj != null)
+                {
+                    // List<PS_gtsb> listsb=new List<PS_gtsb>();
+                    IList<PS_gtsbclb> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_gtsbclb>("where ParentID='" + obj.ID + "'order by xh");
+                    int i = 0;
+                    foreach (PS_gtsbclb pl in list)
+                    {
+                        i++;
+                        PS_gtsb pt = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gtsb>("where gtid='" + parentID + "'and sbid='" + pl.ID + "'");
+                        if (pt == null)
+                        {
+                            pt = new PS_gtsb();
+                            pt.gtID = parentID;
+                            //pt.sbNumber = Convert.ToInt16(pl.sl);
+                           // pt.sbCode = pl.xh;
+                            pt.sbID = pl.ID;
+                            pt.sbModle = pl.xh;
+                            pt.sbName = pl.mc;
+                            pt.sbType = obj.zl;
+                            pt.C1 = pl.S1;
+                            Client.ClientHelper.PlatformSqlMap.Create<PS_gtsb>(pt);
+                        }
+                        else
+                        {
+                            pt.gtID = parentID;
+                           // pt.sbNumber = Convert.ToInt16(pl.sl);
+                           // pt.sbCode = getcode() + i;
+                            pt.sbID = pl.ID;
+                            pt.sbModle = pl.xh;
+                            pt.sbName = pl.mc;
+                            pt.sbType = obj.zl;
+                            pt.C1 = pl.S1;
+                            Client.ClientHelper.PlatformSqlMap.Update<PS_gtsb>(pt);
+                        }
+
+                        //listsb.Add(pt);
+                    }
+                    //Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(listsb,null,null);
+                }
+            }
+            RefreshData(" where gtID='" + parentID + "' order by sbCode");
+        }
+        private FormBase showControl(UserControl uc)
+        {
+            FrmSelect dlg = new FrmSelect();
+            Size newsize = new Size(500, 400);
+            dlg.Size = newsize;
+
+            dlg.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            dlg.ShowInTaskbar = false;
+            dlg.MaximizeBox = false;
+            dlg.MinimizeBox = false;
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            dlg.Text = "杆塔材料类型选择器";
+            dlg.control.Controls.Add(uc);
+            uc.Dock = DockStyle.Fill;
+            dlg.ShowDialog();
+            return dlg;
         }
     }
 }
