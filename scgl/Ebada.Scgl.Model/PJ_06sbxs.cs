@@ -366,6 +366,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：gzrjID
         /// 字段信息：[gzrjID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("gzrjID")]
         public string gzrjID
         {
