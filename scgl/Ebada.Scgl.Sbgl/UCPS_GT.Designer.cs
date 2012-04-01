@@ -179,7 +179,6 @@
             this.btAddM2.Caption = "其它设备";
             this.btAddM2.Id = 19;
             this.btAddM2.Name = "btAddM2";
-            this.btAddM2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btAddM2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddM2_ItemClick);
             // 
             // btEdit
