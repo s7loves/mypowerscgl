@@ -85,7 +85,7 @@ namespace Ebada.Scgl.Sbgl {
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PS_gtsbclb);
         }
         private void hideColumn(string colname) {
-            gridView1.Columns[colname].Visible = false;
+            //gridView1.Columns[colname].Visible = false;
         }
         /// <summary>
         /// 初始化数据
