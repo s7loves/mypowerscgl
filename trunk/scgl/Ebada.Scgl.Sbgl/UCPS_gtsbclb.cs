@@ -105,6 +105,7 @@ namespace Ebada.Scgl.Sbgl {
             hideColumn("ParentID");
             hideColumn("zl");
             hideColumn("zlCode");
+            hideColumn("S3");
             
             
         }
