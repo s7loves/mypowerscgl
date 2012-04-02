@@ -209,15 +209,27 @@ namespace Ebada.SCGL.CADLib
                     ntext.Height = 0.0001*bl;
                     ntext.Layer = "gth";
                 }
-
-                PS_xl xl= Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='"+list[0].LineCode+"'");
-                double[] ins = new double[3];
-                ins[0] = Convert.ToDouble(list[0].gtLon.ToString("0.########"));
-                ins[1] = Convert.ToDouble(list[0].gtLat.ToString("0.########"));
-                ins[2] = 0;
-                AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.LineName);
-                text.Height = 0.0002 * bl;
-                text.Layer = "text";
+                TX_Point tp =null;
+                tp=Client.ClientHelper.PlatformSqlMap.GetOneByKey<TX_Point>(list[0].LineCode);
+                if (tp != null) {
+                    double[] ins = new double[3];
+                    ins[0] = Math.Round(Convert.ToDouble(tp.x), 8) * zoom;
+                    ins[1] = Math.Round(Convert.ToDouble(tp.y), 8) * zoom;
+                    ins[2] = 0;
+                    AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, tp.Text);
+                    text.Height = 0.0002 * bl;
+                    text.Layer = "text";
+                }else{
+                
+                    PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='" + list[0].LineCode + "'");
+                    double[] ins = new double[3];
+                    ins[0] = Convert.ToDouble(list[0].gtLon.ToString("0.########"));
+                    ins[1] = Convert.ToDouble(list[0].gtLat.ToString("0.########"));
+                    ins[2] = 0;
+                    AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.LineName);
+                    text.Height = 0.0002 * bl;
+                    text.Layer = "text";
+                }
                 cad.Application.Update();
             }
             catch (Exception e) { MessageBox.Show(e.Message); };
