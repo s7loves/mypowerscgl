@@ -13,7 +13,7 @@ using DevExpress.XtraTreeList.Nodes;
 namespace Ebada.Scgl.Sbgl {
     public partial class UCxsTree : UserControl {
 
-        public event SendDataEventHandler<PS_xl> LineSelectionChanged;
+        public event SendDataEventHandler<mOrg> LineSelectionChanged;
         public event SendDataEventHandler<PS_dxxh> DxxhSelectionChanged;
         public event SendDataEventHandler<PS_byqxh> ByqxhSelectionChanged;
         private Dictionary<string, PS_xl> mLines;
@@ -53,7 +53,7 @@ namespace Ebada.Scgl.Sbgl {
         }
         private void initTree() {
             if (mTable == null) initTable();
-            mTable.Rows.Add( "线路", "gds","0", "gds");
+            mTable.Rows.Add("线路", "xl_gds", "0", "xl_gds");
             mTable.Rows.Add( "导线型号", "xlxh", "0","xlxh");
             mTable.Rows.Add( "变压器型号", "byqxh", "0","byqxh");
             IList<mOrg> list=new List<mOrg>();
@@ -63,10 +63,10 @@ namespace Ebada.Scgl.Sbgl {
                 list.Add(m_org);
             }
             foreach (mOrg org in list) {
-                mTable.Rows.Add(org.OrgName, org.OrgCode, "gds", "gds");
+                mTable.Rows.Add(org.OrgName, org.OrgCode, "xl_gds", "gds");
                 mOrgs.Add(org.OrgCode, org);
-                if(showHvol)
-                mTable.Rows.Add("高压线路",  "g_" + org.OrgCode, org.OrgCode, "gyxl");
+//                 if(showHvol)
+//                 mTable.Rows.Add("高压线路",  "g_" + org.OrgCode, org.OrgCode, "gyxl");
                 //if(showLvol)
                 //mTable.Rows.Add("低压线路", "d_" + org.OrgCode, org.OrgCode, "dyxl");
             }
@@ -114,9 +114,10 @@ namespace Ebada.Scgl.Sbgl {
             }
             string id = e.Node["ID"].ToString();
             string type = e.Node["Type"].ToString();
-            if (type == "xl") {
+            if (type == "gds")
+            {
                 if (LineSelectionChanged != null)
-                    LineSelectionChanged(treeList1, mLines[id]);
+                    LineSelectionChanged(treeList1, mOrgs[id]);
             }
             else if (type == "xlxhchild")
             {
