@@ -182,7 +182,23 @@ namespace Ebada.Scgl.Gis {
                 OnMarkerChanged(marker as GMapMarkerVector);
             }
         }
-
+        public void ShowDialog(string type,GMapMarker marker) {
+            if (type == "jcky") {//交叉跨跃
+                PS_gt gt = selectedMarker.Tag as PS_gt;
+                Ebada.Scgl.Sbgl.UCPS_jcky jcky = new UCPS_jcky();
+                jcky.ParentObj = gt;
+                DevExpress.XtraEditors.XtraForm dlg = new DevExpress.XtraEditors.XtraForm();
+                dlg.Controls.Add(jcky);
+                jcky.Dock = DockStyle.Fill;
+                dlg.Size = new System.Drawing.Size(800, 600);
+                dlg.StartPosition = FormStartPosition.CenterScreen;
+                dlg.Text = "交叉跨越-" + gt.gth;
+                dlg.ShowDialog();
+            } else {
+                MessageBox.Show("此功能正在开发中。。。");
+            }
+        }
+        
         public void ShowLineinfo(GMapMarker selectedMarker) {
             PS_gt gt = selectedMarker.Tag as PS_gt;
             string linecode=gt.gtCode.Substring(0, gt.gtCode.Length - 4);
