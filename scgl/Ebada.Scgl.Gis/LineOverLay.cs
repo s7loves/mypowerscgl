@@ -190,6 +190,7 @@ namespace Ebada.Scgl.Gis {
                 DevExpress.XtraEditors.XtraForm dlg = new DevExpress.XtraEditors.XtraForm();
                 dlg.Controls.Add(jcky);
                 jcky.Dock = DockStyle.Fill;
+                jcky.HideList();
                 dlg.Size = new System.Drawing.Size(800, 600);
                 dlg.StartPosition = FormStartPosition.CenterScreen;
                 dlg.Text = "交叉跨越-" + gt.gth;
