@@ -505,10 +505,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：LineP
-        /// 属性描述：
+        /// 属性描述：线路有功
         /// 字段信息：[LineP],decimal
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("线路有功")]
         public decimal LineP
         {
             get { return _linep; }
@@ -523,10 +523,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：LineQ
-        /// 属性描述：
+        /// 属性描述：线路无功 
         /// 字段信息：[LineQ],decimal
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("线路无功")]
         public decimal LineQ
         {
             get { return _lineq; }
@@ -541,10 +541,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：K
-        /// 属性描述：
+        /// 属性描述：负荷形状系数
         /// 字段信息：[K],decimal
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("负荷形状系数")]
         public decimal K
         {
             get { return _k; }

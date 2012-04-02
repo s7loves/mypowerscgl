@@ -12,7 +12,7 @@ namespace Ebada.Scgl.Sbgl
     public partial class UCPS_XS : DevExpress.XtraEditors.XtraUserControl
     {
         UCxsTree scLeft;
-        UCPS_xlSelect scrightxl;
+        UCPS_xl scrightxl;
         UCPsdxxhSelect scrightdxxh;  
         UCPsbyqxhSelect scrightbyqxh;
         public UCPS_XS()
@@ -29,7 +29,8 @@ namespace Ebada.Scgl.Sbgl
             scrightdxxh.Parent = splitContainerControl1.Panel2;   
             scrightdxxh.Dock = DockStyle.Fill;
             scrightdxxh.Visible = false;
-            scrightxl = new UCPS_xlSelect();
+            scrightxl = new UCPS_xl();
+            scrightxl.HideList();
             scrightxl.Parent = splitContainerControl1.Panel2;
             scrightxl.Dock = DockStyle.Fill;
             scrightxl.Visible = false;
@@ -37,7 +38,7 @@ namespace Ebada.Scgl.Sbgl
             scrightbyqxh.Parent = splitContainerControl1.Panel2;
             scrightbyqxh.Dock = DockStyle.Fill;
             scrightbyqxh.Visible = false;
-            scLeft.LineSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_xl>(scLeft_LineSelectionChanged);
+            scLeft.LineSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.mOrg>(scLeft_LineSelectionChanged);
             scLeft.DxxhSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_dxxh>(scLeft_DxxhSelectionChanged);
             scLeft.ByqxhSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.PS_byqxh>(scLeft_ByqxhSelectionChanged);   
          
@@ -62,8 +63,8 @@ namespace Ebada.Scgl.Sbgl
             scrightxl.Visible = false;         
         }
 
-        void scLeft_LineSelectionChanged(object sender, Ebada.Scgl.Model.PS_xl obj)
-        {
+        void scLeft_LineSelectionChanged(object sender, Ebada.Scgl.Model.mOrg obj)
+        {            
             scrightxl.ParentObj = obj;
             scrightbyqxh.Visible = false;
             scrightdxxh.Visible = false;
