@@ -243,6 +243,9 @@ namespace TLMapPlatform {
                 item = new MenuItem("台区属性");
                 item.Click += new EventHandler(台区属性_Click);
                 contextMenu.MenuItems.Add(item);
+                item = new MenuItem("低压台区完好率及台区网络图");
+                item.Click += new EventHandler(低压台区完好率及台区网络图_Click);
+                contextMenu.MenuItems.Add(item);
                 item = new MenuItem("导出台区网络图");
                 item.Click += new EventHandler(台区网络图_Click);
                 contextMenu.MenuItems.Add(item);
@@ -263,6 +266,9 @@ namespace TLMapPlatform {
             if (dlg.ShowDialog() == DialogResult.OK) {
                 bt.Save(dlg.FileName);
             }
+        }
+        void 低压台区完好率及台区网络图_Click(object sender, EventArgs e) {
+            
         }
         void 高压线路条图17_Click(object sender, EventArgs e) {
             ShowTT(contextMenu.Tag.ToString());
