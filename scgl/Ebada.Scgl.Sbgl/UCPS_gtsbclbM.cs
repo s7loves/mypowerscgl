@@ -37,8 +37,8 @@ namespace Ebada.Scgl.Sbgl {
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             ucBottom.ParentID = "0";
-            ucBottom.InitColumns();
             ucTop.InitColumns();
+            ucBottom.InitColumns();
             ucTop.InitData();
            ucTop.ChildView = ucBottom.GridViewOperation;
         }

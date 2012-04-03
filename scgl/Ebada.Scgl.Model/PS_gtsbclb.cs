@@ -144,11 +144,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：S1
-        /// 属性描述：备用
+        /// 属性描述：单位
         /// 字段信息：[S1],nvarchar
         /// </summary>
-        [Browsable(false)]
-        [DisplayNameAttribute("备用")]
+        [DisplayNameAttribute("单位")]
         public string S1
         {
             get { return _s1; }
@@ -166,10 +165,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：S2
-        /// 属性描述：备用
+        /// 属性描述：数量
         /// 字段信息：[S2],nvarchar
         /// </summary>
-        [DisplayNameAttribute("备用")]
+        [DisplayNameAttribute("数量")]
         public string S2
         {
             get { return _s2; }
