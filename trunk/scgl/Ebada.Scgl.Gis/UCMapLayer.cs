@@ -268,10 +268,37 @@ namespace TLMapPlatform {
             }
         }
         void 低压台区完好率及台区网络图_Click(object sender, EventArgs e) {
-            
+            show20dyt(contextMenu.Tag.ToString());
         }
         void 高压线路条图17_Click(object sender, EventArgs e) {
             ShowTT(contextMenu.Tag.ToString());
+        }
+        static void show20dyt(string tqcode) {
+            PS_tq tq = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(string.Format("where tqcode='{0}'", tqcode));
+            if (tq != null) {
+                PJ_20 pj = ClientHelper.PlatformSqlMap.GetOneByKey<PJ_20>(tq.tqID);
+                //DialogResult result = DialogResult.No;
+                mOrg org = ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + tq.OrgCode + "'");
+                if (pj == null) {
+                    pj = new PJ_20() { OrgCode=tq.OrgCode, tqCode=tq.tqCode,tqName=tq.tqName, CreateMan="system"};
+                    if (org != null) {
+                        pj.ParentID = org.OrgID;
+                        pj.OrgName = org.OrgName;
+                    }
+                }
+
+                string flag = "edit";
+                if (pj.ID != tq.tqID) {
+                    pj.ID = tq.tqID;
+                    flag = "add";
+                }
+
+                object instance = null;
+
+                Ebada.Client.Platform.MainHelper.Execute("Ebada.Scgl.Yxgl.dll", "Ebada.Scgl.Yxgl.frm20Template", "Show", new object[] { pj, flag }, null, ref instance);
+                Form frm = instance as Form;
+                frm.ShowDialog();
+            }
         }
         internal static void ShowTT(string linecode) {
             PS_xl xl = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(string.Format("where linecode='{0}'", linecode));
