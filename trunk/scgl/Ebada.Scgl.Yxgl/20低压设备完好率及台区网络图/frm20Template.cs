@@ -123,7 +123,10 @@ namespace Ebada.Scgl.Yxgl
         {        
             
         }
-
+        public void Show(PJ_20 pj, string stat) {
+            RowData = pj;
+            Status = stat;
+        }
         public DataTable RecordWorkFlowData
         {
             get
