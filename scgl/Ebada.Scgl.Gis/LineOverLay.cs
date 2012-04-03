@@ -9,6 +9,7 @@ using System.Data;
 using Ebada.Scgl.Gis.Markers;
 using System.Windows.Forms;
 using TLMapPlatform;
+using Ebada.Scgl.Gis.Device;
 namespace Ebada.Scgl.Gis {
     public class LineOverlay : GMapOverlay, IUpdateable,IDisposable,IPopuMenu,ILineInfo {
 
@@ -213,7 +214,18 @@ namespace Ebada.Scgl.Gis {
             }
 
         }
-
+        public void ShowLineSB(GMapMarker selectedMarker)
+        {
+            PS_gt gt = selectedMarker.Tag as PS_gt;
+            string linecode = gt.gtCode.Substring(0, gt.gtCode.Length - 4);
+            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='" + linecode + "'");
+            if (xl != null)
+            {
+                frmXLSbtj dlg = new frmXLSbtj();
+                dlg.SetXL(xl);
+                dlg.ShowDialog();
+            }
+        }
         #region IDisposable 成员
 
         public void Dispose() {
