@@ -34,6 +34,10 @@ namespace Ebada.Scgl.Gis.Device {
             DialogResult = DialogResult.Cancel;
         }
         protected virtual void InitData(){
+            if (m_xl==null)
+            {
+                return;
+            }
             IList<PS_tj> tjList = new List<PS_tj>();
             IList<mOrg> orgList = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + m_xl.OrgCode + "'");
             mOrg org = null;
