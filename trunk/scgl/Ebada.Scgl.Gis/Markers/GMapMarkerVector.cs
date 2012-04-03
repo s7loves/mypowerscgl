@@ -110,8 +110,8 @@ namespace Ebada.Scgl.Gis.Markers {
         void 交叉跨越_Click(object sender, EventArgs e) {
             (this.Overlay as LineOverlay).ShowDialog("jcky",this);
         }
-        void 线路设备统计_Click(object sender, EventArgs e) {
-            (this.Overlay as LineOverlay).ShowDialog("xltj", this);
+        void 线路设备统计_Click(object sender, EventArgs e) {         
+            (this.Overlay as LineOverlay).ShowLineSB(this);
         }
         public virtual ContextMenu CreatePopuMenu() {
            
