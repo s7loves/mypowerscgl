@@ -1252,6 +1252,7 @@ namespace Ebada.Scgl.Yxgl
                      if (xl.LineType == "2")
                      {
                          PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + xl.ParentID + "'");
+                         if (xltemp!=null)
                          strname[0] = xltemp.LineName;
                          strname[1] = xl.LineName;
                      }
@@ -1435,6 +1436,35 @@ namespace Ebada.Scgl.Yxgl
                      ihang++;
 
                      //转角方向
+                     if (i != 1 && i < gtlis.Count - 1)
+                     {
+                         string strfx = "";
+                         decimal[,] a1 = new decimal[1,2];
+                         decimal[,] a2 = new decimal[1,2];
+                         a1[0,0] = gtlis[i - 1].gtLat - gtlis[i].gtLat;
+                         a1[0,1] = gtlis[i - 1].gtLon - gtlis[i].gtLon;
+
+                         a2[0,0] = gtlis[i + 1].gtLat - gtlis[i].gtLat;
+                         a2[0,1] = gtlis[i + 1].gtLon - gtlis[i].gtLon;
+                         decimal di = a1[0,0] * a2[0,0] + a1[0,1] * a2[0,1];
+                         double dl = Math.Sqrt(Convert.ToDouble(a1[0, 0] * a1[0, 0] + a1[0, 1] * a1[0, 1]) * Math.Sqrt(Convert.ToDouble(  
+                             a2[0,0] * a2[0,0] + a2[0,1] * a2[0,1])));
+                         double dc = Math.Round(180*Math.Acos(Convert.ToDouble(di) / Convert.ToDouble(dl))/3.1415926, 0);
+                         if (gtlis[i].gtLon > gtlis[i - 1].gtLon)
+                         {
+                             strfx = "右转";
+                         }
+                         else
+                         {
+                             strfx = "左转";
+                         }
+                         if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                             ex.SetCellValue(strfx + dc + "度", ihang, jlie);
+                         else
+                         { 
+                         
+                         }
+                     }
                     
 
                      ihang++;
@@ -1623,6 +1653,7 @@ namespace Ebada.Scgl.Yxgl
                          fystart = (float)Convert.ToDouble(range.Cells.Height);
                          range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
                          fystart = fystart + (float)(Convert.ToDouble(range.Cells.Height) / 2);
+                        
                          for (int itemp = 0; itemp <= ista - item; itemp++)
                          {
 
