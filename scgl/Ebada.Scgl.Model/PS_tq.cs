@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:54:00
+生成时间:2012-4-5 15:57:09
 ***********************************************/
 
 using System;
@@ -29,18 +29,25 @@ namespace Ebada.Scgl.Model
         private string _adress=String.Empty; 
         private string _xlcode=String.Empty; 
         private string _xlcode2=String.Empty; 
-        private string _owner=String.Empty;
+        private string _owner=String.Empty; 
         private string _cby=String.Empty; 
         private string _cfy=String.Empty; 
         private string _contractor=String.Empty; 
-        private decimal _lowlossrate=0;
-        private string _class = String.Empty;
-        private string _bttype = String.Empty;
-        private string _btKind = String.Empty; 
+        private decimal _lowlossrate=0; 
+        private string _class=String.Empty; 
         private short _tclr=0; 
         private short _hclr=0; 
         private string _orgcode=String.Empty; 
-        private DateTime _indate=new DateTime(1900,1,1);   
+        private DateTime _indate=new DateTime(1900,1,1); 
+        private string _bttype=String.Empty; 
+        private string _btkind=String.Empty; 
+        private string _bcdr=String.Empty; 
+        private string _ddj=String.Empty; 
+        private string _jj=String.Empty; 
+        private string _nfy=String.Empty; 
+        private string _zmfs=String.Empty; 
+        private string _dxbs=String.Empty; 
+        private string _sxbs=String.Empty;   
         #endregion
   
   
@@ -51,7 +58,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：杆塔ID
         /// 字段信息：[gtID],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("杆塔ID")]
         public string gtID
         {
@@ -339,41 +345,6 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
-       /// <summary>
-        /// 属性名称：bttype
-        /// 属性描述：变台型号
-        /// 字段信息：[bttype],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("变台型号")]
-        public string  bttype
-        {
-            get { return _bttype; }
-            set
-            {
-                if (_bttype as object == null || !_bttype.Equals(value))
-                {
-                    _bttype = value;
-                }
-            }			 
-        }
-        
-       /// <summary>
-        /// 属性名称：_btKind
-        /// 属性描述：完好类型
-        /// 字段信息：[bttype],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("完好类型")]
-        public string btKind
-        {
-            get { return _btKind; }
-            set
-            {
-                if (_btKind as object == null || !_btKind.Equals(value))
-                {
-                    _btKind = value;
-                }
-            }			 
-        }
         /// <summary>
         /// 属性名称：tclr
         /// 属性描述：台抄例日
@@ -384,12 +355,12 @@ namespace Ebada.Scgl.Model
         {
             get { return _tclr; }
             set
-            {
+            {			
                 if (_tclr as object == null || !_tclr.Equals(value))
                 {
                     _tclr = value;
                 }
-            }
+            }			 
         }
   
         /// <summary>
@@ -445,6 +416,195 @@ namespace Ebada.Scgl.Model
                 if (_indate as object == null || !_indate.Equals(value))
                 {
                     _indate = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：bttype
+        /// 属性描述：变台型号
+        /// 字段信息：[bttype],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("变台型号")]
+        public string bttype
+        {
+            get { return _bttype; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[变台型号]长度不能大于50!");
+                if (_bttype as object == null || !_bttype.Equals(value))
+                {
+                    _bttype = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：btKind
+        /// 属性描述：完好类型
+        /// 字段信息：[btKind],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("完好类型")]
+        public string btKind
+        {
+            get { return _btkind; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[完好类型]长度不能大于50!");
+                if (_btkind as object == null || !_btkind.Equals(value))
+                {
+                    _btkind = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：bcdr
+        /// 属性描述：补偿电容
+        /// 字段信息：[bcdr],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("补偿电容")]
+        public string bcdr
+        {
+            get { return _bcdr; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[补偿电容]长度不能大于50!");
+                if (_bcdr as object == null || !_bcdr.Equals(value))
+                {
+                    _bcdr = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ddj
+        /// 属性描述：电动机
+        /// 字段信息：[ddj],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("电动机")]
+        public string ddj
+        {
+            get { return _ddj; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[电动机]长度不能大于50!");
+                if (_ddj as object == null || !_ddj.Equals(value))
+                {
+                    _ddj = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：jj
+        /// 属性描述：机井
+        /// 字段信息：[jj],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("机井")]
+        public string jj
+        {
+            get { return _jj; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[机井]长度不能大于50!");
+                if (_jj as object == null || !_jj.Equals(value))
+                {
+                    _jj = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：nfy
+        /// 属性描述：农副业
+        /// 字段信息：[nfy],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("农副业")]
+        public string nfy
+        {
+            get { return _nfy; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[农副业]长度不能大于50!");
+                if (_nfy as object == null || !_nfy.Equals(value))
+                {
+                    _nfy = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：zmfs
+        /// 属性描述：照明户数
+        /// 字段信息：[zmfs],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("照明户数")]
+        public string zmfs
+        {
+            get { return _zmfs; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[照明户数]长度不能大于50!");
+                if (_zmfs as object == null || !_zmfs.Equals(value))
+                {
+                    _zmfs = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：dxbs
+        /// 属性描述：单相表数
+        /// 字段信息：[dxbs],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("单相表数")]
+        public string dxbs
+        {
+            get { return _dxbs; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[单相表数]长度不能大于50!");
+                if (_dxbs as object == null || !_dxbs.Equals(value))
+                {
+                    _dxbs = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：sxbs
+        /// 属性描述：三相表数
+        /// 字段信息：[sxbs],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("三相表数")]
+        public string sxbs
+        {
+            get { return _sxbs; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[三相表数]长度不能大于50!");
+                if (_sxbs as object == null || !_sxbs.Equals(value))
+                {
+                    _sxbs = value;
                 }
             }			 
         }
