@@ -88,7 +88,18 @@ namespace Ebada.Scgl.Gis {
             barButtonItem10.AllowAllUp = true;
             barButtonItem4.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
             barButtonItem4.DownChanged += new DevExpress.XtraBars.ItemClickEventHandler(测距_DownChanged);
+            barTJ.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
+            barTJ.DownChanged += new DevExpress.XtraBars.ItemClickEventHandler(barTJ_DownChanged);
             barButtonItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+        }
+
+        void barTJ_DownChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (barTJ.Down) {
+                CurOperation = oInstances.TjOperation;
+            } else {
+                oInstances.TjOperation.Reset();
+                CurOperation = oInstances.LineOperation;
+            }
         }
 
         void 测距_DownChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -367,7 +378,7 @@ namespace Ebada.Scgl.Gis {
         }
 
         private void barTJ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            MessageBox.Show("功能正在调试，近期完成。。。");
+            //MessageBox.Show("功能正在调试，近期完成。。。");
         }
 
     }

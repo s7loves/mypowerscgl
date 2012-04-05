@@ -10,6 +10,15 @@ namespace Ebada.Scgl.Gis {
             mapcontrol = map;
         }
         private OperationDistance distanceOperation;
+        private OperationTj tjOperation;
+
+        internal OperationTj TjOperation {
+            get {
+                if (tjOperation == null)
+                    tjOperation = new OperationTj(mapcontrol);
+                return tjOperation;
+            }
+        }
 
         internal OperationDistance DistanceOperation {
             get {
