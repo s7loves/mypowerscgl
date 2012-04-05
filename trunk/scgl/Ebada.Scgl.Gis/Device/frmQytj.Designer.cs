@@ -35,6 +35,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.memoEdit1.Location = new System.Drawing.Point(12, 12);
             this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Properties.AcceptsTab = true;
             this.memoEdit1.Size = new System.Drawing.Size(547, 283);
             this.memoEdit1.TabIndex = 0;
             // 
