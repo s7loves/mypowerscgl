@@ -132,7 +132,9 @@ namespace Ebada.AutoUpdater.Config
 
             foreach (DataRow dr in dt.Rows)
             {
+
                 string filename = dr["FileName"].ToString();
+                dr["Version"] = textBox2.Text; 
                 if (dr["HaveSelected"].ToString().ToLower () == "true")
                 {
                     textWriter.WriteStartElement("file");
