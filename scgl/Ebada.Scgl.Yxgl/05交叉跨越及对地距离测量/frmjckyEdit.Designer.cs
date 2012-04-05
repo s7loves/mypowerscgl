@@ -136,6 +136,7 @@
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit1.Properties.Click += new System.EventHandler(this.comboBoxEdit1_Properties_Click);
             this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit1.TabIndex = 6;
             this.comboBoxEdit1.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
@@ -207,17 +208,17 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(40, 58);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(36, 14);
+            this.labelControl2.Size = new System.Drawing.Size(24, 14);
             this.labelControl2.TabIndex = 1;
-            this.labelControl2.Text = "支线路";
+            this.labelControl2.Text = "杆塔";
             // 
             // labelControl3
             // 
             this.labelControl3.Location = new System.Drawing.Point(40, 84);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(36, 14);
+            this.labelControl3.Size = new System.Drawing.Size(48, 14);
             this.labelControl3.TabIndex = 1;
-            this.labelControl3.Text = "分线路";
+            this.labelControl3.Text = "跨越位置";
             // 
             // labelControl4
             // 

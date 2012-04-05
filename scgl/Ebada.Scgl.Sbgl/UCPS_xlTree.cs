@@ -85,6 +85,16 @@ namespace Ebada.Scgl.Sbgl {
             if (FocusedNodeChanged != null)
                 FocusedNodeChanged(treeList1, treeList1.GetDataRecordByNode(e.Node) as PS_xl);
         }
+        public PS_xl Getps_xl()
+        {
+           
+          return treeList1.GetDataRecordByNode(treeList1.Selection[0]) as PS_xl;
+           
+        }
+        public void hidbar()
+        {
+            bar1.Visible=false;
+        }
         string getparentValue() {
             string ret = "0";
             if (treeList1.Selection.Count > 0) {
