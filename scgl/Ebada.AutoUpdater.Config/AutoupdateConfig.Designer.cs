@@ -50,6 +50,8 @@
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.fileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -59,7 +61,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.fileCheckBox);
@@ -90,11 +94,11 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(176, 21);
             this.textBox1.TabIndex = 8;
-            this.textBox1.Text = "localhost";
+            this.textBox1.Text = "10.166.137.29";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(250, 7);
+            this.button1.Location = new System.Drawing.Point(427, 8);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 7;
@@ -270,6 +274,23 @@
             // 
             this.fileDialog1.FileName = "openFileDialog1";
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(319, 10);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(95, 21);
+            this.textBox2.TabIndex = 8;
+            this.textBox2.Text = "1.0.0.1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(248, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "设置版本号";
+            // 
             // AutoupdateConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -316,6 +337,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
