@@ -9,6 +9,9 @@ using DevExpress.XtraEditors;
 using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Gis.Device {
+    /// <summary>
+    /// 区域统计;统计内容：线路长度、杆塔数量、杆塔设备、杆塔材料、交叉跨越
+    /// </summary>
     public partial class frmQytj : DevExpress.XtraEditors.XtraForm {
         List<PS_gt> gtList;
 
