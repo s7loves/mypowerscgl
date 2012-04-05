@@ -1441,8 +1441,8 @@ namespace Ebada.Scgl.Yxgl
                          string strfx = "";
                          decimal[,] a1 = new decimal[1,2];
                          decimal[,] a2 = new decimal[1,2];
-                         a1[0,0] = gtlis[i - 1].gtLat - gtlis[i].gtLat;
-                         a1[0,1] = gtlis[i - 1].gtLon - gtlis[i].gtLon;
+                         a1[0,0] =gtlis[i].gtLat- gtlis[i - 1].gtLat ;
+                         a1[0,1] =  gtlis[i].gtLon- gtlis[i - 1].gtLon;
 
                          a2[0,0] = gtlis[i + 1].gtLat - gtlis[i].gtLat;
                          a2[0,1] = gtlis[i + 1].gtLon - gtlis[i].gtLon;
