@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using Ebada.Scgl.Sbgl;
 namespace Ebada.Scgl.Yxgl
 {
     public partial class frmjckyEdit : FormBase, IPopupFormEdit {
@@ -32,7 +33,7 @@ namespace Ebada.Scgl.Yxgl
         void dataBind() {
 
 
-            this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineID");
+            //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineID");
             //this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "LineID");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "gtID");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "kywz");
@@ -48,6 +49,11 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
+                PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit1.EditValue + "'");
+                if (xl != null)
+                {
+                    rowData.LineID = xl.LineCode;
+                }
                 return rowData;
             }
             set {
@@ -74,11 +80,16 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "所属单位", comboBoxEdit6);
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "级别", comboBoxEdit7);
 
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "' and linevol>=10.0 and parentid=''");
-           foreach (PS_xl pl in xlList)
-           {
-               comboBoxEdit1.Properties.Items.Add(pl.LineName);
-           }
+            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + rowData.LineID + "'");
+            if (xl!=null)
+            {
+                comboBoxEdit1.EditValue = xl.LineName;
+            }
+           // IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "' and linevol>=10.0 and parentid=''");
+           //foreach (PS_xl pl in xlList)
+           //{
+           //    comboBoxEdit1.Properties.Items.Add(pl.LineName);
+           //}
             //comboBoxEdit1.Properties.DataSource = xlList;
            //comboBoxEdit2.Properties.DataSource = xlList;
 
@@ -118,67 +129,88 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
-            if (comboBoxEdit1.EditValue == null) return;
-            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit1.Text + "'");
-            if (xl == null) return;
-            comboBoxEdit2.Properties.Items.Clear();
-            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where ParentID='"+xl.LineCode+"'");
-            if (list.Count==0)
-            {
-                list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where ParentID='" + xl.LineID + "'");
-            }
-            foreach (PS_xl pl in list)
-            {
-                comboBoxEdit2.Properties.Items.Add(pl.LineName);
-            }
+            //if (comboBoxEdit1.EditValue == null) return;
+            //PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit1.Text + "'");
+            //if (xl == null) return;
+            //comboBoxEdit2.Properties.Items.Clear();
+            //IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where ParentID='"+xl.LineCode+"'");
+            //if (list.Count==0)
+            //{
+            //    list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where ParentID='" + xl.LineID + "'");
+            //}
+            //foreach (PS_xl pl in list)
+            //{
+            //    comboBoxEdit2.Properties.Items.Add(pl.LineName);
+            //}
             
-            //string linecode = comboBoxEdit1.EditValue.ToString();
-            //int num=(linecode.Length - 3) / 3;
-            //int len = 3;
-            //string code;
-            //List<string> codelist=new List<string>();
-            //for (int i = 0; i < num; i++) {
-            //    if (i == 1)
-            //        len += 4;
-            //    else
-            //        len += 3;
-            //    codelist.Add("'" + linecode.Substring(0, len) + "'");
-
-            //}
-            //code = string.Join(",", codelist.ToArray());
-            //if (code == "") return;
-            //IList xllist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where linecode in ({0})",code));
-            //code = "";
-            //foreach (string str in xllist) {
-            //    code += str;
-            //}
-            //this.comboBoxEdit3.Text = rowData.kywz = code;
+          
         }       
         
 
         private void comboBoxEdit2_EditValueChanged_2(object sender, EventArgs e)
         {
-            if (comboBoxEdit2.EditValue == null) return;
-            comboBoxEdit3.Properties.Items.Clear();
-            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit2.Text + "'");
-            if (xl!=null)
+            //if (comboBoxEdit2.EditValue == null) return;
+            //comboBoxEdit3.Properties.Items.Clear();
+            //PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit2.Text + "'");
+            //if (xl!=null)
+            //{
+            //    IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + xl.LineCode + "'");
+            //    for (int i = 0; i < list.Count; i++)
+            //    {
+            //        //comboBoxEdit2.Properties.Items.Add(list[i].LineID);
+            //        comboBoxEdit4.Properties.Items.Add(list[i].gtCode);
+            //    }
+            //    IList<string> list1 = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select linename from ps_xl where ParentID='" + xl.LineCode + "'");
+            //    if (list1.Count == 0)
+            //    {
+            //        list1 = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select linename from ps_xl where ParentID='" + xl.LineID + "'");
+            //    }
+            //    List<string> col = list1 as List<string>;
+            //    comboBoxEdit3.Properties.Items.AddRange(col.ToArray());
+            //}
+           
+           
+        }
+
+        private void comboBoxEdit1_Properties_Click(object sender, EventArgs e)
+        {
+            UCPS_xlTree ucTop = new UCPS_xlTree();
+            ucTop.ParentID = rowData.OrgCode;
+           
+            ucTop.hidbar();
+            FormBase dlg = showControl(ucTop);
+            if (dlg.DialogResult == DialogResult.OK)
             {
-                IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + xl.LineCode + "'");
-                for (int i = 0; i < list.Count; i++)
+                PS_xl obj = ucTop.Getps_xl();
+                if (obj!=null)
                 {
-                    //comboBoxEdit2.Properties.Items.Add(list[i].LineID);
-                    comboBoxEdit4.Properties.Items.Add(list[i].gtCode);
+                    comboBoxEdit1.Text = obj.LineName;
+                    IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + obj.LineCode + "'");
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        //comboBoxEdit2.Properties.Items.Add(list[i].LineID);
+                        comboBoxEdit2.Properties.Items.Add(list[i].gtCode);
+                    }
                 }
-                IList<string> list1 = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select linename from ps_xl where ParentID='" + xl.LineCode + "'");
-                if (list1.Count == 0)
-                {
-                    list1 = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select linename from ps_xl where ParentID='" + xl.LineID + "'");
-                }
-                List<string> col = list1 as List<string>;
-                comboBoxEdit3.Properties.Items.AddRange(col.ToArray());
             }
-           
-           
+        }
+        private FormBase showControl(UserControl uc)
+        {
+            FrmelementSelect dlg = new FrmelementSelect();
+            Size newsize = new Size(1000, 400);
+            dlg.Size = newsize;
+
+            dlg.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            dlg.ShowInTaskbar = false;
+            dlg.MaximizeBox = false;
+            dlg.MinimizeBox = false;
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            dlg.Text = "线路选择器";
+            dlg.control.Controls.Add(uc);
+            uc.Dock = DockStyle.Fill;
+            dlg.ShowDialog();
+            return dlg;
         }
     }
 }

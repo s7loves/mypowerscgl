@@ -38,18 +38,20 @@ namespace Ebada.Scgl.Yxgl {
             }
             // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
             ex.ActiveSheet(1);
-            ex.SetCellValue(jl.LineID, row + 3, col);
+            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + jl.LineID + "'");
+            if (xl != null)
+            {
+                ex.SetCellValue(xl.LineName, row + 3, col);
+            }
+            else
+            {
+                ex.SetCellValue(jl.kywz, row + 3, col);
+            }
 
-            //if (xlobject!=null)
-            //{
-            //    ex.SetCellValue(xlobject.LineName, row + 3, col);
-            //}
 
-            //PS_xl xlobject2 = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.gtID);
+            //ex.SetCellValue("'" + jl.gtID, row + 3, col + 3);
+            //ex.SetCellValue(jl.kywz, row + 3, col + 6);
 
-            //if(xlobject2!=null)
-            ex.SetCellValue("'" + jl.gtID, row + 3, col + 3);
-            ex.SetCellValue(jl.kywz, row + 3, col + 6);
 
             //交叉跨越行
             ex.SetCellValue(jl.kygh, row + 6, col);
@@ -135,18 +137,19 @@ namespace Ebada.Scgl.Yxgl {
             }
            // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
             ex.ActiveSheet(1);
-            ex.SetCellValue(jl.LineID, row + 3, col);
+            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + jl.LineID + "'");
+            if (xl != null)
+            {
+                ex.SetCellValue(xl.LineName, row + 3, col); 
+            }
+            else
+            {
+                ex.SetCellValue(jl.kywz, row + 3, col);
+            }
 
-            //if (xlobject!=null)
-            //{
-            //    ex.SetCellValue(xlobject.LineName, row + 3, col);
-            //}
             
-            //PS_xl xlobject2 = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.gtID);
-
-            //if(xlobject2!=null)
-            ex.SetCellValue("'" + jl.gtID, row + 3, col + 3);
-            ex.SetCellValue(jl.kywz, row + 3, col + 6);
+            //ex.SetCellValue("'" + jl.gtID, row + 3, col + 3);
+            //ex.SetCellValue(jl.kywz, row + 3, col + 6);
 
             //交叉跨越行
             ex.SetCellValue(jl.kygh, row + 6, col);
