@@ -42,3 +42,5 @@
 2012.1.16	修改表WF_WorkFlowInstance字段NowTaskId大小,增加线路设备责任区划分明白表
 2012.2.10	表PS_XL增加字段SectionalizedMessage(nvarchar(200))
 2012.3.4	增加表PJ_clrkysd，修改表PJ_clcrkd
+2012.3.21	增加表PJ_wgclrkysd
+2012.4.5	表ps_tq增加字段补偿电容、电动机、机井、农副业、照明户数、单相表数、三相表数
