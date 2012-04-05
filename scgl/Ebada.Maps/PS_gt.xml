@@ -216,6 +216,12 @@
    <select id="GetPS_gtRowCount" parameterClass="string">
     select count(*) from PS_gt $value$
    </select>
+    <select id="GetPS_xlLengthByWhere" parameterClass="string">
+      select sum(gtSpan) from PS_gt $value$
+    </select>
+    <select id="GetPS_gtRowCountByWhere" parameterClass="string">
+      select  COUNT(*),gtType,gtModle from PS_gt $value$
+    </select>
     <select id="SelectPS_gtByStr" resultMap="PS_gt_AllColumns" parameterClass="string">
       $value$
     </select>
