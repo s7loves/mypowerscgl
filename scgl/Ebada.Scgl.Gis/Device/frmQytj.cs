@@ -18,7 +18,12 @@ namespace Ebada.Scgl.Gis.Device {
         private string strGtID = null;
         public frmQytj(List<PS_gt> gtlist) {
             InitializeComponent();
+            simpleButton1.Click += new EventHandler(simpleButton1_Click);
             gtList = gtlist;
+        }
+
+        void simpleButton1_Click(object sender, EventArgs e) {
+            this.Close();
         }
 
         protected override void OnLoad(EventArgs e) {
@@ -75,7 +80,7 @@ namespace Ebada.Scgl.Gis.Device {
             IList xlLength = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_xlLengthByWhere", " where gtID in " + strGtID);
             if (xlLength.Count>0)
             {
-                sb.Append("线路" + "\t" + "线路长度" +"\t"+ xlLength[0].ToString());
+                sb.Append("线路" + "\t" + "线路长度" +"\t"+ xlLength[0].ToString()+"米");
             }
             memoEdit1.Properties.AcceptsTab = true;        
             memoEdit1.Text = sb.ToString();
