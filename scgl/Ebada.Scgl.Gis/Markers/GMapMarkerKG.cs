@@ -18,13 +18,13 @@ namespace Ebada.Scgl.Gis.Markers {
             Offset = new Point(-4, -3);
             Text = string.Empty;
             mFont = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Bold);
-            Pen = new Pen(Color.Green, 2);
+            Pen = new Pen(Color.Red, 2);
         }
         public override void OnRender(Graphics g) {
             System.Drawing.Point p1 = new System.Drawing.Point(LocalPosition.X, LocalPosition.Y);
             //new Pen(Color.FromArgb(144, Color.MidnightBlue));
             Rectangle r = new Rectangle(p1, SizeSt);
-            g.FillRectangle(Brushes.White, r);
+            g.FillRectangle(Brushes.Red, r);
             g.DrawRectangle(Pen, r);
             if (!string.IsNullOrEmpty(Text)) {
                 Size sf = g.MeasureString(Text, mFont).ToSize();
