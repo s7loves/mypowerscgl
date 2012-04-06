@@ -12,6 +12,12 @@ namespace Ebada.Scgl.Gis.Markers {
     internal class GMapMarkerBDZ : GMapMarkerVector {
         
         private Font mFont;
+        private string drawtype="rect";
+
+        public string Drawtype {
+            get { return drawtype; }
+            set { drawtype = value; }
+        }
         public GMapMarkerBDZ(PointLatLng p)
             : base(p) {
             Size = SizeSt = new Size(20, 20);
@@ -23,8 +29,16 @@ namespace Ebada.Scgl.Gis.Markers {
             System.Drawing.Point p1 = new System.Drawing.Point(LocalPosition.X, LocalPosition.Y);
             //new Pen(Color.FromArgb(144, Color.MidnightBlue));
             Rectangle r = new Rectangle(p1, SizeSt);
-            g.FillEllipse(Brushes.White, r);
-            g.DrawEllipse(Pen, r);
+            Point pt1 = new Point(r.Left + r.Width / 2,r.Top);
+            Point pt2 = new Point(r.Left, r.Bottom);
+            Point pt3 = new Point(r.Right, r.Bottom);
+            Pen p =new Pen(Color.Blue,2);
+            g.FillRectangle(Brushes.White, r);
+            g.DrawRectangle(p, r);
+            g.FillPolygon(Brushes.Blue, new Point[3] { pt1, pt2, pt3 });
+            
+            //g.FillEllipse(Brushes.White, r);
+            //g.DrawEllipse(Pen, r);
             if (!string.IsNullOrEmpty(Text)) {
                 Size sf = g.MeasureString(Text, mFont).ToSize();
 
