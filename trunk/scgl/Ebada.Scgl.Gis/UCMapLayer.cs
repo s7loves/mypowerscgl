@@ -18,6 +18,7 @@ using System.Collections;
 using DevExpress.Utils;
 using Ebada.Scgl.Sbgl;
 using System.IO;
+using GMap.NET;
 
 namespace TLMapPlatform {
     /// <summary>
@@ -218,10 +219,90 @@ namespace TLMapPlatform {
                 } else if (e.Button == MouseButtons.Right) {
 
                     string code = hit.Node["ID"].ToString();
+                    if (code.Length == 3) {
+
+                        ContextMenu cm = new ContextMenu();
+                        MenuItem item = new MenuItem();
+                        item.Text = "导出地理接线图";
+                        item.Click += new EventHandler(导出地理接线图_Click);
+                        item.Tag = code;
+                        cm.MenuItems.Add(item);
+                        cm.Show(treeList1, e.Location);
+                        return;
+
+                    }
                     showContextMenu(code,e.Location);
                     
                 }
             } 
+        }
+        private RectLatLng union(RectLatLng r1, RectLatLng r2) {
+
+            double l = Math.Min(r1.Left, r2.Left);
+            double t = Math.Max(r1.Top, r2.Top);
+            double r = Math.Max(r2.Right, r1.Right);
+            double b = Math.Min(r1.Bottom, r2.Bottom);
+            return new RectLatLng(t, l, r - l, t - b);
+        }
+        void 导出地理接线图_Click(object sender, EventArgs e) {
+            string code=(sender as MenuItem).Tag.ToString();
+            mOrg org = ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + code + "'");
+            if (org != null) {
+                //IList<PS_xl> list = ClientHelper.PlatformSqlMap.GetList<PS_xl>("where len(linecode)=6 and linecode like '" + code + "%'");
+
+                //foreach (PS_xl xl in list) {
+                //    showLayer(xl.LineCode, true);
+                //}
+                //RectLatLng rect = RectLatLng.Empty;
+                GMap.NET.RectLatLng? r1 = MapControl.GetRectOfAllMarkers(null);
+                GMap.NET.RectLatLng? r2 = MapControl.GetRectOfAllRoutes(null);
+                GMap.NET.RectLatLng rect = RectLatLng.Empty;
+                if (r1.HasValue) {
+                    rect = r1.Value;
+                    if (r2.HasValue) rect = union(rect, r2.Value);
+                } else if (r2.HasValue) {
+                    rect = r2.Value;
+                }
+                //foreach (PS_xl xl in list) {
+                //    RectLatLng? rll =mRMap.GetRectOfAllRoutes(xl.LineCode);
+                //    if (rll .HasValue) {
+                //        if (rect.IsEmpty)
+                //            rect = rll.Value;
+                //        else
+                //            rect = RectLatLng.Union(rect, rll.Value);
+                //    }
+                //}
+                if (rect.IsEmpty) return;
+                rect.Inflate(0.002d, 0.002d);
+                GPoint p1 = mRMap.FromLatLngToLocal(rect.LocationTopLeft);
+                GPoint p2 = mRMap.FromLatLngToLocal(rect.LocationRightBottom);
+                RectangleF rf = new RectangleF(p1.X,p1.Y,p2.X-p1.X,p2.Y-p1.Y);
+                //GMapOverlay lay ;
+                GPoint p3 = p1;
+                p3.Offset(mRMap.Width / 2, mRMap.Height / 2);
+
+                mRMap.Position = mRMap.FromLocalToLatLng(p3.X, p3.Y);
+                mRMap.Invalidate();
+                Application.DoEvents();
+                Rectangle rt = Rectangle.Round(rf);
+                Bitmap bitmap=new Bitmap(rt.Width,rt.Height);
+
+                //mRMap.VirtualSizeEnabled = true;
+                Graphics g=Graphics.FromImage(bitmap);
+                g.Clear(Color.White);
+                //mRMap.ShowTileGridLines = true;
+                mRMap.FillEmptyTiles = true;
+                mRMap.Render(g, rt.Size);
+                mRMap.FillEmptyTiles = false;
+                Application.DoEvents();
+                //mRMap.ShowTileGridLines = false;
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.RestoreDirectory = true;
+                dlg.Filter = "*.bmp|*.bmp";
+                if (dlg.ShowDialog() == DialogResult.OK) {
+                    bitmap.Save(dlg.FileName);
+                }
+            }
         }
         ContextMenu contextMenu;
         private void showContextMenu(string code,Point p) {
