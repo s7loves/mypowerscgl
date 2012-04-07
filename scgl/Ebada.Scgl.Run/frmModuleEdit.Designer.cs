@@ -40,17 +40,20 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtIcoName = new DevExpress.XtraEditors.ButtonEdit();
             this.spesequence = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAssemfileName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIcoName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spesequence.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // simpleButton1
             // 
             this.simpleButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.simpleButton1.Location = new System.Drawing.Point(260, 226);
+            this.simpleButton1.Location = new System.Drawing.Point(260, 271);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(75, 23);
             this.simpleButton1.TabIndex = 0;
@@ -59,7 +62,7 @@
             // simpleButton2
             // 
             this.simpleButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.simpleButton2.Location = new System.Drawing.Point(349, 226);
+            this.simpleButton2.Location = new System.Drawing.Point(349, 271);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(75, 23);
             this.simpleButton2.TabIndex = 1;
@@ -120,7 +123,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(39, 190);
+            this.labelControl5.Location = new System.Drawing.Point(39, 187);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(48, 14);
             this.labelControl5.TabIndex = 10;
@@ -128,7 +131,7 @@
             // 
             // txtIcoName
             // 
-            this.txtIcoName.Location = new System.Drawing.Point(99, 189);
+            this.txtIcoName.Location = new System.Drawing.Point(99, 186);
             this.txtIcoName.Name = "txtIcoName";
             this.txtIcoName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -150,11 +153,29 @@
             this.spesequence.Size = new System.Drawing.Size(345, 21);
             this.spesequence.TabIndex = 13;
             // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(39, 220);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(48, 14);
+            this.labelControl6.TabIndex = 14;
+            this.labelControl6.Text = "功能描述";
+            // 
+            // memoEdit1
+            // 
+            this.memoEdit1.Location = new System.Drawing.Point(99, 218);
+            this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Properties.MaxLength = 25;
+            this.memoEdit1.Size = new System.Drawing.Size(345, 47);
+            this.memoEdit1.TabIndex = 15;
+            // 
             // frmModuleEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 263);
+            this.ClientSize = new System.Drawing.Size(471, 306);
+            this.Controls.Add(this.memoEdit1);
+            this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.spesequence);
             this.Controls.Add(this.txtIcoName);
             this.Controls.Add(this.labelControl5);
@@ -175,6 +196,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAssemfileName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIcoName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spesequence.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +216,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.ButtonEdit txtIcoName;
         private DevExpress.XtraEditors.SpinEdit spesequence;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.MemoEdit memoEdit1;
     }
 }

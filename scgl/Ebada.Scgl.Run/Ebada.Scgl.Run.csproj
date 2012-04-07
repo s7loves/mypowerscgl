@@ -133,6 +133,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -150,6 +151,39 @@
     <Compile Include="UCmSystemTree.Designer.cs">
       <DependentUpon>UCmSystemTree.cs</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\portal_bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg2_10.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg2_01.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\191530964.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xtgl017.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repair.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\30114122cb7096eb154176.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

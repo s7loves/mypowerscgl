@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Run
             this.txtFileName.DataBindings.Add("EditValue", rowData, "ModuTypes");
             this.spesequence.DataBindings.Add("EditValue", rowData, "Sequence");
             this.txtIcoName.DataBindings.Add("EditValue", rowData, "IconName");
-
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "IsCores");
         }
         public object RowData
         {
@@ -63,6 +63,8 @@ namespace Ebada.Scgl.Run
                 rowData.IconName = dlg.SelectedImageKey;
             }
         }
+
+      
         
     }
 }
