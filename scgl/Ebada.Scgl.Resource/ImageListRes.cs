@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Resource
         public static ImageList GetimageListAll(int size, string str)
         {
             //系统用图片不显示在图标列表中
-            string[] sysico = { "a0"};
+            string[] sysico = { "生产管理系统top", "绥化农电1" };
             //ImageList imageList = imagelistall;
             ImageList imageList = new ImageList();
 
@@ -207,6 +207,12 @@ namespace Ebada.Scgl.Resource
         public static Bitmap GetTop()
         {
             return Ebada.Scgl.Resource.Properties.Resources.生产管理系统top;
+            
+        }
+        public static Bitmap GetTop2()
+        {
+            return Ebada.Scgl.Resource.Properties.Resources.绥化农电1;
+            
         }
        
     }
