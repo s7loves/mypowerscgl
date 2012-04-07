@@ -16,7 +16,6 @@ using System.IO;
 using Ebada.Scgl.Resource;
 using System.Globalization;
 using System.Reflection;
-using Ebada.Scgl.Run;
 namespace Ebada.SCGL
 {
     //public partial class FrmSystem : DevExpress.XtraEditors.XtraForm
@@ -239,9 +238,9 @@ namespace Ebada.SCGL
 
         private void labSet_Click(object sender, EventArgs e)
         {
-            frmModule frm = new frmModule();
-            frm.ShowDialog();
-            CreateMenu();
+            //frmModule frm = new frmModule();
+            //frm.ShowDialog();
+            //CreateMenu();
         }
 
         private void labExit_Click(object sender, EventArgs e)
