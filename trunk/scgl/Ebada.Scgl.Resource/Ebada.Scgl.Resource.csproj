@@ -154,33 +154,6 @@
     <None Include="Resources\7.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\08.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\9.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\010.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\11d.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\13s.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\14.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\14s.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\22.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\25a.png" />
   </ItemGroup>
   <ItemGroup>
