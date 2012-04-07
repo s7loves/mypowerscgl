@@ -129,6 +129,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drawing\DrawingDxt2.cs" />
     <Compile Include="TjOverlay.cs" />
     <Compile Include="Core\DataConvert.cs" />
     <Compile Include="Device\frmBaseSelector.cs">
