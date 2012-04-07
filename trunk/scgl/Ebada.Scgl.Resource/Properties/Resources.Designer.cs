@@ -186,13 +186,6 @@ namespace Ebada.Scgl.Resource.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap _9 {
-            get {
-                object obj = ResourceManager.GetObject("_9", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap _as {
             get {
                 object obj = ResourceManager.GetObject("_as", resourceCulture);
