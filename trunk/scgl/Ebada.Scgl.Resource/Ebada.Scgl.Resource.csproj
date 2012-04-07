@@ -72,25 +72,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\08.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\8.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\9.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\010.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\10.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\11d.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\11fsd.png" />
@@ -105,6 +90,85 @@
     <None Include="Resources\13.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Resources\生产管理系统top.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\12a1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\131.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\13s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\141.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\14s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\151.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\211.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\221.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\231.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\81.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\91.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%40crs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4t3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\010.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11d.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\13s.png" />
   </ItemGroup>
   <ItemGroup>
@@ -114,20 +178,619 @@
     <None Include="Resources\14s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\15.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\21.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\22.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\23.png" />
+    <None Include="Resources\25a.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Resources\生产管理系统top.PNG" />
+    <None Include="Resources\027.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\27a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\52.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\58.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\220千伏变电容量平衡表.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\23501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4636258.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4636260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4636267.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4636269.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4636270.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ACDSee-Classic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ad-Aware-SE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adobecs3_020.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AIM-Express.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarmgfg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\app-store-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\as.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Astarte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attach_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attendance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Billings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\browser_128x128-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\butterfly%2520003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\camera_128x128-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz1aaf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz1o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz3o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz4%2520.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz4i.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz4l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz4tr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz4u.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz5%2520.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz5o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz6p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz6ty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz6x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz7%2520.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz7hh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz7i.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz7yt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz8u.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz8x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz9%2520.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz9afg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz9r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz9t.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz10%2520.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz10afs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz10u.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz10x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz11%2520.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz11af.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz11h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz11l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz11p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz11x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz12x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz15%2520.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz17%2520.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz18x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chinaz23k.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cryo64%2520Ageo%2520002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cryo64%2520Ageo%2520006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cryo64%2520Ageo%2520030.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cryo64%2520Corinthia%2520Lite%2520015.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_folder01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_folder03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_folder09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_folder10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_folder22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_folder26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dsagaA_PNG38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dsfAork.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dsga_%2520%282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dsga_%2520%284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dsga_%2520%286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dsga_%2520%2810%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DSGeo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EARST_20070730A_PNG02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EARST_20070730A_PNG43.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EARST_20070730A_PNG46.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EARST_20070730A_PNG47.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exam_manage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fax.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Floppy%2520Disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder%2520documents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder%2520movies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder%2520music.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder%2520pictures.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gear_fold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hrms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon010.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon014.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon028.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon029.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon030.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon031.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon032.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon64_forbidden.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_AviIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iLeopard_Icons_Pack1_004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iLeopard_Icons_Pack1_055.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ishidourou-%28garden-lantern%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Kanban-%28sign%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Kokedama-%28moss-ball%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Leopard%2520Icon%252038.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Leopard%2520Icon%252047.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_43.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_49.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_57.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_58.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_59.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mac_Folder_61.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maintenance64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\McAfee-Scan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\my_pc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\objectdock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\other_09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pathing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picturesf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recycle_bin_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recycle_bin_full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rules128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\School_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ship64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\simple-light-blue4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\simple-red4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sky_map_128x128-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Skype.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\themes128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\untitledafs.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Windows-Log-Off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\world2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xcons%2520003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xcons%2520011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yahoo-Widgets.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\城市地图.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\地块负荷密度维护.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\地理信息1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\地理信息2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\地理信息2-.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\地理信息4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\电力平衡0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\电力预测.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\电气计算0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\电网规划.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\电网基础数据.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\电网优化.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\冬日典型日负荷曲线预测.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\负荷预测基础库.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\规划报告.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\规划编制.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\规划管理.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\经济发展目标.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\经济评价.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\年电量预测.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\年最大负荷数据.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\权限管理0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\日志管理1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\投资估算2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\投资估算3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\投资估算4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\投资估算5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\投资估算6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\线路参数维护.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\月最大负荷数据.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\绥化农电1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

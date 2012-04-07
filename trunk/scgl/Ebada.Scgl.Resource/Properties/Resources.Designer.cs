@@ -60,6 +60,13 @@ namespace Ebada.Scgl.Resource.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap _004 {
+            get {
+                object obj = ResourceManager.GetObject("_004", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap _010 {
             get {
                 object obj = ResourceManager.GetObject("_010", resourceCulture);
@@ -67,16 +74,16 @@ namespace Ebada.Scgl.Resource.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap _08 {
+        internal static System.Drawing.Bitmap _027 {
             get {
-                object obj = ResourceManager.GetObject("_08", resourceCulture);
+                object obj = ResourceManager.GetObject("_027", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap _10 {
+        internal static System.Drawing.Bitmap _08 {
             get {
-                object obj = ResourceManager.GetObject("_10", resourceCulture);
+                object obj = ResourceManager.GetObject("_08", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -91,34 +98,6 @@ namespace Ebada.Scgl.Resource.Properties {
         internal static System.Drawing.Bitmap _11d {
             get {
                 object obj = ResourceManager.GetObject("_11d", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap _11fsd {
-            get {
-                object obj = ResourceManager.GetObject("_11fsd", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap _12 {
-            get {
-                object obj = ResourceManager.GetObject("_12", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap _12a {
-            get {
-                object obj = ResourceManager.GetObject("_12a", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap _13 {
-            get {
-                object obj = ResourceManager.GetObject("_13", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -144,20 +123,6 @@ namespace Ebada.Scgl.Resource.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap _15 {
-            get {
-                object obj = ResourceManager.GetObject("_15", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap _21 {
-            get {
-                object obj = ResourceManager.GetObject("_21", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap _22 {
             get {
                 object obj = ResourceManager.GetObject("_22", resourceCulture);
@@ -165,16 +130,114 @@ namespace Ebada.Scgl.Resource.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap _23 {
+        internal static System.Drawing.Bitmap _220千伏变电容量平衡表 {
             get {
-                object obj = ResourceManager.GetObject("_23", resourceCulture);
+                object obj = ResourceManager.GetObject("_220千伏变电容量平衡表", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap _8 {
+        internal static System.Drawing.Bitmap _23501 {
             get {
-                object obj = ResourceManager.GetObject("_8", resourceCulture);
+                object obj = ResourceManager.GetObject("_23501", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _25a {
+            get {
+                object obj = ResourceManager.GetObject("_25a", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _27a {
+            get {
+                object obj = ResourceManager.GetObject("_27a", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _3 {
+            get {
+                object obj = ResourceManager.GetObject("_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _4 {
+            get {
+                object obj = ResourceManager.GetObject("_4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _4636258 {
+            get {
+                object obj = ResourceManager.GetObject("_4636258", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _4636260 {
+            get {
+                object obj = ResourceManager.GetObject("_4636260", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _4636267 {
+            get {
+                object obj = ResourceManager.GetObject("_4636267", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _4636269 {
+            get {
+                object obj = ResourceManager.GetObject("_4636269", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _4636270 {
+            get {
+                object obj = ResourceManager.GetObject("_4636270", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _4t3 {
+            get {
+                object obj = ResourceManager.GetObject("_4t3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _512 {
+            get {
+                object obj = ResourceManager.GetObject("_512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _52 {
+            get {
+                object obj = ResourceManager.GetObject("_52", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _58 {
+            get {
+                object obj = ResourceManager.GetObject("_58", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _7 {
+            get {
+                object obj = ResourceManager.GetObject("_7", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,9 +249,1353 @@ namespace Ebada.Scgl.Resource.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap _as {
+            get {
+                object obj = ResourceManager.GetObject("_as", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _crs {
+            get {
+                object obj = ResourceManager.GetObject("_crs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ACDSee_Classic {
+            get {
+                object obj = ResourceManager.GetObject("ACDSee_Classic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Ad_Aware_SE {
+            get {
+                object obj = ResourceManager.GetObject("Ad_Aware_SE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap address {
+            get {
+                object obj = ResourceManager.GetObject("address", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap adobecs3_020 {
+            get {
+                object obj = ResourceManager.GetObject("adobecs3_020", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap AIM_Express {
+            get {
+                object obj = ResourceManager.GetObject("AIM_Express", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap alarm {
+            get {
+                object obj = ResourceManager.GetObject("alarm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap alarmgfg {
+            get {
+                object obj = ResourceManager.GetObject("alarmgfg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap app_store_icon {
+            get {
+                object obj = ResourceManager.GetObject("app_store_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Astarte {
+            get {
+                object obj = ResourceManager.GetObject("Astarte", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap attach_image {
+            get {
+                object obj = ResourceManager.GetObject("attach_image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap attendance {
+            get {
+                object obj = ResourceManager.GetObject("attendance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Billings {
+            get {
+                object obj = ResourceManager.GetObject("Billings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap blue {
+            get {
+                object obj = ResourceManager.GetObject("blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap blue2 {
+            get {
+                object obj = ResourceManager.GetObject("blue2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap browser_128x128_32 {
+            get {
+                object obj = ResourceManager.GetObject("browser_128x128_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap butterfly_20003 {
+            get {
+                object obj = ResourceManager.GetObject("butterfly_20003", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap cal {
+            get {
+                object obj = ResourceManager.GetObject("cal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap calendar {
+            get {
+                object obj = ResourceManager.GetObject("calendar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap camera_128x128_32 {
+            get {
+                object obj = ResourceManager.GetObject("camera_128x128_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chat {
+            get {
+                object obj = ResourceManager.GetObject("chat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz10 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz10_20 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz10_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz10afs {
+            get {
+                object obj = ResourceManager.GetObject("chinaz10afs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz10u {
+            get {
+                object obj = ResourceManager.GetObject("chinaz10u", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz10x {
+            get {
+                object obj = ResourceManager.GetObject("chinaz10x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz11 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz11_20 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz11_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz11af {
+            get {
+                object obj = ResourceManager.GetObject("chinaz11af", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz11h {
+            get {
+                object obj = ResourceManager.GetObject("chinaz11h", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz11l {
+            get {
+                object obj = ResourceManager.GetObject("chinaz11l", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz11p {
+            get {
+                object obj = ResourceManager.GetObject("chinaz11p", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz11x {
+            get {
+                object obj = ResourceManager.GetObject("chinaz11x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz12x {
+            get {
+                object obj = ResourceManager.GetObject("chinaz12x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz13 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz13", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz15_20 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz15_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz17_20 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz17_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz18 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz18", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz18x {
+            get {
+                object obj = ResourceManager.GetObject("chinaz18x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz1aaf {
+            get {
+                object obj = ResourceManager.GetObject("chinaz1aaf", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz1o {
+            get {
+                object obj = ResourceManager.GetObject("chinaz1o", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz23k {
+            get {
+                object obj = ResourceManager.GetObject("chinaz23k", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz3o {
+            get {
+                object obj = ResourceManager.GetObject("chinaz3o", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz3x {
+            get {
+                object obj = ResourceManager.GetObject("chinaz3x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz4 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz4_20 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz4_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz4i {
+            get {
+                object obj = ResourceManager.GetObject("chinaz4i", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz4l {
+            get {
+                object obj = ResourceManager.GetObject("chinaz4l", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz4tr {
+            get {
+                object obj = ResourceManager.GetObject("chinaz4tr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz4u {
+            get {
+                object obj = ResourceManager.GetObject("chinaz4u", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz5_20 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz5_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz5o {
+            get {
+                object obj = ResourceManager.GetObject("chinaz5o", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz6 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz6p {
+            get {
+                object obj = ResourceManager.GetObject("chinaz6p", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz6ty {
+            get {
+                object obj = ResourceManager.GetObject("chinaz6ty", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz6x {
+            get {
+                object obj = ResourceManager.GetObject("chinaz6x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz7_20 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz7_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz7hh {
+            get {
+                object obj = ResourceManager.GetObject("chinaz7hh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz7i {
+            get {
+                object obj = ResourceManager.GetObject("chinaz7i", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz7yt {
+            get {
+                object obj = ResourceManager.GetObject("chinaz7yt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz8u {
+            get {
+                object obj = ResourceManager.GetObject("chinaz8u", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz8x {
+            get {
+                object obj = ResourceManager.GetObject("chinaz8x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz9_20 {
+            get {
+                object obj = ResourceManager.GetObject("chinaz9_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz9afg {
+            get {
+                object obj = ResourceManager.GetObject("chinaz9afg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz9r {
+            get {
+                object obj = ResourceManager.GetObject("chinaz9r", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap chinaz9t {
+            get {
+                object obj = ResourceManager.GetObject("chinaz9t", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Cryo64_20Ageo_20002 {
+            get {
+                object obj = ResourceManager.GetObject("Cryo64_20Ageo_20002", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Cryo64_20Ageo_20006 {
+            get {
+                object obj = ResourceManager.GetObject("Cryo64_20Ageo_20006", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Cryo64_20Ageo_20030 {
+            get {
+                object obj = ResourceManager.GetObject("Cryo64_20Ageo_20030", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Cryo64_20Corinthia_20Lite_20015 {
+            get {
+                object obj = ResourceManager.GetObject("Cryo64_20Corinthia_20Lite_20015", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Crystal_folder01 {
+            get {
+                object obj = ResourceManager.GetObject("Crystal_folder01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Crystal_folder03 {
+            get {
+                object obj = ResourceManager.GetObject("Crystal_folder03", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Crystal_folder09 {
+            get {
+                object obj = ResourceManager.GetObject("Crystal_folder09", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Crystal_folder10 {
+            get {
+                object obj = ResourceManager.GetObject("Crystal_folder10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Crystal_folder22 {
+            get {
+                object obj = ResourceManager.GetObject("Crystal_folder22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Crystal_folder26 {
+            get {
+                object obj = ResourceManager.GetObject("Crystal_folder26", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap document {
+            get {
+                object obj = ResourceManager.GetObject("document", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap dsagaA_PNG38 {
+            get {
+                object obj = ResourceManager.GetObject("dsagaA_PNG38", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap dsfAork {
+            get {
+                object obj = ResourceManager.GetObject("dsfAork", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap dsga__20_10_ {
+            get {
+                object obj = ResourceManager.GetObject("dsga__20_10_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap dsga__20_2_ {
+            get {
+                object obj = ResourceManager.GetObject("dsga__20_2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap dsga__20_4_ {
+            get {
+                object obj = ResourceManager.GetObject("dsga__20_4_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap dsga__20_6_ {
+            get {
+                object obj = ResourceManager.GetObject("dsga__20_6_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap DSGeo {
+            get {
+                object obj = ResourceManager.GetObject("DSGeo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap EARST_20070730A_PNG02 {
+            get {
+                object obj = ResourceManager.GetObject("EARST_20070730A_PNG02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap EARST_20070730A_PNG43 {
+            get {
+                object obj = ResourceManager.GetObject("EARST_20070730A_PNG43", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap EARST_20070730A_PNG46 {
+            get {
+                object obj = ResourceManager.GetObject("EARST_20070730A_PNG46", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap EARST_20070730A_PNG47 {
+            get {
+                object obj = ResourceManager.GetObject("EARST_20070730A_PNG47", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap exam_manage {
+            get {
+                object obj = ResourceManager.GetObject("exam_manage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap fax {
+            get {
+                object obj = ResourceManager.GetObject("fax", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap file_folder {
+            get {
+                object obj = ResourceManager.GetObject("file_folder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Floppy_20Disk {
+            get {
+                object obj = ResourceManager.GetObject("Floppy_20Disk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap folder_20documents {
+            get {
+                object obj = ResourceManager.GetObject("folder_20documents", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap folder_20movies {
+            get {
+                object obj = ResourceManager.GetObject("folder_20movies", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap folder_20music {
+            get {
+                object obj = ResourceManager.GetObject("folder_20music", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap folder_20pictures {
+            get {
+                object obj = ResourceManager.GetObject("folder_20pictures", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap gear_fold {
+            get {
+                object obj = ResourceManager.GetObject("gear_fold", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Home_256 {
+            get {
+                object obj = ResourceManager.GetObject("Home_256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap hrms {
+            get {
+                object obj = ResourceManager.GetObject("hrms", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon_AviIcon {
+            get {
+                object obj = ResourceManager.GetObject("Icon_AviIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon003 {
+            get {
+                object obj = ResourceManager.GetObject("Icon003", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon004 {
+            get {
+                object obj = ResourceManager.GetObject("Icon004", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon006 {
+            get {
+                object obj = ResourceManager.GetObject("Icon006", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon010 {
+            get {
+                object obj = ResourceManager.GetObject("Icon010", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon011 {
+            get {
+                object obj = ResourceManager.GetObject("Icon011", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon014 {
+            get {
+                object obj = ResourceManager.GetObject("Icon014", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon028 {
+            get {
+                object obj = ResourceManager.GetObject("Icon028", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon029 {
+            get {
+                object obj = ResourceManager.GetObject("Icon029", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon030 {
+            get {
+                object obj = ResourceManager.GetObject("Icon030", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon031 {
+            get {
+                object obj = ResourceManager.GetObject("Icon031", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon032 {
+            get {
+                object obj = ResourceManager.GetObject("Icon032", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap icon64_forbidden {
+            get {
+                object obj = ResourceManager.GetObject("icon64_forbidden", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap iLeopard_Icons_Pack1_004 {
+            get {
+                object obj = ResourceManager.GetObject("iLeopard_Icons_Pack1_004", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap iLeopard_Icons_Pack1_055 {
+            get {
+                object obj = ResourceManager.GetObject("iLeopard_Icons_Pack1_055", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Ishidourou__garden_lantern_ {
+            get {
+                object obj = ResourceManager.GetObject("Ishidourou__garden_lantern_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Kanban__sign_ {
+            get {
+                object obj = ResourceManager.GetObject("Kanban__sign_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Kokedama__moss_ball_ {
+            get {
+                object obj = ResourceManager.GetObject("Kokedama__moss_ball_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Leopard_20Icon_2038 {
+            get {
+                object obj = ResourceManager.GetObject("Leopard_20Icon_2038", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Leopard_20Icon_2047 {
+            get {
+                object obj = ResourceManager.GetObject("Leopard_20Icon_2047", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_09 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_09", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_11 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_13 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_13", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_15 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_29 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_29", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_31 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_31", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_35 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_35", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_38 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_38", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_42 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_42", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_43 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_43", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_49 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_49", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_57 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_57", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_58 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_58", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_59 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_59", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_60 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_60", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mac_Folder_61 {
+            get {
+                object obj = ResourceManager.GetObject("Mac_Folder_61", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap maintenance64 {
+            get {
+                object obj = ResourceManager.GetObject("maintenance64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap McAfee_Scan {
+            get {
+                object obj = ResourceManager.GetObject("McAfee_Scan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap my_pc {
+            get {
+                object obj = ResourceManager.GetObject("my_pc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap objectdock {
+            get {
+                object obj = ResourceManager.GetObject("objectdock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap other_09 {
+            get {
+                object obj = ResourceManager.GetObject("other_09", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pathing {
+            get {
+                object obj = ResourceManager.GetObject("pathing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Picturesf {
+            get {
+                object obj = ResourceManager.GetObject("Picturesf", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap recycle_bin_blue {
+            get {
+                object obj = ResourceManager.GetObject("recycle_bin_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap recycle_bin_full {
+            get {
+                object obj = ResourceManager.GetObject("recycle_bin_full", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap rules128 {
+            get {
+                object obj = ResourceManager.GetObject("rules128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap School_256 {
+            get {
+                object obj = ResourceManager.GetObject("School_256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap settings_icon {
+            get {
+                object obj = ResourceManager.GetObject("settings_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ship64 {
+            get {
+                object obj = ResourceManager.GetObject("ship64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap simple_light_blue4 {
+            get {
+                object obj = ResourceManager.GetObject("simple_light_blue4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap simple_red4 {
+            get {
+                object obj = ResourceManager.GetObject("simple_red4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap sky_map_128x128_32 {
+            get {
+                object obj = ResourceManager.GetObject("sky_map_128x128_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Skype {
+            get {
+                object obj = ResourceManager.GetObject("Skype", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap themes128 {
+            get {
+                object obj = ResourceManager.GetObject("themes128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap untitledafs {
+            get {
+                object obj = ResourceManager.GetObject("untitledafs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Windows_Log_Off {
+            get {
+                object obj = ResourceManager.GetObject("Windows_Log_Off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap world2 {
+            get {
+                object obj = ResourceManager.GetObject("world2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap xcons_20003 {
+            get {
+                object obj = ResourceManager.GetObject("xcons_20003", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap xcons_20011 {
+            get {
+                object obj = ResourceManager.GetObject("xcons_20011", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Yahoo_Widgets {
+            get {
+                object obj = ResourceManager.GetObject("Yahoo_Widgets", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap zone {
+            get {
+                object obj = ResourceManager.GetObject("zone", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 冬日典型日负荷曲线预测 {
+            get {
+                object obj = ResourceManager.GetObject("冬日典型日负荷曲线预测", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 地块负荷密度维护 {
+            get {
+                object obj = ResourceManager.GetObject("地块负荷密度维护", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 地理信息1 {
+            get {
+                object obj = ResourceManager.GetObject("地理信息1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 地理信息2 {
+            get {
+                object obj = ResourceManager.GetObject("地理信息2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 地理信息2_ {
+            get {
+                object obj = ResourceManager.GetObject("地理信息2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 地理信息4 {
+            get {
+                object obj = ResourceManager.GetObject("地理信息4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 城市地图 {
+            get {
+                object obj = ResourceManager.GetObject("城市地图", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 年最大负荷数据 {
+            get {
+                object obj = ResourceManager.GetObject("年最大负荷数据", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 年电量预测 {
+            get {
+                object obj = ResourceManager.GetObject("年电量预测", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 投资估算2 {
+            get {
+                object obj = ResourceManager.GetObject("投资估算2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 投资估算3 {
+            get {
+                object obj = ResourceManager.GetObject("投资估算3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 投资估算4 {
+            get {
+                object obj = ResourceManager.GetObject("投资估算4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 投资估算5 {
+            get {
+                object obj = ResourceManager.GetObject("投资估算5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 投资估算6 {
+            get {
+                object obj = ResourceManager.GetObject("投资估算6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 日志管理1 {
+            get {
+                object obj = ResourceManager.GetObject("日志管理1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 月最大负荷数据 {
+            get {
+                object obj = ResourceManager.GetObject("月最大负荷数据", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 权限管理0 {
+            get {
+                object obj = ResourceManager.GetObject("权限管理0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap 生产管理系统top {
             get {
                 object obj = ResourceManager.GetObject("生产管理系统top", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 电力平衡0 {
+            get {
+                object obj = ResourceManager.GetObject("电力平衡0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 电力预测 {
+            get {
+                object obj = ResourceManager.GetObject("电力预测", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 电气计算0 {
+            get {
+                object obj = ResourceManager.GetObject("电气计算0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 电网优化 {
+            get {
+                object obj = ResourceManager.GetObject("电网优化", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 电网基础数据 {
+            get {
+                object obj = ResourceManager.GetObject("电网基础数据", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 电网规划 {
+            get {
+                object obj = ResourceManager.GetObject("电网规划", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 线路参数维护 {
+            get {
+                object obj = ResourceManager.GetObject("线路参数维护", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 经济发展目标 {
+            get {
+                object obj = ResourceManager.GetObject("经济发展目标", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 经济评价 {
+            get {
+                object obj = ResourceManager.GetObject("经济评价", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 绥化农电1 {
+            get {
+                object obj = ResourceManager.GetObject("绥化农电1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 规划报告 {
+            get {
+                object obj = ResourceManager.GetObject("规划报告", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 规划管理 {
+            get {
+                object obj = ResourceManager.GetObject("规划管理", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 规划编制 {
+            get {
+                object obj = ResourceManager.GetObject("规划编制", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap 负荷预测基础库 {
+            get {
+                object obj = ResourceManager.GetObject("负荷预测基础库", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
