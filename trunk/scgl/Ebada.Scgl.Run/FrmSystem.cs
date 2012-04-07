@@ -20,17 +20,21 @@ namespace Ebada.Scgl.Run
 {
     public partial class FrmSystem : DevExpress.XtraEditors.XtraForm
     {
+        private string secondmenu = "";
         public FrmSystem()
         {
             
             InitializeComponent();
-            this.Text = "绥化农电局信息管理平台";
-            pictureEdit1.Image = ImageListRes.GetTop();
-            //pictureBox1.Image = ImageListRes.GetTop();
+            this.Text = "绥化市郊农电信息管理平台";
+            pictureEdit1.Image = ImageListRes.GetTop2();
+           
             labdate.Parent = pictureEdit1;
             labTime.Parent = pictureEdit1;
             labdate2.Parent = pictureEdit1;
+            labSet.Parent = pictureEdit1;
+            labExit.Parent = pictureEdit1;
             labdate2.Text = GetCNDate();
+            //labshow.Parent = pictureEdit2;
             labdate.Text = DateTime.Now.ToString("m") + ""+DateTime.Now.ToString("dddd");
             timer1.Start();
 
@@ -78,7 +82,6 @@ namespace Ebada.Scgl.Run
             }
         }
 
-
         private void navBarControl1_ActiveGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e)
         {
             listView1.Items.Clear();
@@ -92,13 +95,31 @@ namespace Ebada.Scgl.Run
                 listItem.Text = mlist2[j].ModuName.ToString();
                 listItem.Tag = mlist2[j];
                 listItem.ImageKey = mlist2[j].IconName.ToString();
-                listItem.BackColor = System.Drawing.Color.Blue;
+                
+                //listItem.BackColor = System.Drawing.Color.Blue;
                 listView1.Items.Add(listItem);
             }
+            //显示上部位置名称
+            labshow.Text = ">>" + mdule.ModuName;
+            //显示下部说明
+            labbuttom.Text = mdule.IsCores;
         }
+        //激活程序
          private void listView1_ItemActivate(object sender, EventArgs e)
         {
             mModule mdule = listView1.FocusedItem.Tag as mModule;
+            //显示上部位置名称
+            if (secondmenu=="")
+            {
+                labshow.Text = ">>" + nbctSystem.ActiveGroup.Caption + "->" + mdule.ModuName;
+            }
+            else
+            {
+                labshow.Text = ">>" + nbctSystem.ActiveGroup.Caption +"->"+ secondmenu+"->" + mdule.ModuName;
+            }
+            
+            //显示下部说明
+            labbuttom.Text = mdule.IsCores;
             if (mdule.ModuName.Contains("模块管理"))
             {
                 frmModule frm = new frmModule();
@@ -132,6 +153,38 @@ namespace Ebada.Scgl.Run
 
            
         }
+         private void nbctSystem_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+         {
+
+           CreateListView(e.Link.Item);
+            
+        }
+
+         private void CreateListView(DevExpress.XtraNavBar.NavBarItem nbi)
+         {
+             mModule mdule = nbi.Tag as mModule;
+             secondmenu = mdule.ModuName;
+             if (mdule == null)
+                 return;
+             listView1.Items.Clear();
+             listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
+             string slqwhrer2 = "where Description = 'system' and ParentID='" + mdule.Modu_ID + "'  order by Sequence";
+             IList<mModule> mlist2 = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(slqwhrer2);
+             for (int j = 0; j < mlist2.Count; j++)
+             {
+                 ListViewItem listItem = new ListViewItem();
+                 listItem.Text = mlist2[j].ModuName.ToString();
+                 listItem.Tag = mlist2[j];
+                 listItem.ImageKey = mlist2[j].IconName.ToString();
+
+                 //listItem.BackColor = System.Drawing.Color.Blue;
+                 listView1.Items.Add(listItem);
+             }
+             //显示上部位置名称
+             labshow.Text = ">>" + nbctSystem.ActiveGroup.Caption + "->" + mdule.ModuName;
+             //显示下部说明
+             labbuttom.Text = mdule.IsCores;
+         }
          
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -182,5 +235,21 @@ namespace Ebada.Scgl.Run
             return txcns;
         }
 
+        private void labSet_Click(object sender, EventArgs e)
+        {
+            frmModule frm = new frmModule();
+            frm.ShowDialog();
+            CreateMenu();
+        }
+
+        private void labExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        
+        
+
+       
     }
 }

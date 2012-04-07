@@ -30,52 +30,69 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSystem));
-            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.labSet = new System.Windows.Forms.Label();
+            this.labExit = new System.Windows.Forms.Label();
             this.labdate2 = new DevExpress.XtraEditors.LabelControl();
             this.labdate = new DevExpress.XtraEditors.LabelControl();
             this.labTime = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.nbctSystem = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.labshow = new DevExpress.XtraEditors.LabelControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-            this.splitContainerControl1.SuspendLayout();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.listView3 = new System.Windows.Forms.ListView();
+            this.labbuttom = new DevExpress.XtraEditors.LabelControl();
+            this.labAbout = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
-            this.splitContainerControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nbctSystem)).BeginInit();
             this.SuspendLayout();
             // 
-            // splitContainerControl1
+            // labSet
             // 
-            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Horizontal = false;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.labdate2);
-            this.splitContainerControl1.Panel1.Controls.Add(this.labdate);
-            this.splitContainerControl1.Panel1.Controls.Add(this.labTime);
-            this.splitContainerControl1.Panel1.Controls.Add(this.pictureEdit1);
-            this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
-            this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(931, 571);
-            this.splitContainerControl1.SplitterPosition = 115;
-            this.splitContainerControl1.TabIndex = 0;
-            this.splitContainerControl1.Text = "splitContainerControl1";
+            this.labSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labSet.BackColor = System.Drawing.Color.Transparent;
+            this.labSet.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labSet.Font = new System.Drawing.Font("Tahoma", 8F);
+            this.labSet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.labSet.Image = global::Ebada.Scgl.Run.Properties.Resources._1;
+            this.labSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labSet.Location = new System.Drawing.Point(795, 58);
+            this.labSet.Name = "labSet";
+            this.labSet.Size = new System.Drawing.Size(53, 23);
+            this.labSet.TabIndex = 5;
+            this.labSet.Text = "       设置";
+            this.labSet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labSet.Click += new System.EventHandler(this.labSet_Click);
+            // 
+            // labExit
+            // 
+            this.labExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labExit.BackColor = System.Drawing.Color.Transparent;
+            this.labExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labExit.Font = new System.Drawing.Font("Tahoma", 8F);
+            this.labExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.labExit.Image = global::Ebada.Scgl.Run.Properties.Resources._2;
+            this.labExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labExit.Location = new System.Drawing.Point(854, 58);
+            this.labExit.Name = "labExit";
+            this.labExit.Size = new System.Drawing.Size(52, 23);
+            this.labExit.TabIndex = 4;
+            this.labExit.Text = "       退出";
+            this.labExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labExit.Click += new System.EventHandler(this.labExit_Click);
             // 
             // labdate2
             // 
             this.labdate2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labdate2.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.labdate2.Appearance.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labdate2.Appearance.ForeColor = System.Drawing.Color.Transparent;
+            this.labdate2.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labdate2.Appearance.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.labdate2.Appearance.Options.UseBackColor = true;
             this.labdate2.Appearance.Options.UseFont = true;
             this.labdate2.Appearance.Options.UseForeColor = true;
@@ -83,7 +100,7 @@
             this.labdate2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labdate2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labdate2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labdate2.Location = new System.Drawing.Point(808, 51);
+            this.labdate2.Location = new System.Drawing.Point(799, 34);
             this.labdate2.Name = "labdate2";
             this.labdate2.Size = new System.Drawing.Size(115, 22);
             this.labdate2.TabIndex = 3;
@@ -93,8 +110,8 @@
             // 
             this.labdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labdate.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.labdate.Appearance.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labdate.Appearance.ForeColor = System.Drawing.Color.Transparent;
+            this.labdate.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labdate.Appearance.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.labdate.Appearance.Options.UseBackColor = true;
             this.labdate.Appearance.Options.UseFont = true;
             this.labdate.Appearance.Options.UseForeColor = true;
@@ -102,7 +119,7 @@
             this.labdate.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labdate.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labdate.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labdate.Location = new System.Drawing.Point(808, 23);
+            this.labdate.Location = new System.Drawing.Point(799, 10);
             this.labdate.Name = "labdate";
             this.labdate.Size = new System.Drawing.Size(115, 22);
             this.labdate.TabIndex = 2;
@@ -112,8 +129,8 @@
             // 
             this.labTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labTime.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.labTime.Appearance.Font = new System.Drawing.Font("Trebuchet MS", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labTime.Appearance.ForeColor = System.Drawing.Color.AliceBlue;
+            this.labTime.Appearance.Font = new System.Drawing.Font("Arial Black", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labTime.Appearance.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.labTime.Appearance.Options.UseBackColor = true;
             this.labTime.Appearance.Options.UseFont = true;
             this.labTime.Appearance.Options.UseForeColor = true;
@@ -121,41 +138,26 @@
             this.labTime.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.labTime.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labTime.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.labTime.Location = new System.Drawing.Point(718, 29);
+            this.labTime.Location = new System.Drawing.Point(722, 21);
             this.labTime.Name = "labTime";
-            this.labTime.Size = new System.Drawing.Size(70, 42);
+            this.labTime.Size = new System.Drawing.Size(60, 27);
             this.labTime.TabIndex = 1;
             this.labTime.Text = "time";
             // 
             // pictureEdit1
             // 
-            this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureEdit1.Location = new System.Drawing.Point(0, 0);
+            this.pictureEdit1.Location = new System.Drawing.Point(12, 9);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
-            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(931, 115);
+            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit1.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pictureEdit1.Size = new System.Drawing.Size(907, 85);
             this.pictureEdit1.TabIndex = 0;
-            // 
-            // splitContainerControl2
-            // 
-            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl2.Name = "splitContainerControl2";
-            this.splitContainerControl2.Panel1.Controls.Add(this.nbctSystem);
-            this.splitContainerControl2.Panel1.Text = "Panel1";
-            this.splitContainerControl2.Panel2.Controls.Add(this.listView1);
-            this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(931, 452);
-            this.splitContainerControl2.SplitterPosition = 222;
-            this.splitContainerControl2.TabIndex = 0;
-            this.splitContainerControl2.Text = "splitContainerControl2";
             // 
             // nbctSystem
             // 
             this.nbctSystem.ActiveGroup = this.navBarGroup1;
-            this.nbctSystem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nbctSystem.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup1,
             this.navBarGroup2});
@@ -163,17 +165,19 @@
             this.navBarItem1,
             this.navBarItem2,
             this.navBarItem3});
-            this.nbctSystem.Location = new System.Drawing.Point(0, 0);
+            this.nbctSystem.Location = new System.Drawing.Point(12, 103);
             this.nbctSystem.Name = "nbctSystem";
             this.nbctSystem.OptionsNavPane.ExpandedWidth = 233;
             this.nbctSystem.OptionsNavPane.ShowExpandButton = false;
             this.nbctSystem.OptionsNavPane.ShowOverflowButton = false;
+            this.nbctSystem.Padding = new System.Windows.Forms.Padding(8);
             this.nbctSystem.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.nbctSystem.Size = new System.Drawing.Size(222, 452);
+            this.nbctSystem.Size = new System.Drawing.Size(212, 454);
             this.nbctSystem.TabIndex = 2;
             this.nbctSystem.Text = "navBarControl1";
             this.nbctSystem.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinNavigationPaneViewInfoRegistrator("Blue");
             this.nbctSystem.ActiveGroupChanged += new DevExpress.XtraNavBar.NavBarGroupEventHandler(this.navBarControl1_ActiveGroupChanged);
+            this.nbctSystem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbctSystem_LinkClicked);
             // 
             // navBarGroup1
             // 
@@ -203,48 +207,141 @@
             this.navBarItem3.Caption = "navBarItem3";
             this.navBarItem3.Name = "navBarItem3";
             // 
-            // listView1
+            // labshow
             // 
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(705, 452);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
+            this.labshow.Appearance.BackColor = System.Drawing.SystemColors.Menu;
+            this.labshow.Appearance.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labshow.Appearance.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.labshow.Appearance.Options.UseBackColor = true;
+            this.labshow.Appearance.Options.UseFont = true;
+            this.labshow.Appearance.Options.UseForeColor = true;
+            this.labshow.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.labshow.Location = new System.Drawing.Point(257, 110);
+            this.labshow.Name = "labshow";
+            this.labshow.Size = new System.Drawing.Size(96, 13);
+            this.labshow.TabIndex = 6;
+            this.labshow.Text = "            ";
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // listView1
+            // 
+            this.listView1.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
+            this.listView1.BackColor = System.Drawing.SystemColors.Menu;
+            this.listView1.BackgroundImageTiled = true;
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.listView1.Location = new System.Drawing.Point(243, 135);
+            this.listView1.Margin = new System.Windows.Forms.Padding(500);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.ShowItemToolTips = true;
+            this.listView1.Size = new System.Drawing.Size(676, 379);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
+            // 
+            // listView2
+            // 
+            this.listView2.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
+            this.listView2.BackColor = System.Drawing.SystemColors.Menu;
+            this.listView2.BackgroundImageTiled = true;
+            this.listView2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listView2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.listView2.Location = new System.Drawing.Point(243, 104);
+            this.listView2.Margin = new System.Windows.Forms.Padding(500);
+            this.listView2.MultiSelect = false;
+            this.listView2.Name = "listView2";
+            this.listView2.ShowItemToolTips = true;
+            this.listView2.Size = new System.Drawing.Size(676, 26);
+            this.listView2.TabIndex = 8;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            // 
+            // listView3
+            // 
+            this.listView3.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
+            this.listView3.BackColor = System.Drawing.SystemColors.Menu;
+            this.listView3.BackgroundImageTiled = true;
+            this.listView3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listView3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.listView3.Location = new System.Drawing.Point(243, 519);
+            this.listView3.Margin = new System.Windows.Forms.Padding(500);
+            this.listView3.MultiSelect = false;
+            this.listView3.Name = "listView3";
+            this.listView3.ShowItemToolTips = true;
+            this.listView3.Size = new System.Drawing.Size(676, 38);
+            this.listView3.TabIndex = 10;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            // 
+            // labbuttom
+            // 
+            this.labbuttom.Appearance.BackColor = System.Drawing.SystemColors.Menu;
+            this.labbuttom.Appearance.Font = new System.Drawing.Font("宋体", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labbuttom.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labbuttom.Appearance.Options.UseBackColor = true;
+            this.labbuttom.Appearance.Options.UseFont = true;
+            this.labbuttom.Appearance.Options.UseForeColor = true;
+            this.labbuttom.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labbuttom.Location = new System.Drawing.Point(285, 524);
+            this.labbuttom.Name = "labbuttom";
+            this.labbuttom.Size = new System.Drawing.Size(621, 31);
+            this.labbuttom.TabIndex = 11;
+            this.labbuttom.Text = "           ";
+            // 
+            // labAbout
+            // 
+            this.labAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labAbout.BackColor = System.Drawing.SystemColors.Menu;
+            this.labAbout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labAbout.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.labAbout.Image = ((System.Drawing.Image)(resources.GetObject("labAbout.Image")));
+            this.labAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labAbout.Location = new System.Drawing.Point(254, 529);
+            this.labAbout.Name = "labAbout";
+            this.labAbout.Size = new System.Drawing.Size(30, 20);
+            this.labAbout.TabIndex = 13;
+            this.labAbout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FrmSystem
             // 
+            this.Appearance.BackColor = System.Drawing.SystemColors.Desktop;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 571);
-            this.Controls.Add(this.splitContainerControl1);
+            this.ClientSize = new System.Drawing.Size(931, 567);
+            this.Controls.Add(this.labAbout);
+            this.Controls.Add(this.labbuttom);
+            this.Controls.Add(this.listView3);
+            this.Controls.Add(this.labshow);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.nbctSystem);
+            this.Controls.Add(this.labSet);
+            this.Controls.Add(this.labExit);
+            this.Controls.Add(this.labdate2);
+            this.Controls.Add(this.labdate);
+            this.Controls.Add(this.labTime);
+            this.Controls.Add(this.pictureEdit1);
+            this.Controls.Add(this.listView2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmSystem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmSystem";
             this.Load += new System.EventHandler(this.FrmSystem_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-            this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
-            this.splitContainerControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nbctSystem)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
-        private System.Windows.Forms.ListView listView1;
         private DevExpress.XtraNavBar.NavBarControl nbctSystem;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
@@ -255,6 +352,14 @@
         private DevExpress.XtraEditors.LabelControl labTime;
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraEditors.LabelControl labdate2;
+        private System.Windows.Forms.Label labExit;
+        private System.Windows.Forms.Label labSet;
+        private DevExpress.XtraEditors.LabelControl labshow;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView listView3;
+        private DevExpress.XtraEditors.LabelControl labbuttom;
+        private System.Windows.Forms.Label labAbout;
 
     }
 }

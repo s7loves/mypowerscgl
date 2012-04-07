@@ -15,7 +15,7 @@ namespace Ebada.Scgl.Run
         public frmSlectIcon()
         {
             InitializeComponent(); 
-            ImageList imagelist =ImageListRes.GetimageListAll(32, "");
+            ImageList imagelist =ImageListRes.GetimageListAll(48, "");
             add_image(imagelist);
 
         }
@@ -30,14 +30,14 @@ namespace Ebada.Scgl.Run
         {
             tabControl1.Controls.Clear();
            int m=0;
-            if (templist.Images.Count%20==0)
+            if (templist.Images.Count%24==0)
 	        {
-                m=templist.Images.Count/20;
+                m=templist.Images.Count/24;
 
 	        }
             else
 	        {
-                m=templist.Images.Count/20;
+                m=templist.Images.Count/24;
                 m=m+1;
 	        }
            
@@ -52,14 +52,14 @@ namespace Ebada.Scgl.Run
                 temptabPage.Controls.Add(templistview);
                 templistview.Dock = System.Windows.Forms.DockStyle.Fill;
                 templistview.LargeImageList = templist;
-                for (int j = 0; j < 20; j++)
+                for (int j = 0; j < 24; j++)
                 {
-                    if (templist.Images.Count <= i * 20 + j)
+                    if (templist.Images.Count <= i * 24 + j)
                     {
                         break;
                     }
-                    ListViewItem item = new ListViewItem(templist.Images.Keys[i * 20 + j].ToString());
-                    item.ImageKey = templist.Images.Keys[i * 20 + j].ToString();
+                    ListViewItem item = new ListViewItem(templist.Images.Keys[i * 24 + j].ToString());
+                    item.ImageKey = templist.Images.Keys[i * 24 + j].ToString();
                     templistview.Items.Add(item);
                 }
                 tabControl1.Controls.Add(temptabPage);
