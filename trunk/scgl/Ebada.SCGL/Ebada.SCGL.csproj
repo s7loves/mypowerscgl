@@ -97,6 +97,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.Scgl.Resource.dll</HintPath>
     </Reference>
+    <Reference Include="Ebada.Scgl.Run, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Scgl.Run.dll</HintPath>
+    </Reference>
     <Reference Include="Ebada.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.UI.dll</HintPath>
