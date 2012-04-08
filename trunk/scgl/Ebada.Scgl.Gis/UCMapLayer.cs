@@ -330,7 +330,7 @@ namespace TLMapPlatform {
                 item = new MenuItem("导出台区网络图");
                 item.Click += new EventHandler(台区网络图_Click);
                 contextMenu.MenuItems.Add(item);
-                item = new MenuItem("单线图");
+                item = new MenuItem("导出单线系统图");
                 item.Click += new EventHandler(单线图_Click);
                 contextMenu.MenuItems.Add(item);
             }
