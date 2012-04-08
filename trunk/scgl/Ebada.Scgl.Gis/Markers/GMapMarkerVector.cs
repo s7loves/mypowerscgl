@@ -82,7 +82,7 @@ namespace Ebada.Scgl.Gis.Markers {
             Offset = new Point(-2, -2);
             Pen = new Pen(Color.Blue, 1);
             items = new List<GMapMarkerVector>();
-            font = new Font("宋体", 8);
+            font = new Font("宋体", 9);
         }
         public override void OnRender(Graphics g) {
             //g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
