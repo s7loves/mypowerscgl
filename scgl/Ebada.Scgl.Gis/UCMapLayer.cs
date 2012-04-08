@@ -330,17 +330,21 @@ namespace TLMapPlatform {
                 item = new MenuItem("导出台区网络图");
                 item.Click += new EventHandler(台区网络图_Click);
                 contextMenu.MenuItems.Add(item);
+                item = new MenuItem("单线图");
+                item.Click += new EventHandler(单线图_Click);
+                contextMenu.MenuItems.Add(item);
             }
             bool flag = code.Length == 6;
             contextMenu.MenuItems[2].Enabled = flag;
             contextMenu.MenuItems[3].Enabled = flag;
             contextMenu.MenuItems[4].Enabled = !flag;
             contextMenu.MenuItems[5].Enabled = !flag;
+            contextMenu.MenuItems[6].Enabled = flag;
             contextMenu.Tag = code;
             contextMenu.Show(treeList1, p);
         }
         void 台区网络图_Click(object sender, EventArgs e) {
-            Bitmap bt = GMapHelper.GetDytqMap(contextMenu.Tag.ToString());
+            Bitmap bt =  GMapHelper.GetDytqMap(contextMenu.Tag.ToString());
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.RestoreDirectory = true;
             dlg.Filter = "*.bmp|*.bmp";
@@ -348,7 +352,15 @@ namespace TLMapPlatform {
                 bt.Save(dlg.FileName);
             }
         }
-        void 低压台区完好率及台区网络图_Click(object sender, EventArgs e) {
+        void 单线图_Click(object sender, EventArgs e) {
+            System.Drawing.Image bt = new DrawingDxt2().GetImage(contextMenu.Tag.ToString());
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.RestoreDirectory = true;
+            dlg.Filter = "*.bmp|*.bmp";
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                bt.Save(dlg.FileName);
+            }
+        }void 低压台区完好率及台区网络图_Click(object sender, EventArgs e) {
             show20dyt(contextMenu.Tag.ToString());
         }
         void 高压线路条图17_Click(object sender, EventArgs e) {
