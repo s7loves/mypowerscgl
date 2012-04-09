@@ -76,8 +76,29 @@ namespace Ebada.Scgl.Sbgl
 
         private void InitComboBoxData() {
 
-            SetComboBoxData(comboBoxEdit2, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh"));
-            comboBoxEdit2.EditValueChanged += new EventHandler(comboBoxEdit2_EditValueChanged);
+            //SetComboBoxData(comboBoxEdit2, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh"));
+            //comboBoxEdit2.EditValueChanged += new EventHandler(comboBoxEdit2_EditValueChanged);
+            SetComboBoxData(repositoryItemLookUpEdit1, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh"));
+            repositoryItemLookUpEdit1.EditValueChanged += new EventHandler(repositoryItemLookUpEdit1_EditValueChanged);
+        }
+
+        void repositoryItemLookUpEdit1_EditValueChanged(object sender, EventArgs e) {
+            DataRow dr = gridView1.GetFocusedDataRow();
+            LookUpEdit edit = sender as LookUpEdit;
+            object xh = edit.EditValue ;
+            if (string.IsNullOrEmpty(xh as string)) return;
+            dr["type"] =dr["code"]= xh;
+            repositoryItemComboBox2.Properties.Items.Clear();
+            dr["name"] = repositoryItemLookUpEdit1.GetDisplayText(xh);
+            //System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   mc='" + ((ComboBoxEdit)sender).EditValue + "' and xh is not null ");
+            //if (mclist.Count > 0)
+            //    repositoryItemComboBox2.Properties.Items.AddRange(mclist);
+            //else {
+
+            //}
+            //rowData.sbName = comboBoxEdit4.Text = comboBoxEdit2.Text;
+            repositoryItemComboBox2.Items.AddRange(ComboBoxHelper.GetsbxhList(xh.ToString()));
+            //pdsbModelHelper.FillCBox(repositoryItemComboBox2.OwnerEdit, xh.ToString().Substring(0, 2));
         }
 
         void comboBoxEdit2_EditValueChanged(object sender, EventArgs e) {
@@ -107,7 +128,17 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
-
+        public void SetComboBoxData(DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_sbcs> post) {
+            comboBox.Properties.Columns.Clear();
+            //comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboBox.Properties.DataSource = post;
+            comboBox.Properties.DisplayMember = displayMember;
+            comboBox.Properties.ValueMember = valueMember;
+            comboBox.Properties.NullText = nullTest;
+            comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
+        }
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (comboBoxEdit10.SelectedIndex == -1) {
@@ -121,12 +152,12 @@ namespace Ebada.Scgl.Sbgl
                 return;
             }
 
-            if (comboBoxEdit1.Text == "")
-            {
-                MsgBox.ShowTipMessageBox("启始设备编号不能为空。");
-                comboBoxEdit1.Focus();
-                return;
-            }
+            //if (comboBoxEdit1.Text == "")
+            //{
+            //    MsgBox.ShowTipMessageBox("启始设备编号不能为空。");
+            //    comboBoxEdit1.Focus();
+            //    return;
+            //}
             save();
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -134,40 +165,40 @@ namespace Ebada.Scgl.Sbgl
         private void save() {
             int begin = comboBoxEdit10.SelectedIndex;
             int end = comboBoxEdit11.SelectedIndex;
-            int bh =1;
-            if(string.IsNullOrEmpty(comboBoxEdit2.Text)){
+            //int bh =1;
+            if (string.IsNullOrEmpty(comboBoxEdit2.Text)) {
                 MsgBox.ShowTipMessageBox("请选择设备种类");
                 comboBoxEdit2.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(comboBoxEdit3.Text)) {
-                MsgBox.ShowTipMessageBox("请选择设备型号");
-                comboBoxEdit3.Focus();
-                return;
-            }
-            if (!int.TryParse(comboBoxEdit1.Text, out bh)) {
-                bh = 1;
-            }
-            if (bh<0||bh > 999) {
-                MsgBox.ShowTipMessageBox("编号范围000-999");
-                return;
-            }
+            //if (string.IsNullOrEmpty(comboBoxEdit3.Text)) {
+            //    MsgBox.ShowTipMessageBox("请选择设备型号");
+            //    comboBoxEdit3.Focus();
+            //    return;
+            //}
+            //if (!int.TryParse(comboBoxEdit1.Text, out bh)) {
+            //    bh = 1;
+            //}
+            //if (bh<0||bh > 999) {
+            //    MsgBox.ShowTipMessageBox("编号范围000-999");
+            //    return;
+            //}
             //if ((bh + end - begin) > 999) {
             //    MsgBox.ShowTipMessageBox("终止编号不能大于999");
             //    return;
             //}
             List<PS_gtsb> gtsblist = new List<PS_gtsb>();
 
-            for (int i = begin; i <= end; i++) {
+            //for (int i = begin; i <= end; i++) {
 
-                PS_gt gt= gtlist[i].Gt;
-                PS_gtsb gtsb = new PS_gtsb();
-                Ebada.Core.ConvertHelper.CopyTo(RowData,gtsb);
-                gtsb.gtID = gt.gtID;
-                gtsb.sbID =gt.CreateID()+i;
-                gtsb.sbCode = bh.ToString("000");
-                gtsblist.Add(gtsb);
-            }
+            //    PS_gt gt= gtlist[i].Gt;
+            //    PS_gtsb gtsb = new PS_gtsb();
+            //    Ebada.Core.ConvertHelper.CopyTo(RowData,gtsb);
+            //    gtsb.gtID = gt.gtID;
+            //    gtsb.sbID =gt.CreateID()+i;
+            //    gtsb.sbCode = bh.ToString("000");
+            //    gtsblist.Add(gtsb);
+            //}
             DataTable dt = gridControl1.DataSource as DataTable;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -175,9 +206,12 @@ namespace Ebada.Scgl.Sbgl
                 {
 
                     PS_gt gt = gtlist[i].Gt;
+                    int j = 0;
                     foreach (DataRow dr in dt.Rows)
                     {
+                        if (dr["type"] == null) continue;
                         PS_gtsb gtsb = new PS_gtsb();
+
                         gtsb.sbName = dr["name"].ToString();
                         gtsb.sbModle = dr["sbgg"].ToString();
                         if (dr["sl"] != null && (dr["sl"].ToString().Trim())!="") 
@@ -185,7 +219,9 @@ namespace Ebada.Scgl.Sbgl
                         gtsb.sbID = gtsb.CreateID();
                         gtsb.gtID = gt.gtID;
                         gtsb.sbID = gt.CreateID() + i;
-                        gtsb.sbCode = dr["code"].ToString();
+                        j++;
+                        gtsb.sbCode = j.ToString("000");
+                        gtsb.sbType = dr["type"].ToString();
                         if (gtsb.sbName == "") continue;
                         Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                         gtsblist.Add(gtsb);
@@ -222,34 +258,37 @@ namespace Ebada.Scgl.Sbgl
         private void frmgtsbEditM_Load(object sender, EventArgs e)
         {
             comboBoxEdit12.Properties.Items.Clear();
-            comboBoxEdit12.Properties.Items.Add ("请选择");
+            comboBoxEdit12.Properties.NullText="请选择";
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                 "select zl from PS_gtsbclb where ParentID not in (select id from PS_gtsbclb where 1=1)  ");
 
             comboBoxEdit12.Properties.Items.AddRange(mclist);
 
-            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select distinct mc from PS_sbcs"));
-            if (strlist.Count > 0)
-                repositoryItemComboBox1.Properties.Items.AddRange(strlist);
+            //IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            //string.Format("select distinct mc from PS_sbcs"));
+            //if (strlist.Count > 0)
+            //    repositoryItemComboBox1.Properties.Items.AddRange(strlist);
         }
 
         private void comboBoxEdit12_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("code");
-            dt.Columns.Add("name");
+            dt.Columns.Add("type");
             dt.Columns.Add("sbgg");
             dt.Columns.Add("sl");
             dt.Columns.Add("id");
+            dt.Columns.Add("name");
             IList<PS_gtsbclb> mclist = MainHelper.PlatformSqlMap.GetList<PS_gtsbclb>(" where ParentID  in (select id from PS_gtsbclb where zl='" + comboBoxEdit12.Text + "' and ParentID not in (select id from PS_gtsbclb where 1=1)  ) ");
             foreach (PS_gtsbclb gtsb in mclist)
             {
                 DataRow dr = dt.NewRow();
                 dr["id"] = gtsb.ID;
                 dr["code"] = gtsb.bh;
+                dr["type"] = gtsb.bh;
                 dr["name"] = gtsb.mc;
                 dr["sbgg"] = gtsb.xh;
+
                 dt.Rows.Add(dr);
 
             }
@@ -273,7 +312,7 @@ namespace Ebada.Scgl.Sbgl
         private void gridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             DataRow dr = gridView1.GetFocusedDataRow();
-            dr["code"] = "001";
+            dr["type"] = null;
         }
     
     }
