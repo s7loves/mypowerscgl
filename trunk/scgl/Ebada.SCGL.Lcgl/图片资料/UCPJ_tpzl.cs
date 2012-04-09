@@ -37,6 +37,7 @@ namespace Ebada.Scgl.Lcgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
+        private GridColumn picview;
 
         private bool isWorkflowCall = false;
         private frmModleFjly fjly = null;
@@ -44,6 +45,7 @@ namespace Ebada.Scgl.Lcgl
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PJ_tbsj,LP_Record";
+        private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -261,6 +263,29 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("S2");
             hideColumn("S3");
             hideColumn("picImage");
+            picview = new DevExpress.XtraGrid.Columns.GridColumn();
+            picview.Caption = "查看";
+            picview.Visible = true;
+
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
+            this.repositoryItemHyperLinkEdit1.AutoHeight = false;
+            this.repositoryItemHyperLinkEdit1.Caption = "查看";
+            this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
+            this.repositoryItemHyperLinkEdit1.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit1_Click);
+            this.picview.Caption = "查看图片";
+            this.picview.ColumnEdit = this.repositoryItemHyperLinkEdit1;
+            this.picview.VisibleIndex = 3;
+            picview.FieldName = "S1";
+            gridView1.Columns.Add(picview);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
+
+            gridView1.Columns.Add(picview);
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+
         }
         /// <summary>
         /// 刷新数据
@@ -278,6 +303,7 @@ namespace Ebada.Scgl.Lcgl
             //       + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
             //}
             slqwhere = slqwhere + " order by ID desc";
+            gridView1.SetRowCellValue(0, "S1", "查看");
 
             gridViewOperation.RefreshData(slqwhere);
         }
@@ -473,6 +499,34 @@ namespace Ebada.Scgl.Lcgl
             fjly.Kind = currRecord.Kind;
             fjly.Status = RecordWorkTask.GetWorkTaskStatus(WorkFlowData, currRecord);
             fjly.ShowDialog();
+        }
+        private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
+        {
+            int ihand = gridView1.FocusedRowHandle;
+            if (ihand < 0)
+                return;
+            PJ_tbsj currRecord = gridView1.GetFocusedRow() as PJ_tbsj;
+            currRecord = MainHelper.PlatformSqlMap.GetOneByKey<PJ_tbsj>(currRecord.ID);
+            if (currRecord != null)
+            {
+                string tempPath = Path.GetTempPath();
+                string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + currRecord.S1;
+                FileStream fs;
+                fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                BinaryWriter bw = new BinaryWriter(fs);
+                bw.Write(currRecord.picImage);
+                bw.Flush();
+                bw.Close();
+                fs.Close();
+                SelectorHelper.Execute("rundll32.exe %Systemroot%\\System32\\shimgvw.dll,ImageView_Fullscreen " + tempfile);
+            }
+           
+        }
+
+        private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (gridView1.FocusedColumn.FieldName != "S1")
+                e.Cancel = true;
         }
     }
 }
