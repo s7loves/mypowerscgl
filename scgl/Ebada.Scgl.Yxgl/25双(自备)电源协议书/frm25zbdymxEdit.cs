@@ -66,9 +66,9 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitComboBoxData() {
 
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "一次电压", comboBoxEdit4.Properties);
-            
-            
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "一次电压", comboBoxEdit4.Properties);
+
+            comboBoxEdit4.Text = rowData.dy.ToString();
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_25>(" WHERE Citylevel = '2'"));
           /*  IList<DicType> list = new List<DicType>();
