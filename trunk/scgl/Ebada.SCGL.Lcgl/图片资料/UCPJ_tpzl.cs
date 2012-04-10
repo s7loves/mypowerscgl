@@ -23,6 +23,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Scgl.WFlow;
 using System.IO;
+using System.Threading;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -527,6 +528,43 @@ namespace Ebada.Scgl.Lcgl
         {
             if (gridView1.FocusedColumn.FieldName != "S1")
                 e.Cancel = true;
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Multiselect = true;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                int i = 0;
+                for (i = 0; i < dialog.FileNames.Length  ;i++ )
+                {
+                    string[] str_name = dialog.FileNames[i].Split("\\".ToCharArray());
+                    string[] filename = str_name[str_name.Length - 1].Split(".".ToCharArray());
+                    byte[] Excbyte = System.Text.Encoding.Default.GetBytes(filename[filename.Length - 1]);
+                    string Exc = System.Text.Encoding.Default.GetString(Excbyte);
+
+                    PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName='" + filename[0] + "'");
+                    if (tb == null)
+                    {
+                        tb = new PJ_tbsj();
+                        tb.ID = tb.CreateID();
+                        tb.picName = filename[0];
+                        tb.S1 = "." + Exc;
+                        tb.Remark = tb.picName;
+                        tb.picImage = Ecommon.GetImageBate(dialog.FileNames[i]);
+                        MainHelper.PlatformSqlMap.Create<PJ_tbsj>(tb); 
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    }
+                    else
+                    {
+                        tb.S1 = "." + Exc;
+                        tb.picImage = Ecommon.GetImageBate(dialog.FileNames[i]);
+                        MainHelper.PlatformSqlMap.Update<PJ_tbsj>(tb); 
+                    }
+                }
+                RefreshData(" where 1=1");
+            }
         }
     }
 }
