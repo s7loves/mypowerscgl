@@ -713,7 +713,7 @@ namespace Ebada.Scgl.Yxgl
                          fystart = (float)Convert.ToDouble(range.Cells.Height);
                          range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
                          fystart = fystart + (float)(Convert.ToDouble(range.Cells.Height) / 2);
-                         
+                         activShape = null;
                          for (int itemp = 0; itemp <= ista - item; itemp++)
                          {
 
@@ -723,7 +723,41 @@ namespace Ebada.Scgl.Yxgl
                              PS_xl xl2 = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where ParentGT='" +gtlis[item + itemp].gtID+ "'");
                              if (xl2 == null)
                              {
-                                 activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
+                                 if (gtlis[item + itemp].gtType.IndexOf("转角") == -1)
+                                 {
+                                     activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
+                                 }
+                                 else
+                                 {
+                                     PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '分支'");
+                                     if (tb2 != null)
+                                     {
+
+                                         string tempPath = Path.GetTempPath();
+                                         string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb2.S1;
+                                         FileStream fs;
+                                         fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                                         BinaryWriter bw = new BinaryWriter(fs);
+                                         bw.Write(tb2.picImage);
+                                         bw.Flush();
+                                         bw.Close();
+                                         fs.Close();
+                                         Image im = Bitmap.FromFile(tempfile);
+                                         Bitmap bt = new Bitmap(im);
+                                         if (bt.Width < width / 2)
+                                         {
+                                             activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - bt.Width / 2, fystart - bt.Height / 2, bt.Width, bt.Height);
+
+
+                                         }
+                                         else
+                                         {
+                                             activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart - bt.Height / 2, width / 2, bt.Height);
+
+
+                                         }
+                                     }
+                                 }
                              }
                              else
                              {
@@ -745,13 +779,13 @@ namespace Ebada.Scgl.Yxgl
                                      Bitmap bt = new Bitmap(im);
                                      if (bt.Width < width / 2)
                                      {
-                                         activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - bt.Width / 2, oldShape.Top + oldShape.Height / 2 - bt.Height / 2, bt.Width, bt.Height);
+                                         activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - bt.Width / 2, fystart + gheifht/2 - bt.Height / 2, bt.Width, bt.Height);
                                        
 
                                      }
                                      else
                                      {
-                                         activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, oldShape.Top + oldShape.Height / 2 - bt.Height / 2, width / 2, bt.Height);
+                                         activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bt.Height / 2, width / 2, bt.Height);
                                         
                                         
                                      }
