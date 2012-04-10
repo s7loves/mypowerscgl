@@ -46,12 +46,12 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(obj.bxsj.Minute.ToString(), 15, 5);
             ex.SetCellValue(obj.bxdd, 15, 21);
             //修理负责人 修理人员
-        //    ex.SetCellValue(obj.xlfzr, 6, 3);
-        //    ex.SetCellValue(obj.xlry, 6, 14);
+              ex.SetCellValue(obj.xlfzr, 6, 3);
+              ex.SetCellValue(obj.xlry, 6, 14);
         //    ex.SetCellValue(obj.xlfzr, 20,6);
        //     ex.SetCellValue(obj.xlry, 20, 17);
             //值班受理人和报修人报告方式联系方式
-        //    ex.SetCellValue(obj.zbslr, 7, 3);
+            ex.SetCellValue(obj.zbslr, 7, 3);
             ex.SetCellValue(obj.bgfs, 7, 17);
             ex.SetCellValue(obj.bxrxm, 8, 17);
             ex.SetCellValue(obj.lxdh, 9, 17);

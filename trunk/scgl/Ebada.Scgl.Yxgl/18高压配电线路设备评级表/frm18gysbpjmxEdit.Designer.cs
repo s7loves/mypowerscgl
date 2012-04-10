@@ -172,7 +172,7 @@
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
-            "***线***变台***变压器***线**号开关"});
+            "***线，***变台，***变压器，***断路器，**号开关"});
             this.comboBoxEdit1.Size = new System.Drawing.Size(127, 21);
             this.comboBoxEdit1.TabIndex = 21;
             // 

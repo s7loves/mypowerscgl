@@ -1149,13 +1149,12 @@
             // 
             // comboBoxEdit4
             // 
-            this.comboBoxEdit4.Location = new System.Drawing.Point(316, 48);
+            this.comboBoxEdit4.Location = new System.Drawing.Point(315, 178);
             this.comboBoxEdit4.Name = "comboBoxEdit4";
             this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit4.Size = new System.Drawing.Size(129, 21);
             this.comboBoxEdit4.TabIndex = 13;
-            this.comboBoxEdit4.Visible = false;
             // 
             // comboBoxEdit7
             // 
@@ -1286,12 +1285,11 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(238, 48);
+            this.labelControl4.Location = new System.Drawing.Point(237, 178);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 7;
             this.labelControl4.Text = "报修地点";
-            this.labelControl4.Visible = false;
             // 
             // labelControl21
             // 

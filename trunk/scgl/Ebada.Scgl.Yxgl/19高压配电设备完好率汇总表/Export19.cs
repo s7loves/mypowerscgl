@@ -23,6 +23,7 @@ namespace Ebada.Scgl.Yxgl {
             //此处写填充内容代码
             ex.SetCellValue(objorg.OrgName, 4, 2);
             IList<PS_xl> objlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where OrgCode ='" + objorg.OrgCode + "' and len(linecode)=6");
+           // IList<PS_xl> objlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where OrgCode ='" + objorg.OrgCode + "' ");
             //分页 将要变化的进行分页
             //建立一个求总和的
             PS_xl objz = new PS_xl();
@@ -61,14 +62,14 @@ namespace Ebada.Scgl.Yxgl {
                         //
                         ex.SetCellValue(obj.LineName, 8 + i, 1);
                         //配电线路
-                        string gtcon = string.Format(" gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where left(LineCode,{0})='{1}' and linevol>=10.0))", obj.LineCode.Length, obj.LineCode);
+                        string gtcon = string.Format(" gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT  LineCode from ps_xl where left(LineCode,{0})='{1}' ))", obj.LineCode.Length, obj.LineCode);
 
-                        object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode));
+                        object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'", obj.LineCode.Length, obj.LineCode));
                         string length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
                         string tqcon = "tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')";
                         ex.SetCellValue(length, 8 + i, 2);
                         xlsum += Convert.ToDouble(length);
-                        nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode));
+                        nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'", obj.LineCode.Length, obj.LineCode));
                         length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
                         ex.SetCellValue(length, 8 + i, 3);
                         xl1 += Convert.ToDouble(length);
@@ -224,13 +225,13 @@ namespace Ebada.Scgl.Yxgl {
                         //
                         ex.SetCellValue(obj.LineName, 8 + i, 1);
                         //配电线路
-                        object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode));
+                        object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'", obj.LineCode.Length, obj.LineCode));
                         string length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
-                        string gtcon = string.Format(" gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where left(LineCode,{0})='{1}' and linevol>=10.0))", obj.LineCode.Length, obj.LineCode);
+                        string gtcon = string.Format(" gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT  LineCode from ps_xl where left(LineCode,{0})='{1}'))", obj.LineCode.Length, obj.LineCode);
                         string tqcon = "tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')";
                         ex.SetCellValue(length, 8 + i, 2);
                         xlsum += Convert.ToDouble(length);
-                        nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}' and linevol>=10.0", obj.LineCode.Length, obj.LineCode)).ToString();
+                        nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'", obj.LineCode.Length, obj.LineCode)).ToString();
                         length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
                         ex.SetCellValue(length, 8 + i, 3);
                         xl1 += Convert.ToDouble(length);
