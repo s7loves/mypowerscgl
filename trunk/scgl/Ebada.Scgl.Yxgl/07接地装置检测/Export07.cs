@@ -31,8 +31,22 @@ namespace Ebada.Scgl.Yxgl {
 
                 //线路名称行
                 ex.SetCellValue(jl.LineName, row + 4, col+2);
-                ex.SetCellValue(jl.fzxl, row + 4, col + 6);
-                ex.SetCellValue(jl.gzwz,row + 4, col + 11);
+                string fzxl = "";
+                if (jl.fzxl.Contains("支"))
+                {
+                    fzxl = jl.fzxl.Substring(0, jl.fzxl.LastIndexOf("支"));
+                }
+                else
+                    fzxl = jl.fzxl;
+                ex.SetCellValue(fzxl, row + 4, col + 6);
+                string gzwz = "";
+                if (jl.gzwz.Contains("分"))
+                {
+                    gzwz = jl.gzwz.Substring(0, jl.gzwz.LastIndexOf("分"));
+                }
+                else
+                    gzwz = jl.gzwz;
+                ex.SetCellValue(gzwz,row + 4, col + 11);
                 ex.SetCellValue("'"+jl.gth, row + 4, col + 15);
                  
                 //设备名称行
@@ -141,8 +155,22 @@ namespace Ebada.Scgl.Yxgl {
 
             //线路名称行
             ex.SetCellValue(jl.LineName, row + 4, col + 2);
-            ex.SetCellValue(jl.fzxl, row + 4, col + 6);
-            ex.SetCellValue(jl.gzwz, row + 4, col + 11);
+            string fzxl = "";
+            if (jl.fzxl.Contains("支"))
+            {
+                fzxl = jl.fzxl.Substring(0, jl.fzxl.LastIndexOf("支"));
+            }
+            else
+                fzxl = jl.fzxl;
+            ex.SetCellValue(fzxl, row + 4, col + 6);
+            string gzwz = "";
+            if (jl.gzwz.Contains("分"))
+            {
+                gzwz = jl.gzwz.Substring(0, jl.gzwz.LastIndexOf("分"));
+            }
+            else
+                gzwz = jl.gzwz;
+            ex.SetCellValue(gzwz, row + 4, col + 11);
             ex.SetCellValue("'" + jl.gth, row + 4, col + 15);
 
             //设备名称行

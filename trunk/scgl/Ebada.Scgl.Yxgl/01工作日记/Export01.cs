@@ -59,7 +59,7 @@ namespace Ebada.Scgl.Yxgl {
                         string[] rr = obj.cjry.Split("；".ToCharArray());
                         if (rr.Length > 2)
                         {
-                            string cry = rr[0] + "；" + rr[1] + "等" + rr.Length + "人";
+                            string cry = rr[0]+ rr[1] + "等" + rr.Length + "人";
 
                             ex.SetCellValue(cry, row + 9 + i, col + 11);
                         }
@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Yxgl {
                         string[] rr = obj.cjry.Split("；".ToCharArray());
                         if (rr.Length > 2)
                         {
-                            string cry = rr[0] + "；" + rr[1] + "等" + rr.Length + "人";
+                            string cry = rr[0] + rr[1] + "等" + rr.Length + "人";
 
                             ex.SetCellValue(cry, row + 9 + i, col + 11);
                         }

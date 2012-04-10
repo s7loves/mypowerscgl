@@ -215,7 +215,7 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit8.Focus();
                 return;
             }
-            rowData.LineName = comboBoxEdit1.Text;
+            rowData.LineName = comboBoxEdit10.Text;
 
             rowData.xhgg = comboBoxEdit5.Text + "|" + comboBoxEdit9.Text;
             this.DialogResult = DialogResult.OK;
@@ -305,6 +305,11 @@ namespace Ebada.Scgl.Yxgl
                     comboBoxEdit10.Properties.Items.AddRange(list);
                 }
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
 
        
