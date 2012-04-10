@@ -498,6 +498,7 @@ namespace Ebada.Scgl.Yxgl
                      {
                          if (i != 1 && i < gtlis.Count - 1)
                          {
+                             
                              string strfx = "";
                              decimal[,] a1 = new decimal[1, 2];
                              decimal[,] a2 = new decimal[1, 2];
