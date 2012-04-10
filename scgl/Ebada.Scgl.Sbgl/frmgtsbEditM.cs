@@ -288,6 +288,7 @@ namespace Ebada.Scgl.Sbgl
                 dr["type"] = gtsb.bh;
                 dr["name"] = gtsb.mc;
                 dr["sbgg"] = gtsb.xh;
+                dr["sl"] = gtsb.S2;
 
                 dt.Rows.Add(dr);
 
@@ -313,6 +314,13 @@ namespace Ebada.Scgl.Sbgl
         {
             DataRow dr = gridView1.GetFocusedDataRow();
             dr["type"] = null;
+        }
+
+        private void repositoryItemComboBox2_EditValueChanged(object sender, EventArgs e)
+        {
+            DataRow dr = gridView1.GetFocusedDataRow();
+            dr["sbgg"] = ((ComboBoxEdit)sender).EditValue;
+            PS_sbcs sbcs = MainHelper.PlatformSqlMap.GetOne<PS_sbcs>(" where mc='" + dr["name"] + "' and xh='" + dr["sbgg"] + "'");
         }
     
     }

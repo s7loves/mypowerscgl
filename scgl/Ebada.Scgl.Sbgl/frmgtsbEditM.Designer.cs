@@ -236,6 +236,7 @@
             this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
+            this.repositoryItemComboBox2.EditValueChanged += new System.EventHandler(this.repositoryItemComboBox2_EditValueChanged);
             // 
             // gridColumn4
             // 
