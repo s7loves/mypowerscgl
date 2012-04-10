@@ -348,6 +348,7 @@ namespace Ebada.Scgl.Yxgl
                      {
 
                          jlie = 3;
+                         ihang = 8;
                          hdRowCount = 1;
                          jyzRowCount = 1;
                          dxRowCount = 1;
@@ -369,28 +370,31 @@ namespace Ebada.Scgl.Yxgl
                          ex.ActiveSheet("Sheet1");
                          xx = wb.Application.Sheets["Sheet1"] as Microsoft.Office.Interop.Excel.Worksheet;
                      }
-                     //杆塔数
-                     PS_gt gtobj = gtlis[i - 1];
-                     if (gtobj == null)
-                     {
-                         if ((i + 0.0) % (jmax) == 0&&i>1)
-                         {
-                             //累计长度
-                             double sum = 0;
-                             for (int item = i; item < i + 15 && item < gtlis.Count; item++)
-                             {
-                                 PS_gt gttemp = gtlis[item];
-                                 if (gttemp != null)
-                                 {
-                                     sum += Convert.ToDouble(gttemp.gtSpan);
-                                 }
-                             }
-                             ex.SetCellValue(sum.ToString(), ihang, 2);
-                         }
-                         jlie += 2;
-                         continue;
+                     
+                     //ex.SetCellValue(i.ToString(), ihang, jlie);
+                     
+                     ////杆塔数
+                     PS_gt gtobj = gtlis[i ];
+                     //if (gtobj == null)
+                     //{
+                     //    if ((i + 0.0) % (jmax) == 0&&i>1)
+                     //    {
+                     //        //累计长度
+                     //        double sum = 0;
+                     //        for (int item = i; item < i + 15 && item < gtlis.Count; item++)
+                     //        {
+                     //            PS_gt gttemp = gtlis[item];
+                     //            if (gttemp != null)
+                     //            {
+                     //                sum += Convert.ToDouble(gttemp.gtSpan);
+                     //            }
+                     //        }
+                     //        ex.SetCellValue(sum.ToString(), ihang, 2);
+                     //    }
+                     //    jlie += 2;
+                     //    continue;
 
-                     }
+                     //}
                      //绝缘子
                      string strSQL = "select distinct sbModle from PS_gtsb Where  gtID='" + gtobj.gtID + "' ";
                      if (xl.LineVol != "" && Convert.ToDouble(xl.LineVol) >= 10)
@@ -406,8 +410,8 @@ namespace Ebada.Scgl.Yxgl
                      IList jyuzlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
 
                      //变台
-                     IList btlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName like '%变压器%' and gtID='" + gtobj.gtID + "'");
-
+                     //IList btlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName like '%变压器%' and gtID='" + gtobj.gtID + "'");
+                     IList btlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct bttype from PS_tq Where   gtID='" + gtobj.gtID + "'");
 
                      //避雷器
                      IList blqlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName='避雷器' and gtID='" + gtobj.gtID + "'");
@@ -484,44 +488,45 @@ namespace Ebada.Scgl.Yxgl
                      //}
 
 
-
                      ihang = 8;
-                     //杆号
-                     ex.SetCellValue((i-1).ToString(), ihang, jlie);
+                     ////杆号
+                     ex.SetCellValue((i).ToString(), ihang, jlie);
                      ihang++;
 
                      //转角方向
-                     if (i != 1 && i < gtlis.Count - 1)
+                     if (gtobj.gtType.IndexOf("转角") > -1)
                      {
-                         string strfx = "";
-                         decimal[,] a1 = new decimal[1,2];
-                         decimal[,] a2 = new decimal[1,2];
-                         a1[0,0] =gtlis[i].gtLat- gtlis[i - 1].gtLat ;
-                         a1[0,1] =  gtlis[i].gtLon- gtlis[i - 1].gtLon;
+                         if (i != 1 && i < gtlis.Count - 1)
+                         {
+                             string strfx = "";
+                             decimal[,] a1 = new decimal[1, 2];
+                             decimal[,] a2 = new decimal[1, 2];
+                             a1[0, 0] = gtlis[i].gtLat - gtlis[i - 1].gtLat;
+                             a1[0, 1] = gtlis[i].gtLon - gtlis[i - 1].gtLon;
 
-                         a2[0,0] = gtlis[i + 1].gtLat - gtlis[i].gtLat;
-                         a2[0,1] = gtlis[i + 1].gtLon - gtlis[i].gtLon;
-                         decimal di = a1[0,0] * a2[0,0] + a1[0,1] * a2[0,1];
-                         double dl = Math.Sqrt(Convert.ToDouble(a1[0, 0] * a1[0, 0] + a1[0, 1] * a1[0, 1]) * Math.Sqrt(Convert.ToDouble(  
-                             a2[0,0] * a2[0,0] + a2[0,1] * a2[0,1])));
-                         double dc = Math.Round(180*Math.Acos(Convert.ToDouble(di) / Convert.ToDouble(dl))/3.1415926, 0);
-                         if (gtlis[i].gtLon > gtlis[i - 1].gtLon)
-                         {
-                             strfx = "右转";
+                             a2[0, 0] = gtlis[i + 1].gtLat - gtlis[i].gtLat;
+                             a2[0, 1] = gtlis[i + 1].gtLon - gtlis[i].gtLon;
+                             decimal di = a1[0, 0] * a2[0, 0] + a1[0, 1] * a2[0, 1];
+                             double dl = Math.Sqrt(Convert.ToDouble(a1[0, 0] * a1[0, 0] + a1[0, 1] * a1[0, 1]) * Math.Sqrt(Convert.ToDouble(
+                                 a2[0, 0] * a2[0, 0] + a2[0, 1] * a2[0, 1])));
+                             double dc = Math.Round(180 * Math.Acos(Convert.ToDouble(di) / Convert.ToDouble(dl)) / 3.1415926, 0);
+                             if (gtlis[i].gtLon > gtlis[i - 1].gtLon)
+                             {
+                                 strfx = "右转";
+                             }
+                             else
+                             {
+                                 strfx = "左转";
+                             }
+                             if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                                 ex.SetCellValue(strfx + dc + "度", ihang, jlie);
+                             else
+                             {
+
+                             }
                          }
-                         else
-                         {
-                             strfx = "左转";
-                         }
-                         if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
-                             ex.SetCellValue(strfx + dc + "度", ihang, jlie);
-                         else
-                         { 
-                         
-                         }
+
                      }
-                    
-
                      ihang++;
 
                      //杆高（m）
@@ -901,7 +906,8 @@ namespace Ebada.Scgl.Yxgl
                      {
                          if (btlist.Count > 0)
                          {
-                             ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct sbCode from PS_gtsb  Where  sbModle = '" + btlist[0].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                             //ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct sbCode from PS_gtsb  Where  sbModle = '" + btlist[0].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                             ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct byqModle from PS_tqbyq  Where tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')");
                              if (ilisttemp.Count > btRowCount)
                              {
                                  for (j = btRowCount; j < btlist.Count; j++)
@@ -925,21 +931,31 @@ namespace Ebada.Scgl.Yxgl
                              }
                              if (btlist.Count == 1)
                                  ex.SetCellValue(btlist[0].ToString(), ihang, jlie);
-                             else
-                             {
-                                 j = j;
-                             }
+                             //else
+                             //{
+                             //    j = j;
+                             //}
                              for (j = 0; j < ilisttemp.Count; j++)
                              {
-                                 int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
-                                 //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                                 PS_gtsb gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                 //int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                 ////int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                 //PS_gtsb gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                 int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   count(*) from PS_tqbyq where byqModle='" + ilisttemp[j].ToString() + "'   and tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')"));
+                                 PS_tqbyq gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tqbyq>(" Where byqModle='" + ilisttemp[j].ToString() + "'   and tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')");
                                  if (gtsbtemp != null)
                                  {
-                                     PS_sbcs sbcstemp = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_sbcs>(gtsbtemp.sbType+ilisttemp[0].ToString());
-                                     if (sbcstemp != null)
+                                     //PS_sbcs sbcstemp = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_sbcs>(gtsbtemp.sbType + ilisttemp[0].ToString());
+                                     //if (sbcstemp != null)
+                                     //{
+                                         //ex.SetCellValue(sbcstemp.xh + "/" + icount.ToString(), ihang + j + 1, jlie);
+                                     //}
+                                     if (gtsbtemp.byqModle.IndexOf("-") < 0)
                                      {
-                                         ex.SetCellValue(sbcstemp.xh + "/" + icount.ToString(), ihang + j + 1, jlie);
+                                         ex.SetCellValue(gtsbtemp.byqModle + "/" + icount.ToString(), ihang + j + 1, jlie);
+                                     }
+                                     else
+                                     {
+                                         ex.SetCellValue(gtsbtemp.byqModle.Substring(0, gtsbtemp.byqModle.IndexOf("-")) + "/" + icount.ToString(), ihang + j + 1, jlie);
                                      }
                                  }
                              }

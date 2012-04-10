@@ -29,7 +29,8 @@ namespace Ebada.Scgl.Model
         private string _tqname=String.Empty; 
         private string _remark=String.Empty; 
         private string _gzrjid=String.Empty; 
-        private string _createman=String.Empty; 
+        private string _createman=String.Empty;
+        private string _image = String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
         private byte[] _bigdata=new byte[]{};   
         #endregion
@@ -246,6 +247,23 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
+        /// <summary>
+        /// 属性名称：Image
+        /// 属性描述：查看网络图
+        /// 字段信息：[Image]
+        /// </summary>
+        [DisplayNameAttribute("查看网络图")]
+        public string Image
+        {
+            get { return _image; }
+            set
+            {
+                if (_image as object == null || !_image.Equals(value))
+                {
+                    _image = value;
+                }
+            }
+        }
         /// <summary>
         /// 属性名称：BigData
         /// 属性描述：生成文档
