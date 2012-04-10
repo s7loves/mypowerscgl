@@ -127,15 +127,16 @@ namespace Ebada.Scgl.Yxgl {
                     }
                     //消除人
                     string[] ary2 = tempobj.xcr.Split(jksign);
-                    if (ary2.Length >= 1)
+                    if (ary2.Length >= 1 && tempstr.Count > 0)
                     {
+
                         ex.SetCellValue(ary2[0], row + i * len1, 9);
                     }
                     else
                     {
                         ex.SetCellValue("", row + i * len1, 9);
                     }
-                    if (ary2.Length >= 2)
+                    if (ary2.Length >= 2&&tempstr.Count>0)
                     {
                         ex.SetCellValue(ary2[1], row + i * len1, 12);
                     }
@@ -144,7 +145,7 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue("", row + i * len1, 12);
                     }
                     //消除时间
-                    if (ComboBoxHelper.CompreDate(tempobj.xcrq))
+                    if (ComboBoxHelper.CompreDate(tempobj.xcrq) && tempstr.Count>0)
                     {
                         ex.SetCellValue(tempobj.xcrq.Year.ToString(), row + 2 + i * len1, 8);
                         ex.SetCellValue(tempobj.xcrq.Month.ToString(), row + 2 + i * len1, 11);

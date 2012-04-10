@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using System.Threading;
 
 namespace Ebada.Scgl.Yxgl
 {
@@ -45,6 +46,7 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_23>(gridViewOperation_BeforeDelete);
             gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_23>(gridViewOperation_AfterEdit);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_23>(gridViewOperation_AfterAdd);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_23> e)
@@ -59,42 +61,102 @@ namespace Ebada.Scgl.Yxgl
         {
             //修改模板
 
-            mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(obj.ParentID);
-            string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
-            string bhname = org.OrgName.Replace("供电所", "");
-            DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
-            dsoFramerControl1.FileOpen(fname);
-            Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-            PJ_23 obj1 = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + obj.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
-            int icount = 1;
-            if (obj1 != null && obj1.xybh != "")
-            {
-                icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
-            }
-            string strname = SelectorHelper.GetPysm(bhname, true);
-            ExcelAccess ea = new ExcelAccess();
-            ea.MyWorkBook = wb;
-            ea.MyExcel = wb.Application;
-            ea.SetCellValue(strname.ToUpper(), 4, 8);
-            strname = DateTime.Now.Year.ToString();
-            ea.SetCellValue(strname, 4, 9);
-            strname = string.Format("{0:D3}", icount);
-            ea.SetCellValue(strname, 4, 10);
-            ea.SetCellValue(obj.cqdw + "：", 6, 4);
-            ea.SetCellValue(obj.linename, 10, 7);
-            ea.SetCellValue(obj.fzlinename, 10, 10);
-            ea.SetCellValue("'" + obj.gh, 10,16);
-            ea.SetCellValue(obj.cqfw, 11, 4);
-            ea.SetCellValue(obj.cqdw, 13, 4);
-            ea.SetCellValue(obj.qdrq.Year.ToString(), 21, 7);
-            ea.SetCellValue(obj.qdrq.Month.ToString(), 21, 9);
-            ea.SetCellValue(obj.qdrq.Day.ToString(), 21, 11);
-            dsoFramerControl1.FileSave();
-            obj.BigData = dsoFramerControl1.FileData;
-            dsoFramerControl1.FileClose();
-            dsoFramerControl1.Dispose();
-            dsoFramerControl1 = null;
+            //mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(obj.ParentID);
+            //string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
+            //string bhname = org.OrgName.Replace("供电所", "");
+            //DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+            //dsoFramerControl1.FileOpen(fname);
+            //Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            //PJ_23 obj1 = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + obj.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
+            //int icount = 1;
+            //if (obj1 != null && obj1.xybh != "")
+            //{
+            //    icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
+            //}
+            //string strname = SelectorHelper.GetPysm(bhname, true);
+            //ExcelAccess ea = new ExcelAccess();
+            //ea.MyWorkBook = wb;
+            //ea.MyExcel = wb.Application;
+            //ea.SetCellValue(strname.ToUpper(), 4, 8);
+            //strname = DateTime.Now.Year.ToString();
+            //ea.SetCellValue(strname, 4, 9);
+            //strname = string.Format("{0:D3}", icount);
+            //ea.SetCellValue(strname, 4, 10);
+            //ea.SetCellValue(obj.cqdw + "：", 6, 4);
+            //ea.SetCellValue(obj.linename, 10, 7);
+            //ea.SetCellValue(obj.fzlinename, 10, 10);
+            //ea.SetCellValue("'" + obj.gh, 10,16);
+            //ea.SetCellValue(obj.cqfw, 11, 4);
+            //ea.SetCellValue(obj.cqdw, 13, 4);
+            //ea.SetCellValue(obj.qdrq.Year.ToString(), 21, 7);
+            //ea.SetCellValue(obj.qdrq.Month.ToString(), 21, 9);
+            //ea.SetCellValue(obj.qdrq.Day.ToString(), 21, 11);
+            //dsoFramerControl1.FileSave();
+            //obj.BigData = dsoFramerControl1.FileData;
+            //dsoFramerControl1.FileClose();
+            //dsoFramerControl1.Dispose();
+            //dsoFramerControl1 = null;
             MainHelper.PlatformSqlMap.Update<PJ_23>(obj);
+        }
+        void gridViewOperation_AfterAdd(PJ_23 obj)
+        {
+
+            CreatRiZhi(obj);
+        }
+        public  void CreatRiZhi(PJ_23 obj)
+        {
+
+
+            PJ_gzrjnr gzr = new PJ_gzrjnr();
+            gzr.gzrjID = gzr.CreateID();
+            gzr.ParentID = obj.ID;
+            Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+            IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where GdsCode='" + MainHelper.User.OrgCode + "' and rq between '" + obj.qdrq.ToString("yyyy-MM-dd 00:00:00") + "' and '" + obj.qdrq.ToString("yyyy-MM-dd 23:59:59") + "'");
+
+            if (gzrj01.Count > 0)
+            {
+                gzr.gzrjID = gzrj01[0].gzrjID;
+            }
+            else
+            {
+                PJ_01gzrj pj = new PJ_01gzrj();
+                pj.gzrjID = pj.CreateID();
+                pj.GdsCode = ParentObj.OrgCode;
+                pj.GdsName = ParentObj.OrgName;
+                pj.CreateDate = obj.qdrq;
+                pj.CreateMan = MainHelper.User.UserName;
+                gzr.gzrjID = pj.gzrjID;
+                pj.rq = obj.qdrq;
+                pj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+                pj.rsaqts = (DateTime.Today - MainHelper.UserOrg.PSafeTime.Date).Days;
+                pj.sbaqts = (DateTime.Today - MainHelper.UserOrg.DSafeTime.Date).Days;
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                MainHelper.PlatformSqlMap.Create<PJ_01gzrj>(pj);
+
+
+            }
+            IList<PJ_gzrjnr> gzrlist = MainHelper.PlatformSqlMap.GetList<PJ_gzrjnr>("SelectPJ_gzrjnrList", "where gzrjID  = '" + gzr.gzrjID + "' order by seq  ");
+            if (gzrlist.Count > 0)
+            {
+                gzr.seq = gzrlist[gzrlist.Count - 1].seq + 1;
+            }
+            else
+                gzr.seq = 1;
+
+            gzr.gznr = "配电设备产权、维护范围协议书";
+            gzr.fzr = obj.cqdw;
+            //string[] strli = obj.cjry.Split(';');
+            //if (strli.Length < 3)
+            //    gzr.cjry = obj.cjry;
+            //else
+            //{
+            //    gzr.cjry = strli[0] + strli[1] + "等" + strli.Length + "人";
+            //}
+            gzr.CreateDate = obj.qdrq;
+            gzr.CreateMan = MainHelper.User.UserName;
+            gzr.fssj = obj.qdrq;
+            MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
+
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_23> e)
         {
@@ -203,6 +265,14 @@ namespace Ebada.Scgl.Yxgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
+            string bhname = ParentObj.OrgName.Replace("供电所", "");
+            PJ_23 obj = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + ParentID + "' and xybh like '" + SelectorHelper.GetPysm(ParentObj.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
+            int icount = 1;
+            if (obj != null && obj.xybh != "")
+            {
+                icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
+            }
+            newobj.xybh = SelectorHelper.GetPysm(bhname, true).ToUpper() + "-" + DateTime.Now.Year.ToString() + "-" + string.Format("{0:D3}", icount);
         }
         /// <summary>
         /// 父表ID
@@ -244,88 +314,88 @@ namespace Ebada.Scgl.Yxgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             PJ_23 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
-            if (OBJECT.BigData != null)
-            {
-                if (OBJECT.BigData.Length != 0)
-                {
-                    DSOFramerControl ds1 = new DSOFramerControl();
-                    ds1.FileData = OBJECT.BigData;
-                    // ds1.FileOpen(ds1.FileName);
-                    ExcelAccess ex = new ExcelAccess();
+            //if (OBJECT.BigData != null)
+            //{
+            //    if (OBJECT.BigData.Length != 0)
+            //    {
+            //        DSOFramerControl ds1 = new DSOFramerControl();
+            //        ds1.FileData = OBJECT.BigData;
+            //        // ds1.FileOpen(ds1.FileName);
+            //        ExcelAccess ex = new ExcelAccess();
 
-                    string fname = ds1.FileName;
+            //        string fname = ds1.FileName;
 
-                    ex.Open(fname);
-                    //此处写填充内容代码
-                    ds1.FileClose();
-                    ex.ShowExcel();
-                }
-                else
-                {
-                    Export23.ExportExcel(OBJECT);
-                }
+            //        ex.Open(fname);
+            //        //此处写填充内容代码
+            //        //ds1.FileClose();
+            //        ex.ShowExcel();
+            //    }
+            //    else
+            //    {
+            //        Export23.ExportExcel(OBJECT);
+            //    }
 
-            }
-            else
-            {
-                Export23.ExportExcel(OBJECT);
-            }
-           
-           
+            //}
+            //else
+            //{
+            //    Export23.ExportExcel(OBJECT);
+            //}
+
+            Export23.ExportExcel(OBJECT);
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (gridView1.FocusedRowHandle > -1)
-            {
-                //修改模板
-                PJ_23 rowData = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
-                //mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
-                //string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
-                //string bhname = org.OrgName.Replace("供电所", "");
-                //DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
-                //dsoFramerControl1.FileOpen(fname);
-                //Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-                //PJ_23 obj = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
-                //int icount = 1;
-                //if (obj != null && obj.xybh != "")
-                //{
-                //    icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
-                //}
-                //string strname = SelectorHelper.GetPysm(bhname, true);
-                //ExcelAccess ea = new ExcelAccess();
-                //ea.MyWorkBook = wb;
-                //ea.MyExcel = wb.Application;
-                //ea.SetCellValue(strname.ToUpper(), 4, 8);
-                //strname = DateTime.Now.Year.ToString();
-                //ea.SetCellValue(strname, 4, 9);
-                //strname = string.Format("{0:D3}", icount);
-                //ea.SetCellValue(strname, 4, 10);
-                //ea.SetCellValue(rowData.cqdw + "：", 6, 4);
-                //ea.SetCellValue(rowData.linename, 10, 7);
-                //ea.SetCellValue(rowData.fzlinename, 10, 10);
-                //ea.SetCellValue("'" + rowData.gh, 10, 15);
-                //ea.SetCellValue(rowData.cqfw, 11, 4);
-                //ea.SetCellValue(rowData.cqdw, 13, 4);
-                //ea.SetCellValue(rowData.qdrq.Year.ToString(), 21, 7);
-                //ea.SetCellValue(rowData.qdrq.Month.ToString(), 21, 9);
-                //ea.SetCellValue(rowData.qdrq.Day.ToString(), 21,11);
-                //dsoFramerControl1.FileSave();
-                //rowData.BigData = dsoFramerControl1.FileData;
-                //dsoFramerControl1.FileClose();
-                //dsoFramerControl1.Dispose();
-                //dsoFramerControl1 = null;
-                //MainHelper.PlatformSqlMap.Update<PJ_23>(rowData);
+            //if (gridView1.FocusedRowHandle > -1)
+            //{
+            //    //修改模板
+            //    PJ_23 rowData = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
+            //    //mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
+            //    //string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
+            //    //string bhname = org.OrgName.Replace("供电所", "");
+            //    //DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+            //    //dsoFramerControl1.FileOpen(fname);
+            //    //Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            //    //PJ_23 obj = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
+            //    //int icount = 1;
+            //    //if (obj != null && obj.xybh != "")
+            //    //{
+            //    //    icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
+            //    //}
+            //    //string strname = SelectorHelper.GetPysm(bhname, true);
+            //    //ExcelAccess ea = new ExcelAccess();
+            //    //ea.MyWorkBook = wb;
+            //    //ea.MyExcel = wb.Application;
+            //    //ea.SetCellValue(strname.ToUpper(), 4, 8);
+            //    //strname = DateTime.Now.Year.ToString();
+            //    //ea.SetCellValue(strname, 4, 9);
+            //    //strname = string.Format("{0:D3}", icount);
+            //    //ea.SetCellValue(strname, 4, 10);
+            //    //ea.SetCellValue(rowData.cqdw + "：", 6, 4);
+            //    //ea.SetCellValue(rowData.linename, 10, 7);
+            //    //ea.SetCellValue(rowData.fzlinename, 10, 10);
+            //    //ea.SetCellValue("'" + rowData.gh, 10, 15);
+            //    //ea.SetCellValue(rowData.cqfw, 11, 4);
+            //    //ea.SetCellValue(rowData.cqdw, 13, 4);
+            //    //ea.SetCellValue(rowData.qdrq.Year.ToString(), 21, 7);
+            //    //ea.SetCellValue(rowData.qdrq.Month.ToString(), 21, 9);
+            //    //ea.SetCellValue(rowData.qdrq.Day.ToString(), 21,11);
+            //    //dsoFramerControl1.FileSave();
+            //    //rowData.BigData = dsoFramerControl1.FileData;
+            //    //dsoFramerControl1.FileClose();
+            //    //dsoFramerControl1.Dispose();
+            //    //dsoFramerControl1 = null;
+            //    //MainHelper.PlatformSqlMap.Update<PJ_23>(rowData);
 
-                frm23Template frm = new frm23Template();
-                //frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
-                frm.pjobject = rowData;
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    Client.ClientHelper.PlatformSqlMap.Update<PJ_23>(frm.pjobject);
-                    MessageBox.Show("保存成功");
-                }
-            }
+            //    frm23Template frm = new frm23Template();
+            //    //frm.pjobject = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
+            //    frm.pjobject = rowData;
+            //    if (frm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        Client.ClientHelper.PlatformSqlMap.Update<PJ_23>(frm.pjobject);
+            //        MessageBox.Show("保存成功");
+            //    }
+            //}
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Ebada.Scgl.Yxgl
             list.Add(new DicType("1", "供电所"));
             list.Add(new DicType("2", "变电所"));
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-            ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
+          //  ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" +rowData.ParentID + "' and linevol>=10.0 and parentid=''");
             foreach (PS_xl pl in xlList)
             {
@@ -167,56 +167,56 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (rowData.BigData.Length == 0)
-            {
-                mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
-                string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
-                string bhname = org.OrgName.Replace("供电所", "");
-                DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
-                dsoFramerControl1.FileOpen(fname);
-                Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-                PJ_23 obj = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
-                int icount = 1;
-                if (obj != null && obj.xybh !="")
-                {
-                    icount = Convert.ToInt32(obj.xybh.Split('-')[2])+1;
-                }
-                string strname = SelectorHelper.GetPysm(bhname, true);
-                ExcelAccess ea = new ExcelAccess();
-                ea.MyWorkBook = wb;
-                ea.MyExcel = wb.Application;
-                ea.SetCellValue(strname.ToUpper(), 4, 8);
-                strname = DateTime.Now.Year.ToString();
-                ea.SetCellValue(strname, 4, 9);
-                strname = string.Format("{0:D3}", icount);
-                ea.SetCellValue(strname, 4, 10);
-                ea.SetCellValue(rowData.linename, 10, 7);
-                ea.SetCellValue(rowData.fzlinename, 10, 10);
-                ea.SetCellValue("'" + rowData.gh, 10, 16);
-                ea.SetCellValue(rowData.cqfw, 11, 4);
-                ea.SetCellValue(rowData.cqdw, 13, 4);
-                ea.SetCellValue(rowData.qdrq.Year.ToString(), 21, 7);
-                ea.SetCellValue(rowData.qdrq.Month.ToString(), 21, 9);
-                ea.SetCellValue(rowData.qdrq.Day.ToString(), 21, 11);
-                dsoFramerControl1.FileSave();
-                rowData.BigData = dsoFramerControl1.FileData;
-                dsoFramerControl1.FileClose();
-                dsoFramerControl1.Dispose();
-                dsoFramerControl1 = null;
-                rowData.xybh = SelectorHelper.GetPysm(bhname, true).ToUpper() + "-" + DateTime.Now.Year.ToString() + "-" + string.Format("{0:D3}", icount);
-           }
-            DSOFramerControl dsoFramerControl2 = new DSOFramerControl();
-            dsoFramerControl2.FileData = rowData.BigData;
-            Microsoft.Office.Interop.Excel.Workbook wb2 = dsoFramerControl2.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-            ExcelAccess ea2 = new ExcelAccess();
-            ea2.MyWorkBook = wb2;
-            ea2.MyExcel = wb2.Application;
-            ea2.SetCellValue(comboBoxEdit1.Text , 11, 4);
-            dsoFramerControl2.FileSave();
-            rowData.BigData = dsoFramerControl2.FileData;
-            dsoFramerControl2.FileClose();
-            dsoFramerControl2.Dispose();
-            dsoFramerControl2 = null;
+           // if (rowData.BigData.Length == 0)
+           // {
+           //     mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
+           //     string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
+           //     string bhname = org.OrgName.Replace("供电所", "");
+           //     DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+           //     dsoFramerControl1.FileOpen(fname);
+           //     Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+           //     PJ_23 obj = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
+           //     int icount = 1;
+           //     if (obj != null && obj.xybh !="")
+           //     {
+           //         icount = Convert.ToInt32(obj.xybh.Split('-')[2])+1;
+           //     }
+           //     string strname = SelectorHelper.GetPysm(bhname, true);
+           //     ExcelAccess ea = new ExcelAccess();
+           //     ea.MyWorkBook = wb;
+           //     ea.MyExcel = wb.Application;
+           //     ea.SetCellValue(strname.ToUpper(), 4, 8);
+           //     strname = DateTime.Now.Year.ToString();
+           //     ea.SetCellValue(strname, 4, 9);
+           //     strname = string.Format("{0:D3}", icount);
+           //     ea.SetCellValue(strname, 4, 10);
+           //     ea.SetCellValue(rowData.linename, 10, 7);
+           //     ea.SetCellValue(rowData.fzlinename, 10, 10);
+           //     ea.SetCellValue("'" + rowData.gh, 10, 16);
+           //     ea.SetCellValue(rowData.cqfw, 11, 4);
+           //     ea.SetCellValue(rowData.cqdw, 13, 4);
+           //     ea.SetCellValue(rowData.qdrq.Year.ToString(), 21, 7);
+           //     ea.SetCellValue(rowData.qdrq.Month.ToString(), 21, 9);
+           //     ea.SetCellValue(rowData.qdrq.Day.ToString(), 21, 11);
+           //     dsoFramerControl1.FileSave();
+           //     rowData.BigData = dsoFramerControl1.FileData;
+           //     dsoFramerControl1.FileClose();
+           //     dsoFramerControl1.Dispose();
+           //     dsoFramerControl1 = null;
+           //     rowData.xybh = SelectorHelper.GetPysm(bhname, true).ToUpper() + "-" + DateTime.Now.Year.ToString() + "-" + string.Format("{0:D3}", icount);
+           //}
+           // DSOFramerControl dsoFramerControl2 = new DSOFramerControl();
+           // dsoFramerControl2.FileData = rowData.BigData;
+           // Microsoft.Office.Interop.Excel.Workbook wb2 = dsoFramerControl2.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+           // ExcelAccess ea2 = new ExcelAccess();
+           // ea2.MyWorkBook = wb2;
+           // ea2.MyExcel = wb2.Application;
+           // ea2.SetCellValue(comboBoxEdit1.Text , 11, 4);
+           // dsoFramerControl2.FileSave();
+           // rowData.BigData = dsoFramerControl2.FileData;
+           // dsoFramerControl2.FileClose();
+           // dsoFramerControl2.Dispose();
+           // dsoFramerControl2 = null;
         }
 
         private void labelControl4_Click_2(object sender, EventArgs e)
