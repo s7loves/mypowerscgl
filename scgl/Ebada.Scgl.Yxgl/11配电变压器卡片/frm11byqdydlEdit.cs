@@ -65,18 +65,18 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "分接头位置", comboBoxEdit1.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电压", spinEdit1.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电压", spinEdit2.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电压", spinEdit3.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "分接头位置", comboBoxEdit1.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电压", spinEdit1.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电压", spinEdit2.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电压", spinEdit3.Properties);
 
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电流", spinEdit4.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电流", spinEdit5.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电流", spinEdit6.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电流", spinEdit4.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电流", spinEdit5.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "首端电流", spinEdit6.Properties);
 
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "末端电压", spinEdit7.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "末端电压", spinEdit8.Properties);
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "末端电压", spinEdit9.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "末端电压", spinEdit7.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "末端电压", spinEdit8.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "末端电压", spinEdit9.Properties);
 
 
             //this.m_CityDic.Clear();

@@ -52,15 +52,15 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.spinEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.spinEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.spinEdit3 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.spinEdit4 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.spinEdit5 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.spinEdit6 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.spinEdit7 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.spinEdit8 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.spinEdit9 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEdit3 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEdit4 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEdit5 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEdit6 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEdit7 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEdit8 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEdit9 = new DevExpress.XtraEditors.SpinEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -313,84 +313,174 @@
             // 
             // spinEdit1
             // 
+            this.spinEdit1.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.spinEdit1.Location = new System.Drawing.Point(45, 41);
             this.spinEdit1.Name = "spinEdit1";
             this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit1.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinEdit1.Size = new System.Drawing.Size(99, 21);
-            this.spinEdit1.TabIndex = 24;
+            this.spinEdit1.TabIndex = 25;
             // 
             // spinEdit2
             // 
+            this.spinEdit2.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.spinEdit2.Location = new System.Drawing.Point(45, 77);
             this.spinEdit2.Name = "spinEdit2";
             this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit2.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinEdit2.Size = new System.Drawing.Size(99, 21);
-            this.spinEdit2.TabIndex = 24;
+            this.spinEdit2.TabIndex = 25;
             // 
             // spinEdit3
             // 
-            this.spinEdit3.Location = new System.Drawing.Point(45, 110);
+            this.spinEdit3.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEdit3.Location = new System.Drawing.Point(44, 110);
             this.spinEdit3.Name = "spinEdit3";
             this.spinEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit3.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinEdit3.Size = new System.Drawing.Size(99, 21);
-            this.spinEdit3.TabIndex = 24;
+            this.spinEdit3.TabIndex = 25;
             // 
             // spinEdit4
             // 
+            this.spinEdit4.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.spinEdit4.Location = new System.Drawing.Point(181, 41);
             this.spinEdit4.Name = "spinEdit4";
             this.spinEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit4.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinEdit4.Size = new System.Drawing.Size(99, 21);
-            this.spinEdit4.TabIndex = 24;
+            this.spinEdit4.TabIndex = 25;
             // 
             // spinEdit5
             // 
+            this.spinEdit5.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.spinEdit5.Location = new System.Drawing.Point(181, 77);
             this.spinEdit5.Name = "spinEdit5";
             this.spinEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit5.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinEdit5.Size = new System.Drawing.Size(99, 21);
-            this.spinEdit5.TabIndex = 24;
+            this.spinEdit5.TabIndex = 25;
             // 
             // spinEdit6
             // 
+            this.spinEdit6.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.spinEdit6.Location = new System.Drawing.Point(181, 110);
             this.spinEdit6.Name = "spinEdit6";
             this.spinEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit6.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinEdit6.Size = new System.Drawing.Size(99, 21);
-            this.spinEdit6.TabIndex = 24;
+            this.spinEdit6.TabIndex = 25;
             // 
             // spinEdit7
             // 
+            this.spinEdit7.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.spinEdit7.Location = new System.Drawing.Point(338, 41);
             this.spinEdit7.Name = "spinEdit7";
             this.spinEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit7.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinEdit7.Size = new System.Drawing.Size(99, 21);
-            this.spinEdit7.TabIndex = 24;
+            this.spinEdit7.TabIndex = 25;
             // 
             // spinEdit8
             // 
-            this.spinEdit8.Location = new System.Drawing.Point(338, 77);
+            this.spinEdit8.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEdit8.Location = new System.Drawing.Point(338, 73);
             this.spinEdit8.Name = "spinEdit8";
             this.spinEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit8.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinEdit8.Size = new System.Drawing.Size(99, 21);
-            this.spinEdit8.TabIndex = 24;
+            this.spinEdit8.TabIndex = 25;
             // 
             // spinEdit9
             // 
+            this.spinEdit9.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.spinEdit9.Location = new System.Drawing.Point(338, 110);
             this.spinEdit9.Name = "spinEdit9";
             this.spinEdit9.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit9.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinEdit9.Size = new System.Drawing.Size(99, 21);
-            this.spinEdit9.TabIndex = 24;
+            this.spinEdit9.TabIndex = 25;
             // 
             // frm11byqdydlEdit
             // 
@@ -452,15 +542,15 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.ComboBoxEdit spinEdit9;
-        private DevExpress.XtraEditors.ComboBoxEdit spinEdit8;
-        private DevExpress.XtraEditors.ComboBoxEdit spinEdit7;
-        private DevExpress.XtraEditors.ComboBoxEdit spinEdit6;
-        private DevExpress.XtraEditors.ComboBoxEdit spinEdit5;
-        private DevExpress.XtraEditors.ComboBoxEdit spinEdit4;
-        private DevExpress.XtraEditors.ComboBoxEdit spinEdit3;
-        private DevExpress.XtraEditors.ComboBoxEdit spinEdit2;
-        private DevExpress.XtraEditors.ComboBoxEdit spinEdit1;
+        private DevExpress.XtraEditors.SpinEdit spinEdit1;
+        private DevExpress.XtraEditors.SpinEdit spinEdit9;
+        private DevExpress.XtraEditors.SpinEdit spinEdit8;
+        private DevExpress.XtraEditors.SpinEdit spinEdit7;
+        private DevExpress.XtraEditors.SpinEdit spinEdit6;
+        private DevExpress.XtraEditors.SpinEdit spinEdit5;
+        private DevExpress.XtraEditors.SpinEdit spinEdit4;
+        private DevExpress.XtraEditors.SpinEdit spinEdit3;
+        private DevExpress.XtraEditors.SpinEdit spinEdit2;
 
     }
 }

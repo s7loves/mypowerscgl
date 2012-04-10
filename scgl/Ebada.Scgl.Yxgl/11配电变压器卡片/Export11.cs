@@ -64,11 +64,11 @@ namespace Ebada.Scgl.Yxgl {
             row = 4;
             ex.SetCellValue(obj.byqModle, row, 4);
             ex.SetCellValue(obj.byqFactory, row, 14);
-            ex.SetCellValue(obj.byqVolOne + "kV", row, 23);
+            ex.SetCellValue(Convert.ToDouble(obj.byqVolOne) + "kV", row, 23);
             row++;
             ex.SetCellValue(obj.byqPhase, row, 4);
             ex.SetCellValue(obj.byqNumber, row, 14);
-            ex.SetCellValue(obj.byqVolTwo + "kV", row, 23);
+            ex.SetCellValue(Convert.ToDouble(obj.byqVolTwo) + "kV", row, 23);
             row++;//6
             ex.SetCellValue(obj.byqCapcity.ToString(), row, 4);
             ex.SetCellValue(obj.byqMadeDate.Year.ToString(), row, 14);
