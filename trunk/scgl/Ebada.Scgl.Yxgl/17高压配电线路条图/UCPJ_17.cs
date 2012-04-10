@@ -719,9 +719,52 @@ namespace Ebada.Scgl.Yxgl
 
                              range = (Excel.Range)xx.get_Range(xx.Cells[6, itemp*2 + jstart], xx.Cells[6, itemp*2 + jstart+1]);
                              float width = (float)Convert.ToDouble(range.Cells.Width);
-                             
-                             
-                             activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width /2, fystart, gwidth, gheifht);
+
+                             PS_xl xl2 = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where ParentGT='" +gtlis[item + itemp].gtID+ "'");
+                             if (xl2 == null)
+                             {
+                                 activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
+                             }
+                             else
+                             {
+                                 ex.SetCellValue(xl.LineName, 5, itemp * 2 + 4);
+                                 PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '分支'");
+                                 if (tb2 != null)
+                                 {
+                                     
+                                     string tempPath = Path.GetTempPath();
+                                     string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb2.S1;
+                                     FileStream fs;
+                                     fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                                     BinaryWriter bw = new BinaryWriter(fs);
+                                     bw.Write(tb2.picImage);
+                                     bw.Flush();
+                                     bw.Close();
+                                     fs.Close();
+                                     Image im = Bitmap.FromFile(tempfile);
+                                     Bitmap bt = new Bitmap(im);
+                                     if (bt.Width < width / 2)
+                                     {
+                                         activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - bt.Width / 2, oldShape.Top + oldShape.Height / 2 - bt.Height / 2, bt.Width, bt.Height);
+                                       
+
+                                     }
+                                     else
+                                     {
+                                         activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, oldShape.Top + oldShape.Height / 2 - bt.Height / 2, width / 2, bt.Height);
+                                        
+                                        
+                                     }
+                                     
+                                     
+                                 }
+                                 else
+                                 {
+                                     activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
+                                 }
+
+
+                             }
                              //activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart, fystart, gwidth, gheifht);
                              activShape.Fill.ForeColor.RGB = icolor;
                              if (itemp > 0)
