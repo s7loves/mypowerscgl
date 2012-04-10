@@ -73,7 +73,7 @@ namespace Ebada.Scgl.Yxgl
                 pj.gzrjID = pj.CreateID();
                 pj.GdsCode = obj.OrgCode;
                 pj.GdsName = obj.OrgName;
-                pj.CreateDate = DateTime.Now;
+                pj.CreateDate = obj.rq;
                 pj.CreateMan = MainHelper.User.UserName;
                 gzr.gzrjID = pj.gzrjID;
                 pj.rq = obj.rq;
@@ -97,8 +97,8 @@ namespace Ebada.Scgl.Yxgl
             gzr.fzr = obj.zcr;
 
             gzr.cjry = obj.zcr + "等" + gzr.cjry + "人";
-           
-            gzr.CreateDate = DateTime.Now;
+
+            gzr.CreateDate = obj.rq;
             gzr.CreateMan = MainHelper.User.UserName;
             gzr.fssj = obj.rq;
             MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);

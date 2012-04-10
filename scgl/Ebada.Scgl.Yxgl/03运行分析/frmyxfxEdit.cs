@@ -296,7 +296,7 @@ namespace Ebada.Scgl.Yxgl
                          pj.gzrjID = pj.CreateID();
                          pj.GdsCode = rowData.OrgCode;
                          pj.GdsName =rowData.OrgName;
-                         pj.CreateDate = DateTime.Now;
+                         pj.CreateDate = rowData.rq;
                          pj.CreateMan = MainHelper.User.UserName;
                          gzr.gzrjID = pj.gzrjID;
                          pj.rq = rowData.rq;
@@ -322,7 +322,7 @@ namespace Ebada.Scgl.Yxgl
                          if (ss.Length >= 1)
                          {
 
-                             gzr.cjry = ss[0] + "、" + ss[1];
+                             gzr.cjry = ss[0] + ss[1];
                              if (ss.Length > 2) gzr.cjry = gzr.cjry + "等";
                              gzr.cjry = gzr.cjry + ss.Length + "人";
                          }
