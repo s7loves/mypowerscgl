@@ -201,6 +201,7 @@ namespace Ebada.Scgl.Sbgl
             }
             newobj.gtID = parentID;
             //newobj.tqCode = newobj.tqID = getcode();
+            newobj.tqID = newobj.CreateID();  
             newobj.tqCode = getcode();
    
         }
