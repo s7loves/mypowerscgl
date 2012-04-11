@@ -730,7 +730,7 @@ namespace Ebada.Scgl.Yxgl
                                  }
                                  else
                                  {
-                                     PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '分支'");
+                                     PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '转角'");
                                      if (tb2 != null)
                                      {
 
