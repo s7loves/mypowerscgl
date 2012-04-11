@@ -249,6 +249,8 @@ namespace Ebada.Scgl.Yxgl
                    {
                        DSOFramerControl ds1 = new DSOFramerControl();
                        ds1.FileData = OBJECT.BigData;
+
+                       ds1.FileClose();
                       // ds1.FileOpen(ds1.FileName);
                        ExcelAccess ex = new ExcelAccess();
                      
@@ -256,8 +258,6 @@ namespace Ebada.Scgl.Yxgl
 
                        ex.Open(fname);
                        //此处写填充内容代码
-
-                       ds1.FileClose();
                        ex.ShowExcel();
                    }
                     else
@@ -284,15 +284,15 @@ namespace Ebada.Scgl.Yxgl
                     {
                         DSOFramerControl ds1 = new DSOFramerControl();
                         ds1.FileData = OBJECT.BigData;
+                        string fname = ds1.FileName;
                         // ds1.FileOpen(ds1.FileName);
+                        //此处写填充内容代码
+                        ds1.FileClose();
                         ExcelAccess ex = new ExcelAccess();
 
-                        string fname = ds1.FileName;
 
                         ex.Open(fname);
-                        //此处写填充内容代码
 
-                        ds1.FileClose();
                         ex.ShowExcel();
                     }
                     else
