@@ -60,7 +60,15 @@ namespace Ebada.Scgl.Sbgl
         #endregion
         private void InitComboBoxData()
         {
-           
+
+
+            comboBoxEdit4.Properties.Items.Clear();
+            comboBoxEdit4.Properties.Items.Add("片");
+            comboBoxEdit4.Properties.Items.Add("付");
+            comboBoxEdit4.Properties.Items.Add("个");
+            comboBoxEdit4.Properties.Items.Add("块");
+            comboBoxEdit4.Properties.Items.Add("条");
+            comboBoxEdit4.Properties.Items.Add("根");
         }
         private void labelControl1_Click(object sender, EventArgs e)
         {

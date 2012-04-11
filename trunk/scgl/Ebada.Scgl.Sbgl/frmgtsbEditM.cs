@@ -78,8 +78,8 @@ namespace Ebada.Scgl.Sbgl
 
             //SetComboBoxData(comboBoxEdit2, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh"));
             //comboBoxEdit2.EditValueChanged += new EventHandler(comboBoxEdit2_EditValueChanged);
-            SetComboBoxData(repositoryItemLookUpEdit1, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh"));
-            repositoryItemLookUpEdit1.EditValueChanged += new EventHandler(repositoryItemLookUpEdit1_EditValueChanged);
+            //SetComboBoxData(repositoryItemLookUpEdit1, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh"));
+            //repositoryItemLookUpEdit1.EditValueChanged += new EventHandler(repositoryItemLookUpEdit1_EditValueChanged);
         }
 
         void repositoryItemLookUpEdit1_EditValueChanged(object sender, EventArgs e) {
@@ -258,16 +258,16 @@ namespace Ebada.Scgl.Sbgl
         private void frmgtsbEditM_Load(object sender, EventArgs e)
         {
             comboBoxEdit12.Properties.Items.Clear();
-            comboBoxEdit12.Properties.NullText="请选择";
+            comboBoxEdit12.Properties.NullText = "请选择";
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                 "select zl from PS_gtsbclb where ParentID not in (select id from PS_gtsbclb where 1=1)  ");
 
             comboBoxEdit12.Properties.Items.AddRange(mclist);
 
-            //IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            //string.Format("select distinct mc from PS_sbcs"));
-            //if (strlist.Count > 0)
-            //    repositoryItemComboBox1.Properties.Items.AddRange(strlist);
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select distinct mc from PS_sbcs"));
+            if (strlist.Count > 0)
+                repositoryItemComboBox1.Properties.Items.AddRange(strlist);
         }
 
         private void comboBoxEdit12_SelectedIndexChanged(object sender, EventArgs e)
@@ -321,6 +321,12 @@ namespace Ebada.Scgl.Sbgl
             DataRow dr = gridView1.GetFocusedDataRow();
             dr["sbgg"] = ((ComboBoxEdit)sender).EditValue;
             PS_sbcs sbcs = MainHelper.PlatformSqlMap.GetOne<PS_sbcs>(" where mc='" + dr["name"] + "' and xh='" + dr["sbgg"] + "'");
+            if (sbcs != null)
+            {
+
+                dr["code"] = sbcs.bh + "001";
+                dr["type"] = dr["code"];
+            }
         }
     
     }
