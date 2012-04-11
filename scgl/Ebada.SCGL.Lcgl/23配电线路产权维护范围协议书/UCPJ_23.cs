@@ -366,14 +366,14 @@ namespace Ebada.Scgl.Lcgl
                 {
                     DSOFramerControl ds1 = new DSOFramerControl();
                     ds1.FileData = OBJECT.BigData;
+                    string fname = ds1.FileName;
+                    ds1.FileClose();
                     // ds1.FileOpen(ds1.FileName);
                     ExcelAccess ex = new ExcelAccess();
 
-                    string fname = ds1.FileName;
 
                     ex.Open(fname);
                     //此处写填充内容代码
-                    ds1.FileClose();
                     ex.ShowExcel();
                 }
                 else

@@ -419,8 +419,8 @@ namespace Ebada.Scgl.Core {
                     Application.DoEvents();
                     //PostMessage(d, &H10, 0&, 0&);
 
-                    if (strfile.IndexOf(TempPath) > -1)
-                    File.Delete(strfile);
+                    //if (strfile.IndexOf(TempPath) > -1)
+                    //File.Delete(strfile);
                 }
                 catch { }
             }

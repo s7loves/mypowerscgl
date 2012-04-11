@@ -666,7 +666,7 @@ namespace Ebada.Scgl.Lpgl {
                     ds1.FileDataGzip = currRecord.DocContent ;
                     //ds1.FileOpen(ds1.FileName);
                     ds1.FileSave(fname,true);
-                    
+                    ds1.FileClose();
                     ExcelAccess ea = new ExcelAccess();
                     ea.Open(fname);
                     char pchar = '|';
