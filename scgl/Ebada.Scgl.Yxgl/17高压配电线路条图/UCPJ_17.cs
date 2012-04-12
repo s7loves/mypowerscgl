@@ -341,6 +341,8 @@ namespace Ebada.Scgl.Yxgl
                  int kgRowCount = 1;
                  int lxRowCount = 1;
                  int jstart = 3;
+                  double dc=0;
+                 string strfx = "";
                  Excel.Range range;
                  for (i = 1; i < gtlis.Count; i++)
                  {
@@ -433,9 +435,9 @@ namespace Ebada.Scgl.Yxgl
                      IList ilisttemp = null;
                      //if (hdobj.Count < 3)
                      //{
-                     //   hdobj.Add("横担1");
-                     //   hdobj.Add("横担2");
-                     //   hdobj.Add("横担3");
+                     //    hdobj.Add("横担1");
+                     //    hdobj.Add("横担2");
+                     //    hdobj.Add("横担3");
                      //}
                      //if (jyuzlist.Count < 9)
                      //{
@@ -484,7 +486,7 @@ namespace Ebada.Scgl.Yxgl
                      //{
                      //    lxlist.Add("lxlist1");
                      //    lxlist.Add("lxlist2");
-                     //    lxlist.Add("kglist3");
+                     //    lxlist.Add("lxlist3");
                      //}
 
 
@@ -499,7 +501,7 @@ namespace Ebada.Scgl.Yxgl
                          if (i != 1 && i < gtlis.Count - 1)
                          {
                              
-                             string strfx = "";
+                             
                              decimal[,] a1 = new decimal[1, 2];
                              decimal[,] a2 = new decimal[1, 2];
                              a1[0, 0] = gtlis[i].gtLat - gtlis[i - 1].gtLat;
@@ -510,7 +512,7 @@ namespace Ebada.Scgl.Yxgl
                              decimal di = a1[0, 0] * a2[0, 0] + a1[0, 1] * a2[0, 1];
                              double dl = Math.Sqrt(Convert.ToDouble(a1[0, 0] * a1[0, 0] + a1[0, 1] * a1[0, 1]) * Math.Sqrt(Convert.ToDouble(
                                  a2[0, 0] * a2[0, 0] + a2[0, 1] * a2[0, 1])));
-                             double dc = Math.Round(180 * Math.Acos(Convert.ToDouble(di) / Convert.ToDouble(dl)) / 3.1415926, 0);
+                             dc = Math.Round(180 * Math.Acos(Convert.ToDouble(di) / Convert.ToDouble(dl)) / 3.1415926, 0);
                              if (gtlis[i].gtLon > gtlis[i - 1].gtLon)
                              {
                                  strfx = "右转";
@@ -542,24 +544,70 @@ namespace Ebada.Scgl.Yxgl
                      //电杆种类/杆型
                      if (gtobj != null)
                      {
-                         if (gtobj.gtType+"/" +gtobj.gtModle == "混凝土拔梢杆/直线杆")
+                         string strtype = "", strzj = "";
+                         if (gtobj.gtType.IndexOf("混凝土拔梢杆") > -1)
                          {
-                             ex.SetCellValue("砼/直", ihang, jlie);
+                             strtype = "砼";
+                         }
+                         if (gtobj.gtModle.IndexOf("直线杆") > -1)
+                         {
+                             strzj = "直";
                          }
                          else
-                             if (gtobj.gtModle == ("直线杆"))
+                             if (gtobj.gtModle.IndexOf("分支杆") > -1)
                              {
-                                 ex.SetCellValue("直", ihang, jlie);
+                                 strzj = "分";
                              }
                              else
-                                 if (gtobj.gtType.IndexOf("混凝土") > -1)
+                                 if (gtobj.gtModle.IndexOf("转角杆") > -1)
                                  {
-                                     ex.SetCellValue("砼" + gtobj.gtModle, ihang, jlie);
+                                     strzj = "转";
                                  }
                                  else
-                                 {
-                                     ex.SetCellValue(gtobj.gtType+"/"+gtobj.gtModle, ihang, jlie);
-                                 }
+                                     if (gtobj.gtModle.IndexOf("耐张杆") > -1)
+                                     {
+                                         strzj = "耐";
+                                     }
+                                     else
+                                         if (gtobj.gtModle.IndexOf("终端杆") > -1)
+                                         {
+                                             strzj = "终";
+                                         }
+                         //if (gtobj.gtType+"/" +gtobj.gtModle == "混凝土拔梢杆/直线杆")
+                         //{
+                         //    ex.SetCellValue("砼/直", ihang, jlie);
+                         //}
+                         //else
+                         //    if (gtobj.gtModle == ("直线杆"))
+                         //    {
+                         //        ex.SetCellValue("直", ihang, jlie);
+                         //    } 
+                         //else if (gtobj.gtType + "/" + gtobj.gtModle == "混凝土拔梢杆/直线杆")
+                         //{
+                         //    ex.SetCellValue("砼/直", ihang, jlie);
+                         //}
+                         //else
+                         //    if (gtobj.gtModle == ("直线杆"))
+                         //    {
+                         //        ex.SetCellValue("直", ihang, jlie);
+                         //    }
+                         //    else
+                         //        if (gtobj.gtType.IndexOf("混凝土") > -1)
+                         //        {
+                         //            ex.SetCellValue("砼" + gtobj.gtModle, ihang, jlie);
+                         //        }
+                         //        else
+                         //        {
+                         //            ex.SetCellValue(gtobj.gtType+"/"+gtobj.gtModle, ihang, jlie);
+                         //        }
+                         if (strtype != "" && strzj!="")
+                         {
+                             ex.SetCellValue(strtype + "/" + strzj, ihang, jlie);
+                         }
+                         else
+                         {
+                             ex.SetCellValue(gtobj.gtType + "/" + gtobj.gtModle, ihang, jlie);
+                         }
                      }
                      ihang++;
                      //导线排列方式
@@ -686,7 +734,7 @@ namespace Ebada.Scgl.Yxgl
                              {
                                  sum += Convert.ToDouble(gttemp.gtSpan);
                              }
-                             if (i < gtlis.Count)
+                             if (i < gtlis.Count-1)
                              {
                                  if (item % jmax == 1 && ista != item)
                                  {
@@ -695,7 +743,7 @@ namespace Ebada.Scgl.Yxgl
                              }
                              else
                              {
-                                 if (item % jmax == 1 && ista != item)
+                                 if (item % jmax == 1 )
                                  {
                                      break;
                                  }
@@ -730,7 +778,7 @@ namespace Ebada.Scgl.Yxgl
                                  }
                                  else
                                  {
-                                     PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '转角'");
+                                     PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '直角'");
                                      if (tb2 != null)
                                      {
 
@@ -745,15 +793,56 @@ namespace Ebada.Scgl.Yxgl
                                          fs.Close();
                                          Image im = Bitmap.FromFile(tempfile);
                                          Bitmap bt = new Bitmap(im);
+                                         decimal[,] a1 = new decimal[1, 2];
+                                         decimal[,] a2 = new decimal[1, 2];
+                                         if (item + itemp < gtlis.Count)
+                                         {
+                                             a1[0, 0] = gtlis[item + itemp].gtLat - gtlis[item + itemp - 1].gtLat;
+                                             a1[0, 1] = gtlis[item + itemp].gtLon - gtlis[item + itemp - 1].gtLon;
+
+                                             a2[0, 0] = gtlis[item + itemp + 1].gtLat - gtlis[item + itemp].gtLat;
+                                             a2[0, 1] = gtlis[item + itemp + 1].gtLon - gtlis[item + itemp].gtLon;
+                                         }
+                                         decimal di = a1[0, 0] * a2[0, 0] + a1[0, 1] * a2[0, 1];
+                                         double dl = Math.Sqrt(Convert.ToDouble(a1[0, 0] * a1[0, 0] + a1[0, 1] * a1[0, 1]) * Math.Sqrt(Convert.ToDouble(
+                                             a2[0, 0] * a2[0, 0] + a2[0, 1] * a2[0, 1])));
+                                         dc = Math.Round(180 * Math.Acos(Convert.ToDouble(di) / Convert.ToDouble(dl)) / 3.1415926, 0);
+                                         if (gtlis[item + itemp].gtLon > gtlis[item + itemp - 1].gtLon)
+                                         {
+                                             strfx = "右转";
+                                         }
+                                         else
+                                         {
+                                             strfx = "左转";
+                                         }
                                          if (bt.Width < width / 2)
                                          {
                                              activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - bt.Width / 2, fystart + gheifht / 2 - bt.Height / 2, bt.Width, bt.Height);
-
+                                             if (strfx == "左转")
+                                             {
+                                                 if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                                                 activShape.Rotation = (float )(90-Convert.ToDouble(dc)) ;
+                                             }
+                                             else
+                                             {
+                                                 if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                                                     activShape.Rotation = (float)(90 + Convert.ToDouble(dc));
+                                             }
 
                                          }
                                          else
                                          {
                                              activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bt.Height / 2, width / 2, bt.Height);
+                                             if (strfx == "左转")
+                                             {
+                                                 if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                                                     activShape.Rotation =  (float)(90 - Convert.ToDouble(dc));
+                                             }
+                                             else
+                                             {
+                                                 if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                                                     activShape.Rotation = (float)(90 + Convert.ToDouble(dc));
+                                             }
 
                                          }
                                      }
@@ -914,13 +1003,20 @@ namespace Ebada.Scgl.Yxgl
                              {
                                  range = (Excel.Range)xx.get_Range(xx.Cells[ihang + lxRowCount, "A"], xx.Cells[ihang + lxRowCount, "A"]);
                                  range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+                                 //for (int item = 0; item < 29; item += 2)
+                                 //{
+                                 //    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j + 1, jstart + item], xx.Cells[ihang + j + 1, jstart + 1 + item]);
+                                 //    range.Merge(Type.Missing);
+                                 //}
+                             }
+                             for (int jtem = lxRowCount; jtem < lxlist.Count; jtem++)
+                             {
                                  for (int item = 0; item < 29; item += 2)
                                  {
-                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + 1, jstart + item], xx.Cells[ihang + 1, jstart+1 + item]);
+                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem , jstart + item], xx.Cells[ihang + jtem, jstart + item + 1]);
                                      range.Merge(Type.Missing);
                                  }
                              }
-
                              lxRowCount = lxlist.Count;
                              range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + lxRowCount - 1, 1]);
                              range.Merge(Type.Missing);
@@ -948,7 +1044,9 @@ namespace Ebada.Scgl.Yxgl
 
                                      range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jyzRowCount, "A"], xx.Cells[ihang + jyzRowCount, "A"]);
                                      range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-                                    
+
+                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j- 1, 2]);
+                                     range.Merge(Type.Missing);
                                  }
                                  for (int jtem = 0; jtem < jyuzlist.Count; jtem++)
                                  {
@@ -987,17 +1085,20 @@ namespace Ebada.Scgl.Yxgl
                              ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct byqModle from PS_tqbyq  Where tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')");
                              if (ilisttemp.Count > btRowCount)
                              {
-                                 for (j = btRowCount; j < btlist.Count; j++)
+                                 for (j = btRowCount; j < ilisttemp.Count; j++)
                                  {
                                      range = (Excel.Range)xx.get_Range(xx.Cells[ihang + btRowCount+1, "A"], xx.Cells[ihang + btRowCount+1, "A"]);
                                      range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+
+                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j+ 1, 2]);
+                                     range.Merge(Type.Missing);
                                     
                                  }
-                                 for (int jtem = 1; jtem < btlist.Count; jtem++)
+                                 for (int jtem = 1; jtem < ilisttemp.Count; jtem++)
                                  {
                                      for (int item = 0; item < 29; item += 2)
                                      {
-                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
+                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem + 1, jstart + item], xx.Cells[ihang + jtem + 1, jstart + item + 1]);
                                          range.Merge(Type.Missing);
                                      }
                                  }
@@ -1042,7 +1143,7 @@ namespace Ebada.Scgl.Yxgl
                      ihang += btRowCount+1;
 
                      //避雷器型号/数量
-                     if (blqlist != null && btlist.Count>0)
+                     if (blqlist != null && blqlist.Count > 0)
                      {
                         
                              if (blqlist.Count > blqRowCount)
@@ -1052,6 +1153,10 @@ namespace Ebada.Scgl.Yxgl
                                  {
                                      range = (Excel.Range)xx.get_Range(xx.Cells[ihang + blqRowCount, "A"], xx.Cells[ihang + blqRowCount, "A"]);
                                      range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+
+                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j- 1, 2]);
+                                     range.Merge(Type.Missing);
+
                                    
                                  }
                                  for (int jtem = 0; jtem < blqlist.Count; jtem++)
@@ -1088,7 +1193,11 @@ namespace Ebada.Scgl.Yxgl
                                  for (j = kgRowCount; j < kglist.Count; j++)
                                  {
                                      range = (Excel.Range)xx.get_Range(xx.Cells[ihang + kgRowCount, "A"], xx.Cells[ihang + kgRowCount, "A"]);
-                                     range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+                                     range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftDown, Type.Missing);
+
+                                     range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j - 1, 2]);
+                                     range.Merge(Type.Missing);
+
                                     
                                  }
                                  for (int jtem = 0; jtem < kglist.Count; jtem++)
@@ -1199,7 +1308,10 @@ namespace Ebada.Scgl.Yxgl
             catch (Exception ex)
             {
                 MsgBox.ShowException(ex);
-
+                if (ex.Message.IndexOf("无效") > -1)
+                {
+                    SelectorHelper.Execute("taskkill /im EXCEL.EXE /f");
+                }
             }
         }
         private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

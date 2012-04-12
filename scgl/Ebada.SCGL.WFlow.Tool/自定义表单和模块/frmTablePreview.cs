@@ -1761,7 +1761,7 @@ namespace Ebada.SCGL.WFlow.Tool
                                         strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
                                         break;
                                 }
-                                IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select ControlValue from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and WorkFlowInsId!='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' order by id desc", parentTemple.LPID));
+                                IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select ControlValue from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and  ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' order by id desc", parentTemple.LPID));
                                 if (kind == "yzgzp")
                                 {
                                     //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
