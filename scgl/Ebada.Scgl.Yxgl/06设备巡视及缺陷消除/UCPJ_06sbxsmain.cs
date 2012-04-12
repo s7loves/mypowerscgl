@@ -218,42 +218,72 @@ namespace Ebada.Scgl.Yxgl
             //}
             if (gridView1.FocusedRowHandle >= 0)
             {
+                bool xsmxflag = false; //是否有巡视的子表
                 frmExportYearSelect frm = new frmExportYearSelect();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("A", typeof(string));
+                dt.Columns.Add("B", typeof(bool));
                 if (frm.ShowDialog()==DialogResult.OK)
                 {
-                    DataRow[] dtcol = frm.DT1.Select("B=1");
+                    DataRow[] dtc = frm.DT1.Select("B=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[0].ToString();
+                        dr[1] = Convert.ToInt32(dr1[1]);
+                        dt.Rows.Add(dr);
+                    }
+                    dtc = frm.DT1.Select("D=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[2].ToString();
+                        dr[1] = Convert.ToInt32(dr1[3]);
+                        dt.Rows.Add(dr);
+                    }
+                    dtc = frm.DT1.Select("F=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[4].ToString();
+                        dr[1] = Convert.ToInt32(dr1[5]);
+                        dt.Rows.Add(dr);
+                    }
+
 
                     Dictionary<string, List<PJ_06sbxs>> diclist = new Dictionary<string, List<PJ_06sbxs>>();
                     PJ_06sbxs _pj = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_06sbxs;
                     //添加明细表的信息
                     IList<PJ_06sbxsmx> ilist = null;
-                    if (dtcol.Length==0)
+                    if (dt.Rows .Count== 0)
                     {
                        ilist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxsmx>(" where ParentID='" + _pj.ID + "' order by CreateDate desc");
                     }
                     else
                     {
                         string sely = "(";
-                        for (int i = 0; i < dtcol.Length; i++)
+                        for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            if (i < dtcol.Length - 1)
+                            if (i < dt.Rows.Count - 1)
                             {
-                                sely += "'" + dtcol[i][0].ToString() + "',";
+                                sely += "'" + dt.Rows[i][0].ToString() + "',";
                             }
                             else
-                                sely += "'" + dtcol[i][0].ToString() + "')";
+                                sely += "'" + dt.Rows[i][0].ToString() + "')";
 
                         }
                         ilist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxsmx>(" where ParentID='" + _pj.ID + "'and year(xssj) in"+sely+ "order by CreateDate desc");
                     }
                     if (ilist.Count == 0)
                     {
+                        xsmxflag = false;
                         List<PJ_06sbxs> lispj = new List<PJ_06sbxs>();
                         lispj.Add(_pj);
                         diclist[_pj.LineID] = lispj;
                     }
                     else
                     {
+                        xsmxflag = true;
                         List<PJ_06sbxs> lispj = new List<PJ_06sbxs>();
                         diclist[_pj.LineID] = lispj;
                         foreach (PJ_06sbxsmx pmx in ilist)
@@ -278,7 +308,7 @@ namespace Ebada.Scgl.Yxgl
                         List<PJ_06sbxs> objlist = pp.Value;
                         if (objlist.Count > 0)
                         {
-                            Export06.ExportExcel(objlist);
+                            Export06.ExportExcel(objlist,xsmxflag);
                         }
 
                     }

@@ -240,12 +240,37 @@ namespace Ebada.Scgl.Yxgl
             {
                 frmExportYearSelect frm = new frmExportYearSelect();
                 DataTable dt = new DataTable();
+                dt.Columns.Add("A", typeof(string));
+                dt.Columns.Add("B", typeof(bool));
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    dt = frm.DT1;
-                    DataRow[] dtc = dt.Select("B=1");
+                    //dt = frm.DT1;
+                    DataRow[] dtc = frm.DT1.Select("B=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[0].ToString();
+                        dr[1] = Convert.ToInt32(dr1[1]);
+                        dt.Rows.Add(dr);
+                    }
+                    dtc = frm.DT1.Select("D=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[2].ToString();
+                        dr[1] = Convert.ToInt32(dr1[3]);
+                        dt.Rows.Add(dr);
+                    }
+                    dtc = frm.DT1.Select("F=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[4].ToString();
+                        dr[1] = Convert.ToInt32(dr1[5]);
+                        dt.Rows.Add(dr);
+                    }
                     IList<PJ_14aqgjsy> pjlist = new List<PJ_14aqgjsy>();
-                    if (dtc.Length == 0)
+                    if (dt.Rows.Count == 0)
                     {
                         for (int i = 0; i < gridView1.RowCount; i++)
                         {
@@ -257,7 +282,7 @@ namespace Ebada.Scgl.Yxgl
                         for (int i = 0; i < gridView1.RowCount; i++)
                         {
                             PJ_14aqgjsy obj = gridView1.GetRow(i) as PJ_14aqgjsy;
-                            for (int j = 0; j < dtc.Length; j++)
+                            for (int j = 0; j < dt.Rows.Count; j++)
                             {
                                 if (Convert.ToInt32(dtc[j][0]) == obj.rq.Year)
                                 {
