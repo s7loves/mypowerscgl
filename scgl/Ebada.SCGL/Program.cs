@@ -52,8 +52,8 @@ namespace Ebada.SCGL
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             Application.ThreadExit += new EventHandler(Application_ThreadExit);
-            Application.Run(new frmMain2());
-            //Application.Run(new FrmSystem());
+            //Application.Run(new frmMain2());
+            Application.Run(new FrmSystem());
         }
 
         static void Application_ThreadExit(object sender, EventArgs e) {
