@@ -209,25 +209,51 @@ namespace Ebada.Scgl.Yxgl
             {
                 frmExportYearSelect frm = new frmExportYearSelect();
                 DataTable dt = new DataTable();
+                dt.Columns.Add("A", typeof(string));
+                dt.Columns.Add("B", typeof(bool));
                 if (frm.ShowDialog()==DialogResult.OK)
                 {
-                    dt = frm.DT1;
-                    DataRow[] dtc = dt.Select("B=1");
-                    if (dtc.Length == 0)
+                  
+                   // dt = frm.DT1;
+                    DataRow[] dtc = frm.DT1.Select("B=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[0].ToString();
+                        dr[1] = Convert.ToInt32(dr1[1]);
+                        dt.Rows.Add(dr);
+                    }
+                    dtc = frm.DT1.Select("D=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[2].ToString();
+                        dr[1] = Convert.ToInt32(dr1[3]);
+                        dt.Rows.Add(dr);
+                    }
+                    dtc = frm.DT1.Select("F=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[4].ToString();
+                        dr[1] = Convert.ToInt32(dr1[5]);
+                        dt.Rows.Add(dr);
+                    }
+                    if (dt.Rows.Count == 0)
                     {
                         Export05.ExportExcel(gridView1.GetFocusedRow() as PJ_05jcky);
                     }
                     else
                     {
                         string sely = "(";
-                        for (int i = 0; i < dtc.Length; i++)
+                        for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            if (i < dtc.Length - 1)
+                            if (i < dt.Rows.Count - 1)
                             {
-                                sely += "'" + dtc[i][0].ToString() + "',";
+                                sely += "'" + dt.Rows[i][0].ToString() + "',";
                             }
                             else
-                                sely += "'" + dtc[i][0].ToString() + "')";
+                                sely += "'" + dt.Rows[i][0].ToString() + "')";
 
                         }
                         Export05.ExportExcel(gridView1.GetFocusedRow() as PJ_05jcky, sely);

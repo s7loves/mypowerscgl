@@ -113,7 +113,7 @@ namespace Ebada.Scgl.Yxgl
             //需要初始化数据时在这写代码
             if (MainHelper.UserOrg != null)
             {
-                string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' order by id desc";
+                string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' order by tdsj desc";
                 RefreshData(strSQL);
             }
         }
@@ -173,7 +173,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' order by id desc");
+                    RefreshData(" where OrgCode='" + value + "' order by tdsj desc");
                 }
             }
         }
@@ -203,12 +203,38 @@ namespace Ebada.Scgl.Yxgl
             {
                 frmExportYearSelect frm = new frmExportYearSelect();
                 DataTable dt = new DataTable();
+                dt.Columns.Add("A", typeof(string));
+                dt.Columns.Add("B", typeof(bool));
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    dt = frm.DT1;
+                    //dt = frm.DT1;
                     IList<PJ_08sbtdjx> pjlist = new List<PJ_08sbtdjx>();
-                    DataRow[] dtc = dt.Select("B=1");
-                    if (dtc.Length == 0)
+                    DataRow[] dtc = frm.DT1.Select("B=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[0].ToString();
+                        dr[1] = Convert.ToInt32(dr1[1]);
+                        dt.Rows.Add(dr);
+                    }
+                    dtc = frm.DT1.Select("D=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[2].ToString();
+                        dr[1] = Convert.ToInt32(dr1[3]);
+                        dt.Rows.Add(dr);
+                    }
+                    dtc = frm.DT1.Select("F=1");
+                    foreach (DataRow dr1 in dtc)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dr1[4].ToString();
+                        dr[1] = Convert.ToInt32(dr1[5]);
+                        dt.Rows.Add(dr);
+                    };
+
+                    if (dt.Rows.Count == 0)
                     {
 
                         for (int i = 0; i < gridView1.RowCount; i++)
@@ -224,9 +250,9 @@ namespace Ebada.Scgl.Yxgl
                         {
                             PJ_08sbtdjx _pj = gridView1.GetRow(i) as PJ_08sbtdjx;
 
-                            for (int j = 0; j < dtc.Length; j++)
+                            for (int j = 0; j < dt.Rows.Count; j++)
                             {
-                                if (_pj.tdsj.Year == Convert.ToInt32(dtc[j][0]))
+                                if (_pj.tdsj.Year == Convert.ToInt32(dt.Rows[j][0]))
                                 {
                                     pjlist.Add(_pj);
                                 }

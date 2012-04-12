@@ -41,11 +41,29 @@ namespace Ebada.Scgl.Yxgl {
             PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + jl.LineID + "'");
             if (xl != null)
             {
-                ex.SetCellValue(xl.LineName, row + 3, col);
+                string sublinename = "";
+              string linename= andparentlinename(xl);
+                string[] fz=linename.Split(" ".ToCharArray());
+                if (fz.Length > 2)
+                {
+                    sublinename += fz[0]+" " +fz[1] + " " + fz[fz.Length - 1];
+                }
+                else
+                    sublinename = linename;
+                ex.SetCellValue(linename, row + 3, col+1);
             }
             else
             {
-                ex.SetCellValue(jl.kywz, row + 3, col);
+                string sublinename = "";
+                string linename = jl.kywz;
+                string[] fz = linename.Split(" ".ToCharArray());
+                if (fz.Length > 2)
+                {
+                    sublinename += fz[0] + " " + fz[1] + " " + fz[fz.Length - 1];
+                }
+                else
+                    sublinename = linename;
+                ex.SetCellValue(linename, row + 3, col+1);
             }
 
 
@@ -140,11 +158,29 @@ namespace Ebada.Scgl.Yxgl {
             PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + jl.LineID + "'");
             if (xl != null)
             {
-                ex.SetCellValue(xl.LineName, row + 3, col); 
+                string sublinename = "";
+                string linename = andparentlinename(xl);
+                string[] fz = linename.Split(" ".ToCharArray());
+                if (fz.Length > 2)
+                {
+                    sublinename += fz[0] + " " + fz[1] + " " + fz[fz.Length - 1];
+                }
+                else
+                    sublinename = linename;
+                ex.SetCellValue(linename, row + 3, col + 1);
             }
             else
             {
-                ex.SetCellValue(jl.kywz, row + 3, col);
+                string sublinename = "";
+                string linename = jl.kywz;
+                string[] fz = linename.Split(" ".ToCharArray());
+                if (fz.Length > 2)
+                {
+                    sublinename += fz[0] + " " + fz[1] + " " + fz[fz.Length - 1];
+                }
+                else
+                    sublinename = linename;
+                ex.SetCellValue(linename, row + 3, col + 1);
             }
 
             
@@ -205,6 +241,22 @@ namespace Ebada.Scgl.Yxgl {
 
             ex.ShowExcel();
 
+        }
+
+      private static string andparentlinename(PS_xl xl)
+        {
+            string linename = "";
+            PS_xl xl1 = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where lineid='" + xl.ParentID + "'");
+          if (xl1==null)
+          {
+           linename=xl.LineName;
+          }
+          else
+          {
+              linename += andparentlinename(xl1)+" ";
+              linename += xl.LineName;
+          }
+          return linename;
         }
 
     }

@@ -48,7 +48,7 @@ namespace Ebada.Scgl.Yxgl {
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(IList<PJ_06sbxs> objlist) 
+        public static void ExportExcel(IList<PJ_06sbxs> objlist,bool xsmxflag) 
         {
             //lgm
             ExcelAccess ex = new ExcelAccess();
@@ -84,9 +84,13 @@ namespace Ebada.Scgl.Yxgl {
                     }
                     PJ_06sbxs tempobj = objlist[p * 9 + i];
                     //巡视时间
-                    ex.SetCellValue(tempobj.xssj.Year.ToString(), row + i * len1, 1);
-                    ex.SetCellValue(tempobj.xssj.Month.ToString(), row + i * len1, 2);
-                    ex.SetCellValue(tempobj.xssj.Day.ToString(), row + i * len1, 3);
+                    if (xsmxflag)
+                    {
+                        ex.SetCellValue(tempobj.xssj.Year.ToString(), row + i * len1, 1);
+                        ex.SetCellValue(tempobj.xssj.Month.ToString(), row + i * len1, 2);
+                        ex.SetCellValue(tempobj.xssj.Day.ToString(), row + i * len1, 3);
+                    }
+                    
                     //缺陷内容
                     List<string> tempstr = Ecommon.ResultStrList(tempobj.qxnr, zc);
                     if (tempstr.Count >= 1)
