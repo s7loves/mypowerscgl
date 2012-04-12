@@ -7,7 +7,7 @@ using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Core
 {
-    public class LineAnaly
+    public class LineAnaly 
     {     
         
         private decimal lossRate=0;//线损率
