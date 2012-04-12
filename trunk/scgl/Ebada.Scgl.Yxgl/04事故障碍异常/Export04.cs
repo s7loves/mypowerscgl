@@ -80,26 +80,66 @@ namespace Ebada.Scgl.Yxgl
            
             //string hdstr = Ecommon.Comparestring(obj.hdnr, "活动内容") ? "" : "活动内容：";
             //List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.clqk, zc, 8);
+            string jd1 = "";
+            string jd2 = "";
+            bool flag = true;
+            if (sgzyc.Contains("处理人"))
+            {
 
+                jd1 = sgzyc.Substring(0, sgzyc.LastIndexOf("处理人"));
+                jd2 = sgzyc.Substring(sgzyc.LastIndexOf("处理人"));
+            }
+            else
+                jd1 = sgzyc;
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    string tempstr = "";
+            //    int startnum = i * zc;
+            //    int endnum = (i + 1) * zc;
+            //    bool ISempty = false;
+            //    if (startnum >= sgzyc.Length)
+            //    {
+            //        ISempty = true;
+            //    }
+            //    else if (endnum >= sgzyc.Length)
+            //    {
+            //        endnum = sgzyc.Length;
+            //    }
+            //    if (!ISempty)
+            //    {
+            //        tempstr = sgzyc.Substring(startnum, endnum - startnum);
+            //    }
+            //    ex.SetCellValue(tempstr, 9 + i, 1);
+            //}
             for (int i = 0; i < 4; i++)
             {
                 string tempstr = "";
                 int startnum = i * zc;
                 int endnum = (i + 1) * zc;
                 bool ISempty = false;
-                if (startnum >= sgzyc.Length)
+                if (sgzyc.Length>3*zc)
+                {
+                    jd1 = sgzyc;
+                }
+                else if (sgzyc.Length<=3 * zc&&!string.IsNullOrEmpty(jd2))
+                {
+                    ex.SetCellValue(jd2, 12, 1);
+                }
+                if (startnum >= jd1.Length)
                 {
                     ISempty = true;
+                   
                 }
-                else if (endnum >= sgzyc.Length)
+                else if (endnum >= jd1.Length)
                 {
-                    endnum = sgzyc.Length;
+                    endnum = jd1.Length;
                 }
                 if (!ISempty)
                 {
-                    tempstr = sgzyc.Substring(startnum, endnum - startnum);
+                    tempstr = jd1.Substring(startnum, endnum - startnum);
+                    ex.SetCellValue(tempstr, 9 + i, 1);
                 }
-                ex.SetCellValue(tempstr, 9 + i, 1);
+                
             }
             //主要原因分析
            
