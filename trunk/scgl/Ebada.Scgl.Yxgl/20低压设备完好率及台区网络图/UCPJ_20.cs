@@ -140,9 +140,9 @@ namespace Ebada.Scgl.Yxgl
             //需要隐藏列时在这写代码
             hideColumn("ParentID");
             hideColumn("gzrjID"); 
-            picview = new DevExpress.XtraGrid.Columns.GridColumn();
-            picview.Caption = "查看";
-            picview.Visible = true;
+            //picview = new DevExpress.XtraGrid.Columns.GridColumn();
+            //picview.Caption = "查看";
+            //picview.Visible = true;
 
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -152,14 +152,14 @@ namespace Ebada.Scgl.Yxgl
             this.repositoryItemHyperLinkEdit1.Caption = "查看";
             this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
             this.repositoryItemHyperLinkEdit1.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit1_Click);
-            this.picview.Caption = "查看网络图";
-            this.picview.ColumnEdit = this.repositoryItemHyperLinkEdit1;
-            this.picview.VisibleIndex = 3;
-            picview.FieldName = "Image";
-            gridView1.Columns.Add(picview);
+            this.gridView1.Columns["Image"].Caption = "查看网络图";
+            this.gridView1.Columns["Image"].ColumnEdit = this.repositoryItemHyperLinkEdit1;
+            this.gridView1.Columns["Image"].VisibleIndex = 3;
+            this.gridView1.Columns["Image"].FieldName = "Image";
+           
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
 
-            gridView1.Columns.Add(picview);
+           
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
         }

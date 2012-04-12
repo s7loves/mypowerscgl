@@ -27,7 +27,28 @@ namespace Ebada.Scgl.Yxgl {
             saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
+                LP_Temple lp2 = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
+                WF_TableFieldValue wfv = new WF_TableFieldValue();
+                //wfv.ID = wfv.CreateID();
+                //wfv.WorkFlowId = tqCode;
+                //wfv.WorkTaskId = "20低压设备完好率及台区网络图";
+                //wfv.WorkTaskInsId = "20低压设备完好率及台区网络图";
+                //wfv.UserControlId = parentTemple.LPID;
+                //wfv.ControlValue = "";
+                //wfv.FieldId = lp2.LPID;
 
+                if (orgid != "")
+                    wfv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
+                                     + " and   WorkflowId like '" + orgid + "%'"
+                                     + " and   UserControlId='" + parentTemple.LPID + "'"
+                                     + " and   fieldname='" + lp2.CellName + "'"
+                                     + " and   FieldId='" + lp2.LPID + "' and Bigdata is not null"
+                                    );
+                else
+                {
+                    wfv = null;
+                }
                 DSOFramerControl ds1 = new DSOFramerControl();
                
                 fname = saveFileDialog1.FileName;
@@ -35,10 +56,13 @@ namespace Ebada.Scgl.Yxgl {
                 {
                     ;
                     IList<LP_Temple> templeList = null;
-                    LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where   ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
+                    parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where   ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
                     if (parentTemple != null)
                     {
-                        ds1.FileDataGzip = parentTemple.DocContent;
+                        if (wfv != null && wfv.Bigdata != null && wfv.Bigdata.Length > 0)
+                            ds1.FileDataGzip = wfv.Bigdata;
+                        else
+                            ds1.FileDataGzip = parentTemple.DocContent;
                         Excel.Workbook wb = ds1.AxFramerControl.ActiveDocument as Excel.Workbook;
                         ExcelAccess ea = new ExcelAccess();
                         ea.MyWorkBook = wb;
@@ -47,7 +71,7 @@ namespace Ebada.Scgl.Yxgl {
                         templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
                             "where ParentID ='" + parentTemple.LPID + "' order by SortID");
 
-                        string valEX = @"[0-9]+(\.)?[0-9]+";//只允许整数或小数的正则表达式
+                        string valEX = @"[0-9]+(\.)?([0-9]+)?";//只允许整数或小数的正则表达式
                         int i = 0;
                         ArrayList al = new ArrayList();
                         Excel.Worksheet xx;
@@ -82,10 +106,7 @@ namespace Ebada.Scgl.Yxgl {
                         }
                         foreach (LP_Temple lp in templeList)
                         {
-                            IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
-                            " where   UserControlId='" + parentTemple.LPID + "'  and WorkTaskInsId='20低压设备完好率及台区网络图'"
-                            + " and  FieldId='" + lp.LPID + "' " + strtqcode
-                            + " order by YExcelPos");
+                           
                             object obj = null;
                             double sum = 0;
                             int idw = 1;
@@ -93,6 +114,16 @@ namespace Ebada.Scgl.Yxgl {
                             {
                                 continue;
                             }
+                            if ((lp.CellName.IndexOf("补偿电容") > -1 || lp.CellName.IndexOf("电动机") > -1 || lp.CellName.Trim().IndexOf("机井") > -1
+                                || lp.CellName.IndexOf("农副业") > -1 || lp.CellName.IndexOf("照明户数") > -1
+                                || lp.CellName.IndexOf("单相表数") > -1 || lp.CellName.IndexOf("三相表数") > -1) == false)
+                            {
+                                continue;
+                            }
+                            IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                           " where   UserControlId='" + parentTemple.LPID + "'  and WorkTaskInsId='20低压设备完好率及台区网络图'"
+                           + " and  FieldId='" + lp.LPID + "' " + strtqcode
+                           + " order by YExcelPos");
 
                             foreach (WF_TableFieldValue tfv in tfvli)
                             {
@@ -113,7 +144,7 @@ namespace Ebada.Scgl.Yxgl {
 
                                 if (tfv.FieldName.IndexOf("时间") == -1 && lp.IsVisible == 0)
                                 {
-                                    valEX = "^[0-9]+(\\.)?[0-9]+";
+                                    valEX = "^[0-9]+(\\.)?([0-9]+)?";
                                     if (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value != "")
                                     {
                                         if (tfv.ControlValue == "")
@@ -189,16 +220,36 @@ namespace Ebada.Scgl.Yxgl {
             saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
+                LP_Temple lp2 = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
+                WF_TableFieldValue wfv = new WF_TableFieldValue();
+                    //wfv.ID = wfv.CreateID();
+                    //wfv.WorkFlowId = tqCode;
+                    //wfv.WorkTaskId = "20低压设备完好率及台区网络图";
+                    //wfv.WorkTaskInsId = "20低压设备完好率及台区网络图";
+                    //wfv.UserControlId = parentTemple.LPID;
+                    //wfv.ControlValue = "";
+                    //wfv.FieldId = lp2.LPID;
+                
 
+                wfv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
+                                 + " and   WorkflowId='" + tqCode + "'"
+                                 + " and   UserControlId='" + parentTemple.LPID + "'"
+                                 + " and   fieldname='" + lp2.CellName + "'"
+                                 + " and   FieldId='" + lp2.LPID + "' and Bigdata is not null"
+                                );
                 DSOFramerControl ds1 = new DSOFramerControl();
                 fname = saveFileDialog1.FileName;
                 try
                 {;
                 IList<LP_Temple> templeList = null;
-                LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
-                    if (parentTemple != null)
+                 //parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
+                if (parentTemple != null)
                     {
-                        ds1.FileDataGzip = parentTemple.DocContent;
+                        if (wfv != null && wfv.Bigdata != null && wfv.Bigdata.Length > 0)
+                        ds1.FileDataGzip = wfv.Bigdata;
+                        else
+                            ds1.FileDataGzip = parentTemple.DocContent ;
                         Excel.Workbook wb = ds1.AxFramerControl.ActiveDocument as Excel.Workbook;
                         ExcelAccess ea = new ExcelAccess();
                         ea.MyWorkBook = wb;
@@ -210,19 +261,15 @@ namespace Ebada.Scgl.Yxgl {
                         string valEX = @"[0-9]+(\.)?[0-9]+";//只允许整数或小数的正则表达式
                         int i=0;
                         ArrayList al = new ArrayList();
-                        Excel.Worksheet xx;
-                        for (i = 1; i <= wb.Application.Sheets.Count; i++)
-                        {
-                            xx = wb.Application.Sheets[i] as Excel.Worksheet;
-                            if (!al.Contains(xx.Name)) al.Add(xx.Name);
-                        }
-                        string activeSheetName = "";
+                        Excel.Worksheet xx=wb.ActiveSheet as Excel.Worksheet   ;
+                        //for (i = 1; i <= wb.Application.Sheets.Count; i++)
+                        //{
+                        //    xx = wb.Application.Sheets[i] as Excel.Worksheet;
+                        //    if (!al.Contains(xx.Name)) al.Add(xx.Name);
+                        //}
+                        string activeSheetName =xx.Name;
                         foreach (LP_Temple lp in templeList)
                         {
-                            IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
-                            " where   UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + tqCode + "' and WorkTaskInsId='20低压设备完好率及台区网络图'"
-                            + " and  FieldId='"+lp.LPID+"' "
-                            +" order by YExcelPos");
                             object obj = null;
                             double sum = 0;
                             int idw = 1;
@@ -230,6 +277,16 @@ namespace Ebada.Scgl.Yxgl {
                             {
                                 continue;
                             }
+                            if ((lp.CellName.IndexOf("补偿电容") > -1 || lp.CellName.IndexOf("电动机") > -1 || lp.CellName.Trim().IndexOf("机井") > -1
+                                || lp.CellName.IndexOf("农副业") > -1 || lp.CellName.IndexOf("照明户数") > -1
+                                || lp.CellName.IndexOf("单相表数") > -1 || lp.CellName.IndexOf("三相表数") > -1) == false)
+                            {
+                                continue;
+                            }
+                            IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                            " where   UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + tqCode + "' and WorkTaskInsId='20低压设备完好率及台区网络图'"
+                            + " and  FieldId='" + lp.LPID + "' "
+                            + " order by YExcelPos");
                          
                             foreach (WF_TableFieldValue tfv in tfvli)
                             {
@@ -250,7 +307,7 @@ namespace Ebada.Scgl.Yxgl {
 
                                 if (tfv.FieldName.IndexOf("时间") == -1&&lp.IsVisible==0)
                                 {
-                                    valEX = "^[0-9]+(\\.)?[0-9]+";
+                                    valEX = "^[0-9]+(\\.)?([0-9]+)?";
                                     if (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value!="")
                                     {
                                         if (tfv.ControlValue == "")
@@ -271,10 +328,7 @@ namespace Ebada.Scgl.Yxgl {
                                     break;
                                 }
                             }
-                            if (!al.Contains(lp.KindTable))
-                            {
-                                continue;
-                            }
+                          
                                
                                 if (activeSheetName != lp.KindTable)
                                 {
