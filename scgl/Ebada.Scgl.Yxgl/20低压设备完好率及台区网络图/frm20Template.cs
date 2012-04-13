@@ -969,20 +969,7 @@ namespace Ebada.Scgl.Yxgl
             PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
             int idw = 1;
             string valEX = @"[0-9]+(\.)?[0-9]+";//只允许整数或小数的正则表达式
-            WF_TableFieldValue tfvtemp = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(
-                              " where   UserControlId='" + parentTemple.LPID + "'"
-                              + " and   WorkflowId='" + tq.tqCode + "'"
-                              + " and   RecordId='" + currRecord.ID   + "'"
-                              + " and   FieldName='类型'"
-                              + " and WorkTaskInsId='20低压设备完好率及台区网络图'"
-                              + " order by YExcelPos");
-            if (tfvtemp != null && tfvtemp.ControlValue == "新增")
-                idw = 1;
-            else
-                if (tfvtemp != null && tfvtemp.ControlValue == "减少")
-                    idw = -1;
-                else
-                    idw = 1;
+            
             templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
                            "where ParentID ='" + parentTemple.LPID + "' order by SortID");
             foreach (LP_Temple lp2 in templeList)
@@ -993,6 +980,7 @@ namespace Ebada.Scgl.Yxgl
                 {
                     continue;
                 }
+               
                 IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                                 " where   UserControlId='" + parentTemple.LPID + "'  and WorkTaskInsId='20低压设备完好率及台区网络图'"
                                 + " and  FieldId='" + lp2.LPID + "' and ( WorkflowId='" + tq.tqCode + "') "
@@ -1002,6 +990,20 @@ namespace Ebada.Scgl.Yxgl
                 string value = "";
                 foreach (WF_TableFieldValue tfv in tfvli)
                 {
+                    WF_TableFieldValue tfvtemp = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(
+                                  " where   UserControlId='" + parentTemple.LPID + "'"
+                                  + " and   WorkflowId='" + tfv.WorkFlowId + "'"
+                                  + " and   RecordId='" + tfv.RecordId + "'"
+                                  + " and   FieldName='类型'"
+                                  + " and WorkTaskInsId='20低压设备完好率及台区网络图'"
+                                  + " order by YExcelPos");
+                    if (tfvtemp != null && tfvtemp.ControlValue == "新增")
+                        idw = 1;
+                    else
+                        if (tfvtemp != null && tfvtemp.ControlValue == "减少")
+                            idw = -1;
+                        else
+                            idw = 1;
                     if (tfv.FieldName.IndexOf("时间") == -1 && lp.IsVisible == 0)
                     {
                         valEX = "^[0-9]+(\\.)?([0-9]+)?$";
