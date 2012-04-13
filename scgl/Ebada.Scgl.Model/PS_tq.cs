@@ -467,7 +467,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：补偿电容
         /// 字段信息：[bcdr],nvarchar
         /// </summary>
-        [DisplayNameAttribute("补偿电容")]
+        [DisplayNameAttribute("补偿电容(型号/kvar)")]
         public string bcdr
         {
             get { return _bcdr; }
@@ -488,7 +488,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：电动机
         /// 字段信息：[ddj],nvarchar
         /// </summary>
-        [DisplayNameAttribute("电动机")]
+        [DisplayNameAttribute("电动机(台/kw)")]
         public string ddj
         {
             get { return _ddj; }
@@ -509,7 +509,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：机井
         /// 字段信息：[jj],nvarchar
         /// </summary>
-        [DisplayNameAttribute("机井")]
+        [DisplayNameAttribute("机井(眼/kw)")]
         public string jj
         {
             get { return _jj; }
@@ -530,7 +530,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：农副业
         /// 字段信息：[nfy],nvarchar
         /// </summary>
-        [DisplayNameAttribute("农副业")]
+        [DisplayNameAttribute("农副业(台/kw)")]
         public string nfy
         {
             get { return _nfy; }
@@ -551,7 +551,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：照明户数
         /// 字段信息：[zmfs],nvarchar
         /// </summary>
-        [DisplayNameAttribute("照明户数")]
+        [DisplayNameAttribute("照明户数(户/kw)")]
         public string zmfs
         {
             get { return _zmfs; }
