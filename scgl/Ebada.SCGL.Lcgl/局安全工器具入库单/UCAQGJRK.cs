@@ -387,6 +387,15 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("wpcj");
             gridView1.Columns["num"].Width = 150;
 
+            if ("rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(Ebada.Client.Platform.MainHelper.User.UserName))
+            {
+                barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
+
            
         }
         /// <summary>
@@ -711,6 +720,19 @@ namespace Ebada.Scgl.Lcgl
             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
             gridControl1.FindForm().Close();
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认清空所有数据，删除后不可恢复?") != DialogResult.OK)
+            {
+                //SendMessage(this.Handle, 0x0010, (IntPtr)0, (IntPtr)0);
+                return;
+            }
+            MainHelper.PlatformSqlMap.DeleteByWhere<PJ_anqgjcrkd>(" where 1=1");
+            RefreshData("where  1=1");
         }
 
       
