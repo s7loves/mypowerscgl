@@ -71,7 +71,7 @@ namespace Ebada.Scgl.Yxgl {
                         templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
                             "where ParentID ='" + parentTemple.LPID + "' order by SortID");
 
-                        string valEX = @"[0-9]+(\.)?([0-9]+)?";//只允许整数或小数的正则表达式
+                        string valEX = @"[0-9]+(\.)?([0-9]+)?$";//只允许整数或小数的正则表达式
                         int i = 0;
                         ArrayList al = new ArrayList();
                         Excel.Worksheet xx;
@@ -110,6 +110,7 @@ namespace Ebada.Scgl.Yxgl {
                             object obj = null;
                             double sum = 0;
                             int idw = 1;
+                            string value = "";
                             if (lp.isExplorer == 1)
                             {
                                 continue;
@@ -144,25 +145,46 @@ namespace Ebada.Scgl.Yxgl {
 
                                 if (tfv.FieldName.IndexOf("时间") == -1 && lp.IsVisible == 0)
                                 {
-                                    valEX = "^[0-9]+(\\.)?([0-9]+)?";
+                                    valEX = "^[0-9]+(\\.)?([0-9]+)?$";
                                     if (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value != "")
                                     {
                                         if (tfv.ControlValue == "")
                                             sum += 0;
                                         else
                                             sum += idw * Convert.ToDouble(tfv.ControlValue);
-                                        obj = sum;
+                                        value = sum.ToString();
                                     }
                                     else
                                     {
-                                        obj = tfv.ControlValue;
-                                        break;
+                                        valEX = "^[0-9]+(\\.)?([0-9]+)?/[0-9]+(\\.)?([0-9]+)?";
+                                        if (Regex.Match(tfv.ControlValue, valEX).Value != "")
+                                        {
+                                            string[] str1 = tfv.ControlValue.Split('/');
+                                            if (value == "")
+                                            {
+
+                                                value = (idw * Convert.ToDouble(str1[0])).ToString() + "/" + (idw * Convert.ToDouble(str1[1])).ToString();
+                                            }
+                                            else if (value.IndexOf('/')>-1)
+                                            {
+                                                string[] str2 = value.Split('/');
+                                                sum = idw * Convert.ToDouble(str1[0]) + Convert.ToDouble(str2[0]);
+                                                value = sum.ToString();
+                                                sum = idw * Convert.ToDouble(str1[1]) + Convert.ToDouble(str2[1]);
+                                                value = value + "/" + sum.ToString();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            value = tfv.ControlValue;
+                                        }
+                                       
                                     }
                                 }
                                 else
                                 {
-                                    obj = tfv.ControlValue;
-                                    break;
+                                    value = tfv.ControlValue;
+                                   
                                 }
                             }
                             if (!al.Contains(lp.KindTable))
@@ -185,8 +207,8 @@ namespace Ebada.Scgl.Yxgl {
 
                                 ea.ActiveSheet(xx.Index);
                             }
-                            if (obj != null && tfvli.Count > 0 && tfvli[0].XExcelPos > 0 && tfvli[0].XExcelPos > 0)
-                                ea.SetCellValue(obj.ToString(), tfvli[0].XExcelPos, tfvli[0].YExcelPos);
+                            if (value != null && tfvli.Count > 0 && tfvli[0].XExcelPos > 0 && tfvli[0].XExcelPos > 0)
+                                ea.SetCellValue("'" + value.ToString(), tfvli[0].XExcelPos, tfvli[0].YExcelPos);
 
 
 
@@ -258,7 +280,7 @@ namespace Ebada.Scgl.Yxgl {
                         templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
                             "where ParentID ='" + parentTemple.LPID + "' order by SortID");
                         
-                        string valEX = @"[0-9]+(\.)?[0-9]+";//只允许整数或小数的正则表达式
+                        string valEX = @"[0-9]+(\.)?[0-9]+$";//只允许整数或小数的正则表达式
                         int i=0;
                         ArrayList al = new ArrayList();
                         Excel.Worksheet xx=wb.ActiveSheet as Excel.Worksheet   ;
@@ -273,6 +295,7 @@ namespace Ebada.Scgl.Yxgl {
                             object obj = null;
                             double sum = 0;
                             int idw = 1;
+                            string value = "";
                             if (lp.isExplorer == 1)
                             {
                                 continue;
@@ -307,25 +330,46 @@ namespace Ebada.Scgl.Yxgl {
 
                                 if (tfv.FieldName.IndexOf("时间") == -1&&lp.IsVisible==0)
                                 {
-                                    valEX = "^[0-9]+(\\.)?([0-9]+)?";
+                                    valEX = "^[0-9]+(\\.)?([0-9]+)?$";
                                     if (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value!="")
                                     {
                                         if (tfv.ControlValue == "")
                                             sum += 0;
                                         else
                                             sum += idw * Convert.ToDouble(tfv.ControlValue);
-                                        obj = sum;
+                                        value = sum.ToString();
                                     }
                                     else
                                     {
-                                        obj = tfv.ControlValue;
-                                        break;
+                                        valEX = "^[0-9]+(\\.)?([0-9]+)?/[0-9]+(\\.)?([0-9]+)?";
+                                        if (Regex.Match(tfv.ControlValue, valEX).Value != "")
+                                        {
+                                            string[] str1 = tfv.ControlValue.Split('/');
+                                            if (value == "")
+                                            {
+
+                                                value = (idw * Convert.ToDouble(str1[0])).ToString() + "/" + (idw * Convert.ToDouble(str1[1])).ToString();
+                                            }
+                                            else if (value.IndexOf('/')>-1)
+                                            {
+                                                string[] str2 = value.Split('/');
+                                                sum = idw * Convert.ToDouble(str1[0]) + Convert.ToDouble(str2[0]);
+                                                value = sum.ToString();
+                                                sum = idw * Convert.ToDouble(str1[1]) + Convert.ToDouble(str2[1]);
+                                                value = value + "/" + sum.ToString();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            value = tfv.ControlValue;
+                                        }
+                                        
                                     }
                                 }
                                 else
                                 {
-                                    obj = tfv.ControlValue;
-                                    break;
+                                    value = tfv.ControlValue;
+                                   
                                 }
                             }
                           
@@ -345,8 +389,8 @@ namespace Ebada.Scgl.Yxgl {
 
                                     ea.ActiveSheet(xx.Index);
                                 }
-                                if (obj != null && tfvli.Count > 0 && tfvli[0].XExcelPos > 0 && tfvli[0].XExcelPos>0)
-                                    ea.SetCellValue(obj.ToString(), tfvli[0].XExcelPos, tfvli[0].YExcelPos);
+                                if (value != null && tfvli.Count > 0 && tfvli[0].XExcelPos > 0 && tfvli[0].XExcelPos > 0)
+                                    ea.SetCellValue("'"+value.ToString(), tfvli[0].XExcelPos, tfvli[0].YExcelPos);
 
                                        
 
