@@ -999,60 +999,83 @@ namespace Ebada.Scgl.Yxgl
                                 + " order by YExcelPos");
                 object obj = null;
                 double sum = 0;
-
+                string value = "";
                 foreach (WF_TableFieldValue tfv in tfvli)
                 {
                     if (tfv.FieldName.IndexOf("时间") == -1 && lp.IsVisible == 0)
                     {
-                        valEX = "^[0-9]+(\\.)?([0-9]+)?";
+                        valEX = "^[0-9]+(\\.)?([0-9]+)?$";
                         if (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value != "")
                         {
                             if (tfv.ControlValue == "")
                                 sum += 0;
                             else
                                 sum += idw * Convert.ToDouble(tfv.ControlValue);
-                            obj = sum;
+                            value = sum.ToString();
                         }
                         else
                         {
-                            obj = tfv.ControlValue;
-                            break;
+                            valEX = "^[0-9]+(\\.)?([0-9]+)?/[0-9]+(\\.)?([0-9]+)?";
+                            if (Regex.Match(tfv.ControlValue, valEX).Value != "")
+                            {
+                                string[] str1 = tfv.ControlValue.Split('/');
+                                if (value == "")
+                                {
+
+                                    value = (idw * Convert.ToDouble(str1[0])).ToString() + "/" + (idw * Convert.ToDouble(str1[1])).ToString();
+                                }
+                                else
+                                {
+                                    string[] str2 = value.Split('/');
+                                    sum = idw * Convert.ToDouble(str1[0]) + Convert.ToDouble(str2[0]);
+                                    value = sum.ToString();
+                                    sum = idw * Convert.ToDouble(str1[1]) + Convert.ToDouble(str2[1]);
+                                    value = value + "/" + sum.ToString();
+                                }
+                            }
+                            else
+                            {
+                                value = tfv.ControlValue;
+                            }
+                            
+                           
                         }
                     }
                     else
                     {
-                        obj = tfv.ControlValue;
-                        break;
+                        value = tfv.ControlValue;
+                        
                     }
                 }
+               
                 if (lp2.CellName.IndexOf("补偿电容") > -1 )
                 {
-                    tq.bcdr = sum.ToString();
+                    tq.bcdr = value.ToString();
                 }
                 if ( lp2.CellName.IndexOf("电动机") > -1 )
                 {
 
-                    tq.ddj  = sum.ToString();
+                    tq.ddj = value.ToString();
                 }
                 if ( lp2.CellName.Trim().IndexOf("机井") > -1)
                 {
-                    tq.jj  = sum.ToString();
+                    tq.jj = value.ToString();
                 }
                 if ( lp2.CellName.IndexOf("农副业") > -1 )
                 {
-                    tq.nfy  = sum.ToString();
+                    tq.nfy = value.ToString();
                 }
                 if (lp2.CellName.IndexOf("照明户数") > -1)
                 {
-                    tq.zmfs  = sum.ToString();
+                    tq.zmfs = value.ToString();
                 }
                 if (lp2.CellName.IndexOf("单相表数") > -1 )
                 {
-                    tq.dxbs = sum.ToString();
+                    tq.dxbs = value.ToString();
                 }
                 if (lp2.CellName.IndexOf("三相表数") > -1)
                 {
-                    tq.sxbs  = sum.ToString();
+                    tq.sxbs = value.ToString();
                 }
             }
             Client.ClientHelper.PlatformSqlMap.Update<PS_tq>(tq); 
