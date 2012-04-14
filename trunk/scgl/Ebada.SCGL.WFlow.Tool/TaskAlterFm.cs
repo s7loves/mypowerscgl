@@ -2979,11 +2979,16 @@ namespace Ebada.SCGL.WFlow.Tool
         private void cbxWorkDataTable_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxWorkDataTable.SelectedIndex == 0) return;
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList",
-                "where UserControlId ='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' and WorktaskId='" + NowTask.TaskId + "'");
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList",
+                "where ParentID ='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' order by sortid");
             DataTable dt = new DataTable();
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxWorkTableColumns, dt, "FieldId", "FieldName");
+            for (int i = 0; i < dt.Rows.Count && li.Count > 0; i++)
+            {
+                dt.Rows[i]["cellname"] = dt.Rows[i]["SortID"] + " " + dt.Rows[i]["cellname"];
+
+            }
+            WinFormFun.LoadComboBox(cbxWorkTableColumns, dt, "LPID", "cellname");
             cbxWorkTableColumns.SelectedIndex = 0;
         }
 
