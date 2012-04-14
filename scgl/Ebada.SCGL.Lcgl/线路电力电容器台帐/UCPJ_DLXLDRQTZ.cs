@@ -182,6 +182,7 @@ namespace Ebada.Scgl.Lcgl
         {
             if (parentID == null)
                 e.Cancel = true;
+            e.Value.inDate = DateTime.Now; 
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -190,7 +191,7 @@ namespace Ebada.Scgl.Lcgl
             InitColumns();//初始列
             //InitData();//初始数据
             if (this.Site != null) return;
-            btGdsList.Edit = DicTypeHelper.GdsDic;
+            btGdsList.Edit = DicTypeHelper.GdsDic4;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
             {//如果是供电所人员，则锁定
