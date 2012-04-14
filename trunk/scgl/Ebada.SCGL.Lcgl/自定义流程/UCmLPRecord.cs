@@ -401,7 +401,7 @@ namespace Ebada.Scgl.Lcgl {
                 //else
                     str = string.Format("where kind='{0}' ", kind); 
             }
-
+            str = str + " order by CreateTime desc";
             if (gridtable != null) gridtable.Rows.Clear();
 
             IList<LP_Record> li = MainHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", str);

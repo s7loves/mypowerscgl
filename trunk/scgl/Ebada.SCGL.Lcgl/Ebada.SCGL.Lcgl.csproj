@@ -850,6 +850,12 @@
     <Compile Include="生产物资管理验收单\UCCLRKYSD.Designer.cs">
       <DependentUpon>UCCLRKYSD.cs</DependentUpon>
     </Compile>
+    <Compile Include="自定义流程\WorkFlowOne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义流程\WorkFlowOne.Designer.cs">
+      <DependentUpon>WorkFlowOne.cs</DependentUpon>
+    </Compile>
     <Compile Include="自定义流程\frmViewTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3796,6 +3802,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="自定义提示\frmSpanSet.resx">
       <DependentUpon>frmSpanSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\WorkFlowOne.resx">
+      <DependentUpon>WorkFlowOne.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\frmViewTemplate.resx">
