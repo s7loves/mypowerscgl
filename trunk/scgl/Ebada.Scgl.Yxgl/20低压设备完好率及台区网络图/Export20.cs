@@ -18,14 +18,13 @@ namespace Ebada.Scgl.Yxgl {
     public class Export20  {
         public static void ExportExcelAll(string orgid)
         {
-            ExcelAccess ex = new ExcelAccess();
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\20低压设备完好率及台区网络图";
             //Ecommon.WriteDoc(obj.BigData,ref fname);
+            ExcelAccess ea = new ExcelAccess();
 
-
-            saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            //saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
+            //if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
                 LP_Temple lp2 = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
@@ -51,10 +50,10 @@ namespace Ebada.Scgl.Yxgl {
                 }
                 DSOFramerControl ds1 = new DSOFramerControl();
                
-                fname = saveFileDialog1.FileName;
+                //fname = saveFileDialog1.FileName;
                 try
                 {
-                    ;
+                    
                     IList<LP_Temple> templeList = null;
                     parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where   ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
                     if (parentTemple != null)
@@ -63,10 +62,10 @@ namespace Ebada.Scgl.Yxgl {
                             ds1.FileDataGzip = wfv.Bigdata;
                         else
                             ds1.FileDataGzip = parentTemple.DocContent;
-                        Excel.Workbook wb = ds1.AxFramerControl.ActiveDocument as Excel.Workbook;
-                        ExcelAccess ea = new ExcelAccess();
-                        ea.MyWorkBook = wb;
-                        ea.MyExcel = wb.Application;
+                        fname = ds1.FileName;
+                            //ds1.FileSave(fname, true);
+                            ds1.FileClose();
+                        ea.Open(fname);
 
                         templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
                             "where ParentID ='" + parentTemple.LPID + "' order by SortID");
@@ -74,12 +73,8 @@ namespace Ebada.Scgl.Yxgl {
                         string valEX = @"[0-9]+(\.)?([0-9]+)?$";//只允许整数或小数的正则表达式
                         int i = 0;
                         ArrayList al = new ArrayList();
-                        Excel.Worksheet xx;
-                        for (i = 1; i <= wb.Application.Sheets.Count; i++)
-                        {
-                            xx = wb.Application.Sheets[i] as Excel.Worksheet;
-                            if (!al.Contains(xx.Name)) al.Add(xx.Name);
-                        }
+                        
+                       
                         string activeSheetName = "";
                         string filter = " where 1=1 ";
                         if (orgid != "") filter += " and OrgCode='" + orgid+ "'";
@@ -104,6 +99,7 @@ namespace Ebada.Scgl.Yxgl {
                         {
                             strtqcode += ")";
                         }
+                        Hashtable ht = new Hashtable();
                         foreach (LP_Temple lp in templeList)
                         {
                            
@@ -115,38 +111,97 @@ namespace Ebada.Scgl.Yxgl {
                             {
                                 continue;
                             }
-                            if ((lp.CellName.IndexOf("补偿电容") > -1 || lp.CellName.IndexOf("电动机") > -1 || lp.CellName.Trim().IndexOf("机井") > -1
-                                || lp.CellName.IndexOf("农副业") > -1 || lp.CellName.IndexOf("照明户数") > -1
-                                || lp.CellName.IndexOf("单相表数") > -1 || lp.CellName.IndexOf("三相表数") > -1) == false)
-                            {
-                                continue;
-                            }
+                            
                             IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                            " where   UserControlId='" + parentTemple.LPID + "'  and WorkTaskInsId='20低压设备完好率及台区网络图'"
                            + " and  FieldId='" + lp.LPID + "' " + strtqcode
                            + " order by YExcelPos");
-
                             foreach (WF_TableFieldValue tfv in tfvli)
                             {
-                                WF_TableFieldValue tfvtemp = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(
-                                " where   UserControlId='" + parentTemple.LPID + "'"
-                                + " and   WorkflowId='" + tfv.WorkFlowId + "'"
-                                + " and   RecordId='" + tfv.RecordId + "'"
-                                + " and   FieldName='类型'"
-                                + " and WorkTaskInsId='20低压设备完好率及台区网络图'"
-                                + " order by YExcelPos");
-                                if (tfvtemp != null && tfvtemp.ControlValue == "新增")
-                                    idw = 1;
-                                else
-                                    if (tfvtemp != null && tfvtemp.ControlValue == "减少")
-                                        idw = -1;
-                                    else
-                                        idw = 1;
-
-                                if (tfv.FieldName.IndexOf("时间") == -1 && lp.IsVisible == 0)
+                                
+                                if ((lp.CellName.IndexOf("补偿电容") > -1 || lp.CellName.IndexOf("电动机") > -1 || lp.CellName.Trim().IndexOf("机井") > -1
+                                || lp.CellName.IndexOf("农副业") > -1 || lp.CellName.IndexOf("照明户数") > -1
+                                || lp.CellName.IndexOf("单相表数") > -1 || lp.CellName.IndexOf("三相表数") > -1) == true)
                                 {
+
+
+                                    WF_TableFieldValue tfvtemp = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(
+                                    " where   UserControlId='" + parentTemple.LPID + "'"
+                                    + " and   WorkflowId='" + tfv.WorkFlowId + "'"
+                                    + " and   RecordId='" + tfv.RecordId + "'"
+                                    + " and   FieldName='类型'"
+                                    + " and WorkTaskInsId='20低压设备完好率及台区网络图'"
+                                    + " order by YExcelPos");
+                                    if (tfvtemp != null && tfvtemp.ControlValue == "新增")
+                                        idw = 1;
+                                    else
+                                        if (tfvtemp != null && tfvtemp.ControlValue == "减少")
+                                            idw = -1;
+                                        else
+                                            idw = 1;
+
+                                    if (tfv.FieldName.IndexOf("时间") == -1 && lp.IsVisible == 0)
+                                    {
+                                        valEX = "^[0-9]+(\\.)?([0-9]+)?$";
+                                        if (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value != "")
+                                        {
+                                            if (tfv.ControlValue == "")
+                                                sum += 0;
+                                            else
+                                                sum += idw * Convert.ToDouble(tfv.ControlValue);
+                                            value = sum.ToString();
+                                        }
+                                        else
+                                        {
+                                            valEX = "^[0-9]+(\\.)?([0-9]+)?/[0-9]+(\\.)?([0-9]+)?";
+                                            if (Regex.Match(tfv.ControlValue, valEX).Value != "")
+                                            {
+                                                string[] str1 = tfv.ControlValue.Split('/');
+                                                if (value == "")
+                                                {
+
+                                                    value = (idw * Convert.ToDouble(str1[0])).ToString() + "/" + (idw * Convert.ToDouble(str1[1])).ToString();
+                                                }
+                                                else if (value.IndexOf('/') > -1)
+                                                {
+                                                    string[] str2 = value.Split('/');
+                                                    sum = idw * Convert.ToDouble(str1[0]) + Convert.ToDouble(str2[0]);
+                                                    value = sum.ToString();
+                                                    sum = idw * Convert.ToDouble(str1[1]) + Convert.ToDouble(str2[1]);
+                                                    value = value + "/" + sum.ToString();
+                                                }
+                                            }
+                                            else
+                                            {
+                                                value = tfv.ControlValue;
+                                            }
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        value = tfv.ControlValue;
+
+                                    }
+                                }
+                                else
+                                {
+                                    if (ht.Contains(tfv.WorkFlowId))
+                                    {
+                                        string str = ht[tfv.WorkFlowId].ToString();
+                                        if (str.IndexOf(lp.LPID) > -1)
+                                            continue;
+                                        else
+                                        {
+                                            ht[tfv.WorkFlowId] += lp.LPID;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        ht.Add(tfv.WorkFlowId, lp.LPID);
+                                    }
                                     valEX = "^[0-9]+(\\.)?([0-9]+)?$";
-                                    if (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value != "")
+                                    if (lp.CellName.IndexOf("配电变压器容量") == -1 && lp.CellName.IndexOf("最大供电半径") == -1 && (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value != ""))
                                     {
                                         if (tfv.ControlValue == "")
                                             sum += 0;
@@ -156,56 +211,15 @@ namespace Ebada.Scgl.Yxgl {
                                     }
                                     else
                                     {
-                                        valEX = "^[0-9]+(\\.)?([0-9]+)?/[0-9]+(\\.)?([0-9]+)?";
-                                        if (Regex.Match(tfv.ControlValue, valEX).Value != "")
-                                        {
-                                            string[] str1 = tfv.ControlValue.Split('/');
-                                            if (value == "")
-                                            {
-
-                                                value = (idw * Convert.ToDouble(str1[0])).ToString() + "/" + (idw * Convert.ToDouble(str1[1])).ToString();
-                                            }
-                                            else if (value.IndexOf('/')>-1)
-                                            {
-                                                string[] str2 = value.Split('/');
-                                                sum = idw * Convert.ToDouble(str1[0]) + Convert.ToDouble(str2[0]);
-                                                value = sum.ToString();
-                                                sum = idw * Convert.ToDouble(str1[1]) + Convert.ToDouble(str2[1]);
-                                                value = value + "/" + sum.ToString();
-                                            }
-                                        }
-                                        else
-                                        {
-                                            value = tfv.ControlValue;
-                                        }
-                                       
+                                        value = tfv.ControlValue;
                                     }
-                                }
-                                else
-                                {
-                                    value = tfv.ControlValue;
                                    
                                 }
                             }
-                            if (!al.Contains(lp.KindTable))
-                            {
-                                continue;
-                            }
-
                             if (activeSheetName != lp.KindTable)
                             {
-                                if (activeSheetName != "")
-                                {
-
-                                    xx = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
-
-
-                                }
-                                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-
                                 activeSheetName = lp.KindTable;
-
-                                ea.ActiveSheet(xx.Index);
+                                ea.ActiveSheet(activeSheetName);
                             }
                             if (value != null && tfvli.Count > 0 && tfvli[0].XExcelPos > 0 && tfvli[0].XExcelPos > 0)
                                 ea.SetCellValue("'" + value.ToString(), tfvli[0].XExcelPos, tfvli[0].YExcelPos);
@@ -214,18 +228,17 @@ namespace Ebada.Scgl.Yxgl {
 
 
                         }
-                        ds1.FileSave(fname, true);
-                        ds1.FileClose();
-                        if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
-                            return;
+                        //if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
+                        //    return;
                     }
 
-                    System.Diagnostics.Process.Start(fname);
+                    //System.Diagnostics.Process.Start(fname);
+                    ea.ShowExcel();
                 }
                 catch (Exception mex)
                 {
                     Console.WriteLine(mex.Message);
-                    MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
+                    MsgBox.ShowWarningMessageBox("无法保存" + fname + "。" + mex.Message);
 
                 }
             }
@@ -233,14 +246,14 @@ namespace Ebada.Scgl.Yxgl {
         }
         public static void ExportExcelTQ(string tqCode)
         {
-             ExcelAccess ex = new ExcelAccess();
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+             ExcelAccess ea = new ExcelAccess();
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname =Application.StartupPath + "\\00记录模板\\20低压设备完好率及台区网络图";
             //Ecommon.WriteDoc(obj.BigData,ref fname);
             
             
-            saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            //saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
+            //if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 LP_Temple parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
                 LP_Temple lp2 = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
@@ -261,7 +274,7 @@ namespace Ebada.Scgl.Yxgl {
                                  + " and   FieldId='" + lp2.LPID + "' and Bigdata is not null"
                                 );
                 DSOFramerControl ds1 = new DSOFramerControl();
-                fname = saveFileDialog1.FileName;
+                //fname = saveFileDialog1.FileName;
                 try
                 {;
                 IList<LP_Temple> templeList = null;
@@ -271,25 +284,21 @@ namespace Ebada.Scgl.Yxgl {
                         if (wfv != null && wfv.Bigdata != null && wfv.Bigdata.Length > 0)
                         ds1.FileDataGzip = wfv.Bigdata;
                         else
-                            ds1.FileDataGzip = parentTemple.DocContent ;
-                        Excel.Workbook wb = ds1.AxFramerControl.ActiveDocument as Excel.Workbook;
-                        ExcelAccess ea = new ExcelAccess();
-                        ea.MyWorkBook = wb;
-                        ea.MyExcel = wb.Application;
-
+                            ds1.FileDataGzip = parentTemple.DocContent;
+                        //ds1.FileSave(fname, true);
+                        fname = ds1.FileName;
+                        ds1.FileClose();
+                        
+                        
+                        ea.Open(fname);
                         templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
                             "where ParentID ='" + parentTemple.LPID + "' order by SortID");
                         
                         string valEX = @"[0-9]+(\.)?[0-9]+$";//只允许整数或小数的正则表达式
                         int i=0;
                         ArrayList al = new ArrayList();
-                        Excel.Worksheet xx=wb.ActiveSheet as Excel.Worksheet   ;
-                        //for (i = 1; i <= wb.Application.Sheets.Count; i++)
-                        //{
-                        //    xx = wb.Application.Sheets[i] as Excel.Worksheet;
-                        //    if (!al.Contains(xx.Name)) al.Add(xx.Name);
-                        //}
-                        string activeSheetName =xx.Name;
+
+                        string activeSheetName = "";
                         foreach (LP_Temple lp in templeList)
                         {
                             object obj = null;
@@ -376,18 +385,9 @@ namespace Ebada.Scgl.Yxgl {
                                
                                 if (activeSheetName != lp.KindTable)
                                 {
-                                    if (activeSheetName != "")
-                                    {
-
-                                        xx = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
-
-
-                                    }
-                                    xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-
+                                    
                                     activeSheetName = lp.KindTable;
-
-                                    ea.ActiveSheet(xx.Index);
+                                    ea.ActiveSheet(activeSheetName);
                                 }
                                 if (value != null && tfvli.Count > 0 && tfvli[0].XExcelPos > 0 && tfvli[0].XExcelPos > 0)
                                     ea.SetCellValue("'"+value.ToString(), tfvli[0].XExcelPos, tfvli[0].YExcelPos);
@@ -396,13 +396,11 @@ namespace Ebada.Scgl.Yxgl {
 
 
                         }
-                        ds1.FileSave(fname, true);
-                        ds1.FileClose();
-                        if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
-                            return;
+                        //if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
+                        //    return;
                     }
-
-                    System.Diagnostics.Process.Start(fname);
+                ea.ShowExcel();
+                    //System.Diagnostics.Process.Start(fname);
                 }
                 catch (Exception mex)
                 {
