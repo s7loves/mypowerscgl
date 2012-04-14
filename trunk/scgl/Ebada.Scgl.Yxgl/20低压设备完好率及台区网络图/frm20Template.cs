@@ -327,7 +327,17 @@ namespace Ebada.Scgl.Yxgl
                             lp = ctl.Tag as LP_Temple;
                             if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit") == false)
                             {
-                                if (lp.CellName != "编号")
+                                if (lp.CellName != "编号" && lp.CellName.IndexOf("低压线路")==-1
+                                     && lp.CellName.IndexOf("最大供电半径") == -1
+                                     && lp.CellName.IndexOf("低压杆基数") == -1
+                                     && lp.CellName.IndexOf("表箱数") == -1
+                                     && lp.CellName.IndexOf("四线的一类") == -1
+                                     && lp.CellName.IndexOf("四线的二类") == -1
+                                     && lp.CellName.IndexOf("四线的三类") == -1
+                                     && lp.CellName.IndexOf("二线的一类") == -1
+                                     && lp.CellName.IndexOf("二线的二类") == -1
+                                     && lp.CellName.IndexOf("二线的三类") == -1
+                                    )
                                 {
                                     if (ctl.Text.IndexOf(tfvli[i].ControlValue) == -1)
                                         ctl.Text += tfvli[i].ControlValue;
@@ -1195,7 +1205,7 @@ namespace Ebada.Scgl.Yxgl
             List<int> arrCellCount = String2Int(arrtemp);
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
             {
-                ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 if (valuehs.ContainsKey(lp.LPID +"$" +lp.CellPos))
                 {
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
@@ -1228,7 +1238,7 @@ namespace Ebada.Scgl.Yxgl
                         if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]))
                         {
                             string strNew = str.Substring(0, (str.Length > 0 ? str.Length : 1) - 1) + (j + 1).ToString();
-                            ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                            ea.SetCellValue("'" + strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[j]))
                             {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
@@ -1259,7 +1269,7 @@ namespace Ebada.Scgl.Yxgl
                 {
                     if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
                     {
-                        ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        ea.SetCellValue("'" + str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
@@ -1284,7 +1294,7 @@ namespace Ebada.Scgl.Yxgl
                         }
                         return;
                     }
-                    ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                    ea.SetCellValue("'" + str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
                         GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
@@ -1575,7 +1585,7 @@ namespace Ebada.Scgl.Yxgl
                     IList<string> strList = new List<string>();
                     if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
                     {
-                        ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                        ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
@@ -1602,7 +1612,7 @@ namespace Ebada.Scgl.Yxgl
                     else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
                     {
                         int i = 0;
-                        ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                        ea.SetCellValue("'" + str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i]))
                         {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[i]] as WF_TableFieldValue;
@@ -1635,7 +1645,7 @@ namespace Ebada.Scgl.Yxgl
                 List<int> arrCellCount = String2Int(arrtemp);
                 if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
                 {
-                    ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                     if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
@@ -1670,7 +1680,7 @@ namespace Ebada.Scgl.Yxgl
                             if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]) && str != "")
                             {
                                 string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
-                                ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                                ea.SetCellValue("'" + strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
                                 if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[j]))
                                 {
                                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
@@ -1703,7 +1713,7 @@ namespace Ebada.Scgl.Yxgl
                     {
                         if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
                         {
-                            ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                            ea.SetCellValue("'" + str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
                             {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
@@ -1730,7 +1740,7 @@ namespace Ebada.Scgl.Yxgl
                             LockExcel(wb, xx);
                             return;
                         }
-                        ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                        ea.SetCellValue("'" + str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
                             str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
                             GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0]))
@@ -1850,7 +1860,7 @@ namespace Ebada.Scgl.Yxgl
             {
                 if (j >= arrRst.Length)
                     break;
-                ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                ea.SetCellValue("'" + arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                 if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                 {
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
@@ -1960,7 +1970,7 @@ namespace Ebada.Scgl.Yxgl
             {
                 if (extraWord.Length>i)
                 {
-                    ea.SetCellValue(strList[i] + extraWord[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    ea.SetCellValue("'" + strList[i] + extraWord[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
@@ -2004,7 +2014,7 @@ namespace Ebada.Scgl.Yxgl
                 }
                 else
                 {
-                    ea.SetCellValue(strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    ea.SetCellValue("'" + strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                     if (valuehs.ContainsKey(lp.LPID + "$" + arrCellPos[i]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellPos[i]] as WF_TableFieldValue;
@@ -2066,7 +2076,7 @@ namespace Ebada.Scgl.Yxgl
             {
                 for (int i = 0; i < arrRst.Length; i++)
                 {
-                    ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
+                    ea.SetCellValue("'" + arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
                     if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]] as WF_TableFieldValue;
@@ -2096,7 +2106,7 @@ namespace Ebada.Scgl.Yxgl
                 for (int i = 0; i < arrRst.Length; i++)
                 {
 
-                    ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
+                    ea.SetCellValue("'" + arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
                     if (valuehs.ContainsKey(lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]))
                     {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + Convert.ToString(GetCellPos(arrCellPos)[0] + i) + "|" + GetCellPos(arrCellPos)[1]] as WF_TableFieldValue;
