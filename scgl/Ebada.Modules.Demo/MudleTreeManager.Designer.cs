@@ -35,9 +35,11 @@
             this.colModuTypes = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colAssemblyFileName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.MethodName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.MethodParam = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colSequence = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colDescription = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -54,7 +56,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageCollection2 = new DevExpress.Utils.ImageCollection(this.components);
             this.mModuleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -70,6 +71,7 @@
             this.colModuTypes,
             this.colAssemblyFileName,
             this.MethodName,
+            this.MethodParam,
             this.colSequence,
             this.colDescription,
             this.treeListColumn1,
@@ -77,10 +79,10 @@
             this.treeList1.DataSource = this.bindingSource1;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.KeyFieldName = "Modu_ID";
-            this.treeList1.Location = new System.Drawing.Point(0, 26);
+            this.treeList1.Location = new System.Drawing.Point(0, 25);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.DragNodes = true;
-            this.treeList1.Size = new System.Drawing.Size(589, 393);
+            this.treeList1.Size = new System.Drawing.Size(589, 395);
             this.treeList1.TabIndex = 0;
             // 
             // colModuName
@@ -118,6 +120,14 @@
             this.MethodName.Visible = true;
             this.MethodName.VisibleIndex = 5;
             // 
+            // MethodParam
+            // 
+            this.MethodParam.Caption = "方法参数";
+            this.MethodParam.FieldName = "MethodParam";
+            this.MethodParam.Name = "MethodParam";
+            this.MethodParam.Visible = true;
+            this.MethodParam.VisibleIndex = 6;
+            // 
             // colSequence
             // 
             this.colSequence.Caption = "显示顺序";
@@ -143,7 +153,15 @@
             this.treeListColumn1.FieldName = "IconName";
             this.treeListColumn1.Name = "treeListColumn1";
             this.treeListColumn1.Visible = true;
-            this.treeListColumn1.VisibleIndex = 6;
+            this.treeListColumn1.VisibleIndex = 7;
+            // 
+            // treeListColumn2
+            // 
+            this.treeListColumn2.Caption = "显示";
+            this.treeListColumn2.FieldName = "visiableFlag";
+            this.treeListColumn2.Name = "treeListColumn2";
+            this.treeListColumn2.Visible = true;
+            this.treeListColumn2.VisibleIndex = 8;
             // 
             // barManager1
             // 
@@ -249,25 +267,25 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(589, 26);
+            this.barDockControlTop.Size = new System.Drawing.Size(589, 25);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 419);
-            this.barDockControlBottom.Size = new System.Drawing.Size(589, 22);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 420);
+            this.barDockControlBottom.Size = new System.Drawing.Size(589, 21);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 393);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 395);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(589, 26);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 393);
+            this.barDockControlRight.Location = new System.Drawing.Point(589, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 395);
             // 
             // imageCollection2
             // 
@@ -276,14 +294,6 @@
             // mModuleBindingSource
             // 
             this.mModuleBindingSource.DataSource = typeof(Ebada.Platform.Model.mModule);
-            // 
-            // treeListColumn2
-            // 
-            this.treeListColumn2.Caption = "显示";
-            this.treeListColumn2.FieldName = "visiableFlag";
-            this.treeListColumn2.Name = "treeListColumn2";
-            this.treeListColumn2.Visible = true;
-            this.treeListColumn2.VisibleIndex = 7;
             // 
             // MudleTreeManager
             // 
@@ -332,5 +342,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn MethodName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn MethodParam;
     }
 }

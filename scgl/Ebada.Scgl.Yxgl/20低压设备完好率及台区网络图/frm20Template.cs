@@ -443,7 +443,7 @@ namespace Ebada.Scgl.Yxgl
 
 
             }
-            return length;
+            return length/1000;
         }
         public void InitContorl()
         {
@@ -530,7 +530,7 @@ namespace Ebada.Scgl.Yxgl
                             {
                                 xlsum += lineLength(xl);
                             }
-                            ctrl.Text = xlsum.ToString();
+                            ctrl.Text =( xlsum).ToString();
                         }
                         else
                             if (lp.CellName.IndexOf("最大供电半径") > -1)
@@ -569,7 +569,7 @@ namespace Ebada.Scgl.Yxgl
                                         PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
                                         lp.SqlSentence = "select cast(sum(sbNumber)as varchar) from PS_gtsb where 5=5  and sbName like '%表箱%'"
                                             + " and gtID in ("
-                                            +"  (select gtID from PS_tq where 5=5 and tqName='"+currRecord.tqName+"'))";
+                                            + "  (select gtID from PS_gt where 5=5 and LineCode in(select LineCode from PS_xl where 5=5 and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')))";
                                         ctrl.Tag = lp;
                                     }
                                     else
@@ -577,7 +577,7 @@ namespace Ebada.Scgl.Yxgl
                                         {
 
                                             PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                            strSQL = "  where lineKind='四线' and linenum='一类' and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'";
+                                            strSQL = "  where linenum='四线' and lineKind='一类' and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
                                             ctrl.Tag = lp;
                                             xlsum = 0;
                                             IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
@@ -593,7 +593,7 @@ namespace Ebada.Scgl.Yxgl
                                             {
 
                                                 PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                                strSQL = "where  lineKind='四线' and linenum='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'";
+                                                strSQL = "where  linenum='四线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                 ctrl.Tag = lp;
                                                 xlsum = 0;
@@ -610,7 +610,7 @@ namespace Ebada.Scgl.Yxgl
                                                 {
 
                                                     PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                                    strSQL = "where  lineKind='四线' and linenum='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'";
+                                                    strSQL = "where  linenum='四线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                     ctrl.Tag = lp;
                                                     xlsum = 0;
@@ -627,7 +627,7 @@ namespace Ebada.Scgl.Yxgl
                                                     {
 
                                                         PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                                        strSQL = "where  lineKind='二线' and linenum='一类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'";
+                                                        strSQL = "where  linenum='二线' and  lineKind='一类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                         ctrl.Tag = lp;
                                                         xlsum = 0;
@@ -644,7 +644,7 @@ namespace Ebada.Scgl.Yxgl
                                                         {
 
                                                             PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                                            strSQL = "where  lineKind='二线' and linenum='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'";
+                                                            strSQL = "where  linenum='二线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                             ctrl.Tag = lp;
                                                             xlsum = 0;
@@ -661,7 +661,7 @@ namespace Ebada.Scgl.Yxgl
                                                             {
 
                                                                 PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                                                strSQL = "where  lineKind='二线' and linenum='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'";
+                                                                strSQL = "where  linenum='二线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                                 ctrl.Tag = lp;
                                                                 xlsum = 0;
@@ -2255,7 +2255,7 @@ namespace Ebada.Scgl.Yxgl
                 }
                 try
                 {
-                    sqlSentence = sqlSentence.Replace("\r\n", "");
+                    sqlSentence = sqlSentence.Replace("\r\n", " ");
                     li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
                 }
                 catch (Exception ex)

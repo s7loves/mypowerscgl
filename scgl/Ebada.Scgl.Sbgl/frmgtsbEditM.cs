@@ -25,6 +25,7 @@ namespace Ebada.Scgl.Sbgl
         public frmgtsbEditM() {
             InitializeComponent();
         }
+        DataTable dt = new DataTable();
         void dataBind() {
 
 
@@ -257,6 +258,15 @@ namespace Ebada.Scgl.Sbgl
 
         private void frmgtsbEditM_Load(object sender, EventArgs e)
         {
+            
+            dt.Columns.Add("code");
+            dt.Columns.Add("type");
+            dt.Columns.Add("sbgg");
+            dt.Columns.Add("sl");
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            gridControl1.DataSource = dt; 
+
             comboBoxEdit12.Properties.Items.Clear();
             comboBoxEdit12.Properties.NullText = "请选择";
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
@@ -265,20 +275,14 @@ namespace Ebada.Scgl.Sbgl
             comboBoxEdit12.Properties.Items.AddRange(mclist);
 
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select distinct mc from PS_sbcs"));
+            string.Format("select distinct mc from PS_sbcs order by mc"));
             if (strlist.Count > 0)
                 repositoryItemComboBox1.Properties.Items.AddRange(strlist);
         }
 
         private void comboBoxEdit12_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("code");
-            dt.Columns.Add("type");
-            dt.Columns.Add("sbgg");
-            dt.Columns.Add("sl");
-            dt.Columns.Add("id");
-            dt.Columns.Add("name");
+           
             IList<PS_gtsbclb> mclist = MainHelper.PlatformSqlMap.GetList<PS_gtsbclb>(" where ParentID  in (select id from PS_gtsbclb where zl='" + comboBoxEdit12.Text + "' and ParentID not in (select id from PS_gtsbclb where 1=1)  ) ");
             foreach (PS_gtsbclb gtsb in mclist)
             {
@@ -293,7 +297,6 @@ namespace Ebada.Scgl.Sbgl
                 dt.Rows.Add(dr);
 
             }
-            gridControl1.DataSource = dt; 
         }
 
         private void repositoryItemComboBox1_EditValueChanged(object sender, EventArgs e)

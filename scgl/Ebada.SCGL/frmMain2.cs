@@ -122,7 +122,15 @@ namespace Ebada.SCGL
             this.Cursor = Cursors.WaitCursor;
             try
             {
-                object result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
+                object result =null;
+                if (obj.MethodParam == null || obj.MethodParam == "")
+                    result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
+                else
+                {
+
+                    
+                    result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.MethodParam.Split(','), this, ref instance);
+                }
                 if (result is UserControl)
                 {
                     instance = showControl(result as UserControl, obj.Modu_ID);
