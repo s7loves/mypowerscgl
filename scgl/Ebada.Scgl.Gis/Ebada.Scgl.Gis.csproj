@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drawing\DrawingDxt2.cs" />
+    <Compile Include="Operation\OperationPloyLine.cs" />
     <Compile Include="TjOverlay.cs" />
     <Compile Include="Core\DataConvert.cs" />
     <Compile Include="Device\frmBaseSelector.cs">
@@ -285,6 +286,7 @@
     <Compile Include="UCSharpeDyt.Designer.cs">
       <DependentUpon>UCSharpeDyt.cs</DependentUpon>
     </Compile>
+    <Compile Include="PloyLineOverLay.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Device\frmBaseSelector.resx">

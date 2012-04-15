@@ -10,13 +10,13 @@ using Ebada.Scgl.Gis.Markers;
 using System.Windows.Forms;
 using System.Drawing;
 namespace Ebada.Scgl.Gis {
-    public class PointOverLay : GMapOverlay, IUpdateable, IPopuMenu {
+    public class PloyLineOverLay : GMapOverlay, IUpdateable, IPopuMenu {
 
         private GMapControl control;
         private bool allowEdit;
         ContextMenu contextMenu;
         GMapMarker selectedMarker;
-        public PointOverLay(GMapControl map, string layid)
+        public PloyLineOverLay(GMapControl map, string layid)
             : base(map, layid) {
             control = map;
             map.OnMarkerEnter += new MarkerEnter(map_OnMarkerEnter);
@@ -26,14 +26,6 @@ namespace Ebada.Scgl.Gis {
         private bool firstload = true;
         private int fontsize = 0;
         void map_OnMapZoomChanged() {
-            int fs=(int)Math.Max(9, 32 - Math.Max(14 - control.Zoom, 0) * 13);
-            if(fs==fontsize)return;
-            fontsize=fs;
-            foreach (GMapMarker m in Markers) {
-                if (m is GMapMarkerText)
-
-                    (m as IText).Font = new System.Drawing.Font(FontFamily.GenericSerif,fontsize , FontStyle.Bold);
-            }
             
         }
         
