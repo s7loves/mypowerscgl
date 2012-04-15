@@ -227,6 +227,7 @@ namespace Ebada.Scgl.Yxgl
             }
             catch { }
         }
+        
         private void LPFrm_Load(object sender, EventArgs e)
         {
             if (tempCtrlList==null)
@@ -725,8 +726,31 @@ namespace Ebada.Scgl.Yxgl
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
             btn_Submit.Text = "提交";
             btn_Submit.Click += new EventHandler(btn_Submit_Click);
+            Button btn_pic = new Button();
+            dockPanel1.Controls.Add(btn_pic);
+            btn_pic.Location = new Point(currentPosX+200,  26);
+            btn_pic.Text = "生成台区图";
+            btn_pic.Click += new EventHandler(btn_pic_Click);
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
+        }
+
+        void btn_pic_Click(object sender, EventArgs e) {
+            ExcelAccess ea = new ExcelAccess();
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
+            insertPic(rowData.tqCode, ea,5, 70, 420, 360);
+        }
+        private void insertPic(string tqcode, ExcelAccess ea, int left, int top, int width, int height) {
+            Bitmap map = Gis.GMapHelper.GetDytqMap(tqcode, 700, 600);
+            if (map != null) {
+                string filename = Path.GetTempFileName() + ".png";
+                map.Save(filename);
+                ea.InsertPicture(filename, top, left, height, width);
+                try {
+                    File.Delete(filename);
+                } catch { }
+            }
         }
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
