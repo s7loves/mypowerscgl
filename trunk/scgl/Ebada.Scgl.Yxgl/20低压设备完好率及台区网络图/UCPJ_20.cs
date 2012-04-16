@@ -333,7 +333,7 @@ namespace Ebada.Scgl.Yxgl
             currRecord = MainHelper.PlatformSqlMap.GetOneByKey<PJ_20>(currRecord.ID);
             if (currRecord != null)
             {
-                Bitmap map = GMapHelper.GetDytqMap(currRecord.tqCode, 2000, 1900);
+                Bitmap map = GMapHelper.GetDytqMap(currRecord.tqCode, 1000, 900);
                 if (map != null)
                 {
                     string filename = Path.GetTempFileName() + ".png";
