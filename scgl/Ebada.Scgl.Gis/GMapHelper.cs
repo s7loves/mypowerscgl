@@ -87,7 +87,7 @@ namespace Ebada.Scgl.Gis {
                 foreach (PS_gt gt in gts[xl]) {
                     plist.Add(new PointF((float)gt.gtLon*bl, (float)gt.gtLat*bl));
                 }
-                if (plist.Count == 0) continue;
+                if (plist.Count <2) continue;
                 PointF[] pts=plist.ToArray();
 
                 matrix.TransformPoints(pts);
