@@ -97,7 +97,7 @@ namespace Ebada.Scgl.Gis {
                 g.DrawLines(Pens.Blue,pts );
                 for(int i=0;i<pts.Length;i++) {
                     PS_gt gt =gts[xl][i];
-                    if (gt.gth == "0000" || gt.gtLat==0.0m||gt.gtLon==0.0m) continue;
+                    if (gt.gtJg=="是"|| gt.gth == "0000" || gt.gtLat==0.0m||gt.gtLon==0.0m) continue;
                     g.DrawEllipse(Pens.Blue, pts[i].X - 5, pts[i].Y - 5, 10, 10);
                     g.DrawString((int)gt.gtHeight+"/"+(i+1), f, Brushes.Black, pts[i].X - 10, pts[i].Y + 5);
                 }
