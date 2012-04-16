@@ -22,6 +22,7 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using Ebada.Scgl.Gis;
+using System.IO;
 
 namespace Ebada.Scgl.Yxgl
 {
@@ -330,8 +331,17 @@ namespace Ebada.Scgl.Yxgl
                 return;
             PJ_20 currRecord = gridView1.GetFocusedRow() as PJ_20;
             currRecord = MainHelper.PlatformSqlMap.GetOneByKey<PJ_20>(currRecord.ID);
-            if(currRecord!=null)
-            GMapHelper.GetDytqMap(currRecord.tqCode);
+            if (currRecord != null)
+            {
+                Bitmap map = GMapHelper.GetDytqMap(currRecord.tqCode, 700, 600);
+                if (map != null)
+                {
+                    string filename = Path.GetTempFileName() + ".png";
+                    map.Save(filename);
+                    SelectorHelper.Execute("rundll32.exe %Systemroot%\\System32\\shimgvw.dll,ImageView_Fullscreen " + filename);
+                   
+                }
+            }
             //Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(), new Size(1024, 768));
             //string tempPath = Path.GetTempPath();
             //string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".png";

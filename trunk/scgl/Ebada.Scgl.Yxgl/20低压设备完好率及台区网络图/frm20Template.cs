@@ -1052,7 +1052,7 @@ namespace Ebada.Scgl.Yxgl
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 list.Add(wfv);
             }
-            MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where RecordId ='" +currRecord.ID + "' ");
+            MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where RecordId ='" + currRecord.ID + "' and WorkTaskInsId='20低压设备完好率及台区网络图' ");
             lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
             //if (lp != null)
             //{
