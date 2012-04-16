@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using Ebada.Scgl.Model;
+using System.Collections;
+using System.Data;
 
 namespace Ebada.Scgl.Gis {
     public class GMapHelper {
@@ -48,10 +50,13 @@ namespace Ebada.Scgl.Gis {
             RectangleF rf = RectangleF.Empty;
             int bl = 10000;
             Dictionary<PS_xl, IList<PS_gt>> gts = new Dictionary<PS_xl, IList<PS_gt>>();
+            List<PS_gtsb> gtsbs = new List<PS_gtsb>();
+
             foreach (PS_xl xl in list) {
-                IList<PS_gt> gtlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where linecode ='" + xl.LineCode + "' order by gth");
+                IList<PS_gt> gtlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where linecode ='" + xl.LineCode + "' order by gtcode");
                 if (gtlist.Count == 0) continue;
-                
+                IList<PS_gtsb> gtsblist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gtsb>(" where sbtype like '17%' and  gtid in (select gtid from ps_gt where linecode ='" + xl.LineCode + "')");
+                gtsbs.AddRange(gtsblist);
                 IList<PS_gt> gtlist2 = new List<PS_gt>();
                 foreach (PS_gt gt in gtlist) {
                     if (gt.gtLat == 0 || gt.gtLon == 0) continue;
@@ -64,6 +69,7 @@ namespace Ebada.Scgl.Gis {
                 }
                 gts.Add(xl, gtlist2);
             }
+            DataTable gtbhtable = Ebada.Core.ConvertHelper.ToDataTable(gtsbs);
             //g.TranslateTransform(-rf.X, -rf.Y);
             rf.Inflate(3, 3);
             System.Drawing.Drawing2D.Matrix matrix = new System.Drawing.Drawing2D.Matrix();
@@ -82,6 +88,7 @@ namespace Ebada.Scgl.Gis {
             List<PointF> plist = new List<PointF>();
             g.Clear(Color.White);
             Font f = new Font("宋体", 9);
+            PointF p0 = Point.Empty;
             foreach (PS_xl xl in gts.Keys) {
                 plist.Clear();
                 foreach (PS_gt gt in gts[xl]) {
@@ -95,12 +102,38 @@ namespace Ebada.Scgl.Gis {
                     pts[i].Y = h - pts[i].Y;
                 }
                 g.DrawLines(Pens.Blue,pts );
+                bool b1 = Math.Abs(pts[0].X - pts[1].X) > Math.Abs(pts[0].Y - pts[1].Y);
+                Point offset = new Point(b1 ? 0 : 20, b1 ? 20 : 0);
                 for(int i=0;i<pts.Length;i++) {
                     PS_gt gt =gts[xl][i];
                     if (gt.gtJg=="是"|| gt.gth == "0000" || gt.gtLat==0.0m||gt.gtLon==0.0m) continue;
                     g.DrawEllipse(Pens.Blue, pts[i].X - 5, pts[i].Y - 5, 10, 10);
                     g.DrawString((int)gt.gtHeight+"/"+(i+1), f, Brushes.Black, pts[i].X - 10, pts[i].Y + 5);
+                    DataRow[] rows= gtbhtable.Select("gtid='" + gt.gtID + "'");
+                    int n = 1;
+                    foreach (DataRow row in rows) {
+                        PS_gtsb gtsb = Ebada.Core.ConvertHelper.RowToObject<PS_gtsb>(row);
+                        n *= -1;
+                        PointF pf = new PointF(pts[i].X + (n * offset.X), pts[i].Y + (n * offset.Y));
+                        RectangleF rtf = Rectangle.Empty;
+                        rtf.Location = pf;
+                        rtf.Inflate(12, 5);
+                        Rectangle rt =Rectangle.Round(rtf);
+                        g.DrawLine(Pens.Red, pts[i], pf);
+                        g.FillRectangle(Brushes.White, rt);
+                        g.DrawRectangle(Pens.Red, rt);
+                        string num= gtsb.sbModle.Substring(0,1);
+                        if (gtsb.sbNumber > 1) num = num + "x" + gtsb.sbNumber;
+                        StringFormat sf =new StringFormat();
+                        sf.Alignment= StringAlignment.Center;
+                        
+                        //sf.LineAlignment= StringAlignment.Center;
+                        g.DrawString(num, f, Brushes.Red, rtf,sf);
+                        
+                        if (n == 1) break;
+                    }
                 }
+                p0 = Point.Empty;
             }
 
             return bp;
