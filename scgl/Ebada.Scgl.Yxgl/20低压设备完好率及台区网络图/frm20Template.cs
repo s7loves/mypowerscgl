@@ -917,9 +917,11 @@ namespace Ebada.Scgl.Yxgl
                                                                 if (xlsum != 0)
                                                                     ctrl.Text = xlsum.ToString();
                                                             }
+                    if (ctrl.Tag != null )
+                        InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
                 }
             }
-            InitData();
+            //InitData();
         }
         void btn_pic_Click(object sender, EventArgs e) {
             ExcelAccess ea = new ExcelAccess();
