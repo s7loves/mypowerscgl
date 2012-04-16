@@ -754,6 +754,7 @@ namespace Ebada.Scgl.Yxgl
                     Control ctrl = FindCtrl(lp.LPID);
                     string strSQL = "";
                     decimal xlsum = 0, maxxl=0;
+                    ctrl.Tag = lp;
                     if (lp.CellName.IndexOf("台区") > -1)
                     {
                         ctrl.Text = currRecord.tqName;
