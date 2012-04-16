@@ -511,6 +511,7 @@ namespace Ebada.Scgl.Yxgl
                     ctrl.Visible = flag;
                     ctrl.Tag = lp;
                     ctrl.TabIndex = index;
+
                     if (lp.CtrlType.Contains("uc_gridcontrol"))
                     {
                         (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar), lp);
@@ -523,6 +524,16 @@ namespace Ebada.Scgl.Yxgl
                     ctrl.Name = lp.LPID;
                     dockPanel1.Controls.Add(label);
                     dockPanel1.Controls.Add(ctrl);
+                    if (lp.CellName == "类型")
+                    {
+
+                        Button btn_rec = new Button();
+                        btn_rec.Click += new EventHandler(btn_pic_Click);
+                        btn_rec.Location = new Point(ctrl.Location.X  + 200, ctrl.Location.Y);
+                        dockPanel1.Controls.Add(btn_rec);
+                        btn_rec.Text = "重新生成";
+                        btn_rec.Click += new EventHandler(btn_rec_Click);
+                    }
                     if (lp.CellName.IndexOf("台区")>-1)
                     {
                         ctrl.Text=currRecord.tqName;
@@ -728,13 +739,186 @@ namespace Ebada.Scgl.Yxgl
             btn_Submit.Click += new EventHandler(btn_Submit_Click);
             Button btn_pic = new Button();
             dockPanel1.Controls.Add(btn_pic);
-            btn_pic.Location = new Point(currentPosX+200,  26);
+            btn_pic.Location = new Point(currentPosX + 200, 26);
             btn_pic.Text = "生成台区图";
-            btn_pic.Click += new EventHandler(btn_pic_Click);
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
         }
 
+        void btn_rec_Click(object sender, EventArgs e)
+        {
+            if (parentTemple != null && templeList != null)
+            {
+                foreach (LP_Temple lp in templeList)
+                {
+                    Control ctrl = FindCtrl(lp.LPID);
+                    string strSQL = "";
+                    decimal xlsum = 0, maxxl=0;
+                    if (lp.CellName.IndexOf("台区") > -1)
+                    {
+                        ctrl.Text = currRecord.tqName;
+                    }
+                    else
+                        if (lp.CellName.IndexOf("低压线路") > -1)
+                        {
+
+                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                            strSQL = " where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
+                                + " and linevol='0.4'";
+                            ctrl.Tag = lp;
+                            xlsum = 0;
+                            IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                            foreach (PS_xl xl in xlli)
+                            {
+                                xlsum += lineLength(xl);
+                            }
+                            ctrl.Text = (xlsum).ToString();
+                        }
+                        else
+                            if (lp.CellName.IndexOf("最大供电半径") > -1)
+                            {
+
+                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                strSQL = "where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'";
+                                //ctrl.Tag = lp;
+                                xlsum = 0;
+                                maxxl = 0;
+                                IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                foreach (PS_xl xl in xlli)
+                                {
+
+                                    xlsum = lineLength(xl);
+                                    if (xlsum > maxxl)
+                                    {
+                                        maxxl = xlsum;
+                                    }
+                                }
+                                ctrl.Text = (maxxl / 2).ToString();
+                            }
+                            else
+                                if (lp.CellName.IndexOf("低压杆基数") > -1)
+                                {
+
+                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                    lp.SqlSentence = "select case  when cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID"
+                                                        + " from PS_gt where 5=5 and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')";
+                                    ctrl.Tag = lp;
+                                }
+                                else
+                                    if (lp.CellName.IndexOf("表箱数") > -1)
+                                    {
+
+                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                        lp.SqlSentence = "select cast(sum(sbNumber)as varchar) from PS_gtsb where 5=5  and sbName like '%表箱%'"
+                                            + " and gtID in ("
+                                            + "  (select gtID from PS_gt where 5=5 and LineCode in(select LineCode from PS_xl where 5=5 and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')))";
+                                        ctrl.Tag = lp;
+                                    }
+                                    else
+                                        if (lp.CellName.IndexOf("四线的一类") > -1)
+                                        {
+
+                                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                            strSQL = "  where linenum='四线' and lineKind='一类' and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+                                            ctrl.Tag = lp;
+                                            xlsum = 0;
+                                            IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                            foreach (PS_xl xl in xlli)
+                                            {
+                                                xlsum += lineLength(xl);
+                                            }
+                                            if (xlsum != 0)
+                                                ctrl.Text = xlsum.ToString();
+                                        }
+                                        else
+                                            if (lp.CellName.IndexOf("四线的二类（km）") > -1)
+                                            {
+
+                                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                strSQL = "where  linenum='四线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                ctrl.Tag = lp;
+                                                xlsum = 0;
+                                                IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                foreach (PS_xl xl in xlli)
+                                                {
+                                                    xlsum += lineLength(xl);
+                                                }
+                                                if (xlsum != 0)
+                                                    ctrl.Text = xlsum.ToString();
+                                            }
+                                            else
+                                                if (lp.CellName.IndexOf("四线的三类（km）") > -1)
+                                                {
+
+                                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                    strSQL = "where  linenum='四线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                    ctrl.Tag = lp;
+                                                    xlsum = 0;
+                                                    IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                    foreach (PS_xl xl in xlli)
+                                                    {
+                                                        xlsum += lineLength(xl);
+                                                    }
+                                                    if (xlsum != 0)
+                                                        ctrl.Text = xlsum.ToString();
+                                                }
+                                                else
+                                                    if (lp.CellName.IndexOf("二线的一类") > -1)
+                                                    {
+
+                                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                        strSQL = "where  linenum='二线' and  lineKind='一类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                        ctrl.Tag = lp;
+                                                        xlsum = 0;
+                                                        IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                        foreach (PS_xl xl in xlli)
+                                                        {
+                                                            xlsum += lineLength(xl);
+                                                        }
+                                                        if (xlsum != 0)
+                                                            ctrl.Text = xlsum.ToString();
+                                                    }
+                                                    else
+                                                        if (lp.CellName.IndexOf("二线的二类（km）") > -1)
+                                                        {
+
+                                                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                            strSQL = "where  linenum='二线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                            ctrl.Tag = lp;
+                                                            xlsum = 0;
+                                                            IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                            foreach (PS_xl xl in xlli)
+                                                            {
+                                                                xlsum += lineLength(xl);
+                                                            }
+                                                            if (xlsum != 0)
+                                                                ctrl.Text = xlsum.ToString();
+                                                        }
+                                                        else
+                                                            if (lp.CellName.IndexOf("二线的三类（km）") > -1)
+                                                            {
+
+                                                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                                strSQL = "where  linenum='二线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                                ctrl.Tag = lp;
+                                                                xlsum = 0;
+                                                                IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                                foreach (PS_xl xl in xlli)
+                                                                {
+                                                                    xlsum += lineLength(xl);
+                                                                }
+                                                                if (xlsum != 0)
+                                                                    ctrl.Text = xlsum.ToString();
+                                                            }
+                }
+            }
+            InitData();
+        }
         void btn_pic_Click(object sender, EventArgs e) {
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
