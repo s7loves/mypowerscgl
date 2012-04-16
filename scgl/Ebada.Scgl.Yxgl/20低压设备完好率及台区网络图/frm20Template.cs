@@ -528,7 +528,6 @@ namespace Ebada.Scgl.Yxgl
                     {
 
                         Button btn_rec = new Button();
-                        btn_rec.Click += new EventHandler(btn_pic_Click);
                         btn_rec.Location = new Point(ctrl.Location.X  + 200, ctrl.Location.Y);
                         dockPanel1.Controls.Add(btn_rec);
                         btn_rec.Text = "重新生成";
