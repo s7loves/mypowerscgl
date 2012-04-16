@@ -739,6 +739,8 @@ namespace Ebada.Scgl.Yxgl
             Button btn_pic = new Button();
             dockPanel1.Controls.Add(btn_pic);
             btn_pic.Location = new Point(currentPosX + 200, 26);
+            btn_pic.Click += new EventHandler(btn_pic_Click);
+            
             btn_pic.Text = "生成台区图";
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
