@@ -56,11 +56,12 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit15.DataBindings.Add("EditValue", rowData, "ddj");
             this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "jj");
             this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "nfy");
+            this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "zmfs");
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "Lowlossrate");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "tclr");
             this.spinEdit3.DataBindings.Add("EditValue", rowData, "hclr");
 
-            this.spinEdit4.DataBindings.Add("EditValue", rowData, "zmfs");
+            //this.spinEdit4.DataBindings.Add("EditValue", rowData, "zmfs");
             this.spinEdit5.DataBindings.Add("EditValue", rowData, "dxbs");
             this.spinEdit6.DataBindings.Add("EditValue", rowData, "sxbs");
 

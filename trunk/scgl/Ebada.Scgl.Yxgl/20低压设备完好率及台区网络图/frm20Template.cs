@@ -1249,7 +1249,11 @@ namespace Ebada.Scgl.Yxgl
                                     string[] str2 = value.Split('/');
                                     sum = idw * Convert.ToDouble(str1[0]) + Convert.ToDouble(str2[0]);
                                     value = sum.ToString();
+                                    
+                                    if(str2.Length >1)
                                     sum = idw * Convert.ToDouble(str1[1]) + Convert.ToDouble(str2[1]);
+                                    else
+                                    sum = idw * Convert.ToDouble(str1[1]);
                                     value = value + "/" + sum.ToString();
                                 }
                             }
