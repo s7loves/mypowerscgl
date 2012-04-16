@@ -1052,6 +1052,7 @@ namespace Ebada.Scgl.Yxgl
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 list.Add(wfv);
             }
+            MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where RecordId ='" +currRecord.ID + "' ");
             lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
             //if (lp != null)
             //{
