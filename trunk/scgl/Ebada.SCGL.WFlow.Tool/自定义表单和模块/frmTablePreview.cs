@@ -102,6 +102,7 @@ namespace Ebada.SCGL.WFlow.Tool
             
         }
         private DataTable WorkFlowData = null;//实例流程信息
+        Excel.Worksheet xx;
 
         public DataTable RecordWorkFlowData
         {
@@ -797,31 +798,46 @@ namespace Ebada.SCGL.WFlow.Tool
             unLockExcel(wb, xx);
             if (lp.CellPos == "")
             {
-                if (lp.CellName.IndexOf("简图") > -1)
+                if (lp.SqlSentence.IndexOf("PJ_tbsj") > -1)
                 {
 
                     PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
-                    string tempPath = Path.GetTempPath();
-                    string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
-                    FileStream fs;
-                    fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
-                    BinaryWriter bw = new BinaryWriter(fs);
-                    bw.Write(tb.picImage);
-                    bw.Flush();
-                    bw.Close();
-                    fs.Close();
-                    //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
-                    //MemoryStream memo = new MemoryStream(4);
-                    //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
-                    //memo.Write(bytes, 0, bytes.Length);
-                    //data.SetData("ttt", memo);
-                    //Clipboard.SetDataObject(data);
-                    Image im = Bitmap.FromFile(tempfile);
-                    Bitmap bt = new Bitmap(im);
-                    DataObject dataObject = new DataObject();
-                    dataObject.SetData(DataFormats.Bitmap, bt);
-                    Clipboard.SetDataObject(dataObject, true);
-
+                    if (tb != null)
+                    {
+                        if (tb.picName != "表箱")
+                        {
+                            string tempPath = Path.GetTempPath();
+                            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+                            FileStream fs;
+                            fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                            BinaryWriter bw = new BinaryWriter(fs);
+                            bw.Write(tb.picImage);
+                            bw.Flush();
+                            bw.Close();
+                            fs.Close();
+                            //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
+                            //MemoryStream memo = new MemoryStream(4);
+                            //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
+                            //memo.Write(bytes, 0, bytes.Length);
+                            //data.SetData("ttt", memo);
+                            //Clipboard.SetDataObject(data);
+                            Image im = Bitmap.FromFile(tempfile);
+                            Bitmap bt = new Bitmap(im);
+                            DataObject dataObject = new DataObject();
+                            dataObject.SetData(DataFormats.Bitmap, bt);
+                            Clipboard.SetDataObject(dataObject, true);
+                        }
+                        else
+                        {
+                            Microsoft.Office.Interop.Excel.Shape activShape = null;
+                            activShape = xx.Shapes.AddTextbox(Microsoft.Office.Core.MsoTextOrientation.msoTextOrientationHorizontal,
+                                (float)153.75, (float)162.75, (float)22.5, (float)10.5);
+                            activShape.TextFrame.Characters(1, 1).Font.Size = 8;
+                            activShape.TextFrame.Characters(1, 1).Text = "1";
+                            activShape.TextFrame.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                            activShape.Cut();
+                        }
+                    }
                 }
                 return;
             }
@@ -857,31 +873,46 @@ namespace Ebada.SCGL.WFlow.Tool
             string str = (sender as Control).Text;
             if (lp.CellPos == "")
             {
-                if (lp.CellName.IndexOf("简图") > -1)
+                if (lp.SqlSentence.IndexOf("PJ_tbsj") > -1 )
                 {
 
                     PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
-                    string tempPath = Path.GetTempPath();
-                    string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
-                    FileStream fs;
-                    fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
-                    BinaryWriter bw = new BinaryWriter(fs);
-                    bw.Write(tb.picImage);
-                    bw.Flush();
-                    bw.Close();
-                    fs.Close();
-                    //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
-                    //MemoryStream memo = new MemoryStream(4);
-                    //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
-                    //memo.Write(bytes, 0, bytes.Length);
-                    //data.SetData("ttt", memo);
-                    //Clipboard.SetDataObject(data);
-                    Image im = Bitmap.FromFile(tempfile);
-                    Bitmap bt = new Bitmap(im);
-                    DataObject   dataObject   =   new   DataObject();
-                    dataObject.SetData(DataFormats.Bitmap, bt);
-                    Clipboard.SetDataObject(dataObject, true);
-
+                    if (tb != null)
+                    {
+                        if (tb.picName != "表箱")
+                        {
+                            string tempPath = Path.GetTempPath();
+                            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+                            FileStream fs;
+                            fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                            BinaryWriter bw = new BinaryWriter(fs);
+                            bw.Write(tb.picImage);
+                            bw.Flush();
+                            bw.Close();
+                            fs.Close();
+                            //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
+                            //MemoryStream memo = new MemoryStream(4);
+                            //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
+                            //memo.Write(bytes, 0, bytes.Length);
+                            //data.SetData("ttt", memo);
+                            //Clipboard.SetDataObject(data);
+                            Image im = Bitmap.FromFile(tempfile);
+                            Bitmap bt = new Bitmap(im);
+                            DataObject dataObject = new DataObject();
+                            dataObject.SetData(DataFormats.Bitmap, bt);
+                            Clipboard.SetDataObject(dataObject, true);
+                        }
+                        else
+                        {
+                            Microsoft.Office.Interop.Excel.Shape activShape = null;
+                            activShape = xx.Shapes.AddTextbox(Microsoft.Office.Core.MsoTextOrientation.msoTextOrientationHorizontal,
+                                (float)153.75, (float)162.75, (float)22.5, (float)10.5);
+                            activShape.TextFrame.Characters(1, 1).Font.Size = 8;
+                            activShape.TextFrame.Characters(1, 1).Text = "1";
+                            activShape.TextFrame.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                            activShape.Cut();
+                        }
+                    }
                 }
                 return;
             }
@@ -893,7 +924,6 @@ namespace Ebada.SCGL.WFlow.Tool
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
-            Excel.Worksheet xx;
             if (lp.KindTable != "")
             {
                 activeSheetName = lp.KindTable;
