@@ -13,6 +13,7 @@ using Ebada.Scgl.Core;
 using System.Reflection;
 using Ebada.Client;
 using Ebada.Client.Platform;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -191,26 +192,42 @@ namespace Ebada.Scgl.Lcgl
         private void barEditItem1_EditValueChanged_1(object sender, EventArgs e)
         {
             PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + barEditItem1.EditValue + "'");
-            string tempPath = Path.GetTempPath();
-            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
-            FileStream fs;
-            fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
-            BinaryWriter bw = new BinaryWriter(fs);
-            bw.Write(tb.picImage);
-            bw.Flush();
-            bw.Close();
-            fs.Close();
-            //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
-            //MemoryStream memo = new MemoryStream(4);
-            //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
-            //memo.Write(bytes, 0, bytes.Length);
-            //data.SetData("ttt", memo);
-            //Clipboard.SetDataObject(data);
-            Image im = Bitmap.FromFile(tempfile);
-            Bitmap bt = new Bitmap(im);
-            DataObject dataObject = new DataObject();
-            dataObject.SetData(DataFormats.Bitmap, bt);
-            Clipboard.SetDataObject(dataObject, true);
+
+            if (tb.picName != "表箱")
+            {
+                string tempPath = Path.GetTempPath();
+                string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+                FileStream fs;
+                fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                BinaryWriter bw = new BinaryWriter(fs);
+                bw.Write(tb.picImage);
+                bw.Flush();
+                bw.Close();
+                fs.Close();
+                //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
+                //MemoryStream memo = new MemoryStream(4);
+                //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
+                //memo.Write(bytes, 0, bytes.Length);
+                //data.SetData("ttt", memo);
+                //Clipboard.SetDataObject(data);
+                Image im = Bitmap.FromFile(tempfile);
+                Bitmap bt = new Bitmap(im);
+                DataObject dataObject = new DataObject();
+                dataObject.SetData(DataFormats.Bitmap, bt);
+                Clipboard.SetDataObject(dataObject, true);
+            }
+            else
+            {
+                Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                Excel.Worksheet xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                Microsoft.Office.Interop.Excel.Shape activShape = null;
+                activShape = xx.Shapes.AddTextbox(Microsoft.Office.Core.MsoTextOrientation.msoTextOrientationHorizontal,
+                    (float)153.75, (float)162.75, (float)22.5, (float)10.5);
+                activShape.TextFrame.Characters(1, 1).Font.Size = 8;
+                activShape.TextFrame.Characters(1, 1).Text = "1";
+                activShape.TextFrame.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                activShape.Cut();
+            }
         }
 
     }

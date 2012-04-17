@@ -222,8 +222,31 @@ namespace Ebada.Scgl.Yxgl {
                                 ea.ActiveSheet(activeSheetName);
                             }
                             if (value != null && tfvli.Count > 0 && tfvli[0].XExcelPos > 0 && tfvli[0].XExcelPos > 0)
-                                ea.SetCellValue("'" + value.ToString(), tfvli[0].XExcelPos, tfvli[0].YExcelPos);
+                            {
+                                string strvalue = value;
+                                valEX = "^[0-9]+(\\.)?([0-9]+)?$";
+                                if (value == "" || Regex.Match(value, valEX).Value != "")
+                                {
+                                    if (value == "")
+                                        strvalue = value;
+                                    {
+                                        strvalue = Math.Round(Convert.ToDecimal(value), 3).ToString();
+                                    }
 
+                                }
+                                else
+                                {
+                                    valEX = "^[0-9]+(\\.)?([0-9]+)?/[0-9]+(\\.)?([0-9]+)?";
+                                    if (Regex.Match(value, valEX).Value != "")
+                                    {
+                                        string[] str1 = value.Split('/');
+
+                                        strvalue = Math.Round(Convert.ToDecimal(str1[0]), 3).ToString() + "/" + Math.Round(Convert.ToDecimal(str1[1]), 3).ToString();
+
+                                    }
+                                }
+                                ea.SetCellValue("'" + strvalue.ToString(), tfvli[0].XExcelPos, tfvli[0].YExcelPos);
+                            }
 
 
 
@@ -390,7 +413,31 @@ namespace Ebada.Scgl.Yxgl {
                                     ea.ActiveSheet(activeSheetName);
                                 }
                                 if (value != null && tfvli.Count > 0 && tfvli[0].XExcelPos > 0 && tfvli[0].XExcelPos > 0)
-                                    ea.SetCellValue("'"+value.ToString(), tfvli[0].XExcelPos, tfvli[0].YExcelPos);
+                                {
+                                    string strvalue = value;
+                                    valEX = "^[0-9]+(\\.)?([0-9]+)?$";
+                                    if (value == "" || Regex.Match(value, valEX).Value != "")
+                                    {
+                                        if (value=="")
+                                            strvalue = value;
+                                        {
+                                            strvalue = Math.Round(Convert.ToDecimal(value), 3).ToString(); 
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        valEX = "^[0-9]+(\\.)?([0-9]+)?/[0-9]+(\\.)?([0-9]+)?";
+                                        if (Regex.Match(value, valEX).Value != "")
+                                        {
+                                            string[] str1 = value.Split('/');
+
+                                            strvalue = Math.Round(Convert.ToDecimal(str1[0]), 3).ToString() + "/" + Math.Round(Convert.ToDecimal(str1[1]), 3).ToString();
+                                            
+                                        }
+                                    }
+                                    ea.SetCellValue("'" + strvalue.ToString(), tfvli[0].XExcelPos, tfvli[0].YExcelPos);
+                                }
 
                                        
 
