@@ -515,6 +515,7 @@ namespace Ebada.Scgl.Lcgl
                 FileStream fs;
                 fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
                 BinaryWriter bw = new BinaryWriter(fs);
+                if (currRecord.picImage == null) currRecord.picImage = new byte[0];
                 bw.Write(currRecord.picImage);
                 bw.Flush();
                 bw.Close();
