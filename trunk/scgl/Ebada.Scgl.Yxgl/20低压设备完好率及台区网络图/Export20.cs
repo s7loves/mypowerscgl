@@ -80,24 +80,27 @@ namespace Ebada.Scgl.Yxgl {
                         if (orgid != "") filter += " and OrgCode='" + orgid+ "'";
                         IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(filter);
                         string strtqcode="";
-                        foreach (PS_xl xl in xlList)
+                        if (orgid != "")
                         {
-                            IList<PS_tq> tqList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqcode,{0})='{1}'", xl.LineCode.Length, xl.LineCode));
-                            foreach (PS_tq tq in tqList)
+                            foreach (PS_xl xl in xlList)
                             {
-                                if (strtqcode != "")
+                                IList<PS_tq> tqList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqcode,{0})='{1}'", xl.LineCode.Length, xl.LineCode));
+                                foreach (PS_tq tq in tqList)
                                 {
-                                    strtqcode += "or  WorkflowId='" + tq.tqCode + "' ";
-                                }
-                                else
-                                {
-                                    strtqcode = " and ( WorkflowId='"+tq.tqCode+"' ";
+                                    if (strtqcode != "")
+                                    {
+                                        strtqcode += "or  WorkflowId='" + tq.tqCode + "' ";
+                                    }
+                                    else
+                                    {
+                                        strtqcode = " and ( WorkflowId='" + tq.tqCode + "' ";
+                                    }
                                 }
                             }
-                        }
-                        if (strtqcode != "")
-                        {
-                            strtqcode += ")";
+                            if (strtqcode != "")
+                            {
+                                strtqcode += ")";
+                            }
                         }
                         Hashtable ht = new Hashtable();
                         foreach (LP_Temple lp in templeList)
@@ -111,8 +114,8 @@ namespace Ebada.Scgl.Yxgl {
                             {
                                 continue;
                             }
-                            
-                            IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                            IList<WF_TableFieldValue> tfvli = null;
+                            tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                            " where   UserControlId='" + parentTemple.LPID + "'  and WorkTaskInsId='20低压设备完好率及台区网络图'"
                            + " and  FieldId='" + lp.LPID + "' " + strtqcode
                            + " order by YExcelPos");
@@ -143,7 +146,8 @@ namespace Ebada.Scgl.Yxgl {
                                     if (tfv.FieldName.IndexOf("时间") == -1 && lp.IsVisible == 0)
                                     {
                                         valEX = "^[0-9]+(\\.)?([0-9]+)?$";
-                                        if (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value != "")
+                                        string valEX2 = "^[0-9]+(\\.)?([0-9]+)?/[0-9]+(\\.)?([0-9]+)?";
+                                        if ((Regex.Match(value, valEX2).Value == "") && (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value != ""))
                                         {
                                             if (tfv.ControlValue == "")
                                                 sum += 0;
@@ -154,21 +158,28 @@ namespace Ebada.Scgl.Yxgl {
                                         else
                                         {
                                             valEX = "^[0-9]+(\\.)?([0-9]+)?/[0-9]+(\\.)?([0-9]+)?";
-                                            if (Regex.Match(tfv.ControlValue, valEX).Value != "")
+                                            if (tfv.ControlValue=="" || Regex.Match(tfv.ControlValue, valEX).Value != "")
                                             {
-                                                string[] str1 = tfv.ControlValue.Split('/');
-                                                if (value == "")
+                                                if (tfv.ControlValue == "")
                                                 {
 
-                                                    value = (idw * Convert.ToDouble(str1[0])).ToString() + "/" + (idw * Convert.ToDouble(str1[1])).ToString();
                                                 }
-                                                else if (value.IndexOf('/') > -1)
+                                                else
                                                 {
-                                                    string[] str2 = value.Split('/');
-                                                    sum = idw * Convert.ToDouble(str1[0]) + Convert.ToDouble(str2[0]);
-                                                    value = sum.ToString();
-                                                    sum = idw * Convert.ToDouble(str1[1]) + Convert.ToDouble(str2[1]);
-                                                    value = value + "/" + sum.ToString();
+                                                    string[] str1 = tfv.ControlValue.Split('/');
+                                                    if (value == "")
+                                                    {
+
+                                                        value = (idw * Convert.ToDouble(str1[0])).ToString() + "/" + (idw * Convert.ToDouble(str1[1])).ToString();
+                                                    }
+                                                    else if (value.IndexOf('/') > -1)
+                                                    {
+                                                        string[] str2 = value.Split('/');
+                                                        sum = idw * Convert.ToDouble(str1[0]) + Convert.ToDouble(str2[0]);
+                                                        value = sum.ToString();
+                                                        sum = idw * Convert.ToDouble(str1[1]) + Convert.ToDouble(str2[1]);
+                                                        value = value + "/" + sum.ToString();
+                                                    }
                                                 }
                                             }
                                             else
@@ -189,16 +200,16 @@ namespace Ebada.Scgl.Yxgl {
                                     if (ht.Contains(tfv.WorkFlowId))
                                     {
                                         string str = ht[tfv.WorkFlowId].ToString();
-                                        if (str.IndexOf(lp.LPID) > -1)
+                                        if (str.IndexOf(tfv.RecordId+"-"+lp.LPID ) > -1)
                                             continue;
                                         else
                                         {
-                                            ht[tfv.WorkFlowId] += lp.LPID;
+                                            ht[tfv.WorkFlowId] += tfv.RecordId + "-" + lp.LPID;
                                         }
                                     }
                                     else
                                     {
-                                        ht.Add(tfv.WorkFlowId, lp.LPID);
+                                        ht.Add(tfv.WorkFlowId, tfv.RecordId + "-" + lp.LPID);
                                     }
                                     valEX = "^[0-9]+(\\.)?([0-9]+)?$";
                                     if (lp.CellName.IndexOf("配电变压器容量") == -1 && lp.CellName.IndexOf("最大供电半径") == -1 && (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value != ""))
@@ -229,6 +240,7 @@ namespace Ebada.Scgl.Yxgl {
                                 {
                                     if (value == "")
                                         strvalue = value;
+                                    else
                                     {
                                         strvalue = Math.Round(Convert.ToDecimal(value), 3).ToString();
                                     }
@@ -420,6 +432,7 @@ namespace Ebada.Scgl.Yxgl {
                                     {
                                         if (value=="")
                                             strvalue = value;
+                                        else
                                         {
                                             strvalue = Math.Round(Convert.ToDecimal(value), 3).ToString(); 
                                         }
