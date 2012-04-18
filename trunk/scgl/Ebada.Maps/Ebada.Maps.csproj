@@ -338,6 +338,9 @@
     <EmbeddedResource Include="PS_tqsbclb.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="WF_workTastTrans.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
