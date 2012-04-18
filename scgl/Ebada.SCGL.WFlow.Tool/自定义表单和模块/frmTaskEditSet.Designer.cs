@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.tetTWorkSQL = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.tetSWorkSQL = new DevExpress.XtraEditors.MemoEdit();
@@ -48,8 +50,6 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.cbxSWorkTastzdDataTable = new System.Windows.Forms.ComboBox();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tetTWorkSQL.Properties)).BeginInit();
@@ -86,6 +86,26 @@
             this.groupControl1.Size = new System.Drawing.Size(445, 494);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "设置";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "下拉",
+            "赋值"});
+            this.comboBox1.Location = new System.Drawing.Point(99, 240);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(235, 22);
+            this.comboBox1.TabIndex = 77;
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(38, 243);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(60, 14);
+            this.labelControl8.TabIndex = 76;
+            this.labelControl8.Text = "传递方式：";
             // 
             // tetTWorkSQL
             // 
@@ -143,6 +163,7 @@
             this.cbxTWorkFolwDataTable.Name = "cbxTWorkFolwDataTable";
             this.cbxTWorkFolwDataTable.Size = new System.Drawing.Size(235, 22);
             this.cbxTWorkFolwDataTable.TabIndex = 73;
+            this.cbxTWorkFolwDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxTWorkFolwDataTable_SelectedIndexChanged);
             // 
             // labelControl6
             // 
@@ -160,6 +181,7 @@
             this.cbxTWorkTastDataTable.Name = "cbxTWorkTastDataTable";
             this.cbxTWorkTastDataTable.Size = new System.Drawing.Size(235, 22);
             this.cbxTWorkTastDataTable.TabIndex = 73;
+            this.cbxTWorkTastDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxTWorkTastDataTable_SelectedIndexChanged);
             // 
             // labelControl1
             // 
@@ -177,6 +199,7 @@
             this.cbxTWorkTastzdDataTable.Name = "cbxTWorkTastzdDataTable";
             this.cbxTWorkTastzdDataTable.Size = new System.Drawing.Size(235, 22);
             this.cbxTWorkTastzdDataTable.TabIndex = 71;
+            this.cbxTWorkTastzdDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxTWorkTastzdDataTable_SelectedIndexChanged);
             // 
             // labelControl3
             // 
@@ -250,26 +273,6 @@
             this.labelControl2.Size = new System.Drawing.Size(84, 14);
             this.labelControl2.TabIndex = 47;
             this.labelControl2.Text = "源节点字段名：";
-            // 
-            // labelControl8
-            // 
-            this.labelControl8.Location = new System.Drawing.Point(38, 243);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(60, 14);
-            this.labelControl8.TabIndex = 76;
-            this.labelControl8.Text = "传递方式：";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "下拉",
-            "赋值"});
-            this.comboBox1.Location = new System.Drawing.Point(99, 240);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(235, 22);
-            this.comboBox1.TabIndex = 77;
             // 
             // frmTaskEditSet
             // 
