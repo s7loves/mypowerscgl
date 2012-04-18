@@ -64,7 +64,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (value == null) return;
 
                 strWorkFlowID = value;
-                IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where "); 
+                refreshData();
             }
         }
         public object RowData
@@ -94,7 +94,13 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             this.DialogResult = DialogResult.OK;
         }
+        private void refreshData()
+        {
 
+            IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where WorkFlowID='" + strWorkFlowID + "'");
+            gridControl1.DataSource = wttli;
+        
+        }
         private void frmExcelEditSQLSet_Load(object sender, EventArgs e)
         {
             
@@ -127,6 +133,49 @@ namespace Ebada.SCGL.WFlow.Tool
         private void memoEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            WF_WorkTastTrans wtt = new WF_WorkTastTrans();
+            frmTaskEditSet ftes = new frmTaskEditSet();
+            wtt.slcid = strWorkFlowID;
+            wtt.tlcid = strWorkFlowID;
+            ftes.RowData = wtt;
+            ftes.strType = "add";
+            if (ftes.ShowDialog() == DialogResult.OK)
+            {
+                refreshData();
+            }
+        }
+
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            if (gridView1.FocusedRowHandle < -1)
+                return;
+            WF_WorkTastTrans wtt = gridView1.GetFocusedRow() as WF_WorkTastTrans;
+            frmTaskEditSet ftes = new frmTaskEditSet();
+            ftes.RowData = wtt;
+            ftes.strType = "edit";
+
+            if (ftes.ShowDialog() == DialogResult.OK)
+            {
+                MainHelper.PlatformSqlMap.Update<WF_WorkTastTrans>(wtt); 
+                refreshData();
+            }
+        }
+
+        private void simpleButton5_Click(object sender, EventArgs e)
+        {
+            if (gridView1.FocusedRowHandle < -1)
+                return;
+            WF_WorkTastTrans wtt = gridView1.GetFocusedRow() as WF_WorkTastTrans;
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认删除 【" + wtt.slcjdzdmc + "】?") != DialogResult.OK)
+            {
+                return;
+            }
+
         }
 
        
