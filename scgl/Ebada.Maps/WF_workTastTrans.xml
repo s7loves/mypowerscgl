@@ -1,198 +1,315 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="WF_workTastTrans" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sqlMap namespace="WF_WorkTastTrans" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="WF_workTastTrans"  type="Ebada.Scgl.Model.WF_workTastTrans,Ebada.Scgl.Model" />
+  <typeAlias alias="WF_WorkTastTrans"  type="Ebada.Scgl.Model.WF_WorkTastTrans,Ebada.Scgl.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="WF_workTastTrans_AllColumns" class="WF_workTastTrans">
+      <resultMap id="WF_WorkTastTrans_AllColumns" class="WF_WorkTastTrans">
         <result property="ID" column="ID" />
-        <result property="slcmcid" column="slcmcid" />
+        <result property="WorkFlowID" column="WorkFlowID" />
+        <result property="slcid" column="slcid" />
+        <result property="slcmc" column="slcmc" />
         <result property="slcjdid" column="slcjdid" />
-        <result property="slcjdzd" column="slcjdzd" />
+        <result property="slcjdmc" column="slcjdmc" />
+        <result property="slcjdzdid" column="slcjdzdid" />
+        <result property="slcjdzdmc" column="slcjdzdmc" />
+        <result property="slcjdzdlx" column="slcjdzdlx" />
+        <result property="slcjdzdbid" column="slcjdzdbid" />
         <result property="sSQL" column="sSQL" />
-        <result property="tlcmcid" column="tlcmcid" />
-        <result property="tlcjdid" column="tlcjdid" />
-        <result property="tlcjdzd" column="tlcjdzd" />
         <result property="cdfs" column="cdfs" />
+        <result property="tlcid" column="tlcid" />
+        <result property="tlcmc" column="tlcmc" />
+        <result property="tlcjdid" column="tlcjdid" />
+        <result property="tlcjdmc" column="tlcjdmc" />
+        <result property="tlcjdzdid" column="tlcjdzdid" />
+        <result property="tlcjdzdbid" column="tlcjdzdbid" />
+        <result property="tlcjdzdmc" column="tlcjdzdmc" />
+        <result property="tlcjdzdlx" column="tlcjdzdlx" />
         <result property="tSQL" column="tSQL" />
         <result property="S1" column="S1" />
         <result property="S2" column="S2" />
         <result property="S3" column="S3" />
+        <result property="S4" column="S4" />
+        <result property="S5" column="S5" />
       </resultMap>
   </resultMaps>
 
   <statements>
-   <select id="SelectWF_workTastTransList" resultMap="WF_workTastTrans_AllColumns" parameterClass="string">
+   <select id="SelectWF_WorkTastTransList" resultMap="WF_WorkTastTrans_AllColumns" parameterClass="string">
         SELECT 
          [ID],
-         [slcmcid],
+         [WorkFlowID],
+         [slcid],
+         [slcmc],
          [slcjdid],
-         [slcjdzd],
+         [slcjdmc],
+         [slcjdzdid],
+         [slcjdzdmc],
+         [slcjdzdlx],
+         [slcjdzdbid],
          [sSQL],
-         [tlcmcid],
-         [tlcjdid],
-         [tlcjdzd],
          [cdfs],
+         [tlcid],
+         [tlcmc],
+         [tlcjdid],
+         [tlcjdmc],
+         [tlcjdzdid],
+         [tlcjdzdbid],
+         [tlcjdzdmc],
+         [tlcjdzdlx],
          [tSQL],
          [S1],
          [S2],
-         [S3]
-          FROM WF_workTastTrans
+         [S3],
+         [S4],
+         [S5]
+          FROM WF_WorkTastTrans
           $value$
    </select>
    
-   <select id="SelectWF_workTastTransByHash" parameterClass="Hashtable">
+   <select id="SelectWF_WorkTastTransByHash" parameterClass="Hashtable">
          SELECT 
          [ID],
-         [slcmcid],
+         [WorkFlowID],
+         [slcid],
+         [slcmc],
          [slcjdid],
-         [slcjdzd],
+         [slcjdmc],
+         [slcjdzdid],
+         [slcjdzdmc],
+         [slcjdzdlx],
+         [slcjdzdbid],
          [sSQL],
-         [tlcmcid],
-         [tlcjdid],
-         [tlcjdzd],
          [cdfs],
+         [tlcid],
+         [tlcmc],
+         [tlcjdid],
+         [tlcjdmc],
+         [tlcjdzdid],
+         [tlcjdzdbid],
+         [tlcjdzdmc],
+         [tlcjdzdlx],
          [tSQL],
          [S1],
          [S2],
-         [S3]
-          FROM WF_workTastTrans
+         [S3],
+         [S4],
+         [S5]
+          FROM WF_WorkTastTrans
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
-       <isNotNull prepend="AND" property="slcmcid">[slcmcid]='$slcmcid$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowID">[WorkFlowID]='$WorkFlowID$'</isNotNull>
+       <isNotNull prepend="AND" property="slcid">[slcid]='$slcid$'</isNotNull>
+       <isNotNull prepend="AND" property="slcmc">[slcmc]='$slcmc$'</isNotNull>
        <isNotNull prepend="AND" property="slcjdid">[slcjdid]='$slcjdid$'</isNotNull>
-       <isNotNull prepend="AND" property="slcjdzd">[slcjdzd]='$slcjdzd$'</isNotNull>
+       <isNotNull prepend="AND" property="slcjdmc">[slcjdmc]='$slcjdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="slcjdzdid">[slcjdzdid]='$slcjdzdid$'</isNotNull>
+       <isNotNull prepend="AND" property="slcjdzdmc">[slcjdzdmc]='$slcjdzdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="slcjdzdlx">[slcjdzdlx]='$slcjdzdlx$'</isNotNull>
+       <isNotNull prepend="AND" property="slcjdzdbid">[slcjdzdbid]='$slcjdzdbid$'</isNotNull>
        <isNotNull prepend="AND" property="sSQL">[sSQL]='$sSQL$'</isNotNull>
-       <isNotNull prepend="AND" property="tlcmcid">[tlcmcid]='$tlcmcid$'</isNotNull>
-       <isNotNull prepend="AND" property="tlcjdid">[tlcjdid]='$tlcjdid$'</isNotNull>
-       <isNotNull prepend="AND" property="tlcjdzd">[tlcjdzd]='$tlcjdzd$'</isNotNull>
        <isNotNull prepend="AND" property="cdfs">[cdfs]='$cdfs$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcid">[tlcid]='$tlcid$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcmc">[tlcmc]='$tlcmc$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdid">[tlcjdid]='$tlcjdid$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdmc">[tlcjdmc]='$tlcjdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdzdid">[tlcjdzdid]='$tlcjdzdid$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdzdbid">[tlcjdzdbid]='$tlcjdzdbid$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdzdmc">[tlcjdzdmc]='$tlcjdzdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdzdlx">[tlcjdzdlx]='$tlcjdzdlx$'</isNotNull>
        <isNotNull prepend="AND" property="tSQL">[tSQL]='$tSQL$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
        <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+       <isNotNull prepend="AND" property="S4">[S4]='$S4$'</isNotNull>
+       <isNotNull prepend="AND" property="S5">[S5]='$S5$'</isNotNull>
      </dynamic>
    </select>
-   <select id="SelectWF_workTastTransByKey" resultMap="WF_workTastTrans_AllColumns" parameterClass="WF_workTastTrans">
+   <select id="SelectWF_WorkTastTransByKey" resultMap="WF_WorkTastTrans_AllColumns" parameterClass="WF_WorkTastTrans">
          SELECT 
          [ID],
-         [slcmcid],
+         [WorkFlowID],
+         [slcid],
+         [slcmc],
          [slcjdid],
-         [slcjdzd],
+         [slcjdmc],
+         [slcjdzdid],
+         [slcjdzdmc],
+         [slcjdzdlx],
+         [slcjdzdbid],
          [sSQL],
-         [tlcmcid],
-         [tlcjdid],
-         [tlcjdzd],
          [cdfs],
+         [tlcid],
+         [tlcmc],
+         [tlcjdid],
+         [tlcjdmc],
+         [tlcjdzdid],
+         [tlcjdzdbid],
+         [tlcjdzdmc],
+         [tlcjdzdlx],
          [tSQL],
          [S1],
          [S2],
-         [S3]
-         FROM WF_workTastTrans
+         [S3],
+         [S4],
+         [S5]
+         FROM WF_WorkTastTrans
          WHERE 
            ID = #ID#
 
    </select>
  
-   <delete id="DeleteWF_workTastTrans" parameterClass="WF_workTastTrans">
+   <delete id="DeleteWF_WorkTastTrans" parameterClass="WF_WorkTastTrans">
         DELETE FROM 
-         WF_workTastTrans
+         WF_WorkTastTrans
            WHERE
          ID = #ID#
 
    </delete>
    
-   <delete id="DeleteWF_workTastTransByWhere" parameterClass="string">
-     delete from WF_workTastTrans $value$
+   <delete id="DeleteWF_WorkTastTransByWhere" parameterClass="string">
+     delete from WF_WorkTastTrans $value$
    </delete>
    
-   <delete id="DeleteWF_workTastTransByKey" parameterClass="string">
+   <delete id="DeleteWF_WorkTastTransByKey" parameterClass="string">
         DELETE FROM 
-         WF_workTastTrans
+         WF_WorkTastTrans
            WHERE
          ID = #ID#
     
    </delete>
    
-   <update id="UpdateWF_workTastTrans" parameterClass="WF_workTastTrans" resultClass="int">
-          UPDATE WF_workTastTrans
+   <update id="UpdateWF_WorkTastTrans" parameterClass="WF_WorkTastTrans" resultClass="int">
+          UPDATE WF_WorkTastTrans
            SET
-             [slcmcid]=#slcmcid#,
+             [WorkFlowID]=#WorkFlowID#,
+             [slcid]=#slcid#,
+             [slcmc]=#slcmc#,
              [slcjdid]=#slcjdid#,
-             [slcjdzd]=#slcjdzd#,
+             [slcjdmc]=#slcjdmc#,
+             [slcjdzdid]=#slcjdzdid#,
+             [slcjdzdmc]=#slcjdzdmc#,
+             [slcjdzdlx]=#slcjdzdlx#,
+             [slcjdzdbid]=#slcjdzdbid#,
              [sSQL]=#sSQL#,
-             [tlcmcid]=#tlcmcid#,
-             [tlcjdid]=#tlcjdid#,
-             [tlcjdzd]=#tlcjdzd#,
              [cdfs]=#cdfs#,
+             [tlcid]=#tlcid#,
+             [tlcmc]=#tlcmc#,
+             [tlcjdid]=#tlcjdid#,
+             [tlcjdmc]=#tlcjdmc#,
+             [tlcjdzdid]=#tlcjdzdid#,
+             [tlcjdzdbid]=#tlcjdzdbid#,
+             [tlcjdzdmc]=#tlcjdzdmc#,
+             [tlcjdzdlx]=#tlcjdzdlx#,
              [tSQL]=#tSQL#,
              [S1]=#S1#,
              [S2]=#S2#,
-             [S3]=#S3#
+             [S3]=#S3#,
+             [S4]=#S4#,
+             [S5]=#S5#
             WHERE 
               ID = #ID#
 
    </update>
   
-   <insert id="InsertWF_workTastTrans" parameterClass="WF_workTastTrans">
-        INSERT INTO WF_workTastTrans
+   <insert id="InsertWF_WorkTastTrans" parameterClass="WF_WorkTastTrans">
+        INSERT INTO WF_WorkTastTrans
          (
          [ID],
-         [slcmcid],
+         [WorkFlowID],
+         [slcid],
+         [slcmc],
          [slcjdid],
-         [slcjdzd],
+         [slcjdmc],
+         [slcjdzdid],
+         [slcjdzdmc],
+         [slcjdzdlx],
+         [slcjdzdbid],
          [sSQL],
-         [tlcmcid],
-         [tlcjdid],
-         [tlcjdzd],
          [cdfs],
+         [tlcid],
+         [tlcmc],
+         [tlcjdid],
+         [tlcjdmc],
+         [tlcjdzdid],
+         [tlcjdzdbid],
+         [tlcjdzdmc],
+         [tlcjdzdlx],
          [tSQL],
          [S1],
          [S2],
-         [S3]
+         [S3],
+         [S4],
+         [S5]
          )
        VALUES
          (
          #ID#,
-         #slcmcid#,
+         #WorkFlowID#,
+         #slcid#,
+         #slcmc#,
          #slcjdid#,
-         #slcjdzd#,
+         #slcjdmc#,
+         #slcjdzdid#,
+         #slcjdzdmc#,
+         #slcjdzdlx#,
+         #slcjdzdbid#,
          #sSQL#,
-         #tlcmcid#,
-         #tlcjdid#,
-         #tlcjdzd#,
          #cdfs#,
+         #tlcid#,
+         #tlcmc#,
+         #tlcjdid#,
+         #tlcjdmc#,
+         #tlcjdzdid#,
+         #tlcjdzdbid#,
+         #tlcjdzdmc#,
+         #tlcjdzdlx#,
          #tSQL#,
          #S1#,
          #S2#,
-         #S3#
+         #S3#,
+         #S4#,
+         #S5#
          )
 
    </insert>
    
-   <select id="GetWF_workTastTransRowCountByHash" parameterClass="Hashtable">
+   <select id="GetWF_WorkTastTransRowCountByHash" parameterClass="Hashtable">
          SELECT Count(*) 
-          FROM WF_workTastTrans
+          FROM WF_WorkTastTrans
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
-       <isNotNull prepend="AND" property="slcmcid">[slcmcid]='$slcmcid$'</isNotNull>
+       <isNotNull prepend="AND" property="WorkFlowID">[WorkFlowID]='$WorkFlowID$'</isNotNull>
+       <isNotNull prepend="AND" property="slcid">[slcid]='$slcid$'</isNotNull>
+       <isNotNull prepend="AND" property="slcmc">[slcmc]='$slcmc$'</isNotNull>
        <isNotNull prepend="AND" property="slcjdid">[slcjdid]='$slcjdid$'</isNotNull>
-       <isNotNull prepend="AND" property="slcjdzd">[slcjdzd]='$slcjdzd$'</isNotNull>
+       <isNotNull prepend="AND" property="slcjdmc">[slcjdmc]='$slcjdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="slcjdzdid">[slcjdzdid]='$slcjdzdid$'</isNotNull>
+       <isNotNull prepend="AND" property="slcjdzdmc">[slcjdzdmc]='$slcjdzdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="slcjdzdlx">[slcjdzdlx]='$slcjdzdlx$'</isNotNull>
+       <isNotNull prepend="AND" property="slcjdzdbid">[slcjdzdbid]='$slcjdzdbid$'</isNotNull>
        <isNotNull prepend="AND" property="sSQL">[sSQL]='$sSQL$'</isNotNull>
-       <isNotNull prepend="AND" property="tlcmcid">[tlcmcid]='$tlcmcid$'</isNotNull>
-       <isNotNull prepend="AND" property="tlcjdid">[tlcjdid]='$tlcjdid$'</isNotNull>
-       <isNotNull prepend="AND" property="tlcjdzd">[tlcjdzd]='$tlcjdzd$'</isNotNull>
        <isNotNull prepend="AND" property="cdfs">[cdfs]='$cdfs$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcid">[tlcid]='$tlcid$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcmc">[tlcmc]='$tlcmc$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdid">[tlcjdid]='$tlcjdid$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdmc">[tlcjdmc]='$tlcjdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdzdid">[tlcjdzdid]='$tlcjdzdid$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdzdbid">[tlcjdzdbid]='$tlcjdzdbid$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdzdmc">[tlcjdzdmc]='$tlcjdzdmc$'</isNotNull>
+       <isNotNull prepend="AND" property="tlcjdzdlx">[tlcjdzdlx]='$tlcjdzdlx$'</isNotNull>
        <isNotNull prepend="AND" property="tSQL">[tSQL]='$tSQL$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
        <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+       <isNotNull prepend="AND" property="S4">[S4]='$S4$'</isNotNull>
+       <isNotNull prepend="AND" property="S5">[S5]='$S5$'</isNotNull>
      </dynamic>
 
    </select>
    
-   <select id="GetWF_workTastTransRowCount" parameterClass="string">
-    select count(*) from WF_workTastTrans $value$
+   <select id="GetWF_WorkTastTransRowCount" parameterClass="string">
+    select count(*) from WF_WorkTastTrans $value$
    </select>
   </statements>
 </sqlMap>
