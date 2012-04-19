@@ -76,7 +76,24 @@ namespace Ebada.SCGL.WFlow.Tool
         }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-           
+            
+            rowData.slcid = ((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID;
+            rowData.slcmc = ((ListItem)cbxSWorkFolwDataTable.SelectedItem).Name;
+            rowData.slcjdid = ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID;
+            rowData.slcjdmc = ((ListItem)cbxSWorkTastDataTable.SelectedItem).Name;
+            rowData.slcjdzdid = ((ListItem)cbxSWorkTastzdDataTable.SelectedItem).ID;
+            rowData.slcjdzdmc = ((ListItem)cbxSWorkTastzdDataTable.SelectedItem).Name;
+            rowData.sSQL = tetSWorkSQL.Text;
+
+            rowData.cdfs = ((ListItem)comboBox1.SelectedItem).ID;
+
+            rowData.tlcid = ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID;
+            rowData.tlcmc = ((ListItem)cbxTWorkFolwDataTable.SelectedItem).Name;
+            rowData.tlcjdid = ((ListItem)cbxTWorkTastDataTable.SelectedItem).ID;
+            rowData.tlcjdmc = ((ListItem)cbxTWorkTastDataTable.SelectedItem).Name;
+            rowData.tlcjdzdid = ((ListItem)cbxTWorkTastzdDataTable.SelectedItem).ID;
+            rowData.tlcjdzdmc = ((ListItem)cbxTWorkTastzdDataTable.SelectedItem).Name;
+            rowData.tSQL = tetTWorkSQL.Text;
             this.DialogResult = DialogResult.OK;
         }
         
@@ -93,13 +110,15 @@ namespace Ebada.SCGL.WFlow.Tool
             DataTable dt = ConvertHelper.ToDataTable(li);
             WinFormFun.LoadComboBox(cbxSWorkFolwDataTable, dt, "WorkFlowId", "FlowCaption");
             WinFormFun.LoadComboBox(cbxTWorkFolwDataTable, dt, "WorkFlowId", "FlowCaption");
-            l = new ListItem("下拉", "下拉");
+            l = new ListItem("下拉并选中", "下拉并选中");
+            comboBox1.Items.Add(l);
+            l = new ListItem("下拉不选中", "下拉不选中");
             comboBox1.Items.Add(l);
             l = new ListItem("赋值", "赋值");
             comboBox1.Items.Add(l);
 
             setComoboxFocusIndex(cbxSWorkFolwDataTable, rowData.slcid);
-            setComoboxFocusIndex(cbxSWorkTastDataTable, rowData.slcjdid);
+            setComoboxFocusIndex(cbxTWorkFolwDataTable, rowData.tlcid);
             if (strtype == "edit")
             {
                 setComoboxFocusIndex(cbxSWorkFolwDataTable, rowData.slcid);
@@ -264,7 +283,7 @@ namespace Ebada.SCGL.WFlow.Tool
             else
             {
                 IList lpli = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList",
-                    string.Format(" where ParentID='{0}'",
+                    string.Format(" where ParentID='{0}' order by  sortid ",
                      wtc.UserControlId));
                 if (lpli.Count > 0)
                 {
@@ -427,7 +446,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     {
                         tetSWorkSQL.Text = "select ControlValue from WF_TableFieldValue where 10=10  "
                         + "and UserControlId='" + rowData.slcjdzdbid   + "' "
-                        + " and FieldId='" + strli[1] + "' ";
+                        + " and FieldId='" + strli[0] + "' ";
                         if (ceBind.Checked)
                         {
                             tetSWorkSQL.Text = tetSWorkSQL.Text + " and RecordId='{recordid}'";
@@ -518,7 +537,7 @@ namespace Ebada.SCGL.WFlow.Tool
             else
             {
                 IList lpli = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList",
-                    string.Format(" where ParentID='{0}'",
+                    string.Format(" where ParentID='{0}' order by  sortid ",
                      wtc.UserControlId));
                 if (lpli.Count > 0)
                 {
@@ -530,7 +549,7 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             if (dt != null && (rowData.tlcjdzdlx == "模块"))
             {
-                WinFormFun.LoadComboBox(cbxSWorkTastzdDataTable, dt, "WorkFlowId", "Name");
+                WinFormFun.LoadComboBox(cbxTWorkTastzdDataTable, dt, "WorkFlowId", "Name");
                 cbxTWorkTastzdDataTable.SelectedIndex = 0;
 
             }
@@ -542,7 +561,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     if (rowData.tlcjdzdbid=="") rowData.tlcjdzdbid = dr["ParentID"].ToString();
                     dr["CellName"] = dr["SortID"] + " " + dr["CellName"];
                 }
-                WinFormFun.LoadComboBox(cbxSWorkTastzdDataTable, dt, "LPID", "CellName");
+                WinFormFun.LoadComboBox(cbxTWorkTastzdDataTable, dt, "LPID", "CellName");
                 cbxTWorkTastzdDataTable.SelectedIndex = 0;
             }
             else
@@ -592,7 +611,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     {
                         tetTWorkSQL.Text = "select ControlValue from WF_TableFieldValue where 10=10  "
                         + "and UserControlId='" + rowData.slcjdzdbid + "' "
-                        + " and FieldId='" + strli[1] + "' ";
+                        + " and FieldId='" + strli[0] + "' ";
                         if (ceBind.Checked)
                         {
                             tetTWorkSQL.Text = tetTWorkSQL.Text + " and RecordId='{recordid}'";

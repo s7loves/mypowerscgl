@@ -141,10 +141,12 @@ namespace Ebada.SCGL.WFlow.Tool
             frmTaskEditSet ftes = new frmTaskEditSet();
             wtt.slcid = strWorkFlowID;
             wtt.tlcid = strWorkFlowID;
+            wtt.WorkFlowID = strWorkFlowID;
             ftes.RowData = wtt;
             ftes.strType = "add";
             if (ftes.ShowDialog() == DialogResult.OK)
             {
+                MainHelper.PlatformSqlMap.Create<WF_WorkTastTrans>(wtt); 
                 refreshData();
             }
         }
