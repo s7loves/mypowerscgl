@@ -82,16 +82,16 @@ namespace Ebada.SCGL.WFlow.Tool
         }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            int i = 0;
-            strSQL = "";
-            foreach (DataRow dr in griddt.Rows)
-            {
-                if (dr["sql"].ToString() != "")
-                {
-                    strSQL += "[" + i + ":" + dr["sql"] + "]";
-                }
-                i++;
-            }
+            //int i = 0;
+            //strSQL = "";
+            //foreach (DataRow dr in griddt.Rows)
+            //{
+            //    if (dr["sql"].ToString() != "")
+            //    {
+            //        strSQL += "[" + i + ":" + dr["sql"] + "]";
+            //    }
+            //    i++;
+            //}
             this.DialogResult = DialogResult.OK;
         }
         private void refreshData()
@@ -177,6 +177,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 return;
             }
+            MainHelper.PlatformSqlMap.Delete<WF_WorkTastTrans>(wtt); 
 
         }
 
