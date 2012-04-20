@@ -211,10 +211,10 @@ namespace Ebada.SCGL.WFlow.Tool
                 "where WorkFlowId ='" + ((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID + "' order by TaskTypeId");
             DataTable dt = new DataTable();
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
-            for (int i = 0; i < dt.Rows.Count && li.Count > 0; i++)
+            for (int i = 0; i < li.Count ; i++)
             {
-                if (dt.Rows[i]["TaskTypeId"].ToString() == "6")
-                GetTaskList(ref  dt, dt.Rows[i]["WorkFlowId"].ToString(), dt.Rows[i]["WorkTaskId"].ToString());
+                if (((WF_WorkTask)li[i]).TaskTypeId == "6")
+                    GetTaskList(ref  dt, ((WF_WorkTask)li[i]).WorkFlowId, ((WF_WorkTask)li[i]).WorkTaskId);
                 
             }
             WinFormFun.LoadComboBox(cbxSWorkTastDataTable, dt, "WorkTaskId", "TaskCaption");
@@ -239,7 +239,8 @@ namespace Ebada.SCGL.WFlow.Tool
                         else
                         {
                             DataRow dr = dt.NewRow();
-                            dr["TaskCaption"] = sbf.subWorkflowCaption  + "-" + wtli[j].TaskCaption;
+                            dr["TaskCaption"] = sbf.subWorkflowCaption + "-" + wtli[j].TaskCaption;
+                            dr["WorkTaskId"] = wtli[j].WorkTaskId;
                             dt.Rows.Add(dr);
                         }
                     }
@@ -251,13 +252,17 @@ namespace Ebada.SCGL.WFlow.Tool
             if (cbxSWorkTastDataTable.SelectedIndex < 1) return;
             ListItem l = new ListItem("###", "请选择");
             cbxSWorkTastzdDataTable.Items.Clear();
-            cbxSWorkTastzdDataTable.Items.Add(l); 
+            cbxSWorkTastzdDataTable.Items.Add(l);
+            WF_WorkTaskModle wtmtemp = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
+                        (string.Format(" where  WorkTaskId='{0}'",
+                       ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
+            mModule mu = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtmtemp.Modu_ID);
             WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>
-                        (string.Format (" where WorkflowId='{0}' and WorkTaskId='{1}'",
-                       ((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID,
+                        (string.Format(" where  WorkTaskId='{0}' and ControlType='表单'",
+                      
                        ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
             DataTable dt = null;
-            if (wtc == null || wtc.UserControlId == "节点审核")
+            if (mu.ModuTypes.ToLower() != "ebada.scgl.lcgl.frmlp")
             {
                 string varDbTableName = "";
                 WF_WorkTaskModle wtm = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
@@ -295,9 +300,9 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             else
             {
-                IList lpli = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList",
-                    string.Format(" where ParentID='{0}' order by  sortid ",
-                     wtc.UserControlId));
+                IList lpli = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList",
+                    string.Format(" where WorktaskId='{0}' and UserControlId='{1}'  ",
+                    wtc.WorktaskId ,  wtc.UserControlId));
                 if (lpli.Count > 0)
                 {
                     dt = new DataTable();
@@ -306,21 +311,25 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
 
             }
-            if (dt != null && (rowData.slcjdzdlx == "模块"))
+            if (dt != null && (mu.ModuTypes.ToLower() != "ebada.scgl.lcgl.frmlp"))
             {
                 WinFormFun.LoadComboBox(cbxSWorkTastzdDataTable, dt, "WorkFlowId", "Name");
                 cbxSWorkTastzdDataTable.SelectedIndex = 0;
 
             }
-            else if (dt != null && (rowData.slcjdzdlx == "表单"))
+            else if (dt != null && (mu.ModuTypes.ToLower() == "ebada.scgl.lcgl.frmlp"))
             {
                 rowData.slcjdzdbid = "";
                 foreach (DataRow dr in dt.Rows)
                 {
-                    if (rowData.slcjdzdbid == "") rowData.slcjdzdbid = dr["ParentID"].ToString();
-                    dr["CellName"] = dr["SortID"] + " " + dr["CellName"];
+                    if (rowData.slcjdzdbid == "")
+                    {
+                        rowData.slcjdzdbid = dr["UserControlId"].ToString();
+                        break;
+                    }
+                    //dr["CellName"] = dr["SortID"] + " " + dr["CellName"];
                 }
-                WinFormFun.LoadComboBox(cbxSWorkTastzdDataTable, dt, "LPID", "CellName");
+                WinFormFun.LoadComboBox(cbxSWorkTastzdDataTable, dt, "FieldId", "FieldName");
                 cbxSWorkTastzdDataTable.SelectedIndex = 0;
             }
             else
@@ -478,22 +487,23 @@ namespace Ebada.SCGL.WFlow.Tool
                 "where WorkFlowId ='" + ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID + "' order by TaskTypeId");
             DataTable dt = new DataTable();
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
-            for (int i = 0; i < dt.Rows.Count && li.Count > 0; i++)
+            for (int i = 0; i < li.Count; i++)
             {
 
-                if (dt.Rows[i]["TaskTypeId"].ToString() == "6")
+                if (((WF_WorkTask)li[i]).TaskTypeId == "6")
                 {
-                    WF_SubWorkFlow sbf = MainHelper.PlatformSqlMap.GetOne<WF_SubWorkFlow>
-                        (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
-                       dt.Rows[i]["WorkFlowId"], dt.Rows[i]["TaskTypeId"]));
-                    IList<WF_WorkTask> wtli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
-               "where WorkFlowId ='" + dt.Rows[i]["WorkFlowId"] + "' and WorkTaskId='"
-               + dt.Rows[i]["WorkTaskId"] + "' order by TaskTypeId");
-                    for (i = 0; i < wtli.Count; i++)
-                    {
-                        DataRow dr = dt.NewRow();
-                        dt.Rows[i]["TaskCaption"] = dt.Rows[i]["TaskCaption"] + "-" + wtli[i].TaskCaption;
-                    }
+                    GetTaskList(ref  dt, ((WF_WorkTask)li[i]).WorkFlowId, ((WF_WorkTask)li[i]).WorkTaskId);
+               //     WF_SubWorkFlow sbf = MainHelper.PlatformSqlMap.GetOne<WF_SubWorkFlow>
+               //         (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
+               //        ((WF_WorkTask)li[i]).WorkFlowId, ((WF_WorkTask)li[i]).WorkTaskId));
+               //     IList<WF_WorkTask> wtli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
+               //"where WorkFlowId ='" + ((WF_WorkTask)li[i]).WorkFlowId + "' and WorkTaskId='"
+               //+ ((WF_WorkTask)li[i]).WorkTaskId + "' order by TaskTypeId");
+               //     for (int j = 0; j < wtli.Count; j++)
+               //     {
+               //         DataRow dr = dt.NewRow();
+               //         dt.Rows[j]["TaskCaption"] = dt.Rows[j]["TaskCaption"] + "-" + wtli[j].TaskCaption;
+               //     }
                 }
             }
             WinFormFun.LoadComboBox(cbxTWorkTastDataTable, dt, "WorkTaskId", "TaskCaption");
@@ -506,12 +516,15 @@ namespace Ebada.SCGL.WFlow.Tool
             ListItem l = new ListItem("###", "请选择");
             cbxTWorkTastzdDataTable.Items.Clear();
             cbxTWorkTastzdDataTable.Items.Add(l);
+            WF_WorkTaskModle wtmtemp = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
+                        (string.Format(" where  WorkTaskId='{0}'",
+                       ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
+            mModule mu = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtmtemp.Modu_ID);
             WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>
-                        (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
-                       ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID,
-                       ((ListItem)cbxTWorkTastDataTable.SelectedItem).ID));
+                        (string.Format(" where  WorkTaskId='{0}' and ControlType='表单'",
+                       ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
             DataTable dt = null;
-            if (wtc == null || wtc.UserControlId == "节点审核")
+            if (mu.ModuTypes.ToLower() != "ebada.scgl.lcgl.frmlp")
             {
                 string varDbTableName = "";
                 WF_WorkTaskModle wtm = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
@@ -549,9 +562,9 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             else
             {
-                IList lpli = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList",
-                    string.Format(" where ParentID='{0}' order by  sortid ",
-                     wtc.UserControlId));
+                IList lpli = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList",
+                    string.Format(" where WorktaskId='{0}' and UserControlId='{1}'  ",
+                    wtc.WorktaskId, wtc.UserControlId));
                 if (lpli.Count > 0)
                 {
                     dt = new DataTable();
@@ -560,21 +573,22 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
 
             }
-            if (dt != null && (rowData.tlcjdzdlx == "模块"))
+            if (dt != null && (mu.ModuTypes.ToLower() != "ebada.scgl.lcgl.frmlp"))
             {
                 WinFormFun.LoadComboBox(cbxTWorkTastzdDataTable, dt, "WorkFlowId", "Name");
                 cbxTWorkTastzdDataTable.SelectedIndex = 0;
 
             }
-            else if (dt != null && (rowData.tlcjdzdlx == "表单"))
+            else if (dt != null && (mu.ModuTypes.ToLower() == "ebada.scgl.lcgl.frmlp"))
             {
                 rowData.tlcjdzdbid = "";
                 foreach (DataRow dr in dt.Rows)
                 {
-                    if (rowData.tlcjdzdbid=="") rowData.tlcjdzdbid = dr["ParentID"].ToString();
-                    dr["CellName"] = dr["SortID"] + " " + dr["CellName"];
+                    if (rowData.tlcjdzdbid == "") rowData.tlcjdzdbid = dr["UserControlId"].ToString();
+                    //dr["CellName"] = dr["SortID"] + " " + dr["CellName"];
+                    break;
                 }
-                WinFormFun.LoadComboBox(cbxTWorkTastzdDataTable, dt, "LPID", "CellName");
+                WinFormFun.LoadComboBox(cbxTWorkTastzdDataTable, dt, "FieldId", "FieldName");
                 cbxTWorkTastzdDataTable.SelectedIndex = 0;
             }
             else
