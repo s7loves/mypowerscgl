@@ -213,26 +213,39 @@ namespace Ebada.SCGL.WFlow.Tool
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
             for (int i = 0; i < dt.Rows.Count && li.Count > 0; i++)
             {
-                
                 if (dt.Rows[i]["TaskTypeId"].ToString() == "6")
-                {
-                    WF_SubWorkFlow sbf = MainHelper.PlatformSqlMap.GetOne<WF_SubWorkFlow>
-                        (string.Format (" where WorkflowId='{0}' and WorkTaskId='{1}'",
-                       dt.Rows[i]["WorkFlowId"] ,dt.Rows[i]["TaskTypeId"]));
-                    IList<WF_WorkTask> wtli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
-               "where WorkFlowId ='" + dt.Rows[i]["WorkFlowId"] + "' and WorkTaskId='"
-               +dt.Rows[i]["WorkTaskId"] +"' order by TaskTypeId");
-                    for ( i = 0; i < wtli.Count; i++)
-                    {
-                        DataRow dr = dt.NewRow();
-                        dt.Rows[i]["TaskCaption"] =dt.Rows[i]["TaskCaption"]+ "-" + wtli[i].TaskCaption  ;
-                    }
-                }
+                GetTaskList(ref  dt, dt.Rows[i]["WorkFlowId"].ToString(), dt.Rows[i]["WorkTaskId"].ToString());
+                
             }
             WinFormFun.LoadComboBox(cbxSWorkTastDataTable, dt, "WorkTaskId", "TaskCaption");
             cbxSWorkTastDataTable.SelectedIndex = 0;
         }
-
+        private void GetTaskList(ref DataTable dt, string WorkFlowId, string WorkTaskId)
+        {
+            
+                WF_SubWorkFlow sbf = MainHelper.PlatformSqlMap.GetOne<WF_SubWorkFlow>
+                    (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
+                   WorkFlowId,  WorkTaskId));
+                if (sbf != null)
+                {
+                    IList<WF_WorkTask> wtli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
+               "where WorkFlowId ='" + sbf.subWorkflowId  + "'  order by TaskTypeId");
+                    for (int j = 0; j < wtli.Count; j++)
+                    {
+                        if (wtli[j].TaskTypeId == "6")
+                        {
+                            GetTaskList(ref  dt, wtli[j].WorkFlowId, wtli[j].WorkTaskId);
+                        }
+                        else
+                        {
+                            DataRow dr = dt.NewRow();
+                            dr["TaskCaption"] = sbf.subWorkflowCaption  + "-" + wtli[j].TaskCaption;
+                            dt.Rows.Add(dr);
+                        }
+                    }
+                }
+            
+        }
         private void cbxSWorkTastDataTable_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxSWorkTastDataTable.SelectedIndex < 1) return;
@@ -583,11 +596,11 @@ namespace Ebada.SCGL.WFlow.Tool
                     IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + strli[0] + "'");
                     if (list.Count > 0 && 1 == 0)
                     {
-                        tetTWorkSQL.Text = "select " + strli[1] + " from " + strli[0] + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
+                        tetTWorkSQL.Text = "select " + list[0] + " from " + strli[0] + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
                     }
                     else
                     {
-                        tetTWorkSQL.Text = "select " + strli[1] + " from " + strli[0] + " where 5=5 ";
+                        tetTWorkSQL.Text = "select " + list[0] + " from " + strli[0] + " where 5=5 ";
                     }
                     if (ceBind.Checked)
                     {
@@ -609,7 +622,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 else
                     if (rowData.slcjdzdlx == "表单")
                     {
-                        tetTWorkSQL.Text = "select ControlValue from WF_TableFieldValue where 10=10  "
+                        tetTWorkSQL.Text = "select id from WF_TableFieldValue where 10=10  "
                         + "and UserControlId='" + rowData.slcjdzdbid + "' "
                         + " and FieldId='" + strli[0] + "' ";
                         if (ceBind.Checked)
