@@ -1453,10 +1453,10 @@ namespace Ebada.Scgl.Lcgl
         }
         public void RunTaskUpdate()
         {
-            IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where tlcjdid='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "' and cdfs like '更新%'");
+            IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where slcjdid='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "' and cdfs like '赋值%'");
             foreach (WF_WorkTastTrans wtt in wttli)
             {
-                Control ctrl = FindCtrl(wtt.tlcjdzdid);
+                Control ctrl = FindCtrl(wtt.slcjdzdid);
                 if (ctrl != null)
                 {
                     RunTaskCtrlData(ctrl, wtt.sSQL, wtt);
@@ -1466,6 +1466,47 @@ namespace Ebada.Scgl.Lcgl
         
         }
         public void RunTaskCtrlData(Control ctrl, string sqlSentence, WF_WorkTastTrans wtt)
+        {
+            IList sli = ExTaskCtrlSQL(ctrl, wtt.sSQL, wtt);
+            IList tli = ExTaskCtrlSQL(ctrl, wtt.tSQL, wtt);
+            if (sli.Count > 0 && tli.Count > 0)
+            {
+                string svalue = "";
+                if (sli.Count > 1)
+                {
+                    if (wtt.slcjdzdmc.IndexOf("时间")>0&& wtt.slcjdzdlx =="表单")
+                    {
+                        if (sli[0].ToString().IndexOf("年")>-1)
+                            svalue = sli[1].ToString();
+                        else
+                            svalue = sli[0].ToString();
+
+                    }
+                    else
+                    {
+                        svalue = sli[0].ToString();
+                    }
+                }
+                
+                if (sli[0].ToString().IndexOf("出错:") == -1 && tli[0].ToString().IndexOf("出错:") == -1)
+                {
+                    string sql = "";
+                    if (wtt.tlcjdzdlx == "表单")
+                    {
+                        sql = "update WF_TableFieldValue  set ControlValue='" + svalue
+                            + "' where id='" + tli[0].ToString() + "'";
+                        
+                    }
+                    else if (wtt.tlcjdzdlx == "模块")
+                    {
+                        sql = "update " + wtt.tlcjdzdid.Split(' ')[0] + "  set " + wtt.tlcjdzdid.Split(' ')[1] + "='" + svalue
+                           + "' where id='" + tli[0].ToString() + "'";
+                    }
+                    MainHelper.PlatformSqlMap.Update("Update", sql);
+                }
+            }
+        }
+        public IList ExTaskCtrlSQL(Control ctrl, string sqlSentence, WF_WorkTastTrans wtt)
         {
 
             LP_Temple lp = (LP_Temple)ctrl.Tag;
@@ -1526,8 +1567,7 @@ namespace Ebada.Scgl.Lcgl
                         break;
                     }
                 }
-                ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence, lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
-                return;
+                
             }
             if (lp.CtrlType.IndexOf(',') == -1)
                 ctrltype = lp.CtrlType;
@@ -1663,7 +1703,7 @@ namespace Ebada.Scgl.Lcgl
                     li.Add("出错:" + ex.Message);
                 }
             }
-           
+            return li;
         }
         public void InitTaskData()
         {

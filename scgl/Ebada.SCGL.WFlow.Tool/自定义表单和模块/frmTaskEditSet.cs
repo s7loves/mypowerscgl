@@ -518,19 +518,18 @@ namespace Ebada.SCGL.WFlow.Tool
             cbxTWorkTastzdDataTable.Items.Add(l);
             WF_WorkTaskModle wtmtemp = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
                         (string.Format(" where  WorkTaskId='{0}'",
-                       ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
+                       ((ListItem)cbxTWorkTastDataTable.SelectedItem).ID));
             mModule mu = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtmtemp.Modu_ID);
             WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>
                         (string.Format(" where  WorkTaskId='{0}' and ControlType='表单'",
-                       ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
+                       ((ListItem)cbxTWorkTastDataTable.SelectedItem).ID));
             DataTable dt = null;
             if (mu.ModuTypes.ToLower() != "ebada.scgl.lcgl.frmlp")
             {
                 string varDbTableName = "";
                 WF_WorkTaskModle wtm = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
-                       (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
-                      ((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID,
-                      ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
+                       (string.Format(" where WorkTaskId='{0}'",
+                      ((ListItem)cbxTWorkTastDataTable.SelectedItem).ID));
                 if (wtm != null)
                 {
                     mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtm.Modu_ID);
