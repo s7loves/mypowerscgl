@@ -19,6 +19,56 @@ namespace Ebada.Scgl.Lcgl
     public partial class frmAQGJRKEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_anqgjcrkd> m_CityDic = new SortableSearchableBindingList<PJ_anqgjcrkd>();
 
+        private bool isWorkflowCall = false;
+        private frmModleFjly fjly = null;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        private string varDbTableName = "PJ_anqgjcrkd,LP_Record";
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set { parentTemple = value; }
+        }
+        public bool IsWorkflowCall
+        {
+            set
+            {
+
+                isWorkflowCall = value;
+
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set { currRecord = value; }
+        }
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+
+                return WorkFlowData;
+            }
+            set
+            {
+
+
+                WorkFlowData = value;
+
+            }
+        }
+
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value;
+            }
+        }
         public frmAQGJRKEdit()
         {
             InitializeComponent();
@@ -287,6 +337,19 @@ namespace Ebada.Scgl.Lcgl
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
             Client.ClientHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(rowData);
             MsgBox.ShowTipMessageBox("添加成功!");
+            if (isWorkflowCall)
+            {
+                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ModleRecordID = rowData.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = rowData.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            }
             rowData.ID = rowData.CreateID();
         }
 

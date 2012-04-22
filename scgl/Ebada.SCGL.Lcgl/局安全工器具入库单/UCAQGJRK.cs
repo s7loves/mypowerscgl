@@ -36,6 +36,7 @@ namespace Ebada.Scgl.Lcgl
     public partial class UCAQGJRK : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_anqgjcrkd> gridViewOperation;
+        frmAQGJRKEdit frm = new frmAQGJRKEdit();
 
         public event SendDataEventHandler<PJ_anqgjcrkd> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
@@ -59,13 +60,17 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 isWorkflowCall = value;
-
+                frm.IsWorkflowCall = value;
             }
         }
         public LP_Record CurrRecord
         {
             get { return currRecord; }
-            set { currRecord = value; }
+            set
+            {
+                currRecord = value;
+                frm.CurrRecord = value;
+            }
         }
 
         public DataTable RecordWorkFlowData
@@ -80,6 +85,7 @@ namespace Ebada.Scgl.Lcgl
 
 
                 WorkFlowData = value;
+                frm.RecordWorkFlowData = value;
 
                 if (isWorkflowCall)
                 {
@@ -117,13 +123,14 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 varDbTableName = value;
+                frm.VarDbTableName = value;
             }
         }
         public UCAQGJRK()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_anqgjcrkd>(gridControl1, gridView1, barManager1, new frmAQGJRKEdit());
+            gridViewOperation = new GridViewOperation<PJ_anqgjcrkd>(gridControl1, gridView1, barManager1, frm);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_anqgjcrkd>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_anqgjcrkd>(gridViewOperation_AfterAdd);

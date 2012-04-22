@@ -71,7 +71,7 @@ namespace Ebada.Scgl.Lcgl
             //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             //string fname = Application.StartupPath + "\\00记录模板\\材料入库单.xls";
             //ex.Open(fname);
-            //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd order by wpmc");
+            //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_wgclcrkd order by wpmc");
             //string  strfirst = "",str="";
             //foreach (string mc in mclist)
             //{
@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Lcgl
             //        str+= " and OrgCode='" + orgid + "' ";
 
             //    str +=  "' order by wpmc";
-            //    IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
+            //    IList<PJ_wgclcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_wgclcrkd>(
             //      str
             //       );
             //    ExportExcel(ex, datalist);
@@ -109,7 +109,7 @@ namespace Ebada.Scgl.Lcgl
             else
                 filter2 = "  where 1=1  and type = '非生产物资入库单' ";
 
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd " + filter2 + " order by ssgc");
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_wgclcrkd " + filter2 + " order by ssgc");
             
             foreach (string mc in mclist)
             {
@@ -118,13 +118,13 @@ namespace Ebada.Scgl.Lcgl
                 else
                     filter3 = "  where  ssxm='" + strfenProject + "'  and type = '非生产物资入库单' ";
 
-                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_clcrkd " + filter3 + " order by ssxm");
+                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_wgclcrkd " + filter3 + " order by ssxm");
                 foreach (string xm in xmlist)
                 {
                     filter4 = "  where 1=1 and type = '非生产物资入库单'"
                         + "  and ssgc='" + mc + "' "
                         +"  and ssxm='" + xm + "' ";
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_clcrkd " + filter4 + " ");
+                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_wgclcrkd " + filter4 + " ");
                     foreach (string sj in sjlist)
                     {
                         filter = "  where 1=1 and type = '非生产物资入库单'"
@@ -141,7 +141,7 @@ namespace Ebada.Scgl.Lcgl
                                 ;
                         }
 
-                        IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
+                        IList<PJ_wgclcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_wgclcrkd>(
                          filter
                            );
                         ExportExcel(ex, datalist);
@@ -165,7 +165,7 @@ namespace Ebada.Scgl.Lcgl
             //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             //string fname = Application.StartupPath + "\\00记录模板\\入库单.xls";
             //ex.Open(fname);
-            //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_clcrkd order by wpmc");
+            //IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_wgclcrkd order by wpmc");
             //string strfirst = "";
             //string filter = "";
             //foreach (string mc in mclist)
@@ -185,7 +185,7 @@ namespace Ebada.Scgl.Lcgl
             //            + "    RecordID='" + currRecord.ID + "') "
             //            ;
             //    }
-            //    IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
+            //    IList<PJ_wgclcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_wgclcrkd>(
             //     filter
             //       );
             //    ExportExcel(ex, datalist);
@@ -231,7 +231,7 @@ namespace Ebada.Scgl.Lcgl
             else
                 filter2 = "  where 1=1  and type = '非生产物资入库单' ";
 
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd " + filter2 + " order by ssgc");
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_wgclcrkd " + filter2 + " order by ssgc");
 
             foreach (string mc in mclist)
             {
@@ -240,13 +240,13 @@ namespace Ebada.Scgl.Lcgl
                 else
                     filter3 = "  where  ssxm='" + strfenProject + "'  and type = '非生产物资入库单' ";
 
-                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_clcrkd " + filter3 + " order by ssxm");
+                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_wgclcrkd " + filter3 + " order by ssxm");
                 foreach (string xm in xmlist)
                 {
                     filter4 = "  where 1=1 and type = '非生产物资入库单'"
                         + "  and ssgc='" + mc + "' "
                         + "  and ssxm='" + xm + "' ";
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_clcrkd " + filter4 + " ");
+                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_wgclcrkd " + filter4 + " ");
                     foreach (string sj in sjlist)
                     {
                         filter = "  where 1=1 and type = '非生产物资入库单'"
@@ -263,7 +263,7 @@ namespace Ebada.Scgl.Lcgl
                                 ;
                         }
 
-                        IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
+                        IList<PJ_wgclcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_wgclcrkd>(
                          filter
                            );
                         if (isWorkflowCall)
@@ -336,7 +336,7 @@ namespace Ebada.Scgl.Lcgl
             else
                 filter2 = "  where 1=1  and type = '非生产物资入库单' ";
 
-            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd " + filter2 + " order by ssgc");
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_wgclcrkd " + filter2 + " order by ssgc");
 
             foreach (string mc in mclist)
             {
@@ -345,13 +345,13 @@ namespace Ebada.Scgl.Lcgl
                 else
                     filter3 = "  where  ssxm='" + strfenProject + "'  and type = '非生产物资入库单' ";
 
-                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_clcrkd " + filter3 + " order by ssxm");
+                IList xmlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssxm  from PJ_wgclcrkd " + filter3 + " order by ssxm");
                 foreach (string xm in xmlist)
                 {
                     filter4 = "  where 1=1 and type = '非生产物资入库单'"
                         + "  and ssgc='" + mc + "' "
                         + "  and ssxm='" + xm + "' ";
-                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select num  from PJ_clcrkd " + filter4 + " ");
+                    IList sjlist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select num  from PJ_wgclcrkd " + filter4 + " ");
                     foreach (string sj in sjlist)
                     {
                         filter = "  where 1=1 and type = '非生产物资入库单'"
@@ -368,7 +368,7 @@ namespace Ebada.Scgl.Lcgl
                                 ;
                         }
 
-                        IList<PJ_clcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_clcrkd>(
+                        IList<PJ_wgclcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_wgclcrkd>(
                          filter
                            );
                         ExportExcel(ex, datalist);
@@ -402,7 +402,7 @@ namespace Ebada.Scgl.Lcgl
             dsoFramerWordControl1.FileClose();
         }
         
-        public void ExportExcel(ExcelAccess ex ,IList<PJ_clcrkd> datalist)
+        public void ExportExcel(ExcelAccess ex ,IList<PJ_wgclcrkd> datalist)
         {
             //此处写填充内容代码
             int row = 6;
