@@ -222,77 +222,137 @@ namespace Ebada.Scgl.Lcgl {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\10配电变压器汇总表.xls";
-            ex.Open(fname );
-            IList list=new  ArrayList ();
-            int pagecount=0;
+            ex.Open(fname);
+            IList list = new ArrayList();
+            int pagecount = 0;
             //obj = "317";
             string strfilter = " and 1=1";
-            if (obj != "") strfilter = strfilter + " and a.OrgCode='" + obj+"' ";
+            if (obj != "") strfilter = strfilter + " and a.OrgCode='" + obj + "' ";
             IList caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", "select distinct  b.byqCapcity    from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " order by b.byqCapcity");
             //caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", "11配电变压器卡片", "容量"));
-            IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'') from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
-            IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'') from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
+            //IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'')) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
+            //IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(replace(b.byqModle,'-'+cast(b.byqCapcity as nvarchar(50))+'/'+cast(b.byqVol  as nvarchar(50)),'')) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
+            IList modmflist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(b.byqModle) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and b.omniseal='true'");
+            IList modtmlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct  UPPER(b.byqModle) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID   " + strfilter + " and (b.omniseal!='true' or b.omniseal is null)");
             int jmax = 18;
-            pagecount =(int)Math.Ceiling( caplist.Count / (jmax + 0.0));
-            int itemp = modtmlist.Count / 6.0 > modmflist.Count / 3.0 ? (int)Math.Ceiling(modtmlist.Count / 6.0) : (int)Math.Ceiling(modmflist.Count / 3.0 );
             int i = 0;
+            for (i = 0; i < modmflist.Count; i++)
+            {
+                if (modmflist[i].ToString().IndexOf("-") > -1)
+                {
+                    modmflist[i] = modmflist[i].ToString().Substring(0, modmflist[i].ToString().IndexOf("-"));
+                }
+            }
+            for (i = 0; i < modtmlist.Count; i++)
+            {
+                if (modtmlist[i].ToString().IndexOf("-") > -1)
+                {
+                    modtmlist[i] = modtmlist[i].ToString().Substring(0, modtmlist[i].ToString().IndexOf("-"));
+                }
+            }
+            string modtemp = "";
+            for (i = 0; i < modmflist.Count; i++)
+            {
+                if (modtemp.IndexOf(modmflist[i].ToString()) == -1)
+                {
+                    if (modtemp != "")
+                        modtemp += "," + modmflist[i];
+                    else
+                        modtemp = modmflist[i].ToString();
+                }
+            }
+            if (modtemp != "")
+            {
+                string[] strli = modtemp.Split(',');
+                modmflist.Clear();
+
+                for (i = 0; i < strli.Length; i++)
+                {
+                    modmflist.Add(strli[i]);
+                }
+            }
+            for (i = 0; i < modtmlist.Count; i++)
+            {
+                if (modtemp.IndexOf(modtmlist[i].ToString()) == -1)
+                {
+                    if (modtemp != "")
+                        modtemp += "," + modtmlist[i];
+                    else
+                        modtemp = modtmlist[i].ToString();
+                }
+            }
+            if (modtemp != "")
+            {
+                string[] strli = modtemp.Split(',');
+                modtmlist.Clear();
+                for (i = 0; i < strli.Length; i++)
+                {
+                    modtmlist.Add(strli[i]);
+                }
+            }
+            pagecount = (int)Math.Ceiling(caplist.Count / (jmax + 0.0));
+            int itemp = modtmlist.Count / 6.0 > modmflist.Count / 3.0 ? (int)Math.Ceiling(modtmlist.Count / 6.0) : (int)Math.Ceiling(modmflist.Count / 3.0);
+
             pagecount = itemp * pagecount;
             if (pagecount > 1)
             {
                 ex.DeleteWorkSheet("Sheet2");
-                ex.DeleteWorkSheet("Sheet3"); 
+                ex.DeleteWorkSheet("Sheet3");
             }
             /////计算需要多少个工作表
             for (i = 1; i < pagecount; i++)
             {
-               
-               
-                ex.CopySheet(1,i);
+
+
+                ex.CopySheet(1, i);
                 ex.ReNameWorkSheet((i + 1), "Sheet" + (i + 1));
-               
+
             }
-            int istart = 7, istart2 = 19, jstart = 4, j=0;
-            string jstrfilter="";
+            int istart = 7, istart2 = 19, jstart = 4, j = 0;
+            string jstrfilter = "";
             mOrg org = Client.ClientHelper.PlatformSqlMap.GetOneByKey<mOrg>(obj);
-            for ( j = 0; j < caplist.Count; j++)
+            for (j = 0; j < caplist.Count; j++)
             {
                 ex.ActiveSheet("Sheet" + (j / jmax == 0 ? 1 : (int)Math.Ceiling(j / (jmax + 0.0))));
+                //ex.ActiveSheet("Sheet" + (1 + (j / jmax) * (int)Math.Ceiling(j / (jmax + 0.0))));
                 if (j % jmax == 0)
                 {
 
                     jstrfilter = " and 1=1";
+                    ex.ActiveSheet("Sheet" + (1 + (j / jmax) * (int)Math.Ceiling(j / (jmax + 0.0))));
                     list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + jstrfilter);
-                    if (list.Count >0) ex.SetCellValue(list.Count.ToString(), 5, jstart + j % jmax);
+                    if (list.Count > 0) ex.SetCellValue(list.Count.ToString(), 5, jstart + j % jmax);
                     list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", "select   sum(b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID    " + strfilter + jstrfilter);
                     //if (list[0] == null) list[0] = 0;
                     if (list[0] != null)
-                    ex.SetCellValue(list[0].ToString(), 6, jstart + j % jmax);
-                    setExceldt(ex, list, caplist, modtmlist, modmflist, jstrfilter, strfilter, jstart, j, jmax, istart, istart2);    
+                        ex.SetCellValue(list[0].ToString(), 6, jstart + j % jmax);
+                    setExceldt(ex, list, caplist, modtmlist, modmflist, jstrfilter, strfilter, jstart, j, jmax, istart, istart2);
                 }
-                ex.ActiveSheet("Sheet" + (j / jmax == 0 ? 1 : (int)Math.Ceiling(j / (jmax + 0.0))));
-                    jstrfilter = " and 1=1 and b.byqCapcity='" + caplist[j] + "'";
-                    //ex.SetCellValue(caplist[j].ToString(), 4, jstart + j % jmax + 1);
-                    setExceldt(ex, list, caplist, modtmlist, modmflist, jstrfilter, strfilter, jstart+1, j, jmax, istart, istart2);    
-                
-               
+                ex.ActiveSheet("Sheet" + ((j + 1) / jmax == 0 ? 1 : (int)Math.Ceiling((j + 1) / (jmax + 0.0))));
+
+                jstrfilter = " and 1=1 and b.byqCapcity='" + caplist[j] + "'";
+                //ex.SetCellValue(caplist[j].ToString(), 4, jstart + j % jmax + 1);
+                setExceldt(ex, list, caplist, modtmlist, modmflist, jstrfilter, strfilter, jstart + 1, j, jmax, istart, istart2);
+
+
             }
             for (i = 0; i < pagecount; i++)
             {
-                ex.ActiveSheet("Sheet" + (i+1));
-                int jzu=caplist.Count/jmax+1;
+                ex.ActiveSheet("Sheet" + (i + 1));
+                int jzu = caplist.Count / jmax + 1;
                 int itempmin = 0, itempmax = 0;
-                    itempmax = (i % jzu+1) * jmax;
-                    itempmin = (i % jzu) * jmax;
+                itempmax = (i % jzu + 1) * jmax;
+                itempmin = (i % jzu) * jmax;
 
-                    if (org != null)
-                        ex.SetCellValue(org.OrgName, 3, 3);
-                    else
-                        ex.SetCellValue("全局", 3, 3);
+                if (org != null)
+                    ex.SetCellValue(org.OrgName, 3, 3);
+                else
+                    ex.SetCellValue("全局", 3, 3);
 
-                for (j = itempmin; j < itempmax && j < caplist.Count ; j++)
+                for (j = itempmin; j < itempmax && j < caplist.Count; j++)
                 {
                     ex.SetCellValue(caplist[j].ToString(), 4, jstart + j % jmax + 1);
-                
+
                 }
                 //ex.SetCellValue(caplist[j].ToString(), 4, jstart + j % jmax + 1);
 
@@ -317,7 +377,7 @@ namespace Ebada.Scgl.Lcgl {
         /// <param name="istart2"></param>
         public static void setExceldt(ExcelAccess ex, IList list, IList caplist, IList modtmlist, IList modmflist, string jstrfilter, string strfilter, int jstart, int j, int jmax, int istart, int istart2)
         {
-            
+
             //string str = "";
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + jstrfilter);
 
@@ -327,11 +387,11 @@ namespace Ebada.Scgl.Lcgl {
             //if (list[0] == null) list[0] = 0;
             if (list[0] != null)
 
-            ex.SetCellValue(list[0].ToString(), 6, jstart + j % jmax);
+                ex.SetCellValue(list[0].ToString(), 6, jstart + j % jmax);
 
             for (int itm = 0; itm < modtmlist.Count; itm++)
             {
-                ex.ActiveSheet("Sheet" + (1 + (itm / 6) * (int)Math.Ceiling(caplist.Count /( jmax + 0.0)) + j / jmax));
+                ex.ActiveSheet("Sheet" + (1 + (itm / 6) * (int)Math.Ceiling(caplist.Count / (jmax + 0.0)) + j / jmax));
                 if (j % jmax == 0)
                 {
                     ex.SetCellValue(modtmlist[itm].ToString(), istart + (itm % 6) * 2, 1);
@@ -370,17 +430,19 @@ namespace Ebada.Scgl.Lcgl {
         /// <param name="jmax"></param>
         /// <param name="istart"></param>
         /// <param name="itm"></param>
-        public static void setExceltmdt(ExcelAccess ex, IList list,IList modtmlist, string jstrfilter, string strfilter, int jstart, int j, int jmax, int istart,  int itm)
+        public static void setExceltmdt(ExcelAccess ex, IList list, IList modtmlist, string jstrfilter, string strfilter, int jstart, int j, int jmax, int istart, int itm)
         {
 
-            string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modtmlist[itm] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50)) and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
+            //string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modtmlist[itm] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50)) and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
+            string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle like '" + modtmlist[itm] + "%' and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", str);
-            if (list.Count >0) ex.SetCellValue(list.Count.ToString(), istart + (itm % 6) * 2, jstart + j % jmax);
-            str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modtmlist[itm] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50)) and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
+            if (list.Count > 0) ex.SetCellValue(list.Count.ToString(), istart + (itm % 6) * 2, jstart + j % jmax);
+            //str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modtmlist[itm] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50)) and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
+            str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle like '%" + modtmlist[itm] + "%' and (b.omniseal!='true' or b.omniseal is null)" + jstrfilter;
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", str);
             //if (list[0] == null) list[0] = 0;
             if (list[0] != null)
-            ex.SetCellValue(list[0].ToString(), istart + (itm % 6) * 2 + 1, jstart + j % jmax);
+                ex.SetCellValue(list[0].ToString(), istart + (itm % 6) * 2 + 1, jstart + j % jmax);
         }
         /// <summary>
         /// 设置密封数据
@@ -395,17 +457,19 @@ namespace Ebada.Scgl.Lcgl {
         /// <param name="jmax"></param>
         /// <param name="istart2"></param>
         /// <param name="imf"></param>
-        public static void setExcelmfdt(ExcelAccess ex, IList list,   IList modmflist, string jstrfilter, string strfilter, int jstart, int j, int jmax, int istart2,int imf)
+        public static void setExcelmfdt(ExcelAccess ex, IList list, IList modmflist, string jstrfilter, string strfilter, int jstart, int j, int jmax, int istart2, int imf)
         {
 
-            string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modmflist[imf] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50))  and (b.omniseal='true' )" + jstrfilter;
+            //string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modmflist[imf] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50))  and (b.omniseal='true' )" + jstrfilter;
+            string str = "select   b.byqCapcity from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle like '" + modmflist[imf] + "%'  and (b.omniseal='true' )" + jstrfilter;
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", str);
             if (list.Count > 0) ex.SetCellValue(list.Count.ToString(), istart2 + (imf % 3) * 2, jstart + j % jmax);
-            str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modmflist[imf] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50)) and (b.omniseal='true' )" + jstrfilter;
+            //str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle='" + modmflist[imf] + "-'+cast(b.byqCapcity as nvarchar(50))+'/'+ cast(b.byqVol as nvarchar(50)) and (b.omniseal='true' )" + jstrfilter;
+            str = "select  sum( b.byqCapcity) from dbo.mOrg a,dbo.PS_tqbyq b,dbo.PS_xl c, dbo.PS_tq d where a.OrgCode=c.OrgCode and c.LineCode=d.xlCode and d.tqID=b.tqID  " + strfilter + " and b.byqModle like '" + modmflist[imf] + "%' and (b.omniseal='true' )" + jstrfilter;
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", str);
             //if (list[0] == null) list[0] = 0;
             if (list[0] != null)
-            ex.SetCellValue(list[0].ToString(), istart2 + (imf % 3) * 2 + 1, jstart + j % jmax);
+                ex.SetCellValue(list[0].ToString(), istart2 + (imf % 3) * 2 + 1, jstart + j % jmax);
         }
     }
 }
