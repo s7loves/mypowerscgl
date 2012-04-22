@@ -17,8 +17,58 @@ using System.Threading;
 namespace Ebada.Scgl.Lcgl
 {
     public partial class frmWGFCLRKEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PJ_clcrkd> m_CityDic = new SortableSearchableBindingList<PJ_clcrkd>();
+        SortableSearchableBindingList<PJ_wgclcrkd> m_CityDic = new SortableSearchableBindingList<PJ_wgclcrkd>();
 
+        private bool isWorkflowCall = false;
+        private frmModleFjly fjly = null;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        private string varDbTableName = "PJ_wgclcrkd,LP_Record";
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set { parentTemple = value; }
+        }
+        public bool IsWorkflowCall
+        {
+            set
+            {
+
+                isWorkflowCall = value;
+
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set { currRecord = value; }
+        }
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+
+                return WorkFlowData;
+            }
+            set
+            {
+
+
+                WorkFlowData = value;
+
+            }
+        }
+
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value;
+            }
+        }
         public frmWGFCLRKEdit()
         {
             InitializeComponent();
@@ -42,7 +92,7 @@ namespace Ebada.Scgl.Lcgl
 
         }
         #region IPopupFormEdit Members
-        private PJ_clcrkd rowData = null;
+        private PJ_wgclcrkd rowData = null;
 
         public object RowData {
             get {
@@ -53,11 +103,11 @@ namespace Ebada.Scgl.Lcgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PJ_clcrkd;
+                    this.rowData = value as PJ_wgclcrkd;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PJ_clcrkd>(value as PJ_clcrkd, rowData);
+                    ConvertHelper.CopyTo<PJ_wgclcrkd>(value as PJ_wgclcrkd, rowData);
                 }
             
             }
@@ -470,7 +520,7 @@ namespace Ebada.Scgl.Lcgl
             rowData.kcsl = spinEdit2.Value.ToString();
             double i = 0;
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
-                "select  sum(cast(kcsl as float) )  from PJ_clcrkd where (type = '非生产物资入库单' or type = '非生产物资入库单原始库存')"
+                "select  sum(cast(kcsl as float) )  from PJ_wgclcrkd where (type = '非生产物资入库单' or type = '非生产物资入库单原始库存')"
                 + " and wpmc='" + comboBoxEdit1.Text + "' " + " and ssgc='" + comboBoxEdit7.Text + "' "
                 + " and wpgg='" + comboBoxEdit2.Text + "' and id!='" + rowData.ID + "' ");
             if (mclist[0]!=null)i=Convert.ToDouble(mclist[0].ToString());
@@ -487,7 +537,7 @@ namespace Ebada.Scgl.Lcgl
         private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
         {
             comboBoxEdit6.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj  from PJ_clcrkd where type = '非生产物资入库单' or type = '非生产物资入库单原始库存' and wpgg='" + comboBoxEdit2.Text + "' and wpmc='" + comboBoxEdit1.Text + "'");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj  from PJ_wgclcrkd where type = '非生产物资入库单' or type = '非生产物资入库单原始库存' and wpgg='" + comboBoxEdit2.Text + "' and wpmc='" + comboBoxEdit1.Text + "'");
             comboBoxEdit6.Properties.Items.AddRange(mclist);
 
             spinEdit2_EditValueChanged(sender, e);
@@ -498,21 +548,21 @@ namespace Ebada.Scgl.Lcgl
             spinEdit2_EditValueChanged(sender, e);
             comboBoxEdit5.Properties.Items.Clear();
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", 
-                "select distinct ssxm  from PJ_clcrkd where type = '非生产物资入库单' or type = '非生产物资入库单原始库存' and ssgc='"+comboBoxEdit7.Text+ "' and ssxm!='' ");
+                "select distinct ssxm  from PJ_wgclcrkd where type = '非生产物资入库单' or type = '非生产物资入库单原始库存' and ssgc='"+comboBoxEdit7.Text+ "' and ssxm!='' ");
             comboBoxEdit5.Properties.Items.AddRange(mclist);
         }
 
         private void frmCLRKEdit_Load(object sender, EventArgs e)
         {
             comboBoxEdit7.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_clcrkd where type = '非生产物资入库单' or type = '非生产物资入库单原始库存'");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct ssgc  from PJ_wgclcrkd where type = '非生产物资入库单' or type = '非生产物资入库单原始库存'");
 
             comboBoxEdit7.Properties.Items.AddRange(mclist);
 
             comboBoxEdit8.Properties.Items.Clear();
-            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_clcrkd where type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存'");
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct num  from PJ_wgclcrkd where type = '撤旧材料入库单' or type = '撤旧材料入库单原始库存'");
 
-            PJ_clcrkd obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_clcrkd>(rowData.ID);
+            PJ_wgclcrkd obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_wgclcrkd>(rowData.ID);
             if (obj == null)
             {
                 btnOK.Visible = false;
@@ -542,7 +592,7 @@ namespace Ebada.Scgl.Lcgl
                 else
                 {
                     mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
+                "select distinct wpgg  from PJ_wgclcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
                     comboBoxEdit2.Properties.Items.AddRange(mclist);
                 }
             }
@@ -553,7 +603,20 @@ namespace Ebada.Scgl.Lcgl
         {
             rowData.ID = rowData.CreateID();
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            Client.ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(rowData);
+            Client.ClientHelper.PlatformSqlMap.Create<PJ_wgclcrkd>(rowData);
+            if (isWorkflowCall)
+            {
+                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                mrwt.ModleRecordID = rowData.ID;
+                mrwt.RecordID = currRecord.ID;
+                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                mrwt.ModleTableName = rowData.GetType().ToString();
+                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                mrwt.CreatTime = DateTime.Now;
+                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            }
             MsgBox.ShowTipMessageBox("添加成功!");
             rowData.ID = rowData.CreateID();
         }

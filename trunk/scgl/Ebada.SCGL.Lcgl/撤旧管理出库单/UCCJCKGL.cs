@@ -374,6 +374,19 @@ namespace Ebada.Scgl.Lcgl
                                 + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
                         }
                         ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(ckd);
+                        if (isWorkflowCall)
+                        {
+                            WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                            mrwt.ModleRecordID = ckd.ID;
+                            mrwt.RecordID = currRecord.ID;
+                            mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                            mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                            mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                            mrwt.ModleTableName = ckd.GetType().ToString();
+                            mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                            mrwt.CreatTime = DateTime.Now;
+                            MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                        }
 
 
                         if (cktemp < 1) break;
@@ -464,6 +477,19 @@ namespace Ebada.Scgl.Lcgl
                         + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
                 }
                 ClientHelper.PlatformSqlMap.Create<PJ_clcrkd>(ckd);
+                if (isWorkflowCall)
+                {
+                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ModleRecordID = ckd.ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.ModleTableName = ckd.GetType().ToString();
+                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                }
                 ucclck1.inidata();
                 //simpleButton2_Click(sender, e);
             }

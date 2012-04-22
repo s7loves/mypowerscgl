@@ -37,6 +37,8 @@ namespace Ebada.Scgl.Lcgl
     {
         private GridViewOperation<PJ_wgclrkysd> gridViewOperation;
 
+        frmWGCLRKYSEdit frm = new frmWGCLRKYSEdit();
+
         public event SendDataEventHandler<PJ_wgclrkysd> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
@@ -51,7 +53,11 @@ namespace Ebada.Scgl.Lcgl
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
-            set { parentTemple = value; }
+            set
+            {
+                parentTemple = value;
+                frm.ParentTemple = value;
+            }
         }
         public bool IsWorkflowCall
         {
@@ -59,13 +65,18 @@ namespace Ebada.Scgl.Lcgl
             {
 
                 isWorkflowCall = value;
+                frm.IsWorkflowCall = value;
 
             }
         }
         public LP_Record CurrRecord
         {
             get { return currRecord; }
-            set { currRecord = value; }
+            set
+            {
+                currRecord = value;
+                frm.CurrRecord = value;
+            }
         }
 
         public DataTable RecordWorkFlowData
@@ -80,6 +91,7 @@ namespace Ebada.Scgl.Lcgl
 
 
                 WorkFlowData = value;
+                frm.RecordWorkFlowData = value;
 
                 if (isWorkflowCall)
                 {
@@ -117,13 +129,14 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 varDbTableName = value;
+                frm.VarDbTableName = value;
             }
         }
         public UCWGCLRKYSD()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_wgclrkysd>(gridControl1, gridView1, barManager1, new frmWGCLRKYSEdit());
+            gridViewOperation = new GridViewOperation<PJ_wgclrkysd>(gridControl1, gridView1, barManager1,frm );
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_wgclrkysd>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_wgclrkysd>(gridViewOperation_AfterAdd);
