@@ -15,11 +15,11 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frm06sbxsEdit : FormBase, IPopupFormEdit
+    public partial class frmcq06sbxsEdit : FormBase, IPopupFormEdit
     {
         SortableSearchableBindingList<PJ_06sbxs> m_CityDic = new SortableSearchableBindingList<PJ_06sbxs>();
 
-        public frm06sbxsEdit()
+        public frmcq06sbxsEdit()
         {
             InitializeComponent();
         }

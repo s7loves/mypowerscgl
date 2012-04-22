@@ -6,8 +6,7 @@ using Ebada.Client;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Windows.Forms;
-namespace Ebada.Scgl.Lcgl
-{
+namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
     /// 文档
@@ -49,7 +48,7 @@ namespace Ebada.Scgl.Lcgl
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(IList<PJ_06sbxs> objlist) 
+        public static void ExportExcel(IList<PJ_06sbxs> objlist,bool xsmxflag) 
         {
             //lgm
             ExcelAccess ex = new ExcelAccess();
@@ -85,9 +84,13 @@ namespace Ebada.Scgl.Lcgl
                     }
                     PJ_06sbxs tempobj = objlist[p * 9 + i];
                     //巡视时间
-                    ex.SetCellValue(tempobj.xssj.Year.ToString(), row + i * len1, 1);
-                    ex.SetCellValue(tempobj.xssj.Month.ToString(), row + i * len1, 2);
-                    ex.SetCellValue(tempobj.xssj.Day.ToString(), row + i * len1, 3);
+                    if (xsmxflag)
+                    {
+                        ex.SetCellValue(tempobj.xssj.Year.ToString(), row + i * len1, 1);
+                        ex.SetCellValue(tempobj.xssj.Month.ToString(), row + i * len1, 2);
+                        ex.SetCellValue(tempobj.xssj.Day.ToString(), row + i * len1, 3);
+                    }
+                    
                     //缺陷内容
                     List<string> tempstr = Ecommon.ResultStrList(tempobj.qxnr, zc);
                     if (tempstr.Count >= 1)
@@ -128,15 +131,16 @@ namespace Ebada.Scgl.Lcgl
                     }
                     //消除人
                     string[] ary2 = tempobj.xcr.Split(jksign);
-                    if (ary2.Length >= 1)
+                    if (ary2.Length >= 1 && tempstr.Count > 0)
                     {
+
                         ex.SetCellValue(ary2[0], row + i * len1, 9);
                     }
                     else
                     {
                         ex.SetCellValue("", row + i * len1, 9);
                     }
-                    if (ary2.Length >= 2)
+                    if (ary2.Length >= 2&&tempstr.Count>0)
                     {
                         ex.SetCellValue(ary2[1], row + i * len1, 12);
                     }
@@ -145,7 +149,7 @@ namespace Ebada.Scgl.Lcgl
                         ex.SetCellValue("", row + i * len1, 12);
                     }
                     //消除时间
-                    if (ComboBoxHelper.CompreDate(tempobj.xcrq))
+                    if (ComboBoxHelper.CompreDate(tempobj.xcrq) && tempstr.Count>0)
                     {
                         ex.SetCellValue(tempobj.xcrq.Year.ToString(), row + 2 + i * len1, 8);
                         ex.SetCellValue(tempobj.xcrq.Month.ToString(), row + 2 + i * len1, 11);

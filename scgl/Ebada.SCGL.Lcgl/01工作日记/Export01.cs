@@ -9,9 +9,11 @@ namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
     /// </summary>
-    public class Export01 {
+    public class Export01
+    {
         //ExcelAccess
-        public static void ExportExcel(PJ_01gzrj jl, IList<PJ_gzrjnr> nrList) {
+        public static void ExportExcel(PJ_01gzrj jl, IList<PJ_gzrjnr> nrList)
+        {
             nrList = getRjnrList(jl.gzrjID);
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -29,17 +31,21 @@ namespace Ebada.Scgl.Lcgl {
             objlist.Add(strjs);
             objlist.Add(strpy);
             List<string> allList = Ecommon.GetCollList(objlist);
-            
-            for (int j = 1; j <= p; j++) {
-                if (j > 1) {
+
+            for (int j = 1; j <= p; j++)
+            {
+                if (j > 1)
+                {
                     ex.CopySheet(1, 1);
                 }
             }
-            for (int j = 1; j <= p; j++) {
+            for (int j = 1; j <= p; j++)
+            {
                 ex.ActiveSheet(j);
                 ex.ReNameWorkSheet(j, "Sheet" + (j));
                 setHead(ex, jl);
-                if (j == 1) {
+                if (j == 1)
+                {
                     setHead2(ex, jl);
                 }
                 int prepageindex = j - 1;
@@ -49,26 +55,11 @@ namespace Ebada.Scgl.Lcgl {
                 int endrownr = j * 9;
                 int endrowjs = j * 5;
                 int bh = 0;
-                if (nrList.Count > endrownr) {
-                    for (int i = 0; i < 9; i++) {
+                if (nrList.Count > endrownr)
+                {
+                    for (int i = 0; i < 9; i++)
+                    {
                         bh++;
-                        PJ_gzrjnr obj = nrList[starownr - 1 + i];
-                        ex.SetCellValue(obj.seq > 0 ? obj.seq.ToString() : "", row + 9 + i, col);
-                        ex.SetCellValue(obj.gznr, row + 9 + i, col + 1);
-                        ex.SetCellValue(obj.fzr, row + 9 + i, col + 8);
-                        string[] rr = obj.cjry.Split("；".ToCharArray());
-                        if (rr.Length>2)
-                        {
-                            string cry = rr[0]+"；"+rr[1]+"等"+rr.Length+"人";
-                            
-                            ex.SetCellValue(cry, row + 9 + i, col + 11);
-                        }
-                        else
-                        ex.SetCellValue(obj.cjry, row + 9 + i, col + 11);
-
-                    }
-                } else if (nrList.Count <= endrownr && nrList.Count >= starownr) {
-                    for (int i = 0; i < nrList.Count - starownr + 1; i++) {
                         PJ_gzrjnr obj = nrList[starownr - 1 + i];
                         ex.SetCellValue(obj.seq > 0 ? obj.seq.ToString() : "", row + 9 + i, col);
                         ex.SetCellValue(obj.gznr, row + 9 + i, col + 1);
@@ -76,7 +67,27 @@ namespace Ebada.Scgl.Lcgl {
                         string[] rr = obj.cjry.Split("；".ToCharArray());
                         if (rr.Length > 2)
                         {
-                            string cry = rr[0] + "；" + rr[1] + "等" + rr.Length + "人";
+                            string cry = rr[0] + rr[1] + "等" + rr.Length + "人";
+
+                            ex.SetCellValue(cry, row + 9 + i, col + 11);
+                        }
+                        else
+                            ex.SetCellValue(obj.cjry, row + 9 + i, col + 11);
+
+                    }
+                }
+                else if (nrList.Count <= endrownr && nrList.Count >= starownr)
+                {
+                    for (int i = 0; i < nrList.Count - starownr + 1; i++)
+                    {
+                        PJ_gzrjnr obj = nrList[starownr - 1 + i];
+                        ex.SetCellValue(obj.seq > 0 ? obj.seq.ToString() : "", row + 9 + i, col);
+                        ex.SetCellValue(obj.gznr, row + 9 + i, col + 1);
+                        ex.SetCellValue(obj.fzr, row + 9 + i, col + 8);
+                        string[] rr = obj.cjry.Split("；".ToCharArray());
+                        if (rr.Length > 2)
+                        {
+                            string cry = rr[0] + rr[1] + "等" + rr.Length + "人";
 
                             ex.SetCellValue(cry, row + 9 + i, col + 11);
                         }
@@ -84,12 +95,17 @@ namespace Ebada.Scgl.Lcgl {
                             ex.SetCellValue(obj.cjry, row + 9 + i, col + 11);
                     }
                 }
-                if (allList.Count > endrowjs) {
-                    for (int i = 0; i < 5; i++) {
+                if (allList.Count > endrowjs)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
                         ex.SetCellValue(allList[js - 1 + i], row + 18 + i, col);
                     }
-                } else if (allList.Count <= endrowjs && allList.Count >= js) {
-                    for (int i = 0; i < allList.Count - js + 1; i++) {
+                }
+                else if (allList.Count <= endrowjs && allList.Count >= js)
+                {
+                    for (int i = 0; i < allList.Count - js + 1; i++)
+                    {
                         ex.SetCellValue(allList[js - 1 + i], row + 18 + i, col);
                     }
                 }
@@ -103,7 +119,8 @@ namespace Ebada.Scgl.Lcgl {
         /// </summary>
         /// <param name="ex"></param>
         /// <param name="jl"></param>
-        private static void setHead(ExcelAccess ex, PJ_01gzrj jl) {
+        private static void setHead(ExcelAccess ex, PJ_01gzrj jl)
+        {
             int row = 1;
             int col = 1;
             int row_nr = 9;
@@ -120,26 +137,29 @@ namespace Ebada.Scgl.Lcgl {
             //    ex.SetCellValue(jl.qzrq.Month.ToString(), row + 14 + row_nr, col + 9);
             //    ex.SetCellValue(jl.qzrq.Day.ToString(), row + 14 + row_nr, col + 11);
             //}
-            
+
         }
         /// <summary>
         /// 填充人员
         /// </summary>
         /// <param name="ex"></param>
         /// <param name="jl"></param>
-        private static void setHead2(ExcelAccess ex, PJ_01gzrj jl) {
+        private static void setHead2(ExcelAccess ex, PJ_01gzrj jl)
+        {
             int row = 1;
             int col = 1;
-           
+
             //姓名、原因
             string[] rr = new string[10];
             string[] yy = new string[10];
             string[] rr2 = jl.qqry.Split(";".ToCharArray());
-            for (int i = 0; i < rr2.Length - 1; i++) {
+            for (int i = 0; i < rr2.Length - 1; i++)
+            {
                 rr[i] = rr2[i].Split(":".ToCharArray())[0];
                 yy[i] = rr2[i].Split(":".ToCharArray())[1];
             }
-            for (int i = rr2.Length - 1; i < rr.Length; i++) {
+            for (int i = rr2.Length - 1; i < rr.Length; i++)
+            {
                 rr[i] = "";
                 yy[i] = "";
             }
@@ -174,23 +194,29 @@ namespace Ebada.Scgl.Lcgl {
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
-        private static IList<PJ_gzrjnr> getRjnrList(string pid) {
+        private static IList<PJ_gzrjnr> getRjnrList(string pid)
+        {
             IList<PJ_gzrjnr> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_gzrjnr>(" where gzrjID='" + pid + "' order by seq");
             IList<PJ_gzrjnr> list2 = new List<PJ_gzrjnr>();
             int nrows = 0;
-            for (int i = 0; i < list.Count; i++) {
+            for (int i = 0; i < list.Count; i++)
+            {
                 PJ_gzrjnr nr = list[i];
                 List<string> lines = Ecommon.ResultStrList(nr.gznr, 34);
                 //string[] lines = nr.gznr.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 nr.gznr = "";
                 int j = 0;
-                foreach (string line in lines) {
+                foreach (string line in lines)
+                {
                     j++;
                     nrows++;
-                    if (j == 1) {
+                    if (j == 1)
+                    {
                         nr.gznr = line;
                         list2.Add(nr);
-                    } else {
+                    }
+                    else
+                    {
                         PJ_gzrjnr newnr = new PJ_gzrjnr();
                         newnr.gznr = line;
                         list2.Add(newnr);

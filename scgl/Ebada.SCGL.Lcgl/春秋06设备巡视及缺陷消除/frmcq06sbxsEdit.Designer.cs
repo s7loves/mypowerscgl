@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class frm06sbxsEdit
+    partial class frmcq06sbxsEdit
     {
         /// <summary>
         /// Required designer variable.
