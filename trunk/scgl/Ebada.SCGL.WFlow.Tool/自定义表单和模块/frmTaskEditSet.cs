@@ -298,7 +298,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                 }
             }
-            else
+            else if (wtc!=null)
             {
                 IList lpli = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList",
                     string.Format(" where WorktaskId='{0}' and UserControlId='{1}'  ",
