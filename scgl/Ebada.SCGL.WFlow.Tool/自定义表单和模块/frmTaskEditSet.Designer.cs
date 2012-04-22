@@ -50,6 +50,7 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.cbxSWorkTastzdDataTable = new System.Windows.Forms.ComboBox();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tetTWorkSQL.Properties)).BeginInit();
@@ -59,6 +60,7 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.simpleButton3);
             this.groupControl1.Controls.Add(this.comboBox1);
             this.groupControl1.Controls.Add(this.labelControl8);
             this.groupControl1.Controls.Add(this.tetTWorkSQL);
@@ -274,6 +276,16 @@
             this.labelControl2.TabIndex = 47;
             this.labelControl2.Text = "源节点字段名：";
             // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Location = new System.Drawing.Point(340, 98);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(43, 27);
+            this.simpleButton3.TabIndex = 78;
+            this.simpleButton3.Text = "设置";
+            this.simpleButton3.Visible = false;
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
             // frmTaskEditSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -320,5 +332,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private System.Windows.Forms.ComboBox comboBox1;
         private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
     }
 }

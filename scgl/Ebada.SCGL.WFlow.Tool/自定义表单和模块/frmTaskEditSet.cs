@@ -85,14 +85,14 @@ namespace Ebada.SCGL.WFlow.Tool
             rowData.slcjdzdmc = ((ListItem)cbxSWorkTastzdDataTable.SelectedItem).Name;
             rowData.sSQL = tetSWorkSQL.Text;
 
-            rowData.cdfs = ((ListItem)comboBox1.SelectedItem).ID;
+            if (comboBox1.SelectedItem!=null) rowData.cdfs = ((ListItem)comboBox1.SelectedItem).ID;
 
             rowData.tlcid = ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID;
             rowData.tlcmc = ((ListItem)cbxTWorkFolwDataTable.SelectedItem).Name;
             rowData.tlcjdid = ((ListItem)cbxTWorkTastDataTable.SelectedItem).ID;
             rowData.tlcjdmc = ((ListItem)cbxTWorkTastDataTable.SelectedItem).Name;
-            rowData.tlcjdzdid = ((ListItem)cbxTWorkTastzdDataTable.SelectedItem).ID;
-            rowData.tlcjdzdmc = ((ListItem)cbxTWorkTastzdDataTable.SelectedItem).Name;
+            if (cbxTWorkTastzdDataTable.SelectedItem != null) rowData.tlcjdzdid = ((ListItem)cbxTWorkTastzdDataTable.SelectedItem).ID;
+            if (cbxTWorkTastzdDataTable.SelectedItem != null) rowData.tlcjdzdmc = ((ListItem)cbxTWorkTastzdDataTable.SelectedItem).Name;
             rowData.tSQL = tetTWorkSQL.Text;
             this.DialogResult = DialogResult.OK;
         }
@@ -107,8 +107,17 @@ namespace Ebada.SCGL.WFlow.Tool
             cbxSWorkFolwDataTable.Items.Add(l);
             cbxTWorkFolwDataTable.Items.Add(l);
             IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkFlowList", "    where 1=1 order by FlowCaption ");
+            
             DataTable dt = ConvertHelper.ToDataTable(li);
+            WinFormFun.LoadComboBox(cbxTWorkFolwDataTable, dt, "WorkFlowId", "FlowCaption");
+
+            WF_WorkFlow wf = new WF_WorkFlow();
+            wf.FlowCaption = "无";
+            wf.WorkFlowId = "无";
+            li.Insert(0, wf);
+            dt = ConvertHelper.ToDataTable(li);
             WinFormFun.LoadComboBox(cbxSWorkFolwDataTable, dt, "WorkFlowId", "FlowCaption");
+            
             WinFormFun.LoadComboBox(cbxTWorkFolwDataTable, dt, "WorkFlowId", "FlowCaption");
             l = new ListItem("下拉并选中", "下拉并选中");
             comboBox1.Items.Add(l);
@@ -210,6 +219,14 @@ namespace Ebada.SCGL.WFlow.Tool
             IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskList",
                 "where WorkFlowId ='" + ((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID + "' order by TaskTypeId");
             DataTable dt = new DataTable();
+            if (((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID == "无")
+            {
+                li.Clear();
+                WF_WorkTask wt = new WF_WorkTask();
+                wt.WorkTaskId = "无";
+                wt.TaskCaption = "无";
+                li.Add(wt); 
+            }
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
             for (int i = 0; i < li.Count ; i++)
             {
@@ -253,63 +270,73 @@ namespace Ebada.SCGL.WFlow.Tool
             ListItem l = new ListItem("###", "请选择");
             cbxSWorkTastzdDataTable.Items.Clear();
             cbxSWorkTastzdDataTable.Items.Add(l);
-            WF_WorkTaskModle wtmtemp = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
-                        (string.Format(" where  WorkTaskId='{0}'",
-                       ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
-            mModule mu = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtmtemp.Modu_ID);
-            WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>
-                        (string.Format(" where  WorkTaskId='{0}' and ControlType='表单'",
-                      
-                       ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
             DataTable dt = null;
-            if (mu.ModuTypes.ToLower() != "ebada.scgl.lcgl.frmlp")
+            mModule mu = null;
+            if (((ListItem)cbxSWorkTastDataTable.SelectedItem).ID != "无")
             {
-                string varDbTableName = "";
-                WF_WorkTaskModle wtm = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
-                       (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
-                      ((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID,
-                      ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
-                if (wtm != null)
-                {
-                    mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtm.Modu_ID);
-                    object fromCtrl = CreatNewMoldeIns(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.ModuName);
+                WF_WorkTaskModle wtmtemp = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
+                            (string.Format(" where  WorkTaskId='{0}'",
+                           ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
+                mu = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtmtemp.Modu_ID);
+                WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>
+                            (string.Format(" where  WorkTaskId='{0}' and ControlType='表单'",
 
-                    if (fromCtrl.GetType().GetProperty("VarDbTableName") != null && fromCtrl.GetType().GetProperty("VarDbTableName").GetValue(fromCtrl, null) != null)
-                        varDbTableName = fromCtrl.GetType().GetProperty("VarDbTableName").GetValue(fromCtrl, null).ToString();
-                    string[] strli = varDbTableName.Split(',');
-                    IList tbli = new List<WF_WorkFlow>();
-                    foreach (string str in strli)
+                           ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
+                if (mu.ModuTypes.ToLower() != "ebada.scgl.lcgl.frmlp")
+                {
+                    string varDbTableName = "";
+                    WF_WorkTaskModle wtm = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
+                           (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
+                          ((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID,
+                          ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
+                    if (wtm != null)
                     {
-                        IList tbli2 = MainHelper.PlatformSqlMap.GetList("GetTableColumns", str);
-                        Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + "Ebada.Scgl.Model.dll");
-                        Type tpe = assembly.GetType("Ebada.Scgl.Model."+str);
-                        foreach (WF_WorkFlow  wf in tbli2)
+                        mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtm.Modu_ID);
+                        object fromCtrl = CreatNewMoldeIns(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.ModuName);
+
+                        if (fromCtrl.GetType().GetProperty("VarDbTableName") != null && fromCtrl.GetType().GetProperty("VarDbTableName").GetValue(fromCtrl, null) != null)
+                            varDbTableName = fromCtrl.GetType().GetProperty("VarDbTableName").GetValue(fromCtrl, null).ToString();
+                        string[] strli = varDbTableName.Split(',');
+                        IList tbli = new List<WF_WorkFlow>();
+                        foreach (string str in strli)
                         {
-                            wf.WorkFlowId = str + " " + wf.Name;
-                            wf.Name = str + " " + GetDisplayName(tpe, wf.Name);
-                            tbli.Add(wf);
+                            IList tbli2 = MainHelper.PlatformSqlMap.GetList("GetTableColumns", str);
+                            Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + "Ebada.Scgl.Model.dll");
+                            Type tpe = assembly.GetType("Ebada.Scgl.Model." + str);
+                            foreach (WF_WorkFlow wf in tbli2)
+                            {
+                                wf.WorkFlowId = str + " " + wf.Name;
+                                wf.Name = str + " " + GetDisplayName(tpe, wf.Name);
+                                tbli.Add(wf);
+                            }
+                        }
+                        if (tbli.Count > 0)
+                        {
+                            dt = new DataTable();
+                            dt = ConvertHelper.ToDataTable(tbli);
+                            rowData.slcjdzdlx = "模块";
                         }
                     }
-                    if (tbli.Count > 0)
+                }
+                else if (wtc != null)
+                {
+                    IList lpli = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList",
+                        string.Format(" where WorktaskId='{0}' and UserControlId='{1}'  ",
+                        wtc.WorktaskId, wtc.UserControlId));
+                    if (lpli.Count > 0)
                     {
                         dt = new DataTable();
-                        dt = ConvertHelper.ToDataTable(tbli);
-                        rowData.slcjdzdlx = "模块"; 
+                        dt = ConvertHelper.ToDataTable(lpli);
+                        rowData.slcjdzdlx = "表单";
                     }
+
                 }
             }
-            else if (wtc!=null)
+            else
             {
-                IList lpli = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList",
-                    string.Format(" where WorktaskId='{0}' and UserControlId='{1}'  ",
-                    wtc.WorktaskId ,  wtc.UserControlId));
-                if (lpli.Count > 0)
-                {
-                    dt = new DataTable();
-                    dt = ConvertHelper.ToDataTable(lpli);
-                    rowData.slcjdzdlx = "表单"; 
-                }
-
+                ListItem li = new ListItem("无", "无");
+                cbxSWorkTastzdDataTable.Items.Add(li); 
+                rowData.slcjdzdlx = "无";
             }
             if (dt != null && (mu.ModuTypes.ToLower() != "ebada.scgl.lcgl.frmlp"))
             {
@@ -430,50 +457,58 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void cbxSWorkTastzdDataTable_SelectedIndexChanged(object sender, EventArgs e)
         {
+            simpleButton3.Visible = false;
             tetSWorkSQL.Text ="";
             if (cbxSWorkTastzdDataTable.SelectedIndex > 0)
             {
-                string[] strli = ((ListItem)cbxSWorkTastzdDataTable.SelectedItem).ID.Split(' ');
-                if (rowData.slcjdzdlx == "模块")
+                if (((ListItem)cbxSWorkTastzdDataTable.SelectedItem).ID != "无")
                 {
-                    
-                    IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + strli[0] + "'");
-                    if (list.Count > 0 && 1 == 0)
+                    string[] strli = ((ListItem)cbxSWorkTastzdDataTable.SelectedItem).ID.Split(' ');
+                    if (rowData.slcjdzdlx == "模块")
                     {
-                        tetSWorkSQL.Text = "select " + strli[1] + " from " + strli[0] + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
-                    }
-                    else
-                    {
-                        tetSWorkSQL.Text = "select " + strli[1] + " from " + strli[0] + " where 5=5 ";
-                    }
-                    if (ceBind.Checked)
-                    {
-                        if (strli[0] == "WF_TableFieldValueView")
-                            tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and id='{recordid}'";
+
+                        IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + strli[0] + "'");
+                        if (list.Count > 0 && 1 == 0)
+                        {
+                            tetSWorkSQL.Text = "select " + strli[1] + " from " + strli[0] + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
+                        }
                         else
-                            if (strli[0] == "LP_Record")
-                                tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and id='{recordid}'";
-                            else
-                            {
-
-
-                                tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and " + list[0].ToString()
-                                    + " in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  RecordID='{recordid}')";
-                            }
-
-                    }
-                }
-                else
-                    if (rowData.slcjdzdlx == "表单")
-                    {
-                        tetSWorkSQL.Text = "select ControlValue from WF_TableFieldValue where 10=10  "
-                        + "and UserControlId='" + rowData.slcjdzdbid   + "' "
-                        + " and FieldId='" + strli[0] + "' ";
+                        {
+                            tetSWorkSQL.Text = "select " + strli[1] + " from " + strli[0] + " where 5=5 ";
+                        }
                         if (ceBind.Checked)
                         {
-                            tetSWorkSQL.Text = tetSWorkSQL.Text + " and RecordId='{recordid}'";
+                            if (strli[0] == "WF_TableFieldValueView")
+                                tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and id='{recordid}'";
+                            else
+                                if (strli[0] == "LP_Record")
+                                    tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and id='{recordid}'";
+                                else
+                                {
+
+
+                                    tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and " + list[0].ToString()
+                                        + " in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  RecordID='{recordid}')";
+                                }
+
                         }
                     }
+                    else
+                        if (rowData.slcjdzdlx == "表单")
+                        {
+                            tetSWorkSQL.Text = "select ControlValue from WF_TableFieldValue where 10=10  "
+                            + "and UserControlId='" + rowData.slcjdzdbid + "' "
+                            + " and FieldId='" + strli[0] + "' ";
+                            if (ceBind.Checked)
+                            {
+                                tetSWorkSQL.Text = tetSWorkSQL.Text + " and RecordId='{recordid}'";
+                            }
+                        }
+                }
+                else
+                {
+                    simpleButton3.Visible = true;
+                }
             }
         }
 
@@ -643,6 +678,17 @@ namespace Ebada.SCGL.WFlow.Tool
                             tetTWorkSQL.Text = tetTWorkSQL.Text + " and RecordId='{recordid}'";
                         }
                     }
+            }
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            frmTaskSQLSet fees = new frmTaskSQLSet();
+            fees.RowData = rowData;
+            fees.StrSQL = tetSWorkSQL.Text;
+            if (fees.ShowDialog() == DialogResult.OK)
+            {
+                tetSWorkSQL.Text = fees.StrSQL;
             }
         }
 

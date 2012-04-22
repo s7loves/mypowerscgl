@@ -113,6 +113,12 @@
     </Compile>
     <Compile Include="Bounds.cs" />
     <Compile Include="BaseTreeNode.cs" />
+    <Compile Include="自定义表单和模块\frmTaskSQLSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义表单和模块\frmTaskSQLSet.Designer.cs">
+      <DependentUpon>frmTaskSQLSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="自定义表单和模块\frmTaskEditSet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -564,6 +570,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\并行结束节点.ico" />
+    <EmbeddedResource Include="自定义表单和模块\frmTaskSQLSet.resx">
+      <DependentUpon>frmTaskSQLSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="自定义表单和模块\frmTaskEditSet.resx">
       <DependentUpon>frmTaskEditSet.cs</DependentUpon>
       <SubType>Designer</SubType>
