@@ -633,10 +633,10 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                 }
                 else
-                    if (rowData.slcjdzdlx == "表单")
+                    if (rowData.tlcjdzdlx == "表单")
                     {
                         tetTWorkSQL.Text = "select id from WF_TableFieldValue where 10=10  "
-                        + "and UserControlId='" + rowData.slcjdzdbid + "' "
+                        + "and UserControlId='" + rowData.tlcjdzdbid + "' "
                         + " and FieldId='" + strli[0] + "' ";
                         if (ceBind.Checked)
                         {
