@@ -171,7 +171,7 @@ namespace Ebada.Scgl.Lcgl
             //    comboBoxEdit1.Focus();
             //    return;
             //}
-            
+
             PS_xl xl = null;
             xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit10.Text + "'");
             if (xl == null)
@@ -215,7 +215,7 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit8.Focus();
                 return;
             }
-            rowData.LineName = comboBoxEdit1.Text;
+            rowData.LineName = comboBoxEdit10.Text;
 
             rowData.xhgg = comboBoxEdit5.Text + "|" + comboBoxEdit9.Text;
             this.DialogResult = DialogResult.OK;
