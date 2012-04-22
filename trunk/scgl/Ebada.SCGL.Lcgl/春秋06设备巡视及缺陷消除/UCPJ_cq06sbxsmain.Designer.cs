@@ -40,6 +40,7 @@
             this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
+            this.barxqjh = new DevExpress.XtraBars.BarButtonItem();
             this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -81,7 +82,8 @@
             this.liuchbarSubItem,
             this.SubmitButton,
             this.TaskOverButton,
-            this.liuchenBarClear});
+            this.liuchenBarClear,
+            this.barxqjh});
             this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
@@ -171,34 +173,55 @@
             // liuchbarSubItem
             // 
             this.liuchbarSubItem.Caption = "流程命令";
-            this.liuchbarSubItem.Id = 16;
+            this.liuchbarSubItem.Id = 18;
             this.liuchbarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.SubmitButton),
             new DevExpress.XtraBars.LinkPersistInfo(this.TaskOverButton),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barxqjh),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barFJLY),
             new DevExpress.XtraBars.LinkPersistInfo(this.liuchenBarClear)});
             this.liuchbarSubItem.Name = "liuchbarSubItem";
+            this.liuchbarSubItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // SubmitButton
             // 
             this.SubmitButton.Caption = "提交审核";
-            this.SubmitButton.Id = 17;
+            this.SubmitButton.Id = 19;
             this.SubmitButton.Name = "SubmitButton";
+            this.SubmitButton.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.SubmitButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.SubmitButton_ItemClick);
             // 
             // TaskOverButton
             // 
             this.TaskOverButton.Caption = "任务结束";
-            this.TaskOverButton.Id = 18;
+            this.TaskOverButton.Id = 20;
             this.TaskOverButton.Name = "TaskOverButton";
+            this.TaskOverButton.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
+            // 
+            // barxqjh
+            // 
+            this.barxqjh.Caption = "生成消缺计划";
+            this.barxqjh.Id = 23;
+            this.barxqjh.Name = "barxqjh";
+            this.barxqjh.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.barxqjh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barxqjh_ItemClick);
+            // 
+            // barFJLY
+            // 
+            this.barFJLY.Caption = "附件留言";
+            this.barFJLY.Id = 21;
+            this.barFJLY.Name = "barFJLY";
+            this.barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.barFJLY.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barFJLY_ItemClick);
             // 
             // liuchenBarClear
             // 
             this.liuchenBarClear.Caption = "清除关联信息";
-            this.liuchenBarClear.Id = 19;
+            this.liuchenBarClear.Id = 22;
             this.liuchenBarClear.Name = "liuchenBarClear";
             this.liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.liuchenBarClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.liuchenBarClear_ItemClick);
@@ -357,6 +380,8 @@
         private DevExpress.XtraBars.BarSubItem liuchbarSubItem;
         private DevExpress.XtraBars.BarButtonItem SubmitButton;
         private DevExpress.XtraBars.BarButtonItem TaskOverButton;
+        private DevExpress.XtraBars.BarButtonItem barFJLY;
         private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
+        private DevExpress.XtraBars.BarButtonItem barxqjh;
     }
 }
