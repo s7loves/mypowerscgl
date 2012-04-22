@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class UCPJ_06sbxs
+    partial class UCPJ_cq06sbxs
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ucTop = new Ebada.Scgl.Lcgl.UCPJ_06sbxsmain();
-            this.ucBottom = new Ebada.Scgl.Lcgl.UCPJ_06sbxsmx();
+            this.ucTop = new Ebada.Scgl.Lcgl.UCPJ_cq06sbxsmain();
+            this.ucBottom = new Ebada.Scgl.Lcgl.UCPJ_cq06sbxsmx();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -89,7 +89,7 @@
         #endregion
 
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private UCPJ_06sbxsmain ucTop;
-        private UCPJ_06sbxsmx ucBottom;
+        private UCPJ_cq06sbxsmain ucTop;
+        private UCPJ_cq06sbxsmx ucBottom;
     }
 }

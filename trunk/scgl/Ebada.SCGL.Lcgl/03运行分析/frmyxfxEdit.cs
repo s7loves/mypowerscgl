@@ -330,7 +330,7 @@ namespace Ebada.Scgl.Lcgl
 
                 PJ_gzrjnr gzr = new PJ_gzrjnr();
                 gzr.ParentID = yxfx.ID;
-                IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
+                IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + rowData.rq.ToString("yyyy-MM-dd 00:00:00") + "' and '" + rowData.rq.ToString("yyyy-MM-dd 23:59:59") + "'");
                 if (gzrj01.Count > 0)
                 {
                     gzr.gzrjID = gzrj01[0].gzrjID;
@@ -339,12 +339,12 @@ namespace Ebada.Scgl.Lcgl
                 {
                     PJ_01gzrj pj = new PJ_01gzrj();
                     pj.gzrjID = pj.CreateID();
-                    pj.GdsCode = MainHelper.User.OrgCode;
-                    pj.GdsName = MainHelper.User.OrgName;
+                    pj.GdsCode = rowData.OrgCode;
+                    pj.GdsName = rowData.OrgName;
                     pj.CreateDate = DateTime.Now;
                     pj.CreateMan = MainHelper.User.UserName;
                     gzr.gzrjID = pj.gzrjID;
-                    pj.rq = DateTime.Now.Date;
+                    pj.rq = rowData.rq ;
                     pj.xq = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
                     pj.rsaqts = (DateTime.Today - MainHelper.UserOrg.PSafeTime.Date).Days;
                     pj.sbaqts = (DateTime.Today - MainHelper.UserOrg.DSafeTime.Date).Days;
@@ -367,7 +367,7 @@ namespace Ebada.Scgl.Lcgl
                 if (ss.Length >= 1)
                 {
 
-                    gzr.cjry = ss[0] + "、" + ss[1];
+                    gzr.cjry = ss[0]  + ss[1];
                     if (ss.Length > 2) gzr.cjry = gzr.cjry + "等";
                     gzr.cjry = gzr.cjry + ss.Length + "人";
                 }

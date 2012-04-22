@@ -42,7 +42,7 @@
             // 
             // m_DefaultLookAndFeel
             // 
-            
+            ;
             // 
             // bar1
             // 

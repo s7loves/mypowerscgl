@@ -15,11 +15,11 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frm06sbxsEdit : FormBase, IPopupFormEdit
+    public partial class frm06sbxsmxEdit : FormBase, IPopupFormEdit
     {
-        SortableSearchableBindingList<PJ_06sbxs> m_CityDic = new SortableSearchableBindingList<PJ_06sbxs>();
-
-        public frm06sbxsEdit()
+        SortableSearchableBindingList<PJ_06sbxsmx> m_CityDic = new SortableSearchableBindingList<PJ_06sbxsmx>();
+        public PJ_06sbxs ParentObj = new PJ_06sbxs();
+        public frm06sbxsmxEdit()
         {
             InitializeComponent();
         }
@@ -45,7 +45,7 @@ namespace Ebada.Scgl.Lcgl
 
         }
         #region IPopupFormEdit Members
-        private PJ_06sbxs rowData = null;
+        private PJ_06sbxsmx rowData = null;
 
         public object RowData
         {
@@ -61,13 +61,13 @@ namespace Ebada.Scgl.Lcgl
 
                 if (rowData == null)
                 {
-                    this.rowData = value as PJ_06sbxs;
+                    this.rowData = value as PJ_06sbxsmx;
                     this.InitComboBoxData();
                     dataBind();
                 }
                 else
                 {
-                    ConvertHelper.CopyTo<PJ_06sbxs>(value as PJ_06sbxs, rowData);
+                    ConvertHelper.CopyTo<PJ_06sbxsmx>(value as PJ_06sbxsmx, rowData);
                     this.InitComboBoxData();
                 }
                 setxsr();
@@ -81,9 +81,9 @@ namespace Ebada.Scgl.Lcgl
         {
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
 
-            //comboBoxEdit3.Properties.Items.AddRange(ryList);
+            comboBoxEdit3.Properties.Items.AddRange(ryList);
             comboBoxEdit5.Properties.Items.AddRange(ryList);
-            //comboBoxEdit6.Properties.Items.AddRange(ryList);
+            comboBoxEdit6.Properties.Items.AddRange(ryList);
             comboBoxEdit7.Properties.Items.AddRange(ryList);
 
             //ICollection linelist = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电线路名称
@@ -110,8 +110,13 @@ namespace Ebada.Scgl.Lcgl
             {
                 comboBoxEdit1.Text = rowData.LineName;
             }
-
-
+            PJ_sbxsqd ps = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_sbxsqd>("where XsqdName='" + ParentObj.xlqd+ "'and LineCode='" + ParentObj.LineID + "' ");
+            if (ps != null)
+            {
+                comboBoxEdit3.EditValue = ps.XSR1;
+                comboBoxEdit6.EditValue = ps.XSR2;
+            }
+          
                 //巡视区段
                 // ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视区段", comboBoxEdit2.Properties);
 
@@ -267,14 +272,14 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit2_Properties_EditValueChanged(object sender, EventArgs e)
         {
-            ICollection list = new ArrayList();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select XSR1 from PJ_sbxsqd where XsqdName='{0}' ", comboBoxEdit2.EditValue));
-            comboBoxEdit3.Properties.Items.Clear();
-            comboBoxEdit3.Properties.Items.AddRange(list);
+            //ICollection list = new ArrayList();
+            //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select XSR1 from PJ_sbxsqd where XsqdName='{0}' ", comboBoxEdit2.EditValue));
+            //comboBoxEdit3.Properties.Items.Clear();
+            //comboBoxEdit3.Properties.Items.AddRange(list);
 
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select XSR2 from PJ_sbxsqd where XsqdName='{0}' ", comboBoxEdit2.EditValue));
-            comboBoxEdit6.Properties.Items.Clear();
-            comboBoxEdit6.Properties.Items.AddRange(list); 
+            //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select XSR2 from PJ_sbxsqd where XsqdName='{0}' ", comboBoxEdit2.EditValue));
+            //comboBoxEdit6.Properties.Items.Clear();
+            //comboBoxEdit6.Properties.Items.AddRange(list); 
         }
 
         private void dateEdit1_EditValueChanged(object sender, EventArgs e)
@@ -338,44 +343,46 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            PS_xl xl = null;
-            xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='"+comboBoxEdit1.Text+"'");
-            if (xl != null)
-            {
-                rowData.LineID = xl.LineID;
-                rowData.LineName = xl.LineName;
-            }
-            else
-            {
-                rowData.LineName = comboBoxEdit1.Text;
-            }
-            rowData.CreateDate = rowData.xssj;
+            rowData.LineID = ParentObj.LineID;
+            rowData.LineName = ParentObj.LineName;
+            //PS_xl xl = null;
+            //xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='"+comboBoxEdit1.Text+"'");
+            //if (xl != null)
+            //{
+            //    rowData.LineID = xl.LineID;
+            //    rowData.LineName = xl.LineName;
+            //}
+            //else
+            //{
+            //    rowData.LineName = comboBoxEdit1.Text;
+            //}
+           // rowData.CreateDate = rowData.xssj;
         }
 
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
 
-            if (!string.IsNullOrEmpty(comboBoxEdit1.Text))
-            {
-                PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit1.EditValue.ToString() + "'");
+            //if (!string.IsNullOrEmpty(comboBoxEdit1.Text))
+            //{
+            //    PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit1.EditValue.ToString() + "'");
               
-                rowData.LineName = comboBoxEdit1.EditValue.ToString(); ;
-                comboBoxEdit2.Properties.Items.Clear();
-                comboBoxEdit3.Properties.Items.Clear();
-                comboBoxEdit6.Properties.Items.Clear();
-                if (xl != null)
-                {
-                    rowData.LineID = xl.LineID;
-                    IList<PJ_sbxsqd> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbxsqd>(" where LineCode='" + xl.LineID + "'");
-                    foreach (PJ_sbxsqd xsqd in xllit)
-                    {
-                        comboBoxEdit2.Properties.Items.Add(xsqd.XsqdName);
-                        comboBoxEdit3.Properties.Items.Add(xsqd.XSR1);
-                        comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
-                    }
-                }
+            //    rowData.LineName = comboBoxEdit1.EditValue.ToString(); ;
+            //    comboBoxEdit2.Properties.Items.Clear();
+            //    comboBoxEdit3.Properties.Items.Clear();
+            //    comboBoxEdit6.Properties.Items.Clear();
+            //    if (xl != null)
+            //    {
+            //        rowData.LineID = xl.LineID;
+            //        IList<PJ_sbxsqd> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbxsqd>(" where LineCode='" + xl.LineID + "'");
+            //        foreach (PJ_sbxsqd xsqd in xllit)
+            //        {
+            //            comboBoxEdit2.Properties.Items.Add(xsqd.XsqdName);
+            //            comboBoxEdit3.Properties.Items.Add(xsqd.XSR1);
+            //            comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
+            //        }
+            //    }
 
-            }
+            //}
         }
 
 

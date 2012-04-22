@@ -38,9 +38,12 @@ namespace Ebada.Scgl.Lcgl
             string sgyc = Ecommon.Comparestring(obj.clqk, "三") ? "" : "三、事故、障碍、异常运行情况及处理经过：";
             string zyyy = Ecommon.Comparestring(obj.yyfx, "四") ? "" : "四、主要原因分析：";
             string jhdc = Ecommon.Comparestring(obj.fzdc, "五") ? "" : "五、今后防止对策：";
-            Ecommon.addstring(Ecommon.ResultStrList(sgyc+ obj.clqk, zc), ref strcol);
-            Ecommon.addstring(Ecommon.ResultStrList(zyyy + obj.yyfx, zc), ref strcol);
-            Ecommon.addstring(Ecommon.ResultStrList(jhdc + obj.fzdc, zc), ref strcol);
+            string sgzyc = sgyc + obj.clqk;
+            string zyyuy = zyyy + obj.yyfx;
+            string fzdc = jhdc + obj.fzdc;
+            //Ecommon.addstring(Ecommon.ResultStrList(sgyc+ obj.clqk, zc), ref strcol);
+            //Ecommon.addstring(Ecommon.ResultStrList(zyyy + obj.yyfx, zc), ref strcol);
+            //Ecommon.addstring(Ecommon.ResultStrList(jhdc + obj.fzdc, zc), ref strcol);
             //Ecommon.CreatandWritesheet(ex, strcol, 14, 9, 1);
             ex.ActiveSheet(1);
             //事故异常发生地点
@@ -57,13 +60,13 @@ namespace Ebada.Scgl.Lcgl
             ex.SetCellValue(obj.sdsj.Hour.ToString(), 7, 9);
             ex.SetCellValue(obj.sdsj.Minute.ToString(), 7, 11);
             //时间间隔
-            int data1 = (obj.sdsj -obj.tdsj ).Days;
-            int hour1 = (obj.sdsj -obj.tdsj ).Hours+data1*24;
-            int min1 = (obj.sdsj-obj.tdsj  ).Minutes;
-            ex.SetCellValue(hour1.ToString(),7, 17);
-            ex.SetCellValue(min1.ToString(),7, 19);
+            int data1 = (obj.sdsj - obj.tdsj).Days;
+            int hour1 = (obj.sdsj - obj.tdsj).Hours + data1 * 24;
+            int min1 = (obj.sdsj - obj.tdsj).Minutes;
+            ex.SetCellValue(hour1.ToString(), 7, 17);
+            ex.SetCellValue(min1.ToString(), 7, 19);
             //损失电量
-            ex.SetCellValue(obj.ssdl.ToString(),8,5);
+            ex.SetCellValue(obj.ssdl.ToString(), 8, 5);
             //ex.SetCellValue(obj.rq.Month.ToString(), 4, 7);
             //ex.SetCellValue(obj.rq.Day.ToString(), 4, 9);
             //防治对策执行人
@@ -74,32 +77,72 @@ namespace Ebada.Scgl.Lcgl
             ex.SetCellValue(obj.CreateDate.Day.ToString(), 24, 17);
 
             //事故障碍异常
-            string sgzyc = "三、事故、障碍、异常运行情况及处理经过：" + obj.clqk;
+
             //string hdstr = Ecommon.Comparestring(obj.hdnr, "活动内容") ? "" : "活动内容：";
             //List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.clqk, zc, 8);
+            string jd1 = "";
+            string jd2 = "";
+            bool flag = true;
+            if (sgzyc.Contains("处理人"))
+            {
 
+                jd1 = sgzyc.Substring(0, sgzyc.LastIndexOf("处理人"));
+                jd2 = sgzyc.Substring(sgzyc.LastIndexOf("处理人"));
+            }
+            else
+                jd1 = sgzyc;
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    string tempstr = "";
+            //    int startnum = i * zc;
+            //    int endnum = (i + 1) * zc;
+            //    bool ISempty = false;
+            //    if (startnum >= sgzyc.Length)
+            //    {
+            //        ISempty = true;
+            //    }
+            //    else if (endnum >= sgzyc.Length)
+            //    {
+            //        endnum = sgzyc.Length;
+            //    }
+            //    if (!ISempty)
+            //    {
+            //        tempstr = sgzyc.Substring(startnum, endnum - startnum);
+            //    }
+            //    ex.SetCellValue(tempstr, 9 + i, 1);
+            //}
             for (int i = 0; i < 4; i++)
             {
                 string tempstr = "";
                 int startnum = i * zc;
                 int endnum = (i + 1) * zc;
                 bool ISempty = false;
-                if (startnum >= sgzyc.Length)
+                if (sgzyc.Length > 3 * zc)
+                {
+                    jd1 = sgzyc;
+                }
+                else if (sgzyc.Length <= 3 * zc && !string.IsNullOrEmpty(jd2))
+                {
+                    ex.SetCellValue(jd2, 12, 1);
+                }
+                if (startnum >= jd1.Length)
                 {
                     ISempty = true;
+
                 }
-                else if (endnum >= sgzyc.Length)
+                else if (endnum >= jd1.Length)
                 {
-                    endnum = sgzyc.Length;
+                    endnum = jd1.Length;
                 }
                 if (!ISempty)
                 {
-                    tempstr = sgzyc.Substring(startnum, endnum - startnum);
+                    tempstr = jd1.Substring(startnum, endnum - startnum);
+                    ex.SetCellValue(tempstr, 9 + i, 1);
                 }
-                ex.SetCellValue(tempstr, 9 + i, 1);
+
             }
             //主要原因分析
-            string zyyuy = "四、主要原因分析：" + obj.yyfx;
+
             for (int i = 0; i < 5; i++)
             {
                 string tempstr = "";
@@ -121,7 +164,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(tempstr, 13 + i, 1);
             }
             //今后放置对策
-            string fzdc = "五、今后防止对策：" + obj.fzdc;
+
             for (int i = 0; i < 5; i++)
             {
                 string tempstr = "";
@@ -142,9 +185,9 @@ namespace Ebada.Scgl.Lcgl
                 }
                 ex.SetCellValue(tempstr, 18 + i, 1);
             }
-           
 
-           
+
+
             ex.ShowExcel();
 
         }
