@@ -265,6 +265,7 @@ namespace Ebada.Scgl.Lcgl
             }
             slqwhere = slqwhere + " order by CreateDate desc";
             gridViewOperation.RefreshData(slqwhere);
+            this.gridView1.BestFitColumns();
         }
         /// <summary>
         /// 封装了数据操作的对象
