@@ -1613,6 +1613,10 @@ namespace Ebada.Scgl.Lcgl
             }
             else if (sqlSentence != "")
             {
+                if (sqlSentence.IndexOf("{recordparentid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{recordparentid}", currRecord.ParentID);
+                }
                 if (sqlSentence.IndexOf("{recordid}") > -1)
                 {
                     sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);
@@ -1735,7 +1739,11 @@ namespace Ebada.Scgl.Lcgl
             string ctrltype = "";
             if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1)
             {
-               
+
+                if (sqlSentence.IndexOf("{recordparentid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{recordparentid}", currRecord.ParentID);
+                }
                 if (sqlSentence.IndexOf("{recordid}") > -1)
                 {
                     sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);

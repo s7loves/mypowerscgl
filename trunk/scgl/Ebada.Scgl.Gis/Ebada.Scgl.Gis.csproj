@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0D4A51D4-E72E-4423-A308-F35291195DFD}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -355,6 +355,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCGraph.resx">
       <DependentUpon>UCGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UCLayerManager.resx">
       <DependentUpon>UCLayerManager.cs</DependentUpon>
