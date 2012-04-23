@@ -536,7 +536,10 @@ namespace Ebada.Scgl.Lcgl
                         {
                             currentPosY += 20;
                         }
-                        if (lp.CtrlType.Contains("MemoEdit") && flag && lp.SqlSentence != "")
+                        IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where tlcjdid='" +
+                            WorkFlowData.Rows[0]["WorkTaskId"].ToString()
+                            + "' and cdfs like '下拉%' and tlcjdzdid='" + lp.LPID  + "'");
+                        if (lp.CtrlType.Contains("MemoEdit") && flag &&( lp.SqlSentence != "" ||wttli.Count >0))
                         {
                             btTip = new ComboBoxEdit();
                             btTip.Name = "bt" + lp.LPID;
@@ -553,7 +556,7 @@ namespace Ebada.Scgl.Lcgl
                             currentPosY += 30;
                         }
                         else
-                            if (lp.CtrlType.Contains("TextEdit") && flag && lp.SqlSentence != "")
+                            if (lp.CtrlType.Contains("TextEdit") && flag && (lp.SqlSentence != "" || wttli.Count > 0))
                             {
                                 btTip = new ComboBoxEdit();
                                 btTip.Name = "bt" + lp.LPID;
