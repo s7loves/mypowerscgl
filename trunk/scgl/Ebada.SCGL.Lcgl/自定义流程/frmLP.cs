@@ -1953,8 +1953,8 @@ namespace Ebada.Scgl.Lcgl
             switch (ctrltype)
             {
                 case "DevExpress.XtraEditors.TextEdit":
-                    //if (li.Count > 0 && sqlSentence != "")
-                    //    ((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
+                    if (li.Count > 0 && sqlSentence != "")
+                        ((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
                     if (li.Count > 0 && sqlSentence != "")
                     {
                         //((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
