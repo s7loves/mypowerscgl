@@ -2336,10 +2336,10 @@ namespace Ebada.Scgl.WFlow
 
                     break;
                 default:
-                    if (r1.Match(parentID).Value == "")
-                    {
+                    //if (r1.Match(parentID).Value == "")
+                    //{
                         datalist2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<LP_Record>(
-                            " where  Kind='" + parentID + "' and Number like '%" +
+                            " where  Kind='" + kind + "' and Number like '%" +
                             DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' order by Number desc");
 
                         if (datalist2.Count > 0)
@@ -2352,24 +2352,24 @@ namespace Ebada.Scgl.WFlow
 
                             number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "0001";
                         }
-                    }
-                    else
-                    {
-                        datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<WF_TableFieldValueView>(
-                             " where FieldName='编号' and UserControlId='" + parentID + "' and ControlValue like '%" +
-                             DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' order by Number desc");
+                    //}
+                    //else
+                    //{
+                    //    datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<WF_TableFieldValueView>(
+                    //         " where FieldName='编号' and UserControlId='" + parentID + "' and ControlValue like '%" +
+                    //         DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' order by Number desc");
+                        
+                    //    if (datalist.Count > 0)
+                    //    {
+                    //        string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
+                    //        number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + string.Format("{0:D4}", Convert.ToInt32(stri) + 1);
+                    //    }
+                    //    else
+                    //    {
 
-                        if (datalist.Count > 0)
-                        {
-                            string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
-                            number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + string.Format("{0:D4}", Convert.ToInt32(stri) + 1);
-                        }
-                        else
-                        {
-
-                            number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "0001";
-                        }
-                    }
+                    //        number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "0001";
+                    //    }
+                    //}
 
                     break;
             }
