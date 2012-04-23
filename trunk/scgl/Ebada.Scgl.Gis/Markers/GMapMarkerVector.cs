@@ -96,7 +96,13 @@ namespace Ebada.Scgl.Gis.Markers {
                 g.DrawString(Text,font , Brushes.Blue, r.Right + 3, r.Top - 3);
             }
         }
+        /// <summary>
+        /// 绘制表箱
+        /// </summary>
+        /// <param name="g"></param>
+        private void drawbx(Graphics g) {
 
+        }
         void 线路属性_Click(object sender, EventArgs e) {
             (this.Overlay as LineOverlay).ShowLineinfo(this);
         }

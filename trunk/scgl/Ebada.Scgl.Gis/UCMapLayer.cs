@@ -333,6 +333,9 @@ namespace TLMapPlatform {
                 item = new MenuItem("导出单线系统图");
                 item.Click += new EventHandler(单线图_Click);
                 contextMenu.MenuItems.Add(item);
+                //item = new MenuItem("台区网络示意图");
+                //item.Click += new EventHandler(台区网络示意图_Click);
+                //contextMenu.MenuItems.Add(item);
             }
             bool flag = code.Length == 6;
             contextMenu.MenuItems[2].Enabled = flag;
@@ -341,6 +344,7 @@ namespace TLMapPlatform {
             contextMenu.MenuItems[5].Enabled = !flag;
             contextMenu.MenuItems[6].Enabled = !flag;
             contextMenu.MenuItems[7].Enabled = flag;
+            contextMenu.MenuItems[8].Enabled = !flag;
             contextMenu.Tag = code;
             contextMenu.Show(treeList1, p);
         }
@@ -352,6 +356,9 @@ namespace TLMapPlatform {
             if (dlg.ShowDialog() == DialogResult.OK) {
                 bt.Save(dlg.FileName);
             }
+        }
+        void 台区网络示意图_Click(object sender, EventArgs e) {
+            UCGraph.ShowDialog(contextMenu.Tag.ToString());
         }
         void 单线图_Click(object sender, EventArgs e) {
             System.Drawing.Image bt = new DrawingDxt2().GetImage(contextMenu.Tag.ToString());
