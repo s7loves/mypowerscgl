@@ -458,7 +458,7 @@ namespace Ebada.Scgl.Lcgl {
             if (MainHelper.UserOrg == null) return;
 
             if (!RecordWorkTask.HaveRunNewGZPRole(strKind, MainHelper.User.UserID)) return;
-            
+            DataTable recordWorkFlowData = null;
             object obj= RecordWorkTask.GetNewWorkTaskModle(strKind, MainHelper.User.UserID);
             if (obj == null)
             {
@@ -482,6 +482,7 @@ namespace Ebada.Scgl.Lcgl {
                 
                 //frm.RecordWorkFlowData = RecordWorkTask.GetGZPRecordSartWorkData(ParentObj.FlowCaption, MainHelper.User.UserID);
                 frm.RecordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
+                recordWorkFlowData = frm.RecordWorkFlowData;
                 if (frm.RecordWorkFlowData == null)
                 {
                     MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
@@ -491,7 +492,7 @@ namespace Ebada.Scgl.Lcgl {
                 {
                     MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
                 }
-                lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, frm.ParentTemple.LPID);
+                lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, frm.ParentTemple.LPID,lpr.Kind );
                 lpr.Status = frm.RecordWorkFlowData.Rows[0]["TaskCaption"].ToString();
                 //lpr.Status = "填票";
                 //frm.RowData = lpr;
@@ -510,7 +511,7 @@ namespace Ebada.Scgl.Lcgl {
                         MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
                         return;
                     }
-                DataTable recordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
+                recordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
                 if (recordWorkFlowData == null)
                 {
                     MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
@@ -929,7 +930,26 @@ namespace Ebada.Scgl.Lcgl {
                         }
                     }
                 InitData(strKind);
-               
+            }
+
+            IList wfli = MainHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct tlcid from WF_WorkTastTrans where slcid='" +
+                         recordWorkFlowData.Rows[0]["WorkFlowId"]
+                         + "' and cdfs like '下拉%' ");
+            foreach (string strwf in wfli)
+            {
+                WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlow>(strwf);
+                LP_Record lp = new LP_Record();
+                lp.ID = "N" + lp.CreateID();
+                lp.Kind = wf.FlowCaption;
+                lp.CreateTime = DateTime.Now.ToString();
+                lp.OrgName = MainHelper.UserOrg.OrgName;
+                lp.ParentID = lpr.ID;
+                RecordWorkTask.RunNewGZPRecord(lp.ID, lp.Kind, MainHelper.User.UserID, false);
+                DataTable dttemp = RecordWorkTask.GetRecordWorkFlowData(lp.ID, MainHelper.User.UserID);
+                lp.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, "", lp.Kind);
+                lp.Status = dttemp.Rows[0]["TaskCaption"].ToString();
+                MainHelper.PlatformSqlMap.Create<LP_Record>(lp);
+                Thread.Sleep(new TimeSpan(100000));//0.1毫秒
             }
             //获得编辑按钮的状态
             this.btEditfrm.Caption = lpr.Status;

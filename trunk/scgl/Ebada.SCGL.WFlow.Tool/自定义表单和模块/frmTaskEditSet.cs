@@ -479,16 +479,43 @@ namespace Ebada.SCGL.WFlow.Tool
                         if (ceBind.Checked)
                         {
                             if (strli[0] == "WF_TableFieldValueView")
-                                tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and id='{recordid}'";
+                            {
+                                if ((((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID == ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID))
+                                {
+                                    tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and id='{recordid}'";
+                                }
+                                else
+                                {
+                                    tetSWorkSQL.Text = tetSWorkSQL.Text + " and RecordId='{recordparentid}'";
+                                }
+                            }
                             else
                                 if (strli[0] == "LP_Record")
-                                    tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and id='{recordid}'";
+                                {
+
+                                    if ((((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID == ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID))
+                                    {
+                                        tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and id='{recordid}'";
+                                    }
+                                    else
+                                    {
+                                        tetSWorkSQL.Text = tetSWorkSQL.Text + " and RecordId='{recordparentid}'";
+                                    }
+                                }
                                 else
                                 {
 
 
-                                    tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and " + list[0].ToString()
-                                        + " in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  RecordID='{recordid}')";
+
+                                    if ((((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID == ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID))
+                                    {
+                                        tetSWorkSQL.Text = "" + tetSWorkSQL.Text + " and " + list[0].ToString()
+                                            + " in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  RecordID='{recordid}')";
+                                    }
+                                    else
+                                    {
+                                        tetSWorkSQL.Text = tetSWorkSQL.Text + " and RecordId='{recordparentid}'";
+                                    }
                                 }
 
                         }
@@ -501,7 +528,15 @@ namespace Ebada.SCGL.WFlow.Tool
                             + " and FieldId='" + strli[0] + "' ";
                             if (ceBind.Checked)
                             {
-                                tetSWorkSQL.Text = tetSWorkSQL.Text + " and RecordId='{recordid}'";
+                                if ((((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID == ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID))
+                                {
+                                    tetSWorkSQL.Text = tetSWorkSQL.Text + " and RecordId='{recordid}'";
+                                }
+                                else if (((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID != ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID)
+                                {
+                                    tetSWorkSQL.Text = tetSWorkSQL.Text + " and RecordId='{recordparentid}'";
+                                }
+
                             }
                         }
                 }
@@ -543,6 +578,10 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             WinFormFun.LoadComboBox(cbxTWorkTastDataTable, dt, "WorkTaskId", "TaskCaption");
             cbxTWorkTastDataTable.SelectedIndex = 0;
+            if (((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID != ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID)
+            {
+                cbxSWorkTastzdDataTable_SelectedIndexChanged(sender, e);
+            }
         }
 
         private void cbxTWorkTastDataTable_SelectedIndexChanged(object sender, EventArgs e)
