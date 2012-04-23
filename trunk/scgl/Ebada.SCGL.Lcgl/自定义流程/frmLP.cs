@@ -1953,7 +1953,7 @@ namespace Ebada.Scgl.Lcgl
             switch (ctrltype)
             {
                 case "DevExpress.XtraEditors.TextEdit":
-                    if (li.Count > 0 && sqlSentence != "")
+                    if (li.Count > 0 && sqlSentence != "" && wtt.cdfs == "下拉并选中")
                         ((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
                     if (li.Count > 0 && sqlSentence != "")
                     {
@@ -1971,7 +1971,8 @@ namespace Ebada.Scgl.Lcgl
                 case "DevExpress.XtraEditors.SpinEdit":
                     if (li.Count > 0 && sqlSentence != "")
                     {
-                        //((DevExpress.XtraEditors.SpinEdit)ctrl).Text = li[0].ToString();
+                        if (li.Count > 0 && sqlSentence != "" && wtt.cdfs == "下拉并选中" && li[0].ToString()!="")
+                        ((DevExpress.XtraEditors.SpinEdit)ctrl).Value  =Convert.ToDecimal ( li[0].ToString());
                         Control bttip = FindCtrl("bt" + lp.LPID);
                         if (bttip != null)
                         {
@@ -2077,7 +2078,10 @@ namespace Ebada.Scgl.Lcgl
                     }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
-                    
+
+                    if (li.Count > 0 && sqlSentence != "" && wtt.cdfs == "下拉并选中" && li[0].ToString()!="")
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime  = Convert.ToDateTime(li[0].ToString());
+
                     if (lp.WordCount != "" && lp.WordCount.IndexOf("|") == -1)
                     {
                         ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = lp.WordCount;
