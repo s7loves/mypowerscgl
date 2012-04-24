@@ -28,9 +28,12 @@
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.listBoxControl2 = new DevExpress.XtraEditors.ListBoxControl();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // simpleButton1
@@ -44,14 +47,14 @@
             // 
             // treeList1
             // 
-            this.treeList1.Location = new System.Drawing.Point(12, 12);
+            this.treeList1.Location = new System.Drawing.Point(12, 39);
             this.treeList1.Name = "treeList1";
-            this.treeList1.Size = new System.Drawing.Size(204, 209);
+            this.treeList1.Size = new System.Drawing.Size(462, 182);
             this.treeList1.TabIndex = 1;
             // 
             // listBoxControl1
             // 
-            this.listBoxControl1.Location = new System.Drawing.Point(222, 41);
+            this.listBoxControl1.Location = new System.Drawing.Point(222, 227);
             this.listBoxControl1.Name = "listBoxControl1";
             this.listBoxControl1.Size = new System.Drawing.Size(252, 180);
             this.listBoxControl1.TabIndex = 2;
@@ -74,14 +77,32 @@
             this.listBoxControl2.Size = new System.Drawing.Size(204, 260);
             this.listBoxControl2.TabIndex = 2;
             // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Location = new System.Drawing.Point(515, 12);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(96, 23);
+            this.simpleButton3.TabIndex = 0;
+            this.simpleButton3.Text = "getdevice";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
+            // memoEdit1
+            // 
+            this.memoEdit1.Location = new System.Drawing.Point(480, 41);
+            this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Size = new System.Drawing.Size(217, 381);
+            this.memoEdit1.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(709, 499);
+            this.Controls.Add(this.memoEdit1);
             this.Controls.Add(this.listBoxControl2);
             this.Controls.Add(this.listBoxControl1);
             this.Controls.Add(this.treeList1);
+            this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
             this.Name = "Form1";
@@ -90,6 +111,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -101,6 +123,8 @@
         private DevExpress.XtraEditors.ListBoxControl listBoxControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.ListBoxControl listBoxControl2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.MemoEdit memoEdit1;
     }
 }
 

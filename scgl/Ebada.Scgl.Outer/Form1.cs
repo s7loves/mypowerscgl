@@ -13,6 +13,7 @@ namespace Ebada.Scgl.Outer {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
+            treeList1.OptionsBehavior.Editable = false;
         }
         static DBATLLib.DataCommClass RealDB = null;
         DataTable dt1 = null;
@@ -37,7 +38,8 @@ namespace Ebada.Scgl.Outer {
         }
 
         private void simpleButton1_Click(object sender, EventArgs e) {
-            int count = RealDB.GetTagCount(0, 0);
+            
+            int count = RealDB.GetTagCount(0,0);
 
             string str = "";
             for (int i = 0; i < count; i++) {
@@ -52,8 +54,8 @@ namespace Ebada.Scgl.Outer {
             if (listBoxControl2.SelectedIndex == -1) return;
             string tagname= treeList1.FocusedNode["tagname"].ToString();
             string dataname = listBoxControl2.SelectedItem.ToString().Split('\t')[0];
-            string value=RealDB.GetDataDirect(tagname+"."+dataname);
-            listBoxControl1.Items.Insert(0, String.Format("{0},{1},{2}", dataname, tagname, value));
+            string value=RealDB.GetDataDirect(tagname+".pv");
+            listBoxControl1.Items.Insert(0, String.Format("{0},{1},{2}", tagname,"pv",  value));
 
         }
         private void initdata() {
@@ -67,6 +69,22 @@ namespace Ebada.Scgl.Outer {
                 if (string.IsNullOrEmpty(str)) continue;
                 listBoxControl2.Items.Add(str);
             }
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e) {
+            int count = RealDB.GetDeviceCount();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < count; i++) {
+                sb.AppendLine(RealDB.GetDeviceName(i));
+                
+            }
+            count = RealDB.GetDeviceTagCount(0);
+            string str = "";
+            for (int i = 0; i < count; i++) {
+                str = RealDB.GetDeviceTagName(0, i);
+                dt1.Rows.Add(str, "", "");
+            }
+            memoEdit1.Text = sb.ToString();
         }
     }
 }
