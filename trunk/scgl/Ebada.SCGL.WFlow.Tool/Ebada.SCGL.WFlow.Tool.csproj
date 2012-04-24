@@ -113,6 +113,24 @@
     </Compile>
     <Compile Include="Bounds.cs" />
     <Compile Include="BaseTreeNode.cs" />
+    <Compile Include="自定义表单和模块\frmTaskRecordSQLSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义表单和模块\frmTaskRecordSQLSet.Designer.cs">
+      <DependentUpon>frmTaskRecordSQLSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义表单和模块\frmTaskRecordEditSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义表单和模块\frmTaskRecordEditSet.Designer.cs">
+      <DependentUpon>frmTaskRecordEditSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="自定义表单和模块\frmTaskRecordSQLList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="自定义表单和模块\frmTaskRecordSQLList.Designer.cs">
+      <DependentUpon>frmTaskRecordSQLList.cs</DependentUpon>
+    </Compile>
     <Compile Include="自定义表单和模块\frmTaskSQLSet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -570,6 +588,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\并行结束节点.ico" />
+    <EmbeddedResource Include="自定义表单和模块\frmTaskRecordSQLSet.resx">
+      <DependentUpon>frmTaskRecordSQLSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义表单和模块\frmTaskRecordEditSet.resx">
+      <DependentUpon>frmTaskRecordEditSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义表单和模块\frmTaskRecordSQLList.resx">
+      <DependentUpon>frmTaskRecordSQLList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="自定义表单和模块\frmTaskSQLSet.resx">
       <DependentUpon>frmTaskSQLSet.cs</DependentUpon>
       <SubType>Designer</SubType>
