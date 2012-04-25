@@ -33,19 +33,28 @@ namespace Ebada.Scgl.Outer {
             treeList1.DataSource = dt1;
         }
 
-        void RealDB_OnDataChanged(int num, string Name, object Data) {
-            listBoxControl1.Items.Insert(0, String.Format("{0},{1},{2}",num,Name,Data));
+        void RealDB_OnDataChanged(int num, string name, object data) {
+           BeginInvoke(new DBATLLib._IDataCommEvents_OnDataChangedEventHandler(datachanged), num, name, data);
         }
-
+        void datachanged(int num, string name, object data) {
+            listBoxControl1.Items.Insert(0, string.Format("{0},{1},{2}",num,name,data));
+        }
         private void simpleButton1_Click(object sender, EventArgs e) {
-            
-            int count = RealDB.GetTagCount(0,0);
+            int areaNo=(int)spinEdit1.Value;
+            int kindNo=(int)spinEdit2.Value;
+            int count = RealDB.GetTagCount(areaNo,kindNo);
 
             string str = "";
+            string desc = "";
+            StringBuilder sb = new StringBuilder();
             for (int i = 0; i < count; i++) {
-                str = RealDB.GetTagName(0, 0, i) ;
-                dt1.Rows.Add(str, "", "");
+                str = RealDB.GetTagName(areaNo, kindNo, i) ;
+                desc = RealDB.GetTagDesc(str);
+                dt1.Rows.Add(str, desc, "");
+                sb.Append(str + ".PV,");
             }
+            
+            RealDB.Register(sb.ToString(), 1000);
             initdata();
         }
 
