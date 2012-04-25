@@ -40,8 +40,12 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -108,7 +112,11 @@
             this.gridColumn5,
             this.gridColumn6,
             this.gridColumn16,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -147,7 +155,7 @@
             // gridColumn16
             // 
             this.gridColumn16.Caption = "目标表单名称";
-            this.gridColumn16.FieldName = "TableName";
+            this.gridColumn16.FieldName = "VarName";
             this.gridColumn16.MinWidth = 200;
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.Visible = true;
@@ -157,9 +165,29 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "源流程SQL";
+            this.gridColumn3.FieldName = "InitValue";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 800;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "VarType";
+            this.gridColumn4.FieldName = "VarType";
+            this.gridColumn4.Name = "gridColumn4";
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "TableName";
+            this.gridColumn7.FieldName = "TableName";
+            this.gridColumn7.Name = "gridColumn7";
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "TableField";
+            this.gridColumn8.FieldName = "TableField";
+            this.gridColumn8.Name = "gridColumn8";
             // 
             // simpleButton2
             // 
@@ -180,6 +208,14 @@
             this.simpleButton1.TabIndex = 62;
             this.simpleButton1.Text = "确定";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "VarModule";
+            this.gridColumn9.FieldName = "VarModule";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 3;
             // 
             // frmTaskRecordSQLList
             // 
@@ -217,5 +253,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
     }
 }

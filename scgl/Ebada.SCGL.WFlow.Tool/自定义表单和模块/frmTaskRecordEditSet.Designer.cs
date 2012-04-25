@@ -71,7 +71,7 @@
             this.simpleButton3.Size = new System.Drawing.Size(43, 27);
             this.simpleButton3.TabIndex = 78;
             this.simpleButton3.Text = "设置";
-            this.simpleButton3.Visible = false;
+            this.simpleButton3.Visible = true;
             this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // tetSWorkSQL
@@ -83,11 +83,11 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(28, 119);
+            this.labelControl4.Location = new System.Drawing.Point(64, 119);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(70, 14);
+            this.labelControl4.Size = new System.Drawing.Size(34, 14);
             this.labelControl4.TabIndex = 74;
-            this.labelControl4.Text = "源节点SQL：";
+            this.labelControl4.Text = "SQL：";
             // 
             // cbxSWorkTastDataTable
             // 
@@ -147,11 +147,11 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(28, 82);
+            this.labelControl2.Location = new System.Drawing.Point(38, 82);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(48, 14);
+            this.labelControl2.Size = new System.Drawing.Size(60, 14);
             this.labelControl2.TabIndex = 47;
-            this.labelControl2.Text = "记录表名";
+            this.labelControl2.Text = "记录表名：";
             // 
             // frmTaskRecordEditSet
             // 

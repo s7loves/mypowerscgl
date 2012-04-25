@@ -177,7 +177,8 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 return;
             }
-            MainHelper.PlatformSqlMap.Delete<WF_WorkTastTrans>(wtt); 
+            MainHelper.PlatformSqlMap.Delete<WF_WorkTastTrans>(wtt);
+            refreshData();
 
         }
 

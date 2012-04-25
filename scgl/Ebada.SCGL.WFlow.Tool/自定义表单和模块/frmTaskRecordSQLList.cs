@@ -26,9 +26,9 @@ namespace Ebada.SCGL.WFlow.Tool
         private DataTable griddt = null;
         private string strSQL = "";
         private string strWorkFlowID = "";
-        private ArrayList excelList = null;
+        private IList excelList = null;
         private DataTable dt = null;
-        public ArrayList ExcelList
+        public IList ExcelList
         {
             get
             {
@@ -103,9 +103,14 @@ namespace Ebada.SCGL.WFlow.Tool
             dt.Columns.Add("TaskVarId");
             dt.Columns.Add("WorkFlowId");
             dt.Columns.Add("WorkTaskId");
-            dt.Columns.Add("TableName");
+            dt.Columns.Add("TaskCaption");
+            dt.Columns.Add("VarName");
             dt.Columns.Add("InitValue");
-            dt.Columns.Add("AccessType"); 
+            dt.Columns.Add("AccessType");
+            dt.Columns.Add("VarType");
+            dt.Columns.Add("TableName");
+            dt.Columns.Add("TableField");
+            dt.Columns.Add("VarModule");
            
         }
         private void refreshData()
@@ -121,7 +126,12 @@ namespace Ebada.SCGL.WFlow.Tool
                 WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOne<WF_WorkTask>(" where WorkTaskId='" + wtv.WorkTaskId + "'");
                 dr["TaskCaption"] = wt.TaskCaption ;
                 dr["TableName"] = wtv.TableName;
-                dr["TableName"] = wtv.TableName;
+                dr["InitValue"] = wtv.InitValue;
+                dr["VarName"] = wtv.VarName;
+                dr["VarType"] = wtv.VarType;
+                dr["TableField"] = wtv.TableField;
+                dr["VarModule"] = wtv.VarModule;
+                dt.Rows.Add(dr);
             }
             gridControl1.DataSource = dt;
         
@@ -162,16 +172,24 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            WF_WorkTastTrans wtt = new WF_WorkTastTrans();
-            frmTaskEditSet ftes = new frmTaskEditSet();
-            wtt.slcid = strWorkFlowID;
-            wtt.tlcid = strWorkFlowID;
-            wtt.WorkFlowID = strWorkFlowID;
-            ftes.RowData = wtt;
+            DataRow dr = dt.NewRow(); 
+            frmTaskRecordEditSet ftes = new frmTaskRecordEditSet();
+            dr["WorkFlowId"] = strWorkFlowID;
+            ftes.RowData = dr;
             ftes.strType = "add";
             if (ftes.ShowDialog() == DialogResult.OK)
             {
-                MainHelper.PlatformSqlMap.Create<WF_WorkTastTrans>(wtt); 
+                WF_TaskVar wtv = new WF_TaskVar();
+                wtv.WorkTaskId = dr["WorkTaskId"].ToString();
+                wtv.WorkFlowId  = dr["WorkFlowId"].ToString();
+                wtv.TableName = dr["TableName"].ToString() ;
+                wtv.InitValue = dr["InitValue"].ToString();
+                wtv.VarName = dr["VarName"].ToString();
+                wtv.VarType = dr["VarType"].ToString();
+                wtv.TableField = dr["TableField"].ToString();
+                wtv.VarModule = dr["VarModule"].ToString();
+                wtv.AccessType = "生成记录";
+                MainHelper.PlatformSqlMap.Create<WF_TaskVar>(wtv); 
                 refreshData();
             }
         }
@@ -180,14 +198,23 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             if (gridView1.FocusedRowHandle < -1)
                 return;
-            WF_WorkTastTrans wtt = gridView1.GetFocusedRow() as WF_WorkTastTrans;
-            frmTaskEditSet ftes = new frmTaskEditSet();
-            ftes.RowData = wtt;
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle) as DataRow;
+            frmTaskRecordEditSet ftes = new frmTaskRecordEditSet();
+            ftes.RowData = dr;
             ftes.strType = "edit";
 
             if (ftes.ShowDialog() == DialogResult.OK)
             {
-                MainHelper.PlatformSqlMap.Update<WF_WorkTastTrans>(wtt); 
+                WF_TaskVar wtv = MainHelper.PlatformSqlMap.GetOneByKey<WF_TaskVar>(dr["TaskVarId"]);
+                wtv.WorkTaskId = dr["WorkTaskId"].ToString();
+                wtv.WorkFlowId = dr["WorkFlowId"].ToString();
+                wtv.TableName = dr["TableName"].ToString();
+                wtv.InitValue = dr["InitValue"].ToString();
+                wtv.VarName = dr["VarName"].ToString();
+                wtv.VarType = dr["VarType"].ToString();
+                wtv.TableField = dr["TableField"].ToString();
+                wtv.VarModule = dr["VarModule"].ToString();
+                MainHelper.PlatformSqlMap.Update<WF_TaskVar>(wtv); 
                 refreshData();
             }
         }
@@ -196,13 +223,15 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             if (gridView1.FocusedRowHandle < -1)
                 return;
-            WF_WorkTastTrans wtt = gridView1.GetFocusedRow() as WF_WorkTastTrans;
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle) as DataRow;
             //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认删除 【" + wtt.slcjdzdmc + "】?") != DialogResult.OK)
+            if (MsgBox.ShowAskMessageBox("是否确认删除 【" + dr["TaskCaption"] + "】?") != DialogResult.OK)
             {
                 return;
             }
-            MainHelper.PlatformSqlMap.Delete<WF_WorkTastTrans>(wtt); 
+            WF_TaskVar wtv = MainHelper.PlatformSqlMap.GetOneByKey<WF_TaskVar>(dr["TaskVarId"]);
+            MainHelper.PlatformSqlMap.Delete<WF_TaskVar>(wtv);
+            refreshData();
 
         }
 

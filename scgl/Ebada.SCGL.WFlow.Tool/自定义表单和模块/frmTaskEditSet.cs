@@ -217,7 +217,7 @@ namespace Ebada.SCGL.WFlow.Tool
             cbxSWorkTastDataTable.Items.Clear();
             cbxSWorkTastDataTable.Items.Add(l); 
             IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskList",
-                "where WorkFlowId ='" + ((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID + "' order by TaskTypeId");
+                "where WorkFlowId ='" + ((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID + "' and TaskTypeId!='2' order by TaskTypeId");
             DataTable dt = new DataTable();
             if (((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID == "无")
             {
@@ -246,7 +246,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (sbf != null)
                 {
                     IList<WF_WorkTask> wtli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
-               "where WorkFlowId ='" + sbf.subWorkflowId  + "'  order by TaskTypeId");
+               "where WorkFlowId ='" + sbf.subWorkflowId + "'  and TaskTypeId!='2'  order by TaskTypeId");
                     for (int j = 0; j < wtli.Count; j++)
                     {
                         if (wtli[j].TaskTypeId == "6")
@@ -286,8 +286,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 {
                     string varDbTableName = "";
                     WF_WorkTaskModle wtm = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
-                           (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
-                          ((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID,
+                           (string.Format(" where  WorkTaskId='{1}'",
                           ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
                     if (wtm != null)
                     {
@@ -554,7 +553,7 @@ namespace Ebada.SCGL.WFlow.Tool
             cbxTWorkTastDataTable.Items.Clear();
             cbxTWorkTastDataTable.Items.Add(l);
             IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskList",
-                "where WorkFlowId ='" + ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID + "' order by TaskTypeId");
+                "where WorkFlowId ='" + ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID + "'  and TaskTypeId!='2' order by TaskTypeId");
             DataTable dt = new DataTable();
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
             for (int i = 0; i < li.Count; i++)
