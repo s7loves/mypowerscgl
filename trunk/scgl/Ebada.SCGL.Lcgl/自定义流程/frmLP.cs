@@ -1154,6 +1154,7 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
             RunTaskUpdate();
+            RunTaskRecordUpdate();
             switch (status)
             {
                 case "add":
@@ -1467,6 +1468,155 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         
+        }
+        public void RunTaskRecordUpdate()
+        {
+
+            IList<WF_TaskVar> wttli = MainHelper.PlatformSqlMap.GetList<WF_TaskVar>(" where WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "' and AccessType like '生成记录%'");
+            foreach (WF_TaskVar wtt in wttli)
+            {
+                RunTaskRecordCtrlData(wtt.InitValue, wtt);
+
+            }
+        }
+        public static string GetDisplayName(Type modelType, string propertyDisplayName)
+        {
+            return (System.ComponentModel.TypeDescriptor.GetProperties(modelType)[propertyDisplayName].Attributes[typeof(System.ComponentModel.DisplayNameAttribute)] as System.ComponentModel.DisplayNameAttribute).DisplayName;
+        }
+
+        public void RunTaskRecordCtrlData(string sqlSentence, WF_TaskVar wtt)
+        {
+            IList li = MainHelper.PlatformSqlMap.GetList("GetTableColumns", wtt.VarName);
+            Hashtable hs = new Hashtable();
+            Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + "Ebada.Scgl.Model.dll");
+            Type tpe = assembly.GetType("Ebada.Scgl.Model." + wtt.VarName);
+
+            for (int i = 0; i < li.Count; i++)
+            {
+                Regex r1 = new Regex(@"(?<=\[" + (li[i] as WF_WorkFlow ).Name  + ":).*?(?=\\])");
+                if (r1.Match(sqlSentence.Replace("\r\n", " ")).Value != "")
+                {
+
+                    IList sli = ExTaskRecordCtrlSQL(r1.Match(sqlSentence.Replace("\r\n", " ")).Value, wtt);
+                    if (hs.Contains((li[i] as WF_WorkFlow).Name) == false) hs.Add((li[i] as WF_WorkFlow).Name, "");
+                    if (sli.Count >0)
+                    {
+
+                        if (GetDisplayName(tpe, (li[i] as WF_WorkFlow).Name).IndexOf("时间") > 0)
+                        {
+                            if (sli[0].ToString().IndexOf("年") > -1)
+                                hs[(li[i] as WF_WorkFlow).Name] = sli[1];
+                            else
+                                hs[(li[i] as WF_WorkFlow).Name] = sli[0];
+
+                        }
+                        else
+                        {
+                            hs[(li[i] as WF_WorkFlow).Name] = sli[0];
+                        }
+
+                    }
+                }
+                    
+                
+            }
+            ArrayList akeys = new ArrayList(hs.Keys);
+            string strsql = "";
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + wtt.VarName + "'");
+            strsql = " INSERT INTO " + wtt.VarName + " (" + list[0];
+            for (int i = 0; i < akeys.Count; i++)
+            {
+                if (list[0].ToString() != akeys[i].ToString())
+                {
+                    strsql += ","+akeys[i];
+                }
+            }
+            strsql += " )  values (";
+            strsql += "'" +DateTime.Now.ToString("yyyyMMddHHmmssffffff")+"' ";
+            for (int i = 0; i < akeys.Count; i++)
+            {
+                
+                if (list[0].ToString() != akeys[i].ToString())
+                {
+                    if (tpe.GetMember(akeys[i].ToString())[0].ToString().IndexOf("System.Int") > 0
+                        || tpe.GetMember(akeys[i].ToString())[0].ToString().IndexOf("System.Double") > 0
+                        )
+                    strsql += " , "+hs[akeys[i]]+" ";
+                    else
+                        strsql += " , '" + hs[akeys[i]] + "' ";
+                }
+            }
+            strsql += " )  ";
+            MainHelper.PlatformSqlMap.Update("Update", strsql);
+        }
+        public IList ExTaskRecordCtrlSQL(string sqlSentence, WF_TaskVar wtt)
+        {
+
+           
+            
+            /*
+             * 
+             * SELECT   cellname,  SqlSentence,SqlColName
+                FROM         LP_Temple
+                where SqlSentence !=''
+             * 
+             * */
+            IList li = new ArrayList();
+            Regex r1 = null;
+            if (sqlSentence.IndexOf("Excel:") == 0)
+            {
+                int index1 = sqlSentence.LastIndexOf(":");
+                string tablename = sqlSentence.Substring(6, index1 - 6);
+                string cellpos = sqlSentence.Substring(index1 + 1);
+                string[] arrCellPos = cellpos.Split('|');
+                arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
+                string strcellvalue = "";
+                Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                ExcelAccess ea = new ExcelAccess();
+                ea.MyWorkBook = wb;
+                ea.MyExcel = wb.Application;
+                Excel.Worksheet sheet;
+                sheet = wb.Application.Sheets[tablename] as Excel.Worksheet;
+
+                for (int i = 0; i < arrCellPos.Length; i++)
+                {
+                    Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
+                    strcellvalue += range.Value2;
+                }
+                li.Add(strcellvalue);
+            }
+            else if (sqlSentence != "")
+            {
+                if (sqlSentence.IndexOf("{recordparentid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{recordparentid}", currRecord.ParentID);
+                }
+                if (sqlSentence.IndexOf("{recordid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);
+                }
+                if (sqlSentence.IndexOf("{orgcode}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{userid}") > -1)
+                {
+                    sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                
+                
+                try
+                {
+                    sqlSentence = sqlSentence.Replace("\r\n", " ");
+                    li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+
+                }
+                catch (Exception ex)
+                {
+                    li.Add("出错:" + ex.Message);
+                }
+            }
+            return li;
         }
         public void RunTaskCtrlData(Control ctrl, string sqlSentence, WF_WorkTastTrans wtt)
         {

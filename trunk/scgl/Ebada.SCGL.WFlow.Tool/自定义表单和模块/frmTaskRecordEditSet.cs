@@ -31,7 +31,7 @@ namespace Ebada.SCGL.WFlow.Tool
         {
             InitializeComponent();
         }
-        private WF_WorkTastTrans rowData = null;
+        private DataRow rowData = null;
         private DataTable griddt = null;
         private string strtype = "";
         private ArrayList excelList = null;
@@ -71,7 +71,7 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 if (value == null) return;
 
-                this.rowData = value as WF_WorkTastTrans;
+                this.rowData = value as DataRow;
             }
         }
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -87,27 +87,39 @@ namespace Ebada.SCGL.WFlow.Tool
             
             
             ListItem l = new ListItem("###", "请选择");
-            
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkFlowList", "    where 1=1 order by FlowCaption ");
-            
-            DataTable dt = ConvertHelper.ToDataTable(li);
-            
 
-            WF_WorkFlow wf = new WF_WorkFlow();
-            wf.FlowCaption = "无";
-            wf.WorkFlowId = "无";
-            li.Insert(0, wf);
+
+            DataTable dt = new DataTable();
+
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskList",
+                "where WorkFlowId ='" + rowData["WorkFlowId"] + "'  and TaskTypeId!='2' order by TaskTypeId");
+            
+            if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
+
             dt = ConvertHelper.ToDataTable(li);
-          
+            WinFormFun.LoadComboBox(cbxSWorkTastDataTable, dt, "WorkTaskId", "TaskCaption");
+
+            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
+            //dt = ConvertHelper.ToDataTable(li);
+            dt = new DataTable();
+            dt.Columns.Add("name", typeof(string));
+            for (int i = 0; i < li.Count; i++)
+            {
+                DataRow dr = dt.NewRow();
+                dr["name"] = li[i];
+                dt.Rows.Add(dr);
+            }
+            WinFormFun.LoadComboBox(cbxSWorkTastzdDataTable, dt, "name", "name");
             
 
            
             if (strtype == "edit")
             {
-                
-                setComoboxFocusIndex(cbxSWorkTastDataTable, rowData.slcjdid);
-                setComoboxFocusIndex(cbxSWorkTastzdDataTable, rowData.slcjdzdid);
-                tetSWorkSQL.Text = rowData.sSQL;
+
+
+                setComoboxFocusIndex(cbxSWorkTastDataTable, rowData["WorkTaskId"].ToString());
+                setComoboxFocusIndex(cbxSWorkTastzdDataTable, rowData["VarName"].ToString());
+                tetSWorkSQL.Text = rowData["InitValue"].ToString();
                
                 
             }
@@ -304,12 +316,19 @@ namespace Ebada.SCGL.WFlow.Tool
        
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            frmTaskSQLSet fees = new frmTaskSQLSet();
+            frmTaskRecordSQLSet fees = new frmTaskRecordSQLSet();
+            rowData["WorkTaskId"] = ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID;
+            rowData["TaskCaption"] = ((ListItem)cbxSWorkTastDataTable.SelectedItem).Name;
             fees.RowData = rowData;
-            fees.StrSQL = tetSWorkSQL.Text;
+            IList li = MainHelper.PlatformSqlMap.GetList("GetTableColumns", ((ListItem)cbxSWorkTastzdDataTable.SelectedItem).ID);
+            fees.StrSQL  = tetSWorkSQL.Text;
+            fees.ColumnNameList = li;
             if (fees.ShowDialog() == DialogResult.OK)
             {
                 tetSWorkSQL.Text = fees.StrSQL;
+                rowData["InitValue"] = fees.StrSQL;
+                rowData["VarName"] = ((ListItem)cbxSWorkTastzdDataTable.SelectedItem).ID;
+                rowData["WorkTaskId"] = ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID;
             }
         }
 

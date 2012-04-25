@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.cbxSWorkTastDataTable = new System.Windows.Forms.ComboBox();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.cbxSWorkTastzdDataTable = new System.Windows.Forms.ComboBox();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
@@ -45,18 +49,9 @@
             this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkDatabase = new System.Windows.Forms.RadioButton();
-            this.tetWorkPos = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.cbxWorkTableColumns = new System.Windows.Forms.ComboBox();
-            this.cbxWorkExcelTable = new System.Windows.Forms.ComboBox();
             this.columnBox = new System.Windows.Forms.ComboBox();
-            this.cbxWorkDataTable = new System.Windows.Forms.ComboBox();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkFixValue = new System.Windows.Forms.RadioButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.rbnWorkExcel = new System.Windows.Forms.RadioButton();
             this.rbnWorkTable = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -66,11 +61,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.cbxSWorkTastDataTable);
+            this.groupControl1.Controls.Add(this.labelControl9);
+            this.groupControl1.Controls.Add(this.cbxSWorkTastzdDataTable);
+            this.groupControl1.Controls.Add(this.labelControl3);
             this.groupControl1.Controls.Add(this.gridControl1);
             this.groupControl1.Controls.Add(this.simpleButton3);
             this.groupControl1.Controls.Add(this.labelControl1);
@@ -86,18 +84,9 @@
             this.groupControl1.Controls.Add(this.labelControl23);
             this.groupControl1.Controls.Add(this.labelControl24);
             this.groupControl1.Controls.Add(this.rbnWorkDatabase);
-            this.groupControl1.Controls.Add(this.tetWorkPos);
-            this.groupControl1.Controls.Add(this.labelControl7);
-            this.groupControl1.Controls.Add(this.cbxWorkTableColumns);
-            this.groupControl1.Controls.Add(this.cbxWorkExcelTable);
             this.groupControl1.Controls.Add(this.columnBox);
-            this.groupControl1.Controls.Add(this.cbxWorkDataTable);
-            this.groupControl1.Controls.Add(this.labelControl5);
             this.groupControl1.Controls.Add(this.rbnWorkFixValue);
             this.groupControl1.Controls.Add(this.labelControl2);
-            this.groupControl1.Controls.Add(this.labelControl6);
-            this.groupControl1.Controls.Add(this.labelControl3);
-            this.groupControl1.Controls.Add(this.rbnWorkExcel);
             this.groupControl1.Controls.Add(this.rbnWorkTable);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
@@ -105,6 +94,42 @@
             this.groupControl1.Size = new System.Drawing.Size(682, 534);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "设置";
+            // 
+            // cbxSWorkTastDataTable
+            // 
+            this.cbxSWorkTastDataTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSWorkTastDataTable.FormattingEnabled = true;
+            this.cbxSWorkTastDataTable.Location = new System.Drawing.Point(69, 87);
+            this.cbxSWorkTastDataTable.Name = "cbxSWorkTastDataTable";
+            this.cbxSWorkTastDataTable.Size = new System.Drawing.Size(340, 22);
+            this.cbxSWorkTastDataTable.TabIndex = 73;
+            this.cbxSWorkTastDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxSWorkTastDataTable_SelectedIndexChanged);
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(12, 90);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(60, 14);
+            this.labelControl9.TabIndex = 72;
+            this.labelControl9.Text = "节点名称：";
+            // 
+            // cbxSWorkTastzdDataTable
+            // 
+            this.cbxSWorkTastzdDataTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSWorkTastzdDataTable.FormattingEnabled = true;
+            this.cbxSWorkTastzdDataTable.Location = new System.Drawing.Point(69, 117);
+            this.cbxSWorkTastzdDataTable.Name = "cbxSWorkTastzdDataTable";
+            this.cbxSWorkTastzdDataTable.Size = new System.Drawing.Size(340, 22);
+            this.cbxSWorkTastzdDataTable.TabIndex = 71;
+            this.cbxSWorkTastzdDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxSWorkTastzdDataTable_SelectedIndexChanged);
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(12, 120);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(60, 14);
+            this.labelControl3.TabIndex = 70;
+            this.labelControl3.Text = "字段名称：";
             // 
             // gridControl1
             // 
@@ -150,10 +175,10 @@
             // ceBind
             // 
             this.ceBind.EditValue = true;
-            this.ceBind.Location = new System.Drawing.Point(201, 26);
+            this.ceBind.Location = new System.Drawing.Point(369, 26);
             this.ceBind.Name = "ceBind";
             this.ceBind.Properties.Caption = "关联流程记录";
-            this.ceBind.Size = new System.Drawing.Size(104, 19);
+            this.ceBind.Size = new System.Drawing.Size(95, 19);
             this.ceBind.TabIndex = 64;
             // 
             // simpleButton2
@@ -244,70 +269,15 @@
             this.rbnWorkDatabase.Text = "从数据库取";
             this.rbnWorkDatabase.UseVisualStyleBackColor = true;
             // 
-            // tetWorkPos
-            // 
-            this.tetWorkPos.Location = new System.Drawing.Point(299, 115);
-            this.tetWorkPos.Name = "tetWorkPos";
-            this.tetWorkPos.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tetWorkPos.Properties.Mask.EditMask = "([a-zA-Z]{1,2}\\d{1,3}[|])+";
-            this.tetWorkPos.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.tetWorkPos.Size = new System.Drawing.Size(110, 21);
-            this.tetWorkPos.TabIndex = 52;
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Location = new System.Drawing.Point(216, 118);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(72, 14);
-            this.labelControl7.TabIndex = 51;
-            this.labelControl7.Text = "单元格位置：";
-            this.labelControl7.UseWaitCursor = true;
-            // 
-            // cbxWorkTableColumns
-            // 
-            this.cbxWorkTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxWorkTableColumns.FormattingEnabled = true;
-            this.cbxWorkTableColumns.Location = new System.Drawing.Point(63, 114);
-            this.cbxWorkTableColumns.Name = "cbxWorkTableColumns";
-            this.cbxWorkTableColumns.Size = new System.Drawing.Size(126, 22);
-            this.cbxWorkTableColumns.TabIndex = 48;
-            // 
-            // cbxWorkExcelTable
-            // 
-            this.cbxWorkExcelTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxWorkExcelTable.FormattingEnabled = true;
-            this.cbxWorkExcelTable.Location = new System.Drawing.Point(299, 89);
-            this.cbxWorkExcelTable.Name = "cbxWorkExcelTable";
-            this.cbxWorkExcelTable.Size = new System.Drawing.Size(110, 22);
-            this.cbxWorkExcelTable.TabIndex = 49;
-            // 
             // columnBox
             // 
             this.columnBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.columnBox.FormattingEnabled = true;
             this.columnBox.Location = new System.Drawing.Point(69, 23);
             this.columnBox.Name = "columnBox";
-            this.columnBox.Size = new System.Drawing.Size(126, 22);
+            this.columnBox.Size = new System.Drawing.Size(285, 22);
             this.columnBox.TabIndex = 49;
             this.columnBox.SelectedIndexChanged += new System.EventHandler(this.columnBox_SelectedIndexChanged);
-            // 
-            // cbxWorkDataTable
-            // 
-            this.cbxWorkDataTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxWorkDataTable.FormattingEnabled = true;
-            this.cbxWorkDataTable.Location = new System.Drawing.Point(64, 90);
-            this.cbxWorkDataTable.Name = "cbxWorkDataTable";
-            this.cbxWorkDataTable.Size = new System.Drawing.Size(126, 22);
-            this.cbxWorkDataTable.TabIndex = 49;
-            this.cbxWorkDataTable.SelectedIndexChanged += new System.EventHandler(this.cbxWorkDataTable_SelectedIndexChanged);
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Location = new System.Drawing.Point(14, 116);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(36, 14);
-            this.labelControl5.TabIndex = 46;
-            this.labelControl5.Text = "字段：";
             // 
             // rbnWorkFixValue
             // 
@@ -329,32 +299,6 @@
             this.labelControl2.TabIndex = 47;
             this.labelControl2.Text = "列名：";
             // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(227, 93);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(60, 14);
-            this.labelControl6.TabIndex = 45;
-            this.labelControl6.Text = "工作表名：";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(15, 92);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(36, 14);
-            this.labelControl3.TabIndex = 47;
-            this.labelControl3.Text = "表名：";
-            // 
-            // rbnWorkExcel
-            // 
-            this.rbnWorkExcel.AutoSize = true;
-            this.rbnWorkExcel.Location = new System.Drawing.Point(227, 69);
-            this.rbnWorkExcel.Name = "rbnWorkExcel";
-            this.rbnWorkExcel.Size = new System.Drawing.Size(101, 18);
-            this.rbnWorkExcel.TabIndex = 43;
-            this.rbnWorkExcel.Text = "从当前Excel取";
-            this.rbnWorkExcel.UseVisualStyleBackColor = true;
-            // 
             // rbnWorkTable
             // 
             this.rbnWorkTable.AutoSize = true;
@@ -362,10 +306,10 @@
             this.rbnWorkTable.Name = "rbnWorkTable";
             this.rbnWorkTable.Size = new System.Drawing.Size(73, 18);
             this.rbnWorkTable.TabIndex = 44;
-            this.rbnWorkTable.Text = "从表单取";
+            this.rbnWorkTable.Text = "从节点取";
             this.rbnWorkTable.UseVisualStyleBackColor = true;
             // 
-            // frmGridcontrolSQLSet
+            // frmTaskRecordSQLSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -373,9 +317,9 @@
             this.Controls.Add(this.groupControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "frmGridcontrolSQLSet";
+            this.Name = "frmTaskRecordSQLSet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "设置Gridcontrol控件SQL语句";
+            this.Text = "设置生成记录的SQL语句";
             this.Load += new System.EventHandler(this.frmExcelEditSQLSet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -386,7 +330,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -401,17 +344,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl23;
         private DevExpress.XtraEditors.LabelControl labelControl24;
         private System.Windows.Forms.RadioButton rbnWorkDatabase;
-        private DevExpress.XtraEditors.TextEdit tetWorkPos;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
-        private System.Windows.Forms.ComboBox cbxWorkTableColumns;
-        private System.Windows.Forms.ComboBox cbxWorkDataTable;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
         private System.Windows.Forms.RadioButton rbnWorkFixValue;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.RadioButton rbnWorkExcel;
         private System.Windows.Forms.RadioButton rbnWorkTable;
-        private System.Windows.Forms.ComboBox cbxWorkExcelTable;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.CheckEdit ceBind;
@@ -423,5 +357,9 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.MemoEdit tetWorkFixValue;
+        private System.Windows.Forms.ComboBox cbxSWorkTastDataTable;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private System.Windows.Forms.ComboBox cbxSWorkTastzdDataTable;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
     }
 }
