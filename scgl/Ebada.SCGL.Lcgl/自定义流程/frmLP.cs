@@ -1523,7 +1523,19 @@ namespace Ebada.Scgl.Lcgl
             ArrayList akeys = new ArrayList(hs.Keys);
             string strsql = "";
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + wtt.VarName + "'");
-            strsql = " INSERT INTO " + wtt.VarName + " (" + list[0];
+            strsql = " INSERT INTO " + wtt.VarName;
+            
+            foreach (string strv in list)
+            {
+                if (strv == list[0].ToString())
+                {
+                    strsql = strsql + " ( " + strv;
+                }
+                else
+                {
+                    strsql = strsql + "," + strv;
+                }
+            }
             for (int i = 0; i < akeys.Count; i++)
             {
                 if (list[0].ToString() != akeys[i].ToString())
@@ -1531,8 +1543,28 @@ namespace Ebada.Scgl.Lcgl
                     strsql += ","+akeys[i];
                 }
             }
+            string strid = DateTime.Now.ToString("yyyyMMddHHmmssffffff");
             strsql += " )  values (";
-            strsql += "'" +DateTime.Now.ToString("yyyyMMddHHmmssffffff")+"' ";
+            foreach (string strv in list)
+            {
+                if (strv == list[0].ToString())
+                {
+                    if (hs.Contains(strv))
+                    strsql = strsql + "  '" + hs[strv]+"'";
+                    else
+                        strsql = strsql + "  '" + strid+"'";
+
+                }
+                else
+                {
+
+                    if (hs.Contains(strv))
+                        strsql = strsql + ",'" + hs[strv] + "'";
+                    else
+                        strsql = strsql + ",'" + strid + "'";
+                }
+            }
+            //strsql += "'" + strid + "' ";
             for (int i = 0; i < akeys.Count; i++)
             {
                 
@@ -1548,6 +1580,16 @@ namespace Ebada.Scgl.Lcgl
             }
             strsql += " )  ";
             MainHelper.PlatformSqlMap.Update("Update", strsql);
+            WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+            mrwt.ModleRecordID = strid;
+            mrwt.RecordID = currRecord.ID;
+            mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+            mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+            mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+            mrwt.ModleTableName = wtt.VarName;
+            mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+            mrwt.CreatTime = DateTime.Now;
+            MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
         }
         public IList ExTaskRecordCtrlSQL(string sqlSentence, WF_TaskVar wtt)
         {
