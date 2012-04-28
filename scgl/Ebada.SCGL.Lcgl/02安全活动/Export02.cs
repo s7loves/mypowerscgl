@@ -224,7 +224,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     tempcol = col + 4 + (i % 8 - 3) * 2;
                 }
-                ex.SetCellValue(ary[i], row + 4 + i / 8, tempcol);
+         //       ex.SetCellValue(ary[i], row + 4 + i / 8, tempcol);
             }
             //缺席人员
             string[] ary2 = obj.qxry.Split(jksign);
