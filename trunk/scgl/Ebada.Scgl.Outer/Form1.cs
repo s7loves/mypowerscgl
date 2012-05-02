@@ -19,18 +19,18 @@ namespace Ebada.Scgl.Outer {
         DataTable dt1 = null;
         private void Form1_Load(object sender, EventArgs e) {
             
-            if (RealDB == null)
-                RealDB = new DBATLLib.DataCommClass();//(DBATLLib.DataCommClass)Application["RealDB"];
-            if (!RealDB.IsOpen())
-                RealDB.Open("127.0.0.1");
-            RealDB.OnDataChanged += new DBATLLib._IDataCommEvents_OnDataChangedEventHandler(RealDB_OnDataChanged);
+            //if (RealDB == null)
+            //    RealDB = new DBATLLib.DataCommClass();//(DBATLLib.DataCommClass)Application["RealDB"];
+            //if (!RealDB.IsOpen())
+            //    RealDB.Open("127.0.0.1");
+            //RealDB.OnDataChanged += new DBATLLib._IDataCommEvents_OnDataChangedEventHandler(RealDB_OnDataChanged);
 
-            //
-            dt1 = new DataTable();
-            dt1.Columns.Add("tagname", typeof(string));
-            dt1.Columns.Add("id", typeof(string));
-            dt1.Columns.Add("parentid", typeof(string));
-            treeList1.DataSource = dt1;
+            ////
+            //dt1 = new DataTable();
+            //dt1.Columns.Add("tagname", typeof(string));
+            //dt1.Columns.Add("id", typeof(string));
+            //dt1.Columns.Add("parentid", typeof(string));
+            //treeList1.DataSource = dt1;
         }
 
         void RealDB_OnDataChanged(int num, string name, object data) {
@@ -94,6 +94,11 @@ namespace Ebada.Scgl.Outer {
                 dt1.Rows.Add(str, "", "");
             }
             memoEdit1.Text = sb.ToString();
+        }
+
+        private void simpleButton4_Click(object sender, EventArgs e) {
+            frmKgjk dlg = new frmKgjk();
+            dlg.Show();
         }
     }
 }
