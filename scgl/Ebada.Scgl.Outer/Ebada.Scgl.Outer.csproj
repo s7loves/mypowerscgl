@@ -106,7 +106,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKgjk.cs" />
+    <Compile Include="frmKgjk.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmKgjk.Designer.cs">
       <DependentUpon>frmKgjk.cs</DependentUpon>
     </Compile>
