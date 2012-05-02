@@ -344,7 +344,7 @@ namespace TLMapPlatform {
             contextMenu.MenuItems[5].Enabled = !flag;
             contextMenu.MenuItems[6].Enabled = !flag;
             contextMenu.MenuItems[7].Enabled = flag;
-            contextMenu.MenuItems[8].Enabled = !flag;
+            //contextMenu.MenuItems[8].Enabled = !flag;
             contextMenu.Tag = code;
             contextMenu.Show(treeList1, p);
         }
