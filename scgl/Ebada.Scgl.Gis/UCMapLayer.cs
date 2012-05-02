@@ -280,7 +280,7 @@ namespace TLMapPlatform {
                 //GMapOverlay lay ;
                 GPoint p3 = p1;
                 p3.Offset(mRMap.Width / 2, mRMap.Height / 2);
-
+                PointLatLng oldPosition = mRMap.Position;
                 mRMap.Position = mRMap.FromLocalToLatLng(p3.X, p3.Y);
                 mRMap.Invalidate();
                 Application.DoEvents();
@@ -294,6 +294,12 @@ namespace TLMapPlatform {
                 mRMap.FillEmptyTiles = true;
                 mRMap.Render(g, rt.Size);
                 mRMap.FillEmptyTiles = false;
+                Size box = mRMap.Size;
+                mRMap.Hide();
+                mRMap.Size = new Size(10, 10);
+                mRMap.Size = box;
+                mRMap.Show();
+                mRMap.Position = oldPosition;
                 Application.DoEvents();
                 //mRMap.ShowTileGridLines = false;
                 SaveFileDialog dlg = new SaveFileDialog();
@@ -301,6 +307,7 @@ namespace TLMapPlatform {
                 dlg.Filter = "*.bmp|*.bmp";
                 if (dlg.ShowDialog() == DialogResult.OK) {
                     bitmap.Save(dlg.FileName);
+                    openbmp(dlg.FileName);
                 }
             }
         }
@@ -355,7 +362,11 @@ namespace TLMapPlatform {
             dlg.Filter = "*.bmp|*.bmp";
             if (dlg.ShowDialog() == DialogResult.OK) {
                 bt.Save(dlg.FileName);
+                openbmp(dlg.FileName);
             }
+        }
+        void openbmp(string filename) {
+            System.Diagnostics.Process.Start(filename);
         }
         void 台区网络示意图_Click(object sender, EventArgs e) {
             UCGraph.ShowDialog(contextMenu.Tag.ToString());
@@ -367,6 +378,7 @@ namespace TLMapPlatform {
             dlg.Filter = "*.bmp|*.bmp";
             if (dlg.ShowDialog() == DialogResult.OK) {
                 bt.Save(dlg.FileName);
+                openbmp(dlg.FileName);
             }
         }void 低压台区完好率及台区网络图_Click(object sender, EventArgs e) {
             show20dyt(contextMenu.Tag.ToString());
