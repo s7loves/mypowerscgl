@@ -34,6 +34,7 @@
             this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl2)).BeginInit();
@@ -85,7 +86,7 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3.Location = new System.Drawing.Point(515, 12);
+            this.simpleButton3.Location = new System.Drawing.Point(480, 12);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(96, 23);
             this.simpleButton3.TabIndex = 0;
@@ -143,6 +144,15 @@
             this.labelControl2.TabIndex = 5;
             this.labelControl2.Text = "kind";
             // 
+            // simpleButton4
+            // 
+            this.simpleButton4.Location = new System.Drawing.Point(601, 12);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(96, 23);
+            this.simpleButton4.TabIndex = 0;
+            this.simpleButton4.Text = "demo";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -156,6 +166,7 @@
             this.Controls.Add(this.listBoxControl2);
             this.Controls.Add(this.listBoxControl1);
             this.Controls.Add(this.treeList1);
+            this.Controls.Add(this.simpleButton4);
             this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
@@ -186,6 +197,7 @@
         private DevExpress.XtraEditors.SpinEdit spinEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton4;
     }
 }
 
