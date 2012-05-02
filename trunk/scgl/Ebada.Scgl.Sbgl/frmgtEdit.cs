@@ -15,12 +15,15 @@ using Ebada.Scgl.Core;
 using System.Collections;
 using System.IO;
 using System.Drawing.Imaging;
+using DevExpress.XtraTab;
 namespace Ebada.Scgl.Sbgl
 {
     public partial class frmgtEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PS_gt> m_CityDic = new SortableSearchableBindingList<PS_gt>();
         private Boolean multipleAdd = false;
-
+        XtraTabPage tqTab, kgTab;
+        UCPS_TQ ucps_tq;
+        UCPS_KG ucps_kg;
         public Boolean MultipleAdd {
             get { return multipleAdd; }
             set { multipleAdd = value;
@@ -38,6 +41,29 @@ namespace Ebada.Scgl.Sbgl
         public frmgtEdit() {
             InitializeComponent();
             xtraTabControl1.TabPages.Remove(xtraTabPage2);
+            xtraTabControl1.SelectedPageChanged += new TabPageChangedEventHandler(xtraTabControl1_SelectedPageChanged);
+        }
+
+        void xtraTabControl1_SelectedPageChanged(object sender, TabPageChangedEventArgs e) {
+            if (e.Page == tqTab) {
+                if (ucps_tq == null) {
+                    ucps_tq = new UCPS_TQ();
+                    ucps_tq.Dock = DockStyle.Fill;
+                    
+                    ucps_tq.ParentObj = rowData;
+                    ucps_tq.HideList();
+                    ucps_tq.Parent = tqTab;
+                }
+            } else if (e.Page == kgTab) {
+                if (ucps_kg == null) {
+                    ucps_kg = new UCPS_KG();
+                    ucps_kg.Dock = DockStyle.Fill;
+
+                    ucps_kg.ParentObj = rowData;
+                    ucps_kg.HideList();
+                    ucps_kg.Parent = kgTab;
+                }
+            }
         }
         void dataBind() {
 
@@ -112,6 +138,14 @@ namespace Ebada.Scgl.Sbgl
                 gtsb.Dock = DockStyle.Fill;
                 gtsb.Parent = xtraTabPage2;
                 xtraTabControl1.TabPages.Add(xtraTabPage2);
+                if (tqTab == null) {
+                    tqTab = new XtraTabPage();
+                    tqTab.Text = "台区";
+                    xtraTabControl1.TabPages.Add(tqTab);
+                    kgTab = new XtraTabPage();
+                    kgTab.Text = "开关";
+                    xtraTabControl1.TabPages.Add(kgTab);
+                }
             }
         }
         #endregion
