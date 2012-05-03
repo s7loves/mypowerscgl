@@ -320,6 +320,37 @@
    <select id="GetPS_tqRowCount" parameterClass="string">
     select count(*) from PS_tq $value$
    </select>
+<select id="SelectPS_tqListByWhere" resultMap="PS_tq_AllColumns" parameterClass="string">
+  SELECT [PS_tq].[gtID]
+  ,[PS_tq].[tqID]
+  ,[PS_tq].[tqCode]
+  ,[PS_tq].[tqName]
+  ,[PS_tq].[Remark]
+  ,[PS_tq].[Adress]
+  ,[PS_tq].[xlCode]
+  ,[PS_tq].[xlCode2]
+  ,[PS_tq].[Owner]
+  ,[PS_tq].[cby]
+  ,[PS_tq].[cfy]
+  ,[PS_tq].[Contractor]
+  ,[PS_tq].[Lowlossrate]
+  ,[PS_tq].[Class]
+  ,[PS_tq].[tclr]
+  ,[PS_tq].[hclr]
+  ,[PS_tq].[OrgCode]
+  ,[PS_tq].[InDate]
+  ,[PS_tq].[bttype]
+  ,[PS_tq].[btkind],
+  [PS_tq].[bcdr],
+  [PS_tq].[ddj],
+  [PS_tq].[jj],
+  [PS_tq].[nfy],
+  [PS_tq].[zmfs],
+  [PS_tq].[dxbs],
+  [PS_tq].[sxbs]
+  FROM PS_tq
+  $value$
+</select>
   </statements>
 </sqlMap>
  
