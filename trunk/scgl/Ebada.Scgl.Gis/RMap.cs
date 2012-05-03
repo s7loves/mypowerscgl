@@ -240,7 +240,12 @@ namespace Ebada.Scgl.Gis {
                     foreach (GMapMarkerVector marker in lay.Markers) {
                         try {
                             if (marker.MarkerType == MarkerEnum.gt) {
-                                marker.ShowText = showgth;
+                                PS_gt gt = marker.Tag as PS_gt;
+                                if (gt != null && gt.gtJg == "是") {//借杆不显示杆号
+                                    marker.ShowText = false;
+                                } else {
+                                    marker.ShowText = showgth;
+                                }
                             }
                         } catch { }
                     }
