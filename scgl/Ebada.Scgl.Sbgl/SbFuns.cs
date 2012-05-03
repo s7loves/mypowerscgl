@@ -38,6 +38,7 @@ namespace Ebada.Scgl.Sbgl {
                     gt.gtSpan = (decimal)Math.Round(d1, 1);
                 } else {
                     gt.gtSpan = 0;
+                    d1 = 0;
                 }
                 //gt.
                 updateList.Add(gt);
@@ -48,7 +49,7 @@ namespace Ebada.Scgl.Sbgl {
 
             Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, updateList, null);
             updateList.Clear();
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + xl.LineID + "'");
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + xl.LineID + "' and linevol='"+xl.LineVol+"'");
             foreach(PS_xl xl0 in xlList){
                 double d0= CountLineLen(xl0);
                 dLen0 += d0;
