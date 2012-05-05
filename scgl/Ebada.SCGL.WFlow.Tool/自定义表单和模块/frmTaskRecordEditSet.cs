@@ -80,32 +80,105 @@ namespace Ebada.SCGL.WFlow.Tool
            
             this.DialogResult = DialogResult.OK;
         }
-        
+        private void GetTaskList(string WorkFlowId, string WorkTaskId, ref Hashtable taskht, ref DataTable dt)
+        {
 
+            WF_SubWorkFlow sbf = MainHelper.PlatformSqlMap.GetOne<WF_SubWorkFlow>
+                (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
+               WorkFlowId, WorkTaskId));
+            if (sbf != null)
+            {
+                IList<WF_WorkTask> wtli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
+           "where WorkFlowId ='" + sbf.subWorkflowId + "'  order by TaskTypeId");
+                for (int j = 0; j < wtli.Count; j++)
+                {
+                    if (wtli[j].TaskTypeId == "6")
+                    {
+                        GetTaskList(wtli[j].WorkFlowId, wtli[j].WorkTaskId, ref   taskht, ref dt);
+                    }
+                    else
+                    {
+                        if (!taskht.ContainsKey(wtli[j].WorkTaskId) && wtli[j].TaskTypeId != "2")
+                        {
+
+                            DataRow dr = dt.NewRow();
+                            dr["name"] = wtli[j].WorkTaskId;
+                            dt.Rows.Add(dr);
+                            taskht.Add(wtli[j].WorkTaskId, sbf.subWorkflowCaption + "-" + wtli[j].TaskCaption);
+                        }
+                    }
+                }
+            }
+
+        }
+        public  void GetNextTask(string taskid, string workFlowId, ref Hashtable taskht,ref DataTable dt)
+        {
+
+            string tmpStr = " where  StartTaskId='" + taskid + "' and WorkFlowId='" + workFlowId + "'";
+            IList<WF_WorkTaskLinkView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskLinkView>("SelectWF_WorkTaskLinkViewList", tmpStr);
+            foreach (WF_WorkTaskLinkView tl in li)
+            {
+                if (!taskht.ContainsKey(tl.EndTaskId) && tl.EndTaskTypeId != "2" && tl.EndTaskTypeId != "6")
+                {
+                    DataRow dr = dt.NewRow();
+                    dr["name"] = tl.EndTaskId;
+                    dt.Rows.Add(dr);
+                    taskht.Add(tl.EndTaskId, tl.endTaskCaption);
+                }
+                if (tl.EndTaskTypeId == "6")
+                {
+                   
+                  
+                    GetTaskList(tl.WorkFlowId, tl.EndTaskId, ref taskht, ref dt);
+
+                }
+                GetNextTask(tl.EndTaskId, workFlowId, ref  taskht, ref dt);
+            }
+
+        }
         private void frmExcelEditSQLSet_Load(object sender, EventArgs e)
         {
             
             
             ListItem l = new ListItem("###", "请选择");
 
-
+            int i = 0;
+            Hashtable hs = new Hashtable();
             DataTable dt = new DataTable();
+            dt.Columns.Add("name", typeof(string));
+            DataRow dr = dt.NewRow();
+            dr["name"] = "###";
+            dt.Rows.Add(dr);
+            hs.Add("###", "请选择");
+            IList<WF_WorkTask> litemp = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
+                "where WorkFlowId ='" + rowData["WorkFlowId"] + "'  and TaskTypeId='1' order by TaskTypeId");
+            foreach (WF_WorkTask wt in litemp)
+            {
+                dr = dt.NewRow();
+                dr["name"] = wt.WorkTaskId;
+                dt.Rows.Add(dr);
+                hs.Add(wt.WorkTaskId, wt.TaskCaption);
 
-            IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskList",
-                "where WorkFlowId ='" + rowData["WorkFlowId"] + "'  and TaskTypeId!='2' order by TaskTypeId");
-            
-            if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
+                GetNextTask(wt.WorkTaskId, wt.WorkFlowId, ref hs, ref dt);
+            }
+            string taskcaption = "";
+            for (i = 0; i < dt.Rows.Count; i++)
+            {
+                taskcaption = hs[dt.Rows[i]["name"]] as string;
+                ListItem item = new ListItem(dt.Rows[i]["name"].ToString(), taskcaption);
+                cbxSWorkTastDataTable.Items.Add(item);
+            }
+            cbxSWorkTastDataTable.SelectedIndex = 0;
+            //dt = ConvertHelper.ToDataTable(li);
+            //WinFormFun.LoadComboBox(cbxSWorkTastDataTable, dt, "WorkTaskId", "TaskCaption");
 
-            dt = ConvertHelper.ToDataTable(li);
-            WinFormFun.LoadComboBox(cbxSWorkTastDataTable, dt, "WorkTaskId", "TaskCaption");
-
-            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
+            IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
             //dt = ConvertHelper.ToDataTable(li);
             dt = new DataTable();
             dt.Columns.Add("name", typeof(string));
-            for (int i = 0; i < li.Count; i++)
+            for ( i = 0; i < li.Count; i++)
             {
-                DataRow dr = dt.NewRow();
+                dr = dt.NewRow();
                 dr["name"] = li[i];
                 dt.Rows.Add(dr);
             }
