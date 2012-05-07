@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Drawing;
 namespace Ebada.Scgl.Gis {
     public class PloyLineOverLay : GMapOverlay, IUpdateable, IPopuMenu {
-
+         
         private GMapControl control;
         private bool allowEdit;
         ContextMenu contextMenu;

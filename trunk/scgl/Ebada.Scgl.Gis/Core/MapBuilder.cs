@@ -16,7 +16,7 @@ using Ebada.Scgl.Gis.Markers;
 using System.Collections;
 using System.Data;
 namespace Ebada.Scgl.Gis {
-     class MapBuilder {
+     class MapBuilder { 
          static RectangleF box = new RectangleF( 126.98f-10,46.63f-5, 20, 10);
          static public List<PointLatLng> BuildLine(string LineCode) {
             IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(string.Format("where Linecode='{0}' order by gtcode", LineCode));
