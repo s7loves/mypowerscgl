@@ -10,7 +10,7 @@ namespace Ebada.Scgl.Lcgl {
     /// 使用ExcelAccess生成Excel文档
     /// </summary>
     public class Export01
-    {
+    { 
         //ExcelAccess
         public static void ExportExcel(PJ_01gzrj jl, IList<PJ_gzrjnr> nrList)
         {
