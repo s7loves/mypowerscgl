@@ -49,7 +49,7 @@ namespace Ebada.SCGL.CADLib
                     for (int n = 0; n < nlist.Count; n++)
                     {
                         f.SetText("正在处理线路" + nlist[n].ToString());
-                        IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + nlist[n].ToString()+ "' order by gth");
+                        IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + nlist[n].ToString()+ "' order by gtcode");
                         IList<PS_gt> newlist = ReLoadList(list);
                         if (newlist.Count > 1)
                         {
@@ -90,7 +90,7 @@ namespace Ebada.SCGL.CADLib
                     cad.ActiveDocument.Layers.Add("gt");
                     cad.ActiveDocument.Layers.Add("gth");
                     cad.ActiveDocument.Layers.Add("text");
-                    IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='"+linecode+"' order by gth");
+                    IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + linecode + "' order by gtcode");
                     IList<PS_gt> newlist = ReLoadList(list);
                     if (newlist.Count > 1)
                     {
