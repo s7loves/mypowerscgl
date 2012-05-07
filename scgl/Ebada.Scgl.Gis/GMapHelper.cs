@@ -14,7 +14,7 @@ namespace Ebada.Scgl.Gis {
         /// <param name="lineCode">线路代码</param>
         public void ShowDxt(string lineCode) {
             frmMapNetwork dlg = new frmMapNetwork();
-            dlg.ShowDxt(lineCode);
+            dlg.ShowDxt(lineCode); 
         }
         /// <summary>
         /// 显示地理图
