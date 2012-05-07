@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Scgl.Lcgl
 {
-    partial class UCPJ_cq06sbxs
+    partial class UCPJ_06cqsbxs
     {
         /// <summary> 
         /// Required designer variable.
