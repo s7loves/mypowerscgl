@@ -599,15 +599,15 @@ namespace Ebada.Scgl.Lcgl {
                         else if (obj is frmWorkFlow06sbxsEdit)
                         {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + lpr.ID + "'"
-                             + " and  WorkFlowId='" + recordWorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_06sbxs'"
+                             + " and  WorkFlowId='" + recordWorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_06sbxsmx'"
                                + " and  WorkFlowInsId='" + recordWorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
-                            PJ_06sbxs qxfl = new PJ_06sbxs();
+                            PJ_06sbxsmx qxfl = new PJ_06sbxsmx();
                             if (li.Count > 0)
                             {
                                 PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
 
 
-                                qxfl = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxs>(" where CONVERT(varchar, CreateDate, 120 ) =  '" + qxfltemp.CreateDate + "'"
+                                qxfl = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxsmx>(" where CONVERT(varchar, CreateDate, 120 ) =  '" + qxfltemp.CreateDate + "'"
                                     + " and LineID='" + qxfltemp.LineID + "'"
                                     + " and OrgCode='" + qxfltemp.OrgCode + "'"
                                      + " and qxlb='" + qxfltemp.qxlb + "'"
@@ -616,7 +616,7 @@ namespace Ebada.Scgl.Lcgl {
                                     );
                                 if (qxfl == null)
                                 {
-                                    qxfl = new PJ_06sbxs();
+                                    qxfl = new PJ_06sbxsmx();
                                     qxfl.CreateDate = qxfltemp.CreateDate;
                                     qxfl.LineID = qxfltemp.LineID;
                                     qxfl.LineName = qxfltemp.LineName;
@@ -646,7 +646,7 @@ namespace Ebada.Scgl.Lcgl {
                             }
                             else
                             {
-                                qxfl = new PJ_06sbxs();
+                                qxfl = new PJ_06sbxsmx();
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
                                 qxfl.CreateDate = DateTime.Now;
