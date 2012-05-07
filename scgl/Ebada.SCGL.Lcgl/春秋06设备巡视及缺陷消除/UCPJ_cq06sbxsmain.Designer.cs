@@ -38,6 +38,7 @@
             this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
             this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
             this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
+            this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
             this.barxqjh = new DevExpress.XtraBars.BarButtonItem();
@@ -83,6 +84,7 @@
             this.SubmitButton,
             this.TaskOverButton,
             this.liuchenBarClear,
+            this.barFJLY,
             this.barxqjh});
             this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {

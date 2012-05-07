@@ -94,7 +94,8 @@ namespace Ebada.Scgl.Lcgl
         #endregion
         #region IPopupFormEdit Members
         private LP_Record rowData = null;
-
+        Excel.Workbook wb;
+        Excel.Worksheet sheet;
         public object RowData
         {
             get
@@ -143,6 +144,7 @@ namespace Ebada.Scgl.Lcgl
 
             }
         }
+
         /// <summary>
         ///设置保护工作表
         /// </summary>
@@ -292,8 +294,6 @@ namespace Ebada.Scgl.Lcgl
 
             }
             //InitContorl();
-            Excel.Workbook wb;
-            Excel.Worksheet sheet;
             WF_TableFieldValue wfv=null;
             ExcelAccess ea = new ExcelAccess();
             LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
@@ -965,17 +965,17 @@ namespace Ebada.Scgl.Lcgl
         void btn_Submit_Click(object sender, EventArgs e)
         {
             Excel.Workbook wb;
-            Excel.Worksheet sheet;
+            //Excel.Worksheet sheet;
             wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            if (activeSheetName != "")
-            {
-                sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
-            }
-            else
-            {
-                sheet = wb.Application.Sheets[1] as Excel.Worksheet;
-            }
-            activeSheetIndex = sheet.Index;
+            //if (activeSheetName != "")
+            //{
+            //    sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
+            //}
+            //else
+            //{
+            //    sheet = wb.Application.Sheets[1] as Excel.Worksheet;
+            //}
+            //activeSheetIndex = sheet.Index;
             if (filecontrol != null)
             {
                 if (filecontrol.Isupfile)
@@ -2782,29 +2782,30 @@ namespace Ebada.Scgl.Lcgl
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
-            Excel.Worksheet xx;
             try
             {
-                if (lp.KindTable != "")
+                if (lp.KindTable != activeSheetName)
                 {
-                    activeSheetName = lp.KindTable;
-                    xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-                    activeSheetIndex = xx.Index;
-                }
-                else
-                {
-                    xx = wb.Application.Sheets[1] as Excel.Worksheet;
-                    activeSheetIndex = xx.Index;
-                    activeSheetName = xx.Name;
-                }
-
-                if (lp.KindTable != "")
-                {
-                    try
+                    if (lp.KindTable != "")
                     {
-                        ea.ActiveSheet(lp.KindTable);
+                        activeSheetName = lp.KindTable;
+                        sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                        activeSheetIndex = sheet.Index;
                     }
-                    catch { }
+                    //else
+                    //{
+                    //    xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                    //    activeSheetIndex = xx.Index;
+                    //    activeSheetName = xx.Name;
+                    //}
+                }
+                if (lp.KindTable != "")
+                {
+                    //try
+                    //{
+                    //    ea.ActiveSheet(lp.KindTable);
+                    //}
+                    //catch { }
                 }
                 else
                 {
@@ -2820,7 +2821,7 @@ namespace Ebada.Scgl.Lcgl
 
                     if (lp.CellName.IndexOf("简图") > -1)
                     {
-                        unLockExcel(wb, xx);
+                        unLockExcel(wb, sheet);
                         PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
                         if (tb != null)
                         {
@@ -2850,7 +2851,7 @@ namespace Ebada.Scgl.Lcgl
                             else
                             {
                                 Microsoft.Office.Interop.Excel.Shape activShape = null;
-                                activShape = xx.Shapes.AddTextbox(Microsoft.Office.Core.MsoTextOrientation.msoTextOrientationHorizontal,
+                                activShape = sheet.Shapes.AddTextbox(Microsoft.Office.Core.MsoTextOrientation.msoTextOrientationHorizontal,
                                     (float)153.75, (float)162.75, (float)22.5, (float)10.5);
                                 activShape.TextFrame.Characters(1, 1).Font.Size = 8;
                                 activShape.TextFrame.Characters(1, 1).Text = "1";
@@ -2879,7 +2880,7 @@ namespace Ebada.Scgl.Lcgl
                             tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = -1;
                             tfv.YExcelPos = -1;
-                            tfv.ExcelSheetName = xx.Name;
+                            tfv.ExcelSheetName = sheet.Name;
 
                             valuehs.Add(lp.LPID, tfv);
                         }
@@ -2888,7 +2889,7 @@ namespace Ebada.Scgl.Lcgl
                     return;
                 }
 
-                unLockExcel(wb, xx);
+                unLockExcel(wb, sheet);
                 string[] arrCellpos = lp.CellPos.Split(pchar);
                 string[] arrtemp = lp.WordCount.Split(pchar);
                 arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
@@ -2916,13 +2917,13 @@ namespace Ebada.Scgl.Lcgl
                 if (lp.CtrlType.Contains("uc_gridcontrol"))
                 {
                     FillTable(ea, lp, (sender as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar))));
-                    LockExcel(wb, xx);
+                    LockExcel(wb, sheet);
                     return;
                 }
                 else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
                 {
                     FillTime(ea, lp, (sender as DateEdit).DateTime);
-                    LockExcel(wb, xx);
+                    LockExcel(wb, sheet);
                     return;
                 }
                 else if (lp.CtrlType.Contains("DevExpress.XtraEditors.SpinEdit"))
@@ -2944,7 +2945,7 @@ namespace Ebada.Scgl.Lcgl
                             tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                            tfv.ExcelSheetName = xx.Name;
+                            tfv.ExcelSheetName = sheet.Name;
 
                         }
                         else
@@ -2955,7 +2956,7 @@ namespace Ebada.Scgl.Lcgl
                             tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                            tfv.ExcelSheetName = xx.Name;
+                            tfv.ExcelSheetName = sheet.Name;
                             valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
                         }
                     }
@@ -2975,7 +2976,7 @@ namespace Ebada.Scgl.Lcgl
                             tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[i])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[i])[1];
-                            tfv.ExcelSheetName = xx.Name;
+                            tfv.ExcelSheetName = sheet.Name;
 
                         }
                         else
@@ -2986,11 +2987,11 @@ namespace Ebada.Scgl.Lcgl
                             tfv.FieldName = lp.CellName;
                             tfv.XExcelPos = GetCellPos(arrCellpos[i])[0];
                             tfv.YExcelPos = GetCellPos(arrCellpos[i])[1];
-                            tfv.ExcelSheetName = xx.Name;
+                            tfv.ExcelSheetName = sheet.Name;
                             valuehs.Add(lp.LPID + "$" + arrCellpos[i], tfv);
                         }
                     }
-                    LockExcel(wb, xx);
+                    LockExcel(wb, sheet);
 
                     return;
                 }
@@ -3019,7 +3020,7 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                                tfv.ExcelSheetName = xx.Name;
+                                tfv.ExcelSheetName = sheet.Name;
 
                             }
                             else
@@ -3030,7 +3031,7 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                                tfv.ExcelSheetName = xx.Name;
+                                tfv.ExcelSheetName = sheet.Name;
                                 valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
                             }
 
@@ -3039,7 +3040,7 @@ namespace Ebada.Scgl.Lcgl
                             break;
 
                     }
-                    LockExcel(wb, xx);
+                    LockExcel(wb, sheet);
                     return;
                 }
                 else
@@ -3082,7 +3083,7 @@ namespace Ebada.Scgl.Lcgl
                         tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                         tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
-                        tfv.ExcelSheetName = xx.Name;
+                        tfv.ExcelSheetName = sheet.Name;
 
                     }
                     else
@@ -3093,7 +3094,7 @@ namespace Ebada.Scgl.Lcgl
                         tfv.FieldName = lp.CellName;
                         tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                         tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
-                        tfv.ExcelSheetName = xx.Name;
+                        tfv.ExcelSheetName = sheet.Name;
                         valuehs.Add(lp.LPID + "$" + lp.CellPos, tfv);
                     }
 
@@ -3123,7 +3124,7 @@ namespace Ebada.Scgl.Lcgl
                                     tfv.FieldName = lp.CellName;
                                     tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
                                     tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
-                                    tfv.ExcelSheetName = xx.Name;
+                                    tfv.ExcelSheetName = sheet.Name;
 
                                 }
                                 else
@@ -3134,12 +3135,12 @@ namespace Ebada.Scgl.Lcgl
                                     tfv.FieldName = lp.CellName;
                                     tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
                                     tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
-                                    tfv.ExcelSheetName = xx.Name;
+                                    tfv.ExcelSheetName = sheet.Name;
                                     valuehs.Add(lp.LPID + "$" + arrCellpos[j], tfv);
                                 }
                             }
                         }
-                        LockExcel(wb, xx);
+                        LockExcel(wb, sheet);
                         return;
                     }
                     int i = 0;
@@ -3161,7 +3162,7 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                                tfv.ExcelSheetName = xx.Name;
+                                tfv.ExcelSheetName = sheet.Name;
 
                             }
                             else
@@ -3172,11 +3173,11 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                                tfv.ExcelSheetName = xx.Name;
+                                tfv.ExcelSheetName = sheet.Name;
                                 valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
                             }
 
-                            LockExcel(wb, xx);
+                            LockExcel(wb, sheet);
                             return;
                         }
 
@@ -3198,7 +3199,7 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                                tfv.ExcelSheetName = xx.Name;
+                                tfv.ExcelSheetName = sheet.Name;
 
                             }
                             else
@@ -3210,7 +3211,7 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                                tfv.ExcelSheetName = xx.Name;
+                                tfv.ExcelSheetName = sheet.Name;
                                 valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
                             }
                             str = str.Substring(help.GetFristLen(str, arrCellCount[0]) >= str.IndexOf("\r\n") &&
@@ -3243,7 +3244,7 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                                tfv.ExcelSheetName = xx.Name;
+                                tfv.ExcelSheetName = sheet.Name;
 
                             }
                             else
@@ -3254,7 +3255,7 @@ namespace Ebada.Scgl.Lcgl
                                 tfv.FieldName = lp.CellName;
                                 tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
                                 tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                                tfv.ExcelSheetName = xx.Name;
+                                tfv.ExcelSheetName = sheet.Name;
                                 valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
                             }
                             str = str.Substring(i1);
@@ -3339,7 +3340,7 @@ namespace Ebada.Scgl.Lcgl
                     }
 
                 }
-                LockExcel(wb, xx);
+                LockExcel(wb, sheet);
             }
             catch { }
         }
