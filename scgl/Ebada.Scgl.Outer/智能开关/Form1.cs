@@ -68,16 +68,16 @@ namespace Ebada.Scgl.Outer {
 
         }
         private void initdata() {
-            listBoxControl2.Items.Clear();
-            Stream fs = Assembly.GetExecutingAssembly().GetManifestResourceStream("Ebada.Scgl.Outer.dataName.xml");
-            XmlDocument xml = new XmlDocument();
-            xml.Load(fs);
-            string text=xml.DocumentElement.InnerText;
-            string[] array=text.Split('\r','\n');
-            foreach (string str in array) {
-                if (string.IsNullOrEmpty(str)) continue;
-                listBoxControl2.Items.Add(str);
-            }
+            //listBoxControl2.Items.Clear();
+            //Stream fs = Assembly.GetExecutingAssembly().GetManifestResourceStream("Ebada.Scgl.Outer.dataName.xml");
+            //XmlDocument xml = new XmlDocument();
+            //xml.Load(fs);
+            //string text=xml.DocumentElement.InnerText;
+            //string[] array=text.Split('\r','\n');
+            //foreach (string str in array) {
+            //    if (string.IsNullOrEmpty(str)) continue;
+            //    listBoxControl2.Items.Add(str);
+            //}
         }
 
         private void simpleButton3_Click(object sender, EventArgs e) {
