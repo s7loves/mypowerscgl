@@ -10,7 +10,7 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class UCPJ_cq06sbxs: DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPJ_06cqsbxs: DevExpress.XtraEditors.XtraUserControl
     {
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
@@ -75,7 +75,7 @@ namespace Ebada.Scgl.Lcgl
                 ucBottom.VarDbTableName = value;
             }
         }
-        public UCPJ_cq06sbxs()
+        public UCPJ_06cqsbxs()
         {
             InitializeComponent();
             ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<PJ_06sbxs>(ucTop_FocusedRowChanged);
