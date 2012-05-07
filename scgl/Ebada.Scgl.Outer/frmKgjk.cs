@@ -69,5 +69,12 @@ namespace Ebada.Scgl.Outer {
             }
         }
 
+        private void toolStripButton2_Click(object sender, EventArgs e) {
+            frmSetup dlg = new frmSetup();
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                dbhelper.ReLoad();
+            }
+        }
+
     }
 }

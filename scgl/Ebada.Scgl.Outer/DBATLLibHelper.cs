@@ -125,5 +125,15 @@ namespace Ebada.Scgl.Outer {
             }
             RealDB.Register(sb.ToString(), 0);
         }
+        /// <summary>
+        /// 重新初始化
+        /// </summary>
+        internal void ReLoad() {
+            Dispose();
+            if (RealDB == null)
+                RealDB = new DBATLLib.DataCommClass();//(DBATLLib.DataCommClass)Application["RealDB"];
+
+            tagValues = new Dictionary<string, DataRow>();
+        }
     }
 }
