@@ -361,11 +361,77 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+
             if (gridView1.FocusedRowHandle != -1)
             {
-                mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(btGdsList.EditValue.ToString());  
-                Export13.ExportExcel2(gridControl1.DataSource as IList<PS_tqdlbh>, org.OrgName);
+                frmExportYearSelect frm = new frmExportYearSelect();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("A", typeof(string));
+                dt.Columns.Add("B", typeof(bool));
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    //dt = frm.DT1;
+                    try
+                    {
+                        DataRow[] dtc = frm.DT1.Select("B=1");
+                        foreach (DataRow dr1 in dtc)
+                        {
+                            DataRow dr = dt.NewRow();
+                            dr[0] = dr1[0].ToString();
+                            dr[1] = Convert.ToInt32(dr1[1]);
+                            dt.Rows.Add(dr);
+                        }
+                        dtc = frm.DT1.Select("D=1");
+                        foreach (DataRow dr1 in dtc)
+                        {
+                            DataRow dr = dt.NewRow();
+                            dr[0] = dr1[2].ToString();
+                            dr[1] = Convert.ToInt32(dr1[3]);
+                            dt.Rows.Add(dr);
+                        }
+                        dtc = frm.DT1.Select("F=1");
+                        foreach (DataRow dr1 in dtc)
+                        {
+                            DataRow dr = dt.NewRow();
+                            dr[0] = dr1[4].ToString();
+                            dr[1] = Convert.ToInt32(dr1[5]);
+                            dt.Rows.Add(dr);
+                        }
+                        //Export13.ExportExcel(gridView1.GetFocusedRow() as PS_tqdlbh);
+                        mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(btGdsList.EditValue.ToString());
+                        if (dt.Rows.Count == 0)
+                        {
+                            Export13.ExportExcel2(gridControl1.DataSource as IList<PS_tqdlbh>, org.OrgName);
+                        }
+                        else
+                        {
+                            IList<PS_tqdlbh> pjlist = new List<PS_tqdlbh>();
+                            for (int i = 0; i < gridView1.RowCount; i++)
+                            {
+                                PS_tqdlbh _pj = gridView1.GetRow(i) as PS_tqdlbh;
+
+                                for (int j = 0; j < dt.Rows.Count; j++)
+                                {
+                                    if (_pj.InDate.Year == Convert.ToInt32(dt.Rows[j][0]))
+                                    {
+                                        pjlist.Add(_pj);
+                                    }
+                                }
+
+
+                            }
+                            Export13.ExportExcel2(pjlist, org.OrgName);
+                        }
+
+                    }
+                    catch (System.Exception ex)
+                    {
+
+                    }
+                }
+
+
+
             }
         }
 

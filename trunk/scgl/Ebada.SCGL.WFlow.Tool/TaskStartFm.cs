@@ -913,8 +913,6 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.cbxWorkExcelTable.Location = new System.Drawing.Point(299, 86);
             this.cbxWorkExcelTable.Name = "cbxWorkExcelTable";
-            this.cbxWorkExcelTable.Properties.Mask.EditMask = "([a-zA-Z]{1,2}\\d{1,3}[|])+";
-            this.cbxWorkExcelTable.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.cbxWorkExcelTable.Size = new System.Drawing.Size(110, 21);
             this.cbxWorkExcelTable.TabIndex = 52;
             // 

@@ -132,7 +132,7 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
 
-
+            wfgzrz.CreatRiZhi(obj);
 
 
 
