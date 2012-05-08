@@ -121,6 +121,7 @@ namespace Ebada.Scgl.Lcgl
                 //MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
 
             }
+            wfgzrz.CreatRiZhi(newobj);
         }
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_06sbxsmx> e)
