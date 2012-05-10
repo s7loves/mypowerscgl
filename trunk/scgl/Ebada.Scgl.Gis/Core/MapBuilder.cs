@@ -126,7 +126,7 @@ namespace Ebada.Scgl.Gis {
                          layer.Markers.Add(text);
                          text.Tag = pt;
                      } else {
-                         GMapMarkerText text = new GMapMarkerText(route.Points[0]);
+                         GMapMarkerText text = new GMapMarkerText(route.Points[route.Points.Count-1]);
                          text.Tag = line.LineCode;
                          text.Text = line.LineName;
                          text.IsVisible = false;
@@ -216,7 +216,7 @@ namespace Ebada.Scgl.Gis {
                          layer.Markers.Add(text);
                          text.Tag = pt;
                      }else{
-                     GMapMarkerText text = new GMapMarkerText(route.Points[0]);
+                         GMapMarkerText text = new GMapMarkerText(route.Points[route.Points.Count - 1]);
                      text.Tag = line.LineCode;
                      text.Text = line.LineName;
                      text.IsVisible = false;
@@ -226,10 +226,14 @@ namespace Ebada.Scgl.Gis {
                  }
                  //变压器
                  if (byqtable!=null && byqtable.Rows.Count>0) {
+
+                     //int i = 0;
+                     
                      foreach (DataRow row in byqtable.Rows) {
                          if (!gtdic.ContainsKey(row["gtid"].ToString())) continue;
 
                          PointLatLng point = gtdic[row["gtid"].ToString()];
+                         //point.Lng += i++ * 0.0002d; 
                          marker = new GMapMarkerBYQ(point);
                          marker.MarkerType = MarkerEnum.byq;
                          marker.ShowText = true;
