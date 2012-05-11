@@ -228,10 +228,11 @@ namespace Ebada.Scgl.Gis {
                  if (byqtable!=null && byqtable.Rows.Count>0) {
 
                      //int i = 0;
-                     
+                     List<string> byqgt = new List<string>();
                      foreach (DataRow row in byqtable.Rows) {
                          if (!gtdic.ContainsKey(row["gtid"].ToString())) continue;
-
+                         if(byqgt.Contains(row["gtid"].ToString()))continue;
+                         byqgt.Add(row["gtid"].ToString());
                          PointLatLng point = gtdic[row["gtid"].ToString()];
                          //point.Lng += i++ * 0.0002d; 
                          marker = new GMapMarkerBYQ(point);
