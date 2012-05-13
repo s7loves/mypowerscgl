@@ -575,6 +575,7 @@ namespace Ebada.Scgl.WFlow
                             strvalue +=strvaluetemp;
                         else
                             strvalue += "、" + strvaluetemp;
+                        i++;
             }
             
             return strvalue;
