@@ -335,7 +335,7 @@ namespace Ebada.Scgl.Lcgl
             if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
             {
 
-                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { currRecord });
+                RecordWorkTask.CreatRiZhi(WorkFlowData, dsoFramerWordControl1, currRecord.ID, new object[] { currRecord });
 
             }
             //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
