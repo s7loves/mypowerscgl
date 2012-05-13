@@ -2349,6 +2349,13 @@ namespace Ebada.SCGL.WFlow.Tool
                 tv.VarName = dr["name"].ToString();
                 tv.AccessType = WorkConst.WorkTask_WorkRiZhi;
                 tv.InitValue = dr["sql"].ToString();
+                if (tv.InitValue.IndexOf("Excel:") > -1)
+                {
+                    String[] ss = tv.InitValue.Split(':');
+                    tv.VarModule = "Excel";
+                    tv.TableName = ss[1];
+
+                }
                 tv.InsertTaskVar();
             }
 
