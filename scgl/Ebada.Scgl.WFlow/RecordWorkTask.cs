@@ -560,6 +560,7 @@ namespace Ebada.Scgl.WFlow
                 }
             }
             i = 0;
+            strvalue = "";
             foreach (string strvaluetemp in li)
             {
                
