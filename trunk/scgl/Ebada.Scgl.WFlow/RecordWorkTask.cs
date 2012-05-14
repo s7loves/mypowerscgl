@@ -559,7 +559,7 @@ namespace Ebada.Scgl.WFlow
                     li.Add("出错:" + ex.Message);
                 }
             }
-            i = 0;
+            i = 1;
             strvalue = "";
             foreach (string strvaluetemp in li)
             {
