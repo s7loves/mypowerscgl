@@ -12,7 +12,7 @@ using Ebada.Client;
 namespace Ebada.SCGL.WFlow.Tool
 {
 	/// <summary>
-	/// Form1 的摘要说明。
+	/// 流程设置
 	/// </summary>
 	public class fmWorkFlowIDE : System.Windows.Forms.Form
 	{
