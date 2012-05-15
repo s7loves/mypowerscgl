@@ -228,6 +228,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 li.Add(wt); 
             }
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
+            wfhash.Clear();
             for (int i = 0; i < li.Count ; i++)
             {
                 if (((WF_WorkTask)li[i]).TaskTypeId == "6")
@@ -237,9 +238,11 @@ namespace Ebada.SCGL.WFlow.Tool
             WinFormFun.LoadComboBox(cbxSWorkTastDataTable, dt, "WorkTaskId", "TaskCaption");
             cbxSWorkTastDataTable.SelectedIndex = 0;
         }
+        private List<string> wfhash = new List<string>();
         private void GetTaskList(ref DataTable dt, string WorkFlowId, string WorkTaskId)
         {
-            
+            if (wfhash.Contains(WorkFlowId + WorkTaskId)) return ;//判断子流程是否已处理，避免死循环,add 2012.5.15 by rabbit 
+            wfhash.Add(WorkFlowId + WorkTaskId);
                 WF_SubWorkFlow sbf = MainHelper.PlatformSqlMap.GetOne<WF_SubWorkFlow>
                     (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
                    WorkFlowId,  WorkTaskId));
@@ -251,6 +254,8 @@ namespace Ebada.SCGL.WFlow.Tool
                     {
                         if (wtli[j].TaskTypeId == "6")
                         {
+                            if (wfhash.Contains(wtli[j].WorkFlowId + wtli[j].WorkTaskId)) continue;
+                            wfhash.Add(wtli[j].WorkFlowId + wtli[j].WorkTaskId);
                             GetTaskList(ref  dt, wtli[j].WorkFlowId, wtli[j].WorkTaskId);
                         }
                         else
