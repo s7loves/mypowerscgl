@@ -113,7 +113,8 @@ namespace Ebada.SCGL.WFlow.Tool
         }
         public  void GetNextTask(string taskid, string workFlowId, ref Hashtable taskht,ref DataTable dt)
         {
-
+            if (wfList.Contains(taskid + workFlowId)) return;
+            wfList.Add(taskid + workFlowId);
             string tmpStr = " where  StartTaskId='" + taskid + "' and WorkFlowId='" + workFlowId + "'";
             IList<WF_WorkTaskLinkView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskLinkView>("SelectWF_WorkTaskLinkViewList", tmpStr);
             foreach (WF_WorkTaskLinkView tl in li)
@@ -127,8 +128,9 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 if (tl.EndTaskTypeId == "6")
                 {
-                   
-                  
+
+                    if (wfList.Contains(tl.EndTaskId + tl.WorkFlowId)) continue;
+                    wfList.Add(tl.EndTaskId + tl.WorkFlowId);
                     GetTaskList(tl.WorkFlowId, tl.EndTaskId, ref taskht, ref dt);
 
                 }
@@ -136,6 +138,7 @@ namespace Ebada.SCGL.WFlow.Tool
             }
 
         }
+        private List<string> wfList = new List<string>();
         private void frmExcelEditSQLSet_Load(object sender, EventArgs e)
         {
             
@@ -152,6 +155,7 @@ namespace Ebada.SCGL.WFlow.Tool
             hs.Add("###", "请选择");
             IList<WF_WorkTask> litemp = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
                 "where WorkFlowId ='" + rowData["WorkFlowId"] + "'  and TaskTypeId='1' order by TaskTypeId");
+            wfList.Clear();
             foreach (WF_WorkTask wt in litemp)
             {
                 dr = dt.NewRow();
@@ -267,33 +271,33 @@ namespace Ebada.SCGL.WFlow.Tool
       
     
    
-        private void GetTaskList(ref DataTable dt, string WorkFlowId, string WorkTaskId)
-        {
+        //private void GetTaskList(ref DataTable dt, string WorkFlowId, string WorkTaskId)
+        //{
             
-                WF_SubWorkFlow sbf = MainHelper.PlatformSqlMap.GetOne<WF_SubWorkFlow>
-                    (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
-                   WorkFlowId,  WorkTaskId));
-                if (sbf != null)
-                {
-                    IList<WF_WorkTask> wtli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
-               "where WorkFlowId ='" + sbf.subWorkflowId  + "'  order by TaskTypeId");
-                    for (int j = 0; j < wtli.Count; j++)
-                    {
-                        if (wtli[j].TaskTypeId == "6")
-                        {
-                            GetTaskList(ref  dt, wtli[j].WorkFlowId, wtli[j].WorkTaskId);
-                        }
-                        else
-                        {
-                            DataRow dr = dt.NewRow();
-                            dr["TaskCaption"] = sbf.subWorkflowCaption + "-" + wtli[j].TaskCaption;
-                            dr["WorkTaskId"] = wtli[j].WorkTaskId;
-                            dt.Rows.Add(dr);
-                        }
-                    }
-                }
+        //        WF_SubWorkFlow sbf = MainHelper.PlatformSqlMap.GetOne<WF_SubWorkFlow>
+        //            (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
+        //           WorkFlowId,  WorkTaskId));
+        //        if (sbf != null)
+        //        {
+        //            IList<WF_WorkTask> wtli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
+        //       "where WorkFlowId ='" + sbf.subWorkflowId  + "'  order by TaskTypeId");
+        //            for (int j = 0; j < wtli.Count; j++)
+        //            {
+        //                if (wtli[j].TaskTypeId == "6")
+        //                {
+        //                    GetTaskList(ref  dt, wtli[j].WorkFlowId, wtli[j].WorkTaskId);
+        //                }
+        //                else
+        //                {
+        //                    DataRow dr = dt.NewRow();
+        //                    dr["TaskCaption"] = sbf.subWorkflowCaption + "-" + wtli[j].TaskCaption;
+        //                    dr["WorkTaskId"] = wtli[j].WorkTaskId;
+        //                    dt.Rows.Add(dr);
+        //                }
+        //            }
+        //        }
             
-        }
+        //}
        
 
         public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName, string moduName)
