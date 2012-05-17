@@ -362,7 +362,7 @@ namespace Ebada.Scgl.Lcgl
             PJ_qxfl qxfj = new PJ_qxfl();
             if (obj == null)
             {
-                obj = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxs>("where  OrgCode='" + sbxs.OrgCode + "' and  LineID=' " + sbxs.LineID + "' and xlqd='" + sbxs.xlqd+"'");
+                obj = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxs>("where  OrgCode='" + sbxs.OrgCode + "' and  LineID='" + sbxs.LineID + "' and xlqd='" + sbxs.xlqd+"'");
                 if (obj == null)
                 {
                     PJ_06sbxs sbxstemp = new PJ_06sbxs();
@@ -370,7 +370,9 @@ namespace Ebada.Scgl.Lcgl
                     sbxstemp.OrgName = sbxs.OrgName;
                     sbxstemp.LineID = sbxs.LineID;
                     sbxstemp.LineName = sbxs.LineName;
+                    sbxstemp.xlqd = sbxs.xlqd;
                     sbxstemp.xssj = DateTime.Now;
+                    sbxstemp.CreateMan = MainHelper.User.UserName;
                     MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(sbxstemp);
                     sbxs.ParentID = sbxstemp.ID;
                 }
