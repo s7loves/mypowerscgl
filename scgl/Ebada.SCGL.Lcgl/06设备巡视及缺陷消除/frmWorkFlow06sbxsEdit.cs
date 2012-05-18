@@ -377,8 +377,8 @@ namespace Ebada.Scgl.Lcgl
                     sbxs.ParentID = sbxstemp.ID;
                 }
                 else
-                { 
-                    
+                {
+                    sbxs.ParentID = (obj as PJ_06sbxs).ID;
                 }
 
                 MainHelper.PlatformSqlMap.Create<PJ_06sbxsmx>(sbxs);
