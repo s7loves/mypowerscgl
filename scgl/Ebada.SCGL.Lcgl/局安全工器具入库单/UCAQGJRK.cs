@@ -241,6 +241,9 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
         }
+        bool canEdit {
+            get { return MainHelper.User.UserName == "赵建明"; }
+        }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_anqgjcrkd> e)
         {
             IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
@@ -250,8 +253,8 @@ namespace Ebada.Scgl.Lcgl
             if (datalist.Count > 0)
             {
 
-                if (datalist[0].ID != e.Value.ID)
-                {
+                if (datalist[0].ID != e.Value.ID) {
+                    if (canEdit) return;
                     MsgBox.ShowTipMessageBox("该记录不是该类型物品最后的记录，不能删除！");
                     e.Cancel = true;
                     return;
