@@ -172,6 +172,9 @@ namespace Ebada.Scgl.Lcgl
             //}
             RefreshData(" where    type = '局安全工器具出库单' ");
         }
+        bool canEdit {
+            get { return MainHelper.User.UserName == "赵建明"; }
+        }
         void gridViewOperation_AfterEdit(PJ_anqgjcrkd newobj)
         {
 
@@ -251,6 +254,7 @@ namespace Ebada.Scgl.Lcgl
 
                 if (datalist[0].ID != e.Value.ID)
                 {
+                    if (canEdit) return;
                     MsgBox.ShowTipMessageBox("该记录不是该类型物品最后的记录，不能修改！");
                     e.Cancel = true;
                     return;
@@ -262,8 +266,8 @@ namespace Ebada.Scgl.Lcgl
                  + "  order by id desc ");
             foreach (PJ_anqgjcrkd aj in datalist)
             {
-                if (aj.kcsl != aj.wpsl)
-                {
+                if (aj.kcsl != aj.wpsl) {
+                    if (canEdit) return;
                     MsgBox.ShowTipMessageBox("该记录对应的物品，所单位已出库，不能修改！");
                     e.Cancel = true;
                     return;
