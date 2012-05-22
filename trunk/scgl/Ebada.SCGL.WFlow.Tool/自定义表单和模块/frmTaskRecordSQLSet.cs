@@ -105,7 +105,8 @@ namespace Ebada.SCGL.WFlow.Tool
         }
         private void GetTaskList( string WorkFlowId, string WorkTaskId,ref Hashtable taskht,ref DataTable dt)
         {
-
+            if (wfhash2.Contains(WorkFlowId + WorkTaskId)) return;//判断子流程是否已处理，避免死循环,add 2012.5.15 by rabbit 
+            wfhash2.Add(WorkFlowId + WorkTaskId);
             WF_SubWorkFlow sbf = MainHelper.PlatformSqlMap.GetOne<WF_SubWorkFlow>
                 (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
                WorkFlowId, WorkTaskId));
@@ -137,7 +138,8 @@ namespace Ebada.SCGL.WFlow.Tool
        
         public  void GetPreviousTask(string taskid, string workFlowId, ref Hashtable taskht,ref DataTable dt)
         {
-
+            if (wfhash.Contains(workFlowId + taskid)) return;//判断子流程是否已处理，避免死循环,add 2012.5.15 by rabbit 
+            wfhash.Add(workFlowId + taskid);
             string tmpStr = " where  EndTaskId='" + taskid + "' and WorkFlowId='" + workFlowId + "'";
             IList<WF_WorkTaskLinkView> li = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskLinkView>("SelectWF_WorkTaskLinkViewList", tmpStr);
             foreach (WF_WorkTaskLinkView tl in li)
@@ -160,6 +162,8 @@ namespace Ebada.SCGL.WFlow.Tool
             }
 
         }
+        private List<string> wfhash = new List<string>();
+        private List<string> wfhash2 = new List<string>();
         private void frmExcelEditSQLSet_Load(object sender, EventArgs e)
         {
             int i = 0;
