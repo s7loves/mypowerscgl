@@ -448,6 +448,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 WF_WorkTaskModle wtmtemp = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
                             (string.Format(" where  WorkTaskId='{0}'",
                            ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
+                if (wtmtemp == null) return;
                 mu = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtmtemp.Modu_ID);
                 WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>
                             (string.Format(" where  WorkTaskId='{0}' and ControlType='表单'",
