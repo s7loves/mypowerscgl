@@ -17,7 +17,7 @@ namespace Ebada.Scgl.Lcgl {
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         public LP_Temple ParentTemple
-        {
+        { 
             get { return parentTemple; }
             set { parentTemple = value; }
         }
