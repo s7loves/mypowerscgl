@@ -206,14 +206,15 @@ namespace Ebada.Scgl.Sbgl
 
             if (gridView1.FocusedRowHandle > -1) {
                 PS_tqbyq tq = gridView1.GetFocusedRow() as PS_tqbyq;
+                string id = newobj.byqID;
                 Ebada.Core.ConvertHelper.CopyTo(tq, newobj);
-                
+                newobj.byqID = id;
             }
             //newobj.byqInstallAdress = parentObj.Adress;
             newobj.byqName = "";
             newobj.tqID = parentID;
-            newobj.byqCode = newobj.byqID = getcode();
-
+            newobj.byqCode =  getcode();
+            newobj.byqID = newobj.byqCode + new Random().Next(10, 99);
         }
         string getcode() {
             string code = "";
