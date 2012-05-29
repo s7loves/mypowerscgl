@@ -148,11 +148,30 @@ namespace Ebada.Scgl.Lcgl
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
         }
+        private void initbh(PJ_23 obj) {
+            if (!string.IsNullOrEmpty(obj.xybh)) return;
+            string ret = string.Empty;
+            string year = DateTime.Now.Year.ToString();
+            string gds = parentObj.OrgName.Replace("供电所","");
+            string strname = SelectorHelper.GetPysm(gds, true)+"-"+year+"-";
+            strname=strname.ToUpper();
+            string strmax = MainHelper.PlatformSqlMap.GetObject("SelectOneStr", "select max(xybh) from pj_23 where xybh like '" + strname+"%'") as string;
+            if (string.IsNullOrEmpty(strmax)) {
+                ret = strname + "001";
+            } else {
+                int count= int.Parse( strmax.Substring(strmax.Length - 3, 3))+1;
 
+                ret =strname+count.ToString("000") ;
+            }
+            obj.xybh = ret;
+        }
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_23> e)
         {
             if (parentID == null)
                 e.Cancel = true;
+            else {
+                initbh(e.Value);
+            }
         }
         protected override void OnLoad(EventArgs e)
         {

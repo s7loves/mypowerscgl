@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.comboBoxEdit7 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit5 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -51,6 +53,8 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBoxEdit8 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).BeginInit();
@@ -63,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barDockControlRight
@@ -170,7 +175,7 @@
             this.comboBoxEdit3.Location = new System.Drawing.Point(294, 121);
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.comboBoxEdit3.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit3.TabIndex = 13;
             // 
@@ -192,11 +197,13 @@
             this.groupBox1.Controls.Add(this.comboBoxEdit5);
             this.groupBox1.Controls.Add(this.comboBoxEdit6);
             this.groupBox1.Controls.Add(this.labelControl6);
+            this.groupBox1.Controls.Add(this.labelControl9);
             this.groupBox1.Controls.Add(this.labelControl8);
             this.groupBox1.Controls.Add(this.labelControl7);
             this.groupBox1.Controls.Add(this.comboBoxEdit4);
             this.groupBox1.Controls.Add(this.labelControl4);
             this.groupBox1.Controls.Add(this.dateEdit1);
+            this.groupBox1.Controls.Add(this.comboBoxEdit8);
             this.groupBox1.Controls.Add(this.comboBoxEdit3);
             this.groupBox1.Controls.Add(this.comboBoxEdit2);
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
@@ -290,6 +297,23 @@
             this.barDockControl1.Location = new System.Drawing.Point(434, 0);
             this.barDockControl1.Size = new System.Drawing.Size(0, 271);
             // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(33, 158);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(48, 14);
+            this.labelControl9.TabIndex = 18;
+            this.labelControl9.Text = "协议编号";
+            // 
+            // comboBoxEdit8
+            // 
+            this.comboBoxEdit8.Location = new System.Drawing.Point(96, 155);
+            this.comboBoxEdit8.Name = "comboBoxEdit8";
+            this.comboBoxEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            this.comboBoxEdit8.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit8.TabIndex = 13;
+            // 
             // frm23Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -316,6 +340,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -345,6 +370,8 @@
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private DevExpress.XtraEditors.GroupControl groupControlOrg;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit8;
 
     }
 }
