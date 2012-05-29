@@ -33,7 +33,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "linename");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "fzlinename");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "gh");
-
+            this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "xybh");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gzrjID");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "CreateMan");
            
@@ -65,6 +65,10 @@ namespace Ebada.Scgl.Lcgl
 
         #endregion
 
+        /// <summary>
+        /// 初始协议编号
+        /// </summary>
+        
         private void InitComboBoxData() {
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_23>(" WHERE Citylevel = '2'"));
@@ -175,21 +179,21 @@ namespace Ebada.Scgl.Lcgl
                 DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
                 dsoFramerControl1.FileOpen(fname);
                 Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-                PJ_23 obj = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
-                int icount = 1;
-                if (obj != null && obj.xybh !="")
-                {
-                    icount = Convert.ToInt32(obj.xybh.Split('-')[2])+1;
-                }
-                string strname = SelectorHelper.GetPysm(bhname, true);
+                //PJ_23 obj = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "" + DateTime.Now.Year.ToString() + "%' order by xybh ASC");
+                //int icount = 1;
+                //if (obj != null && obj.xybh !="")
+                //{
+                //    icount = Convert.ToInt32(obj.xybh.Split('-')[2])+1;
+                //}
+                //string strname = SelectorHelper.GetPysm(bhname, true);
                 ExcelAccess ea = new ExcelAccess();
                 ea.MyWorkBook = wb;
                 ea.MyExcel = wb.Application;
-                ea.SetCellValue(strname.ToUpper(), 4, 8);
-                strname = DateTime.Now.Year.ToString();
-                ea.SetCellValue(strname, 4, 9);
-                strname = string.Format("{0:D3}", icount);
-                ea.SetCellValue(strname, 4, 10);
+                ea.SetCellValue(rowData.xybh.ToUpper(), 4, 8);
+                //strname = DateTime.Now.Year.ToString();
+                //ea.SetCellValue(strname, 4, 9);
+                //strname = string.Format("{0:D3}", icount);
+                //ea.SetCellValue(strname, 4, 10);
                 ea.SetCellValue(rowData.linename, 10, 7);
                 ea.SetCellValue(rowData.fzlinename, 10, 10);
                 ea.SetCellValue("'" + rowData.gh, 10, 16);
@@ -203,7 +207,7 @@ namespace Ebada.Scgl.Lcgl
                 dsoFramerControl1.FileClose();
                 dsoFramerControl1.Dispose();
                 dsoFramerControl1 = null;
-                rowData.xybh = SelectorHelper.GetPysm(bhname, true).ToUpper() + "-" + DateTime.Now.Year.ToString() + "-" + string.Format("{0:D3}", icount);
+                //rowData.xybh = SelectorHelper.GetPysm(bhname, true).ToUpper() + "-" + DateTime.Now.Year.ToString() + "-" + string.Format("{0:D3}", icount);
             }
             DSOFramerControl dsoFramerControl2 = new DSOFramerControl();
             dsoFramerControl2.FileData = rowData.BigData;
