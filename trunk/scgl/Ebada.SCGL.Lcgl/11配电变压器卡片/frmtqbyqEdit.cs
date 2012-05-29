@@ -77,7 +77,7 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         private void InitComboBoxData() {
-            IList<PS_tq> tqlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where Substring(tqid,1,3)='" + OrgCode.Substring(0, 3) + "'");
+            IList<PS_tq> tqlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where Substring(tqcode,1,3)='" + OrgCode.Substring(0, 3) + "'");
             SetComboBoxData(lookUpEdit1, "tqName", "tqID", "选择台区", "", tqlist);
             for (int i = 0; i < tqlist.Count; i++)
             {
