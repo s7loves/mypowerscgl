@@ -153,7 +153,7 @@ namespace Ebada.Scgl.Lcgl
             string ret = string.Empty;
             string year = DateTime.Now.Year.ToString();
             string gds = parentObj.OrgName.Replace("供电所","");
-            string strname = SelectorHelper.GetPysm(gds, true)+"-"+year+"-";
+            string strname = SelectorHelper.GetPysm(gds, true)+parentObj.OrgCode+"-"+year+"-";
             strname=strname.ToUpper();
             string strmax = MainHelper.PlatformSqlMap.GetObject("SelectOneStr", "select max(xybh) from pj_23 where xybh like '" + strname+"%'") as string;
             if (string.IsNullOrEmpty(strmax)) {
