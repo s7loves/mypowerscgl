@@ -140,8 +140,25 @@ namespace Ebada.Scgl.Gis {
                  }
              }
          }
+         private static void getchildxl(DataTable dt0,DataTable dt,string pid){
+             DataRow[] rows = dt0.Select("parentid='" + pid + "'");
+             foreach (DataRow row in rows) {
+                 dt.Rows.Add(row.ItemArray);
+                 getchildxl(dt0, dt, row["LineID"].ToString());
+             }
+             
+         }
          internal static void Build10kVLines(ref LineOverlay layer, string lineCode) {
-             IList<PS_xl> xllist = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(string.Format("where left(Linecode,{0})='{1}' and LineVol = '10'", lineCode.Length, lineCode));
+             PS_xl xl0=Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='"+lineCode+"'");
+             if(xl0==null)return;
+             IList<PS_xl> xllist0 = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(string.Format(" where linecode like '{0}%'",xl0.OrgCode));
+             DataTable dt0 = Ebada.Core.ConvertHelper.ToDataTable(xllist0 as IList, typeof(PS_xl));
+             DataTable dt =dt0.Clone();
+             
+             getchildxl(dt0, dt, xl0.LineID);
+             //IList<PS_xl> xllist = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(string.Format("where left(Linecode,{0})='{1}' and LineVol = '10'", lineCode.Length, lineCode));
+             IList<PS_xl> xllist = Ebada.Core.ConvertHelper.ToIList<PS_xl>(dt);
+             xllist.Insert(0, xl0);
              string linecode = "";
              string kgfilter = " where gtid in (select gtid from ps_gt  where Linecode='{0}')";
              string byqfilter = " tqid  in (select a.tqid from ps_tq a, ps_gt b  where a.gtid=b.gtid and b.Linecode='{0}') ";
