@@ -282,32 +282,32 @@ namespace Ebada.Scgl.Sbgl
                          foreach (PS_tqsbclb pl in list)
                          {
                              i++;
-                             PS_tqsb pt = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tqsb>("where tqid='"+parentID+"'and sbid='"+pl.ID+"'");
-                             if (pt==null)
+                             PS_tqsb pt = null;// Client.ClientHelper.PlatformSqlMap.GetOne<PS_tqsb>("where tqid='" + parentID + "'and sbid='" + pl.ID + "'");
+                             //if (pt==null)
                              {
                                pt=new PS_tqsb();
                                pt.tqID = parentID;
                                pt.sbNumber = Convert.ToInt16(pl.sl);
-                               pt.sbCode = getcode() + i;
-                               pt.sbID = pl.ID;
+                               pt.sbCode = getcode();
+                               pt.sbID +=i;
                                pt.sbModle = pl.xh;
                                pt.sbName = pl.mc;
-                               pt.sbType = obj.zl;
+                               pt.sbType = pl.bh;
                                pt.C1 = pl.S1;
                                Client.ClientHelper.PlatformSqlMap.Create<PS_tqsb>(pt);
                              }
-                             else
-                             {
-                                 pt.tqID = parentID;
-                                 pt.sbNumber = Convert.ToInt16(pl.sl);
-                                 pt.sbCode = getcode() + i;
-                                 pt.sbID = pl.ID;
-                                 pt.sbModle = pl.xh;
-                                 pt.sbName = pl.mc;
-                                 pt.sbType = obj.zl;
-                                 pt.C1 = pl.S1;
-                                 Client.ClientHelper.PlatformSqlMap.Update<PS_tqsb>(pt);
-                             }
+                             //else
+                             //{
+                             //    pt.tqID = parentID;
+                             //    pt.sbNumber = Convert.ToInt16(pl.sl);
+                             //    pt.sbCode = getcode() + i;
+                             //    pt.sbID = pl.ID;
+                             //    pt.sbModle = pl.xh;
+                             //    pt.sbName = pl.mc;
+                             //    pt.sbType = obj.zl;
+                             //    pt.C1 = pl.S1;
+                             //    Client.ClientHelper.PlatformSqlMap.Update<PS_tqsb>(pt);
+                             //}
                            
                              //listsb.Add(pt);
                          }
