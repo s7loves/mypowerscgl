@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1F5C3A84-EA23-43A1-B888-4C4BF2C68905}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -263,6 +263,7 @@
     <Compile Include="22报修服务修理票实例\UCPJ_22.Designer.cs">
       <DependentUpon>UCPJ_22.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataFuns.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
