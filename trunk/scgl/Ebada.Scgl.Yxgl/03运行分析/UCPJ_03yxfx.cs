@@ -181,6 +181,7 @@ namespace Ebada.Scgl.Yxgl
                 gridView1.Columns[i].Caption = AttributeHelper.GetDisplayName(typeof(PJ_03yxfx), gridView1.Columns[i].FieldName);
                
             }
+            hideColumn("qzrq");
             hideColumn("OrgCode");
             hideColumn("gznrID");
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
