@@ -42,6 +42,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btImport = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -65,8 +66,9 @@
             this.btRefresh,
             this.btClose,
             this.bsItem1,
-            this.btExport});
-            this.barManager1.MaxItemId = 14;
+            this.btExport,
+            this.btImport});
+            this.barManager1.MaxItemId = 15;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -83,6 +85,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btImport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -221,7 +224,14 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UC2
+            // btImport
+            // 
+            this.btImport.Caption = "导入";
+            this.btImport.Id = 14;
+            this.btImport.Name = "btImport";
+            this.btImport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btImport_ItemClick);
+            // 
+            // UCPs_dxxh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -230,7 +240,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UC2";
+            this.Name = "UCPs_dxxh";
             this.Size = new System.Drawing.Size(479, 314);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -258,5 +268,6 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraBars.BarSubItem btExport;
+        private DevExpress.XtraBars.BarButtonItem btImport;
     }
 }
