@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Collections;
 
 namespace Ebada.Scgl.Lcgl {
     /// <summary>
@@ -17,7 +18,21 @@ namespace Ebada.Scgl.Lcgl {
     //10、取某条线路的所有台区或变压器
     //<#公式#>
     /// </summary>
-    public class DataFuns {
-        
+    public class SqlBuilderHelper {
+        public static ICollection GetItems() {
+            ArrayList list = new ArrayList();
+            list.Add(new SqlClass() { Caption = "", Sql = "" });
+
+            return list;
+        }
+
+    }
+
+    public class SqlClass {
+        public string Caption = string.Empty;
+        public string Sql = string.Empty;
+        public override string ToString() {
+            return Caption;
+        }
     }
 }
