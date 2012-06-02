@@ -34,6 +34,7 @@
             this.ceBind = new DevExpress.XtraEditors.CheckEdit();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.tetWorkFixValue = new DevExpress.XtraEditors.MemoEdit();
             this.tetWorkSQL = new DevExpress.XtraEditors.MemoEdit();
             this.cbxWorkDbTableColumns = new System.Windows.Forms.ComboBox();
             this.cbxWorkDbTable = new System.Windows.Forms.ComboBox();
@@ -52,19 +53,17 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkExcel = new System.Windows.Forms.RadioButton();
             this.rbnWorkTable = new System.Windows.Forms.RadioButton();
-            this.tetWorkFixValue = new DevExpress.XtraEditors.MemoEdit();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // m_DefaultLookAndFeel
-            // 
-            
             // 
             // groupControl1
             // 
@@ -76,10 +75,13 @@
             this.groupControl1.Controls.Add(this.tetWorkFixValue);
             this.groupControl1.Controls.Add(this.tetWorkSQL);
             this.groupControl1.Controls.Add(this.cbxWorkDbTableColumns);
+            this.groupControl1.Controls.Add(this.comboBox1);
             this.groupControl1.Controls.Add(this.cbxWorkDbTable);
             this.groupControl1.Controls.Add(this.labelControl4);
+            this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.labelControl23);
             this.groupControl1.Controls.Add(this.labelControl24);
+            this.groupControl1.Controls.Add(this.radioButton1);
             this.groupControl1.Controls.Add(this.rbnWorkDatabase);
             this.groupControl1.Controls.Add(this.tetWorkPos);
             this.groupControl1.Controls.Add(this.labelControl7);
@@ -144,20 +146,27 @@
             this.simpleButton1.Text = "确定";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
+            // tetWorkFixValue
+            // 
+            this.tetWorkFixValue.Location = new System.Drawing.Point(69, 26);
+            this.tetWorkFixValue.Name = "tetWorkFixValue";
+            this.tetWorkFixValue.Size = new System.Drawing.Size(315, 22);
+            this.tetWorkFixValue.TabIndex = 61;
+            // 
             // tetWorkSQL
             // 
-            this.tetWorkSQL.Location = new System.Drawing.Point(62, 174);
+            this.tetWorkSQL.Location = new System.Drawing.Point(62, 200);
             this.tetWorkSQL.Name = "tetWorkSQL";
-            this.tetWorkSQL.Size = new System.Drawing.Size(322, 159);
+            this.tetWorkSQL.Size = new System.Drawing.Size(322, 133);
             this.tetWorkSQL.TabIndex = 61;
             // 
             // cbxWorkDbTableColumns
             // 
             this.cbxWorkDbTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDbTableColumns.FormattingEnabled = true;
-            this.cbxWorkDbTableColumns.Location = new System.Drawing.Point(276, 144);
+            this.cbxWorkDbTableColumns.Location = new System.Drawing.Point(62, 172);
             this.cbxWorkDbTableColumns.Name = "cbxWorkDbTableColumns";
-            this.cbxWorkDbTableColumns.Size = new System.Drawing.Size(108, 22);
+            this.cbxWorkDbTableColumns.Size = new System.Drawing.Size(126, 22);
             this.cbxWorkDbTableColumns.TabIndex = 59;
             this.cbxWorkDbTableColumns.SelectedIndexChanged += new System.EventHandler(this.cbxWorkDbTableColumns_SelectedIndexChanged);
             // 
@@ -173,7 +182,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(14, 183);
+            this.labelControl4.Location = new System.Drawing.Point(14, 203);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(34, 14);
             this.labelControl4.TabIndex = 56;
@@ -181,7 +190,7 @@
             // 
             // labelControl23
             // 
-            this.labelControl23.Location = new System.Drawing.Point(227, 146);
+            this.labelControl23.Location = new System.Drawing.Point(13, 174);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(36, 14);
             this.labelControl23.TabIndex = 57;
@@ -207,12 +216,12 @@
             // 
             // tetWorkPos
             // 
-            this.tetWorkPos.Location = new System.Drawing.Point(274, 94);
+            this.tetWorkPos.Location = new System.Drawing.Point(268, 94);
             this.tetWorkPos.Name = "tetWorkPos";
             this.tetWorkPos.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tetWorkPos.Properties.Mask.EditMask = "([a-zA-Z]{1,2}\\d{1,3}[|])+";
             this.tetWorkPos.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.tetWorkPos.Size = new System.Drawing.Size(110, 21);
+            this.tetWorkPos.Size = new System.Drawing.Size(116, 21);
             this.tetWorkPos.TabIndex = 52;
             // 
             // labelControl7
@@ -237,9 +246,9 @@
             // 
             this.cbxWorkExcelTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkExcelTable.FormattingEnabled = true;
-            this.cbxWorkExcelTable.Location = new System.Drawing.Point(274, 68);
+            this.cbxWorkExcelTable.Location = new System.Drawing.Point(268, 68);
             this.cbxWorkExcelTable.Name = "cbxWorkExcelTable";
-            this.cbxWorkExcelTable.Size = new System.Drawing.Size(110, 22);
+            this.cbxWorkExcelTable.Size = new System.Drawing.Size(116, 22);
             this.cbxWorkExcelTable.TabIndex = 49;
             // 
             // cbxWorkDataTable
@@ -308,12 +317,35 @@
             this.rbnWorkTable.Text = "从表单取";
             this.rbnWorkTable.UseVisualStyleBackColor = true;
             // 
-            // tetWorkFixValue
+            // radioButton1
             // 
-            this.tetWorkFixValue.Location = new System.Drawing.Point(69, 26);
-            this.tetWorkFixValue.Name = "tetWorkFixValue";
-            this.tetWorkFixValue.Size = new System.Drawing.Size(315, 22);
-            this.tetWorkFixValue.TabIndex = 61;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(202, 126);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(49, 18);
+            this.radioButton1.TabIndex = 55;
+            this.radioButton1.Text = "公式";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(209, 149);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(36, 14);
+            this.labelControl2.TabIndex = 58;
+            this.labelControl2.Text = "选择：";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.DropDownWidth = 200;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(268, 146);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(116, 22);
+            this.comboBox1.TabIndex = 60;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // frmExcelEditSQLSet
             // 
@@ -332,9 +364,9 @@
             this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -366,5 +398,8 @@
         private DevExpress.XtraEditors.MemoEdit memoEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.MemoEdit tetWorkFixValue;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
