@@ -66,7 +66,7 @@ namespace Ebada.SCGL.WFlow.Tool {
 
             } else if (rbnWorkExcel.Checked == true) {
                 strSQL = "Excel:" + cbxWorkExcelTable.Text + ":" + tetWorkPos.Text;
-            } else if (rbnWorkDatabase.Checked == true) {
+            } else if (rbnWorkDatabase.Checked == true || radioButton1.Checked) {
                 strSQL = tetWorkSQL.Text;
             }
             this.DialogResult = DialogResult.OK;
@@ -131,6 +131,9 @@ namespace Ebada.SCGL.WFlow.Tool {
                     r1 = new Regex(@"(?<=FieldId=').*?(?=')");
                     //cbxWorkTableColumns.Text = r1.Match(strSQL).Value;
                     setComoboxFocusIndex(cbxWorkTableColumns, r1.Match(strSQL).Value);
+                } else if (strSQL.IndexOf("11=11") > -1) {
+                    radioButton1.Checked = true;
+                    tetWorkSQL.Text = strSQL;
                 } else {
                     rbnWorkDatabase.Checked = true;
                     int index1 = strSQL.ToLower().IndexOf("select");
