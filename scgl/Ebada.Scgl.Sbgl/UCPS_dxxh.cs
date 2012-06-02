@@ -69,7 +69,7 @@ namespace Ebada.Scgl.Sbgl {
         public void InitData() {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
-            RefreshData("");
+            RefreshData(" order by dxxh");
         }
         /// <summary>
         /// 初始化列,
@@ -102,6 +102,15 @@ namespace Ebada.Scgl.Sbgl {
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PS_dxxh newobj) {
 
+        }
+
+        private void btImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            string sql = "insert into ps_dxxh(id,dydj,dxxh,dwdz,jmj) select newid(),'',xh ,0.0,0.0 from ps_sbcs where parentid='02001'  and xh not in (select dxxh from ps_dxxh)";
+
+            Client.ClientHelper.PlatformSqlMap.Update("Update", sql);
+
+
+            RefreshData(" order by dxxh");
         }
  
 
