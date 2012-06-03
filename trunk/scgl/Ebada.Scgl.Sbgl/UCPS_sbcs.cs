@@ -102,8 +102,14 @@ namespace Ebada.Scgl.Sbgl {
             //需要隐藏列时在这写代码
 
             hideColumn("ParentID");
+            //hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");
+            DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbox=new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            cbox.Items.Add("设备");
+            cbox.Items.Add("材料");
+            gridView1.Columns["c1"].ColumnEdit = cbox;
+            gridView1.Columns["c1"].VisibleIndex = 2;
         }
         /// <summary>
         /// 刷新数据
