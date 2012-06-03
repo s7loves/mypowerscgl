@@ -10,6 +10,9 @@
         <result property="xh" column="xh" />
         <result property="ID" column="ID" />
         <result property="ParentID" column="ParentID" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
       </resultMap>
   </resultMaps>
 
@@ -20,7 +23,10 @@
          [mc],
          [xh],
          [ID],
-         [ParentID]
+         [ParentID],
+         [c1],
+         [c2],
+         [c3]
           FROM PS_sbcs
           $value$
    </select>
@@ -31,7 +37,10 @@
          [mc],
          [xh],
          [ID],
-         [ParentID]
+         [ParentID],
+         [c1],
+         [c2],
+         [c3]
           FROM PS_sbcs
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
@@ -39,6 +48,9 @@
        <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPS_sbcsByKey" resultMap="PS_sbcs_AllColumns" parameterClass="PS_sbcs">
@@ -47,7 +59,10 @@
          [mc],
          [xh],
          [ID],
-         [ParentID]
+         [ParentID],
+         [c1],
+         [c2],
+         [c3]
          FROM PS_sbcs
          WHERE 
            ID = #ID#
@@ -80,7 +95,10 @@
              [bh]=#bh#,
              [mc]=#mc#,
              [xh]=#xh#,
-             [ParentID]=#ParentID#
+             [ParentID]=#ParentID#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
             WHERE 
               ID = #ID#
 
@@ -93,7 +111,10 @@
          [mc],
          [xh],
          [ID],
-         [ParentID]
+         [ParentID],
+         [c1],
+         [c2],
+         [c3]
          )
        VALUES
          (
@@ -101,7 +122,10 @@
          #mc#,
          #xh#,
          #ID#,
-         #ParentID#
+         #ParentID#,
+         #c1#,
+         #c2#,
+         #c3#
          )
 
    </insert>
@@ -115,6 +139,9 @@
        <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
      </dynamic>
 
    </select>
