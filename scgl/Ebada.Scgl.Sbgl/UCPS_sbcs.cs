@@ -71,7 +71,7 @@ namespace Ebada.Scgl.Sbgl {
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
 
-            //InitColumns();//初始列
+            InitColumns();//初始列
             //InitData();//初始数据
         }
         private void initImageList() {
@@ -102,7 +102,8 @@ namespace Ebada.Scgl.Sbgl {
             //需要隐藏列时在这写代码
 
             hideColumn("ParentID");
-            
+            hideColumn("c2");
+            hideColumn("c3");
         }
         /// <summary>
         /// 刷新数据
