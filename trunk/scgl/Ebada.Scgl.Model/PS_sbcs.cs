@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-7-5 20:35:05
+生成时间:2012-6-3 16:43:30
 ***********************************************/
 
 using System;
@@ -25,7 +25,10 @@ namespace Ebada.Scgl.Model
         private string _mc=String.Empty; 
         private string _xh=String.Empty; 
         private string _id=Newid(); 
-        private string _parentid=String.Empty;   
+        private string _parentid=String.Empty; 
+        private string _c1=String.Empty; 
+        private string _c2=String.Empty; 
+        private string _c3=String.Empty;   
         #endregion
   
   
@@ -133,6 +136,69 @@ namespace Ebada.Scgl.Model
                 if (_parentid as object == null || !_parentid.Equals(value))
                 {
                     _parentid = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c1
+        /// 属性描述：分类,设备、材料
+        /// 字段信息：[c1],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("分类")]
+        public string c1
+        {
+            get { return _c1; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[分类]长度不能大于50!");
+                if (_c1 as object == null || !_c1.Equals(value))
+                {
+                    _c1 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c2
+        /// 属性描述：预留
+        /// 字段信息：[c2],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("预留")]
+        public string c2
+        {
+            get { return _c2; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[预留]长度不能大于50!");
+                if (_c2 as object == null || !_c2.Equals(value))
+                {
+                    _c2 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c3
+        /// 属性描述：预留
+        /// 字段信息：[c3],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("预留")]
+        public string c3
+        {
+            get { return _c3; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[预留]长度不能大于50!");
+                if (_c3 as object == null || !_c3.Equals(value))
+                {
+                    _c3 = value;
                 }
             }			 
         }
