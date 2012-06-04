@@ -151,7 +151,7 @@ namespace Ebada.Scgl.Gis {
          internal static void Build10kVLines(ref LineOverlay layer, string lineCode) {
              PS_xl xl0=Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='"+lineCode+"'");
              if(xl0==null)return;
-             IList<PS_xl> xllist0 = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(string.Format(" where linecode like '{0}%'",xl0.OrgCode));
+             IList<PS_xl> xllist0 = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(string.Format(" where linecode like '{0}%' and linevol='10'",xl0.OrgCode));
              DataTable dt0 = Ebada.Core.ConvertHelper.ToDataTable(xllist0 as IList, typeof(PS_xl));
              DataTable dt =dt0.Clone();
              
