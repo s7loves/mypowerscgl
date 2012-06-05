@@ -140,7 +140,8 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
             hideColumn("ParentID");
-            hideColumn("gzrjID"); 
+            hideColumn("gzrjID");
+            hideColumn("BigData");
             //picview = new DevExpress.XtraGrid.Columns.GridColumn();
             //picview.Caption = "查看";
             //picview.Visible = true;
