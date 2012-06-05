@@ -69,7 +69,7 @@ namespace Ebada.Scgl.Gis {
                 }
                 gts.Add(xl, gtlist2);
             }
-            DataTable gtbhtable = Ebada.Core.ConvertHelper.ToDataTable(gtsbs);
+            DataTable gtbhtable = Ebada.Core.ConvertHelper.ToDataTable(gtsbs,typeof(PS_gtsb));
             //g.TranslateTransform(-rf.X, -rf.Y);
             rf.Inflate(3, 3);
             System.Drawing.Drawing2D.Matrix matrix = new System.Drawing.Drawing2D.Matrix();
