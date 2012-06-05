@@ -210,6 +210,7 @@ namespace Ebada.Scgl.Lcgl
             //需要隐藏列时在这写代码
 
             hideColumn("GdsCode");
+            hideColumn("qzrq"); 
         }
         /// <summary>
         /// 刷新数据
