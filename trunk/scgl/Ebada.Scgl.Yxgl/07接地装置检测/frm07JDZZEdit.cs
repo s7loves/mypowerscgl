@@ -28,13 +28,18 @@ namespace Ebada.Scgl.Yxgl
         public frm07JDZZEdit()
         {
             InitializeComponent();
+            //lookUpEdit1.Visible = true;
+            //comboBoxEdit1.Properties.Columns[0].Visible = false;
+            //comboBoxEdit1.Properties.AutoSearchColumnIndex = 2;
+            //comboBoxEdit1.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            //comboBoxEdit1.Properties.Columns[1].Width = 2;
         }
         void dataBind()
         {
 
 
             //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineID");
-            //this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "LineName");
+            this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "LineName");
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "fzxl");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "fzxl");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "gth");
@@ -83,6 +88,7 @@ namespace Ebada.Scgl.Yxgl
 
         #endregion
 
+        private DataTable lineTable = new DataTable();
         private void InitComboBoxData()
         {
 
@@ -93,8 +99,10 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土质", comboBoxEdit7);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8);
 
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'and LineType='1'");
-            comboBoxEdit1.Properties.DataSource = xlList;
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'and linevol='10'");
+            lineTable = Ebada.Core.ConvertHelper.ToDataTable((IList)xlList,typeof(PS_xl));
+            //comboBoxEdit1.Properties.DataSource = xlList;
+            //lookUpEdit1.Properties.DataSource = xlList;
             comboBoxEdit10.Properties.Items.Clear();
             for (int i = 0; i < xlList.Count; i++)
             {
@@ -103,16 +111,20 @@ namespace Ebada.Scgl.Yxgl
                 ot.ValueMember = xlList[i].LineCode;
                 comboBoxEdit10.Properties.Items.Add(ot);
             }
+            comboBoxEdit11.TextChanged -= comboBoxEdit11_TextChanged;
 
             if (rowData.LineName == "")
             {
-                if (comboBoxEdit10.Properties.Items.Count > 0)
-                comboBoxEdit10.SelectedIndex = 0;
+                PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(rowData.LineID);
+                if (xl != null) {
+                    rowData.LineName =comboBoxEdit10.Text = xl.LineName;
+                }
             }
             else
             {
                 comboBoxEdit10.Text = rowData.LineName;
             }
+            comboBoxEdit11.TextChanged += comboBoxEdit11_TextChanged;
         }
 
         /// <summary>
@@ -257,11 +269,21 @@ namespace Ebada.Scgl.Yxgl
         {
 
         }
-
-        private void comboBoxEdit11_TextChanged(object sender, EventArgs e)
-        {
-
-
+        
+        private void comboBoxEdit11_TextChanged(object sender, EventArgs e) {
+            DataRow[] rows = lineTable.Select("linename='" + comboBoxEdit11.Text + "'");
+            if (rows.Length > 0) return;
+            //IList list = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName  from PS_xl where xlpy like '" + comboBoxEdit11.Text + "%'");
+            rows = lineTable.Select("xlpy like '" + comboBoxEdit11.Text + "%'");
+            IList list = new ArrayList();
+            foreach (DataRow row in rows) {
+                list.Add(row["LineName"]);
+            }
+            if (list.Count > 0) {
+                comboBoxEdit11.Properties.Items.Clear();
+                comboBoxEdit11.Properties.Items.AddRange(list);
+                comboBoxEdit11.ShowPopup();
+            }
         }
 
         private void comboBoxEdit10_TextChanged(object sender, EventArgs e)
@@ -284,17 +306,12 @@ namespace Ebada.Scgl.Yxgl
                 if (xl != null)
                 {
                     list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                        "select linename from PS_xl where ParentID='" + xl.LineID + "'and LineType IN ('1','2') ");
+                        "select linename from PS_xl where ParentID='" + xl.LineID + "'");
                     comboBoxEdit11.Properties.Items.AddRange(list);
-                    list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select Adress from PS_tq where   left(tqCode,{1})='{0}' ", xl.LineID.ToString(), xl.LineID.ToString().Length));
+                    list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqname from PS_tq where   left(tqCode,{1})='{0}' ", xl.LineCode, xl.LineCode.Length));
                     comboBoxEdit3.Properties.Items.AddRange(list);
                 }
-                //IList list1 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select Adress from PS_tq where   left(tqCode,{1})='{0}' ", comboBoxEdit1.EditValue.ToString(), comboBoxEdit1.EditValue.ToString().Length));
-                //comboBoxEdit3.Properties.Items.AddRange(list1);
-                //for (int i = 0; i < list.Count; i++)
-                //{
-                //    comboBoxEdit3.Properties.Items.Add(list[i].Adress);
-                //}
+               
             }
             else
             {
@@ -303,6 +320,7 @@ namespace Ebada.Scgl.Yxgl
                 {
                     comboBoxEdit10.Properties.Items.Clear();
                     comboBoxEdit10.Properties.Items.AddRange(list);
+                    comboBoxEdit10.ShowPopup();
                 }
             }
         }
