@@ -28,6 +28,7 @@ namespace Ebada.Scgl.Lcgl
         public frm07JDZZEdit()
         {
             InitializeComponent();
+            lookUpEdit1.Properties.AutoSearchColumnIndex = 2;
         }
         void dataBind()
         {
@@ -93,8 +94,9 @@ namespace Ebada.Scgl.Lcgl
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土质", comboBoxEdit7);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8);
 
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'and LineType='1'");
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'and linevol='10'");
             comboBoxEdit1.Properties.DataSource = xlList;
+            lookUpEdit1.Properties.DataSource = xlList;
             comboBoxEdit10.Properties.Items.Clear();
             for (int i = 0; i < xlList.Count; i++)
             {
@@ -266,7 +268,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit10_TextChanged(object sender, EventArgs e)
         {
-            PS_xl xl = null;
+            PS_xl xl = null; comboBoxEdit10.ShowPopup();
             xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit10.Text + "'");
             if (xl != null)
             {
@@ -280,7 +282,7 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit2.Properties.Items.AddRange(list);
                 //IList<PS_xl> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where ParentID='" + comboBoxEdit1.EditValue.ToString() + "'and LineType IN ('1','2')");
                 //lookUpEdit1.Properties.DataSource = listXL; 
-                xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit10.Text + "'");
+                //xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit10.Text + "'");
                 if (xl != null)
                 {
                     list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",

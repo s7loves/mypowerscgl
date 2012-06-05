@@ -96,6 +96,7 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.comboBoxEdit1);
             this.groupControlOrg.Controls.Add(this.groupBox3);
             this.groupControlOrg.Controls.Add(this.groupBox2);
             this.groupControlOrg.Controls.Add(this.groupBox1);
@@ -245,7 +246,6 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lookUpEdit1);
-            this.groupBox1.Controls.Add(this.comboBoxEdit1);
             this.groupBox1.Controls.Add(this.labelControl11);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Controls.Add(this.labelControl4);
@@ -263,23 +263,23 @@
             // 
             // lookUpEdit1
             // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(285, 68);
+            this.lookUpEdit1.Location = new System.Drawing.Point(204, 18);
             this.lookUpEdit1.Name = "lookUpEdit1";
             this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineCode", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineName", "线路名称")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineCode", "线路代码"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineName", "线路名称"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("xlpy", "简码")});
             this.lookUpEdit1.Properties.DisplayMember = "LineName";
-            this.lookUpEdit1.Properties.NullText = "";
+            this.lookUpEdit1.Properties.NullText = "请选择线路";
             this.lookUpEdit1.Properties.ValueMember = "LineName";
-            this.lookUpEdit1.Size = new System.Drawing.Size(100, 21);
+            this.lookUpEdit1.Size = new System.Drawing.Size(256, 21);
             this.lookUpEdit1.TabIndex = 13;
-            this.lookUpEdit1.Visible = false;
             // 
             // comboBoxEdit1
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(285, 41);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(390, 123);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -311,7 +311,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(335, 21);
+            this.labelControl4.Location = new System.Drawing.Point(339, 55);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(36, 14);
             this.labelControl4.TabIndex = 4;
@@ -319,7 +319,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(189, 21);
+            this.labelControl3.Location = new System.Drawing.Point(189, 54);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(24, 14);
             this.labelControl3.TabIndex = 3;
@@ -345,7 +345,7 @@
             // 
             // comboBoxEdit2
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(219, 18);
+            this.comboBoxEdit2.Location = new System.Drawing.Point(219, 51);
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -354,7 +354,7 @@
             // 
             // comboBoxEdit3
             // 
-            this.comboBoxEdit3.Location = new System.Drawing.Point(383, 17);
+            this.comboBoxEdit3.Location = new System.Drawing.Point(387, 51);
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
