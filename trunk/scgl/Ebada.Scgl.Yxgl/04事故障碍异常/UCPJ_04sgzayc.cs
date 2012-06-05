@@ -100,9 +100,10 @@ namespace Ebada.Scgl.Yxgl
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_04sgzayc);
         }
-        private void hideColumn(string colname)
-        {
-            gridView1.Columns[colname].Visible = false;
+        private void hideColumn(string colname) {
+            try {
+                gridView1.Columns[colname].Visible = false;
+            } catch { }
         }
         /// <summary>
         /// 初始化数据
@@ -125,7 +126,7 @@ namespace Ebada.Scgl.Yxgl
 
             //需要隐藏列时在这写代码
 
-            hideColumn("qzrq");
+            //hideColumn("qzrq");
             hideColumn("OrgCode");
             hideColumn("gznrID");
         }
