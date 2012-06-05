@@ -129,7 +129,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("OrgCode");
             hideColumn("ParentID");
             hideColumn("gzrjID");
-            hideColumn("BigData");
+            //hideColumn("BigData");
             hideColumn("LineCode");
         }
         /// <summary>
