@@ -329,6 +329,9 @@ namespace Ebada.Scgl.WFlow
 
 
         }
+        public static void CreateJL() {
+
+        }
         /// <summary>
         /// 生成日志记录
         /// </summary>
