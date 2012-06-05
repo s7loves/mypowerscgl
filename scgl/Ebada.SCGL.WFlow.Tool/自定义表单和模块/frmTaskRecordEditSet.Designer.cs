@@ -47,7 +47,6 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.simpleButton3);
             this.groupControl1.Controls.Add(this.tetSWorkSQL);
             this.groupControl1.Controls.Add(this.labelControl4);
             this.groupControl1.Controls.Add(this.cbxSWorkTastDataTable);
@@ -57,6 +56,7 @@
             this.groupControl1.Controls.Add(this.simpleButton1);
             this.groupControl1.Controls.Add(this.cbxSWorkTastzdDataTable);
             this.groupControl1.Controls.Add(this.labelControl2);
+            this.groupControl1.Controls.Add(this.simpleButton3);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
@@ -71,7 +71,6 @@
             this.simpleButton3.Size = new System.Drawing.Size(43, 27);
             this.simpleButton3.TabIndex = 78;
             this.simpleButton3.Text = "设置";
-            this.simpleButton3.Visible = true;
             this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // tetSWorkSQL
