@@ -1057,6 +1057,7 @@ namespace Ebada.Scgl.Lcgl
                 RecordWorkTask.CreatRiZhi(WorkFlowData, dsoFramerWordControl1, currRecord.ID, new object[] { currRecord });
 
             }
+            //RecordWorkTask.CreateJL(WorkFlowData, dsoFramerWordControl1, currRecord.ID, new object[] { currRecord });
             if (strxiestatus == "add")
             {
                 if (list.Count > 0)
@@ -1469,6 +1470,9 @@ namespace Ebada.Scgl.Lcgl
             }
         
         }
+        /// <summary>
+        /// 节点生成记录
+        /// </summary>
         public void RunTaskRecordUpdate()
         {
 

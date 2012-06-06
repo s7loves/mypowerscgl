@@ -329,8 +329,42 @@ namespace Ebada.Scgl.WFlow
 
 
         }
-        public static void CreateJL() {
+        public static void CreateJL(DataTable WorkFlowData, DSOFramerControl dsoFramerWordControl1, string recordID, params   object[] modlecordlist){
+            IList<WF_TaskVar> taskList = WorkFlowTask.GetTaskJLVar(WorkFlowData.Rows[0]["WorktaskId"].ToString());
+            if (taskList.Count == 0) return;
+            foreach (WF_TaskVar task in taskList) {
+                CreateJL(task,dsoFramerWordControl1,recordID,modlecordlist);
+            }
+        }
 
+        private static void CreateJL(WF_TaskVar task, DSOFramerControl dsoFramerWordControl1, string recordID, params   object[] modlecordlist) {
+            Type t = Type.GetType("Ebada.Scgl.Model." + task.VarName,false,true);
+            if (t == null) return;
+            object newobj = Activator.CreateInstance(t);
+            PropertyInfo[] pts= t.GetProperties();
+            foreach (PropertyInfo p in pts) {
+                string name = p.Name;
+                Regex r1 = new Regex(@"(?<=\[" + name + ":).*?(?=\\])");
+                WF_TaskVar var = new WF_TaskVar();
+
+                if (r1.Match(task.InitValue.Replace("\r\n", " ")).Value != "") {
+                    var.InitValue = r1.Match(task.InitValue.Replace("\r\n", " ")).Value;
+                }
+                r1 = new Regex(@"(?<=\[" + name + "VarModule:).*?(?=\\])");
+                if (r1.Match(task.InitValue.Replace("\r\n", " ")).Value != "") {
+                    var.VarModule = r1.Match(task.InitValue.Replace("\r\n", " ")).Value;
+                } else {
+                    continue;
+                }
+                r1 = new Regex(@"(?<=\[" + name + "TableField:).*?(?=\\])");
+                if (r1.Match(task.InitValue.Replace("\r\n", " ")).Value != "") {
+                    var.TableField = r1.Match(task.InitValue.Replace("\r\n", " ")).Value;
+                }
+                try {
+                    p.SetValue(newobj, GetTaskVarRiZhiValue(var, dsoFramerWordControl1, recordID, null), null);
+                } catch { }
+            }
+            Client.ClientHelper.PlatformSqlMap.Create("Insert" + task.VarName, newobj);
         }
         /// <summary>
         /// 生成日志记录
@@ -403,18 +437,13 @@ namespace Ebada.Scgl.WFlow
         /// <param name="tv">日志任务变量</param>
         /// <param name="modleRecordlist">模块相关记录集</param>
         /// <returns>返回工作日志关联的记录</returns>
-        public static object GetModleRecordObj(WF_TaskVar tv, object[] modleRecordlist)
-        {
+        public static object GetModleRecordObj(WF_TaskVar tv, object[] modleRecordlist) {
             object obj = null;
-            for (int i = 0; i < modleRecordlist.Length && tv.TableName != "" && tv.VarModule == "数据库"; i++)
-            {
-                if (modleRecordlist[i].GetType().ToString().IndexOf(tv.TableName) > -1)
-                {
+            for (int i = 0; i < modleRecordlist.Length && tv.TableName != "" && tv.VarModule == "数据库"; i++) {
+                if (modleRecordlist[i].GetType().ToString().IndexOf(tv.TableName) > -1) {
                     obj = modleRecordlist[i];
                     break;
-
                 }
-
             }
 
             return obj;
@@ -438,18 +467,14 @@ namespace Ebada.Scgl.WFlow
         /// <param name="recordID">记录ID</param>
         /// <param name="modlecord">模块记录</param>
         /// <returns>返回工作日志变量对应的值，不存在则为空</returns>
-        public static string GetTaskVarRiZhiValue(WF_TaskVar tv, DSOFramerControl dsoFramerWordControl1, string recordID, object modlecord)
-        {
+        public static string GetTaskVarRiZhiValue(WF_TaskVar tv, DSOFramerControl dsoFramerWordControl1, string recordID, object modlecord) {
 
             Excel.Worksheet xx = null;
-            if (tv.TableName != "" && dsoFramerWordControl1 != null && tv.VarModule == "Excel")
-            {
+            if (tv.TableName != "" && dsoFramerWordControl1 != null && tv.VarModule == "Excel") {
                 Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-                for (int i = 1; i < wb.Application.Sheets.Count; i++)
-                {
+                for (int i = 1; i < wb.Application.Sheets.Count; i++) {
                     Excel.Worksheet sheet = wb.Application.Sheets[i] as Excel.Worksheet;
-                    if (sheet.Name == tv.TableName)
-                    {
+                    if (sheet.Name == tv.TableName) {
                         xx = sheet;
                         break;
                     }
