@@ -657,6 +657,15 @@ namespace Ebada.SCGL.WFlow.Tool
                 throw ex;
             }
         }
+        public static IList<WF_TaskVar> GetTaskJLVar(string workaskId) {
+            try {
+                string sqlStr = " where WorkTaskId  ='" + workaskId + "'  and AccessType='生成记录'";
+                IList<WF_TaskVar> li = MainHelper.PlatformSqlMap.GetList<WF_TaskVar>("SelectWF_TaskVarList", sqlStr);
+                return li;
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
         /// <summary>
         /// 获得任务日志变量
         /// </summary>
