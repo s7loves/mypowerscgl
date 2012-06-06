@@ -1377,10 +1377,6 @@ namespace Ebada.Scgl.Lcgl
 
                                 (ctrl as DevExpress.XtraEditors.DateEdit).DateTime = Convert.ToDateTime( dict[lp.LPID]);
                             }
-                           
-
-                                
-                            
                         }
                     }
                     else
@@ -1483,6 +1479,20 @@ namespace Ebada.Scgl.Lcgl
 
             }
         }
+        public static void RunTaskRecordUpdate(DataTable wf) {
+
+            IList<WF_TaskVar> wttli = MainHelper.PlatformSqlMap.GetList<WF_TaskVar>(" where WorkTaskId='" + wf.Rows[0]["WorkTaskId"].ToString() + "' and AccessType like '生成记录%'");
+            foreach (WF_TaskVar wtt in wttli) {
+                RunTaskRecordCtrlData(wtt.InitValue, wtt,wf);
+
+            }
+        }
+
+        private static void RunTaskRecordCtrlData(string p, WF_TaskVar wtt, DataTable wf) {
+            throw new NotImplementedException();
+        }
+
+        
         public static string GetDisplayName(Type modelType, string propertyDisplayName)
         {
             return (System.ComponentModel.TypeDescriptor.GetProperties(modelType)[propertyDisplayName].Attributes[typeof(System.ComponentModel.DisplayNameAttribute)] as System.ComponentModel.DisplayNameAttribute).DisplayName;
