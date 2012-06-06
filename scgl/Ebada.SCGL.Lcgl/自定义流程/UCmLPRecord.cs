@@ -958,6 +958,11 @@ namespace Ebada.Scgl.Lcgl {
         {
             workFlowFormShow(currRecord, null);
         }
+        /// <summary>
+        /// 打开节点窗口
+        /// </summary>
+        /// <param name="currRecord"></param>
+        /// <param name="dtret"></param>
         private void workFlowFormShow(LP_Record currRecord, DataTable dtret)
         {
             DataTable dtall = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
@@ -1045,14 +1050,14 @@ namespace Ebada.Scgl.Lcgl {
                     obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
                 else
                 {
-                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    MsgBox.ShowWarningMessageBox("模块不支持IsWorkflowCall，请咨询开发人员!");
                     return;
                 }
                 if (obj.GetType().GetProperty("CurrRecord") != null)
                     obj.GetType().GetProperty("CurrRecord").SetValue(obj, currRecord, null);
                 else
                 {
-                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    MsgBox.ShowWarningMessageBox("模块不支持CurrRecord，请咨询开发人员!");
                     return;
                 }
 
@@ -1061,7 +1066,7 @@ namespace Ebada.Scgl.Lcgl {
                     obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(dt, currRecord), null);
                 else
                 {
-                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    MsgBox.ShowWarningMessageBox("模块不支持ParentTemple，请咨询开发人员!");
                     return;
                 }
 
@@ -1069,7 +1074,7 @@ namespace Ebada.Scgl.Lcgl {
                     obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
                 else
                 {
-                    MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
+                    MsgBox.ShowWarningMessageBox("模块不支持RecordWorkFlowData，请咨询开发人员!");
                     return;
                 }
                 if (obj is UserControl)
