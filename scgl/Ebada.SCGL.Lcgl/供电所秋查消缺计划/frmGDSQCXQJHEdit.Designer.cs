@@ -60,10 +60,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // m_DefaultLookAndFeel
-            // 
-            ;
-            // 
             // bar1
             // 
             this.bar1.BarName = "Tools";

@@ -130,6 +130,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.SCGL.CADLib", "Ebada.SCGL.CADLib\Ebada.SCGL.CADLib.csproj", "{D3BDBDF2-B305-48A2-9BD1-CE51C4F805FB}"
 EndProject
 Global
+	GlobalSection(PowerDesigner) = preSolution
+		HasSWS = 1
+	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
 		Manager = AnkhSVN - Subversion Support for Visual Studio
