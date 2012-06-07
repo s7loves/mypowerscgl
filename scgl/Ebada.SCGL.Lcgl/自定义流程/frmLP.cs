@@ -124,6 +124,7 @@ namespace Ebada.Scgl.Lcgl {
         ///设置保护工作表
         /// </summary>
         private void LockExcel(Excel.Workbook wb, Excel.Worksheet xx) {
+            return;
             xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
             xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
             //wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
@@ -179,6 +180,7 @@ namespace Ebada.Scgl.Lcgl {
         /// </summary>
         private void unLockExcel(Excel.Workbook wb, Excel.Worksheet xx) {
             try {
+                //return;
                 xx.Unprotect("MyPassword");
                 xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
                 wb.SheetSelectionChange -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);
@@ -2338,11 +2340,9 @@ namespace Ebada.Scgl.Lcgl {
                     //}
                 }
                 if (lp.KindTable != "") {
-                    //try
-                    //{
+                    //try {
                     //    ea.ActiveSheet(lp.KindTable);
-                    //}
-                    //catch { }
+                    //} catch { }
                 } else {
                     try {
                         ea.ActiveSheet(1);
@@ -2422,8 +2422,11 @@ namespace Ebada.Scgl.Lcgl {
                         }
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i] + "完整时间")) {
                             valuehs.Remove(lp.LPID + "$" + arrCellpos[i] + "完整时间");
-                        } try {
-                            if (lp.isExplorer != 1) ea.SetCellValue("", GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                        } 
+                        try {
+                            if (lp.isExplorer != 1) {
+                                //ea.SetCellValue("", GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                            }
                         } catch { }
                     }
 
@@ -2553,7 +2556,10 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
                     try {
-                        if (lp.isExplorer != 1) ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                        if (lp.isExplorer != 1) {
+                            int[] cc = GetCellPos(arrCellpos[0]);
+                            ea.SetCellValue("'" + str, cc[0], cc[1]);
+                        }
                     } catch { }
                     if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos)) {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
