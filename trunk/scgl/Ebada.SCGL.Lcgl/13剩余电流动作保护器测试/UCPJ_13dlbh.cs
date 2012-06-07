@@ -230,7 +230,7 @@ namespace Ebada.Scgl.Lcgl
            
             if (org != null)
             {
-                RefreshData(" where tqID in(select tqID from PS_tq where LEFT(tqID,'" + org.OrgCode.Length + "')='" + org.OrgCode + "')  orgCode='" + org.OrgCode + " order by sbCode ");
+                RefreshData(" where tqID in(select tqID from PS_tq where LEFT(tqID," + org.OrgCode.Length + ")='" + org.OrgCode + "') and orgCode='" + org.OrgCode + "' order by sbCode ");
                 gds = org;
                 ParentObj = org;
                 IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
