@@ -13,13 +13,11 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Lcgl
-{
+namespace Ebada.Scgl.Lcgl {
     public partial class frmLCFXWTJZGLSEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_lcfxwtjzgls> m_CityDic = new SortableSearchableBindingList<PJ_lcfxwtjzgls>();
 
-        public frmLCFXWTJZGLSEdit()
-        {
+        public frmLCFXWTJZGLSEdit() {
             InitializeComponent();
         }
         void dataBind() {
@@ -39,7 +37,7 @@ namespace Ebada.Scgl.Lcgl
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
+            // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
@@ -69,35 +67,20 @@ namespace Ebada.Scgl.Lcgl
             string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "落实情况"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
 
                 comboBoxEdit1.Properties.Items.Add("已落实");
                 comboBoxEdit1.Properties.Items.Add("未落实");
 
 
             }
-            comboBoxEdit1.Properties.Items.Clear();
+            comboBoxEdit2.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "落实人"));
             if (strlist.Count > 0)
-                comboBoxEdit1.Properties.Items.AddRange(strlist);
-            else
-            {
-                comboBoxEdit1.Properties.Items.Add("所长");
-                comboBoxEdit1.Properties.Items.Add("班长");
-                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select UserName from mUser where 5=5    AND OrgCode IN ( select OrgCode from mOrg where 5=5  AND OrgName ='{0}' )", rowData.OrgName));
-                comboBoxEdit1.Properties.Items.AddRange(strlist);
-            }
-            comboBoxEdit2.Properties.Items.Clear();
-            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "督办人"));
-            if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
-            else
-            {
-                
+            else {
+
                 comboBoxEdit2.Properties.Items.Add("全所职工");
                 comboBoxEdit2.Properties.Items.Add("所长");
                 strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
@@ -105,34 +88,30 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
 
             }
-
-
             comboBoxEdit3.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "检查类型"));
+            string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "督办人"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
 
-                comboBoxEdit3.Properties.Items.Add("春查");
-                comboBoxEdit3.Properties.Items.Add("秋查");
-
+                comboBoxEdit3.Properties.Items.Add("全所职工");
+                comboBoxEdit3.Properties.Items.Add("所长");
+                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select UserName from mUser where 5=5    AND OrgCode IN ( select OrgCode from mOrg where 5=5  AND OrgName ='{0}' )", rowData.OrgName));
+                comboBoxEdit3.Properties.Items.AddRange(strlist);
 
             }
 
-
-
-
-          
-           
-
-        
-
-
-
-
-         
+            comboBoxEdit4.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "检查类型"));
+            if (strlist.Count > 0)
+                comboBoxEdit4.Properties.Items.AddRange(strlist);
+            else {
+                comboBoxEdit4.Properties.Items.Add("春查");
+                comboBoxEdit4.Properties.Items.Add("秋查");
+            }            
         }
 
         /// <summary>
@@ -156,69 +135,55 @@ namespace Ebada.Scgl.Lcgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
+        private void textEdit1_EditValueChanged(object sender, EventArgs e) {
 
         }
 
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
+        private void groupControlOrg_Paint(object sender, PaintEventArgs e) {
 
         }
 
-        private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
-        {
+        private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e) {
 
         }
 
-        private void labelControl4_Click(object sender, EventArgs e)
-        {
+        private void labelControl4_Click(object sender, EventArgs e) {
 
         }
 
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
+        private void labelControl2_Click(object sender, EventArgs e) {
 
         }
 
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
+        private void labelControl4_Click_1(object sender, EventArgs e) {
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
+        private void groupBox1_Enter(object sender, EventArgs e) {
 
         }
 
-        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e) {
 
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-           
+        private void btnOK_Click(object sender, EventArgs e) {
+
         }
 
-       
 
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
+
+        private void simpleButton3_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("春秋查内查发现问题及整改落实情况记录", "备注", memoEdit3);
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
+        private void simpleButton1_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("春秋查内查发现问题及整改落实情况记录", "查出的问题", memoEdit1);
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
+        private void simpleButton2_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("春秋查内查发现问题及整改落实情况记录", "整改措施", memoEdit2);
         }
 
-       
-      
     }
 }
