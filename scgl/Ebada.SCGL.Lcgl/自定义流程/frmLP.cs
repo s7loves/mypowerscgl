@@ -1380,7 +1380,12 @@ namespace Ebada.Scgl.Lcgl {
                 if (sqlSentence.IndexOf("{userid}") > -1) {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
                 }
-
+                if (sqlSentence.IndexOf("{orgname}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                }
+                if (sqlSentence.IndexOf("{username}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
+                }
 
                 try {
                     sqlSentence = sqlSentence.Replace("\r\n", " ");
@@ -1438,6 +1443,12 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 if (sqlSentence.IndexOf("{orgcode}") > -1) {
                     sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{orgname}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                }
+                if (sqlSentence.IndexOf("{username}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
                 }
                 if (sqlSentence.IndexOf("{userid}") > -1) {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
@@ -1517,6 +1528,12 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 if (sqlSentence.IndexOf("{userid}") > -1) {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                if (sqlSentence.IndexOf("{orgname}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                }
+                if (sqlSentence.IndexOf("{username}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
                 }
                 Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
                 while (r1.Match(sqlSentence).Value != "") {
@@ -1615,6 +1632,12 @@ namespace Ebada.Scgl.Lcgl {
                 if (sqlSentence.IndexOf("{userid}") > -1) {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
                 }
+                if (sqlSentence.IndexOf("{orgname}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                }
+                if (sqlSentence.IndexOf("{username}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
+                }
                 Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
                 while (r1.Match(sqlSentence).Value != "") {
                     string sortid = r1.Match(sqlSentence).Value;
@@ -1691,6 +1714,12 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 if (sqlSentence.IndexOf("{userid}") > -1) {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                if (sqlSentence.IndexOf("{orgname}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                }
+                if (sqlSentence.IndexOf("{username}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
                 }
                 Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
                 while (r1.Match(sqlSentence).Value != "") {
@@ -1929,6 +1958,12 @@ namespace Ebada.Scgl.Lcgl {
                     }
                     if (sqlSentence.IndexOf("{userid}") > -1) {
                         sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                    }
+                    if (sqlSentence.IndexOf("{orgname}") > -1) {
+                        sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                    }
+                    if (sqlSentence.IndexOf("{username}") > -1) {
+                        sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
                     }
                     Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
                     while (r1.Match(sqlSentence).Value != "") {
@@ -3390,6 +3425,12 @@ namespace Ebada.Scgl.Lcgl {
                 if (sqlSentence.IndexOf("{userid}") > -1) {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
                 }
+                if (sqlSentence.IndexOf("{orgname}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                }
+                if (sqlSentence.IndexOf("{username}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
+                }
                 Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
                 while (r1.Match(sqlSentence).Value != "") {
                     string sortid = r1.Match(sqlSentence).Value;
@@ -3463,6 +3504,12 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 if (sqlSentence.IndexOf("{userid}") > -1) {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                if (sqlSentence.IndexOf("{orgname}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                }
+                if (sqlSentence.IndexOf("{username}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
                 }
                 Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
                 while (r1.Match(sqlSentence).Value != "") {
@@ -3725,6 +3772,12 @@ namespace Ebada.Scgl.Lcgl {
                     if (sqlSentence.IndexOf("{userid}") > -1) {
                         sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
                     }
+                    if (sqlSentence.IndexOf("{orgname}") > -1) {
+                        sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                    }
+                    if (sqlSentence.IndexOf("{username}") > -1) {
+                        sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
+                    }
                     Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
                     while (r1.Match(sqlSentence).Value != "") {
                         string sortid = r1.Match(sqlSentence).Value;
@@ -3862,6 +3915,12 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 if (sqlSentence.IndexOf("{userid}") > -1) {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                if (sqlSentence.IndexOf("{orgname}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                }
+                if (sqlSentence.IndexOf("{username}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
                 }
                 Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
                 while (r1.Match(sqlSentence).Value != "") {
