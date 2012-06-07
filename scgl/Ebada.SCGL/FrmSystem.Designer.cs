@@ -63,7 +63,7 @@
             this.picback.Name = "picback";
             this.picback.Properties.Appearance.BackColor = System.Drawing.Color.AliceBlue;
             this.picback.Properties.Appearance.Options.UseBackColor = true;
-            this.picback.Size = new System.Drawing.Size(906, 536);
+            this.picback.Size = new System.Drawing.Size(906, 526);
             this.picback.TabIndex = 0;
             // 
             // labAbout
@@ -74,7 +74,7 @@
             this.labAbout.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.labAbout.Image = ((System.Drawing.Image)(resources.GetObject("labAbout.Image")));
             this.labAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labAbout.Location = new System.Drawing.Point(218, 503);
+            this.labAbout.Location = new System.Drawing.Point(215, 493);
             this.labAbout.Name = "labAbout";
             this.labAbout.Size = new System.Drawing.Size(26, 17);
             this.labAbout.TabIndex = 26;
@@ -95,7 +95,7 @@
             this.labbuttom.Appearance.Options.UseFont = true;
             this.labbuttom.Appearance.Options.UseForeColor = true;
             this.labbuttom.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labbuttom.Location = new System.Drawing.Point(244, 497);
+            this.labbuttom.Location = new System.Drawing.Point(244, 489);
             this.labbuttom.Name = "labbuttom";
             this.labbuttom.Size = new System.Drawing.Size(644, 27);
             this.labbuttom.TabIndex = 25;
@@ -115,12 +115,12 @@
             this.listView3.BackgroundImageTiled = true;
             this.listView3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.listView3.Location = new System.Drawing.Point(210, 494);
+            this.listView3.Location = new System.Drawing.Point(205, 485);
             this.listView3.Margin = new System.Windows.Forms.Padding(429);
             this.listView3.MultiSelect = false;
             this.listView3.Name = "listView3";
             this.listView3.ShowItemToolTips = true;
-            this.listView3.Size = new System.Drawing.Size(685, 33);
+            this.listView3.Size = new System.Drawing.Size(693, 33);
             this.listView3.TabIndex = 24;
             this.listView3.UseCompatibleStateImageBehavior = false;
             // 
@@ -150,12 +150,12 @@
             this.listView1.BackgroundImageTiled = true;
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.listView1.Location = new System.Drawing.Point(210, 136);
+            this.listView1.Location = new System.Drawing.Point(205, 136);
             this.listView1.Margin = new System.Windows.Forms.Padding(429);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.ShowItemToolTips = true;
-            this.listView1.Size = new System.Drawing.Size(685, 350);
+            this.listView1.Size = new System.Drawing.Size(693, 343);
             this.listView1.TabIndex = 14;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
@@ -169,7 +169,7 @@
             this.labSet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.labSet.Image = global::Ebada.SCGL.Properties.Resources._1;
             this.labSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labSet.Location = new System.Drawing.Point(766, 66);
+            this.labSet.Location = new System.Drawing.Point(761, 64);
             this.labSet.Name = "labSet";
             this.labSet.Size = new System.Drawing.Size(54, 20);
             this.labSet.TabIndex = 21;
@@ -201,7 +201,7 @@
             this.navBarItem1,
             this.navBarItem2,
             this.navBarItem3});
-            this.nbctSystem.Location = new System.Drawing.Point(15, 105);
+            this.nbctSystem.Location = new System.Drawing.Point(12, 106);
             this.nbctSystem.LookAndFeel.SkinName = "Money Twins";
             this.nbctSystem.LookAndFeel.UseDefaultLookAndFeel = false;
             this.nbctSystem.Name = "nbctSystem";
@@ -210,7 +210,7 @@
             this.nbctSystem.OptionsNavPane.ShowOverflowButton = false;
             this.nbctSystem.Padding = new System.Windows.Forms.Padding(7);
             this.nbctSystem.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.nbctSystem.Size = new System.Drawing.Size(187, 422);
+            this.nbctSystem.Size = new System.Drawing.Size(187, 412);
             this.nbctSystem.TabIndex = 17;
             this.nbctSystem.Text = "navBarControl1";
             this.nbctSystem.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinNavigationPaneViewInfoRegistrator("Blue");
@@ -244,7 +244,7 @@
             this.labExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.labExit.Image = global::Ebada.SCGL.Properties.Resources._2;
             this.labExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labExit.Location = new System.Drawing.Point(819, 66);
+            this.labExit.Location = new System.Drawing.Point(814, 64);
             this.labExit.Name = "labExit";
             this.labExit.Size = new System.Drawing.Size(54, 20);
             this.labExit.TabIndex = 20;
@@ -267,7 +267,7 @@
             this.labdate2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labdate2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labdate2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labdate2.Location = new System.Drawing.Point(772, 47);
+            this.labdate2.Location = new System.Drawing.Point(767, 43);
             this.labdate2.Name = "labdate2";
             this.labdate2.Size = new System.Drawing.Size(99, 19);
             this.labdate2.TabIndex = 19;
@@ -286,7 +286,7 @@
             this.labdate.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labdate.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labdate.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labdate.Location = new System.Drawing.Point(772, 23);
+            this.labdate.Location = new System.Drawing.Point(767, 19);
             this.labdate.Name = "labdate";
             this.labdate.Size = new System.Drawing.Size(99, 19);
             this.labdate.TabIndex = 18;
@@ -305,7 +305,7 @@
             this.labTime.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.labTime.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labTime.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.labTime.Location = new System.Drawing.Point(690, 31);
+            this.labTime.Location = new System.Drawing.Point(682, 27);
             this.labTime.Name = "labTime";
             this.labTime.Size = new System.Drawing.Size(60, 27);
             this.labTime.TabIndex = 16;
@@ -315,13 +315,13 @@
             // 
             this.pictureEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureEdit1.Location = new System.Drawing.Point(15, 11);
+            this.pictureEdit1.Location = new System.Drawing.Point(12, 12);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Menu;
             this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.pictureEdit1.Size = new System.Drawing.Size(880, 88);
+            this.pictureEdit1.Size = new System.Drawing.Size(886, 88);
             this.pictureEdit1.TabIndex = 15;
             this.pictureEdit1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureEdit1_MouseUp);
             this.pictureEdit1.MouseEnter += new System.EventHandler(this.pictureEdit1_MouseEnter);
@@ -337,11 +337,11 @@
             this.panelControl1.Appearance.Options.UseBorderColor = true;
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.panelControl1.Controls.Add(this.labshow);
-            this.panelControl1.Location = new System.Drawing.Point(210, 105);
+            this.panelControl1.Location = new System.Drawing.Point(205, 106);
             this.panelControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(685, 26);
+            this.panelControl1.Size = new System.Drawing.Size(693, 26);
             this.panelControl1.TabIndex = 27;
             // 
             // FrmSystem
@@ -349,7 +349,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
-            this.ClientSize = new System.Drawing.Size(910, 540);
+            this.ClientSize = new System.Drawing.Size(910, 530);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.labAbout);
             this.Controls.Add(this.labbuttom);
