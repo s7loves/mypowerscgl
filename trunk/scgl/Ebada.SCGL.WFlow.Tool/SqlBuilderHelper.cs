@@ -23,6 +23,7 @@ namespace Ebada.SCGL.WFlow.Tool {
             List<SqlClass> list = new List<SqlClass>();
             list.Add(new SqlClass() { Caption = "取全局生产机构名称列表", Sql = "select orgname from morg where 11=11 and c1='是' and parentid<>'0'" });
             list.Add(new SqlClass() { Caption = "取本单位的科、所长", Sql = "select username from muser where 11=11 and orgcode='{orgcode}' and postname in ('所长','科长','主任','部长','长') " });
+            list.Add(new SqlClass() { Caption = "取本单位的科、所长(无班长)", Sql = "select username from muser where 11=11 and orgcode='{orgcode}' and （（postname like '%长' or postname like '%主任')  and  postname   not like '%班长'） " });
             list.Add(new SqlClass() { Caption = "取本单位所有人员", Sql = "select username from muser where 11=11 and orgcode='{orgcode}'" });
             list.Add(new SqlClass() { Caption = "取本单位的所有台区名称", Sql = "select tqname from ps_tq where 11=11 and tqcode like '{orgcode}%'" });
             list.Add(new SqlClass() { Caption = "取本单位的所有10kv线路名称", Sql = "select linename from ps_xl where 11=11 and orgcode='{orgcode}' and linevol='10' order by linecode" });
