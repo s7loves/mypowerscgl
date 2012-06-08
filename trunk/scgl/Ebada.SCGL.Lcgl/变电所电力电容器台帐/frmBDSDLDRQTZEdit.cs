@@ -84,7 +84,7 @@ namespace Ebada.Scgl.Lcgl
             //填充下拉列表数据
             comboBoxEdit2.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select OrgName from mOrg where 5=5  AND ORGTYPE='1'"));
+            string.Format("select OrgName from mOrg where 5=5  AND ORGTYPE='2'"));
             if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
