@@ -127,6 +127,8 @@ namespace Ebada.SCGL.WFlow.Tool
             base.OnLoad(e);
             Init();
             InitData();
+            if (MainHelper.User.UserName != "rabbit")
+                btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
         public void Init() {
             //foreach (TreeListColumn tc in treeList1.Columns)
