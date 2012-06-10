@@ -13,13 +13,11 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Lcgl
-{
+namespace Ebada.Scgl.Lcgl {
     public partial class frmKHDLDRQTZEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_khdldrqtz> m_CityDic = new SortableSearchableBindingList<PJ_khdldrqtz>();
 
-        public frmKHDLDRQTZEdit()
-        {
+        public frmKHDLDRQTZEdit() {
             InitializeComponent();
         }
         void dataBind() {
@@ -35,7 +33,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "sbnum");
             this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "sbsumFactory");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
-           
+
 
         }
         #region IPopupFormEdit Members
@@ -43,9 +41,9 @@ namespace Ebada.Scgl.Lcgl
 
         public object RowData {
             get {
-               
+
                 return rowData;
-              
+
             }
             set {
                 if (value == null) return;
@@ -56,7 +54,7 @@ namespace Ebada.Scgl.Lcgl
                 } else {
                     ConvertHelper.CopyTo<PJ_khdldrqtz>(value as PJ_khdldrqtz, rowData);
                 }
-            
+
             }
         }
 
@@ -65,8 +63,7 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList post)
-        {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -86,8 +83,7 @@ namespace Ebada.Scgl.Lcgl
             string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "电容器型号"));
             if (strlist.Count > 0)
                 comboBoxEdit5.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit5.Properties.Items.Add("BSMJ-12-3");
                 comboBoxEdit5.Properties.Items.Add("BSMJ-15-3");
                 comboBoxEdit5.Properties.Items.Add("BSMJ-14-3");
@@ -106,61 +102,49 @@ namespace Ebada.Scgl.Lcgl
             //    comboBoxEdit10.Properties.Items.Add("50");
             //}
             comboBoxEdit4.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
             if (strlist.Count > 0)
                 comboBoxEdit4.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit4.Properties.Items.Add("正泰");
                 comboBoxEdit4.Properties.Items.Add("德力西");
                 comboBoxEdit4.Properties.Items.Add("沈阳");
             }
             comboBoxEdit8.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "投切方式"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "投切方式"));
             if (strlist.Count > 0)
                 comboBoxEdit8.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit8.Properties.Items.Add("手动");
                 comboBoxEdit8.Properties.Items.Add("自动");
             }
             comboBoxEdit7.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "投运状况"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "投运状况"));
             if (strlist.Count > 0)
                 comboBoxEdit7.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit7.Properties.Items.Add("运行");
                 comboBoxEdit7.Properties.Items.Add("脱运");
             }
             comboBoxEdit1.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "客户电压等级"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "客户电压等级"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit1.Properties.Items.Add("10KV");
                 comboBoxEdit1.Properties.Items.Add("0.38KV");
             }
-           
+
         }
 
-     
-
-      
-
-      
-      
-
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
+        private void simpleButton3_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("客户电力电容器台帐", "备注", memoEdit3);
         }
 
-       
+
     }
 }

@@ -9,13 +9,12 @@ namespace Ebada.Scgl.Lcgl {
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class Export08  {
+    public class Export08 {
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(IList<PJ_08sbtdjx> objlist)
-        {
+        public static void ExportExcel(IList<PJ_08sbtdjx> objlist) {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\08设备停电检修记录.xls";
@@ -25,20 +24,16 @@ namespace Ebada.Scgl.Lcgl {
             int rowcount = 5;
             //分页 将要变化的进行分页
             int pageindex = 1;
-            if (pageindex < Ecommon.GetPagecount(objlist.Count, 20))
-            {
+            if (pageindex < Ecommon.GetPagecount(objlist.Count, 20)) {
                 pageindex = Ecommon.GetPagecount(objlist.Count, 20);
             }
-            for (int j = 1; j <= pageindex; j++)
-            {
-                if (j > 1)
-                {
+            for (int j = 1; j <= pageindex; j++) {
+                if (j > 1) {
                     ex.CopySheet(1, 1);
                 }
             }
             ex.ShowExcel();
-            for (int j = 1; j <= pageindex; j++)
-            {
+            for (int j = 1; j <= pageindex; j++) {
 
                 ex.ActiveSheet(j);
                 ex.ReNameWorkSheet(j, "Sheet" + (j));
@@ -46,10 +41,8 @@ namespace Ebada.Scgl.Lcgl {
                 //主题
                 int starow = prepageindex * 20 + 1;
                 int endrow = j * 20;
-                if (objlist.Count > endrow)
-                {
-                    for (int i = 0; i < 20; i++)
-                    {
+                if (objlist.Count > endrow) {
+                    for (int i = 0; i < 20; i++) {
                         ex.SetCellValue(objlist[starow - 1 + i].tdsj.Month.ToString(), rowcount + i, 1);
                         ex.SetCellValue(objlist[starow - 1 + i].tdsj.Day.ToString(), rowcount + i, 3);
                         ex.SetCellValue(objlist[starow - 1 + i].LineName, rowcount + i, 5);
@@ -62,11 +55,8 @@ namespace Ebada.Scgl.Lcgl {
                         ex.SetCellValue(objlist[starow - 1 + i].gzfzr, rowcount + i, 16);
 
                     }
-                }
-                else if (objlist.Count <= endrow && objlist.Count >= starow)
-                {
-                    for (int i = 0; i < objlist.Count - starow + 1; i++)
-                    {
+                } else if (objlist.Count <= endrow && objlist.Count >= starow) {
+                    for (int i = 0; i < objlist.Count - starow + 1; i++) {
                         ex.SetCellValue(objlist[starow - 1 + i].tdsj.Month.ToString(), rowcount + i, 1);
                         ex.SetCellValue(objlist[starow - 1 + i].tdsj.Day.ToString(), rowcount + i, 3);
                         ex.SetCellValue(objlist[starow - 1 + i].LineName, rowcount + i, 5);
@@ -84,13 +74,12 @@ namespace Ebada.Scgl.Lcgl {
             ex.ActiveSheet(1);
             string gdsname = "";
             //记录变电所
-            if (objlist.Count>0)
-            {
-                
+            if (objlist.Count > 0) {
+
 
                 gdsname = objlist[0].OrgName;
             }
-          
+
             //工具仪表信息
             //for (int i = 0; i < objlist.Count;i++ )
             //{
@@ -104,10 +93,10 @@ namespace Ebada.Scgl.Lcgl {
             //    ex.SetCellValue(objlist[i].sdsj.Minute.ToString(), rowcount + i, 13);
             //    ex.SetCellValue(objlist[i].tdxz, rowcount + i, 15);
             //    ex.SetCellValue(objlist[i].gzfzr, rowcount + i, 16);
-                
+
             //}
-           ex.ShowExcel();
+            ex.ShowExcel();
         }
-      
+
     }
 }

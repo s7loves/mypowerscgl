@@ -13,8 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Lcgl
-{
+namespace Ebada.Scgl.Lcgl {
     public partial class frm09pxjlEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_09pxjl> m_CityDic = new SortableSearchableBindingList<PJ_09pxjl>();
 
@@ -29,8 +28,8 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "cjrs");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "zjr");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "zcr");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "tm",false, DataSourceUpdateMode.OnPropertyChanged);
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "nr",false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "tm", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "nr", false, DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "py");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "qz");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "qzrq");
@@ -38,12 +37,12 @@ namespace Ebada.Scgl.Lcgl
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
+            // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
         private PJ_09pxjl rowData = null;
-        
+
         public object RowData {
             get {
                 getxxss();
@@ -70,24 +69,20 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit4.Properties.Items.AddRange(ryList);
             ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", comboBoxEdit5);
             //comboBoxEdit5.Properties.Items.AddRange(ryList);
-            for (int i = 1; i < 24; i++)
-            {
+            for (int i = 1; i < 24; i++) {
                 comboBoxEdit1.Properties.Items.Add(i);
             }
-            for (int j = 1; j < 60; j++)
-            {
+            for (int j = 1; j < 60; j++) {
                 comboBoxEdit6.Properties.Items.Add(j);
             }
-            for (int k = 1; k <= ryList.Count; k++)
-            {
+            for (int k = 1; k <= ryList.Count; k++) {
                 comboBoxEdit2.Properties.Items.Add(k);
 
             }
             ComboBoxHelper.FillCBoxByDyk("09培训记录", "地点", comboBoxEdit7.Properties);
-         
+
         }
-        void setxxss()
-        {
+        void setxxss() {
             string str = rowData.xxss;
             string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
             comboBoxEdit1.EditValue = "";
@@ -95,18 +90,15 @@ namespace Ebada.Scgl.Lcgl
             int m = 0;
             comboBoxEdit1.EditValue = "";
             comboBoxEdit6.EditValue = "";
-            if (mans.Length>=1)
-            {
+            if (mans.Length >= 1) {
                 comboBoxEdit1.EditValue = mans[0];
             }
-            if (mans.Length >= 2)
-            {
+            if (mans.Length >= 2) {
                 comboBoxEdit6.EditValue = mans[1];
             }
-            
+
         }
-        void getxxss()
-        {
+        void getxxss() {
             string str = "";
             string yy1 = "";
             yy1 = comboBoxEdit1.EditValue.ToString();
@@ -116,7 +108,7 @@ namespace Ebada.Scgl.Lcgl
             yy2 = comboBoxEdit6.EditValue.ToString();
             if (!string.IsNullOrEmpty(yy2.Trim()))
                 str += yy2 + ";";
-          
+
             rowData.xxss = str;
         }
 
@@ -141,34 +133,28 @@ namespace Ebada.Scgl.Lcgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
+        private void textEdit1_EditValueChanged(object sender, EventArgs e) {
 
         }
 
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
+        private void groupControlOrg_Paint(object sender, PaintEventArgs e) {
 
         }
 
-        private void frm09pxjlEdit_Load(object sender, EventArgs e)
-        {
+        private void frm09pxjlEdit_Load(object sender, EventArgs e) {
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
+        private void groupBox1_Enter(object sender, EventArgs e) {
 
         }
 
-        private void comboBoxEdit5_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit5_SelectedIndexChanged(object sender, EventArgs e) {
 
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            SelectorHelper.SelectDyk("09培训记录内容", "记录内容",memoEdit1, memoEdit2);
+        private void simpleButton1_Click(object sender, EventArgs e) {
+            SelectorHelper.SelectDyk("09培训记录内容", "记录内容", memoEdit1, memoEdit2);
 
         }
     }

@@ -31,16 +31,15 @@ namespace Ebada.Scgl.Lcgl {
             //ucLeft1.ChildView = ucRight1.GridViewOperation;
         }
 
-        void ucLeft1_FocusedNodeChanged(object sender, Ebada.Scgl.Model.WF_WorkFlow obj)
-        {
+        void ucLeft1_FocusedNodeChanged(object sender, Ebada.Scgl.Model.WF_WorkFlow obj) {
             ucRight1.ParentObj = obj;
-           // splitCC1.Panel2.Text = "职员所在机构：" + (obj != null ? obj.OrgName : "");
+            // splitCC1.Panel2.Text = "职员所在机构：" + (obj != null ? obj.OrgName : "");
         }
 
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             //ucLeft1.InitData();
-            
+
         }
 
     }

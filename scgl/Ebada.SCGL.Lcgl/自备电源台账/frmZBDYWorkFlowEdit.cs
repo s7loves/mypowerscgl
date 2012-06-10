@@ -14,8 +14,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
 using Ebada.Scgl.WFlow;
-namespace Ebada.Scgl.Lcgl
-{
+namespace Ebada.Scgl.Lcgl {
     public partial class frmZBDYWorkFlowEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_sdytz> m_CityDic = new SortableSearchableBindingList<PJ_sdytz>();
         private bool isWorkflowCall = false;
@@ -23,53 +22,41 @@ namespace Ebada.Scgl.Lcgl
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PJ_sdytz,LP_Record";
-        public LP_Temple ParentTemple
-        {
+        public LP_Temple ParentTemple {
             get { return parentTemple; }
-            set
-            {
+            set {
                 parentTemple = value;
             }
         }
-        public bool IsWorkflowCall
-        {
-            set
-            {
+        public bool IsWorkflowCall {
+            set {
 
                 isWorkflowCall = value;
             }
         }
-        public LP_Record CurrRecord
-        {
+        public LP_Record CurrRecord {
             get { return currRecord; }
-            set
-            {
+            set {
                 currRecord = value;
 
             }
         }
 
-        public DataTable RecordWorkFlowData
-        {
-            get
-            {
+        public DataTable RecordWorkFlowData {
+            get {
                 return WorkFlowData;
             }
-            set
-            {
+            set {
                 WorkFlowData = value;
             }
         }
-        public string VarDbTableName
-        {
+        public string VarDbTableName {
             get { return varDbTableName; }
-            set
-            {
+            set {
                 varDbTableName = value; ;
             }
         }
-        public frmZBDYWorkFlowEdit()
-        {
+        public frmZBDYWorkFlowEdit() {
             InitializeComponent();
         }
         void dataBind() {
@@ -84,7 +71,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "fdykgModle");
 
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
-           
+
 
         }
         #region IPopupFormEdit Members
@@ -92,9 +79,9 @@ namespace Ebada.Scgl.Lcgl
 
         public object RowData {
             get {
-               
+
                 return rowData;
-              
+
             }
             set {
                 if (value == null) return;
@@ -105,7 +92,7 @@ namespace Ebada.Scgl.Lcgl
                 } else {
                     ConvertHelper.CopyTo<PJ_sdytz>(value as PJ_sdytz, rowData);
                 }
-            
+
             }
         }
 
@@ -114,8 +101,7 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList post)
-        {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -128,9 +114,9 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void InitComboBoxData() {
-           
+
             //填充下拉列表数据
-           
+
         }
 
         /// <summary>
@@ -154,97 +140,75 @@ namespace Ebada.Scgl.Lcgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
+        private void textEdit1_EditValueChanged(object sender, EventArgs e) {
 
         }
 
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
+        private void groupControlOrg_Paint(object sender, PaintEventArgs e) {
 
         }
 
-     
 
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
+
+        private void simpleButton2_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("所月度停电计划", "主要检修内容", memoEdit1);
         }
 
-      
 
-      
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
+
+
+        private void btnOK_Click(object sender, EventArgs e) {
             PJ_sdytz sbxs = RowData as PJ_sdytz;
             string strmes = "";
             object obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_sdytz>(sbxs.ID);
-            if (obj == null)
-            {
+            if (obj == null) {
                 MainHelper.PlatformSqlMap.Create<PJ_sdytz>(sbxs);
-            }
-
-            else
-            {
+            } else {
                 MainHelper.PlatformSqlMap.Update<PJ_sdytz>(sbxs);
 
             }
-            if (isWorkflowCall)
-            {
-                
+            if (isWorkflowCall) {
+
 
                 currRecord.LastChangeTime = DateTime.Now.ToString();
-                if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
-                {
+                if (RecordWorkTask.CheckOnRiZhi(WorkFlowData)) {
 
                     RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { sbxs, currRecord });
 
                 }
                 WF_WorkTaskCommands wt;
 
-                if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
-                {
+                if (RecordWorkTask.CheckOnRiZhi(WorkFlowData)) {
 
                     RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { sbxs, currRecord });
 
                 }
                 //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
                 wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
-                if (wt != null)
-                {
+                if (wt != null) {
                     strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
-                }
-                else
-                {
+                } else {
                     strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
                 }
-                if (strmes.IndexOf("未提交至任何人") > -1)
-                {
+                if (strmes.IndexOf("未提交至任何人") > -1) {
                     MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
                     return;
-                }
-                else
+                } else
                     MsgBox.ShowTipMessageBox(strmes);
                 strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
-                if (strmes == "结束节点1")
-                {
+                if (strmes == "结束节点1") {
                     currRecord.Status = "存档";
-                }
-                else
-                {
+                } else {
                     currRecord.Status = strmes;
                 }
-                if (currRecord.ImageAttachment == null)
-                {
+                if (currRecord.ImageAttachment == null) {
                     currRecord.ImageAttachment = new byte[0];
                 }
-                if (currRecord.DocContent == null)
-                {
+                if (currRecord.DocContent == null) {
                     currRecord.DocContent = new byte[0];
                 }
-                if (currRecord.SignImg == null)
-                {
+                if (currRecord.SignImg == null) {
                     currRecord.SignImg = new byte[0];
                 }
 
@@ -255,11 +219,10 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        private void comboBoxEdit2_Properties_EditValueChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit2_Properties_EditValueChanged(object sender, EventArgs e) {
 
         }
 
-       
+
     }
 }
