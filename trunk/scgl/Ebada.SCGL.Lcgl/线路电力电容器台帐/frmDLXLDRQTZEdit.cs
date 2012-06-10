@@ -125,7 +125,7 @@ namespace Ebada.Scgl.Lcgl
             }
             comboBoxEdit2.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "线路名称"));
+           string.Format("select LineName from ps_xl where orgcode='{0}' and len(linecode)=6", rowData.OrgCode));
             if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
