@@ -8,30 +8,24 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Ebada.Scgl.Model;
 
-namespace Ebada.Scgl.Lcgl
-{
-    public partial class UCPJ_06sbxs: DevExpress.XtraEditors.XtraUserControl
-    {
-        
+namespace Ebada.Scgl.Lcgl {
+    public partial class UCPJ_06sbxs : DevExpress.XtraEditors.XtraUserControl {
+
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PJ_06sbxs,PJ_06sbxsmx,LP_Record";
-        public LP_Temple ParentTemple
-        {
+        public LP_Temple ParentTemple {
             get { return parentTemple; }
-            set
-            {
+            set {
                 parentTemple = value;
                 ucTop.ParentTemple = value;
                 ucBottom.ParentTemple = value;
             }
         }
-        public bool IsWorkflowCall
-        {
-            set
-            {
+        public bool IsWorkflowCall {
+            set {
 
                 isWorkflowCall = value;
                 ucTop.IsWorkflowCall = value;
@@ -40,11 +34,9 @@ namespace Ebada.Scgl.Lcgl
 
             }
         }
-        public LP_Record CurrRecord
-        {
+        public LP_Record CurrRecord {
             get { return currRecord; }
-            set
-            {
+            set {
                 currRecord = value;
                 ucTop.CurrRecord = value;
                 ucBottom.CurrRecord = value;
@@ -52,42 +44,34 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        public DataTable RecordWorkFlowData
-        {
-            get
-            {
+        public DataTable RecordWorkFlowData {
+            get {
                 return WorkFlowData;
             }
-            set
-            {
+            set {
                 WorkFlowData = value;
                 ucTop.RecordWorkFlowData = value;
                 ucBottom.RecordWorkFlowData = value;
 
             }
         }
-        public string VarDbTableName
-        {
+        public string VarDbTableName {
             get { return varDbTableName; }
-            set
-            {
+            set {
                 varDbTableName = value;
                 ucTop.VarDbTableName = value;
                 ucBottom.VarDbTableName = value;
             }
         }
-        public UCPJ_06sbxs()
-        {
+        public UCPJ_06sbxs() {
             InitializeComponent();
             ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<PJ_06sbxs>(ucTop_FocusedRowChanged);
         }
-        void ucTop_FocusedRowChanged(object sender, PJ_06sbxs obj)
-        {
+        void ucTop_FocusedRowChanged(object sender, PJ_06sbxs obj) {
             ucBottom.ParentObj = obj;
             //splitCC1.Panel2.Text = "测量记录：" + (obj != null ? obj.kymc : "");
         }
-        protected override void OnLoad(EventArgs e)
-        {
+        protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             ucTop.initcomment();
         }
