@@ -4,20 +4,17 @@ using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
-namespace Ebada.Scgl.Lcgl
-{
+namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class Export04
-    {
+    public class Export04 {
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(PJ_04sgzayc obj)
-        {
+        public static void ExportExcel(PJ_04sgzayc obj) {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\04事故障碍异常运行记录.xls";
@@ -83,13 +80,11 @@ namespace Ebada.Scgl.Lcgl
             string jd1 = "";
             string jd2 = "";
             bool flag = true;
-            if (sgzyc.Contains("处理人"))
-            {
+            if (sgzyc.Contains("处理人")) {
 
                 jd1 = sgzyc.Substring(0, sgzyc.LastIndexOf("处理人"));
                 jd2 = sgzyc.Substring(sgzyc.LastIndexOf("处理人"));
-            }
-            else
+            } else
                 jd1 = sgzyc;
             //for (int i = 0; i < 4; i++)
             //{
@@ -111,31 +106,23 @@ namespace Ebada.Scgl.Lcgl
             //    }
             //    ex.SetCellValue(tempstr, 9 + i, 1);
             //}
-            for (int i = 0; i < 4; i++)
-            {
+            for (int i = 0; i < 4; i++) {
                 string tempstr = "";
                 int startnum = i * zc;
                 int endnum = (i + 1) * zc;
                 bool ISempty = false;
-                if (sgzyc.Length > 3 * zc)
-                {
+                if (sgzyc.Length > 3 * zc) {
                     jd1 = sgzyc;
-                }
-                else if (sgzyc.Length <= 3 * zc && !string.IsNullOrEmpty(jd2))
-                {
+                } else if (sgzyc.Length <= 3 * zc && !string.IsNullOrEmpty(jd2)) {
                     ex.SetCellValue(jd2, 12, 1);
                 }
-                if (startnum >= jd1.Length)
-                {
+                if (startnum >= jd1.Length) {
                     ISempty = true;
 
-                }
-                else if (endnum >= jd1.Length)
-                {
+                } else if (endnum >= jd1.Length) {
                     endnum = jd1.Length;
                 }
-                if (!ISempty)
-                {
+                if (!ISempty) {
                     tempstr = jd1.Substring(startnum, endnum - startnum);
                     ex.SetCellValue(tempstr, 9 + i, 1);
                 }
@@ -143,44 +130,34 @@ namespace Ebada.Scgl.Lcgl
             }
             //主要原因分析
 
-            for (int i = 0; i < 5; i++)
-            {
+            for (int i = 0; i < 5; i++) {
                 string tempstr = "";
                 int startnum = i * zc;
                 int endnum = (i + 1) * zc;
                 bool ISempty = false;
-                if (startnum >= zyyuy.Length)
-                {
+                if (startnum >= zyyuy.Length) {
                     ISempty = true;
-                }
-                else if (endnum >= zyyuy.Length)
-                {
+                } else if (endnum >= zyyuy.Length) {
                     endnum = zyyuy.Length;
                 }
-                if (!ISempty)
-                {
+                if (!ISempty) {
                     tempstr = zyyuy.Substring(startnum, endnum - startnum);
                 }
                 ex.SetCellValue(tempstr, 13 + i, 1);
             }
             //今后放置对策
 
-            for (int i = 0; i < 5; i++)
-            {
+            for (int i = 0; i < 5; i++) {
                 string tempstr = "";
                 int startnum = i * zc;
                 int endnum = (i + 1) * zc;
                 bool ISempty = false;
-                if (startnum >= fzdc.Length)
-                {
+                if (startnum >= fzdc.Length) {
                     ISempty = true;
-                }
-                else if (endnum >= fzdc.Length)
-                {
+                } else if (endnum >= fzdc.Length) {
                     endnum = fzdc.Length;
                 }
-                if (!ISempty)
-                {
+                if (!ISempty) {
                     tempstr = fzdc.Substring(startnum, endnum - startnum);
                 }
                 ex.SetCellValue(tempstr, 18 + i, 1);

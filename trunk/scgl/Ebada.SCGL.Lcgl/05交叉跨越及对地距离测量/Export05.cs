@@ -11,8 +11,7 @@ namespace Ebada.Scgl.Lcgl {
     /// </summary>
     public class Export05 {
         //ExcelAccess
-        public static void ExportExcel(PJ_05jcky jl)
-        {
+        public static void ExportExcel(PJ_05jcky jl) {
 
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -25,43 +24,33 @@ namespace Ebada.Scgl.Lcgl {
             IList<PJ_05jckyjl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_05jckyjl>(" where jckyID='" + jl.jckyID + "' order by CreateDate");
             //加页
             int pageindex = 1;
-            if (pageindex < Ecommon.GetPagecount(list.Count, 15))
-            {
+            if (pageindex < Ecommon.GetPagecount(list.Count, 15)) {
                 pageindex = Ecommon.GetPagecount(list.Count, 15);
             }
-            for (int j = 1; j <= pageindex; j++)
-            {
-                if (j > 1)
-                {
+            for (int j = 1; j <= pageindex; j++) {
+                if (j > 1) {
                     ex.CopySheet(1, 1);
                 }
             }
             // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
             ex.ActiveSheet(1);
             PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + jl.LineID + "'");
-            if (xl != null)
-            {
+            if (xl != null) {
                 string sublinename = "";
                 string linename = andparentlinename(xl);
                 string[] fz = linename.Split(" ".ToCharArray());
-                if (fz.Length > 2)
-                {
+                if (fz.Length > 2) {
                     sublinename += fz[0] + " " + fz[1] + " " + fz[fz.Length - 1];
-                }
-                else
+                } else
                     sublinename = linename;
                 ex.SetCellValue(linename, row + 3, col + 1);
-            }
-            else
-            {
+            } else {
                 string sublinename = "";
                 string linename = jl.kywz;
                 string[] fz = linename.Split(" ".ToCharArray());
-                if (fz.Length > 2)
-                {
+                if (fz.Length > 2) {
                     sublinename += fz[0] + " " + fz[1] + " " + fz[fz.Length - 1];
-                }
-                else
+                } else
                     sublinename = linename;
                 ex.SetCellValue(linename, row + 3, col + 1);
             }
@@ -80,8 +69,7 @@ namespace Ebada.Scgl.Lcgl {
             //测量记录
 
             ex.ShowExcel();
-            for (int j = 1; j <= pageindex; j++)
-            {
+            for (int j = 1; j <= pageindex; j++) {
                 ex.ActiveSheet(j);
                 //ex.ReNameWorkSheet(j, "Sheet" + (j));
                 int prepageindex = j - 1;
@@ -89,10 +77,8 @@ namespace Ebada.Scgl.Lcgl {
                 int starow = prepageindex * 15 + 1;
                 int endrow = j * 15;
 
-                if (list.Count > endrow)
-                {
-                    for (int i = 0; i < 15; i++)
-                    {
+                if (list.Count > endrow) {
+                    for (int i = 0; i < 15; i++) {
 
                         string str = list[starow - 1 + i].clrqz;
                         string[] mans = str.Split(new char[1] { ';' });
@@ -106,11 +92,8 @@ namespace Ebada.Scgl.Lcgl {
                         ex.SetCellValue(list[starow - 1 + i].jr, rowcount + i, col + 7);
 
                     }
-                }
-                else if (list.Count <= endrow && list.Count >= starow)
-                {
-                    for (int i = 0; i < list.Count - starow + 1; i++)
-                    {
+                } else if (list.Count <= endrow && list.Count >= starow) {
+                    for (int i = 0; i < list.Count - starow + 1; i++) {
                         string str = list[starow - 1 + i].clrqz;
                         string[] mans = str.Split(new char[1] { ';' });
                         ex.SetCellValue(list[starow - 1 + i].clrq.Year.ToString(), rowcount + i, col);
@@ -132,8 +115,7 @@ namespace Ebada.Scgl.Lcgl {
             ex.ShowExcel();
 
         }
-        public static void ExportExcel(PJ_05jcky jl, string years)
-        {
+        public static void ExportExcel(PJ_05jcky jl, string years) {
 
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -146,43 +128,33 @@ namespace Ebada.Scgl.Lcgl {
             IList<PJ_05jckyjl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_05jckyjl>(" where jckyID='" + jl.jckyID + "'and year(clrq) in" + years + "order by CreateDate desc");
             //加页
             int pageindex = 1;
-            if (pageindex < Ecommon.GetPagecount(list.Count, 15))
-            {
+            if (pageindex < Ecommon.GetPagecount(list.Count, 15)) {
                 pageindex = Ecommon.GetPagecount(list.Count, 15);
             }
-            for (int j = 1; j <= pageindex; j++)
-            {
-                if (j > 1)
-                {
+            for (int j = 1; j <= pageindex; j++) {
+                if (j > 1) {
                     ex.CopySheet(1, 1);
                 }
             }
             // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
             ex.ActiveSheet(1);
             PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + jl.LineID + "'");
-            if (xl != null)
-            {
+            if (xl != null) {
                 string sublinename = "";
                 string linename = andparentlinename(xl);
                 string[] fz = linename.Split(" ".ToCharArray());
-                if (fz.Length > 2)
-                {
+                if (fz.Length > 2) {
                     sublinename += fz[0] + " " + fz[1] + " " + fz[fz.Length - 1];
-                }
-                else
+                } else
                     sublinename = linename;
                 ex.SetCellValue(linename, row + 3, col + 1);
-            }
-            else
-            {
+            } else {
                 string sublinename = "";
                 string linename = jl.kywz;
                 string[] fz = linename.Split(" ".ToCharArray());
-                if (fz.Length > 2)
-                {
+                if (fz.Length > 2) {
                     sublinename += fz[0] + " " + fz[1] + " " + fz[fz.Length - 1];
-                }
-                else
+                } else
                     sublinename = linename;
                 ex.SetCellValue(linename, row + 3, col + 1);
             }
@@ -200,8 +172,7 @@ namespace Ebada.Scgl.Lcgl {
             //测量记录
 
             ex.ShowExcel();
-            for (int j = 1; j <= pageindex; j++)
-            {
+            for (int j = 1; j <= pageindex; j++) {
                 ex.ActiveSheet(j);
                 //ex.ReNameWorkSheet(j, "Sheet" + (j));
                 int prepageindex = j - 1;
@@ -209,10 +180,8 @@ namespace Ebada.Scgl.Lcgl {
                 int starow = prepageindex * 15 + 1;
                 int endrow = j * 15;
 
-                if (list.Count > endrow)
-                {
-                    for (int i = 0; i < 15; i++)
-                    {
+                if (list.Count > endrow) {
+                    for (int i = 0; i < 15; i++) {
 
                         string str = list[starow - 1 + i].clrqz;
                         string[] mans = str.Split(new char[1] { ';' });
@@ -226,11 +195,8 @@ namespace Ebada.Scgl.Lcgl {
                         ex.SetCellValue(list[starow - 1 + i].jr, rowcount + i, col + 7);
 
                     }
-                }
-                else if (list.Count <= endrow && list.Count >= starow)
-                {
-                    for (int i = 0; i < list.Count - starow + 1; i++)
-                    {
+                } else if (list.Count <= endrow && list.Count >= starow) {
+                    for (int i = 0; i < list.Count - starow + 1; i++) {
                         string str = list[starow - 1 + i].clrqz;
                         string[] mans = str.Split(new char[1] { ';' });
                         ex.SetCellValue(list[starow - 1 + i].clrq.Year.ToString(), rowcount + i, col);
@@ -253,16 +219,12 @@ namespace Ebada.Scgl.Lcgl {
 
         }
 
-        private static string andparentlinename(PS_xl xl)
-        {
+        private static string andparentlinename(PS_xl xl) {
             string linename = "";
             PS_xl xl1 = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where lineid='" + xl.ParentID + "'");
-            if (xl1 == null)
-            {
+            if (xl1 == null) {
                 linename = xl.LineName;
-            }
-            else
-            {
+            } else {
                 linename += andparentlinename(xl1) + " ";
                 linename += xl.LineName;
             }

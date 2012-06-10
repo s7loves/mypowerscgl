@@ -9,10 +9,9 @@ namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
     /// </summary>
-    public class Export07  {
+    public class Export07 {
         //ExcelAccess
-        public static void ExportExcel(PJ_07jdzz jl)
-        {
+        public static void ExportExcel(PJ_07jdzz jl) {
 
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -24,8 +23,7 @@ namespace Ebada.Scgl.Lcgl {
             IList<PJ_07jdzzjl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_07jdzzjl>(" where jdzzID='" + jl.jdzzID + "' order by clrq");
             int p = Ecommon.GetPagecount(list.Count, 16);
 
-            for (int i = 0; i < p - 1; i++)
-            {
+            for (int i = 0; i < p - 1; i++) {
                 ex.CopySheet(1, 1 + i);
             }
             ex.ActiveSheet(1);
@@ -33,19 +31,15 @@ namespace Ebada.Scgl.Lcgl {
             //线路名称行
             ex.SetCellValue(jl.LineName, row + 4, col + 2);
             string fzxl = "";
-            if (jl.fzxl.Contains("支"))
-            {
+            if (jl.fzxl.Contains("支")) {
                 fzxl = jl.fzxl.Substring(0, jl.fzxl.LastIndexOf("支"));
-            }
-            else
+            } else
                 fzxl = jl.fzxl;
             ex.SetCellValue(fzxl, row + 4, col + 6);
             string gzwz = "";
-            if (jl.gzwz.Contains("分"))
-            {
+            if (jl.gzwz.Contains("分")) {
                 gzwz = jl.gzwz.Substring(0, jl.gzwz.LastIndexOf("分"));
-            }
-            else
+            } else
                 gzwz = jl.gzwz;
             ex.SetCellValue(gzwz, row + 4, col + 11);
             ex.SetCellValue("'" + jl.gth, row + 4, col + 15);
@@ -54,12 +48,10 @@ namespace Ebada.Scgl.Lcgl {
             ex.SetCellValue(jl.sbmc, row + 7, col);
             //ex.SetCellValue(jl.xhgg, row + 7, col + 3);
             string[] str = jl.xhgg.Split('|');
-            if (str.Length >= 1)
-            {
+            if (str.Length >= 1) {
                 ex.SetCellValue(str[0], row + 7, col + 3);
             }
-            if (str.Length >= 2)
-            {
+            if (str.Length >= 2) {
                 ex.SetCellValue(str[1], row + 7, col + 4);
             }
 
@@ -67,17 +59,13 @@ namespace Ebada.Scgl.Lcgl {
             ex.SetCellValue(jl.tz, row + 7, col + 9);
             ex.SetCellValue(jl.trdzr.ToString(), row + 7, col + 11);
 
-            for (int page = 1; page <= p; page++)
-            {
+            for (int page = 1; page <= p; page++) {
                 ex.ActiveSheet(page);
-                if (page == 1)
-                {
+                if (page == 1) {
 
-                    for (int i = 0; i < 16; i++)
-                    {
+                    for (int i = 0; i < 16; i++) {
 
-                        if (i + (page - 1) * 16 < list.Count)
-                        {
+                        if (i + (page - 1) * 16 < list.Count) {
                             PJ_07jdzzjl obj = list[i + (page - 1) * 16];
                             ex.SetCellValue(obj.clrq.Year.ToString(), row + 9 + i, col);
                             ex.SetCellValue(obj.clrq.Month.ToString(), row + 9 + i, col + 1);
@@ -89,24 +77,18 @@ namespace Ebada.Scgl.Lcgl {
                             ex.SetCellValue(obj.jr, row + 9 + i, col + 10);
                             //ex.SetCellValue(obj.jcr, row + 9 + i, col + 12);
                             string[] jcrstr = obj.jcr.Split(';');
-                            if (jcrstr.Length >= 1)
-                            {
+                            if (jcrstr.Length >= 1) {
                                 ex.SetCellValue(jcrstr[0], row + 9 + i, col + 12);
                             }
-                            if (jcrstr.Length >= 2)
-                            {
+                            if (jcrstr.Length >= 2) {
                                 ex.SetCellValue(jcrstr[1], row + 9 + i, col + 15);
                             }
                         }
                     }
-                }
-                else
-                {
-                    for (int i = 0; i < 16; i++)
-                    {
+                } else {
+                    for (int i = 0; i < 16; i++) {
 
-                        if (i + (page - 1) * 16 < list.Count)
-                        {
+                        if (i + (page - 1) * 16 < list.Count) {
                             PJ_07jdzzjl obj = list[i + (page - 1) * 16];
                             ex.SetCellValue(obj.clrq.Year.ToString(), row + 9 + i, col);
                             ex.SetCellValue(obj.clrq.Month.ToString(), row + 9 + i, col + 1);
@@ -118,12 +100,10 @@ namespace Ebada.Scgl.Lcgl {
                             ex.SetCellValue(obj.jr, row + 9 + i, col + 10);
 
                             string[] jcrstr = obj.jcr.Split(';');
-                            if (jcrstr.Length >= 1)
-                            {
+                            if (jcrstr.Length >= 1) {
                                 ex.SetCellValue(jcrstr[0], row + 9 + i, col + 12);
                             }
-                            if (jcrstr.Length >= 2)
-                            {
+                            if (jcrstr.Length >= 2) {
                                 ex.SetCellValue(jcrstr[1], row + 9 + i, col + 15);
                             }
                             //ex.SetCellValue(obj.jcr, row + 9 + i, col + 12);
@@ -135,8 +115,7 @@ namespace Ebada.Scgl.Lcgl {
             ex.ShowExcel();
 
         }
-        public static void ExportExcel(PJ_07jdzz jl, string ysl)
-        {
+        public static void ExportExcel(PJ_07jdzz jl, string ysl) {
 
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -148,8 +127,7 @@ namespace Ebada.Scgl.Lcgl {
             IList<PJ_07jdzzjl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_07jdzzjl>(" where jdzzID='" + jl.jdzzID + "'and year(clrq) in" + ysl + " order by clrq");
             int p = Ecommon.GetPagecount(list.Count, 16);
 
-            for (int i = 0; i < p - 1; i++)
-            {
+            for (int i = 0; i < p - 1; i++) {
                 ex.CopySheet(1, 1 + i);
             }
             ex.ActiveSheet(1);
@@ -157,19 +135,15 @@ namespace Ebada.Scgl.Lcgl {
             //线路名称行
             ex.SetCellValue(jl.LineName, row + 4, col + 2);
             string fzxl = "";
-            if (jl.fzxl.Contains("支"))
-            {
+            if (jl.fzxl.Contains("支")) {
                 fzxl = jl.fzxl.Substring(0, jl.fzxl.LastIndexOf("支"));
-            }
-            else
+            } else
                 fzxl = jl.fzxl;
             ex.SetCellValue(fzxl, row + 4, col + 6);
             string gzwz = "";
-            if (jl.gzwz.Contains("分"))
-            {
+            if (jl.gzwz.Contains("分")) {
                 gzwz = jl.gzwz.Substring(0, jl.gzwz.LastIndexOf("分"));
-            }
-            else
+            } else
                 gzwz = jl.gzwz;
             ex.SetCellValue(gzwz, row + 4, col + 11);
             ex.SetCellValue("'" + jl.gth, row + 4, col + 15);
@@ -178,12 +152,10 @@ namespace Ebada.Scgl.Lcgl {
             ex.SetCellValue(jl.sbmc, row + 7, col);
             //ex.SetCellValue(jl.xhgg, row + 7, col + 3);
             string[] str = jl.xhgg.Split('|');
-            if (str.Length >= 1)
-            {
+            if (str.Length >= 1) {
                 ex.SetCellValue(str[0], row + 7, col + 3);
             }
-            if (str.Length >= 2)
-            {
+            if (str.Length >= 2) {
                 ex.SetCellValue(str[1], row + 7, col + 4);
             }
 
@@ -191,17 +163,13 @@ namespace Ebada.Scgl.Lcgl {
             ex.SetCellValue(jl.tz, row + 7, col + 9);
             ex.SetCellValue(jl.trdzr.ToString(), row + 7, col + 11);
 
-            for (int page = 1; page <= p; page++)
-            {
+            for (int page = 1; page <= p; page++) {
                 ex.ActiveSheet(page);
-                if (page == 1)
-                {
+                if (page == 1) {
 
-                    for (int i = 0; i < 16; i++)
-                    {
+                    for (int i = 0; i < 16; i++) {
 
-                        if (i + (page - 1) * 16 < list.Count)
-                        {
+                        if (i + (page - 1) * 16 < list.Count) {
                             PJ_07jdzzjl obj = list[i + (page - 1) * 16];
                             ex.SetCellValue(obj.clrq.Year.ToString(), row + 9 + i, col);
                             ex.SetCellValue(obj.clrq.Month.ToString(), row + 9 + i, col + 1);
@@ -213,24 +181,18 @@ namespace Ebada.Scgl.Lcgl {
                             ex.SetCellValue(obj.jr, row + 9 + i, col + 10);
                             //ex.SetCellValue(obj.jcr, row + 9 + i, col + 12);
                             string[] jcrstr = obj.jcr.Split(';');
-                            if (jcrstr.Length >= 1)
-                            {
+                            if (jcrstr.Length >= 1) {
                                 ex.SetCellValue(jcrstr[0], row + 9 + i, col + 12);
                             }
-                            if (jcrstr.Length >= 2)
-                            {
+                            if (jcrstr.Length >= 2) {
                                 ex.SetCellValue(jcrstr[1], row + 9 + i, col + 15);
                             }
                         }
                     }
-                }
-                else
-                {
-                    for (int i = 0; i < 16; i++)
-                    {
+                } else {
+                    for (int i = 0; i < 16; i++) {
 
-                        if (i + (page - 1) * 16 < list.Count)
-                        {
+                        if (i + (page - 1) * 16 < list.Count) {
                             PJ_07jdzzjl obj = list[i + (page - 1) * 16];
                             ex.SetCellValue(obj.clrq.Year.ToString(), row + 9 + i, col);
                             ex.SetCellValue(obj.clrq.Month.ToString(), row + 9 + i, col + 1);
@@ -242,12 +204,10 @@ namespace Ebada.Scgl.Lcgl {
                             ex.SetCellValue(obj.jr, row + 9 + i, col + 10);
 
                             string[] jcrstr = obj.jcr.Split(';');
-                            if (jcrstr.Length >= 1)
-                            {
+                            if (jcrstr.Length >= 1) {
                                 ex.SetCellValue(jcrstr[0], row + 9 + i, col + 12);
                             }
-                            if (jcrstr.Length >= 2)
-                            {
+                            if (jcrstr.Length >= 2) {
                                 ex.SetCellValue(jcrstr[1], row + 9 + i, col + 15);
                             }
                             //ex.SetCellValue(obj.jcr, row + 9 + i, col + 12);
@@ -258,7 +218,7 @@ namespace Ebada.Scgl.Lcgl {
             ex.ActiveSheet(1);
             ex.ShowExcel();
 
-        }   
-            
+        }
+
     }
 }

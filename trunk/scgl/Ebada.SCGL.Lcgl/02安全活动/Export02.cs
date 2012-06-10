@@ -6,20 +6,17 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
 using System.Windows.Forms;
-namespace Ebada.Scgl.Lcgl
-{
+namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class Export02
-    {
+    public class Export02 {
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(PJ_02aqhd obj)
-        {
+        public static void ExportExcel(PJ_02aqhd obj) {
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -55,58 +52,47 @@ namespace Ebada.Scgl.Lcgl
             //领导评语
             string ldpystr = Ecommon.Comparestring(obj.py, "领导检查评语") ? "" : "领导检查评语：";
             List<string> ldpylist = Ecommon.ResultStrListByPage(ldpystr, obj.py, zc, 2);
-            if (Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count, 15) > pagecount)
-            {
+            if (Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count, 15) > pagecount) {
                 pagecount = Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count, 15);
             }
             List<string> fyjyjllist = Ecommon.ResultStrListByPage("", obj.fyjyjl, zc, 21);
-            if (Ecommon.GetPagecount(fyjyjllist.Count, 21) > pagecount)
-            {
+            if (Ecommon.GetPagecount(fyjyjllist.Count, 21) > pagecount) {
                 pagecount = Ecommon.GetPagecount(fyjyjllist.Count, 21);
             }
 
             //复制空模版
-            if (pagecount > 1)
-            {
-                for (int i = 1; i < pagecount; i++)
-                {
+            if (pagecount > 1) {
+                for (int i = 1; i < pagecount; i++) {
                     ex.CopySheet(1, i);
                     ex.ReNameWorkSheet(i + 1, "Sheet" + (i + 1));
                 }
             }
 
-            for (int p = 0; p < pagecount; p++)
-            {
+            for (int p = 0; p < pagecount; p++) {
                 ex.ActiveSheet(p + 1);
                 //改造后的
-                for (int i = 0; i < 15; i++)
-                {
+                for (int i = 0; i < 15; i++) {
 
-                    if (p * 15 + i < hdlist.Count)
-                    {
+                    if (p * 15 + i < hdlist.Count) {
 
                         string tempstr = hdlist[p * 15 + i];
                         ex.SetCellValue(tempstr, 10 + i, 1);
-                        if (p == 0 && i == 0)
-                        {
+                        if (p == 0 && i == 0) {
                             //设定活动内容为粗体
                             ex.SetFontBold(10 + i, 1, 10 + i, 1, true, 0, 5);
                         }
                     }
-                    if (p * 15 + i >= hdlist.Count && p * 15 + i < hdlist.Count + hdxlist.Count)
-                    {
+                    if (p * 15 + i >= hdlist.Count && p * 15 + i < hdlist.Count + hdxlist.Count) {
 
                         string tempstr = hdxlist[p * 15 + i - hdlist.Count];
                         ex.SetCellValue(tempstr, 10 + i, 1);
-                        if (p * 15 + i == hdlist.Count)
-                        {
+                        if (p * 15 + i == hdlist.Count) {
                             ex.SetFontBold(10 + i, 1, 10 + i, 1, true, 0, 5);
                         }
                         //break;
                     }
 
-                    if (p * 15 + i >= hdlist.Count + hdxlist.Count && p * 15 + i < hdlist.Count + hdxlist.Count + ldpylist.Count)
-                    {
+                    if (p * 15 + i >= hdlist.Count + hdxlist.Count && p * 15 + i < hdlist.Count + hdxlist.Count + ldpylist.Count) {
 
                         string tempstr = ldpylist[p * 15 + i - hdlist.Count - hdxlist.Count];
 
@@ -115,8 +101,7 @@ namespace Ebada.Scgl.Lcgl
                             ex.SetFontBold(10 + i, 1, 10 + i, 1, true, 0, 7);
                         //break;
                     }
-                    if (p * 15 + i >= hdlist.Count + hdxlist.Count + ldpylist.Count)
-                    {
+                    if (p * 15 + i >= hdlist.Count + hdxlist.Count + ldpylist.Count) {
                         break;
                     }
                 }
@@ -154,20 +139,16 @@ namespace Ebada.Scgl.Lcgl
                 //}
                 //简要记录
                 int jymaxpage = Ecommon.GetPagecount(fyjyjllist.Count, 21);
-                if (pagecount - jymaxpage <= p)
-                {
-                    for (int jy = 0; jy < 21; jy++)
-                    {
+                if (pagecount - jymaxpage <= p) {
+                    for (int jy = 0; jy < 21; jy++) {
 
-                        if ((jymaxpage + p - pagecount) * 21 + jy >= fyjyjllist.Count)
-                        {
+                        if ((jymaxpage + p - pagecount) * 21 + jy >= fyjyjllist.Count) {
                             break;
                         }
                         string tempstr = fyjyjllist[(jymaxpage + p - pagecount) * 21 + jy];
                         ex.SetCellValue(tempstr, 30 + jy, 1);
 
-                        if (p == pagecount - jymaxpage && jy == 0)
-                        {
+                        if (p == pagecount - jymaxpage && jy == 0) {
                             //设定活动内容为粗体
                             ex.SetFontBold(30, 1, 30, 1, true, 0, 6);
                         }
@@ -208,20 +189,16 @@ namespace Ebada.Scgl.Lcgl
             string[] ary = obj.cjry.Split(jksign);
             int m = ary.Length / 8;
             int n = ary.Length % 8;
-            if (n > 0)
-            {
+            if (n > 0) {
                 m++;
             }
-            if (m == 0)
-            {
+            if (m == 0) {
                 m++;
             }
 
-            for (int i = 0; i < ary.Length; i++)
-            {
+            for (int i = 0; i < ary.Length; i++) {
                 int tempcol = col + 1 + i % 8;
-                if (i % 8 > 3)
-                {
+                if (i % 8 > 3) {
                     tempcol = col + 4 + (i % 8 - 3) * 2;
                 }
                 ex.SetCellValue(ary[i], row + 4 + i / 8, tempcol);
@@ -229,18 +206,14 @@ namespace Ebada.Scgl.Lcgl
             //缺席人员
             string[] ary2 = obj.qxry.Split(jksign);
 
-            for (int j = 0; j < ary2.Length; j++)
-            {
+            for (int j = 0; j < ary2.Length; j++) {
                 int tempcol = col + 2 + j % 7;
-                if (j > 2 && j < 7)
-                {
+                if (j > 2 && j < 7) {
                     tempcol = col + 4 + (j % 7 - 2) * 2;
                 }
-                if (j < 7)
-                {
+                if (j < 7) {
                     ex.SetCellValue(ary2[j], row + 7, tempcol);
-                }
-                else//缺席人员大于七个时
+                } else//缺席人员大于七个时
                 {
                     string tempstr = ex.ReadCellValue(row + 7, col + 12);
                     tempstr = tempstr + "/" + ary2[j];
@@ -267,6 +240,6 @@ namespace Ebada.Scgl.Lcgl
             ex.ShowExcel();
 
         }
-      
+
     }
 }
