@@ -9,60 +9,48 @@ using DevExpress.XtraEditors;
 using Ebada.Client.Platform;
 using System.Collections;
 
-namespace Ebada.Scgl.Lcgl
-{
-    public partial class UCmLPInquiryModleRecord : DevExpress.XtraEditors.XtraUserControl
-    {
+namespace Ebada.Scgl.Lcgl {
+    public partial class UCmLPInquiryModleRecord : DevExpress.XtraEditors.XtraUserControl {
 
-        public UCmLPInquiryModleRecord()
-        {
+        public UCmLPInquiryModleRecord() {
             InitializeComponent();
         }
 
-        private  string tableName;
-        public  string TableName
-        {
-            get
-            {
+        private string tableName;
+        public string TableName {
+            get {
                 return tableName;
             }
-            set
-            {
+            set {
                 tableName = value;
             }
         }
-        private  string keyobj;
-        public  string Keyobj
-        {
-            get
-            {
+        private string keyobj;
+        public string Keyobj {
+            get {
                 return keyobj;
             }
-            set
-            {
+            set {
                 keyobj = value;
             }
         }
         private string strSQL = "";
-        public string StrSQL
-        {
+        public string StrSQL {
 
-            set
-            {
+            set {
                 strSQL = value;
                 InitData(strSQL);
             }
         }
-        private void InitData(string strSQL)
-        {
+        private void InitData(string strSQL) {
 
             //gridViewOperation.RefreshData(str);
 
 
 
 
-            IList li = MainHelper.PlatformSqlMap.GetList("Select"+tableName+"List", strSQL);
-            
+            IList li = MainHelper.PlatformSqlMap.GetList("Select" + tableName + "List", strSQL);
+
             //foreach (DevExpress.XtraGrid.Columns.GridColumn gc in gridView1.Columns)
             //{
             //    gc.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
