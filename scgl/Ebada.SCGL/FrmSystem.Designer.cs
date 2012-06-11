@@ -59,11 +59,12 @@
             // 
             // picback
             // 
-            this.picback.Location = new System.Drawing.Point(2, 2);
+            this.picback.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picback.Location = new System.Drawing.Point(0, 0);
             this.picback.Name = "picback";
             this.picback.Properties.Appearance.BackColor = System.Drawing.Color.AliceBlue;
             this.picback.Properties.Appearance.Options.UseBackColor = true;
-            this.picback.Size = new System.Drawing.Size(906, 526);
+            this.picback.Size = new System.Drawing.Size(910, 530);
             this.picback.TabIndex = 0;
             // 
             // labAbout
@@ -363,7 +364,7 @@
             this.Controls.Add(this.labTime);
             this.Controls.Add(this.pictureEdit1);
             this.Controls.Add(this.picback);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

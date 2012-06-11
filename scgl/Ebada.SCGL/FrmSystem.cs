@@ -27,8 +27,8 @@ namespace Ebada.SCGL
         {
             
             InitializeComponent();
-            FormView.PaintAll(this);
-            FormView.PaintPicAll(picback);
+            //FormView.PaintAll(this);
+            //FormView.PaintPicAll(picback);
             FormView.PaintUP(pictureEdit1);
 
             this.Text = "绥化市郊农电信息管理平台";
