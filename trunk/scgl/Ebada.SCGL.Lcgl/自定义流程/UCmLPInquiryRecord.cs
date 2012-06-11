@@ -33,28 +33,22 @@ namespace Ebada.Scgl.Lcgl {
     public partial class UCmLPInquiryRecord : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<LP_Record> gridViewOperation;
         private static string strKind;
-        public static string GetParentKind()
-        {
+        public static string GetParentKind() {
             return strKind;
         }
         private static string status;
-        public static string Status
-        {
-            get
-            {
+        public static string Status {
+            get {
                 return status;
             }
-            set
-            {
+            set {
                 status = value;
             }
         }
         private string strSQL = "";
-        public  string StrSQL
-        {
-         
-            set
-            {
+        public string StrSQL {
+
+            set {
                 strSQL = value;
                 InitData(strSQL);
             }
@@ -67,12 +61,11 @@ namespace Ebada.Scgl.Lcgl {
         //private RepositoryItemImageEdit imageEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit2;
-        public UCmLPInquiryRecord()
-        {
+        public UCmLPInquiryRecord() {
             InitializeComponent();
             initImageList();
 
-            gridViewOperation = new GridViewOperation<LP_Record>(gridControl1, gridView1, barManager1,new frmLP());            
+            gridViewOperation = new GridViewOperation<LP_Record>(gridControl1, gridView1, barManager1, new frmLP());
             //gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeAdd);
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeEdit);
@@ -83,36 +76,30 @@ namespace Ebada.Scgl.Lcgl {
             //gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<LP_Record>(gridViewOperation_BeforeUpdate);
             initColumns();
         }
-     
-        
-        void gridViewOperation_AfterEdit(LP_Record obj)
-        {
+
+
+        void gridViewOperation_AfterEdit(LP_Record obj) {
 
         }
-        void gridViewOperation_AfterAdd(LP_Record obj)
-        {
+        void gridViewOperation_AfterAdd(LP_Record obj) {
 
         }
-        
-        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<LP_Record> e)
-        {
+
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<LP_Record> e) {
             Status = "edit";
         }
 
-        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<LP_Record> e)
-        {
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<LP_Record> e) {
         }
 
-        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<LP_Record> e)
-        {
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<LP_Record> e) {
             //e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
         }
         /// <summary>
         /// 设置隐藏列
         /// </summary>
         void initColumns() {
-            for (int i = 0; i < gridView1.Columns.Count; i++)
-            {
+            for (int i = 0; i < gridView1.Columns.Count; i++) {
                 gridView1.Columns[i].Caption = AttributeHelper.GetDisplayName(typeof(LP_Record), gridView1.Columns[i].FieldName);
             }
             gridView1.Columns["ParentID"].Visible = false;
@@ -123,7 +110,7 @@ namespace Ebada.Scgl.Lcgl {
             gridView1.Columns["ImageAttachment"].Visible = false;
             gridView1.Columns["Kind"].Visible = false;
 
-            gridView1.Columns["Number"].VisibleIndex=0 ;
+            gridView1.Columns["Number"].VisibleIndex = 0;
             gridView1.Columns["Number"].Width = 150;
             gridView1.Columns["Status"].VisibleIndex = 1;
             gridView1.Columns["Status"].Width = 100;
@@ -196,13 +183,11 @@ namespace Ebada.Scgl.Lcgl {
 
             }
         }
-        private void repositoryItemHyperLinkEdit2_Click(object sender, EventArgs e)
-        {
-            btEditfrm_ItemClick(sender,null);
-        
+        private void repositoryItemHyperLinkEdit2_Click(object sender, EventArgs e) {
+            btEditfrm_ItemClick(sender, null);
+
         }
-        private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
-        {
+        private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e) {
             int ihand = gridView1.FocusedRowHandle;
             if (ihand < 0)
                 return;
@@ -210,26 +195,21 @@ namespace Ebada.Scgl.Lcgl {
             Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(), new Size(1024, 768));
             string tempPath = Path.GetTempPath();
             string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".png";
-            if (objBitmap != null)
-            {
+            if (objBitmap != null) {
 
 
                 objBitmap.Save(tempfile, System.Drawing.Imaging.ImageFormat.Png);
-                try
-                {
+                try {
                     //System.Diagnostics.Process.Start("explorer.exe", tempfile);
                     SelectorHelper.Execute("rundll32.exe %Systemroot%\\System32\\shimgvw.dll,ImageView_Fullscreen " + tempfile);
-                }
-                catch
-                {
+                } catch {
 
 
                 }
             }
         }
-  
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<LP_Record> e)
-        {
+
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<LP_Record> e) {
             Status = "add";
             //if (string.IsNullOrEmpty(parentID)) {
             //    e.Cancel = true;
@@ -245,21 +225,19 @@ namespace Ebada.Scgl.Lcgl {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as LP_Record);
             //获得编辑按钮的状态
-            if (gridView1.FocusedRowHandle>-1)
-            {
-               DataRow dr = gridView1.GetFocusedDataRow();
+            if (gridView1.FocusedRowHandle > -1) {
+                DataRow dr = gridView1.GetFocusedDataRow();
 
-               this.btEditfrm.Caption = dr["Status"].ToString();
+                this.btEditfrm.Caption = dr["Status"].ToString();
             }
-            
-           
+
+
         }
         /// <summary>
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<LP_Record> GridViewOperation
-        {
+        public GridViewOperation<LP_Record> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -267,8 +245,7 @@ namespace Ebada.Scgl.Lcgl {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(LP_Record newobj)
-        {
+        void gridViewOperation_CreatingObjectEvent(LP_Record newobj) {
 
         }
         /// <summary>
@@ -279,8 +256,8 @@ namespace Ebada.Scgl.Lcgl {
         public string ParentID {
             get { return parentID; }
             set {
-                
-                string str=" where 1>1";
+
+                string str = " where 1>1";
                 if (value == "") {
                     str = "";
                     parentID = null;
@@ -300,40 +277,35 @@ namespace Ebada.Scgl.Lcgl {
         public WF_WorkFlow ParentObj {
             get { return parentObj; }
             set {
-                    string str=" where 1>1";
-                    parentObj = value;
-                    if (value == null) {
-                        str = "";
-                       // parentID = null;
-                       strKind = null;
-                    } else {
-                      // ParentID = value.LPID;
-                      
-                    }
-                    //gridViewOperation.RefreshData(str);
-                    
+                string str = " where 1>1";
+                parentObj = value;
+                if (value == null) {
+                    str = "";
+                    // parentID = null;
+                    strKind = null;
+                } else {
+                    // ParentID = value.LPID;
+
+                }
+                //gridViewOperation.RefreshData(str);
+
             }
         }
-        private void InitData(string strSQL)
-        {
-                    
+        private void InitData(string strSQL) {
+
             //gridViewOperation.RefreshData(str);
 
 
             if (gridtable != null) gridtable.Rows.Clear();
 
             IList<LP_Record> li = MainHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", strSQL);
-            if (li.Count != 0)
-            {
+            if (li.Count != 0) {
                 gridtable = ConvertHelper.ToDataTable((IList)li);
 
-            }
-            else
-            {
+            } else {
                 if (gridtable == null) gridtable = new DataTable();
-            }         
-            foreach (DevExpress.XtraGrid.Columns.GridColumn gc in gridView1.Columns)
-            {
+            }
+            foreach (DevExpress.XtraGrid.Columns.GridColumn gc in gridView1.Columns) {
                 gc.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
                 gc.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
 
@@ -341,24 +313,21 @@ namespace Ebada.Scgl.Lcgl {
             //if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(Bitmap));
             if (!gridtable.Columns.Contains("Image")) gridtable.Columns.Add("Image", typeof(string));
             int i = 0;
-            for (i = 0; i < gridtable.Rows.Count; i++)
-            {
+            for (i = 0; i < gridtable.Rows.Count; i++) {
 
                 //gridtable.Rows[i]["Image"] = RecordWorkTask.WorkFlowBitmap(gridtable.Rows[i]["ID"].ToString(), imageEdit1.PopupFormSize);
                 gridtable.Rows[i]["Image"] = "查看";
             }
 
-            gridControl1.DataSource = gridtable; 
+            gridControl1.DataSource = gridtable;
         }
-        private void btAddfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void btAddfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (MainHelper.UserOrg == null) return;
 
             if (!RecordWorkTask.HaveRunNewGZPRole(strKind, MainHelper.User.UserID)) return;
-            
-            object obj= RecordWorkTask.GetNewWorkTaskModle(strKind, MainHelper.User.UserID);
-            if (obj == null)
-            {
+
+            object obj = RecordWorkTask.GetNewWorkTaskModle(strKind, MainHelper.User.UserID);
+            if (obj == null) {
                 MsgBox.ShowWarningMessageBox("出错，未找到对应的模块，请检查模板设置!");
                 return;
             }
@@ -366,25 +335,22 @@ namespace Ebada.Scgl.Lcgl {
             lpr.ID = "N" + lpr.CreateID();
             lpr.Kind = strKind;
             lpr.CreateTime = DateTime.Now.ToString();
-            if (obj is frmLP)
-            {
+            if (obj is frmLP) {
                 frmLP frm = new frmLP();
-               
+
                 frm.Status = "add";
                 frm.Kind = strKind;
                 string[] strtemp = RecordWorkTask.RunNewGZPRecord(lpr.ID, strKind, MainHelper.User.UserID, false);
-                
+
                 //frm.ParentTemple = RecordWorkTask.GetNewWorkTaskTemple(strKind, MainHelper.User.UserID);
-                
+
                 //frm.RecordWorkFlowData = RecordWorkTask.GetGZPRecordSartWorkData(ParentObj.FlowCaption, MainHelper.User.UserID);
                 frm.RecordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
-                if (frm.RecordWorkFlowData == null)
-                {
+                if (frm.RecordWorkFlowData == null) {
                     MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
                 }
-                frm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(frm.RecordWorkFlowData,lpr);
-                if (frm.ParentTemple == null)
-                {
+                frm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(frm.RecordWorkFlowData, lpr);
+                if (frm.ParentTemple == null) {
                     MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
                 }
                 lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, frm.ParentTemple.LPID);
@@ -393,24 +359,19 @@ namespace Ebada.Scgl.Lcgl {
                 //frm.RowData = lpr;
                 frm.CurrRecord = lpr;
                 MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
+                if (frm.ShowDialog() == DialogResult.OK) {
                     InitData(strSQL);
                 }
-            }
-            else
-            {
+            } else {
 
 
                 string[] strtemp = RecordWorkTask.RunNewGZPRecord(lpr.ID, strKind, MainHelper.User.UserID, false);
-                if (strtemp[0].IndexOf("未提交至任何人") > -1)
-                    {
-                        MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
-                        return;
-                    }
+                if (strtemp[0].IndexOf("未提交至任何人") > -1) {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
                 DataTable recordWorkFlowData = RecordWorkTask.GetRecordWorkFlowData(lpr.ID, MainHelper.User.UserID);
-                if (recordWorkFlowData == null)
-                {
+                if (recordWorkFlowData == null) {
                     MsgBox.ShowWarningMessageBox("出错，未找到该流程信息，请检查模板设置!");
 
                 }
@@ -419,61 +380,51 @@ namespace Ebada.Scgl.Lcgl {
                 MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
                 if (obj.GetType().GetProperty("IsWorkflowCall") != null)
                     obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
-                else
-                {
+                else {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
                 if (obj.GetType().GetProperty("CurrRecord") != null)
                     obj.GetType().GetProperty("CurrRecord").SetValue(obj, lpr, null);
-                else
-                {
+                else {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
                 if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
                     obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, recordWorkFlowData, null);
-                else
-                {
+                else {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
                 if (obj.GetType().GetProperty("ParentTemple") != null)
                     obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr), null);
-                else
-                {
+                else {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
-                if (obj is UserControl)
-                {
+                if (obj is UserControl) {
                     FormBase dlg = new FormBase();
                     dlg.Text = ((UserControl)obj).Name;
                     dlg.MdiParent = MainHelper.MainForm;
                     dlg.Controls.Add((UserControl)obj);
                     ((UserControl)obj).Dock = DockStyle.Fill;
                     dlg.Show();
-                }
-                else
-                    if (obj is Form)
-                    {
-                        if (obj is frmyxfxWorkFlowEdit)
-                        {
+                } else
+                    if (obj is Form) {
+                        if (obj is frmyxfxWorkFlowEdit) {
                             PJ_03yxfx yxfx = new PJ_03yxfx();
                             yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
                             yxfx.OrgName = MainHelper.UserOrg.OrgName;
-                            if(parentObj.FlowCaption.IndexOf("定期分析")>0)
+                            if (parentObj.FlowCaption.IndexOf("定期分析") > 0)
                                 yxfx.type = "定期分析";
                             else
                                 if (parentObj.FlowCaption.IndexOf("专题分析") > 0)
                                     yxfx.type = "专题分析";
-                            ((frmyxfxWorkFlowEdit)obj).RecordStatus = 0; 
+                            ((frmyxfxWorkFlowEdit)obj).RecordStatus = 0;
                             yxfx.rq = DateTime.Now;
                             ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
 
-                        }
-                        else if (obj is frmsbqxWorkFlowEdit)
-                        {
+                        } else if (obj is frmsbqxWorkFlowEdit) {
                             PJ_qxfl qxfl = new PJ_qxfl();
                             qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                             qxfl.OrgName = MainHelper.UserOrg.OrgName;
@@ -485,24 +436,20 @@ namespace Ebada.Scgl.Lcgl {
                         ((Form)obj).ShowDialog();
                     }
                 InitData(strSQL);
-               
+
             }
             //获得编辑按钮的状态
             this.btEditfrm.Caption = lpr.Status;
         }
-       
-        private void btEditfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (gridView1.FocusedRowHandle<0)
-            {
+
+        private void btEditfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (gridView1.FocusedRowHandle < 0) {
                 return;
             }
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
-            foreach (DataColumn dc in gridtable.Columns)
-            {
-                if (dc.ColumnName != "Image")
-                {
+            foreach (DataColumn dc in gridtable.Columns) {
+                if (dc.ColumnName != "Image") {
                     if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
                         currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
                     else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
@@ -514,93 +461,76 @@ namespace Ebada.Scgl.Lcgl {
 
             if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
             object obj = RecordWorkTask.GetWorkTaskModle(dt);
-            if (obj == null)
-            {
+            if (obj == null) {
                 return;
             }
 
-            if (obj is frmLP)
-            {
+            if (obj is frmLP) {
                 frmLP frm = new frmLP();
                 frm.Status = "edit";
-                
-                
+
+
                 frm.CurrRecord = currRecord;
 
 
                 frm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
-                if (frm.ParentTemple == null)
-                {
+                if (frm.ParentTemple == null) {
                     MsgBox.ShowWarningMessageBox("出错，未找到该节点关联的表单，请检查模板设置!");
                     //return;
                 }
 
                 frm.Kind = strKind;
                 frm.RecordWorkFlowData = dt;
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
+                if (frm.ShowDialog() == DialogResult.OK) {
                     InitData(strSQL);
                 }
-            }
-            else
-            {
+            } else {
 
-                
-                
+
+
                 if (obj.GetType().GetProperty("IsWorkflowCall") != null)
                     obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
-                else
-                {
+                else {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
                 if (obj.GetType().GetProperty("CurrRecord") != null)
                     obj.GetType().GetProperty("CurrRecord").SetValue(obj, currRecord, null);
-                else
-                {
+                else {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
                 if (obj.GetType().GetProperty("RecordWorkFlowData") != null)
                     obj.GetType().GetProperty("RecordWorkFlowData").SetValue(obj, dt, null);
-                else
-                {
+                else {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
                 if (obj.GetType().GetProperty("ParentTemple") != null)
                     obj.GetType().GetProperty("ParentTemple").SetValue(obj, RecordWorkTask.GetWorkTaskTemple(dt, currRecord), null);
-                else
-                {
+                else {
                     MsgBox.ShowWarningMessageBox("模块不支持，请咨询开发人员!");
                     return;
                 }
-                if (obj is UserControl)
-                {
-                    
+                if (obj is UserControl) {
+
                     FormBase dlg = new FormBase();
                     dlg.Text = ((UserControl)obj).Name;
                     dlg.MdiParent = MainHelper.MainForm;
                     dlg.Controls.Add((UserControl)obj);
                     ((UserControl)obj).Dock = DockStyle.Fill;
                     dlg.Show();
-                }
-                else
-                    if (obj is Form)
-                    {
-                        if (obj is frmyxfxWorkFlowEdit)
-                        {
+                } else
+                    if (obj is Form) {
+                        if (obj is frmyxfxWorkFlowEdit) {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
-                             +" and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'"
+                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'"
                                + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
                             PJ_03yxfx yxfx = new PJ_03yxfx();
-                            if (li.Count > 0)
-                            {
+                            if (li.Count > 0) {
                                 yxfx = MainHelper.PlatformSqlMap.GetOneByKey<PJ_03yxfx>(li[0].ModleRecordID);
 
-                            }
-                            else
-                            {
+                            } else {
                                 yxfx = new PJ_03yxfx();
                                 yxfx.OrgCode = MainHelper.UserOrg.OrgCode;
                                 yxfx.OrgName = MainHelper.UserOrg.OrgName;
@@ -613,8 +543,7 @@ namespace Ebada.Scgl.Lcgl {
                                 yxfx.rq = DateTime.Now;
                                 ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
                             }
-                            switch (dt.Rows[0]["TaskInsCaption"].ToString())
-                            {
+                            switch (dt.Rows[0]["TaskInsCaption"].ToString()) {
                                 case "填写":
                                     ((frmyxfxWorkFlowEdit)obj).RecordStatus = 0;
                                     break;
@@ -629,20 +558,15 @@ namespace Ebada.Scgl.Lcgl {
                             yxfx.rq = DateTime.Now;
                             ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
 
-                        }
-                        else if (obj is frmsbqxWorkFlowEdit)
-                        {
+                        } else if (obj is frmsbqxWorkFlowEdit) {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
                              + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'"
                                + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
                             PJ_qxfl qxfl = new PJ_qxfl();
-                            if (li.Count > 0)
-                            {
+                            if (li.Count > 0) {
                                 qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
 
-                            }
-                            else
-                            {
+                            } else {
                                 qxfl = new PJ_qxfl();
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
@@ -657,55 +581,45 @@ namespace Ebada.Scgl.Lcgl {
                 InitData(strSQL);
             }
             //获得编辑按钮的状态
-            this.btEditfrm.Caption= currRecord.Status;
+            this.btEditfrm.Caption = currRecord.Status;
         }
 
-        private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
-        {
+        private void gridView1_ShowingEditor(object sender, CancelEventArgs e) {
             if (gridView1.FocusedColumn.FieldName != "Image" && gridView1.FocusedColumn.FieldName != "Status")
                 e.Cancel = true;
         }
 
-        private void btDeletefrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void btDeletefrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (MainHelper.UserOrg == null) return;
 
             if (gridView1.FocusedRowHandle < 0) return;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认删除 【" + dr["Number"].ToString() + "】?") != DialogResult.OK)
-            {
+            if (MsgBox.ShowAskMessageBox("是否确认删除 【" + dr["Number"].ToString() + "】?") != DialogResult.OK) {
                 return;
             }
 
-            try
-            {
+            try {
 
 
                 RecordWorkTask.DeleteRecord(dr["ID"].ToString());
                 MainHelper.PlatformSqlMap.DeleteByWhere<LP_Record>(" where id ='" + dr["ID"].ToString() + "'");
                 InitData(strSQL);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Console.WriteLine(ex.Message);
             }
         }
 
-        private void barBack_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void barBack_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle < 0) return;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认退回 【" + dr["Number"].ToString() + "】?") != DialogResult.OK)
-            {
+            if (MsgBox.ShowAskMessageBox("是否确认退回 【" + dr["Number"].ToString() + "】?") != DialogResult.OK) {
                 return;
             }
             LP_Record currRecord = new LP_Record();
-            foreach (DataColumn dc in gridtable.Columns)
-            {
-                if (dc.ColumnName != "Image")
-                {
+            foreach (DataColumn dc in gridtable.Columns) {
+                if (dc.ColumnName != "Image") {
                     if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
                         currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
                     else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
@@ -715,29 +629,23 @@ namespace Ebada.Scgl.Lcgl {
             }
 
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
-           
-            if (dt.Rows.Count > 0)
-            {
-                if (!RecordWorkTask.HaveWorkFlowBackRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
-                {
+
+            if (dt.Rows.Count > 0) {
+                if (!RecordWorkTask.HaveWorkFlowBackRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString())) {
                     MsgBox.ShowWarningMessageBox("当前节点不能退回.设置里没有允许退回，退回失败!");
                     return;
                 }
 
-                if (RecordWorkTask.CheckOnRiZhi(dt))
-                {
+                if (RecordWorkTask.CheckOnRiZhi(dt)) {
 
                     RecordWorkTask.CreatRiZhi(dt, null, currRecord.ID, new object[] { currRecord });
 
                 }
                 string strmes = RecordWorkTask.RunWorkFlowBack(MainHelper.User.UserID, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString());
-                if (strmes.IndexOf("未提交至任何人") > -1)
-                {
+                if (strmes.IndexOf("未提交至任何人") > -1) {
                     MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
                     return;
-                }
-                else
-                {
+                } else {
 
                     currRecord.LastChangeTime = DateTime.Now.ToString();
                     currRecord.Status = RecordWorkTask.GetWorkFlowTaskCaption(dt.Rows[0]["WorkTaskInsId"].ToString());
@@ -749,22 +657,17 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
                 this.btEditfrm.Caption = currRecord.Status;
-            }
-            else
-            {
+            } else {
                 MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,退回失败!");
             }
         }
 
-        private void barChange_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void barChange_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle < 0) return;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
-            foreach (DataColumn dc in gridtable.Columns)
-            {
-                if (dc.ColumnName != "Image")
-                {
+            foreach (DataColumn dc in gridtable.Columns) {
+                if (dc.ColumnName != "Image") {
                     if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
                         currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
                     else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
@@ -772,33 +675,26 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
             }
-            if (currRecord.Kind != "yzgzp")
-            {
+            if (currRecord.Kind != "yzgzp") {
                 MsgBox.ShowTipMessageBox("只有一种票可以变更负责人，变更负责人失败!");
                 return;
             }
             //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认变更 【" + dr["Number"].ToString() + "】?") != DialogResult.OK)
-            {
+            if (MsgBox.ShowAskMessageBox("是否确认变更 【" + dr["Number"].ToString() + "】?") != DialogResult.OK) {
                 return;
             }
 
-            if (currRecord.Status != "确认")
-            {
+            if (currRecord.Status != "确认") {
                 MsgBox.ShowTipMessageBox("当前节点不能变更负责人，变更负责人失败!");
                 return;
             }
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
-            if (dt.Rows.Count > 0)
-            {
-                string strmes = RecordWorkTask.RunGZPWorkFlowChange(MainHelper.User.UserID, currRecord, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString(),"变更");
-                if (strmes.IndexOf("未提交至任何人") > -1)
-                {
+            if (dt.Rows.Count > 0) {
+                string strmes = RecordWorkTask.RunGZPWorkFlowChange(MainHelper.User.UserID, currRecord, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString(), "变更");
+                if (strmes.IndexOf("未提交至任何人") > -1) {
                     MsgBox.ShowTipMessageBox("更改失败,请检查流程模板和组织机构配置是否正确!");
                     return;
-                }
-                else
-                {
+                } else {
 
 
                     InitData(strSQL);
@@ -806,27 +702,21 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
                 this.btEditfrm.Caption = currRecord.Status;
-            }
-            else
-            {
+            } else {
                 MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,变更负责人失败!");
             }
         }
 
-        private void barSus_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void barSus_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle < 0) return;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认 【" + dr["Number"].ToString() + "】 延期?") != DialogResult.OK)
-            {
+            if (MsgBox.ShowAskMessageBox("是否确认 【" + dr["Number"].ToString() + "】 延期?") != DialogResult.OK) {
                 return;
             }
             LP_Record currRecord = new LP_Record();
-            foreach (DataColumn dc in gridtable.Columns)
-            {
-                if (dc.ColumnName != "Image")
-                {
+            foreach (DataColumn dc in gridtable.Columns) {
+                if (dc.ColumnName != "Image") {
                     if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
                         currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
                     else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
@@ -834,46 +724,33 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
             }
-            if (currRecord.Status != "确认")
-            {
+            if (currRecord.Status != "确认") {
                 MsgBox.ShowTipMessageBox("当前节点不能延期，延期失败!");
                 return;
             }
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
-            if (dt.Rows.Count > 0)
-            {
+            if (dt.Rows.Count > 0) {
                 string strmes = RecordWorkTask.RunGZPWorkFlowChange(MainHelper.User.UserID, currRecord, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString(), "延期");
-                if (strmes.IndexOf("未提交至任何人") > -1)
-                {
+                if (strmes.IndexOf("未提交至任何人") > -1) {
                     MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
                     return;
-                }
-                else
-                {
+                } else {
 
 
                     InitData(strSQL);
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
-            }
-            else
-            {
+            } else {
                 MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,延期失败!");
             }
         }
-        private string CheckFileName(string filename)
-        {
-            if (!File.Exists(filename + ".xls"))
-            {
+        private string CheckFileName(string filename) {
+            if (!File.Exists(filename + ".xls")) {
                 return filename + ".xls";
-            }
-            else
-            {
-                for (int i = 0; ; i++)
-                {
-                    if (!File.Exists(filename + "(" + i.ToString() + ").xls"))
-                    {
+            } else {
+                for (int i = 0; ; i++) {
+                    if (!File.Exists(filename + "(" + i.ToString() + ").xls")) {
                         return filename + "(" + i.ToString() + ").xls";
                     }
                 }
@@ -881,17 +758,14 @@ namespace Ebada.Scgl.Lcgl {
             }
             return "";
         }
-        private void barReExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void barReExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle < 0) return;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
             int i = 0;
             //string exploreKind = "";
-            foreach (DataColumn dc in gridtable.Columns)
-            {
-                if (dc.ColumnName != "Image")
-                {
+            foreach (DataColumn dc in gridtable.Columns) {
+                if (dc.ColumnName != "Image") {
                     if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
                         currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
                     else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
@@ -901,48 +775,37 @@ namespace Ebada.Scgl.Lcgl {
             }
             DataTable dt = RecordWorkTask.GetRecordWorkFlowData(dr["ID"].ToString(), MainHelper.User.UserID);
             IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
-            if (currRecord.Status != "存档")
-            {
-                
-                if (dt.Rows.Count > 0)
-                {
-                    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
-                    {
-                        if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID))
-                        {
+            if (currRecord.Status != "存档") {
+
+                if (dt.Rows.Count > 0) {
+                    if (!RecordWorkTask.HaveWorkFlowAllExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString())) {
+                        if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) {
                             MsgBox.ShowWarningMessageBox("没有运行权限，导出失败!");
                             return;
                         }
-                        if (!RecordWorkTask.HaveWorkFlowExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString()))
-                        {
+                        if (!RecordWorkTask.HaveWorkFlowExploreRole(dt.Rows[0]["WorkTaskId"].ToString(), dt.Rows[0]["WorkFlowId"].ToString())) {
                             MsgBox.ShowWarningMessageBox("没有导出权限，导出失败!");
                             return;
                         }
 
                     }
-                }
-                else
-                {
+                } else {
                     MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,导出失败!");
                     return;
                 }
             }//流程没结束
-            else if (!RecordWorkTask.HaveFlowEndExploreRole(currRecord.Kind))
-            {
+            else if (!RecordWorkTask.HaveFlowEndExploreRole(currRecord.Kind)) {
                 MsgBox.ShowTipMessageBox("流程结束后不允许导出,导出失败!");
                 return;
 
             }//流程结束
-            if (currRecord.ID.IndexOf("N") == -1 || parentObj.FlowCaption.IndexOf("定期分析") > -1 || parentObj.FlowCaption.IndexOf("专题分析") > -1)
-            { 
+            if (currRecord.ID.IndexOf("N") == -1 || parentObj.FlowCaption.IndexOf("定期分析") > -1 || parentObj.FlowCaption.IndexOf("专题分析") > -1) {
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 string fname = "";
                 saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
                     fname = saveFileDialog1.FileName;
-                    try
-                    {
+                    try {
 
                         DSOFramerControl ds1 = new DSOFramerControl();
 
@@ -953,9 +816,7 @@ namespace Ebada.Scgl.Lcgl {
                             return;
 
                         System.Diagnostics.Process.Start(fname);
-                    }
-                    catch (Exception ex)
-                    {
+                    } catch (Exception ex) {
                         Console.WriteLine(ex.Message);
                         MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
 
@@ -965,36 +826,29 @@ namespace Ebada.Scgl.Lcgl {
             }//是旧记录
             Hashtable templehs = RecordWorkTask.GetExploerLP_TempleList(dt, currRecord);
 
-            if (templehs.Count > 1)
-            {
+            if (templehs.Count > 1) {
                 DataTable templedt = new DataTable();
                 templedt.Columns.Add("Checked", typeof(bool));
                 templedt.Columns.Add("Index", typeof(string));
                 templedt.Columns.Add("Name", typeof(string));
                 ArrayList akeys = new ArrayList(templehs.Keys);
-                for (i = 0; i < akeys.Count; i++)
-                {
+                for (i = 0; i < akeys.Count; i++) {
                     object obj = akeys[i];
                     DataRow templedr = templedt.NewRow();
-                    if (obj is LP_Temple)
-                    {
+                    if (obj is LP_Temple) {
                         WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkTask>(templehs[akeys[i]]);
-                        if (wt != null)
-                        {
+                        if (wt != null) {
                             templedr["Name"] = wt.TaskCaption + "-申报表单";
-                            templedr["Checked"] =1;
+                            templedr["Checked"] = 1;
                             templedr["Index"] = i;
                             templedt.Rows.Add(templedr);
 
                         }
 
-                    }
-                    else if (obj is string)
-                    {
+                    } else if (obj is string) {
 
                         LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(templehs[akeys[i]]);
-                        if (taskTemple != null)
-                        {
+                        if (taskTemple != null) {
                             templedr["Name"] = taskTemple.CellName;
                             templedr["Checked"] = 1;
                             templedr["Index"] = i;
@@ -1005,37 +859,29 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 frmExploreSelect frmes = new frmExploreSelect();
                 frmes.SourceDt = templedt;
-                if (frmes.ShowDialog() == DialogResult.OK && frmes.CheckIndehs.Count > 0)
-                {
+                if (frmes.ShowDialog() == DialogResult.OK && frmes.CheckIndehs.Count > 0) {
 
                     string fname = "";
                     FolderBrowserDialog fbd = new FolderBrowserDialog();
-                    if (fbd.ShowDialog() == DialogResult.OK)
-                    {
+                    if (fbd.ShowDialog() == DialogResult.OK) {
                         fname = fbd.SelectedPath + "\\";
                         ArrayList checkkeys = new ArrayList(frmes.CheckIndehs.Keys);
-                        for (i = 0; i < checkkeys.Count; i++)
-                        {
+                        for (i = 0; i < checkkeys.Count; i++) {
                             object obj = akeys[Convert.ToInt32(checkkeys[i])];
                             DSOFramerControl ds1 = new DSOFramerControl();
-                            try
-                            {
-                                if (obj is LP_Temple)
-                                {
+                            try {
+                                if (obj is LP_Temple) {
 
                                     ds1.FileDataGzip = ((LP_Temple)obj).DocContent;
                                     //ds1.FileOpen(ds1.FileName);
                                     ds1.FileSave(CheckFileName(fname + frmes.CheckIndehs[checkkeys[i]]), true);
                                     ds1.FileClose();
 
-                                }
-                                else if (obj is string)
-                                {
+                                } else if (obj is string) {
 
                                     LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(templehs[akeys[i]]);
-                                    if (taskTemple != null)
-                                    {
-                                        RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId,true);
+                                    if (taskTemple != null) {
+                                        RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, true);
                                         ds1.FileDataGzip = taskTemple.DocContent;
                                         //ds1.FileOpen(ds1.FileName);
                                         ds1.FileSave(CheckFileName(fname + taskTemple.CellName), true);
@@ -1043,14 +889,12 @@ namespace Ebada.Scgl.Lcgl {
 
                                     }
                                 }
-                            }
-                            catch (Exception ex)
-                            {
+                            } catch (Exception ex) {
                                 Console.WriteLine(ex.Message);
                                 MsgBox.ShowWarningMessageBox("无法保存" + frmes.CheckIndehs[checkkeys[i]] + "。请用其他文件名保存文件，或将文件存至其他位置。");
-                               
+
                             }
-                           
+
 
                         }//循环所有选择的表单
                         if (MsgBox.ShowAskMessageBox("导出成功，是否所在文件夹？") != DialogResult.OK)
@@ -1059,37 +903,29 @@ namespace Ebada.Scgl.Lcgl {
                     }
                 }
             }//表单不止一个
-            else
-            {
+            else {
                 ArrayList akeys = new ArrayList(templehs.Keys);
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 string fname = "";
                 saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
                     fname = saveFileDialog1.FileName;
-                    try
-                    {
-                       
+                    try {
+
                         DSOFramerControl ds1 = new DSOFramerControl();
-                        if (akeys[0] is LP_Temple)
-                        {
+                        if (akeys[0] is LP_Temple) {
                             ds1.FileDataGzip = ((LP_Temple)akeys[0]).DocContent;
                             ds1.FileSave(fname, true);
                             ds1.FileClose();
-                        }
-                        else if (akeys[0] is string)
-                        {
+                        } else if (akeys[0] is string) {
 
                             LP_Temple taskTemple = MainHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(akeys[0]);
-                            if (taskTemple != null)
-                            {
+                            if (taskTemple != null) {
 
                                 WF_WorkTaskControls wtc = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskControls>(" where WorkflowId='" + wf[0].WorkFlowId
                                 + "' and WorktaskId='" + wf[0].WorkTaskId + "'");
-                                if (wtc !=null)
-                                { 
-                                
+                                if (wtc != null) {
+
                                 }
                                 RecordWorkTask.iniTableRecordData(ref taskTemple, currRecord, wf[0].WorkFlowId, wf[0].WorkFlowInsId, true);
                                 ds1.FileDataGzip = taskTemple.DocContent;
@@ -1102,9 +938,7 @@ namespace Ebada.Scgl.Lcgl {
                             return;
 
                         System.Diagnostics.Process.Start(fname);
-                    }
-                    catch (Exception ex)
-                    {
+                    } catch (Exception ex) {
                         Console.WriteLine(ex.Message);
                         MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
                         return;
@@ -1113,16 +947,13 @@ namespace Ebada.Scgl.Lcgl {
             }
 
         }
-       
-        private void barReChange_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+
+        private void barReChange_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle < 0) return;
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
             LP_Record currRecord = new LP_Record();
-            foreach (DataColumn dc in gridtable.Columns)
-            {
-                if (dc.ColumnName != "Image")
-                {
+            foreach (DataColumn dc in gridtable.Columns) {
+                if (dc.ColumnName != "Image") {
                     if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
                         currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
                     else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
@@ -1130,9 +961,8 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
             }
-             DataTable dt = RecordWorkTask.GetRecordWorkFlowData2(dr["ID"].ToString());
-            if (dt.Rows.Count > 0)
-            {
+            DataTable dt = RecordWorkTask.GetRecordWorkFlowData2(dr["ID"].ToString());
+            if (dt.Rows.Count > 0) {
                 frmWFChange fw = new frmWFChange();
                 fw.Text = dt.Rows[0]["FlowInsCaption"].ToString() + "流程跳转";
                 fw.groupBox1.Text = dt.Rows[0]["FlowInsCaption"].ToString();
@@ -1140,39 +970,31 @@ namespace Ebada.Scgl.Lcgl {
                 if (fw.ShowDialog() != DialogResult.OK)
                     return;
                 //请求确认
-                if (MsgBox.ShowAskMessageBox("确认更改 【" + dr["Number"].ToString() + "】状态为"+fw.WorkTaskCaption  +"?") != DialogResult.OK)
-                {
+                if (MsgBox.ShowAskMessageBox("确认更改 【" + dr["Number"].ToString() + "】状态为" + fw.WorkTaskCaption + "?") != DialogResult.OK) {
                     return;
                 }
                 string strmes = RecordWorkTask.RunGZPWorkFlowChange(MainHelper.User.UserID, currRecord, dt.Rows[0]["OperatorInsId"].ToString(), dt.Rows[0]["WorkTaskInsId"].ToString(), fw.WorkTaskCaption);
-                if (strmes.IndexOf("未提交至任何人") > -1)
-                {
+                if (strmes.IndexOf("未提交至任何人") > -1) {
                     MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
                     return;
-                }
-                else
-                {
+                } else {
 
 
                     InitData(strSQL);
                     MsgBox.ShowTipMessageBox(strmes);
 
                 }
-            }
-            else
-            {
+            } else {
                 MsgBox.ShowTipMessageBox("无当前用户可以操作此记录的流程信息,延期失败!");
             }
         }
 
-        private void btRefresh1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void btRefresh1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             InitData(strSQL);
 
         }
 
-        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.ViewFocusEventArgs e)
-        {
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.ViewFocusEventArgs e) {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as LP_Record);
             //获得编辑按钮的状态
