@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 
 namespace Ebada.Scgl.Lcgl {
     class GisHelper {
@@ -26,6 +27,11 @@ namespace Ebada.Scgl.Lcgl {
         /// <param name="tqCode">台区代码</param>
         internal static void ShowDyt(string tqCode) {
             Ebada.Client.Platform.MainHelper.Execute(gislib, gisclass, "ShowDyt", new object[] { tqCode });
+        }
+
+        internal static System.Drawing.Bitmap GetDytqMap(string tqcode, int p, int p_3) {
+            object obj =Ebada.Client.Platform.MainHelper.Execute(gislib, gisclass, "GetDytqMap", new object[] { tqcode, p, p_3 });
+            return obj as Bitmap;
         }
     }
 }
