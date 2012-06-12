@@ -162,21 +162,28 @@ namespace Ebada.Scgl.Yxgl {
                 kg = ot.ToString();
             }
             ex.SetCellValue(kg, 14, 8);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle='油开关'and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+        //    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle='油开关'and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%DW%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 kg = ot.ToString();
             }
             ex.SetCellValue(kg, 15, 8);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle='真空开关'and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%ZW%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 kg = ot.ToString();
             }
             ex.SetCellValue(kg, 16, 8);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle='SF6开关'and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%SF6%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 kg = ot.ToString();
             }
             ex.SetCellValue(kg, 17, 8);
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%智能%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            if (ot != null)
+            {
+                kg = ot.ToString();
+            }
+            ex.SetCellValue(kg, 18, 8);
 
             //台区
             ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqRowCount", "Where   xlCode ='" + obj.LineCode + "'");
@@ -221,31 +228,33 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(blq, 17, 13);
             //绝缘子
             string jyuz = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
-            if (ot != null) {
+          //  ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where (sbname='高压立瓶' or sbname='高压悬垂'  or sbname='高压针式绝缘子' or sbname='10KV楔型耐张') and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            if (ot != null)
+            {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 21, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子'and sbModle='XP-7C' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where (sbname='高压立瓶' or sbname='高压针式绝缘子')and (sbModle like  '%fsw%' or sbModle like  '%xp-%') and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 22, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子'and sbModle='P-15T' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where (sbname='高压悬垂' or sbname='高压针式绝缘子')and (sbModle like  '%fp%' or sbModle like  '%p-%') and sbModle='P-15T' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 23, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子'and sbModle='FSW6-10/70' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='10KV楔型耐张'and sbModle='j10' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 24, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子'and sbModle='FPQ2W-10/3T20' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
-            if (ot != null) {
-                jyuz = ot.ToString();
-            }
-            ex.SetCellValue(jyuz, 25, 13);
+          //  ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子'and sbModle='FPQ2W-10/3T20' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+           // if (ot != null) {
+           //     jyuz = ot.ToString();
+          //  }
+          //  ex.SetCellValue(jyuz, 25, 13);
 
             ex.ShowExcel();
             Microsoft.Office.Interop.Excel.Worksheet ws = ex.MyExcel.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
