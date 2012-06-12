@@ -55,7 +55,7 @@ namespace Ebada.Scgl.Gis {
         }
         public string debugMsg = "";
         private void InitializeComponent() {
-            
+            this.Position = new PointLatLng(46.38, 126.59);//绥化
             this.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
             //MapScaleInfoEnabled = true;
             initOverlay();
