@@ -205,7 +205,7 @@ namespace Ebada.Scgl.Lcgl
                 ParentObj = org;
                 repositoryItemComboBox1.Properties.Items.Clear();
                 IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "负责人"));
+                string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明细表' and sx like '%{0}%' and nr!=''", "负责人"));
                 if (strlist.Count > 0)
                     repositoryItemComboBox1.Properties.Items.AddRange(strlist);
                 else
