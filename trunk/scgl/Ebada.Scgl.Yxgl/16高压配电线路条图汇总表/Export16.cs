@@ -240,7 +240,7 @@ namespace Ebada.Scgl.Yxgl {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 22, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where (sbname='高压悬垂' or sbname='高压针式绝缘子')and (sbModle like  '%fsw%' or sbModle like  '%xp-%') and sbModle='P-15T' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where  (sbname='高压悬垂' or sbname='高压针式绝缘子')and (sbModle like  '%fsw%' or sbModle like  '%xp-%')  and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
