@@ -80,7 +80,7 @@ namespace Ebada.Scgl.Lcgl
 
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "局属线路"));
+            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明细表' and sx like '%{0}%' and nr!=''", "局属线路"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
@@ -94,7 +94,7 @@ namespace Ebada.Scgl.Lcgl
             
             comboBoxEdit2.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "自建线路"));
+            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明细表' and sx like '%{0}%' and nr!=''", "自建线路"));
             if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
@@ -107,7 +107,7 @@ namespace Ebada.Scgl.Lcgl
             }
             comboBoxEdit3.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "公用台区"));
+            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明细表' and sx like '%{0}%' and nr!=''", "公用台区"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
@@ -120,7 +120,7 @@ namespace Ebada.Scgl.Lcgl
             }
             comboBoxEdit4.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明白表' and sx like '%{0}%' and nr!=''", "专业台区"));
+            string.Format("select nr from pj_dyk where  dx='线路设备责任区划分明细表' and sx like '%{0}%' and nr!=''", "专业台区"));
             if (strlist.Count > 0)
                 comboBoxEdit4.Properties.Items.AddRange(strlist);
             else
@@ -184,7 +184,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("线路设备责任区划分明白表", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("线路设备责任区划分明细表", "备注", memoEdit3);
         }
 
        
