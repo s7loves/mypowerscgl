@@ -309,7 +309,7 @@
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(48, 14);
             this.labelControl11.TabIndex = 2;
-            this.labelControl11.Text = "分支线路";
+            this.labelControl11.Text = "支线路";
             // 
             // labelControl2
             // 
@@ -317,7 +317,7 @@
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 2;
-            this.labelControl2.Text = "线路名称";
+            this.labelControl2.Text = "分线路";
             // 
             // labelControl4
             // 
