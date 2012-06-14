@@ -347,6 +347,14 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex >= 0)
+            {
+                tetWorkSQL.Text = (comboBox1.SelectedItem as SqlClass).Sql;
+            }
+        }
+
        
 
        
