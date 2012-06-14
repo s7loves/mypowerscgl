@@ -60,19 +60,13 @@ namespace Ebada.Scgl.Yxgl
 
         public object RowData {
             get {
-                rowData.dzsj = dateEdit1.DateTime.ToString("yyyy-MM-dd");
                 return rowData;
             }
             set {
                 if (value == null) return;
                 if (rowData == null) {
                     this.rowData = value as PS_tqdlbh;
-                    rowData.sbCode = DateTime.Now.ToString("yyyymmddhhmmss");
-                    if (!string.IsNullOrEmpty(rowData.dzsj))
-                    {
-                        dateEdit1.DateTime = Convert.ToDateTime(rowData.dzsj);
-                    }
-                   
+                    rowData.sbCode = DateTime.Now.ToString("yyyymmddhhmmss");                   
                     this.InitComboBoxData();
                     dataBind();
                 } else {

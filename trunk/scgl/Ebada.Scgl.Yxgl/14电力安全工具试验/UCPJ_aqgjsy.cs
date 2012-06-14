@@ -284,7 +284,7 @@ namespace Ebada.Scgl.Yxgl
                             PJ_14aqgjsy obj = gridView1.GetRow(i) as PJ_14aqgjsy;
                             for (int j = 0; j < dt.Rows.Count; j++)
                             {
-                                if (Convert.ToInt32(dtc[j][0]) == obj.rq.Year)
+                                if (Convert.ToInt32(dt.Rows[j][0]) == obj.rq.Year)
                                 {
                                     pjlist.Add(gridView1.GetRow(i) as PJ_14aqgjsy);
                                 }
