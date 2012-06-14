@@ -120,6 +120,7 @@
             this.radioButton1.TabIndex = 70;
             this.radioButton1.Text = "公式";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // comboBox1
             // 

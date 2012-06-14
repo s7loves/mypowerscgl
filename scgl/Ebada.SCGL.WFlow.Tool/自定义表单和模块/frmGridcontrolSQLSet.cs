@@ -355,6 +355,14 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked && comboBox1.Items.Count == 0)
+            {
+                comboBox1.Items.AddRange(SqlBuilderHelper.GetItems().ToArray());
+            }
+        }
+
        
 
        
