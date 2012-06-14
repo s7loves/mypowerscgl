@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
@@ -62,7 +60,6 @@
             this.rbnWorkTable = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBox1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
@@ -74,8 +71,6 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.radioButton1);
-            this.groupControl1.Controls.Add(this.comboBox1);
             this.groupControl1.Controls.Add(this.gridControl1);
             this.groupControl1.Controls.Add(this.simpleButton3);
             this.groupControl1.Controls.Add(this.labelControl1);
@@ -110,27 +105,6 @@
             this.groupControl1.Size = new System.Drawing.Size(682, 534);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "设置";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(227, 149);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(49, 18);
-            this.radioButton1.TabIndex = 70;
-            this.radioButton1.Text = "公式";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Location = new System.Drawing.Point(299, 150);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBox1.Size = new System.Drawing.Size(110, 21);
-            this.comboBox1.TabIndex = 69;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // gridControl1
             // 
@@ -220,7 +194,7 @@
             // 
             this.cbxWorkDbTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDbTableColumns.FormattingEnabled = true;
-            this.cbxWorkDbTableColumns.Location = new System.Drawing.Point(63, 173);
+            this.cbxWorkDbTableColumns.Location = new System.Drawing.Point(283, 158);
             this.cbxWorkDbTableColumns.Name = "cbxWorkDbTableColumns";
             this.cbxWorkDbTableColumns.Size = new System.Drawing.Size(126, 22);
             this.cbxWorkDbTableColumns.TabIndex = 59;
@@ -230,7 +204,7 @@
             // 
             this.cbxWorkDbTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDbTable.FormattingEnabled = true;
-            this.cbxWorkDbTable.Location = new System.Drawing.Point(63, 150);
+            this.cbxWorkDbTable.Location = new System.Drawing.Point(63, 160);
             this.cbxWorkDbTable.Name = "cbxWorkDbTable";
             this.cbxWorkDbTable.Size = new System.Drawing.Size(127, 22);
             this.cbxWorkDbTable.TabIndex = 60;
@@ -246,7 +220,7 @@
             // 
             // labelControl23
             // 
-            this.labelControl23.Location = new System.Drawing.Point(14, 175);
+            this.labelControl23.Location = new System.Drawing.Point(234, 159);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(36, 14);
             this.labelControl23.TabIndex = 57;
@@ -254,7 +228,7 @@
             // 
             // labelControl24
             // 
-            this.labelControl24.Location = new System.Drawing.Point(15, 153);
+            this.labelControl24.Location = new System.Drawing.Point(15, 160);
             this.labelControl24.Name = "labelControl24";
             this.labelControl24.Size = new System.Drawing.Size(36, 14);
             this.labelControl24.TabIndex = 58;
@@ -263,7 +237,7 @@
             // rbnWorkDatabase
             // 
             this.rbnWorkDatabase.AutoSize = true;
-            this.rbnWorkDatabase.Location = new System.Drawing.Point(13, 133);
+            this.rbnWorkDatabase.Location = new System.Drawing.Point(13, 138);
             this.rbnWorkDatabase.Name = "rbnWorkDatabase";
             this.rbnWorkDatabase.Size = new System.Drawing.Size(85, 18);
             this.rbnWorkDatabase.TabIndex = 55;
@@ -406,7 +380,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBox1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
@@ -450,7 +423,5 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.MemoEdit tetWorkFixValue;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
