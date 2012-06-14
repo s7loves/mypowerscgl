@@ -45,6 +45,7 @@
             this.comboBoxEdit28 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit32 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.comboBoxEdit22 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit17 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit12 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -91,7 +92,6 @@
             this.memoEdit5 = new DevExpress.XtraEditors.MemoEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -154,9 +154,9 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(505, 572);
+            this.btnCancel.Location = new System.Drawing.Point(500, 574);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(52, 23);
+            this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "取消";
             // 
@@ -164,9 +164,9 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(450, 572);
+            this.btnOK.Location = new System.Drawing.Point(424, 574);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(49, 23);
+            this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
             // 
@@ -183,7 +183,7 @@
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
-            this.groupControlOrg.Size = new System.Drawing.Size(594, 615);
+            this.groupControlOrg.Size = new System.Drawing.Size(622, 607);
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
@@ -194,9 +194,10 @@
             this.groupBox7.Controls.Add(this.comboBoxEdit6);
             this.groupBox7.Controls.Add(this.labelControl2);
             this.groupBox7.Controls.Add(this.labelControl6);
-            this.groupBox7.Location = new System.Drawing.Point(414, 35);
+            this.groupBox7.Location = new System.Drawing.Point(422, 30);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(168, 528);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox7.Size = new System.Drawing.Size(188, 528);
             this.groupBox7.TabIndex = 11;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "工作评语";
@@ -204,36 +205,36 @@
             // dateEdit4
             // 
             this.dateEdit4.EditValue = null;
-            this.dateEdit4.Location = new System.Drawing.Point(6, 432);
+            this.dateEdit4.Location = new System.Drawing.Point(11, 448);
             this.dateEdit4.Name = "dateEdit4";
             this.dateEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEdit4.Properties.Mask.EditMask = "f";
             this.dateEdit4.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateEdit4.Size = new System.Drawing.Size(151, 21);
+            this.dateEdit4.Size = new System.Drawing.Size(168, 21);
             this.dateEdit4.TabIndex = 12;
             // 
             // memoEdit4
             // 
-            this.memoEdit4.Location = new System.Drawing.Point(6, 19);
+            this.memoEdit4.Location = new System.Drawing.Point(12, 19);
             this.memoEdit4.Name = "memoEdit4";
             this.memoEdit4.Properties.MaxLength = 500;
-            this.memoEdit4.Size = new System.Drawing.Size(151, 386);
+            this.memoEdit4.Size = new System.Drawing.Size(165, 404);
             this.memoEdit4.TabIndex = 0;
             // 
             // comboBoxEdit6
             // 
-            this.comboBoxEdit6.Location = new System.Drawing.Point(6, 480);
+            this.comboBoxEdit6.Location = new System.Drawing.Point(11, 495);
             this.comboBoxEdit6.Name = "comboBoxEdit6";
             this.comboBoxEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit6.Size = new System.Drawing.Size(151, 21);
+            this.comboBoxEdit6.Size = new System.Drawing.Size(168, 21);
             this.comboBoxEdit6.TabIndex = 6;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(6, 458);
+            this.labelControl2.Location = new System.Drawing.Point(13, 478);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(60, 14);
             this.labelControl2.TabIndex = 11;
@@ -241,7 +242,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(6, 411);
+            this.labelControl6.Location = new System.Drawing.Point(13, 431);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(60, 14);
             this.labelControl6.TabIndex = 11;
@@ -251,9 +252,9 @@
             // 
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
             this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(74, 328);
+            this.simpleButton1.Location = new System.Drawing.Point(94, 328);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(35, 23);
+            this.simpleButton1.Size = new System.Drawing.Size(35, 17);
             this.simpleButton1.TabIndex = 12;
             this.simpleButton1.Text = "…";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -265,56 +266,56 @@
             this.groupBox6.Controls.Add(this.comboBoxEdit29);
             this.groupBox6.Controls.Add(this.comboBoxEdit28);
             this.groupBox6.Controls.Add(this.comboBoxEdit32);
-            this.groupBox6.Location = new System.Drawing.Point(240, 181);
+            this.groupBox6.Location = new System.Drawing.Point(251, 176);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(168, 146);
+            this.groupBox6.Size = new System.Drawing.Size(161, 146);
             this.groupBox6.TabIndex = 10;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "缺席人员情况";
             // 
             // comboBoxEdit31
             // 
-            this.comboBoxEdit31.Location = new System.Drawing.Point(7, 90);
+            this.comboBoxEdit31.Location = new System.Drawing.Point(12, 91);
             this.comboBoxEdit31.Name = "comboBoxEdit31";
             this.comboBoxEdit31.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit31.Size = new System.Drawing.Size(147, 21);
+            this.comboBoxEdit31.Size = new System.Drawing.Size(134, 21);
             this.comboBoxEdit31.TabIndex = 0;
             // 
             // comboBoxEdit30
             // 
-            this.comboBoxEdit30.Location = new System.Drawing.Point(7, 67);
+            this.comboBoxEdit30.Location = new System.Drawing.Point(12, 68);
             this.comboBoxEdit30.Name = "comboBoxEdit30";
             this.comboBoxEdit30.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit30.Size = new System.Drawing.Size(147, 21);
+            this.comboBoxEdit30.Size = new System.Drawing.Size(134, 21);
             this.comboBoxEdit30.TabIndex = 0;
             // 
             // comboBoxEdit29
             // 
-            this.comboBoxEdit29.Location = new System.Drawing.Point(7, 44);
+            this.comboBoxEdit29.Location = new System.Drawing.Point(12, 45);
             this.comboBoxEdit29.Name = "comboBoxEdit29";
             this.comboBoxEdit29.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit29.Size = new System.Drawing.Size(147, 21);
+            this.comboBoxEdit29.Size = new System.Drawing.Size(134, 21);
             this.comboBoxEdit29.TabIndex = 0;
             // 
             // comboBoxEdit28
             // 
-            this.comboBoxEdit28.Location = new System.Drawing.Point(7, 21);
+            this.comboBoxEdit28.Location = new System.Drawing.Point(12, 22);
             this.comboBoxEdit28.Name = "comboBoxEdit28";
             this.comboBoxEdit28.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit28.Size = new System.Drawing.Size(147, 21);
+            this.comboBoxEdit28.Size = new System.Drawing.Size(134, 21);
             this.comboBoxEdit28.TabIndex = 0;
             // 
             // comboBoxEdit32
             // 
-            this.comboBoxEdit32.Location = new System.Drawing.Point(7, 113);
+            this.comboBoxEdit32.Location = new System.Drawing.Point(12, 114);
             this.comboBoxEdit32.Name = "comboBoxEdit32";
             this.comboBoxEdit32.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit32.Size = new System.Drawing.Size(147, 21);
+            this.comboBoxEdit32.Size = new System.Drawing.Size(134, 21);
             this.comboBoxEdit32.TabIndex = 0;
             // 
             // groupBox2
@@ -345,236 +346,247 @@
             this.groupBox2.Controls.Add(this.comboBoxEdit13);
             this.groupBox2.Controls.Add(this.comboBoxEdit8);
             this.groupBox2.Controls.Add(this.comboBoxEdit2);
-            this.groupBox2.Location = new System.Drawing.Point(9, 35);
+            this.groupBox2.Location = new System.Drawing.Point(13, 30);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(399, 140);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "出席人员情况";
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(87, 0);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(35, 17);
+            this.simpleButton2.TabIndex = 13;
+            this.simpleButton2.Text = "…";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // comboBoxEdit22
             // 
-            this.comboBoxEdit22.Location = new System.Drawing.Point(313, 89);
+            this.comboBoxEdit22.Location = new System.Drawing.Point(311, 86);
             this.comboBoxEdit22.Name = "comboBoxEdit22";
             this.comboBoxEdit22.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit22.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit22.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit22.TabIndex = 0;
             // 
             // comboBoxEdit17
             // 
-            this.comboBoxEdit17.Location = new System.Drawing.Point(313, 66);
+            this.comboBoxEdit17.Location = new System.Drawing.Point(311, 64);
             this.comboBoxEdit17.Name = "comboBoxEdit17";
             this.comboBoxEdit17.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit17.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit17.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit17.TabIndex = 0;
             // 
             // comboBoxEdit12
             // 
-            this.comboBoxEdit12.Location = new System.Drawing.Point(313, 43);
+            this.comboBoxEdit12.Location = new System.Drawing.Point(311, 42);
             this.comboBoxEdit12.Name = "comboBoxEdit12";
             this.comboBoxEdit12.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit12.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit12.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit12.TabIndex = 0;
             // 
             // comboBoxEdit7
             // 
-            this.comboBoxEdit7.Location = new System.Drawing.Point(313, 20);
+            this.comboBoxEdit7.Location = new System.Drawing.Point(311, 20);
             this.comboBoxEdit7.Name = "comboBoxEdit7";
             this.comboBoxEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit7.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit7.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit7.TabIndex = 0;
             // 
             // comboBoxEdit26
             // 
-            this.comboBoxEdit26.Location = new System.Drawing.Point(238, 112);
+            this.comboBoxEdit26.Location = new System.Drawing.Point(237, 108);
             this.comboBoxEdit26.Name = "comboBoxEdit26";
             this.comboBoxEdit26.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit26.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit26.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit26.TabIndex = 0;
             // 
             // comboBoxEdit27
             // 
-            this.comboBoxEdit27.Location = new System.Drawing.Point(313, 112);
+            this.comboBoxEdit27.Location = new System.Drawing.Point(311, 108);
             this.comboBoxEdit27.Name = "comboBoxEdit27";
             this.comboBoxEdit27.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit27.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit27.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit27.TabIndex = 0;
             // 
             // comboBoxEdit21
             // 
-            this.comboBoxEdit21.Location = new System.Drawing.Point(238, 89);
+            this.comboBoxEdit21.Location = new System.Drawing.Point(237, 86);
             this.comboBoxEdit21.Name = "comboBoxEdit21";
             this.comboBoxEdit21.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit21.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit21.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit21.TabIndex = 0;
             // 
             // comboBoxEdit16
             // 
-            this.comboBoxEdit16.Location = new System.Drawing.Point(238, 66);
+            this.comboBoxEdit16.Location = new System.Drawing.Point(237, 64);
             this.comboBoxEdit16.Name = "comboBoxEdit16";
             this.comboBoxEdit16.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit16.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit16.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit16.TabIndex = 0;
             // 
             // comboBoxEdit11
             // 
-            this.comboBoxEdit11.Location = new System.Drawing.Point(238, 43);
+            this.comboBoxEdit11.Location = new System.Drawing.Point(237, 42);
             this.comboBoxEdit11.Name = "comboBoxEdit11";
             this.comboBoxEdit11.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit11.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit11.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit11.TabIndex = 0;
             // 
             // comboBoxEdit5
             // 
-            this.comboBoxEdit5.Location = new System.Drawing.Point(238, 20);
+            this.comboBoxEdit5.Location = new System.Drawing.Point(237, 20);
             this.comboBoxEdit5.Name = "comboBoxEdit5";
             this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit5.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit5.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit5.TabIndex = 0;
             // 
             // comboBoxEdit25
             // 
-            this.comboBoxEdit25.Location = new System.Drawing.Point(162, 112);
+            this.comboBoxEdit25.Location = new System.Drawing.Point(163, 108);
             this.comboBoxEdit25.Name = "comboBoxEdit25";
             this.comboBoxEdit25.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit25.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit25.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit25.TabIndex = 0;
             // 
             // comboBoxEdit20
             // 
-            this.comboBoxEdit20.Location = new System.Drawing.Point(162, 89);
+            this.comboBoxEdit20.Location = new System.Drawing.Point(163, 86);
             this.comboBoxEdit20.Name = "comboBoxEdit20";
             this.comboBoxEdit20.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit20.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit20.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit20.TabIndex = 0;
             // 
             // comboBoxEdit15
             // 
-            this.comboBoxEdit15.Location = new System.Drawing.Point(162, 66);
+            this.comboBoxEdit15.Location = new System.Drawing.Point(163, 64);
             this.comboBoxEdit15.Name = "comboBoxEdit15";
             this.comboBoxEdit15.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit15.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit15.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit15.TabIndex = 0;
             // 
             // comboBoxEdit10
             // 
-            this.comboBoxEdit10.Location = new System.Drawing.Point(162, 43);
+            this.comboBoxEdit10.Location = new System.Drawing.Point(163, 42);
             this.comboBoxEdit10.Name = "comboBoxEdit10";
             this.comboBoxEdit10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit10.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit10.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit10.TabIndex = 0;
             // 
             // comboBoxEdit4
             // 
-            this.comboBoxEdit4.Location = new System.Drawing.Point(162, 20);
+            this.comboBoxEdit4.Location = new System.Drawing.Point(163, 20);
             this.comboBoxEdit4.Name = "comboBoxEdit4";
             this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit4.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit4.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit4.TabIndex = 0;
             // 
             // comboBoxEdit24
             // 
-            this.comboBoxEdit24.Location = new System.Drawing.Point(86, 112);
+            this.comboBoxEdit24.Location = new System.Drawing.Point(89, 108);
             this.comboBoxEdit24.Name = "comboBoxEdit24";
             this.comboBoxEdit24.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit24.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit24.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit24.TabIndex = 0;
             // 
             // comboBoxEdit19
             // 
-            this.comboBoxEdit19.Location = new System.Drawing.Point(86, 89);
+            this.comboBoxEdit19.Location = new System.Drawing.Point(89, 86);
             this.comboBoxEdit19.Name = "comboBoxEdit19";
             this.comboBoxEdit19.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit19.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit19.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit19.TabIndex = 0;
             // 
             // comboBoxEdit14
             // 
-            this.comboBoxEdit14.Location = new System.Drawing.Point(86, 66);
+            this.comboBoxEdit14.Location = new System.Drawing.Point(89, 64);
             this.comboBoxEdit14.Name = "comboBoxEdit14";
             this.comboBoxEdit14.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit14.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit14.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit14.TabIndex = 0;
             // 
             // comboBoxEdit9
             // 
-            this.comboBoxEdit9.Location = new System.Drawing.Point(86, 43);
+            this.comboBoxEdit9.Location = new System.Drawing.Point(89, 42);
             this.comboBoxEdit9.Name = "comboBoxEdit9";
             this.comboBoxEdit9.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit9.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit9.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit9.TabIndex = 0;
             // 
             // comboBoxEdit3
             // 
-            this.comboBoxEdit3.Location = new System.Drawing.Point(86, 20);
+            this.comboBoxEdit3.Location = new System.Drawing.Point(89, 20);
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit3.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit3.TabIndex = 0;
             // 
             // comboBoxEdit23
             // 
-            this.comboBoxEdit23.Location = new System.Drawing.Point(10, 112);
+            this.comboBoxEdit23.Location = new System.Drawing.Point(15, 108);
             this.comboBoxEdit23.Name = "comboBoxEdit23";
             this.comboBoxEdit23.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit23.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit23.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit23.TabIndex = 0;
             // 
             // comboBoxEdit18
             // 
-            this.comboBoxEdit18.Location = new System.Drawing.Point(10, 89);
+            this.comboBoxEdit18.Location = new System.Drawing.Point(15, 86);
             this.comboBoxEdit18.Name = "comboBoxEdit18";
             this.comboBoxEdit18.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit18.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit18.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit18.TabIndex = 0;
             // 
             // comboBoxEdit13
             // 
-            this.comboBoxEdit13.Location = new System.Drawing.Point(10, 66);
+            this.comboBoxEdit13.Location = new System.Drawing.Point(15, 64);
             this.comboBoxEdit13.Name = "comboBoxEdit13";
             this.comboBoxEdit13.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit13.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit13.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit13.TabIndex = 0;
             // 
             // comboBoxEdit8
             // 
-            this.comboBoxEdit8.Location = new System.Drawing.Point(10, 43);
+            this.comboBoxEdit8.Location = new System.Drawing.Point(15, 42);
             this.comboBoxEdit8.Name = "comboBoxEdit8";
             this.comboBoxEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit8.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit8.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit8.TabIndex = 0;
             // 
             // comboBoxEdit2
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(10, 20);
+            this.comboBoxEdit2.Location = new System.Drawing.Point(15, 20);
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxEdit2.Size = new System.Drawing.Size(70, 21);
             this.comboBoxEdit2.TabIndex = 0;
             // 
             // groupBox1
@@ -586,9 +598,9 @@
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
-            this.groupBox1.Location = new System.Drawing.Point(9, 181);
+            this.groupBox1.Location = new System.Drawing.Point(13, 176);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(229, 146);
+            this.groupBox1.Size = new System.Drawing.Size(232, 146);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "安全活动信息";
@@ -596,7 +608,7 @@
             // dateEdit3
             // 
             this.dateEdit3.EditValue = null;
-            this.dateEdit3.Location = new System.Drawing.Point(91, 55);
+            this.dateEdit3.Location = new System.Drawing.Point(92, 71);
             this.dateEdit3.Name = "dateEdit3";
             this.dateEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -609,13 +621,13 @@
             this.dateEdit3.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit3.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateEdit3.Size = new System.Drawing.Size(132, 21);
+            this.dateEdit3.Size = new System.Drawing.Size(123, 21);
             this.dateEdit3.TabIndex = 12;
             // 
             // dateEdit2
             // 
             this.dateEdit2.EditValue = null;
-            this.dateEdit2.Location = new System.Drawing.Point(91, 20);
+            this.dateEdit2.Location = new System.Drawing.Point(92, 36);
             this.dateEdit2.Name = "dateEdit2";
             this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -628,12 +640,12 @@
             this.dateEdit2.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit2.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateEdit2.Size = new System.Drawing.Size(132, 21);
+            this.dateEdit2.Size = new System.Drawing.Size(123, 21);
             this.dateEdit2.TabIndex = 12;
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(12, 56);
+            this.labelControl5.Location = new System.Drawing.Point(13, 72);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(72, 14);
             this.labelControl5.TabIndex = 11;
@@ -641,7 +653,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(12, 22);
+            this.labelControl3.Location = new System.Drawing.Point(13, 38);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(72, 14);
             this.labelControl3.TabIndex = 11;
@@ -649,7 +661,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(12, 90);
+            this.labelControl1.Location = new System.Drawing.Point(13, 103);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(60, 14);
             this.labelControl1.TabIndex = 11;
@@ -692,18 +704,19 @@
             // 
             // comboBoxEdit1
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(91, 90);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(92, 103);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(132, 21);
+            this.comboBoxEdit1.Size = new System.Drawing.Size(123, 21);
             this.comboBoxEdit1.TabIndex = 6;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.xtraTabControl1);
-            this.groupBox3.Location = new System.Drawing.Point(9, 333);
+            this.groupBox3.Location = new System.Drawing.Point(13, 328);
             this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox3.Size = new System.Drawing.Size(399, 230);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
@@ -712,10 +725,11 @@
             // xtraTabControl1
             // 
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(3, 18);
+            this.xtraTabControl1.Location = new System.Drawing.Point(10, 25);
             this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.Padding = new System.Windows.Forms.Padding(10);
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(393, 209);
+            this.xtraTabControl1.Size = new System.Drawing.Size(379, 195);
             this.xtraTabControl1.TabIndex = 12;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -726,7 +740,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.memoEdit1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(386, 179);
+            this.xtraTabPage1.Size = new System.Drawing.Size(374, 168);
             this.xtraTabPage1.Text = "活动内容";
             // 
             // memoEdit1
@@ -735,14 +749,14 @@
             this.memoEdit1.EditValue = "";
             this.memoEdit1.Location = new System.Drawing.Point(0, 0);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(386, 179);
+            this.memoEdit1.Size = new System.Drawing.Size(374, 168);
             this.memoEdit1.TabIndex = 0;
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.memoEdit2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(386, 180);
+            this.xtraTabPage2.Size = new System.Drawing.Size(374, 169);
             this.xtraTabPage2.Text = "活动小结";
             // 
             // memoEdit2
@@ -750,14 +764,14 @@
             this.memoEdit2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit2.Location = new System.Drawing.Point(0, 0);
             this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(386, 180);
+            this.memoEdit2.Size = new System.Drawing.Size(374, 169);
             this.memoEdit2.TabIndex = 0;
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.memoEdit5);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(386, 180);
+            this.xtraTabPage3.Size = new System.Drawing.Size(374, 169);
             this.xtraTabPage3.Text = "发言简要记录";
             // 
             // memoEdit5
@@ -765,7 +779,7 @@
             this.memoEdit5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit5.Location = new System.Drawing.Point(0, 0);
             this.memoEdit5.Name = "memoEdit5";
-            this.memoEdit5.Size = new System.Drawing.Size(386, 180);
+            this.memoEdit5.Size = new System.Drawing.Size(374, 169);
             this.memoEdit5.TabIndex = 0;
             // 
             // bar1
@@ -784,22 +798,11 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(87, 0);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(35, 17);
-            this.simpleButton2.TabIndex = 13;
-            this.simpleButton2.Text = "…";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
-            // 
             // frmaqhdEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 615);
+            this.ClientSize = new System.Drawing.Size(622, 607);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
