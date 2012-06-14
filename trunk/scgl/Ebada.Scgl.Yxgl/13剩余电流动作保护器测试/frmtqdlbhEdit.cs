@@ -48,7 +48,7 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dzdl");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "tqID");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "InstallAdress");
-            this.dateEdit1.DataBindings.Add("EditValue", rowData, "dzsj");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "dzsj");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "sbName");
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "Factory");
             //this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "tqID");
