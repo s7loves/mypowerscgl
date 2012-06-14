@@ -174,5 +174,10 @@ namespace Ebada.Scgl.Lcgl
             dlg.ShowDialog();
             return dlg;
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
