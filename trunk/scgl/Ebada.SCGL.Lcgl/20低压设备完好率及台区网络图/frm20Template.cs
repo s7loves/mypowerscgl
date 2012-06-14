@@ -126,7 +126,7 @@ namespace Ebada.Scgl.Lcgl {
         ///设置保护工作表
         /// </summary>
         private void LockExcel(Excel.Workbook wb, Excel.Worksheet xx) {
-
+            return;
 
             xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
             xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
@@ -443,9 +443,11 @@ namespace Ebada.Scgl.Lcgl {
 
         }
         void btn_pic_Click(object sender, EventArgs e) {
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
+            ea.ActiveSheet(1);
             insertPic(rowData.tqCode, ea, 5, 70, 420, 360);
         }
         private void insertPic(string tqcode, ExcelAccess ea, int left, int top, int width, int height) {
@@ -453,6 +455,7 @@ namespace Ebada.Scgl.Lcgl {
             if (map != null) {
                 string filename = Path.GetTempFileName() + ".png";
                 map.Save(filename);
+                unLockExcel(ea.MyWorkBook, ea.MyExcel.ActiveSheet as Excel.Worksheet);
                 ea.InsertPicture(filename, top, left, height, width);
                 try {
                     File.Delete(filename);
