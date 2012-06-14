@@ -680,23 +680,7 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (comboBox1.SelectedIndex >= 0)
-            {
-                tetWorkSQL.Text = (comboBox1.SelectedItem as SqlClass).Sql;
-            }
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton1.Checked && comboBox1.Items.Count == 0)
-            {
-                comboBox1.Items.AddRange(SqlBuilderHelper.GetItems().ToArray());
-            }
-
-        }
+      
 
     }
 }
