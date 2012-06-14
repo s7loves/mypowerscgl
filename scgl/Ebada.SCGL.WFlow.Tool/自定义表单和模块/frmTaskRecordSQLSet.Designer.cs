@@ -53,8 +53,6 @@
             this.rbnWorkFixValue = new System.Windows.Forms.RadioButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkTable = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -63,13 +61,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBox1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.radioButton1);
-            this.groupControl1.Controls.Add(this.comboBox1);
             this.groupControl1.Controls.Add(this.cbxSWorkTastDataTable);
             this.groupControl1.Controls.Add(this.labelControl9);
             this.groupControl1.Controls.Add(this.cbxSWorkTastzdDataTable);
@@ -224,7 +219,7 @@
             // 
             this.cbxWorkDbTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDbTableColumns.FormattingEnabled = true;
-            this.cbxWorkDbTableColumns.Location = new System.Drawing.Point(63, 177);
+            this.cbxWorkDbTableColumns.Location = new System.Drawing.Point(282, 159);
             this.cbxWorkDbTableColumns.Name = "cbxWorkDbTableColumns";
             this.cbxWorkDbTableColumns.Size = new System.Drawing.Size(127, 22);
             this.cbxWorkDbTableColumns.TabIndex = 59;
@@ -234,7 +229,7 @@
             // 
             this.cbxWorkDbTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDbTable.FormattingEnabled = true;
-            this.cbxWorkDbTable.Location = new System.Drawing.Point(63, 156);
+            this.cbxWorkDbTable.Location = new System.Drawing.Point(63, 160);
             this.cbxWorkDbTable.Name = "cbxWorkDbTable";
             this.cbxWorkDbTable.Size = new System.Drawing.Size(127, 22);
             this.cbxWorkDbTable.TabIndex = 60;
@@ -250,7 +245,7 @@
             // 
             // labelControl23
             // 
-            this.labelControl23.Location = new System.Drawing.Point(14, 179);
+            this.labelControl23.Location = new System.Drawing.Point(219, 160);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(36, 14);
             this.labelControl23.TabIndex = 57;
@@ -258,7 +253,7 @@
             // 
             // labelControl24
             // 
-            this.labelControl24.Location = new System.Drawing.Point(15, 159);
+            this.labelControl24.Location = new System.Drawing.Point(15, 162);
             this.labelControl24.Name = "labelControl24";
             this.labelControl24.Size = new System.Drawing.Size(36, 14);
             this.labelControl24.TabIndex = 58;
@@ -314,27 +309,6 @@
             this.rbnWorkTable.Text = "从节点取";
             this.rbnWorkTable.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(236, 151);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(49, 18);
-            this.radioButton1.TabIndex = 75;
-            this.radioButton1.Text = "公式";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Location = new System.Drawing.Point(297, 152);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBox1.Size = new System.Drawing.Size(110, 21);
-            this.comboBox1.TabIndex = 74;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // frmTaskRecordSQLSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -356,7 +330,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ceBind.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkFixValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkSQL.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBox1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -388,7 +361,5 @@
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private System.Windows.Forms.ComboBox cbxSWorkTastzdDataTable;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBox1;
     }
 }
