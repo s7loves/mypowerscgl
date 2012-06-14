@@ -138,7 +138,7 @@ namespace Ebada.Scgl.Lcgl {
                 //((System.ComponentModel.ISupportInitialize)(this.imageEdit1)).EndInit();
 
                 picview = new DevExpress.XtraGrid.Columns.GridColumn();
-                picview.Caption = "流程图";
+                picview.Caption = "流程";
                 picview.Visible = true;
                 //picview.MaxWidth = 300;
                 //picview.MinWidth = 300;
