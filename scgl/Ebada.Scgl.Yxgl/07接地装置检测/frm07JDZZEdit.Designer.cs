@@ -307,7 +307,7 @@
             // 
             this.labelControl11.Location = new System.Drawing.Point(13, 59);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(48, 14);
+            this.labelControl11.Size = new System.Drawing.Size(36, 14);
             this.labelControl11.TabIndex = 2;
             this.labelControl11.Text = "支线路";
             // 
@@ -315,17 +315,17 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(13, 27);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(48, 14);
+            this.labelControl2.Size = new System.Drawing.Size(24, 14);
             this.labelControl2.TabIndex = 2;
-            this.labelControl2.Text = "分线路";
+            this.labelControl2.Text = "线路";
             // 
             // labelControl4
             // 
             this.labelControl4.Location = new System.Drawing.Point(179, 93);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(48, 14);
+            this.labelControl4.Size = new System.Drawing.Size(36, 14);
             this.labelControl4.TabIndex = 4;
-            this.labelControl4.Text = "安装位置";
+            this.labelControl4.Text = "分线路";
             // 
             // labelControl3
             // 
