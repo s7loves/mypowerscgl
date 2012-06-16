@@ -17,7 +17,12 @@ namespace Ebada.Scgl.Lcgl
 {
     public partial class frmtqbyqEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PS_tqbyq> m_CityDic = new SortableSearchableBindingList<PS_tqbyq>();
-        public string OrgCode;
+        private string orgCode;
+
+        public string OrgCode {
+            get { return orgCode; }
+            set { orgCode = value; }
+        }
         public frmtqbyqEdit() {
             InitializeComponent();
         }
@@ -75,7 +80,10 @@ namespace Ebada.Scgl.Lcgl
         }
 
         #endregion
-
+        protected override void OnClosed(EventArgs e) {
+            base.OnClosed(e);
+            comboBoxEdit4.Text = "";
+        }
         private void InitComboBoxData() {
             IList<PS_tq> tqlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where Substring(tqcode,1,3)='" + OrgCode.Substring(0, 3) + "'");
             SetComboBoxData(lookUpEdit1, "tqName", "tqID", "选择台区", "", tqlist);
@@ -187,6 +195,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit4_TextChanged(object sender, EventArgs e)
         {
+            if (comboBoxEdit4.Text == "") return;
             PS_tq tq = null; 
             tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + comboBoxEdit4.Text + "'");
             if (tq != null)
