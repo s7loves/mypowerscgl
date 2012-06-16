@@ -198,12 +198,12 @@ namespace Ebada.Scgl.Lcgl {
         /// </summary>
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere) {
-            if (isWorkflowCall && (WorkFlowData.Rows[0]["TaskTypeId"].ToString() == "3")) {
-                if (slqwhere == "") slqwhere = " where 1=1";
-                slqwhere = slqwhere + " and byqID  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
-                slqwhere = slqwhere + " and  ModleTableName='Ebada.Scgl.Model.PS_tqbyq'" + ")";
-            }
-            slqwhere = slqwhere + " order by byqcode desc";
+            //if (isWorkflowCall && (WorkFlowData.Rows[0]["TaskTypeId"].ToString() == "3")) {
+            //    if (slqwhere == "") slqwhere = " where 1=1";
+            //    slqwhere = slqwhere + " and byqID  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+            //    slqwhere = slqwhere + " and  ModleTableName='Ebada.Scgl.Model.PS_tqbyq'" + ")";
+            //}
+            slqwhere = slqwhere + " order by byqcode ";
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
