@@ -471,9 +471,9 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 LP_Temple ParentTemple = RecordWorkTask.GetWorkTaskTemple(recordWorkFlowData, lpr);
                 if (ParentTemple == null)
-                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, strKind);
+                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg,"", strKind);
                 else
-                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, ParentTemple.LPID);
+                    lpr.Number = RecordWorkTask.CreatWorkFolwNo(MainHelper.UserOrg, ParentTemple.LPID,strKind);
 
                 lpr.Status = recordWorkFlowData.Rows[0]["TaskCaption"].ToString();
                 MainHelper.PlatformSqlMap.Create<LP_Record>(lpr);
