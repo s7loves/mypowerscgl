@@ -2368,13 +2368,13 @@ namespace Ebada.Scgl.WFlow
                 default:
                     //if (r1.Match(parentID).Value == "")
                     //{
-                        datalist2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<LP_Record>(
-                            " where  Kind='" + kind + "' and Number like '%" +
-                            DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' order by Number desc");
+                        object objnum = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneStr",
+                            " select top 1 number from LP_Record where  Kind='" + kind + "' and Number like '" +
+                            DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' and len(number)=15 order by Number desc");
 
-                        if (datalist2.Count > 0)
+                        if (objnum!=null && objnum.ToString().Length>0)
                         {
-                            string stri = datalist2[0].Number.Substring(datalist2[0].Number.Length - 3);
+                            string stri = objnum.ToString().Substring(objnum.ToString().Length - 3);
                             number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + string.Format("{0:D4}", Convert.ToInt32(stri) + 1);
                         }
                         else
