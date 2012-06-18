@@ -65,9 +65,9 @@
             // simpleButton2
             // 
             this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton2.Location = new System.Drawing.Point(514, 358);
+            this.simpleButton2.Location = new System.Drawing.Point(514, 355);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton2.Size = new System.Drawing.Size(70, 23);
             this.simpleButton2.TabIndex = 2;
             this.simpleButton2.Text = "取消";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
@@ -76,9 +76,9 @@
             // 
             this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.simpleButton1.Location = new System.Drawing.Point(414, 359);
+            this.simpleButton1.Location = new System.Drawing.Point(438, 355);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.Size = new System.Drawing.Size(70, 23);
             this.simpleButton1.TabIndex = 1;
             this.simpleButton1.Text = "确定";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
