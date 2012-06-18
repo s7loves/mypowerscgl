@@ -412,7 +412,11 @@ namespace Ebada.Scgl.Lcgl {
                 barChange.Visibility = BarItemVisibility.Never;
                 barSus.Visibility = BarItemVisibility.Never;
             }
-
+            if (kind.Contains("工作票") || kind.Contains("操作票")) {
+                btBJ.Visibility = BarItemVisibility.Always;
+            } else {
+                btBJ.Visibility = BarItemVisibility.Never;
+            }
         }
         private void btAddfrm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (MainHelper.UserOrg == null) return;
@@ -2150,6 +2154,40 @@ namespace Ebada.Scgl.Lcgl {
                   "where ParentID ='" + temple.LPID + "' Order by SortID");
             copyData(temple, templeList);
             MsgBox.ShowTipMessageBox("执行完毕");
+        }
+
+        private void btBJ_ItemClick(object sender, ItemClickEventArgs e) {
+            if (gridView1.FocusedRowHandle == -1) return;
+            DataRow row = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            LP_Record obj = Ebada.Core.ConvertHelper.RowToObject<LP_Record>(row);
+            //
+            XtraForm dlg = new XtraForm(); dlg.Text = "设置标记";
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            dlg.Size = new Size(200, 150);
+
+            DevExpress.XtraEditors.ComboBox box = new DevExpress.XtraEditors.ComboBox();
+            box.Location=new Point(20,20);
+            box.Width=150;
+            box.Parent = dlg;
+            box.Properties.Items.Add("合格");
+            box.Properties.Items.Add("不合格");
+            box.Properties.Items.Add("作废");
+            box.SelectedIndex=0;
+            SimpleButton button1 = new SimpleButton();
+            button1.Text = "确认";
+            button1.Parent = dlg;
+            button1.Location = new Point((dlg.Width / 2 - button1.Width) / 2, dlg.Height - button1.Height -60);
+            button1.DialogResult = DialogResult.OK;
+            SimpleButton button2 = new SimpleButton();
+            button2.Text = "关闭";
+            button2.Parent = dlg;
+            button2.Location = new Point(button1.Right+5, button1.Top);
+            button2.DialogResult = DialogResult.Cancel;
+            if (dlg.ShowDialog() == DialogResult.OK) {
+
+                Client.ClientHelper.PlatformSqlMap.Update("Update", "update lp_record set bj='" + box.EditValue.ToString() + "' where id='"+obj.ID+"'");
+                //
+            }
         }
 
     }

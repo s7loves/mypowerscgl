@@ -36,7 +36,10 @@
      inner join dbo.rRoleFun e on e.funid=d.funid
      where a.visiableflag=1
      and c.userid=#value#) f
-   </select>  
+   </select>
+    <statement id="ExecProc" parameterClass="string" resultClass="Hashtable">
+      $value$
+    </statement>
   </statements>
 </sqlMap>
  
