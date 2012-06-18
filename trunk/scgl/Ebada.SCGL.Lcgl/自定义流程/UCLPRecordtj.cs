@@ -20,7 +20,7 @@ namespace Ebada.Scgl.Lcgl {
         }
         void tj() {
             if (string.IsNullOrEmpty(barEditItem1.EditValue.ToString())) return;
-            IList list = Client.ClientHelper.PlatformSqlMap.GetList("ExecProc", "exec proc_lptj @year=" + barEditItem1.EditValue);
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("Select", "exec proc_lptj @year=" + barEditItem1.EditValue);
 
             gridControl1.DataSource = Ebada.Core.ConvertHelper.ToDataTable(list);
         }
@@ -32,7 +32,7 @@ namespace Ebada.Scgl.Lcgl {
             for(int i=0;i<20;i++){
                 repositoryItemComboBox1.Items.Add(2011 + i);
             }
-            
+            barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
