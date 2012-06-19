@@ -206,7 +206,7 @@ namespace Ebada.Scgl.Yxgl
             if (gridView1.FocusedRowHandle > -1)
             {
                 PJ_19 p19 = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_19;
-                Export19.ExportExcel(p19);
+                Export19.ExportExcel(parentObj.OrgCode,parentObj.OrgName);
             }
             else
             {
