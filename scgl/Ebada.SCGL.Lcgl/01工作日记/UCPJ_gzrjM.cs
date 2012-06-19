@@ -19,6 +19,7 @@ namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPJ_gzrjM : DevExpress.XtraEditors.XtraUserControl {
 
 

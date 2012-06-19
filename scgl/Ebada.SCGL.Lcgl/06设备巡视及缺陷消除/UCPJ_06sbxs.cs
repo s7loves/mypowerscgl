@@ -9,6 +9,7 @@ using DevExpress.XtraEditors;
 using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Lcgl {
+    [ToolboxItem(false)]
     public partial class UCPJ_06sbxs : DevExpress.XtraEditors.XtraUserControl {
 
         private bool isWorkflowCall = false;
