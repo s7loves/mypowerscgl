@@ -28,7 +28,7 @@
          [gzrjID],
          [CreateMan],
          [CreateDate],
-         [BigData]
+         null [BigData]
           FROM PJ_19
           $value$
    </select>

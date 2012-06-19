@@ -10,19 +10,21 @@ namespace Ebada.Scgl.Yxgl {
     /// 文档
     /// </summary>
     public class Export19 {
+
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(PJ_19 objorg) {
+        public static void ExportExcel(string orgCode, string orgName) {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\19高压配电设备完好率汇总表.xls";
 
             ex.Open(fname);
             //此处写填充内容代码
-            ex.SetCellValue(objorg.OrgName, 4, 2);
-            IList<PS_xl> objlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where OrgCode ='" + objorg.OrgCode + "' and len(linecode)=6");
+            
+            ex.SetCellValue(orgName, 4, 2);
+            IList<PS_xl> objlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where OrgCode ='" + orgCode + "' and len(linecode)=6");
            // IList<PS_xl> objlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where OrgCode ='" + objorg.OrgCode + "' ");
             //分页 将要变化的进行分页
             //建立一个求总和的
