@@ -8,6 +8,9 @@ using System.Windows.Forms;
 using System.Collections;
 
 namespace Ebada.Scgl.Lcgl {
+    /// <summary>
+    /// 两票统计
+    /// </summary>
     [ToolboxItem(false)]
     public partial class UCLPRecordtj : UserControl {
         public UCLPRecordtj() {
