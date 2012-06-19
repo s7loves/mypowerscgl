@@ -44,6 +44,7 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_19>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            
         }
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_19> e)
@@ -130,6 +131,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("ParentID");
             hideColumn("gzrjID");
             hideColumn("BigData");
+            gridView1.Columns["Remark"].Caption = "标题";
         }
         /// <summary>
         /// 刷新数据
@@ -158,8 +160,9 @@ namespace Ebada.Scgl.Yxgl
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
-            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
-            newobj.CreateMan = m_UserBase.RealName;
+            //Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
+            newobj.CreateMan = MainHelper.User.UserName;
+            newobj.Remark = DateTime.Now.Year + "年度";
         }
         /// <summary>
         /// 父表ID
