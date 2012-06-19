@@ -18,6 +18,12 @@
         <result property="Status" column="Status" />
         <result property="Number" column="Number" />
         <result property="OrgName" column="OrgName" />
+        <result property="bj" column="bj" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
       </resultMap>
   </resultMaps>
 
@@ -36,7 +42,13 @@
          [LastChangeTime],
          [Status],
          [Number],
-         [OrgName]
+         [OrgName],
+         [bj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
           FROM LP_Record
           $value$
    </select>
@@ -55,7 +67,13 @@
          [LastChangeTime],
          [Status],
          [Number],
-         [OrgName]
+         [OrgName],
+         [bj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
           FROM LP_Record
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -71,6 +89,12 @@
        <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
        <isNotNull prepend="AND" property="Number">[Number]='$Number$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="bj">[bj]='$bj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectLP_RecordByKey" resultMap="LP_Record_AllColumns" parameterClass="LP_Record">
@@ -87,7 +111,13 @@
          [LastChangeTime],
          [Status],
          [Number],
-         [OrgName]
+         [OrgName],
+         [bj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
          FROM LP_Record
          WHERE 
            ID = #ID#
@@ -128,7 +158,13 @@
              [LastChangeTime]=#LastChangeTime#,
              [Status]=#Status#,
              [Number]=#Number#,
-             [OrgName]=#OrgName#
+             [OrgName]=#OrgName#,
+             [bj]=#bj#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
             WHERE 
               ID = #ID#
 
@@ -149,7 +185,13 @@
          [LastChangeTime],
          [Status],
          [Number],
-         [OrgName]
+         [OrgName],
+         [bj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
          )
        VALUES
          (
@@ -165,7 +207,13 @@
          #LastChangeTime#,
          #Status#,
          #Number#,
-         #OrgName#
+         #OrgName#,
+         #bj#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
          )
 
    </insert>
@@ -187,6 +235,12 @@
        <isNotNull prepend="AND" property="Status">[Status]='$Status$'</isNotNull>
        <isNotNull prepend="AND" property="Number">[Number]='$Number$'</isNotNull>
        <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="bj">[bj]='$bj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
      </dynamic>
 
    </select>

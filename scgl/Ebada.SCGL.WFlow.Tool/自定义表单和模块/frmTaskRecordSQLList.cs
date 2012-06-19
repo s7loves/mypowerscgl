@@ -16,6 +16,9 @@ using System.Text.RegularExpressions;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
+    /// <summary>
+    /// 节点记录生成列表
+    /// </summary>
     public partial class frmTaskRecordSQLList : FormBase
     {
         public frmTaskRecordSQLList()
