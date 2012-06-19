@@ -225,7 +225,7 @@
             // 
             // spinEdit1
             // 
-            this.spinEdit1.Location = new System.Drawing.Point(286, 60);
+            this.spinEdit1.Location = new System.Drawing.Point(284, 33);
             this.spinEdit1.Name = "spinEdit1";
             this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -322,7 +322,7 @@
             this.comboBoxEdit13.Properties.Items.AddRange(new object[] {
             "运行",
             "暂停",
-            "备用" });
+            "备用"});
             this.comboBoxEdit13.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit13.TabIndex = 13;
             // 
@@ -355,7 +355,7 @@
             // 
             // comboBoxEdit9
             // 
-            this.comboBoxEdit9.Location = new System.Drawing.Point(286, 33);
+            this.comboBoxEdit9.Location = new System.Drawing.Point(284, 60);
             this.comboBoxEdit9.Name = "comboBoxEdit9";
             this.comboBoxEdit9.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
