@@ -95,7 +95,7 @@
             // 
             // comboBoxEdit5
             // 
-            this.comboBoxEdit5.Location = new System.Drawing.Point(252, -3);
+            this.comboBoxEdit5.Location = new System.Drawing.Point(173, 2);
             this.comboBoxEdit5.Name = "comboBoxEdit5";
             this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -238,7 +238,6 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "剩余电流动作保护器";
-            this.groupBox1.Visible = false;
             // 
             // comboBoxEdit2
             // 
@@ -421,14 +420,14 @@
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
-            this.groupControlOrg.Size = new System.Drawing.Size(473, 228);
+            this.groupControlOrg.Size = new System.Drawing.Size(470, 253);
             this.groupControlOrg.TabIndex = 11;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(384, 197);
+            this.btnCancel.Location = new System.Drawing.Point(381, 212);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 0;
@@ -437,23 +436,24 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(308, 197);
+            this.btnOK.Location = new System.Drawing.Point(305, 212);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // barDockControl1
             // 
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl1.Location = new System.Drawing.Point(473, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(0, 228);
+            this.barDockControl1.Location = new System.Drawing.Point(470, 0);
+            this.barDockControl1.Size = new System.Drawing.Size(0, 253);
             // 
             // frmtqdlbhEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 228);
+            this.ClientSize = new System.Drawing.Size(470, 253);
             this.Controls.Add(this.groupControlOrg);
             this.Controls.Add(this.barDockControl1);
             this.MaximizeBox = false;
