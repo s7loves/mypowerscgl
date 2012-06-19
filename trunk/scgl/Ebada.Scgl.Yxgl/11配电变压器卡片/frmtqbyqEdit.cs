@@ -109,8 +109,10 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit4.Text = tq.tqName;
             }
 
+            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select xh from ps_sbcs where parentid='08001'"));
 
-            ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "型号", comboBoxEdit3.Properties);
+            //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "型号", comboBoxEdit3.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "制造厂", comboBoxEdit10.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "一次电压", spinEdit2.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "二次电压", spinEdit3.Properties);
