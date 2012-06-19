@@ -170,7 +170,6 @@
             this.comboBoxEdit5.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit5.TabIndex = 18;
             this.comboBoxEdit5.Visible = false;
-            this.comboBoxEdit5.EditValueChanged += new System.EventHandler(this.comboBoxEdit5_EditValueChanged);
             // 
             // textEdit2
             // 
@@ -265,7 +264,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit10.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit10.TabIndex = 14;
-            this.comboBoxEdit10.TextChanged += new System.EventHandler(this.comboBoxEdit10_TextChanged);
             // 
             // comboBoxEdit2
             // 

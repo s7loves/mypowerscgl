@@ -23,13 +23,11 @@ namespace Ebada.Scgl.Yxgl
         }
         private string lineCode = "";
         private string orgcode = "";
-        public string LineCode
-        {
+        public string LineCode {
             get { return lineCode; }
             set { lineCode = value; }
         }
-        public string OrgCode
-        {
+        public string OrgCode {
             get { return orgcode; }
             set { orgcode = value; }
         }
@@ -46,13 +44,11 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sbModle");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "glr");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dzdl");
-            //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "tqID");
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "tqID");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "InstallAdress");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "dzsj");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "sbName");
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "Factory");
-            //this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "tqID");
-
 
         }
         #region IPopupFormEdit Members
@@ -66,14 +62,15 @@ namespace Ebada.Scgl.Yxgl
                 if (value == null) return;
                 if (rowData == null) {
                     this.rowData = value as PS_tqdlbh;
-                    rowData.sbCode = DateTime.Now.ToString("yyyymmddhhmmss");                   
+                    rowData.sbCode = DateTime.Now.ToString("yyyymmddhhmmss");
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    this.InitComboBoxData();
+
                     ConvertHelper.CopyTo<PS_tqdlbh>(value as PS_tqdlbh, rowData);
+                    this.InitComboBoxData();
                 }
-                if(rowData.sbCode==""){
+                if (rowData.sbCode == "") {
                     rowData.InstallDate = DateTime.Now;
                     rowData.InDate = DateTime.Now;
                     rowData.MadeDate = DateTime.Now;
@@ -96,35 +93,44 @@ namespace Ebada.Scgl.Yxgl
             //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqCode,{1})='{0}' ", lineCode,lineCode.Length));
             ////ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
             //comboBoxEdit5.Properties.Items.AddRange(list);
-          
-            IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>( string.Format("where left(tqID,{1})='{0}' ", OrgCode,OrgCode.Length));
+
+            IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqcode,{1})='{0}' ", OrgCode, OrgCode.Length));
             //comboBoxEdit5.Properties.DataSource = listXL;
-            SetComboBoxData(comboBoxEdit5, "tqName", "tqID", "台区名称", "", listXL);
+            //SetComboBoxData(comboBoxEdit5, "tqName", "tqID", "台区名称", "", listXL);
             comboBoxEdit11.Properties.Items.Clear();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqID,{1})='{0}' ", OrgCode, OrgCode.Length));
-            
-            comboBoxEdit11.Properties.Items.AddRange(list);
+            //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqID,{1})='{0}' ", OrgCode, OrgCode.Length));
+
+            //comboBoxEdit11.Properties.Items.AddRange(list);
             comboBoxEdit10.Properties.Items.Clear();
-            for (int i = 0; i < listXL.Count; i++)
-            {
+            for (int i = 0; i < listXL.Count; i++) {
                 ListItem ot = new ListItem();
                 ot.DisplayMember = listXL[i].tqName;
-                ot.ValueMember = listXL[i].tqName;
+                ot.ValueMember = listXL[i].tqCode;
                 comboBoxEdit10.Properties.Items.Add(ot);
             }
+            ListItem item0 = new ListItem("", "");
+            comboBoxEdit10.Properties.Items.Add(item0);
+            if (rowData.tqName == "") {
+                comboBoxEdit10.EditValue = item0;
+            } else {
+                comboBoxEdit10.EditValue = new ListItem(rowData.tqID, rowData.tqName);
+            }
 
-            if (rowData.tqName == "")
-            {
-                if (comboBoxEdit10.Properties.Items.Count > 0)
-                    comboBoxEdit10.SelectedIndex = 0;
-            }
-            else
-            {
-                //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(rowData.tqID);
-                comboBoxEdit10.Text = rowData.tqName;
-            }
+            comboBoxEdit10.SelectedIndexChanged += new EventHandler(comboBoxEdit10_SelectedIndexChanged);
             ICollection ryList = ComboBoxHelper.GetGdsRy(OrgCode);//获取供电所人员列表
             comboBoxEdit3.Properties.Items.AddRange(ryList);
+        }
+
+        void comboBoxEdit10_SelectedIndexChanged(object sender, EventArgs e) {
+            if (comboBoxEdit10.SelectedIndex == -1 || comboBoxEdit10.Text == "") return;
+
+
+            ListItem item = (ListItem)comboBoxEdit10.SelectedItem;
+            PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(item.ValueMember);
+            comboBoxEdit11.Properties.Items.Clear();
+            comboBoxEdit11.Properties.Items.Add(pt.Adress);
+            comboBoxEdit11.SelectedIndex = 0;
+
         }
 
         /// <summary>
@@ -136,8 +142,7 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_tq> post)
-        {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_tq> post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -149,67 +154,36 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-      
 
-     
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            //if (comboBoxEdit5.Text == "")
-            //{
-            //    MsgBox.ShowTipMessageBox("台区名称不能为空。");
-            //    comboBoxEdit5.Focus();
-            //    return;
-            //}
-            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + comboBoxEdit10.Text + "'");
-            if (tq == null)
-            {
-                rowData.tqName = comboBoxEdit10.Text;
-                //MsgBox.ShowTipMessageBox("台区名称不能为空。");
-                //comboBoxEdit5.Focus();
-                //return;
+
+
+        private void btnOK_Click(object sender, EventArgs e) {
+            if (comboBoxEdit10.Text == "") {
+                MsgBox.ShowTipMessageBox("台区名称不能为空。");
+                comboBoxEdit10.Focus();
+                return;
             }
-            else
-            {
-                rowData.tqID = tq.tqID;
-                rowData.tqName = tq.tqName;
+            object obj = comboBoxEdit10.EditValue;
+            if (obj == null) {
+                MsgBox.ShowTipMessageBox("台区名称[" + comboBoxEdit10.Text + "]不存在");
+                return;
             }
-           
-            //if (textEdit1.Text == "")
-            //{
-            //    MsgBox.ShowTipMessageBox("设备编号不能为空。");
-            //    textEdit1.Focus();
-            //    return;
-            //}
-            //if (rowData.InstallDate>rowData.InDate)
-            //{
-            //    MsgBox.ShowTipMessageBox("安装日期不能大于投运日期。");
-            //    textEdit1.Focus();
-            //    return;
-            //}
-            //rowData.tqName = comboBoxEdit5.Text;
+            ListItem item = (ListItem)obj;
+
+            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqcode='" + item.ValueMember + "'");
+            if (tq == null) {
+                //rowData.tqName = comboBoxEdit10.Text;
+                MsgBox.ShowTipMessageBox("台区名称[" + comboBoxEdit10.Text + "]不存在");
+                comboBoxEdit10.Focus();
+                return;
+            }
+            rowData.tqID = tq.tqCode;
+            rowData.tqName = tq.tqName;
             this.DialogResult = DialogResult.OK;
-            this.Close();
+            //this.Close();
         }
 
-       
-        private void comboBoxEdit5_EditValueChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(comboBoxEdit5.Text))
-            {
-                PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(comboBoxEdit5.EditValue.ToString());
-                comboBoxEdit11.Properties.Items.Add(pt.Adress);
-            }
-         
-        }
 
-        private void comboBoxEdit10_TextChanged(object sender, EventArgs e)
-        {
-            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + comboBoxEdit10.Text + "'");
-            if (tq != null)
-            {
-                PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(tq.tqID.ToString());
-                comboBoxEdit11.Properties.Items.Add(pt.Adress);
-            }
-        }
+
     }
 }
