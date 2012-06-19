@@ -164,7 +164,7 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-            RefreshData(" where tqID in (select tqID  from PS_tq where LEFT(tqID," + parentID.Length + ")= '" + parentID + "')  ");
+            RefreshData(" where tqID in (select tqID  from PS_tq where LEFT(tqcode," + parentID.Length + ")= '" + parentID + "')  ");
 
 
         }
@@ -230,7 +230,7 @@ namespace Ebada.Scgl.Lcgl
            
             if (org != null)
             {
-                RefreshData(" where tqID in(select tqID from PS_tq where LEFT(tqID," + org.OrgCode.Length + ")='" + org.OrgCode + "')  ");
+                RefreshData(" where tqID in(select tqID from PS_tq where LEFT(tqcode," + org.OrgCode.Length + ")='" + org.OrgCode + "')  ");
                 gds = org;
                 ParentObj = org;
                 IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");

@@ -96,7 +96,7 @@ namespace Ebada.Scgl.Lcgl
             ////ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
             //comboBoxEdit5.Properties.Items.AddRange(list);
 
-            IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqID,{1})='{0}' ", OrgCode, OrgCode.Length));
+            IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqcode,{1})='{0}' ", OrgCode, OrgCode.Length));
             //comboBoxEdit5.Properties.DataSource = listXL;
             //SetComboBoxData(comboBoxEdit5, "tqName", "tqID", "台区名称", "", listXL);
             comboBoxEdit11.Properties.Items.Clear();
@@ -108,18 +108,18 @@ namespace Ebada.Scgl.Lcgl
             {
                 ListItem ot = new ListItem();
                 ot.DisplayMember = listXL[i].tqName;
-                ot.ValueMember = listXL[i].tqID;
+                ot.ValueMember = listXL[i].tqCode;
                 comboBoxEdit10.Properties.Items.Add(ot);
             }
             ListItem item0 = new ListItem("", "");
             comboBoxEdit10.Properties.Items.Add(item0);
             if (rowData.tqName == "")
             {
-                comboBoxEdit10.SelectedItem = item0;
+                comboBoxEdit10.EditValue = item0;
             }
             else
             {
-                comboBoxEdit10.SelectedItem = new ListItem(rowData.tqName, rowData.tqID);
+                comboBoxEdit10.EditValue = new ListItem(rowData.tqID, rowData.tqName);
             }
             
             comboBoxEdit10.SelectedIndexChanged += new EventHandler(comboBoxEdit10_SelectedIndexChanged);
@@ -178,17 +178,17 @@ namespace Ebada.Scgl.Lcgl
             }
             ListItem item = (ListItem)obj;
 
-            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqid='" + item.ValueMember + "'");
+            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqcode='" + item.ValueMember + "'");
             if (tq == null)
             {
-                rowData.tqName = comboBoxEdit10.Text;
+                //rowData.tqName = comboBoxEdit10.Text;
                 MsgBox.ShowTipMessageBox("台区名称[" + comboBoxEdit10.Text + "]不存在");
                 comboBoxEdit10.Focus();
                 return;
             }
             else
             {
-                rowData.tqID = tq.tqID;
+                rowData.tqID = tq.tqCode;
                 rowData.tqName = tq.tqName;
             }
 
