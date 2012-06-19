@@ -1,10 +1,10 @@
-/**********************************************
+﻿/**********************************************
 这是代码自动生成的，如果重新生成，所做的改动将会丢失
 系统:Ebada农电局生产管理
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-9-8 14:13:20
+生成时间:2012-6-19 17:58:02
 ***********************************************/
 
 using System;
@@ -21,7 +21,7 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
-        private string _id=Guid.NewGuid().ToString(); 
+        private string _id=Newid(); 
         private string _parentid=String.Empty; 
         private string _content=String.Empty; 
         private byte[] _doccontent=new byte[]{}; 
@@ -33,7 +33,13 @@ namespace Ebada.Scgl.Model
         private string _lastchangetime=String.Empty; 
         private string _status=String.Empty; 
         private string _number=String.Empty; 
-        private string _orgname=String.Empty;   
+        private string _orgname=(""); 
+        private string _bj=String.Empty; 
+        private string _c1=String.Empty; 
+        private string _c2=String.Empty; 
+        private string _c3=String.Empty; 
+        private string _c4=String.Empty; 
+        private string _c5=String.Empty;   
         #endregion
   
   
@@ -84,11 +90,11 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：Content
-        /// 属性描述：所有控件上的内容，格式：控件ID，控件内容|
-   
+        /// 属性描述：所有控件上的内容,格式：控件ID，控件内容|
+
         /// 字段信息：[Content],nvarchar
         /// </summary>
-        [DisplayNameAttribute("所有控件上的内容，格式：控件ID，控件内容|")]
+        [DisplayNameAttribute("所有控件上的内容")]
         public string Content
         {
             get { return _content; }
@@ -96,7 +102,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 1073741823)
-                throw new Exception("[所有控件上的内容，格式：控件ID，控件内容|]长度不能大于1073741823!");
+                throw new Exception("[所有控件上的内容]长度不能大于1073741823!");
                 if (_content as object == null || !_content.Equals(value))
                 {
                     _content = value;
@@ -262,7 +268,7 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：Number
-        /// 属性描述：票号
+        /// 属性描述：编号
         /// 字段信息：[Number],nvarchar
         /// </summary>
         [DisplayNameAttribute("票号")]
@@ -273,7 +279,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[票号]长度不能大于50!");
+                throw new Exception("[编号]长度不能大于50!");
                 if (_number as object == null || !_number.Equals(value))
                 {
                     _number = value;
@@ -298,6 +304,138 @@ namespace Ebada.Scgl.Model
                 if (_orgname as object == null || !_orgname.Equals(value))
                 {
                     _orgname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：bj
+        /// 属性描述：标记,两票合格标记
+        /// 字段信息：[bj],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("标记")]
+        public string bj
+        {
+            get { return _bj; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[标记]长度不能大于50!");
+                if (_bj as object == null || !_bj.Equals(value))
+                {
+                    _bj = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c1
+        /// 属性描述：预留
+        /// 字段信息：[c1],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("预留")]
+        public string c1
+        {
+            get { return _c1; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[预留]长度不能大于50!");
+                if (_c1 as object == null || !_c1.Equals(value))
+                {
+                    _c1 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c2
+        /// 属性描述：预留
+        /// 字段信息：[c2],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("预留")]
+        public string c2
+        {
+            get { return _c2; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[预留]长度不能大于50!");
+                if (_c2 as object == null || !_c2.Equals(value))
+                {
+                    _c2 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c3
+        /// 属性描述：预留
+        /// 字段信息：[c3],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("预留")]
+        public string c3
+        {
+            get { return _c3; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[预留]长度不能大于50!");
+                if (_c3 as object == null || !_c3.Equals(value))
+                {
+                    _c3 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c4
+        /// 属性描述：预留
+        /// 字段信息：[c4],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("预留")]
+        public string c4
+        {
+            get { return _c4; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[预留]长度不能大于50!");
+                if (_c4 as object == null || !_c4.Equals(value))
+                {
+                    _c4 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c5
+        /// 属性描述：预留
+        /// 字段信息：[c5],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("预留")]
+        public string c5
+        {
+            get { return _c5; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[预留]长度不能大于50!");
+                if (_c5 as object == null || !_c5.Equals(value))
+                {
+                    _c5 = value;
                 }
             }			 
         }
