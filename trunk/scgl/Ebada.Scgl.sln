@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
+﻿Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Server.Host", "Ebada.Server.Host\Ebada.Server.Host.csproj", "{CA32AB79-619A-4658-BD07-64D7063F331E}"
 EndProject
