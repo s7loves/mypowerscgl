@@ -68,8 +68,9 @@ namespace Ebada.Scgl.Lcgl
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    this.InitComboBoxData();
+                    
                     ConvertHelper.CopyTo<PS_tqdlbh>(value as PS_tqdlbh, rowData);
+                    this.InitComboBoxData();
                 }
                 if(rowData.sbCode==""){
                     rowData.InstallDate = DateTime.Now;
@@ -80,7 +81,7 @@ namespace Ebada.Scgl.Lcgl
         }
 
         #endregion
-
+       
         private void InitComboBoxData() {
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "额定漏电动作电流", comboBoxEdit4);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "型号", comboBoxEdit2);
@@ -97,32 +98,45 @@ namespace Ebada.Scgl.Lcgl
 
             IList<PS_tq> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqID,{1})='{0}' ", OrgCode, OrgCode.Length));
             //comboBoxEdit5.Properties.DataSource = listXL;
-            SetComboBoxData(comboBoxEdit5, "tqName", "tqID", "台区名称", "", listXL);
+            //SetComboBoxData(comboBoxEdit5, "tqName", "tqID", "台区名称", "", listXL);
             comboBoxEdit11.Properties.Items.Clear();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqID,{1})='{0}' ", OrgCode, OrgCode.Length));
+            //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqID,{1})='{0}' ", OrgCode, OrgCode.Length));
 
-            comboBoxEdit11.Properties.Items.AddRange(list);
+            //comboBoxEdit11.Properties.Items.AddRange(list);
             comboBoxEdit10.Properties.Items.Clear();
             for (int i = 0; i < listXL.Count; i++)
             {
                 ListItem ot = new ListItem();
                 ot.DisplayMember = listXL[i].tqName;
-                ot.ValueMember = listXL[i].tqName;
+                ot.ValueMember = listXL[i].tqID;
                 comboBoxEdit10.Properties.Items.Add(ot);
             }
-
+            ListItem item0 = new ListItem("", "");
+            comboBoxEdit10.Properties.Items.Add(item0);
             if (rowData.tqName == "")
             {
-                if (comboBoxEdit10.Properties.Items.Count > 0)
-                    comboBoxEdit10.SelectedIndex = 0;
+                comboBoxEdit10.SelectedItem = item0;
             }
             else
             {
-                //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(rowData.tqID);
-                comboBoxEdit10.Text = rowData.tqName;
+                comboBoxEdit10.SelectedItem = new ListItem(rowData.tqName, rowData.tqID);
             }
+            
+            comboBoxEdit10.SelectedIndexChanged += new EventHandler(comboBoxEdit10_SelectedIndexChanged);
             ICollection ryList = ComboBoxHelper.GetGdsRy(OrgCode);//获取供电所人员列表
             comboBoxEdit3.Properties.Items.AddRange(ryList);
+        }
+
+        void comboBoxEdit10_SelectedIndexChanged(object sender, EventArgs e) {
+            if (comboBoxEdit10.SelectedIndex == -1 || comboBoxEdit10.Text=="") return;
+
+            
+            ListItem item = (ListItem)comboBoxEdit10.SelectedItem;
+            PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(item.ValueMember);
+            comboBoxEdit11.Properties.Items.Clear();
+            comboBoxEdit11.Properties.Items.Add(pt.Adress);
+            comboBoxEdit11.SelectedIndex = 0;
+
         }
 
         /// <summary>
@@ -152,19 +166,25 @@ namespace Ebada.Scgl.Lcgl
      
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //if (comboBoxEdit5.Text == "")
-            //{
-            //    MsgBox.ShowTipMessageBox("台区名称不能为空。");
-            //    comboBoxEdit5.Focus();
-            //    return;
-            //}
-            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + comboBoxEdit10.Text + "'");
+            if (comboBoxEdit10.Text == "") {
+                MsgBox.ShowTipMessageBox("台区名称不能为空。");
+                comboBoxEdit10.Focus();
+                return;
+            }
+            object obj = comboBoxEdit10.EditValue;
+            if (obj == null) {
+                MsgBox.ShowTipMessageBox("台区名称[" + comboBoxEdit10.Text + "]不存在");
+                return;
+            }
+            ListItem item = (ListItem)obj;
+
+            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqid='" + item.ValueMember + "'");
             if (tq == null)
             {
                 rowData.tqName = comboBoxEdit10.Text;
-                //MsgBox.ShowTipMessageBox("台区名称不能为空。");
-                //comboBoxEdit5.Focus();
-                //return;
+                MsgBox.ShowTipMessageBox("台区名称[" + comboBoxEdit10.Text + "]不存在");
+                comboBoxEdit10.Focus();
+                return;
             }
             else
             {
@@ -186,18 +206,10 @@ namespace Ebada.Scgl.Lcgl
             //}
             //rowData.tqName = comboBoxEdit5.Text;
             this.DialogResult = DialogResult.OK;
-            this.Close();
+            //this.Close();
         }
 
        
-        private void comboBoxEdit5_EditValueChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(comboBoxEdit5.Text))
-            {
-                PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(comboBoxEdit5.EditValue.ToString());
-                comboBoxEdit11.Properties.Items.Add(pt.Adress);
-            }
-         
-        }
+        
     }
 }
