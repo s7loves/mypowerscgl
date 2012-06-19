@@ -186,25 +186,8 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit10.Focus();
                 return;
             }
-            else
-            {
-                rowData.tqID = tq.tqCode;
-                rowData.tqName = tq.tqName;
-            }
-
-            //if (textEdit1.Text == "")
-            //{
-            //    MsgBox.ShowTipMessageBox("设备编号不能为空。");
-            //    textEdit1.Focus();
-            //    return;
-            //}
-            //if (rowData.InstallDate>rowData.InDate)
-            //{
-            //    MsgBox.ShowTipMessageBox("安装日期不能大于投运日期。");
-            //    textEdit1.Focus();
-            //    return;
-            //}
-            //rowData.tqName = comboBoxEdit5.Text;
+            rowData.tqID = tq.tqCode;
+            rowData.tqName = tq.tqName;
             this.DialogResult = DialogResult.OK;
             //this.Close();
         }
