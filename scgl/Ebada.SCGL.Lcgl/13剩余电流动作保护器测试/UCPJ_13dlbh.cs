@@ -162,14 +162,6 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.ModleTableName = obj.GetType().ToString();
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
-
-
-
-
-
-            RefreshData(" where tqID in (select tqID  from PS_tq where LEFT(tqcode," + parentID.Length + ")= '" + parentID + "')  ");
-
-
         }
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PS_tqdlbh> e)
         {
@@ -233,7 +225,7 @@ namespace Ebada.Scgl.Lcgl
            
             if (org != null)
             {
-                RefreshData(" where tqID in(select tqID from PS_tq where LEFT(tqcode," + org.OrgCode.Length + ")='" + org.OrgCode + "')  ");
+                RefreshData(" where tqID in(select tqcode from PS_tq where LEFT(tqcode," + org.OrgCode.Length + ")='" + org.OrgCode + "')  ");
                 gds = org;
                 ParentObj = org;
                 IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");

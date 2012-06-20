@@ -132,7 +132,8 @@ namespace Ebada.Scgl.Lcgl
 
             
             ListItem item = (ListItem)comboBoxEdit10.SelectedItem;
-            PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(item.ValueMember);
+            PS_tq pt = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>("where tqcode='"+item.ValueMember+"'");
+            if (pt == null) return;
             comboBoxEdit11.Properties.Items.Clear();
             comboBoxEdit11.Properties.Items.Add(pt.Adress);
             comboBoxEdit11.SelectedIndex = 0;
