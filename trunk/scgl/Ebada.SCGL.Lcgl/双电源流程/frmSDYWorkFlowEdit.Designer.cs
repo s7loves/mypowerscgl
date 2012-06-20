@@ -69,10 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // m_DefaultLookAndFeel
-            // 
-            ;
-            // 
             // bar1
             // 
             this.bar1.BarName = "Tools";

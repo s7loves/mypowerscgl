@@ -66,10 +66,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // m_DefaultLookAndFeel
-            // 
-            ;
-            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));

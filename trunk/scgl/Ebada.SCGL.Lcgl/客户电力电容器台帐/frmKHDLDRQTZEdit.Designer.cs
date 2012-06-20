@@ -72,10 +72,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // m_DefaultLookAndFeel
-            // 
-            ;
-            // 
             // groupControlOrg
             // 
             this.groupControlOrg.Controls.Add(this.comboBoxEdit2);
