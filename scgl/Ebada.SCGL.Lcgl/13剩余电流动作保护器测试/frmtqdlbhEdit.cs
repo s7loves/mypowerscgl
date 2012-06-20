@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit10.Properties.Items.Add(item0);
             if (rowData.tqName == "")
             {
-                comboBoxEdit10.EditValue = item0;
+                comboBoxEdit10.SelectedIndex = 0;
             }
             else
             {
