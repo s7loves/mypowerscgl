@@ -135,16 +135,17 @@ namespace Ebada.Scgl.Lcgl
             if (isWorkflowCall)
             {
 
-               
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>("where ModleRecordID='" +
-                   obj.sbID + "'"
-                   + " and ModleTableName='" + obj.GetType().ToString() + "'"
-                   + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                   + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
-                   );
+                try {
+                    MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>("where ModleRecordID='" +
+                       obj.sbID + "'"
+                       + " and ModleTableName='" + obj.GetType().ToString() + "'"
+                       + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                       + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
+                       );
+                } catch { }
             }
 
-            RefreshData(" where tqID in (select tqID  from PS_tq where LEFT(tqID," + parentID.Length + ")= '" + parentID + "') OR orgCode='" + parentObj.OrgCode + "  ");
+            RefreshData(" where tqID in (select tqID  from PS_tq where LEFT(tqID," + parentID.Length + ")= '" + parentID + "') OR orgCode='" + parentObj.OrgCode + "'  ");
         }
         void gridViewOperation_AfterAdd(PS_tqdlbh obj)
         {
