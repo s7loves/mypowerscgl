@@ -197,7 +197,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 dt.Rows.Add(dr);
             }
             WinFormFun.LoadComboBox(cbxWorkDbTable, dt, "name", "name");
-            memoEdit1.Text = "说明 特殊代码\r\n 固定值中 数字+数字:{1+10}表示1到10用于序号 {sortid}:当前表单的序号为sortid的字段\r\n{recordid}:票LP_Record的ID\r\n{orgcode}:用户单位编号\r\n{orgname}:用户单位名称\r\n{userid}:用户编号\r\n{username}:用户姓名\r\n{编号规则一:单位的sortid}:把26个供电所按顺序编号分别为01、02、03以此类推，001为单据编号\r\n";
+            memoEdit1.Text = "说明 特殊代码\r\n 固定值中 数字+数字:{1+10}表示1到10用于序号 {sortid}:当前表单的序号为sortid的字段\r\n{datetime}:当前系统时间\r\n{recordid}:票LP_Record的ID\r\n{orgcode}:用户单位编号\r\n{orgname}:用户单位名称\r\n{userid}:用户编号\r\n{username}:用户姓名\r\n{编号规则一:单位的sortid}:把26个供电所按顺序编号分别为01、02、03以此类推，001为单据编号\r\n";
             this.memoEdit1.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.memoEdit1_EditValueChanging);
 
 
@@ -321,12 +321,11 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 strSQLtemp = tetWorkSQL.Text;
 
-            }
-            else if (rbnWorkDatabase.Checked == true)
-            {
+            } else if (rbnWorkDatabase.Checked == true) {
+                strSQLtemp = tetWorkSQL.Text;
+            } else {
                 strSQLtemp = tetWorkSQL.Text;
             }
-
             
             int i = 0;
             foreach (DataRow dr in griddt.Rows)
@@ -334,7 +333,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (dr["name"].ToString() == columnBox.Text)
                 {
                     dr["sql"] = strSQLtemp;
-                    if (rbnWorkFixValue.Checked == true)
+                    if (rbnWorkFixValue.Checked == true || radioButton1.Checked)
                     {
                         dr["modle"] = "固定值";
                         
@@ -517,7 +516,18 @@ namespace Ebada.SCGL.WFlow.Tool
             }
 
         }
-
+        #region 公式
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+            if (comboBox1.SelectedIndex >= 0) {
+                tetWorkSQL.Text = (comboBox1.SelectedItem as SqlClass).Sql;
+            }
+        }
+        private void radioButton1_CheckedChanged(object sender, EventArgs e) {
+            if (radioButton1.Checked && comboBox1.Items.Count == 0) {
+                comboBox1.Items.AddRange(SqlBuilderHelper.GetItems2().ToArray());
+            }
+        }
+        #endregion
 
         public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName, string moduName)
         {

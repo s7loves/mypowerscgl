@@ -127,6 +127,9 @@ namespace Ebada.SCGL.WFlow.Tool
                 dr["WorkFlowId"] = wtv.WorkFlowId;
                 dr["WorkTaskId"] = wtv.WorkTaskId;
                 WF_WorkTask wt = MainHelper.PlatformSqlMap.GetOne<WF_WorkTask>(" where WorkTaskId='" + wtv.WorkTaskId + "'");
+                if (wt == null) {
+                    continue;
+                }
                 dr["TaskCaption"] = wt.TaskCaption ;
                 dr["TableName"] = wtv.TableName;
                 dr["InitValue"] = wtv.InitValue;
@@ -237,12 +240,6 @@ namespace Ebada.SCGL.WFlow.Tool
             refreshData();
 
         }
-
-       
-       
-       
-
-       
 
     }
 }
