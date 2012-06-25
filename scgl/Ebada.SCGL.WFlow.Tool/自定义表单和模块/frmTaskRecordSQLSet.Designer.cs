@@ -53,6 +53,9 @@
             this.rbnWorkFixValue = new System.Windows.Forms.RadioButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.rbnWorkTable = new System.Windows.Forms.RadioButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -65,6 +68,9 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.comboBox1);
+            this.groupControl1.Controls.Add(this.labelControl5);
+            this.groupControl1.Controls.Add(this.radioButton1);
             this.groupControl1.Controls.Add(this.cbxSWorkTastDataTable);
             this.groupControl1.Controls.Add(this.labelControl9);
             this.groupControl1.Controls.Add(this.cbxSWorkTastzdDataTable);
@@ -210,16 +216,16 @@
             // 
             // tetWorkSQL
             // 
-            this.tetWorkSQL.Location = new System.Drawing.Point(63, 198);
+            this.tetWorkSQL.Location = new System.Drawing.Point(63, 214);
             this.tetWorkSQL.Name = "tetWorkSQL";
-            this.tetWorkSQL.Size = new System.Drawing.Size(346, 117);
+            this.tetWorkSQL.Size = new System.Drawing.Size(346, 101);
             this.tetWorkSQL.TabIndex = 61;
             // 
             // cbxWorkDbTableColumns
             // 
             this.cbxWorkDbTableColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxWorkDbTableColumns.FormattingEnabled = true;
-            this.cbxWorkDbTableColumns.Location = new System.Drawing.Point(282, 159);
+            this.cbxWorkDbTableColumns.Location = new System.Drawing.Point(63, 186);
             this.cbxWorkDbTableColumns.Name = "cbxWorkDbTableColumns";
             this.cbxWorkDbTableColumns.Size = new System.Drawing.Size(127, 22);
             this.cbxWorkDbTableColumns.TabIndex = 59;
@@ -237,7 +243,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(15, 204);
+            this.labelControl4.Location = new System.Drawing.Point(15, 216);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(34, 14);
             this.labelControl4.TabIndex = 56;
@@ -245,7 +251,7 @@
             // 
             // labelControl23
             // 
-            this.labelControl23.Location = new System.Drawing.Point(219, 160);
+            this.labelControl23.Location = new System.Drawing.Point(15, 186);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(36, 14);
             this.labelControl23.TabIndex = 57;
@@ -309,6 +315,36 @@
             this.rbnWorkTable.Text = "从节点取";
             this.rbnWorkTable.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.DropDownWidth = 200;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(293, 162);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(116, 22);
+            this.comboBox1.TabIndex = 76;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(234, 165);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(36, 14);
+            this.labelControl5.TabIndex = 75;
+            this.labelControl5.Text = "选择：";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(227, 142);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(49, 18);
+            this.radioButton1.TabIndex = 74;
+            this.radioButton1.Text = "公式";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
             // frmTaskRecordSQLSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -361,5 +397,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private System.Windows.Forms.ComboBox cbxSWorkTastzdDataTable;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
