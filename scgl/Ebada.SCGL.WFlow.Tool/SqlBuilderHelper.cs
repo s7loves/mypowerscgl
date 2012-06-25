@@ -34,7 +34,7 @@ namespace Ebada.SCGL.WFlow.Tool {
         }
         public static List<SqlClass> GetItems2() {
             List<SqlClass> list = new List<SqlClass>();
-            list.Add(new SqlClass() { Caption = "当前系统日期时间", Sql = "select getdate() " });
+            list.Add(new SqlClass() { Caption = "取服务器当前时间", Sql = "select getdate() " });
 
             return list;
         }
