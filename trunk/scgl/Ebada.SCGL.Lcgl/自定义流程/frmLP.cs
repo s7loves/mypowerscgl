@@ -1388,13 +1388,23 @@ namespace Ebada.Scgl.Lcgl {
                 if (sqlSentence.IndexOf("{username}") > -1) {
                     sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
                 }
-
+                if (sqlSentence.IndexOf("'{datetime}'") > -1) {
+                    sqlSentence = sqlSentence.Replace("'{datetime}'", "getdate()");
+                }
                 try {
                     sqlSentence = sqlSentence.Replace("\r\n", " ");
-                    li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+                    Hashtable value = Client.ClientHelper.PlatformSqlMap.GetObject("Select", sqlSentence)as Hashtable;
+                    if (value != null && value.Count > 0) {
+                        foreach (object obj in value.Values) {
+                            li.Add(obj); break;
+                        }
+                    }
 
                 } catch (Exception ex) {
-                    li.Add("出错:" + ex.Message);
+                    if (sqlSentence.Contains("{datetime}"))
+                        li.Add(DateTime.Now);
+                    else
+                        li.Add("出错:" + ex.Message);
                 }
             }
             return li;

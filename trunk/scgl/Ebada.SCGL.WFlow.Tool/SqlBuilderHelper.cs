@@ -32,7 +32,12 @@ namespace Ebada.SCGL.WFlow.Tool {
 
             return list;
         }
+        public static List<SqlClass> GetItems2() {
+            List<SqlClass> list = new List<SqlClass>();
+            list.Add(new SqlClass() { Caption = "当前系统日期时间", Sql = "select getdate() " });
 
+            return list;
+        }
     }
 
     public class SqlClass {
