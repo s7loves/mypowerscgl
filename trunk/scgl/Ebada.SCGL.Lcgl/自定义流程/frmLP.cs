@@ -290,7 +290,7 @@ namespace Ebada.Scgl.Lcgl {
                     this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                 } else {
                     if (wfv != null && wfv.Bigdata != null && wfv.Bigdata.Length > 0) {
-                        this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                        this.dsoFramerWordControl1.FileDataGzip = wfv.Bigdata;
                     } else
                         if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1 && currRecord.DocContent != null && currRecord.DocContent.Length > 0) this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                         else
@@ -980,7 +980,7 @@ namespace Ebada.Scgl.Lcgl {
                     currRecord.Kind = kind;
                     currRecord.Content = GetContent();
                     dsoFramerWordControl1.FileSave();
-                    dsoFramerWordControl1.FileClose();
+                    //dsoFramerWordControl1.FileClose();
                     if (ctrlNumber != null)
                         currRecord.Number = ctrlNumber.Text;
                     //currRecord.ImageAttachment = bt;

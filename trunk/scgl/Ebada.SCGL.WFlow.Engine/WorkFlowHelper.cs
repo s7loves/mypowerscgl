@@ -311,7 +311,7 @@ namespace Ebada.SCGL.WFlow.Engine
                 //ClientDBAgent agent = new ClientDBAgent();
                 //return agent.RecordExists(sqlItem);
                 
-                string sql = "select '1' as Name from WF_WorkTaskView where " + expressText; 
+                string sql = "select top 1 '1' as Name from WF_WorkTaskView where " + expressText; 
                 IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", sql);
                 if (li.Count == 0) 
                     return false;
@@ -523,42 +523,40 @@ namespace Ebada.SCGL.WFlow.Engine
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                     "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '"
                     + varTableName + "'");
-                if (varTableName == "LP_Record")
-                {
-                    //wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
-                    varSql = "select " + varFieldName + " as name from " + varTableName + " where "
-                        + list[0]
-                        + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='"
-                        + wfi.WorkFlowId + "' and WorkFlowInsId='"
-                        + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by " + list[0] + " desc";
-                }
-                else if (varTableName == "WF_TableFieldValue")
-                {
+                if (list.Count > 0) {
+                    if (varTableName == "LP_Record") {
+                        //wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
+                        varSql = "select " + varFieldName + " as name from " + varTableName + " where "
+                            + list[0]
+                            + " in (select RecordID  from WFP_RecordWorkTaskIns where WorkFlowId='"
+                            + wfi.WorkFlowId + "' and WorkFlowInsId='"
+                            + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by " + list[0] + " desc";
+                    } else if (varTableName == "WF_TableFieldValue") {
 
-                    wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
-                    varSql = "select " + varFieldName + " as name from " + varTableName + " where "
-                        + list[0]
-                        + " in (select id  from WF_TableFieldValue where WorkFlowId='"
-                        + wfi.WorkFlowId + "' and WorkFlowInsId='"
-                        + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by id desc";
-                }
-                else
-                {
-                    wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
-                    varSql = "select " + varFieldName + " as name from " + varTableName + " where  "
-                        + list[0]
-                        + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"
-                        + wfi.WorkFlowId
-                        + "' and WorkFlowInsId='" + wfi.WorkFlowInsId + "'  " + filterExpressText + ") order by " + list[0] + " desc";
+                        wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
+                        varSql = "select " + varFieldName + " as name from " + varTableName + " where "
+                            + list[0]
+                            + " in (select id  from WF_TableFieldValue where WorkFlowId='"
+                            + wfi.WorkFlowId + "' and WorkFlowInsId='"
+                            + wfi.WorkFlowInsId + "' " + filterExpressText + ") order by id desc";
+                    } else {
+                        wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
+                        varSql = "select " + varFieldName + " as name from " + varTableName + " where  "
+                            + list[0]
+                            + " in (select ModleRecordID  from WF_ModleRecordWorkTaskIns where WorkFlowId='"
+                            + wfi.WorkFlowId
+                            + "' and WorkFlowInsId='" + wfi.WorkFlowInsId + "'  " + filterExpressText + ") order by " + list[0] + " desc";
 
+                    }
+                    IList li = null;
+                    try {
+                        li = MainHelper.PlatformSqlMap.GetList("GetTableName2", varSql);
+                    } catch { }
+                    if (li != null && li.Count > 0) {
+
+                        resultValue = ((WF_WorkFlow)li[0]).Name;
+                    }
                 }
-                IList li = MainHelper.PlatformSqlMap.GetList("GetTableName2", varSql);
-                if (li.Count > 0)
-                {
-                  
-                    resultValue = ((WF_WorkFlow)li[0]).Name;
-                }
-               
                
 
             }
