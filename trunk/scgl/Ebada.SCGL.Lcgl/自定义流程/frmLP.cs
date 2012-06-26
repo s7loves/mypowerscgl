@@ -276,9 +276,10 @@ namespace Ebada.Scgl.Lcgl {
             }
             if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0) {
                 if (wfv != null && wfv.Bigdata != null && wfv.Bigdata.Length > 0) {
-                    this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                    this.dsoFramerWordControl1.FileDataGzip = wfv.Bigdata;
                 } else
-                    if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1 && currRecord.DocContent != null && currRecord.DocContent.Length > 0) this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                    if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1 && currRecord.DocContent != null && currRecord.DocContent.Length > 0) 
+                        this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                     else
                         this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
                 InitContorl();
@@ -292,7 +293,8 @@ namespace Ebada.Scgl.Lcgl {
                     if (wfv != null && wfv.Bigdata != null && wfv.Bigdata.Length > 0) {
                         this.dsoFramerWordControl1.FileDataGzip = wfv.Bigdata;
                     } else
-                        if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1 && currRecord.DocContent != null && currRecord.DocContent.Length > 0) this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
+                        if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1 && currRecord.DocContent != null && currRecord.DocContent.Length > 0) 
+                            this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                         else
                             this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
                 }
