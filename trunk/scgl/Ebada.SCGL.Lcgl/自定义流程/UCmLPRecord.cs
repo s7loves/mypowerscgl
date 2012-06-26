@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Lcgl {
                 this.repositoryItemHyperLinkEdit1.Caption = "查看";
                 this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
                 this.repositoryItemHyperLinkEdit1.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit1_Click);
-                this.picview.Caption = "流程图";
+                this.picview.Caption = "操作";
                 this.picview.ColumnEdit = this.repositoryItemHyperLinkEdit1;
                 this.picview.VisibleIndex = 1;
                 picview.FieldName = "Image";
@@ -199,13 +199,63 @@ namespace Ebada.Scgl.Lcgl {
             if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             if (currRecord.DocContent == null) currRecord.DocContent = new byte[0];
-            frmViewTemplate fm = new frmViewTemplate();
-            DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
-            fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
-            fm.CurrRecord = currRecord;
-            fm.Kind = strKind;
-            fm.Status = "edit";
-            fm.ShowDialog();
+            //DataTable dtall = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+            DataTable dtall = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+            DataTable dt = new DataTable();
+            DataTable dtret = null;
+            if (dtret == null) {
+                if (dtall.Rows.Count < 1) {
+                    if (currRecord.Status == "存档") {
+                        //frmTemplate fm0 = new frmTemplate();
+                        //fm0.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+                        //fm0.CurrRecord = currRecord;
+                        //fm0.Kind = strKind;
+                        //fm0.Status = "edit";
+                        //fm0.ShowDialog();
+                        MsgBox.ShowAskMessageBox("已结束的流程不能在此处查阅。");
+                    } else {
+                        IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
+                        if (wf.Count > 0) {
+                            WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
+
+                            string struser = RecordWorkTask.GetWorkFlowTaskOperator(wf[0].WorkTaskInsId);
+                            MsgBox.ShowTipMessageBox("没有操作此记录的权限，此记录操作者为 " + struser + " !");
+                        }
+                    }
+                    return;
+                }
+                if (dtall.Rows.Count == 1 || currRecord.Status.IndexOf("|") == -1) {
+                    dt = dtall;
+                } else {
+                    WorkFlowTaskSelectForm wfts = new WorkFlowTaskSelectForm();
+                    wfts.RecordWorkFlowData = dtall;
+                    if (wfts.ShowDialog() == DialogResult.OK) {
+                        dt = wfts.RetWorkFlowData;
+                    } else {
+                        return;
+                    }
+                }
+            } else {
+                dt = dtret;
+            }
+            if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
+            object obj = RecordWorkTask.GetWorkTaskModle(dt);
+            if (obj == null) {
+                return;
+            }
+            if (obj is frmLP) {
+                frmViewTemplate fm = new frmViewTemplate();
+
+                //DataTable dt = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+                fm.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+                fm.CurrRecord = currRecord;
+                fm.Kind = strKind;
+                fm.Status = "edit";
+                fm.RecordWorkFlowData = dt;
+                fm.ShowDialog();
+            } else {
+                btEditfrm_ItemClick(sender, null);
+            }
             //Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(), new Size(1024, 768));
             //string tempPath = Path.GetTempPath();
             //string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + ".png";
