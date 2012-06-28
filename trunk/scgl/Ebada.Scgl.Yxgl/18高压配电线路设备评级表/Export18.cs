@@ -44,6 +44,7 @@ namespace Ebada.Scgl.Yxgl {
                         break;
                     }
                     PJ_18gysbpjmx tempobj = objlist[p * 29 + i];
+                    //if (string.IsNullOrEmpty(tempobj.sbdy)) continue;
                     //ex.SetCellValue((p * 29 + i).ToString(), 7 + i, 1);
                     ex.SetCellValue(tempobj.xh.ToString(), 7 + i, 1);
                     ex.SetCellValue(tempobj.sbdy, 7 + i, 2);
@@ -113,7 +114,7 @@ namespace Ebada.Scgl.Yxgl {
                 IList<PS_tq> listtq = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where SUBSTRING(xlCode, 1, 6) ='" + pl.LineCode + "'");
 
                 foreach (PS_tq pq in listtq) {
-
+                    if (string.IsNullOrEmpty(pq.tqName)) continue;
                     bh++;
                     pjmx = new PJ_18gysbpjmx();
                     pjmx.ID += bh;
@@ -142,6 +143,7 @@ namespace Ebada.Scgl.Yxgl {
                 //开关
                 IList<PS_kg> listkg = Client.ClientHelper.PlatformSqlMap.GetList<PS_kg>("WHERE (gtID IN(SELECT gtID FROM PS_gt WHERE (SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "')))");
                 foreach (PS_kg pq in listkg) {
+                    if (string.IsNullOrEmpty(pq.kgName)) continue;
                     bh++;
                     pjmx = new PJ_18gysbpjmx();
                     pjmx.ID += bh;
@@ -170,6 +172,7 @@ namespace Ebada.Scgl.Yxgl {
                 //变压器
                 IList<PS_tqbyq> listbyq = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("WHERE (tqID IN(SELECT tqID FROM PS_tq WHERE (SUBSTRING(tqcode, 1, 6) = '" + pl.LineCode + "')))");
                 foreach (PS_tqbyq pq in listbyq) {
+                    if (string.IsNullOrEmpty(pq.byqName)) continue;
                     bh++;
                     pjmx = new PJ_18gysbpjmx();
                     pjmx.ID += bh;
