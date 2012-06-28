@@ -234,6 +234,13 @@ namespace TLMapPlatform {
 
                         item.Tag = code;
                         cm.MenuItems.Add(item);
+                        item = new MenuItem();
+                        item.Text = "高压配电设备评级表";
+                        item.Click += new EventHandler(高压配电设备评级表_Click);
+
+                        item.Tag = code;
+                        cm.MenuItems.Add(item);
+
                         cm.Show(treeList1, e.Location);
                         return;
 
@@ -250,6 +257,16 @@ namespace TLMapPlatform {
             double r = Math.Max(r2.Right, r1.Right);
             double b = Math.Min(r1.Bottom, r2.Bottom);
             return new RectLatLng(t, l, r - l, t - b);
+        }
+        void 高压配电设备评级表_Click(object sender, EventArgs e) {
+            string code = (sender as MenuItem).Tag.ToString();
+            mOrg org = ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + code + "'");
+            if (org != null) {
+                setWaitMsg("正在生成“" + org.OrgName + "”高压配电设备评级表");
+                waitdlg.TopMost = false;
+                Ebada.Client.Platform.MainHelper.Execute("Ebada.Scgl.Yxgl.dll", "Ebada.Scgl.Yxgl.Export18", "BuildPjView", new object[] { org.OrgCode, org.OrgName });
+                setWaitMsg(null);
+            }
         }
         void 高压设备完好率汇总表_Click(object sender, EventArgs e) {
             string code = (sender as MenuItem).Tag.ToString();
