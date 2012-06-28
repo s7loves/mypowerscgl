@@ -63,9 +63,9 @@ namespace Ebada.Scgl.Yxgl
                 pjmx.CreateDate = DateTime.Now;
                 Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
                 pjmx.CreateMan = m_UserBase.RealName;
-                int line1 =Convert.ToInt32( Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE SUBSTRING(LineID, 1, 6) = '"+pl.LineCode+"'AND (lineKind = '一类')"));
-                int line2 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE SUBSTRING(LineID, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '二类')"));
-                int line3 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE SUBSTRING(LineID, 1, 6) = '" + pl.LineCode+ "'AND (lineKind = '三类')")) ;
+                int line1 =Convert.ToInt32( Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE linevol='10' and  SUBSTRING(LineCode, 1, 6) = '"+pl.LineCode+"'AND (lineKind = '一类')"));
+                int line2 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE linevol='10' and SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '二类')"));
+                int line3 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE linevol='10' and SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '三类')"));
                 pjmx.one = line1;
                 pjmx.two = line2;
                 pjmx.three = line3;
