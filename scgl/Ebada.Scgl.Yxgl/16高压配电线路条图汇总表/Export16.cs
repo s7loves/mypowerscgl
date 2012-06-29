@@ -4,6 +4,8 @@ using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
+using System.Data;
+using System.Collections;
 namespace Ebada.Scgl.Yxgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
@@ -71,30 +73,36 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(sumgt, 11, 2);
             //主干长
             string length = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where linetype='1' and linevol='10' and linecode in (select linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10')", obj.LineCode.Length, obj.LineCode));
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format(" where LineCode='{0}'",obj.LineCode));
+            int lenzg = (int)ot;
             if (ot != null) {
-                length = (int)ot / 1000.0 + "";//km
+                length =Math.Round( lenzg / 1000.0,2) + "";//km
             }
-            ex.SetCellValue(length, 9, 4);
-            ex.SetCellValue(length, 9, 5);
+            
+            ex.SetCellValue(length, 9, 5);//主干
             //总长度
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where linevol='10' and linecode in (select linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10')", obj.LineCode.Length, obj.LineCode));
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  linecode like '{0}%' and linevol='10'", obj.LineCode));
             if (ot != null) {
-                length = (int)ot / 1000.0 + "";
+                length = Math.Round((int)ot / 1000.0,2) + "";
             }
-            ex.SetCellValue(length, 9, 3);
+            ex.SetCellValue(length, 9, 4);//小计（线路长度）
+            ex.SetCellValue(length, 9, 3);//合计
             //分支线的数目和长度
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xlRowCount", string.Format("where LineType in('2','3') and linevol='10' and linecode in (select linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10')", obj.LineCode.Length, obj.LineCode));
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xlRowCount", string.Format("where  linecode like '{0}%' and linevol='10' and len(linecode)>6", obj.LineCode));
             if (ot != null) {
                 sumgt = (int)ot + "";
             }
             ex.SetCellValue(sumgt, 9, 6);
 
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where LineType in('2','3') and linevol='10' and linecode in (select linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10')", obj.LineCode.Length, obj.LineCode));
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  linecode like '{0}%' and linevol='10' and len(linecode)>6", obj.LineCode));
             if (ot != null) {
-                length = (int)ot / 1000.0 + "";
+                length = Math.Round((int)ot / 1000.0,2) + "";
             }
             ex.SetCellValue(length, 9, 8);
+            //供电半经
+            double gdbj = jsgdbj(obj.LineCode);
+            length = Math.Round(gdbj / 1000.0, 2) + "";
+            ex.SetCellValue(length, 9, 13);
             //变压器容量和台
 
             //总容量
@@ -211,17 +219,17 @@ namespace Ebada.Scgl.Yxgl {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 14, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%氧化锌硅胶%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))",obj.LineCode.Length,obj.LineCode));
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '&Y(H)5WS-17/50%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 15, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%阀型%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))",obj.LineCode.Length,obj.LineCode));
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%FZ-10/50%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 16, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%氧化锌硅胶带熔断器%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%Y5WZ-17/45%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
@@ -260,6 +268,45 @@ namespace Ebada.Scgl.Yxgl {
             Microsoft.Office.Interop.Excel.Worksheet ws = ex.MyExcel.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
             if (ws != null)
                 ws.PrintPreview(true);
+        }
+        /// <summary>
+        /// 计算供电半径
+        /// </summary>
+        /// <returns></returns>
+        private static double jsgdbj(string linecode) {
+            double ret = 0;
+            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where linecode like '"+linecode+"%' and linevol='10'");
+            DataTable dt = Ebada.Core.ConvertHelper.ToDataTable((IList)list, typeof(PS_xl));
+            ret = getMaxLen(dt, null);
+
+            return ret;
+        }
+
+        private static double getMaxLen(DataTable dt, DataRow prow) {
+            double maxlen = 0;
+            string p = "";
+            if (prow != null)
+                p = prow["LineID"].ToString();
+            DataRow[] rows = dt.Select("parentid='" + p + "'");
+            foreach (DataRow row in rows) {
+                double len = getMaxLen(dt, row);
+                maxlen = Math.Max(maxlen, len + getLen(row,prow));
+            }
+            if (prow != null && rows.Length == 0) maxlen = (int)prow["WireLength"];
+            if(prow==null && rows.Length==1)maxlen=Math.Max(maxlen,(int)rows[0]["WireLength"]);
+            return maxlen;
+        }
+        private static double getLen(DataRow row, DataRow prow) {
+            double ret = 0;
+            if (prow != null) {
+                string pgt = row["ParentGT"].ToString();
+                string plinecode = prow["LineCode"].ToString();
+                if (pgt.Length > 4)
+                    ret = (int)Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(gtspan) from ps_gt where LineCode='{0}' and gtcode<='{1}'", plinecode, pgt));
+                else if (pgt.Length == 4)
+                    ret = (int)Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(gtspan) from ps_gt where LineCode='{0}' and gth<='{1}'", plinecode, pgt));
+            }
+            return ret;
         }
     }
 }
