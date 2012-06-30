@@ -214,22 +214,23 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(ts, 23, 8);
             //避雷器
             string blq = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))",obj.LineCode.Length,obj.LineCode));
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_gtsb Where sbname='避雷器' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))",obj.LineCode.Length,obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 14, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '&Y(H)5WS-17/50%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_gtsb Where sbname='避雷器'and sbModle like 'Y%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 15, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%FZ-10/50%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_gtsb Where sbname='避雷器'and sbModle like 'FZ%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 16, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%Y5WZ-17/45%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
+            blq = "0";
+            //ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%Y5WZ-17/45%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
@@ -237,23 +238,23 @@ namespace Ebada.Scgl.Yxgl {
             //绝缘子
             string jyuz = "0";
           //  ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where (sbname='高压立瓶' or sbname='高压悬垂'  or sbname='高压针式绝缘子' or sbname='10KV楔型耐张') and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where (sbname='高压立瓶' or sbname='高压悬垂'  or sbname='高压针式绝缘子' or sbname='10KV楔型耐张') and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null)
             {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 21, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where (sbname='高压立瓶' or sbname='高压针式绝缘子')and (sbModle like  '%fp%' or sbModle like  '%p-%') and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where (sbname='高压立瓶' or sbname='高压针式绝缘子')and (sbModle like  '%fp%' or sbModle like  '%p-%') and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 22, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where  (sbname='高压悬垂' or sbname='高压针式绝缘子')and (sbModle like  '%fsw%' or sbModle like  '%xp-%')  and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where  (sbname='高压悬垂' or sbname='高压针式绝缘子')and (sbModle like  '%fsw%' or sbModle like  '%xp-%')  and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 23, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='10KV楔型耐张'and sbModle='j10' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where sbname='10KV楔型耐张'and sbModle='j10' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
