@@ -254,7 +254,7 @@ namespace Ebada.Scgl.Yxgl {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 23, 13);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where sbname='10KV楔型耐张'and sbModle='j10' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where sbname='10KV楔型耐张'and sbModle like 'j10%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
