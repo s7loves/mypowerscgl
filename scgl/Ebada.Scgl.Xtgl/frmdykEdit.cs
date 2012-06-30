@@ -150,7 +150,7 @@ namespace Ebada.Scgl.Xtgl
 
         private void memoEdit1_TextChanged(object sender, EventArgs e)
         {
-            if (rowData.zjm.Length > 50)
+            if (rowData.nr.Length > 50)
                 rowData.zjm = SelectorHelper.GetPysm(rowData.nr.Substring(0, 50));
             else
                 rowData.zjm = SelectorHelper.GetPysm(rowData.nr);

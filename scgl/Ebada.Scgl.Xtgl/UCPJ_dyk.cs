@@ -346,15 +346,14 @@ namespace Ebada.Scgl.Xtgl {
             {
                 foreach (PJ_dyk xl in list)
                 {
-                    //if (xl.zjm == "")
-                    {
-                        if (xl.nr.Length>50)
-                        xl.zjm = SelectorHelper.GetPysm(xl.nr.Substring(0,50));
+                    try {
+                        if (xl.nr.Length > 50)
+                            xl.zjm = SelectorHelper.GetPysm(xl.nr.Substring(0, 50));
                         else
                             xl.zjm = SelectorHelper.GetPysm(xl.nr);
 
                         listout.Add(xl);
-                    }
+                    } catch { }
                 }
                 if (listout.Count > 0)
                     Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, listout, null);
