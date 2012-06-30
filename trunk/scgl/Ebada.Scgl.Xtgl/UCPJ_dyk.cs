@@ -269,8 +269,8 @@ namespace Ebada.Scgl.Xtgl {
                                         one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
                                     }
                                 }
-                                Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ParentID='{0}' WHERE ParentID='{1}'", dyk.bh, dyk.ID));
-                                Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
+                                Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ParentID='{0}' WHERE ParentID='{1}'", dyk.bh, dyk.ID));
+                                Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
                             }
                             catch { };
                         }
@@ -287,7 +287,7 @@ namespace Ebada.Scgl.Xtgl {
                                         dyk.bh = (Convert.ToInt64(dyk.bh) + 1).ToString();
                                         one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
                                     }
-                                    Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
+                                    Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
                                 }
                                 else
                                 {
@@ -301,7 +301,7 @@ namespace Ebada.Scgl.Xtgl {
                                     }
                                     //e.Value.ID = Convert.ToString(xhidex);
                                     dyk.bh = Convert.ToString(xhidex);
-                                    Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
+                                    Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
                                 }
                                 
                             }
