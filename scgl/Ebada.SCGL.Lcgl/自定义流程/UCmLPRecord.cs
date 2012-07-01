@@ -185,25 +185,75 @@ namespace Ebada.Scgl.Lcgl {
             if (ihand < 0)
                 return;
             DataRow dr = gridView1.GetDataRow(ihand);
-            LP_Record currRecord = new LP_Record();
-            foreach (DataColumn dc in gridtable.Columns) {
-                if (dc.ColumnName != "Image") {
-                    if (dc.DataType.FullName.IndexOf("Byte[]") < 0)
-                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
-                    else if (dc.DataType.FullName.IndexOf("Byte[]") > -1 && DBNull.Value != dr[dc.ColumnName] && dr[dc.ColumnName].ToString() != "")
-                        currRecord.GetType().GetProperty(dc.ColumnName).SetValue(currRecord, dr[dc.ColumnName], null);
+            LP_Record record = Ebada.Core.ConvertHelper.RowToObject<LP_Record>(dr);
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + record.ID + "'");
+            if (wf.Count > 0) {
+                string wfid = wf[0].WorkFlowId;
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskList",
+    "where WorkFlowId ='" + wfid + "' and TaskTypeId!='2' order by TaskTypeId");
+                DataTable dt = ConvertHelper.ToDataTable(li);
+                
+                for (int i = 0; i < li.Count; i++) {
+                    if (((WF_WorkTask)li[i]).TaskTypeId == "6")
+                        GetTaskList(ref  dt, ((WF_WorkTask)li[i]).WorkFlowId, ((WF_WorkTask)li[i]).WorkTaskId);
 
                 }
+                wfhash.Clear();
+                ContextMenu cm = new ContextMenu();
+                
+                foreach (DataRow row in dt.Rows) {
+                    MenuItem item = new MenuItem(row["TaskCaption"].ToString(), contextmenu_Click);
+                    item.Tag = row["WorkTaskId"];
+                    cm.MenuItems.Add(item);
+                }
+                cm.Show(this, this.PointToClient(MousePosition));
             }
-            currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(currRecord.ID);
+        }
+        List<string> wfhash = new List<string>(); 
+        private void GetTaskList(ref DataTable dt, string WorkFlowId, string WorkTaskId) {
+            if (wfhash.Contains(WorkFlowId + WorkTaskId)) return;
+            wfhash.Add(WorkFlowId + WorkTaskId);
+            WF_SubWorkFlow sbf = MainHelper.PlatformSqlMap.GetOne<WF_SubWorkFlow>
+                (string.Format(" where WorkflowId='{0}' and WorkTaskId='{1}'",
+               WorkFlowId, WorkTaskId));
+            if (sbf != null) {
+                IList<WF_WorkTask> wtli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
+           "where WorkFlowId ='" + sbf.subWorkflowId + "'  and TaskTypeId!='2'  order by TaskTypeId");
+                for (int j = 0; j < wtli.Count; j++) {
+                    if (wtli[j].TaskTypeId == "6") {
+                        if (wfhash.Contains(wtli[j].WorkFlowId + wtli[j].WorkTaskId)) continue;
+                        wfhash.Add(wtli[j].WorkFlowId + wtli[j].WorkTaskId);
+                        GetTaskList(ref  dt, wtli[j].WorkFlowId, wtli[j].WorkTaskId);
+                    } else {
+                        DataRow dr = dt.NewRow();
+                        dr["TaskCaption"] = sbf.subWorkflowCaption + "-" + wtli[j].TaskCaption;
+                        dr["WorkTaskId"] = wtli[j].WorkTaskId;
+                        dt.Rows.Add(dr);
+                    }
+                }
+            }
+
+        }
+        private void contextmenu_Click(object sender, EventArgs e) {
+            
+            int ihand = gridView1.FocusedRowHandle;
+            if (ihand < 0)
+                return;
+            string taskid = (sender as MenuItem).Tag.ToString();
+            DataRow dr = gridView1.GetDataRow(ihand);
+            LP_Record currRecord = new LP_Record();
+            currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(dr["ID"].ToString());
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
+            if (wf.Count == 0) return;
+            
             if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             if (currRecord.DocContent == null) currRecord.DocContent = new byte[0];
             //DataTable dtall = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
-            DataTable dtall = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
+            DataTable dtall = new DataTable();// RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
             DataTable dt = new DataTable();
-            DataTable dtret = null;
-            if (dtret == null) {
+            DataTable dtret = RecordWorkTask.SelectedWorkflowTask(MainHelper.User.UserID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, taskid, 1);
+            if (dtret == null || dtret.Rows.Count==0) {
                 if (dtall.Rows.Count < 1) {
                     if (currRecord.Status == "存档") {
                         //frmTemplate fm0 = new frmTemplate();
@@ -214,12 +264,11 @@ namespace Ebada.Scgl.Lcgl {
                         //fm0.ShowDialog();
                         MsgBox.ShowAskMessageBox("已结束的流程不能在此处查阅。");
                     } else {
-                        IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
                         if (wf.Count > 0) {
                             WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
 
                             string struser = RecordWorkTask.GetWorkFlowTaskOperator(wf[0].WorkTaskInsId);
-                            MsgBox.ShowTipMessageBox("没有操作此记录的权限，此记录操作者为 " + struser + " !");
+                            MsgBox.ShowTipMessageBox("没有操作此记录的权限，此记录操作者为 " + struser + "\r\n或者此节点没有流转 !");
                         }
                     }
                     return;
@@ -238,7 +287,7 @@ namespace Ebada.Scgl.Lcgl {
             } else {
                 dt = dtret;
             }
-            if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
+            //if (!RecordWorkTask.HaveRunRecordRole(currRecord.ID, MainHelper.User.UserID)) return;
             object obj = RecordWorkTask.GetWorkTaskModle(dt);
             if (obj == null) {
                 return;
