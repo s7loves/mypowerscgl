@@ -1555,6 +1555,19 @@ namespace Ebada.Scgl.WFlow
             }
             return false;
         }
+        /// <summary>
+        /// 获取指定的任务
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="WorkFlowId"></param>
+        /// <param name="WorkFlowInstanceId"></param>
+        /// <param name="taskId"></param>
+        /// <param name="topsize"></param>
+        /// <returns></returns>
+        public static DataTable SelectedWorkflowTask(string userId, string WorkFlowId, string WorkFlowInstanceId, string taskId, int topsize) {
+
+            return WorkFlowInstance.SelectedWorkflowNowTask(userId, WorkFlowId, WorkFlowInstanceId, taskId, topsize);
+        }
 
         /// <summary>
         /// 获得当前用户可以运行当前记录的流程信息

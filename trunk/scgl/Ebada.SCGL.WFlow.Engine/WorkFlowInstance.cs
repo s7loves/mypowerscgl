@@ -338,8 +338,11 @@ namespace Ebada.SCGL.WFlow.Engine
                 string sqlstr = "select top " + topsize + " * from (";
                 sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
                 sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') ) OR ";
-                sqlstr = sqlstr + " (OperContent = 'ALL')) and  (OperStatus='0') and ";
-                sqlstr = sqlstr + " (Status='1' ) and ( (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "' and WorkTaskId='" + NowTaskId + "')  or WorkFlowInsId in (select WorkFlowInsId from  WF_WorkFlowInstance where " + allworflowid + " ))";
+                sqlstr = sqlstr + " (OperContent = 'ALL')) ";
+                if (topsize > 1) {
+                    sqlstr = sqlstr + " and  (OperStatus='0') and (Status='1' ) ";
+                }
+                sqlstr = sqlstr + " and ( (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "' and WorkTaskId='" + NowTaskId + "')  or WorkFlowInsId in (select WorkFlowInsId from  WF_WorkFlowInstance where " + allworflowid + " ))";
                 sqlstr = sqlstr + "union  ";
                 sqlstr = sqlstr + " select " + filedstr + " from WF_WorkTaskInsAccreditView where ";
                 sqlstr = sqlstr + " AccreditToUserId='" + userId + "' and AccreditStatus='1'and status='1'  ";
