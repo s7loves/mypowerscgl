@@ -46,9 +46,9 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(319, 174);
+            this.btnCancel.Location = new System.Drawing.Point(303, 119);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(52, 23);
+            this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "取消";
             // 
@@ -56,9 +56,9 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(264, 174);
+            this.btnOK.Location = new System.Drawing.Point(227, 119);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(49, 23);
+            this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -71,7 +71,7 @@
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
-            this.groupControlOrg.Size = new System.Drawing.Size(428, 218);
+            this.groupControlOrg.Size = new System.Drawing.Size(390, 150);
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
@@ -79,26 +79,26 @@
             // 
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
             this.groupBox1.Controls.Add(this.labelControl4);
-            this.groupBox1.Location = new System.Drawing.Point(12, 26);
+            this.groupBox1.Location = new System.Drawing.Point(22, 38);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(375, 129);
+            this.groupBox1.Size = new System.Drawing.Size(350, 66);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "记录选择";
             // 
             // comboBoxEdit1
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(143, 49);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(75, 26);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit1.Size = new System.Drawing.Size(146, 21);
+            this.comboBoxEdit1.Size = new System.Drawing.Size(261, 21);
             this.comboBoxEdit1.TabIndex = 13;
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(89, 52);
+            this.labelControl4.Location = new System.Drawing.Point(21, 29);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 12;
@@ -125,7 +125,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 218);
+            this.ClientSize = new System.Drawing.Size(390, 150);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
