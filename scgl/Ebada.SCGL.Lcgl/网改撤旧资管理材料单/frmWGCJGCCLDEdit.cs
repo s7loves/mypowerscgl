@@ -497,6 +497,16 @@ namespace Ebada.Scgl.Lcgl
             rowData.lasttime = DateTime.Now;  
         }
 
+        private void labelControl2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         
 
       
