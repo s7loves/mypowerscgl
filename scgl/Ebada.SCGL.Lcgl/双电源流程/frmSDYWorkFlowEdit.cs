@@ -261,6 +261,11 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
+        private void comboBoxEdit5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
        
     }
 }
