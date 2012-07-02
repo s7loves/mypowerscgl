@@ -101,7 +101,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(695, 218);
+            this.groupControl1.Size = new System.Drawing.Size(618, 212);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "查询条件设置";
             // 
@@ -133,12 +133,12 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(2, 23);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(691, 193);
+            this.panelControl1.Size = new System.Drawing.Size(614, 187);
             this.panelControl1.TabIndex = 0;
             // 
             // ceField3
             // 
-            this.ceField3.Location = new System.Drawing.Point(28, 140);
+            this.ceField3.Location = new System.Drawing.Point(12, 126);
             this.ceField3.Name = "ceField3";
             this.ceField3.Properties.Caption = "字段名称3";
             this.ceField3.Size = new System.Drawing.Size(77, 19);
@@ -146,7 +146,7 @@
             // 
             // ceField2
             // 
-            this.ceField2.Location = new System.Drawing.Point(27, 108);
+            this.ceField2.Location = new System.Drawing.Point(12, 98);
             this.ceField2.Name = "ceField2";
             this.ceField2.Properties.Caption = "字段名称2";
             this.ceField2.Size = new System.Drawing.Size(76, 19);
@@ -155,7 +155,7 @@
             // cbeFieldRule3
             // 
             this.cbeFieldRule3.EditValue = "包含";
-            this.cbeFieldRule3.Location = new System.Drawing.Point(312, 137);
+            this.cbeFieldRule3.Location = new System.Drawing.Point(307, 125);
             this.cbeFieldRule3.Name = "cbeFieldRule3";
             this.cbeFieldRule3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -163,13 +163,13 @@
             "包含",
             "不包含"});
             this.cbeFieldRule3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbeFieldRule3.Size = new System.Drawing.Size(88, 21);
+            this.cbeFieldRule3.Size = new System.Drawing.Size(74, 21);
             this.cbeFieldRule3.TabIndex = 60;
             // 
             // cbeFieldRule2
             // 
             this.cbeFieldRule2.EditValue = "包含";
-            this.cbeFieldRule2.Location = new System.Drawing.Point(312, 105);
+            this.cbeFieldRule2.Location = new System.Drawing.Point(307, 97);
             this.cbeFieldRule2.Name = "cbeFieldRule2";
             this.cbeFieldRule2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -177,12 +177,12 @@
             "包含",
             "不包含"});
             this.cbeFieldRule2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbeFieldRule2.Size = new System.Drawing.Size(88, 21);
+            this.cbeFieldRule2.Size = new System.Drawing.Size(74, 21);
             this.cbeFieldRule2.TabIndex = 61;
             // 
             // cbeField3
             // 
-            this.cbeField3.Location = new System.Drawing.Point(111, 139);
+            this.cbeField3.Location = new System.Drawing.Point(99, 125);
             this.cbeField3.Name = "cbeField3";
             this.cbeField3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -193,7 +193,7 @@
             // 
             // cbeField2
             // 
-            this.cbeField2.Location = new System.Drawing.Point(111, 107);
+            this.cbeField2.Location = new System.Drawing.Point(99, 97);
             this.cbeField2.Name = "cbeField2";
             this.cbeField2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -204,7 +204,7 @@
             // 
             // ceField1
             // 
-            this.ceField1.Location = new System.Drawing.Point(25, 76);
+            this.ceField1.Location = new System.Drawing.Point(12, 68);
             this.ceField1.Name = "ceField1";
             this.ceField1.Properties.Caption = "字段名称1";
             this.ceField1.Size = new System.Drawing.Size(78, 19);
@@ -213,7 +213,7 @@
             // cbeFieldRule1
             // 
             this.cbeFieldRule1.EditValue = "包含";
-            this.cbeFieldRule1.Location = new System.Drawing.Point(312, 76);
+            this.cbeFieldRule1.Location = new System.Drawing.Point(307, 67);
             this.cbeFieldRule1.Name = "cbeFieldRule1";
             this.cbeFieldRule1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -221,12 +221,12 @@
             "包含",
             "不包含"});
             this.cbeFieldRule1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbeFieldRule1.Size = new System.Drawing.Size(88, 21);
+            this.cbeFieldRule1.Size = new System.Drawing.Size(74, 21);
             this.cbeFieldRule1.TabIndex = 57;
             // 
             // teField3
             // 
-            this.teField3.Location = new System.Drawing.Point(415, 137);
+            this.teField3.Location = new System.Drawing.Point(398, 125);
             this.teField3.Name = "teField3";
             this.teField3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -236,7 +236,7 @@
             // 
             // teField2
             // 
-            this.teField2.Location = new System.Drawing.Point(415, 106);
+            this.teField2.Location = new System.Drawing.Point(398, 97);
             this.teField2.Name = "teField2";
             this.teField2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -246,7 +246,7 @@
             // 
             // teField1
             // 
-            this.teField1.Location = new System.Drawing.Point(415, 74);
+            this.teField1.Location = new System.Drawing.Point(398, 67);
             this.teField1.Name = "teField1";
             this.teField1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -256,7 +256,7 @@
             // 
             // cbeField1
             // 
-            this.cbeField1.Location = new System.Drawing.Point(112, 76);
+            this.cbeField1.Location = new System.Drawing.Point(99, 67);
             this.cbeField1.Name = "cbeField1";
             this.cbeField1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -268,7 +268,7 @@
             // barFJLY
             // 
             this.barFJLY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.barFJLY.Location = new System.Drawing.Point(543, 165);
+            this.barFJLY.Location = new System.Drawing.Point(445, 159);
             this.barFJLY.Name = "barFJLY";
             this.barFJLY.Size = new System.Drawing.Size(74, 23);
             this.barFJLY.TabIndex = 55;
@@ -279,7 +279,7 @@
             // TaskOverButton
             // 
             this.TaskOverButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.TaskOverButton.Location = new System.Drawing.Point(462, 165);
+            this.TaskOverButton.Location = new System.Drawing.Point(364, 159);
             this.TaskOverButton.Name = "TaskOverButton";
             this.TaskOverButton.Size = new System.Drawing.Size(75, 23);
             this.TaskOverButton.TabIndex = 54;
@@ -289,7 +289,7 @@
             // 
             // comboBoxEdit2
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(111, 46);
+            this.comboBoxEdit2.Location = new System.Drawing.Point(99, 38);
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -298,17 +298,17 @@
             // 
             // comboBoxEdit3
             // 
-            this.comboBoxEdit3.Location = new System.Drawing.Point(111, 10);
+            this.comboBoxEdit3.Location = new System.Drawing.Point(99, 10);
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(185, 21);
+            this.comboBoxEdit3.Size = new System.Drawing.Size(501, 21);
             this.comboBoxEdit3.TabIndex = 49;
             this.comboBoxEdit3.TextChanged += new System.EventHandler(this.comboBoxEdit3_TextChanged);
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(45, 49);
+            this.labelControl3.Location = new System.Drawing.Point(58, 41);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(24, 14);
             this.labelControl3.TabIndex = 41;
@@ -316,7 +316,7 @@
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(45, 13);
+            this.labelControl7.Location = new System.Drawing.Point(58, 13);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(24, 14);
             this.labelControl7.TabIndex = 44;
@@ -324,7 +324,7 @@
             // 
             // comboBoxEdit1
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(415, 10);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(398, 38);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -334,7 +334,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(333, 13);
+            this.labelControl8.Location = new System.Drawing.Point(352, 41);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(24, 14);
             this.labelControl8.TabIndex = 42;
@@ -343,9 +343,9 @@
             // simpleButton1
             // 
             this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton1.Location = new System.Drawing.Point(623, 165);
+            this.simpleButton1.Location = new System.Drawing.Point(525, 159);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(58, 23);
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
             this.simpleButton1.TabIndex = 40;
             this.simpleButton1.Text = "查询";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -379,8 +379,8 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.xtraTabControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.ShowCaption = true;
-            this.splitContainerControl1.Size = new System.Drawing.Size(695, 396);
-            this.splitContainerControl1.SplitterPosition = 218;
+            this.splitContainerControl1.Size = new System.Drawing.Size(618, 396);
+            this.splitContainerControl1.SplitterPosition = 212;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -391,7 +391,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(695, 172);
+            this.xtraTabControl1.Size = new System.Drawing.Size(618, 178);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1});
@@ -400,7 +400,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.gridControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(688, 142);
+            this.xtraTabPage1.Size = new System.Drawing.Size(611, 148);
             this.xtraTabPage1.Text = "档案信息";
             // 
             // gridControl1
@@ -411,7 +411,7 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemHyperLinkEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(688, 142);
+            this.gridControl1.Size = new System.Drawing.Size(611, 148);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -479,7 +479,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 396);
+            this.ClientSize = new System.Drawing.Size(618, 396);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "UCrsdaInquiry";
             this.Text = "安规档案查询";
