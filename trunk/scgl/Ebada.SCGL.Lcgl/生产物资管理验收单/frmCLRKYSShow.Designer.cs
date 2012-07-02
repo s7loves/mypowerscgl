@@ -33,14 +33,14 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -49,9 +49,9 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(514, 302);
+            this.btnCancel.Location = new System.Drawing.Point(496, 307);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(52, 23);
+            this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "取消";
             // 
@@ -59,9 +59,9 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(459, 301);
+            this.btnOK.Location = new System.Drawing.Point(420, 307);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(49, 23);
+            this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 7;
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -103,13 +103,29 @@
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 0;
             // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "所属工程";
+            this.gridColumn6.FieldName = "ssgc";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 5;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "所属分工程";
+            this.gridColumn7.FieldName = "ssxm";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 6;
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "物品名称";
             this.gridColumn1.FieldName = "wpmc";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 2;
+            this.gridColumn1.VisibleIndex = 1;
             this.gridColumn1.Width = 100;
             // 
             // gridColumn2
@@ -118,7 +134,7 @@
             this.gridColumn2.FieldName = "wpgg";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 3;
+            this.gridColumn2.VisibleIndex = 2;
             this.gridColumn2.Width = 100;
             // 
             // gridColumn3
@@ -127,7 +143,7 @@
             this.gridColumn3.FieldName = "wpdw";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 4;
+            this.gridColumn3.VisibleIndex = 3;
             this.gridColumn3.Width = 80;
             // 
             // gridColumn4
@@ -153,22 +169,6 @@
             this.gridColumn8.Caption = "id";
             this.gridColumn8.FieldName = "ID";
             this.gridColumn8.Name = "gridColumn8";
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "所属工程";
-            this.gridColumn6.FieldName = "ssgc";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "所属分工程";
-            this.gridColumn7.FieldName = "ssxm";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 7;
             // 
             // frmCLRKYSShow
             // 
