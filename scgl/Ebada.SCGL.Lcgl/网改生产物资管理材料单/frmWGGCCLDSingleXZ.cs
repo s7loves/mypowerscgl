@@ -158,6 +158,16 @@ namespace Ebada.Scgl.Lcgl
             ConvertHelper.CopyTo<PJ_wgclcrkd>(rowData, returnData);
         }
 
+        private void labelControl3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         
 
        
