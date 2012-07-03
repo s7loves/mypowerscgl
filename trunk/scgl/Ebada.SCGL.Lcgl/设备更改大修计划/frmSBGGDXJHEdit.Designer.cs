@@ -83,7 +83,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(439, 351);
+            this.btnCancel.Location = new System.Drawing.Point(429, 351);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 0;
@@ -93,7 +93,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(363, 351);
+            this.btnOK.Location = new System.Drawing.Point(353, 351);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 0;
@@ -133,7 +133,7 @@
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
             this.groupControlOrg.ShowCaption = false;
-            this.groupControlOrg.Size = new System.Drawing.Size(530, 381);
+            this.groupControlOrg.Size = new System.Drawing.Size(520, 381);
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
@@ -187,7 +187,7 @@
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(69, 153);
+            this.labelControl13.Location = new System.Drawing.Point(17, 153);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(36, 14);
             this.labelControl13.TabIndex = 44;
@@ -195,7 +195,7 @@
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(328, 127);
+            this.labelControl12.Location = new System.Drawing.Point(272, 127);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(36, 14);
             this.labelControl12.TabIndex = 43;
@@ -203,7 +203,7 @@
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(268, 101);
+            this.labelControl11.Location = new System.Drawing.Point(272, 101);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(96, 14);
             this.labelControl11.TabIndex = 46;
@@ -211,7 +211,7 @@
             // 
             // labelControl14
             // 
-            this.labelControl14.Location = new System.Drawing.Point(316, 153);
+            this.labelControl14.Location = new System.Drawing.Point(272, 153);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(48, 14);
             this.labelControl14.TabIndex = 42;
@@ -219,7 +219,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(9, 127);
+            this.labelControl10.Location = new System.Drawing.Point(17, 127);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(96, 14);
             this.labelControl10.TabIndex = 45;
@@ -298,7 +298,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(340, 75);
+            this.labelControl4.Location = new System.Drawing.Point(272, 75);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(24, 14);
             this.labelControl4.TabIndex = 31;
@@ -315,7 +315,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(57, 75);
+            this.labelControl1.Location = new System.Drawing.Point(17, 75);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(48, 14);
             this.labelControl1.TabIndex = 31;
@@ -325,10 +325,10 @@
             // 
             this.groupBox3.Controls.Add(this.simpleButton3);
             this.groupBox3.Controls.Add(this.memoEdit3);
-            this.groupBox3.Location = new System.Drawing.Point(21, 180);
+            this.groupBox3.Location = new System.Drawing.Point(17, 180);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(12);
-            this.groupBox3.Size = new System.Drawing.Size(495, 158);
+            this.groupBox3.Size = new System.Drawing.Size(491, 158);
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "备注";
@@ -350,12 +350,12 @@
             this.memoEdit3.Location = new System.Drawing.Point(12, 27);
             this.memoEdit3.Name = "memoEdit3";
             this.memoEdit3.Properties.LookAndFeel.SkinName = "Office 2007 Green";
-            this.memoEdit3.Size = new System.Drawing.Size(471, 119);
+            this.memoEdit3.Size = new System.Drawing.Size(467, 119);
             this.memoEdit3.TabIndex = 12;
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(316, 49);
+            this.labelControl6.Location = new System.Drawing.Point(272, 49);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(48, 14);
             this.labelControl6.TabIndex = 31;
@@ -363,7 +363,7 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(57, 101);
+            this.labelControl9.Location = new System.Drawing.Point(17, 101);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(48, 14);
             this.labelControl9.TabIndex = 32;
@@ -371,7 +371,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(21, 49);
+            this.labelControl5.Location = new System.Drawing.Point(17, 49);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(84, 14);
             this.labelControl5.TabIndex = 33;
@@ -379,7 +379,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(41, 23);
+            this.labelControl2.Location = new System.Drawing.Point(17, 23);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(60, 14);
             this.labelControl2.TabIndex = 30;
@@ -387,7 +387,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(292, 23);
+            this.labelControl3.Location = new System.Drawing.Point(272, 23);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(72, 14);
             this.labelControl3.TabIndex = 34;
@@ -413,7 +413,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(530, 381);
+            this.ClientSize = new System.Drawing.Size(520, 381);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
