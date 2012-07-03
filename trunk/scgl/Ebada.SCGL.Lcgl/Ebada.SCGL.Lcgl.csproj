@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1F5C3A84-EA23-43A1-B888-4C4BF2C68905}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -307,6 +307,19 @@
     </Compile>
     <Compile Include="图片资料\UCPJ_tpzl.Designer.cs">
       <DependentUpon>UCPJ_tpzl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="备品备件计划\ExportBPBJJHBEdit.cs" />
+    <Compile Include="备品备件计划\frmBPBJJHBEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="备品备件计划\frmBPBJJHBEdit.Designer.cs">
+      <DependentUpon>frmBPBJJHBEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="备品备件计划\UCBPBJJHB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="备品备件计划\UCBPBJJHB.Designer.cs">
+      <DependentUpon>UCBPBJJHB.cs</DependentUpon>
     </Compile>
     <Compile Include="春秋06设备巡视及缺陷消除\frmcq06sbxsEdit.cs">
       <SubType>Form</SubType>
@@ -1888,19 +1901,6 @@
     <Compile Include="生产物资管理生产台账\UCSCTZ.Designer.cs">
       <DependentUpon>UCSCTZ.cs</DependentUpon>
     </Compile>
-    <Compile Include="变电所电力电容器台帐\备品备件计划\ExportBPBJJHBEdit.cs" />
-    <Compile Include="变电所电力电容器台帐\备品备件计划\frmBPBJJHBEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="变电所电力电容器台帐\备品备件计划\frmBPBJJHBEdit.Designer.cs">
-      <DependentUpon>frmBPBJJHBEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="变电所电力电容器台帐\备品备件计划\UCBPBJJHB.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="变电所电力电容器台帐\备品备件计划\UCBPBJJHB.Designer.cs">
-      <DependentUpon>UCBPBJJHB.cs</DependentUpon>
-    </Compile>
     <Compile Include="年度技改工程计划\frmJGGCJHWorkFlowEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3178,14 +3178,6 @@
       <DependentUpon>UCSCTZ.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="变电所电力电容器台帐\备品备件计划\frmBPBJJHBEdit.resx">
-      <DependentUpon>frmBPBJJHBEdit.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="变电所电力电容器台帐\备品备件计划\UCBPBJJHB.resx">
-      <DependentUpon>UCBPBJJHB.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="年度技改工程计划\frmJGGCJHWorkFlowEdit.resx">
       <DependentUpon>frmJGGCJHWorkFlowEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -3643,6 +3635,12 @@
     <EmbeddedResource Include="图片资料\UCPJ_tpzl.resx">
       <DependentUpon>UCPJ_tpzl.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="备品备件计划\frmBPBJJHBEdit.resx">
+      <DependentUpon>frmBPBJJHBEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="备品备件计划\UCBPBJJHB.resx">
+      <DependentUpon>UCBPBJJHB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="春秋06设备巡视及缺陷消除\frmcq06sbxsEdit.resx">
       <DependentUpon>frmcq06sbxsEdit.cs</DependentUpon>
