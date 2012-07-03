@@ -64,7 +64,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(420, 302);
+            this.btnCancel.Location = new System.Drawing.Point(420, 295);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 8;
@@ -74,7 +74,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(344, 302);
+            this.btnOK.Location = new System.Drawing.Point(344, 295);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 7;
@@ -127,7 +127,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(33, 35);
+            this.labelControl10.Location = new System.Drawing.Point(18, 35);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(24, 14);
             this.labelControl10.TabIndex = 33;
@@ -135,7 +135,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(302, 118);
+            this.labelControl6.Location = new System.Drawing.Point(278, 118);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(24, 14);
             this.labelControl6.TabIndex = 37;
@@ -143,7 +143,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(9, 62);
+            this.labelControl2.Location = new System.Drawing.Point(18, 62);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 36;
@@ -159,7 +159,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(33, 89);
+            this.labelControl1.Location = new System.Drawing.Point(18, 89);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(24, 14);
             this.labelControl1.TabIndex = 37;
@@ -178,7 +178,7 @@
             // 
             this.groupBox3.Controls.Add(this.simpleButton3);
             this.groupBox3.Controls.Add(this.memoEdit3);
-            this.groupBox3.Location = new System.Drawing.Point(18, 153);
+            this.groupBox3.Location = new System.Drawing.Point(18, 148);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(12);
             this.groupBox3.Size = new System.Drawing.Size(471, 133);
@@ -238,7 +238,7 @@
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(9, 116);
+            this.labelControl11.Location = new System.Drawing.Point(18, 118);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(48, 14);
             this.labelControl11.TabIndex = 43;
@@ -258,7 +258,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 333);
+            this.ClientSize = new System.Drawing.Size(504, 326);
             this.Controls.Add(this.labelControl16);
             this.Controls.Add(this.dateEdit1);
             this.Controls.Add(this.labelControl11);
