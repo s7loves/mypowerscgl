@@ -119,7 +119,7 @@
             // 
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
             this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(47, 115);
+            this.simpleButton1.Location = new System.Drawing.Point(16, 115);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(35, 17);
             this.simpleButton1.TabIndex = 28;
@@ -187,7 +187,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(266, 60);
+            this.labelControl1.Location = new System.Drawing.Point(239, 60);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(44, 14);
             this.labelControl1.TabIndex = 8;
@@ -195,7 +195,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(34, 214);
+            this.labelControl8.Location = new System.Drawing.Point(16, 214);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(48, 14);
             this.labelControl8.TabIndex = 8;
@@ -204,7 +204,7 @@
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(38, 60);
+            this.labelControl7.Location = new System.Drawing.Point(16, 60);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(44, 14);
             this.labelControl7.TabIndex = 8;
@@ -212,7 +212,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(238, 214);
+            this.labelControl5.Location = new System.Drawing.Point(239, 214);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(72, 14);
             this.labelControl5.TabIndex = 7;
@@ -220,7 +220,7 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(38, 91);
+            this.labelControl9.Location = new System.Drawing.Point(16, 91);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(44, 14);
             this.labelControl9.TabIndex = 2;
