@@ -138,7 +138,7 @@
             // 
             // ceField3
             // 
-            this.ceField3.Location = new System.Drawing.Point(12, 126);
+            this.ceField3.Location = new System.Drawing.Point(18, 126);
             this.ceField3.Name = "ceField3";
             this.ceField3.Properties.Caption = "字段名称3";
             this.ceField3.Size = new System.Drawing.Size(77, 19);
@@ -146,7 +146,7 @@
             // 
             // ceField2
             // 
-            this.ceField2.Location = new System.Drawing.Point(12, 98);
+            this.ceField2.Location = new System.Drawing.Point(18, 98);
             this.ceField2.Name = "ceField2";
             this.ceField2.Properties.Caption = "字段名称2";
             this.ceField2.Size = new System.Drawing.Size(76, 19);
@@ -204,7 +204,7 @@
             // 
             // ceField1
             // 
-            this.ceField1.Location = new System.Drawing.Point(12, 68);
+            this.ceField1.Location = new System.Drawing.Point(18, 68);
             this.ceField1.Name = "ceField1";
             this.ceField1.Properties.Caption = "字段名称1";
             this.ceField1.Size = new System.Drawing.Size(78, 19);
@@ -308,7 +308,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(58, 41);
+            this.labelControl3.Location = new System.Drawing.Point(18, 41);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(24, 14);
             this.labelControl3.TabIndex = 41;
@@ -316,7 +316,7 @@
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(58, 13);
+            this.labelControl7.Location = new System.Drawing.Point(18, 13);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(24, 14);
             this.labelControl7.TabIndex = 44;
@@ -334,7 +334,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(352, 41);
+            this.labelControl8.Location = new System.Drawing.Point(329, 41);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(24, 14);
             this.labelControl8.TabIndex = 42;
