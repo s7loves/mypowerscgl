@@ -99,7 +99,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(10, 34);
+            this.labelControl2.Location = new System.Drawing.Point(17, 34);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(72, 14);
             this.labelControl2.TabIndex = 30;
@@ -109,10 +109,10 @@
             // 
             this.groupBox3.Controls.Add(this.simpleButton3);
             this.groupBox3.Controls.Add(this.memoEdit3);
-            this.groupBox3.Location = new System.Drawing.Point(22, 250);
+            this.groupBox3.Location = new System.Drawing.Point(17, 250);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(12);
-            this.groupBox3.Size = new System.Drawing.Size(489, 149);
+            this.groupBox3.Size = new System.Drawing.Size(494, 149);
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "备注";
@@ -134,7 +134,7 @@
             this.memoEdit3.Location = new System.Drawing.Point(12, 27);
             this.memoEdit3.Name = "memoEdit3";
             this.memoEdit3.Properties.LookAndFeel.SkinName = "Office 2007 Green";
-            this.memoEdit3.Size = new System.Drawing.Size(465, 110);
+            this.memoEdit3.Size = new System.Drawing.Size(470, 110);
             this.memoEdit3.TabIndex = 12;
             // 
             // groupControlOrg
@@ -181,7 +181,7 @@
             // 
             this.simpleButton2.Appearance.Font = new System.Drawing.Font("宋体", 9F);
             this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(47, 126);
+            this.simpleButton2.Location = new System.Drawing.Point(35, 126);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(35, 17);
             this.simpleButton2.TabIndex = 27;
@@ -192,7 +192,7 @@
             // 
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("宋体", 9F);
             this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(47, 54);
+            this.simpleButton1.Location = new System.Drawing.Point(35, 54);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(35, 17);
             this.simpleButton1.TabIndex = 27;
@@ -210,7 +210,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(32, 197);
+            this.labelControl4.Location = new System.Drawing.Point(17, 197);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 39;
@@ -235,7 +235,7 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(32, 223);
+            this.labelControl9.Location = new System.Drawing.Point(17, 223);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(48, 14);
             this.labelControl9.TabIndex = 39;
@@ -251,7 +251,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(13, 106);
+            this.labelControl1.Location = new System.Drawing.Point(17, 106);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(96, 14);
             this.labelControl1.TabIndex = 30;
