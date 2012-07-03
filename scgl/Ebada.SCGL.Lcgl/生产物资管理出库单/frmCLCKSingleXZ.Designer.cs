@@ -76,7 +76,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(391, 339);
+            this.btnCancel.Location = new System.Drawing.Point(382, 339);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 8;
@@ -86,7 +86,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(318, 339);
+            this.btnOK.Location = new System.Drawing.Point(309, 339);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 7;
@@ -148,7 +148,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(37, 32);
+            this.labelControl10.Location = new System.Drawing.Point(13, 32);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(24, 14);
             this.labelControl10.TabIndex = 33;
@@ -164,7 +164,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(288, 110);
+            this.labelControl6.Location = new System.Drawing.Point(264, 110);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(24, 14);
             this.labelControl6.TabIndex = 37;
@@ -188,7 +188,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(37, 84);
+            this.labelControl1.Location = new System.Drawing.Point(13, 84);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(24, 14);
             this.labelControl1.TabIndex = 37;
@@ -222,7 +222,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(288, 136);
+            this.labelControl5.Location = new System.Drawing.Point(264, 136);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(24, 14);
             this.labelControl5.TabIndex = 31;
@@ -241,10 +241,10 @@
             // 
             this.groupBox3.Controls.Add(this.simpleButton3);
             this.groupBox3.Controls.Add(this.memoEdit3);
-            this.groupBox3.Location = new System.Drawing.Point(23, 194);
+            this.groupBox3.Location = new System.Drawing.Point(13, 194);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(12);
-            this.groupBox3.Size = new System.Drawing.Size(431, 133);
+            this.groupBox3.Size = new System.Drawing.Size(441, 133);
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "备注";
@@ -266,7 +266,7 @@
             this.memoEdit3.Location = new System.Drawing.Point(12, 27);
             this.memoEdit3.Name = "memoEdit3";
             this.memoEdit3.Properties.LookAndFeel.SkinName = "Office 2007 Green";
-            this.memoEdit3.Size = new System.Drawing.Size(407, 94);
+            this.memoEdit3.Size = new System.Drawing.Size(417, 94);
             this.memoEdit3.TabIndex = 12;
             // 
             // labelControl8
@@ -337,7 +337,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 368);
+            this.ClientSize = new System.Drawing.Size(466, 368);
             this.Controls.Add(this.labelControl13);
             this.Controls.Add(this.dateEdit1);
             this.Controls.Add(this.labelControl11);
