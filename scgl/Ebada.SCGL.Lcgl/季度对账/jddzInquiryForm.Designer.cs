@@ -155,7 +155,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(268, 42);
+            this.labelControl2.Location = new System.Drawing.Point(263, 42);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 77;
@@ -172,7 +172,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(40, 42);
+            this.labelControl4.Location = new System.Drawing.Point(19, 42);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 76;
@@ -200,7 +200,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(256, 17);
+            this.labelControl1.Location = new System.Drawing.Point(257, 17);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(60, 14);
             this.labelControl1.TabIndex = 74;
@@ -226,7 +226,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(28, 17);
+            this.labelControl8.Location = new System.Drawing.Point(19, 17);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(60, 14);
             this.labelControl8.TabIndex = 72;
@@ -234,7 +234,7 @@
             // 
             // checkEdit2
             // 
-            this.checkEdit2.Location = new System.Drawing.Point(20, 67);
+            this.checkEdit2.Location = new System.Drawing.Point(19, 67);
             this.checkEdit2.Name = "checkEdit2";
             this.checkEdit2.Properties.Caption = "出库时间";
             this.checkEdit2.Size = new System.Drawing.Size(75, 19);
@@ -242,7 +242,7 @@
             // 
             // checkEdit1
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(20, 93);
+            this.checkEdit1.Location = new System.Drawing.Point(19, 93);
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "入库时间";
             this.checkEdit1.Size = new System.Drawing.Size(75, 19);
