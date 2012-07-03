@@ -277,7 +277,7 @@ namespace Ebada.Scgl.Yxgl
                      return -1;
                  }
                  PS_gt gtformer = null;
-                 IList<PS_gt> gtlis = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(" Where LineCode='" + xl.LineCode + "' order by gth");
+                 IList<PS_gt> gtlis = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(" Where LineCode='" + xl.LineCode + "' order by gtcode");
                  gtformer = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gt>(" Where gtID='" + xl.ParentGT + "'");
                  gtlis.Insert(0, gtformer);
                  //计算页码
