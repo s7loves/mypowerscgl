@@ -152,7 +152,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(489, 92);
+            this.labelControl1.Location = new System.Drawing.Point(466, 92);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(24, 14);
             this.labelControl1.TabIndex = 72;
@@ -178,7 +178,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(465, 66);
+            this.labelControl10.Location = new System.Drawing.Point(466, 66);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(48, 14);
             this.labelControl10.TabIndex = 68;
@@ -186,7 +186,7 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(465, 40);
+            this.labelControl9.Location = new System.Drawing.Point(466, 40);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(48, 14);
             this.labelControl9.TabIndex = 69;
@@ -195,7 +195,7 @@
             // barFJLY
             // 
             this.barFJLY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.barFJLY.Location = new System.Drawing.Point(504, 121);
+            this.barFJLY.Location = new System.Drawing.Point(519, 121);
             this.barFJLY.Name = "barFJLY";
             this.barFJLY.Size = new System.Drawing.Size(70, 23);
             this.barFJLY.TabIndex = 55;
@@ -206,7 +206,7 @@
             // TaskOverButton
             // 
             this.TaskOverButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.TaskOverButton.Location = new System.Drawing.Point(419, 121);
+            this.TaskOverButton.Location = new System.Drawing.Point(442, 121);
             this.TaskOverButton.Name = "TaskOverButton";
             this.TaskOverButton.Size = new System.Drawing.Size(70, 23);
             this.TaskOverButton.TabIndex = 54;
@@ -244,7 +244,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(257, 40);
+            this.labelControl2.Location = new System.Drawing.Point(254, 40);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 46;
@@ -261,7 +261,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(29, 38);
+            this.labelControl4.Location = new System.Drawing.Point(10, 38);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 45;
@@ -289,7 +289,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(245, 14);
+            this.labelControl3.Location = new System.Drawing.Point(248, 14);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(60, 14);
             this.labelControl3.TabIndex = 41;
@@ -297,7 +297,7 @@
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(465, 14);
+            this.labelControl7.Location = new System.Drawing.Point(466, 14);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(48, 14);
             this.labelControl7.TabIndex = 44;
@@ -315,7 +315,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(17, 14);
+            this.labelControl8.Location = new System.Drawing.Point(10, 14);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(60, 14);
             this.labelControl8.TabIndex = 42;
@@ -324,7 +324,7 @@
             // simpleButton1
             // 
             this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton1.Location = new System.Drawing.Point(589, 121);
+            this.simpleButton1.Location = new System.Drawing.Point(596, 121);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(70, 23);
             this.simpleButton1.TabIndex = 40;
@@ -399,7 +399,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(262, 66);
+            this.labelControl6.Location = new System.Drawing.Point(272, 66);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(12, 14);
             this.labelControl6.TabIndex = 9;
@@ -407,7 +407,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(262, 92);
+            this.labelControl5.Location = new System.Drawing.Point(272, 92);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(12, 14);
             this.labelControl5.TabIndex = 7;
