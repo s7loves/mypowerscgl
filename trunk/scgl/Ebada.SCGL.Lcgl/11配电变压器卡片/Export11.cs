@@ -32,6 +32,9 @@ namespace Ebada.Scgl.Lcgl {
             IList<PJ_11byqbd> pjbdlist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_11byqbd>("SelectPJ_11byqbdList", strwhere1);
             IList<PJ_11byqdydl> pjdydllist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_11byqdydl>("SelectPJ_11byqdydlList", strwhere1);
             IList<PJ_11byqdzcl> pjdzcllist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_11byqdzcl>("SelectPJ_11byqdzclList", strwhere1);
+            if (pjbdlist.Count == 0) {
+                pjbdlist.Add(new PJ_11byqbd() { azrq = obj.byqInstallDate, azdd = obj.byqInstallAdress });
+            }
            //计算页数
             int byqhdpage = Ecommon.GetPagecount(pjbdlist.Count, 3);
             if (byqhdpage > pagecount)
@@ -110,12 +113,13 @@ namespace Ebada.Scgl.Lcgl {
                     ex.SetCellValue(tempobj.azrq.Day.ToString(), row + i, 5);
 
                     ex.SetCellValue(tempobj.azdd, row + i, 7);
+                    if (tempobj.ccrq.Year != 1900) {
+                        ex.SetCellValue(tempobj.ccrq.Year.ToString(), row + i, 14);
+                        ex.SetCellValue(tempobj.ccrq.Month.ToString(), row + i, 16);
+                        ex.SetCellValue(tempobj.ccrq.Day.ToString(), row + i, 18);
 
-                    ex.SetCellValue(tempobj.ccrq.Year.ToString(), row + i, 14);
-                    ex.SetCellValue(tempobj.ccrq.Month.ToString(), row + i, 16);
-                    ex.SetCellValue(tempobj.ccrq.Day.ToString(), row + i, 18);
-
-                    ex.SetCellValue(tempobj.ccyy, row + i, 20);
+                        ex.SetCellValue(tempobj.ccyy, row + i, 20);
+                    }
                 }
 
                 //电压电流内容
