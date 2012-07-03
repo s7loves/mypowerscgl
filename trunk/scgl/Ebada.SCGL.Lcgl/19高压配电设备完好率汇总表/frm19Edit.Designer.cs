@@ -49,7 +49,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(159, 157);
+            this.btnOK.Location = new System.Drawing.Point(200, 164);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 0;
@@ -63,7 +63,7 @@
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
-            this.groupControlOrg.Size = new System.Drawing.Size(241, 185);
+            this.groupControlOrg.Size = new System.Drawing.Size(282, 192);
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
@@ -75,7 +75,7 @@
             this.groupBox1.Controls.Add(this.labelControl5);
             this.groupBox1.Location = new System.Drawing.Point(12, 30);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(224, 121);
+            this.groupBox1.Size = new System.Drawing.Size(258, 121);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "高压配电设备完好率汇总表";
@@ -83,17 +83,17 @@
             // 
             // buttonEdit1
             // 
-            this.buttonEdit1.Location = new System.Drawing.Point(41, 84);
+            this.buttonEdit1.Location = new System.Drawing.Point(41, 86);
             this.buttonEdit1.Name = "buttonEdit1";
             this.buttonEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.buttonEdit1.Size = new System.Drawing.Size(167, 21);
+            this.buttonEdit1.Size = new System.Drawing.Size(201, 21);
             this.buttonEdit1.TabIndex = 16;
             this.buttonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.buttonEdit1_ButtonClick);
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(13, 87);
+            this.labelControl3.Location = new System.Drawing.Point(13, 89);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(24, 14);
             this.labelControl3.TabIndex = 15;
@@ -103,7 +103,7 @@
             // 
             this.memoEdit1.Location = new System.Drawing.Point(41, 21);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(167, 59);
+            this.memoEdit1.Size = new System.Drawing.Size(201, 59);
             this.memoEdit1.TabIndex = 8;
             // 
             // labelControl5
@@ -138,7 +138,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(241, 185);
+            this.ClientSize = new System.Drawing.Size(282, 192);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
