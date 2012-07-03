@@ -252,7 +252,7 @@
             this.spinEdit5.Properties.DisplayFormat.FormatString = "###########0.00#########";
             this.spinEdit5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.spinEdit5.Properties.Mask.EditMask = "###########0.00#########";
-            this.spinEdit5.Size = new System.Drawing.Size(133, 21);
+            this.spinEdit5.Size = new System.Drawing.Size(147, 21);
             this.spinEdit5.TabIndex = 7;
             // 
             // spinEdit4
@@ -286,7 +286,7 @@
             this.spinEdit3.Properties.DisplayFormat.FormatString = "#####0.000#########";
             this.spinEdit3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.spinEdit3.Properties.Mask.EditMask = "###########0.000#########";
-            this.spinEdit3.Size = new System.Drawing.Size(133, 21);
+            this.spinEdit3.Size = new System.Drawing.Size(147, 21);
             this.spinEdit3.TabIndex = 13;
             // 
             // spinEdit1
@@ -355,7 +355,7 @@
             this.comboBoxEdit13.Name = "comboBoxEdit13";
             this.comboBoxEdit13.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit13.Size = new System.Drawing.Size(133, 21);
+            this.comboBoxEdit13.Size = new System.Drawing.Size(147, 21);
             this.comboBoxEdit13.TabIndex = 16;
             this.comboBoxEdit13.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
             // 
@@ -365,7 +365,7 @@
             this.comboBoxEdit9.Name = "comboBoxEdit9";
             this.comboBoxEdit9.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit9.Size = new System.Drawing.Size(133, 21);
+            this.comboBoxEdit9.Size = new System.Drawing.Size(147, 21);
             this.comboBoxEdit9.TabIndex = 16;
             this.comboBoxEdit9.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
             // 
@@ -404,7 +404,7 @@
             this.comboBoxEdit5.Name = "comboBoxEdit5";
             this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit5.Size = new System.Drawing.Size(133, 21);
+            this.comboBoxEdit5.Size = new System.Drawing.Size(147, 21);
             this.comboBoxEdit5.TabIndex = 4;
             // 
             // comboBoxEdit7
@@ -473,7 +473,7 @@
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(133, 21);
+            this.comboBoxEdit3.Size = new System.Drawing.Size(147, 21);
             this.comboBoxEdit3.TabIndex = 10;
             // 
             // labelControl4
