@@ -57,7 +57,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.SuspendLayout();
-            
             // 
             // bar1
             // 
@@ -96,7 +95,7 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.panelControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1028, 363);
+            this.splitContainerControl1.Size = new System.Drawing.Size(894, 315);
             this.splitContainerControl1.SplitterPosition = 318;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -111,7 +110,7 @@
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.dsoFramerWordControl1);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(823, 363);
+            this.splitContainerControl2.Size = new System.Drawing.Size(823, 315);
             this.splitContainerControl2.SplitterPosition = 44;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
@@ -201,7 +200,7 @@
             this.dsoFramerWordControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dsoFramerWordControl1.Location = new System.Drawing.Point(0, 0);
             this.dsoFramerWordControl1.Name = "dsoFramerWordControl1";
-            this.dsoFramerWordControl1.Size = new System.Drawing.Size(823, 315);
+            this.dsoFramerWordControl1.Size = new System.Drawing.Size(823, 265);
             this.dsoFramerWordControl1.TabIndex = 2;
             this.dsoFramerWordControl1.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.dsoFramerWordControl1_ChangeUICues);
             this.dsoFramerWordControl1.BindingContextChanged += new System.EventHandler(this.dsoFramerWordControl1_BindingContextChanged);
@@ -212,7 +211,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(201, 363);
+            this.panelControl1.Size = new System.Drawing.Size(65, 315);
             this.panelControl1.TabIndex = 0;
             // 
             // uCmExcel1
@@ -220,14 +219,14 @@
             this.uCmExcel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uCmExcel1.Location = new System.Drawing.Point(2, 2);
             this.uCmExcel1.Name = "uCmExcel1";
-            this.uCmExcel1.Size = new System.Drawing.Size(197, 359);
+            this.uCmExcel1.Size = new System.Drawing.Size(61, 311);
             this.uCmExcel1.TabIndex = 2;
             // 
             // SetTaskTableFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 363);
+            this.ClientSize = new System.Drawing.Size(894, 315);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "SetTaskTableFm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
