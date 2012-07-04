@@ -121,8 +121,8 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void frmExcelEdit_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
-            dsoFramerWordControl1.FileSave();
+            //this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
+            //dsoFramerWordControl1.FileSave();
             this.dsoFramerWordControl1.FileClose();
             base.Close();
         }
