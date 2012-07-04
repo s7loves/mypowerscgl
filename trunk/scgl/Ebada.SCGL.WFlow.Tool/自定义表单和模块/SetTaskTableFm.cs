@@ -141,7 +141,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //this.dsoFramerWordControl1.FileSave();
+            this.dsoFramerWordControl1.FileSave();
             rowData.DocContent = this.dsoFramerWordControl1.FileDataGzip; 
         }
 
