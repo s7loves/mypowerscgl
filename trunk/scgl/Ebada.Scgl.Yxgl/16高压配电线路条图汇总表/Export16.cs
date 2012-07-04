@@ -307,10 +307,12 @@ namespace Ebada.Scgl.Yxgl {
             if (prow != null) {
                 string pgt = row["ParentGT"].ToString();
                 string plinecode = prow["LineCode"].ToString();
-                if (pgt.Length > 4)
-                    ret = (int)Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(gtspan) from ps_gt where LineCode='{0}' and gtcode<='{1}'", plinecode, pgt));
-                else if (pgt.Length == 4)
-                    ret = (int)Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(gtspan) from ps_gt where LineCode='{0}' and gth<='{1}'", plinecode, pgt));
+                try {
+                    if (pgt.Length > 4)
+                        ret = (int)Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(gtspan) from ps_gt where LineCode='{0}' and gtcode<='{1}'", plinecode, pgt));
+                    else if (pgt.Length == 4)
+                        ret = (int)Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(gtspan) from ps_gt where LineCode='{0}' and gth<='{1}'", plinecode, pgt));
+                } catch { }
             }
             return ret;
         }
