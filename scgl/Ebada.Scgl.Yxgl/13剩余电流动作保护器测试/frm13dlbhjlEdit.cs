@@ -66,6 +66,7 @@ namespace Ebada.Scgl.Yxgl
             //this.comboBoxEdit3.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(rowData.OrgCode));
             //ICollection ryList = ComboBoxHelper.GetGdsRy(MainHelper.User.OrgCode );//获取供电所人员列表
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);
+            this.comboBoxEdit3.Properties.Items.Clear();
             this.comboBoxEdit3.Properties.Items.AddRange(ryList);
         }
 
