@@ -73,8 +73,12 @@ namespace Ebada.SCGL.WFlow.Tool
                         ds.Columns.Add(arrCol[i], typeof(string));
                     }
                 ds.Columns[i].Caption = arrCol[i];
-            }    
-            gridControl1.DataSource = ds;
+            }
+            try {
+                gridControl1.DataSource = ds;
+            } catch (Exception err) {
+
+            }
             DevExpress.XtraGrid.Views.Grid.GridView grid = gridView1;
             grid.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             grid.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;           

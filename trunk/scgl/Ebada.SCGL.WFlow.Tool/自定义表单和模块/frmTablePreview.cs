@@ -2119,7 +2119,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //rowData = null;
             //dockPanel1.ControlContainer.Controls.Clear();
             //templeList.Clear();
-            dsoFramerWordControl1.FileSave();
+            //dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             dsoFramerWordControl1.Dispose();
         }
