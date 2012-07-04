@@ -15,20 +15,17 @@ using Ebada.Scgl.Core;
 using System.Collections;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Threading;
-namespace Ebada.SCGL.WFlow.Tool
-{
+namespace Ebada.SCGL.WFlow.Tool {
     public partial class SetTaskTableFm : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<LP_Temple> m_CityDic = new SortableSearchableBindingList<LP_Temple>();
 
-        public SetTaskTableFm()
-        {
+        public SetTaskTableFm() {
             InitializeComponent();
             uCmExcel1.gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<LP_Temple>(gridViewOperation_BeforeAdd);
             uCmExcel1.gridViewOperation.AfterAdd += new ObjectEventHandler<LP_Temple>(gridViewOperation_AfterAdd);
             uCmExcel1.gridViewOperation.AfterEdit += new ObjectEventHandler<LP_Temple>(gridViewOperation_AfterEdit);
         }
-        void gridViewOperation_AfterEdit(LP_Temple e)
-        {
+        void gridViewOperation_AfterEdit(LP_Temple e) {
 
             //this.dsoFramerWordControl1.FileSave();
             this.dsoFramerWordControl1.Refresh();
@@ -38,8 +35,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.Show();
 
         }
-        void gridViewOperation_AfterAdd(LP_Temple e)
-        {
+        void gridViewOperation_AfterAdd(LP_Temple e) {
 
             this.dsoFramerWordControl1.FileSave();
             this.dsoFramerWordControl1.Refresh();
@@ -49,8 +45,7 @@ namespace Ebada.SCGL.WFlow.Tool
             Thread.Sleep(10);
             this.Show();
         }
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<LP_Temple> e)
-        {
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<LP_Temple> e) {
 
             this.dsoFramerWordControl1.FileSave();
             rowData.DocContent = this.dsoFramerWordControl1.FileDataGzip;
@@ -75,18 +70,18 @@ namespace Ebada.SCGL.WFlow.Tool
             get {
                 byte[] bt = this.dsoFramerWordControl1.FileDataGzip;
                 rowData.ImageAttachment = bt;
-                rowData.SignImg = bt;             
+                rowData.SignImg = bt;
                 return rowData;
             }
             set {
                 if (value == null) return;
-                if (rowData == null) {                    
-                    this.rowData = value as LP_Temple;         
+                if (rowData == null) {
+                    this.rowData = value as LP_Temple;
                     dataBind();
-                    
-                } else {                
-                    ConvertHelper.CopyTo<LP_Temple>(value as LP_Temple, rowData);              
-                    
+
+                } else {
+                    ConvertHelper.CopyTo<LP_Temple>(value as LP_Temple, rowData);
+
                 }
             }
         }
@@ -96,7 +91,7 @@ namespace Ebada.SCGL.WFlow.Tool
             base.OnShown(e);
             this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
         }
-   
+
 
         /// <summary>
         /// 
@@ -119,40 +114,34 @@ namespace Ebada.SCGL.WFlow.Tool
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void frmExcelEdit_FormClosed(object sender, FormClosedEventArgs e)
-        {
+        private void frmExcelEdit_FormClosed(object sender, FormClosedEventArgs e) {
             //this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
             //dsoFramerWordControl1.FileSave();
             this.dsoFramerWordControl1.FileClose();
             base.Close();
         }
-        void axFramerControl1_OnDocumentOpened(object sender, AxDSOFramer._DFramerCtlEvents_OnDocumentOpenedEvent e)
-        {
+        void axFramerControl1_OnDocumentOpened(object sender, AxDSOFramer._DFramerCtlEvents_OnDocumentOpenedEvent e) {
             this.dsoFramerWordControl1.FileSave();
             rowData.DocContent = this.dsoFramerWordControl1.FileDataGzip;
             uCmExcel1.ParentObj = rowData;
 
         }
-        private void frmExcelEdit_Load(object sender, EventArgs e)
-        {
+        private void frmExcelEdit_Load(object sender, EventArgs e) {
             uCmExcel1.ParentObj = rowData;
             dsoFramerWordControl1.AxFramerControl.OnDocumentOpened += new AxDSOFramer._DFramerCtlEvents_OnDocumentOpenedEventHandler(axFramerControl1_OnDocumentOpened);
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
+        private void btnOK_Click(object sender, EventArgs e) {
             this.dsoFramerWordControl1.FileSave();
-            rowData.DocContent = this.dsoFramerWordControl1.FileDataGzip; 
+            rowData.DocContent = this.dsoFramerWordControl1.FileDataGzip;
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
+        private void btnCancel_Click(object sender, EventArgs e) {
             //dsoFramerWordControl1.FileSave();
             this.dsoFramerWordControl1.FileClose();
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
+        private void simpleButton1_Click(object sender, EventArgs e) {
             dsoFramerWordControl1.FileSave();
             rowData.DocContent = dsoFramerWordControl1.FileDataGzip;
             dsoFramerWordControl1.FileClose();
@@ -170,19 +159,13 @@ namespace Ebada.SCGL.WFlow.Tool
 
         }
 
-        private void dsoFramerWordControl1_BindingContextChanged(object sender, EventArgs e)
-        {
+        private void dsoFramerWordControl1_BindingContextChanged(object sender, EventArgs e) {
 
         }
 
-        private void dsoFramerWordControl1_ChangeUICues(object sender, UICuesEventArgs e)
-        {
+        private void dsoFramerWordControl1_ChangeUICues(object sender, UICuesEventArgs e) {
 
         }
 
-       
-
-       
-       
     }
 }
