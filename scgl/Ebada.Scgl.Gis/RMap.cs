@@ -285,7 +285,7 @@ namespace Ebada.Scgl.Gis {
                     foreach (GMapMarkerVector marker in lay.Markers) {
                         try {
                             if (marker.MarkerType == MarkerEnum.byq) {
-                                marker.ShowText = value;
+                                marker.ShowText = value;//
                             }
                         } catch { }
                     }
