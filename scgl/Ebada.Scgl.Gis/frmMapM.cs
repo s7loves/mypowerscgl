@@ -385,12 +385,17 @@ namespace Ebada.Scgl.Gis {
             
             TX_Polygon obj=Ebada.Client.ClientHelper.PlatformSqlMap.GetOneByKey<TX_Polygon>("city_suihua");
             if (obj == null) {
+                TX_Layer txlayer = new TX_Layer();
+                txlayer.ProID = "0";
+                txlayer.LayerID = "0455";
+                txlayer.LayerName = "绥化";
                 obj = new TX_Polygon();
                 obj.ID = "city_suihua";
                 obj.Text = "绥化市区界线";
-                obj.LayerID = "0";
+                obj.LayerID = "0455";
                 obj.Points = s1;
-                Ebada.Client.ClientHelper.PlatformSqlMap.Create<TX_Polygon>(obj);
+                Object[] objs = new Object[] { txlayer, obj };
+                Ebada.Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(objs, null, null);
             }
             string[] lls = obj.Points.Split(',');
             List<PointLatLng> list = new List<PointLatLng>();
