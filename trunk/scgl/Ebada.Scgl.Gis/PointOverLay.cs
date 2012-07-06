@@ -46,7 +46,7 @@ namespace Ebada.Scgl.Gis {
             if (item.Overlay == this)
                 selectedMarker = item;
         }
-        public bool AllowEdit {
+        public virtual bool AllowEdit {
             get { return allowEdit; }
             set { allowEdit = value; }
         }
