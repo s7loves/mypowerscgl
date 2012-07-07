@@ -203,6 +203,10 @@ namespace Ebada.SCGL.WFlow.Tool {
                     GetTaskList(ref  dt, ((WF_WorkTask)li[i]).WorkFlowId, ((WF_WorkTask)li[i]).WorkTaskId);
 
             }
+            DataRow[] rows = dt.Select("TaskTypeId='6'");
+            foreach (DataRow row in rows) {
+                dt.Rows.Remove(row);
+            }
             WinFormFun.LoadComboBox(cbxSWorkTastDataTable, dt, "WorkTaskId", "TaskCaption");
             cbxSWorkTastDataTable.SelectedIndex = 0;
         }
@@ -453,6 +457,7 @@ namespace Ebada.SCGL.WFlow.Tool {
                 "where WorkFlowId ='" + ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID + "'  and TaskTypeId!='2' order by TaskTypeId");
             DataTable dt = new DataTable();
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
+            wfhash.Clear();
             for (int i = 0; i < li.Count; i++) {
 
                 if (((WF_WorkTask)li[i]).TaskTypeId == "6") {
@@ -469,6 +474,10 @@ namespace Ebada.SCGL.WFlow.Tool {
                     //         dt.Rows[j]["TaskCaption"] = dt.Rows[j]["TaskCaption"] + "-" + wtli[j].TaskCaption;
                     //     }
                 }
+            }
+            DataRow[] rows = dt.Select("TaskTypeId='6'");
+            foreach (DataRow row in rows) {
+                dt.Rows.Remove(row);
             }
             WinFormFun.LoadComboBox(cbxTWorkTastDataTable, dt, "WorkTaskId", "TaskCaption");
             cbxTWorkTastDataTable.SelectedIndex = 0;
