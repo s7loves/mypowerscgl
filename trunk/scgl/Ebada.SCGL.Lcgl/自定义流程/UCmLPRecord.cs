@@ -200,7 +200,10 @@ namespace Ebada.Scgl.Lcgl {
                 }
                 wfhash.Clear();
                 ContextMenu cm = new ContextMenu();
-                
+                DataRow[] rows = dt.Select("TaskTypeId='6'");
+                foreach (DataRow row in rows) {
+                    dt.Rows.Remove(row);
+                }
                 foreach (DataRow row in dt.Rows) {
                     MenuItem item = new MenuItem(row["TaskCaption"].ToString(), contextmenu_Click);
                     item.Tag = row;
@@ -222,7 +225,7 @@ namespace Ebada.Scgl.Lcgl {
                 for (int j = 0; j < wtli.Count; j++) {
                     if (wtli[j].TaskTypeId == "6") {
                         if (wfhash.Contains(wtli[j].WorkFlowId + wtli[j].WorkTaskId)) continue;
-                        wfhash.Add(wtli[j].WorkFlowId + wtli[j].WorkTaskId);
+                        //wfhash.Add(wtli[j].WorkFlowId + wtli[j].WorkTaskId);
                         GetTaskList(ref  dt, wtli[j].WorkFlowId, wtli[j].WorkTaskId);
                     } else {
                         DataRow dr = dt.NewRow();

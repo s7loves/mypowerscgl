@@ -810,14 +810,11 @@ namespace Ebada.Scgl.Lcgl {
             Excel.Workbook wb;
             //Excel.Worksheet sheet;
             wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            //if (activeSheetName != "")
-            //{
-            //    sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
-            //}
-            //else
-            //{
-            //    sheet = wb.Application.Sheets[1] as Excel.Worksheet;
-            //}
+            if (activeSheetName != "") {
+                sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
+            } else {
+                sheet = wb.Application.Sheets[1] as Excel.Worksheet;
+            }
             //activeSheetIndex = sheet.Index;
             if (filecontrol != null) {
                 if (filecontrol.Isupfile) {
