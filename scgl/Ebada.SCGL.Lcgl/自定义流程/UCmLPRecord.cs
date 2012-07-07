@@ -203,7 +203,7 @@ namespace Ebada.Scgl.Lcgl {
                 
                 foreach (DataRow row in dt.Rows) {
                     MenuItem item = new MenuItem(row["TaskCaption"].ToString(), contextmenu_Click);
-                    item.Tag = row["WorkTaskId"];
+                    item.Tag = row;
                     cm.MenuItems.Add(item);
                 }
                 cm.Show(this, this.PointToClient(MousePosition));
@@ -228,6 +228,7 @@ namespace Ebada.Scgl.Lcgl {
                         DataRow dr = dt.NewRow();
                         dr["TaskCaption"] = sbf.subWorkflowCaption + "-" + wtli[j].TaskCaption;
                         dr["WorkTaskId"] = wtli[j].WorkTaskId;
+                        dr["WorkFlowId"] = wtli[j].WorkFlowId;
                         dt.Rows.Add(dr);
                     }
                 }
@@ -239,12 +240,22 @@ namespace Ebada.Scgl.Lcgl {
             int ihand = gridView1.FocusedRowHandle;
             if (ihand < 0)
                 return;
-            string taskid = (sender as MenuItem).Tag.ToString();
+            DataRow row = (sender as MenuItem).Tag as DataRow;
+            string taskid = row["WorkTaskId"].ToString();
+            string workflowid=row["WorkFlowId"].ToString();
+            string workflowinsid = "";
+            string pwfid = null;
             DataRow dr = gridView1.GetDataRow(ihand);
             LP_Record currRecord = new LP_Record();
             currRecord = MainHelper.PlatformSqlMap.GetOneByKey<LP_Record>(dr["ID"].ToString());
-            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", "where RecordID='" + currRecord.ID + "'");
-            if (wf.Count == 0) return;
+            string strwhere=string.Format(" where recordid='{0}'",currRecord.ID);
+            IList<WFP_RecordWorkTaskIns> wf = MainHelper.PlatformSqlMap.GetList<WFP_RecordWorkTaskIns>("SelectWFP_RecordWorkTaskInsList", strwhere);
+            if (wf.Count == 0) {
+
+                return;
+            } else {
+                workflowinsid = wf[0].WorkFlowInsId;
+            }
             
             if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
@@ -252,23 +263,45 @@ namespace Ebada.Scgl.Lcgl {
             //DataTable dtall = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
             DataTable dtall = new DataTable();// RecordWorkTask.GetRecordWorkFlowData(currRecord.ID, MainHelper.User.UserID);
             DataTable dt = new DataTable();
-            DataTable dtret = RecordWorkTask.SelectedWorkflowTask(MainHelper.User.UserID, wf[0].WorkFlowId, wf[0].WorkFlowInsId, taskid, 1);
+            
+            
+            DataTable  dtret= null;
+            
+            dtret   = RecordWorkTask.SelectedWorkflowTask(MainHelper.User.UserID, workflowid, workflowinsid, taskid, 1);
+            if (dtret.Rows.Count == 0) {
+                
+                pwfid = wf[0].WorkFlowInsId;
+                //while (dtret.Rows.Count == 0) 
+                {
+                    strwhere = string.Format(" where workflowid='{0}' and mainWorkFlowInsId='{1}'", workflowid, pwfid);
+                    WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(strwhere);
+                    if (wfi == null) {
+                        return;
+                    }
+                    workflowinsid = wfi.WorkFlowInsId;
+                    workflowid = wfi.WorkFlowId;
+                    dtret = RecordWorkTask.SelectedWorkflowTask(MainHelper.User.UserID, workflowid, workflowinsid, taskid, 1);
+                    
+                }
+
+            } 
             if (dtret == null || dtret.Rows.Count==0) {
                 if (dtall.Rows.Count < 1) {
-                    if (currRecord.Status == "存档") {
-                        //frmTemplate fm0 = new frmTemplate();
-                        //fm0.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
-                        //fm0.CurrRecord = currRecord;
-                        //fm0.Kind = strKind;
-                        //fm0.Status = "edit";
-                        //fm0.ShowDialog();
-                        MsgBox.ShowAskMessageBox("已结束的流程不能在此处查阅。");
-                    } else {
+                    //if (currRecord.Status == "存档") {
+                    //    //frmTemplate fm0 = new frmTemplate();
+                    //    //fm0.ParentTemple = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+                    //    //fm0.CurrRecord = currRecord;
+                    //    //fm0.Kind = strKind;
+                    //    //fm0.Status = "edit";
+                    //    //fm0.ShowDialog();
+                    //    MsgBox.ShowAskMessageBox("已结束的流程不能在此处查阅。");
+                    //} else
+                    {
                         if (wf.Count > 0) {
-                            WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
+                            //WF_WorkFlowInstance wfi = MainHelper.PlatformSqlMap.GetOneByKey<WF_WorkFlowInstance>(wf[0].WorkFlowInsId);
 
-                            string struser = RecordWorkTask.GetWorkFlowTaskOperator(wf[0].WorkTaskInsId);
-                            MsgBox.ShowTipMessageBox("没有操作此记录的权限，此记录操作者为 " + struser + "\r\n或者此节点没有流转 !");
+                            //string struser = RecordWorkTask.GetWorkFlowTaskOperator(wf[0].WorkTaskInsId);
+                            MsgBox.ShowTipMessageBox("没有操作此记录的权限，或者此节点没有相关文档 !");
                         }
                     }
                     return;
@@ -303,7 +336,7 @@ namespace Ebada.Scgl.Lcgl {
                 fm.RecordWorkFlowData = dt;
                 fm.ShowDialog();
             } else {
-                btEditfrm_ItemClick(sender, null);
+                //btEditfrm_ItemClick(sender, null);
             }
             //Bitmap objBitmap = RecordWorkTask.WorkFlowBitmap(dr["ID"].ToString(), new Size(1024, 768));
             //string tempPath = Path.GetTempPath();

@@ -1566,7 +1566,7 @@ namespace Ebada.Scgl.WFlow
         /// <returns></returns>
         public static DataTable SelectedWorkflowTask(string userId, string WorkFlowId, string WorkFlowInstanceId, string taskId, int topsize) {
 
-            return WorkFlowInstance.SelectedWorkflowNowTask(userId, WorkFlowId, WorkFlowInstanceId, taskId, topsize);
+            return WorkFlowInstance.SelectedWorkflowTask(userId, WorkFlowId, WorkFlowInstanceId, taskId, topsize);
         }
 
         /// <summary>
