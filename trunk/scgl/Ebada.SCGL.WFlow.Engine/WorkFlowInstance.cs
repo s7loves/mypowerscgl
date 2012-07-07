@@ -256,6 +256,42 @@ namespace Ebada.SCGL.WFlow.Engine
             }
         }
         /// <summary>
+        /// 获取指定用户的任务
+        /// </summary>
+        /// <param name="WorkFlowId">流程Id</param>
+        /// <param name="WorkFlowInstanceId">流程实例Id</param>
+        /// <returns>指定的未认领的任务列表</returns>
+        public static DataTable SelectedWorkflowTask(string userid,string WorkFlowId, string WorkFlowInstanceId, string WorkTaskInsId, int topsize) {
+            try {
+                //SqlDataItem sqlItem = new SqlDataItem();
+                //sqlItem.CommandText = "WorkTaskSelectClaimPro";
+                //sqlItem.CommandType = CommandType.StoredProcedure.ToString();
+                //sqlItem.AppendParameter("@userId", userId);
+                //sqlItem.AppendParameter("@topsize", topsize,typeof(int));
+                //ClientDBAgent agent = new ClientDBAgent();
+                //return agent.ExecuteDataTable(sqlItem);
+                string filedstr = "Priority,WorkFlowNo,taskStartTime,TaskInsCaption,FlowInsCaption,OperContent,Status,FlowCaption," +
+                         "TaskCaption,UserId,WorkFlowId,WorkTaskId,WorkFlowInsId,WorkTaskInsId,OperType,TaskTypeId,operatorInsId," +
+                          "OperatedDes,OperDateTime,taskEndTime,flowStartTime,flowEndTime,pOperatedDes,Description,OperStatus,taskInsType,TaskInsDescription";
+
+
+                string sqlstr = "select top " + topsize + " * from (";
+                sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
+                sqlstr = sqlstr + "  WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "' and WorkTaskId ='" + WorkTaskInsId + "') a";
+                sqlstr = sqlstr + " left join rRoleModul b on a.WorkTaskId=b.modu_id   ";
+                sqlstr = sqlstr + " left join rUserRole c on b.roleid=c.roleid and c.userid='"+userid+"' ";
+                Console.WriteLine(sqlstr);
+                IList li = MainHelper.PlatformSqlMap.GetList("SelectWF_WorkTaskInstanceViewListValue", sqlstr);
+                if (li.Count == 0) {
+                    DataTable dt = new DataTable();
+                    return dt;
+                }
+                return ConvertHelper.ToDataTable(li);
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
+        /// <summary>
         /// 指定的当前的任务
         /// </summary>
         /// <param name="userId">用户Id</param>
