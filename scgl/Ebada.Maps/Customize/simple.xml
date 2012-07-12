@@ -40,6 +40,68 @@
     <statement id="ExecProc" parameterClass="string" resultClass="Hashtable">
       $value$
     </statement>
+    <update id="UpdateLP_RecordByHash" parameterClass="Hashtable" resultClass="int">
+      UPDATE LP_Record
+      <dynamic prepend="set">
+        <isNotNull prepend="," property="ParentID">
+          [ParentID]=#ParentID#
+        </isNotNull>
+        <isNotNull prepend="," property="Content">
+          [Content]=#Content#
+        </isNotNull>
+        <isNotNull prepend="," property="DocContent">
+          [DocContent]=#DocContent#
+        </isNotNull>
+        <isNotNull prepend="," property="Kind">
+          [Kind]=#Kind#
+        </isNotNull>
+        <isNotNull prepend="," property="SignImg">
+          [SignImg]=#SignImg#
+        </isNotNull>
+        <isNotNull prepend="," property="ImageAttachment">
+          [ImageAttachment]=#ImageAttachment#
+        </isNotNull>
+        <isNotNull prepend="," property="SortID">
+          [SortID]=#SortID#
+        </isNotNull>
+        <isNotNull prepend="," property="CreateTime">
+          [CreateTime]=#CreateTime#
+        </isNotNull>
+        <isNotNull prepend="," property="LastChangeTime">
+          [LastChangeTime]=#LastChangeTime#
+        </isNotNull>
+        <isNotNull prepend="," property="Status">
+          [Status]=#Status#
+        </isNotNull>
+        <isNotNull prepend="," property="Number">
+          [Number]=#Number#
+        </isNotNull>
+        <isNotNull prepend="," property="OrgName">
+          [OrgName]=#OrgName#
+        </isNotNull>
+        <isNotNull prepend="," property="bj">
+          [bj]=#bj#
+        </isNotNull>
+        <isNotNull prepend="," property="c1">
+          [c1]=#c1#
+        </isNotNull>
+        <isNotNull prepend="," property="c2">
+          [c2]=#c2#
+        </isNotNull>
+        <isNotNull prepend="," property="c3">
+          [c3]=#c3#
+        </isNotNull>
+        <isNotNull prepend="," property="c4">
+          [c4]=#c4#
+        </isNotNull>
+        <isNotNull prepend="," property="c5">
+          [c5]=#c5#
+        </isNotNull>
+      </dynamic>
+      WHERE
+      ID = #ID#
+
+    </update>
   </statements>
 </sqlMap>
  
