@@ -2319,6 +2319,10 @@ namespace Ebada.Scgl.Lcgl {
             button2.Location = new Point(button1.Right+5, button1.Top);
             button2.DialogResult = DialogResult.Cancel;
             if (dlg.ShowDialog() == DialogResult.OK) {
+                //Dictionary<string, object> dic = new Dictionary<string, object>();
+                //dic.Add("ID", obj.ID);
+                //dic.Add("bj", box.EditValue.ToString());
+                //Client.ClientHelper.PlatformSqlMap.Update("UpdateLP_RecordByHash", dic);
                 //Hashtable ht =new Hashtable();ht.Add("ID",obj.ID);ht.Add("bj",box.EditValue.ToString());
                 //Client.ClientHelper.PlatformSqlMap.Update("UpdateLP_RecordByHash", ht);
                 Client.ClientHelper.PlatformSqlMap.Update("Update", "update lp_record set bj='" + box.EditValue.ToString() + "' where id='" + obj.ID + "'");
