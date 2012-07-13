@@ -209,7 +209,7 @@
     <Compile Include="IUCLayer.cs" />
     <Compile Include="IUpdateable.cs" />
     <Compile Include="LineOverLay.cs" />
-    <Compile Include="LineRoute.cs" />
+    <Compile Include="PointRoute.cs" />
     <Compile Include="MarkerEnum.cs" />
     <Compile Include="Markers\GMapMarkerVector.cs" />
     <Compile Include="Markers\GMapMarkerImage.cs" />
