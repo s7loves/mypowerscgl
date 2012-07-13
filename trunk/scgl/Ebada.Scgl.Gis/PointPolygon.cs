@@ -7,8 +7,8 @@ using Ebada.Scgl.Gis.Markers;
 
 namespace Ebada.Scgl.Gis {
     [Serializable]
-    public class PointRoute:GMapRoute {
-        public PointRoute(List<PointLatLng> points, string name)
+    public class PointPolygon:GMapPolygon {
+        public PointPolygon(List<PointLatLng> points, string name)
             : base(points, name) {
             Markers = new GMap.NET.ObjectModel.ObservableCollectionThreadSafe<GMapMarkerVector>();
         }
@@ -17,5 +17,6 @@ namespace Ebada.Scgl.Gis {
         public void UpdateRoutePostion(GMapMarkerVector marker) {
             this.Points[Markers.IndexOf(marker)] = marker.Position;
         }
+        
     }
 }

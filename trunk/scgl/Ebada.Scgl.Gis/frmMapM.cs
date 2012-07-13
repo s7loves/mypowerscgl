@@ -118,7 +118,7 @@ namespace Ebada.Scgl.Gis {
                 }
             }
             if (linePoints.Count > 0) {
-                LineRoute route = new LineRoute(linePoints, "LineCode");
+                PointRoute route = new PointRoute(linePoints, "LineCode");
                 route.Stroke.Width = 4;
                 routes.Routes.Clear();
                 routes.Routes.Add(route);
@@ -405,8 +405,19 @@ namespace Ebada.Scgl.Gis {
                     list.Add(new PointLatLng(double.Parse(ls[1]),double.Parse(ls[0])));                    
                 }
             }
-            GMapPolygon gp=new GMapPolygon(list,"绥化");
-            rMap1.bdzLayer.Polygons.Add(gp);
+            
+            PointPolygon gp = new PointPolygon(list, "绥化");            
+
+            PointOverLay lay = new PointOverLay(rMap1, "city");
+            lay.Polygons.Add(gp);
+
+            foreach (var item in list) {
+                GMapMarkerPoint m = new GMapMarkerPoint(item); m.IsVisible = false;
+                lay.Markers.Add(m);
+                gp.Markers.Add(m);
+                m.Polygon = gp;
+            }
+            rMap1.Overlays.Add(lay);
         }
 
     }

@@ -76,6 +76,7 @@ namespace TLMapPlatform {
             mTable.Rows.Add(hide, "0", "高压线路", "10", "0");
             mTable.Rows.Add(hide, "0", "低压台区", "0.4", "0");
             mTable.Rows.Add(hide, "0", "变电所", "bdz", "0");
+            mTable.Rows.Add(visible, "0", "区界", "city", "0");
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
             if (!"rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(Ebada.Client.Platform.MainHelper.User.UserName)) {
@@ -209,7 +210,7 @@ namespace TLMapPlatform {
                         string code = hit.Node["ID"].ToString();
                         if (hit.Column.FieldName == "显示") {
 
-                            if (code.Length >= 6 || code == "bdz")
+                            if (code.Length >= 6 || code == "bdz" || code=="city")
                                 showLayer(code, hit.Node["显示"].ToString() == "1");
 
                         } else if (hit.Column.FieldName == "编辑") {

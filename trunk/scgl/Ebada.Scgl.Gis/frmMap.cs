@@ -105,7 +105,7 @@ namespace Ebada.Scgl.Gis {
                 }
             }
             if (linePoints.Count > 0) {
-                LineRoute route = new LineRoute(linePoints, "LineCode");
+                PointRoute route = new PointRoute(linePoints, "LineCode");
                 route.Stroke.Width = 4;
                 routes.Routes.Clear();
                 routes.Routes.Add(route);

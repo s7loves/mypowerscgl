@@ -78,7 +78,7 @@ namespace Ebada.Scgl.Gis {
                  GMapMarkerVector marker = null;
                  GMapMarkerVector preMarker = null;
                  List<PointLatLng> points = new List<PointLatLng>();
-                 LineRoute route = new LineRoute(points, linecode);
+                 PointRoute route = new PointRoute(points, linecode);
                  route.Stroke.Width = 1;
                  int count = 0;
                  IList<TX_Point> listp = Client.ClientHelper.PlatformSqlMap.GetList<TX_Point>("where layerid='" + tqcode + "'");
@@ -181,7 +181,7 @@ namespace Ebada.Scgl.Gis {
                  GMapMarkerVector marker = null;
                  GMapMarkerVector preMarker = null;
                  List<PointLatLng> points = new List<PointLatLng>();
-                 LineRoute route = new LineRoute(points, linecode);
+                 PointRoute route = new PointRoute(points, linecode);
                  //route.Stroke.Color = Color.Black;
                  if (linecode.Length == 6)
                      route.Stroke.Width = 3;
