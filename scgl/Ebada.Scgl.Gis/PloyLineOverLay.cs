@@ -73,16 +73,24 @@ namespace Ebada.Scgl.Gis {
             }
             return sb.ToString();
         }
+        bool iobusy;
         /// <summary>
         /// 更新数据库
         /// </summary>
         /// <param name="marker"></param>
         public void Update(GMapMarker marker) {
+            if (iobusy) return;
+            
             GMapMarkerPoint p = marker as GMapMarkerPoint;
             if (p != null && p.Polygon!=null && p.Polygon.Tag is TX_Polygon) {
-                (p.Polygon.Tag as TX_Polygon).Points = pointstostring();
-                Client.ClientHelper.PlatformSqlMap.Update<TX_Polygon>(p.Polygon.Tag);
+                iobusy = true;
+                try {
+                    (p.Polygon.Tag as TX_Polygon).Points = pointstostring();
+                    Client.ClientHelper.PlatformSqlMap.Update<TX_Polygon>(p.Polygon.Tag);
+                } catch { }
+                iobusy = false;
             }
+            
         }
         /// <summary>
         /// 更新界面图形
