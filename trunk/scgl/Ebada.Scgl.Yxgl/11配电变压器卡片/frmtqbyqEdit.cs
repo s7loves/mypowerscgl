@@ -19,6 +19,15 @@ namespace Ebada.Scgl.Yxgl {
         public string OrgCode;
         public frmtqbyqEdit() {
             InitializeComponent();
+            comboBoxEdit3.SelectedIndexChanged += new EventHandler(comboBoxEdit3_SelectedIndexChanged);
+        }
+        void comboBoxEdit3_SelectedIndexChanged(object sender, EventArgs e) {
+            if (comboBoxEdit3.SelectedIndex < 0) return;
+            string[] ss = comboBoxEdit3.Text.Split('-');
+            if (ss.Length != 3) return;
+            comboBoxEdit3.Text = ss[0];
+            spinEdit1.Text = ss[2];
+            //comboBoxEdit7.Text = ss[1].Split('/')[0];
         }
         void dataBind() {
 
