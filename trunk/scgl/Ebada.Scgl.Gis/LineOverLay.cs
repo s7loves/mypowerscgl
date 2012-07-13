@@ -11,6 +11,9 @@ using System.Windows.Forms;
 using TLMapPlatform;
 using Ebada.Scgl.Gis.Device;
 namespace Ebada.Scgl.Gis {
+    /// <summary>
+    /// 配电线路层
+    /// </summary>
     public class LineOverlay : GMapOverlay, IUpdateable,IDisposable,IPopuMenu,ILineInfo {
 
         private GMapControl control;

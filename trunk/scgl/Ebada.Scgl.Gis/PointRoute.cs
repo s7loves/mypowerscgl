@@ -6,6 +6,9 @@ using GMap.NET;
 using Ebada.Scgl.Gis.Markers;
 
 namespace Ebada.Scgl.Gis {
+    /// <summary>
+    /// 可编辑折线
+    /// </summary>
     [Serializable]
     public class PointRoute:GMapRoute {
         public PointRoute(List<PointLatLng> points, string name)
