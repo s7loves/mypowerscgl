@@ -43,7 +43,7 @@ namespace Ebada.Scgl.Gis.Device {
             strGtID = null;
             int maxLength = 8;
             StringBuilder sb = new StringBuilder();
-            sb.Append("设备名称\t设备类型\t设备数量\r\n");
+            //sb.Append("设备名称\t设备类型\t设备数量\r\n");
             foreach (PS_gt gt in gtList)
             {
                 if (string.IsNullOrEmpty(strGtID))
@@ -97,7 +97,7 @@ namespace Ebada.Scgl.Gis.Device {
                 {
                     maxLength = ob[2].ToString().Length;
                 }
-                sb.Append(ob[2].ToString() + "\t" + ob[1].ToString() + "\t" + ob[0].ToString() + "\r\n");
+                //sb.Append(ob[2].ToString() + "\t" + ob[1].ToString() + "\t" + ob[0].ToString() + "\r\n");
                 PS_tj tj = new PS_tj();              
                 tj.SBNumber = Convert.ToInt32(ob[0]);
                 tj.SbType = ob[1].ToString();
@@ -133,7 +133,7 @@ namespace Ebada.Scgl.Gis.Device {
                 {
                     maxLength = ob[2].ToString().Length;
                 }
-                sb.Append(ob[2].ToString() + "\t" + ob[1].ToString() + "\t" + ob[0].ToString() + "\r\n");
+                //sb.Append(ob[2].ToString() + "\t" + ob[1].ToString() + "\t" + ob[0].ToString() + "\r\n");
                 PS_tj tj = new PS_tj();
                 tj.SBNumber = Convert.ToInt32(ob[0]);
                 tj.SbType = ob[1].ToString();
@@ -143,7 +143,7 @@ namespace Ebada.Scgl.Gis.Device {
             IList tqCount = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqRowCount", ",ps_gt where ps_tq.gtid=ps_gt.gtid and ps_gt.gtid in " + strGtID);
             if (tqCount.Count > 0)
             {
-                sb.Append("台区" + "\t" + "台区数量" + "\t" + tqCount[0].ToString());
+                //sb.Append("台区" + "\t" + "台区数量" + "\t" + tqCount[0].ToString());
                 PS_tj tj = new PS_tj();
                 tj.SBNumber = Convert.ToInt32(tqCount[0].ToString());
                 tj.SbType = "台区数量";
@@ -154,7 +154,7 @@ namespace Ebada.Scgl.Gis.Device {
             IList byqCount = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCount", ",PS_tq where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.gtid in " + strGtID);
             if (byqCount.Count > 0)
             {
-                sb.Append("变压器" + "\t" + "变压器数量" + "\t" + byqCount[0].ToString());
+                //sb.Append("变压器" + "\t" + "变压器数量" + "\t" + byqCount[0].ToString());
                 PS_tj tj = new PS_tj();
                 tj.SBNumber = Convert.ToInt32(byqCount[0].ToString());
                 tj.SbType = "变压器数量";
@@ -164,7 +164,7 @@ namespace Ebada.Scgl.Gis.Device {
             IList gtCountSum = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtRowCount", " where gtID in " + strGtID);
             if (gtCountSum.Count > 0)
             {
-                sb.Append("杆塔" + "\t" + "杆塔数量" + "\t" + gtCountSum[0].ToString());
+                //sb.Append("杆塔" + "\t" + "杆塔数量" + "\t" + gtCountSum[0].ToString());
                 PS_tj tj = new PS_tj();
                 tj.SBNumber = Convert.ToInt32(gtCountSum[0].ToString());
                 tj.SbType = "杆塔数量";
@@ -174,10 +174,10 @@ namespace Ebada.Scgl.Gis.Device {
             IList xlLength = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_xlLengthByWhere", " where gtID in " + strGtID);
             if (xlLength.Count > 0)
             {
-                sb.Append("线路" + "\t" + "线路长度" + "\t" + xlLength[0].ToString() + "米");
+                //sb.Append("线路" + "\t" + "线路长度" + "\t" + xlLength[0].ToString() + "米");
                 PS_tj tj = new PS_tj();
                 tj.SBNumber = (int)Convert.ToDouble(xlLength[0].ToString());
-                tj.SbType = "线路长度";
+                tj.SbType = "线路长度(米)";
                 tj.SbName = "线路";
                 tjList.Add(tj);
             }
