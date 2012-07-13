@@ -49,11 +49,7 @@ namespace Ebada.Scgl.Gis {
         public virtual bool AllowEdit {
             get { return allowEdit; }
             set {
-                if (value != allowEdit) {
-                    foreach (var item in Markers) {
-                        item.IsVisible = value;
-                    }
-                }
+                
                 allowEdit = value; 
             
 

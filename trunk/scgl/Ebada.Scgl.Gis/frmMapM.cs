@@ -406,9 +406,9 @@ namespace Ebada.Scgl.Gis {
                 }
             }
             
-            PointPolygon gp = new PointPolygon(list, "绥化");            
-
-            PointOverLay lay = new PointOverLay(rMap1, "city");
+            PointPolygon gp = new PointPolygon(list, "绥化");
+            gp.Tag = obj;
+            PloyLineOverLay lay = new PloyLineOverLay(rMap1, "city");
             lay.Polygons.Add(gp);
 
             foreach (var item in list) {

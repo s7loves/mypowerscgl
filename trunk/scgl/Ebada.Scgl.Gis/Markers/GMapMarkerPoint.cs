@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Gis.Markers {
             return new System.Windows.Forms.ContextMenu();
         }
         internal override void Update() {
-            
+            base.Update();
         }
     }
 }
