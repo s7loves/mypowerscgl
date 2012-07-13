@@ -6,6 +6,9 @@ using GMap.NET;
 using Ebada.Scgl.Gis.Markers;
 
 namespace Ebada.Scgl.Gis {
+    /// <summary>
+    /// 可编辑多边形,需要PloyLineOverLay一起使用
+    /// </summary>
     [Serializable]
     public class PointPolygon:GMapPolygon {
         public PointPolygon(List<PointLatLng> points, string name)

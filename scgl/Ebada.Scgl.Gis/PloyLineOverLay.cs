@@ -10,6 +10,9 @@ using Ebada.Scgl.Gis.Markers;
 using System.Windows.Forms;
 using System.Drawing;
 namespace Ebada.Scgl.Gis {
+    /// <summary>
+    /// 可编辑多边形、多折线层
+    /// </summary>
     public class PloyLineOverLay : GMapOverlay, IUpdateable, IPopuMenu {
          
         private GMapControl control;
@@ -49,8 +52,7 @@ namespace Ebada.Scgl.Gis {
                 allowEdit = value;
             }
         }
-        public virtual ContextMenu CreatePopuMenu() {
-            
+        public virtual ContextMenu CreatePopuMenu() {            
             GMapMarkerVector mv = selectedMarker as GMapMarkerVector;
             ContextMenu menu = new ContextMenu();
             if (mv != null) menu = mv.CreatePopuMenu();
@@ -60,10 +62,8 @@ namespace Ebada.Scgl.Gis {
         protected override void DrawRoutes(System.Drawing.Graphics g) {
             base.DrawRoutes(g);
         }
-        public override void Render(System.Drawing.Graphics g) {
-            
-            base.Render(g);
-            
+        public override void Render(System.Drawing.Graphics g) {            
+            base.Render(g);            
         }
         private string pointstostring() {
             StringBuilder sb = new StringBuilder();
@@ -73,6 +73,10 @@ namespace Ebada.Scgl.Gis {
             }
             return sb.ToString();
         }
+        /// <summary>
+        /// 更新数据库
+        /// </summary>
+        /// <param name="marker"></param>
         public void Update(GMapMarker marker) {
             GMapMarkerPoint p = marker as GMapMarkerPoint;
             if (p != null && p.Polygon!=null && p.Polygon.Tag is TX_Polygon) {
@@ -80,6 +84,10 @@ namespace Ebada.Scgl.Gis {
                 Client.ClientHelper.PlatformSqlMap.Update<TX_Polygon>(p.Polygon.Tag);
             }
         }
+        /// <summary>
+        /// 更新界面图形
+        /// </summary>
+        /// <param name="marker"></param>
         public virtual void OnMarkerChanged(GMapMarker marker) {
             GMapMarkerVector markerv = marker as GMapMarkerVector;
             if (markerv.Polygon != null) {
