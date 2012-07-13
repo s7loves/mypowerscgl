@@ -48,7 +48,16 @@ namespace Ebada.Scgl.Gis {
         }
         public virtual bool AllowEdit {
             get { return allowEdit; }
-            set { allowEdit = value; }
+            set {
+                if (value != allowEdit) {
+                    foreach (var item in Markers) {
+                        item.IsVisible = value;
+                    }
+                }
+                allowEdit = value; 
+            
+
+            }
         }
         public virtual ContextMenu CreatePopuMenu() {
             
@@ -58,15 +67,7 @@ namespace Ebada.Scgl.Gis {
             return menu;
         }
 
-        void 属性_Click(object sender, EventArgs e) {
-            if (selectedMarker == null) return;
-            frmBdsEdit dlg = new frmBdsEdit();
-
-            dlg.RowData = selectedMarker.Tag;
-            if (dlg.ShowDialog() == DialogResult.OK) {
-                Client.ClientHelper.PlatformSqlMap.Update<mOrg>(dlg.RowData);
-            }
-        }
+        
         protected override void DrawRoutes(System.Drawing.Graphics g) {
             base.DrawRoutes(g);
         }
@@ -79,7 +80,11 @@ namespace Ebada.Scgl.Gis {
 
         }
         public virtual void OnMarkerChanged(GMapMarker marker) {
-
+            GMapMarkerVector markerv = marker as GMapMarkerVector;
+            if (markerv.Polygon != null) {
+                markerv.Polygon.UpdateRoutePostion(markerv);
+                control.UpdatePolygonLocalPosition(markerv.Polygon);
+            }
         }
         public void ShowDialog(GMapMarker marker, bool canEdit) { 
 

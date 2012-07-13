@@ -18,13 +18,13 @@ namespace Ebada.Scgl.Gis.Markers {
         private List<GMapMarkerVector> items;
         private GMapMarkerVector parentMarker;
         private string id;
-        private LineRoute route;
+        private PointRoute route;
         private string text;
         private bool showText;
         private Font font;
         private MarkerEnum markerType= MarkerEnum.none;
         private object ownerLine;//所在线路
-
+        public PointPolygon Polygon ;
         public object OwnerLine {
             get { return ownerLine; }
             set { ownerLine = value; }
@@ -52,7 +52,7 @@ namespace Ebada.Scgl.Gis.Markers {
                 text = value; 
             }
         }
-        public LineRoute Route {
+        public PointRoute Route {
             get { return route; }
             set { route = value; }
         }

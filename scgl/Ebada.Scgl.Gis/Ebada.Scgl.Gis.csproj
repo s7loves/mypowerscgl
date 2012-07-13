@@ -306,6 +306,7 @@
       <DependentUpon>UCSharpeDyt.cs</DependentUpon>
     </Compile>
     <Compile Include="PloyLineOverLay.cs" />
+    <Compile Include="PointPolygon.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Device\frmBaseSelector.resx">

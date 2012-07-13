@@ -10,6 +10,7 @@ namespace Ebada.Scgl.Gis {
         byq,
         byqrl,
         kg,
-        xlmc
+        xlmc,
+        polygonpoint
     }
 }
