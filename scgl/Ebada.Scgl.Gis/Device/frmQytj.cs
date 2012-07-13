@@ -140,7 +140,7 @@ namespace Ebada.Scgl.Gis.Device {
                 tj.SbName = ob[2].ToString();
                 tjList.Add(tj);
             }
-            IList tqCount = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqRowCount", " where xlCode in " + strLineCode);
+            IList tqCount = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqRowCount", ",ps_gt where ps_tq.gtid=ps_gt.gtid and ps_gt.gtid in " + strGtID);
             if (tqCount.Count > 0)
             {
                 sb.Append("台区" + "\t" + "台区数量" + "\t" + tqCount[0].ToString());
@@ -151,7 +151,7 @@ namespace Ebada.Scgl.Gis.Device {
                 tjList.Add(tj);
             }
 
-            IList byqCount = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCount",",PS_tq where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.tqID in " + strLineCode);
+            IList byqCount = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCount", ",PS_tq where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.gtid in " + strGtID);
             if (byqCount.Count > 0)
             {
                 sb.Append("变压器" + "\t" + "变压器数量" + "\t" + byqCount[0].ToString());
