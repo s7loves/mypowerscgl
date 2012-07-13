@@ -40,7 +40,14 @@ namespace Ebada.Scgl.Gis {
         }
         public bool AllowEdit {
             get { return allowEdit; }
-            set { allowEdit = value; }
+            set {
+                if (value != allowEdit) {
+                    foreach (var item in Markers) {
+                        item.IsVisible = value;
+                    }
+                } 
+                allowEdit = value;
+            }
         }
         public virtual ContextMenu CreatePopuMenu() {
             
@@ -58,13 +65,20 @@ namespace Ebada.Scgl.Gis {
             base.Render(g);
             
         }
+        private string pointstostring() {
+            StringBuilder sb = new StringBuilder();
+            
+            foreach (var item in Markers) {
+                sb.Append(Math.Round(item.Position.Lng,6).ToString()+" "+Math.Round(item.Position.Lat,6).ToString()+"," );
+            }
+            return sb.ToString();
+        }
         public void Update(GMapMarker marker) {
-            //PS_gt gt = marker.Tag as PS_gt;
-            //if (gt != null) {
-            //    gt.gtLat = (decimal)marker.Position.Lat;
-            //    gt.gtLon = (decimal)marker.Position.Lng;
-            //    Client.ClientHelper.PlatformSqlMap.Update("UpdatePS_gtLatLng", gt);
-            //}
+            GMapMarkerPoint p = marker as GMapMarkerPoint;
+            if (p != null && p.Polygon!=null && p.Polygon.Tag is TX_Polygon) {
+                (p.Polygon.Tag as TX_Polygon).Points = pointstostring();
+                Client.ClientHelper.PlatformSqlMap.Update<TX_Polygon>(p.Polygon.Tag);
+            }
         }
         public virtual void OnMarkerChanged(GMapMarker marker) {
             GMapMarkerVector markerv = marker as GMapMarkerVector;
@@ -72,10 +86,6 @@ namespace Ebada.Scgl.Gis {
                 markerv.Polygon.UpdateRoutePostion(markerv);
                 control.UpdatePolygonLocalPosition(markerv.Polygon);
             }
-        }
-        public void ShowDialog(GMapMarker marker, bool canEdit) { 
-
-            
         }
     }
 }
